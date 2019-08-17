@@ -74,26 +74,28 @@ class Parser {
   entries: Entry[]
   entry: Entry
   property: PropertyBuilder
+  errorHandler: (message: string) => void
 
-  constructor(input) {
+  constructor(input, errorHandler = null) {
     const chunks = chunker(input)
+    this.errorHandler = errorHandler
 
     this.errors = []
     this.comments = []
     this.entries = []
     this.strings = {
-      JAN: [ { kind: 'Text', value: '01' } ],
-      FEB: [ { kind: 'Text', value: '02' } ],
-      MAR: [ { kind: 'Text', value: '03' } ],
-      APR: [ { kind: 'Text', value: '04' } ],
-      MAY: [ { kind: 'Text', value: '05' } ],
-      JUN: [ { kind: 'Text', value: '06' } ],
-      JUL: [ { kind: 'Text', value: '07' } ],
-      AUG: [ { kind: 'Text', value: '08' } ],
-      SEP: [ { kind: 'Text', value: '09' } ],
-      OCT: [ { kind: 'Text', value: '10' } ],
-      NOV: [ { kind: 'Text', value: '11' } ],
-      DEC: [ { kind: 'Text', value: '12' } ],
+      JAN: [ this.text('01') ],
+      FEB: [ this.text('02') ],
+      MAR: [ this.text('03') ],
+      APR: [ this.text('04') ],
+      MAY: [ this.text('05') ],
+      JUN: [ this.text('06') ],
+      JUL: [ this.text('07') ],
+      AUG: [ this.text('08') ],
+      SEP: [ this.text('09') ],
+      OCT: [ this.text('10') ],
+      NOV: [ this.text('11') ],
+      DEC: [ this.text('12') ],
     }
 
     for (const chunk of chunks) {
@@ -120,10 +122,22 @@ class Parser {
     return JSON.stringify(o)
   }
 
+  text(value = '') {
+    return { kind: 'Text', value }
+  }
+
+  error(err, returnvalue) {
+    if (this.errorHandler) {
+      this.errorHandler(err)
+      return returnvalue
+    }
+    throw new Error(err)
+  }
+
   condense(node) {
     if (!Array.isArray(node.value)) {
       if (node.value.kind === 'Number') return
-      throw new Error(this.show(node))
+      return this.error(this.show(node), undefined)
     }
 
     const markup = {
@@ -149,7 +163,7 @@ class Parser {
       // \frac can either be "\frac{n}{d}" or "\frac n d"
       if (child.kind === 'RegularCommand' && child.value === 'frac' && !child.arguments.length) {
         if ((node.value[i + 1] || {}).kind === 'Text' && node.value[i + 1].value.match(/^\s+[a-z0-9]+\s+[a-z0-9]+$/i)) {
-          child.arguments = node.value[i + 1].value.trim().split(/\s+/).map(v => ({ kind: 'RequiredArgument', value: [ { kind: 'Text', value: v } ] }))
+          child.arguments = node.value[i + 1].value.trim().split(/\s+/).map(v => ({ kind: 'RequiredArgument', value: [ this.text(v) ] }))
           node.value[i + 1].value = ''
           return true
         }
@@ -209,7 +223,7 @@ class Parser {
   cleanup(node) {
     delete node.loc
 
-    if (!this['clean_' + node.kind]) throw new Error(this.show(node))
+    if (!this['clean_' + node.kind]) return this.error(this.show(node), this.text())
     return this['clean_' + node.kind](node)
   }
 
@@ -236,7 +250,7 @@ class Parser {
         caseProtect: false,
         exemptFromSentenceCase: !string
       },
-      value: string || [ { kind: 'Text', value: node.value } ]
+      value: string || [ this.text(node.value) ]
     })
   }
 
@@ -266,7 +280,7 @@ class Parser {
 
     switch (node.value) {
       case 'vphantom':
-        return { kind: 'Text', value: '' }
+        return this.text()
 
       case 'frac':
         // not a spectactular solution but what ya gonna do.
@@ -277,14 +291,14 @@ class Parser {
               caseProtect: false,
               exemptFromSentenceCase: true,
             },
-            value: [ { kind: 'Text', value: `${arg[0]}/${arg[1]}` } ]
+            value: [ this.text(`${arg[0]}/${arg[1]}`) ]
           })
         }
         break
 
       case 'href':
         if (arg = this.argument(node, 2)) {
-          return { kind: 'Text', value: arg[0] }
+          return this.text(arg[0])
         }
         break
 
@@ -292,15 +306,15 @@ class Parser {
       case 'aftergroup':
       case 'ignorespaces':
       case 'noopsort':
-        return { kind: 'Text', value: '' }
+        return this.text()
 
       case 'chsf':
-        if (this.argument(node, 'none')) return { kind: 'Text', value: '' }
-        if (arg = this.argument(node, 'array')) return { kind: 'Text', value: arg }
+        if (this.argument(node, 'none')) return this.text()
+        if (arg = this.argument(node, 'array')) return this.text(arg)
         return node
 
       case 'bibstring':
-        if (arg = this.argument(node, 'Text')) return { kind: 'Text', value: arg }
+        if (arg = this.argument(node, 'Text')) return this.text(arg)
         break
 
       case 'cite':
@@ -311,13 +325,13 @@ class Parser {
               caseProtect: false,
               exemptFromSentenceCase: true,
             },
-            value: [ { kind: 'Text', value: arg[0] } ]
+            value: [ this.text(arg[0]) ]
           })
         }
         break
 
       case 'textsuperscript':
-        if (!(arg = this.argument(node, 'array'))) throw new Error(node.value + this.show(node))
+        if (!(arg = this.argument(node, 'array'))) return this.error(node.value + this.show(node), this.text())
         return this.cleanup({
           kind: 'NestedLiteral',
           markup: { sup: true },
@@ -326,7 +340,7 @@ class Parser {
         break
 
       case 'textsubscript':
-        if (!(arg = this.argument(node, 'array'))) throw new Error(node.value + this.show(node))
+        if (!(arg = this.argument(node, 'array'))) return this.error(node.value + this.show(node), this.text())
         return this.cleanup({
           kind: 'NestedLiteral',
           markup: { sub: true },
@@ -335,7 +349,7 @@ class Parser {
         break
 
       case 'textsc':
-        if (!(arg = this.argument(node, 'array'))) throw new Error(node.value + this.show(node))
+        if (!(arg = this.argument(node, 'array'))) return this.error(node.value + this.show(node), this.text())
         return this.cleanup({
           kind: 'NestedLiteral',
           markup: { smallCaps: true },
@@ -345,7 +359,7 @@ class Parser {
 
       case 'enquote':
       case 'mkbibquote':
-        if (!(arg = this.argument(node, 'array'))) throw new Error(node.value + this.show(node))
+        if (!(arg = this.argument(node, 'array'))) return this.error(node.value + this.show(node), this.text())
         return this.cleanup({
           kind: 'NestedLiteral',
           markup: { enquote: true },
@@ -355,7 +369,7 @@ class Parser {
 
       case 'textbf':
       case 'mkbibbold':
-        if (!(arg = this.argument(node, 'array'))) throw new Error(node.value + this.show(node))
+        if (!(arg = this.argument(node, 'array'))) return this.error(node.value + this.show(node), this.text())
         return this.cleanup({
           kind: 'NestedLiteral',
           markup: { bold: true },
@@ -367,7 +381,7 @@ class Parser {
       case 'mkbibemph':
       case 'textit':
       case 'emph':
-        if (!(arg = this.argument(node, 'array'))) throw new Error(node.value + this.show(node))
+        if (!(arg = this.argument(node, 'array'))) return this.error(node.value + this.show(node), this.text())
         return this.cleanup({
           kind: 'NestedLiteral',
           markup: { italics: true },
@@ -376,9 +390,9 @@ class Parser {
         break
 
       case 'bibcyr':
-        if (this.argument(node, 'none')) return { kind: 'Text', value: '' }
+        if (this.argument(node, 'none')) return this.text()
 
-        if (!(arg = this.argument(node, 'array'))) throw new Error(node.value + this.show(node))
+        if (!(arg = this.argument(node, 'array'))) return this.error(node.value + this.show(node), this.text())
         return this.cleanup({
           kind: 'NestedLiteral',
           markup: {},
@@ -392,9 +406,9 @@ class Parser {
       case 'mbox':
         if (arg = this.argument(node, 'Text')) {
           unicode = latex2unicode[`\\${node.value}{${arg}}`]
-          return { kind: 'Text', value: unicode || arg }
+          return this.text(unicode || arg)
         } else if (!node.arguments.length) {
-          return { kind: 'Text', value: '' }
+          return this.text()
         } else if (arg = this.argument(node, 'array')) {
           return this.cleanup({
             kind: 'NestedLiteral',
@@ -405,23 +419,23 @@ class Parser {
         break
 
       case 'url':
-        if (arg = this.argument(node, 'Text')) return { kind: 'Text', value: arg }
+        if (arg = this.argument(node, 'Text')) return this.text(arg)
         break
 
       default:
         unicode = latex2unicode[`\\${node.value}`] || latex2unicode[`\\${node.value}{}`]
         if (unicode && this.argument(node, 'none')) {
-          return { kind: 'Text', value: unicode }
+          return this.text(unicode)
         }
 
         if (arg = this.argument(node, 'Text')) {
           if (unicode = latex2unicode[`\\${node.value}{${arg}}`]) {
-            return { kind: 'Text', value: unicode }
+            return this.text(unicode)
           }
         }
     }
 
-    throw new Error('Unhandled command::' + this.show(node))
+    return this.error('Unhandled command::' + this.show(node), this.text())
     // console.log('Unhandled command::' + this.show(node))
     return node
   }
@@ -452,12 +466,12 @@ class Parser {
       || latex2unicode[`{\\${node.mark}${char}}`]
       || latex2unicode[`\\${node.mark} ${char}`]
 
-    if (!unicode) throw new Error(`Unhandled {\\${node.mark} ${char}}`)
-    return { kind: 'Text', value: unicode }
+    if (!unicode) return this.error(`Unhandled {\\${node.mark} ${char}}`, this.text())
+    return this.text(unicode)
   }
 
   clean_SymbolCommand(node) {
-    return { kind: 'Text', value: node.value }
+    return this.text(node.value)
   }
 
   clean_PreambleExpression(node) { return node }
@@ -467,7 +481,7 @@ class Parser {
   convert(node) {
     if (Array.isArray(node)) return node.map(child => this.convert(child)).join('')
 
-    if (!this['convert_' + node.kind]) throw new Error(this.show(node))
+    if (!this['convert_' + node.kind]) return this.error(this.show(node), undefined)
     this['convert_' + node.kind](node)
   }
 
@@ -487,7 +501,7 @@ class Parser {
     this.entries.push(this.entry)
 
     for (const prop of node.properties) {
-      if (prop.kind !== 'Property') throw new Error(`Expected Property, got ${prop.kind}`)
+      if (prop.kind !== 'Property') return this.error(`Expected Property, got ${prop.kind}`, undefined)
 
       this.property = {
         name: prop.key.toLowerCase(),
@@ -505,7 +519,7 @@ class Parser {
   }
 
   stackProperty() {
-    if (this.property.level > 0) throw new Error(this.show(this.property))
+    if (this.property.level > 0) return this.error(this.show(this.property), undefined)
     this.property.text = this.property.text.trim()
     if (this.property.text) this.entry.properties[this.property.name].push(this.property.text)
 
@@ -601,7 +615,7 @@ class Parser {
           break
 
         default:
-          throw new Error(`markup: ${markup}`)
+          return this.error(`markup: ${markup}`, undefined)
 
       }
     }
@@ -615,8 +629,8 @@ class Parser {
   }
 }
 
-export function parse(input) {
-  const parsed = new Parser(input)
+export function parse(input, errorHandler = null) {
+  const parsed = new Parser(input, errorHandler)
   return {
     errors: parsed.errors,
     entries: parsed.entries,
