@@ -83,6 +83,7 @@ const creatorFields = [
 class Parser {
   private errors: any[]
   private strings: { [key: string]: any[] }
+  private months: { [key: string]: any[] }
   private comments: string[]
   private entries: Entry[]
   private entry: Entry
@@ -101,7 +102,8 @@ class Parser {
     this.errors = []
     this.comments = []
     this.entries = []
-    this.strings = {
+    this.strings = { }
+    this.months = {
       JAN: [ this.text('01') ],
       FEB: [ this.text('02') ],
       MAR: [ this.text('03') ],
@@ -132,10 +134,24 @@ class Parser {
   }
 
   private parsed() {
+    this.field = null
+    const strings = {}
+    for (const [key, value] of Object.entries(this.strings)) {
+      this.field = {
+        name: '@string',
+        creator: false,
+        text: '',
+        level: 0,
+        exemptFromSentencecase: [],
+      }
+      this.convert(value)
+      strings[key] = this.field.text
+    }
     return {
       errors: this.errors,
       entries: this.entries,
       comments: this.comments,
+      strings,
     }
   }
 
@@ -281,7 +297,7 @@ class Parser {
   }
 
   protected clean_String(node) { // should have been StringReference
-    const _string = this.strings[node.value.toUpperCase()]
+    const _string = this.strings[node.value.toUpperCase()] || this.months[node.value.toUpperCase()]
 
     // if the string isn't found, add it as-is but exempt it from sentence casing
     return this.cleanup({

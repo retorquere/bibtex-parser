@@ -19,7 +19,8 @@ function parse(file) {
   console.log(file)
   const input = fs.readFileSync(file, 'utf-8')
   const parsed = bibtex.parse(input, markup)
-  fs.writeFileSync(path.join('dump', + path.basename(file, path.extname(file)) + '.json'), JSON.stringify(parsed, null, 2))
+  const dump = path.join('dump', path.basename(file, path.extname(file)) + '.json')
+  fs.writeFileSync(dump, JSON.stringify(parsed, null, 2))
 }
 
 parse('sample2.bib')
