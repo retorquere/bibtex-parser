@@ -47,7 +47,7 @@ type PropertyBuilder = {
   creator: boolean
   text: string
   level: number
-  exemptFromSentencecase: { start: number, end: number }[]
+  exemptFromSentencecase: Array<{ start: number, end: number }>
 }
 
 const creatorFields = [
@@ -67,17 +67,15 @@ const creatorFields = [
 ]
 
 class Parser {
-  nodes: any[]
-  errors: any[]
-  strings: { [key: string]: any[] }
-  comments: string[]
-  entries: Entry[]
-  entry: Entry
-  property: PropertyBuilder
-  errorHandler: (message: string) => void
+  private errors: any[]
+  private strings: { [key: string]: any[] }
+  private comments: string[]
+  private entries: Entry[]
+  private entry: Entry
+  private property: PropertyBuilder
+  private errorHandler: (message: string) => void
 
-  constructor(input, errorHandler = null) {
-    const chunks = chunker(input)
+  constructor(errorHandler = null) {
     this.errorHandler = errorHandler
 
     this.errors = []
@@ -97,36 +95,58 @@ class Parser {
       NOV: [ this.text('11') ],
       DEC: [ this.text('12') ],
     }
+  }
 
-    for (const chunk of chunks) {
-      try {
-        const ast = this.cleanup(bibtex.parse(chunk.text))
-        if (ast.kind !== 'File') throw new Error(this.show(ast))
+  public parse(input) {
+    for (const chunk of chunker(input)) {
+      this.parseChunk(chunk)
+    }
+    return this.parsed()
+  }
 
-        for (const node of ast.children) {
-          this.convert(node)
-        }
+  public async parseAsync(input) {
+    for (const chunk of await chunker(input, { async: true })) {
+      this.parseChunk(chunk)
+    }
+    return this.parsed()
+  }
 
-      } catch (err) {
-        if (!err.location) throw err
-        this.errors.push({
-          message: err.message,
-          line: err.location.start.line + chunk.offset.line,
-          column: err.location.start.column,
-        })
-      }
+  private parsed() {
+    return {
+      errors: this.errors,
+      entries: this.entries,
+      comments: this.comments,
     }
   }
 
-  show(o) {
+  private parseChunk(chunk) {
+    try {
+      const ast = this.cleanup(bibtex.parse(chunk.text))
+      if (ast.kind !== 'File') throw new Error(this.show(ast))
+
+      for (const node of ast.children) {
+        this.convert(node)
+      }
+
+    } catch (err) {
+      if (!err.location) throw err
+      this.errors.push({
+        message: err.message,
+        line: err.location.start.line + chunk.offset.line,
+        column: err.location.start.column,
+      })
+    }
+  }
+
+  private show(o) {
     return JSON.stringify(o)
   }
 
-  text(value = '') {
+  private text(value = '') {
     return { kind: 'Text', value }
   }
 
-  error(err, returnvalue) {
+  private error(err, returnvalue) {
     if (this.errorHandler) {
       this.errorHandler(err)
       return returnvalue
@@ -134,7 +154,7 @@ class Parser {
     throw new Error(err)
   }
 
-  condense(node) {
+  private condense(node) {
     if (!Array.isArray(node.value)) {
       if (node.value.kind === 'Number') return
       return this.error(this.show(node), undefined)
@@ -195,7 +215,7 @@ class Parser {
     }, [])
   }
 
-  argument(node, type) {
+  private argument(node, type) {
     if (type === 'none') {
       if (!node.arguments.length) return true
       if (node.arguments.find(arg => arg.kind !== 'RequiredArgument' || arg.value.length)) return false
@@ -220,46 +240,46 @@ class Parser {
     return false
   }
 
-  cleanup(node) {
+  private cleanup(node) {
     delete node.loc
 
     if (!this['clean_' + node.kind]) return this.error(this.show(node), this.text())
     return this['clean_' + node.kind](node)
   }
 
-  clean_BracedComment(node) { return node }
-  clean_LineComment(node) { return node }
+  private clean_BracedComment(node) { return node }
+  private clean_LineComment(node) { return node }
 
-  clean_File(node) {
+  private clean_File(node) {
     node.children = node.children.filter(child => child.kind !== 'NonEntryText').map(child => this.cleanup(child))
     return node
   }
 
-  clean_StringExpression(node) { // should have been StringDeclaration
+  private clean_StringExpression(node) { // should have been StringDeclaration
     this.strings[node.key.toUpperCase()] = node.value
     return node
   }
 
-  clean_String(node) { // should have been StringReference
-    const string = this.strings[node.value.toUpperCase()]
+  private clean_String(node) { // should have been StringReference
+    const _string = this.strings[node.value.toUpperCase()]
 
     // if the string isn't found, add it as-is but exempt it from sentence casing
     return this.cleanup({
       kind: 'NestedLiteral',
       markup: {
         caseProtect: false,
-        exemptFromSentenceCase: !string
+        exemptFromSentenceCase: !_string,
       },
-      value: string || [ this.text(node.value) ]
+      value: _string || [ this.text(node.value) ],
     })
   }
 
-  clean_Entry(node) {
+  private clean_Entry(node) {
     node.properties = node.properties.map(child => this.cleanup(child))
     return node
   }
 
-  clean_Property(node) {
+  private clean_Property(node) {
     // because this was abused so much, many processors ignore second-level too
     if (node.value.length === 1 && node.value[0].kind === 'NestedLiteral') {
       node.value[0].markup = {
@@ -272,10 +292,10 @@ class Parser {
     return node
   }
 
-  clean_Text(node) { return node }
-  clean_MathMode(node) { return node }
+  private clean_Text(node) { return node }
+  private clean_MathMode(node) { return node }
 
-  clean_RegularCommand(node) {
+  private clean_RegularCommand(node) {
     let arg, unicode
 
     switch (node.value) {
@@ -291,7 +311,7 @@ class Parser {
               caseProtect: false,
               exemptFromSentenceCase: true,
             },
-            value: [ this.text(`${arg[0]}/${arg[1]}`) ]
+            value: [ this.text(`${arg[0]}/${arg[1]}`) ],
           })
         }
         break
@@ -325,7 +345,7 @@ class Parser {
               caseProtect: false,
               exemptFromSentenceCase: true,
             },
-            value: [ this.text(arg[0]) ]
+            value: [ this.text(arg[0]) ],
           })
         }
         break
@@ -440,7 +460,7 @@ class Parser {
     return node
   }
 
-  clean_NestedLiteral(node) {
+  private clean_NestedLiteral(node) {
     if (!node.markup) node.markup = { caseProtect: true }
 
     // https://github.com/retorquere/zotero-better-bibtex/issues/541#issuecomment-240156274
@@ -458,7 +478,7 @@ class Parser {
     return node
   }
 
-  clean_DicraticalCommand(node) { // Should be DiacraticCommand
+  private clean_DicraticalCommand(node) { // Should be DiacraticCommand
     const char = typeof node.character === 'string' ? node.character : `\\${node.character.value}`
     const unicode = latex2unicode[`\\${node.mark}{${char}}`]
       || latex2unicode[`\\${node.mark}${char}`]
@@ -470,33 +490,33 @@ class Parser {
     return this.text(unicode)
   }
 
-  clean_SymbolCommand(node) {
+  private clean_SymbolCommand(node) {
     return this.text(node.value)
   }
 
-  clean_PreambleExpression(node) { return node }
+  private clean_PreambleExpression(node) { return node }
 
-  protectedWord(word) { return false }
+  private protectedWord(word) { return false }
 
-  convert(node) {
+  private convert(node) {
     if (Array.isArray(node)) return node.map(child => this.convert(child)).join('')
 
     if (!this['convert_' + node.kind]) return this.error(this.show(node), undefined)
     this['convert_' + node.kind](node)
   }
 
-  convert_BracedComment(node) {
+  private convert_BracedComment(node) {
     this.comments.push(node.value)
   }
-  convert_LineComment(node) {
+  private convert_LineComment(node) {
     this.comments.push(node.value)
   }
 
-  convert_Entry(node) {
+  private convert_Entry(node) {
     this.entry = {
       key: node.id,
       type: node.type,
-      properties: {}
+      properties: {},
     }
     this.entries.push(this.entry)
 
@@ -508,7 +528,7 @@ class Parser {
         creator: creatorFields.includes(prop.key.toLowerCase()),
         text: '',
         level: 0,
-        exemptFromSentencecase: []
+        exemptFromSentencecase: [],
       }
 
       this.entry.properties[this.property.name] = this.entry.properties[this.property.name] || []
@@ -518,7 +538,7 @@ class Parser {
     }
   }
 
-  stackProperty() {
+  private stackProperty() {
     if (this.property.level > 0) return this.error(this.show(this.property), undefined)
     this.property.text = this.property.text.trim()
     if (this.property.text) this.entry.properties[this.property.name].push(this.property.text)
@@ -527,11 +547,11 @@ class Parser {
     this.property.exemptFromSentencecase = []
   }
 
-  convert_Number(node) {
+  private convert_Number(node) {
     this.property.text += `${node.value}`
   }
 
-  convert_Text(node) {
+  private convert_Text(node) {
     let text = [ node.value ]
 
     if (this.property.level === 0) {
@@ -552,11 +572,11 @@ class Parser {
     }
   }
 
-  convert_MathMode(node) { return }
-  convert_PreambleExpression(node) { return }
-  convert_StringExpression(node) { return }
+  private convert_MathMode(node) { return }
+  private convert_PreambleExpression(node) { return }
+  private convert_StringExpression(node) { return }
 
-  convert_NestedLiteral(node) {
+  private convert_NestedLiteral(node) {
     const prefix = []
     const postfix = []
 
@@ -629,13 +649,9 @@ class Parser {
   }
 }
 
-export function parse(input, errorHandler = null) {
-  const parsed = new Parser(input, errorHandler)
-  return {
-    errors: parsed.errors,
-    entries: parsed.entries,
-    comments: parsed.comments
-  }
+export function parse(input, options: { async?: boolean, errorHandler?: any } = {}) {
+  const parser = new Parser(options.errorHandler)
+  return options.async ? parser.parseAsync(input) : parser.parse(input)
 }
 
 export { parse as chunker } from './chunker'

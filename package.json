@@ -9,7 +9,7 @@
     "grammar": "pegjs astrocite-bibtex.pegjs",
     "lint": "tslint -t stylish --project .",
     "prestart": "npm run grammar && npm run lint",
-    "start": "tsc *.ts",
+    "start": "tsc -d *.ts",
     "poststart": "node unicode2latex.js",
     "pretest": "npm start",
     "test": "node test.js",

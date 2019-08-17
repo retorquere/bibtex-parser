@@ -11,24 +11,9 @@
     "preserveConstEnums": false,
     "sourceMap": false,
     "downlevelIteration": true,
-    "lib": [ "es2017", "dom" ],
-    "typeRoots": [
-      "./content/typings",
-      "./translators/typings",
-      "./gen/typings",
-      "./node_modules/@types"
-    ]
+    "lib": [ "es2017" ]
   },
-  "include": [
-    "content/**/*",
-    "translators/**/*",
-    "zotero-webpack/**/*",
-    "setup/**/*",
-    "gen/**/*"
-  ],
   "exclude": [
-    "node_modules",
-    "**/*.spec.ts",
-    "typings"
+    "node_modules"
   ]
 }

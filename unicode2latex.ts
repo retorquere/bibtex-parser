@@ -1,3 +1,5 @@
+// tslint:disable no-console
+
 const unicode2latex = require('unicode2latex/tables/ascii.json')
 import jsesc = require('jsesc')
 import * as fs from 'fs'
