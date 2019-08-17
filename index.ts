@@ -39,7 +39,7 @@ class Tracer {
 type Entry = {
   key: string,
   type: string
-  fields: { [key: string]: string[] | string }
+  fields: { [key: string]: string[] }
 }
 
 type FieldBuilder = {
@@ -554,18 +554,14 @@ class Parser {
       this.entry.fields[this.field.name] = this.entry.fields[this.field.name] || []
       this.convert(prop.value)
       this.field.text = this.field.text.trim()
-      if (this.field.text) (this.entry.fields[this.field.name] as string[]).push(this.field.text)
-    }
-
-    for (const [ field, value ] of Object.entries(this.entry.fields)) {
-      if (value.length === 1) this.entry.fields[field] = value[0]
+      if (this.field.text) this.entry.fields[this.field.name].push(this.field.text)
     }
   }
 
   private stackProperty() {
     if (this.field.level > 0) return this.error(this.show(this.field), undefined)
     this.field.text = this.field.text.trim()
-    if (this.field.text) (this.entry.fields[this.field.name] as string[]).push(this.field.text)
+    if (this.field.text) this.entry.fields[this.field.name].push(this.field.text)
 
     this.field.text = ''
     this.field.exemptFromSentencecase = []
