@@ -4,10 +4,21 @@ const fs = require('fs')
 const path = require('path')
 import * as bibtex from './index'
 
+const markup = {
+  enquote: { open: '"', close: '"' },
+  sub: { open: '<sub>', close: '</sub>' },
+  sup: { open: '<sup>', close: '</sup>' },
+  bold: { open: '<b>', close: '</b>' },
+  italics: { open: '<i>', close: '</i>' },
+  smallCaps: { open: '<span style="font-variant:small-caps;">', close: '</span>' },
+  caseProtectCreator: { open: '"', close: '"' },
+  caseProtect: { open: '<span class="nocase">', close: '</span>' },
+}
+
 function parse(file) {
   console.log(file)
   const input = fs.readFileSync(file, 'utf-8')
-  const parsed = bibtex.parse(input)
+  const parsed = bibtex.parse(input, markup)
   fs.writeFileSync(path.join('dump', + path.basename(file, path.extname(file)) + '.json'), JSON.stringify(parsed, null, 2))
 }
 

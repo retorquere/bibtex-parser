@@ -39,15 +39,29 @@ class Tracer {
 type Entry = {
   key: string,
   type: string
-  properties: { [key: string]: string[] }
+  fields: { [key: string]: string[] | string }
 }
 
-type PropertyBuilder = {
+type FieldBuilder = {
   name: string
   creator: boolean
   text: string
   level: number
   exemptFromSentencecase: Array<{ start: number, end: number }>
+}
+
+type MarkupMapping = {
+  sub: { open: string, close: string }
+  sup: { open: string, close: string }
+  bold: { open: string, close: string }
+  italics: { open: string, close: string }
+  smallCaps: { open: string, close: string }
+  caseProtect: { open: string, close: string }
+  caseProtectCreator: { open: string, close: string }
+
+  enquote?: { open: string, close: string }
+  roman?: { open: string, close: string }
+  fixedWidth?: { open: string, close: string }
 }
 
 const creatorFields = [
@@ -72,11 +86,17 @@ class Parser {
   private comments: string[]
   private entries: Entry[]
   private entry: Entry
-  private property: PropertyBuilder
+  private field: FieldBuilder
   private errorHandler: (message: string) => void
+  private markup: MarkupMapping
 
-  constructor(errorHandler = null) {
+  constructor(markup: MarkupMapping, errorHandler = null) {
     this.errorHandler = errorHandler
+    this.markup = markup
+
+    if (!this.markup.roman) this.markup.roman = { open: '', close: '' }
+    if (!this.markup.fixedWidth) this.markup.fixedWidth = { open: '', close: '' }
+    if (!this.markup.enquote) this.markup.enquote = { open: '"', close: '"' }
 
     this.errors = []
     this.comments = []
@@ -516,14 +536,14 @@ class Parser {
     this.entry = {
       key: node.id,
       type: node.type,
-      properties: {},
+      fields: {},
     }
     this.entries.push(this.entry)
 
     for (const prop of node.properties) {
       if (prop.kind !== 'Property') return this.error(`Expected Property, got ${prop.kind}`, undefined)
 
-      this.property = {
+      this.field = {
         name: prop.key.toLowerCase(),
         creator: creatorFields.includes(prop.key.toLowerCase()),
         text: '',
@@ -531,44 +551,48 @@ class Parser {
         exemptFromSentencecase: [],
       }
 
-      this.entry.properties[this.property.name] = this.entry.properties[this.property.name] || []
+      this.entry.fields[this.field.name] = this.entry.fields[this.field.name] || []
       this.convert(prop.value)
-      this.property.text = this.property.text.trim()
-      if (this.property.text) this.entry.properties[this.property.name].push(this.property.text)
+      this.field.text = this.field.text.trim()
+      if (this.field.text) (this.entry.fields[this.field.name] as string[]).push(this.field.text)
+    }
+
+    for (const [ field, value ] of Object.entries(this.entry.fields)) {
+      if (value.length === 1) this.entry.fields[field] = value[0]
     }
   }
 
   private stackProperty() {
-    if (this.property.level > 0) return this.error(this.show(this.property), undefined)
-    this.property.text = this.property.text.trim()
-    if (this.property.text) this.entry.properties[this.property.name].push(this.property.text)
+    if (this.field.level > 0) return this.error(this.show(this.field), undefined)
+    this.field.text = this.field.text.trim()
+    if (this.field.text) (this.entry.fields[this.field.name] as string[]).push(this.field.text)
 
-    this.property.text = ''
-    this.property.exemptFromSentencecase = []
+    this.field.text = ''
+    this.field.exemptFromSentencecase = []
   }
 
   protected convert_Number(node) {
-    this.property.text += `${node.value}`
+    this.field.text += `${node.value}`
   }
 
   protected convert_Text(node) {
     let text = [ node.value ]
 
-    if (this.property.level === 0) {
-      if (this.property.creator) {
+    if (this.field.level === 0) {
+      if (this.field.creator) {
         text = node.value.split(/\s+and\s+/)
 
-      } else if (this.property.name === 'keywords') {
+      } else if (this.field.name === 'keywords') {
         text = node.value.split(/[;,]/)
 
       }
     }
 
-    this.property.text += text[0]
+    this.field.text += text[0]
 
     for (const t of text.slice(1)) {
       this.stackProperty()
-      this.property.text += t
+      this.field.text += t
     }
   }
 
@@ -580,77 +604,31 @@ class Parser {
     const prefix = []
     const postfix = []
 
-    const start = this.property.text.length
+    const start = this.field.text.length
     let exemptFromSentenceCase = false
-    for (const [markup, apply] of Object.entries(node.markup).sort((a, b) => a[0].localeCompare(b[0]))) {
+    for (let [markup, apply] of Object.entries(node.markup).sort((a, b) => a[0].localeCompare(b[0]))) {
       if (!apply) continue
-      switch (markup) {
-        case 'roman':
-        case 'fixedWidth':
-          // ignore
-          break
 
-        case 'enquote':
-          // TODO:
-          break
+      exemptFromSentenceCase = exemptFromSentenceCase || markup === 'caseProtect' || markup === 'exemptFromSentenceCase'
+      if (markup === 'exemptFromSentenceCase') continue
 
-        case 'sub':
-          prefix.push('<sub>')
-          postfix.push('</sub>')
-          break
-
-        case 'sup':
-          prefix.push('<sup>')
-          postfix.push('</sup>')
-          break
-
-        case 'bold':
-          prefix.push('<i>')
-          postfix.push('</i>')
-          break
-
-        case 'italics':
-          prefix.push('<i>')
-          postfix.push('</i>')
-          break
-
-        case 'smallCaps':
-          prefix.push('<span style="font-variant:small-caps;">')
-          postfix.push('</span>')
-          break
-
-        case 'caseProtect':
-          if (this.property.creator) {
-            prefix.push('"')
-            postfix.push('"')
-          } else {
-            prefix.push('<span class="nocase">')
-            postfix.push('</span>')
-          }
-          exemptFromSentenceCase = true
-          break
-
-        case 'exemptFromSentenceCase':
-          exemptFromSentenceCase = true
-          break
-
-        default:
-          return this.error(`markup: ${markup}`, undefined)
-
-      }
+      if (markup === 'caseProtect' && this.field.creator) markup += 'Creator'
+      if (!this.markup[markup]) return this.error(`markup: ${markup}`, undefined)
+      prefix.push(this.markup[markup].open)
+      postfix.unshift(this.markup[markup].close)
     }
 
-    this.property.text += prefix.join('')
-    this.property.level++
+    this.field.text += prefix.join('')
+    this.field.level++
     this.convert(node.value)
-    this.property.level--
-    this.property.text += postfix.reverse().join('')
-    if (exemptFromSentenceCase) this.property.exemptFromSentencecase.push({ start, end: this.property.text.length })
+    this.field.level--
+    this.field.text += postfix.reverse().join('')
+    if (exemptFromSentenceCase) this.field.exemptFromSentencecase.push({ start, end: this.field.text.length })
   }
 }
 
-export function parse(input, options: { async?: boolean, errorHandler?: any } = {}) {
-  const parser = new Parser(options.errorHandler)
+export function parse(input: string, markup: MarkupMapping, options: { async?: boolean, errorHandler?: any } = {}) {
+  const parser = new Parser(markup, options.errorHandler)
   return options.async ? parser.parseAsync(input) : parser.parse(input)
 }
 
