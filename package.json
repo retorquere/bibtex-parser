@@ -13,7 +13,9 @@
     "poststart": "node unicode2latex.js",
     "pretest": "npm start",
     "test": "node test.js",
-    "list": "tar tvf $(npm pack)"
+    "list": "tar tvf $(npm pack)",
+    "prepublishOnly": "npm start",
+    "go": "npm start && npm version patch && npm publish"
   },
   "repository": {
     "type": "git",
