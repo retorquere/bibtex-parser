@@ -12,7 +12,8 @@
     "start": "tsc *.ts",
     "poststart": "node unicode2latex.js",
     "pretest": "npm start",
-    "test": "node test.js"
+    "test": "node test.js",
+    "list": "tar tvf $(npm pack)"
   },
   "repository": {
     "type": "git",
