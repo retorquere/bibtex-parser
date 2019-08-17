@@ -42,17 +42,18 @@ type Chunk = {
 }
 
 class BibtexParser {
+  public parsing: string
+
   private pos: number
   private input: string
-  private parsing: string
-  private _progress: number
+  // private _progress: number
   private chunks: Chunk[]
 
   private entries: number
   private max_entries: number
 
   public parse(input, options: { max_entries?: number, async?: boolean} = {}) {
-    this._progress = 0
+    // this._progress = 0
     this.pos = 0
     this.input = input
     this.max_entries = options.max_entries || 0
@@ -171,7 +172,6 @@ class BibtexParser {
   }
 
   private single_value() {
-    const start = this.pos
     if (this.tryMatch('{')) {
       return this.value_braces()
     } else if (this.tryMatch('"')) {
@@ -221,14 +221,14 @@ class BibtexParser {
   }
 
   private key_value_list() {
-    let kv = this.key_equals_value()
+    this.key_equals_value()
     while (this.tryMatch(',')) {
       this.match(',')
       // fixes problems with commas at the end of a list
       if (this.tryMatch('}')) {
         break
       }
-      kv = this.key_equals_value()
+      this.key_equals_value()
     }
   }
 
@@ -262,6 +262,7 @@ class BibtexParser {
     while (this.input[this.pos] !== '\n' && this.pos < this.input.length) this.pos++
   }
 
+  /*
   private progress() {
     const progress = Math.round((this.pos / this.input.length * 100) / 5) * 5 // tslint:disable-line no-magic-numbers
     if (this._progress !== progress) {
@@ -269,6 +270,7 @@ class BibtexParser {
       process.stdout.write(` (${this._progress}%) `)
     }
   }
+  */
 
   private hasMore() {
     if (this.max_entries && this.entries >= this.max_entries) return false

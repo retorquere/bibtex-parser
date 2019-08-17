@@ -4,8 +4,6 @@ const fs = require('fs')
 const path = require('path')
 import * as bibtex from './index'
 
-import jsesc = require('jsesc')
-
 function parse(file) {
   console.log(file)
   const input = fs.readFileSync(file, 'utf-8')

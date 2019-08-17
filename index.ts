@@ -247,20 +247,20 @@ class Parser {
     return this['clean_' + node.kind](node)
   }
 
-  private clean_BracedComment(node) { return node }
-  private clean_LineComment(node) { return node }
+  protected clean_BracedComment(node) { return node }
+  protected clean_LineComment(node) { return node }
 
-  private clean_File(node) {
+  protected clean_File(node) {
     node.children = node.children.filter(child => child.kind !== 'NonEntryText').map(child => this.cleanup(child))
     return node
   }
 
-  private clean_StringExpression(node) { // should have been StringDeclaration
+  protected clean_StringExpression(node) { // should have been StringDeclaration
     this.strings[node.key.toUpperCase()] = node.value
     return node
   }
 
-  private clean_String(node) { // should have been StringReference
+  protected clean_String(node) { // should have been StringReference
     const _string = this.strings[node.value.toUpperCase()]
 
     // if the string isn't found, add it as-is but exempt it from sentence casing
@@ -274,12 +274,12 @@ class Parser {
     })
   }
 
-  private clean_Entry(node) {
+  protected clean_Entry(node) {
     node.properties = node.properties.map(child => this.cleanup(child))
     return node
   }
 
-  private clean_Property(node) {
+  protected clean_Property(node) {
     // because this was abused so much, many processors ignore second-level too
     if (node.value.length === 1 && node.value[0].kind === 'NestedLiteral') {
       node.value[0].markup = {
@@ -292,10 +292,10 @@ class Parser {
     return node
   }
 
-  private clean_Text(node) { return node }
-  private clean_MathMode(node) { return node }
+  protected clean_Text(node) { return node }
+  protected clean_MathMode(node) { return node }
 
-  private clean_RegularCommand(node) {
+  protected clean_RegularCommand(node) {
     let arg, unicode
 
     switch (node.value) {
@@ -460,7 +460,7 @@ class Parser {
     return node
   }
 
-  private clean_NestedLiteral(node) {
+  protected clean_NestedLiteral(node) {
     if (!node.markup) node.markup = { caseProtect: true }
 
     // https://github.com/retorquere/zotero-better-bibtex/issues/541#issuecomment-240156274
@@ -478,7 +478,7 @@ class Parser {
     return node
   }
 
-  private clean_DicraticalCommand(node) { // Should be DiacraticCommand
+  protected clean_DicraticalCommand(node) { // Should be DiacraticCommand
     const char = typeof node.character === 'string' ? node.character : `\\${node.character.value}`
     const unicode = latex2unicode[`\\${node.mark}{${char}}`]
       || latex2unicode[`\\${node.mark}${char}`]
@@ -490,11 +490,11 @@ class Parser {
     return this.text(unicode)
   }
 
-  private clean_SymbolCommand(node) {
+  protected clean_SymbolCommand(node) {
     return this.text(node.value)
   }
 
-  private clean_PreambleExpression(node) { return node }
+  protected clean_PreambleExpression(node) { return node }
 
   private protectedWord(word) { return false }
 
@@ -505,14 +505,14 @@ class Parser {
     this['convert_' + node.kind](node)
   }
 
-  private convert_BracedComment(node) {
+  protected convert_BracedComment(node) {
     this.comments.push(node.value)
   }
-  private convert_LineComment(node) {
+  protected convert_LineComment(node) {
     this.comments.push(node.value)
   }
 
-  private convert_Entry(node) {
+  protected convert_Entry(node) {
     this.entry = {
       key: node.id,
       type: node.type,
@@ -547,11 +547,11 @@ class Parser {
     this.property.exemptFromSentencecase = []
   }
 
-  private convert_Number(node) {
+  protected convert_Number(node) {
     this.property.text += `${node.value}`
   }
 
-  private convert_Text(node) {
+  protected convert_Text(node) {
     let text = [ node.value ]
 
     if (this.property.level === 0) {
@@ -572,11 +572,11 @@ class Parser {
     }
   }
 
-  private convert_MathMode(node) { return }
-  private convert_PreambleExpression(node) { return }
-  private convert_StringExpression(node) { return }
+  protected convert_MathMode(node) { return }
+  protected convert_PreambleExpression(node) { return }
+  protected convert_StringExpression(node) { return }
 
-  private convert_NestedLiteral(node) {
+  protected convert_NestedLiteral(node) {
     const prefix = []
     const postfix = []
 
