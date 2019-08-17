@@ -1,5 +1,5 @@
 {
-  "name": "bibtex-parser",
+  "name": "@retorquere/bibtex-parser",
   "version": "1.0.1",
   "description": "BibTeX parser",
   "main": "index.js",
@@ -15,7 +15,7 @@
     "test": "node test.js",
     "list": "tar tvf $(npm pack)",
     "prepublishOnly": "npm start",
-    "go": "npm start && npm version patch && npm publish"
+    "go": "npm start && npm version patch && npm publish --access public"
   },
   "repository": {
     "type": "git",
