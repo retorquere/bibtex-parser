@@ -629,3 +629,4 @@ export function parse(input: string, markup: MarkupMapping, options: { async?: b
 }
 
 export { parse as chunker } from './chunker'
+export { parse as jabref } from './jabref'

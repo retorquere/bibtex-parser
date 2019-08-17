@@ -36,3 +36,7 @@ for (const mode of ['import', 'export']) {
     }
   }
 }
+
+const bib = require('./dump/Maintain the JabRef group and subgroup structure when importing a BibTeX db #97.json')
+import * as jabref from './jabref'
+console.log(jabref.parse(bib.comments))
