@@ -1,10 +1,8 @@
-const fs = require('fs')
-const path = require('path')
-const bibtex = require('./grammar')
-const bibtexChunker = require('./chunker')
-const latex2unicode = require('./latex2unicode')
-import jsesc = require('jsesc')
+import bibtex = require('./astrocite-bibtex')
+import { parse as chunker } from './chunker'
+import latex2unicode = require('./latex2unicode')
 
+/*
 function pad(s, n) {
   return `${s}${' '.repeat(n)}`.substr(0, n)
 }
@@ -36,22 +34,76 @@ class Tracer {
     console.log(pad(`${evt.location.start.offset}`, 6), pad(evt.type.split('.')[1], 5), pad(evt.rule, 10), '.'.repeat(this.level), JSON.stringify(this.input.substring(evt.location.start.offset, evt.location.end.offset)))
   }
 }
+*/
+
+type Entry = {
+  key: string,
+  type: string
+  properties: { [key: string]: string[] }
+}
+
+type PropertyBuilder = {
+  name: string
+  creator: boolean
+  text: string
+  level: number
+  exemptFromSentencecase: { start: number, end: number }[]
+}
+
+const creatorFields = [
+  'author',
+  'bookauthor',
+  'collaborators',
+  'commentator',
+  'director',
+  'editor',
+  'editora',
+  'editorb',
+  'editors',
+  'holder',
+  'scriptwriter',
+  'translator',
+  'translators',
+]
 
 class Parser {
   nodes: any[]
   errors: any[]
+  strings: { [key: string]: any[] }
+  comments: string[]
+  entries: Entry[]
+  entry: Entry
+  property: PropertyBuilder
 
   constructor(input) {
-    const chunks = bibtexChunker.parse(input)
+    const chunks = chunker(input)
 
     this.errors = []
-    this.nodes = []
+    this.comments = []
+    this.entries = []
+    this.strings = {
+      JAN: [ { kind: 'Text', value: '01' } ],
+      FEB: [ { kind: 'Text', value: '02' } ],
+      MAR: [ { kind: 'Text', value: '03' } ],
+      APR: [ { kind: 'Text', value: '04' } ],
+      MAY: [ { kind: 'Text', value: '05' } ],
+      JUN: [ { kind: 'Text', value: '06' } ],
+      JUL: [ { kind: 'Text', value: '07' } ],
+      AUG: [ { kind: 'Text', value: '08' } ],
+      SEP: [ { kind: 'Text', value: '09' } ],
+      OCT: [ { kind: 'Text', value: '10' } ],
+      NOV: [ { kind: 'Text', value: '11' } ],
+      DEC: [ { kind: 'Text', value: '12' } ],
+    }
 
     for (const chunk of chunks) {
       try {
         const ast = this.cleanup(bibtex.parse(chunk.text))
         if (ast.kind !== 'File') throw new Error(this.show(ast))
-        this.nodes = this.nodes.concat(ast.children)
+
+        for (const node of ast.children) {
+          this.convert(node)
+        }
 
       } catch (err) {
         if (!err.location) throw err
@@ -65,7 +117,7 @@ class Parser {
   }
 
   show(o) {
-    return jsesc(o, { compact: false, indent: '  ' })
+    return JSON.stringify(o)
   }
 
   condense(node) {
@@ -155,239 +207,421 @@ class Parser {
   }
 
   cleanup(node) {
-    let unicode, arg
-
     delete node.loc
-    switch (node.kind) {
-      case 'BracedComment':
-      case 'LineComment':
-        break
 
-      case 'File':
-        node.children = node.children.filter(child => child.kind !== 'NonEntryText').map(child => this.cleanup(child))
-        break
+    if (!this['clean_' + node.kind]) throw new Error(this.show(node))
+    return this['clean_' + node.kind](node)
+  }
 
-      case 'StringExpression':
-      case 'StringDeclaration':
-        node.kind == 'StringDeclaration'
-        // needs to stay alive across chunks => move to object
-        break
+  clean_BracedComment(node) { return node }
+  clean_LineComment(node) { return node }
 
-      case 'String':
-      case 'StringReference':
-        node.kind == 'StringReference'
-        // resolve or change into a case-protected NestedLiteral
-        break
+  clean_File(node) {
+    node.children = node.children.filter(child => child.kind !== 'NonEntryText').map(child => this.cleanup(child))
+    return node
+  }
 
-      case 'Entry':
-        // console.log(node.type, node.id)
-        node.properties = node.properties.map(child => this.cleanup(child))
-        break
+  clean_StringExpression(node) { // should have been StringDeclaration
+    this.strings[node.key.toUpperCase()] = node.value
+    return node
+  }
 
-      case 'Property':
-        this.condense(node)
-        break
+  clean_String(node) { // should have been StringReference
+    const string = this.strings[node.value.toUpperCase()]
 
-      case 'Text':
-        // console.log(node.value)
-        break
+    // if the string isn't found, add it as-is but exempt it from sentence casing
+    return this.cleanup({
+      kind: 'NestedLiteral',
+      markup: {
+        caseProtect: false,
+        exemptFromSentenceCase: !string
+      },
+      value: string || [ { kind: 'Text', value: node.value } ]
+    })
+  }
 
-      case 'MathMode':
-         return node
+  clean_Entry(node) {
+    node.properties = node.properties.map(child => this.cleanup(child))
+    return node
+  }
 
-      case 'RegularCommand':
-        switch (node.value) {
-          case 'vphantom':
-            return { kind: 'Text', value: '' }
+  clean_Property(node) {
+    // because this was abused so much, many processors ignore second-level too
+    if (node.value.length === 1 && node.value[0].kind === 'NestedLiteral') {
+      node.value[0].markup = {
+        caseProtect: false,
+        exemptFromSentenceCase: true,
+      }
+    }
 
-          case 'frac':
-            if (arg = this.argument(node, 2)) {
-              return node
-            }
-            break
+    this.condense(node)
+    return node
+  }
 
-          case 'href':
-            if (arg = this.argument(node, 2)) {
-              // if (arg[0] === arg[1]) return { kind: 'Text', value: arg[0] }
-              return node
-            }
-            break
+  clean_Text(node) { return node }
+  clean_MathMode(node) { return node }
 
-          case 'path':
-          case 'aftergroup':
-          case 'ignorespaces':
-          case 'noopsort':
-          case 'chsf':
-            if (this.argument(node, 'none')) return { kind: 'Text', value: '' }
-            return node
+  clean_RegularCommand(node) {
+    let arg, unicode
 
-          case 'bibstring':
-            if (arg = this.argument(node, 'Text')) return { kind: 'Text', value: arg }
-            break
+    switch (node.value) {
+      case 'vphantom':
+        return { kind: 'Text', value: '' }
 
-          case 'cite':
-            return node
-
-          case 'textsuperscript':
-            if (!(arg = this.argument(node, 'array'))) throw new Error(node.value + this.show(node))
-            return this.cleanup({
-              kind: 'NestedLiteral',
-              markup: { sup: true },
-              value: arg,
-            })
-            break
-
-          case 'textsubscript':
-            if (!(arg = this.argument(node, 'array'))) throw new Error(node.value + this.show(node))
-            return this.cleanup({
-              kind: 'NestedLiteral',
-              markup: { sub: true },
-              value: arg,
-            })
-            break
-
-          case 'textsc':
-            if (!(arg = this.argument(node, 'array'))) throw new Error(node.value + this.show(node))
-            return this.cleanup({
-              kind: 'NestedLiteral',
-              markup: { smallCaps: true },
-              value: arg,
-            })
-            break
-
-          case 'enquote':
-          case 'mkbibquote':
-            if (!(arg = this.argument(node, 'array'))) throw new Error(node.value + this.show(node))
-            return this.cleanup({
-              kind: 'NestedLiteral',
-              markup: { enquote: true },
-              value: arg,
-            })
-            break
-
-          case 'textbf':
-          case 'mkbibbold':
-            if (!(arg = this.argument(node, 'array'))) throw new Error(node.value + this.show(node))
-            return this.cleanup({
-              kind: 'NestedLiteral',
-              markup: { bold: true },
-              value: arg,
-            })
-            break
-
-          case 'mkbibitalic':
-          case 'mkbibemph':
-          case 'textit':
-          case 'emph':
-            if (!(arg = this.argument(node, 'array'))) throw new Error(node.value + this.show(node))
-            return this.cleanup({
-              kind: 'NestedLiteral',
-              markup: { italics: true },
-              value: arg,
-            })
-            break
-
-          case 'bibcyr':
-            if (this.argument(node, 'none')) return { kind: 'Text', value: '' }
-
-            if (!(arg = this.argument(node, 'array'))) throw new Error(node.value + this.show(node))
-            return this.cleanup({
-              kind: 'NestedLiteral',
-              markup: {},
-              value: arg,
-            })
-            break
-
-          case 'mathrm':
-          case 'textrm':
-          case 'ocirc':
-          case 'mbox':
-            if (arg = this.argument(node, 'Text')) {
-              unicode = latex2unicode[`\\${node.value}{${arg}}`]
-              return { kind: 'Text', value: unicode || arg }
-            } else if (!node.arguments.length) {
-              return { kind: 'Text', value: '' }
-            } else if (arg = this.argument(node, 'array')) {
-              return this.cleanup({
-                kind: 'NestedLiteral',
-                markup: {},
-                value: arg,
-              })
-            }
-            break
-
-          case 'url':
-            if (arg = this.argument(node, 'Text')) return { kind: 'Text', value: arg }
-            break
-
-          default:
-            unicode = latex2unicode[`\\${node.value}`] || latex2unicode[`\\${node.value}{}`]
-            if (unicode && this.argument(node, 'none')) {
-              return { kind: 'Text', value: unicode }
-            }
-
-            if (arg = this.argument(node, 'Text')) {
-              if (unicode = latex2unicode[`\\${node.value}{${arg}}`]) {
-                return { kind: 'Text', value: unicode }
-              }
-            }
+      case 'frac':
+        // not a spectactular solution but what ya gonna do.
+        if (arg = this.argument(node, 2)) {
+          return this.cleanup({
+            kind: 'NestedLiteral',
+            markup: {
+              caseProtect: false,
+              exemptFromSentenceCase: true,
+            },
+            value: [ { kind: 'Text', value: `${arg[0]}/${arg[1]}` } ]
+          })
         }
-
-        throw new Error('Unhandled command::' + this.show(node))
-        // console.log('Unhandled command::' + this.show(node))
         break
 
-      case 'NestedLiteral':
-        if (!node.markup) node.markup = { caseProtect: true }
-        this.condense(node)
+      case 'href':
+        if (arg = this.argument(node, 2)) {
+          return { kind: 'Text', value: arg[0] }
+        }
         break
 
-      // Should be DiacraticCommand
-      case 'DicraticalCommand':
-        const char = typeof node.character === 'string' ? node.character : `\\${node.character.value}`
-        unicode = latex2unicode[`\\${node.mark}{${char}}`]
-          || latex2unicode[`\\${node.mark}${char}`]
-          || latex2unicode[`{\\${node.mark} ${char}}`]
-          || latex2unicode[`{\\${node.mark}${char}}`]
-          || latex2unicode[`\\${node.mark} ${char}`]
+      case 'path':
+      case 'aftergroup':
+      case 'ignorespaces':
+      case 'noopsort':
+        return { kind: 'Text', value: '' }
 
-        if (!unicode) throw new Error(`Unhandled {\\${node.mark} ${char}}`)
-        return { kind: 'Text', value: unicode }
+      case 'chsf':
+        if (this.argument(node, 'none')) return { kind: 'Text', value: '' }
+        if (arg = this.argument(node, 'array')) return { kind: 'Text', value: arg }
+        return node
+
+      case 'bibstring':
+        if (arg = this.argument(node, 'Text')) return { kind: 'Text', value: arg }
         break
 
-      case 'SymbolCommand':
-        return { kind: 'Text', value: node.value }
+      case 'cite':
+        if (arg = this.argument(node, 1)) {
+          return this.cleanup({
+            kind: 'NestedLiteral',
+            markup: {
+              caseProtect: false,
+              exemptFromSentenceCase: true,
+            },
+            value: [ { kind: 'Text', value: arg[0] } ]
+          })
+        }
         break
 
-      case 'PreambleExpression':
+      case 'textsuperscript':
+        if (!(arg = this.argument(node, 'array'))) throw new Error(node.value + this.show(node))
+        return this.cleanup({
+          kind: 'NestedLiteral',
+          markup: { sup: true },
+          value: arg,
+        })
+        break
+
+      case 'textsubscript':
+        if (!(arg = this.argument(node, 'array'))) throw new Error(node.value + this.show(node))
+        return this.cleanup({
+          kind: 'NestedLiteral',
+          markup: { sub: true },
+          value: arg,
+        })
+        break
+
+      case 'textsc':
+        if (!(arg = this.argument(node, 'array'))) throw new Error(node.value + this.show(node))
+        return this.cleanup({
+          kind: 'NestedLiteral',
+          markup: { smallCaps: true },
+          value: arg,
+        })
+        break
+
+      case 'enquote':
+      case 'mkbibquote':
+        if (!(arg = this.argument(node, 'array'))) throw new Error(node.value + this.show(node))
+        return this.cleanup({
+          kind: 'NestedLiteral',
+          markup: { enquote: true },
+          value: arg,
+        })
+        break
+
+      case 'textbf':
+      case 'mkbibbold':
+        if (!(arg = this.argument(node, 'array'))) throw new Error(node.value + this.show(node))
+        return this.cleanup({
+          kind: 'NestedLiteral',
+          markup: { bold: true },
+          value: arg,
+        })
+        break
+
+      case 'mkbibitalic':
+      case 'mkbibemph':
+      case 'textit':
+      case 'emph':
+        if (!(arg = this.argument(node, 'array'))) throw new Error(node.value + this.show(node))
+        return this.cleanup({
+          kind: 'NestedLiteral',
+          markup: { italics: true },
+          value: arg,
+        })
+        break
+
+      case 'bibcyr':
+        if (this.argument(node, 'none')) return { kind: 'Text', value: '' }
+
+        if (!(arg = this.argument(node, 'array'))) throw new Error(node.value + this.show(node))
+        return this.cleanup({
+          kind: 'NestedLiteral',
+          markup: {},
+          value: arg,
+        })
+        break
+
+      case 'mathrm':
+      case 'textrm':
+      case 'ocirc':
+      case 'mbox':
+        if (arg = this.argument(node, 'Text')) {
+          unicode = latex2unicode[`\\${node.value}{${arg}}`]
+          return { kind: 'Text', value: unicode || arg }
+        } else if (!node.arguments.length) {
+          return { kind: 'Text', value: '' }
+        } else if (arg = this.argument(node, 'array')) {
+          return this.cleanup({
+            kind: 'NestedLiteral',
+            markup: {},
+            value: arg,
+          })
+        }
+        break
+
+      case 'url':
+        if (arg = this.argument(node, 'Text')) return { kind: 'Text', value: arg }
         break
 
       default:
-        throw new Error(this.show(node))
-        break
+        unicode = latex2unicode[`\\${node.value}`] || latex2unicode[`\\${node.value}{}`]
+        if (unicode && this.argument(node, 'none')) {
+          return { kind: 'Text', value: unicode }
+        }
+
+        if (arg = this.argument(node, 'Text')) {
+          if (unicode = latex2unicode[`\\${node.value}{${arg}}`]) {
+            return { kind: 'Text', value: unicode }
+          }
+        }
     }
 
+    throw new Error('Unhandled command::' + this.show(node))
+    // console.log('Unhandled command::' + this.show(node))
     return node
   }
-}
 
-function parse(file) {
-  console.log(file)
-  const input = fs.readFileSync(file, 'utf-8')
-  const parsed = new Parser(input)
-  fs.writeFileSync('dump/' + path.basename(file, path.extname(file)) + '.json', JSON.stringify({nodes: parsed.nodes, errors: parsed.errors}, null, 2))
-}
+  clean_NestedLiteral(node) {
+    if (!node.markup) node.markup = { caseProtect: true }
 
-parse('sample2.bib')
+    // https://github.com/retorquere/zotero-better-bibtex/issues/541#issuecomment-240156274
+    if (node.value.length && ['RegularCommand', 'DicraticalCommand'].includes(node.value[0].kind)) {
+      node.markup.caseProtect = false
 
-for (const mode of ['import', 'export']) {
-  const root = `../better-bibtex/test/fixtures/${mode}`
+    } else if (node.value.length && node.value[0].kind === 'Text') {
+      if (!node.value[0].value.split(/\s+/).find(word => !this.protectedWord(word))) {
+        node.markup.caseProtect = false
+        node.markup.exemptFromSentenceCase = true
+      }
+    }
 
-  for (const f of fs.readdirSync(root).sort()) {
-    // if (f === 'Async import, large library #720.bib') continue
+    this.condense(node)
+    return node
+  }
 
-    if (f.replace(/(la)?tex$/, '').endsWith('.bib')) {
-      parse(`${root}/${f}`)
+  clean_DicraticalCommand(node) { // Should be DiacraticCommand
+    const char = typeof node.character === 'string' ? node.character : `\\${node.character.value}`
+    const unicode = latex2unicode[`\\${node.mark}{${char}}`]
+      || latex2unicode[`\\${node.mark}${char}`]
+      || latex2unicode[`{\\${node.mark} ${char}}`]
+      || latex2unicode[`{\\${node.mark}${char}}`]
+      || latex2unicode[`\\${node.mark} ${char}`]
+
+    if (!unicode) throw new Error(`Unhandled {\\${node.mark} ${char}}`)
+    return { kind: 'Text', value: unicode }
+  }
+
+  clean_SymbolCommand(node) {
+    return { kind: 'Text', value: node.value }
+  }
+
+  clean_PreambleExpression(node) { return node }
+
+  protectedWord(word) { return false }
+
+  convert(node) {
+    if (Array.isArray(node)) return node.map(child => this.convert(child)).join('')
+
+    if (!this['convert_' + node.kind]) throw new Error(this.show(node))
+    this['convert_' + node.kind](node)
+  }
+
+  convert_BracedComment(node) {
+    this.comments.push(node.value)
+  }
+  convert_LineComment(node) {
+    this.comments.push(node.value)
+  }
+
+  convert_Entry(node) {
+    this.entry = {
+      key: node.id,
+      type: node.type,
+      properties: {}
+    }
+    this.entries.push(this.entry)
+
+    for (const prop of node.properties) {
+      if (prop.kind !== 'Property') throw new Error(`Expected Property, got ${prop.kind}`)
+
+      this.property = {
+        name: prop.key.toLowerCase(),
+        creator: creatorFields.includes(prop.key.toLowerCase()),
+        text: '',
+        level: 0,
+        exemptFromSentencecase: []
+      }
+
+      this.entry.properties[this.property.name] = this.entry.properties[this.property.name] || []
+      this.convert(prop.value)
+      this.property.text = this.property.text.trim()
+      if (this.property.text) this.entry.properties[this.property.name].push(this.property.text)
     }
   }
+
+  stackProperty() {
+    if (this.property.level > 0) throw new Error(this.show(this.property))
+    this.property.text = this.property.text.trim()
+    if (this.property.text) this.entry.properties[this.property.name].push(this.property.text)
+
+    this.property.text = ''
+    this.property.exemptFromSentencecase = []
+  }
+
+  convert_Number(node) {
+    this.property.text += `${node.value}`
+  }
+
+  convert_Text(node) {
+    let text = [ node.value ]
+
+    if (this.property.level === 0) {
+      if (this.property.creator) {
+        text = node.value.split(/\s+and\s+/)
+
+      } else if (this.property.name === 'keywords') {
+        text = node.value.split(/[;,]/)
+
+      }
+    }
+
+    this.property.text += text[0]
+
+    for (const t of text.slice(1)) {
+      this.stackProperty()
+      this.property.text += t
+    }
+  }
+
+  convert_MathMode(node) { return }
+  convert_PreambleExpression(node) { return }
+  convert_StringExpression(node) { return }
+
+  convert_NestedLiteral(node) {
+    const prefix = []
+    const postfix = []
+
+    const start = this.property.text.length
+    let exemptFromSentenceCase = false
+    for (const [markup, apply] of Object.entries(node.markup).sort((a, b) => a[0].localeCompare(b[0]))) {
+      if (!apply) continue
+      switch (markup) {
+        case 'roman':
+        case 'fixedWidth':
+          // ignore
+          break
+
+        case 'enquote':
+          // TODO:
+          break
+
+        case 'sub':
+          prefix.push('<sub>')
+          postfix.push('</sub>')
+          break
+
+        case 'sup':
+          prefix.push('<sup>')
+          postfix.push('</sup>')
+          break
+
+        case 'bold':
+          prefix.push('<i>')
+          postfix.push('</i>')
+          break
+
+        case 'italics':
+          prefix.push('<i>')
+          postfix.push('</i>')
+          break
+
+        case 'smallCaps':
+          prefix.push('<span style="font-variant:small-caps;">')
+          postfix.push('</span>')
+          break
+
+        case 'caseProtect':
+          if (this.property.creator) {
+            prefix.push('"')
+            postfix.push('"')
+          } else {
+            prefix.push('<span class="nocase">')
+            postfix.push('</span>')
+          }
+          exemptFromSentenceCase = true
+          break
+
+        case 'exemptFromSentenceCase':
+          exemptFromSentenceCase = true
+          break
+
+        default:
+          throw new Error(`markup: ${markup}`)
+
+      }
+    }
+
+    this.property.text += prefix.join('')
+    this.property.level++
+    this.convert(node.value)
+    this.property.level--
+    this.property.text += postfix.reverse().join('')
+    if (exemptFromSentenceCase) this.property.exemptFromSentencecase.push({ start, end: this.property.text.length })
+  }
 }
+
+export function parse(input) {
+  const parsed = new Parser(input)
+  return {
+    errors: parsed.errors,
+    entries: parsed.entries,
+    comments: parsed.comments
+  }
+}
+
+export { parse as chunker } from './chunker'

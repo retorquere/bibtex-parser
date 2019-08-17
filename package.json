@@ -4,14 +4,15 @@
   "description": "BibTeX parser",
   "main": "index.js",
   "scripts": {
-    "_pregrammar": "curl -OL https://raw.githubusercontent.com/retorquere/astrocite/master/packages/astrocite-bibtex/src/grammar.pegjs",
-    "pregrammar": "cp /Users/emile/github/astrocite/packages/astrocite-bibtex/src/grammar.pegjs .",
-    "grammar": "pegjs grammar.pegjs",
-    "prestart": "npm run grammar",
+    "pregrammar": "curl -L https://raw.githubusercontent.com/retorquere/astrocite/master/packages/astrocite-bibtex/src/grammar.pegjs -o astrocite-bibtex.pegjs",
+    "_pregrammar": "cp /Users/emile/github/astrocite/packages/astrocite-bibtex/src/grammar.pegjs .",
+    "grammar": "pegjs astrocite-bibtex.pegjs",
+    "lint": "tslint -t stylish --project .",
+    "prestart": "npm run grammar && npm run lint",
     "start": "tsc *.ts",
     "poststart": "node unicode2latex.js",
     "pretest": "npm start",
-    "test": "node index.js"
+    "test": "node test.js"
   },
   "repository": {
     "type": "git",
@@ -25,10 +26,8 @@
   "devDependencies": {
     "jsesc": "^2.5.2",
     "pegjs": "^0.10.0",
+    "tslint": "^5.18.0",
     "typescript": "^3.5.3",
     "unicode2latex": "^1.0.19"
-  },
-  "dependencies": {
-    "pegjs-backtrace": "^0.2.0"
   }
 }
