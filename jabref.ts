@@ -33,8 +33,15 @@ type Group = {
   children: Group[]
 }
 
-export function parse(comments) {
-  const result: { root: Group[], groups: { [key: string]: Group }, fileDirectory: string, version: string } = {
+type Parsed = {
+  root: Group[]
+  groups: { [key: string]: Group }
+  fileDirectory: string
+  version: string
+}
+
+export function parse(comments): Parsed {
+  const result: Parsed = {
     root: [],
     groups: {},
     fileDirectory: '',
