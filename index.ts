@@ -254,7 +254,7 @@ class Parser {
       verb: 'verbatim',
     }
     node.value = node.value.filter((child, i) => {
-      if (child.kind === 'Text' && !child.value) return false
+      // if (child.kind === 'Text' && !child.value) return false
 
       // \frac can either be "\frac{n}{d}" or "\frac n d" -- shudder
       if (child.kind === 'RegularCommand' && child.value === 'frac' && !child.arguments.length) {
@@ -374,6 +374,7 @@ class Parser {
   }
 
   protected clean_Text(node, nocased) { return node }
+
   protected clean_MathMode(node, nocased) { return node }
 
   protected clean_RegularCommand(node, nocased) {
@@ -602,7 +603,7 @@ class Parser {
       node.markup.caseProtect = false
 
     } else if (node.value.length && node.value[0].kind === 'Text') {
-      if (!node.value[0].value.split(/\s+/).find(word => !this.protectedWord(word))) {
+      if (!node.value[0].value.split(/\s+/).find(word => !this.implicitlyNoCased(word))) {
         node.markup.caseProtect = false
         node.markup.exemptFromSentenceCase = true
       }
@@ -630,7 +631,12 @@ class Parser {
 
   protected clean_PreambleExpression(node, nocased) { return node }
 
-  private protectedWord(word) { return false }
+  private implicitlyNoCased(word) {
+    if (word.match(/^[A-Z][^A-Z]+$/)) return false
+    if (word.match(/[A-Z]/)) return true
+    if (word.match(/^[0-9]+$/)) return true
+    return false
+  }
 
   private convert(node) {
     if (Array.isArray(node)) return node.map(child => this.convert(child)).join('')
@@ -739,11 +745,23 @@ class Parser {
       postfix.unshift(this.markup[markup].close)
     }
 
+    const end = {
+      withoutPrefix: this.field.text.length,
+      withPrefix: 0,
+    }
     this.field.text += prefix.join('')
+    end.withPrefix = this.field.text.length
+
     this.field.level++
     this.convert(node.value)
     this.field.level--
-    this.field.text += postfix.reverse().join('')
+
+    if (this.field.text.length === end.withPrefix) { // nothing was added, so remove prefix
+      this.field.text = this.field.text.substring(0, end.withoutPrefix)
+    } else {
+      this.field.text += postfix.reverse().join('')
+    }
+
     if (exemptFromSentenceCase && this.field.exemptFromSentencecase) this.field.exemptFromSentencecase.push({ start, end: this.field.text.length })
   }
 }
