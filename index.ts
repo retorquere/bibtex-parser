@@ -65,10 +65,17 @@ type MarkupMapping = {
 }
 
 export type Bibliography = {
-  errors: string[]
+  errors: ParseError[]
   entries: Entry[]
   comments: string[]
   strings: { [key: string]: string }
+}
+
+export type ParseError = {
+  message: string
+  source?: string
+  line?: number
+  column?: number
 }
 
 const creatorFields = [
@@ -88,7 +95,7 @@ const creatorFields = [
 ]
 
 class Parser {
-  private errors: any[]
+  private errors: ParseError[]
   private strings: { [key: string]: any[] }
   private months: { [key: string]: any[] }
   private comments: string[]
