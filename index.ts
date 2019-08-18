@@ -78,21 +78,33 @@ export type ParseError = {
   column?: number
 }
 
-const creatorFields = [
-  'author',
-  'bookauthor',
-  'collaborators',
-  'commentator',
-  'director',
-  'editor',
-  'editora',
-  'editorb',
-  'editors',
-  'holder',
-  'scriptwriter',
-  'translator',
-  'translators',
-]
+const fields = {
+  creator: [
+    'author',
+    'bookauthor',
+    'collaborators',
+    'commentator',
+    'director',
+    'editor',
+    'editora',
+    'editorb',
+    'editors',
+    'holder',
+    'scriptwriter',
+    'translator',
+    'translators',
+  ],
+  sentenceCase: [
+    'title',
+    'series',
+    'shorttitle',
+    'booktitle',
+    'type',
+    'origtitle',
+    'maintitle',
+    'eventtitle',
+  ],
+}
 
 class Parser {
   private errors: ParseError[]
@@ -104,8 +116,11 @@ class Parser {
   private field: FieldBuilder
   private errorHandler: (message: string) => void
   private markup: MarkupMapping
+  private sentenceCase: boolean
 
-  constructor(options: { markup?: MarkupMapping, errorHandler?: (message: string) => void } = {}) {
+  constructor(options: { sentenceCase?: boolean, markup?: MarkupMapping, errorHandler?: (message: string) => void } = {}) {
+    this.sentenceCase = typeof options.sentenceCase === 'undefined' ? true : options.sentenceCase
+
     this.markup = {
       enquote: { open: '"', close: '"' },
       sub: { open: '<sub>', close: '</sub>' },
@@ -168,7 +183,7 @@ class Parser {
         creator: false,
         text: '',
         level: 0,
-        exemptFromSentencecase: [],
+        exemptFromSentencecase: null,
       }
       this.convert(value)
       strings[key] = this.field.text
@@ -183,7 +198,7 @@ class Parser {
 
   private parseChunk(chunk) {
     try {
-      const ast = this.cleanup(bibtex.parse(chunk.text))
+      const ast = this.cleanup(bibtex.parse(chunk.text), false)
       if (ast.kind !== 'File') throw new Error(this.show(ast))
 
       for (const node of ast.children) {
@@ -213,7 +228,7 @@ class Parser {
     return returnvalue
   }
 
-  private condense(node) {
+  private condense(node, nocased) {
     if (!Array.isArray(node.value)) {
       if (node.value.kind === 'Number') return
       return this.error(this.show(node), undefined)
@@ -250,7 +265,7 @@ class Parser {
 
       if (child.kind === 'RegularCommand' && markup[child.value] && !child.arguments.length) {
         if (node.markup) {
-          node.markup.noCase = false
+          node.markup.caseProtect = false
           node.markup[markup[child.value]] = true
         }
         return false
@@ -259,11 +274,9 @@ class Parser {
       return true
     })
 
-    node.value = node.value.map(child => this.cleanup(child))
+    node.value = node.value.map(child => this.cleanup(child, nocased || (node.markup && (node.markup.caseProtect || node.markup.exemptFromSentencecase))))
 
     node.value = node.value.reduce((acc, child) => {
-      if (node.markup && child.unnest) node.markup.noCase = false
-
       const last = acc.length - 1
       if (acc.length === 0 || child.kind !== 'Text' || acc[last].kind !== 'Text') {
         acc.push(child)
@@ -299,27 +312,27 @@ class Parser {
     return false
   }
 
-  private cleanup(node) {
+  private cleanup(node, nocased) {
     delete node.loc
 
     if (!this['clean_' + node.kind]) return this.error(this.show(node), this.text())
-    return this['clean_' + node.kind](node)
+    return this['clean_' + node.kind](node, nocased)
   }
 
-  protected clean_BracedComment(node) { return node }
-  protected clean_LineComment(node) { return node }
+  protected clean_BracedComment(node, nocased) { return node }
+  protected clean_LineComment(node, nocased) { return node }
 
-  protected clean_File(node) {
-    node.children = node.children.filter(child => child.kind !== 'NonEntryText').map(child => this.cleanup(child))
+  protected clean_File(node, nocased) {
+    node.children = node.children.filter(child => child.kind !== 'NonEntryText').map(child => this.cleanup(child, nocased))
     return node
   }
 
-  protected clean_StringExpression(node) { // should have been StringDeclaration
+  protected clean_StringExpression(node, nocased) { // should have been StringDeclaration
     this.strings[node.key.toUpperCase()] = node.value
     return node
   }
 
-  protected clean_String(node) { // should have been StringReference
+  protected clean_String(node, nocased) { // should have been StringReference
     const _string = this.strings[node.value.toUpperCase()] || this.months[node.value.toUpperCase()]
 
     if (!_string) this.errors.push({ message: `Unresolved @string reference ${JSON.stringify(node.value)}` })
@@ -331,16 +344,16 @@ class Parser {
         caseProtect: false,
         exemptFromSentenceCase: !_string,
       },
-      value: _string || [ this.text(node.value) ],
-    })
+      value: _string ? JSON.parse(JSON.stringify(_string)) : [ this.text(node.value) ],
+    }, nocased)
   }
 
-  protected clean_Entry(node) {
-    node.properties = node.properties.map(child => this.cleanup(child))
+  protected clean_Entry(node, nocased) {
+    node.properties = node.properties.map(child => this.cleanup(child, nocased))
     return node
   }
 
-  protected clean_Property(node) {
+  protected clean_Property(node, nocased) {
     // because this was abused so much, many processors ignore second-level too
     if (node.value.length === 1 && node.value[0].kind === 'NestedLiteral') {
       node.value[0].markup = {
@@ -349,14 +362,14 @@ class Parser {
       }
     }
 
-    this.condense(node)
+    this.condense(node, false)
     return node
   }
 
-  protected clean_Text(node) { return node }
-  protected clean_MathMode(node) { return node }
+  protected clean_Text(node, nocased) { return node }
+  protected clean_MathMode(node, nocased) { return node }
 
-  protected clean_RegularCommand(node) {
+  protected clean_RegularCommand(node, nocased) {
     let arg, unicode
 
     switch (node.value) {
@@ -373,7 +386,7 @@ class Parser {
               exemptFromSentenceCase: true,
             },
             value: [ this.text(`${arg[0]}/${arg[1]}`) ],
-          })
+          }, nocased)
         }
         break
 
@@ -407,7 +420,7 @@ class Parser {
               exemptFromSentenceCase: true,
             },
             value: [ this.text(arg[0]) ],
-          })
+          }, nocased)
         }
         break
 
@@ -417,7 +430,7 @@ class Parser {
           kind: 'NestedLiteral',
           markup: { sup: true },
           value: arg,
-        })
+        }, nocased)
         break
 
       case 'textsubscript':
@@ -426,7 +439,7 @@ class Parser {
           kind: 'NestedLiteral',
           markup: { sub: true },
           value: arg,
-        })
+        }, nocased)
         break
 
       case 'textsc':
@@ -435,7 +448,7 @@ class Parser {
           kind: 'NestedLiteral',
           markup: { smallCaps: true },
           value: arg,
-        })
+        }, nocased)
         break
 
       case 'enquote':
@@ -445,7 +458,7 @@ class Parser {
           kind: 'NestedLiteral',
           markup: { enquote: true },
           value: arg,
-        })
+        }, nocased)
         break
 
       case 'textbf':
@@ -455,7 +468,7 @@ class Parser {
           kind: 'NestedLiteral',
           markup: { bold: true },
           value: arg,
-        })
+        }, nocased)
         break
 
       case 'mkbibitalic':
@@ -467,7 +480,7 @@ class Parser {
           kind: 'NestedLiteral',
           markup: { italics: true },
           value: arg,
-        })
+        }, nocased)
         break
 
       case 'bibcyr':
@@ -478,7 +491,7 @@ class Parser {
           kind: 'NestedLiteral',
           markup: {},
           value: arg,
-        })
+        }, nocased)
         break
 
       case 'mathrm':
@@ -495,7 +508,7 @@ class Parser {
             kind: 'NestedLiteral',
             markup: {},
             value: arg,
-          })
+          }, nocased)
         }
         break
 
@@ -521,8 +534,8 @@ class Parser {
     return node
   }
 
-  protected clean_NestedLiteral(node) {
-    if (!node.markup) node.markup = { caseProtect: true }
+  protected clean_NestedLiteral(node, nocased) {
+    if (!node.markup) node.markup = { caseProtect: !nocased }
 
     // https://github.com/retorquere/zotero-better-bibtex/issues/541#issuecomment-240156274
     if (node.value.length && ['RegularCommand', 'DicraticalCommand'].includes(node.value[0].kind)) {
@@ -535,11 +548,11 @@ class Parser {
       }
     }
 
-    this.condense(node)
+    this.condense(node, nocased)
     return node
   }
 
-  protected clean_DicraticalCommand(node) { // Should be DiacraticCommand
+  protected clean_DicraticalCommand(node, nocased) { // Should be DiacraticCommand
     const char = typeof node.character === 'string' ? node.character : `\\${node.character.value}`
     const unicode = latex2unicode[`\\${node.mark}{${char}}`]
       || latex2unicode[`\\${node.mark}${char}`]
@@ -551,11 +564,11 @@ class Parser {
     return this.text(unicode)
   }
 
-  protected clean_SymbolCommand(node) {
+  protected clean_SymbolCommand(node, nocased) {
     return this.text(node.value)
   }
 
-  protected clean_PreambleExpression(node) { return node }
+  protected clean_PreambleExpression(node, nocased) { return node }
 
   private protectedWord(word) { return false }
 
@@ -584,28 +597,39 @@ class Parser {
     for (const prop of node.properties) {
       if (prop.kind !== 'Property') return this.error(`Expected Property, got ${prop.kind}`, undefined)
 
+      const name = prop.key.toLowerCase()
       this.field = {
-        name: prop.key.toLowerCase(),
-        creator: creatorFields.includes(prop.key.toLowerCase()),
+        name,
+        creator: fields.creator.includes(prop.key.toLowerCase()),
         text: '',
         level: 0,
-        exemptFromSentencecase: [],
+        exemptFromSentencecase: this.sentenceCase && fields.sentenceCase.includes(name) ? [] : null,
       }
 
       this.entry.fields[this.field.name] = this.entry.fields[this.field.name] || []
       this.convert(prop.value)
       this.field.text = this.field.text.trim()
-      if (this.field.text) this.entry.fields[this.field.name].push(this.field.text)
+      if (this.field.text) this.entry.fields[this.field.name].push(this.convertToSentenceCase(this.field.text, this.field.exemptFromSentencecase))
     }
   }
 
-  private stackProperty() {
+  private convertToSentenceCase(text, exemptions) {
+    if (!exemptions) return text
+
+    let sentenceCased = text.toLowerCase().replace(/(([\?!]\s*|^)([\'\"¡¿“‘„«\s]+)?[^\s])/g, x => x.toUpperCase())
+    for (const { start, stop } of exemptions) {
+      sentenceCased = sentenceCased.substring(0, start) + text.substring(start, stop) + sentenceCased.substring(stop)
+    }
+    return sentenceCased
+  }
+
+  private splitField() {
     if (this.field.level > 0) return this.error(this.show(this.field), undefined)
     this.field.text = this.field.text.trim()
-    if (this.field.text) this.entry.fields[this.field.name].push(this.field.text)
+    if (this.field.text) this.entry.fields[this.field.name].push(this.convertToSentenceCase(this.field.text, this.field.exemptFromSentencecase))
 
     this.field.text = ''
-    this.field.exemptFromSentencecase = []
+    if (this.field.exemptFromSentencecase) this.field.exemptFromSentencecase = []
   }
 
   protected convert_Number(node) {
@@ -628,7 +652,7 @@ class Parser {
     this.field.text += text[0]
 
     for (const t of text.slice(1)) {
-      this.stackProperty()
+      this.splitField()
       this.field.text += t
     }
   }
@@ -660,12 +684,12 @@ class Parser {
     this.convert(node.value)
     this.field.level--
     this.field.text += postfix.reverse().join('')
-    if (exemptFromSentenceCase) this.field.exemptFromSentencecase.push({ start, end: this.field.text.length })
+    if (exemptFromSentenceCase && this.field.exemptFromSentencecase) this.field.exemptFromSentencecase.push({ start, end: this.field.text.length })
   }
 }
 
-export function parse(input: string, options: { markup?: MarkupMapping, async?: boolean, errorHandler?: any } = {}) {
-  const parser = new Parser({ markup: options.markup, errorHandler: options.errorHandler })
+export function parse(input: string, options: { sentenceCase?: boolean, markup?: MarkupMapping, async?: boolean, errorHandler?: any } = {}) {
+  const parser = new Parser({ sentenceCase: options.sentenceCase, markup: options.markup, errorHandler: options.errorHandler })
   return options.async ? parser.parseAsync(input) : parser.parse(input)
 }
 
