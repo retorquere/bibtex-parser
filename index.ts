@@ -266,7 +266,8 @@ class Parser {
 
       // spaces after a bare command are consumed
       } else if (child.kind === 'RegularCommand' && !child.arguments.length && (node.value[i + 1] || {}).kind === 'Text' && node.value[i + 1].value.match(/^\s+/)) {
-        node.value[i + 1].value = node.value[i + 1].value.trimStart()
+        // despite Mozilla's claim that trimStart === trimLeft, and that trimStart should be preferred, trimStart does not seem to exist in FF chrome code.
+        node.value[i + 1].value = node.value[i + 1].value.trimLeft()
       }
 
       if (child.kind === 'RegularCommand' && markup[child.value] && !child.arguments.length) {
