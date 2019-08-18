@@ -537,7 +537,11 @@ class Parser {
   }
 
   protected clean_SubscriptCommand(node, nocased) {
-    let value
+    let value, singlechar
+    if (typeof node.value === 'string' && (singlechar = latex2unicode[`_${node.value}`] || latex2unicode[`_{${node.value}}`])) {
+      return this.text(singlechar)
+    }
+
     if (typeof node.value === 'string') {
       value = [ this.text(node.value) ]
     } else if (!Array.isArray(node.value)) {
@@ -553,7 +557,11 @@ class Parser {
   }
 
   protected clean_SuperscriptCommand(node, nocased) {
-    let value
+    let value, singlechar
+    if (typeof node.value === 'string' && (singlechar = latex2unicode[`^${node.value}`] || latex2unicode[`^{${node.value}}`])) {
+      return this.text(singlechar)
+    }
+
     if (typeof node.value === 'string') {
       value = [ this.text(node.value) ]
     } else if (!Array.isArray(node.value)) {
