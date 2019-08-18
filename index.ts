@@ -105,7 +105,7 @@ class Parser {
       fixedWidth: { open: '', close: '' },
     }
     for (const [markup, open_close ] of Object.entries(options.markup || {})) {
-      this.markup[markup] = open_close
+      if (open_close) this.markup[markup] = open_close
     }
 
     // tslint:disable-next-line only-arrow-functions
