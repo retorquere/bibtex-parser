@@ -51,15 +51,15 @@ type FieldBuilder = {
 }
 
 type MarkupMapping = {
-  sub: { open: string, close: string }
-  sup: { open: string, close: string }
-  bold: { open: string, close: string }
-  italics: { open: string, close: string }
-  smallCaps: { open: string, close: string }
-  caseProtect: { open: string, close: string }
-  caseProtectCreator: { open: string, close: string }
-
+  sub?: { open: string, close: string }
+  sup?: { open: string, close: string }
+  bold?: { open: string, close: string }
+  italics?: { open: string, close: string }
+  smallCaps?: { open: string, close: string }
+  caseProtect?: { open: string, close: string }
+  caseProtectCreator?: { open: string, close: string }
   enquote?: { open: string, close: string }
+
   roman?: { open: string, close: string }
   fixedWidth?: { open: string, close: string }
 }
