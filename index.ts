@@ -64,6 +64,13 @@ type MarkupMapping = {
   fixedWidth?: { open: string, close: string }
 }
 
+type Parsed = {
+  errors: string[]
+  entries: Entry[]
+  comments: string[]
+  strings: { [key: string]: string }
+}
+
 const creatorFields = [
   'author',
   'bookauthor',
@@ -131,21 +138,21 @@ class Parser {
     }
   }
 
-  public parse(input) {
+  public parse(input): Parsed {
     for (const chunk of chunker(input)) {
       this.parseChunk(chunk)
     }
     return this.parsed()
   }
 
-  public async parseAsync(input) {
+  public async parseAsync(input): Promise<Parsed> {
     for (const chunk of await chunker(input, { async: true })) {
       this.parseChunk(chunk)
     }
     return this.parsed()
   }
 
-  private parsed() {
+  private parsed(): Parsed {
     this.field = null
     const strings = {}
     for (const [key, value] of Object.entries(this.strings)) {
