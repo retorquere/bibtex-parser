@@ -536,6 +536,38 @@ class Parser {
     return node
   }
 
+  protected clean_SubscriptCommand(node, nocased) {
+    let value
+    if (typeof node.value === 'string') {
+      value = [ this.text(node.value) ]
+    } else if (!Array.isArray(node.value)) {
+      value = [ node.value ]
+    } else {
+      value = node.value
+    }
+    return this.cleanup({
+      kind: 'NestedLiteral',
+      markup: { sub: true },
+      value,
+    }, nocased)
+  }
+
+  protected clean_SuperscriptCommand(node, nocased) {
+    let value
+    if (typeof node.value === 'string') {
+      value = [ this.text(node.value) ]
+    } else if (!Array.isArray(node.value)) {
+      value = [ node.value ]
+    } else {
+      value = node.value
+    }
+    return this.cleanup({
+      kind: 'NestedLiteral',
+      markup: { sup: true },
+      value,
+    }, nocased)
+  }
+
   protected clean_NestedLiteral(node, nocased) {
     if (!node.markup) node.markup = { caseProtect: !nocased }
 

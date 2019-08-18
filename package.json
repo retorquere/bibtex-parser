@@ -4,8 +4,9 @@
   "description": "BibTeX parser",
   "main": "index.js",
   "scripts": {
-    "pregrammar": "curl -L https://raw.githubusercontent.com/retorquere/astrocite/master/packages/astrocite-bibtex/src/grammar.pegjs -o astrocite-bibtex.pegjs",
-    "_pregrammar": "cp /Users/emile/github/astrocite/packages/astrocite-bibtex/src/grammar.pegjs .",
+    "_pregrammar": "curl -L https://raw.githubusercontent.com/retorquere/astrocite/master/packages/astrocite-bibtex/src/grammar.pegjs -o astrocite-bibtex.pegjs",
+    "pregrammar": "cp /Users/emile/github/astrocite/packages/astrocite-bibtex/src/grammar.pegjs astrocite-bibtex.pegjs",
+    "edit-grammar": "vi /Users/emile/github/astrocite/packages/astrocite-bibtex/src/grammar.pegjs",
     "grammar": "pegjs astrocite-bibtex.pegjs",
     "lint": "tslint -t stylish --project .",
     "prestart": "npm run grammar && npm run lint",
