@@ -116,9 +116,11 @@ class Parser {
   private field: FieldBuilder
   private errorHandler: (message: string) => void
   private markup: MarkupMapping
+  private caseProtect: boolean
   private sentenceCase: boolean
 
-  constructor(options: { sentenceCase?: boolean, markup?: MarkupMapping, errorHandler?: (message: string) => void } = {}) {
+  constructor(options: { caseProtect?: boolean, sentenceCase?: boolean, markup?: MarkupMapping, errorHandler?: (message: string) => void } = {}) {
+    this.caseProtect = typeof options.caseProtect === 'undefined' ? true : options.caseProtect
     this.sentenceCase = typeof options.sentenceCase === 'undefined' ? true : options.sentenceCase
 
     this.markup = {
@@ -198,7 +200,7 @@ class Parser {
 
   private parseChunk(chunk) {
     try {
-      const ast = this.cleanup(bibtex.parse(chunk.text), false)
+      const ast = this.cleanup(bibtex.parse(chunk.text), !this.caseProtect)
       if (ast.kind !== 'File') throw new Error(this.show(ast))
 
       for (const node of ast.children) {
@@ -362,7 +364,7 @@ class Parser {
       }
     }
 
-    this.condense(node, false)
+    this.condense(node, !this.caseProtect)
     return node
   }
 
@@ -617,8 +619,8 @@ class Parser {
     if (!exemptions) return text
 
     let sentenceCased = text.toLowerCase().replace(/(([\?!]\s*|^)([\'\"¡¿“‘„«\s]+)?[^\s])/g, x => x.toUpperCase())
-    for (const { start, stop } of exemptions) {
-      sentenceCased = sentenceCased.substring(0, start) + text.substring(start, stop) + sentenceCased.substring(stop)
+    for (const { start, end } of exemptions) {
+      sentenceCased = sentenceCased.substring(0, start) + text.substring(start, end) + sentenceCased.substring(end)
     }
     return sentenceCased
   }
@@ -688,8 +690,13 @@ class Parser {
   }
 }
 
-export function parse(input: string, options: { sentenceCase?: boolean, markup?: MarkupMapping, async?: boolean, errorHandler?: any } = {}) {
-  const parser = new Parser({ sentenceCase: options.sentenceCase, markup: options.markup, errorHandler: options.errorHandler })
+export function parse(input: string, options: { sentenceCase?: boolean, caseProtect?: boolean, markup?: MarkupMapping, async?: boolean, errorHandler?: any } = {}) {
+  const parser = new Parser({
+    caseProtect: options.caseProtect,
+    sentenceCase: options.sentenceCase,
+    markup: options.markup,
+    errorHandler: options.errorHandler,
+  })
   return options.async ? parser.parseAsync(input) : parser.parse(input)
 }
 
