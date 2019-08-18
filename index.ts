@@ -406,7 +406,13 @@ class Parser {
 
       case 'chsf':
         if (this.argument(node, 'none')) return this.text()
-        if (arg = this.argument(node, 'array')) return this.text(arg)
+        if (arg = this.argument(node, 'array')) {
+          return this.cleanup({
+            kind: 'NestedLiteral',
+            markup: {},
+            value: arg,
+          }, nocased)
+        }
         return node
 
       case 'bibstring':
@@ -516,6 +522,13 @@ class Parser {
 
       case 'url':
         if (arg = this.argument(node, 'Text')) return this.text(arg)
+        if (arg = this.argument(node, 'array')) {
+          return this.cleanup({
+            kind: 'NestedLiteral',
+            markup: {},
+            value: arg,
+          }, nocased)
+        }
         break
 
       default:
