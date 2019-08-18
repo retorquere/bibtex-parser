@@ -322,6 +322,8 @@ class Parser {
   protected clean_String(node) { // should have been StringReference
     const _string = this.strings[node.value.toUpperCase()] || this.months[node.value.toUpperCase()]
 
+    if (!_string) this.errors.push({ message: `Unresolved @string reference ${JSON.stringify(node.value)}` })
+
     // if the string isn't found, add it as-is but exempt it from sentence casing
     return this.cleanup({
       kind: 'NestedLiteral',
