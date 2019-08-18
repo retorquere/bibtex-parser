@@ -256,13 +256,17 @@ class Parser {
     node.value = node.value.filter((child, i) => {
       if (child.kind === 'Text' && !child.value) return false
 
-      // \frac can either be "\frac{n}{d}" or "\frac n d"
+      // \frac can either be "\frac{n}{d}" or "\frac n d" -- shudder
       if (child.kind === 'RegularCommand' && child.value === 'frac' && !child.arguments.length) {
         if ((node.value[i + 1] || {}).kind === 'Text' && node.value[i + 1].value.match(/^\s+[a-z0-9]+\s+[a-z0-9]+$/i)) {
           child.arguments = node.value[i + 1].value.trim().split(/\s+/).map(v => ({ kind: 'RequiredArgument', value: [ this.text(v) ] }))
           node.value[i + 1].value = ''
           return true
         }
+
+      // spaces after a bare command are consumed
+      } else if (child.kind === 'RegularCommand' && !child.arguments.length && (node.value[i + 1] || {}).kind === 'Text' && node.value[i + 1].value.match(/^\s+/)) {
+        node.value[i + 1].value = node.value[i + 1].value.trimStart()
       }
 
       if (child.kind === 'RegularCommand' && markup[child.value] && !child.arguments.length) {
