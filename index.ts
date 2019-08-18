@@ -91,13 +91,25 @@ class Parser {
   private errorHandler: (message: string) => void
   private markup: MarkupMapping
 
-  constructor(markup: MarkupMapping, errorHandler = null) {
-    this.errorHandler = errorHandler
-    this.markup = markup
+  constructor(options: { markup?: MarkupMapping, errorHandler?: (message: string) => void } = {}) {
+    this.markup = {
+      enquote: { open: '"', close: '"' },
+      sub: { open: '<sub>', close: '</sub>' },
+      sup: { open: '<sup>', close: '</sup>' },
+      bold: { open: '<b>', close: '</b>' },
+      italics: { open: '<i>', close: '</i>' },
+      smallCaps: { open: '<span style="font-variant:small-caps;">', close: '</span>' },
+      caseProtectCreator: { open: '"', close: '"' },
+      caseProtect: { open: '<span class="nocase">', close: '</span>' },
+      roman: { open: '', close: '' },
+      fixedWidth: { open: '', close: '' },
+    }
+    for (const [markup, open_close ] of Object.entries(options.markup || {})) {
+      this.markup[markup] = open_close
+    }
 
-    if (!this.markup.roman) this.markup.roman = { open: '', close: '' }
-    if (!this.markup.fixedWidth) this.markup.fixedWidth = { open: '', close: '' }
-    if (!this.markup.enquote) this.markup.enquote = { open: '"', close: '"' }
+    // tslint:disable-next-line only-arrow-functions
+    this.errorHandler = (options.errorHandler || function(msg) { throw new Error(msg) })
 
     this.errors = []
     this.comments = []
@@ -183,11 +195,8 @@ class Parser {
   }
 
   private error(err, returnvalue) {
-    if (this.errorHandler) {
-      this.errorHandler(err)
-      return returnvalue
-    }
-    throw new Error(err)
+    this.errorHandler(err)
+    return returnvalue
   }
 
   private condense(node) {
@@ -639,8 +648,8 @@ class Parser {
   }
 }
 
-export function parse(input: string, markup: MarkupMapping, options: { async?: boolean, errorHandler?: any } = {}) {
-  const parser = new Parser(markup, options.errorHandler)
+export function parse(input: string, options: { markup?: MarkupMapping, async?: boolean, errorHandler?: any } = {}) {
+  const parser = new Parser({ markup: options.markup, errorHandler: options.errorHandler })
   return options.async ? parser.parseAsync(input) : parser.parse(input)
 }
 
