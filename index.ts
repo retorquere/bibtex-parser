@@ -567,7 +567,7 @@ class Parser {
   }
 
   protected clean_SymbolCommand(node, nocased) {
-    return this.text(node.value)
+    return this.text(latex2unicode[`\\${node.value}`] || node.value)
   }
 
   protected clean_PreambleExpression(node, nocased) { return node }
