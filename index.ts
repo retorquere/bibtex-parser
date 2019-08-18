@@ -274,6 +274,7 @@ class Parser {
         if (node.markup) {
           node.markup.caseProtect = false
           node.markup[markup[child.value]] = true
+          node.markup.exemptFromSentenceCase = (markup[child.value] === 'smallCaps')
         }
         return false
       }
@@ -460,7 +461,7 @@ class Parser {
         if (!(arg = this.argument(node, 'array'))) return this.error(node.value + this.show(node), this.text())
         return this.cleanup({
           kind: 'NestedLiteral',
-          markup: { smallCaps: true },
+          markup: { smallCaps: true, exemptFromSentenceCase: true },
           value: arg,
         }, nocased)
         break
