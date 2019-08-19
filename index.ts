@@ -137,7 +137,7 @@ class Parser {
     this.sentenceCase = typeof options.sentenceCase === 'undefined' ? true : options.sentenceCase
 
     this.markup = {
-      enquote: { open: '"', close: '"' },
+      enquote: { open: '\u201c', close: '\u201d' },
       sub: { open: '<sub>', close: '</sub>' },
       sup: { open: '<sup>', close: '</sup>' },
       bold: { open: '<b>', close: '</b>' },
