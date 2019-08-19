@@ -16,7 +16,9 @@
     "test": "node test.js",
     "list": "tar tvf $(npm pack)",
     "prepublishOnly": "npm start",
-    "go": "npm start && npm version patch && git push --follow-tags && npm publish --access public"
+
+    "preversion": "npm test",
+    "postversion": "git push --follow-tags && npm publish --access public"
   },
   "repository": {
     "type": "git",
