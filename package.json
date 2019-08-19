@@ -1,6 +1,6 @@
 {
   "name": "@retorquere/bibtex-parser",
-  "version": "1.0.34",
+  "version": "1.0.35",
   "description": "BibTeX parser",
   "main": "index.js",
   "scripts": {
@@ -16,7 +16,6 @@
     "test": "node test.js",
     "list": "tar tvf $(npm pack)",
     "prepublishOnly": "npm start",
-
     "preversion": "npm test",
     "postversion": "git push --follow-tags && npm publish --access public"
   },
