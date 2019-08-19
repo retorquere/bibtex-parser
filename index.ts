@@ -723,7 +723,7 @@ class Parser {
       this.entry.creators[type].push({ lastName: name })
 
     } else {
-      this.entry.creators[type].push(humanparser.parseName(name))
+      this.entry.creators[type].push(humanparser.parseName(name, ['i', 'v']))
 
     }
   }
