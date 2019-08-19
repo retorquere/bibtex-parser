@@ -47,7 +47,7 @@ type FieldBuilder = {
   creator: boolean
   text: string
   level: number
-  exemptFromSentencecase: Array<{ start: number, end: number }>
+  exemptFromSentenceCase: Array<{ start: number, end: number }>
 }
 
 type MarkupMapping = {
@@ -187,7 +187,7 @@ class Parser {
         creator: false,
         text: '',
         level: 0,
-        exemptFromSentencecase: null,
+        exemptFromSentenceCase: null,
       }
       this.convert(value)
       strings[key] = this.field.text
@@ -284,7 +284,7 @@ class Parser {
       return true
     })
 
-    node.value = node.value.map(child => this.cleanup(child, nocased || (node.markup && (node.markup.caseProtect || node.markup.exemptFromSentencecase))))
+    node.value = node.value.map(child => this.cleanup(child, nocased || (node.markup && (node.markup.caseProtect || node.markup.exemptFromSentenceCase))))
 
     node.value = node.value.reduce((acc, child) => {
       const last = acc.length - 1
@@ -609,8 +609,13 @@ class Parser {
     if (node.value.length && ['RegularCommand', 'DicraticalCommand'].includes(node.value[0].kind)) {
       node.markup.caseProtect = false
 
-    } else if (node.value.length && node.value[0].kind === 'Text') {
-      if (!node.value[0].value.split(/\s+/).find(word => !this.implicitlyNoCased(word))) {
+    } else {
+      const needsProtection = node.value.find(child => {
+        if (child.kind === 'NestedLiteral') return true
+        if (child.kind === 'Text' && !this.words(child.value).find(word => !this.implicitlyNoCased(word))) return true
+        return false
+      })
+      if (!needsProtection) {
         node.markup.caseProtect = false
         node.markup.exemptFromSentenceCase = true
       }
@@ -618,6 +623,18 @@ class Parser {
 
     this.condense(node, nocased)
     return node
+  }
+
+  private words(s) {
+    return s.split(/((?:\s|(?:\W))+)/)
+  }
+  private implicitlyNoCased(word) {
+    if (!word) return true
+    if (word.match(/[\s\W]/)) return true
+    if (word.match(/^[A-Z][a-z]+$/)) return false
+    if (word.match(/[A-Z]/)) return true
+    if (word.match(/^[0-9]+$/)) return true
+    return false
   }
 
   protected clean_DicraticalCommand(node, nocased) { // Should be DiacraticCommand
@@ -637,13 +654,6 @@ class Parser {
   }
 
   protected clean_PreambleExpression(node, nocased) { return node }
-
-  private implicitlyNoCased(word) {
-    if (word.match(/^[A-Z][^A-Z]+$/)) return false
-    if (word.match(/[A-Z]/)) return true
-    if (word.match(/^[0-9]+$/)) return true
-    return false
-  }
 
   private convert(node) {
     if (Array.isArray(node)) return node.map(child => this.convert(child)).join('')
@@ -676,13 +686,13 @@ class Parser {
         creator: fields.creator.includes(prop.key.toLowerCase()),
         text: '',
         level: 0,
-        exemptFromSentencecase: this.sentenceCase && fields.sentenceCase.includes(name) ? [] : null,
+        exemptFromSentenceCase: this.sentenceCase && fields.sentenceCase.includes(name) ? [] : null,
       }
 
       this.entry.fields[this.field.name] = this.entry.fields[this.field.name] || []
       this.convert(prop.value)
       this.field.text = this.field.text.trim()
-      if (this.field.text) this.entry.fields[this.field.name].push(this.convertToSentenceCase(this.field.text, this.field.exemptFromSentencecase))
+      if (this.field.text) this.entry.fields[this.field.name].push(this.convertToSentenceCase(this.field.text, this.field.exemptFromSentenceCase))
     }
   }
 
@@ -699,10 +709,10 @@ class Parser {
   private splitField() {
     if (this.field.level > 0) return this.error(this.show(this.field), undefined)
     this.field.text = this.field.text.trim()
-    if (this.field.text) this.entry.fields[this.field.name].push(this.convertToSentenceCase(this.field.text, this.field.exemptFromSentencecase))
+    if (this.field.text) this.entry.fields[this.field.name].push(this.convertToSentenceCase(this.field.text, this.field.exemptFromSentenceCase))
 
     this.field.text = ''
-    if (this.field.exemptFromSentencecase) this.field.exemptFromSentencecase = []
+    if (this.field.exemptFromSentenceCase) this.field.exemptFromSentenceCase = []
   }
 
   protected convert_Number(node) {
@@ -722,11 +732,19 @@ class Parser {
       }
     }
 
-    this.field.text += text[0]
+    for (const word of this.words(text[0])) {
+      const start = this.field.text.length
+      this.field.text += word
+      if (this.field.exemptFromSentenceCase && this.implicitlyNoCased(word)) this.field.exemptFromSentenceCase.push({ start, end: this.field.text.length })
+    }
 
     for (const t of text.slice(1)) {
       this.splitField()
-      this.field.text += t
+      for (const word of this.words(t)) {
+        const start = this.field.text.length
+        this.field.text += word
+        if (this.field.exemptFromSentenceCase && this.implicitlyNoCased(word)) this.field.exemptFromSentenceCase.push({ start, end: this.field.text.length })
+      }
     }
   }
 
@@ -769,7 +787,7 @@ class Parser {
       this.field.text += postfix.reverse().join('')
     }
 
-    if (exemptFromSentenceCase && this.field.exemptFromSentencecase) this.field.exemptFromSentencecase.push({ start, end: this.field.text.length })
+    if (exemptFromSentenceCase && this.field.exemptFromSentenceCase) this.field.exemptFromSentenceCase.push({ start, end: this.field.text.length })
   }
 }
 
