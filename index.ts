@@ -37,8 +37,7 @@ class Tracer {
 }
 */
 
-type Creator = {
-  type: string
+type Name = {
   lastName: string
 
   saluation?: string
@@ -51,7 +50,7 @@ type Entry = {
   key: string,
   type: string
   fields: { [key: string]: string[] }
-  creators: Creator[]
+  creators: { [key: string]: Name[] }
 }
 
 type FieldBuilder = {
@@ -676,7 +675,7 @@ class Parser {
       key: node.id,
       type: node.type,
       fields: {},
-      creators: [],
+      creators: {},
     }
     this.entries.push(this.entry)
 
@@ -697,7 +696,7 @@ class Parser {
       this.field.text = this.field.text.trim()
       if (this.field.text) {
         this.entry.fields[this.field.name].push(this.convertToSentenceCase(this.field.text, this.field.exemptFromSentencecase))
-        if (this.field.creator) this.entry.creators.push(this.parseName(this.field.text, this.field.name))
+        if (this.field.creator) this.addCreator(this.field.text, this.field.name)
       }
     }
   }
@@ -712,14 +711,21 @@ class Parser {
     return sentenceCased
   }
 
-  private parseName(name, type): Creator {
+  private addCreator(name, type) {
+    if (!this.entry.creators[type]) this.entry.creators[type] = []
+
     name = name.replace(/\n+/g, ' ').replace(/\s+/, ' ').trim()
 
-    if (name.match(/^".*"$/)) return { type, lastName: name.slice(1, -1) }
+    if (name.match(/^".*"$/)) {
+      this.entry.creators[type].push({ lastName: name.slice(1, -1) })
 
-    if (!name.match(/\s/)) return { type, lastName: name }
+    } else if (!name.match(/\s/)) {
+      this.entry.creators[type].push({ lastName: name })
 
-    return {...humanparser.parseName(name), type }
+    } else {
+      this.entry.creators[type].push(humanparser.parseName(name))
+
+    }
   }
 
   private splitField() {
@@ -727,7 +733,7 @@ class Parser {
     this.field.text = this.field.text.trim()
     if (this.field.text) {
       this.entry.fields[this.field.name].push(this.convertToSentenceCase(this.field.text, this.field.exemptFromSentencecase))
-      if (this.field.creator) this.entry.creators.push(this.parseName(this.field.text, this.field.name))
+      if (this.field.creator) this.addCreator(this.field.text, this.field.name)
     }
 
     this.field.text = ''
