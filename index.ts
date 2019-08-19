@@ -109,6 +109,7 @@ const fields = {
 class Parser {
   private errors: ParseError[]
   private strings: { [key: string]: any[] }
+  private unresolvedStrings: { [key: string]: boolean }
   private months: { [key: string]: any[] }
   private comments: string[]
   private entries: Entry[]
@@ -120,6 +121,7 @@ class Parser {
   private sentenceCase: boolean
 
   constructor(options: { caseProtect?: boolean, sentenceCase?: boolean, markup?: MarkupMapping, errorHandler?: (message: string) => void } = {}) {
+    this.unresolvedStrings = {}
     this.caseProtect = typeof options.caseProtect === 'undefined' ? true : options.caseProtect
     this.sentenceCase = typeof options.sentenceCase === 'undefined' ? true : options.sentenceCase
 
@@ -341,9 +343,13 @@ class Parser {
   }
 
   protected clean_String(node, nocased) { // should have been StringReference
-    const _string = this.strings[node.value.toUpperCase()] || this.months[node.value.toUpperCase()]
+    const reference = node.value.toUpperCase()
+    const _string = this.strings[reference] || this.months[reference]
 
-    if (!_string) this.errors.push({ message: `Unresolved @string reference ${JSON.stringify(node.value)}` })
+    if (!_string) {
+      if (!this.unresolvedStrings[reference]) this.errors.push({ message: `Unresolved @string reference ${JSON.stringify(node.value)}` })
+      this.unresolvedStrings[reference] = true
+    }
 
     // if the string isn't found, add it as-is but exempt it from sentence casing
     return this.cleanup({
