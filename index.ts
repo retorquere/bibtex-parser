@@ -802,7 +802,7 @@ class Parser {
         if (!this.entry.creators[this.field.name]) this.entry.creators[this.field.name] = []
 
         for (const creator of this.field.text.split(marker.and)) {
-          this.entry.fields[this.field.name].push(creator.replace(markerRE.comma, ', ').replace(markerRE.space, ' '))
+          this.entry.fields[this.field.name].push(creator.replace(markerRE.comma, ', ').replace(markerRE.space, ' ').replace(markerRE.literal, '"'))
           this.entry.creators[this.field.name].push(this.parseName(creator))
         }
 
@@ -811,6 +811,8 @@ class Parser {
 
       }
     }
+
+    this.field = null
   }
 
   private convertToSentenceCase(text, exemptions) {

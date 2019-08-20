@@ -3,16 +3,23 @@
 const fs = require('fs')
 const path = require('path')
 import * as bibtex from './index'
+import astrocite = require('./astrocite-bibtex')
 
-function parse(file) {
+function parse(file, basename) {
   console.log(file)
   const input = fs.readFileSync(file, 'utf-8')
-  const parsed = bibtex.parse(input)
-  const dump = path.join('dump', path.basename(file, path.extname(file)) + '.json')
+  let parsed, dump
+
+  parsed = bibtex.parse(input)
+  dump = path.join('dump', basename + '.json')
+  fs.writeFileSync(dump, JSON.stringify(parsed, null, 2))
+
+  parsed = astrocite.parse(input)
+  dump = path.join('dump', basename + '.ast.json')
   fs.writeFileSync(dump, JSON.stringify(parsed, null, 2))
 }
 
-parse('sample2.bib')
+parse('sample2.bib', 'sample2')
 
 const big = (process.argv[2] === '+')
 const single = !big && process.argv[2]
@@ -29,10 +36,10 @@ for (const mode of ['import', 'export']) {
       if (single && !f.startsWith(single)) continue
     }
 
-    parse(`${root}/${f}`)
+    parse(`${root}/${f}`, `${path.basename(f, path.extname(f))}-${mode}`)
   }
 }
 
-const bib = require('./dump/Maintain the JabRef group and subgroup structure when importing a BibTeX db #97.json')
+const bib = require('./dump/Maintain the JabRef group and subgroup structure when importing a BibTeX db #97-import.json')
 import * as jabref from './jabref'
 console.log(jabref.parse(bib.comments))
