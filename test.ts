@@ -24,7 +24,7 @@ parse('sample2.bib', 'sample2')
 const big = (process.argv[2] === '+')
 const single = !big && process.argv[2]
 
-for (const mode of ['import', 'export']) {
+for (const mode of ['export', 'import']) {
   const root = `../better-bibtex/test/fixtures/${mode}`
 
   for (const f of fs.readdirSync(root).sort()) {

@@ -645,6 +645,7 @@ class Parser {
 
   private implicitlyNoCased(word) {
     if (word.match(/^[A-Z][^A-Z]+$/)) return false
+    if (word.match(/^[A-Z][a-z]*(-[A-Za-z]+)*$/)) return false
     if (word.match(/[A-Z]/)) return true
     if (word.match(/^[0-9]+$/)) return true
     return false
