@@ -48,7 +48,7 @@ const markerRE = {
   space: new RegExp(marker.space, 'g'),
   literal: new RegExp(marker.literal, 'g'),
 
-  literalName: new RegExp(`^${marker.literal}[^${marker.literal}]+${marker.literal}$`),
+  literalName: new RegExp(`^${marker.literal}[^${marker.literal}]*${marker.literal}$`),
 }
 
 type Name = {
@@ -666,7 +666,7 @@ class Parser {
     let parsed: Name = null
 
     const parts = name.split(marker.comma)
-    if (!parts.find(p => !p.match(/^[a-z]+=/i))) { // extended name format
+    if (parts.length && !parts.find(p => !p.match(/^[a-z]+=/i))) { // extended name format
       parsed = {}
 
       for (const part of parts) {
@@ -696,14 +696,18 @@ class Parser {
       }
     }
 
-    switch (parts.length) {
+    switch (parsed ? -1 : parts.length) {
+      case -1:
+        // already parsed
+        break
+
       case 0: // should never happen
         throw new Error(name)
 
       case 1: // name without commas
         // literal
         if (markerRE.literalName.test(parts[0])) {
-          parsed = { literal: parts[0].replace(markerRE.literal, '"').slice(1, -1) }
+          parsed = { literal: parts[0] }
 
         } else {
           // top-level "firstname lastname"
@@ -731,8 +735,12 @@ class Parser {
         }
     }
 
-    for (const [k, v] of Object.entries(parsed)) {
-      if (typeof v === 'string') parsed[k] = v.replace(markerRE.space, ' ').replace(markerRE.comma, ', ').replace(markerRE.literal, '"')
+    for (let [k, v] of Object.entries(parsed)) {
+      if (typeof v !== 'string') continue
+
+      // why do people have '{Lastname}, Firstname'?
+      if (markerRE.literalName.test(v)) v = v.replace(markerRE.literal, '"').slice(1, -1)
+      parsed[k] = v.replace(markerRE.space, ' ').replace(markerRE.comma, ', ').replace(markerRE.literal, '"').trim()
     }
     return parsed
   }
