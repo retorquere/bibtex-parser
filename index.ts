@@ -72,7 +72,7 @@ type FieldBuilder = {
   creator: boolean
   text: string
   level: number
-  exemptFromSentencecase: Array<{ start: number, end: number }>
+  exemptFromSentenceCase: Array<{ start: number, end: number }>
 }
 
 type MarkupMapping = {
@@ -210,7 +210,7 @@ class Parser {
         creator: false,
         text: '',
         level: 0,
-        exemptFromSentencecase: null,
+        exemptFromSentenceCase: null,
       }
       this.convert(value)
       strings[key] = this.field.text
@@ -307,7 +307,7 @@ class Parser {
       return true
     })
 
-    node.value = node.value.map(child => this.cleanup(child, nocased || (node.markup && (node.markup.has('caseProtect') || node.exemptFromSentencecase))))
+    node.value = node.value.map(child => this.cleanup(child, nocased || (node.markup && (node.markup.has('caseProtect') || node.exemptFromSentenceCase))))
 
     node.value = node.value.reduce((acc, child) => {
       const last = acc.length - 1
@@ -661,14 +661,14 @@ class Parser {
 
     const exemptFromSentenceCase = (
       typeof start === 'number'
-      && this.field.exemptFromSentencecase
+      && this.field.exemptFromSentenceCase
       && (
         node.exemptFromSentenceCase
         ||
         (node.markup && node.markup.has('caseProtect'))
       )
     )
-    if (exemptFromSentenceCase) this.field.exemptFromSentencecase.push({ start, end: this.field.text.length })
+    if (exemptFromSentenceCase) this.field.exemptFromSentenceCase.push({ start, end: this.field.text.length })
   }
 
   protected convert_BracedComment(node) {
@@ -793,7 +793,7 @@ class Parser {
         creator: fields.creator.includes(prop.key.toLowerCase()),
         text: '',
         level: 0,
-        exemptFromSentencecase: this.sentenceCase && fields.title.includes(name) ? [] : null,
+        exemptFromSentenceCase: this.sentenceCase && fields.title.includes(name) ? [] : null,
       }
 
       this.entry.fields[this.field.name] = this.entry.fields[this.field.name] || []
@@ -816,7 +816,7 @@ class Parser {
         }
 
       } else {
-        this.entry.fields[this.field.name].push(this.convertToSentenceCase(this.field.text, this.field.exemptFromSentencecase))
+        this.entry.fields[this.field.name].push(this.convertToSentenceCase(this.field.text, this.field.exemptFromSentenceCase))
 
       }
     }
@@ -839,19 +839,25 @@ class Parser {
   }
 
   protected convert_Text(node) {
-    let text = node.value
-
-    if (this.field.level === 0) {
-      if (this.field.creator) {
-        text = node.value.replace(/\s+and\s+/ig, marker.and).replace(/\s*,\s*/g, marker.comma).replace(/\s+/g, marker.space)
-
-      } else if (this.field.name === 'keywords' || this.field.name === 'keyword') {
-        text = node.value.replace(/\s*[;,]\s*/g, marker.comma)
-
-      }
+    if (this.field.level === 0 && this.field.creator) {
+      this.field.text += node.value.replace(/\s+and\s+/ig, marker.and).replace(/\s*,\s*/g, marker.comma).replace(/\s+/g, marker.space)
+      return
     }
 
-    this.field.text += text
+    if (this.field.level === 0 && (this.field.name === 'keywords' || this.field.name === 'keyword')) {
+      this.field.text += node.value.replace(/\s*[;,]\s*/g, marker.comma)
+      return
+    }
+
+    if (this.field.exemptFromSentenceCase) {
+      for (const word of node.value.split(/(\s+)/)) {
+        if (this.implicitlyNoCased(word)) this.field.exemptFromSentenceCase.push({ start: this.field.text.length, end: this.field.text.length + word.length })
+        this.field.text += word
+      }
+      return
+    }
+
+    this.field.text += node.value
   }
 
   protected convert_MathMode(node) { return }
