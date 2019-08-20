@@ -616,11 +616,12 @@ class Parser {
     } else if (node.value.length && node.value[0].kind === 'Text') {
       if (!node.value[0].value.split(/\s+/).find(word => !this.implicitlyNoCased(word))) {
         node.markup.delete('caseProtect')
-        node.markup.exemptFromSentenceCase = true
+        node.exemptFromSentenceCase = true
       }
     }
 
     this.condense(node, nocased)
+
     return node
   }
 
@@ -653,7 +654,21 @@ class Parser {
     if (Array.isArray(node)) return node.map(child => this.convert(child)).join('')
 
     if (!this['convert_' + node.kind]) return this.error(this.show(node), undefined)
+
+    const start = this.field ? this.field.text.length : null
+
     this['convert_' + node.kind](node)
+
+    const exemptFromSentenceCase = (
+      typeof start === 'number'
+      && this.field.exemptFromSentencecase
+      && (
+        node.exemptFromSentenceCase
+        ||
+        (node.markup && node.markup.has('caseProtect'))
+      )
+    )
+    if (exemptFromSentenceCase) this.field.exemptFromSentencecase.push({ start, end: this.field.text.length })
   }
 
   protected convert_BracedComment(node) {
@@ -833,16 +848,13 @@ class Parser {
   protected convert_StringExpression(node) { return }
 
   protected convert_StringReference(node) {
-    const start = this.field.text.length
     this.convert(node.value)
-    if (node.exemptFromSentenceCase && this.field.exemptFromSentencecase) this.field.exemptFromSentencecase.push({ start, end: this.field.text.length })
   }
 
   protected convert_NestedLiteral(node) {
     const prefix = []
     const postfix = []
 
-    const start = this.field.text.length
     // relies on Set remembering insertion order
     for (const markup of (Array.from(node.markup) as string[])) {
       if (markup === 'caseProtect' && this.field.creator) {
@@ -872,9 +884,6 @@ class Parser {
     } else {
       this.field.text += postfix.reverse().join('')
     }
-
-    const exemptFromSentenceCase = node.markup.has('caseProtect') || node.exemptFromSentenceCase
-    if (exemptFromSentenceCase && this.field.exemptFromSentencecase) this.field.exemptFromSentencecase.push({ start, end: this.field.text.length })
   }
 }
 
