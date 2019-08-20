@@ -18,7 +18,7 @@ describe('BibTeX Parser', () => {
   */
 
   for (const mode of ['export', 'import']) {
-    const root = path.join(__dirname, '../../better-bibtex/test/fixtures', mode)
+    const root = path.join(__dirname, 'cases', mode)
     for (const f of fs.readdirSync(root).sort()) {
       if (!f.replace(/(la)?tex$/, '').endsWith('.bib')) continue
 

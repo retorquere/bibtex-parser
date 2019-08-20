@@ -17,7 +17,8 @@
     "list": "tar tvf $(npm pack)",
     "prepublishOnly": "npm start",
     "preversion": "npm test",
-    "postversion": "git push --follow-tags && npm publish --access public"
+    "postversion": "git push --follow-tags && npm publish --access public",
+    "update-cases": "rsync -avz --include='import/' --include='export/' --exclude='*/' --include='*.bib' --include='*.bibtex' --include='*.biblatex' --exclude='*' ../better-bibtex/test/fixtures/ __tests__/cases/"
   },
   "repository": {
     "type": "git",
