@@ -299,7 +299,7 @@ class Parser {
         if (node.markup) {
           node.markup.delete('caseProtect')
           node.markup.add(markup[child.value])
-          if (markup[child.value] === 'smallCaps') node.markup.add('exemptFromSentenceCase')
+          if (markup[child.value] === 'smallCaps') node.exemptFromSentenceCase = true
         }
         return false
       }
@@ -307,7 +307,7 @@ class Parser {
       return true
     })
 
-    node.value = node.value.map(child => this.cleanup(child, nocased || (node.markup && (node.markup.has('caseProtect') || node.markup.has('exemptFromSentencecase')))))
+    node.value = node.value.map(child => this.cleanup(child, nocased || (node.markup && (node.markup.has('caseProtect') || node.exemptFromSentencecase))))
 
     node.value = node.value.reduce((acc, child) => {
       const last = acc.length - 1
@@ -346,9 +346,11 @@ class Parser {
   }
 
   private cleanup(node, nocased) {
+    if (Array.isArray(node)) return node.map(child => this.cleanup(child, nocased))
+
     delete node.loc
 
-    if (!this['clean_' + node.kind]) return this.error(this.show(node), this.text())
+    if (!this['clean_' + node.kind]) return this.error(`no cleanup method for '${node.kind}' (${this.show(node)})`, this.text())
     return this['clean_' + node.kind](node, nocased)
   }
 
@@ -375,11 +377,11 @@ class Parser {
     }
 
     // if the string isn't found, add it as-is but exempt it from sentence casing
-    return this.cleanup({
-      kind: 'NestedLiteral',
-      markup: _string ? new Set : new Set(['exemptFromSentenceCase']),
-      value: _string ? JSON.parse(JSON.stringify(_string)) : [ this.text(node.value) ],
-    }, nocased)
+    return {
+      kind: 'StringReference',
+      exemptFromSentenceCase: !_string,
+      value: this.cleanup(_string ? JSON.parse(JSON.stringify(_string)) : [ this.text(node.value) ], nocased),
+    }
   }
 
   protected clean_Entry(node, nocased) {
@@ -390,7 +392,8 @@ class Parser {
   protected clean_Property(node, nocased) {
     // because this was abused so much, many processors ignore second-level too
     if (fields.title.includes(node.key.toLowerCase()) && node.value.length === 1 && node.value[0].kind === 'NestedLiteral') {
-      node.value[0].markup = new Set(['exemptFromSentenceCase'])
+      node.value[0].exemptFromSentenceCase = true
+      node.value[0].markup = new Set
     }
 
     this.condense(node, !this.caseProtect)
@@ -413,7 +416,8 @@ class Parser {
         if (arg = this.argument(node, 2)) {
           return this.cleanup({
             kind: 'NestedLiteral',
-            markup: new Set(['exemptFromSentenceCase']),
+            exemptFromSentenceCase: true,
+            markup: new Set,
             value: [ this.text(`${arg[0]}/${arg[1]}`) ],
           }, nocased)
         }
@@ -450,7 +454,8 @@ class Parser {
         if (arg = this.argument(node, 1)) {
           return this.cleanup({
             kind: 'NestedLiteral',
-            markup: new Set(['exemptFromSentenceCase']),
+            exemptFromSentenceCase: true,
+            markup: new Set,
             value: [ this.text(arg[0]) ],
           }, nocased)
         }
@@ -478,7 +483,8 @@ class Parser {
         if (!(arg = this.argument(node, 'array'))) return this.error(node.value + this.show(node), this.text())
         return this.cleanup({
           kind: 'NestedLiteral',
-          markup: new Set(['smallCaps', 'exemptFromSentenceCase']),
+          exemptFromSentenceCase: true,
+          markup: new Set(['smallCaps']),
           value: arg,
         }, nocased)
         break
@@ -568,8 +574,7 @@ class Parser {
         }
     }
 
-    return this.error('Unhandled command::' + this.show(node), this.text())
-    // console.log('Unhandled command::' + this.show(node))
+    return this.error('Unhandled command: ' + this.show(node), this.text())
     return node
   }
 
@@ -611,7 +616,7 @@ class Parser {
     } else if (node.value.length && node.value[0].kind === 'Text') {
       if (!node.value[0].value.split(/\s+/).find(word => !this.implicitlyNoCased(word))) {
         node.markup.delete('caseProtect')
-        node.markup.add('exemptFromSentenceCase')
+        node.markup.exemptFromSentenceCase = true
       }
     }
 
@@ -666,6 +671,7 @@ class Parser {
     let parsed: Name = null
 
     const parts = name.split(marker.comma)
+
     if (parts.length && !parts.find(p => !p.match(/^[a-z]+=/i))) { // extended name format
       parsed = {}
 
@@ -826,6 +832,12 @@ class Parser {
   protected convert_PreambleExpression(node) { return }
   protected convert_StringExpression(node) { return }
 
+  protected convert_StringReference(node) {
+    const start = this.field.text.length
+    this.convert(node.value)
+    if (node.exemptFromSentenceCase && this.field.exemptFromSentencecase) this.field.exemptFromSentencecase.push({ start, end: this.field.text.length })
+  }
+
   protected convert_NestedLiteral(node) {
     const prefix = []
     const postfix = []
@@ -833,8 +845,6 @@ class Parser {
     const start = this.field.text.length
     // relies on Set remembering insertion order
     for (const markup of (Array.from(node.markup) as string[])) {
-      if (markup === 'exemptFromSentenceCase') continue
-
       if (markup === 'caseProtect' && this.field.creator) {
         prefix.push(marker.literal)
         postfix.unshift(marker.literal)
@@ -863,7 +873,7 @@ class Parser {
       this.field.text += postfix.reverse().join('')
     }
 
-    const exemptFromSentenceCase = node.markup.has('caseProtect') || node.markup.has('exemptFromSentenceCase')
+    const exemptFromSentenceCase = node.markup.has('caseProtect') || node.exemptFromSentenceCase
     if (exemptFromSentenceCase && this.field.exemptFromSentencecase) this.field.exemptFromSentencecase.push({ start, end: this.field.text.length })
   }
 }
