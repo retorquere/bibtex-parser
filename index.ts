@@ -40,16 +40,20 @@ const marker = {
   and: '\u0001',
   comma: '\u0002',
   space: '\u0003',
+  literal: '\u0004',
 }
 const markerRE = {
   and: new RegExp(marker.and, 'g'),
   comma: new RegExp(marker.comma, 'g'),
   space: new RegExp(marker.space, 'g'),
+  literal: new RegExp(marker.literal, 'g'),
+
+  literalName: new RegExp(`^${marker.literal}[^${marker.literal}]+${marker.literal}$`),
 }
 
 type Name = {
-  lastName: string
-
+  literal?: string
+  lastName?: string
   useprefix?: boolean
   firstName?: string
   suffix?: string
@@ -293,9 +297,9 @@ class Parser {
 
       if (child.kind === 'RegularCommand' && markup[child.value] && !child.arguments.length) {
         if (node.markup) {
-          node.markup.caseProtect = false
-          node.markup[markup[child.value]] = true
-          node.markup.exemptFromSentenceCase = (markup[child.value] === 'smallCaps')
+          node.markup.delete('caseProtect')
+          node.markup.add(markup[child.value])
+          if (markup[child.value] === 'smallCaps') node.markup.add('exemptFromSentenceCase')
         }
         return false
       }
@@ -303,7 +307,7 @@ class Parser {
       return true
     })
 
-    node.value = node.value.map(child => this.cleanup(child, nocased || (node.markup && (node.markup.caseProtect || node.markup.exemptFromSentencecase))))
+    node.value = node.value.map(child => this.cleanup(child, nocased || (node.markup && (node.markup.has('caseProtect') || node.markup.has('exemptFromSentencecase')))))
 
     node.value = node.value.reduce((acc, child) => {
       const last = acc.length - 1
@@ -373,10 +377,7 @@ class Parser {
     // if the string isn't found, add it as-is but exempt it from sentence casing
     return this.cleanup({
       kind: 'NestedLiteral',
-      markup: {
-        caseProtect: false,
-        exemptFromSentenceCase: !_string,
-      },
+      markup: _string ? new Set : new Set(['exemptFromSentenceCase']),
       value: _string ? JSON.parse(JSON.stringify(_string)) : [ this.text(node.value) ],
     }, nocased)
   }
@@ -389,10 +390,7 @@ class Parser {
   protected clean_Property(node, nocased) {
     // because this was abused so much, many processors ignore second-level too
     if (fields.title.includes(node.key.toLowerCase()) && node.value.length === 1 && node.value[0].kind === 'NestedLiteral') {
-      node.value[0].markup = {
-        caseProtect: false,
-        exemptFromSentenceCase: true,
-      }
+      node.value[0].markup = new Set(['exemptFromSentenceCase'])
     }
 
     this.condense(node, !this.caseProtect)
@@ -415,10 +413,7 @@ class Parser {
         if (arg = this.argument(node, 2)) {
           return this.cleanup({
             kind: 'NestedLiteral',
-            markup: {
-              caseProtect: false,
-              exemptFromSentenceCase: true,
-            },
+            markup: new Set(['exemptFromSentenceCase']),
             value: [ this.text(`${arg[0]}/${arg[1]}`) ],
           }, nocased)
         }
@@ -441,7 +436,7 @@ class Parser {
         if (arg = this.argument(node, 'array')) {
           return this.cleanup({
             kind: 'NestedLiteral',
-            markup: {},
+            markup: new Set,
             value: arg,
           }, nocased)
         }
@@ -455,10 +450,7 @@ class Parser {
         if (arg = this.argument(node, 1)) {
           return this.cleanup({
             kind: 'NestedLiteral',
-            markup: {
-              caseProtect: false,
-              exemptFromSentenceCase: true,
-            },
+            markup: new Set(['exemptFromSentenceCase']),
             value: [ this.text(arg[0]) ],
           }, nocased)
         }
@@ -468,7 +460,7 @@ class Parser {
         if (!(arg = this.argument(node, 'array'))) return this.error(node.value + this.show(node), this.text())
         return this.cleanup({
           kind: 'NestedLiteral',
-          markup: { sup: true },
+          markup: new Set(['sup']),
           value: arg,
         }, nocased)
         break
@@ -477,7 +469,7 @@ class Parser {
         if (!(arg = this.argument(node, 'array'))) return this.error(node.value + this.show(node), this.text())
         return this.cleanup({
           kind: 'NestedLiteral',
-          markup: { sub: true },
+          markup: new Set(['sub']),
           value: arg,
         }, nocased)
         break
@@ -486,7 +478,7 @@ class Parser {
         if (!(arg = this.argument(node, 'array'))) return this.error(node.value + this.show(node), this.text())
         return this.cleanup({
           kind: 'NestedLiteral',
-          markup: { smallCaps: true, exemptFromSentenceCase: true },
+          markup: new Set(['smallCaps', 'exemptFromSentenceCase']),
           value: arg,
         }, nocased)
         break
@@ -496,7 +488,7 @@ class Parser {
         if (!(arg = this.argument(node, 'array'))) return this.error(node.value + this.show(node), this.text())
         return this.cleanup({
           kind: 'NestedLiteral',
-          markup: { enquote: true },
+          markup: new Set(['enquote']),
           value: arg,
         }, nocased)
         break
@@ -506,7 +498,7 @@ class Parser {
         if (!(arg = this.argument(node, 'array'))) return this.error(node.value + this.show(node), this.text())
         return this.cleanup({
           kind: 'NestedLiteral',
-          markup: { bold: true },
+          markup: new Set(['bold']),
           value: arg,
         }, nocased)
         break
@@ -518,7 +510,7 @@ class Parser {
         if (!(arg = this.argument(node, 'array'))) return this.error(node.value + this.show(node), this.text())
         return this.cleanup({
           kind: 'NestedLiteral',
-          markup: { italics: true },
+          markup: new Set(['italics']),
           value: arg,
         }, nocased)
         break
@@ -529,7 +521,7 @@ class Parser {
         if (!(arg = this.argument(node, 'array'))) return this.error(node.value + this.show(node), this.text())
         return this.cleanup({
           kind: 'NestedLiteral',
-          markup: {},
+          markup: new Set,
           value: arg,
         }, nocased)
         break
@@ -546,7 +538,7 @@ class Parser {
         } else if (arg = this.argument(node, 'array')) {
           return this.cleanup({
             kind: 'NestedLiteral',
-            markup: {},
+            markup: new Set,
             value: arg,
           }, nocased)
         }
@@ -557,7 +549,7 @@ class Parser {
         if (arg = this.argument(node, 'array')) {
           return this.cleanup({
             kind: 'NestedLiteral',
-            markup: {},
+            markup: new Set,
             value: arg,
           }, nocased)
         }
@@ -581,9 +573,10 @@ class Parser {
     return node
   }
 
-  protected clean_SubscriptCommand(node, nocased) {
+  private _clean_ScriptCommand(node, nocased, mode) {
     let value, singlechar
-    if (typeof node.value === 'string' && (singlechar = latex2unicode[`_${node.value}`] || latex2unicode[`_{${node.value}}`])) {
+    const cmd = mode === 'sup' ? '^' : '_'
+    if (typeof node.value === 'string' && (singlechar = latex2unicode[`${cmd}${node.value}`] || latex2unicode[`${cmd}{${node.value}}`])) {
       return this.text(singlechar)
     }
 
@@ -596,42 +589,29 @@ class Parser {
     }
     return this.cleanup({
       kind: 'NestedLiteral',
-      markup: { sub: true },
+      markup: new Set([mode]),
       value,
     }, nocased)
+  }
+  protected clean_SubscriptCommand(node, nocased) {
+    return this._clean_ScriptCommand(node, nocased, 'sub')
   }
 
   protected clean_SuperscriptCommand(node, nocased) {
-    let value, singlechar
-    if (typeof node.value === 'string' && (singlechar = latex2unicode[`^${node.value}`] || latex2unicode[`^{${node.value}}`])) {
-      return this.text(singlechar)
-    }
-
-    if (typeof node.value === 'string') {
-      value = [ this.text(node.value) ]
-    } else if (!Array.isArray(node.value)) {
-      value = [ node.value ]
-    } else {
-      value = node.value
-    }
-    return this.cleanup({
-      kind: 'NestedLiteral',
-      markup: { sup: true },
-      value,
-    }, nocased)
+    return this._clean_ScriptCommand(node, nocased, 'sup')
   }
 
   protected clean_NestedLiteral(node, nocased) {
-    if (!node.markup) node.markup = { caseProtect: !nocased }
+    if (!node.markup) node.markup = nocased ? new Set() : new Set(['caseProtect'])
 
     // https://github.com/retorquere/zotero-better-bibtex/issues/541#issuecomment-240156274
     if (node.value.length && ['RegularCommand', 'DicraticalCommand'].includes(node.value[0].kind)) {
-      node.markup.caseProtect = false
+      node.markup.delete('caseProtect')
 
     } else if (node.value.length && node.value[0].kind === 'Text') {
       if (!node.value[0].value.split(/\s+/).find(word => !this.implicitlyNoCased(word))) {
-        node.markup.caseProtect = false
-        node.markup.exemptFromSentenceCase = true
+        node.markup.delete('caseProtect')
+        node.markup.add('exemptFromSentenceCase')
       }
     }
 
@@ -687,7 +667,7 @@ class Parser {
 
     const parts = name.split(marker.comma)
     if (!parts.find(p => !p.match(/^[a-z]+=/i))) { // extended name format
-      parsed = { lastName: '' }
+      parsed = {}
 
       for (const part of parts) {
         const [ attr, value ] = this.splitOnce(part.replace(markerRE.space, ''), '=').map(v => v.trim())
@@ -721,12 +701,18 @@ class Parser {
         throw new Error(name)
 
       case 1: // name without commas
-        // top-level "firstname lastname"
-        const [ firstName, lastName ] = this.splitOnce(parts[0], marker.space)
-        if (lastName) {
-          parsed = { firstName, lastName }
+        // literal
+        if (markerRE.literalName.test(parts[0])) {
+          parsed = { literal: parts[0].replace(markerRE.literal, '"').slice(1, -1) }
+
         } else {
-          parsed = { lastName: firstName }
+          // top-level "firstname lastname"
+          const [ firstName, lastName ] = this.splitOnce(parts[0], marker.space)
+          if (lastName) {
+            parsed = { firstName, lastName }
+          } else {
+            parsed = { lastName: firstName }
+          }
         }
         break
 
@@ -746,7 +732,7 @@ class Parser {
     }
 
     for (const [k, v] of Object.entries(parsed)) {
-      if (typeof v === 'string') parsed[k] = v.replace(markerRE.space, ' ').replace(markerRE.comma, ', ')
+      if (typeof v === 'string') parsed[k] = v.replace(markerRE.space, ' ').replace(markerRE.comma, ', ').replace(markerRE.literal, '"')
     }
     return parsed
   }
@@ -837,14 +823,15 @@ class Parser {
     const postfix = []
 
     const start = this.field.text.length
-    let exemptFromSentenceCase = false
-    for (const [markup, apply] of Object.entries(node.markup).sort((a, b) => a[0].localeCompare(b[0]))) {
-      if (!apply) continue
-
-      exemptFromSentenceCase = exemptFromSentenceCase || markup === 'caseProtect' || markup === 'exemptFromSentenceCase'
+    // relies on Set remembering insertion order
+    for (const markup of (Array.from(node.markup) as string[])) {
       if (markup === 'exemptFromSentenceCase') continue
 
-      if (markup === 'caseProtect' && this.field.creator) continue
+      if (markup === 'caseProtect' && this.field.creator) {
+        prefix.push(marker.literal)
+        postfix.unshift(marker.literal)
+        continue
+      }
 
       if (!this.markup[markup]) return this.error(`markup: ${markup}`, undefined)
       prefix.push(this.markup[markup].open)
@@ -868,6 +855,7 @@ class Parser {
       this.field.text += postfix.reverse().join('')
     }
 
+    const exemptFromSentenceCase = node.markup.has('caseProtect') || node.markup.has('exemptFromSentenceCase')
     if (exemptFromSentenceCase && this.field.exemptFromSentencecase) this.field.exemptFromSentencecase.push({ start, end: this.field.text.length })
   }
 }
