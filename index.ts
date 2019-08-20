@@ -1,7 +1,6 @@
 import bibtex = require('./astrocite-bibtex')
 import { parse as chunker } from './chunker'
 import latex2unicode = require('./latex2unicode')
-import * as humanparser from '@retorquere/humanparser'
 
 /*
 function pad(s, n) {
@@ -37,13 +36,24 @@ class Tracer {
 }
 */
 
+const marker = {
+  and: '\u0001',
+  comma: '\u0002',
+  space: '\u0003',
+}
+const markerRE = {
+  and: new RegExp(marker.and, 'g'),
+  comma: new RegExp(marker.comma, 'g'),
+  space: new RegExp(marker.space, 'g'),
+}
+
 type Name = {
   lastName: string
 
-  saluation?: string
+  useprefix?: boolean
   firstName?: string
   suffix?: string
-  middleName?: string
+  prefix?: string
 }
 
 type Entry = {
@@ -68,7 +78,6 @@ type MarkupMapping = {
   italics?: { open: string, close: string }
   smallCaps?: { open: string, close: string }
   caseProtect?: { open: string, close: string }
-  caseProtectCreator?: { open: string, close: string }
   enquote?: { open: string, close: string }
 
   roman?: { open: string, close: string }
@@ -105,7 +114,7 @@ const fields = {
     'translator',
     'translators',
   ],
-  sentenceCase: [
+  title: [
     'title',
     'series',
     'shorttitle',
@@ -143,7 +152,6 @@ class Parser {
       bold: { open: '<b>', close: '</b>' },
       italics: { open: '<i>', close: '</i>' },
       smallCaps: { open: '<span style="font-variant:small-caps;">', close: '</span>' },
-      caseProtectCreator: { open: '"', close: '"' },
       caseProtect: { open: '<span class="nocase">', close: '</span>' },
       roman: { open: '', close: '' },
       fixedWidth: { open: '', close: '' },
@@ -380,7 +388,7 @@ class Parser {
 
   protected clean_Property(node, nocased) {
     // because this was abused so much, many processors ignore second-level too
-    if (node.value.length === 1 && node.value[0].kind === 'NestedLiteral') {
+    if (fields.title.includes(node.key.toLowerCase()) && node.value.length === 1 && node.value[0].kind === 'NestedLiteral') {
       node.value[0].markup = {
         caseProtect: false,
         exemptFromSentenceCase: true,
@@ -670,6 +678,79 @@ class Parser {
     this.comments.push(node.value)
   }
 
+  private splitOnce(s, sep) {
+    const split = s.indexOf(sep)
+    return (split < 0) ? [s, ''] : [ s.substr(0, split), s.substr(split + 1) ]
+  }
+  private parseName(name) {
+    let parsed: Name = null
+
+    const parts = name.split(marker.comma)
+    if (!parts.find(p => !p.match(/^[a-z]+=/i))) { // extended name format
+      parsed = { lastName: '' }
+
+      for (const part of parts) {
+        const [ attr, value ] = this.splitOnce(part.replace(markerRE.space, ''), '=').map(v => v.trim())
+        switch (attr.toLowerCase()) {
+          case 'family':
+            parsed.lastName = value
+            break
+
+          case 'given':
+            parsed.firstName = value
+            break
+
+          case 'prefix':
+            parsed.prefix = value
+            break
+
+          case 'suffix':
+            parsed.suffix = value
+            break
+
+          case 'useprefix':
+            parsed.useprefix = value.toLowerCase() === 'true'
+            break
+
+        }
+      }
+    }
+
+    switch (parts.length) {
+      case 0: // should never happen
+        throw new Error(name)
+
+      case 1: // name without commas
+        // top-level "firstname lastname"
+        const [ firstName, lastName ] = this.splitOnce(parts[0], marker.space)
+        if (lastName) {
+          parsed = { firstName, lastName }
+        } else {
+          parsed = { lastName: firstName }
+        }
+        break
+
+      case 2: // lastname, firstname
+        parsed = {
+          lastName: parts[0],
+          firstName: parts[1],
+        }
+        break
+
+      default: // lastname, suffix, firstname
+        parsed = {
+          lastName: parts[0],
+          suffix: parts[1],
+          firstName: parts.slice(2).join(marker.comma),
+        }
+    }
+
+    for (const [k, v] of Object.entries(parsed)) {
+      if (typeof v === 'string') parsed[k] = v.replace(markerRE.space, ' ').replace(markerRE.comma, ', ')
+    }
+    return parsed
+  }
+
   protected convert_Entry(node) {
     this.entry = {
       key: node.id,
@@ -688,15 +769,31 @@ class Parser {
         creator: fields.creator.includes(prop.key.toLowerCase()),
         text: '',
         level: 0,
-        exemptFromSentencecase: this.sentenceCase && fields.sentenceCase.includes(name) ? [] : null,
+        exemptFromSentencecase: this.sentenceCase && fields.title.includes(name) ? [] : null,
       }
 
       this.entry.fields[this.field.name] = this.entry.fields[this.field.name] || []
       this.convert(prop.value)
       this.field.text = this.field.text.trim()
-      if (this.field.text) {
+      if (!this.field.text) continue
+
+      if (this.field.name === 'keywords' || this.field.name === 'keyword') {
+        for (let text of this.field.text.split(marker.comma)) {
+          text = text.trim()
+          if (text) this.entry.fields[this.field.name].push(text)
+        }
+
+      } else if (this.field.creator) {
+        if (!this.entry.creators[this.field.name]) this.entry.creators[this.field.name] = []
+
+        for (const creator of this.field.text.split(marker.and)) {
+          this.entry.fields[this.field.name].push(creator.replace(markerRE.comma, ', ').replace(markerRE.space, ' '))
+          this.entry.creators[this.field.name].push(this.parseName(creator))
+        }
+
+      } else {
         this.entry.fields[this.field.name].push(this.convertToSentenceCase(this.field.text, this.field.exemptFromSentencecase))
-        if (this.field.creator) this.addCreator(this.field.text, this.field.name)
+
       }
     }
   }
@@ -711,58 +808,24 @@ class Parser {
     return sentenceCased
   }
 
-  private addCreator(name, type) {
-    if (!this.entry.creators[type]) this.entry.creators[type] = []
-
-    name = name.replace(/\n+/g, ' ').replace(/\s+/, ' ').trim()
-
-    if (name.match(/^".*"$/)) {
-      this.entry.creators[type].push({ lastName: name.slice(1, -1) })
-
-    } else if (!name.match(/\s/)) {
-      this.entry.creators[type].push({ lastName: name })
-
-    } else {
-      this.entry.creators[type].push(humanparser.parseName(name, ['i', 'v']))
-
-    }
-  }
-
-  private splitField() {
-    if (this.field.level > 0) return this.error(this.show(this.field), undefined)
-    this.field.text = this.field.text.trim()
-    if (this.field.text) {
-      this.entry.fields[this.field.name].push(this.convertToSentenceCase(this.field.text, this.field.exemptFromSentencecase))
-      if (this.field.creator) this.addCreator(this.field.text, this.field.name)
-    }
-
-    this.field.text = ''
-    if (this.field.exemptFromSentencecase) this.field.exemptFromSentencecase = []
-  }
-
   protected convert_Number(node) {
     this.field.text += `${node.value}`
   }
 
   protected convert_Text(node) {
-    let text = [ node.value ]
+    let text = node.value
 
     if (this.field.level === 0) {
       if (this.field.creator) {
-        text = node.value.split(/\s+and\s+/)
+        text = node.value.replace(/\s+and\s+/ig, marker.and).replace(/\s*,\s*/g, marker.comma).replace(/\s+/g, marker.space)
 
-      } else if (this.field.name === 'keywords') {
-        text = node.value.split(/[;,]/)
+      } else if (this.field.name === 'keywords' || this.field.name === 'keyword') {
+        text = node.value.replace(/\s*[;,]\s*/g, marker.comma)
 
       }
     }
 
-    this.field.text += text[0]
-
-    for (const t of text.slice(1)) {
-      this.splitField()
-      this.field.text += t
-    }
+    this.field.text += text
   }
 
   protected convert_MathMode(node) { return }
@@ -775,13 +838,14 @@ class Parser {
 
     const start = this.field.text.length
     let exemptFromSentenceCase = false
-    for (let [markup, apply] of Object.entries(node.markup).sort((a, b) => a[0].localeCompare(b[0]))) {
+    for (const [markup, apply] of Object.entries(node.markup).sort((a, b) => a[0].localeCompare(b[0]))) {
       if (!apply) continue
 
       exemptFromSentenceCase = exemptFromSentenceCase || markup === 'caseProtect' || markup === 'exemptFromSentenceCase'
       if (markup === 'exemptFromSentenceCase') continue
 
-      if (markup === 'caseProtect' && this.field.creator) markup += 'Creator'
+      if (markup === 'caseProtect' && this.field.creator) continue
+
       if (!this.markup[markup]) return this.error(`markup: ${markup}`, undefined)
       prefix.push(this.markup[markup].open)
       postfix.unshift(this.markup[markup].close)
