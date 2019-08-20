@@ -33,7 +33,7 @@ for (const mode of ['import', 'export']) {
     if (!big) {
       if (f === 'Async import, large library #720.bib') continue
       if (f === 'Really Big whopping library.bib') continue
-      if (single && !f.startsWith(single)) continue
+      if (single && !f.includes(single)) continue
     }
 
     parse(`${root}/${f}`, `${path.basename(f, path.extname(f))}-${mode}`)

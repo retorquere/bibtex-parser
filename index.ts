@@ -717,6 +717,8 @@ class Parser {
       }
     }
 
+    const prefix = /(.+?)\s+(vere|von|van den|van der|van|de|del|della|der|di|da|pietro|vanden|du|st.|st|la|lo|ter|bin|ibn|te|ten|op|ben|al)\s+(.+)/
+    let m
     switch (parsed ? -1 : parts.length) {
       case -1:
         // already parsed
@@ -729,6 +731,13 @@ class Parser {
         // literal
         if (markerRE.literalName.test(parts[0])) {
           parsed = { literal: parts[0] }
+
+        } else if (m = parts[0].replace(markerRE.space, ' ').match(prefix)) {
+          parsed = {
+            firstName: m[1],
+            prefix: m[2],
+            lastName: m[3], // tslint:disable-line no-magic-numbers
+          }
 
         } else {
           // top-level "firstname lastname"
