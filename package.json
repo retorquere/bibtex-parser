@@ -18,7 +18,8 @@
     "prepublishOnly": "npm start",
     "preversion": "npm test",
     "postversion": "git push --follow-tags && npm publish --access public",
-    "update-cases": "rsync -avz --include='import/' --include='export/' --exclude='*/' --include='*.bib' --include='*.bibtex' --include='*.biblatex' --exclude='*' ../better-bibtex/test/fixtures/ __tests__/cases/"
+    "update-cases": "rsync -avz --include='import/' --include='export/' --exclude='*/' --include='*.bib' --include='*.bibtex' --include='*.biblatex' --exclude='*' ../better-bibtex/test/fixtures/ __tests__/cases/",
+    "update-snapshots": "jest --updateSnapshot"
   },
   "repository": {
     "type": "git",
