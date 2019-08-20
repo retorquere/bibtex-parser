@@ -14,17 +14,22 @@ function parse(file) {
 
 parse('sample2.bib')
 
+const big = (process.argv[2] === '+')
+const single = !big && process.argv[2]
+
 for (const mode of ['import', 'export']) {
   const root = `../better-bibtex/test/fixtures/${mode}`
 
   for (const f of fs.readdirSync(root).sort()) {
-    if (process.argv[2] === '*' && f === 'Async import, large library #720.bib') continue
-    if (process.argv[2] === '*' && f === 'Really Big whopping library.bib') continue
-    if (process.argv[2] && !f.startsWith(process.argv[2])) continue
+    if (!f.replace(/(la)?tex$/, '').endsWith('.bib')) continue
 
-    if (f.replace(/(la)?tex$/, '').endsWith('.bib')) {
-      parse(`${root}/${f}`)
+    if (!big) {
+      if (f === 'Async import, large library #720.bib') continue
+      if (f === 'Really Big whopping library.bib') continue
+      if (single && !f.startsWith(single)) continue
     }
+
+    parse(`${root}/${f}`)
   }
 }
 
