@@ -663,8 +663,8 @@ class Parser {
     this.comments.push(node.value)
   }
 
-  private splitOnce(s, sep) {
-    const split = s.indexOf(sep)
+  private splitOnce(s, sep, fromEnd = false) {
+    const split = fromEnd ? s.lastIndexOf(sep) : s.indexOf(sep)
     return (split < 0) ? [s, ''] : [ s.substr(0, split), s.substr(split + 1) ]
   }
   private parseName(name) {
@@ -717,7 +717,7 @@ class Parser {
 
         } else {
           // top-level "firstname lastname"
-          const [ firstName, lastName ] = this.splitOnce(parts[0], marker.space)
+          const [ firstName, lastName ] = this.splitOnce(parts[0], marker.space, true)
           if (lastName) {
             parsed = { firstName, lastName }
           } else {
