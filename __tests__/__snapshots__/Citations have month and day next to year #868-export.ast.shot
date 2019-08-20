@@ -1,0 +1,1273 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse Citations have month and day next to year #868-export to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "salim_distinct_1996",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 19,
+          "offset": 2685,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "abstract",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 1504,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 2,
+              "offset": 32,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 1472,
+                  "line": 2,
+                  "offset": 1501,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 2,
+                  "offset": 44,
+                },
+              },
+              "value": "Pleckstrin homology (PH) domains may act as membrane localization modules through specific interactions with phosphoinositide phospholipids. These interactions could represent responses to second messengers, with scope for regulation by soluble inositol polyphosphates. A biosensor-based assay was used here to probe interactions between PH domains and unilamellar liposomes containing different phospholipids and to demonstrate specificity for distinct phosphoinositides. The dynamin PH domain specifically interacted with liposomes containing phosphatidylinositol-4,5-bisphosphate [PI(4,5)P2] and, more weakly, with liposomes containing phosphatidylinositol-4-phosphate [PI(4)P]. This correlates with phosphoinositide activation of the dynamin GTPase. The functional GTPase of a dynamin mutant lacking the PH domain, however, cannot be activated by PI(4,5)P2. The phosphoinositide-PH domain interaction can be abolished selectively by point mutations in the putative binding pocket predicted by molecular modelling and NMR spectroscopy. In contrast, the Bruton's tyrosine kinase (Btk)PH domain specifically bound liposomes containing phosphatidylinositol-3,4,5-trisphosphate [PI(3,4,5)P3]: an interaction requiring Arg28, a residue found to be mutated in some X-linked agammaglobulinaemia patients. A rational explanation for these different specificities is proposed through modelling of candidate binding pockets and is supported by NMR spectroscopy.",
+            },
+          ],
+        },
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 1725,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 1504,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 219,
+                  "line": 3,
+                  "offset": 1722,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 3,
+                  "offset": 1516,
+                },
+              },
+              "value": "Salim, K. and Bottomley, M. J. and Querfurth, E. and Zvelebil, M. J. and Gout, I. and Scaife, R. and Margolis, R. L. and Gigg, R. and Smith, C. I. and Driscoll, P. C. and Waterfield, M. D. and Panayotou, G.",
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 1748,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 1725,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 21,
+                  "line": 4,
+                  "offset": 1745,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 4,
+                  "offset": 1735,
+                },
+              },
+              "value": "1996-11-15",
+            },
+          ],
+        },
+        Object {
+          "key": "eprint",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 1770,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 1748,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 5,
+                  "offset": 1767,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 5,
+                  "offset": 1760,
+                },
+              },
+              "value": "8947047",
+            },
+          ],
+        },
+        Object {
+          "key": "eprinttype",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 1793,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 1770,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 21,
+                  "line": 6,
+                  "offset": 1790,
+                },
+                "start": Object {
+                  "column": 17,
+                  "line": 6,
+                  "offset": 1786,
+                },
+              },
+              "value": "pmid",
+            },
+          ],
+        },
+        Object {
+          "key": "issn",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 1825,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 1793,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 30,
+                  "line": 7,
+                  "offset": 1822,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 7,
+                  "offset": 1803,
+                },
+              },
+              "value": "0261-4189 0261-4189",
+            },
+          ],
+        },
+        Object {
+          "key": "journaltitle",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 1862,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 1825,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 35,
+                  "line": 8,
+                  "offset": 1859,
+                },
+                "start": Object {
+                  "column": 19,
+                  "line": 8,
+                  "offset": 1843,
+                },
+              },
+              "value": "The EMBO journal",
+            },
+          ],
+        },
+        Object {
+          "key": "keywords",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 2399,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 1862,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 535,
+                  "line": 9,
+                  "offset": 2396,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 9,
+                  "offset": 1876,
+                },
+              },
+              "value": "Amino Acid Sequence,Binding Sites,Biosensing Techniques,Dynamins,Enzyme Activation/drug effects,GTP Phosphohydrolases/*chemistry/drug effects/genetics/*metabolism,Liposomes/metabolism,Magnetic Resonance Spectroscopy,Models; Molecular,Molecular Sequence Data,Mutagenesis; Site-Directed,Phosphatidylinositol 4;5-Diphosphate/metabolism,Phosphatidylinositol Phosphates/metabolism,Phosphatidylinositols/*metabolism,Protein Binding,Protein Structure; Tertiary,Protein-Tyrosine Kinases/*chemistry/*metabolism,Sequence Alignment",
+            },
+          ],
+        },
+        Object {
+          "key": "langid",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 2421,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 2399,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 10,
+                  "offset": 2418,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 10,
+                  "offset": 2411,
+                },
+              },
+              "value": "english",
+            },
+          ],
+        },
+        Object {
+          "key": "number",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 2438,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 2421,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 11,
+                  "offset": 2435,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 11,
+                  "offset": 2433,
+                },
+              },
+              "value": "22",
+            },
+          ],
+        },
+        Object {
+          "key": "pages",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 2462,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 2438,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 22,
+                  "line": 12,
+                  "offset": 2459,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 12,
+                  "offset": 2449,
+                },
+              },
+              "value": "6241–6250",
+            },
+          ],
+        },
+        Object {
+          "key": "pmcid",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 14,
+              "offset": 2485,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 2462,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 21,
+                  "line": 13,
+                  "offset": 2482,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 13,
+                  "offset": 2473,
+                },
+              },
+              "value": "PMC452447",
+            },
+          ],
+        },
+        Object {
+          "key": "shortjournal",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 15,
+              "offset": 2512,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 14,
+              "offset": 2485,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 25,
+                  "line": 14,
+                  "offset": 2509,
+                },
+                "start": Object {
+                  "column": 19,
+                  "line": 14,
+                  "offset": 2503,
+                },
+              },
+              "value": "EMBO J",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 16,
+              "offset": 2666,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 15,
+              "offset": 2512,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 123,
+                  "line": 15,
+                  "offset": 2634,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 15,
+                  "offset": 2523,
+                },
+              },
+              "value": "Distinct Specificity in the Recognition of Phosphoinositides by the Pleckstrin Homology Domains of Dynamin and ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 133,
+                  "line": 15,
+                  "offset": 2644,
+                },
+                "start": Object {
+                  "column": 123,
+                  "line": 15,
+                  "offset": 2634,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 132,
+                      "line": 15,
+                      "offset": 2643,
+                    },
+                    "start": Object {
+                      "column": 124,
+                      "line": 15,
+                      "offset": 2635,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 131,
+                          "line": 15,
+                          "offset": 2642,
+                        },
+                        "start": Object {
+                          "column": 125,
+                          "line": 15,
+                          "offset": 2636,
+                        },
+                      },
+                      "value": "Bruton",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 152,
+                  "line": 15,
+                  "offset": 2663,
+                },
+                "start": Object {
+                  "column": 133,
+                  "line": 15,
+                  "offset": 2644,
+                },
+              },
+              "value": "'s Tyrosine Kinase.",
+            },
+          ],
+        },
+        Object {
+          "key": "volume",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 17,
+              "offset": 2682,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 16,
+              "offset": 2666,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 16,
+                  "offset": 2680,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 16,
+                  "offset": 2678,
+                },
+              },
+              "value": "15",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+    Object {
+      "id": "keusch_antibody_1998",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 35,
+          "offset": 4343,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 19,
+          "offset": 2685,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "abstract",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 21,
+              "offset": 3625,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 20,
+              "offset": 2718,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 48,
+                  "line": 20,
+                  "offset": 2763,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 20,
+                  "offset": 2730,
+                },
+              },
+              "value": "The epitopes present on beta-(1–",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 53,
+                  "line": 20,
+                  "offset": 2768,
+                },
+                "start": Object {
+                  "column": 48,
+                  "line": 20,
+                  "offset": 2763,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "MathMode",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 50,
+                      "line": 20,
+                      "offset": 2765,
+                    },
+                    "start": Object {
+                      "column": 49,
+                      "line": 20,
+                      "offset": 2764,
+                    },
+                  },
+                  "value": "$",
+                },
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 51,
+                      "line": 20,
+                      "offset": 2766,
+                    },
+                    "start": Object {
+                      "column": 50,
+                      "line": 20,
+                      "offset": 2765,
+                    },
+                  },
+                  "value": "¿",
+                },
+                Object {
+                  "kind": "MathMode",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 52,
+                      "line": 20,
+                      "offset": 2767,
+                    },
+                    "start": Object {
+                      "column": 51,
+                      "line": 20,
+                      "offset": 2766,
+                    },
+                  },
+                  "value": "$",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 907,
+                  "line": 20,
+                  "offset": 3622,
+                },
+                "start": Object {
+                  "column": 53,
+                  "line": 20,
+                  "offset": 2768,
+                },
+              },
+              "value": "4)-galactosyltransferase-1 (beta 4Gal-T1) have been explored using a panel of monoclonal antibodies (mAbs) raised against the soluble form of the human enzyme. Reactivity of the antibodies with site-specific and truncated mutants of human beta 4Gal-T1 suggests the presence of a major immunogenic epitope cluster consisting of four epitopes within the stem region and mapping between amino acids 42 and 115. The catalytic activity of the enzyme is increased in the presence of stem region-specific antibody. Two of the epitopes were further localized to a region between amino acids 42 and 77, sequences which are not shared with the recently cloned beta 4Gal-T2 and beta 4Gal-T3 enzymes. An epitope located close to or within the catalytic domain is also identified, and the mAb to this region binds synergistically with antibodies to the stem region.",
+            },
+          ],
+        },
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 22,
+              "offset": 3759,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 21,
+              "offset": 3625,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 132,
+                  "line": 21,
+                  "offset": 3756,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 21,
+                  "offset": 3637,
+                },
+              },
+              "value": "Keusch, J. and Panayotou, G. and Malissard, M. and Berger, E. G. and Appert, H. E. and Lydyard, P. M. and Delves, P. J.",
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 23,
+              "offset": 3779,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 22,
+              "offset": 3759,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 18,
+                  "line": 22,
+                  "offset": 3776,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 22,
+                  "offset": 3769,
+                },
+              },
+              "value": "1998-11",
+            },
+          ],
+        },
+        Object {
+          "key": "eprint",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 24,
+              "offset": 3801,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 23,
+              "offset": 3779,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 23,
+                  "offset": 3798,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 23,
+                  "offset": 3791,
+                },
+              },
+              "value": "9861700",
+            },
+          ],
+        },
+        Object {
+          "key": "eprinttype",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 25,
+              "offset": 3824,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 24,
+              "offset": 3801,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 21,
+                  "line": 24,
+                  "offset": 3821,
+                },
+                "start": Object {
+                  "column": 17,
+                  "line": 24,
+                  "offset": 3817,
+                },
+              },
+              "value": "pmid",
+            },
+          ],
+        },
+        Object {
+          "key": "issn",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 26,
+              "offset": 3856,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 25,
+              "offset": 3824,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 30,
+                  "line": 25,
+                  "offset": 3853,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 25,
+                  "offset": 3834,
+                },
+              },
+              "value": "0008-6215 0008-6215",
+            },
+          ],
+        },
+        Object {
+          "key": "journaltitle",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 27,
+              "offset": 3898,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 26,
+              "offset": 3856,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 40,
+                  "line": 26,
+                  "offset": 3895,
+                },
+                "start": Object {
+                  "column": 19,
+                  "line": 26,
+                  "offset": 3874,
+                },
+              },
+              "value": "Carbohydrate research",
+            },
+          ],
+        },
+        Object {
+          "key": "keywords",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 28,
+              "offset": 4120,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 27,
+              "offset": 3898,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 220,
+                  "line": 27,
+                  "offset": 4117,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 27,
+                  "offset": 3912,
+                },
+              },
+              "value": "*Epitope Mapping,Antibodies; Monoclonal,beta-N-Acetylglucosaminylglycopeptide beta-1;4-Galactosyltransferase/genetics/*immunology,Catalysis,Humans,Mutation,N-Acetyllactosamine Synthase/genetics/*immunology",
+            },
+          ],
+        },
+        Object {
+          "key": "langid",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 29,
+              "offset": 4142,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 28,
+              "offset": 4120,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 28,
+                  "offset": 4139,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 28,
+                  "offset": 4132,
+                },
+              },
+              "value": "english",
+            },
+          ],
+        },
+        Object {
+          "key": "number",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 30,
+              "offset": 4158,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 29,
+              "offset": 4142,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 14,
+                  "line": 29,
+                  "offset": 4155,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 29,
+                  "offset": 4154,
+                },
+              },
+              "value": "1",
+            },
+          ],
+        },
+        Object {
+          "key": "pages",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 31,
+              "offset": 4178,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 30,
+              "offset": 4158,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 18,
+                  "line": 30,
+                  "offset": 4175,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 30,
+                  "offset": 4169,
+                },
+              },
+              "value": "37–48",
+            },
+          ],
+        },
+        Object {
+          "key": "shortjournal",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 32,
+              "offset": 4212,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 31,
+              "offset": 4178,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 32,
+                  "line": 31,
+                  "offset": 4209,
+                },
+                "start": Object {
+                  "column": 19,
+                  "line": 31,
+                  "offset": 4196,
+                },
+              },
+              "value": "Carbohydr Res",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 33,
+              "offset": 4324,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 32,
+              "offset": 4212,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 78,
+                  "line": 32,
+                  "offset": 4289,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 32,
+                  "offset": 4223,
+                },
+              },
+              "value": "Antibody Recognition of Epitopes on Wild-Type and Mutant Beta-(1–",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 83,
+                  "line": 32,
+                  "offset": 4294,
+                },
+                "start": Object {
+                  "column": 78,
+                  "line": 32,
+                  "offset": 4289,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "MathMode",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 80,
+                      "line": 32,
+                      "offset": 4291,
+                    },
+                    "start": Object {
+                      "column": 79,
+                      "line": 32,
+                      "offset": 4290,
+                    },
+                  },
+                  "value": "$",
+                },
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 81,
+                      "line": 32,
+                      "offset": 4292,
+                    },
+                    "start": Object {
+                      "column": 80,
+                      "line": 32,
+                      "offset": 4291,
+                    },
+                  },
+                  "value": "¿",
+                },
+                Object {
+                  "kind": "MathMode",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 82,
+                      "line": 32,
+                      "offset": 4293,
+                    },
+                    "start": Object {
+                      "column": 81,
+                      "line": 32,
+                      "offset": 4292,
+                    },
+                  },
+                  "value": "$",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 110,
+                  "line": 32,
+                  "offset": 4321,
+                },
+                "start": Object {
+                  "column": 83,
+                  "line": 32,
+                  "offset": 4294,
+                },
+              },
+              "value": "4)-Galactosyltransferase-1.",
+            },
+          ],
+        },
+        Object {
+          "key": "volume",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 34,
+              "offset": 4341,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 33,
+              "offset": 4324,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 16,
+                  "line": 33,
+                  "offset": 4339,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 33,
+                  "offset": 4336,
+                },
+              },
+              "value": "313",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 35,
+      "offset": 4343,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

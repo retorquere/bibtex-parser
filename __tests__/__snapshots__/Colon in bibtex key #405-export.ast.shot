@@ -1,0 +1,596 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse Colon in bibtex key #405-export to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "deKort:2007:DigitalGamesSocial",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 14,
+          "offset": 566,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 114,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 2,
+              "offset": 49,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 65,
+                  "line": 2,
+                  "offset": 111,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 2,
+                  "offset": 59,
+                },
+              },
+              "value": "de Kort, Y.A.W. and IJsselsteijn, W.A. and Poels, K.",
+            },
+          ],
+        },
+        Object {
+          "key": "booktitle",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 205,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 114,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 40,
+                  "line": 3,
+                  "offset": 153,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 3,
+                  "offset": 129,
+                },
+              },
+              "value": "Proceedings of the 10th ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 73,
+                  "line": 3,
+                  "offset": 186,
+                },
+                "start": Object {
+                  "column": 40,
+                  "line": 3,
+                  "offset": 153,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 72,
+                      "line": 3,
+                      "offset": 185,
+                    },
+                    "start": Object {
+                      "column": 41,
+                      "line": 3,
+                      "offset": 154,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 71,
+                          "line": 3,
+                          "offset": 184,
+                        },
+                        "start": Object {
+                          "column": 42,
+                          "line": 3,
+                          "offset": 155,
+                        },
+                      },
+                      "value": "Annual International Workshop",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 77,
+                  "line": 3,
+                  "offset": 190,
+                },
+                "start": Object {
+                  "column": 73,
+                  "line": 3,
+                  "offset": 186,
+                },
+              },
+              "value": " on ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 89,
+                  "line": 3,
+                  "offset": 202,
+                },
+                "start": Object {
+                  "column": 77,
+                  "line": 3,
+                  "offset": 190,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 88,
+                      "line": 3,
+                      "offset": 201,
+                    },
+                    "start": Object {
+                      "column": 78,
+                      "line": 3,
+                      "offset": 191,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 87,
+                          "line": 3,
+                          "offset": 200,
+                        },
+                        "start": Object {
+                          "column": 79,
+                          "line": 3,
+                          "offset": 192,
+                        },
+                      },
+                      "value": "Presence",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 222,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 205,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 4,
+                  "offset": 219,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 4,
+                  "offset": 215,
+                },
+              },
+              "value": "2007",
+            },
+          ],
+        },
+        Object {
+          "key": "doi",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 285,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 222,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 61,
+                  "line": 5,
+                  "offset": 282,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 5,
+                  "offset": 231,
+                },
+              },
+              "value": "http://alexandria.tue.nl/campusonly/Metis215145.pdf",
+            },
+          ],
+        },
+        Object {
+          "key": "location",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 313,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 285,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 26,
+                  "line": 6,
+                  "offset": 310,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 6,
+                  "offset": 299,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 25,
+                      "line": 6,
+                      "offset": 309,
+                    },
+                    "start": Object {
+                      "column": 16,
+                      "line": 6,
+                      "offset": 300,
+                    },
+                  },
+                  "value": "Barcelona",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "options",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 343,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 313,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 28,
+                  "line": 7,
+                  "offset": 340,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 7,
+                  "offset": 326,
+                },
+              },
+              "value": "useprefix=true",
+            },
+          ],
+        },
+        Object {
+          "key": "pages",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 366,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 343,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 21,
+                  "line": 8,
+                  "offset": 363,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 8,
+                  "offset": 354,
+                },
+              },
+              "value": "195 - 203",
+            },
+          ],
+        },
+        Object {
+          "key": "publisher",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 393,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 366,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 25,
+                  "line": 9,
+                  "offset": 390,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 9,
+                  "offset": 381,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 24,
+                      "line": 9,
+                      "offset": 389,
+                    },
+                    "start": Object {
+                      "column": 17,
+                      "line": 9,
+                      "offset": 382,
+                    },
+                  },
+                  "value": "Starlab",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 521,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 393,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 117,
+                  "line": 10,
+                  "offset": 509,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 10,
+                  "offset": 404,
+                },
+              },
+              "value": "Digital Games as Social Presence Technology: Development of the Social Presence in Gaming Questionnaire (",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 125,
+                  "line": 10,
+                  "offset": 517,
+                },
+                "start": Object {
+                  "column": 117,
+                  "line": 10,
+                  "offset": 509,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 124,
+                      "line": 10,
+                      "offset": 516,
+                    },
+                    "start": Object {
+                      "column": 118,
+                      "line": 10,
+                      "offset": 510,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 123,
+                          "line": 10,
+                          "offset": 515,
+                        },
+                        "start": Object {
+                          "column": 119,
+                          "line": 10,
+                          "offset": 511,
+                        },
+                      },
+                      "value": "SPGQ",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 126,
+                  "line": 10,
+                  "offset": 518,
+                },
+                "start": Object {
+                  "column": 125,
+                  "line": 10,
+                  "offset": 517,
+                },
+              },
+              "value": ")",
+            },
+          ],
+        },
+        Object {
+          "key": "url",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 563,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 521,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 41,
+                  "line": 11,
+                  "offset": 561,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 11,
+                  "offset": 530,
+                },
+              },
+              "value": "http://repository.tue.nl/663080",
+            },
+          ],
+        },
+      ],
+      "type": "inproceedings",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 14,
+      "offset": 566,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

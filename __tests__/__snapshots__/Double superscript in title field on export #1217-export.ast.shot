@@ -1,0 +1,597 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse Double superscript in title field on export #1217-export to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "Rovny2018",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 16,
+          "offset": 502,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 88,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 2,
+              "offset": 22,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 66,
+                  "line": 2,
+                  "offset": 85,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 2,
+                  "offset": 32,
+                },
+              },
+              "value": "Rovny, Jared and Blum, Robert L. and Barrett, Sean E.",
+            },
+          ],
+        },
+        Object {
+          "key": "doi",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 126,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 88,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 36,
+                  "line": 3,
+                  "offset": 123,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 3,
+                  "offset": 97,
+                },
+              },
+              "value": "10.1103/PhysRevB.97.184301",
+            },
+          ],
+        },
+        Object {
+          "key": "journal",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 154,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 126,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 26,
+                  "line": 4,
+                  "offset": 151,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 4,
+                  "offset": 139,
+                },
+              },
+              "value": "Phys. Rev. B",
+            },
+          ],
+        },
+        Object {
+          "key": "month",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 169,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 154,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "String",
+              "loc": Object {
+                "end": Object {
+                  "column": 14,
+                  "line": 5,
+                  "offset": 167,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 5,
+                  "offset": 164,
+                },
+              },
+              "value": "may",
+            },
+          ],
+        },
+        Object {
+          "key": "number",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 186,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 169,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 6,
+                  "offset": 183,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 6,
+                  "offset": 181,
+                },
+              },
+              "value": "18",
+            },
+          ],
+        },
+        Object {
+          "key": "numpages",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 205,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 186,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 17,
+                  "line": 7,
+                  "offset": 202,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 7,
+                  "offset": 200,
+                },
+              },
+              "value": "16",
+            },
+          ],
+        },
+        Object {
+          "key": "pages",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 225,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 205,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 18,
+                  "line": 8,
+                  "offset": 222,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 8,
+                  "offset": 216,
+                },
+              },
+              "value": "184301",
+            },
+          ],
+        },
+        Object {
+          "key": "publisher",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 270,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 225,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 43,
+                  "line": 9,
+                  "offset": 267,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 9,
+                  "offset": 240,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 42,
+                      "line": 9,
+                      "offset": 266,
+                    },
+                    "start": Object {
+                      "column": 17,
+                      "line": 9,
+                      "offset": 241,
+                    },
+                  },
+                  "value": "American Physical Society",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 403,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 270,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 21,
+                  "line": 10,
+                  "offset": 290,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 10,
+                  "offset": 281,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "MathMode",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 14,
+                      "line": 10,
+                      "offset": 283,
+                    },
+                    "start": Object {
+                      "column": 13,
+                      "line": 10,
+                      "offset": 282,
+                    },
+                  },
+                  "value": "$",
+                },
+                Object {
+                  "kind": "SuperscriptCommand",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 19,
+                      "line": 10,
+                      "offset": 288,
+                    },
+                    "start": Object {
+                      "column": 14,
+                      "line": 10,
+                      "offset": 283,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 18,
+                          "line": 10,
+                          "offset": 287,
+                        },
+                        "start": Object {
+                          "column": 16,
+                          "line": 10,
+                          "offset": 285,
+                        },
+                      },
+                      "value": "31",
+                    },
+                  ],
+                },
+                Object {
+                  "kind": "MathMode",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 20,
+                      "line": 10,
+                      "offset": 289,
+                    },
+                    "start": Object {
+                      "column": 19,
+                      "line": 10,
+                      "offset": 288,
+                    },
+                  },
+                  "value": "$",
+                },
+              ],
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 30,
+                  "line": 10,
+                  "offset": 299,
+                },
+                "start": Object {
+                  "column": 21,
+                  "line": 10,
+                  "offset": 290,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 29,
+                      "line": 10,
+                      "offset": 298,
+                    },
+                    "start": Object {
+                      "column": 22,
+                      "line": 10,
+                      "offset": 291,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 28,
+                          "line": 10,
+                          "offset": 297,
+                        },
+                        "start": Object {
+                          "column": 23,
+                          "line": 10,
+                          "offset": 292,
+                        },
+                      },
+                      "value": "P NMR",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 131,
+                  "line": 10,
+                  "offset": 400,
+                },
+                "start": Object {
+                  "column": 30,
+                  "line": 10,
+                  "offset": 299,
+                },
+              },
+              "value": " Study of Discrete Time-Crystalline Signatures in an Ordered Crystal of Ammonium Dihydrogen Phosphate",
+            },
+          ],
+        },
+        Object {
+          "key": "url",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 466,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 403,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 61,
+                  "line": 11,
+                  "offset": 463,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 11,
+                  "offset": 412,
+                },
+              },
+              "value": "https://link.aps.org/doi/10.1103/PhysRevB.97.184301",
+            },
+          ],
+        },
+        Object {
+          "key": "volume",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 483,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 466,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 12,
+                  "offset": 480,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 12,
+                  "offset": 478,
+                },
+              },
+              "value": "97",
+            },
+          ],
+        },
+        Object {
+          "key": "year",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 14,
+              "offset": 499,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 483,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 13,
+                  "offset": 497,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 13,
+                  "offset": 493,
+                },
+              },
+              "value": "2018",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 16,
+      "offset": 502,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

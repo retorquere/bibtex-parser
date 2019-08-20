@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse Better BibTeX.006-import 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "title": Array [
+          "Non-braking space:  ; accented characters: ñ and ñ; tilde in URL: http://example.com/ user",
+        ],
+      },
+      "key": "test-ticket1661",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

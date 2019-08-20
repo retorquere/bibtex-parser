@@ -1,0 +1,1121 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse titles are title-cased in .bib file #558-export to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "araz_using_2014",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 24,
+          "offset": 3001,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "abstract",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 2532,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 2,
+              "offset": 28,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 474,
+                  "line": 9,
+                  "offset": 2529,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 2,
+                  "offset": 40,
+                },
+              },
+              "value": "Introduction Emergency department (ED) visits increase during the influenza seasons. It is essential to identify statistically significant correlates in order to develop an accurate forecasting model for ED visits. Forecasting influenza-like-illness (ILI)-related ED visits can significantly help in developing robust resource management strategies at the EDs. Methods We first performed correlation analyses to understand temporal correlations between several predictors of ILI-related ED visits. We used the data available for Douglas County, the biggest county in Nebraska, for Omaha, the biggest city in the state, and for a major hospital in Omaha. The data set included total and positive influenza test results from the hospital (ie, Antigen rapid (Ag) and Respiratory Syncytial Virus Infection (RSV) tests); an Internet-based influenza surveillance system data, that is, Google Flu Trends, for both Nebraska and Omaha; total ED visits in Douglas County attributable to ILI; and ILI surveillance network data for Douglas County and Nebraska as the predictors and data for the hospital's ILI-related ED visits as the dependent variable. We used Seasonal Autoregressive Integrated Moving Average and Holt Winters methods with3 linear regression models to forecast ILI-related ED visits at the hospital and evaluated model performances by comparing the root means square errors (RMSEs). Results Because of strong positive correlations with ILI-related ED visits between 2008 and 2012, we validated the use of Google Flu Trends data as a predictor in an ED influenza surveillance tool. Of the 5 forecasting models we have tested, linear regression models performed significantly better when Google Flu Trends data were included as a predictor. Regression models including Google Flu Trends data as a predictor variable have lower RMSE, and the lowest is achieved when all other variables are also included in the model in our forecasting experiments for the first 5 weeks of 2013 (with RMSE = 57.61). Conclusions Google Flu Trends data statistically improve the performance of predicting ILI-related ED visits in Douglas County, and this result can be generalized to other communities. Timely and accurate estimates of ED volume during the influenza season, as well as during pandemic outbreaks, can help hospitals plan their ED resources accordingly and lower their costs by optimizing supplies and staffing and can improve service quality by decreasing ED wait times and overcrowding.",
+            },
+          ],
+        },
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 2603,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 2532,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 69,
+                  "line": 10,
+                  "offset": 2600,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 10,
+                  "offset": 2544,
+                },
+              },
+              "value": "Araz, Ozgur M. and Bentley, Dan and Muelleman, Robert L.",
+            },
+          ],
+        },
+        Object {
+          "key": "doi",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 2641,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 2603,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 36,
+                  "line": 11,
+                  "offset": 2638,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 11,
+                  "offset": 2612,
+                },
+              },
+              "value": "10.1016/j.ajem.2014.05.052",
+            },
+          ],
+        },
+        Object {
+          "key": "issn",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 2674,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 2641,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 31,
+                  "line": 12,
+                  "offset": 2671,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 12,
+                  "offset": 2651,
+                },
+              },
+              "value": "0735-6757, 1532-8171",
+            },
+          ],
+        },
+        Object {
+          "key": "journal",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 14,
+              "offset": 2732,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 2674,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 56,
+                  "line": 13,
+                  "offset": 2729,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 13,
+                  "offset": 2687,
+                },
+              },
+              "value": "The American Journal of Emergency Medicine",
+            },
+          ],
+        },
+        Object {
+          "key": "language",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 15,
+              "offset": 2756,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 14,
+              "offset": 2732,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 22,
+                  "line": 14,
+                  "offset": 2753,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 14,
+                  "offset": 2746,
+                },
+              },
+              "value": "English",
+            },
+          ],
+        },
+        Object {
+          "key": "month",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 16,
+              "offset": 2771,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 15,
+              "offset": 2756,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "String",
+              "loc": Object {
+                "end": Object {
+                  "column": 14,
+                  "line": 15,
+                  "offset": 2769,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 15,
+                  "offset": 2766,
+                },
+              },
+              "value": "sep",
+            },
+          ],
+        },
+        Object {
+          "key": "number",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 17,
+              "offset": 2787,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 16,
+              "offset": 2771,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 14,
+                  "line": 16,
+                  "offset": 2784,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 16,
+                  "offset": 2783,
+                },
+              },
+              "value": "9",
+            },
+          ],
+        },
+        Object {
+          "key": "pages",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 18,
+              "offset": 2811,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 17,
+              "offset": 2787,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 22,
+                  "line": 17,
+                  "offset": 2808,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 17,
+                  "offset": 2798,
+                },
+              },
+              "value": "1016–1023",
+            },
+          ],
+        },
+        Object {
+          "key": "pmid",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 19,
+              "offset": 2832,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 18,
+              "offset": 2811,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 19,
+                  "line": 18,
+                  "offset": 2829,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 18,
+                  "offset": 2821,
+                },
+              },
+              "value": "25037278",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 20,
+              "offset": 2965,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 19,
+              "offset": 2832,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 18,
+                  "line": 19,
+                  "offset": 2849,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 19,
+                  "offset": 2843,
+                },
+              },
+              "value": "Using ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 39,
+                  "line": 19,
+                  "offset": 2870,
+                },
+                "start": Object {
+                  "column": 18,
+                  "line": 19,
+                  "offset": 2849,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 38,
+                      "line": 19,
+                      "offset": 2869,
+                    },
+                    "start": Object {
+                      "column": 19,
+                      "line": 19,
+                      "offset": 2850,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 37,
+                          "line": 19,
+                          "offset": 2868,
+                        },
+                        "start": Object {
+                          "column": 20,
+                          "line": 19,
+                          "offset": 2851,
+                        },
+                      },
+                      "value": "Google Flu Trends",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 91,
+                  "line": 19,
+                  "offset": 2922,
+                },
+                "start": Object {
+                  "column": 39,
+                  "line": 19,
+                  "offset": 2870,
+                },
+              },
+              "value": " Data in Forecasting Influenza-like-Illness Related ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 97,
+                  "line": 19,
+                  "offset": 2928,
+                },
+                "start": Object {
+                  "column": 91,
+                  "line": 19,
+                  "offset": 2922,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 96,
+                      "line": 19,
+                      "offset": 2927,
+                    },
+                    "start": Object {
+                      "column": 92,
+                      "line": 19,
+                      "offset": 2923,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 95,
+                          "line": 19,
+                          "offset": 2926,
+                        },
+                        "start": Object {
+                          "column": 93,
+                          "line": 19,
+                          "offset": 2924,
+                        },
+                      },
+                      "value": "ED",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 108,
+                  "line": 19,
+                  "offset": 2939,
+                },
+                "start": Object {
+                  "column": 97,
+                  "line": 19,
+                  "offset": 2928,
+                },
+              },
+              "value": " Visits in ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 117,
+                  "line": 19,
+                  "offset": 2948,
+                },
+                "start": Object {
+                  "column": 108,
+                  "line": 19,
+                  "offset": 2939,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 116,
+                      "line": 19,
+                      "offset": 2947,
+                    },
+                    "start": Object {
+                      "column": 109,
+                      "line": 19,
+                      "offset": 2940,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 115,
+                          "line": 19,
+                          "offset": 2946,
+                        },
+                        "start": Object {
+                          "column": 110,
+                          "line": 19,
+                          "offset": 2941,
+                        },
+                      },
+                      "value": "Omaha",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 119,
+                  "line": 19,
+                  "offset": 2950,
+                },
+                "start": Object {
+                  "column": 117,
+                  "line": 19,
+                  "offset": 2948,
+                },
+              },
+              "value": ", ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 131,
+                  "line": 19,
+                  "offset": 2962,
+                },
+                "start": Object {
+                  "column": 119,
+                  "line": 19,
+                  "offset": 2950,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 130,
+                      "line": 19,
+                      "offset": 2961,
+                    },
+                    "start": Object {
+                      "column": 120,
+                      "line": 19,
+                      "offset": 2951,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 129,
+                          "line": 19,
+                          "offset": 2960,
+                        },
+                        "start": Object {
+                          "column": 121,
+                          "line": 19,
+                          "offset": 2952,
+                        },
+                      },
+                      "value": "Nebraska",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "volume",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 21,
+              "offset": 2982,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 20,
+              "offset": 2965,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 20,
+                  "offset": 2979,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 20,
+                  "offset": 2977,
+                },
+              },
+              "value": "32",
+            },
+          ],
+        },
+        Object {
+          "key": "year",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 22,
+              "offset": 2998,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 21,
+              "offset": 2982,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 21,
+                  "offset": 2996,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 21,
+                  "offset": 2992,
+                },
+              },
+              "value": "2014",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+    Object {
+      "id": "davidson_using_2015",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 35,
+          "offset": 3378,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 24,
+          "offset": 3001,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 26,
+              "offset": 3108,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 25,
+              "offset": 3033,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 75,
+                  "line": 25,
+                  "offset": 3105,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 25,
+                  "offset": 3043,
+                },
+              },
+              "value": "Davidson, Michael W. and Haim, Dotan A. and Radin, Jennifer M.",
+            },
+          ],
+        },
+        Object {
+          "key": "doi",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 27,
+              "offset": 3137,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 26,
+              "offset": 3108,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 27,
+                  "line": 26,
+                  "offset": 3134,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 26,
+                  "offset": 3117,
+                },
+              },
+              "value": "10.1038/srep08154",
+            },
+          ],
+        },
+        Object {
+          "key": "issn",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 28,
+              "offset": 3159,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 27,
+              "offset": 3137,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 27,
+                  "offset": 3156,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 27,
+                  "offset": 3147,
+                },
+              },
+              "value": "2045-2322",
+            },
+          ],
+        },
+        Object {
+          "key": "journal",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 29,
+              "offset": 3193,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 28,
+              "offset": 3159,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 32,
+                  "line": 28,
+                  "offset": 3190,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 28,
+                  "offset": 3172,
+                },
+              },
+              "value": "Scientific Reports",
+            },
+          ],
+        },
+        Object {
+          "key": "month",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 30,
+              "offset": 3208,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 29,
+              "offset": 3193,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "String",
+              "loc": Object {
+                "end": Object {
+                  "column": 14,
+                  "line": 29,
+                  "offset": 3206,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 29,
+                  "offset": 3203,
+                },
+              },
+              "value": "jan",
+            },
+          ],
+        },
+        Object {
+          "key": "pages",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 31,
+              "offset": 3226,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 30,
+              "offset": 3208,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 16,
+                  "line": 30,
+                  "offset": 3223,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 30,
+                  "offset": 3219,
+                },
+              },
+              "value": "8154",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 32,
+              "offset": 3344,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 31,
+              "offset": 3226,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 40,
+                  "line": 31,
+                  "offset": 3265,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 31,
+                  "offset": 3237,
+                },
+              },
+              "value": "Using Networks to Combine \`\`",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 52,
+                  "line": 31,
+                  "offset": 3277,
+                },
+                "start": Object {
+                  "column": 40,
+                  "line": 31,
+                  "offset": 3265,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 51,
+                      "line": 31,
+                      "offset": 3276,
+                    },
+                    "start": Object {
+                      "column": 41,
+                      "line": 31,
+                      "offset": 3266,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 50,
+                          "line": 31,
+                          "offset": 3275,
+                        },
+                        "start": Object {
+                          "column": 42,
+                          "line": 31,
+                          "offset": 3267,
+                        },
+                      },
+                      "value": "Big Data",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 116,
+                  "line": 31,
+                  "offset": 3341,
+                },
+                "start": Object {
+                  "column": 52,
+                  "line": 31,
+                  "offset": 3277,
+                },
+              },
+              "value": "'' and Traditional Surveillance to Improve Influenza Predictions",
+            },
+          ],
+        },
+        Object {
+          "key": "volume",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 33,
+              "offset": 3360,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 32,
+              "offset": 3344,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 14,
+                  "line": 32,
+                  "offset": 3357,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 32,
+                  "offset": 3356,
+                },
+              },
+              "value": "5",
+            },
+          ],
+        },
+        Object {
+          "key": "year",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 34,
+              "offset": 3376,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 33,
+              "offset": 3360,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 33,
+                  "offset": 3374,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 33,
+                  "offset": 3370,
+                },
+              },
+              "value": "2015",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 35,
+      "offset": 3378,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

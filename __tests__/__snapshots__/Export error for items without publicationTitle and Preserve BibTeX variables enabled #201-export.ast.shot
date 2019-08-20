@@ -1,0 +1,243 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse Export error for items without publicationTitle and Preserve BibTeX variables enabled #201-export to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "Blandford2006",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 8,
+          "offset": 171,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 74,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 2,
+              "offset": 23,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 51,
+                  "line": 2,
+                  "offset": 71,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 2,
+                  "offset": 33,
+                },
+              },
+              "value": "Blandford, Roger D. and Thorne, Kip S.",
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 91,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 74,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 3,
+                  "offset": 88,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 3,
+                  "offset": 84,
+                },
+              },
+              "value": "2006",
+            },
+          ],
+        },
+        Object {
+          "key": "publisher",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 118,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 91,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 25,
+                  "line": 4,
+                  "offset": 115,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 4,
+                  "offset": 106,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 24,
+                      "line": 4,
+                      "offset": 114,
+                    },
+                    "start": Object {
+                      "column": 17,
+                      "line": 4,
+                      "offset": 107,
+                    },
+                  },
+                  "value": "Caltech",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 168,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 118,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 28,
+                  "line": 5,
+                  "offset": 145,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 5,
+                  "offset": 129,
+                },
+              },
+              "value": "Applications of ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 49,
+                  "line": 5,
+                  "offset": 166,
+                },
+                "start": Object {
+                  "column": 28,
+                  "line": 5,
+                  "offset": 145,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 48,
+                      "line": 5,
+                      "offset": 165,
+                    },
+                    "start": Object {
+                      "column": 29,
+                      "line": 5,
+                      "offset": 146,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 47,
+                          "line": 5,
+                          "offset": 164,
+                        },
+                        "start": Object {
+                          "column": 30,
+                          "line": 5,
+                          "offset": 147,
+                        },
+                      },
+                      "value": "Classical Physics",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 8,
+      "offset": 171,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

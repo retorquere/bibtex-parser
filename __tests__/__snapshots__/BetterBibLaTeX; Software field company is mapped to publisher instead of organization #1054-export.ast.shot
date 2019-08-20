@@ -1,0 +1,210 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse BetterBibLaTeX; Software field company is mapped to publisher instead of organization #1054-export to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "blup_bla_9265",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 7,
+          "offset": 114,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 46,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 2,
+              "offset": 27,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 19,
+                  "line": 2,
+                  "offset": 43,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 2,
+                  "offset": 37,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 18,
+                      "line": 2,
+                      "offset": 42,
+                    },
+                    "start": Object {
+                      "column": 14,
+                      "line": 2,
+                      "offset": 38,
+                    },
+                  },
+                  "value": "Blup",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 63,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 46,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 3,
+                  "offset": 60,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 3,
+                  "offset": 56,
+                },
+              },
+              "value": "9265",
+            },
+          ],
+        },
+        Object {
+          "key": "organization",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 96,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 63,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 31,
+                  "line": 4,
+                  "offset": 93,
+                },
+                "start": Object {
+                  "column": 19,
+                  "line": 4,
+                  "offset": 81,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 30,
+                      "line": 4,
+                      "offset": 92,
+                    },
+                    "start": Object {
+                      "column": 20,
+                      "line": 4,
+                      "offset": 82,
+                    },
+                  },
+                  "value": "BliBlaBlup",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 112,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 96,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 5,
+                  "offset": 110,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 5,
+                  "offset": 107,
+                },
+              },
+              "value": "Bla",
+            },
+          ],
+        },
+      ],
+      "type": "software",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 7,
+      "offset": 114,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

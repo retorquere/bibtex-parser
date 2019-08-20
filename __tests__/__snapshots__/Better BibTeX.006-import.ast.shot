@@ -1,0 +1,208 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse Better BibTeX.006-import to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "test-ticket1661",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 4,
+          "offset": 145,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 143,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 2,
+              "offset": 28,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 55,
+                  "line": 2,
+                  "offset": 80,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 2,
+                  "offset": 37,
+                },
+              },
+              "value": "non-braking space:  ; accented characters: ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 60,
+                  "line": 2,
+                  "offset": 85,
+                },
+                "start": Object {
+                  "column": 55,
+                  "line": 2,
+                  "offset": 80,
+                },
+              },
+              "value": Array [
+                Object {
+                  "character": "n",
+                  "kind": "DicraticalCommand",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 59,
+                      "line": 2,
+                      "offset": 84,
+                    },
+                    "start": Object {
+                      "column": 56,
+                      "line": 2,
+                      "offset": 81,
+                    },
+                  },
+                  "mark": "~",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 65,
+                  "line": 2,
+                  "offset": 90,
+                },
+                "start": Object {
+                  "column": 60,
+                  "line": 2,
+                  "offset": 85,
+                },
+              },
+              "value": " and ",
+            },
+            Object {
+              "character": "n",
+              "kind": "DicraticalCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 70,
+                  "line": 2,
+                  "offset": 95,
+                },
+                "start": Object {
+                  "column": 65,
+                  "line": 2,
+                  "offset": 90,
+                },
+              },
+              "mark": "~",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 86,
+                  "line": 2,
+                  "offset": 111,
+                },
+                "start": Object {
+                  "column": 70,
+                  "line": 2,
+                  "offset": 95,
+                },
+              },
+              "value": "; tilde in URL: ",
+            },
+            Object {
+              "arguments": Array [
+                Object {
+                  "kind": "RequiredArgument",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 116,
+                      "line": 2,
+                      "offset": 141,
+                    },
+                    "start": Object {
+                      "column": 90,
+                      "line": 2,
+                      "offset": 115,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 115,
+                          "line": 2,
+                          "offset": 140,
+                        },
+                        "start": Object {
+                          "column": 91,
+                          "line": 2,
+                          "offset": 116,
+                        },
+                      },
+                      "value": "http://example.com/ user",
+                    },
+                  ],
+                },
+              ],
+              "kind": "RegularCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 116,
+                  "line": 2,
+                  "offset": 141,
+                },
+                "start": Object {
+                  "column": 86,
+                  "line": 2,
+                  "offset": 111,
+                },
+              },
+              "value": "url",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 4,
+      "offset": 145,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

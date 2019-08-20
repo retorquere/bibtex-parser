@@ -1,0 +1,292 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse underscores in URL fields should not be escaped #104-export to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "american_rights_at_work_public_2012",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 10,
+          "offset": 248,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 2,
+          "offset": 1,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 86,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 3,
+              "offset": 49,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 37,
+                  "line": 3,
+                  "offset": 83,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 3,
+                  "offset": 59,
+                },
+              },
+              "value": "at Work, American Rights",
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 103,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 86,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 4,
+                  "offset": 100,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 4,
+                  "offset": 96,
+                },
+              },
+              "value": "2012",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 155,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 103,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 19,
+                  "line": 5,
+                  "offset": 121,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 5,
+                  "offset": 114,
+                },
+              },
+              "value": "Public ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 50,
+                  "line": 5,
+                  "offset": 152,
+                },
+                "start": Object {
+                  "column": 19,
+                  "line": 5,
+                  "offset": 121,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 49,
+                      "line": 5,
+                      "offset": 151,
+                    },
+                    "start": Object {
+                      "column": 20,
+                      "line": 5,
+                      "offset": 122,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 48,
+                          "line": 5,
+                          "offset": 150,
+                        },
+                        "start": Object {
+                          "column": 21,
+                          "line": 5,
+                          "offset": 123,
+                        },
+                      },
+                      "value": "Service Research Foundation",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "url",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 220,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 155,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 58,
+                  "line": 6,
+                  "offset": 212,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 6,
+                  "offset": 164,
+                },
+              },
+              "value": "http://www.americanrightsatwork.org/blogcategory",
+            },
+            Object {
+              "kind": "SubscriptCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 60,
+                  "line": 6,
+                  "offset": 214,
+                },
+                "start": Object {
+                  "column": 58,
+                  "line": 6,
+                  "offset": 212,
+                },
+              },
+              "value": "2",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 63,
+                  "line": 6,
+                  "offset": 217,
+                },
+                "start": Object {
+                  "column": 60,
+                  "line": 6,
+                  "offset": 214,
+                },
+              },
+              "value": "75/",
+            },
+          ],
+        },
+        Object {
+          "key": "urldate",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 245,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 220,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 24,
+                  "line": 7,
+                  "offset": 243,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 7,
+                  "offset": 233,
+                },
+              },
+              "value": "2012-07-27",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 10,
+      "offset": 248,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

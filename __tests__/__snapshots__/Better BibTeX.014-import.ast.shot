@@ -1,0 +1,172 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse Better BibTeX.014-import to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "BibTeXEscapeTest1",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 4,
+          "offset": 81,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 79,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 2,
+              "offset": 30,
+            },
+          },
+          "value": Array [
+            Object {
+              "arguments": Array [],
+              "kind": "RegularCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 26,
+                  "line": 2,
+                  "offset": 53,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 2,
+                  "offset": 39,
+                },
+              },
+              "value": "textbackslash",
+            },
+            Object {
+              "arguments": Array [],
+              "kind": "RegularCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 40,
+                  "line": 2,
+                  "offset": 67,
+                },
+                "start": Object {
+                  "column": 26,
+                  "line": 2,
+                  "offset": 53,
+                },
+              },
+              "value": "textbackslash",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 42,
+                  "line": 2,
+                  "offset": 69,
+                },
+                "start": Object {
+                  "column": 40,
+                  "line": 2,
+                  "offset": 67,
+                },
+              },
+              "value": "{",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 44,
+                  "line": 2,
+                  "offset": 71,
+                },
+                "start": Object {
+                  "column": 42,
+                  "line": 2,
+                  "offset": 69,
+                },
+              },
+              "value": "}",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 46,
+                  "line": 2,
+                  "offset": 73,
+                },
+                "start": Object {
+                  "column": 44,
+                  "line": 2,
+                  "offset": 71,
+                },
+              },
+              "value": ": ",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 48,
+                  "line": 2,
+                  "offset": 75,
+                },
+                "start": Object {
+                  "column": 46,
+                  "line": 2,
+                  "offset": 73,
+                },
+              },
+              "value": "\\\\",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 50,
+                  "line": 2,
+                  "offset": 77,
+                },
+                "start": Object {
+                  "column": 48,
+                  "line": 2,
+                  "offset": 75,
+                },
+              },
+              "value": Array [],
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 4,
+      "offset": 81,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

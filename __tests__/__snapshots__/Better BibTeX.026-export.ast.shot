@@ -1,0 +1,274 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse Better BibTeX.026-export to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "traumNDcomputationalmodelsnoncooperative",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 8,
+          "offset": 275,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 2,
+          "offset": 1,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 83,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 3,
+              "offset": 58,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 25,
+                  "line": 3,
+                  "offset": 80,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 3,
+                  "offset": 68,
+                },
+              },
+              "value": "Traum, David",
+            },
+          ],
+        },
+        Object {
+          "key": "file",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 203,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 83,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 118,
+                  "line": 4,
+                  "offset": 200,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 4,
+                  "offset": 93,
+                },
+              },
+              "value": "files/traumNDcomputationalmodelsnoncooperative/Traum - Computational Models of Non-cooperative dialogue.pdf",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 272,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 203,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 26,
+                  "line": 5,
+                  "offset": 228,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 5,
+                  "offset": 214,
+                },
+              },
+              "value": "Computational ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 36,
+                  "line": 5,
+                  "offset": 238,
+                },
+                "start": Object {
+                  "column": 26,
+                  "line": 5,
+                  "offset": 228,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 35,
+                      "line": 5,
+                      "offset": 237,
+                    },
+                    "start": Object {
+                      "column": 27,
+                      "line": 5,
+                      "offset": 229,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 34,
+                          "line": 5,
+                          "offset": 236,
+                        },
+                        "start": Object {
+                          "column": 28,
+                          "line": 5,
+                          "offset": 230,
+                        },
+                      },
+                      "value": "Models",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 40,
+                  "line": 5,
+                  "offset": 242,
+                },
+                "start": Object {
+                  "column": 36,
+                  "line": 5,
+                  "offset": 238,
+                },
+              },
+              "value": " of ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 47,
+                  "line": 5,
+                  "offset": 249,
+                },
+                "start": Object {
+                  "column": 40,
+                  "line": 5,
+                  "offset": 242,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 46,
+                      "line": 5,
+                      "offset": 248,
+                    },
+                    "start": Object {
+                      "column": 41,
+                      "line": 5,
+                      "offset": 243,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 45,
+                          "line": 5,
+                          "offset": 247,
+                        },
+                        "start": Object {
+                          "column": 42,
+                          "line": 5,
+                          "offset": 244,
+                        },
+                      },
+                      "value": "Non",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 68,
+                  "line": 5,
+                  "offset": 270,
+                },
+                "start": Object {
+                  "column": 47,
+                  "line": 5,
+                  "offset": 249,
+                },
+              },
+              "value": "-Cooperative Dialogue",
+            },
+          ],
+        },
+      ],
+      "type": "unpublished",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 8,
+      "offset": 275,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

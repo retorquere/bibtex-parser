@@ -1,0 +1,646 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse Better BibLaTeX.021-export to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "deOliveira2010",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 19,
+          "offset": 687,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 2,
+          "offset": 1,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 88,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 3,
+              "offset": 28,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 60,
+                  "line": 3,
+                  "offset": 85,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 3,
+                  "offset": 38,
+                },
+              },
+              "value": "de Oliveira, Leonardo Hadlich and Aznar, Martín",
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 108,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 88,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 18,
+                  "line": 4,
+                  "offset": 105,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 4,
+                  "offset": 98,
+                },
+              },
+              "value": "2010-11",
+            },
+          ],
+        },
+        Object {
+          "key": "doi",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 145,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 108,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 35,
+                  "line": 5,
+                  "offset": 142,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 5,
+                  "offset": 117,
+                },
+              },
+              "value": "10.1016/j.jct.2010.06.007",
+            },
+          ],
+        },
+        Object {
+          "key": "file",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 280,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 145,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 133,
+                  "line": 6,
+                  "offset": 277,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 6,
+                  "offset": 155,
+                },
+              },
+              "value": "files/deOliveira2010/de Oliveira, Aznar-2010-(Liquid+liquid) equilibrium of water+phenol+(1-butanol, or 2-butanol, or2.pdf",
+            },
+          ],
+        },
+        Object {
+          "key": "issn",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 301,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 280,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 19,
+                  "line": 7,
+                  "offset": 298,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 7,
+                  "offset": 290,
+                },
+              },
+              "value": "00219614",
+            },
+          ],
+        },
+        Object {
+          "key": "journaltitle",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 360,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 301,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 57,
+                  "line": 8,
+                  "offset": 357,
+                },
+                "start": Object {
+                  "column": 19,
+                  "line": 8,
+                  "offset": 319,
+                },
+              },
+              "value": "The Journal of Chemical Thermodynamics",
+            },
+          ],
+        },
+        Object {
+          "key": "langid",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 382,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 360,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 9,
+                  "offset": 379,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 9,
+                  "offset": 372,
+                },
+              },
+              "value": "english",
+            },
+          ],
+        },
+        Object {
+          "key": "number",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 399,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 382,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 10,
+                  "offset": 396,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 10,
+                  "offset": 394,
+                },
+              },
+              "value": "11",
+            },
+          ],
+        },
+        Object {
+          "key": "options",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 429,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 399,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 28,
+                  "line": 11,
+                  "offset": 426,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 11,
+                  "offset": 412,
+                },
+              },
+              "value": "useprefix=true",
+            },
+          ],
+        },
+        Object {
+          "key": "pages",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 453,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 429,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 22,
+                  "line": 12,
+                  "offset": 450,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 12,
+                  "offset": 440,
+                },
+              },
+              "value": "1379–1385",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 14,
+              "offset": 569,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 453,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 13,
+                  "line": 13,
+                  "offset": 465,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 13,
+                  "offset": 464,
+                },
+              },
+              "value": "(",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 23,
+                  "line": 13,
+                  "offset": 475,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 13,
+                  "offset": 465,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 22,
+                      "line": 13,
+                      "offset": 474,
+                    },
+                    "start": Object {
+                      "column": 14,
+                      "line": 13,
+                      "offset": 466,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 21,
+                          "line": 13,
+                          "offset": 473,
+                        },
+                        "start": Object {
+                          "column": 15,
+                          "line": 13,
+                          "offset": 467,
+                        },
+                      },
+                      "value": "Liquid",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 47,
+                  "line": 13,
+                  "offset": 499,
+                },
+                "start": Object {
+                  "column": 23,
+                  "line": 13,
+                  "offset": 475,
+                },
+              },
+              "value": "+liquid) Equilibrium of ",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 49,
+                  "line": 13,
+                  "offset": 501,
+                },
+                "start": Object {
+                  "column": 47,
+                  "line": 13,
+                  "offset": 499,
+                },
+              },
+              "value": "{",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 104,
+                  "line": 13,
+                  "offset": 556,
+                },
+                "start": Object {
+                  "column": 49,
+                  "line": 13,
+                  "offset": 501,
+                },
+              },
+              "value": "water+phenol+(1-Butanol, or 2-Butanol, or Tert-Butanol)",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 106,
+                  "line": 13,
+                  "offset": 558,
+                },
+                "start": Object {
+                  "column": 104,
+                  "line": 13,
+                  "offset": 556,
+                },
+              },
+              "value": "}",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 114,
+                  "line": 13,
+                  "offset": 566,
+                },
+                "start": Object {
+                  "column": 106,
+                  "line": 13,
+                  "offset": 558,
+                },
+              },
+              "value": " Systems",
+            },
+          ],
+        },
+        Object {
+          "key": "url",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 15,
+              "offset": 642,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 14,
+              "offset": 569,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 71,
+                  "line": 14,
+                  "offset": 639,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 14,
+                  "offset": 578,
+                },
+              },
+              "value": "http://linkinghub.elsevier.com/retrieve/pii/S0021961410002107",
+            },
+          ],
+        },
+        Object {
+          "key": "urldate",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 16,
+              "offset": 668,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 15,
+              "offset": 642,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 24,
+                  "line": 15,
+                  "offset": 665,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 15,
+                  "offset": 655,
+                },
+              },
+              "value": "2014-06-18",
+            },
+          ],
+        },
+        Object {
+          "key": "volume",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 17,
+              "offset": 684,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 16,
+              "offset": 668,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 16,
+                  "offset": 682,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 16,
+                  "offset": 680,
+                },
+              },
+              "value": "42",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 19,
+      "offset": 687,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

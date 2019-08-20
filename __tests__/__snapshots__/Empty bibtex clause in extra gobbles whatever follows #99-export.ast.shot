@@ -1,0 +1,312 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse Empty bibtex clause in extra gobbles whatever follows #99-export to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "2014",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 9,
+          "offset": 247,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 63,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 2,
+              "offset": 14,
+            },
+          },
+          "value": Array [
+            Object {
+              "arguments": Array [
+                Object {
+                  "kind": "RequiredArgument",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 49,
+                      "line": 2,
+                      "offset": 60,
+                    },
+                    "start": Object {
+                      "column": 15,
+                      "line": 2,
+                      "offset": 26,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 48,
+                          "line": 2,
+                          "offset": 59,
+                        },
+                        "start": Object {
+                          "column": 16,
+                          "line": 2,
+                          "offset": 27,
+                        },
+                      },
+                      "value": "http://ptolemy.org/books/Systems",
+                    },
+                  ],
+                },
+              ],
+              "kind": "RegularCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 49,
+                  "line": 2,
+                  "offset": 60,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 2,
+                  "offset": 22,
+                },
+              },
+              "value": "url",
+            },
+          ],
+        },
+        Object {
+          "key": "ptolemaeus:14:systemdesigneditor",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 123,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 63,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 58,
+                  "line": 3,
+                  "offset": 120,
+                },
+                "start": Object {
+                  "column": 39,
+                  "line": 3,
+                  "offset": 101,
+                },
+              },
+              "value": "Claudius Ptolemaeus",
+            },
+          ],
+        },
+        Object {
+          "key": "publisher",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 154,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 123,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 29,
+                  "line": 4,
+                  "offset": 151,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 4,
+                  "offset": 138,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 28,
+                      "line": 4,
+                      "offset": 150,
+                    },
+                    "start": Object {
+                      "column": 17,
+                      "line": 4,
+                      "offset": 139,
+                    },
+                  },
+                  "value": "Ptolemy.org",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 228,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 154,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 58,
+                  "line": 5,
+                  "offset": 211,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 5,
+                  "offset": 165,
+                },
+              },
+              "value": "System Design, Modeling, and Simulation Using ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 72,
+                  "line": 5,
+                  "offset": 225,
+                },
+                "start": Object {
+                  "column": 58,
+                  "line": 5,
+                  "offset": 211,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 71,
+                      "line": 5,
+                      "offset": 224,
+                    },
+                    "start": Object {
+                      "column": 59,
+                      "line": 5,
+                      "offset": 212,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 70,
+                          "line": 5,
+                          "offset": 223,
+                        },
+                        "start": Object {
+                          "column": 60,
+                          "line": 5,
+                          "offset": 213,
+                        },
+                      },
+                      "value": "Ptolemy II",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "year",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 244,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 228,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 6,
+                  "offset": 242,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 6,
+                  "offset": 238,
+                },
+              },
+              "value": "2014",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 9,
+      "offset": 247,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

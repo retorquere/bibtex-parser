@@ -1,0 +1,206 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse Dates incorrect when Zotero date field includes times #934-export to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "2016",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 6,
+          "offset": 117,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 38,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 2,
+              "offset": 17,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 21,
+                  "line": 2,
+                  "offset": 35,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 2,
+                  "offset": 25,
+                },
+              },
+              "value": "2016-09-22",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 114,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 38,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 33,
+                  "line": 3,
+                  "offset": 70,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 3,
+                  "offset": 49,
+                },
+              },
+              "value": "Dates Incorrect When ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 43,
+                  "line": 3,
+                  "offset": 80,
+                },
+                "start": Object {
+                  "column": 33,
+                  "line": 3,
+                  "offset": 70,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 42,
+                      "line": 3,
+                      "offset": 79,
+                    },
+                    "start": Object {
+                      "column": 34,
+                      "line": 3,
+                      "offset": 71,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 41,
+                          "line": 3,
+                          "offset": 78,
+                        },
+                        "start": Object {
+                          "column": 35,
+                          "line": 3,
+                          "offset": 72,
+                        },
+                      },
+                      "value": "Zotero",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 70,
+                  "line": 3,
+                  "offset": 107,
+                },
+                "start": Object {
+                  "column": 43,
+                  "line": 3,
+                  "offset": 80,
+                },
+              },
+              "value": " Date Field Includes Times ",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 72,
+                  "line": 3,
+                  "offset": 109,
+                },
+                "start": Object {
+                  "column": 70,
+                  "line": 3,
+                  "offset": 107,
+                },
+              },
+              "value": "#",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 75,
+                  "line": 3,
+                  "offset": 112,
+                },
+                "start": Object {
+                  "column": 72,
+                  "line": 3,
+                  "offset": 109,
+                },
+              },
+              "value": "934",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 6,
+      "offset": 117,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

@@ -1,0 +1,316 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse Export of creator-type fields from embedded CSL variables #365 uppercase DOI #825-export 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "director": Array [
+          Object {
+            "firstName": "John",
+            "lastName": "Doe",
+          },
+          Object {
+            "firstName": "Rob",
+            "lastName": "Roe",
+          },
+        ],
+      },
+      "fields": Object {
+        "date": Array [
+          "2015",
+        ],
+        "director": Array [
+          "Doe, John",
+          "Roe, Rob",
+        ],
+        "location": Array [
+          "US/GB",
+        ],
+        "publisher": Array [
+          "<span class=\\"nocase\\">The Distributor</span>",
+        ],
+        "title": Array [
+          "A film",
+        ],
+      },
+      "key": "Doe2015",
+      "type": "movie",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Ann",
+            "lastName": "Author",
+          },
+        ],
+        "editor": Array [
+          Object {
+            "firstName": "Emma",
+            "lastName": "Editrix",
+          },
+          Object {
+            "firstName": "Ed",
+            "lastName": "Editor",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Author, Ann",
+        ],
+        "date": Array [
+          "2015",
+        ],
+        "editor": Array [
+          "Editrix, Emma",
+          "Editor, Ed",
+        ],
+        "institution": Array [
+          "<span class=\\"nocase\\">Institution</span>",
+        ],
+        "location": Array [
+          "<span class=\\"nocase\\">Place</span>",
+        ],
+        "note": Array [
+          "{:X-genre: xxx}",
+        ],
+        "number": Array [
+          "77",
+        ],
+        "title": Array [
+          "A report",
+        ],
+        "type": Array [
+          "Working paper",
+        ],
+      },
+      "key": "Author2015",
+      "type": "report",
+    },
+    Object {
+      "creators": Object {
+        "director": Array [
+          Object {
+            "firstName": "Stanley",
+            "lastName": "Kubrick",
+          },
+        ],
+      },
+      "fields": Object {
+        "date": Array [
+          "1964",
+        ],
+        "director": Array [
+          "Kubrick, Stanley",
+        ],
+        "shorttitle": Array [
+          "Dr. <span class=\\"nocase\\">Strangelove</span>",
+        ],
+        "title": Array [
+          "Dr. <span class=\\"nocase\\">Strangelove</span> or: how <span class=\\"nocase\\">I</span> learned to stop worrying and love the bomb",
+        ],
+      },
+      "key": "Kubrick1964",
+      "type": "video",
+    },
+    Object {
+      "creators": Object {
+        "director": Array [
+          Object {
+            "firstName": "Gail",
+            "lastName": "Mancuso",
+          },
+        ],
+        "scriptwriter": Array [
+          Object {
+            "firstName": "Michael",
+            "lastName": "Curtis",
+          },
+          Object {
+            "firstName": "Gregory S.",
+            "lastName": "Malins",
+          },
+        ],
+      },
+      "fields": Object {
+        "booktitle": Array [
+          "Friends",
+        ],
+        "date": Array [
+          "1996-09-16",
+        ],
+        "director": Array [
+          "Mancuso, Gail",
+        ],
+        "journaltitle": Array [
+          "Friends",
+        ],
+        "langid": Array [
+          "american",
+        ],
+        "location": Array [
+          "US",
+        ],
+        "number": Array [
+          "1",
+        ],
+        "publisher": Array [
+          "NBC",
+        ],
+        "scriptwriter": Array [
+          "Curtis, Michael",
+          "Malins, Gregory S.",
+        ],
+        "title": Array [
+          "The one with the <span class=\\"nocase\\">Princess Leia</span> fantasy",
+        ],
+        "volume": Array [
+          "3",
+        ],
+      },
+      "key": "friends:leia:tv",
+      "type": "video",
+    },
+    Object {
+      "creators": Object {
+        "director": Array [
+          Object {
+            "firstName": "Gail",
+            "lastName": "Mancuso",
+          },
+        ],
+        "scriptwriter": Array [
+          Object {
+            "firstName": "Michael",
+            "lastName": "Curtis",
+          },
+          Object {
+            "firstName": "Gregory S.",
+            "lastName": "Malins",
+          },
+        ],
+      },
+      "fields": Object {
+        "booktitle": Array [
+          "Friends",
+        ],
+        "date": Array [
+          "2003",
+        ],
+        "director": Array [
+          "Mancuso, Gail",
+        ],
+        "langid": Array [
+          "american",
+        ],
+        "location": Array [
+          "US",
+        ],
+        "number": Array [
+          "1",
+        ],
+        "origdate": Array [
+          "1996-09-16",
+        ],
+        "origpublisher": Array [
+          "NBC",
+        ],
+        "publisher": Array [
+          "<span class=\\"nocase\\">Warner Home Video</span>",
+        ],
+        "scriptwriter": Array [
+          "Curtis, Michael",
+          "Malins, Gregory S.",
+        ],
+        "title": Array [
+          "The one with the <span class=\\"nocase\\">Princess Leia</span> fantasy",
+        ],
+        "volume": Array [
+          "3",
+        ],
+      },
+      "key": "friends:leia:dvd",
+      "type": "video",
+    },
+    Object {
+      "creators": Object {
+        "editor": Array [
+          Object {
+            "literal": "Xxx",
+          },
+        ],
+      },
+      "fields": Object {
+        "editor": Array [
+          "\\"Xxx\\"",
+        ],
+        "note": Array [
+          "{:X-genre: xxx}",
+        ],
+      },
+      "key": "emptybook",
+      "type": "inreference",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "John",
+            "lastName": "Blair",
+          },
+        ],
+        "editor": Array [
+          Object {
+            "firstName": "H.C.G.",
+            "lastName": "Matthew",
+          },
+          Object {
+            "firstName": "Brian Howard",
+            "lastName": "Harrison",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Blair, John",
+        ],
+        "booktitle": Array [
+          "Oxford dictionary of national biography",
+        ],
+        "date": Array [
+          "2004",
+        ],
+        "doi": Array [
+          "10.1093/ref:odnb/10183",
+        ],
+        "editor": Array [
+          "Matthew, H.C.G.",
+          "Harrison, Brian Howard",
+        ],
+        "location": Array [
+          "<span class=\\"nocase\\">Oxford</span>",
+        ],
+        "publisher": Array [
+          "<span class=\\"nocase\\">Oxford University Press</span>",
+        ],
+        "title": Array [
+          "Frithuswith (<i>d.</i> 727)",
+        ],
+        "url": Array [
+          "http://www.oxforddnb.com/view/article/10183",
+        ],
+        "urldate": Array [
+          "2014-06-13",
+        ],
+      },
+      "key": "Blair2004",
+      "type": "inreference",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

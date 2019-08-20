@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse Better BibLaTeX.004-export 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Michael",
+            "lastName": "von Hicks",
+            "suffix": "III",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "von Hicks, III, Michael",
+        ],
+        "date": Array [
+          "2001",
+        ],
+        "edition": Array [
+          "1st,",
+        ],
+        "isbn": Array [
+          "0-69-697269-4",
+        ],
+        "location": Array [
+          "<span class=\\"nocase\\">Palo Alto</span>",
+        ],
+        "options": Array [
+          "useprefix=true",
+        ],
+        "publisher": Array [
+          "<span class=\\"nocase\\">Stanford Press</span>",
+        ],
+        "title": Array [
+          "Design of a <span class=\\"nocase\\">Carbon Fiber Composite Grid Structure</span> for the <span class=\\"nocase\\">GLAST</span> spacecraft using a novel manufacturing technique",
+        ],
+      },
+      "key": "hicks2001",
+      "type": "book",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

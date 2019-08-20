@@ -1,0 +1,380 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse biblatex; Language tag xx is exported, xx-XX is not #380-export to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "Spitzer1941",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 13,
+          "offset": 268,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 49,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 2,
+              "offset": 24,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 25,
+                  "line": 2,
+                  "offset": 46,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 2,
+                  "offset": 34,
+                },
+              },
+              "value": "Spitzer, Leo",
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 66,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 49,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 3,
+                  "offset": 63,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 3,
+                  "offset": 59,
+                },
+              },
+              "value": "1941",
+            },
+          ],
+        },
+        Object {
+          "key": "doi",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 93,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 66,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 25,
+                  "line": 4,
+                  "offset": 90,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 4,
+                  "offset": 75,
+                },
+              },
+              "value": "10.2307/2911510",
+            },
+          ],
+        },
+        Object {
+          "key": "issn",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 114,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 93,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 19,
+                  "line": 5,
+                  "offset": 111,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 5,
+                  "offset": 103,
+                },
+              },
+              "value": "01496611",
+            },
+          ],
+        },
+        Object {
+          "key": "journaltitle",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 156,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 114,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 40,
+                  "line": 6,
+                  "offset": 153,
+                },
+                "start": Object {
+                  "column": 19,
+                  "line": 6,
+                  "offset": 132,
+                },
+              },
+              "value": "Modern Language Notes",
+            },
+          ],
+        },
+        Object {
+          "key": "langid",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 177,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 156,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 19,
+                  "line": 7,
+                  "offset": 174,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 7,
+                  "offset": 168,
+                },
+              },
+              "value": "french",
+            },
+          ],
+        },
+        Object {
+          "key": "number",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 193,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 177,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 14,
+                  "line": 8,
+                  "offset": 190,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 8,
+                  "offset": 189,
+                },
+              },
+              "value": "2",
+            },
+          ],
+        },
+        Object {
+          "key": "pages",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 215,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 193,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 9,
+                  "offset": 212,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 9,
+                  "offset": 204,
+                },
+              },
+              "value": "110–113",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 250,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 215,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 33,
+                  "line": 10,
+                  "offset": 247,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 10,
+                  "offset": 226,
+                },
+              },
+              "value": "Le poêle de Descartes",
+            },
+          ],
+        },
+        Object {
+          "key": "volume",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 266,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 250,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 11,
+                  "offset": 264,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 11,
+                  "offset": 262,
+                },
+              },
+              "value": "56",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 13,
+      "offset": 268,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

@@ -1,0 +1,888 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse csquotes #302-export to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "tusseau_critique_2009",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 14,
+          "offset": 408,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 2,
+          "offset": 1,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 66,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 3,
+              "offset": 35,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 31,
+                  "line": 3,
+                  "offset": 63,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 3,
+                  "offset": 45,
+                },
+              },
+              "value": "Tusseau, Guillaume",
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 83,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 66,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 4,
+                  "offset": 80,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 4,
+                  "offset": 76,
+                },
+              },
+              "value": "2009",
+            },
+          ],
+        },
+        Object {
+          "key": "journaltitle",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 142,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 83,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 57,
+                  "line": 5,
+                  "offset": 139,
+                },
+                "start": Object {
+                  "column": 19,
+                  "line": 5,
+                  "offset": 101,
+                },
+              },
+              "value": "Revue française de droit administratif",
+            },
+          ],
+        },
+        Object {
+          "key": "langid",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 163,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 142,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 19,
+                  "line": 6,
+                  "offset": 160,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 6,
+                  "offset": 154,
+                },
+              },
+              "value": "french",
+            },
+          ],
+        },
+        Object {
+          "key": "number",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 179,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 163,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 14,
+                  "line": 7,
+                  "offset": 176,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 7,
+                  "offset": 175,
+                },
+              },
+              "value": "4",
+            },
+          ],
+        },
+        Object {
+          "key": "pages",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 201,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 179,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 8,
+                  "offset": 198,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 8,
+                  "offset": 190,
+                },
+              },
+              "value": "641–656",
+            },
+          ],
+        },
+        Object {
+          "key": "shortjournal",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 226,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 201,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 23,
+                  "line": 9,
+                  "offset": 223,
+                },
+                "start": Object {
+                  "column": 19,
+                  "line": 9,
+                  "offset": 219,
+                },
+              },
+              "value": "RFDA",
+            },
+          ],
+        },
+        Object {
+          "key": "shorttitle",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 284,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 226,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 56,
+                  "line": 10,
+                  "offset": 281,
+                },
+                "start": Object {
+                  "column": 17,
+                  "line": 10,
+                  "offset": 242,
+                },
+              },
+              "value": "Critique d'une métanotion fonctionnelle",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 405,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 284,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 87,
+                  "line": 11,
+                  "offset": 370,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 11,
+                  "offset": 295,
+                },
+              },
+              "value": "Critique d'une métanotion fonctionnelle. La notion (trop) fonctionnelle de ",
+            },
+            Object {
+              "arguments": Array [
+                Object {
+                  "kind": "RequiredArgument",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 120,
+                      "line": 11,
+                      "offset": 403,
+                    },
+                    "start": Object {
+                      "column": 98,
+                      "line": 11,
+                      "offset": 381,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 119,
+                          "line": 11,
+                          "offset": 402,
+                        },
+                        "start": Object {
+                          "column": 99,
+                          "line": 11,
+                          "offset": 382,
+                        },
+                      },
+                      "value": "notion fonctionnelle",
+                    },
+                  ],
+                },
+              ],
+              "kind": "RegularCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 120,
+                  "line": 11,
+                  "offset": 403,
+                },
+                "start": Object {
+                  "column": 87,
+                  "line": 11,
+                  "offset": 370,
+                },
+              },
+              "value": "mkbibquote",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+    Object {
+      "id": "searle_how_1964",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 27,
+          "offset": 704,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 14,
+          "offset": 408,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 16,
+              "offset": 464,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 15,
+              "offset": 436,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 28,
+                  "line": 15,
+                  "offset": 461,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 15,
+                  "offset": 446,
+                },
+              },
+              "value": "Searle, John R.",
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 17,
+              "offset": 481,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 16,
+              "offset": 464,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 16,
+                  "offset": 478,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 16,
+                  "offset": 474,
+                },
+              },
+              "value": "1964",
+            },
+          ],
+        },
+        Object {
+          "key": "doi",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 18,
+              "offset": 508,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 17,
+              "offset": 481,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 25,
+                  "line": 17,
+                  "offset": 505,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 17,
+                  "offset": 490,
+                },
+              },
+              "value": "10.2307/2183201",
+            },
+          ],
+        },
+        Object {
+          "key": "issn",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 19,
+              "offset": 529,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 18,
+              "offset": 508,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 19,
+                  "line": 18,
+                  "offset": 526,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 18,
+                  "offset": 518,
+                },
+              },
+              "value": "00318108",
+            },
+          ],
+        },
+        Object {
+          "key": "journaltitle",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 20,
+              "offset": 574,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 19,
+              "offset": 529,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 43,
+                  "line": 19,
+                  "offset": 571,
+                },
+                "start": Object {
+                  "column": 19,
+                  "line": 19,
+                  "offset": 547,
+                },
+              },
+              "value": "The Philosophical Review",
+            },
+          ],
+        },
+        Object {
+          "key": "langid",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 21,
+              "offset": 596,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 20,
+              "offset": 574,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 20,
+                  "offset": 593,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 20,
+                  "offset": 586,
+                },
+              },
+              "value": "english",
+            },
+          ],
+        },
+        Object {
+          "key": "number",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 22,
+              "offset": 612,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 21,
+              "offset": 596,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 14,
+                  "line": 21,
+                  "offset": 609,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 21,
+                  "offset": 608,
+                },
+              },
+              "value": "1",
+            },
+          ],
+        },
+        Object {
+          "key": "pages",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 23,
+              "offset": 632,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 22,
+              "offset": 612,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 18,
+                  "line": 22,
+                  "offset": 629,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 22,
+                  "offset": 623,
+                },
+              },
+              "value": "43–58",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 24,
+              "offset": 685,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 23,
+              "offset": 632,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 27,
+                  "line": 23,
+                  "offset": 658,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 23,
+                  "offset": 643,
+                },
+              },
+              "value": "How to Derive \\"",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 36,
+                  "line": 23,
+                  "offset": 667,
+                },
+                "start": Object {
+                  "column": 27,
+                  "line": 23,
+                  "offset": 658,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 35,
+                      "line": 23,
+                      "offset": 666,
+                    },
+                    "start": Object {
+                      "column": 28,
+                      "line": 23,
+                      "offset": 659,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 34,
+                          "line": 23,
+                          "offset": 665,
+                        },
+                        "start": Object {
+                          "column": 29,
+                          "line": 23,
+                          "offset": 660,
+                        },
+                      },
+                      "value": "Ought",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 44,
+                  "line": 23,
+                  "offset": 675,
+                },
+                "start": Object {
+                  "column": 36,
+                  "line": 23,
+                  "offset": 667,
+                },
+              },
+              "value": "\\" from \\"",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 50,
+                  "line": 23,
+                  "offset": 681,
+                },
+                "start": Object {
+                  "column": 44,
+                  "line": 23,
+                  "offset": 675,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 49,
+                      "line": 23,
+                      "offset": 680,
+                    },
+                    "start": Object {
+                      "column": 45,
+                      "line": 23,
+                      "offset": 676,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 48,
+                          "line": 23,
+                          "offset": 679,
+                        },
+                        "start": Object {
+                          "column": 46,
+                          "line": 23,
+                          "offset": 677,
+                        },
+                      },
+                      "value": "Is",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 51,
+                  "line": 23,
+                  "offset": 682,
+                },
+                "start": Object {
+                  "column": 50,
+                  "line": 23,
+                  "offset": 681,
+                },
+              },
+              "value": "\\"",
+            },
+          ],
+        },
+        Object {
+          "key": "volume",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 25,
+              "offset": 701,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 24,
+              "offset": 685,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 24,
+                  "offset": 699,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 24,
+                  "offset": 697,
+                },
+              },
+              "value": "73",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 27,
+      "offset": 704,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

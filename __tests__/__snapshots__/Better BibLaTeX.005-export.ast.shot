@@ -1,0 +1,360 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse Better BibLaTeX.005-export to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "Oliveira_2009",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 12,
+          "offset": 212,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 2,
+          "offset": 1,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 51,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 3,
+              "offset": 27,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 24,
+                  "line": 3,
+                  "offset": 48,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 3,
+                  "offset": 37,
+                },
+              },
+              "value": "Oliveira, A",
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 68,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 51,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 4,
+                  "offset": 65,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 4,
+                  "offset": 61,
+                },
+              },
+              "value": "2009",
+            },
+          ],
+        },
+        Object {
+          "key": "journaltitle",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 107,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 68,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 23,
+                  "line": 5,
+                  "offset": 90,
+                },
+                "start": Object {
+                  "column": 19,
+                  "line": 5,
+                  "offset": 86,
+                },
+              },
+              "value": "Oil ",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 25,
+                  "line": 5,
+                  "offset": 92,
+                },
+                "start": Object {
+                  "column": 23,
+                  "line": 5,
+                  "offset": 90,
+                },
+              },
+              "value": "&",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 37,
+                  "line": 5,
+                  "offset": 104,
+                },
+                "start": Object {
+                  "column": 25,
+                  "line": 5,
+                  "offset": 92,
+                },
+              },
+              "value": " Gas Journal",
+            },
+          ],
+        },
+        Object {
+          "key": "number",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 124,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 107,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 6,
+                  "offset": 121,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 6,
+                  "offset": 119,
+                },
+              },
+              "value": "29",
+            },
+          ],
+        },
+        Object {
+          "key": "pages",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 140,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 124,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 14,
+                  "line": 7,
+                  "offset": 137,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 7,
+                  "offset": 135,
+                },
+              },
+              "value": "29",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 192,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 140,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 8,
+                  "offset": 159,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 8,
+                  "offset": 151,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 19,
+                      "line": 8,
+                      "offset": 158,
+                    },
+                    "start": Object {
+                      "column": 13,
+                      "line": 8,
+                      "offset": 152,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 18,
+                          "line": 8,
+                          "offset": 157,
+                        },
+                        "start": Object {
+                          "column": 14,
+                          "line": 8,
+                          "offset": 153,
+                        },
+                      },
+                      "value": "USGS",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 50,
+                  "line": 8,
+                  "offset": 189,
+                },
+                "start": Object {
+                  "column": 20,
+                  "line": 8,
+                  "offset": 159,
+                },
+              },
+              "value": " Monitoring Ecological Impacts",
+            },
+          ],
+        },
+        Object {
+          "key": "volume",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 209,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 192,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 16,
+                  "line": 9,
+                  "offset": 207,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 9,
+                  "offset": 204,
+                },
+              },
+              "value": "107",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 12,
+      "offset": 212,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

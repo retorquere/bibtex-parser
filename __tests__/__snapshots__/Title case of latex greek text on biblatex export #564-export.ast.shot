@@ -1,0 +1,3237 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse Title case of latex greek text on biblatex export #564-export to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "dalrimple_use_2006",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 97,
+          "offset": 6500,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 2,
+          "offset": 1,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "abstract",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 639,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 3,
+              "offset": 32,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 607,
+                  "line": 3,
+                  "offset": 636,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 3,
+                  "offset": 44,
+                },
+              },
+              "value": "In this article it is argued that the καί in Rev 11,1b, which introduces 'the altar' and 'the worshippers', is epexegetical and best rendered 'that is'. Consequently, the designations 'the altar' and 'the worshippers' serve to clarify precisely who are the recipients of God's sovereign protection — entailed in the act of 'measuring the temple of God'. It is further contended that these designations serve to distinguish between two groups within the community of the righteous: i.e., those who are martyred ('the altar') and those who simply remain faithful to the end ('the worshippers').",
+            },
+          ],
+        },
+        Object {
+          "key": "annotation",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 86,
+              "offset": 6154,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 639,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 42,
+                  "line": 26,
+                  "offset": 1678,
+                },
+                "start": Object {
+                  "column": 17,
+                  "line": 4,
+                  "offset": 655,
+                },
+              },
+              "value": "389 The phrase, the 'temple of God', which occurs eleven times in the NT(24), connotes a spiritual application in in every instance except one. The only occasion in which the phrase refers to the physical temple in Jerusalem is in Matt 26,61. However, the use of this phrase in Matthew, instead of weakening the case for a spiritual understanding throughout the NT, strengthens it.\\" p389 NT Refs Matt 26:61; 1 Cor 3:16-17; 2 Cor 6:16; 2 Thess 2:4; Rev 3:12; 7:15;11:1-19; Eph 2:19-22; 1 Pet 2:5   Matthew 26:61 61 and said, ‘This fellow said, “I am able to destroy the temple of God and to build it in three days.”’ 1 Corinthians 3:16-17 16 Do you not know that you are God’s temple and that God’s Spirit dwells in you?[a] 17 If anyone destroys God’s temple, God will destroy that person. For God’s temple is holy, and you are that temple. 2 Corinthians 6:16 16 What agreement has the temple of God with idols? For we[a] are the temple of the living God; as God said, ‘I will live in them and walk among them,",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 44,
+                  "line": 26,
+                  "offset": 1680,
+                },
+                "start": Object {
+                  "column": 42,
+                  "line": 26,
+                  "offset": 1678,
+                },
+              },
+              "value": "\\\\",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 29,
+                  "line": 27,
+                  "offset": 1709,
+                },
+                "start": Object {
+                  "column": 44,
+                  "line": 26,
+                  "offset": 1680,
+                },
+              },
+              "value": "     and I will be their God,",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 31,
+                  "line": 27,
+                  "offset": 1711,
+                },
+                "start": Object {
+                  "column": 29,
+                  "line": 27,
+                  "offset": 1709,
+                },
+              },
+              "value": "\\\\",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 17,
+                  "line": 38,
+                  "offset": 2217,
+                },
+                "start": Object {
+                  "column": 31,
+                  "line": 27,
+                  "offset": 1711,
+                },
+              },
+              "value": "     and they shall be my people. 2 Thessalonians 2:4 4 He opposes and exalts himself above every so-called god or object of worship, so that he takes his seat in the temple of God, declaring himself to be God. Revelation 3:12 12 If you conquer, I will make you a pillar in the temple of my God; you will never go out of it. I will write on you the name of my God, and the name of the city of my God, the new Jerusalem that comes down from my God out of heaven, and my own new name. Revelation 7:15 ",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 19,
+                  "line": 38,
+                  "offset": 2219,
+                },
+                "start": Object {
+                  "column": 17,
+                  "line": 38,
+                  "offset": 2217,
+                },
+              },
+              "value": "\\\\",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 54,
+                  "line": 39,
+                  "offset": 2273,
+                },
+                "start": Object {
+                  "column": 19,
+                  "line": 38,
+                  "offset": 2219,
+                },
+              },
+              "value": " 15 For this reason they are before the throne of God,",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 56,
+                  "line": 39,
+                  "offset": 2275,
+                },
+                "start": Object {
+                  "column": 54,
+                  "line": 39,
+                  "offset": 2273,
+                },
+              },
+              "value": "\\\\",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 53,
+                  "line": 40,
+                  "offset": 2328,
+                },
+                "start": Object {
+                  "column": 56,
+                  "line": 39,
+                  "offset": 2275,
+                },
+              },
+              "value": "     and worship him day and night within his temple,",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 55,
+                  "line": 40,
+                  "offset": 2330,
+                },
+                "start": Object {
+                  "column": 53,
+                  "line": 40,
+                  "offset": 2328,
+                },
+              },
+              "value": "\\\\",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 18,
+                  "line": 45,
+                  "offset": 2428,
+                },
+                "start": Object {
+                  "column": 55,
+                  "line": 40,
+                  "offset": 2330,
+                },
+              },
+              "value": "     and the one who is seated on the throne will shelter them. Revelation 11 The Two Witnesses",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 45,
+                  "offset": 2430,
+                },
+                "start": Object {
+                  "column": 18,
+                  "line": 45,
+                  "offset": 2428,
+                },
+              },
+              "value": "\\\\",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 56,
+                  "offset": 4577,
+                },
+                "start": Object {
+                  "column": 20,
+                  "line": 45,
+                  "offset": 2430,
+                },
+              },
+              "value": " 11 Then I was given a measuring rod like a staff, and I was told, ‘Come and measure the temple of God and the altar and those who worship there, 2 but do not measure the court outside the temple; leave that out, for it is given over to the nations, and they will trample over the holy city for forty-two months. 3 And I will grant my two witnesses authority to prophesy for one thousand two hundred and sixty days, wearing sackcloth.’ 4 These are the two olive trees and the two lampstands that stand before the Lord of the earth. 5 And if anyone wants to harm them, fire pours from their mouth and consumes their foes; anyone who wants to harm them must be killed in this manner. 6 They have authority to shut the sky, so that no rain may fall during the days of their prophesying, and they have authority over the waters to turn them into blood, and to strike the earth with every kind of plague, as often as they desire. 7 When they have finished their testimony, the beast that comes up from the bottomless pit will make war on them and conquer them and kill them, 8 and their dead bodies will lie in the street of the great city that is prophetically[a] called Sodom and Egypt, where also their Lord was crucified. 9 For three and a half days members of the peoples and tribes and languages and nations will gaze at their dead bodies and refuse to let them be placed in a tomb; 10 and the inhabitants of the earth will gloat over them and celebrate and exchange presents, because these two prophets had been a torment to the inhabitants of the earth. 11 But after the three and a half days, the breath[b] of life from God entered them, and they stood on their feet, and those who saw them were terrified. 12 Then they[c] heard a loud voice from heaven saying to them, ‘Come up here!’ And they went up to heaven in a cloud while their enemies watched them. 13 At that moment there was a great earthquake, and a tenth of the city fell; seven thousand people were killed in the earthquake, and the rest were terrified and gave glory to the God of heaven. 14 The second woe has passed. The third woe is coming very soon. The Seventh Trumpet",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 22,
+                  "line": 56,
+                  "offset": 4579,
+                },
+                "start": Object {
+                  "column": 20,
+                  "line": 56,
+                  "offset": 4577,
+                },
+              },
+              "value": "\\\\",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 61,
+                  "line": 59,
+                  "offset": 4731,
+                },
+                "start": Object {
+                  "column": 22,
+                  "line": 56,
+                  "offset": 4579,
+                },
+              },
+              "value": " 15 Then the seventh angel blew his trumpet, and there were loud voices in heaven, saying, ‘The kingdom of the world has become the kingdom of our Lord",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 63,
+                  "line": 59,
+                  "offset": 4733,
+                },
+                "start": Object {
+                  "column": 61,
+                  "line": 59,
+                  "offset": 4731,
+                },
+              },
+              "value": "\\\\",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 27,
+                  "line": 60,
+                  "offset": 4760,
+                },
+                "start": Object {
+                  "column": 63,
+                  "line": 59,
+                  "offset": 4733,
+                },
+              },
+              "value": "     and of his Messiah,[d]",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 29,
+                  "line": 60,
+                  "offset": 4762,
+                },
+                "start": Object {
+                  "column": 27,
+                  "line": 60,
+                  "offset": 4760,
+                },
+              },
+              "value": "\\\\",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 38,
+                  "line": 61,
+                  "offset": 4800,
+                },
+                "start": Object {
+                  "column": 29,
+                  "line": 60,
+                  "offset": 4762,
+                },
+              },
+              "value": " and he will reign for ever and ever.’",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 40,
+                  "line": 61,
+                  "offset": 4802,
+                },
+                "start": Object {
+                  "column": 38,
+                  "line": 61,
+                  "offset": 4800,
+                },
+              },
+              "value": "\\\\",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 40,
+                  "line": 64,
+                  "offset": 4962,
+                },
+                "start": Object {
+                  "column": 40,
+                  "line": 61,
+                  "offset": 4802,
+                },
+              },
+              "value": " 16 Then the twenty-four elders who sit on their thrones before God fell on their faces and worshipped God, 17 singing, ‘We give you thanks, Lord God Almighty,",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 42,
+                  "line": 64,
+                  "offset": 4964,
+                },
+                "start": Object {
+                  "column": 40,
+                  "line": 64,
+                  "offset": 4962,
+                },
+              },
+              "value": "\\\\",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 26,
+                  "line": 65,
+                  "offset": 4990,
+                },
+                "start": Object {
+                  "column": 42,
+                  "line": 64,
+                  "offset": 4964,
+                },
+              },
+              "value": "     who are and who were,",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 28,
+                  "line": 65,
+                  "offset": 4992,
+                },
+                "start": Object {
+                  "column": 26,
+                  "line": 65,
+                  "offset": 4990,
+                },
+              },
+              "value": "\\\\",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 36,
+                  "line": 66,
+                  "offset": 5028,
+                },
+                "start": Object {
+                  "column": 28,
+                  "line": 65,
+                  "offset": 4992,
+                },
+              },
+              "value": " for you have taken your great power",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 38,
+                  "line": 66,
+                  "offset": 5030,
+                },
+                "start": Object {
+                  "column": 36,
+                  "line": 66,
+                  "offset": 5028,
+                },
+              },
+              "value": "\\\\",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 24,
+                  "line": 67,
+                  "offset": 5054,
+                },
+                "start": Object {
+                  "column": 38,
+                  "line": 66,
+                  "offset": 5030,
+                },
+              },
+              "value": "     and begun to reign.",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 26,
+                  "line": 67,
+                  "offset": 5056,
+                },
+                "start": Object {
+                  "column": 24,
+                  "line": 67,
+                  "offset": 5054,
+                },
+              },
+              "value": "\\\\",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 22,
+                  "line": 68,
+                  "offset": 5078,
+                },
+                "start": Object {
+                  "column": 26,
+                  "line": 67,
+                  "offset": 5056,
+                },
+              },
+              "value": " 18 The nations raged,",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 24,
+                  "line": 68,
+                  "offset": 5080,
+                },
+                "start": Object {
+                  "column": 22,
+                  "line": 68,
+                  "offset": 5078,
+                },
+              },
+              "value": "\\\\",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 29,
+                  "line": 69,
+                  "offset": 5109,
+                },
+                "start": Object {
+                  "column": 24,
+                  "line": 68,
+                  "offset": 5080,
+                },
+              },
+              "value": "     but your wrath has come,",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 31,
+                  "line": 69,
+                  "offset": 5111,
+                },
+                "start": Object {
+                  "column": 29,
+                  "line": 69,
+                  "offset": 5109,
+                },
+              },
+              "value": "\\\\",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 39,
+                  "line": 70,
+                  "offset": 5150,
+                },
+                "start": Object {
+                  "column": 31,
+                  "line": 69,
+                  "offset": 5111,
+                },
+              },
+              "value": "     and the time for judging the dead,",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 41,
+                  "line": 70,
+                  "offset": 5152,
+                },
+                "start": Object {
+                  "column": 39,
+                  "line": 70,
+                  "offset": 5150,
+                },
+              },
+              "value": "\\\\",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 45,
+                  "line": 71,
+                  "offset": 5197,
+                },
+                "start": Object {
+                  "column": 41,
+                  "line": 70,
+                  "offset": 5152,
+                },
+              },
+              "value": " for rewarding your servants,[e] the prophets",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 47,
+                  "line": 71,
+                  "offset": 5199,
+                },
+                "start": Object {
+                  "column": 45,
+                  "line": 71,
+                  "offset": 5197,
+                },
+              },
+              "value": "\\\\",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 43,
+                  "line": 72,
+                  "offset": 5242,
+                },
+                "start": Object {
+                  "column": 47,
+                  "line": 71,
+                  "offset": 5199,
+                },
+              },
+              "value": "     and saints and all who fear your name,",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 45,
+                  "line": 72,
+                  "offset": 5244,
+                },
+                "start": Object {
+                  "column": 43,
+                  "line": 72,
+                  "offset": 5242,
+                },
+              },
+              "value": "\\\\",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 26,
+                  "line": 73,
+                  "offset": 5270,
+                },
+                "start": Object {
+                  "column": 45,
+                  "line": 72,
+                  "offset": 5244,
+                },
+              },
+              "value": "     both small and great,",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 28,
+                  "line": 73,
+                  "offset": 5272,
+                },
+                "start": Object {
+                  "column": 26,
+                  "line": 73,
+                  "offset": 5270,
+                },
+              },
+              "value": "\\\\",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 49,
+                  "line": 74,
+                  "offset": 5321,
+                },
+                "start": Object {
+                  "column": 28,
+                  "line": 73,
+                  "offset": 5272,
+                },
+              },
+              "value": " and for destroying those who destroy the earth.’",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 51,
+                  "line": 74,
+                  "offset": 5323,
+                },
+                "start": Object {
+                  "column": 49,
+                  "line": 74,
+                  "offset": 5321,
+                },
+              },
+              "value": "\\\\",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 1,
+                  "line": 77,
+                  "offset": 5521,
+                },
+                "start": Object {
+                  "column": 51,
+                  "line": 74,
+                  "offset": 5323,
+                },
+              },
+              "value": " 19 Then God’s temple in heaven was opened, and the ark of his covenant was seen within his temple; and there were flashes of lightning, rumblings, peals of thunder, an earthquake, and heavy hail. ",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 3,
+                  "line": 77,
+                  "offset": 5523,
+                },
+                "start": Object {
+                  "column": 1,
+                  "line": 77,
+                  "offset": 5521,
+                },
+              },
+              "value": "#",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 5,
+                  "line": 77,
+                  "offset": 5525,
+                },
+                "start": Object {
+                  "column": 3,
+                  "line": 77,
+                  "offset": 5523,
+                },
+              },
+              "value": "#",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 7,
+                  "line": 77,
+                  "offset": 5527,
+                },
+                "start": Object {
+                  "column": 5,
+                  "line": 77,
+                  "offset": 5525,
+                },
+              },
+              "value": "#",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 168,
+                  "line": 85,
+                  "offset": 6151,
+                },
+                "start": Object {
+                  "column": 7,
+                  "line": 77,
+                  "offset": 5527,
+                },
+              },
+              "value": " miscs Ephesians 2:19-22 19 So then you are no longer strangers and aliens, but you are citizens with the saints and also members of the household of God, 20 built upon the foundation of the apostles and prophets, with Christ Jesus himself as the cornerstone.[a] 21 In him the whole structure is joined together and grows into a holy temple in the Lord; 22 in whom you also are built together spiritually[b] into a dwelling-place for God. 1 Peter 2:5 5 like living stones, let yourselves be built[a] into a spiritual house, to be a holy priesthood, to offer spiritual sacrifices acceptable to God through Jesus Christ.",
+            },
+          ],
+        },
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 87,
+              "offset": 6183,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 86,
+              "offset": 6154,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 27,
+                  "line": 86,
+                  "offset": 6180,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 86,
+                  "offset": 6166,
+                },
+              },
+              "value": "Dalrimple, Rob",
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 88,
+              "offset": 6200,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 87,
+              "offset": 6183,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 87,
+                  "offset": 6197,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 87,
+                  "offset": 6193,
+                },
+              },
+              "value": "2006",
+            },
+          ],
+        },
+        Object {
+          "key": "issn",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 89,
+              "offset": 6222,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 88,
+              "offset": 6200,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 88,
+                  "offset": 6219,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 88,
+                  "offset": 6210,
+                },
+              },
+              "value": "0006-0887",
+            },
+          ],
+        },
+        Object {
+          "key": "journaltitle",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 90,
+              "offset": 6250,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 89,
+              "offset": 6222,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 26,
+                  "line": 89,
+                  "offset": 6247,
+                },
+                "start": Object {
+                  "column": 19,
+                  "line": 89,
+                  "offset": 6240,
+                },
+              },
+              "value": "Biblica",
+            },
+          ],
+        },
+        Object {
+          "key": "number",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 91,
+              "offset": 6266,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 90,
+              "offset": 6250,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 14,
+                  "line": 90,
+                  "offset": 6263,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 90,
+                  "offset": 6262,
+                },
+              },
+              "value": "3",
+            },
+          ],
+        },
+        Object {
+          "key": "pages",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 92,
+              "offset": 6288,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 91,
+              "offset": 6266,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 91,
+                  "offset": 6285,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 91,
+                  "offset": 6277,
+                },
+              },
+              "value": "387–394",
+            },
+          ],
+        },
+        Object {
+          "key": "shortjournal",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 93,
+              "offset": 6316,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 92,
+              "offset": 6288,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 26,
+                  "line": 92,
+                  "offset": 6313,
+                },
+                "start": Object {
+                  "column": 19,
+                  "line": 92,
+                  "offset": 6306,
+                },
+              },
+              "value": "Biblica",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 94,
+              "offset": 6481,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 93,
+              "offset": 6316,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 16,
+                  "line": 93,
+                  "offset": 6331,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 93,
+                  "offset": 6327,
+                },
+              },
+              "value": "The ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 23,
+                  "line": 93,
+                  "offset": 6338,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 93,
+                  "offset": 6331,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 22,
+                      "line": 93,
+                      "offset": 6337,
+                    },
+                    "start": Object {
+                      "column": 17,
+                      "line": 93,
+                      "offset": 6332,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 21,
+                          "line": 93,
+                          "offset": 6336,
+                        },
+                        "start": Object {
+                          "column": 18,
+                          "line": 93,
+                          "offset": 6333,
+                        },
+                      },
+                      "value": "Use",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 34,
+                  "line": 93,
+                  "offset": 6349,
+                },
+                "start": Object {
+                  "column": 23,
+                  "line": 93,
+                  "offset": 6338,
+                },
+              },
+              "value": " of Καί in ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 48,
+                  "line": 93,
+                  "offset": 6363,
+                },
+                "start": Object {
+                  "column": 34,
+                  "line": 93,
+                  "offset": 6349,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 47,
+                      "line": 93,
+                      "offset": 6362,
+                    },
+                    "start": Object {
+                      "column": 35,
+                      "line": 93,
+                      "offset": 6350,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 46,
+                          "line": 93,
+                          "offset": 6361,
+                        },
+                        "start": Object {
+                          "column": 36,
+                          "line": 93,
+                          "offset": 6351,
+                        },
+                      },
+                      "value": "Revelation",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 62,
+                  "line": 93,
+                  "offset": 6377,
+                },
+                "start": Object {
+                  "column": 48,
+                  "line": 93,
+                  "offset": 6363,
+                },
+              },
+              "value": " 11,1 and the ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 78,
+                  "line": 93,
+                  "offset": 6393,
+                },
+                "start": Object {
+                  "column": 62,
+                  "line": 93,
+                  "offset": 6377,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 77,
+                      "line": 93,
+                      "offset": 6392,
+                    },
+                    "start": Object {
+                      "column": 63,
+                      "line": 93,
+                      "offset": 6378,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 76,
+                          "line": 93,
+                          "offset": 6391,
+                        },
+                        "start": Object {
+                          "column": 64,
+                          "line": 93,
+                          "offset": 6379,
+                        },
+                      },
+                      "value": "Implications",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 87,
+                  "line": 93,
+                  "offset": 6402,
+                },
+                "start": Object {
+                  "column": 78,
+                  "line": 93,
+                  "offset": 6393,
+                },
+              },
+              "value": " for the ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 105,
+                  "line": 93,
+                  "offset": 6420,
+                },
+                "start": Object {
+                  "column": 87,
+                  "line": 93,
+                  "offset": 6402,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 104,
+                      "line": 93,
+                      "offset": 6419,
+                    },
+                    "start": Object {
+                      "column": 88,
+                      "line": 93,
+                      "offset": 6403,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 103,
+                          "line": 93,
+                          "offset": 6418,
+                        },
+                        "start": Object {
+                          "column": 89,
+                          "line": 93,
+                          "offset": 6404,
+                        },
+                      },
+                      "value": "Identification",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 113,
+                  "line": 93,
+                  "offset": 6428,
+                },
+                "start": Object {
+                  "column": 105,
+                  "line": 93,
+                  "offset": 6420,
+                },
+              },
+              "value": " of the ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 123,
+                  "line": 93,
+                  "offset": 6438,
+                },
+                "start": Object {
+                  "column": 113,
+                  "line": 93,
+                  "offset": 6428,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 122,
+                      "line": 93,
+                      "offset": 6437,
+                    },
+                    "start": Object {
+                      "column": 114,
+                      "line": 93,
+                      "offset": 6429,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 121,
+                          "line": 93,
+                          "offset": 6436,
+                        },
+                        "start": Object {
+                          "column": 115,
+                          "line": 93,
+                          "offset": 6430,
+                        },
+                      },
+                      "value": "Temple",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 129,
+                  "line": 93,
+                  "offset": 6444,
+                },
+                "start": Object {
+                  "column": 123,
+                  "line": 93,
+                  "offset": 6438,
+                },
+              },
+              "value": ", the ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 138,
+                  "line": 93,
+                  "offset": 6453,
+                },
+                "start": Object {
+                  "column": 129,
+                  "line": 93,
+                  "offset": 6444,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 137,
+                      "line": 93,
+                      "offset": 6452,
+                    },
+                    "start": Object {
+                      "column": 130,
+                      "line": 93,
+                      "offset": 6445,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 136,
+                          "line": 93,
+                          "offset": 6451,
+                        },
+                        "start": Object {
+                          "column": 131,
+                          "line": 93,
+                          "offset": 6446,
+                        },
+                      },
+                      "value": "Altar",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 148,
+                  "line": 93,
+                  "offset": 6463,
+                },
+                "start": Object {
+                  "column": 138,
+                  "line": 93,
+                  "offset": 6453,
+                },
+              },
+              "value": ", and the ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 163,
+                  "line": 93,
+                  "offset": 6478,
+                },
+                "start": Object {
+                  "column": 148,
+                  "line": 93,
+                  "offset": 6463,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 162,
+                      "line": 93,
+                      "offset": 6477,
+                    },
+                    "start": Object {
+                      "column": 149,
+                      "line": 93,
+                      "offset": 6464,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 161,
+                          "line": 93,
+                          "offset": 6476,
+                        },
+                        "start": Object {
+                          "column": 150,
+                          "line": 93,
+                          "offset": 6465,
+                        },
+                      },
+                      "value": "Worshippers",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "volume",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 95,
+              "offset": 6497,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 94,
+              "offset": 6481,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 94,
+                  "offset": 6495,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 94,
+                  "offset": 6493,
+                },
+              },
+              "value": "87",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+    Object {
+      "id": "dalrymple_use_2006",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 193,
+          "offset": 13004,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 97,
+          "offset": 6500,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "abstract",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 99,
+              "offset": 7138,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 98,
+              "offset": 6531,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 607,
+                  "line": 98,
+                  "offset": 7135,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 98,
+                  "offset": 6543,
+                },
+              },
+              "value": "In this article it is argued that the καί in Rev 11,1b, which introduces 'the altar' and 'the worshippers', is epexegetical and best rendered 'that is'. Consequently, the designations 'the altar' and 'the worshippers' serve to clarify precisely who are the recipients of God's sovereign protection — entailed in the act of 'measuring the temple of God'. It is further contended that these designations serve to distinguish between two groups within the community of the righteous: i.e., those who are martyred ('the altar') and those who simply remain faithful to the end ('the worshippers').",
+            },
+          ],
+        },
+        Object {
+          "key": "annotation",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 181,
+              "offset": 12653,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 99,
+              "offset": 7138,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 42,
+                  "line": 121,
+                  "offset": 8177,
+                },
+                "start": Object {
+                  "column": 17,
+                  "line": 99,
+                  "offset": 7154,
+                },
+              },
+              "value": "389 The phrase, the 'temple of God', which occurs eleven times in the NT(24), connotes a spiritual application in in every instance except one. The only occasion in which the phrase refers to the physical temple in Jerusalem is in Matt 26,61. However, the use of this phrase in Matthew, instead of weakening the case for a spiritual understanding throughout the NT, strengthens it.\\" p389 NT Refs Matt 26:61; 1 Cor 3:16-17; 2 Cor 6:16; 2 Thess 2:4; Rev 3:12; 7:15;11:1-19; Eph 2:19-22; 1 Pet 2:5   Matthew 26:61 61 and said, ‘This fellow said, “I am able to destroy the temple of God and to build it in three days.”’ 1 Corinthians 3:16-17 16 Do you not know that you are God’s temple and that God’s Spirit dwells in you?[a] 17 If anyone destroys God’s temple, God will destroy that person. For God’s temple is holy, and you are that temple. 2 Corinthians 6:16 16 What agreement has the temple of God with idols? For we[a] are the temple of the living God; as God said, ‘I will live in them and walk among them,",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 44,
+                  "line": 121,
+                  "offset": 8179,
+                },
+                "start": Object {
+                  "column": 42,
+                  "line": 121,
+                  "offset": 8177,
+                },
+              },
+              "value": "\\\\",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 29,
+                  "line": 122,
+                  "offset": 8208,
+                },
+                "start": Object {
+                  "column": 44,
+                  "line": 121,
+                  "offset": 8179,
+                },
+              },
+              "value": "     and I will be their God,",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 31,
+                  "line": 122,
+                  "offset": 8210,
+                },
+                "start": Object {
+                  "column": 29,
+                  "line": 122,
+                  "offset": 8208,
+                },
+              },
+              "value": "\\\\",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 17,
+                  "line": 133,
+                  "offset": 8716,
+                },
+                "start": Object {
+                  "column": 31,
+                  "line": 122,
+                  "offset": 8210,
+                },
+              },
+              "value": "     and they shall be my people. 2 Thessalonians 2:4 4 He opposes and exalts himself above every so-called god or object of worship, so that he takes his seat in the temple of God, declaring himself to be God. Revelation 3:12 12 If you conquer, I will make you a pillar in the temple of my God; you will never go out of it. I will write on you the name of my God, and the name of the city of my God, the new Jerusalem that comes down from my God out of heaven, and my own new name. Revelation 7:15 ",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 19,
+                  "line": 133,
+                  "offset": 8718,
+                },
+                "start": Object {
+                  "column": 17,
+                  "line": 133,
+                  "offset": 8716,
+                },
+              },
+              "value": "\\\\",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 54,
+                  "line": 134,
+                  "offset": 8772,
+                },
+                "start": Object {
+                  "column": 19,
+                  "line": 133,
+                  "offset": 8718,
+                },
+              },
+              "value": " 15 For this reason they are before the throne of God,",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 56,
+                  "line": 134,
+                  "offset": 8774,
+                },
+                "start": Object {
+                  "column": 54,
+                  "line": 134,
+                  "offset": 8772,
+                },
+              },
+              "value": "\\\\",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 53,
+                  "line": 135,
+                  "offset": 8827,
+                },
+                "start": Object {
+                  "column": 56,
+                  "line": 134,
+                  "offset": 8774,
+                },
+              },
+              "value": "     and worship him day and night within his temple,",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 55,
+                  "line": 135,
+                  "offset": 8829,
+                },
+                "start": Object {
+                  "column": 53,
+                  "line": 135,
+                  "offset": 8827,
+                },
+              },
+              "value": "\\\\",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 18,
+                  "line": 140,
+                  "offset": 8927,
+                },
+                "start": Object {
+                  "column": 55,
+                  "line": 135,
+                  "offset": 8829,
+                },
+              },
+              "value": "     and the one who is seated on the throne will shelter them. Revelation 11 The Two Witnesses",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 140,
+                  "offset": 8929,
+                },
+                "start": Object {
+                  "column": 18,
+                  "line": 140,
+                  "offset": 8927,
+                },
+              },
+              "value": "\\\\",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 151,
+                  "offset": 11076,
+                },
+                "start": Object {
+                  "column": 20,
+                  "line": 140,
+                  "offset": 8929,
+                },
+              },
+              "value": " 11 Then I was given a measuring rod like a staff, and I was told, ‘Come and measure the temple of God and the altar and those who worship there, 2 but do not measure the court outside the temple; leave that out, for it is given over to the nations, and they will trample over the holy city for forty-two months. 3 And I will grant my two witnesses authority to prophesy for one thousand two hundred and sixty days, wearing sackcloth.’ 4 These are the two olive trees and the two lampstands that stand before the Lord of the earth. 5 And if anyone wants to harm them, fire pours from their mouth and consumes their foes; anyone who wants to harm them must be killed in this manner. 6 They have authority to shut the sky, so that no rain may fall during the days of their prophesying, and they have authority over the waters to turn them into blood, and to strike the earth with every kind of plague, as often as they desire. 7 When they have finished their testimony, the beast that comes up from the bottomless pit will make war on them and conquer them and kill them, 8 and their dead bodies will lie in the street of the great city that is prophetically[a] called Sodom and Egypt, where also their Lord was crucified. 9 For three and a half days members of the peoples and tribes and languages and nations will gaze at their dead bodies and refuse to let them be placed in a tomb; 10 and the inhabitants of the earth will gloat over them and celebrate and exchange presents, because these two prophets had been a torment to the inhabitants of the earth. 11 But after the three and a half days, the breath[b] of life from God entered them, and they stood on their feet, and those who saw them were terrified. 12 Then they[c] heard a loud voice from heaven saying to them, ‘Come up here!’ And they went up to heaven in a cloud while their enemies watched them. 13 At that moment there was a great earthquake, and a tenth of the city fell; seven thousand people were killed in the earthquake, and the rest were terrified and gave glory to the God of heaven. 14 The second woe has passed. The third woe is coming very soon. The Seventh Trumpet",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 22,
+                  "line": 151,
+                  "offset": 11078,
+                },
+                "start": Object {
+                  "column": 20,
+                  "line": 151,
+                  "offset": 11076,
+                },
+              },
+              "value": "\\\\",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 61,
+                  "line": 154,
+                  "offset": 11230,
+                },
+                "start": Object {
+                  "column": 22,
+                  "line": 151,
+                  "offset": 11078,
+                },
+              },
+              "value": " 15 Then the seventh angel blew his trumpet, and there were loud voices in heaven, saying, ‘The kingdom of the world has become the kingdom of our Lord",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 63,
+                  "line": 154,
+                  "offset": 11232,
+                },
+                "start": Object {
+                  "column": 61,
+                  "line": 154,
+                  "offset": 11230,
+                },
+              },
+              "value": "\\\\",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 27,
+                  "line": 155,
+                  "offset": 11259,
+                },
+                "start": Object {
+                  "column": 63,
+                  "line": 154,
+                  "offset": 11232,
+                },
+              },
+              "value": "     and of his Messiah,[d]",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 29,
+                  "line": 155,
+                  "offset": 11261,
+                },
+                "start": Object {
+                  "column": 27,
+                  "line": 155,
+                  "offset": 11259,
+                },
+              },
+              "value": "\\\\",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 38,
+                  "line": 156,
+                  "offset": 11299,
+                },
+                "start": Object {
+                  "column": 29,
+                  "line": 155,
+                  "offset": 11261,
+                },
+              },
+              "value": " and he will reign for ever and ever.’",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 40,
+                  "line": 156,
+                  "offset": 11301,
+                },
+                "start": Object {
+                  "column": 38,
+                  "line": 156,
+                  "offset": 11299,
+                },
+              },
+              "value": "\\\\",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 40,
+                  "line": 159,
+                  "offset": 11461,
+                },
+                "start": Object {
+                  "column": 40,
+                  "line": 156,
+                  "offset": 11301,
+                },
+              },
+              "value": " 16 Then the twenty-four elders who sit on their thrones before God fell on their faces and worshipped God, 17 singing, ‘We give you thanks, Lord God Almighty,",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 42,
+                  "line": 159,
+                  "offset": 11463,
+                },
+                "start": Object {
+                  "column": 40,
+                  "line": 159,
+                  "offset": 11461,
+                },
+              },
+              "value": "\\\\",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 26,
+                  "line": 160,
+                  "offset": 11489,
+                },
+                "start": Object {
+                  "column": 42,
+                  "line": 159,
+                  "offset": 11463,
+                },
+              },
+              "value": "     who are and who were,",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 28,
+                  "line": 160,
+                  "offset": 11491,
+                },
+                "start": Object {
+                  "column": 26,
+                  "line": 160,
+                  "offset": 11489,
+                },
+              },
+              "value": "\\\\",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 36,
+                  "line": 161,
+                  "offset": 11527,
+                },
+                "start": Object {
+                  "column": 28,
+                  "line": 160,
+                  "offset": 11491,
+                },
+              },
+              "value": " for you have taken your great power",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 38,
+                  "line": 161,
+                  "offset": 11529,
+                },
+                "start": Object {
+                  "column": 36,
+                  "line": 161,
+                  "offset": 11527,
+                },
+              },
+              "value": "\\\\",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 24,
+                  "line": 162,
+                  "offset": 11553,
+                },
+                "start": Object {
+                  "column": 38,
+                  "line": 161,
+                  "offset": 11529,
+                },
+              },
+              "value": "     and begun to reign.",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 26,
+                  "line": 162,
+                  "offset": 11555,
+                },
+                "start": Object {
+                  "column": 24,
+                  "line": 162,
+                  "offset": 11553,
+                },
+              },
+              "value": "\\\\",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 22,
+                  "line": 163,
+                  "offset": 11577,
+                },
+                "start": Object {
+                  "column": 26,
+                  "line": 162,
+                  "offset": 11555,
+                },
+              },
+              "value": " 18 The nations raged,",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 24,
+                  "line": 163,
+                  "offset": 11579,
+                },
+                "start": Object {
+                  "column": 22,
+                  "line": 163,
+                  "offset": 11577,
+                },
+              },
+              "value": "\\\\",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 29,
+                  "line": 164,
+                  "offset": 11608,
+                },
+                "start": Object {
+                  "column": 24,
+                  "line": 163,
+                  "offset": 11579,
+                },
+              },
+              "value": "     but your wrath has come,",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 31,
+                  "line": 164,
+                  "offset": 11610,
+                },
+                "start": Object {
+                  "column": 29,
+                  "line": 164,
+                  "offset": 11608,
+                },
+              },
+              "value": "\\\\",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 39,
+                  "line": 165,
+                  "offset": 11649,
+                },
+                "start": Object {
+                  "column": 31,
+                  "line": 164,
+                  "offset": 11610,
+                },
+              },
+              "value": "     and the time for judging the dead,",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 41,
+                  "line": 165,
+                  "offset": 11651,
+                },
+                "start": Object {
+                  "column": 39,
+                  "line": 165,
+                  "offset": 11649,
+                },
+              },
+              "value": "\\\\",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 45,
+                  "line": 166,
+                  "offset": 11696,
+                },
+                "start": Object {
+                  "column": 41,
+                  "line": 165,
+                  "offset": 11651,
+                },
+              },
+              "value": " for rewarding your servants,[e] the prophets",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 47,
+                  "line": 166,
+                  "offset": 11698,
+                },
+                "start": Object {
+                  "column": 45,
+                  "line": 166,
+                  "offset": 11696,
+                },
+              },
+              "value": "\\\\",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 43,
+                  "line": 167,
+                  "offset": 11741,
+                },
+                "start": Object {
+                  "column": 47,
+                  "line": 166,
+                  "offset": 11698,
+                },
+              },
+              "value": "     and saints and all who fear your name,",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 45,
+                  "line": 167,
+                  "offset": 11743,
+                },
+                "start": Object {
+                  "column": 43,
+                  "line": 167,
+                  "offset": 11741,
+                },
+              },
+              "value": "\\\\",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 26,
+                  "line": 168,
+                  "offset": 11769,
+                },
+                "start": Object {
+                  "column": 45,
+                  "line": 167,
+                  "offset": 11743,
+                },
+              },
+              "value": "     both small and great,",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 28,
+                  "line": 168,
+                  "offset": 11771,
+                },
+                "start": Object {
+                  "column": 26,
+                  "line": 168,
+                  "offset": 11769,
+                },
+              },
+              "value": "\\\\",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 49,
+                  "line": 169,
+                  "offset": 11820,
+                },
+                "start": Object {
+                  "column": 28,
+                  "line": 168,
+                  "offset": 11771,
+                },
+              },
+              "value": " and for destroying those who destroy the earth.’",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 51,
+                  "line": 169,
+                  "offset": 11822,
+                },
+                "start": Object {
+                  "column": 49,
+                  "line": 169,
+                  "offset": 11820,
+                },
+              },
+              "value": "\\\\",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 1,
+                  "line": 172,
+                  "offset": 12020,
+                },
+                "start": Object {
+                  "column": 51,
+                  "line": 169,
+                  "offset": 11822,
+                },
+              },
+              "value": " 19 Then God’s temple in heaven was opened, and the ark of his covenant was seen within his temple; and there were flashes of lightning, rumblings, peals of thunder, an earthquake, and heavy hail. ",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 3,
+                  "line": 172,
+                  "offset": 12022,
+                },
+                "start": Object {
+                  "column": 1,
+                  "line": 172,
+                  "offset": 12020,
+                },
+              },
+              "value": "#",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 5,
+                  "line": 172,
+                  "offset": 12024,
+                },
+                "start": Object {
+                  "column": 3,
+                  "line": 172,
+                  "offset": 12022,
+                },
+              },
+              "value": "#",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 7,
+                  "line": 172,
+                  "offset": 12026,
+                },
+                "start": Object {
+                  "column": 5,
+                  "line": 172,
+                  "offset": 12024,
+                },
+              },
+              "value": "#",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 168,
+                  "line": 180,
+                  "offset": 12650,
+                },
+                "start": Object {
+                  "column": 7,
+                  "line": 172,
+                  "offset": 12026,
+                },
+              },
+              "value": " miscs Ephesians 2:19-22 19 So then you are no longer strangers and aliens, but you are citizens with the saints and also members of the household of God, 20 built upon the foundation of the apostles and prophets, with Christ Jesus himself as the cornerstone.[a] 21 In him the whole structure is joined together and grows into a holy temple in the Lord; 22 in whom you also are built together spiritually[b] into a dwelling-place for God. 1 Peter 2:5 5 like living stones, let yourselves be built[a] into a spiritual house, to be a holy priesthood, to offer spiritual sacrifices acceptable to God through Jesus Christ.",
+            },
+          ],
+        },
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 182,
+              "offset": 12682,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 181,
+              "offset": 12653,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 27,
+                  "line": 181,
+                  "offset": 12679,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 181,
+                  "offset": 12665,
+                },
+              },
+              "value": "Dalrymple, Rob",
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 183,
+              "offset": 12699,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 182,
+              "offset": 12682,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 182,
+                  "offset": 12696,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 182,
+                  "offset": 12692,
+                },
+              },
+              "value": "2006",
+            },
+          ],
+        },
+        Object {
+          "key": "issn",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 184,
+              "offset": 12721,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 183,
+              "offset": 12699,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 183,
+                  "offset": 12718,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 183,
+                  "offset": 12709,
+                },
+              },
+              "value": "0006-0887",
+            },
+          ],
+        },
+        Object {
+          "key": "journaltitle",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 185,
+              "offset": 12749,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 184,
+              "offset": 12721,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 26,
+                  "line": 184,
+                  "offset": 12746,
+                },
+                "start": Object {
+                  "column": 19,
+                  "line": 184,
+                  "offset": 12739,
+                },
+              },
+              "value": "Biblica",
+            },
+          ],
+        },
+        Object {
+          "key": "number",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 186,
+              "offset": 12765,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 185,
+              "offset": 12749,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 14,
+                  "line": 185,
+                  "offset": 12762,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 185,
+                  "offset": 12761,
+                },
+              },
+              "value": "3",
+            },
+          ],
+        },
+        Object {
+          "key": "pages",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 187,
+              "offset": 12787,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 186,
+              "offset": 12765,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 186,
+                  "offset": 12784,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 186,
+                  "offset": 12776,
+                },
+              },
+              "value": "387–394",
+            },
+          ],
+        },
+        Object {
+          "key": "shortjournal",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 188,
+              "offset": 12815,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 187,
+              "offset": 12787,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 26,
+                  "line": 187,
+                  "offset": 12812,
+                },
+                "start": Object {
+                  "column": 19,
+                  "line": 187,
+                  "offset": 12805,
+                },
+              },
+              "value": "Biblica",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 189,
+              "offset": 12984,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 188,
+              "offset": 12815,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 16,
+                  "line": 188,
+                  "offset": 12830,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 188,
+                  "offset": 12826,
+                },
+              },
+              "value": "The ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 23,
+                  "line": 188,
+                  "offset": 12837,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 188,
+                  "offset": 12830,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 22,
+                      "line": 188,
+                      "offset": 12836,
+                    },
+                    "start": Object {
+                      "column": 17,
+                      "line": 188,
+                      "offset": 12831,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 21,
+                          "line": 188,
+                          "offset": 12835,
+                        },
+                        "start": Object {
+                          "column": 18,
+                          "line": 188,
+                          "offset": 12832,
+                        },
+                      },
+                      "value": "Use",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 27,
+                  "line": 188,
+                  "offset": 12841,
+                },
+                "start": Object {
+                  "column": 23,
+                  "line": 188,
+                  "offset": 12837,
+                },
+              },
+              "value": " of ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 34,
+                  "line": 188,
+                  "offset": 12848,
+                },
+                "start": Object {
+                  "column": 27,
+                  "line": 188,
+                  "offset": 12841,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 33,
+                      "line": 188,
+                      "offset": 12847,
+                    },
+                    "start": Object {
+                      "column": 28,
+                      "line": 188,
+                      "offset": 12842,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 32,
+                          "line": 188,
+                          "offset": 12846,
+                        },
+                        "start": Object {
+                          "column": 29,
+                          "line": 188,
+                          "offset": 12843,
+                        },
+                      },
+                      "value": "καί",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 38,
+                  "line": 188,
+                  "offset": 12852,
+                },
+                "start": Object {
+                  "column": 34,
+                  "line": 188,
+                  "offset": 12848,
+                },
+              },
+              "value": " in ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 52,
+                  "line": 188,
+                  "offset": 12866,
+                },
+                "start": Object {
+                  "column": 38,
+                  "line": 188,
+                  "offset": 12852,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 51,
+                      "line": 188,
+                      "offset": 12865,
+                    },
+                    "start": Object {
+                      "column": 39,
+                      "line": 188,
+                      "offset": 12853,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 50,
+                          "line": 188,
+                          "offset": 12864,
+                        },
+                        "start": Object {
+                          "column": 40,
+                          "line": 188,
+                          "offset": 12854,
+                        },
+                      },
+                      "value": "Revelation",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 66,
+                  "line": 188,
+                  "offset": 12880,
+                },
+                "start": Object {
+                  "column": 52,
+                  "line": 188,
+                  "offset": 12866,
+                },
+              },
+              "value": " 11,1 and the ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 82,
+                  "line": 188,
+                  "offset": 12896,
+                },
+                "start": Object {
+                  "column": 66,
+                  "line": 188,
+                  "offset": 12880,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 81,
+                      "line": 188,
+                      "offset": 12895,
+                    },
+                    "start": Object {
+                      "column": 67,
+                      "line": 188,
+                      "offset": 12881,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 80,
+                          "line": 188,
+                          "offset": 12894,
+                        },
+                        "start": Object {
+                          "column": 68,
+                          "line": 188,
+                          "offset": 12882,
+                        },
+                      },
+                      "value": "Implications",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 91,
+                  "line": 188,
+                  "offset": 12905,
+                },
+                "start": Object {
+                  "column": 82,
+                  "line": 188,
+                  "offset": 12896,
+                },
+              },
+              "value": " for the ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 109,
+                  "line": 188,
+                  "offset": 12923,
+                },
+                "start": Object {
+                  "column": 91,
+                  "line": 188,
+                  "offset": 12905,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 108,
+                      "line": 188,
+                      "offset": 12922,
+                    },
+                    "start": Object {
+                      "column": 92,
+                      "line": 188,
+                      "offset": 12906,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 107,
+                          "line": 188,
+                          "offset": 12921,
+                        },
+                        "start": Object {
+                          "column": 93,
+                          "line": 188,
+                          "offset": 12907,
+                        },
+                      },
+                      "value": "Identification",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 117,
+                  "line": 188,
+                  "offset": 12931,
+                },
+                "start": Object {
+                  "column": 109,
+                  "line": 188,
+                  "offset": 12923,
+                },
+              },
+              "value": " of the ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 127,
+                  "line": 188,
+                  "offset": 12941,
+                },
+                "start": Object {
+                  "column": 117,
+                  "line": 188,
+                  "offset": 12931,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 126,
+                      "line": 188,
+                      "offset": 12940,
+                    },
+                    "start": Object {
+                      "column": 118,
+                      "line": 188,
+                      "offset": 12932,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 125,
+                          "line": 188,
+                          "offset": 12939,
+                        },
+                        "start": Object {
+                          "column": 119,
+                          "line": 188,
+                          "offset": 12933,
+                        },
+                      },
+                      "value": "Temple",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 133,
+                  "line": 188,
+                  "offset": 12947,
+                },
+                "start": Object {
+                  "column": 127,
+                  "line": 188,
+                  "offset": 12941,
+                },
+              },
+              "value": ", the ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 142,
+                  "line": 188,
+                  "offset": 12956,
+                },
+                "start": Object {
+                  "column": 133,
+                  "line": 188,
+                  "offset": 12947,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 141,
+                      "line": 188,
+                      "offset": 12955,
+                    },
+                    "start": Object {
+                      "column": 134,
+                      "line": 188,
+                      "offset": 12948,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 140,
+                          "line": 188,
+                          "offset": 12954,
+                        },
+                        "start": Object {
+                          "column": 135,
+                          "line": 188,
+                          "offset": 12949,
+                        },
+                      },
+                      "value": "Altar",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 152,
+                  "line": 188,
+                  "offset": 12966,
+                },
+                "start": Object {
+                  "column": 142,
+                  "line": 188,
+                  "offset": 12956,
+                },
+              },
+              "value": ", and the ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 167,
+                  "line": 188,
+                  "offset": 12981,
+                },
+                "start": Object {
+                  "column": 152,
+                  "line": 188,
+                  "offset": 12966,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 166,
+                      "line": 188,
+                      "offset": 12980,
+                    },
+                    "start": Object {
+                      "column": 153,
+                      "line": 188,
+                      "offset": 12967,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 165,
+                          "line": 188,
+                          "offset": 12979,
+                        },
+                        "start": Object {
+                          "column": 154,
+                          "line": 188,
+                          "offset": 12968,
+                        },
+                      },
+                      "value": "Worshippers",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "volume",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 190,
+              "offset": 13000,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 189,
+              "offset": 12984,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 189,
+                  "offset": 12998,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 189,
+                  "offset": 12996,
+                },
+              },
+              "value": "87",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 193,
+      "offset": 13004,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

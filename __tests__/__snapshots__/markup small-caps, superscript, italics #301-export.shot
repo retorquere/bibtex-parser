@@ -1,0 +1,116 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse markup small-caps, superscript, italics #301-export 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Laurence",
+            "lastName": "Burgorgue-Larsen",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Burgorgue-Larsen, Laurence",
+        ],
+        "booktitle": Array [
+          "La conscience des droits. mélanges en l'honneur de jean-paul costa",
+        ],
+        "date": Array [
+          "2011",
+        ],
+        "isbn": Array [
+          "978-2-247-10748-3",
+        ],
+        "langid": Array [
+          "french",
+        ],
+        "location": Array [
+          "<span class=\\"nocase\\">Paris</span>",
+        ],
+        "pages": Array [
+          "68–82",
+        ],
+        "publisher": Array [
+          "<span class=\\"nocase\\">Dalloz</span>",
+        ],
+        "title": Array [
+          "Les interventions <i>éclairées</i> devant la cour européenne des droits de l'homme ou le rôle stratégique des <i>amici curiae</i>",
+        ],
+        "volumes": Array [
+          "xxxi+710 p.",
+        ],
+      },
+      "key": "burgorgue-larsen_interventions_2011",
+      "type": "incollection",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Corinne",
+            "lastName": "Leveleux-Teixeira",
+          },
+        ],
+        "editor": Array [
+          Object {
+            "firstName": "Martine",
+            "lastName": "Charageat",
+          },
+          Object {
+            "firstName": "Corinne",
+            "lastName": "Leveleux-Teixeira",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Leveleux-Teixeira, Corinne",
+        ],
+        "booktitle": Array [
+          "Consulter, délibérer, décider : donner son avis au moyen âge (France-Espagne, <span style=\\"font-variant:small-caps;\\">vii</span><sup>e</sup>-<span style=\\"font-variant:small-caps;\\">xvi</span><sup>e</sup> siècles)",
+        ],
+        "date": Array [
+          "2010",
+        ],
+        "editor": Array [
+          "Charageat, Martine",
+          "Leveleux-Teixeira, Corinne",
+        ],
+        "isbn": Array [
+          "978-2-912025-68-5",
+        ],
+        "langid": Array [
+          "french",
+        ],
+        "location": Array [
+          "<span class=\\"nocase\\">Toulouse</span>",
+        ],
+        "pages": Array [
+          "33–50",
+        ],
+        "publisher": Array [
+          "<span class=\\"nocase\\">CNRS et Université de Toulouse-Le Mirail [Framespa]</span>",
+        ],
+        "series": Array [
+          "Méridiennes. études médiévales ibériques",
+        ],
+        "title": Array [
+          "Opinion et conseil dans la doctrine juridique savante (<span style=\\"font-variant:small-caps;\\">xii</span><sup>e</sup>-<span style=\\"font-variant:small-caps;\\">xiv</span><sup>e</sup> siècles)",
+        ],
+        "volumes": Array [
+          "355 p.",
+        ],
+      },
+      "key": "leveleux-teixeira_opinion_2010",
+      "type": "incollection",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

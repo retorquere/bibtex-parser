@@ -1,0 +1,900 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse biblatex export of Presentation; Use type and venue fields #644-export to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "kingma2015",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 13,
+          "offset": 1657,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "abstract",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 1153,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 2,
+              "offset": 29,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 1124,
+                  "line": 2,
+                  "offset": 1150,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 2,
+                  "offset": 41,
+                },
+              },
+              "value": "We introduce Adam, an algorithm for first-order gradient-based optimization of stochastic objective functions, based on adaptive estimates of lower-order moments. The method is straightforward to implement, is computationally efficient, has little memory requirements, is invariant to diagonal rescaling of the gradients, and is well suited for problems that are large in terms of data and/or parameters. The method is also appropriate for non-stationary objectives and problems with very noisy and/or sparse gradients. The hyper-parameters have intuitive interpretations and typically require little tuning. Some connections to related algorithms, on which Adam was inspired, are discussed. We also analyze the theoretical convergence properties of the algorithm and provide a regret bound on the convergence rate that is comparable to the best known results under the online convex optimization framework. Empirical results demonstrate that Adam works well in practice and compares favorably to other stochastic optimization methods. Finally, we discuss AdaMax, a variant of Adam based on the infinity norm.",
+            },
+          ],
+        },
+        Object {
+          "key": "annotation",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 1294,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 1153,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 139,
+                  "line": 3,
+                  "offset": 1291,
+                },
+                "start": Object {
+                  "column": 17,
+                  "line": 3,
+                  "offset": 1169,
+                },
+              },
+              "value": "Comment: Published as a conference paper at the 3rd International Conference for Learning Representations, San Diego, 2015",
+            },
+          ],
+        },
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 1342,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 1294,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 46,
+                  "line": 4,
+                  "offset": 1339,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 4,
+                  "offset": 1306,
+                },
+              },
+              "value": "Kingma, Diederik P. and Ba, Jimmy",
+            },
+          ],
+        },
+        Object {
+          "key": "booktitle",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 1459,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 1342,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 39,
+                  "line": 5,
+                  "offset": 1380,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 5,
+                  "offset": 1357,
+                },
+              },
+              "value": "Proceedings of the 3rd ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 67,
+                  "line": 5,
+                  "offset": 1408,
+                },
+                "start": Object {
+                  "column": 39,
+                  "line": 5,
+                  "offset": 1380,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 66,
+                      "line": 5,
+                      "offset": 1407,
+                    },
+                    "start": Object {
+                      "column": 40,
+                      "line": 5,
+                      "offset": 1381,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 65,
+                          "line": 5,
+                          "offset": 1406,
+                        },
+                        "start": Object {
+                          "column": 41,
+                          "line": 5,
+                          "offset": 1382,
+                        },
+                      },
+                      "value": "International Conference",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 71,
+                  "line": 5,
+                  "offset": 1412,
+                },
+                "start": Object {
+                  "column": 67,
+                  "line": 5,
+                  "offset": 1408,
+                },
+              },
+              "value": " on ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 99,
+                  "line": 5,
+                  "offset": 1440,
+                },
+                "start": Object {
+                  "column": 71,
+                  "line": 5,
+                  "offset": 1412,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 98,
+                      "line": 5,
+                      "offset": 1439,
+                    },
+                    "start": Object {
+                      "column": 72,
+                      "line": 5,
+                      "offset": 1413,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 97,
+                          "line": 5,
+                          "offset": 1438,
+                        },
+                        "start": Object {
+                          "column": 73,
+                          "line": 5,
+                          "offset": 1414,
+                        },
+                      },
+                      "value": "Learning Representations",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 101,
+                  "line": 5,
+                  "offset": 1442,
+                },
+                "start": Object {
+                  "column": 99,
+                  "line": 5,
+                  "offset": 1440,
+                },
+              },
+              "value": " (",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 109,
+                  "line": 5,
+                  "offset": 1450,
+                },
+                "start": Object {
+                  "column": 101,
+                  "line": 5,
+                  "offset": 1442,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 108,
+                      "line": 5,
+                      "offset": 1449,
+                    },
+                    "start": Object {
+                      "column": 102,
+                      "line": 5,
+                      "offset": 1443,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 107,
+                          "line": 5,
+                          "offset": 1448,
+                        },
+                        "start": Object {
+                          "column": 103,
+                          "line": 5,
+                          "offset": 1444,
+                        },
+                      },
+                      "value": "ICLR",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 115,
+                  "line": 5,
+                  "offset": 1456,
+                },
+                "start": Object {
+                  "column": 109,
+                  "line": 5,
+                  "offset": 1450,
+                },
+              },
+              "value": " 2015)",
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 1476,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 1459,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 6,
+                  "offset": 1473,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 6,
+                  "offset": 1469,
+                },
+              },
+              "value": "2015",
+            },
+          ],
+        },
+        Object {
+          "key": "eventdate",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 1515,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 1476,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 37,
+                  "line": 7,
+                  "offset": 1512,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 7,
+                  "offset": 1491,
+                },
+              },
+              "value": "2015-05-07/2015-05-09",
+            },
+          ],
+        },
+        Object {
+          "key": "keywords",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 1559,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 1515,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 42,
+                  "line": 8,
+                  "offset": 1556,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 8,
+                  "offset": 1529,
+                },
+              },
+              "value": "Computer Science - Learning",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 1623,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 1559,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 18,
+                  "line": 9,
+                  "offset": 1576,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 9,
+                  "offset": 1570,
+                },
+              },
+              "value": "Adam: ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 30,
+                  "line": 9,
+                  "offset": 1588,
+                },
+                "start": Object {
+                  "column": 18,
+                  "line": 9,
+                  "offset": 1576,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 29,
+                      "line": 9,
+                      "offset": 1587,
+                    },
+                    "start": Object {
+                      "column": 19,
+                      "line": 9,
+                      "offset": 1577,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 28,
+                          "line": 9,
+                          "offset": 1586,
+                        },
+                        "start": Object {
+                          "column": 20,
+                          "line": 9,
+                          "offset": 1578,
+                        },
+                      },
+                      "value": "A Method",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 35,
+                  "line": 9,
+                  "offset": 1593,
+                },
+                "start": Object {
+                  "column": 30,
+                  "line": 9,
+                  "offset": 1588,
+                },
+              },
+              "value": " for ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 62,
+                  "line": 9,
+                  "offset": 1620,
+                },
+                "start": Object {
+                  "column": 35,
+                  "line": 9,
+                  "offset": 1593,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 61,
+                      "line": 9,
+                      "offset": 1619,
+                    },
+                    "start": Object {
+                      "column": 36,
+                      "line": 9,
+                      "offset": 1594,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 60,
+                          "line": 9,
+                          "offset": 1618,
+                        },
+                        "start": Object {
+                          "column": 37,
+                          "line": 9,
+                          "offset": 1595,
+                        },
+                      },
+                      "value": "Stochastic Optimization",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "venue",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 1654,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 1623,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 30,
+                  "line": 10,
+                  "offset": 1652,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 10,
+                  "offset": 1634,
+                },
+              },
+              "value": "San Diego, CA, USA",
+            },
+          ],
+        },
+      ],
+      "type": "inproceedings",
+    },
+    Object {
+      "id": "derasmo2000",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 21,
+          "offset": 1878,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 13,
+          "offset": 1657,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 15,
+              "offset": 1713,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 14,
+              "offset": 1685,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 28,
+                  "line": 14,
+                  "offset": 1710,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 14,
+                  "offset": 1695,
+                },
+              },
+              "value": "D’Erasmo, Stacy",
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 16,
+              "offset": 1736,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 15,
+              "offset": 1713,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 21,
+                  "line": 15,
+                  "offset": 1733,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 15,
+                  "offset": 1723,
+                },
+              },
+              "value": "2000-04-26",
+            },
+          ],
+        },
+        Object {
+          "key": "langid",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 17,
+              "offset": 1759,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 16,
+              "offset": 1736,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 21,
+                  "line": 16,
+                  "offset": 1756,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 16,
+                  "offset": 1748,
+                },
+              },
+              "value": "american",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 18,
+              "offset": 1804,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 17,
+              "offset": 1759,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 43,
+                  "line": 17,
+                  "offset": 1801,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 17,
+                  "offset": 1770,
+                },
+              },
+              "value": "The Craft and Career of Writing",
+            },
+          ],
+        },
+        Object {
+          "key": "type",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 19,
+              "offset": 1824,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 18,
+              "offset": 1804,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 18,
+                  "line": 18,
+                  "offset": 1821,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 18,
+                  "offset": 1814,
+                },
+              },
+              "value": "lecture",
+            },
+          ],
+        },
+        Object {
+          "key": "venue",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 20,
+              "offset": 1876,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 19,
+              "offset": 1824,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 51,
+                  "line": 19,
+                  "offset": 1874,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 19,
+                  "offset": 1835,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 50,
+                      "line": 19,
+                      "offset": 1873,
+                    },
+                    "start": Object {
+                      "column": 13,
+                      "line": 19,
+                      "offset": 1836,
+                    },
+                  },
+                  "value": "Northwestern University, Evanston, IL",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      "type": "unpublished",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 21,
+      "offset": 1878,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

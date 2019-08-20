@@ -1,0 +1,527 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse Wrong ring-above import #1115-import to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "rehurek_lrec",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 15,
+          "offset": 419,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 100,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 2,
+              "offset": 29,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 69,
+                  "line": 2,
+                  "offset": 97,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 2,
+                  "offset": 38,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 68,
+                      "line": 2,
+                      "offset": 96,
+                    },
+                    "start": Object {
+                      "column": 11,
+                      "line": 2,
+                      "offset": 39,
+                    },
+                  },
+                  "value": "Software Framework for Topic Modelling with Large Corpora",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 156,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 100,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 17,
+                  "line": 3,
+                  "offset": 116,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 3,
+                  "offset": 110,
+                },
+              },
+              "value": "Radim ",
+            },
+            Object {
+              "character": "R",
+              "kind": "DicraticalCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 23,
+                  "line": 3,
+                  "offset": 122,
+                },
+                "start": Object {
+                  "column": 17,
+                  "line": 3,
+                  "offset": 116,
+                },
+              },
+              "mark": "v",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 25,
+                  "line": 3,
+                  "offset": 124,
+                },
+                "start": Object {
+                  "column": 23,
+                  "line": 3,
+                  "offset": 122,
+                },
+              },
+              "value": "eh",
+            },
+            Object {
+              "character": "u",
+              "kind": "DicraticalCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 31,
+                  "line": 3,
+                  "offset": 130,
+                },
+                "start": Object {
+                  "column": 25,
+                  "line": 3,
+                  "offset": 124,
+                },
+              },
+              "mark": "r",
+            },
+            Object {
+              "character": "r",
+              "kind": "DicraticalCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 37,
+                  "line": 3,
+                  "offset": 136,
+                },
+                "start": Object {
+                  "column": 31,
+                  "line": 3,
+                  "offset": 130,
+                },
+              },
+              "mark": "v",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 54,
+                  "line": 3,
+                  "offset": 153,
+                },
+                "start": Object {
+                  "column": 37,
+                  "line": 3,
+                  "offset": 136,
+                },
+              },
+              "value": "ek and Petr Sojka",
+            },
+          ],
+        },
+        Object {
+          "key": "booktitle",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 248,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 156,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 31,
+                  "line": 5,
+                  "offset": 245,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 4,
+                  "offset": 169,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 30,
+                      "line": 5,
+                      "offset": 244,
+                    },
+                    "start": Object {
+                      "column": 15,
+                      "line": 4,
+                      "offset": 170,
+                    },
+                  },
+                  "value": "Proceedings of the LREC 2010 Workshop on New Challenges for NLP Frameworks",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "pages",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 266,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 248,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 16,
+                  "line": 6,
+                  "offset": 263,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 6,
+                  "offset": 257,
+                },
+              },
+              "value": "45–50",
+            },
+          ],
+        },
+        Object {
+          "key": "year",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 279,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 266,
+            },
+          },
+          "value": Object {
+            "kind": "Number",
+            "loc": Object {
+              "end": Object {
+                "column": 12,
+                "line": 7,
+                "offset": 277,
+              },
+              "start": Object {
+                "column": 8,
+                "line": 7,
+                "offset": 273,
+              },
+            },
+            "value": 2010,
+          },
+        },
+        Object {
+          "key": "month",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 292,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 279,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "String",
+              "loc": Object {
+                "end": Object {
+                  "column": 12,
+                  "line": 8,
+                  "offset": 290,
+                },
+                "start": Object {
+                  "column": 9,
+                  "line": 8,
+                  "offset": 287,
+                },
+              },
+              "value": "May",
+            },
+          ],
+        },
+        Object {
+          "key": "day",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 302,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 292,
+            },
+          },
+          "value": Object {
+            "kind": "Number",
+            "loc": Object {
+              "end": Object {
+                "column": 9,
+                "line": 9,
+                "offset": 300,
+              },
+              "start": Object {
+                "column": 7,
+                "line": 9,
+                "offset": 298,
+              },
+            },
+            "value": 22,
+          },
+        },
+        Object {
+          "key": "publisher",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 322,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 302,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 18,
+                  "line": 10,
+                  "offset": 319,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 10,
+                  "offset": 315,
+                },
+              },
+              "value": "ELRA",
+            },
+          ],
+        },
+        Object {
+          "key": "address",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 351,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 322,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 27,
+                  "line": 11,
+                  "offset": 348,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 11,
+                  "offset": 333,
+                },
+              },
+              "value": "Valletta, Malta",
+            },
+          ],
+        },
+        Object {
+          "key": "url",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 398,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 351,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 45,
+                  "line": 12,
+                  "offset": 395,
+                },
+                "start": Object {
+                  "column": 6,
+                  "line": 12,
+                  "offset": 356,
+                },
+              },
+              "value": "http://is.muni.cz/publication/884893/en",
+            },
+          ],
+        },
+        Object {
+          "key": "language",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 14,
+              "offset": 417,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 398,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 18,
+                  "line": 13,
+                  "offset": 415,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 13,
+                  "offset": 408,
+                },
+              },
+              "value": "English",
+            },
+          ],
+        },
+      ],
+      "type": "inproceedings",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 15,
+      "offset": 419,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse Better BibTeX.026-export 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "David",
+            "lastName": "Traum",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Traum, David",
+        ],
+        "file": Array [
+          "files/traumNDcomputationalmodelsnoncooperative/Traum - Computational Models of Non-cooperative dialogue.pdf",
+        ],
+        "title": Array [
+          "Computational <span class=\\"nocase\\">Models</span> of <span class=\\"nocase\\">Non</span>-Cooperative dialogue",
+        ],
+      },
+      "key": "traumNDcomputationalmodelsnoncooperative",
+      "type": "unpublished",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

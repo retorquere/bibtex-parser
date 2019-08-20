@@ -1,0 +1,628 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse Text that legally contains the text of HTML entities such as &nbsp; triggers an overzealous decoding second-guesser #253-export to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "oecd_making_2014",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 16,
+          "offset": 1718,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "abstract",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 1271,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 2,
+              "offset": 26,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 160,
+                  "line": 2,
+                  "offset": 183,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 2,
+                  "offset": 38,
+                },
+              },
+              "value": "In 2011 the international development community committed to make development co-operation more effective to deliver better results for the world",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 162,
+                  "line": 2,
+                  "offset": 185,
+                },
+                "start": Object {
+                  "column": 160,
+                  "line": 2,
+                  "offset": 183,
+                },
+              },
+              "value": "&",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 164,
+                  "line": 2,
+                  "offset": 187,
+                },
+                "start": Object {
+                  "column": 162,
+                  "line": 2,
+                  "offset": 185,
+                },
+              },
+              "value": "#",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 332,
+                  "line": 2,
+                  "offset": 355,
+                },
+                "start": Object {
+                  "column": 164,
+                  "line": 2,
+                  "offset": 187,
+                },
+              },
+              "value": "8217;s poor. At the mid-point between commitments endorsed in the High-Level Forum in Busan, Korea in 2011 and the 2015 target date of the Millennium Development Goals,",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 334,
+                  "line": 2,
+                  "offset": 357,
+                },
+                "start": Object {
+                  "column": 332,
+                  "line": 2,
+                  "offset": 355,
+                },
+              },
+              "value": "&",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 1245,
+                  "line": 2,
+                  "offset": 1268,
+                },
+                "start": Object {
+                  "column": 334,
+                  "line": 2,
+                  "offset": 357,
+                },
+              },
+              "value": "nbsp; this report takes stock of how far we have come and where urgent challenges lie. This report - a first snapshot of the state-of-play since Busan - reveals both successes and shortfalls. It draws on the ten indicators of the Global Partnership monitoring framework. Despite global economic turbulence, changing political landscapes and domestic budgetary pressure, commitment to effective development co-operation principles remains strong. Longstanding efforts to change the way that development co-operation is delivered are paying off. Past achievements on important aid effectiveness commitments that date back to 2005 have been sustained. Nevertheless, much more needs to be done to translate political commitments into concrete action. This report highlights where targeted efforts are needed to make further progress and to reach existing targets for more effective development co-operation by 2015.",
+            },
+          ],
+        },
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 1303,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 1271,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 19,
+                  "line": 3,
+                  "offset": 1289,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 3,
+                  "offset": 1283,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 18,
+                      "line": 3,
+                      "offset": 1288,
+                    },
+                    "start": Object {
+                      "column": 14,
+                      "line": 3,
+                      "offset": 1284,
+                    },
+                  },
+                  "value": "OECD",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 24,
+                  "line": 3,
+                  "offset": 1294,
+                },
+                "start": Object {
+                  "column": 19,
+                  "line": 3,
+                  "offset": 1289,
+                },
+              },
+              "value": " and ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 30,
+                  "line": 3,
+                  "offset": 1300,
+                },
+                "start": Object {
+                  "column": 24,
+                  "line": 3,
+                  "offset": 1294,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 29,
+                      "line": 3,
+                      "offset": 1299,
+                    },
+                    "start": Object {
+                      "column": 25,
+                      "line": 3,
+                      "offset": 1295,
+                    },
+                  },
+                  "value": "UNDP",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 1326,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 1303,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 21,
+                  "line": 4,
+                  "offset": 1323,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 4,
+                  "offset": 1313,
+                },
+              },
+              "value": "2014-04-03",
+            },
+          ],
+        },
+        Object {
+          "key": "isbn",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 1356,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 1326,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 28,
+                  "line": 5,
+                  "offset": 1353,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 5,
+                  "offset": 1336,
+                },
+              },
+              "value": "978-92-64-20929-9",
+            },
+          ],
+        },
+        Object {
+          "key": "keywords",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 1422,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 1356,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 64,
+                  "line": 6,
+                  "offset": 1419,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 6,
+                  "offset": 1370,
+                },
+              },
+              "value": "aid,cooperation,development,evaluation,monitoring",
+            },
+          ],
+        },
+        Object {
+          "key": "langid",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 1444,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 1422,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 7,
+                  "offset": 1441,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 7,
+                  "offset": 1434,
+                },
+              },
+              "value": "english",
+            },
+          ],
+        },
+        Object {
+          "key": "location",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 1468,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 1444,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 22,
+                  "line": 8,
+                  "offset": 1465,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 8,
+                  "offset": 1458,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 21,
+                      "line": 8,
+                      "offset": 1464,
+                    },
+                    "start": Object {
+                      "column": 16,
+                      "line": 8,
+                      "offset": 1459,
+                    },
+                  },
+                  "value": "Paris",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 1486,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 1468,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 16,
+                  "line": 9,
+                  "offset": 1483,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 9,
+                  "offset": 1478,
+                },
+              },
+              "value": "00000",
+            },
+          ],
+        },
+        Object {
+          "key": "publisher",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 1560,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 1486,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 72,
+                  "line": 10,
+                  "offset": 1557,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 10,
+                  "offset": 1501,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 71,
+                      "line": 10,
+                      "offset": 1556,
+                    },
+                    "start": Object {
+                      "column": 17,
+                      "line": 10,
+                      "offset": 1502,
+                    },
+                  },
+                  "value": "Organisation for Economic Co-operation and Development",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 1620,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 1560,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 58,
+                  "line": 11,
+                  "offset": 1617,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 11,
+                  "offset": 1571,
+                },
+              },
+              "value": "Making Development Co-Operation More Effective",
+            },
+          ],
+        },
+        Object {
+          "key": "url",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 1690,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 1620,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 68,
+                  "line": 12,
+                  "offset": 1687,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 12,
+                  "offset": 1629,
+                },
+              },
+              "value": "http://www.oecd-ilibrary.org/content/book/9789264209305-en",
+            },
+          ],
+        },
+        Object {
+          "key": "urldate",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 14,
+              "offset": 1715,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 1690,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 24,
+                  "line": 13,
+                  "offset": 1713,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 13,
+                  "offset": 1703,
+                },
+              },
+              "value": "2014-05-26",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 16,
+      "offset": 1718,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

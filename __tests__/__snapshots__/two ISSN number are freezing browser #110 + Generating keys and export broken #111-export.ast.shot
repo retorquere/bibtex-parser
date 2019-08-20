@@ -1,0 +1,716 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse two ISSN number are freezing browser #110 + Generating keys and export broken #111-export to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "Lander1989",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 21,
+          "offset": 1692,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 2,
+          "offset": 1,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "abstract",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 1208,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 3,
+              "offset": 24,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 1184,
+                  "line": 3,
+                  "offset": 1205,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 3,
+                  "offset": 36,
+                },
+              },
+              "value": "The advent of complete genetic linkage maps consisting of codominant DNA markers [typically restriction fragment length polymorphisms (RFLPs)] has stimulated interest in the systematic genetic dissection of discrete Mendelian factors underlying quantitative traits in experimental organisms. We describe here a set of analytical methods that modify and extend the classical theory for mapping such quantitative trait loci (QTLs). These include: (i) a method of identifying promising crosses for QTL mapping by exploiting a classical formula of SEWALL WRIGHT; (ii) a method (interval mapping) for exploiting the full power of RFLP linkage maps by adapting the approach of LOD score analysis used in human genetics, to obtain accurate estimates of the genetic location and phenotypic effect of QTLs; and (iii) a method (selective genotyping) that allows a substantial reduction in the number of progeny that need to be scored with the DNA markers. In addition to the exposition of the methods, explicit graphs are provided that allow experimental geneticists to estimate, in any particular case, the number of progeny required to map QTLs underlying a quantitative trait.",
+            },
+          ],
+        },
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 1253,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 1208,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 43,
+                  "line": 4,
+                  "offset": 1250,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 4,
+                  "offset": 1220,
+                },
+              },
+              "value": "Lander, E. S. and Botstein, D.",
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 1276,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 1253,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 21,
+                  "line": 5,
+                  "offset": 1273,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 5,
+                  "offset": 1263,
+                },
+              },
+              "value": "1989-01-01",
+            },
+          ],
+        },
+        Object {
+          "key": "eprint",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 1298,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 1276,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 6,
+                  "offset": 1295,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 6,
+                  "offset": 1288,
+                },
+              },
+              "value": "2563713",
+            },
+          ],
+        },
+        Object {
+          "key": "eprinttype",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 1321,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 1298,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 21,
+                  "line": 7,
+                  "offset": 1318,
+                },
+                "start": Object {
+                  "column": 17,
+                  "line": 7,
+                  "offset": 1314,
+                },
+              },
+              "value": "pmid",
+            },
+          ],
+        },
+        Object {
+          "key": "issn",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 1354,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 1321,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 31,
+                  "line": 8,
+                  "offset": 1351,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 8,
+                  "offset": 1331,
+                },
+              },
+              "value": "0016-6731, 1943-2631",
+            },
+          ],
+        },
+        Object {
+          "key": "journaltitle",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 1383,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 1354,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 27,
+                  "line": 9,
+                  "offset": 1380,
+                },
+                "start": Object {
+                  "column": 19,
+                  "line": 9,
+                  "offset": 1372,
+                },
+              },
+              "value": "Genetics",
+            },
+          ],
+        },
+        Object {
+          "key": "langid",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 1405,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 1383,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 10,
+                  "offset": 1402,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 10,
+                  "offset": 1395,
+                },
+              },
+              "value": "english",
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 1423,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 1405,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 16,
+                  "line": 11,
+                  "offset": 1420,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 11,
+                  "offset": 1415,
+                },
+              },
+              "value": "04849",
+            },
+          ],
+        },
+        Object {
+          "key": "number",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 1439,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 1423,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 14,
+                  "line": 12,
+                  "offset": 1436,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 12,
+                  "offset": 1435,
+                },
+              },
+              "value": "1",
+            },
+          ],
+        },
+        Object {
+          "key": "pages",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 14,
+              "offset": 1461,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 1439,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 13,
+                  "offset": 1458,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 13,
+                  "offset": 1450,
+                },
+              },
+              "value": "185–199",
+            },
+          ],
+        },
+        Object {
+          "key": "shortjournal",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 15,
+              "offset": 1490,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 14,
+              "offset": 1461,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 27,
+                  "line": 14,
+                  "offset": 1487,
+                },
+                "start": Object {
+                  "column": 19,
+                  "line": 14,
+                  "offset": 1479,
+                },
+              },
+              "value": "Genetics",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 16,
+              "offset": 1593,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 15,
+              "offset": 1490,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 15,
+                  "offset": 1509,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 15,
+                  "offset": 1501,
+                },
+              },
+              "value": "Mapping ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 33,
+                  "line": 15,
+                  "offset": 1522,
+                },
+                "start": Object {
+                  "column": 20,
+                  "line": 15,
+                  "offset": 1509,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 32,
+                      "line": 15,
+                      "offset": 1521,
+                    },
+                    "start": Object {
+                      "column": 21,
+                      "line": 15,
+                      "offset": 1510,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 31,
+                          "line": 15,
+                          "offset": 1520,
+                        },
+                        "start": Object {
+                          "column": 22,
+                          "line": 15,
+                          "offset": 1511,
+                        },
+                      },
+                      "value": "Mendelian",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 79,
+                  "line": 15,
+                  "offset": 1568,
+                },
+                "start": Object {
+                  "column": 33,
+                  "line": 15,
+                  "offset": 1522,
+                },
+              },
+              "value": " Factors Underlying Quantitative Traits Using ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 87,
+                  "line": 15,
+                  "offset": 1576,
+                },
+                "start": Object {
+                  "column": 79,
+                  "line": 15,
+                  "offset": 1568,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 86,
+                      "line": 15,
+                      "offset": 1575,
+                    },
+                    "start": Object {
+                      "column": 80,
+                      "line": 15,
+                      "offset": 1569,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 85,
+                          "line": 15,
+                          "offset": 1574,
+                        },
+                        "start": Object {
+                          "column": 81,
+                          "line": 15,
+                          "offset": 1570,
+                        },
+                      },
+                      "value": "RFLP",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 101,
+                  "line": 15,
+                  "offset": 1590,
+                },
+                "start": Object {
+                  "column": 87,
+                  "line": 15,
+                  "offset": 1576,
+                },
+              },
+              "value": " Linkage Maps.",
+            },
+          ],
+        },
+        Object {
+          "key": "url",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 17,
+              "offset": 1646,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 16,
+              "offset": 1593,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 51,
+                  "line": 16,
+                  "offset": 1643,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 16,
+                  "offset": 1602,
+                },
+              },
+              "value": "http://www.genetics.org/content/121/1/185",
+            },
+          ],
+        },
+        Object {
+          "key": "urldate",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 18,
+              "offset": 1672,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 17,
+              "offset": 1646,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 24,
+                  "line": 17,
+                  "offset": 1669,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 17,
+                  "offset": 1659,
+                },
+              },
+              "value": "2014-10-13",
+            },
+          ],
+        },
+        Object {
+          "key": "volume",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 19,
+              "offset": 1689,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 18,
+              "offset": 1672,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 16,
+                  "line": 18,
+                  "offset": 1687,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 18,
+                  "offset": 1684,
+                },
+              },
+              "value": "121",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 21,
+      "offset": 1692,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

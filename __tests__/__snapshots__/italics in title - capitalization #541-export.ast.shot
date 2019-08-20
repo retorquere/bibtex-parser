@@ -1,0 +1,800 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse italics in title - capitalization #541-export to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "brill_effects_2006",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 16,
+          "offset": 623,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 76,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 2,
+              "offset": 31,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 45,
+                  "line": 2,
+                  "offset": 73,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 2,
+                  "offset": 41,
+                },
+              },
+              "value": "Brill, R. W. and Bushnell, P. G.",
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 99,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 76,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 21,
+                  "line": 3,
+                  "offset": 96,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 3,
+                  "offset": 86,
+                },
+              },
+              "value": "2006-09-23",
+            },
+          ],
+        },
+        Object {
+          "key": "doi",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 136,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 99,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 35,
+                  "line": 4,
+                  "offset": 133,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 4,
+                  "offset": 108,
+                },
+              },
+              "value": "10.1007/s10695-006-9104-7",
+            },
+          ],
+        },
+        Object {
+          "key": "issn",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 169,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 136,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 31,
+                  "line": 5,
+                  "offset": 166,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 5,
+                  "offset": 146,
+                },
+              },
+              "value": "0920-1742, 1573-5168",
+            },
+          ],
+        },
+        Object {
+          "key": "journaltitle",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 222,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 169,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 51,
+                  "line": 6,
+                  "offset": 219,
+                },
+                "start": Object {
+                  "column": 19,
+                  "line": 6,
+                  "offset": 187,
+                },
+              },
+              "value": "Fish Physiology and Biochemistry",
+            },
+          ],
+        },
+        Object {
+          "key": "langid",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 244,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 222,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 7,
+                  "offset": 241,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 7,
+                  "offset": 234,
+                },
+              },
+              "value": "english",
+            },
+          ],
+        },
+        Object {
+          "key": "number",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 260,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 244,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 14,
+                  "line": 8,
+                  "offset": 257,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 8,
+                  "offset": 256,
+                },
+              },
+              "value": "4",
+            },
+          ],
+        },
+        Object {
+          "key": "pages",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 282,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 260,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 9,
+                  "offset": 279,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 9,
+                  "offset": 271,
+                },
+              },
+              "value": "283–294",
+            },
+          ],
+        },
+        Object {
+          "key": "shortjournal",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 323,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 282,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 39,
+                  "line": 10,
+                  "offset": 320,
+                },
+                "start": Object {
+                  "column": 19,
+                  "line": 10,
+                  "offset": 300,
+                },
+              },
+              "value": "Fish Physiol Biochem",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 509,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 323,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 76,
+                  "line": 11,
+                  "offset": 398,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 11,
+                  "offset": 334,
+                },
+              },
+              "value": "Effects of Open- and Closed-System Temperature Changes on Blood ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 81,
+                  "line": 11,
+                  "offset": 403,
+                },
+                "start": Object {
+                  "column": 76,
+                  "line": 11,
+                  "offset": 398,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 80,
+                      "line": 11,
+                      "offset": 402,
+                    },
+                    "start": Object {
+                      "column": 77,
+                      "line": 11,
+                      "offset": 399,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 79,
+                          "line": 11,
+                          "offset": 401,
+                        },
+                        "start": Object {
+                          "column": 78,
+                          "line": 11,
+                          "offset": 400,
+                        },
+                      },
+                      "value": "O",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 100,
+                  "line": 11,
+                  "offset": 422,
+                },
+                "start": Object {
+                  "column": 81,
+                  "line": 11,
+                  "offset": 403,
+                },
+              },
+              "value": Array [
+                Object {
+                  "arguments": Array [
+                    Object {
+                      "kind": "RequiredArgument",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 99,
+                          "line": 11,
+                          "offset": 421,
+                        },
+                        "start": Object {
+                          "column": 96,
+                          "line": 11,
+                          "offset": 418,
+                        },
+                      },
+                      "value": Array [
+                        Object {
+                          "kind": "Text",
+                          "loc": Object {
+                            "end": Object {
+                              "column": 98,
+                              "line": 11,
+                              "offset": 420,
+                            },
+                            "start": Object {
+                              "column": 97,
+                              "line": 11,
+                              "offset": 419,
+                            },
+                          },
+                          "value": "2",
+                        },
+                      ],
+                    },
+                  ],
+                  "kind": "RegularCommand",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 99,
+                      "line": 11,
+                      "offset": 421,
+                    },
+                    "start": Object {
+                      "column": 82,
+                      "line": 11,
+                      "offset": 404,
+                    },
+                  },
+                  "value": "textsubscript",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 128,
+                  "line": 11,
+                  "offset": 450,
+                },
+                "start": Object {
+                  "column": 100,
+                  "line": 11,
+                  "offset": 422,
+                },
+              },
+              "value": "-Binding Characteristics of ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 140,
+                  "line": 11,
+                  "offset": 462,
+                },
+                "start": Object {
+                  "column": 128,
+                  "line": 11,
+                  "offset": 450,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 139,
+                      "line": 11,
+                      "offset": 461,
+                    },
+                    "start": Object {
+                      "column": 129,
+                      "line": 11,
+                      "offset": 451,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 138,
+                          "line": 11,
+                          "offset": 460,
+                        },
+                        "start": Object {
+                          "column": 130,
+                          "line": 11,
+                          "offset": 452,
+                        },
+                      },
+                      "value": "Atlantic",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 155,
+                  "line": 11,
+                  "offset": 477,
+                },
+                "start": Object {
+                  "column": 140,
+                  "line": 11,
+                  "offset": 462,
+                },
+              },
+              "value": " Bluefin Tuna (",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 183,
+                  "line": 11,
+                  "offset": 505,
+                },
+                "start": Object {
+                  "column": 155,
+                  "line": 11,
+                  "offset": 477,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 182,
+                      "line": 11,
+                      "offset": 504,
+                    },
+                    "start": Object {
+                      "column": 156,
+                      "line": 11,
+                      "offset": 478,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "NestedLiteral",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 181,
+                          "line": 11,
+                          "offset": 503,
+                        },
+                        "start": Object {
+                          "column": 157,
+                          "line": 11,
+                          "offset": 479,
+                        },
+                      },
+                      "value": Array [
+                        Object {
+                          "arguments": Array [
+                            Object {
+                              "kind": "RequiredArgument",
+                              "loc": Object {
+                                "end": Object {
+                                  "column": 180,
+                                  "line": 11,
+                                  "offset": 502,
+                                },
+                                "start": Object {
+                                  "column": 163,
+                                  "line": 11,
+                                  "offset": 485,
+                                },
+                              },
+                              "value": Array [
+                                Object {
+                                  "kind": "Text",
+                                  "loc": Object {
+                                    "end": Object {
+                                      "column": 179,
+                                      "line": 11,
+                                      "offset": 501,
+                                    },
+                                    "start": Object {
+                                      "column": 164,
+                                      "line": 11,
+                                      "offset": 486,
+                                    },
+                                  },
+                                  "value": "Thunnus thynnus",
+                                },
+                              ],
+                            },
+                          ],
+                          "kind": "RegularCommand",
+                          "loc": Object {
+                            "end": Object {
+                              "column": 180,
+                              "line": 11,
+                              "offset": 502,
+                            },
+                            "start": Object {
+                              "column": 158,
+                              "line": 11,
+                              "offset": 480,
+                            },
+                          },
+                          "value": "emph",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 184,
+                  "line": 11,
+                  "offset": 506,
+                },
+                "start": Object {
+                  "column": 183,
+                  "line": 11,
+                  "offset": 505,
+                },
+              },
+              "value": ")",
+            },
+          ],
+        },
+        Object {
+          "key": "url",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 579,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 509,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 68,
+                  "line": 12,
+                  "offset": 576,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 12,
+                  "offset": 518,
+                },
+              },
+              "value": "http://link.springer.com/article/10.1007/s10695-006-9104-7",
+            },
+          ],
+        },
+        Object {
+          "key": "urldate",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 14,
+              "offset": 605,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 579,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 24,
+                  "line": 13,
+                  "offset": 602,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 13,
+                  "offset": 592,
+                },
+              },
+              "value": "2016-08-18",
+            },
+          ],
+        },
+        Object {
+          "key": "volume",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 15,
+              "offset": 621,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 14,
+              "offset": 605,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 14,
+                  "offset": 619,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 14,
+                  "offset": 617,
+                },
+              },
+              "value": "32",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 16,
+      "offset": 623,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

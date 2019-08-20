@@ -1,0 +1,679 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse Exporting of single-field author lacks braces #130-export to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "Kolawa2007",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 15,
+          "offset": 733,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 2,
+          "offset": 1,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 109,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 3,
+              "offset": 21,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 51,
+                  "line": 3,
+                  "offset": 69,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 3,
+                  "offset": 31,
+                },
+              },
+              "value": "Kolawa, Adam and Huizinga, Dorota and ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 88,
+                  "line": 3,
+                  "offset": 106,
+                },
+                "start": Object {
+                  "column": 51,
+                  "line": 3,
+                  "offset": 69,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 87,
+                      "line": 3,
+                      "offset": 105,
+                    },
+                    "start": Object {
+                      "column": 52,
+                      "line": 3,
+                      "offset": 70,
+                    },
+                  },
+                  "value": "Wiley InterScience (Online service)",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 126,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 109,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 4,
+                  "offset": 123,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 4,
+                  "offset": 119,
+                },
+              },
+              "value": "2007",
+            },
+          ],
+        },
+        Object {
+          "key": "isbn",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 156,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 126,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 28,
+                  "line": 5,
+                  "offset": 153,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 5,
+                  "offset": 136,
+                },
+              },
+              "value": "978-0-470-16516-4",
+            },
+          ],
+        },
+        Object {
+          "key": "keywords",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 400,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 156,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 242,
+                  "line": 6,
+                  "offset": 397,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 6,
+                  "offset": 170,
+                },
+              },
+              "value": "Computer programs – Correctness.,Computer programs – Testing – Data processing.,Debugging in computer science – Automatic control.,Software failures – Prevention – Data processing.,Software maintenance – Data processing.",
+            },
+          ],
+        },
+        Object {
+          "key": "location",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 435,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 400,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 33,
+                  "line": 7,
+                  "offset": 432,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 7,
+                  "offset": 414,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 32,
+                      "line": 7,
+                      "offset": 431,
+                    },
+                    "start": Object {
+                      "column": 16,
+                      "line": 7,
+                      "offset": 415,
+                    },
+                  },
+                  "value": "Hoboken, NJ, USA",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "publisher",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 482,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 435,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 45,
+                  "line": 8,
+                  "offset": 479,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 8,
+                  "offset": 450,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 44,
+                      "line": 8,
+                      "offset": 478,
+                    },
+                    "start": Object {
+                      "column": 17,
+                      "line": 8,
+                      "offset": 451,
+                    },
+                  },
+                  "value": "IEEE Computer Society Press",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "shorttitle",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 532,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 482,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 27,
+                  "line": 9,
+                  "offset": 508,
+                },
+                "start": Object {
+                  "column": 17,
+                  "line": 9,
+                  "offset": 498,
+                },
+              },
+              "value": "Automated ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 48,
+                  "line": 9,
+                  "offset": 529,
+                },
+                "start": Object {
+                  "column": 27,
+                  "line": 9,
+                  "offset": 508,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 47,
+                      "line": 9,
+                      "offset": 528,
+                    },
+                    "start": Object {
+                      "column": 28,
+                      "line": 9,
+                      "offset": 509,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 46,
+                          "line": 9,
+                          "offset": 527,
+                        },
+                        "start": Object {
+                          "column": 29,
+                          "line": 9,
+                          "offset": 510,
+                        },
+                      },
+                      "value": "Defect Prevention",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 625,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 532,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 22,
+                  "line": 10,
+                  "offset": 553,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 10,
+                  "offset": 543,
+                },
+              },
+              "value": "Automated ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 43,
+                  "line": 10,
+                  "offset": 574,
+                },
+                "start": Object {
+                  "column": 22,
+                  "line": 10,
+                  "offset": 553,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 42,
+                      "line": 10,
+                      "offset": 573,
+                    },
+                    "start": Object {
+                      "column": 23,
+                      "line": 10,
+                      "offset": 554,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 41,
+                          "line": 10,
+                          "offset": 572,
+                        },
+                        "start": Object {
+                          "column": 24,
+                          "line": 10,
+                          "offset": 555,
+                        },
+                      },
+                      "value": "Defect Prevention",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 46,
+                  "line": 10,
+                  "offset": 577,
+                },
+                "start": Object {
+                  "column": 43,
+                  "line": 10,
+                  "offset": 574,
+                },
+              },
+              "value": " : ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 64,
+                  "line": 10,
+                  "offset": 595,
+                },
+                "start": Object {
+                  "column": 46,
+                  "line": 10,
+                  "offset": 577,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 63,
+                      "line": 10,
+                      "offset": 594,
+                    },
+                    "start": Object {
+                      "column": 47,
+                      "line": 10,
+                      "offset": 578,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 62,
+                          "line": 10,
+                          "offset": 593,
+                        },
+                        "start": Object {
+                          "column": 48,
+                          "line": 10,
+                          "offset": 579,
+                        },
+                      },
+                      "value": "Best Practices",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 68,
+                  "line": 10,
+                  "offset": 599,
+                },
+                "start": Object {
+                  "column": 64,
+                  "line": 10,
+                  "offset": 595,
+                },
+              },
+              "value": " in ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 91,
+                  "line": 10,
+                  "offset": 622,
+                },
+                "start": Object {
+                  "column": 68,
+                  "line": 10,
+                  "offset": 599,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 90,
+                      "line": 10,
+                      "offset": 621,
+                    },
+                    "start": Object {
+                      "column": 69,
+                      "line": 10,
+                      "offset": 600,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 89,
+                          "line": 10,
+                          "offset": 620,
+                        },
+                        "start": Object {
+                          "column": 70,
+                          "line": 10,
+                          "offset": 601,
+                        },
+                      },
+                      "value": "Software Management",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "url",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 705,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 625,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 78,
+                  "line": 11,
+                  "offset": 702,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 11,
+                  "offset": 634,
+                },
+              },
+              "value": "http://site.ebrary.com/lib/alltitles/docDetail.action?docID=10296302",
+            },
+          ],
+        },
+        Object {
+          "key": "urldate",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 730,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 705,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 24,
+                  "line": 12,
+                  "offset": 728,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 12,
+                  "offset": 718,
+                },
+              },
+              "value": "2015-01-09",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 15,
+      "offset": 733,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

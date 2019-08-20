@@ -2,9 +2,13 @@
 
 const fs = require('fs')
 const path = require('path')
+require('jest-specific-snapshot')
+
 import * as bibtex from '../index'
 import astrocite = require('../astrocite-bibtex')
 // import * as jabref from '../jabref'
+
+const snaps = path.join(__dirname, '__snapshots__')
 
 describe('BibTeX Parser', () => {
   /*
@@ -26,10 +30,10 @@ describe('BibTeX Parser', () => {
 
       const caseName = `${path.basename(f, path.extname(f))}-${mode}`
       it(`should parse ${caseName}`, () => {
-        expect(bibtex.parse(fs.readFileSync(path.join(root, f), 'utf-8'))).toMatchInlineSnapshot()
+        (expect(bibtex.parse(fs.readFileSync(path.join(root, f), 'utf-8'))) as any).toMatchSpecificSnapshot(path.join(snaps, caseName + '.shot'))
       })
       it(`should parse ${caseName} to an AST`, () => {
-        expect(astrocite.parse(fs.readFileSync(path.join(root, f), 'utf-8'))).toMatchInlineSnapshot()
+        (expect(astrocite.parse(fs.readFileSync(path.join(root, f), 'utf-8'))) as any).toMatchSpecificSnapshot(path.join(snaps, caseName + '.ast.shot'))
       })
     }
   }

@@ -1,0 +1,346 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse Endnote should parse-import to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 17,
+          "offset": 1092,
+        },
+        "start": Object {
+          "column": 2,
+          "line": 2,
+          "offset": 2,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 51,
+            },
+            "start": Object {
+              "column": 4,
+              "line": 3,
+              "offset": 15,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 37,
+                  "line": 3,
+                  "offset": 48,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 3,
+                  "offset": 25,
+                },
+              },
+              "value": "Huang, Y. and Mucke, L.",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 113,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 51,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 60,
+                  "line": 4,
+                  "offset": 110,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 4,
+                  "offset": 63,
+                },
+              },
+              "value": "Alzheimer mechanisms and therapeutic strategies",
+            },
+          ],
+        },
+        Object {
+          "key": "journal",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 134,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 113,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 19,
+                  "line": 5,
+                  "offset": 131,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 5,
+                  "offset": 127,
+                },
+              },
+              "value": "Cell",
+            },
+          ],
+        },
+        Object {
+          "key": "volume",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 153,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 134,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 17,
+                  "line": 6,
+                  "offset": 150,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 6,
+                  "offset": 147,
+                },
+              },
+              "value": "148",
+            },
+          ],
+        },
+        Object {
+          "key": "number",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 170,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 153,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 7,
+                  "offset": 167,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 7,
+                  "offset": 166,
+                },
+              },
+              "value": "6",
+            },
+          ],
+        },
+        Object {
+          "key": "pages",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 192,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 170,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 8,
+                  "offset": 189,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 8,
+                  "offset": 182,
+                },
+              },
+              "value": "1204-22",
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 14,
+              "offset": 322,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 192,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 35,
+                  "line": 13,
+                  "offset": 319,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 9,
+                  "offset": 203,
+                },
+              },
+              "value": "Huang, Yadong Mucke, Lennart AG011385/AG/NIA NIH HHS/ AG022074/AG/NIA NIH HHS/ Cell. 2012 Mar 16;148(6):1204-22.",
+            },
+          ],
+        },
+        Object {
+          "key": "abstract",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 15,
+              "offset": 1072,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 14,
+              "offset": 322,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 748,
+                  "line": 14,
+                  "offset": 1069,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 14,
+                  "offset": 337,
+                },
+              },
+              "value": "There are still no effective treatments to prevent, halt, or reverse Alzheimer's disease, but research advances over the past three decades could change this gloomy picture. Genetic studies demonstrate that the disease has multiple causes. Interdisciplinary approaches combining biochemistry, molecular and cell biology, and transgenic modeling have revealed some of its molecular mechanisms. Progress in chemistry, radiology, and systems biology is beginning to provide useful biomarkers, and the emergence of personalized medicine is poised to transform pharmaceutical development and clinical trials. However, investigative and drug development efforts should be diversified to fully address the multifactoriality of the disease.",
+            },
+          ],
+        },
+        Object {
+          "key": "year",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 2,
+              "line": 16,
+              "offset": 1090,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 15,
+              "offset": 1072,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 16,
+                  "line": 15,
+                  "offset": 1087,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 15,
+                  "offset": 1083,
+                },
+              },
+              "value": "2012",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 17,
+      "offset": 1092,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

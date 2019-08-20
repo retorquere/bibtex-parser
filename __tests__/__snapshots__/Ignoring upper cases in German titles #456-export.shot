@@ -1,0 +1,215 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse Ignoring upper cases in German titles #456-export 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Franz-Xaver",
+            "lastName": "Kaufmann",
+          },
+        ],
+        "editor": Array [
+          Object {
+            "firstName": "Franz-Xaver",
+            "lastName": "Kauffmann",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Kaufmann, Franz-Xaver",
+        ],
+        "booktitle": Array [
+          "Sozialpolitik und sozialstaat: soziologische analysen",
+        ],
+        "date": Array [
+          "2002",
+        ],
+        "doi": Array [
+          "10.1007/978-3-322-99962-7₇",
+        ],
+        "editor": Array [
+          "Kauffmann, Franz-Xaver",
+        ],
+        "langid": Array [
+          "german",
+        ],
+        "origdate": Array [
+          "1990",
+        ],
+        "pages": Array [
+          "145–160",
+        ],
+        "publisher": Array [
+          "<span class=\\"nocase\\">VS Verlag für Sozialwissenschaften</span>",
+        ],
+        "title": Array [
+          "Sozialpolitik und bevölkerungsprozeß",
+        ],
+        "url": Array [
+          "http://link.springer.com/chapter/10.1007/978-3-322-99962-7₇",
+        ],
+      },
+      "key": "Kaufmann1990",
+      "type": "incollection",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Franz-Xaver",
+            "lastName": "Kaufmann",
+          },
+        ],
+        "editor": Array [
+          Object {
+            "firstName": "Franz-Xaver",
+            "lastName": "Kauffmann",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Kaufmann, Franz-Xaver",
+        ],
+        "booktitle": Array [
+          "Sozialpolitik und sozialstaat: soziologische analysen",
+        ],
+        "date": Array [
+          "2002",
+        ],
+        "doi": Array [
+          "10.1007/978-3-322-99962-7₁1",
+        ],
+        "editor": Array [
+          "Kauffmann, Franz-Xaver",
+        ],
+        "langid": Array [
+          "german",
+        ],
+        "origdate": Array [
+          "1997",
+        ],
+        "pages": Array [
+          "241–260",
+        ],
+        "publisher": Array [
+          "<span class=\\"nocase\\">VS Verlag für Sozialwissenschaften</span>",
+        ],
+        "title": Array [
+          "Schwindet die integrative funktion des sozialstaates?",
+        ],
+        "url": Array [
+          "http://link.springer.com/chapter/10.1007/978-3-322-99962-7₁1",
+        ],
+      },
+      "key": "Kaufmann1997",
+      "type": "incollection",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;
+
+exports[`BibTeX Parser should parse Ignoring upper cases in German titles #456-export 2`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Franz-Xaver",
+            "lastName": "Kaufmann",
+          },
+        ],
+        "editor": Array [
+          Object {
+            "firstName": "Franz-Xaver",
+            "lastName": "Kauffmann",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Kaufmann, Franz-Xaver",
+        ],
+        "booktitle": Array [
+          "Sozialpolitik und Sozialstaat: Soziologische Analysen",
+        ],
+        "doi": Array [
+          "10.1007/978-3-322-99962-7₇",
+        ],
+        "editor": Array [
+          "Kauffmann, Franz-Xaver",
+        ],
+        "pages": Array [
+          "145–160",
+        ],
+        "publisher": Array [
+          "<span class=\\"nocase\\">VS Verlag für Sozialwissenschaften</span>",
+        ],
+        "title": Array [
+          "Sozialpolitik und Bevölkerungsprozeß",
+        ],
+        "year": Array [
+          "[1990] 2002",
+        ],
+      },
+      "key": "Kaufmann1990",
+      "type": "incollection",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Franz-Xaver",
+            "lastName": "Kaufmann",
+          },
+        ],
+        "editor": Array [
+          Object {
+            "firstName": "Franz-Xaver",
+            "lastName": "Kauffmann",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Kaufmann, Franz-Xaver",
+        ],
+        "booktitle": Array [
+          "Sozialpolitik und Sozialstaat: Soziologische Analysen",
+        ],
+        "doi": Array [
+          "10.1007/978-3-322-99962-7₁1",
+        ],
+        "editor": Array [
+          "Kauffmann, Franz-Xaver",
+        ],
+        "pages": Array [
+          "241–260",
+        ],
+        "publisher": Array [
+          "<span class=\\"nocase\\">VS Verlag für Sozialwissenschaften</span>",
+        ],
+        "title": Array [
+          "Schwindet die integrative Funktion des Sozialstaates?",
+        ],
+        "year": Array [
+          "[1997] 2002",
+        ],
+      },
+      "key": "Kaufmann1997",
+      "type": "incollection",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

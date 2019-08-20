@@ -1,0 +1,259 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse Numbers confuse capital-preservation #295-export to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "zotero-1855286-1414",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 7,
+          "offset": 165,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 2,
+          "offset": 1,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 96,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 3,
+              "offset": 33,
+            },
+          },
+          "value": Array [
+            Object {
+              "arguments": Array [
+                Object {
+                  "kind": "RequiredArgument",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 63,
+                      "line": 3,
+                      "offset": 93,
+                    },
+                    "start": Object {
+                      "column": 15,
+                      "line": 3,
+                      "offset": 45,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 62,
+                          "line": 3,
+                          "offset": 92,
+                        },
+                        "start": Object {
+                          "column": 16,
+                          "line": 3,
+                          "offset": 46,
+                        },
+                      },
+                      "value": "http://www.patanalyse.com/sample-analysis.html",
+                    },
+                  ],
+                },
+              ],
+              "kind": "RegularCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 63,
+                  "line": 3,
+                  "offset": 93,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 3,
+                  "offset": 41,
+                },
+              },
+              "value": "url",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 162,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 96,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 19,
+                  "line": 4,
+                  "offset": 114,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 4,
+                  "offset": 107,
+                },
+              },
+              "value": "Patent ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 32,
+                  "line": 4,
+                  "offset": 127,
+                },
+                "start": Object {
+                  "column": 19,
+                  "line": 4,
+                  "offset": 114,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 31,
+                      "line": 4,
+                      "offset": 126,
+                    },
+                    "start": Object {
+                      "column": 20,
+                      "line": 4,
+                      "offset": 115,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 30,
+                          "line": 4,
+                          "offset": 125,
+                        },
+                        "start": Object {
+                          "column": 21,
+                          "line": 4,
+                          "offset": 116,
+                        },
+                      },
+                      "value": "Landscape",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 55,
+                  "line": 4,
+                  "offset": 150,
+                },
+                "start": Object {
+                  "column": 32,
+                  "line": 4,
+                  "offset": 127,
+                },
+              },
+              "value": " Analysis: Sample from ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 65,
+                  "line": 4,
+                  "offset": 160,
+                },
+                "start": Object {
+                  "column": 55,
+                  "line": 4,
+                  "offset": 150,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 64,
+                      "line": 4,
+                      "offset": 159,
+                    },
+                    "start": Object {
+                      "column": 56,
+                      "line": 4,
+                      "offset": 151,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 63,
+                          "line": 4,
+                          "offset": 158,
+                        },
+                        "start": Object {
+                          "column": 57,
+                          "line": 4,
+                          "offset": 152,
+                        },
+                      },
+                      "value": "S40RTS",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 7,
+      "offset": 165,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

@@ -1,0 +1,791 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse Juris-M missing multi-lingual fields #482.juris-m-export to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "leishuku",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 14,
+          "offset": 318,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 38,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 2,
+              "offset": 20,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 18,
+                  "line": 2,
+                  "offset": 35,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 2,
+                  "offset": 30,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 17,
+                      "line": 2,
+                      "offset": 34,
+                    },
+                    "start": Object {
+                      "column": 14,
+                      "line": 2,
+                      "offset": 31,
+                    },
+                  },
+                  "value": "愛如生",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "langid",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 59,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 38,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 19,
+                  "line": 3,
+                  "offset": 56,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 3,
+                  "offset": 50,
+                },
+              },
+              "value": "pinyin",
+            },
+          ],
+        },
+        Object {
+          "key": "shorttitle",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 86,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 59,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 25,
+                  "line": 4,
+                  "offset": 83,
+                },
+                "start": Object {
+                  "column": 17,
+                  "line": 4,
+                  "offset": 75,
+                },
+              },
+              "value": "leishuku",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 105,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 86,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 17,
+                  "line": 5,
+                  "offset": 102,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 5,
+                  "offset": 97,
+                },
+              },
+              "value": "中國類書庫",
+            },
+          ],
+        },
+        Object {
+          "key": "titleaddon",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 142,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 105,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 35,
+                  "line": 6,
+                  "offset": 139,
+                },
+                "start": Object {
+                  "column": 17,
+                  "line": 6,
+                  "offset": 121,
+                },
+              },
+              "value": "Zhōngguó lèishū kù",
+            },
+          ],
+        },
+        Object {
+          "key": "type",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 172,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 142,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 28,
+                  "line": 7,
+                  "offset": 169,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 7,
+                  "offset": 152,
+                },
+              },
+              "value": "Full-text databse",
+            },
+          ],
+        },
+        Object {
+          "key": "url",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 211,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 172,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 37,
+                  "line": 8,
+                  "offset": 208,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 8,
+                  "offset": 181,
+                },
+              },
+              "value": "http://server.wenzibase.com",
+            },
+          ],
+        },
+        Object {
+          "key": "urldate",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 237,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 211,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 24,
+                  "line": 9,
+                  "offset": 234,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 9,
+                  "offset": 224,
+                },
+              },
+              "value": "2016-04-20",
+            },
+          ],
+        },
+        Object {
+          "key": "usere",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 285,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 237,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 46,
+                  "line": 10,
+                  "offset": 282,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 10,
+                  "offset": 248,
+                },
+              },
+              "value": "Database of Chinese Encyclopeadias",
+            },
+          ],
+        },
+        Object {
+          "key": "year",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 315,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 285,
+            },
+          },
+          "value": Array [
+            Object {
+              "arguments": Array [
+                Object {
+                  "kind": "RequiredArgument",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 29,
+                      "line": 11,
+                      "offset": 313,
+                    },
+                    "start": Object {
+                      "column": 21,
+                      "line": 11,
+                      "offset": 305,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 28,
+                          "line": 11,
+                          "offset": 312,
+                        },
+                        "start": Object {
+                          "column": 22,
+                          "line": 11,
+                          "offset": 306,
+                        },
+                      },
+                      "value": "nodate",
+                    },
+                  ],
+                },
+              ],
+              "kind": "RegularCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 29,
+                  "line": 11,
+                  "offset": 313,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 11,
+                  "offset": 295,
+                },
+              },
+              "value": "bibstring",
+            },
+          ],
+        },
+      ],
+      "type": "online",
+    },
+    Object {
+      "id": "yan_cairong__2003",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 25,
+          "offset": 738,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 14,
+          "offset": 318,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 16,
+              "offset": 365,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 15,
+              "offset": 347,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 18,
+                  "line": 15,
+                  "offset": 362,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 15,
+                  "offset": 357,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 17,
+                      "line": 15,
+                      "offset": 361,
+                    },
+                    "start": Object {
+                      "column": 14,
+                      "line": 15,
+                      "offset": 358,
+                    },
+                  },
+                  "value": "顏采容",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 17,
+              "offset": 382,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 16,
+              "offset": 365,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 16,
+                  "offset": 379,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 16,
+                  "offset": 375,
+                },
+              },
+              "value": "2003",
+            },
+          ],
+        },
+        Object {
+          "key": "institution",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 18,
+              "offset": 412,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 17,
+              "offset": 382,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 28,
+                  "line": 17,
+                  "offset": 409,
+                },
+                "start": Object {
+                  "column": 18,
+                  "line": 17,
+                  "offset": 399,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 27,
+                      "line": 17,
+                      "offset": 408,
+                    },
+                    "start": Object {
+                      "column": 19,
+                      "line": 17,
+                      "offset": 400,
+                    },
+                  },
+                  "value": "國立暨南國際大學",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "langid",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 19,
+              "offset": 434,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 18,
+              "offset": 412,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 18,
+                  "offset": 431,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 18,
+                  "offset": 424,
+                },
+              },
+              "value": "Chinese",
+            },
+          ],
+        },
+        Object {
+          "key": "pagetotal",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 20,
+              "offset": 455,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 19,
+              "offset": 434,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 19,
+                  "line": 19,
+                  "offset": 452,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 19,
+                  "offset": 449,
+                },
+              },
+              "value": "214",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 21,
+              "offset": 491,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 20,
+              "offset": 455,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 34,
+                  "line": 20,
+                  "offset": 488,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 20,
+                  "offset": 466,
+                },
+              },
+              "value": "明清時期出版與文化─以「才子佳人」小說為中心",
+            },
+          ],
+        },
+        Object {
+          "key": "titleaddon",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 22,
+              "offset": 594,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 21,
+              "offset": 491,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 101,
+                  "line": 21,
+                  "offset": 591,
+                },
+                "start": Object {
+                  "column": 17,
+                  "line": 21,
+                  "offset": 507,
+                },
+              },
+              "value": "Publishing and Culture in Ming-Qing period : The Scholar-Beauty Novels as an Example",
+            },
+          ],
+        },
+        Object {
+          "key": "type",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 23,
+              "offset": 625,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 22,
+              "offset": 594,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 29,
+                  "line": 22,
+                  "offset": 622,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 22,
+                  "offset": 604,
+                },
+              },
+              "value": "Ph.D. Dissertation",
+            },
+          ],
+        },
+        Object {
+          "key": "url",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 24,
+              "offset": 736,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 23,
+              "offset": 625,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 110,
+                  "line": 23,
+                  "offset": 734,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 23,
+                  "offset": 634,
+                },
+              },
+              "value": "http://ndltd.ncl.edu.tw/cgi-bin/gs32/gsweb.cgi?o=dnclcdr&s=id=%22091NCNU0493006%22.&searchmode=basic",
+            },
+          ],
+        },
+      ],
+      "type": "thesis",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 25,
+      "offset": 738,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

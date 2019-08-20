@@ -1,0 +1,124 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bibtex; url export does not survive underscores #402-export 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Thomas",
+            "lastName": "Emmert",
+          },
+          Object {
+            "firstName": "Stefan",
+            "lastName": "Jaensch",
+          },
+          Object {
+            "firstName": "Carlo",
+            "lastName": "Sovardi",
+          },
+          Object {
+            "firstName": "Wolfgang",
+            "lastName": "Polifke",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Emmert, Thomas",
+          "Jaensch, Stefan",
+          "Sovardi, Carlo",
+          "Polifke, Wolfgang",
+        ],
+        "booktitle": Array [
+          "7th <span class=\\"nocase\\">Forum Acusticum</span>",
+        ],
+        "date": Array [
+          "2014-09",
+        ],
+        "keywords": Array [
+          "NonPerRev",
+        ],
+        "location": Array [
+          "<span class=\\"nocase\\">Krakow</span>",
+        ],
+        "title": Array [
+          "<span class=\\"nocase\\">taX</span> - a <span class=\\"nocase\\">Flexible Tool</span> for <span class=\\"nocase\\">Low</span>-<span class=\\"nocase\\">Order Duct Acoustic Simulation</span> in <span class=\\"nocase\\">Time</span> and <span class=\\"nocase\\">Frequency Domain</span>",
+        ],
+        "url": Array [
+          "http://www.fa2014.agh.edu.pl/fa2014<sub>c</sub>d/",
+        ],
+      },
+      "key": "EmmerJaens14a",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;
+
+exports[`BibTeX Parser should parse bibtex; url export does not survive underscores #402-export 2`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Thomas",
+            "lastName": "Emmert",
+          },
+          Object {
+            "firstName": "Stefan",
+            "lastName": "Jaensch",
+          },
+          Object {
+            "firstName": "Carlo",
+            "lastName": "Sovardi",
+          },
+          Object {
+            "firstName": "Wolfgang",
+            "lastName": "Polifke",
+          },
+        ],
+      },
+      "fields": Object {
+        "address": Array [
+          "<span class=\\"nocase\\">Krakow</span>",
+        ],
+        "author": Array [
+          "Emmert, Thomas",
+          "Jaensch, Stefan",
+          "Sovardi, Carlo",
+          "Polifke, Wolfgang",
+        ],
+        "booktitle": Array [
+          "7th <span class=\\"nocase\\">Forum Acusticum</span>",
+        ],
+        "keywords": Array [
+          "NonPerRev",
+        ],
+        "month": Array [
+          "09",
+        ],
+        "note": Array [
+          "http://www.fa2014.agh.edu.pl/fa2014<sub>c</sub>d/",
+        ],
+        "title": Array [
+          "<span class=\\"nocase\\">taX</span> - a <span class=\\"nocase\\">Flexible Tool</span> for <span class=\\"nocase\\">Low</span>-<span class=\\"nocase\\">Order Duct Acoustic Simulation</span> in <span class=\\"nocase\\">Time</span> and <span class=\\"nocase\\">Frequency Domain</span>",
+        ],
+        "year": Array [
+          "2014",
+        ],
+      },
+      "key": "EmmerJaens14a",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

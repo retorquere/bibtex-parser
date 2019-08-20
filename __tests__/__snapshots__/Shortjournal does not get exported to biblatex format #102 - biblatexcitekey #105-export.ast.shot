@@ -1,0 +1,580 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse Shortjournal does not get exported to biblatex format #102 - biblatexcitekey #105-export to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "Acin2006-105",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 17,
+          "offset": 976,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 2,
+          "offset": 1,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "abstract",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 542,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 3,
+              "offset": 26,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 516,
+                  "line": 3,
+                  "offset": 539,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 3,
+                  "offset": 38,
+                },
+              },
+              "value": "The first step in any quantum key distribution (QKD) protocol consists of sequences of measurements that produce correlated classical data. We show that these correlation data must violate some Bell inequality in order to contain distillable secrecy, if not they could be produced by quantum measurements performed on a separable state of larger dimension. We introduce a new QKD protocol and prove its security against any individual attack by an adversary only limited by the no-signaling condition.",
+            },
+          ],
+        },
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 608,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 542,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 64,
+                  "line": 4,
+                  "offset": 605,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 4,
+                  "offset": 554,
+                },
+              },
+              "value": "Acín, Antonio and Gisin, Nicolas and Masanes, Lluis",
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 631,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 608,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 21,
+                  "line": 5,
+                  "offset": 628,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 5,
+                  "offset": 618,
+                },
+              },
+              "value": "2006-09-20",
+            },
+          ],
+        },
+        Object {
+          "key": "doi",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 672,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 631,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 39,
+                  "line": 6,
+                  "offset": 669,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 6,
+                  "offset": 640,
+                },
+              },
+              "value": "10.1103/PhysRevLett.97.120405",
+            },
+          ],
+        },
+        Object {
+          "key": "journaltitle",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 716,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 672,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 42,
+                  "line": 7,
+                  "offset": 713,
+                },
+                "start": Object {
+                  "column": 19,
+                  "line": 7,
+                  "offset": 690,
+                },
+              },
+              "value": "Physical Review Letters",
+            },
+          ],
+        },
+        Object {
+          "key": "number",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 733,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 716,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 8,
+                  "offset": 730,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 8,
+                  "offset": 728,
+                },
+              },
+              "value": "12",
+            },
+          ],
+        },
+        Object {
+          "key": "pages",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 753,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 733,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 18,
+                  "line": 9,
+                  "offset": 750,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 9,
+                  "offset": 744,
+                },
+              },
+              "value": "120405",
+            },
+          ],
+        },
+        Object {
+          "key": "shortjournal",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 790,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 753,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 35,
+                  "line": 10,
+                  "offset": 787,
+                },
+                "start": Object {
+                  "column": 19,
+                  "line": 10,
+                  "offset": 771,
+                },
+              },
+              "value": "Phys. Rev. Lett.",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 866,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 790,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 17,
+                  "line": 11,
+                  "offset": 806,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 11,
+                  "offset": 801,
+                },
+              },
+              "value": "From ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 25,
+                  "line": 11,
+                  "offset": 814,
+                },
+                "start": Object {
+                  "column": 17,
+                  "line": 11,
+                  "offset": 806,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 24,
+                      "line": 11,
+                      "offset": 813,
+                    },
+                    "start": Object {
+                      "column": 18,
+                      "line": 11,
+                      "offset": 807,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 23,
+                          "line": 11,
+                          "offset": 812,
+                        },
+                        "start": Object {
+                          "column": 19,
+                          "line": 11,
+                          "offset": 808,
+                        },
+                      },
+                      "value": "Bell",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 28,
+                  "line": 11,
+                  "offset": 817,
+                },
+                "start": Object {
+                  "column": 25,
+                  "line": 11,
+                  "offset": 814,
+                },
+              },
+              "value": "’s ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 39,
+                  "line": 11,
+                  "offset": 828,
+                },
+                "start": Object {
+                  "column": 28,
+                  "line": 11,
+                  "offset": 817,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 38,
+                      "line": 11,
+                      "offset": 827,
+                    },
+                    "start": Object {
+                      "column": 29,
+                      "line": 11,
+                      "offset": 818,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 37,
+                          "line": 11,
+                          "offset": 826,
+                        },
+                        "start": Object {
+                          "column": 30,
+                          "line": 11,
+                          "offset": 819,
+                        },
+                      },
+                      "value": "Theorem",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 74,
+                  "line": 11,
+                  "offset": 863,
+                },
+                "start": Object {
+                  "column": 39,
+                  "line": 11,
+                  "offset": 828,
+                },
+              },
+              "value": " to Secure Quantum Key Distribution",
+            },
+          ],
+        },
+        Object {
+          "key": "url",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 931,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 866,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 63,
+                  "line": 12,
+                  "offset": 928,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 12,
+                  "offset": 875,
+                },
+              },
+              "value": "http://link.aps.org/doi/10.1103/PhysRevLett.97.120405",
+            },
+          ],
+        },
+        Object {
+          "key": "urldate",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 14,
+              "offset": 957,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 931,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 24,
+                  "line": 13,
+                  "offset": 954,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 13,
+                  "offset": 944,
+                },
+              },
+              "value": "2014-08-20",
+            },
+          ],
+        },
+        Object {
+          "key": "volume",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 15,
+              "offset": 973,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 14,
+              "offset": 957,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 14,
+                  "offset": 971,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 14,
+                  "offset": 969,
+                },
+              },
+              "value": "97",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 17,
+      "offset": 976,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

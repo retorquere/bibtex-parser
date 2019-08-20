@@ -1,0 +1,292 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse HTML Fragment separator escaped in url #140 #147-export to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "MacFarlaneJohna",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 8,
+          "offset": 193,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 58,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 2,
+              "offset": 29,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 29,
+                  "line": 2,
+                  "offset": 55,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 2,
+                  "offset": 39,
+                },
+              },
+              "value": "MacFarlane, John",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 99,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 58,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 19,
+                  "line": 3,
+                  "offset": 76,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 3,
+                  "offset": 69,
+                },
+              },
+              "value": "Pandoc ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 27,
+                  "line": 3,
+                  "offset": 84,
+                },
+                "start": Object {
+                  "column": 19,
+                  "line": 3,
+                  "offset": 76,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 26,
+                      "line": 3,
+                      "offset": 83,
+                    },
+                    "start": Object {
+                      "column": 20,
+                      "line": 3,
+                      "offset": 77,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 25,
+                          "line": 3,
+                          "offset": 82,
+                        },
+                        "start": Object {
+                          "column": 21,
+                          "line": 3,
+                          "offset": 78,
+                        },
+                      },
+                      "value": "User",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 30,
+                  "line": 3,
+                  "offset": 87,
+                },
+                "start": Object {
+                  "column": 27,
+                  "line": 3,
+                  "offset": 84,
+                },
+              },
+              "value": "’s ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 39,
+                  "line": 3,
+                  "offset": 96,
+                },
+                "start": Object {
+                  "column": 30,
+                  "line": 3,
+                  "offset": 87,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 38,
+                      "line": 3,
+                      "offset": 95,
+                    },
+                    "start": Object {
+                      "column": 31,
+                      "line": 3,
+                      "offset": 88,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 37,
+                          "line": 3,
+                          "offset": 94,
+                        },
+                        "start": Object {
+                          "column": 32,
+                          "line": 3,
+                          "offset": 89,
+                        },
+                      },
+                      "value": "Guide",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "url",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 165,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 99,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 64,
+                  "line": 4,
+                  "offset": 162,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 4,
+                  "offset": 108,
+                },
+              },
+              "value": "http://johnmacfarlane.net/pandoc/README.html#citations",
+            },
+          ],
+        },
+        Object {
+          "key": "urldate",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 190,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 165,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 24,
+                  "line": 5,
+                  "offset": 188,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 5,
+                  "offset": 178,
+                },
+              },
+              "value": "2015-01-31",
+            },
+          ],
+        },
+      ],
+      "type": "archived",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 8,
+      "offset": 193,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

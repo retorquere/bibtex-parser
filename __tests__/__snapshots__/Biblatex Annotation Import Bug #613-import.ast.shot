@@ -1,0 +1,244 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse Biblatex Annotation Import Bug #613-import to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "Demus1984",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 9,
+          "offset": 233,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 63,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 2,
+              "offset": 17,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 44,
+                  "line": 2,
+                  "offset": 60,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 2,
+                  "offset": 26,
+                },
+              },
+              "value": "The Mosaics of San Marco in Venice",
+            },
+          ],
+        },
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 87,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 63,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 22,
+                  "line": 3,
+                  "offset": 84,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 3,
+                  "offset": 73,
+                },
+              },
+              "value": "Demus, Otto",
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 102,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 87,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 13,
+                  "line": 4,
+                  "offset": 99,
+                },
+                "start": Object {
+                  "column": 9,
+                  "line": 4,
+                  "offset": 95,
+                },
+              },
+              "value": "1984",
+            },
+          ],
+        },
+        Object {
+          "key": "location",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 124,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 102,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 5,
+                  "offset": 121,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 5,
+                  "offset": 114,
+                },
+              },
+              "value": "Chicago",
+            },
+          ],
+        },
+        Object {
+          "key": "publisher",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 167,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 124,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 41,
+                  "line": 6,
+                  "offset": 164,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 6,
+                  "offset": 137,
+                },
+              },
+              "value": "University of Chicago Press",
+            },
+          ],
+        },
+        Object {
+          "key": "annotation",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 231,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 167,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 62,
+                  "line": 7,
+                  "offset": 228,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 7,
+                  "offset": 181,
+                },
+              },
+              "value": "a \\"monumental\\" work on the mosaics of San Marco",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 9,
+      "offset": 233,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

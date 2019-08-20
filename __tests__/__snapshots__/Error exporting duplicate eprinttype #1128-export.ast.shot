@@ -1,0 +1,582 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse Error exporting duplicate eprinttype #1128-export to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "Kundu2013",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 17,
+          "offset": 2970,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "abstract",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 2007,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 2,
+              "offset": 22,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 1985,
+                  "line": 2,
+                  "offset": 2004,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 2,
+                  "offset": 34,
+                },
+              },
+              "value": "Functional connectivity analysis of resting state blood oxygen level-dependent (BOLD) functional MRI is widely used for noninvasively studying brain functional networks. Recent findings have indicated, however, that even small (≤1 mm) amounts of head movement during scanning can disproportionately bias connectivity estimates, despite various preprocessing efforts. Further complications for interregional connectivity estimation from time domain signals include the unaccounted reduction in BOLD degrees of freedom related to sensitivity losses from high subject motion. To address these issues, we describe an integrated strategy for data acquisition, denoising, and connectivity estimation. This strategy builds on our previously published technique combining data acquisition with multiecho (ME) echo planar imaging and analysis with spatial independent component analysis (ICA), called ME-ICA, which distinguishes BOLD (neuronal) and non-BOLD (artifactual) components based on linear echo-time dependence of signals-a characteristic property of BOLD T*2 signal changes. Here we show for 32 control subjects that this method provides a physically principled and nearly operator-independent way of removing complex artifacts such as motion from resting state data. We then describe a robust estimator of functional connectivity based on interregional correlation of BOLD-independent component coefficients. This estimator, called independent components regression, considerably simplifies statistical inference for functional connectivity because degrees of freedom equals the number of independent coefficients. Compared with traditional connectivity estimation methods, the proposed strategy results in fourfold improvements in signal-to-noise ratio, functional connectivity analysis with improved specificity, and valid statistical inference with nominal control of type 1 error in contrasts of connectivity between groups with different levels of subject motion.",
+            },
+          ],
+        },
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 2204,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 2007,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 195,
+                  "line": 3,
+                  "offset": 2201,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 3,
+                  "offset": 2019,
+                },
+              },
+              "value": "Kundu, Prantik and Brenowitz, Noah D. and Voon, Valerie and Worbe, Yulia and Vértes, Petra E. and Inati, Souheil J. and Saad, Ziad S. and Bandettini, Peter A. and Bullmore, Edward T.",
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 2227,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 2204,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 21,
+                  "line": 4,
+                  "offset": 2224,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 4,
+                  "offset": 2214,
+                },
+              },
+              "value": "2013-10-01",
+            },
+          ],
+        },
+        Object {
+          "key": "doi",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 2262,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 2227,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 33,
+                  "line": 5,
+                  "offset": 2259,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 5,
+                  "offset": 2236,
+                },
+              },
+              "value": "10.1073/pnas.1301725110",
+            },
+          ],
+        },
+        Object {
+          "key": "eprint",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 2285,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 2262,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 21,
+                  "line": 6,
+                  "offset": 2282,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 6,
+                  "offset": 2274,
+                },
+              },
+              "value": "24038744",
+            },
+          ],
+        },
+        Object {
+          "key": "eprinttype",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 2308,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 2285,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 21,
+                  "line": 7,
+                  "offset": 2305,
+                },
+                "start": Object {
+                  "column": 17,
+                  "line": 7,
+                  "offset": 2301,
+                },
+              },
+              "value": "pmid",
+            },
+          ],
+        },
+        Object {
+          "key": "isbn",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 2331,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 2308,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 21,
+                  "line": 8,
+                  "offset": 2328,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 8,
+                  "offset": 2318,
+                },
+              },
+              "value": "1301725110",
+            },
+          ],
+        },
+        Object {
+          "key": "issn",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 2353,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 2331,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 9,
+                  "offset": 2350,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 9,
+                  "offset": 2341,
+                },
+              },
+              "value": "1091-6490",
+            },
+          ],
+        },
+        Object {
+          "key": "journaltitle",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 2396,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 2353,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 41,
+                  "line": 10,
+                  "offset": 2393,
+                },
+                "start": Object {
+                  "column": 19,
+                  "line": 10,
+                  "offset": 2371,
+                },
+              },
+              "value": "Proc. Natl. Acad. Sci.",
+            },
+          ],
+        },
+        Object {
+          "key": "keywords",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 2807,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 2396,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 409,
+                  "line": 11,
+                  "offset": 2804,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 11,
+                  "offset": 2410,
+                },
+              },
+              "value": "Artifacts,Brain Mapping,Brain Mapping: methods,Computer-Assisted,human neuroimaging,Humans,Image Processing,Image Processing; Computer-Assisted,Magnetic Resonance Imaging,Magnetic Resonance Imaging: methods,Neural Pathways,Neural Pathways: cytology,Neural Pathways: physiology,Oxygen,Oxygen: blood,Research Design,resting state fMRI,Sensitivity and Specificity,Signal-To-Noise Ratio,time series",
+            },
+          ],
+        },
+        Object {
+          "key": "number",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 2824,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 2807,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 12,
+                  "offset": 2821,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 12,
+                  "offset": 2819,
+                },
+              },
+              "value": "40",
+            },
+          ],
+        },
+        Object {
+          "key": "pages",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 14,
+              "offset": 2846,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 2824,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 13,
+                  "offset": 2843,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 13,
+                  "offset": 2835,
+                },
+              },
+              "value": "16187-92",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 15,
+              "offset": 2951,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 14,
+              "offset": 2846,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 94,
+                  "line": 14,
+                  "offset": 2939,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 14,
+                  "offset": 2857,
+                },
+              },
+              "value": "Integrated Strategy for Improving Functional Connectivity Mapping Using Multiecho ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 102,
+                  "line": 14,
+                  "offset": 2947,
+                },
+                "start": Object {
+                  "column": 94,
+                  "line": 14,
+                  "offset": 2939,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 101,
+                      "line": 14,
+                      "offset": 2946,
+                    },
+                    "start": Object {
+                      "column": 95,
+                      "line": 14,
+                      "offset": 2940,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 100,
+                          "line": 14,
+                          "offset": 2945,
+                        },
+                        "start": Object {
+                          "column": 96,
+                          "line": 14,
+                          "offset": 2941,
+                        },
+                      },
+                      "value": "fMRI",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 103,
+                  "line": 14,
+                  "offset": 2948,
+                },
+                "start": Object {
+                  "column": 102,
+                  "line": 14,
+                  "offset": 2947,
+                },
+              },
+              "value": ".",
+            },
+          ],
+        },
+        Object {
+          "key": "volume",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 16,
+              "offset": 2968,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 15,
+              "offset": 2951,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 16,
+                  "line": 15,
+                  "offset": 2966,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 15,
+                  "offset": 2963,
+                },
+              },
+              "value": "110",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 17,
+      "offset": 2970,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

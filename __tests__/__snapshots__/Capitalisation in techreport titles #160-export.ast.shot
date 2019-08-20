@@ -1,0 +1,1071 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse Capitalisation in techreport titles #160-export to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "Hald_2000",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 11,
+          "offset": 597,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 2,
+          "offset": 1,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 64,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 3,
+              "offset": 22,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 42,
+                  "line": 3,
+                  "offset": 61,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 3,
+                  "offset": 32,
+                },
+              },
+              "value": "Hald, T. and Wong, D.M.A.L.F.",
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 81,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 64,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 4,
+                  "offset": 78,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 4,
+                  "offset": 74,
+                },
+              },
+              "value": "2000",
+            },
+          ],
+        },
+        Object {
+          "key": "institution",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 228,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 81,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 145,
+                  "line": 5,
+                  "offset": 225,
+                },
+                "start": Object {
+                  "column": 18,
+                  "line": 5,
+                  "offset": 98,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 144,
+                      "line": 5,
+                      "offset": 224,
+                    },
+                    "start": Object {
+                      "column": 19,
+                      "line": 5,
+                      "offset": 99,
+                    },
+                  },
+                  "value": "Royal Veterinary and Agricultural University, Department of Animal Health and Animal Science, Division of Ethology and Health",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "shorttitle",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 292,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 228,
+            },
+          },
+          "value": Array [
+            Object {
+              "arguments": Array [
+                Object {
+                  "kind": "RequiredArgument",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 34,
+                      "line": 6,
+                      "offset": 261,
+                    },
+                    "start": Object {
+                      "column": 22,
+                      "line": 6,
+                      "offset": 249,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 33,
+                          "line": 6,
+                          "offset": 260,
+                        },
+                        "start": Object {
+                          "column": 23,
+                          "line": 6,
+                          "offset": 250,
+                        },
+                      },
+                      "value": "Salmonella",
+                    },
+                  ],
+                },
+              ],
+              "kind": "RegularCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 34,
+                  "line": 6,
+                  "offset": 261,
+                },
+                "start": Object {
+                  "column": 17,
+                  "line": 6,
+                  "offset": 244,
+                },
+              },
+              "value": "emph",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 38,
+                  "line": 6,
+                  "offset": 265,
+                },
+                "start": Object {
+                  "column": 34,
+                  "line": 6,
+                  "offset": 261,
+                },
+              },
+              "value": " in ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 46,
+                  "line": 6,
+                  "offset": 273,
+                },
+                "start": Object {
+                  "column": 38,
+                  "line": 6,
+                  "offset": 265,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 45,
+                      "line": 6,
+                      "offset": 272,
+                    },
+                    "start": Object {
+                      "column": 39,
+                      "line": 6,
+                      "offset": 266,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 44,
+                          "line": 6,
+                          "offset": 271,
+                        },
+                        "start": Object {
+                          "column": 40,
+                          "line": 6,
+                          "offset": 267,
+                        },
+                      },
+                      "value": "Pork",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 48,
+                  "line": 6,
+                  "offset": 275,
+                },
+                "start": Object {
+                  "column": 46,
+                  "line": 6,
+                  "offset": 273,
+                },
+              },
+              "value": " (",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 61,
+                  "line": 6,
+                  "offset": 288,
+                },
+                "start": Object {
+                  "column": 48,
+                  "line": 6,
+                  "offset": 275,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 60,
+                      "line": 6,
+                      "offset": 287,
+                    },
+                    "start": Object {
+                      "column": 49,
+                      "line": 6,
+                      "offset": 276,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 59,
+                          "line": 6,
+                          "offset": 286,
+                        },
+                        "start": Object {
+                          "column": 50,
+                          "line": 6,
+                          "offset": 277,
+                        },
+                      },
+                      "value": "SALINPORK",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 62,
+                  "line": 6,
+                  "offset": 289,
+                },
+                "start": Object {
+                  "column": 61,
+                  "line": 6,
+                  "offset": 288,
+                },
+              },
+              "value": ")",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 487,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 292,
+            },
+          },
+          "value": Array [
+            Object {
+              "arguments": Array [
+                Object {
+                  "kind": "RequiredArgument",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 29,
+                      "line": 7,
+                      "offset": 320,
+                    },
+                    "start": Object {
+                      "column": 17,
+                      "line": 7,
+                      "offset": 308,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 28,
+                          "line": 7,
+                          "offset": 319,
+                        },
+                        "start": Object {
+                          "column": 18,
+                          "line": 7,
+                          "offset": 309,
+                        },
+                      },
+                      "value": "Salmonella",
+                    },
+                  ],
+                },
+              ],
+              "kind": "RegularCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 29,
+                  "line": 7,
+                  "offset": 320,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 7,
+                  "offset": 303,
+                },
+              },
+              "value": "emph",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 33,
+                  "line": 7,
+                  "offset": 324,
+                },
+                "start": Object {
+                  "column": 29,
+                  "line": 7,
+                  "offset": 320,
+                },
+              },
+              "value": " in ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 41,
+                  "line": 7,
+                  "offset": 332,
+                },
+                "start": Object {
+                  "column": 33,
+                  "line": 7,
+                  "offset": 324,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 40,
+                      "line": 7,
+                      "offset": 331,
+                    },
+                    "start": Object {
+                      "column": 34,
+                      "line": 7,
+                      "offset": 325,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 39,
+                          "line": 7,
+                          "offset": 330,
+                        },
+                        "start": Object {
+                          "column": 35,
+                          "line": 7,
+                          "offset": 326,
+                        },
+                      },
+                      "value": "Pork",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 43,
+                  "line": 7,
+                  "offset": 334,
+                },
+                "start": Object {
+                  "column": 41,
+                  "line": 7,
+                  "offset": 332,
+                },
+              },
+              "value": " (",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 56,
+                  "line": 7,
+                  "offset": 347,
+                },
+                "start": Object {
+                  "column": 43,
+                  "line": 7,
+                  "offset": 334,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 55,
+                      "line": 7,
+                      "offset": 346,
+                    },
+                    "start": Object {
+                      "column": 44,
+                      "line": 7,
+                      "offset": 335,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 54,
+                          "line": 7,
+                          "offset": 345,
+                        },
+                        "start": Object {
+                          "column": 45,
+                          "line": 7,
+                          "offset": 336,
+                        },
+                      },
+                      "value": "SALINPORK",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 59,
+                  "line": 7,
+                  "offset": 350,
+                },
+                "start": Object {
+                  "column": 56,
+                  "line": 7,
+                  "offset": 347,
+                },
+              },
+              "value": "): ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 66,
+                  "line": 7,
+                  "offset": 357,
+                },
+                "start": Object {
+                  "column": 59,
+                  "line": 7,
+                  "offset": 350,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 65,
+                      "line": 7,
+                      "offset": 356,
+                    },
+                    "start": Object {
+                      "column": 60,
+                      "line": 7,
+                      "offset": 351,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 64,
+                          "line": 7,
+                          "offset": 355,
+                        },
+                        "start": Object {
+                          "column": 61,
+                          "line": 7,
+                          "offset": 352,
+                        },
+                      },
+                      "value": "Pre",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 79,
+                  "line": 7,
+                  "offset": 370,
+                },
+                "start": Object {
+                  "column": 66,
+                  "line": 7,
+                  "offset": 357,
+                },
+              },
+              "value": "-Harvest and ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 112,
+                  "line": 7,
+                  "offset": 403,
+                },
+                "start": Object {
+                  "column": 79,
+                  "line": 7,
+                  "offset": 370,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 111,
+                      "line": 7,
+                      "offset": 402,
+                    },
+                    "start": Object {
+                      "column": 80,
+                      "line": 7,
+                      "offset": 371,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 110,
+                          "line": 7,
+                          "offset": 401,
+                        },
+                        "start": Object {
+                          "column": 81,
+                          "line": 7,
+                          "offset": 372,
+                        },
+                      },
+                      "value": "Harvest Control Options Based",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 116,
+                  "line": 7,
+                  "offset": 407,
+                },
+                "start": Object {
+                  "column": 112,
+                  "line": 7,
+                  "offset": 403,
+                },
+              },
+              "value": " on ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 133,
+                  "line": 7,
+                  "offset": 424,
+                },
+                "start": Object {
+                  "column": 116,
+                  "line": 7,
+                  "offset": 407,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 132,
+                      "line": 7,
+                      "offset": 423,
+                    },
+                    "start": Object {
+                      "column": 117,
+                      "line": 7,
+                      "offset": 408,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 131,
+                          "line": 7,
+                          "offset": 422,
+                        },
+                        "start": Object {
+                          "column": 118,
+                          "line": 7,
+                          "offset": 409,
+                        },
+                      },
+                      "value": "Epidemiologic",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 135,
+                  "line": 7,
+                  "offset": 426,
+                },
+                "start": Object {
+                  "column": 133,
+                  "line": 7,
+                  "offset": 424,
+                },
+              },
+              "value": ", ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 149,
+                  "line": 7,
+                  "offset": 440,
+                },
+                "start": Object {
+                  "column": 135,
+                  "line": 7,
+                  "offset": 426,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 148,
+                      "line": 7,
+                      "offset": 439,
+                    },
+                    "start": Object {
+                      "column": 136,
+                      "line": 7,
+                      "offset": 427,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 147,
+                          "line": 7,
+                          "offset": 438,
+                        },
+                        "start": Object {
+                          "column": 137,
+                          "line": 7,
+                          "offset": 428,
+                        },
+                      },
+                      "value": "Diagnostic",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 154,
+                  "line": 7,
+                  "offset": 445,
+                },
+                "start": Object {
+                  "column": 149,
+                  "line": 7,
+                  "offset": 440,
+                },
+              },
+              "value": " and ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 175,
+                  "line": 7,
+                  "offset": 466,
+                },
+                "start": Object {
+                  "column": 154,
+                  "line": 7,
+                  "offset": 445,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 174,
+                      "line": 7,
+                      "offset": 465,
+                    },
+                    "start": Object {
+                      "column": 155,
+                      "line": 7,
+                      "offset": 446,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 173,
+                          "line": 7,
+                          "offset": 464,
+                        },
+                        "start": Object {
+                          "column": 156,
+                          "line": 7,
+                          "offset": 447,
+                        },
+                      },
+                      "value": "Economic Research",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 177,
+                  "line": 7,
+                  "offset": 468,
+                },
+                "start": Object {
+                  "column": 175,
+                  "line": 7,
+                  "offset": 466,
+                },
+              },
+              "value": ": ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 193,
+                  "line": 7,
+                  "offset": 484,
+                },
+                "start": Object {
+                  "column": 177,
+                  "line": 7,
+                  "offset": 468,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 192,
+                      "line": 7,
+                      "offset": 483,
+                    },
+                    "start": Object {
+                      "column": 178,
+                      "line": 7,
+                      "offset": 469,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 191,
+                          "line": 7,
+                          "offset": 482,
+                        },
+                        "start": Object {
+                          "column": 179,
+                          "line": 7,
+                          "offset": 470,
+                        },
+                      },
+                      "value": "Final Report",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "url",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 594,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 487,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 89,
+                  "line": 8,
+                  "offset": 575,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 8,
+                  "offset": 496,
+                },
+              },
+              "value": "http://www.dfvf.dk/Files/Filer/Zoonosecentret/Publikationer/Salinpork/SALINPORK",
+            },
+            Object {
+              "kind": "SubscriptCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 91,
+                  "line": 8,
+                  "offset": 577,
+                },
+                "start": Object {
+                  "column": 89,
+                  "line": 8,
+                  "offset": 575,
+                },
+              },
+              "value": "f",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 95,
+                  "line": 8,
+                  "offset": 581,
+                },
+                "start": Object {
+                  "column": 91,
+                  "line": 8,
+                  "offset": 577,
+                },
+              },
+              "value": "inal",
+            },
+            Object {
+              "kind": "SubscriptCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 97,
+                  "line": 8,
+                  "offset": 583,
+                },
+                "start": Object {
+                  "column": 95,
+                  "line": 8,
+                  "offset": 581,
+                },
+              },
+              "value": "r",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 106,
+                  "line": 8,
+                  "offset": 592,
+                },
+                "start": Object {
+                  "column": 97,
+                  "line": 8,
+                  "offset": 583,
+                },
+              },
+              "value": "eport.pdf",
+            },
+          ],
+        },
+      ],
+      "type": "report",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 11,
+      "offset": 597,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

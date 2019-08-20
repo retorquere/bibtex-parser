@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse Mismatched conversion of braces in title on export means field never gets closed #1218-export 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Erik",
+            "lastName": "Walinda",
+          },
+          Object {
+            "firstName": "Daichi",
+            "lastName": "Morimoto",
+          },
+          Object {
+            "firstName": "Kenji",
+            "lastName": "Sugase",
+          },
+        ],
+      },
+      "fields": Object {
+        "abstract": Array [
+          "Among the tools of structural biology, NMR spectroscopy is unique in that it not only derives a static three-dimensional structure, but also provides an atomic-level description of the local fluctuations and global dynamics around this static structure. A battery of NMR experiments is now available to probe the motions of proteins and nucleic acids over the whole biologically relevant timescale from picoseconds to hours. Here we focus on one of these methods, relaxation dispersion, which resolves dynamics on the micro- to millisecond timescale. Key biological processes that occur on this timescale include enzymatic catalysis, ligand binding, and local folding. In other words, relaxation-dispersion-resolved dynamics are often closely related to the function of the molecule and therefore highly interesting to the structural biochemist. With an astounding sensitivity of <span class=\\"nocase\\">∼</span>0.5%, the method detects low-population excited states that are invisible to any other biophysical method. The kinetics of the exchange between the ground state and excited states are quantified in the form of the underlying exchange rate, while structural information about the invisible excited state is obtained in the form of its chemical shift. Lastly, the population of the excited state can be derived. This diversity in the information that can be obtained makes relaxation dispersion an excellent method to study the detailed mechanisms of conformational transitions and molecular interactions. Here we describe the two branches of relaxation dispersion, R2 and R1<span class=\\"nocase\\">ρ</span>, discussing their applicability, similarities, and differences, as well as recent developments in pulse sequence design and data processing.",
+        ],
+        "author": Array [
+          "Walinda, Erik",
+          "Morimoto, Daichi",
+          "Sugase, Kenji",
+        ],
+        "bdsk-url-2": Array [
+          "https://doi.org/10.1016/j.ymeth.2018.04.026",
+        ],
+        "doi": Array [
+          "https://doi.org/10.1016/j.ymeth.2018.04.026",
+        ],
+        "issn": Array [
+          "1046-2023",
+        ],
+        "journal": Array [
+          "Methods",
+        ],
+        "keywords": Array [
+          "Biomolecular interactions",
+          "Chemical exchange",
+          "Conformational exchange",
+          "DNA/RNA dynamics",
+          "NMR spectroscopy",
+          "Protein dynamics",
+          "Relaxation dispersion",
+        ],
+        "pages": Array [
+          "28-38",
+        ],
+        "title": Array [
+          "Resolving biomolecular motion and interactions by $<span class=\\"nocase\\">R</span>_2$ and $<span class=\\"nocase\\">R</span>_{1\\\\text{<span class=\\"nocase\\">ρ}}$</span> relaxation dispersion <span class=\\"nocase\\">NMR</span>",
+        ],
+        "url": Array [
+          "http://www.sciencedirect.com/science/article/pii/S1046202318300070",
+        ],
+        "volume": Array [
+          "148",
+        ],
+        "year": Array [
+          "2018",
+        ],
+      },
+      "key": "Walinda2018",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

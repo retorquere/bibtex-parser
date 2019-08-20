@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse Allow explicit field override-export 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Abhishek",
+            "lastName": "Anand",
+          },
+          Object {
+            "firstName": "Vincent",
+            "lastName": "Rahli",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Anand, Abhishek",
+          "Rahli, Vincent",
+        ],
+        "date": Array [
+          "2014",
+        ],
+        "note": Array [
+          "http://www.nuprl.org/html/verification/",
+        ],
+        "origdate": Array [
+          "1856",
+        ],
+        "origtitle": Array [
+          "An old title",
+        ],
+        "timestamp": Array [
+          "2011.03.22",
+        ],
+        "title": Array [
+          "Technical <span class=\\"nocase\\">Report</span> : <span class=\\"nocase\\">Towards</span> a <span class=\\"nocase\\">Formally Verified Proof Assistant</span>",
+        ],
+        "url": Array [
+          "http://www.nuprl.org/html/verification/",
+        ],
+      },
+      "key": "anand2014technicalreportformally",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

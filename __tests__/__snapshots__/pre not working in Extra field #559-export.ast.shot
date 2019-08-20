@@ -1,0 +1,174 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse pre not working in Extra field #559-export to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "Brons:pretest",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 6,
+          "offset": 99,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 52,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 2,
+              "offset": 26,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 26,
+                  "line": 2,
+                  "offset": 49,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 2,
+                  "offset": 36,
+                },
+              },
+              "value": "Brøns, Morten",
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 75,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 52,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 21,
+                  "line": 3,
+                  "offset": 72,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 3,
+                  "offset": 62,
+                },
+              },
+              "value": "Hello hej",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 97,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 75,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "MathMode",
+              "loc": Object {
+                "end": Object {
+                  "column": 13,
+                  "line": 4,
+                  "offset": 87,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 4,
+                  "offset": 86,
+                },
+              },
+              "value": "$",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 4,
+                  "offset": 94,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 4,
+                  "offset": 87,
+                },
+              },
+              "value": "pretest",
+            },
+            Object {
+              "kind": "MathMode",
+              "loc": Object {
+                "end": Object {
+                  "column": 21,
+                  "line": 4,
+                  "offset": 95,
+                },
+                "start": Object {
+                  "column": 20,
+                  "line": 4,
+                  "offset": 94,
+                },
+              },
+              "value": "$",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 6,
+      "offset": 99,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

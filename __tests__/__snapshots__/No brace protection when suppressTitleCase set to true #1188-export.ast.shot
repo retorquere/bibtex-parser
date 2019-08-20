@@ -1,0 +1,1090 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse No brace protection when suppressTitleCase set to true #1188-export to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "Smith2019",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 11,
+          "offset": 212,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 46,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 2,
+              "offset": 22,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 24,
+                  "line": 2,
+                  "offset": 43,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 2,
+                  "offset": 32,
+                },
+              },
+              "value": "Smith, John",
+            },
+          ],
+        },
+        Object {
+          "key": "journal",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 80,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 46,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 32,
+                  "line": 3,
+                  "offset": 77,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 3,
+                  "offset": 59,
+                },
+              },
+              "value": "Journal of Testing",
+            },
+          ],
+        },
+        Object {
+          "key": "number",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 96,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 80,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 14,
+                  "line": 4,
+                  "offset": 93,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 4,
+                  "offset": 92,
+                },
+              },
+              "value": "1",
+            },
+          ],
+        },
+        Object {
+          "key": "pages",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 115,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 96,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 17,
+                  "line": 5,
+                  "offset": 112,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 5,
+                  "offset": 107,
+                },
+              },
+              "value": "27-49",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 177,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 115,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 17,
+                  "line": 6,
+                  "offset": 131,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 6,
+                  "offset": 126,
+                },
+              },
+              "value": "This ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 28,
+                  "line": 6,
+                  "offset": 142,
+                },
+                "start": Object {
+                  "column": 17,
+                  "line": 6,
+                  "offset": 131,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 27,
+                      "line": 6,
+                      "offset": 141,
+                    },
+                    "start": Object {
+                      "column": 18,
+                      "line": 6,
+                      "offset": 132,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 26,
+                          "line": 6,
+                          "offset": 140,
+                        },
+                        "start": Object {
+                          "column": 19,
+                          "line": 6,
+                          "offset": 133,
+                        },
+                      },
+                      "value": "Article",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 32,
+                  "line": 6,
+                  "offset": 146,
+                },
+                "start": Object {
+                  "column": 28,
+                  "line": 6,
+                  "offset": 142,
+                },
+              },
+              "value": " is ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 46,
+                  "line": 6,
+                  "offset": 160,
+                },
+                "start": Object {
+                  "column": 32,
+                  "line": 6,
+                  "offset": 146,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 45,
+                      "line": 6,
+                      "offset": 159,
+                    },
+                    "start": Object {
+                      "column": 33,
+                      "line": 6,
+                      "offset": 147,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 44,
+                          "line": 6,
+                          "offset": 158,
+                        },
+                        "start": Object {
+                          "column": 34,
+                          "line": 6,
+                          "offset": 148,
+                        },
+                      },
+                      "value": "Title Case",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 50,
+                  "line": 6,
+                  "offset": 164,
+                },
+                "start": Object {
+                  "column": 46,
+                  "line": 6,
+                  "offset": 160,
+                },
+              },
+              "value": " in ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 60,
+                  "line": 6,
+                  "offset": 174,
+                },
+                "start": Object {
+                  "column": 50,
+                  "line": 6,
+                  "offset": 164,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 59,
+                      "line": 6,
+                      "offset": 173,
+                    },
+                    "start": Object {
+                      "column": 51,
+                      "line": 6,
+                      "offset": 165,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 58,
+                          "line": 6,
+                          "offset": 172,
+                        },
+                        "start": Object {
+                          "column": 52,
+                          "line": 6,
+                          "offset": 166,
+                        },
+                      },
+                      "value": "Zotero",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "volume",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 193,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 177,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 14,
+                  "line": 7,
+                  "offset": 190,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 7,
+                  "offset": 189,
+                },
+              },
+              "value": "3",
+            },
+          ],
+        },
+        Object {
+          "key": "year",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 209,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 193,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 8,
+                  "offset": 207,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 8,
+                  "offset": 203,
+                },
+              },
+              "value": "2019",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+    Object {
+      "id": "Doe2018",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 21,
+          "offset": 414,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 11,
+          "offset": 212,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 254,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 12,
+              "offset": 232,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 22,
+                  "line": 12,
+                  "offset": 251,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 12,
+                  "offset": 242,
+                },
+              },
+              "value": "Doe, Jane",
+            },
+          ],
+        },
+        Object {
+          "key": "journal",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 14,
+              "offset": 288,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 254,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 32,
+                  "line": 13,
+                  "offset": 285,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 13,
+                  "offset": 267,
+                },
+              },
+              "value": "Journal of Testing",
+            },
+          ],
+        },
+        Object {
+          "key": "number",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 15,
+              "offset": 304,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 14,
+              "offset": 288,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 14,
+                  "line": 14,
+                  "offset": 301,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 14,
+                  "offset": 300,
+                },
+              },
+              "value": "4",
+            },
+          ],
+        },
+        Object {
+          "key": "pages",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 16,
+              "offset": 322,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 15,
+              "offset": 304,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 16,
+                  "line": 15,
+                  "offset": 319,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 15,
+                  "offset": 315,
+                },
+              },
+              "value": "1-31",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 17,
+              "offset": 379,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 16,
+              "offset": 322,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 45,
+                  "line": 16,
+                  "offset": 366,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 16,
+                  "offset": 333,
+                },
+              },
+              "value": "This article is sentence case in ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 55,
+                  "line": 16,
+                  "offset": 376,
+                },
+                "start": Object {
+                  "column": 45,
+                  "line": 16,
+                  "offset": 366,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 54,
+                      "line": 16,
+                      "offset": 375,
+                    },
+                    "start": Object {
+                      "column": 46,
+                      "line": 16,
+                      "offset": 367,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 53,
+                          "line": 16,
+                          "offset": 374,
+                        },
+                        "start": Object {
+                          "column": 47,
+                          "line": 16,
+                          "offset": 368,
+                        },
+                      },
+                      "value": "Zotero",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "volume",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 18,
+              "offset": 395,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 17,
+              "offset": 379,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 14,
+                  "line": 17,
+                  "offset": 392,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 17,
+                  "offset": 391,
+                },
+              },
+              "value": "2",
+            },
+          ],
+        },
+        Object {
+          "key": "year",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 19,
+              "offset": 411,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 18,
+              "offset": 395,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 18,
+                  "offset": 409,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 18,
+                  "offset": 405,
+                },
+              },
+              "value": "2018",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+    Object {
+      "id": "Jackson2019",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 30,
+          "offset": 624,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 21,
+          "offset": 414,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 23,
+              "offset": 464,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 22,
+              "offset": 438,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 26,
+                  "line": 22,
+                  "offset": 461,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 22,
+                  "offset": 448,
+                },
+              },
+              "value": "Jackson, Jill",
+            },
+          ],
+        },
+        Object {
+          "key": "journal",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 24,
+              "offset": 498,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 23,
+              "offset": 464,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 32,
+                  "line": 23,
+                  "offset": 495,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 23,
+                  "offset": 477,
+                },
+              },
+              "value": "Internet Quarterly",
+            },
+          ],
+        },
+        Object {
+          "key": "number",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 25,
+              "offset": 514,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 24,
+              "offset": 498,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 14,
+                  "line": 24,
+                  "offset": 511,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 24,
+                  "offset": 510,
+                },
+              },
+              "value": "4",
+            },
+          ],
+        },
+        Object {
+          "key": "pages",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 26,
+              "offset": 535,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 25,
+              "offset": 514,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 19,
+                  "line": 25,
+                  "offset": 532,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 25,
+                  "offset": 525,
+                },
+              },
+              "value": "399-412",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 27,
+              "offset": 589,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 26,
+              "offset": 535,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 19,
+                  "line": 26,
+                  "offset": 553,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 26,
+                  "offset": 546,
+                },
+              },
+              "value": "I like ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 27,
+                  "line": 26,
+                  "offset": 561,
+                },
+                "start": Object {
+                  "column": 19,
+                  "line": 26,
+                  "offset": 553,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 26,
+                      "line": 26,
+                      "offset": 560,
+                    },
+                    "start": Object {
+                      "column": 20,
+                      "line": 26,
+                      "offset": 554,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 25,
+                          "line": 26,
+                          "offset": 559,
+                        },
+                        "start": Object {
+                          "column": 21,
+                          "line": 26,
+                          "offset": 555,
+                        },
+                      },
+                      "value": "ISDN",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 52,
+                  "line": 26,
+                  "offset": 586,
+                },
+                "start": Object {
+                  "column": 27,
+                  "line": 26,
+                  "offset": 561,
+                },
+              },
+              "value": " heaps better than dialup",
+            },
+          ],
+        },
+        Object {
+          "key": "volume",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 28,
+              "offset": 606,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 27,
+              "offset": 589,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 27,
+                  "offset": 603,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 27,
+                  "offset": 601,
+                },
+              },
+              "value": "12",
+            },
+          ],
+        },
+        Object {
+          "key": "year",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 29,
+              "offset": 622,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 28,
+              "offset": 606,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 28,
+                  "offset": 620,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 28,
+                  "offset": 616,
+                },
+              },
+              "value": "2019",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 30,
+      "offset": 624,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

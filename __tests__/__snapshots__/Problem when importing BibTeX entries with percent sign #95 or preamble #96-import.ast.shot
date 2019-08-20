@@ -1,0 +1,1183 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse Problem when importing BibTeX entries with percent sign #95 or preamble #96-import to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "kind": "PreambleExpression",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 7,
+          "offset": 207,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "value": Array [
+        Object {
+          "kind": "Text",
+          "loc": Object {
+            "end": Object {
+              "column": 13,
+              "line": 1,
+              "offset": 12,
+            },
+            "start": Object {
+              "column": 12,
+              "line": 1,
+              "offset": 11,
+            },
+          },
+          "value": " ",
+        },
+        Object {
+          "arguments": Array [],
+          "kind": "RegularCommand",
+          "loc": Object {
+            "end": Object {
+              "column": 26,
+              "line": 1,
+              "offset": 25,
+            },
+            "start": Object {
+              "column": 13,
+              "line": 1,
+              "offset": 12,
+            },
+          },
+          "value": "makeatletter",
+        },
+        Object {
+          "kind": "Text",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 2,
+              "offset": 26,
+            },
+            "start": Object {
+              "column": 26,
+              "line": 1,
+              "offset": 25,
+            },
+          },
+          "value": " ",
+        },
+        Object {
+          "kind": "SymbolCommand",
+          "loc": Object {
+            "end": Object {
+              "column": 3,
+              "line": 2,
+              "offset": 28,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 2,
+              "offset": 26,
+            },
+          },
+          "value": "@",
+        },
+        Object {
+          "kind": "Text",
+          "loc": Object {
+            "end": Object {
+              "column": 14,
+              "line": 2,
+              "offset": 39,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 2,
+              "offset": 28,
+            },
+          },
+          "value": "ifundefined",
+        },
+        Object {
+          "kind": "NestedLiteral",
+          "loc": Object {
+            "end": Object {
+              "column": 19,
+              "line": 2,
+              "offset": 44,
+            },
+            "start": Object {
+              "column": 14,
+              "line": 2,
+              "offset": 39,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 18,
+                  "line": 2,
+                  "offset": 43,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 2,
+                  "offset": 40,
+                },
+              },
+              "value": "url",
+            },
+          ],
+        },
+        Object {
+          "kind": "NestedLiteral",
+          "loc": Object {
+            "end": Object {
+              "column": 54,
+              "line": 2,
+              "offset": 79,
+            },
+            "start": Object {
+              "column": 19,
+              "line": 2,
+              "offset": 44,
+            },
+          },
+          "value": Array [
+            Object {
+              "arguments": Array [
+                Object {
+                  "kind": "RequiredArgument",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 37,
+                      "line": 2,
+                      "offset": 62,
+                    },
+                    "start": Object {
+                      "column": 31,
+                      "line": 2,
+                      "offset": 56,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "arguments": Array [],
+                      "kind": "RegularCommand",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 36,
+                          "line": 2,
+                          "offset": 61,
+                        },
+                        "start": Object {
+                          "column": 32,
+                          "line": 2,
+                          "offset": 57,
+                        },
+                      },
+                      "value": "url",
+                    },
+                  ],
+                },
+                Object {
+                  "kind": "OptionalArgument",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 40,
+                      "line": 2,
+                      "offset": 65,
+                    },
+                    "start": Object {
+                      "column": 37,
+                      "line": 2,
+                      "offset": 62,
+                    },
+                  },
+                  "value": "1",
+                },
+                Object {
+                  "kind": "RequiredArgument",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 53,
+                      "line": 2,
+                      "offset": 78,
+                    },
+                    "start": Object {
+                      "column": 40,
+                      "line": 2,
+                      "offset": 65,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "arguments": Array [
+                        Object {
+                          "kind": "RequiredArgument",
+                          "loc": Object {
+                            "end": Object {
+                              "column": 52,
+                              "line": 2,
+                              "offset": 77,
+                            },
+                            "start": Object {
+                              "column": 48,
+                              "line": 2,
+                              "offset": 73,
+                            },
+                          },
+                          "value": Array [
+                            Object {
+                              "kind": "Text",
+                              "loc": Object {
+                                "end": Object {
+                                  "column": 51,
+                                  "line": 2,
+                                  "offset": 76,
+                                },
+                                "start": Object {
+                                  "column": 49,
+                                  "line": 2,
+                                  "offset": 74,
+                                },
+                              },
+                              "value": "#1",
+                            },
+                          ],
+                        },
+                      ],
+                      "kind": "RegularCommand",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 52,
+                          "line": 2,
+                          "offset": 77,
+                        },
+                        "start": Object {
+                          "column": 41,
+                          "line": 2,
+                          "offset": 66,
+                        },
+                      },
+                      "value": "texttt",
+                    },
+                  ],
+                },
+              ],
+              "kind": "RegularCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 53,
+                  "line": 2,
+                  "offset": 78,
+                },
+                "start": Object {
+                  "column": 20,
+                  "line": 2,
+                  "offset": 45,
+                },
+              },
+              "value": "newcommand",
+            },
+          ],
+        },
+        Object {
+          "kind": "NestedLiteral",
+          "loc": Object {
+            "end": Object {
+              "column": 56,
+              "line": 2,
+              "offset": 81,
+            },
+            "start": Object {
+              "column": 54,
+              "line": 2,
+              "offset": 79,
+            },
+          },
+          "value": Array [],
+        },
+        Object {
+          "kind": "Text",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 82,
+            },
+            "start": Object {
+              "column": 56,
+              "line": 2,
+              "offset": 81,
+            },
+          },
+          "value": " ",
+        },
+        Object {
+          "kind": "SymbolCommand",
+          "loc": Object {
+            "end": Object {
+              "column": 3,
+              "line": 3,
+              "offset": 84,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 82,
+            },
+          },
+          "value": "@",
+        },
+        Object {
+          "kind": "Text",
+          "loc": Object {
+            "end": Object {
+              "column": 14,
+              "line": 3,
+              "offset": 95,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 3,
+              "offset": 84,
+            },
+          },
+          "value": "ifundefined",
+        },
+        Object {
+          "kind": "NestedLiteral",
+          "loc": Object {
+            "end": Object {
+              "column": 22,
+              "line": 3,
+              "offset": 103,
+            },
+            "start": Object {
+              "column": 14,
+              "line": 3,
+              "offset": 95,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 21,
+                  "line": 3,
+                  "offset": 102,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 3,
+                  "offset": 96,
+                },
+              },
+              "value": "bibcyr",
+            },
+          ],
+        },
+        Object {
+          "kind": "NestedLiteral",
+          "loc": Object {
+            "end": Object {
+              "column": 52,
+              "line": 3,
+              "offset": 133,
+            },
+            "start": Object {
+              "column": 22,
+              "line": 3,
+              "offset": 103,
+            },
+          },
+          "value": Array [
+            Object {
+              "arguments": Array [
+                Object {
+                  "kind": "RequiredArgument",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 43,
+                      "line": 3,
+                      "offset": 124,
+                    },
+                    "start": Object {
+                      "column": 34,
+                      "line": 3,
+                      "offset": 115,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "arguments": Array [],
+                      "kind": "RegularCommand",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 42,
+                          "line": 3,
+                          "offset": 123,
+                        },
+                        "start": Object {
+                          "column": 35,
+                          "line": 3,
+                          "offset": 116,
+                        },
+                      },
+                      "value": "bibcyr",
+                    },
+                  ],
+                },
+                Object {
+                  "kind": "OptionalArgument",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 46,
+                      "line": 3,
+                      "offset": 127,
+                    },
+                    "start": Object {
+                      "column": 43,
+                      "line": 3,
+                      "offset": 124,
+                    },
+                  },
+                  "value": "1",
+                },
+                Object {
+                  "kind": "RequiredArgument",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 51,
+                      "line": 3,
+                      "offset": 132,
+                    },
+                    "start": Object {
+                      "column": 46,
+                      "line": 3,
+                      "offset": 127,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 50,
+                          "line": 3,
+                          "offset": 131,
+                        },
+                        "start": Object {
+                          "column": 47,
+                          "line": 3,
+                          "offset": 128,
+                        },
+                      },
+                      "value": "—",
+                    },
+                  ],
+                },
+              ],
+              "kind": "RegularCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 51,
+                  "line": 3,
+                  "offset": 132,
+                },
+                "start": Object {
+                  "column": 23,
+                  "line": 3,
+                  "offset": 104,
+                },
+              },
+              "value": "newcommand",
+            },
+          ],
+        },
+        Object {
+          "kind": "NestedLiteral",
+          "loc": Object {
+            "end": Object {
+              "column": 54,
+              "line": 3,
+              "offset": 135,
+            },
+            "start": Object {
+              "column": 52,
+              "line": 3,
+              "offset": 133,
+            },
+          },
+          "value": Array [],
+        },
+        Object {
+          "kind": "Text",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 136,
+            },
+            "start": Object {
+              "column": 54,
+              "line": 3,
+              "offset": 135,
+            },
+          },
+          "value": " ",
+        },
+        Object {
+          "arguments": Array [
+            Object {
+              "kind": "RequiredArgument",
+              "loc": Object {
+                "end": Object {
+                  "column": 36,
+                  "line": 4,
+                  "offset": 171,
+                },
+                "start": Object {
+                  "column": 27,
+                  "line": 4,
+                  "offset": 162,
+                },
+              },
+              "value": Array [
+                Object {
+                  "arguments": Array [],
+                  "kind": "RegularCommand",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 35,
+                      "line": 4,
+                      "offset": 170,
+                    },
+                    "start": Object {
+                      "column": 28,
+                      "line": 4,
+                      "offset": 163,
+                    },
+                  },
+                  "value": "textmu",
+                },
+              ],
+            },
+            Object {
+              "kind": "RequiredArgument",
+              "loc": Object {
+                "end": Object {
+                  "column": 54,
+                  "line": 4,
+                  "offset": 189,
+                },
+                "start": Object {
+                  "column": 36,
+                  "line": 4,
+                  "offset": 171,
+                },
+              },
+              "value": Array [
+                Object {
+                  "arguments": Array [
+                    Object {
+                      "kind": "RequiredArgument",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 53,
+                          "line": 4,
+                          "offset": 188,
+                        },
+                        "start": Object {
+                          "column": 48,
+                          "line": 4,
+                          "offset": 183,
+                        },
+                      },
+                      "value": Array [
+                        Object {
+                          "arguments": Array [],
+                          "kind": "RegularCommand",
+                          "loc": Object {
+                            "end": Object {
+                              "column": 52,
+                              "line": 4,
+                              "offset": 187,
+                            },
+                            "start": Object {
+                              "column": 49,
+                              "line": 4,
+                              "offset": 184,
+                            },
+                          },
+                          "value": "mu",
+                        },
+                      ],
+                    },
+                  ],
+                  "kind": "RegularCommand",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 53,
+                      "line": 4,
+                      "offset": 188,
+                    },
+                    "start": Object {
+                      "column": 37,
+                      "line": 4,
+                      "offset": 172,
+                    },
+                  },
+                  "value": "ensuremath",
+                },
+              ],
+            },
+          ],
+          "kind": "RegularCommand",
+          "loc": Object {
+            "end": Object {
+              "column": 54,
+              "line": 4,
+              "offset": 189,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 136,
+            },
+          },
+          "value": "ProvideTextCommandDefault",
+        },
+        Object {
+          "kind": "Text",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 190,
+            },
+            "start": Object {
+              "column": 54,
+              "line": 4,
+              "offset": 189,
+            },
+          },
+          "value": " ",
+        },
+        Object {
+          "arguments": Array [],
+          "kind": "RegularCommand",
+          "loc": Object {
+            "end": Object {
+              "column": 13,
+              "line": 5,
+              "offset": 202,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 190,
+            },
+          },
+          "value": "makeatother",
+        },
+        Object {
+          "kind": "Text",
+          "loc": Object {
+            "end": Object {
+              "column": 14,
+              "line": 5,
+              "offset": 203,
+            },
+            "start": Object {
+              "column": 13,
+              "line": 5,
+              "offset": 202,
+            },
+          },
+          "value": " ",
+        },
+      ],
+    },
+    Object {
+      "id": "Akhavan_2009",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 36,
+          "offset": 2193,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 7,
+          "offset": 207,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 347,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 230,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 115,
+                  "line": 8,
+                  "offset": 344,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 8,
+                  "offset": 239,
+                },
+              },
+              "value": "Synthesis and electrochromic study of sol-gel cuprous oxide nanoparticles accumulated on silica thin film",
+            },
+          ],
+        },
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 406,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 347,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 57,
+                  "line": 9,
+                  "offset": 403,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 9,
+                  "offset": 357,
+                },
+              },
+              "value": "Akhavan, O. and Tohidi, H. and Moshfegh, A. Z.",
+            },
+          ],
+        },
+        Object {
+          "key": "journal",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 436,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 406,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 28,
+                  "line": 10,
+                  "offset": 433,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 10,
+                  "offset": 417,
+                },
+              },
+              "value": "Thin Solid Films",
+            },
+          ],
+        },
+        Object {
+          "key": "year",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 451,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 436,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 13,
+                  "line": 11,
+                  "offset": 448,
+                },
+                "start": Object {
+                  "column": 9,
+                  "line": 11,
+                  "offset": 444,
+                },
+              },
+              "value": "2009",
+            },
+          ],
+        },
+        Object {
+          "key": "number",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 466,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 451,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 13,
+                  "line": 12,
+                  "offset": 463,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 12,
+                  "offset": 461,
+                },
+              },
+              "value": "24",
+            },
+          ],
+        },
+        Object {
+          "key": "pages",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 14,
+              "offset": 488,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 466,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 13,
+                  "offset": 485,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 13,
+                  "offset": 475,
+                },
+              },
+              "value": "6700–6706",
+            },
+          ],
+        },
+        Object {
+          "key": "volume",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 16,
+              "offset": 505,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 14,
+              "offset": 488,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 14,
+                  "line": 14,
+                  "offset": 501,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 14,
+                  "offset": 498,
+                },
+              },
+              "value": "517",
+            },
+          ],
+        },
+        Object {
+          "key": "abstract",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 29,
+              "offset": 1962,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 16,
+              "offset": 505,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 21,
+                  "line": 28,
+                  "offset": 1959,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 16,
+                  "offset": 517,
+                },
+              },
+              "value": "In this study, electrochromic properties of cuprous oxide nanoparticles, self-accumulated on the surface of a sol-gel silica thin film, have been investigated by using UV-visible spectrophotometry in a lithium-based electrolyte cell. The cuprous oxide nanoparticles showed a reversible electrochromic process with a thin film transmission reduction of about 50% in a narrow wavelength range of 400-500Ânm, as compared to the bleached state of the film. Using optical transmission measurement, we have found that the band gap energy of the films reduced from 2.7ÂeV for Cu2O to 1.3ÂeV for CuO by increasing the annealing temperature from 220 to 300Â°C in an N2 environment for 1Âh. Study of the band gaps of the as-deposited, colored and bleached states of the nanoparticles showed that the electrochromic process corresponded to a reversible red-ox conversion of Cu2O to CuO on the film surface, in addition to the reversible red-ox reaction of the Cu2O film. X-ray photoelectron spectroscopy indicated that the copper oxide nanoparticles accumulated on the film surface, after annealing the samples at 200Â°C. Surface morphology of the films and particle size of the surface copper oxides have also been studied by atomic force microscopy analysis. The copper oxide nanoparticles with average size of about 100Ânm increased the surface area ratio and surface roughness of the silica films from 2.2% and 0.8Ânm to 51% and 21Ânm, respectively.",
+            },
+          ],
+        },
+        Object {
+          "key": "doi",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 30,
+              "offset": 1997,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 29,
+              "offset": 1962,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 33,
+                  "line": 29,
+                  "offset": 1994,
+                },
+                "start": Object {
+                  "column": 8,
+                  "line": 29,
+                  "offset": 1969,
+                },
+              },
+              "value": "10.1016/j.tsf.2009.05.016",
+            },
+          ],
+        },
+        Object {
+          "key": "issn",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 31,
+              "offset": 2017,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 30,
+              "offset": 1997,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 18,
+                  "line": 30,
+                  "offset": 2014,
+                },
+                "start": Object {
+                  "column": 9,
+                  "line": 30,
+                  "offset": 2005,
+                },
+              },
+              "value": "0040-6090",
+            },
+          ],
+        },
+        Object {
+          "key": "keywords",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 33,
+              "offset": 2145,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 31,
+              "offset": 2017,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 12,
+                  "line": 32,
+                  "offset": 2142,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 31,
+                  "offset": 2029,
+                },
+              },
+              "value": "Copper oxides, Nanoparticles, Sol-gel deposition, Optical properties, Band-gap energy, Electrochromic properties ",
+            },
+          ],
+        },
+        Object {
+          "key": "owner",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 34,
+              "offset": 2166,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 33,
+              "offset": 2145,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 19,
+                  "line": 33,
+                  "offset": 2163,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 33,
+                  "offset": 2154,
+                },
+              },
+              "value": "Francesco",
+            },
+          ],
+        },
+        Object {
+          "key": "timestamp",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 35,
+              "offset": 2191,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 34,
+              "offset": 2166,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 24,
+                  "line": 34,
+                  "offset": 2189,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 34,
+                  "offset": 2179,
+                },
+              },
+              "value": "2010.03.08",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 36,
+      "offset": 2193,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

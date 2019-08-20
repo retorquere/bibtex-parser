@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse Better BibTeX.012-import 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Niklas",
+            "lastName": "Möller",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Möller, Niklas",
+        ],
+        "booktitle": Array [
+          "Handbook of Risk Theory: Epistemology, Decision Theory, Ethics, and Social Implications of Risk",
+        ],
+        "publisher": Array [
+          "<span class=\\"nocase\\">Springer</span>",
+        ],
+        "title": Array [
+          "The Concepts of Risk and Safety",
+        ],
+        "year": Array [
+          "2012",
+        ],
+      },
+      "key": "moller2012conceptsrisksafety",
+      "type": "incollection",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;
