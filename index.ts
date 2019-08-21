@@ -904,6 +904,12 @@ class Parser {
     } else {
       this.field.text += postfix.reverse().join('')
     }
+
+    this.field.text = this.field.text.replace(/<(sup|sub)>(.)<\/\1>$/i, (m, mode, char) => {
+      const cmd = mode === 'sup' ? '^' : '_'
+      const unicode = latex2unicode[`${cmd}${char}`] || latex2unicode[`${cmd}{${char}}`]
+      return unicode || m
+    })
   }
 }
 
