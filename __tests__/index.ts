@@ -10,6 +10,11 @@ import astrocite = require('../astrocite-bibtex')
 
 const snaps = path.join(__dirname, '__snapshots__')
 
+const enable = {
+  ast: process.env.AST !== 'false',
+  zotero: process.env.ZOTERO !== 'false',
+}
+
 describe('BibTeX Parser', () => {
   /*
   it('should parse sample2', () => {
@@ -22,12 +27,17 @@ describe('BibTeX Parser', () => {
     if (!f.replace(/(la)?tex$/, '').endsWith('.bib')) continue
     const caseName = path.basename(f, path.extname(f))
     const input = fs.readFileSync(path.join(root, f), 'utf-8')
-    it(`should parse ${caseName} to an AST`, () => {
-      (expect(astrocite.parse(input)) as any).toMatchSpecificSnapshot(path.join(snaps, caseName + '.ast.shot'))
-    })
-    it(`should parse ${caseName}`, () => {
-      (expect(bibtex.parse(input)) as any).toMatchSpecificSnapshot(path.join(snaps, caseName + '.shot'))
-    })
+    if (enable.ast) {
+      it(`should parse ${caseName} to an AST`, () => {
+        (expect(astrocite.parse(input)) as any).toMatchSpecificSnapshot(path.join(snaps, caseName + '.ast.shot'))
+      })
+    }
+
+    if (enable.zotero) {
+      it(`should parse ${caseName}`, () => {
+        (expect(bibtex.parse(input)) as any).toMatchSpecificSnapshot(path.join(snaps, caseName + '.shot'))
+      })
+    }
   }
 
   for (const mode of ['export', 'import']) {
@@ -43,12 +53,18 @@ describe('BibTeX Parser', () => {
 
       const caseName = `${path.basename(f, path.extname(f))}-${mode}`
       const input = fs.readFileSync(path.join(root, f), 'utf-8')
-      it(`should parse ${caseName} to an AST`, () => {
-        (expect(astrocite.parse(input)) as any).toMatchSpecificSnapshot(path.join(snaps, caseName + '.ast.shot'))
-      })
-      it(`should parse ${caseName}`, () => {
-        (expect(bibtex.parse(input)) as any).toMatchSpecificSnapshot(path.join(snaps, caseName + '.shot'))
-      })
+
+      if (enable.ast) {
+        it(`should parse ${caseName} to an AST`, () => {
+          (expect(astrocite.parse(input)) as any).toMatchSpecificSnapshot(path.join(snaps, caseName + '.ast.shot'))
+        })
+      }
+
+      if (enable.zotero) {
+        it(`should parse ${caseName}`, () => {
+          (expect(bibtex.parse(input)) as any).toMatchSpecificSnapshot(path.join(snaps, caseName + '.shot'))
+        })
+      }
     }
   }
 })
