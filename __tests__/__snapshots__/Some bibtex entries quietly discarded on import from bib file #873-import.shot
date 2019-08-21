@@ -1403,7 +1403,7 @@ Object {
           "57–77",
         ],
         "title": Array [
-          "Rigor mortis: a response to Nilsson's \`\`Logic and artificial intelligence''",
+          "Rigor mortis: a response to Nilsson's “Logic and artificial intelligence”",
         ],
         "volume": Array [
           "47",
@@ -3430,7 +3430,7 @@ Object {
           "ERLBAUM-ADDRESS",
         ],
         "annote": Array [
-          "Contains definition of \`\`keyhole'' and \`\`intended'' plan recognition.",
+          "Contains definition of “keyhole” and “intended” plan recognition.",
         ],
         "author": Array [
           "Philip R. Cohen",
@@ -13021,7 +13021,7 @@ Object {
       },
       "fields": Object {
         "annote": Array [
-          "A more in-depth version of Drew's AIPS-96 paper, that described his search heuristic for forward planners. The article discusses the problem of \`\`attention-deficit'' in McDermott's UNPOP — the problem of switching between goals too much. Also discusses preservation goals, which we have just been kludging into SA-CIRCA.",
+          "A more in-depth version of Drew's AIPS-96 paper, that described his search heuristic for forward planners. The article discusses the problem of “attention-deficit” in McDermott's UNPOP — the problem of switching between goals too much. Also discusses preservation goals, which we have just been kludging into SA-CIRCA.",
         ],
         "author": Array [
           "MCDERMOTT",
@@ -19830,7 +19830,7 @@ Object {
       },
       "fields": Object {
         "annote": Array [
-          "Cohen and Levesque critique KQML on three semantic grounds: ambiguity of specifications; misidentified performatives and performatives missing. The misidentified performatives are those that operate on other performatives where Cohen and Levesque argue that they should be operating directly on content. The major missing performative they identify is a commissive — the agreement to perform an action. They then propose that their logic of intention could be used to give a superior semantics. They conclude with some weak suggestions about the implications of this. Unfortunately, their semantics seem to be too \`\`first principles-y'' to be of much use to implementors. Finally, they say that extensibility and content independence are problems. It is hard to see how this is to be remedied.",
+          "Cohen and Levesque critique KQML on three semantic grounds: ambiguity of specifications; misidentified performatives and performatives missing. The misidentified performatives are those that operate on other performatives where Cohen and Levesque argue that they should be operating directly on content. The major missing performative they identify is a commissive — the agreement to perform an action. They then propose that their logic of intention could be used to give a superior semantics. They conclude with some weak suggestions about the implications of this. Unfortunately, their semantics seem to be too “first principles-y” to be of much use to implementors. Finally, they say that extensibility and content independence are problems. It is hard to see how this is to be remedied.",
         ],
         "author": Array [
           "Philip R. Cohen",
@@ -24407,7 +24407,7 @@ Object {
       },
       "fields": Object {
         "annote": Array [
-          "This paper describes the Cassandra approach to Michie's \`\`keys and boxes''problem, which is similar to Moore's \`\`bomb in the toilet'' problem, in requiring both information-gathering actions and also action with only partial information (\`\`fail-safe'' planning).",
+          "This paper describes the Cassandra approach to Michie's “keys and boxes”problem, which is similar to Moore's “bomb in the toilet” problem, in requiring both information-gathering actions and also action with only partial information (“fail-safe” planning).",
         ],
         "author": Array [
           "Gregg Collins",
@@ -25859,7 +25859,7 @@ Object {
       },
       "fields": Object {
         "annote": Array [
-          "The authors review Chapman's Modal Truth Criterion (MTC) from his paper \`\`Planning for Conjunctive Goals.'' They show a bug in Chapman's arguments — in particular that the equivalence ◇p ≡¬□¬p doesn't hold for truth in partially-ordered plans. The reason for this is that the excluded middle does not hold in the logic of partial plans — the truth value of some p in some completion of a partial plan may not be defined, because the completion may be ill-formed.",
+          "The authors review Chapman's Modal Truth Criterion (MTC) from his paper “Planning for Conjunctive Goals.” They show a bug in Chapman's arguments — in particular that the equivalence ◇p ≡¬□¬p doesn't hold for truth in partially-ordered plans. The reason for this is that the excluded middle does not hold in the logic of partial plans — the truth value of some p in some completion of a partial plan may not be defined, because the completion may be ill-formed.",
         ],
         "author": Array [
           "Subbarao Kambhampati",
@@ -26161,7 +26161,7 @@ Object {
       },
       "fields": Object {
         "annote": Array [
-          "Erol, et. al. discuss the complexity and expressivity of HTN planning based on their UMCP planning. They show that HTN planning is strictly more expressive than simple STRIPS planning. The reason HTN planning is more expressive is that having a goal task network instead of a propositional goal allows the user of the system to specify not just what is to be achieved, but some aspects of how it is to be achieved. They use the example that in an HTN planner one can specify the goal of \`\`build a house,'' as distinct from simply \`\`own a house,'' which could also be satisfied by \`\`buy a house.'' As far as expressivity is concerned, HTN planning in the general case is undecidable. Forcing HTNs to be totally-ordered sets of tasks or removing variables from the tasks can reduce the complexity.",
+          "Erol, et. al. discuss the complexity and expressivity of HTN planning based on their UMCP planning. They show that HTN planning is strictly more expressive than simple STRIPS planning. The reason HTN planning is more expressive is that having a goal task network instead of a propositional goal allows the user of the system to specify not just what is to be achieved, but some aspects of how it is to be achieved. They use the example that in an HTN planner one can specify the goal of “build a house,” as distinct from simply “own a house,” which could also be satisfied by “buy a house.” As far as expressivity is concerned, HTN planning in the general case is undecidable. Forcing HTNs to be totally-ordered sets of tasks or removing variables from the tasks can reduce the complexity.",
         ],
         "author": Array [
           "Kutluhan Erol",
@@ -27507,7 +27507,7 @@ Object {
           "07",
         ],
         "note": Array [
-          "in the AAAI workshop on \`\`Theories of Action, Planning and Control: Bridging the gap''",
+          "in the AAAI workshop on “Theories of Action, Planning and Control: Bridging the gap”",
         ],
         "title": Array [
           "A representation for efficient planning in dynamic domains with external events",
@@ -30387,7 +30387,7 @@ Object {
       },
       "fields": Object {
         "annote": Array [
-          "Describes a technique for adding automatic repair to model checking verification. They use abductive model revision to alter a concurrent program description in the face of a counterexample. Their concurrent programs are described in terms of jumps and (boolean) assignments. Repairs are in terms of changing assignment values and changing assignment orderings. The class of repairs considered here seem most appropriate for handling concurrency protocol errors, especially involving mutual exclusion and deadlocks. They seem less appropriate for control applications. Counterexamples are used to reduce the set of repair candidates that must be considered. (In order to handle ACTL formulas, the authors consider tree-shaped counterexamples, not just simple linear counterexamples.) In particular, their technique \`\`identifies corrections α under which the counterexample is invariant, i.e., still apply if α is implemented.'' They introduce efficiently computable conditions on counterexamples and corrections that provide this filtering.",
+          "Describes a technique for adding automatic repair to model checking verification. They use abductive model revision to alter a concurrent program description in the face of a counterexample. Their concurrent programs are described in terms of jumps and (boolean) assignments. Repairs are in terms of changing assignment values and changing assignment orderings. The class of repairs considered here seem most appropriate for handling concurrency protocol errors, especially involving mutual exclusion and deadlocks. They seem less appropriate for control applications. Counterexamples are used to reduce the set of repair candidates that must be considered. (In order to handle ACTL formulas, the authors consider tree-shaped counterexamples, not just simple linear counterexamples.) In particular, their technique “identifies corrections α under which the counterexample is invariant, i.e., still apply if α is implemented.” They introduce efficiently computable conditions on counterexamples and corrections that provide this filtering.",
         ],
         "author": Array [
           "Francesco Buccafurri",
@@ -31072,7 +31072,7 @@ Object {
       },
       "fields": Object {
         "annote": Array [
-          "A somewhat disappointing paper. The most difficult problem (credit where credit is due, this was identified by the authors) in having SHOP control other agents, is that in evaluating preconditions, SHOP must be able to project the effects of the actions of other agents. However, this very interesting engineering problem is just made the responsibility of the \`\`monitoring agent'' and left as an exercise for the reader.",
+          "A somewhat disappointing paper. The most difficult problem (credit where credit is due, this was identified by the authors) in having SHOP control other agents, is that in evaluating preconditions, SHOP must be able to project the effects of the actions of other agents. However, this very interesting engineering problem is just made the responsibility of the “monitoring agent” and left as an exercise for the reader.",
         ],
         "author": Array [
           "J. Dix",

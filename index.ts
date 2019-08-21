@@ -842,6 +842,8 @@ class Parser {
   }
 
   protected convert_Text(node) {
+    node.value = node.value.replace(/``/g, this.markup.enquote.open).replace(/''/g, this.markup.enquote.close)
+
     if (this.field.level === 0 && this.field.creator) {
       this.field.text += node.value.replace(/\s+and\s+/ig, marker.and).replace(/\s*,\s*/g, marker.comma).replace(/\s+/g, marker.space)
       return
@@ -905,10 +907,15 @@ class Parser {
       this.field.text += postfix.reverse().join('')
     }
 
-    this.field.text = this.field.text.replace(/<(sup|sub)>(.)<\/\1>$/i, (m, mode, char) => {
+    this.field.text = this.field.text.replace(/<(sup|sub)>([^<>]+)<\/\1>$/i, (m, mode, chars) => {
       const cmd = mode === 'sup' ? '^' : '_'
-      const unicode = latex2unicode[`${cmd}${char}`] || latex2unicode[`${cmd}{${char}}`]
-      return unicode || m
+      let script = ''
+      for (const char of chars) {
+        const unicode = latex2unicode[`${cmd}${char}`] || latex2unicode[`${cmd}{${char}}`]
+        script += unicode ? unicode : `<${mode}>${char}</${mode}>`
+      }
+      script = script.replace(new RegExp(`</${mode}><${mode}>`, 'g'), '')
+      return script.length < m.length ? script : m
     })
   }
 }
