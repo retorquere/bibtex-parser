@@ -137,7 +137,7 @@ class Parser {
   private errors: ParseError[]
   private strings: { [key: string]: any[] }
   private unresolvedStrings: { [key: string]: boolean }
-  private months: { [key: string]: any[] }
+  private default_strings: { [key: string]: any[] }
   private comments: string[]
   private entries: Entry[]
   private entry: Entry
@@ -174,7 +174,7 @@ class Parser {
     this.comments = []
     this.entries = []
     this.strings = { }
-    this.months = {
+    this.default_strings = {
       JAN: [ this.text('01') ],
       FEB: [ this.text('02') ],
       MAR: [ this.text('03') ],
@@ -187,6 +187,26 @@ class Parser {
       OCT: [ this.text('10') ],
       NOV: [ this.text('11') ],
       DEC: [ this.text('12') ],
+      ACMCS: [ this.text('ACM Computing Surveys') ],
+      ACTA: [ this.text('Acta Informatica') ],
+      CACM: [ this.text('Communications of the ACM') ],
+      IBMJRD: [ this.text('IBM Journal of Research and Development') ],
+      IBMSJ: [ this.text('IBM Systems Journal') ],
+      IEEESE: [ this.text('IEEE Transactions on Software Engineering') ],
+      IEEETC: [ this.text('IEEE Transactions on Computers') ],
+      IEEETCAD: [ this.text('IEEE Transactions on Computer-Aided Design of Integrated Circuits') ],
+      IPL: [ this.text('Information Processing Letters') ],
+      JACM: [ this.text('Journal of the ACM') ],
+      JCSS: [ this.text('Journal of Computer and System Sciences') ],
+      SCP: [ this.text('Science of Computer Programming') ],
+      SICOMP: [ this.text('SIAM Journal on Computing') ],
+      TOCS: [ this.text('ACM Transactions on Computer Systems') ],
+      TODS: [ this.text('ACM Transactions on Database Systems') ],
+      TOG: [ this.text('ACM Transactions on Graphics') ],
+      TOMS: [ this.text('ACM Transactions on Mathematical Software') ],
+      TOOIS: [ this.text('ACM Transactions on Office Information Systems') ],
+      TOPLAS: [ this.text('ACM Transactions on Programming Languages and Systems') ],
+      TCS: [ this.text('Theoretical Computer Science') ],
     }
   }
 
@@ -375,7 +395,7 @@ class Parser {
 
   protected clean_String(node, nocased) { // should have been StringReference
     const reference = node.value.toUpperCase()
-    const _string = this.strings[reference] || this.months[reference]
+    const _string = this.strings[reference] || this.default_strings[reference]
 
     if (!_string) {
       if (!this.unresolvedStrings[reference]) this.errors.push({ message: `Unresolved @string reference ${JSON.stringify(node.value)}` })
@@ -632,7 +652,7 @@ class Parser {
   }
 
   protected clean_DicraticalCommand(node, nocased) { // Should be DiacraticCommand
-    const char = typeof node.character === 'string' ? node.character : `\\${node.character.value}`
+    const char = typeof node.character === 'string' ? node.character : `\\${node.character.character}`
     const unicode = latex2unicode[`\\${node.mark}{${char}}`]
       || latex2unicode[`\\${node.mark}${char}`]
       || latex2unicode[`{\\${node.mark} ${char}}`]
