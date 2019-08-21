@@ -17,8 +17,21 @@ describe('BibTeX Parser', () => {
   })
   */
 
+  let root = path.join(__dirname, 'cases')
+  for (const f of fs.readdirSync(root).sort()) {
+    if (!f.replace(/(la)?tex$/, '').endsWith('.bib')) continue
+    const caseName = path.basename(f, path.extname(f))
+    const input = fs.readFileSync(path.join(root, f), 'utf-8')
+    it(`should parse ${caseName} to an AST`, () => {
+      (expect(astrocite.parse(input)) as any).toMatchSpecificSnapshot(path.join(snaps, caseName + '.ast.shot'))
+    })
+    it(`should parse ${caseName}`, () => {
+      (expect(bibtex.parse(input)) as any).toMatchSpecificSnapshot(path.join(snaps, caseName + '.shot'))
+    })
+  }
+
   for (const mode of ['export', 'import']) {
-    const root = path.join(__dirname, 'cases', mode)
+    root = path.join(__dirname, 'better-bibtex', mode)
     for (const f of fs.readdirSync(root).sort()) {
       if (!f.replace(/(la)?tex$/, '').endsWith('.bib')) continue
 
@@ -29,11 +42,12 @@ describe('BibTeX Parser', () => {
       }
 
       const caseName = `${path.basename(f, path.extname(f))}-${mode}`
-      it(`should parse ${caseName}`, () => {
-        (expect(bibtex.parse(fs.readFileSync(path.join(root, f), 'utf-8'))) as any).toMatchSpecificSnapshot(path.join(snaps, caseName + '.shot'))
-      })
+      const input = fs.readFileSync(path.join(root, f), 'utf-8')
       it(`should parse ${caseName} to an AST`, () => {
-        (expect(astrocite.parse(fs.readFileSync(path.join(root, f), 'utf-8'))) as any).toMatchSpecificSnapshot(path.join(snaps, caseName + '.ast.shot'))
+        (expect(astrocite.parse(input)) as any).toMatchSpecificSnapshot(path.join(snaps, caseName + '.ast.shot'))
+      })
+      it(`should parse ${caseName}`, () => {
+        (expect(bibtex.parse(input)) as any).toMatchSpecificSnapshot(path.join(snaps, caseName + '.shot'))
       })
     }
   }

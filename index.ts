@@ -261,7 +261,7 @@ class Parser {
   private condense(node, nocased) {
     if (!Array.isArray(node.value)) {
       if (node.value.kind === 'Number') return
-      return this.error(this.show(node), undefined)
+      return this.error(`cannot condense a ${node.value.kind}: ${this.show(node)}`, undefined)
     }
 
     const markup = {
@@ -368,6 +368,7 @@ class Parser {
   }
 
   protected clean_StringExpression(node, nocased) { // should have been StringDeclaration
+    this.condense(node, nocased)
     this.strings[node.key.toUpperCase()] = node.value
     return node
   }
@@ -383,7 +384,7 @@ class Parser {
 
     // if the string isn't found, add it as-is but exempt it from sentence casing
     return {
-      kind: 'StringReference',
+      kind: 'String',
       exemptFromSentenceCase: !_string,
       value: this.cleanup(_string ? JSON.parse(JSON.stringify(_string)) : [ this.text(node.value) ], nocased),
     }
@@ -659,7 +660,7 @@ class Parser {
   private convert(node) {
     if (Array.isArray(node)) return node.map(child => this.convert(child)).join('')
 
-    if (!this['convert_' + node.kind]) return this.error(this.show(node), undefined)
+    if (!this['convert_' + node.kind]) return this.error(`no converter for ${node.kind}: ${this.show(node)}`, undefined)
 
     const start = this.field ? this.field.text.length : null
 
@@ -873,7 +874,7 @@ class Parser {
   protected convert_PreambleExpression(node) { return }
   protected convert_StringExpression(node) { return }
 
-  protected convert_StringReference(node) {
+  protected convert_String(node) {
     this.convert(node.value)
   }
 
