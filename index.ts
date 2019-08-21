@@ -128,6 +128,9 @@ const fields = {
     'maintitle',
     'eventtitle',
   ],
+  unnest: [
+    'publisher',
+  ],
 }
 
 class Parser {
@@ -393,7 +396,7 @@ class Parser {
 
   protected clean_Property(node, nocased) {
     // because this was abused so much, many processors ignore second-level too
-    if (fields.title.includes(node.key.toLowerCase()) && node.value.length === 1 && node.value[0].kind === 'NestedLiteral') {
+    if (fields.title.concat(fields.unnest).includes(node.key.toLowerCase()) && node.value.length === 1 && node.value[0].kind === 'NestedLiteral') {
       node.value[0].exemptFromSentenceCase = true
       node.value[0].markup = new Set
     }
