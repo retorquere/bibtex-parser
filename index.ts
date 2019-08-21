@@ -807,7 +807,8 @@ class Parser {
       this.field.text = this.field.text.trim()
       if (!this.field.text) continue
 
-      if (this.field.name === 'keywords' || this.field.name === 'keyword') {
+      // "groups" is a jabref 3.8+ monstrosity
+      if (this.field.name.match(/^(keywords?|groups)$/)) {
         for (let text of this.field.text.split(marker.comma)) {
           text = text.trim()
           if (text) this.entry.fields[this.field.name].push(text)
@@ -852,7 +853,7 @@ class Parser {
       return
     }
 
-    if (this.field.level === 0 && (this.field.name === 'keywords' || this.field.name === 'keyword')) {
+    if (this.field.level === 0 && this.field.name.match(/^(keywords?|groups)$/)) {
       this.field.text += node.value.replace(/\s*[;,]\s*/g, marker.comma)
       return
     }
