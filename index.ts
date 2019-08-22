@@ -130,6 +130,7 @@ const fields = {
   ],
   unnest: [
     'publisher',
+    'location',
   ],
 }
 
@@ -670,6 +671,7 @@ class Parser {
   protected clean_PreambleExpression(node, nocased) { return node }
 
   private implicitlyNoCased(word) {
+    word = word.replace(/[()]/g, '')
     if (word.match(/^[A-Z][^A-Z]+$/)) return false
     if (word.length > 1 && word.match(/^[A-Z][a-z]*(-[A-Za-z]+)*$/)) return false
     if (word.match(/[A-Z]/)) return true
