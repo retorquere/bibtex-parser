@@ -210,16 +210,16 @@ class Parser {
     }
   }
 
-  public parse(input): Bibliography {
+  public parse(input, options: { verbatimFields?: string[] } = {}): Bibliography {
     for (const chunk of chunker(input)) {
-      this.parseChunk(chunk)
+      this.parseChunk(chunk, options)
     }
     return this.parsed()
   }
 
-  public async parseAsync(input): Promise<Bibliography> {
+  public async parseAsync(input, options: { verbatimFields?: string[] } = {}): Promise<Bibliography> {
     for (const chunk of await chunker(input, { async: true })) {
-      this.parseChunk(chunk)
+      this.parseChunk(chunk, options)
     }
     return this.parsed()
   }
@@ -246,9 +246,9 @@ class Parser {
     }
   }
 
-  private parseChunk(chunk) {
+  private parseChunk(chunk, options: { verbatimFields?: string[] }) {
     try {
-      const ast = this.cleanup(bibtex.parse(chunk.text), !this.caseProtect)
+      const ast = this.cleanup(bibtex.parse(chunk.text, { verbatimProperties: options.verbatimFields }), !this.caseProtect)
       if (ast.kind !== 'File') throw new Error(this.show(ast))
 
       for (const node of ast.children) {
@@ -449,12 +449,6 @@ class Parser {
         }
         break
 
-      case 'href':
-        if (arg = this.argument(node, 2)) {
-          return this.text(arg[0])
-        }
-        break
-
       case 'path':
       case 'aftergroup':
       case 'ignorespaces':
@@ -573,6 +567,12 @@ class Parser {
             markup: new Set,
             value: arg,
           }, nocased)
+        }
+        break
+
+      case 'href':
+        if (arg = this.argument(node, 2)) {
+          return this.text(arg[0])
         }
         break
 
