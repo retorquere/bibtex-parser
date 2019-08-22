@@ -952,6 +952,7 @@ Object {
               "value": Array [
                 Object {
                   "character": "c",
+                  "dotless": false,
                   "kind": "DicraticalCommand",
                   "loc": Object {
                     "end": Object {
@@ -985,10 +986,8 @@ Object {
               },
               "value": Array [
                 Object {
-                  "character": Object {
-                    "character": "i",
-                    "kind": "DotlessCharacter",
-                  },
+                  "character": "i",
+                  "dotless": true,
                   "kind": "DicraticalCommand",
                   "loc": Object {
                     "end": Object {

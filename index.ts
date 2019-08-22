@@ -661,7 +661,7 @@ class Parser {
   }
 
   protected clean_DicraticalCommand(node, nocased) { // Should be DiacraticCommand
-    const char = typeof node.character === 'string' ? node.character : `\\${node.character.character}`
+    const char = node.dotless ? `\\${node.character}` : node.character
     const unicode = latex2unicode[`\\${node.mark}{${char}}`]
       || latex2unicode[`\\${node.mark}${char}`]
       || latex2unicode[`{\\${node.mark} ${char}}`]
@@ -679,6 +679,7 @@ class Parser {
   protected clean_PreambleExpression(node, nocased) { return node }
 
   private implicitlyNoCased(word) {
+    // word = word.replace(new RegExp(`"[${this.markup.enquote.open}${this.markup.enquote.close}:()]`, 'g'), '')
     word = word.replace(/[:()]/g, '')
     if (word.match(/^[A-Z][^A-Z]+$/)) return false
     if (word.length > 1 && word.match(/^[A-Z][a-z]*(-[A-Za-z]+)*$/)) return false
