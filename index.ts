@@ -759,7 +759,7 @@ class Parser {
         if (markerRE.literalName.test(parts[0])) {
           parsed = { literal: parts[0] }
 
-        } else if (m = parts[0].replace(markerRE.space, ' ').match(prefix)) {
+        } else if (m = parts[0].replace(markerRE.space, ' ').match(prefix)) { // split on prefix
           parsed = {
             firstName: m[1],
             prefix: m[2],
@@ -799,6 +799,7 @@ class Parser {
       if (markerRE.literalName.test(v)) v = v.replace(markerRE.literal, '"').slice(1, -1)
       parsed[k] = v.replace(markerRE.space, ' ').replace(markerRE.comma, ', ').replace(markerRE.literal, '"').trim()
     }
+
     return parsed
   }
 
