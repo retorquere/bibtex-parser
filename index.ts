@@ -72,6 +72,10 @@ type FieldBuilder = {
   creator: boolean
   text: string
   level: number
+  words: {
+    lowercase: number
+    other: number
+  }
   exemptFromSentenceCase: Array<{ start: number, end: number }>
 }
 
@@ -234,6 +238,10 @@ class Parser {
         creator: false,
         text: '',
         level: 0,
+        words: {
+          lowercase: 0,
+          other: 0,
+        },
         exemptFromSentenceCase: null,
       }
       this.convert(value)
@@ -671,7 +679,7 @@ class Parser {
   protected clean_PreambleExpression(node, nocased) { return node }
 
   private implicitlyNoCased(word) {
-    word = word.replace(/[()]/g, '')
+    word = word.replace(/[:()]/g, '')
     if (word.match(/^[A-Z][^A-Z]+$/)) return false
     if (word.length > 1 && word.match(/^[A-Z][a-z]*(-[A-Za-z]+)*$/)) return false
     if (word.match(/[A-Z]/)) return true
@@ -823,6 +831,10 @@ class Parser {
         creator: fields.creator.includes(prop.key.toLowerCase()),
         text: '',
         level: 0,
+        words: {
+          lowercase: 0,
+          other: 0,
+        },
         exemptFromSentenceCase: this.sentenceCase && fields.title.includes(name) ? [] : null,
       }
 
@@ -852,6 +864,7 @@ class Parser {
         }
 
       } else {
+        if (this.field.words.lowercase > this.field.words.other) this.field.exemptFromSentenceCase = null
         this.entry.fields[this.field.name].push(this.convertToSentenceCase(this.field.text, this.field.exemptFromSentenceCase))
 
       }
@@ -876,6 +889,15 @@ class Parser {
 
   protected convert_Text(node) {
     node.value = node.value.replace(/``/g, this.markup.enquote.open).replace(/''/g, this.markup.enquote.close)
+
+    // heuristic to detect pre-sentencecased text
+    for (const word of node.value.split(/\b/)) {
+      if (word.match(/^[a-z0-9]+$/)) {
+        this.field.words.lowercase++
+      } else if (word.match(/[a-z]/i)) {
+        this.field.words.other++
+      }
+    }
 
     if (this.field.level === 0 && this.field.creator) {
       this.field.text += node.value.replace(/\s+and\s+/ig, marker.and).replace(/\s*,\s*/g, marker.comma).replace(/\s+/g, marker.space)
