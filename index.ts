@@ -838,6 +838,11 @@ class Parser {
       } else if (this.field.creator) {
         if (!this.entry.creators[this.field.name]) this.entry.creators[this.field.name] = []
 
+        // {M. Halle, J. Bresnan, and G. Miller}
+        if (this.field.text.includes(`${marker.comma}${marker.and}`)) { //
+          this.field.text = this.field.text.replace(new RegExp(`${marker.comma}${marker.and}`, 'g'), marker.and).replace(new RegExp(marker.comma), marker.and)
+        }
+
         for (const creator of this.field.text.split(marker.and)) {
           this.entry.fields[this.field.name].push(creator.replace(markerRE.comma, ', ').replace(markerRE.space, ' ').replace(markerRE.literal, '"'))
           this.entry.creators[this.field.name].push(this.parseName(creator))
