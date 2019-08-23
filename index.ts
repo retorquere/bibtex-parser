@@ -138,6 +138,15 @@ const fields = {
   ],
 }
 
+type ParserOptions = {
+  sentenceCase?: boolean
+  caseProtect?: boolean
+  markup?: MarkupMapping
+  async?: boolean
+  errorHandler?: (message: string) => void
+  verbatimFields?: string[]
+}
+
 class Parser {
   private errors: ParseError[]
   private strings: { [key: string]: any[] }
@@ -152,7 +161,7 @@ class Parser {
   private caseProtect: boolean
   private sentenceCase: boolean
 
-  constructor(options: { caseProtect?: boolean, sentenceCase?: boolean, markup?: MarkupMapping, errorHandler?: (message: string) => void } = {}) {
+  constructor(options: ParserOptions = {}) {
     this.unresolvedStrings = {}
     this.caseProtect = typeof options.caseProtect === 'undefined' ? true : options.caseProtect
     this.sentenceCase = typeof options.sentenceCase === 'undefined' ? true : options.sentenceCase
@@ -976,14 +985,14 @@ class Parser {
   }
 }
 
-export function parse(input: string, options: { sentenceCase?: boolean, caseProtect?: boolean, markup?: MarkupMapping, async?: boolean, errorHandler?: any } = {}) {
+export function parse(input: string, options: ParserOptions = {}) {
   const parser = new Parser({
     caseProtect: options.caseProtect,
     sentenceCase: options.sentenceCase,
     markup: options.markup,
     errorHandler: options.errorHandler,
   })
-  return options.async ? parser.parseAsync(input) : parser.parse(input)
+  return options.async ? parser.parseAsync(input, { verbatimFields: options.verbatimFields }) : parser.parse(input, { verbatimFields: options.verbatimFields })
 }
 
 export { parse as chunker } from './chunker'
