@@ -391,7 +391,7 @@ class Parser {
   protected clean_BracedComment(node: bibtex.BracedComment, nocased) { return node }
   protected clean_LineComment(node: bibtex.LineComment, nocased) { return node }
 
-  protected clean_File(node: bibtex.File, nocased) {
+  protected clean_File(node: bibtex.AST, nocased) {
     node.children = node.children.filter(child => child.kind !== 'NonEntryText').map(child => this.cleanup(child, nocased))
     return node
   }
