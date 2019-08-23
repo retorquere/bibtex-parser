@@ -1,18 +1,15 @@
 {
   "name": "@retorquere/bibtex-parser",
-  "version": "1.0.62",
+  "version": "1.0.63",
   "description": "BibTeX parser",
   "main": "index.js",
   "scripts": {
     "fetch-grammar": "curl -L https://raw.githubusercontent.com/retorquere/astrocite/master/packages/astrocite-bibtex/src/grammar.pegjs -o astrocite-bibtex.pegjs",
     "copy-grammar": "cp /Users/emile/github/astrocite/packages/astrocite-bibtex/src/grammar.pegjs astrocite-bibtex.pegjs",
-
     "fetch-schema": "curl -L https://raw.githubusercontent.com/retorquere/astrocite/master/packages/astrocite-bibtex/src/schema.d.ts -o astrocite-bibtex.d.ts",
     "copy-schema": "cp /Users/emile/github/astrocite/packages/astrocite-bibtex/src/schema.d.ts astrocite-bibtex.d.ts",
-
     "pregrammar": "npm run fetch-schema && npm run fetch-grammar",
     "postgrammar": "cat astrocite-bibtex-d-ts >> astrocite-bibtex.d.ts",
-
     "edit-grammar": "vi /Users/emile/github/astrocite/packages/astrocite-bibtex/src/grammar.pegjs",
     "grammar": "pegjs astrocite-bibtex.pegjs",
     "lint": "tslint -t stylish --project .",
