@@ -1,0 +1,22 @@
+{
+  "mode": "modules",
+  "out": "docs",
+  "exclude": "+(tests|node_modules|setup)",
+  "_theme": "markdown",
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "excludeNotExported": "true",
+  "target": "ES5",
+  "moduleResolution": "node",
+  "preserveConstEnums": "true",
+  "stripInternal": "true",
+  "suppressExcessPropertyErrors": "true",
+  "suppressImplicitAnyIndexErrors": "true",
+  "module": "commonjs",
+  "hideProjectTitle": false,
+  "hideBreadcrumbs": false,
+  "hideIndexes": false,
+  "hideSources": true,
+  "excludeExternals": true,
+  "hideGenerator": true
+}

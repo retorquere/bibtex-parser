@@ -51,20 +51,58 @@ const markerRE = {
   literalName: new RegExp(`^${marker.literal}[^${marker.literal}]*${marker.literal}$`),
 }
 
-type Name = {
+export interface Name {
+  /**
+   * If the name is a literal (surrounded by braces) it will be in this property, and none of the other properties will be set
+   */
   literal?: string
+
+  /**
+   * Family name
+   */
   lastName?: string
+
+  /**
+   * available when parsing biblatex extended name format
+   */
   useprefix?: boolean
+
+  /**
+   * given name. Will include middle names and initials.
+   */
   firstName?: string
+
+  /**
+   * things like `Jr.`, `III`, etc
+   */
   suffix?: string
+
+  /**
+   * things like `von`, `van der`, etc
+   */
   prefix?: string
 }
 
-type Entry = {
+export interface Entry {
+  /**
+   * citation key
+   */
   key: string,
+
+  /**
+   * entry type
+   */
   type: string
+
+  /**
+   * entry fields. The keys are always in lowercase
+   */
   fields: { [key: string]: string[] }
-  creators: { [key: string]: Name[] }
+
+  /**
+   * authors, editors, by creator type. Name order within the creator-type is retained.
+   */
+  creators: { [type: string]: Name[] }
 }
 
 type FieldBuilder = {
@@ -79,7 +117,10 @@ type FieldBuilder = {
   exemptFromSentenceCase: Array<{ start: number, end: number }>
 }
 
-type MarkupMapping = {
+/**
+ * Markup mapping. As the bibtex file is parsed, markup will be transformed according to this table
+ */
+export interface MarkupMapping {
   sub?: { open: string, close: string }
   sup?: { open: string, close: string }
   bold?: { open: string, close: string }
@@ -92,17 +133,47 @@ type MarkupMapping = {
   fixedWidth?: { open: string, close: string }
 }
 
-export type Bibliography = {
+export interface Bibliography {
+  /**
+   * errors found while parsing
+   */
   errors: ParseError[]
+
+  /**
+   * entries in the order in which they are found, omitting those which could not be parsed.
+   */
   entries: Entry[]
+
+  /**
+   * `@comment`s found in the bibtex file. See also [[jabref.parse]]
+   */
   comments: string[]
+
+  /**
+   * `@string`s found in the bibtex file.
+   */
   strings: { [key: string]: string }
 }
 
-export type ParseError = {
+export interface ParseError {
+  /**
+   * error message
+   */
   message: string
+
+  /**
+   * text block that was parsed where the error was found
+   */
   source?: string
+
+  /**
+   * Error line number within the bibtex file
+   */
   line?: number
+
+  /**
+   * Error column number within the bibtex file
+   */
   column?: number
 }
 
@@ -138,12 +209,38 @@ const fields = {
   ],
 }
 
-type ParserOptions = {
+export interface ParserOptions {
+  /**
+   * BibTeX files are expected to store title-type fields in Sentence Case, where other reference managers (such as Zotero) expect them to be stored as Sentence case. When this option is on,
+   * the parser will attempt to sentence-case title-type fields as they are being parsed. This uses heuristics and does not employ any kind of natural language processing, so you should always inspect the results.
+   */
   sentenceCase?: boolean
+
+  /**
+   * translate braced parts of text into a case-protected counterpart; uses the [[MarkupMapping]] table in `markup`.
+   */
   caseProtect?: boolean
+
+  /**
+   * The parser can change TeX markup (\textsc, \emph, etc) to a text equivalent. The defaults are HTML-oriented, but you can pass in your own configuration here
+   */
   markup?: MarkupMapping
+
+  /**
+   * return a promise for a [[Bibliography]] when set to true
+   */
   async?: boolean
+
+  /**
+   * By default, when an unexpected parsing error is found (such as a TeX command which I did not anticipate), the parser will throw an error. You can pass a function to handle the error instead,
+   * where you can log it, display it, or even still throw an error
+   */
   errorHandler?: (message: string) => void
+
+  /**
+   * Some fields such as `url` are parsed in what is called "verbatim mode" where pretty much everything except braces is treated as regular text, not TeX commands. You can change the default list here if you want,
+   * for example to help parse Mendeley `file` fields, which against spec are not in verbatim mode.
+   */
   verbatimFields?: string[]
 }
 
@@ -985,7 +1082,10 @@ class Parser {
   }
 }
 
-export function parse(input: string, options: ParserOptions = {}) {
+/**
+ * parse bibtex. This will try to convert TeX commands into unicode equivalents, and apply `@string` expansion
+ */
+export function parse(input: string, options: ParserOptions = {}): Bibliography | Promise<Bibliography> {
   const parser = new Parser({
     caseProtect: options.caseProtect,
     sentenceCase: options.sentenceCase,

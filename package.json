@@ -15,7 +15,7 @@
     "lint": "tslint -t stylish --project .",
     "prestart": "npm run grammar && npm run lint",
     "start": "tsc -d",
-    "poststart": "node unicode2latex.js",
+    "poststart": "ts-node setup/unicode2latex.ts && npm run docs",
     "pretest": "npm start",
     "test": "jest",
     "list": "tar tvf $(npm pack)",
@@ -23,7 +23,8 @@
     "preversion": "npm test",
     "postversion": "git push --follow-tags && npm publish --access public",
     "update-cases": "rsync -avz --include='import/' --include='export/' --exclude='*/' --include='*.bib' --include='*.bibtex' --include='*.biblatex' --exclude='*' ../better-bibtex/test/fixtures/ __tests__/better-bibtex/",
-    "update-snapshots": "jest --updateSnapshot"
+    "update-snapshots": "jest --updateSnapshot",
+    "docs": "typedoc ."
   },
   "repository": {
     "type": "git",
@@ -42,7 +43,10 @@
     "jsesc": "^2.5.2",
     "pegjs": "^0.10.0",
     "ts-jest": "^24.0.2",
+    "ts-node": "^8.3.0",
     "tslint": "^5.18.0",
+    "typedoc": "^0.15.0",
+    "typedoc-plugin-markdown": "^2.1.3",
     "typescript": "^3.5.3",
     "unicode2latex": "^1.0.19"
   },

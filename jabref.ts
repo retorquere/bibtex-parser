@@ -27,21 +27,62 @@ const prefixes = {
   groupstree: 'jabref-meta: groupstree:',
 }
 
-type Group = {
+/**
+ * A JabRef group.
+ */
+export interface Group {
+  /**
+   * the group name
+   */
   name: string
-  keys: string[]
-  children: Group[]
+
+  /**
+   * The citation keys which are specified to belong to this group, after intersection calculation has been applied
+   */
+  entries: string[]
+
+  /**
+   * Sub-groups under this group
+   */
+  groups: Group[]
 }
 
-type Parsed = {
+export interface JabrefMetadata {
+  /**
+   * The root groups. You can find the nested groups in their `groups` property
+   */
   root: Group[]
+
+  /**
+   * JabRef since 3.8 has changed their groups format. Entries have a `groups` field which has the names of the groups they belong to -- this name does not have to be unique in the groups hierarchy so if you
+   * have multiple groups with the same name, it's not well-defined where the entries should end up. This property gives you the for each group name the first time the group showed up in the hierarchy. Note that
+   * keys from the entries themselves have *not* yet been added to the [[Group]]s.
+   */
   groups: { [key: string]: Group }
+
+  /**
+   * The base path for file paths
+   */
   fileDirectory: string
+
+  /**
+   * The JabRef metadata format version
+   */
   version: string
 }
 
-export function parse(comments): Parsed {
-  const result: Parsed = {
+/**
+ * Import the JabRef groups from the `@string` comments in which they were stored. You would typically pass the comments parsed by [[bibtex.parse]] in here.
+ *
+ * JabRef knows several group types, and this parser parses most, but not all of them:
+ *
+ * * independent group: the keys listed in the group are the entries that are considered to belong to it
+ * * intersection: the keys listed in the group are considered to belong to the group if they're also in the parent group
+ * * union: the keys listed in the group are considered to belong to the group, and also the keys that are in the parent group
+ * * query: not supported by this parser
+ */
+export function parse(comments: string[]): JabrefMetadata {
+  const result: JabrefMetadata = {
     root: [],
     groups: {},
     fileDirectory: '',
@@ -86,8 +127,8 @@ export function parse(comments): Parsed {
 
     const group = {
       name,
-      keys,
-      children: [],
+      entries: keys,
+      groups: [],
     }
 
     result.groups[name] = result.groups[name] || group
@@ -107,14 +148,14 @@ export function parse(comments): Parsed {
         case '0': // independent
           break
         case '1': // intersect
-          group.keys = group.keys.filter(key => parent.keys.includes(key))
+          group.entries = group.entries.filter(key => parent.entries.includes(key))
           break
         case '2': // union
-          group.keys = group.keys.concat(parent.keys.filter(key => !group.keys.includes(key)))
+          group.entries = group.entries.concat(parent.entries.filter(key => !group.entries.includes(key)))
           break
       }
 
-      levels[level - 2].children.push(group)
+      levels[level - 2].groups.push(group)
     }
   }
 
