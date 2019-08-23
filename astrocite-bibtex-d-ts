@@ -1,0 +1,8 @@
+type ParseOptions = {
+  verbatimProperties?: string[]
+  verbatimCommands?: string[]
+}
+
+type RichNestedLiteral = NestedLiteral & { markup: Set<string>, exemptFromSentenceCase?: boolean }
+
+declare function parse(input: string, options?: ParseOptions): File

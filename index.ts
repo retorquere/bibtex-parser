@@ -388,21 +388,21 @@ class Parser {
     return this['clean_' + node.kind](node, nocased)
   }
 
-  protected clean_BracedComment(node, nocased) { return node }
-  protected clean_LineComment(node, nocased) { return node }
+  protected clean_BracedComment(node: bibtex.BracedComment, nocased) { return node }
+  protected clean_LineComment(node: bibtex.LineComment, nocased) { return node }
 
-  protected clean_File(node, nocased) {
+  protected clean_File(node: bibtex.File, nocased) {
     node.children = node.children.filter(child => child.kind !== 'NonEntryText').map(child => this.cleanup(child, nocased))
     return node
   }
 
-  protected clean_StringExpression(node, nocased) { // should have been StringDeclaration
+  protected clean_StringExpression(node: bibtex.StringExpression, nocased) { // should have been StringDeclaration
     this.condense(node, nocased)
     this.strings[node.key.toUpperCase()] = node.value
     return node
   }
 
-  protected clean_String(node, nocased) { // should have been StringReference
+  protected clean_String(node: bibtex.StringValue, nocased) { // should have been StringReference
     const reference = node.value.toUpperCase()
     const _string = this.strings[reference] || this.default_strings[reference]
 
@@ -419,27 +419,27 @@ class Parser {
     }
   }
 
-  protected clean_Entry(node, nocased) {
+  protected clean_Entry(node: bibtex.Entry, nocased) {
     node.properties = node.properties.map(child => this.cleanup(child, nocased))
     return node
   }
 
-  protected clean_Property(node, nocased) {
+  protected clean_Property(node: bibtex.Property, nocased) {
     // because this was abused so much, many processors ignore second-level too
     if (fields.title.concat(fields.unnest).includes(node.key.toLowerCase()) && node.value.length === 1 && node.value[0].kind === 'NestedLiteral') {
-      node.value[0].exemptFromSentenceCase = true
-      node.value[0].markup = new Set
+      (node.value[0] as bibtex.RichNestedLiteral).markup = new Set;
+      (node.value[0] as bibtex.RichNestedLiteral).exemptFromSentenceCase = true
     }
 
     this.condense(node, !this.caseProtect)
     return node
   }
 
-  protected clean_Text(node, nocased) { return node }
+  protected clean_Text(node: bibtex.TextValue, nocased) { return node }
 
-  protected clean_MathMode(node, nocased) { return node }
+  protected clean_MathMode(node: bibtex.MathMode, nocased) { return node }
 
-  protected clean_RegularCommand(node, nocased) {
+  protected clean_RegularCommand(node: bibtex.RegularCommand, nocased) {
     let arg, unicode
 
     switch (node.value) {
@@ -633,15 +633,15 @@ class Parser {
       value,
     }, nocased)
   }
-  protected clean_SubscriptCommand(node, nocased) {
+  protected clean_SubscriptCommand(node: bibtex.SubscriptCommand, nocased) {
     return this._clean_ScriptCommand(node, nocased, 'sub')
   }
 
-  protected clean_SuperscriptCommand(node, nocased) {
+  protected clean_SuperscriptCommand(node: bibtex.SuperscriptCommand, nocased) {
     return this._clean_ScriptCommand(node, nocased, 'sup')
   }
 
-  protected clean_NestedLiteral(node, nocased) {
+  protected clean_NestedLiteral(node: bibtex.RichNestedLiteral, nocased) {
     if (!node.markup) node.markup = nocased ? new Set() : new Set(['caseProtect'])
 
     // https://github.com/retorquere/zotero-better-bibtex/issues/541#issuecomment-240156274
@@ -649,7 +649,7 @@ class Parser {
       node.markup.delete('caseProtect')
 
     } else if (node.value.length && node.value[0].kind === 'Text') {
-      if (!node.value[0].value.split(/\s+/).find(word => !this.implicitlyNoCased(word))) {
+      if (!(node.value[0] as bibtex.TextValue).value.split(/\s+/).find(word => !this.implicitlyNoCased(word))) {
         node.markup.delete('caseProtect')
         node.exemptFromSentenceCase = true
       }
@@ -660,7 +660,7 @@ class Parser {
     return node
   }
 
-  protected clean_DicraticalCommand(node, nocased) { // Should be DiacraticCommand
+  protected clean_DicraticalCommand(node: bibtex.DicraticalCommand, nocased) { // Should be DiacraticCommand
     const char = node.dotless ? `\\${node.character}` : node.character
     const unicode = latex2unicode[`\\${node.mark}{${char}}`]
       || latex2unicode[`\\${node.mark}${char}`]
@@ -672,11 +672,11 @@ class Parser {
     return this.text(unicode)
   }
 
-  protected clean_SymbolCommand(node, nocased) {
+  protected clean_SymbolCommand(node: bibtex.SymbolCommand, nocased) {
     return this.text(latex2unicode[`\\${node.value}`] || node.value)
   }
 
-  protected clean_PreambleExpression(node, nocased) { return node }
+  protected clean_PreambleExpression(node: bibtex.PreambleExpression, nocased) { return node }
 
   private implicitlyNoCased(word) {
     // word = word.replace(new RegExp(`"[${this.markup.enquote.open}${this.markup.enquote.close}:()]`, 'g'), '')
@@ -709,10 +709,10 @@ class Parser {
     if (exemptFromSentenceCase) this.field.exemptFromSentenceCase.push({ start, end: this.field.text.length })
   }
 
-  protected convert_BracedComment(node) {
+  protected convert_BracedComment(node: bibtex.BracedComment) {
     this.comments.push(node.value)
   }
-  protected convert_LineComment(node) {
+  protected convert_LineComment(node: bibtex.LineComment) {
     this.comments.push(node.value)
   }
 
@@ -814,7 +814,7 @@ class Parser {
     return parsed
   }
 
-  protected convert_Entry(node) {
+  protected convert_Entry(node: bibtex.Entry) {
     this.entry = {
       key: node.id,
       type: node.type,
@@ -884,11 +884,11 @@ class Parser {
     return sentenceCased
   }
 
-  protected convert_Number(node) {
+  protected convert_Number(node: bibtex.NumberValue) {
     this.field.text += `${node.value}`
   }
 
-  protected convert_Text(node) {
+  protected convert_Text(node: bibtex.TextValue) {
     node.value = node.value.replace(/``/g, this.markup.enquote.open).replace(/''/g, this.markup.enquote.close)
 
     // heuristic to detect pre-sentencecased text
@@ -921,15 +921,15 @@ class Parser {
     this.field.text += node.value
   }
 
-  protected convert_MathMode(node) { return }
-  protected convert_PreambleExpression(node) { return }
-  protected convert_StringExpression(node) { return }
+  protected convert_MathMode(node: bibtex.MathMode) { return }
+  protected convert_PreambleExpression(node: bibtex.PreambleExpression) { return }
+  protected convert_StringExpression(node: bibtex.StringExpression) { return }
 
-  protected convert_String(node) {
+  protected convert_String(node: bibtex.StringValue) {
     this.convert(node.value)
   }
 
-  protected convert_NestedLiteral(node) {
+  protected convert_NestedLiteral(node: bibtex.RichNestedLiteral) {
     const prefix = []
     const postfix = []
 
