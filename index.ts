@@ -421,6 +421,13 @@ class Parser {
 
       const next = node.value[i + 1] || {}
 
+      if (child.kind === 'RegularCommand' && child.value.match(/^text(super|sub)script$/) && !child.arguments.length && next.kind === 'NestedLiteral') {
+        child.arguments = [ { kind: 'RequiredArgument', value: next.value } ]
+        next.kind = 'Text'
+        next.value = ''
+        return true
+      }
+
       // \frac can either be "\frac{n}{d}" or "\frac n d" -- shudder
       if (child.kind === 'RegularCommand' && child.value === 'frac' && !child.arguments.length) {
         if (next.kind === 'Text' && next.value.match(/^\s+[a-z0-9]+\s+[a-z0-9]+$/i)) {
@@ -549,6 +556,12 @@ class Parser {
     let arg, unicode
 
     switch (node.value) {
+      case 't':
+        if ((arg = this.argument(node, 'Text')) && (unicode = latex2unicode[`\\t{${arg}}`])) {
+          return this.text(unicode)
+        }
+        break
+
       case 'vphantom':
         return this.text()
 
