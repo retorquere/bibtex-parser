@@ -6,14 +6,14 @@
   "scripts": {
     "fetch-grammar": "curl -L https://raw.githubusercontent.com/retorquere/astrocite/master/packages/astrocite-bibtex/src/grammar.pegjs -o astrocite-bibtex.pegjs",
     "copy-grammar": "cp /Users/emile/github/astrocite/packages/astrocite-bibtex/src/grammar.pegjs astrocite-bibtex.pegjs",
-    "fetch-schema": "curl -L https://raw.githubusercontent.com/retorquere/astrocite/master/packages/astrocite-bibtex/src/schema.d.ts -o astrocite-bibtex.d.ts",
+    "fetch-schema": "curl -L https://raw.githubusercontent.com/dsifford/astrocite/master/packages/astrocite-bibtex/src/schema.d.ts -o node_modules/astrocite-bibtex/lib/grammar.d.ts",
     "copy-schema": "cp /Users/emile/github/astrocite/packages/astrocite-bibtex/src/schema.d.ts astrocite-bibtex.d.ts",
     "pregrammar": "npm run fetch-schema && npm run fetch-grammar",
     "postgrammar": "cat astrocite-bibtex-d-ts >> astrocite-bibtex.d.ts",
     "edit-grammar": "vi /Users/emile/github/astrocite/packages/astrocite-bibtex/src/grammar.pegjs",
     "grammar": "pegjs astrocite-bibtex.pegjs",
     "lint": "tslint -t stylish --project .",
-    "prestart": "npm run grammar && npm run lint",
+    "prestart": "npm run fetch-schema && npm run lint",
     "start": "tsc -d",
     "poststart": "ts-node setup/unicode2latex.ts && npm run docs",
     "pretest": "npm start",
@@ -50,7 +50,9 @@
     "typescript": "^3.5.3",
     "unicode2latex": "^1.0.22"
   },
-  "dependencies": {},
+  "dependencies": {
+    "astrocite": "^0.15.0"
+  },
   "jest": {
     "coverageDirectory": "node_modules/.cache/coverage",
     "collectCoverageFrom": [

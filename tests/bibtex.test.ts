@@ -5,7 +5,7 @@ const path = require('path')
 require('jest-specific-snapshot')
 
 import * as bibtex from '../index'
-import astrocite = require('../astrocite-bibtex')
+import * as astrocite from 'astrocite-bibtex/lib/grammar'
 // import * as jabref from '../jabref'
 
 const snaps = path.join(__dirname, '__snapshots__')

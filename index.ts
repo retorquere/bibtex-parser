@@ -1,4 +1,6 @@
-import bibtex = require('./astrocite-bibtex')
+import * as bibtex from 'astrocite-bibtex/lib/grammar'
+type RichNestedLiteral = bibtex.NestedLiteral & { markup: Set<string>, exemptFromSentenceCase?: boolean }
+
 import { parse as chunker } from './chunker'
 import latex2unicode = require('./latex2unicode')
 
@@ -540,8 +542,8 @@ class Parser {
   protected clean_Property(node: bibtex.Property, nocased) {
     // because this was abused so much, many processors ignore second-level too
     if (fields.title.concat(fields.unnest).includes(node.key.toLowerCase()) && node.value.length === 1 && node.value[0].kind === 'NestedLiteral') {
-      (node.value[0] as bibtex.RichNestedLiteral).markup = new Set;
-      (node.value[0] as bibtex.RichNestedLiteral).exemptFromSentenceCase = true
+      (node.value[0] as RichNestedLiteral).markup = new Set;
+      (node.value[0] as RichNestedLiteral).exemptFromSentenceCase = true
     }
 
     this.condense(node, !this.caseProtect)
@@ -760,7 +762,7 @@ class Parser {
     return this._clean_ScriptCommand(node, nocased, 'sup')
   }
 
-  protected clean_NestedLiteral(node: bibtex.RichNestedLiteral, nocased) {
+  protected clean_NestedLiteral(node: RichNestedLiteral, nocased) {
     if (!node.markup) node.markup = nocased ? new Set() : new Set(['caseProtect'])
 
     // https://github.com/retorquere/zotero-better-bibtex/issues/541#issuecomment-240156274
@@ -1048,7 +1050,7 @@ class Parser {
     this.convert(node.value)
   }
 
-  protected convert_NestedLiteral(node: bibtex.RichNestedLiteral) {
+  protected convert_NestedLiteral(node: RichNestedLiteral) {
     const prefix = []
     const postfix = []
 
