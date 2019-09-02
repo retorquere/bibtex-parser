@@ -23,7 +23,7 @@
     "postversion": "git push --follow-tags && npm publish --access public",
     "update-cases": "rsync -avz --include='import/' --include='export/' --exclude='*/' --include='*.bib' --include='*.bibtex' --include='*.biblatex' --exclude='*' ../better-bibtex/test/fixtures/ tests/better-bibtex/",
     "update-snapshots": "jest --updateSnapshot",
-    "docs": "typedoc ."
+    "docs": "typedoc . && touch docs/.nojekyll"
   },
   "repository": {
     "type": "git",
