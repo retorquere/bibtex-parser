@@ -613,74 +613,74 @@ class Parser {
 
       case 'textsuperscript':
         if (!(arg = this.argument(node, 'array'))) return this.error(node.value + this.show(node), this.text())
+
         return this.cleanup({
           kind: 'NestedLiteral',
           markup: new Set(['sup']),
           value: arg,
         }, nocased)
-        break
 
       case 'textsubscript':
         if (!(arg = this.argument(node, 'array'))) return this.error(node.value + this.show(node), this.text())
+
         return this.cleanup({
           kind: 'NestedLiteral',
           markup: new Set(['sub']),
           value: arg,
         }, nocased)
-        break
 
       case 'textsc':
         if (!(arg = this.argument(node, 'array'))) return this.error(node.value + this.show(node), this.text())
+
         return this.cleanup({
           kind: 'NestedLiteral',
           exemptFromSentenceCase: true,
           markup: new Set(['smallCaps']),
           value: arg,
         }, nocased)
-        break
 
       case 'enquote':
       case 'mkbibquote':
         if (!(arg = this.argument(node, 'array'))) return this.error(node.value + this.show(node), this.text())
+
         return this.cleanup({
           kind: 'NestedLiteral',
           markup: new Set(['enquote']),
           value: arg,
         }, nocased)
-        break
 
       case 'textbf':
       case 'mkbibbold':
         if (!(arg = this.argument(node, 'array'))) return this.error(node.value + this.show(node), this.text())
+
         return this.cleanup({
           kind: 'NestedLiteral',
           markup: new Set(['bold']),
           value: arg,
         }, nocased)
-        break
 
       case 'mkbibitalic':
       case 'mkbibemph':
       case 'textit':
       case 'emph':
         if (!(arg = this.argument(node, 'array'))) return this.error(node.value + this.show(node), this.text())
+
         return this.cleanup({
           kind: 'NestedLiteral',
           markup: new Set(['italics']),
           value: arg,
         }, nocased)
-        break
 
       case 'bibcyr':
         if (this.argument(node, 'none')) return this.text()
 
         if (!(arg = this.argument(node, 'array'))) return this.error(node.value + this.show(node), this.text())
+
         return this.cleanup({
           kind: 'NestedLiteral',
           markup: new Set,
           value: arg,
         }, nocased)
-        break
 
       case 'mathrm':
       case 'textrm':
@@ -731,7 +731,6 @@ class Parser {
     }
 
     return this.error('Unhandled command: ' + this.show(node), this.text())
-    return node
   }
 
   private _clean_ScriptCommand(node, nocased, mode) {
