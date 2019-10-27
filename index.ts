@@ -540,13 +540,15 @@ class Parser {
   }
 
   protected clean_Property(node: bibtex.Property, nocased) {
+    const key = node.key.toLowerCase()
+
     // because this was abused so much, many processors ignore second-level too
-    if (fields.title.concat(fields.unnest).includes(node.key.toLowerCase()) && node.value.length === 1 && node.value[0].kind === 'NestedLiteral') {
+    if (fields.title.concat(fields.unnest).includes(key) && node.value.length === 1 && node.value[0].kind === 'NestedLiteral') {
       (node.value[0] as RichNestedLiteral).markup = new Set;
       (node.value[0] as RichNestedLiteral).exemptFromSentenceCase = true
     }
 
-    this.condense(node, !this.caseProtect)
+    this.condense(node, [ 'url', 'doi', 'file', 'files', 'eprint', 'verba', 'verbb', 'verbc' ].includes(key) || !this.caseProtect)
     return node
   }
 
