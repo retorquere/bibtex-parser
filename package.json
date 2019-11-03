@@ -4,7 +4,6 @@
   "description": "BibTeX parser",
   "main": "index.js",
   "scripts": {
-    "postinstall": "cp node_modules/astrocite-bibtex/lib/grammar.js . && patch -u -p0 -o grammar.d.ts < grammar.patch",
     "fetch-grammar": "curl -L https://raw.githubusercontent.com/retorquere/astrocite/master/packages/astrocite-bibtex/src/grammar.pegjs -o astrocite-bibtex.pegjs",
     "copy-grammar": "cp /Users/emile/github/astrocite/packages/astrocite-bibtex/src/grammar.pegjs astrocite-bibtex.pegjs",
     "fetch-schema": "curl -L https://raw.githubusercontent.com/dsifford/astrocite/master/packages/astrocite-bibtex/src/schema.d.ts -o node_modules/astrocite-bibtex/lib/grammar.d.ts",
@@ -14,7 +13,7 @@
     "grammar": "pegjs astrocite-bibtex.pegjs",
     "lint": "tslint -t stylish --project .",
     "prestart": "npm run lint",
-    "start": "tsc -d",
+    "start": "cp node_modules/astrocite-bibtex/lib/grammar.js . && patch -u -p0 -o grammar.d.ts < grammar.patch && tsc -d",
     "poststart": "ts-node setup/unicode2latex.ts && npm run docs",
     "pretest": "npm start",
     "test": "jest",
