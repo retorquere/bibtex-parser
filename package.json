@@ -4,6 +4,7 @@
   "description": "BibTeX parser",
   "main": "index.js",
   "scripts": {
+    "postinstall": "patch-package",
     "fetch-grammar": "curl -L https://raw.githubusercontent.com/retorquere/astrocite/master/packages/astrocite-bibtex/src/grammar.pegjs -o astrocite-bibtex.pegjs",
     "copy-grammar": "cp /Users/emile/github/astrocite/packages/astrocite-bibtex/src/grammar.pegjs astrocite-bibtex.pegjs",
     "fetch-schema": "curl -L https://raw.githubusercontent.com/dsifford/astrocite/master/packages/astrocite-bibtex/src/schema.d.ts -o node_modules/astrocite-bibtex/lib/grammar.d.ts",
@@ -48,7 +49,8 @@
     "unicode2latex": "^1.0.23"
   },
   "dependencies": {
-    "astrocite": "^0.16.0"
+    "astrocite": "^0.16.0",
+    "patch-package": "^6.2.0"
   },
   "jest": {
     "coverageDirectory": "node_modules/.cache/coverage",
