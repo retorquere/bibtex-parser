@@ -1,4 +1,4 @@
-import * as bibtex from 'astrocite-bibtex/lib/grammar'
+import * as bibtex from './grammar'
 type RichNestedLiteral = bibtex.NestedLiteral & { markup: Set<string>, exemptFromSentenceCase?: boolean }
 
 import { parse as chunker } from './chunker'
