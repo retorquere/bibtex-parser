@@ -13,7 +13,7 @@
     "grammar": "pegjs astrocite-bibtex.pegjs",
     "lint": "tslint -t stylish --project .",
     "prestart": "npm run lint",
-    "start": "cp node_modules/astrocite-bibtex/lib/grammar.js . && patch -u -p0 -o grammar.d.ts < grammar.patch && tsc -d",
+    "start": "tsc -d",
     "poststart": "ts-node setup/unicode2latex.ts && npm run docs",
     "pretest": "npm start",
     "test": "jest",
@@ -48,7 +48,7 @@
     "unicode2latex": "^1.0.23"
   },
   "dependencies": {
-    "astrocite": "^0.16.0"
+    "astrocite": "^0.16.1"
   },
   "jest": {
     "coverageDirectory": "node_modules/.cache/coverage",
@@ -67,8 +67,6 @@
     "jabref.d.ts",
     "jabref.js",
     "latex2unicode.js",
-    "README.md",
-    "grammar.js",
-    "grammar.d.ts"
+    "README.md"
   ]
 }
