@@ -24,9 +24,9 @@ function set(latex, unicode) {
 
 for (const [unicode, tex] of Object.entries(unicode2latex)) {
   for (const mode of ['math', 'text']) {
-    let alts = tex[`${mode}alt`]
+    let alts = tex[`alt${mode}`]
     if (!alts) alts = []
-    if (!Array.isArray) alts = [ alts ]
+    if (!Array.isArray(alts)) alts = [ alts ]
 
     for (const alt of alts) {
       set(alt, unicode)
