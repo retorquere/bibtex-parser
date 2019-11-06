@@ -16,6 +16,10 @@ function set(latex, unicode) {
   }
 
   latex2unicode[latex] = unicode
+
+  let m
+  if (m = latex.match(/^\\r\{([a-zA-Z])\}$/)) latex2unicode[`{\\r ${m[1]}}`] = unicode
+  if (m = latex.match(/^\{\\r ([a-zA-Z])\}$/)) latex2unicode[`\\r{${m[1]}}`] = unicode
 }
 
 for (const [unicode, tex] of Object.entries(unicode2latex)) {
