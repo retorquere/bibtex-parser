@@ -459,13 +459,118 @@ Object {
       ],
       "type": "article",
     },
+    Object {
+      "key": "i",
+      "kind": "StringExpression",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 13,
+          "offset": 277,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 12,
+          "offset": 257,
+        },
+      },
+      "value": Array [
+        Object {
+          "kind": "NestedLiteral",
+          "loc": Object {
+            "end": Object {
+              "column": 18,
+              "line": 12,
+              "offset": 274,
+            },
+            "start": Object {
+              "column": 14,
+              "line": 12,
+              "offset": 270,
+            },
+          },
+          "value": Array [
+            Object {
+              "arguments": Array [],
+              "kind": "RegularCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 17,
+                  "line": 12,
+                  "offset": 273,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 12,
+                  "offset": 271,
+                },
+              },
+              "value": "i",
+            },
+          ],
+        },
+      ],
+    },
+    Object {
+      "id": "label",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 14,
+          "offset": 302,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 13,
+          "offset": 277,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 24,
+              "line": 13,
+              "offset": 300,
+            },
+            "start": Object {
+              "column": 14,
+              "line": 13,
+              "offset": 290,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "String",
+              "loc": Object {
+                "end": Object {
+                  "column": 23,
+                  "line": 13,
+                  "offset": 299,
+                },
+                "start": Object {
+                  "column": 22,
+                  "line": 13,
+                  "offset": 298,
+                },
+              },
+              "value": "i",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
   ],
   "kind": "File",
   "loc": Object {
     "end": Object {
       "column": 1,
-      "line": 12,
-      "offset": 257,
+      "line": 14,
+      "offset": 302,
     },
     "start": Object {
       "column": 1,

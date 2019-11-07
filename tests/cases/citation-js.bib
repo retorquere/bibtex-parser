@@ -3,9 +3,11 @@
 @string{b = { string b}}
 @string{c = { string c}}
 @article{key,
-    author  = "Author",
-    title   = "{\r a}{\i} and {\'i}Title" # a # b # c,
+    author  = {Author},
+    title   = {{\r a}{\i} and {\'i}Title} # a # b # c,
     year    = 1990,
-    journal = j # "and this"
+    journal = j # {and this}
 }
 
+@string(i = "{\i}")
+@book{label, title = i }

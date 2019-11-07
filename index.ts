@@ -1,5 +1,6 @@
 import * as bibtex from 'astrocite-bibtex/lib/grammar'
-type RichNestedLiteral = bibtex.NestedLiteral & { markup: Set<string>, exemptFromSentenceCase?: boolean }
+// Set instead of {} because we need insertion order remembered
+type RichNestedLiteral = bibtex.NestedLiteral & { markup: Record<string, boolean>, exemptFromSentenceCase?: boolean }
 
 import { parse as chunker } from './chunker'
 import latex2unicode = require('./latex2unicode')
@@ -446,8 +447,8 @@ class Parser {
 
       if (child.kind === 'RegularCommand' && markup[child.value] && !child.arguments.length) {
         if (node.markup) {
-          node.markup.delete('caseProtect')
-          node.markup.add(markup[child.value])
+          delete node.markup.caseProtect
+          node.markup[markup[child.value]] = true
           if (markup[child.value] === 'smallCaps') node.exemptFromSentenceCase = true
         }
         return false
@@ -456,7 +457,7 @@ class Parser {
       return true
     })
 
-    node.value = node.value.map(child => this.cleanup(child, nocased || (node.markup && (node.markup.has('caseProtect') || node.exemptFromSentenceCase))))
+    node.value = node.value.map(child => this.cleanup(child, nocased || (node.markup && (node.markup.caseProtect || node.exemptFromSentenceCase))))
 
     node.value = node.value.reduce((acc, child) => {
       const last = acc.length - 1
@@ -544,7 +545,7 @@ class Parser {
 
     // because this was abused so much, many processors ignore second-level too
     if (fields.title.concat(fields.unnest).includes(key) && node.value.length === 1 && node.value[0].kind === 'NestedLiteral') {
-      (node.value[0] as RichNestedLiteral).markup = new Set;
+      (node.value[0] as RichNestedLiteral).markup = {};
       (node.value[0] as RichNestedLiteral).exemptFromSentenceCase = true
     }
 
@@ -575,7 +576,7 @@ class Parser {
           return this.cleanup({
             kind: 'NestedLiteral',
             exemptFromSentenceCase: true,
-            markup: new Set,
+            markup: {},
             value: [ this.text(`${arg[0]}/${arg[1]}`) ],
           }, nocased)
         }
@@ -592,7 +593,7 @@ class Parser {
         if (arg = this.argument(node, 'array')) {
           return this.cleanup({
             kind: 'NestedLiteral',
-            markup: new Set,
+            markup: {},
             value: arg,
           }, nocased)
         }
@@ -607,7 +608,7 @@ class Parser {
           return this.cleanup({
             kind: 'NestedLiteral',
             exemptFromSentenceCase: true,
-            markup: new Set,
+            markup: {},
             value: [ this.text(arg[0]) ],
           }, nocased)
         }
@@ -618,7 +619,7 @@ class Parser {
 
         return this.cleanup({
           kind: 'NestedLiteral',
-          markup: new Set(['sup']),
+          markup: { sup: true },
           value: arg,
         }, nocased)
 
@@ -627,7 +628,7 @@ class Parser {
 
         return this.cleanup({
           kind: 'NestedLiteral',
-          markup: new Set(['sub']),
+          markup: { sub: true },
           value: arg,
         }, nocased)
 
@@ -637,7 +638,7 @@ class Parser {
         return this.cleanup({
           kind: 'NestedLiteral',
           exemptFromSentenceCase: true,
-          markup: new Set(['smallCaps']),
+          markup: { smallCaps: true },
           value: arg,
         }, nocased)
 
@@ -647,7 +648,7 @@ class Parser {
 
         return this.cleanup({
           kind: 'NestedLiteral',
-          markup: new Set(['enquote']),
+          markup: { enquote: true },
           value: arg,
         }, nocased)
 
@@ -657,7 +658,7 @@ class Parser {
 
         return this.cleanup({
           kind: 'NestedLiteral',
-          markup: new Set(['bold']),
+          markup: { bold: true },
           value: arg,
         }, nocased)
 
@@ -669,7 +670,7 @@ class Parser {
 
         return this.cleanup({
           kind: 'NestedLiteral',
-          markup: new Set(['italics']),
+          markup: { italics: true },
           value: arg,
         }, nocased)
 
@@ -680,7 +681,7 @@ class Parser {
 
         return this.cleanup({
           kind: 'NestedLiteral',
-          markup: new Set,
+          markup: {},
           value: arg,
         }, nocased)
 
@@ -696,7 +697,7 @@ class Parser {
         } else if (arg = this.argument(node, 'array')) {
           return this.cleanup({
             kind: 'NestedLiteral',
-            markup: new Set,
+            markup: {},
             value: arg,
           }, nocased)
         }
@@ -713,7 +714,7 @@ class Parser {
         if (arg = this.argument(node, 'array')) {
           return this.cleanup({
             kind: 'NestedLiteral',
-            markup: new Set,
+            markup: {},
             value: arg,
           }, nocased)
         }
@@ -751,7 +752,7 @@ class Parser {
     }
     return this.cleanup({
       kind: 'NestedLiteral',
-      markup: new Set([mode]),
+      markup: { [mode]: true },
       value,
     }, nocased)
   }
@@ -764,15 +765,15 @@ class Parser {
   }
 
   protected clean_NestedLiteral(node: RichNestedLiteral, nocased) {
-    if (!node.markup) node.markup = nocased ? new Set() : new Set(['caseProtect'])
+    if (!node.markup) node.markup = nocased ? {} : { caseProtect: true }
 
     // https://github.com/retorquere/zotero-better-bibtex/issues/541#issuecomment-240156274
     if (node.value.length && ['RegularCommand', 'DicraticalCommand'].includes(node.value[0].kind)) {
-      node.markup.delete('caseProtect')
+      delete node.markup.caseProtect
 
     } else if (node.value.length && node.value[0].kind === 'Text') {
       if (!(node.value[0] as bibtex.TextValue).value.split(/\s+/).find(word => !this.implicitlyNoCased(word))) {
-        node.markup.delete('caseProtect')
+        delete node.markup.caseProtect
         node.exemptFromSentenceCase = true
       }
     }
@@ -825,7 +826,7 @@ class Parser {
       && (
         node.exemptFromSentenceCase
         ||
-        (node.markup && node.markup.has('caseProtect'))
+        (node.markup && node.markup.caseProtect)
       )
     )
     if (exemptFromSentenceCase) this.field.exemptFromSentenceCase.push({ start, end: this.field.text.length })
@@ -1055,8 +1056,8 @@ class Parser {
     const prefix = []
     const postfix = []
 
-    // relies on Set remembering insertion order
-    for (const markup of (Array.from(node.markup) as string[])) {
+    // relies on objects remembering insertion order
+    for (const markup of Object.keys(node.markup)) {
       if (markup === 'caseProtect' && this.field.creator) {
         prefix.push(marker.literal)
         postfix.unshift(marker.literal)
