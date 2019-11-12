@@ -5,6 +5,28 @@ type RichNestedLiteral = bibtex.NestedLiteral & { markup: Record<string, boolean
 import { parse as chunker } from './chunker'
 import latex2unicode = require('./latex2unicode')
 
+class ParserError extends Error {
+  public node: any
+
+  constructor(message?: string, node?: any) {
+    super(message) // 'Error' breaks prototype chain here
+    Object.setPrototypeOf(this, new.target.prototype) // restore prototype chain
+    this.name = this.constructor.name
+    this.node = node
+  }
+}
+
+class TeXError extends Error {
+  public node: any
+
+  constructor(message?: string, node?: any) {
+    super(message) // 'Error' breaks prototype chain here
+    Object.setPrototypeOf(this, new.target.prototype) // restore prototype chain
+    this.name = this.constructor.name
+    this.node = node
+  }
+}
+
 /*
 function pad(s, n) {
   return `${s}${' '.repeat(n)}`.substr(0, n)
@@ -399,7 +421,7 @@ class Parser {
   private condense(node, nocased) {
     if (!Array.isArray(node.value)) {
       if (node.value.kind === 'Number') return
-      return this.error(`cannot condense a ${node.value.kind}: ${this.show(node)}`, undefined)
+      return this.error(new ParserError(`cannot condense a ${node.value.kind}: ${this.show(node)}`, node), undefined)
     }
 
     const markup = {
@@ -500,7 +522,7 @@ class Parser {
 
     delete node.loc
 
-    if (!this['clean_' + node.kind]) return this.error(`no cleanup method for '${node.kind}' (${this.show(node)})`, this.text())
+    if (!this['clean_' + node.kind]) return this.error(new ParserError(`no cleanup method for '${node.kind}' (${this.show(node)})`, node), this.text())
     return this['clean_' + node.kind](node, nocased)
   }
 
@@ -615,7 +637,7 @@ class Parser {
         break
 
       case 'textsuperscript':
-        if (!(arg = this.argument(node, 'array'))) return this.error(node.value + this.show(node), this.text())
+        if (!(arg = this.argument(node, 'array'))) return this.error(new TeXError(node.value + this.show(node), node), this.text())
 
         return this.cleanup({
           kind: 'NestedLiteral',
@@ -624,7 +646,7 @@ class Parser {
         }, nocased)
 
       case 'textsubscript':
-        if (!(arg = this.argument(node, 'array'))) return this.error(node.value + this.show(node), this.text())
+        if (!(arg = this.argument(node, 'array'))) return this.error(new TeXError(node.value + this.show(node), node), this.text())
 
         return this.cleanup({
           kind: 'NestedLiteral',
@@ -633,7 +655,7 @@ class Parser {
         }, nocased)
 
       case 'textsc':
-        if (!(arg = this.argument(node, 'array'))) return this.error(node.value + this.show(node), this.text())
+        if (!(arg = this.argument(node, 'array'))) return this.error(new TeXError(node.value + this.show(node), node), this.text())
 
         return this.cleanup({
           kind: 'NestedLiteral',
@@ -644,7 +666,7 @@ class Parser {
 
       case 'enquote':
       case 'mkbibquote':
-        if (!(arg = this.argument(node, 'array'))) return this.error(node.value + this.show(node), this.text())
+        if (!(arg = this.argument(node, 'array'))) return this.error(new TeXError(node.value + this.show(node), node), this.text())
 
         return this.cleanup({
           kind: 'NestedLiteral',
@@ -654,7 +676,7 @@ class Parser {
 
       case 'textbf':
       case 'mkbibbold':
-        if (!(arg = this.argument(node, 'array'))) return this.error(node.value + this.show(node), this.text())
+        if (!(arg = this.argument(node, 'array'))) return this.error(new TeXError(node.value + this.show(node), node), this.text())
 
         return this.cleanup({
           kind: 'NestedLiteral',
@@ -666,7 +688,7 @@ class Parser {
       case 'mkbibemph':
       case 'textit':
       case 'emph':
-        if (!(arg = this.argument(node, 'array'))) return this.error(node.value + this.show(node), this.text())
+        if (!(arg = this.argument(node, 'array'))) return this.error(new TeXError(node.value + this.show(node), node), this.text())
 
         return this.cleanup({
           kind: 'NestedLiteral',
@@ -677,7 +699,7 @@ class Parser {
       case 'bibcyr':
         if (this.argument(node, 'none')) return this.text()
 
-        if (!(arg = this.argument(node, 'array'))) return this.error(node.value + this.show(node), this.text())
+        if (!(arg = this.argument(node, 'array'))) return this.error(new TeXError(node.value + this.show(node), node), this.text())
 
         return this.cleanup({
           kind: 'NestedLiteral',
@@ -733,7 +755,7 @@ class Parser {
         }
     }
 
-    return this.error('Unhandled command: ' + this.show(node), this.text())
+    return this.error(new TeXError('Unhandled command: ' + this.show(node), node), this.text())
   }
 
   private _clean_ScriptCommand(node, nocased, mode) {
@@ -791,7 +813,7 @@ class Parser {
       || latex2unicode[`{\\${node.mark}${char}}`]
       || latex2unicode[`\\${node.mark} ${char}`]
 
-    if (!unicode) return this.error(`Unhandled {\\${node.mark} ${char}}`, this.text())
+    if (!unicode) return this.error(new TeXError(`Unhandled {\\${node.mark} ${char}}`, node), this.text())
     return this.text(unicode)
   }
 
@@ -814,7 +836,7 @@ class Parser {
   private convert(node) {
     if (Array.isArray(node)) return node.map(child => this.convert(child)).join('')
 
-    if (!this['convert_' + node.kind]) return this.error(`no converter for ${node.kind}: ${this.show(node)}`, undefined)
+    if (!this['convert_' + node.kind]) return this.error(new ParserError(`no converter for ${node.kind}: ${this.show(node)}`, node), undefined)
 
     const start = this.field ? this.field.text.length : null
 
@@ -947,7 +969,7 @@ class Parser {
     this.entries.push(this.entry)
 
     for (const prop of node.properties) {
-      if (prop.kind !== 'Property') return this.error(`Expected Property, got ${prop.kind}`, undefined)
+      if (prop.kind !== 'Property') return this.error(new ParserError(`Expected Property, got ${prop.kind}`, node), undefined)
 
       const name = prop.key.toLowerCase()
       this.field = {
@@ -1064,7 +1086,7 @@ class Parser {
         continue
       }
 
-      if (!this.markup[markup]) return this.error(`markup: ${markup}`, undefined)
+      if (!this.markup[markup]) return this.error(new ParserError(`markup: ${markup}`, node), undefined)
       prefix.push(this.markup[markup].open)
       postfix.unshift(this.markup[markup].close)
     }

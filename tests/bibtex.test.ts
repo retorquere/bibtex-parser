@@ -15,6 +15,13 @@ const enable = {
   zotero: process.env.ZOTERO !== 'false',
 }
 
+const ignoreErrors = {
+  errorHandler(e) {
+    if (e.name === 'TeXError') return // ignore TeX
+    throw e
+  }
+}
+
 describe('BibTeX Parser', () => {
   /*
   it('should parse sample2', () => {
@@ -35,7 +42,7 @@ describe('BibTeX Parser', () => {
 
     if (enable.zotero) {
       it(`should parse ${caseName}`, () => {
-        (expect(bibtex.parse(input)) as any).toMatchSpecificSnapshot(path.join(snaps, caseName + '.shot'))
+        (expect(bibtex.parse(input, f === 'long.bib' ? ignoreErrors : {})) as any).toMatchSpecificSnapshot(path.join(snaps, caseName + '.shot'))
       })
     }
   }
