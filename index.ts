@@ -236,10 +236,37 @@ const fields = {
 
 export interface ParserOptions {
   /**
-   * BibTeX files are expected to store title-type fields in Sentence Case, where other reference managers (such as Zotero) expect them to be stored as Sentence case. When this option is on,
-   * the parser will attempt to sentence-case title-type fields as they are being parsed. This uses heuristics and does not employ any kind of natural language processing, so you should always inspect the results.
+   * BibTeX files are expected to store title-type fields in Sentence Case, where other reference managers (such as Zotero) expect them to be stored as Sentence case. When there is no language field, or the language field
+   * is one of the languages (case insensitive) passed in this option, the parser will attempt to sentence-case title-type fields as they are being parsed. This uses heuristics and does not employ any kind of natural
+   * language processing, so you should always inspect the results. Default languages to sentenceCase are:
+   *
+   * - american
+   * - british
+   * - canadian
+   * - english
+   * - australian
+   * - newzealand
+   * - usenglish
+   * - ukenglish
+   * - en
+   * - eng
+   * - en-au
+   * - en-bz
+   * - en-ca
+   * - en-cb
+   * - en-gb
+   * - en-ie
+   * - en-jm
+   * - en-nz
+   * - en-ph
+   * - en-tt
+   * - en-us
+   * - en-za
+   * - en-zw
+   *
+   * If you pass an empty array, no sentence casing will be applied (even when there's no language field).
    */
-  sentenceCase?: boolean
+  sentenceCase?: string[]
 
   /**
    * translate braced parts of text into a case-protected counterpart; uses the [[MarkupMapping]] table in `markup`.
@@ -269,6 +296,33 @@ export interface ParserOptions {
   verbatimFields?: string[]
 }
 
+const english = [
+  'american',
+  'british',
+  'canadian',
+  'english',
+  'australian',
+  'newzealand',
+  'usenglish',
+  'ukenglish',
+  'en',
+  'eng',
+  'en-au',
+  'en-bz',
+  'en-ca',
+  'en-cb',
+  'en-gb',
+  'en-ie',
+  'en-jm',
+  'en-nz',
+  'en-ph',
+  'en-tt',
+  'en-us',
+  'en-za',
+  'en-zw',
+  'anglais', // don't do this people
+]
+
 class Parser {
   private errors: ParseError[]
   private strings: { [key: string]: any[] }
@@ -281,12 +335,12 @@ class Parser {
   private errorHandler: (message: string) => void
   private markup: MarkupMapping
   private caseProtect: boolean
-  private sentenceCase: boolean
+  private sentenceCase: string[]
 
   constructor(options: ParserOptions = {}) {
     this.unresolvedStrings = {}
     this.caseProtect = typeof options.caseProtect === 'undefined' ? true : options.caseProtect
-    this.sentenceCase = typeof options.sentenceCase === 'undefined' ? true : options.sentenceCase
+    this.sentenceCase = (typeof options.sentenceCase === 'undefined') ? english : options.sentenceCase
 
     this.markup = {
       enquote: { open: '\u201c', close: '\u201d' },
@@ -563,15 +617,16 @@ class Parser {
   }
 
   protected clean_Property(node: bibtex.Property, nocased) {
-    const key = node.key.toLowerCase()
+    // normalize field names to lowercase
+    node.key = node.key.toLowerCase()
 
     // because this was abused so much, many processors ignore second-level too
-    if (fields.title.concat(fields.unnest).includes(key) && node.value.length === 1 && node.value[0].kind === 'NestedLiteral') {
+    if (fields.title.concat(fields.unnest).includes(node.key) && node.value.length === 1 && node.value[0].kind === 'NestedLiteral') {
       (node.value[0] as RichNestedLiteral).markup = {};
       (node.value[0] as RichNestedLiteral).exemptFromSentenceCase = true
     }
 
-    this.condense(node, [ 'url', 'doi', 'file', 'files', 'eprint', 'verba', 'verbb', 'verbc' ].includes(key) || !this.caseProtect)
+    this.condense(node, [ 'url', 'doi', 'file', 'files', 'eprint', 'verba', 'verbb', 'verbc' ].includes(node.key) || !this.caseProtect)
     return node
   }
 
@@ -968,12 +1023,23 @@ class Parser {
     }
     this.entries.push(this.entry)
 
+    // order these first for language-dependent sentence casing
+    const order = ['langid', 'hyphenation', 'language']
+    node.properties.sort((a, b) => {
+      const ia = order.indexOf(a.key)
+      const ib = order.indexOf(b.key)
+      if (ia === -1 && ib === -1) return a.key.localeCompare(b.key) // doesn't matter really
+      if (ia === -1) return 1
+      if (ib === -1) return -1
+      return ia - ib
+    })
+
+    let sentenceCase = !!this.sentenceCase.length // if sentenceCase is empty, no sentence casing
     for (const prop of node.properties) {
       if (prop.kind !== 'Property') return this.error(new ParserError(`Expected Property, got ${prop.kind}`, node), undefined)
 
-      const name = prop.key.toLowerCase()
       this.field = {
-        name,
+        name: prop.key,
         creator: fields.creator.includes(prop.key.toLowerCase()),
         text: '',
         level: 0,
@@ -981,13 +1047,25 @@ class Parser {
           lowercase: 0,
           other: 0,
         },
-        exemptFromSentenceCase: this.sentenceCase && fields.title.includes(name) ? [] : null,
+        exemptFromSentenceCase: (sentenceCase && fields.title.includes(prop.key)) ? [] : null,
       }
 
       this.entry.fields[this.field.name] = this.entry.fields[this.field.name] || []
       this.convert(prop.value)
       this.field.text = this.field.text.trim()
       if (!this.field.text) continue
+
+      // disable sentenceCasing if not an english
+      switch (this.field.name) {
+        case 'langid':
+        case 'hyphenation':
+          sentenceCase = sentenceCase && this.sentenceCase.includes(this.field.text.toLowerCase())
+          break
+
+        case 'language':
+          sentenceCase = sentenceCase && !!(this.field.text.toLowerCase().trim().split(/\s*,\s*/).find(lang => this.sentenceCase.includes(lang)))
+          break
+      }
 
       // "groups" is a jabref 3.8+ monstrosity
       if (this.field.name.match(/^(keywords?|groups)$/)) {

@@ -99,7 +99,7 @@
 					<div class="tsd-signature tsd-kind-icon">async<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L257">index.ts:257</a></li>
+							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L284">index.ts:284</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -114,7 +114,7 @@
 					<div class="tsd-signature tsd-kind-icon">case<wbr>Protect<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L247">index.ts:247</a></li>
+							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L274">index.ts:274</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -129,7 +129,7 @@
 					<div class="tsd-signature tsd-kind-icon">error<wbr>Handler<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L263">index.ts:263</a></li>
+							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L290">index.ts:290</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -166,7 +166,7 @@
 					<div class="tsd-signature tsd-kind-icon">markup<span class="tsd-signature-symbol">:</span> <a href="_index_.markupmapping.html" class="tsd-signature-type">MarkupMapping</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L252">index.ts:252</a></li>
+							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L279">index.ts:279</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -178,17 +178,44 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="sentencecase" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> sentence<wbr>Case</h3>
-					<div class="tsd-signature tsd-kind-icon">sentence<wbr>Case<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<div class="tsd-signature tsd-kind-icon">sentence<wbr>Case<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L242">index.ts:242</a></li>
+							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L269">index.ts:269</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>BibTeX files are expected to store title-type fields in Sentence Case, where other reference managers (such as Zotero) expect them to be stored as Sentence case. When this option is on,
-							the parser will attempt to sentence-case title-type fields as they are being parsed. This uses heuristics and does not employ any kind of natural language processing, so you should always inspect the results.</p>
+							<p>BibTeX files are expected to store title-type fields in Sentence Case, where other reference managers (such as Zotero) expect them to be stored as Sentence case. When there is no language field, or the language field
+								is one of the languages (case insensitive) passed in this option, the parser will attempt to sentence-case title-type fields as they are being parsed. This uses heuristics and does not employ any kind of natural
+							language processing, so you should always inspect the results. Default languages to sentenceCase are:</p>
 						</div>
+						<ul>
+							<li>american</li>
+							<li>british</li>
+							<li>canadian</li>
+							<li>english</li>
+							<li>australian</li>
+							<li>newzealand</li>
+							<li>usenglish</li>
+							<li>ukenglish</li>
+							<li>en</li>
+							<li>eng</li>
+							<li>en-au</li>
+							<li>en-bz</li>
+							<li>en-ca</li>
+							<li>en-cb</li>
+							<li>en-gb</li>
+							<li>en-ie</li>
+							<li>en-jm</li>
+							<li>en-nz</li>
+							<li>en-ph</li>
+							<li>en-tt</li>
+							<li>en-us</li>
+							<li>en-za</li>
+							<li>en-zw</li>
+						</ul>
+						<p>If you pass an empty array, no sentence casing will be applied (even when there&#39;s no language field).</p>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
@@ -197,7 +224,7 @@
 					<div class="tsd-signature tsd-kind-icon">verbatim<wbr>Fields<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L269">index.ts:269</a></li>
+							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L296">index.ts:296</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
