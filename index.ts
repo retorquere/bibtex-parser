@@ -264,9 +264,9 @@ export interface ParserOptions {
    * - en-za
    * - en-zw
    *
-   * If you pass an empty array, no sentence casing will be applied (even when there's no language field).
+   * If you pass an empty array, or `false`, no sentence casing will be applied (even when there's no language field).
    */
-  sentenceCase?: string[]
+  sentenceCase?: string[] | boolean
 
   /**
    * translate braced parts of text into a case-protected counterpart; uses the [[MarkupMapping]] table in `markup`.
@@ -340,7 +340,11 @@ class Parser {
   constructor(options: ParserOptions = {}) {
     this.unresolvedStrings = {}
     this.caseProtect = typeof options.caseProtect === 'undefined' ? true : options.caseProtect
-    this.sentenceCase = (typeof options.sentenceCase === 'undefined') ? english : options.sentenceCase
+    if (typeof options.sentenceCase === 'boolean') {
+      this.sentenceCase = options.sentenceCase ? english : []
+    } else {
+      this.sentenceCase = options.sentenceCase || english
+    }
 
     this.markup = {
       enquote: { open: '\u201c', close: '\u201d' },
