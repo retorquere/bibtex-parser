@@ -10,7 +10,7 @@ import * as bibtex from '../index'
 const snaps = path.join(__dirname, '__snapshots__')
 
 const enable = {
-  ast: process.env.AST !== 'false',
+  ast: (process.env.AST || process.env.CI) === 'true',
   zotero: process.env.ZOTERO !== 'false',
   case: (process.env.TESTCASE || '').toLowerCase(),
   big: (process.env.BIG || process.env.CI) === 'true',

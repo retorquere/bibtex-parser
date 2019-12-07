@@ -18,12 +18,14 @@ class ParserError extends Error {
 
 class TeXError extends Error {
   public node: any
+  public text: string
 
-  constructor(message?: string, node?: any) {
+  constructor(message: string, node: any, text: string) {
     super(message) // 'Error' breaks prototype chain here
     Object.setPrototypeOf(this, new.target.prototype) // restore prototype chain
     this.name = this.constructor.name
     this.node = node
+    this.text = text
   }
 }
 
@@ -287,7 +289,7 @@ export interface ParserOptions {
    * By default, when an unexpected parsing error is found (such as a TeX command which I did not anticipate), the parser will throw an error. You can pass a function to handle the error instead,
    * where you can log it, display it, or even still throw an error
    */
-  errorHandler?: (message: string) => void
+  errorHandler?: false | ((message: string) => void)
 
   /**
    * Some fields such as `url` are parsed in what is called "verbatim mode" where pretty much everything except braces is treated as regular text, not TeX commands. You can change the default list here if you want,
@@ -336,6 +338,7 @@ class Parser {
   private markup: MarkupMapping
   private caseProtect: boolean
   private sentenceCase: string[]
+  private chunk: string
 
   constructor(options: ParserOptions = {}) {
     this.unresolvedStrings = {}
@@ -361,8 +364,8 @@ class Parser {
       if (open_close) this.markup[markup] = open_close
     }
 
-    // tslint:disable-next-line only-arrow-functions
-    this.errorHandler = (options.errorHandler || function(msg) { throw new Error(msg) })
+    // tslint:disable-next-line only-arrow-functions no-empty
+    this.errorHandler = (options.errorHandler === false) ? (function(msg) {}) : (options.errorHandler || function(err) { throw err })
 
     this.errors = []
     this.comments = []
@@ -453,6 +456,8 @@ class Parser {
   }
 
   private parseChunk(chunk, options: { verbatimFields?: string[] }) {
+    this.chunk = chunk
+
     try {
       const _ast = this.cleanup(bibtex.parse(chunk.text, { verbatimProperties: options.verbatimFields }), !this.caseProtect)
       if (_ast.kind !== 'File') throw new Error(this.show(_ast))
@@ -476,7 +481,7 @@ class Parser {
   }
 
   private show(o) {
-    return JSON.stringify(o)
+    return JSON.stringify(o) + this.chunk
   }
 
   private text(value = '') {
@@ -708,7 +713,7 @@ class Parser {
         break
 
       case 'textsuperscript':
-        if (!(arg = this.argument(node, 'array'))) return this.error(new TeXError(node.value + this.show(node), node), this.text())
+        if (!(arg = this.argument(node, 'array'))) return this.error(new TeXError(node.value + this.show(node), node, this.chunk), this.text())
 
         return this.cleanup({
           kind: 'NestedLiteral',
@@ -717,7 +722,7 @@ class Parser {
         }, nocased)
 
       case 'textsubscript':
-        if (!(arg = this.argument(node, 'array'))) return this.error(new TeXError(node.value + this.show(node), node), this.text())
+        if (!(arg = this.argument(node, 'array'))) return this.error(new TeXError(node.value + this.show(node), node, this.chunk), this.text())
 
         return this.cleanup({
           kind: 'NestedLiteral',
@@ -726,7 +731,7 @@ class Parser {
         }, nocased)
 
       case 'textsc':
-        if (!(arg = this.argument(node, 'array'))) return this.error(new TeXError(node.value + this.show(node), node), this.text())
+        if (!(arg = this.argument(node, 'array'))) return this.error(new TeXError(node.value + this.show(node), node, this.chunk), this.text())
 
         return this.cleanup({
           kind: 'NestedLiteral',
@@ -737,7 +742,7 @@ class Parser {
 
       case 'enquote':
       case 'mkbibquote':
-        if (!(arg = this.argument(node, 'array'))) return this.error(new TeXError(node.value + this.show(node), node), this.text())
+        if (!(arg = this.argument(node, 'array'))) return this.error(new TeXError(node.value + this.show(node), node, this.chunk), this.text())
 
         return this.cleanup({
           kind: 'NestedLiteral',
@@ -747,7 +752,7 @@ class Parser {
 
       case 'textbf':
       case 'mkbibbold':
-        if (!(arg = this.argument(node, 'array'))) return this.error(new TeXError(node.value + this.show(node), node), this.text())
+        if (!(arg = this.argument(node, 'array'))) return this.error(new TeXError(node.value + this.show(node), node, this.chunk), this.text())
 
         return this.cleanup({
           kind: 'NestedLiteral',
@@ -759,7 +764,7 @@ class Parser {
       case 'mkbibemph':
       case 'textit':
       case 'emph':
-        if (!(arg = this.argument(node, 'array'))) return this.error(new TeXError(node.value + this.show(node), node), this.text())
+        if (!(arg = this.argument(node, 'array'))) return this.error(new TeXError(node.value + this.show(node), node, this.chunk), this.text())
 
         return this.cleanup({
           kind: 'NestedLiteral',
@@ -770,7 +775,7 @@ class Parser {
       case 'bibcyr':
         if (this.argument(node, 'none')) return this.text()
 
-        if (!(arg = this.argument(node, 'array'))) return this.error(new TeXError(node.value + this.show(node), node), this.text())
+        if (!(arg = this.argument(node, 'array'))) return this.error(new TeXError(node.value + this.show(node), node, this.chunk), this.text())
 
         return this.cleanup({
           kind: 'NestedLiteral',
@@ -826,7 +831,7 @@ class Parser {
         }
     }
 
-    return this.error(new TeXError('Unhandled command: ' + this.show(node), node), this.text())
+    return this.error(new TeXError('Unhandled command: ' + this.show(node), node, this.chunk), this.text())
   }
 
   private _clean_ScriptCommand(node, nocased, mode) {
@@ -884,7 +889,7 @@ class Parser {
       || latex2unicode[`{\\${node.mark}${char}}`]
       || latex2unicode[`\\${node.mark} ${char}`]
 
-    if (!unicode) return this.error(new TeXError(`Unhandled {\\${node.mark} ${char}}`, node), this.text())
+    if (!unicode) return this.error(new TeXError(`Unhandled {\\${node.mark} ${char}}`, node, this.chunk), this.text())
     return this.text(unicode)
   }
 
