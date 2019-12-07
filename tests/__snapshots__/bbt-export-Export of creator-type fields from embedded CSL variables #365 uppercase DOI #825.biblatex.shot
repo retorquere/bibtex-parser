@@ -6,7 +6,7 @@ Object {
   "entries": Array [
     Object {
       "creators": Object {
-        "director": Array [
+        "editor": Array [
           Object {
             "firstName": "John",
             "lastName": "Doe",
@@ -21,9 +21,12 @@ Object {
         "date": Array [
           "2015",
         ],
-        "director": Array [
+        "editor": Array [
           "Doe, John",
           "Roe, Rob",
+        ],
+        "editortype": Array [
+          "director",
         ],
         "location": Array [
           "US/GB",
@@ -92,7 +95,7 @@ Object {
     },
     Object {
       "creators": Object {
-        "director": Array [
+        "editor": Array [
           Object {
             "firstName": "Stanley",
             "lastName": "Kubrick",
@@ -103,8 +106,11 @@ Object {
         "date": Array [
           "1964",
         ],
-        "director": Array [
+        "editor": Array [
           "Kubrick, Stanley",
+        ],
+        "editortype": Array [
+          "director",
         ],
         "shorttitle": Array [
           "Dr. <span class=\\"nocase\\">Strangelove</span>",
@@ -118,13 +124,13 @@ Object {
     },
     Object {
       "creators": Object {
-        "director": Array [
+        "editor": Array [
           Object {
             "firstName": "Gail",
             "lastName": "Mancuso",
           },
         ],
-        "scriptwriter": Array [
+        "editora": Array [
           Object {
             "firstName": "Michael",
             "lastName": "Curtis",
@@ -142,8 +148,18 @@ Object {
         "date": Array [
           "1996-09-16",
         ],
-        "director": Array [
+        "editor": Array [
           "Mancuso, Gail",
+        ],
+        "editora": Array [
+          "Curtis, Michael",
+          "Malins, Gregory S.",
+        ],
+        "editoratype": Array [
+          "scriptwriter",
+        ],
+        "editortype": Array [
+          "director",
         ],
         "journaltitle": Array [
           "Friends",
@@ -160,10 +176,6 @@ Object {
         "publisher": Array [
           "NBC",
         ],
-        "scriptwriter": Array [
-          "Curtis, Michael",
-          "Malins, Gregory S.",
-        ],
         "title": Array [
           "The one with the <span class=\\"nocase\\">Princess Leia</span> fantasy",
         ],
@@ -176,13 +188,13 @@ Object {
     },
     Object {
       "creators": Object {
-        "director": Array [
+        "editor": Array [
           Object {
             "firstName": "Gail",
             "lastName": "Mancuso",
           },
         ],
-        "scriptwriter": Array [
+        "editora": Array [
           Object {
             "firstName": "Michael",
             "lastName": "Curtis",
@@ -200,8 +212,18 @@ Object {
         "date": Array [
           "2003",
         ],
-        "director": Array [
+        "editor": Array [
           "Mancuso, Gail",
+        ],
+        "editora": Array [
+          "Curtis, Michael",
+          "Malins, Gregory S.",
+        ],
+        "editoratype": Array [
+          "scriptwriter",
+        ],
+        "editortype": Array [
+          "director",
         ],
         "langid": Array [
           "american",
@@ -220,10 +242,6 @@ Object {
         ],
         "publisher": Array [
           "Warner Home Video",
-        ],
-        "scriptwriter": Array [
-          "Curtis, Michael",
-          "Malins, Gregory S.",
         ],
         "title": Array [
           "The one with the <span class=\\"nocase\\">Princess Leia</span> fantasy",
