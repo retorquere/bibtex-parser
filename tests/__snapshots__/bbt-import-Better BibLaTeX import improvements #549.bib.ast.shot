@@ -1,0 +1,2114 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-import-Better BibLaTeX import improvements #549.bib to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "1e",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 2,
+          "offset": 83,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 31,
+              "line": 1,
+              "offset": 30,
+            },
+            "start": Object {
+              "column": 14,
+              "line": 1,
+              "offset": 13,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 27,
+                  "line": 1,
+                  "offset": 26,
+                },
+                "start": Object {
+                  "column": 24,
+                  "line": 1,
+                  "offset": 23,
+                },
+              },
+              "value": "01e",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 82,
+              "line": 1,
+              "offset": 81,
+            },
+            "start": Object {
+              "column": 31,
+              "line": 1,
+              "offset": 30,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 46,
+                  "line": 1,
+                  "offset": 45,
+                },
+                "start": Object {
+                  "column": 40,
+                  "line": 1,
+                  "offset": 39,
+                },
+              },
+              "value": "Blah ",
+            },
+            Object {
+              "arguments": Array [
+                Object {
+                  "kind": "RequiredArgument",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 57,
+                      "line": 1,
+                      "offset": 56,
+                    },
+                    "start": Object {
+                      "column": 51,
+                      "line": 1,
+                      "offset": 50,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 56,
+                          "line": 1,
+                          "offset": 55,
+                        },
+                        "start": Object {
+                          "column": 52,
+                          "line": 1,
+                          "offset": 51,
+                        },
+                      },
+                      "value": "emph",
+                    },
+                  ],
+                },
+              ],
+              "kind": "RegularCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 57,
+                  "line": 1,
+                  "offset": 56,
+                },
+                "start": Object {
+                  "column": 46,
+                  "line": 1,
+                  "offset": 45,
+                },
+              },
+              "value": "emph",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 62,
+                  "line": 1,
+                  "offset": 61,
+                },
+                "start": Object {
+                  "column": 57,
+                  "line": 1,
+                  "offset": 56,
+                },
+              },
+              "value": " and ",
+            },
+            Object {
+              "arguments": Array [
+                Object {
+                  "kind": "RequiredArgument",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 79,
+                      "line": 1,
+                      "offset": 78,
+                    },
+                    "start": Object {
+                      "column": 70,
+                      "line": 1,
+                      "offset": 69,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 78,
+                          "line": 1,
+                          "offset": 77,
+                        },
+                        "start": Object {
+                          "column": 71,
+                          "line": 1,
+                          "offset": 70,
+                        },
+                      },
+                      "value": "enquote",
+                    },
+                  ],
+                },
+              ],
+              "kind": "RegularCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 79,
+                  "line": 1,
+                  "offset": 78,
+                },
+                "start": Object {
+                  "column": 62,
+                  "line": 1,
+                  "offset": 61,
+                },
+              },
+              "value": "enquote",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 80,
+                  "line": 1,
+                  "offset": 79,
+                },
+                "start": Object {
+                  "column": 79,
+                  "line": 1,
+                  "offset": 78,
+                },
+              },
+              "value": ".",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+    Object {
+      "id": "1b",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 3,
+          "offset": 182,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 2,
+          "offset": 83,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 31,
+              "line": 2,
+              "offset": 113,
+            },
+            "start": Object {
+              "column": 14,
+              "line": 2,
+              "offset": 96,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 27,
+                  "line": 2,
+                  "offset": 109,
+                },
+                "start": Object {
+                  "column": 24,
+                  "line": 2,
+                  "offset": 106,
+                },
+              },
+              "value": "01b",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 98,
+              "line": 2,
+              "offset": 180,
+            },
+            "start": Object {
+              "column": 31,
+              "line": 2,
+              "offset": 113,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 46,
+                  "line": 2,
+                  "offset": 128,
+                },
+                "start": Object {
+                  "column": 40,
+                  "line": 2,
+                  "offset": 122,
+                },
+              },
+              "value": "Blah ",
+            },
+            Object {
+              "arguments": Array [
+                Object {
+                  "kind": "RequiredArgument",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 67,
+                      "line": 2,
+                      "offset": 149,
+                    },
+                    "start": Object {
+                      "column": 56,
+                      "line": 2,
+                      "offset": 138,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 66,
+                          "line": 2,
+                          "offset": 148,
+                        },
+                        "start": Object {
+                          "column": 57,
+                          "line": 2,
+                          "offset": 139,
+                        },
+                      },
+                      "value": "mkbibemph",
+                    },
+                  ],
+                },
+              ],
+              "kind": "RegularCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 67,
+                  "line": 2,
+                  "offset": 149,
+                },
+                "start": Object {
+                  "column": 46,
+                  "line": 2,
+                  "offset": 128,
+                },
+              },
+              "value": "mkbibemph",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 72,
+                  "line": 2,
+                  "offset": 154,
+                },
+                "start": Object {
+                  "column": 67,
+                  "line": 2,
+                  "offset": 149,
+                },
+              },
+              "value": " and ",
+            },
+            Object {
+              "arguments": Array [
+                Object {
+                  "kind": "RequiredArgument",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 95,
+                      "line": 2,
+                      "offset": 177,
+                    },
+                    "start": Object {
+                      "column": 83,
+                      "line": 2,
+                      "offset": 165,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 94,
+                          "line": 2,
+                          "offset": 176,
+                        },
+                        "start": Object {
+                          "column": 84,
+                          "line": 2,
+                          "offset": 166,
+                        },
+                      },
+                      "value": "mkbibquote",
+                    },
+                  ],
+                },
+              ],
+              "kind": "RegularCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 95,
+                  "line": 2,
+                  "offset": 177,
+                },
+                "start": Object {
+                  "column": 72,
+                  "line": 2,
+                  "offset": 154,
+                },
+              },
+              "value": "mkbibquote",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 96,
+                  "line": 2,
+                  "offset": 178,
+                },
+                "start": Object {
+                  "column": 95,
+                  "line": 2,
+                  "offset": 177,
+                },
+              },
+              "value": ".",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+    Object {
+      "id": "2e",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 4,
+          "offset": 265,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 3,
+          "offset": 182,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 31,
+              "line": 3,
+              "offset": 212,
+            },
+            "start": Object {
+              "column": 14,
+              "line": 3,
+              "offset": 195,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 27,
+                  "line": 3,
+                  "offset": 208,
+                },
+                "start": Object {
+                  "column": 24,
+                  "line": 3,
+                  "offset": 205,
+                },
+              },
+              "value": "02e",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 82,
+              "line": 3,
+              "offset": 263,
+            },
+            "start": Object {
+              "column": 31,
+              "line": 3,
+              "offset": 212,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 46,
+                  "line": 3,
+                  "offset": 227,
+                },
+                "start": Object {
+                  "column": 40,
+                  "line": 3,
+                  "offset": 221,
+                },
+              },
+              "value": "Blah ",
+            },
+            Object {
+              "arguments": Array [
+                Object {
+                  "kind": "RequiredArgument",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 57,
+                      "line": 3,
+                      "offset": 238,
+                    },
+                    "start": Object {
+                      "column": 51,
+                      "line": 3,
+                      "offset": 232,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 56,
+                          "line": 3,
+                          "offset": 237,
+                        },
+                        "start": Object {
+                          "column": 52,
+                          "line": 3,
+                          "offset": 233,
+                        },
+                      },
+                      "value": "emph",
+                    },
+                  ],
+                },
+              ],
+              "kind": "RegularCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 57,
+                  "line": 3,
+                  "offset": 238,
+                },
+                "start": Object {
+                  "column": 46,
+                  "line": 3,
+                  "offset": 227,
+                },
+              },
+              "value": "emph",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 62,
+                  "line": 3,
+                  "offset": 243,
+                },
+                "start": Object {
+                  "column": 57,
+                  "line": 3,
+                  "offset": 238,
+                },
+              },
+              "value": " and ",
+            },
+            Object {
+              "arguments": Array [
+                Object {
+                  "kind": "RequiredArgument",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 79,
+                      "line": 3,
+                      "offset": 260,
+                    },
+                    "start": Object {
+                      "column": 70,
+                      "line": 3,
+                      "offset": 251,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 78,
+                          "line": 3,
+                          "offset": 259,
+                        },
+                        "start": Object {
+                          "column": 71,
+                          "line": 3,
+                          "offset": 252,
+                        },
+                      },
+                      "value": "enquote",
+                    },
+                  ],
+                },
+              ],
+              "kind": "RegularCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 79,
+                  "line": 3,
+                  "offset": 260,
+                },
+                "start": Object {
+                  "column": 62,
+                  "line": 3,
+                  "offset": 243,
+                },
+              },
+              "value": "enquote",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 80,
+                  "line": 3,
+                  "offset": 261,
+                },
+                "start": Object {
+                  "column": 79,
+                  "line": 3,
+                  "offset": 260,
+                },
+              },
+              "value": ".",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+    Object {
+      "id": "2b",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 6,
+          "offset": 365,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 4,
+          "offset": 265,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 31,
+              "line": 4,
+              "offset": 295,
+            },
+            "start": Object {
+              "column": 14,
+              "line": 4,
+              "offset": 278,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 27,
+                  "line": 4,
+                  "offset": 291,
+                },
+                "start": Object {
+                  "column": 24,
+                  "line": 4,
+                  "offset": 288,
+                },
+              },
+              "value": "02b",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 98,
+              "line": 4,
+              "offset": 362,
+            },
+            "start": Object {
+              "column": 31,
+              "line": 4,
+              "offset": 295,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 46,
+                  "line": 4,
+                  "offset": 310,
+                },
+                "start": Object {
+                  "column": 40,
+                  "line": 4,
+                  "offset": 304,
+                },
+              },
+              "value": "Blah ",
+            },
+            Object {
+              "arguments": Array [
+                Object {
+                  "kind": "RequiredArgument",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 67,
+                      "line": 4,
+                      "offset": 331,
+                    },
+                    "start": Object {
+                      "column": 56,
+                      "line": 4,
+                      "offset": 320,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 66,
+                          "line": 4,
+                          "offset": 330,
+                        },
+                        "start": Object {
+                          "column": 57,
+                          "line": 4,
+                          "offset": 321,
+                        },
+                      },
+                      "value": "mkbibemph",
+                    },
+                  ],
+                },
+              ],
+              "kind": "RegularCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 67,
+                  "line": 4,
+                  "offset": 331,
+                },
+                "start": Object {
+                  "column": 46,
+                  "line": 4,
+                  "offset": 310,
+                },
+              },
+              "value": "mkbibemph",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 72,
+                  "line": 4,
+                  "offset": 336,
+                },
+                "start": Object {
+                  "column": 67,
+                  "line": 4,
+                  "offset": 331,
+                },
+              },
+              "value": " and ",
+            },
+            Object {
+              "arguments": Array [
+                Object {
+                  "kind": "RequiredArgument",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 95,
+                      "line": 4,
+                      "offset": 359,
+                    },
+                    "start": Object {
+                      "column": 83,
+                      "line": 4,
+                      "offset": 347,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 94,
+                          "line": 4,
+                          "offset": 358,
+                        },
+                        "start": Object {
+                          "column": 84,
+                          "line": 4,
+                          "offset": 348,
+                        },
+                      },
+                      "value": "mkbibquote",
+                    },
+                  ],
+                },
+              ],
+              "kind": "RegularCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 95,
+                  "line": 4,
+                  "offset": 359,
+                },
+                "start": Object {
+                  "column": 72,
+                  "line": 4,
+                  "offset": 336,
+                },
+              },
+              "value": "mkbibquote",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 96,
+                  "line": 4,
+                  "offset": 360,
+                },
+                "start": Object {
+                  "column": 95,
+                  "line": 4,
+                  "offset": 359,
+                },
+              },
+              "value": ".",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+    Object {
+      "kind": "NonEntryText",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 8,
+          "offset": 403,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 6,
+          "offset": 365,
+        },
+      },
+      "value": "D ",
+    },
+    Object {
+      "id": "Bennett2003",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 16,
+          "offset": 633,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 8,
+          "offset": 403,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 514,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 9,
+              "offset": 426,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 88,
+                  "line": 9,
+                  "offset": 511,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 9,
+                  "offset": 435,
+                },
+              },
+              "value": "Xenonika: medical texts associated with xenones in the late Byzantine period",
+            },
+          ],
+        },
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 555,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 514,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 39,
+                  "line": 10,
+                  "offset": 552,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 10,
+                  "offset": 526,
+                },
+              },
+              "value": "Bennett, David Christopher",
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 572,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 555,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 11,
+                  "offset": 569,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 11,
+                  "offset": 565,
+                },
+              },
+              "value": "2003",
+            },
+          ],
+        },
+        Object {
+          "key": "institution",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 612,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 572,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 38,
+                  "line": 12,
+                  "offset": 609,
+                },
+                "start": Object {
+                  "column": 18,
+                  "line": 12,
+                  "offset": 589,
+                },
+              },
+              "value": "University of London",
+            },
+          ],
+        },
+        Object {
+          "key": "type",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 14,
+              "offset": 630,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 612,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 16,
+                  "line": 13,
+                  "offset": 627,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 13,
+                  "offset": 622,
+                },
+              },
+              "value": "Ph.D.",
+            },
+          ],
+        },
+      ],
+      "type": "thesis",
+    },
+    Object {
+      "kind": "NonEntryText",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 18,
+          "offset": 672,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 16,
+          "offset": 633,
+        },
+      },
+      "value": "A ",
+    },
+    Object {
+      "id": "Cooper2013",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 26,
+          "offset": 914,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 18,
+          "offset": 672,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 20,
+              "offset": 829,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 19,
+              "offset": 698,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 71,
+                  "line": 19,
+                  "offset": 768,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 19,
+                  "offset": 707,
+                },
+              },
+              "value": "Byzantium between East and West: Competing Hellenisms in the ",
+            },
+            Object {
+              "arguments": Array [
+                Object {
+                  "kind": "RequiredArgument",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 90,
+                      "line": 19,
+                      "offset": 787,
+                    },
+                    "start": Object {
+                      "column": 81,
+                      "line": 19,
+                      "offset": 778,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 89,
+                          "line": 19,
+                          "offset": 786,
+                        },
+                        "start": Object {
+                          "column": 82,
+                          "line": 19,
+                          "offset": 779,
+                        },
+                      },
+                      "value": "Alexiad",
+                    },
+                  ],
+                },
+              ],
+              "kind": "RegularCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 90,
+                  "line": 19,
+                  "offset": 787,
+                },
+                "start": Object {
+                  "column": 71,
+                  "line": 19,
+                  "offset": 768,
+                },
+              },
+              "value": "mkbibemph",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 129,
+                  "line": 19,
+                  "offset": 826,
+                },
+                "start": Object {
+                  "column": 90,
+                  "line": 19,
+                  "offset": 787,
+                },
+              },
+              "value": " of Anna Komnene and her Contemporaries",
+            },
+          ],
+        },
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 21,
+              "offset": 853,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 20,
+              "offset": 829,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 22,
+                  "line": 20,
+                  "offset": 850,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 20,
+                  "offset": 839,
+                },
+              },
+              "value": "Glen Cooper",
+            },
+          ],
+        },
+        Object {
+          "key": "crossref",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 22,
+              "offset": 879,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 21,
+              "offset": 853,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 24,
+                  "line": 21,
+                  "offset": 876,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 21,
+                  "offset": 865,
+                },
+              },
+              "value": "Classen2013",
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 23,
+              "offset": 894,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 22,
+              "offset": 879,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 13,
+                  "line": 22,
+                  "offset": 891,
+                },
+                "start": Object {
+                  "column": 9,
+                  "line": 22,
+                  "offset": 887,
+                },
+              },
+              "value": "2013",
+            },
+          ],
+        },
+        Object {
+          "key": "pages",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 24,
+              "offset": 911,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 23,
+              "offset": 894,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 16,
+                  "line": 23,
+                  "offset": 909,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 23,
+                  "offset": 903,
+                },
+              },
+              "value": "263-87",
+            },
+          ],
+        },
+      ],
+      "type": "incollection",
+    },
+    Object {
+      "kind": "NonEntryText",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 28,
+          "offset": 962,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 26,
+          "offset": 914,
+        },
+      },
+      "value": "A ",
+    },
+    Object {
+      "id": "Correns1891",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 37,
+          "offset": 1238,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 28,
+          "offset": 962,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 30,
+              "offset": 1089,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 29,
+              "offset": 984,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 89,
+                  "line": 29,
+                  "offset": 1072,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 29,
+                  "offset": 993,
+                },
+              },
+              "value": "Die dem Boethius fälschlich zugeschriebene Abhandlung des Dominicus Gundisalvi ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 94,
+                  "line": 29,
+                  "offset": 1077,
+                },
+                "start": Object {
+                  "column": 89,
+                  "line": 29,
+                  "offset": 1072,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 93,
+                      "line": 29,
+                      "offset": 1076,
+                    },
+                    "start": Object {
+                      "column": 90,
+                      "line": 29,
+                      "offset": 1073,
+                    },
+                  },
+                  "value": "'De",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 103,
+                  "line": 29,
+                  "offset": 1086,
+                },
+                "start": Object {
+                  "column": 94,
+                  "line": 29,
+                  "offset": 1077,
+                },
+              },
+              "value": " unitate'",
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 31,
+              "offset": 1104,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 30,
+              "offset": 1089,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 13,
+                  "line": 30,
+                  "offset": 1101,
+                },
+                "start": Object {
+                  "column": 9,
+                  "line": 30,
+                  "offset": 1097,
+                },
+              },
+              "value": "1891",
+            },
+          ],
+        },
+        Object {
+          "key": "journaltitle",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 32,
+              "offset": 1179,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 31,
+              "offset": 1104,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 73,
+                  "line": 31,
+                  "offset": 1176,
+                },
+                "start": Object {
+                  "column": 17,
+                  "line": 31,
+                  "offset": 1120,
+                },
+              },
+              "value": "Beiträge zur Geschichte der Philosophie des Mittelalters",
+            },
+          ],
+        },
+        Object {
+          "key": "pages",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 33,
+              "offset": 1195,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 32,
+              "offset": 1179,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 14,
+                  "line": 32,
+                  "offset": 1192,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 32,
+                  "offset": 1188,
+                },
+              },
+              "value": "1-11",
+            },
+          ],
+        },
+        Object {
+          "key": "volume",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 34,
+              "offset": 1209,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 33,
+              "offset": 1195,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 12,
+                  "line": 33,
+                  "offset": 1206,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 33,
+                  "offset": 1205,
+                },
+              },
+              "value": "1",
+            },
+          ],
+        },
+        Object {
+          "key": "editor",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 35,
+              "offset": 1235,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 34,
+              "offset": 1209,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 24,
+                  "line": 34,
+                  "offset": 1232,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 34,
+                  "offset": 1219,
+                },
+              },
+              "value": "Correns, Paul",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+    Object {
+      "kind": "NonEntryText",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 39,
+          "offset": 1315,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 37,
+          "offset": 1238,
+        },
+      },
+      "value": "A ",
+    },
+    Object {
+      "id": "Algar1985",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 48,
+          "offset": 1512,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 39,
+          "offset": 1315,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 41,
+              "offset": 1371,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 40,
+              "offset": 1339,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 30,
+                  "line": 40,
+                  "offset": 1368,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 40,
+                  "offset": 1348,
+                },
+              },
+              "value": "Encyclopedia Iranica",
+            },
+          ],
+        },
+        Object {
+          "key": "lista",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 42,
+              "offset": 1439,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 41,
+              "offset": 1371,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 66,
+                  "line": 41,
+                  "offset": 1436,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 41,
+                  "offset": 1380,
+                },
+              },
+              "value": "Besmallah: in exegesis, jurisprudence, and cultural life",
+            },
+          ],
+        },
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 43,
+              "offset": 1464,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 42,
+              "offset": 1439,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 23,
+                  "line": 42,
+                  "offset": 1461,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 42,
+                  "offset": 1449,
+                },
+              },
+              "value": "Algar, Hamid",
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 44,
+              "offset": 1479,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 43,
+              "offset": 1464,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 13,
+                  "line": 43,
+                  "offset": 1476,
+                },
+                "start": Object {
+                  "column": 9,
+                  "line": 43,
+                  "offset": 1472,
+                },
+              },
+              "value": "1985",
+            },
+          ],
+        },
+        Object {
+          "key": "pages",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 45,
+              "offset": 1496,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 44,
+              "offset": 1479,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 44,
+                  "offset": 1493,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 44,
+                  "offset": 1488,
+                },
+              },
+              "value": "172-4",
+            },
+          ],
+        },
+        Object {
+          "key": "volume",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 46,
+              "offset": 1509,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 45,
+              "offset": 1496,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 12,
+                  "line": 45,
+                  "offset": 1507,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 45,
+                  "offset": 1506,
+                },
+              },
+              "value": "4",
+            },
+          ],
+        },
+      ],
+      "type": "inreference",
+    },
+    Object {
+      "kind": "NonEntryText",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 50,
+          "offset": 1567,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 48,
+          "offset": 1512,
+        },
+      },
+      "value": "A ",
+    },
+    Object {
+      "id": "Arsdall2012",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 57,
+          "offset": 1830,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 50,
+          "offset": 1567,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 52,
+              "offset": 1713,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 51,
+              "offset": 1592,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 119,
+                  "line": 51,
+                  "offset": 1710,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 51,
+                  "offset": 1601,
+                },
+              },
+              "value": "Herbs and Healers from the Ancient Mediterranean through the Medieval West: Essays in Honor of John M. Riddle",
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 53,
+              "offset": 1728,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 52,
+              "offset": 1713,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 13,
+                  "line": 52,
+                  "offset": 1725,
+                },
+                "start": Object {
+                  "column": 9,
+                  "line": 52,
+                  "offset": 1721,
+                },
+              },
+              "value": "2012",
+            },
+          ],
+        },
+        Object {
+          "key": "editor",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 54,
+              "offset": 1776,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 53,
+              "offset": 1728,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 46,
+                  "line": 53,
+                  "offset": 1773,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 53,
+                  "offset": 1738,
+                },
+              },
+              "value": "Anne van Arsdall and Timothy Graham",
+            },
+          ],
+        },
+        Object {
+          "key": "location",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 55,
+              "offset": 1805,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 54,
+              "offset": 1776,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 27,
+                  "line": 54,
+                  "offset": 1802,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 54,
+                  "offset": 1788,
+                },
+              },
+              "value": "Burlington, VT",
+            },
+          ],
+        },
+        Object {
+          "key": "publisher",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 56,
+              "offset": 1828,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 55,
+              "offset": 1805,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 21,
+                  "line": 55,
+                  "offset": 1825,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 55,
+                  "offset": 1818,
+                },
+              },
+              "value": "Ashgate",
+            },
+          ],
+        },
+      ],
+      "type": "collection",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 57,
+      "offset": 1830,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

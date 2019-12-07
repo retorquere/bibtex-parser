@@ -1,0 +1,346 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-Date parses incorrectly with year 1000 when source Zotero field is in datetime format. #515.biblatex to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "barker_2016_swiss",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 13,
+          "offset": 491,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "abstract",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 158,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 2,
+              "offset": 30,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 128,
+                  "line": 2,
+                  "offset": 155,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 2,
+                  "offset": 42,
+                },
+              },
+              "value": "Voters in Switzerland overwhelmingly reject a proposal to introduce a guaranteed monthly income for all citizens.",
+            },
+          ],
+        },
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 185,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 158,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 25,
+                  "line": 3,
+                  "offset": 182,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 3,
+                  "offset": 170,
+                },
+              },
+              "value": "Barker, Anne",
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 222,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 185,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 35,
+                  "line": 4,
+                  "offset": 219,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 4,
+                  "offset": 195,
+                },
+              },
+              "value": "2016-06-06T15:26:37+1000",
+            },
+          ],
+        },
+        Object {
+          "key": "entrysubtype",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 252,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 222,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 28,
+                  "line": 5,
+                  "offset": 249,
+                },
+                "start": Object {
+                  "column": 19,
+                  "line": 5,
+                  "offset": 240,
+                },
+              },
+              "value": "newspaper",
+            },
+          ],
+        },
+        Object {
+          "key": "journaltitle",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 281,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 252,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 27,
+                  "line": 6,
+                  "offset": 278,
+                },
+                "start": Object {
+                  "column": 19,
+                  "line": 6,
+                  "offset": 270,
+                },
+              },
+              "value": "ABC News",
+            },
+          ],
+        },
+        Object {
+          "key": "langid",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 306,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 281,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 23,
+                  "line": 7,
+                  "offset": 303,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 7,
+                  "offset": 293,
+                },
+              },
+              "value": "australian",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 364,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 306,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 56,
+                  "line": 8,
+                  "offset": 361,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 8,
+                  "offset": 317,
+                },
+              },
+              "value": "Swiss Voters Say No to Guaranteed Free Money",
+            },
+          ],
+        },
+        Object {
+          "key": "url",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 463,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 364,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 97,
+                  "line": 9,
+                  "offset": 460,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 9,
+                  "offset": 373,
+                },
+              },
+              "value": "http://www.abc.net.au/news/2016-06-06/swiss-voters-reject-basic-income-proposal/7481672",
+            },
+          ],
+        },
+        Object {
+          "key": "urldate",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 488,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 463,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 24,
+                  "line": 10,
+                  "offset": 486,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 10,
+                  "offset": 476,
+                },
+              },
+              "value": "2017-12-06",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 13,
+      "offset": 491,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

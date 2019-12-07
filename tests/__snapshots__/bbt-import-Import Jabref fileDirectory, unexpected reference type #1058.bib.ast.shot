@@ -1,0 +1,921 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-import-Import Jabref fileDirectory, unexpected reference type #1058.bib to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "kind": "NonEntryText",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 2,
+          "offset": 18,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "value": "% ",
+    },
+    Object {
+      "id": "springerlink:10.1007/s10344-009-0327-7",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 23,
+          "offset": 771,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 2,
+          "offset": 18,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 139,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 3,
+              "offset": 69,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 70,
+                  "line": 3,
+                  "offset": 136,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 3,
+                  "offset": 79,
+                },
+              },
+              "value": "Barrio, Isabel and Acevedo, Pelayo and Tortosa, Francisco",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 250,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 139,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 28,
+                  "line": 5,
+                  "offset": 247,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 4,
+                  "offset": 150,
+                },
+              },
+              "value": "Assessment of methods for estimating wild rabbit population abundance in agricultural landscapes",
+            },
+          ],
+        },
+        Object {
+          "key": "journal",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 303,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 250,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 51,
+                  "line": 6,
+                  "offset": 300,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 6,
+                  "offset": 263,
+                },
+              },
+              "value": "European Journal of Wildlife Research",
+            },
+          ],
+        },
+        Object {
+          "key": "year",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 320,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 303,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 7,
+                  "offset": 317,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 7,
+                  "offset": 313,
+                },
+              },
+              "value": "2010",
+            },
+          ],
+        },
+        Object {
+          "key": "volume",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 337,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 320,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 8,
+                  "offset": 334,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 8,
+                  "offset": 332,
+                },
+              },
+              "value": "56",
+            },
+          ],
+        },
+        Object {
+          "key": "pages",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 358,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 337,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 19,
+                  "line": 9,
+                  "offset": 355,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 9,
+                  "offset": 348,
+                },
+              },
+              "value": "335-340",
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 396,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 358,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 36,
+                  "line": 10,
+                  "offset": 393,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 10,
+                  "offset": 368,
+                },
+              },
+              "value": "10.1007/s10344-009-0327-7",
+            },
+          ],
+        },
+        Object {
+          "key": "affiliation",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 512,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 396,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 29,
+                  "line": 12,
+                  "offset": 509,
+                },
+                "start": Object {
+                  "column": 18,
+                  "line": 11,
+                  "offset": 413,
+                },
+              },
+              "value": "University of Cordoba Department of Zoology Campus de Rabanales Ed. Darwin 14071 CÃ³rdoba Spain",
+            },
+          ],
+        },
+        Object {
+          "key": "issn",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 14,
+              "offset": 534,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 512,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 13,
+                  "offset": 531,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 13,
+                  "offset": 522,
+                },
+              },
+              "value": "1612-4642",
+            },
+          ],
+        },
+        Object {
+          "key": "issue",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 15,
+              "offset": 549,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 14,
+              "offset": 534,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 13,
+                  "line": 14,
+                  "offset": 546,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 14,
+                  "offset": 545,
+                },
+              },
+              "value": "3",
+            },
+          ],
+        },
+        Object {
+          "key": "keyword",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 16,
+              "offset": 593,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 15,
+              "offset": 549,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 42,
+                  "line": 15,
+                  "offset": 590,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 15,
+                  "offset": 562,
+                },
+              },
+              "value": "Biomedical and Life Sciences",
+            },
+          ],
+        },
+        Object {
+          "key": "owner",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 17,
+              "offset": 612,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 16,
+              "offset": 593,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 17,
+                  "line": 16,
+                  "offset": 609,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 16,
+                  "offset": 604,
+                },
+              },
+              "value": "tiago",
+            },
+          ],
+        },
+        Object {
+          "key": "publisher",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 18,
+              "offset": 658,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 17,
+              "offset": 612,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 44,
+                  "line": 17,
+                  "offset": 655,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 17,
+                  "offset": 627,
+                },
+              },
+              "value": "Springer Berlin / Heidelberg",
+            },
+          ],
+        },
+        Object {
+          "key": "subdatabase",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 19,
+              "offset": 686,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 18,
+              "offset": 658,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 26,
+                  "line": 18,
+                  "offset": 683,
+                },
+                "start": Object {
+                  "column": 18,
+                  "line": 18,
+                  "offset": 675,
+                },
+              },
+              "value": "distance",
+            },
+          ],
+        },
+        Object {
+          "key": "timestamp",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 20,
+              "offset": 714,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 19,
+              "offset": 686,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 26,
+                  "line": 19,
+                  "offset": 711,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 19,
+                  "offset": 701,
+                },
+              },
+              "value": "2011.06.17",
+            },
+          ],
+        },
+        Object {
+          "key": "url",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 21,
+              "offset": 768,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 20,
+              "offset": 714,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 53,
+                  "line": 20,
+                  "offset": 766,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 20,
+                  "offset": 723,
+                },
+              },
+              "value": "http://dx.doi.org/10.1007/s10344-009-0327-7",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+    Object {
+      "id": "Afonso2011",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 33,
+          "offset": 1121,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 23,
+          "offset": 771,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 25,
+              "offset": 846,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 24,
+              "offset": 791,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 55,
+                  "line": 24,
+                  "offset": 843,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 24,
+                  "offset": 804,
+                },
+              },
+              "value": "Anabela Afonso and Russell Alpizar-Jara",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 26,
+              "offset": 945,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 25,
+              "offset": 846,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 97,
+                  "line": 25,
+                  "offset": 942,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 25,
+                  "offset": 861,
+                },
+              },
+              "value": "Amostragem em duas fases adaptativa para estimar a abundância de populações raras",
+            },
+          ],
+        },
+        Object {
+          "key": "year",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 27,
+              "offset": 967,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 26,
+              "offset": 945,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 26,
+                  "offset": 964,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 26,
+                  "offset": 960,
+                },
+              },
+              "value": "2011",
+            },
+          ],
+        },
+        Object {
+          "key": "file",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 28,
+              "offset": 1011,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 27,
+              "offset": 967,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 42,
+                  "line": 27,
+                  "offset": 1008,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 27,
+                  "offset": 982,
+                },
+              },
+              "value": ":2.pdf:PDF;stuff:1.pdf:PDF",
+            },
+          ],
+        },
+        Object {
+          "key": "location",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 29,
+              "offset": 1067,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 28,
+              "offset": 1011,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 54,
+                  "line": 28,
+                  "offset": 1064,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 28,
+                  "offset": 1026,
+                },
+              },
+              "value": "Poster apresentado no Congresso da SPE",
+            },
+          ],
+        },
+        Object {
+          "key": "owner",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 30,
+              "offset": 1090,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 29,
+              "offset": 1067,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 21,
+                  "line": 29,
+                  "offset": 1087,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 29,
+                  "offset": 1082,
+                },
+              },
+              "value": "tiago",
+            },
+          ],
+        },
+        Object {
+          "key": "timestamp",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 31,
+              "offset": 1118,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 30,
+              "offset": 1090,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 26,
+                  "line": 30,
+                  "offset": 1115,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 30,
+                  "offset": 1105,
+                },
+              },
+              "value": "2011.10.04",
+            },
+          ],
+        },
+      ],
+      "type": "talk",
+    },
+    Object {
+      "kind": "BracedComment",
+      "loc": Object {
+        "end": Object {
+          "column": 44,
+          "line": 33,
+          "offset": 1164,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 33,
+          "offset": 1121,
+        },
+      },
+      "value": "jabref-meta: databaseType:bibtex;",
+    },
+    Object {
+      "kind": "NonEntryText",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 35,
+          "offset": 1166,
+        },
+        "start": Object {
+          "column": 44,
+          "line": 33,
+          "offset": 1164,
+        },
+      },
+      "value": " ",
+    },
+    Object {
+      "kind": "BracedComment",
+      "loc": Object {
+        "end": Object {
+          "column": 104,
+          "line": 35,
+          "offset": 1269,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 35,
+          "offset": 1166,
+        },
+      },
+      "value": "jabref-meta: fileDirectory:/home/emile/github/better-bibtex/test/fixtures/import/attachments;",
+    },
+    Object {
+      "kind": "NonEntryText",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 36,
+          "offset": 1270,
+        },
+        "start": Object {
+          "column": 104,
+          "line": 35,
+          "offset": 1269,
+        },
+      },
+      "value": " ",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 36,
+      "offset": 1270,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

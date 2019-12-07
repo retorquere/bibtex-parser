@@ -1,0 +1,448 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-bookSection is always converted to @inbook, never @incollection #282.biblatex to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "eisenmann_problemes_1982",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 15,
+          "offset": 385,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 73,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 2,
+              "offset": 42,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 31,
+                  "line": 2,
+                  "offset": 70,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 2,
+                  "offset": 52,
+                },
+              },
+              "value": "Eisenmann, Charles",
+            },
+          ],
+        },
+        Object {
+          "key": "booktitle",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 119,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 73,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 44,
+                  "line": 3,
+                  "offset": 116,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 3,
+                  "offset": 88,
+                },
+              },
+              "value": "Cours de droit administratif",
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 136,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 119,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 4,
+                  "offset": 133,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 4,
+                  "offset": 129,
+                },
+              },
+              "value": "1982",
+            },
+          ],
+        },
+        Object {
+          "key": "isbn",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 162,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 136,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 24,
+                  "line": 5,
+                  "offset": 159,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 5,
+                  "offset": 146,
+                },
+              },
+              "value": "2-275-01408-X",
+            },
+          ],
+        },
+        Object {
+          "key": "langid",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 183,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 162,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 19,
+                  "line": 6,
+                  "offset": 180,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 6,
+                  "offset": 174,
+                },
+              },
+              "value": "french",
+            },
+          ],
+        },
+        Object {
+          "key": "location",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 207,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 183,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 22,
+                  "line": 7,
+                  "offset": 204,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 7,
+                  "offset": 197,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 21,
+                      "line": 7,
+                      "offset": 203,
+                    },
+                    "start": Object {
+                      "column": 16,
+                      "line": 7,
+                      "offset": 198,
+                    },
+                  },
+                  "value": "Paris",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "pages",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 229,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 207,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 8,
+                  "offset": 226,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 8,
+                  "offset": 218,
+                },
+              },
+              "value": "155–300",
+            },
+          ],
+        },
+        Object {
+          "key": "publisher",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 253,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 229,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 22,
+                  "line": 9,
+                  "offset": 250,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 9,
+                  "offset": 244,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 21,
+                      "line": 9,
+                      "offset": 249,
+                    },
+                    "start": Object {
+                      "column": 17,
+                      "line": 9,
+                      "offset": 245,
+                    },
+                  },
+                  "value": "LGDJ",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 323,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 253,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 68,
+                  "line": 10,
+                  "offset": 320,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 10,
+                  "offset": 264,
+                },
+              },
+              "value": "Problèmes d’organisation de l’Administration [1966-1967]",
+            },
+          ],
+        },
+        Object {
+          "key": "volume",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 342,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 323,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 17,
+                  "line": 11,
+                  "offset": 339,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 11,
+                  "offset": 335,
+                },
+              },
+              "value": "t. 1",
+            },
+          ],
+        },
+        Object {
+          "key": "volumes",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 382,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 342,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 39,
+                  "line": 12,
+                  "offset": 380,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 12,
+                  "offset": 355,
+                },
+              },
+              "value": "2 vol. (786, xxiv+908 p.)",
+            },
+          ],
+        },
+      ],
+      "type": "incollection",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 15,
+      "offset": 385,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

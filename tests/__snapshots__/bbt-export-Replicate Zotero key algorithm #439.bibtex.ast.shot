@@ -1,0 +1,1795 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-Replicate Zotero key algorithm #439.bibtex to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "firstname_retorquere_replicate_2015",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 10,
+          "offset": 406,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "abstract",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 126,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 2,
+              "offset": 45,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 81,
+                  "line": 2,
+                  "offset": 123,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 2,
+                  "offset": 57,
+                },
+              },
+              "value": "zotero-better-bibtex - Make Zotero effective for us LaTeX holdouts",
+            },
+          ],
+        },
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 163,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 126,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 35,
+                  "line": 3,
+                  "offset": 160,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 3,
+                  "offset": 138,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 34,
+                      "line": 3,
+                      "offset": 159,
+                    },
+                    "start": Object {
+                      "column": 14,
+                      "line": 3,
+                      "offset": 139,
+                    },
+                  },
+                  "value": "Firstname Retorquere",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "howpublished",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 251,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 163,
+            },
+          },
+          "value": Array [
+            Object {
+              "arguments": Array [
+                Object {
+                  "kind": "RequiredArgument",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 86,
+                      "line": 4,
+                      "offset": 248,
+                    },
+                    "start": Object {
+                      "column": 23,
+                      "line": 4,
+                      "offset": 185,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 85,
+                          "line": 4,
+                          "offset": 247,
+                        },
+                        "start": Object {
+                          "column": 24,
+                          "line": 4,
+                          "offset": 186,
+                        },
+                      },
+                      "value": "https://github.com/retorquere/zotero-better-bibtex/issues/439",
+                    },
+                  ],
+                },
+              ],
+              "kind": "RegularCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 86,
+                  "line": 4,
+                  "offset": 248,
+                },
+                "start": Object {
+                  "column": 19,
+                  "line": 4,
+                  "offset": 181,
+                },
+              },
+              "value": "url",
+            },
+          ],
+        },
+        Object {
+          "key": "journal",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 271,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 251,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "String",
+              "loc": Object {
+                "end": Object {
+                  "column": 19,
+                  "line": 5,
+                  "offset": 269,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 5,
+                  "offset": 263,
+                },
+              },
+              "value": "GitHub",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 387,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 271,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 22,
+                  "line": 6,
+                  "offset": 292,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 6,
+                  "offset": 282,
+                },
+              },
+              "value": "Replicate ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 32,
+                  "line": 6,
+                  "offset": 302,
+                },
+                "start": Object {
+                  "column": 22,
+                  "line": 6,
+                  "offset": 292,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 31,
+                      "line": 6,
+                      "offset": 301,
+                    },
+                    "start": Object {
+                      "column": 23,
+                      "line": 6,
+                      "offset": 293,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 30,
+                          "line": 6,
+                          "offset": 300,
+                        },
+                        "start": Object {
+                          "column": 24,
+                          "line": 6,
+                          "offset": 294,
+                        },
+                      },
+                      "value": "Zotero",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 47,
+                  "line": 6,
+                  "offset": 317,
+                },
+                "start": Object {
+                  "column": 32,
+                  "line": 6,
+                  "offset": 302,
+                },
+              },
+              "value": " Key Algorithm ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 56,
+                  "line": 6,
+                  "offset": 326,
+                },
+                "start": Object {
+                  "column": 47,
+                  "line": 6,
+                  "offset": 317,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "MathMode",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 49,
+                      "line": 6,
+                      "offset": 319,
+                    },
+                    "start": Object {
+                      "column": 48,
+                      "line": 6,
+                      "offset": 318,
+                    },
+                  },
+                  "value": "$",
+                },
+                Object {
+                  "arguments": Array [],
+                  "kind": "RegularCommand",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 54,
+                      "line": 6,
+                      "offset": 324,
+                    },
+                    "start": Object {
+                      "column": 49,
+                      "line": 6,
+                      "offset": 319,
+                    },
+                  },
+                  "value": "cdot",
+                },
+                Object {
+                  "kind": "MathMode",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 55,
+                      "line": 6,
+                      "offset": 325,
+                    },
+                    "start": Object {
+                      "column": 54,
+                      "line": 6,
+                      "offset": 324,
+                    },
+                  },
+                  "value": "$",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 57,
+                  "line": 6,
+                  "offset": 327,
+                },
+                "start": Object {
+                  "column": 56,
+                  "line": 6,
+                  "offset": 326,
+                },
+              },
+              "value": " ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 66,
+                  "line": 6,
+                  "offset": 336,
+                },
+                "start": Object {
+                  "column": 57,
+                  "line": 6,
+                  "offset": 327,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 65,
+                      "line": 6,
+                      "offset": 335,
+                    },
+                    "start": Object {
+                      "column": 58,
+                      "line": 6,
+                      "offset": 328,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 64,
+                          "line": 6,
+                          "offset": 334,
+                        },
+                        "start": Object {
+                          "column": 59,
+                          "line": 6,
+                          "offset": 329,
+                        },
+                      },
+                      "value": "Issue",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 67,
+                  "line": 6,
+                  "offset": 337,
+                },
+                "start": Object {
+                  "column": 66,
+                  "line": 6,
+                  "offset": 336,
+                },
+              },
+              "value": " ",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 69,
+                  "line": 6,
+                  "offset": 339,
+                },
+                "start": Object {
+                  "column": 67,
+                  "line": 6,
+                  "offset": 337,
+                },
+              },
+              "value": "#",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 73,
+                  "line": 6,
+                  "offset": 343,
+                },
+                "start": Object {
+                  "column": 69,
+                  "line": 6,
+                  "offset": 339,
+                },
+              },
+              "value": "439 ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 82,
+                  "line": 6,
+                  "offset": 352,
+                },
+                "start": Object {
+                  "column": 73,
+                  "line": 6,
+                  "offset": 343,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "MathMode",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 75,
+                      "line": 6,
+                      "offset": 345,
+                    },
+                    "start": Object {
+                      "column": 74,
+                      "line": 6,
+                      "offset": 344,
+                    },
+                  },
+                  "value": "$",
+                },
+                Object {
+                  "arguments": Array [],
+                  "kind": "RegularCommand",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 80,
+                      "line": 6,
+                      "offset": 350,
+                    },
+                    "start": Object {
+                      "column": 75,
+                      "line": 6,
+                      "offset": 345,
+                    },
+                  },
+                  "value": "cdot",
+                },
+                Object {
+                  "kind": "MathMode",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 81,
+                      "line": 6,
+                      "offset": 351,
+                    },
+                    "start": Object {
+                      "column": 80,
+                      "line": 6,
+                      "offset": 350,
+                    },
+                  },
+                  "value": "$",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 114,
+                  "line": 6,
+                  "offset": 384,
+                },
+                "start": Object {
+                  "column": 82,
+                  "line": 6,
+                  "offset": 352,
+                },
+              },
+              "value": " Retorquere/Zotero-Better-Bibtex",
+            },
+          ],
+        },
+        Object {
+          "key": "year",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 403,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 387,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 7,
+                  "offset": 401,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 7,
+                  "offset": 397,
+                },
+              },
+              "value": "2015",
+            },
+          ],
+        },
+      ],
+      "type": "misc",
+    },
+    Object {
+      "id": "retorquere_replicate_2016",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 19,
+          "offset": 829,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 10,
+          "offset": 406,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "abstract",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 522,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 11,
+              "offset": 441,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 81,
+                  "line": 11,
+                  "offset": 519,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 11,
+                  "offset": 453,
+                },
+              },
+              "value": "zotero-better-bibtex - Make Zotero effective for us LaTeX holdouts",
+            },
+          ],
+        },
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 586,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 522,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 62,
+                  "line": 12,
+                  "offset": 583,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 12,
+                  "offset": 534,
+                },
+              },
+              "value": "Retorquere, Firstname and Retorquere2, Firstname2",
+            },
+          ],
+        },
+        Object {
+          "key": "howpublished",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 14,
+              "offset": 674,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 586,
+            },
+          },
+          "value": Array [
+            Object {
+              "arguments": Array [
+                Object {
+                  "kind": "RequiredArgument",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 86,
+                      "line": 13,
+                      "offset": 671,
+                    },
+                    "start": Object {
+                      "column": 23,
+                      "line": 13,
+                      "offset": 608,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 85,
+                          "line": 13,
+                          "offset": 670,
+                        },
+                        "start": Object {
+                          "column": 24,
+                          "line": 13,
+                          "offset": 609,
+                        },
+                      },
+                      "value": "https://github.com/retorquere/zotero-better-bibtex/issues/439",
+                    },
+                  ],
+                },
+              ],
+              "kind": "RegularCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 86,
+                  "line": 13,
+                  "offset": 671,
+                },
+                "start": Object {
+                  "column": 19,
+                  "line": 13,
+                  "offset": 604,
+                },
+              },
+              "value": "url",
+            },
+          ],
+        },
+        Object {
+          "key": "journal",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 15,
+              "offset": 694,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 14,
+              "offset": 674,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "String",
+              "loc": Object {
+                "end": Object {
+                  "column": 19,
+                  "line": 14,
+                  "offset": 692,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 14,
+                  "offset": 686,
+                },
+              },
+              "value": "GitHub",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 16,
+              "offset": 810,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 15,
+              "offset": 694,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 22,
+                  "line": 15,
+                  "offset": 715,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 15,
+                  "offset": 705,
+                },
+              },
+              "value": "Replicate ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 32,
+                  "line": 15,
+                  "offset": 725,
+                },
+                "start": Object {
+                  "column": 22,
+                  "line": 15,
+                  "offset": 715,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 31,
+                      "line": 15,
+                      "offset": 724,
+                    },
+                    "start": Object {
+                      "column": 23,
+                      "line": 15,
+                      "offset": 716,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 30,
+                          "line": 15,
+                          "offset": 723,
+                        },
+                        "start": Object {
+                          "column": 24,
+                          "line": 15,
+                          "offset": 717,
+                        },
+                      },
+                      "value": "Zotero",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 47,
+                  "line": 15,
+                  "offset": 740,
+                },
+                "start": Object {
+                  "column": 32,
+                  "line": 15,
+                  "offset": 725,
+                },
+              },
+              "value": " Key Algorithm ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 56,
+                  "line": 15,
+                  "offset": 749,
+                },
+                "start": Object {
+                  "column": 47,
+                  "line": 15,
+                  "offset": 740,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "MathMode",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 49,
+                      "line": 15,
+                      "offset": 742,
+                    },
+                    "start": Object {
+                      "column": 48,
+                      "line": 15,
+                      "offset": 741,
+                    },
+                  },
+                  "value": "$",
+                },
+                Object {
+                  "arguments": Array [],
+                  "kind": "RegularCommand",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 54,
+                      "line": 15,
+                      "offset": 747,
+                    },
+                    "start": Object {
+                      "column": 49,
+                      "line": 15,
+                      "offset": 742,
+                    },
+                  },
+                  "value": "cdot",
+                },
+                Object {
+                  "kind": "MathMode",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 55,
+                      "line": 15,
+                      "offset": 748,
+                    },
+                    "start": Object {
+                      "column": 54,
+                      "line": 15,
+                      "offset": 747,
+                    },
+                  },
+                  "value": "$",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 57,
+                  "line": 15,
+                  "offset": 750,
+                },
+                "start": Object {
+                  "column": 56,
+                  "line": 15,
+                  "offset": 749,
+                },
+              },
+              "value": " ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 66,
+                  "line": 15,
+                  "offset": 759,
+                },
+                "start": Object {
+                  "column": 57,
+                  "line": 15,
+                  "offset": 750,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 65,
+                      "line": 15,
+                      "offset": 758,
+                    },
+                    "start": Object {
+                      "column": 58,
+                      "line": 15,
+                      "offset": 751,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 64,
+                          "line": 15,
+                          "offset": 757,
+                        },
+                        "start": Object {
+                          "column": 59,
+                          "line": 15,
+                          "offset": 752,
+                        },
+                      },
+                      "value": "Issue",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 67,
+                  "line": 15,
+                  "offset": 760,
+                },
+                "start": Object {
+                  "column": 66,
+                  "line": 15,
+                  "offset": 759,
+                },
+              },
+              "value": " ",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 69,
+                  "line": 15,
+                  "offset": 762,
+                },
+                "start": Object {
+                  "column": 67,
+                  "line": 15,
+                  "offset": 760,
+                },
+              },
+              "value": "#",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 73,
+                  "line": 15,
+                  "offset": 766,
+                },
+                "start": Object {
+                  "column": 69,
+                  "line": 15,
+                  "offset": 762,
+                },
+              },
+              "value": "439 ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 82,
+                  "line": 15,
+                  "offset": 775,
+                },
+                "start": Object {
+                  "column": 73,
+                  "line": 15,
+                  "offset": 766,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "MathMode",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 75,
+                      "line": 15,
+                      "offset": 768,
+                    },
+                    "start": Object {
+                      "column": 74,
+                      "line": 15,
+                      "offset": 767,
+                    },
+                  },
+                  "value": "$",
+                },
+                Object {
+                  "arguments": Array [],
+                  "kind": "RegularCommand",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 80,
+                      "line": 15,
+                      "offset": 773,
+                    },
+                    "start": Object {
+                      "column": 75,
+                      "line": 15,
+                      "offset": 768,
+                    },
+                  },
+                  "value": "cdot",
+                },
+                Object {
+                  "kind": "MathMode",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 81,
+                      "line": 15,
+                      "offset": 774,
+                    },
+                    "start": Object {
+                      "column": 80,
+                      "line": 15,
+                      "offset": 773,
+                    },
+                  },
+                  "value": "$",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 114,
+                  "line": 15,
+                  "offset": 807,
+                },
+                "start": Object {
+                  "column": 82,
+                  "line": 15,
+                  "offset": 775,
+                },
+              },
+              "value": " Retorquere/Zotero-Better-Bibtex",
+            },
+          ],
+        },
+        Object {
+          "key": "year",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 17,
+              "offset": 826,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 16,
+              "offset": 810,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 16,
+                  "offset": 824,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 16,
+                  "offset": 820,
+                },
+              },
+              "value": "2016",
+            },
+          ],
+        },
+      ],
+      "type": "misc",
+    },
+    Object {
+      "id": "retorquere-double_replicate_nodate",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 26,
+          "offset": 1227,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 19,
+          "offset": 829,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "abstract",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 21,
+              "offset": 954,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 20,
+              "offset": 873,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 81,
+                  "line": 20,
+                  "offset": 951,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 20,
+                  "offset": 885,
+                },
+              },
+              "value": "zotero-better-bibtex - Make Zotero effective for us LaTeX holdouts",
+            },
+          ],
+        },
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 22,
+              "offset": 1002,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 21,
+              "offset": 954,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 32,
+                  "line": 21,
+                  "offset": 985,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 21,
+                  "offset": 966,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 31,
+                      "line": 21,
+                      "offset": 984,
+                    },
+                    "start": Object {
+                      "column": 14,
+                      "line": 21,
+                      "offset": 967,
+                    },
+                  },
+                  "value": "Retorquere-Double",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 46,
+                  "line": 21,
+                  "offset": 999,
+                },
+                "start": Object {
+                  "column": 32,
+                  "line": 21,
+                  "offset": 985,
+                },
+              },
+              "value": ", First-Double",
+            },
+          ],
+        },
+        Object {
+          "key": "howpublished",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 23,
+              "offset": 1090,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 22,
+              "offset": 1002,
+            },
+          },
+          "value": Array [
+            Object {
+              "arguments": Array [
+                Object {
+                  "kind": "RequiredArgument",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 86,
+                      "line": 22,
+                      "offset": 1087,
+                    },
+                    "start": Object {
+                      "column": 23,
+                      "line": 22,
+                      "offset": 1024,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 85,
+                          "line": 22,
+                          "offset": 1086,
+                        },
+                        "start": Object {
+                          "column": 24,
+                          "line": 22,
+                          "offset": 1025,
+                        },
+                      },
+                      "value": "https://github.com/retorquere/zotero-better-bibtex/issues/439",
+                    },
+                  ],
+                },
+              ],
+              "kind": "RegularCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 86,
+                  "line": 22,
+                  "offset": 1087,
+                },
+                "start": Object {
+                  "column": 19,
+                  "line": 22,
+                  "offset": 1020,
+                },
+              },
+              "value": "url",
+            },
+          ],
+        },
+        Object {
+          "key": "journal",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 24,
+              "offset": 1110,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 23,
+              "offset": 1090,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "String",
+              "loc": Object {
+                "end": Object {
+                  "column": 19,
+                  "line": 23,
+                  "offset": 1108,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 23,
+                  "offset": 1102,
+                },
+              },
+              "value": "GitHub",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 25,
+              "offset": 1225,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 24,
+              "offset": 1110,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 22,
+                  "line": 24,
+                  "offset": 1131,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 24,
+                  "offset": 1121,
+                },
+              },
+              "value": "Replicate ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 32,
+                  "line": 24,
+                  "offset": 1141,
+                },
+                "start": Object {
+                  "column": 22,
+                  "line": 24,
+                  "offset": 1131,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 31,
+                      "line": 24,
+                      "offset": 1140,
+                    },
+                    "start": Object {
+                      "column": 23,
+                      "line": 24,
+                      "offset": 1132,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 30,
+                          "line": 24,
+                          "offset": 1139,
+                        },
+                        "start": Object {
+                          "column": 24,
+                          "line": 24,
+                          "offset": 1133,
+                        },
+                      },
+                      "value": "Zotero",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 47,
+                  "line": 24,
+                  "offset": 1156,
+                },
+                "start": Object {
+                  "column": 32,
+                  "line": 24,
+                  "offset": 1141,
+                },
+              },
+              "value": " Key Algorithm ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 56,
+                  "line": 24,
+                  "offset": 1165,
+                },
+                "start": Object {
+                  "column": 47,
+                  "line": 24,
+                  "offset": 1156,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "MathMode",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 49,
+                      "line": 24,
+                      "offset": 1158,
+                    },
+                    "start": Object {
+                      "column": 48,
+                      "line": 24,
+                      "offset": 1157,
+                    },
+                  },
+                  "value": "$",
+                },
+                Object {
+                  "arguments": Array [],
+                  "kind": "RegularCommand",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 54,
+                      "line": 24,
+                      "offset": 1163,
+                    },
+                    "start": Object {
+                      "column": 49,
+                      "line": 24,
+                      "offset": 1158,
+                    },
+                  },
+                  "value": "cdot",
+                },
+                Object {
+                  "kind": "MathMode",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 55,
+                      "line": 24,
+                      "offset": 1164,
+                    },
+                    "start": Object {
+                      "column": 54,
+                      "line": 24,
+                      "offset": 1163,
+                    },
+                  },
+                  "value": "$",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 57,
+                  "line": 24,
+                  "offset": 1166,
+                },
+                "start": Object {
+                  "column": 56,
+                  "line": 24,
+                  "offset": 1165,
+                },
+              },
+              "value": " ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 66,
+                  "line": 24,
+                  "offset": 1175,
+                },
+                "start": Object {
+                  "column": 57,
+                  "line": 24,
+                  "offset": 1166,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 65,
+                      "line": 24,
+                      "offset": 1174,
+                    },
+                    "start": Object {
+                      "column": 58,
+                      "line": 24,
+                      "offset": 1167,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 64,
+                          "line": 24,
+                          "offset": 1173,
+                        },
+                        "start": Object {
+                          "column": 59,
+                          "line": 24,
+                          "offset": 1168,
+                        },
+                      },
+                      "value": "Issue",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 67,
+                  "line": 24,
+                  "offset": 1176,
+                },
+                "start": Object {
+                  "column": 66,
+                  "line": 24,
+                  "offset": 1175,
+                },
+              },
+              "value": " ",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 69,
+                  "line": 24,
+                  "offset": 1178,
+                },
+                "start": Object {
+                  "column": 67,
+                  "line": 24,
+                  "offset": 1176,
+                },
+              },
+              "value": "#",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 73,
+                  "line": 24,
+                  "offset": 1182,
+                },
+                "start": Object {
+                  "column": 69,
+                  "line": 24,
+                  "offset": 1178,
+                },
+              },
+              "value": "439 ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 82,
+                  "line": 24,
+                  "offset": 1191,
+                },
+                "start": Object {
+                  "column": 73,
+                  "line": 24,
+                  "offset": 1182,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "MathMode",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 75,
+                      "line": 24,
+                      "offset": 1184,
+                    },
+                    "start": Object {
+                      "column": 74,
+                      "line": 24,
+                      "offset": 1183,
+                    },
+                  },
+                  "value": "$",
+                },
+                Object {
+                  "arguments": Array [],
+                  "kind": "RegularCommand",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 80,
+                      "line": 24,
+                      "offset": 1189,
+                    },
+                    "start": Object {
+                      "column": 75,
+                      "line": 24,
+                      "offset": 1184,
+                    },
+                  },
+                  "value": "cdot",
+                },
+                Object {
+                  "kind": "MathMode",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 81,
+                      "line": 24,
+                      "offset": 1190,
+                    },
+                    "start": Object {
+                      "column": 80,
+                      "line": 24,
+                      "offset": 1189,
+                    },
+                  },
+                  "value": "$",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 114,
+                  "line": 24,
+                  "offset": 1223,
+                },
+                "start": Object {
+                  "column": 82,
+                  "line": 24,
+                  "offset": 1191,
+                },
+              },
+              "value": " Retorquere/Zotero-Better-Bibtex",
+            },
+          ],
+        },
+      ],
+      "type": "misc",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 26,
+      "offset": 1227,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

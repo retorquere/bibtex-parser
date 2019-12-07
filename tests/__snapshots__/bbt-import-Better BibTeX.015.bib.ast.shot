@@ -1,0 +1,463 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-import-Better BibTeX.015.bib to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "robinson2007theoriesglobalization",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 13,
+          "offset": 1784,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 90,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 2,
+              "offset": 51,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 39,
+                  "line": 2,
+                  "offset": 87,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 2,
+                  "offset": 60,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 38,
+                      "line": 2,
+                      "offset": 86,
+                    },
+                    "start": Object {
+                      "column": 13,
+                      "line": 2,
+                      "offset": 61,
+                    },
+                  },
+                  "value": "Theories of globalization",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "booktitle",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 150,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 90,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 58,
+                  "line": 3,
+                  "offset": 147,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 3,
+                  "offset": 105,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 57,
+                      "line": 3,
+                      "offset": 146,
+                    },
+                    "start": Object {
+                      "column": 17,
+                      "line": 3,
+                      "offset": 106,
+                    },
+                  },
+                  "value": "The Blackwell companion to globalization",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "publisher",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 188,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 150,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 36,
+                  "line": 4,
+                  "offset": 185,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 4,
+                  "offset": 165,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 28,
+                      "line": 4,
+                      "offset": 177,
+                    },
+                    "start": Object {
+                      "column": 17,
+                      "line": 4,
+                      "offset": 166,
+                    },
+                  },
+                  "value": "John Wiley ",
+                },
+                Object {
+                  "kind": "SymbolCommand",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 30,
+                      "line": 4,
+                      "offset": 179,
+                    },
+                    "start": Object {
+                      "column": 28,
+                      "line": 4,
+                      "offset": 177,
+                    },
+                  },
+                  "value": "&",
+                },
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 35,
+                      "line": 4,
+                      "offset": 184,
+                    },
+                    "start": Object {
+                      "column": 30,
+                      "line": 4,
+                      "offset": 179,
+                    },
+                  },
+                  "value": " Sons",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 222,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 188,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 32,
+                  "line": 5,
+                  "offset": 219,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 5,
+                  "offset": 200,
+                },
+              },
+              "value": "Robinson, William I",
+            },
+          ],
+        },
+        Object {
+          "key": "collaborator",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 257,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 222,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 33,
+                  "line": 6,
+                  "offset": 254,
+                },
+                "start": Object {
+                  "column": 19,
+                  "line": 6,
+                  "offset": 240,
+                },
+              },
+              "value": "Ritzer, George",
+            },
+          ],
+        },
+        Object {
+          "key": "year",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 274,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 257,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 7,
+                  "offset": 271,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 7,
+                  "offset": 267,
+                },
+              },
+              "value": "2007",
+            },
+          ],
+        },
+        Object {
+          "key": "keywords",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 299,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 274,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 23,
+                  "line": 8,
+                  "offset": 296,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 8,
+                  "offset": 288,
+                },
+              },
+              "value": "orphaned",
+            },
+          ],
+        },
+        Object {
+          "key": "pages",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 320,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 299,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 19,
+                  "line": 9,
+                  "offset": 317,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 9,
+                  "offset": 310,
+                },
+              },
+              "value": "125-143",
+            },
+          ],
+        },
+        Object {
+          "key": "annote",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 1640,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 320,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 1318,
+                  "line": 10,
+                  "offset": 1637,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 10,
+                  "offset": 332,
+                },
+              },
+              "value": "Extracted Annotations (zondag 17 november 2013 15:45:35) \\"What is the relationship between globalization and the nation-state? Is the nation-state being undermined?\\" (Robinson 2007:127) Relatedly, to what extent is the relationship between social structure and territoriality being redefined by globalization? Is there a deterritorialization of social relations under globalization? What is the relationship between the local and the global? How are space and time being reconfigured? (note on p.127) \\"Relatedly, to what extent is the relationship between social structure and territoriality being redefined by globalization? Is there a deterritorialization of social\\" (Robinson 2007:127) \\"relations under globalization? What is the relationship between the local and the global? How are space and time being reconfigured?\\" (Robinson 2007:128) \\"THE NETWORK SOCIETY Manuel Castells' groundbreaking trilogy, The Rise of the Network Society (1996, 1997, 1998), exemplifies a 'technologistic' approach to globalization\\" (Robinson 2007:132) \\"'communication decisively shapes culture because we do not see . . . reality as it 'is' but as our languages are'. He adds, 'we are not living in a global village, but in customized cottages, globally produced and locally distributed' (1996: 370).\\" (Robinson 2007:133)",
+            },
+          ],
+        },
+        Object {
+          "key": "file",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 1782,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 1640,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 141,
+                  "line": 11,
+                  "offset": 1780,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 11,
+                  "offset": 1650,
+                },
+              },
+              "value": "Robinson_2007_Theories of globalization.pdf:Better BibTeX.015/F64PVIN4/Robinson_2007_Theories of globalization.pdf:application/pdf",
+            },
+          ],
+        },
+      ],
+      "type": "incollection",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 13,
+      "offset": 1784,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

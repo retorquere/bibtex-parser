@@ -32,7 +32,7 @@ describe('BibTeX Parser', () => {
   let root = path.join(__dirname, 'cases')
   for (const f of fs.readdirSync(root).sort()) {
     if (!f.replace(/(la)?tex$/, '').endsWith('.bib')) continue
-    const caseName = path.basename(f, path.extname(f))
+    const caseName = path.basename(f)
     const input = fs.readFileSync(path.join(root, f), 'utf-8')
     if (enable.ast) {
       it(`should parse ${caseName} to an AST`, () => {
@@ -58,7 +58,7 @@ describe('BibTeX Parser', () => {
         if (process.env.TEST && !f.includes(process.env.TEST)) continue
       }
 
-      const caseName = `${path.basename(f, path.extname(f))}-${mode}`
+      const caseName = `bbt-${mode}-${path.basename(f)}`
       const input = fs.readFileSync(path.join(root, f), 'utf-8')
 
       if (enable.ast) {

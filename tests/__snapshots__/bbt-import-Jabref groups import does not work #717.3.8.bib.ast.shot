@@ -1,0 +1,897 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-import-Jabref groups import does not work #717.3.8.bib to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "kind": "NonEntryText",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 3,
+          "offset": 24,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "value": "% ",
+    },
+    Object {
+      "id": "Doe-2017",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 12,
+          "offset": 215,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 3,
+          "offset": 24,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 69,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 4,
+              "offset": 45,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 24,
+                  "line": 4,
+                  "offset": 66,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 4,
+                  "offset": 58,
+                },
+              },
+              "value": "John Doe",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 108,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 69,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 37,
+                  "line": 5,
+                  "offset": 105,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 5,
+                  "offset": 84,
+                },
+              },
+              "value": "The paper in subgroup",
+            },
+          ],
+        },
+        Object {
+          "key": "year",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 130,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 108,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 6,
+                  "offset": 127,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 6,
+                  "offset": 123,
+                },
+              },
+              "value": "2017",
+            },
+          ],
+        },
+        Object {
+          "key": "groups",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 161,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 130,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 29,
+                  "line": 7,
+                  "offset": 158,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 7,
+                  "offset": 145,
+                },
+              },
+              "value": "my-subgroup-3",
+            },
+          ],
+        },
+        Object {
+          "key": "owner",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 184,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 161,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 21,
+                  "line": 8,
+                  "offset": 181,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 8,
+                  "offset": 176,
+                },
+              },
+              "value": "klein",
+            },
+          ],
+        },
+        Object {
+          "key": "timestamp",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 212,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 184,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 26,
+                  "line": 9,
+                  "offset": 209,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 9,
+                  "offset": 199,
+                },
+              },
+              "value": "2017.09.11",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+    Object {
+      "id": "Other-",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 20,
+          "offset": 399,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 12,
+          "offset": 215,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 14,
+              "offset": 258,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 13,
+              "offset": 234,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 24,
+                  "line": 13,
+                  "offset": 255,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 13,
+                  "offset": 247,
+                },
+              },
+              "value": "I. Other",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 15,
+              "offset": 308,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 14,
+              "offset": 258,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 48,
+                  "line": 14,
+                  "offset": 305,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 14,
+                  "offset": 273,
+                },
+              },
+              "value": "The article in my other subgroup",
+            },
+          ],
+        },
+        Object {
+          "key": "groups",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 16,
+              "offset": 345,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 15,
+              "offset": 308,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 35,
+                  "line": 15,
+                  "offset": 342,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 15,
+                  "offset": 323,
+                },
+              },
+              "value": "my-other-subgroup-3",
+            },
+          ],
+        },
+        Object {
+          "key": "owner",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 17,
+              "offset": 368,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 16,
+              "offset": 345,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 21,
+                  "line": 16,
+                  "offset": 365,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 16,
+                  "offset": 360,
+                },
+              },
+              "value": "klein",
+            },
+          ],
+        },
+        Object {
+          "key": "timestamp",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 18,
+              "offset": 396,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 17,
+              "offset": 368,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 26,
+                  "line": 17,
+                  "offset": 393,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 17,
+                  "offset": 383,
+                },
+              },
+              "value": "2017.09.11",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+    Object {
+      "id": "Unkonw-",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 28,
+          "offset": 590,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 20,
+          "offset": 399,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 22,
+              "offset": 443,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 21,
+              "offset": 419,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 24,
+                  "line": 21,
+                  "offset": 440,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 21,
+                  "offset": 432,
+                },
+              },
+              "value": "I Unkonw",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 23,
+              "offset": 484,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 22,
+              "offset": 443,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 39,
+                  "line": 22,
+                  "offset": 481,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 22,
+                  "offset": 458,
+                },
+              },
+              "value": "the paper in two groups",
+            },
+          ],
+        },
+        Object {
+          "key": "groups",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 24,
+              "offset": 536,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 23,
+              "offset": 484,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 50,
+                  "line": 23,
+                  "offset": 533,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 23,
+                  "offset": 499,
+                },
+              },
+              "value": "my-subgroup-3, my-other-subgroup-3",
+            },
+          ],
+        },
+        Object {
+          "key": "owner",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 25,
+              "offset": 559,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 24,
+              "offset": 536,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 21,
+                  "line": 24,
+                  "offset": 556,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 24,
+                  "offset": 551,
+                },
+              },
+              "value": "klein",
+            },
+          ],
+        },
+        Object {
+          "key": "timestamp",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 26,
+              "offset": 587,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 25,
+              "offset": 559,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 26,
+                  "line": 25,
+                  "offset": 584,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 25,
+                  "offset": 574,
+                },
+              },
+              "value": "2017.09.11",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+    Object {
+      "id": "Unkonw",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 36,
+          "offset": 762,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 28,
+          "offset": 590,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 30,
+              "offset": 633,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 29,
+              "offset": 609,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 24,
+                  "line": 29,
+                  "offset": 630,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 29,
+                  "offset": 622,
+                },
+              },
+              "value": "I Unkonw",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 31,
+              "offset": 675,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 30,
+              "offset": 633,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 40,
+                  "line": 30,
+                  "offset": 672,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 30,
+                  "offset": 648,
+                },
+              },
+              "value": "the paper not in a group",
+            },
+          ],
+        },
+        Object {
+          "key": "groups",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 32,
+              "offset": 708,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 31,
+              "offset": 675,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 31,
+                  "line": 31,
+                  "offset": 705,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 31,
+                  "offset": 690,
+                },
+              },
+              "value": "my-main-group-3",
+            },
+          ],
+        },
+        Object {
+          "key": "owner",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 33,
+              "offset": 731,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 32,
+              "offset": 708,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 21,
+                  "line": 32,
+                  "offset": 728,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 32,
+                  "offset": 723,
+                },
+              },
+              "value": "klein",
+            },
+          ],
+        },
+        Object {
+          "key": "timestamp",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 34,
+              "offset": 759,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 33,
+              "offset": 731,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 26,
+                  "line": 33,
+                  "offset": 756,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 33,
+                  "offset": 746,
+                },
+              },
+              "value": "2017.09.11",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+    Object {
+      "kind": "BracedComment",
+      "loc": Object {
+        "end": Object {
+          "column": 44,
+          "line": 36,
+          "offset": 805,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 36,
+          "offset": 762,
+        },
+      },
+      "value": "jabref-meta: databaseType:bibtex;",
+    },
+    Object {
+      "kind": "NonEntryText",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 38,
+          "offset": 807,
+        },
+        "start": Object {
+          "column": 44,
+          "line": 36,
+          "offset": 805,
+        },
+      },
+      "value": " ",
+    },
+    Object {
+      "kind": "BracedComment",
+      "loc": Object {
+        "end": Object {
+          "column": 2,
+          "line": 44,
+          "offset": 1016,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 38,
+          "offset": 807,
+        },
+      },
+      "value": "jabref-meta: groupstree:
+0 AllEntriesGroup:;
+1 ExplicitGroup:my-main-group-3\\\\;2\\\\;;
+2 ExplicitGroup:my-subgroup-3\\\\;0\\\\;;
+3 ExplicitGroup:sub-sub-group-3\\\\;0\\\\;;
+2 ExplicitGroup:my-other-subgroup-3\\\\;0\\\\;;
+",
+    },
+    Object {
+      "kind": "NonEntryText",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 45,
+          "offset": 1017,
+        },
+        "start": Object {
+          "column": 2,
+          "line": 44,
+          "offset": 1016,
+        },
+      },
+      "value": " ",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 45,
+      "offset": 1017,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

@@ -1,0 +1,377 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-Hyphenated last names not escaped properly (or at all) in BibTeX #976.bibtex to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "DSSWHowEat14",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 10,
+          "offset": 351,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 125,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 2,
+              "offset": 31,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 49,
+                  "line": 2,
+                  "offset": 77,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 2,
+                  "offset": 41,
+                },
+              },
+              "value": "Dodis, Yevgeniy and Shamir, Adi and ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 70,
+                  "line": 2,
+                  "offset": 98,
+                },
+                "start": Object {
+                  "column": 49,
+                  "line": 2,
+                  "offset": 77,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 69,
+                      "line": 2,
+                      "offset": 97,
+                    },
+                    "start": Object {
+                      "column": 50,
+                      "line": 2,
+                      "offset": 78,
+                    },
+                  },
+                  "value": "Stephens-Davidowitz",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 94,
+                  "line": 2,
+                  "offset": 122,
+                },
+                "start": Object {
+                  "column": 70,
+                  "line": 2,
+                  "offset": 98,
+                },
+              },
+              "value": ", Noah and Wichs, Daniel",
+            },
+          ],
+        },
+        Object {
+          "key": "booktitle",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 153,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 125,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 26,
+                  "line": 3,
+                  "offset": 150,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 3,
+                  "offset": 140,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 25,
+                      "line": 3,
+                      "offset": 149,
+                    },
+                    "start": Object {
+                      "column": 17,
+                      "line": 3,
+                      "offset": 141,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 24,
+                          "line": 3,
+                          "offset": 148,
+                        },
+                        "start": Object {
+                          "column": 18,
+                          "line": 3,
+                          "offset": 142,
+                        },
+                      },
+                      "value": "CRYPTO",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 262,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 153,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 99,
+                  "line": 4,
+                  "offset": 251,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 4,
+                  "offset": 164,
+                },
+              },
+              "value": "How to Eat Your Entropy and Have It Too – Optimal Recovery Strategies for Compromised ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 107,
+                  "line": 4,
+                  "offset": 259,
+                },
+                "start": Object {
+                  "column": 99,
+                  "line": 4,
+                  "offset": 251,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 106,
+                      "line": 4,
+                      "offset": 258,
+                    },
+                    "start": Object {
+                      "column": 100,
+                      "line": 4,
+                      "offset": 252,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 105,
+                          "line": 4,
+                          "offset": 257,
+                        },
+                        "start": Object {
+                          "column": 101,
+                          "line": 4,
+                          "offset": 253,
+                        },
+                      },
+                      "value": "RNGs",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "url",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 306,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 262,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 42,
+                  "line": 5,
+                  "offset": 303,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 5,
+                  "offset": 271,
+                },
+              },
+              "value": "https://eprint.iacr.org/2014/167",
+            },
+          ],
+        },
+        Object {
+          "key": "urldate",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 332,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 306,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 24,
+                  "line": 6,
+                  "offset": 329,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 6,
+                  "offset": 319,
+                },
+              },
+              "value": "2018-05-30",
+            },
+          ],
+        },
+        Object {
+          "key": "year",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 348,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 332,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 7,
+                  "offset": 346,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 7,
+                  "offset": 342,
+                },
+              },
+              "value": "2014",
+            },
+          ],
+        },
+      ],
+      "type": "inproceedings",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 10,
+      "offset": 351,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

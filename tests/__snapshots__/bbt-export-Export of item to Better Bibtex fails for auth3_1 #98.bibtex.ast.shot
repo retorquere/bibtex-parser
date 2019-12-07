@@ -1,0 +1,516 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-Export of item to Better Bibtex fails for auth3_1 #98.bibtex to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "MauMauSey14",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 18,
+          "offset": 1632,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "abstract",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 1207,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 2,
+              "offset": 24,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 1183,
+                  "line": 2,
+                  "offset": 1204,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 2,
+                  "offset": 36,
+                },
+              },
+              "value": "Blindfolded or disoriented people have the tendency to walk in circles rather than on a straight line even if they wanted to. Here, we use a minimalistic walking model to examine this phenomenon. The bipedal spring-loaded inverted pendulum exhibits asymptotically stable gaits with centre of mass (CoM) dynamics and ground reaction forces similar to human walking in the sagittal plane. We extend this model into three dimensions, and show that stable walking patterns persist if the leg is aligned with respect to the body (here: CoM velocity) instead of a world reference frame. Further, we demonstrate that asymmetric leg configurations, which are common in humans, will typically lead to walking in circles. The diameter of these circles depends strongly on parameter configuration, but is in line with empirical data from human walkers. Simulation results suggest that walking radius and especially direction of rotation are highly dependent on leg configuration and walking velocity, which explains inconsistent veering behaviour in repeated trials in human data. Finally, we discuss the relation between findings in the model and implications for human walking.",
+            },
+          ],
+        },
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 1260,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 1207,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 51,
+                  "line": 3,
+                  "offset": 1257,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 3,
+                  "offset": 1219,
+                },
+              },
+              "value": "Maus, Horst-Moritz and Seyfarth, Andre",
+            },
+          ],
+        },
+        Object {
+          "key": "doi",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 1294,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 1260,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 32,
+                  "line": 4,
+                  "offset": 1291,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 4,
+                  "offset": 1269,
+                },
+              },
+              "value": "10.1098/rsif.2014.0594",
+            },
+          ],
+        },
+        Object {
+          "key": "journal",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 1348,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 1294,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 52,
+                  "line": 5,
+                  "offset": 1345,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 5,
+                  "offset": 1307,
+                },
+              },
+              "value": "Journal of The Royal Society Interface",
+            },
+          ],
+        },
+        Object {
+          "key": "keywords",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 1411,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 1348,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 61,
+                  "line": 6,
+                  "offset": 1408,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 6,
+                  "offset": 1362,
+                },
+              },
+              "value": "locomotion,slip,template model,veering,walking",
+            },
+          ],
+        },
+        Object {
+          "key": "language",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 1430,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 1411,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 17,
+                  "line": 7,
+                  "offset": 1427,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 7,
+                  "offset": 1425,
+                },
+              },
+              "value": "en",
+            },
+          ],
+        },
+        Object {
+          "key": "month",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 1445,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 1430,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "String",
+              "loc": Object {
+                "end": Object {
+                  "column": 14,
+                  "line": 8,
+                  "offset": 1443,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 8,
+                  "offset": 1440,
+                },
+              },
+              "value": "jun",
+            },
+          ],
+        },
+        Object {
+          "key": "number",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 1462,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 1445,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 9,
+                  "offset": 1459,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 9,
+                  "offset": 1457,
+                },
+              },
+              "value": "99",
+            },
+          ],
+        },
+        Object {
+          "key": "pages",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 1484,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 1462,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 10,
+                  "offset": 1481,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 10,
+                  "offset": 1473,
+                },
+              },
+              "value": "20140594",
+            },
+          ],
+        },
+        Object {
+          "key": "pmid",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 1505,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 1484,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 19,
+                  "line": 11,
+                  "offset": 1502,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 11,
+                  "offset": 1494,
+                },
+              },
+              "value": "25056215",
+            },
+          ],
+        },
+        Object {
+          "key": "shorttitle",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 1542,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 1505,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 35,
+                  "line": 12,
+                  "offset": 1539,
+                },
+                "start": Object {
+                  "column": 17,
+                  "line": 12,
+                  "offset": 1521,
+                },
+              },
+              "value": "Walking in Circles",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 14,
+              "offset": 1596,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 1542,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 52,
+                  "line": 13,
+                  "offset": 1593,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 13,
+                  "offset": 1553,
+                },
+              },
+              "value": "Walking in Circles: A Modelling Approach",
+            },
+          ],
+        },
+        Object {
+          "key": "volume",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 15,
+              "offset": 1613,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 14,
+              "offset": 1596,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 14,
+                  "offset": 1610,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 14,
+                  "offset": 1608,
+                },
+              },
+              "value": "11",
+            },
+          ],
+        },
+        Object {
+          "key": "year",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 16,
+              "offset": 1629,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 15,
+              "offset": 1613,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 15,
+                  "offset": 1627,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 15,
+                  "offset": 1623,
+                },
+              },
+              "value": "2014",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 18,
+      "offset": 1632,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

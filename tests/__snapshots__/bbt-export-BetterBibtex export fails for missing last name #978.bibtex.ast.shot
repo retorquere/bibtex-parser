@@ -1,0 +1,523 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-BetterBibtex export fails for missing last name #978.bibtex to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "Waskom2016",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 24,
+          "offset": 2522,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "abstract",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 16,
+              "offset": 1811,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 2,
+              "offset": 20,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 54,
+                  "line": 9,
+                  "offset": 1175,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 2,
+                  "offset": 32,
+                },
+              },
+              "value": "v0.7.1 (June 2016) Added the ability to put \\"caps\\" on the error bars that are drawn by barplot or pointplot (and, by extension, factorplot). Additionally, the line width of the error bars can now be controlled. These changes involve the new parameters capsize and errwidth. See the github pull request for examples of usage. Improved the row and column colors display in clustermap. It is now possible to pass Pandas objects for these elements and, when possible, the semantic information in the Pandas objects will be used to add labels to the plot. When Pandas objects are used, the color data is matched against the main heatmap based on the index, not on position. This is more accurate, but it may lead to different results if current code assumed positional matching. Improved the luminance calculation that determines the annotation color in heatmap. The annot parameter of heatmap now accepts a rectangular dataset in addition to a boolean value. If a dataset is passed, its values will be used for the annotations, while the main dataset will be used for the heatmap cell colors. Fixed a bug in FacetGrid that appeared when using col",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 56,
+                  "line": 9,
+                  "offset": 1177,
+                },
+                "start": Object {
+                  "column": 54,
+                  "line": 9,
+                  "offset": 1175,
+                },
+              },
+              "value": "_",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 10,
+                  "line": 13,
+                  "offset": 1478,
+                },
+                "start": Object {
+                  "column": 56,
+                  "line": 9,
+                  "offset": 1177,
+                },
+              },
+              "value": "wrap with missing col levels. Made it possible to pass a tick locator object to the heatmap colorbar. Made it possible to use different styles (e.g., step) for PairGrid histograms when there are multiple hue levels. Fixed a bug in scipy-based univariate kernel density bandwidth calculation. The reset",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 12,
+                  "line": 13,
+                  "offset": 1480,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 13,
+                  "offset": 1478,
+                },
+              },
+              "value": "_",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 45,
+                  "line": 15,
+                  "offset": 1808,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 13,
+                  "offset": 1480,
+                },
+              },
+              "value": "orig function (and, by extension, importing seaborn.apionly) resets matplotlib rcParams to their values at the time seaborn itself was imported, which should work better with rcParams changed by the jupyter notebook backend. Removed some objects from the top-level seaborn namespace. Improved unicode compatibility in FacetGrid.",
+            },
+          ],
+        },
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 17,
+              "offset": 2386,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 16,
+              "offset": 1811,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 53,
+                  "line": 16,
+                  "offset": 1863,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 16,
+                  "offset": 1823,
+                },
+              },
+              "value": "Waskom, Michael and Botvinnik, Olga and ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 64,
+                  "line": 16,
+                  "offset": 1874,
+                },
+                "start": Object {
+                  "column": 53,
+                  "line": 16,
+                  "offset": 1863,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 63,
+                      "line": 16,
+                      "offset": 1873,
+                    },
+                    "start": Object {
+                      "column": 54,
+                      "line": 16,
+                      "offset": 1864,
+                    },
+                  },
+                  "value": "Drewokane",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 573,
+                  "line": 16,
+                  "offset": 2383,
+                },
+                "start": Object {
+                  "column": 64,
+                  "line": 16,
+                  "offset": 1874,
+                },
+              },
+              "value": " and Hobson, Paul and , David and Halchenko, Yaroslav and Lukauskas, Saulius and Cole, John B. and Warmenhoven, Jordi and Ruiter, Julian De and Hoyer, Stephan and Vanderplas, Jake and Villalba, Santi and Kunter, Gero and Quintero, Eric and Martin, Marcel and Miles, Alistair and Meyer, Kyle and Augspurger, Tom and Yarkoni, Tal and Bachant, Pete and Williams, Mike and Evans, Constantine and Fitzgerald, Clark and , Brian and Wehner, Daniel and Hitz, Gregory and Ziegler, Erik and Qalieh, Adel and Lee, Antony",
+            },
+          ],
+        },
+        Object {
+          "key": "howpublished",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 18,
+              "offset": 2413,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 17,
+              "offset": 2386,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 25,
+                  "line": 17,
+                  "offset": 2410,
+                },
+                "start": Object {
+                  "column": 19,
+                  "line": 17,
+                  "offset": 2404,
+                },
+              },
+              "value": "Zenodo",
+            },
+          ],
+        },
+        Object {
+          "key": "month",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 19,
+              "offset": 2428,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 18,
+              "offset": 2413,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "String",
+              "loc": Object {
+                "end": Object {
+                  "column": 14,
+                  "line": 18,
+                  "offset": 2426,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 18,
+                  "offset": 2423,
+                },
+              },
+              "value": "jun",
+            },
+          ],
+        },
+        Object {
+          "key": "shorttitle",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 20,
+              "offset": 2454,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 19,
+              "offset": 2428,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 24,
+                  "line": 19,
+                  "offset": 2451,
+                },
+                "start": Object {
+                  "column": 17,
+                  "line": 19,
+                  "offset": 2444,
+                },
+              },
+              "value": "Seaborn",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 21,
+              "offset": 2503,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 20,
+              "offset": 2454,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 21,
+                  "line": 20,
+                  "offset": 2474,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 20,
+                  "offset": 2465,
+                },
+              },
+              "value": "Seaborn: ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 27,
+                  "line": 20,
+                  "offset": 2480,
+                },
+                "start": Object {
+                  "column": 21,
+                  "line": 20,
+                  "offset": 2474,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 26,
+                      "line": 20,
+                      "offset": 2479,
+                    },
+                    "start": Object {
+                      "column": 22,
+                      "line": 20,
+                      "offset": 2475,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 25,
+                          "line": 20,
+                          "offset": 2478,
+                        },
+                        "start": Object {
+                          "column": 23,
+                          "line": 20,
+                          "offset": 2476,
+                        },
+                      },
+                      "value": "V0",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 33,
+                  "line": 20,
+                  "offset": 2486,
+                },
+                "start": Object {
+                  "column": 27,
+                  "line": 20,
+                  "offset": 2480,
+                },
+              },
+              "value": ".7.1 (",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 41,
+                  "line": 20,
+                  "offset": 2494,
+                },
+                "start": Object {
+                  "column": 33,
+                  "line": 20,
+                  "offset": 2486,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 40,
+                      "line": 20,
+                      "offset": 2493,
+                    },
+                    "start": Object {
+                      "column": 34,
+                      "line": 20,
+                      "offset": 2487,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 39,
+                          "line": 20,
+                          "offset": 2492,
+                        },
+                        "start": Object {
+                          "column": 35,
+                          "line": 20,
+                          "offset": 2488,
+                        },
+                      },
+                      "value": "June",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 47,
+                  "line": 20,
+                  "offset": 2500,
+                },
+                "start": Object {
+                  "column": 41,
+                  "line": 20,
+                  "offset": 2494,
+                },
+              },
+              "value": " 2016)",
+            },
+          ],
+        },
+        Object {
+          "key": "year",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 22,
+              "offset": 2519,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 21,
+              "offset": 2503,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 21,
+                  "offset": 2517,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 21,
+                  "offset": 2513,
+                },
+              },
+              "value": "2016",
+            },
+          ],
+        },
+      ],
+      "type": "misc",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 24,
+      "offset": 2522,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

@@ -1,0 +1,1211 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-date not always parsed properly into month and year with PubMed #1112.bibtex to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "HuntoonSPEGdeficientskeletalmuscles2018",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 19,
+          "offset": 2140,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 2,
+          "offset": 1,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "abstract",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 1520,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 3,
+              "offset": 53,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 1467,
+                  "line": 3,
+                  "offset": 1517,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 3,
+                  "offset": 65,
+                },
+              },
+              "value": "Centronuclear myopathies (CNM) are a subtype of congenital myopathies (CM) characterized by skeletal muscle weakness and an increase in the number of central myonuclei. We have previously identified three CNM probands, two with associated dilated cardiomyopathy, carrying striated preferentially expressed gene (SPEG) mutations. Currently, the role of SPEG in skeletal muscle function is unclear as constitutive SPEG-deficient mice developed severe dilated cardiomyopathy and died in utero. We have generated a conditional Speg-KO mouse model and excised Speg by crosses with striated muscle-specific cre-expressing mice (MCK-Cre). The resulting litters had a delay in Speg excision consistent with cre expression starting in early postnatal life and, therefore, an extended lifespan up to a few months. KO mice were significantly smaller and weaker than their littermate-matched controls. Histopathological skeletal muscle analysis revealed smaller myofibers, marked fiber-size variability, and poor integrity and low number of triads. Further, SPEG-deficient muscle fibers were weaker by physiological and in vitro studies and exhibited abnormal Ca2+ handling and excitation-contraction (E-C) coupling. Overall, SPEG deficiency in skeletal muscle is associated with fewer and abnormal triads, and defective calcium handling and excitation-contraction coupling, suggesting that therapies targeting calcium signaling may be beneficial in such patients.",
+            },
+          ],
+        },
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 1790,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 1520,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 268,
+                  "line": 4,
+                  "offset": 1787,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 4,
+                  "offset": 1532,
+                },
+              },
+              "value": "Huntoon, Virginia and Widrick, Jeffrey J. and Sanchez, Colline and Rosen, Samantha M. and Kutchukian, Candice and Cao, Siqi and Pierson, Christopher R. and Liu, Xiaoli and Perrella, Mark A. and Beggs, Alan H. and Jacquemond, Vincent and Agrawal, Pankaj B.",
+            },
+          ],
+        },
+        Object {
+          "key": "doi",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 1820,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 1790,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 28,
+                  "line": 5,
+                  "offset": 1817,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 5,
+                  "offset": 1799,
+                },
+              },
+              "value": "10.1093/hmg/ddy068",
+            },
+          ],
+        },
+        Object {
+          "key": "issn",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 1842,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 1820,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 6,
+                  "offset": 1839,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 6,
+                  "offset": 1830,
+                },
+              },
+              "value": "1460-2083",
+            },
+          ],
+        },
+        Object {
+          "key": "journal",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 1882,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 1842,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 38,
+                  "line": 7,
+                  "offset": 1879,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 7,
+                  "offset": 1855,
+                },
+              },
+              "value": "Human Molecular Genetics",
+            },
+          ],
+        },
+        Object {
+          "key": "language",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 1902,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 1882,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 18,
+                  "line": 8,
+                  "offset": 1899,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 8,
+                  "offset": 1896,
+                },
+              },
+              "value": "eng",
+            },
+          ],
+        },
+        Object {
+          "key": "month",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 1917,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 1902,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "String",
+              "loc": Object {
+                "end": Object {
+                  "column": 14,
+                  "line": 9,
+                  "offset": 1915,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 9,
+                  "offset": 1912,
+                },
+              },
+              "value": "jan",
+            },
+          ],
+        },
+        Object {
+          "key": "number",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 1933,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 1917,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 14,
+                  "line": 10,
+                  "offset": 1930,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 10,
+                  "offset": 1929,
+                },
+              },
+              "value": "9",
+            },
+          ],
+        },
+        Object {
+          "key": "pages",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 1956,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 1933,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 21,
+                  "line": 11,
+                  "offset": 1953,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 11,
+                  "offset": 1944,
+                },
+              },
+              "value": "1608-1617",
+            },
+          ],
+        },
+        Object {
+          "key": "pmcid",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 1980,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 1956,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 22,
+                  "line": 12,
+                  "offset": 1977,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 12,
+                  "offset": 1967,
+                },
+              },
+              "value": "PMC5905626",
+            },
+          ],
+        },
+        Object {
+          "key": "pmid",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 14,
+              "offset": 2001,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 1980,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 19,
+                  "line": 13,
+                  "offset": 1998,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 13,
+                  "offset": 1990,
+                },
+              },
+              "value": "29474540",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 15,
+              "offset": 2104,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 14,
+              "offset": 2001,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 14,
+                  "offset": 2020,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 14,
+                  "offset": 2012,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 19,
+                      "line": 14,
+                      "offset": 2019,
+                    },
+                    "start": Object {
+                      "column": 13,
+                      "line": 14,
+                      "offset": 2013,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 18,
+                          "line": 14,
+                          "offset": 2018,
+                        },
+                        "start": Object {
+                          "column": 14,
+                          "line": 14,
+                          "offset": 2014,
+                        },
+                      },
+                      "value": "SPEG",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 101,
+                  "line": 14,
+                  "offset": 2101,
+                },
+                "start": Object {
+                  "column": 20,
+                  "line": 14,
+                  "offset": 2020,
+                },
+              },
+              "value": "-Deficient Skeletal Muscles Exhibit Abnormal Triad and Defective Calcium Handling",
+            },
+          ],
+        },
+        Object {
+          "key": "volume",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 16,
+              "offset": 2121,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 15,
+              "offset": 2104,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 15,
+                  "offset": 2118,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 15,
+                  "offset": 2116,
+                },
+              },
+              "value": "27",
+            },
+          ],
+        },
+        Object {
+          "key": "year",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 17,
+              "offset": 2137,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 16,
+              "offset": 2121,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 16,
+                  "offset": 2135,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 16,
+                  "offset": 2131,
+                },
+              },
+              "value": "2018",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+    Object {
+      "id": "BennettRNAhelicaseDDX272018",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 38,
+          "offset": 4125,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 19,
+          "offset": 2140,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "abstract",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 21,
+              "offset": 3177,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 20,
+              "offset": 2180,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 997,
+                  "line": 20,
+                  "offset": 3174,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 20,
+                  "offset": 2192,
+                },
+              },
+              "value": "Gene expression in a tissue-specific context depends on the combined efforts of epigenetic, transcriptional and post-transcriptional processes that lead to the production of specific proteins that are important determinants of cellular identity. Ribosomes are a central component of the protein biosynthesis machinery in cells; however, their regulatory roles in the translational control of gene expression in skeletal muscle remain to be defined. In a genetic screen to identify critical regulators of myogenesis, we identified a DEAD-Box RNA helicase, DDX27, that is required for skeletal muscle growth and regeneration. We demonstrate that DDX27 regulates ribosomal RNA (rRNA) maturation, and thereby the ribosome biogenesis and the translation of specific transcripts during myogenesis. These findings provide insight into the translational regulation of gene expression in myogenesis and suggest novel functions for ribosomes in regulating gene expression in skeletal muscles.",
+            },
+          ],
+        },
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 22,
+              "offset": 3450,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 21,
+              "offset": 3177,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 271,
+                  "line": 21,
+                  "offset": 3447,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 21,
+                  "offset": 3189,
+                },
+              },
+              "value": "Bennett, Alexis H. and O'Donohue, Marie-Francoise and Gundry, Stacey R. and Chan, Aye T. and Widrick, Jeffrey and Draper, Isabelle and Chakraborty, Anirban and Zhou, Yi and Zon, Leonard I. and Gleizes, Pierre-Emmanuel and Beggs, Alan H. and Gupta, Vandana A.",
+            },
+          ],
+        },
+        Object {
+          "key": "doi",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 23,
+              "offset": 3490,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 22,
+              "offset": 3450,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 38,
+                  "line": 22,
+                  "offset": 3487,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 22,
+                  "offset": 3459,
+                },
+              },
+              "value": "10.1371/journal.pgen.1007226",
+            },
+          ],
+        },
+        Object {
+          "key": "issn",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 24,
+              "offset": 3512,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 23,
+              "offset": 3490,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 23,
+                  "offset": 3509,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 23,
+                  "offset": 3500,
+                },
+              },
+              "value": "1553-7404",
+            },
+          ],
+        },
+        Object {
+          "key": "journal",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 25,
+              "offset": 3541,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 24,
+              "offset": 3512,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 27,
+                  "line": 24,
+                  "offset": 3538,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 24,
+                  "offset": 3525,
+                },
+              },
+              "value": "PLoS genetics",
+            },
+          ],
+        },
+        Object {
+          "key": "keywords",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 26,
+              "offset": 3838,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 25,
+              "offset": 3541,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 295,
+                  "line": 25,
+                  "offset": 3835,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 25,
+                  "offset": 3555,
+                },
+              },
+              "value": "Animals,Animals; Genetically Modified,Cell Line,Cell Nucleolus,Cell Proliferation,DEAD-box RNA Helicases,Embryo; Nonmammalian,Mice,Muscle Development,Muscle; Skeletal,Myoblasts,PAX2 Transcription Factor,Protein Biosynthesis,Regeneration,RNA; Ribosomal,Zebrafish,Zebrafish Proteins",
+            },
+          ],
+        },
+        Object {
+          "key": "language",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 27,
+              "offset": 3858,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 26,
+              "offset": 3838,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 18,
+                  "line": 26,
+                  "offset": 3855,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 26,
+                  "offset": 3852,
+                },
+              },
+              "value": "eng",
+            },
+          ],
+        },
+        Object {
+          "key": "month",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 28,
+              "offset": 3873,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 27,
+              "offset": 3858,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "String",
+              "loc": Object {
+                "end": Object {
+                  "column": 14,
+                  "line": 27,
+                  "offset": 3871,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 27,
+                  "offset": 3868,
+                },
+              },
+              "value": "mar",
+            },
+          ],
+        },
+        Object {
+          "key": "number",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 29,
+              "offset": 3889,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 28,
+              "offset": 3873,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 14,
+                  "line": 28,
+                  "offset": 3886,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 28,
+                  "offset": 3885,
+                },
+              },
+              "value": "3",
+            },
+          ],
+        },
+        Object {
+          "key": "pages",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 30,
+              "offset": 3911,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 29,
+              "offset": 3889,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 29,
+                  "offset": 3908,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 29,
+                  "offset": 3900,
+                },
+              },
+              "value": "e1007226",
+            },
+          ],
+        },
+        Object {
+          "key": "pmcid",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 31,
+              "offset": 3935,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 30,
+              "offset": 3911,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 22,
+                  "line": 30,
+                  "offset": 3932,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 30,
+                  "offset": 3922,
+                },
+              },
+              "value": "PMC5843160",
+            },
+          ],
+        },
+        Object {
+          "key": "pmid",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 32,
+              "offset": 3956,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 31,
+              "offset": 3935,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 19,
+                  "line": 31,
+                  "offset": 3953,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 31,
+                  "offset": 3945,
+                },
+              },
+              "value": "29518074",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 33,
+              "offset": 4088,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 32,
+              "offset": 3956,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 19,
+                  "line": 32,
+                  "offset": 3974,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 32,
+                  "offset": 3967,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 18,
+                      "line": 32,
+                      "offset": 3973,
+                    },
+                    "start": Object {
+                      "column": 13,
+                      "line": 32,
+                      "offset": 3968,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 17,
+                          "line": 32,
+                          "offset": 3972,
+                        },
+                        "start": Object {
+                          "column": 14,
+                          "line": 32,
+                          "offset": 3969,
+                        },
+                      },
+                      "value": "RNA",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 30,
+                  "line": 32,
+                  "offset": 3985,
+                },
+                "start": Object {
+                  "column": 19,
+                  "line": 32,
+                  "offset": 3974,
+                },
+              },
+              "value": " Helicase, ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 39,
+                  "line": 32,
+                  "offset": 3994,
+                },
+                "start": Object {
+                  "column": 30,
+                  "line": 32,
+                  "offset": 3985,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 38,
+                      "line": 32,
+                      "offset": 3993,
+                    },
+                    "start": Object {
+                      "column": 31,
+                      "line": 32,
+                      "offset": 3986,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 37,
+                          "line": 32,
+                          "offset": 3992,
+                        },
+                        "start": Object {
+                          "column": 32,
+                          "line": 32,
+                          "offset": 3987,
+                        },
+                      },
+                      "value": "DDX27",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 130,
+                  "line": 32,
+                  "offset": 4085,
+                },
+                "start": Object {
+                  "column": 39,
+                  "line": 32,
+                  "offset": 3994,
+                },
+              },
+              "value": " Regulates Skeletal Muscle Growth and Regeneration by Modulation of Translational Processes",
+            },
+          ],
+        },
+        Object {
+          "key": "volume",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 34,
+              "offset": 4105,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 33,
+              "offset": 4088,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 33,
+                  "offset": 4102,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 33,
+                  "offset": 4100,
+                },
+              },
+              "value": "14",
+            },
+          ],
+        },
+        Object {
+          "key": "year",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 35,
+              "offset": 4121,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 34,
+              "offset": 4105,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 34,
+                  "offset": 4119,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 34,
+                  "offset": 4115,
+                },
+              },
+              "value": "2018",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 38,
+      "offset": 4125,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

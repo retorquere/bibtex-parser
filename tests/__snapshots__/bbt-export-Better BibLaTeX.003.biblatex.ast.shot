@@ -1,0 +1,413 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-Better BibLaTeX.003.biblatex to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "author:06",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 9,
+          "offset": 165,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 2,
+          "offset": 1,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 74,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 3,
+              "offset": 29,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 45,
+                  "line": 3,
+                  "offset": 71,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 3,
+                  "offset": 39,
+                },
+              },
+              "value": "Author, First and Author, Second",
+            },
+          ],
+        },
+        Object {
+          "key": "crossref",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 104,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 74,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 28,
+                  "line": 4,
+                  "offset": 101,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 4,
+                  "offset": 88,
+                },
+              },
+              "value": "conference:06",
+            },
+          ],
+        },
+        Object {
+          "key": "pages",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 127,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 104,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 21,
+                  "line": 5,
+                  "offset": 124,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 5,
+                  "offset": 115,
+                },
+              },
+              "value": "330—331",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 162,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 127,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 34,
+                  "line": 6,
+                  "offset": 160,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 6,
+                  "offset": 138,
+                },
+              },
+              "value": "Some Publication Title",
+            },
+          ],
+        },
+      ],
+      "type": "inproceedings",
+    },
+    Object {
+      "id": "conference:06",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 15,
+          "offset": 323,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 9,
+          "offset": 165,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 212,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 10,
+              "offset": 194,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 18,
+                  "line": 10,
+                  "offset": 209,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 10,
+                  "offset": 202,
+                },
+              },
+              "value": "2006-10",
+            },
+          ],
+        },
+        Object {
+          "key": "editor",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 259,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 212,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 45,
+                  "line": 11,
+                  "offset": 256,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 11,
+                  "offset": 224,
+                },
+              },
+              "value": "Editor, First and Editor, Second",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 320,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 259,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 31,
+                  "line": 12,
+                  "offset": 289,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 12,
+                  "offset": 270,
+                },
+              },
+              "value": "Proceedings of the ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 38,
+                  "line": 12,
+                  "offset": 296,
+                },
+                "start": Object {
+                  "column": 31,
+                  "line": 12,
+                  "offset": 289,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 37,
+                      "line": 12,
+                      "offset": 295,
+                    },
+                    "start": Object {
+                      "column": 32,
+                      "line": 12,
+                      "offset": 290,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 36,
+                          "line": 12,
+                          "offset": 294,
+                        },
+                        "start": Object {
+                          "column": 33,
+                          "line": 12,
+                          "offset": 291,
+                        },
+                      },
+                      "value": "Xth",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 53,
+                  "line": 12,
+                  "offset": 311,
+                },
+                "start": Object {
+                  "column": 38,
+                  "line": 12,
+                  "offset": 296,
+                },
+              },
+              "value": " Conference on ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 60,
+                  "line": 12,
+                  "offset": 318,
+                },
+                "start": Object {
+                  "column": 53,
+                  "line": 12,
+                  "offset": 311,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 59,
+                      "line": 12,
+                      "offset": 317,
+                    },
+                    "start": Object {
+                      "column": 54,
+                      "line": 12,
+                      "offset": 312,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 58,
+                          "line": 12,
+                          "offset": 316,
+                        },
+                        "start": Object {
+                          "column": 55,
+                          "line": 12,
+                          "offset": 313,
+                        },
+                      },
+                      "value": "XYZ",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      "type": "collection",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 15,
+      "offset": 323,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

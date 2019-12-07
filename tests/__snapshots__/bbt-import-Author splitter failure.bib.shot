@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-import-Author splitter failure.bib 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "M. E.",
+            "lastName": "Abu-Zeid",
+          },
+          Object {
+            "firstName": "A. E.",
+            "lastName": "Rakhshani",
+          },
+          Object {
+            "firstName": "A. A.",
+            "lastName": "Al-Jassar",
+          },
+          Object {
+            "firstName": "Y. A.",
+            "lastName": "Youssef",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Abu-Zeid, M. E.",
+          "Rakhshani, A. E.",
+          "Al-Jassar, A. A.",
+          "Youssef, Y. A.",
+        ],
+        "doi": Array [
+          "10.1002/pssa.2210930226",
+        ],
+        "journal": Array [
+          "Physica Status Solidi (a)",
+        ],
+        "pages": Array [
+          "613–620",
+        ],
+        "title": Array [
+          "Determination of the thickness and refractive index of <span class=\\"nocase\\">Cu₂O</span> thin film using thermal and optical interferometry",
+        ],
+        "volume": Array [
+          "93",
+        ],
+        "year": Array [
+          "1986",
+        ],
+      },
+      "key": "Abu-Zeid_1986",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

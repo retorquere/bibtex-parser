@@ -1,0 +1,556 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-Malformed HTML.biblatex to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "HackerManuscript-HACTRO",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 8,
+          "offset": 408,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 2,
+          "offset": 1,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "abstract",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 255,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 3,
+              "offset": 41,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 24,
+                  "line": 3,
+                  "offset": 62,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 3,
+                  "offset": 53,
+                },
+              },
+              "value": "P. M. S. ",
+            },
+            Object {
+              "arguments": Array [
+                Object {
+                  "kind": "RequiredArgument",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 40,
+                      "line": 3,
+                      "offset": 78,
+                    },
+                    "start": Object {
+                      "column": 38,
+                      "line": 3,
+                      "offset": 76,
+                    },
+                  },
+                  "value": Array [],
+                },
+              ],
+              "kind": "RegularCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 40,
+                  "line": 3,
+                  "offset": 78,
+                },
+                "start": Object {
+                  "column": 24,
+                  "line": 3,
+                  "offset": 62,
+                },
+              },
+              "value": "textbackslash",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 56,
+                  "line": 3,
+                  "offset": 94,
+                },
+                "start": Object {
+                  "column": 40,
+                  "line": 3,
+                  "offset": 78,
+                },
+              },
+              "value": "ensuremathHacker",
+            },
+            Object {
+              "arguments": Array [
+                Object {
+                  "kind": "RequiredArgument",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 72,
+                      "line": 3,
+                      "offset": 110,
+                    },
+                    "start": Object {
+                      "column": 70,
+                      "line": 3,
+                      "offset": 108,
+                    },
+                  },
+                  "value": Array [],
+                },
+              ],
+              "kind": "RegularCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 72,
+                  "line": 3,
+                  "offset": 110,
+                },
+                "start": Object {
+                  "column": 56,
+                  "line": 3,
+                  "offset": 94,
+                },
+              },
+              "value": "textbackslash",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 214,
+                  "line": 3,
+                  "offset": 252,
+                },
+                "start": Object {
+                  "column": 72,
+                  "line": 3,
+                  "offset": 110,
+                },
+              },
+              "value": "ensuremath 1. The ?confusion of psychology? On the concluding page of what is now called ?Part II? of the Investigations, Wittgenstein wrote..",
+            },
+          ],
+        },
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 286,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 255,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 29,
+                  "line": 4,
+                  "offset": 283,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 4,
+                  "offset": 267,
+                },
+              },
+              "value": "Hacker, P. M. S.",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 405,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 286,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 16,
+                  "line": 5,
+                  "offset": 301,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 5,
+                  "offset": 297,
+                },
+              },
+              "value": "The ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 29,
+                  "line": 5,
+                  "offset": 314,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 5,
+                  "offset": 301,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 28,
+                      "line": 5,
+                      "offset": 313,
+                    },
+                    "start": Object {
+                      "column": 17,
+                      "line": 5,
+                      "offset": 302,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 27,
+                          "line": 5,
+                          "offset": 312,
+                        },
+                        "start": Object {
+                          "column": 18,
+                          "line": 5,
+                          "offset": 303,
+                        },
+                      },
+                      "value": "Relevance",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 33,
+                  "line": 5,
+                  "offset": 318,
+                },
+                "start": Object {
+                  "column": 29,
+                  "line": 5,
+                  "offset": 314,
+                },
+              },
+              "value": " of ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 49,
+                  "line": 5,
+                  "offset": 334,
+                },
+                "start": Object {
+                  "column": 33,
+                  "line": 5,
+                  "offset": 318,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 48,
+                      "line": 5,
+                      "offset": 333,
+                    },
+                    "start": Object {
+                      "column": 34,
+                      "line": 5,
+                      "offset": 319,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 47,
+                          "line": 5,
+                          "offset": 332,
+                        },
+                        "start": Object {
+                          "column": 35,
+                          "line": 5,
+                          "offset": 320,
+                        },
+                      },
+                      "value": "Wittgenstein",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 52,
+                  "line": 5,
+                  "offset": 337,
+                },
+                "start": Object {
+                  "column": 49,
+                  "line": 5,
+                  "offset": 334,
+                },
+              },
+              "value": "'s ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 66,
+                  "line": 5,
+                  "offset": 351,
+                },
+                "start": Object {
+                  "column": 52,
+                  "line": 5,
+                  "offset": 337,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 65,
+                      "line": 5,
+                      "offset": 350,
+                    },
+                    "start": Object {
+                      "column": 53,
+                      "line": 5,
+                      "offset": 338,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 64,
+                          "line": 5,
+                          "offset": 349,
+                        },
+                        "start": Object {
+                          "column": 54,
+                          "line": 5,
+                          "offset": 339,
+                        },
+                      },
+                      "value": "Philosophy",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 70,
+                  "line": 5,
+                  "offset": 355,
+                },
+                "start": Object {
+                  "column": 66,
+                  "line": 5,
+                  "offset": 351,
+                },
+              },
+              "value": " of ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 84,
+                  "line": 5,
+                  "offset": 369,
+                },
+                "start": Object {
+                  "column": 70,
+                  "line": 5,
+                  "offset": 355,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 83,
+                      "line": 5,
+                      "offset": 368,
+                    },
+                    "start": Object {
+                      "column": 71,
+                      "line": 5,
+                      "offset": 356,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 82,
+                          "line": 5,
+                          "offset": 367,
+                        },
+                        "start": Object {
+                          "column": 72,
+                          "line": 5,
+                          "offset": 357,
+                        },
+                      },
+                      "value": "Psychology",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 92,
+                  "line": 5,
+                  "offset": 377,
+                },
+                "start": Object {
+                  "column": 84,
+                  "line": 5,
+                  "offset": 369,
+                },
+              },
+              "value": " to the ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 118,
+                  "line": 5,
+                  "offset": 403,
+                },
+                "start": Object {
+                  "column": 92,
+                  "line": 5,
+                  "offset": 377,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 117,
+                      "line": 5,
+                      "offset": 402,
+                    },
+                    "start": Object {
+                      "column": 93,
+                      "line": 5,
+                      "offset": 378,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 116,
+                          "line": 5,
+                          "offset": 401,
+                        },
+                        "start": Object {
+                          "column": 94,
+                          "line": 5,
+                          "offset": 379,
+                        },
+                      },
+                      "value": "Psychological Sciences",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      "type": "unpublished",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 8,
+      "offset": 408,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

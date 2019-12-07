@@ -1,0 +1,1749 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-Don't title-case sup-subscripts #1037.biblatex to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "ref1",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 8,
+          "offset": 104,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 2,
+          "offset": 1,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 41,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 3,
+              "offset": 18,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 23,
+                  "line": 3,
+                  "offset": 38,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 3,
+                  "offset": 28,
+                },
+              },
+              "value": "Name, Name",
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 58,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 41,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 4,
+                  "offset": 55,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 4,
+                  "offset": 51,
+                },
+              },
+              "value": "2018",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 101,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 58,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 14,
+                  "line": 5,
+                  "offset": 71,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 5,
+                  "offset": 69,
+                },
+              },
+              "value": "1 ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 19,
+                  "line": 5,
+                  "offset": 76,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 5,
+                  "offset": 71,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 18,
+                      "line": 5,
+                      "offset": 75,
+                    },
+                    "start": Object {
+                      "column": 15,
+                      "line": 5,
+                      "offset": 72,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 17,
+                          "line": 5,
+                          "offset": 74,
+                        },
+                        "start": Object {
+                          "column": 16,
+                          "line": 5,
+                          "offset": 73,
+                        },
+                      },
+                      "value": "O",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 42,
+                  "line": 5,
+                  "offset": 99,
+                },
+                "start": Object {
+                  "column": 19,
+                  "line": 5,
+                  "offset": 76,
+                },
+              },
+              "value": Array [
+                Object {
+                  "arguments": Array [
+                    Object {
+                      "kind": "RequiredArgument",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 41,
+                          "line": 5,
+                          "offset": 98,
+                        },
+                        "start": Object {
+                          "column": 34,
+                          "line": 5,
+                          "offset": 91,
+                        },
+                      },
+                      "value": Array [
+                        Object {
+                          "kind": "Text",
+                          "loc": Object {
+                            "end": Object {
+                              "column": 40,
+                              "line": 5,
+                              "offset": 97,
+                            },
+                            "start": Object {
+                              "column": 35,
+                              "line": 5,
+                              "offset": 92,
+                            },
+                          },
+                          "value": "abcde",
+                        },
+                      ],
+                    },
+                  ],
+                  "kind": "RegularCommand",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 41,
+                      "line": 5,
+                      "offset": 98,
+                    },
+                    "start": Object {
+                      "column": 20,
+                      "line": 5,
+                      "offset": 77,
+                    },
+                  },
+                  "value": "textsubscript",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+    Object {
+      "id": "ref2",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 14,
+          "offset": 212,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 8,
+          "offset": 104,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 144,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 9,
+              "offset": 121,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 23,
+                  "line": 9,
+                  "offset": 141,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 9,
+                  "offset": 131,
+                },
+              },
+              "value": "Name, Name",
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 161,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 144,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 10,
+                  "offset": 158,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 10,
+                  "offset": 154,
+                },
+              },
+              "value": "2018",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 209,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 161,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 14,
+                  "line": 11,
+                  "offset": 174,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 11,
+                  "offset": 172,
+                },
+              },
+              "value": "2 ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 19,
+                  "line": 11,
+                  "offset": 179,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 11,
+                  "offset": 174,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 18,
+                      "line": 11,
+                      "offset": 178,
+                    },
+                    "start": Object {
+                      "column": 15,
+                      "line": 11,
+                      "offset": 175,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 17,
+                          "line": 11,
+                          "offset": 177,
+                        },
+                        "start": Object {
+                          "column": 16,
+                          "line": 11,
+                          "offset": 176,
+                        },
+                      },
+                      "value": "O",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 42,
+                  "line": 11,
+                  "offset": 202,
+                },
+                "start": Object {
+                  "column": 19,
+                  "line": 11,
+                  "offset": 179,
+                },
+              },
+              "value": Array [
+                Object {
+                  "arguments": Array [
+                    Object {
+                      "kind": "RequiredArgument",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 41,
+                          "line": 11,
+                          "offset": 201,
+                        },
+                        "start": Object {
+                          "column": 34,
+                          "line": 11,
+                          "offset": 194,
+                        },
+                      },
+                      "value": Array [
+                        Object {
+                          "kind": "Text",
+                          "loc": Object {
+                            "end": Object {
+                              "column": 40,
+                              "line": 11,
+                              "offset": 200,
+                            },
+                            "start": Object {
+                              "column": 35,
+                              "line": 11,
+                              "offset": 195,
+                            },
+                          },
+                          "value": "abcde",
+                        },
+                      ],
+                    },
+                  ],
+                  "kind": "RegularCommand",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 41,
+                      "line": 11,
+                      "offset": 201,
+                    },
+                    "start": Object {
+                      "column": 20,
+                      "line": 11,
+                      "offset": 180,
+                    },
+                  },
+                  "value": "textsubscript",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 47,
+                  "line": 11,
+                  "offset": 207,
+                },
+                "start": Object {
+                  "column": 42,
+                  "line": 11,
+                  "offset": 202,
+                },
+              },
+              "value": " Test",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+    Object {
+      "id": "ref3",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 20,
+          "offset": 313,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 14,
+          "offset": 212,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 16,
+              "offset": 252,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 15,
+              "offset": 229,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 23,
+                  "line": 15,
+                  "offset": 249,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 15,
+                  "offset": 239,
+                },
+              },
+              "value": "Name, Name",
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 17,
+              "offset": 269,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 16,
+              "offset": 252,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 16,
+                  "offset": 266,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 16,
+                  "offset": 262,
+                },
+              },
+              "value": "2018",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 18,
+              "offset": 310,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 17,
+              "offset": 269,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 40,
+                  "line": 17,
+                  "offset": 308,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 17,
+                  "offset": 280,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 39,
+                      "line": 17,
+                      "offset": 307,
+                    },
+                    "start": Object {
+                      "column": 13,
+                      "line": 17,
+                      "offset": 281,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 15,
+                          "line": 17,
+                          "offset": 283,
+                        },
+                        "start": Object {
+                          "column": 14,
+                          "line": 17,
+                          "offset": 282,
+                        },
+                      },
+                      "value": "O",
+                    },
+                    Object {
+                      "kind": "NestedLiteral",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 38,
+                          "line": 17,
+                          "offset": 306,
+                        },
+                        "start": Object {
+                          "column": 15,
+                          "line": 17,
+                          "offset": 283,
+                        },
+                      },
+                      "value": Array [
+                        Object {
+                          "arguments": Array [
+                            Object {
+                              "kind": "RequiredArgument",
+                              "loc": Object {
+                                "end": Object {
+                                  "column": 37,
+                                  "line": 17,
+                                  "offset": 305,
+                                },
+                                "start": Object {
+                                  "column": 30,
+                                  "line": 17,
+                                  "offset": 298,
+                                },
+                              },
+                              "value": Array [
+                                Object {
+                                  "kind": "Text",
+                                  "loc": Object {
+                                    "end": Object {
+                                      "column": 36,
+                                      "line": 17,
+                                      "offset": 304,
+                                    },
+                                    "start": Object {
+                                      "column": 31,
+                                      "line": 17,
+                                      "offset": 299,
+                                    },
+                                  },
+                                  "value": "abcde",
+                                },
+                              ],
+                            },
+                          ],
+                          "kind": "RegularCommand",
+                          "loc": Object {
+                            "end": Object {
+                              "column": 37,
+                              "line": 17,
+                              "offset": 305,
+                            },
+                            "start": Object {
+                              "column": 16,
+                              "line": 17,
+                              "offset": 284,
+                            },
+                          },
+                          "value": "textsubscript",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+    Object {
+      "id": "ref4",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 26,
+          "offset": 406,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 20,
+          "offset": 313,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 22,
+              "offset": 353,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 21,
+              "offset": 330,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 23,
+                  "line": 21,
+                  "offset": 350,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 21,
+                  "offset": 340,
+                },
+              },
+              "value": "Name, Name",
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 23,
+              "offset": 370,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 22,
+              "offset": 353,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 22,
+                  "offset": 367,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 22,
+                  "offset": 363,
+                },
+              },
+              "value": "2018",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 24,
+              "offset": 403,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 23,
+              "offset": 370,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 13,
+                  "line": 23,
+                  "offset": 382,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 23,
+                  "offset": 381,
+                },
+              },
+              "value": "O",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 32,
+                  "line": 23,
+                  "offset": 401,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 23,
+                  "offset": 382,
+                },
+              },
+              "value": Array [
+                Object {
+                  "arguments": Array [
+                    Object {
+                      "kind": "RequiredArgument",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 31,
+                          "line": 23,
+                          "offset": 400,
+                        },
+                        "start": Object {
+                          "column": 28,
+                          "line": 23,
+                          "offset": 397,
+                        },
+                      },
+                      "value": Array [
+                        Object {
+                          "kind": "Text",
+                          "loc": Object {
+                            "end": Object {
+                              "column": 30,
+                              "line": 23,
+                              "offset": 399,
+                            },
+                            "start": Object {
+                              "column": 29,
+                              "line": 23,
+                              "offset": 398,
+                            },
+                          },
+                          "value": "x",
+                        },
+                      ],
+                    },
+                  ],
+                  "kind": "RegularCommand",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 31,
+                      "line": 23,
+                      "offset": 400,
+                    },
+                    "start": Object {
+                      "column": 14,
+                      "line": 23,
+                      "offset": 383,
+                    },
+                  },
+                  "value": "textsubscript",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+    Object {
+      "id": "ref5",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 32,
+          "offset": 504,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 26,
+          "offset": 406,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 28,
+              "offset": 446,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 27,
+              "offset": 423,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 23,
+                  "line": 27,
+                  "offset": 443,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 27,
+                  "offset": 433,
+                },
+              },
+              "value": "Name, Name",
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 29,
+              "offset": 463,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 28,
+              "offset": 446,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 28,
+                  "offset": 460,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 28,
+                  "offset": 456,
+                },
+              },
+              "value": "2018",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 30,
+              "offset": 501,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 29,
+              "offset": 463,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 13,
+                  "line": 29,
+                  "offset": 475,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 29,
+                  "offset": 474,
+                },
+              },
+              "value": "O",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 32,
+                  "line": 29,
+                  "offset": 494,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 29,
+                  "offset": 475,
+                },
+              },
+              "value": Array [
+                Object {
+                  "arguments": Array [
+                    Object {
+                      "kind": "RequiredArgument",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 31,
+                          "line": 29,
+                          "offset": 493,
+                        },
+                        "start": Object {
+                          "column": 28,
+                          "line": 29,
+                          "offset": 490,
+                        },
+                      },
+                      "value": Array [
+                        Object {
+                          "kind": "Text",
+                          "loc": Object {
+                            "end": Object {
+                              "column": 30,
+                              "line": 29,
+                              "offset": 492,
+                            },
+                            "start": Object {
+                              "column": 29,
+                              "line": 29,
+                              "offset": 491,
+                            },
+                          },
+                          "value": "x",
+                        },
+                      ],
+                    },
+                  ],
+                  "kind": "RegularCommand",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 31,
+                      "line": 29,
+                      "offset": 493,
+                    },
+                    "start": Object {
+                      "column": 14,
+                      "line": 29,
+                      "offset": 476,
+                    },
+                  },
+                  "value": "textsubscript",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 37,
+                  "line": 29,
+                  "offset": 499,
+                },
+                "start": Object {
+                  "column": 32,
+                  "line": 29,
+                  "offset": 494,
+                },
+              },
+              "value": " Test",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+    Object {
+      "id": "ref6",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 38,
+          "offset": 601,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 32,
+          "offset": 504,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 34,
+              "offset": 544,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 33,
+              "offset": 521,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 23,
+                  "line": 33,
+                  "offset": 541,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 33,
+                  "offset": 531,
+                },
+              },
+              "value": "Name, Name",
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 35,
+              "offset": 561,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 34,
+              "offset": 544,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 34,
+                  "offset": 558,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 34,
+                  "offset": 554,
+                },
+              },
+              "value": "2018",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 36,
+              "offset": 598,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 35,
+              "offset": 561,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 36,
+                  "line": 35,
+                  "offset": 596,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 35,
+                  "offset": 572,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 35,
+                      "line": 35,
+                      "offset": 595,
+                    },
+                    "start": Object {
+                      "column": 13,
+                      "line": 35,
+                      "offset": 573,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 15,
+                          "line": 35,
+                          "offset": 575,
+                        },
+                        "start": Object {
+                          "column": 14,
+                          "line": 35,
+                          "offset": 574,
+                        },
+                      },
+                      "value": "O",
+                    },
+                    Object {
+                      "kind": "NestedLiteral",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 34,
+                          "line": 35,
+                          "offset": 594,
+                        },
+                        "start": Object {
+                          "column": 15,
+                          "line": 35,
+                          "offset": 575,
+                        },
+                      },
+                      "value": Array [
+                        Object {
+                          "arguments": Array [
+                            Object {
+                              "kind": "RequiredArgument",
+                              "loc": Object {
+                                "end": Object {
+                                  "column": 33,
+                                  "line": 35,
+                                  "offset": 593,
+                                },
+                                "start": Object {
+                                  "column": 30,
+                                  "line": 35,
+                                  "offset": 590,
+                                },
+                              },
+                              "value": Array [
+                                Object {
+                                  "kind": "Text",
+                                  "loc": Object {
+                                    "end": Object {
+                                      "column": 32,
+                                      "line": 35,
+                                      "offset": 592,
+                                    },
+                                    "start": Object {
+                                      "column": 31,
+                                      "line": 35,
+                                      "offset": 591,
+                                    },
+                                  },
+                                  "value": "x",
+                                },
+                              ],
+                            },
+                          ],
+                          "kind": "RegularCommand",
+                          "loc": Object {
+                            "end": Object {
+                              "column": 33,
+                              "line": 35,
+                              "offset": 593,
+                            },
+                            "start": Object {
+                              "column": 16,
+                              "line": 35,
+                              "offset": 576,
+                            },
+                          },
+                          "value": "textsubscript",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+    Object {
+      "id": "ref7",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 44,
+          "offset": 696,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 38,
+          "offset": 601,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 40,
+              "offset": 641,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 39,
+              "offset": 618,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 23,
+                  "line": 39,
+                  "offset": 638,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 39,
+                  "offset": 628,
+                },
+              },
+              "value": "Name, Name",
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 41,
+              "offset": 658,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 40,
+              "offset": 641,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 40,
+                  "offset": 655,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 40,
+                  "offset": 651,
+                },
+              },
+              "value": "2018",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 42,
+              "offset": 693,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 41,
+              "offset": 658,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 13,
+                  "line": 41,
+                  "offset": 670,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 41,
+                  "offset": 669,
+                },
+              },
+              "value": "O",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 34,
+                  "line": 41,
+                  "offset": 691,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 41,
+                  "offset": 670,
+                },
+              },
+              "value": Array [
+                Object {
+                  "arguments": Array [
+                    Object {
+                      "kind": "RequiredArgument",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 33,
+                          "line": 41,
+                          "offset": 690,
+                        },
+                        "start": Object {
+                          "column": 28,
+                          "line": 41,
+                          "offset": 685,
+                        },
+                      },
+                      "value": Array [
+                        Object {
+                          "kind": "Text",
+                          "loc": Object {
+                            "end": Object {
+                              "column": 32,
+                              "line": 41,
+                              "offset": 689,
+                            },
+                            "start": Object {
+                              "column": 29,
+                              "line": 41,
+                              "offset": 686,
+                            },
+                          },
+                          "value": "7-x",
+                        },
+                      ],
+                    },
+                  ],
+                  "kind": "RegularCommand",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 33,
+                      "line": 41,
+                      "offset": 690,
+                    },
+                    "start": Object {
+                      "column": 14,
+                      "line": 41,
+                      "offset": 671,
+                    },
+                  },
+                  "value": "textsubscript",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+    Object {
+      "id": "ref8",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 51,
+          "offset": 797,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 44,
+          "offset": 696,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 46,
+              "offset": 736,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 45,
+              "offset": 713,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 23,
+                  "line": 45,
+                  "offset": 733,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 45,
+                  "offset": 723,
+                },
+              },
+              "value": "Name, Name",
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 47,
+              "offset": 753,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 46,
+              "offset": 736,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 46,
+                  "offset": 750,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 46,
+                  "offset": 746,
+                },
+              },
+              "value": "2018",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 48,
+              "offset": 793,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 47,
+              "offset": 753,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 13,
+                  "line": 47,
+                  "offset": 765,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 47,
+                  "offset": 764,
+                },
+              },
+              "value": "O",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 34,
+                  "line": 47,
+                  "offset": 786,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 47,
+                  "offset": 765,
+                },
+              },
+              "value": Array [
+                Object {
+                  "arguments": Array [
+                    Object {
+                      "kind": "RequiredArgument",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 33,
+                          "line": 47,
+                          "offset": 785,
+                        },
+                        "start": Object {
+                          "column": 28,
+                          "line": 47,
+                          "offset": 780,
+                        },
+                      },
+                      "value": Array [
+                        Object {
+                          "kind": "Text",
+                          "loc": Object {
+                            "end": Object {
+                              "column": 32,
+                              "line": 47,
+                              "offset": 784,
+                            },
+                            "start": Object {
+                              "column": 29,
+                              "line": 47,
+                              "offset": 781,
+                            },
+                          },
+                          "value": "7-x",
+                        },
+                      ],
+                    },
+                  ],
+                  "kind": "RegularCommand",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 33,
+                      "line": 47,
+                      "offset": 785,
+                    },
+                    "start": Object {
+                      "column": 14,
+                      "line": 47,
+                      "offset": 766,
+                    },
+                  },
+                  "value": "textsubscript",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 39,
+                  "line": 47,
+                  "offset": 791,
+                },
+                "start": Object {
+                  "column": 34,
+                  "line": 47,
+                  "offset": 786,
+                },
+              },
+              "value": " Test",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 51,
+      "offset": 797,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

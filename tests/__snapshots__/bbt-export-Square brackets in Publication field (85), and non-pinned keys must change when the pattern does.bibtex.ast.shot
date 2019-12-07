@@ -1,0 +1,547 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-Square brackets in Publication field (85), and non-pinned keys must change when the pattern does.bibtex to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "Hu2014",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 17,
+          "offset": 1015,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 2,
+          "offset": 1,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "abstract",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 425,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 3,
+              "offset": 20,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 214,
+                  "line": 3,
+                  "offset": 231,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 3,
+                  "offset": 32,
+                },
+              },
+              "value": "Let X be a projective variety which is algebraic Lang hyperbolic. We show that Lang's conjecture holds (one direction only): X and all its subvarieties are of general type and the canonical divisor K",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 216,
+                  "line": 3,
+                  "offset": 233,
+                },
+                "start": Object {
+                  "column": 214,
+                  "line": 3,
+                  "offset": 231,
+                },
+              },
+              "value": "_",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 298,
+                  "line": 3,
+                  "offset": 315,
+                },
+                "start": Object {
+                  "column": 216,
+                  "line": 3,
+                  "offset": 233,
+                },
+              },
+              "value": "X is ample at smooth points and Kawamata log terminal points of X, provided that K",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 300,
+                  "line": 3,
+                  "offset": 317,
+                },
+                "start": Object {
+                  "column": 298,
+                  "line": 3,
+                  "offset": 315,
+                },
+              },
+              "value": "_",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 405,
+                  "line": 3,
+                  "offset": 422,
+                },
+                "start": Object {
+                  "column": 300,
+                  "line": 3,
+                  "offset": 317,
+                },
+              },
+              "value": "X is Q-Cartier, no Calabi-Yau variety is algebraic Lang hyperbolic and a weak abundance conjecture holds.",
+            },
+          ],
+        },
+        Object {
+          "key": "archiveprefix",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 452,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 425,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 25,
+                  "line": 4,
+                  "offset": 449,
+                },
+                "start": Object {
+                  "column": 20,
+                  "line": 4,
+                  "offset": 444,
+                },
+              },
+              "value": "arXiv",
+            },
+          ],
+        },
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 507,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 452,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 53,
+                  "line": 5,
+                  "offset": 504,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 5,
+                  "offset": 464,
+                },
+              },
+              "value": "Hu, Fei and Meng, Sheng and Zhang, De-Qi",
+            },
+          ],
+        },
+        Object {
+          "key": "eprint",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 531,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 507,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 22,
+                  "line": 6,
+                  "offset": 528,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 6,
+                  "offset": 519,
+                },
+              },
+              "value": "1407.5694",
+            },
+          ],
+        },
+        Object {
+          "key": "eprinttype",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 555,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 531,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 22,
+                  "line": 7,
+                  "offset": 552,
+                },
+                "start": Object {
+                  "column": 17,
+                  "line": 7,
+                  "offset": 547,
+                },
+              },
+              "value": "arxiv",
+            },
+          ],
+        },
+        Object {
+          "key": "journal",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 593,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 555,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 36,
+                  "line": 8,
+                  "offset": 590,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 8,
+                  "offset": 568,
+                },
+              },
+              "value": "arXiv:1407.5694 [math]",
+            },
+          ],
+        },
+        Object {
+          "key": "keywords",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 820,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 593,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 225,
+                  "line": 9,
+                  "offset": 817,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 9,
+                  "offset": 607,
+                },
+              },
+              "value": "32Q45 Hyperbolic and Kobayashi hyperbolic manifolds; 14E30 Minimal model program (Mori theory; extremal rays),Mathematics - Algebraic Geometry,Mathematics - Complex Variables,Mathematics - Differential Geometry",
+            },
+          ],
+        },
+        Object {
+          "key": "month",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 835,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 820,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "String",
+              "loc": Object {
+                "end": Object {
+                  "column": 14,
+                  "line": 10,
+                  "offset": 833,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 10,
+                  "offset": 830,
+                },
+              },
+              "value": "jul",
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 884,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 835,
+            },
+          },
+          "value": Array [
+            Object {
+              "arguments": Array [
+                Object {
+                  "kind": "RequiredArgument",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 47,
+                      "line": 11,
+                      "offset": 881,
+                    },
+                    "start": Object {
+                      "column": 15,
+                      "line": 11,
+                      "offset": 849,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 46,
+                          "line": 11,
+                          "offset": 880,
+                        },
+                        "start": Object {
+                          "column": 16,
+                          "line": 11,
+                          "offset": 850,
+                        },
+                      },
+                      "value": "http://arxiv.org/abs/1407.5694",
+                    },
+                  ],
+                },
+              ],
+              "kind": "RegularCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 47,
+                  "line": 11,
+                  "offset": 881,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 11,
+                  "offset": 845,
+                },
+              },
+              "value": "url",
+            },
+          ],
+        },
+        Object {
+          "key": "primaryclass",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 909,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 884,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 23,
+                  "line": 12,
+                  "offset": 906,
+                },
+                "start": Object {
+                  "column": 19,
+                  "line": 12,
+                  "offset": 902,
+                },
+              },
+              "value": "math",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 14,
+              "offset": 996,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 909,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 85,
+                  "line": 13,
+                  "offset": 993,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 13,
+                  "offset": 920,
+                },
+              },
+              "value": "Ampleness of Canonical Divisors of Hyperbolic Normal Projective Varieties",
+            },
+          ],
+        },
+        Object {
+          "key": "year",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 15,
+              "offset": 1012,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 14,
+              "offset": 996,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 14,
+                  "offset": 1010,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 14,
+                  "offset": 1006,
+                },
+              },
+              "value": "2014",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 17,
+      "offset": 1015,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

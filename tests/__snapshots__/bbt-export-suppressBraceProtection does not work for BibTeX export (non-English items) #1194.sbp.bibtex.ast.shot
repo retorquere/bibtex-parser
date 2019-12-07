@@ -1,0 +1,414 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-suppressBraceProtection does not work for BibTeX export (non-English items) #1194.sbp.bibtex to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "Landafshits.V7",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 15,
+          "offset": 301,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "address",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 40,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 2,
+              "offset": 24,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 16,
+                  "line": 2,
+                  "offset": 37,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 2,
+                  "offset": 35,
+                },
+              },
+              "value": "М.",
+            },
+          ],
+        },
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 86,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 40,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 44,
+                  "line": 3,
+                  "offset": 83,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 3,
+                  "offset": 52,
+                },
+              },
+              "value": "Ландау, Л. Д. and Лифшиц, Е. М.",
+            },
+          ],
+        },
+        Object {
+          "key": "edition",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 103,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 86,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 4,
+                  "offset": 100,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 4,
+                  "offset": 99,
+                },
+              },
+              "value": "5",
+            },
+          ],
+        },
+        Object {
+          "key": "isbn",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 129,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 103,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 24,
+                  "line": 5,
+                  "offset": 126,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 5,
+                  "offset": 113,
+                },
+              },
+              "value": "5-9221-0122-6",
+            },
+          ],
+        },
+        Object {
+          "key": "language",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 153,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 129,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 22,
+                  "line": 6,
+                  "offset": 150,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 6,
+                  "offset": 143,
+                },
+              },
+              "value": "russian",
+            },
+          ],
+        },
+        Object {
+          "key": "pagetotal",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 174,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 153,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 19,
+                  "line": 7,
+                  "offset": 171,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 7,
+                  "offset": 168,
+                },
+              },
+              "value": "259",
+            },
+          ],
+        },
+        Object {
+          "key": "publisher",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 201,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 174,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 25,
+                  "line": 8,
+                  "offset": 198,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 8,
+                  "offset": 189,
+                },
+              },
+              "value": "Физматлит",
+            },
+          ],
+        },
+        Object {
+          "key": "series",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 236,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 201,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 33,
+                  "line": 9,
+                  "offset": 233,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 9,
+                  "offset": 213,
+                },
+              },
+              "value": "Теоретическая физика",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 266,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 236,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 28,
+                  "line": 10,
+                  "offset": 263,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 10,
+                  "offset": 247,
+                },
+              },
+              "value": "Теория упругости",
+            },
+          ],
+        },
+        Object {
+          "key": "volume",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 282,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 266,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 14,
+                  "line": 11,
+                  "offset": 279,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 11,
+                  "offset": 278,
+                },
+              },
+              "value": "7",
+            },
+          ],
+        },
+        Object {
+          "key": "year",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 298,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 282,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 12,
+                  "offset": 296,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 12,
+                  "offset": 292,
+                },
+              },
+              "value": "2007",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 15,
+      "offset": 301,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-import-importing a title-cased bib #1246.roundtrip.bib 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "U.",
+            "lastName": "Fritz",
+          },
+          Object {
+            "firstName": "C.",
+            "lastName": "Corti",
+          },
+          Object {
+            "firstName": "M.",
+            "lastName": "Päckert",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Fritz, U.",
+          "Corti, C.",
+          "Päckert, M.",
+        ],
+        "doi": Array [
+          "10.1007/s13127-011-0069-8",
+        ],
+        "journal": Array [
+          "Actes du 4<sup>ème</sup> Congrès Français d'Acoustique",
+        ],
+        "pages": Array [
+          "71-80",
+        ],
+        "timestamp": Array [
+          "2015-02-24 12:14:36 +0100",
+        ],
+        "title": Array [
+          "Test of markupconversion: <span class=\\"nocase\\">Italics</span>, bold, superscript, subscript, and small caps: <span class=\\"nocase\\">Mitochondrial DNA</span><span class=\\"nocase\\">₂</span> sequences suggest unexpected phylogenetic position of <span class=\\"nocase\\">Corso</span>-<span class=\\"nocase\\">Sardinian</span> grass snakes (<span class=\\"nocase\\"><i>Natrix</i></span><i>cetti</i>) and <b>do not</b> support their <span style=\\"font-variant:small-caps;\\">Species Status</span>, with notes on phylogeography and subspecies delineation of grass snakes.",
+        ],
+        "volume": Array [
+          "12",
+        ],
+        "year": Array [
+          "2012",
+        ],
+      },
+      "key": "Frit2",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Alistair",
+            "lastName": "Adcroft",
+          },
+          Object {
+            "firstName": "Chris",
+            "lastName": "Hill",
+          },
+          Object {
+            "firstName": "John",
+            "lastName": "Marshall",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Adcroft, Alistair",
+          "Hill, Chris",
+          "Marshall, John",
+        ],
+        "journal": Array [
+          "Monthly Weather Review",
+        ],
+        "pages": Array [
+          "2293-2315",
+        ],
+        "title": Array [
+          "Representation of topography by shaved cells in a height coordinate ocean model",
+        ],
+        "volume": Array [
+          "125",
+        ],
+        "year": Array [
+          "1997",
+        ],
+      },
+      "key": "AdcroftETAL:1997",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

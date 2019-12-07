@@ -1,0 +1,872 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-BibLaTeX Patent author handling, type #1060.biblatex to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "inventorCombinatorialProblemStabilityIssueDate",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 15,
+          "offset": 427,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 2,
+          "offset": 1,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 86,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 3,
+              "offset": 59,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 27,
+                  "line": 3,
+                  "offset": 83,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 3,
+                  "offset": 69,
+                },
+              },
+              "value": "Inventor, Some",
+            },
+          ],
+        },
+        Object {
+          "key": "editora",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 144,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 86,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 56,
+                  "line": 4,
+                  "offset": 141,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 4,
+                  "offset": 99,
+                },
+              },
+              "value": "Attorney/Agent, Some and Contributer, Some",
+            },
+          ],
+        },
+        Object {
+          "key": "editoratype",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 176,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 144,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 30,
+                  "line": 5,
+                  "offset": 173,
+                },
+                "start": Object {
+                  "column": 18,
+                  "line": 5,
+                  "offset": 161,
+                },
+              },
+              "value": "collaborator",
+            },
+          ],
+        },
+        Object {
+          "key": "holder",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 201,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 176,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 23,
+                  "line": 6,
+                  "offset": 198,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 6,
+                  "offset": 188,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 22,
+                      "line": 6,
+                      "offset": 197,
+                    },
+                    "start": Object {
+                      "column": 14,
+                      "line": 6,
+                      "offset": 189,
+                    },
+                  },
+                  "value": "Assignee",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "location",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 227,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 201,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 24,
+                  "line": 7,
+                  "offset": 224,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 7,
+                  "offset": 215,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 23,
+                      "line": 7,
+                      "offset": 223,
+                    },
+                    "start": Object {
+                      "column": 16,
+                      "line": 7,
+                      "offset": 216,
+                    },
+                  },
+                  "value": "Country",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "number",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 255,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 227,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 26,
+                  "line": 8,
+                  "offset": 252,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 8,
+                  "offset": 239,
+                },
+              },
+              "value": "Patent Number",
+            },
+          ],
+        },
+        Object {
+          "key": "pages",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 277,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 255,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 9,
+                  "offset": 274,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 9,
+                  "offset": 266,
+                },
+              },
+              "value": "247–261",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 383,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 277,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 104,
+                  "line": 10,
+                  "offset": 380,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 10,
+                  "offset": 288,
+                },
+              },
+              "value": "A Combinatorial Problem; Stability and Order for Models and Theories in Infinitary Languages",
+            },
+          ],
+        },
+        Object {
+          "key": "type",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 402,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 383,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 17,
+                  "line": 11,
+                  "offset": 399,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 11,
+                  "offset": 393,
+                },
+              },
+              "value": "patent",
+            },
+          ],
+        },
+        Object {
+          "key": "year",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 424,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 402,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 21,
+                  "line": 12,
+                  "offset": 422,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 12,
+                  "offset": 412,
+                },
+              },
+              "value": "Issue Date",
+            },
+          ],
+        },
+      ],
+      "type": "patent",
+    },
+    Object {
+      "id": "laufenbergElektrischeEinrichtungUnd2005",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 36,
+          "offset": 1609,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 15,
+          "offset": 427,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "abstract",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 27,
+              "offset": 977,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 16,
+              "offset": 478,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 13,
+                  "line": 26,
+                  "offset": 974,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 16,
+                  "offset": 490,
+                },
+              },
+              "value": "Die Erfindung betrifft eine elektrische Einrichtung mit einem Generator 12, insbesondere für die Verwendung in dem Bordnetz 13 eines Kraftfahrzeugs, mit einem Regler 12B für die Regelung der Generatorspannung. Bei der Einrichtung sind ein Bereich 30 für die Regelung vorgesehen, in dem eine Spannungsregelung durchgeführt wird, und Bereiche 31, 32, in denen eine Momentenregelung durchgeführt wird. Weiterhin betrifft die Erfindung Verfahren für den Betrieb einer solchen Einrichtung.",
+            },
+          ],
+        },
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 28,
+              "offset": 1240,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 27,
+              "offset": 977,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 261,
+                  "line": 27,
+                  "offset": 1237,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 27,
+                  "offset": 989,
+                },
+              },
+              "value": "Laufenberg, Xaver and Eynius, Dominique and Suelzle, Helmut and Usbeck, Stephan and Spaeth, Matthias and Neuser-Hoffmann, Miriam and Myrzik, Christian and Schmid, Manfred and Nietfeld, Franz and Thiel, Alexander and Braun, Harald and Ebner, Norbert",
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 29,
+              "offset": 1263,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 28,
+              "offset": 1240,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 21,
+                  "line": 28,
+                  "offset": 1260,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 28,
+                  "offset": 1250,
+                },
+              },
+              "value": "2005-07-28",
+            },
+          ],
+        },
+        Object {
+          "key": "holder",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 30,
+              "offset": 1411,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 29,
+              "offset": 1263,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 146,
+                  "line": 29,
+                  "offset": 1408,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 29,
+                  "offset": 1275,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 145,
+                      "line": 29,
+                      "offset": 1407,
+                    },
+                    "start": Object {
+                      "column": 14,
+                      "line": 29,
+                      "offset": 1276,
+                    },
+                  },
+                  "value": "DaimlerChrysler AG (Stuttgart, 70567, DE) Bayerische Motoren Werke AG (München, 80809, DE) Robert Bosch GmbH (Stuttgart, 70469, DE)",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "number",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 31,
+              "offset": 1434,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 30,
+              "offset": 1411,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 21,
+                  "line": 30,
+                  "offset": 1431,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 30,
+                  "offset": 1423,
+                },
+              },
+              "value": "10361215",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 32,
+              "offset": 1501,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 31,
+              "offset": 1434,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 24,
+                  "line": 31,
+                  "offset": 1457,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 31,
+                  "offset": 1445,
+                },
+              },
+              "value": "Elektrische ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 39,
+                  "line": 31,
+                  "offset": 1472,
+                },
+                "start": Object {
+                  "column": 24,
+                  "line": 31,
+                  "offset": 1457,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 38,
+                      "line": 31,
+                      "offset": 1471,
+                    },
+                    "start": Object {
+                      "column": 25,
+                      "line": 31,
+                      "offset": 1458,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 37,
+                          "line": 31,
+                          "offset": 1470,
+                        },
+                        "start": Object {
+                          "column": 26,
+                          "line": 31,
+                          "offset": 1459,
+                        },
+                      },
+                      "value": "Einrichtung",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 44,
+                  "line": 31,
+                  "offset": 1477,
+                },
+                "start": Object {
+                  "column": 39,
+                  "line": 31,
+                  "offset": 1472,
+                },
+              },
+              "value": " Und ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 65,
+                  "line": 31,
+                  "offset": 1498,
+                },
+                "start": Object {
+                  "column": 44,
+                  "line": 31,
+                  "offset": 1477,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 64,
+                      "line": 31,
+                      "offset": 1497,
+                    },
+                    "start": Object {
+                      "column": 45,
+                      "line": 31,
+                      "offset": 1478,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 63,
+                          "line": 31,
+                          "offset": 1496,
+                        },
+                        "start": Object {
+                          "column": 46,
+                          "line": 31,
+                          "offset": 1479,
+                        },
+                      },
+                      "value": "Betriebsverfahren",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "type",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 33,
+              "offset": 1522,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 32,
+              "offset": 1501,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 19,
+                  "line": 32,
+                  "offset": 1519,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 32,
+                  "offset": 1511,
+                },
+              },
+              "value": "patentde",
+            },
+          ],
+        },
+        Object {
+          "key": "url",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 34,
+              "offset": 1582,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 33,
+              "offset": 1522,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 58,
+                  "line": 33,
+                  "offset": 1579,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 33,
+                  "offset": 1531,
+                },
+              },
+              "value": "http://www.freepatentsonline.com/DE10361215.html",
+            },
+          ],
+        },
+        Object {
+          "key": "urldate",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 35,
+              "offset": 1607,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 34,
+              "offset": 1582,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 24,
+                  "line": 34,
+                  "offset": 1605,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 34,
+                  "offset": 1595,
+                },
+              },
+              "value": "2018-09-05",
+            },
+          ],
+        },
+      ],
+      "type": "patent",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 36,
+      "offset": 1609,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

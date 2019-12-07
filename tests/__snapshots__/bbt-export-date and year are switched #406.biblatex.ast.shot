@@ -1,0 +1,1514 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-date and year are switched #406.biblatex to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "west_introduction_2000",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 11,
+          "offset": 236,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 64,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 2,
+              "offset": 32,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 32,
+                  "line": 2,
+                  "offset": 61,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 2,
+                  "offset": 42,
+                },
+              },
+              "value": "West, Douglas Brent",
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 87,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 64,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 21,
+                  "line": 3,
+                  "offset": 84,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 3,
+                  "offset": 74,
+                },
+              },
+              "value": "2000-08-22",
+            },
+          ],
+        },
+        Object {
+          "key": "edition",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 104,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 87,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 4,
+                  "offset": 101,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 4,
+                  "offset": 100,
+                },
+              },
+              "value": "2",
+            },
+          ],
+        },
+        Object {
+          "key": "isbn",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 134,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 104,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 28,
+                  "line": 5,
+                  "offset": 131,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 5,
+                  "offset": 114,
+                },
+              },
+              "value": "978-0-13-014400-3",
+            },
+          ],
+        },
+        Object {
+          "key": "pagetotal",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 155,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 134,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 19,
+                  "line": 6,
+                  "offset": 152,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 6,
+                  "offset": 149,
+                },
+              },
+              "value": "470",
+            },
+          ],
+        },
+        Object {
+          "key": "publisher",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 188,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 155,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 31,
+                  "line": 7,
+                  "offset": 185,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 7,
+                  "offset": 170,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 30,
+                      "line": 7,
+                      "offset": 184,
+                    },
+                    "start": Object {
+                      "column": 17,
+                      "line": 7,
+                      "offset": 171,
+                    },
+                  },
+                  "value": "Prentice Hall",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 233,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 188,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 28,
+                  "line": 8,
+                  "offset": 215,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 8,
+                  "offset": 199,
+                },
+              },
+              "value": "Introduction to ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 44,
+                  "line": 8,
+                  "offset": 231,
+                },
+                "start": Object {
+                  "column": 28,
+                  "line": 8,
+                  "offset": 215,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 43,
+                      "line": 8,
+                      "offset": 230,
+                    },
+                    "start": Object {
+                      "column": 29,
+                      "line": 8,
+                      "offset": 216,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 42,
+                          "line": 8,
+                          "offset": 229,
+                        },
+                        "start": Object {
+                          "column": 30,
+                          "line": 8,
+                          "offset": 217,
+                        },
+                      },
+                      "value": "Graph Theory",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+    Object {
+      "id": "skubala_modellierung_2012",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 19,
+          "offset": 502,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 11,
+          "offset": 236,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 297,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 12,
+              "offset": 271,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 26,
+                  "line": 12,
+                  "offset": 294,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 12,
+                  "offset": 281,
+                },
+              },
+              "value": "Skubala, Adam",
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 14,
+              "offset": 320,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 297,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 21,
+                  "line": 13,
+                  "offset": 317,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 13,
+                  "offset": 307,
+                },
+              },
+              "value": "2012-09-27",
+            },
+          ],
+        },
+        Object {
+          "key": "location",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 15,
+              "offset": 371,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 14,
+              "offset": 320,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 49,
+                  "line": 14,
+                  "offset": 368,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 14,
+                  "offset": 334,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 48,
+                      "line": 14,
+                      "offset": 367,
+                    },
+                    "start": Object {
+                      "column": 16,
+                      "line": 14,
+                      "offset": 335,
+                    },
+                  },
+                  "value": "Masterthesis, Fakultät Statistik",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "publisher",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 16,
+              "offset": 402,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 15,
+              "offset": 371,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 29,
+                  "line": 15,
+                  "offset": 399,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 15,
+                  "offset": 386,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 28,
+                      "line": 15,
+                      "offset": 398,
+                    },
+                    "start": Object {
+                      "column": 17,
+                      "line": 15,
+                      "offset": 387,
+                    },
+                  },
+                  "value": "TU Dortmund",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 17,
+              "offset": 499,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 16,
+              "offset": 402,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 42,
+                  "line": 16,
+                  "offset": 443,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 16,
+                  "offset": 413,
+                },
+              },
+              "value": "Modellierung Niederfrequenter ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 58,
+                  "line": 16,
+                  "offset": 459,
+                },
+                "start": Object {
+                  "column": 42,
+                  "line": 16,
+                  "offset": 443,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 57,
+                      "line": 16,
+                      "offset": 458,
+                    },
+                    "start": Object {
+                      "column": 43,
+                      "line": 16,
+                      "offset": 444,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 56,
+                          "line": 16,
+                          "offset": 457,
+                        },
+                        "start": Object {
+                          "column": 44,
+                          "line": 16,
+                          "offset": 445,
+                        },
+                      },
+                      "value": "Schwingungen",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 81,
+                  "line": 16,
+                  "offset": 482,
+                },
+                "start": Object {
+                  "column": 58,
+                  "line": 16,
+                  "offset": 459,
+                },
+              },
+              "value": " in Einem Elektrischen ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 96,
+                  "line": 16,
+                  "offset": 497,
+                },
+                "start": Object {
+                  "column": 81,
+                  "line": 16,
+                  "offset": 482,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 95,
+                      "line": 16,
+                      "offset": 496,
+                    },
+                    "start": Object {
+                      "column": 82,
+                      "line": 16,
+                      "offset": 483,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 94,
+                          "line": 16,
+                          "offset": 495,
+                        },
+                        "start": Object {
+                          "column": 83,
+                          "line": 16,
+                          "offset": 484,
+                        },
+                      },
+                      "value": "Energienetz",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+    Object {
+      "id": "michigami_development_1995",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 30,
+          "offset": 908,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 19,
+          "offset": 502,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 21,
+              "offset": 572,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 20,
+              "offset": 541,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 31,
+                  "line": 20,
+                  "offset": 569,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 20,
+                  "offset": 551,
+                },
+              },
+              "value": "Michigami, Tsutomu",
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 22,
+              "offset": 592,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 21,
+              "offset": 572,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 18,
+                  "line": 21,
+                  "offset": 589,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 21,
+                  "offset": 582,
+                },
+              },
+              "value": "1995-12",
+            },
+          ],
+        },
+        Object {
+          "key": "doi",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 23,
+              "offset": 626,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 22,
+              "offset": 592,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 32,
+                  "line": 22,
+                  "offset": 623,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 22,
+                  "offset": 601,
+                },
+              },
+              "value": "10.1002/eej.4391150705",
+            },
+          ],
+        },
+        Object {
+          "key": "journaltitle",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 24,
+              "offset": 678,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 23,
+              "offset": 626,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 50,
+                  "line": 23,
+                  "offset": 675,
+                },
+                "start": Object {
+                  "column": 19,
+                  "line": 23,
+                  "offset": 644,
+                },
+              },
+              "value": "Electrical Engineering in Japan",
+            },
+          ],
+        },
+        Object {
+          "key": "number",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 25,
+              "offset": 694,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 24,
+              "offset": 678,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 14,
+                  "line": 24,
+                  "offset": 691,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 24,
+                  "offset": 690,
+                },
+              },
+              "value": "7",
+            },
+          ],
+        },
+        Object {
+          "key": "pages",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 26,
+              "offset": 715,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 25,
+              "offset": 694,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 19,
+                  "line": 25,
+                  "offset": 712,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 25,
+                  "offset": 705,
+                },
+              },
+              "value": "49 - 68",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 27,
+              "offset": 888,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 26,
+              "offset": 715,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 43,
+                  "line": 26,
+                  "offset": 757,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 26,
+                  "offset": 726,
+                },
+              },
+              "value": "Development of a New Two-Input ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 50,
+                  "line": 26,
+                  "offset": 764,
+                },
+                "start": Object {
+                  "column": 43,
+                  "line": 26,
+                  "offset": 757,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 49,
+                      "line": 26,
+                      "offset": 763,
+                    },
+                    "start": Object {
+                      "column": 44,
+                      "line": 26,
+                      "offset": 758,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 48,
+                          "line": 26,
+                          "offset": 762,
+                        },
+                        "start": Object {
+                          "column": 45,
+                          "line": 26,
+                          "offset": 759,
+                        },
+                      },
+                      "value": "PSS",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 171,
+                  "line": 26,
+                  "offset": 885,
+                },
+                "start": Object {
+                  "column": 50,
+                  "line": 26,
+                  "offset": 764,
+                },
+              },
+              "value": " to Control Low-Frequency Oscillation in Interconnecting Power Systems and the Study of a Low-Frequency Oscillation Model",
+            },
+          ],
+        },
+        Object {
+          "key": "volume",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 28,
+              "offset": 905,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 27,
+              "offset": 888,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 16,
+                  "line": 27,
+                  "offset": 903,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 27,
+                  "offset": 900,
+                },
+              },
+              "value": "115",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+    Object {
+      "id": "brato_stability_2014",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 40,
+          "offset": 1333,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 30,
+          "offset": 908,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 32,
+              "offset": 1058,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 31,
+              "offset": 940,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 118,
+                  "line": 31,
+                  "offset": 1055,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 31,
+                  "offset": 950,
+                },
+              },
+              "value": "Brato, Sebastian and Surmann, Dirk and Krey, Sebastian and Götze, Jürgen and Ligges, Uwe and Weihs, Claus",
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 33,
+              "offset": 1081,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 32,
+              "offset": 1058,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 21,
+                  "line": 32,
+                  "offset": 1078,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 32,
+                  "offset": 1068,
+                },
+              },
+              "value": "2014-02-11",
+            },
+          ],
+        },
+        Object {
+          "key": "institution",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 34,
+              "offset": 1134,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 33,
+              "offset": 1081,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 51,
+                  "line": 33,
+                  "offset": 1131,
+                },
+                "start": Object {
+                  "column": 18,
+                  "line": 33,
+                  "offset": 1098,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 50,
+                      "line": 33,
+                      "offset": 1130,
+                    },
+                    "start": Object {
+                      "column": 19,
+                      "line": 33,
+                      "offset": 1099,
+                    },
+                  },
+                  "value": "Technische Universität Dortmund",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "location",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 35,
+              "offset": 1161,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 34,
+              "offset": 1134,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 25,
+                  "line": 34,
+                  "offset": 1158,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 34,
+                  "offset": 1148,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 24,
+                      "line": 34,
+                      "offset": 1157,
+                    },
+                    "start": Object {
+                      "column": 16,
+                      "line": 34,
+                      "offset": 1149,
+                    },
+                  },
+                  "value": "Eldorado",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "number",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 36,
+              "offset": 1186,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 35,
+              "offset": 1161,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 23,
+                  "line": 35,
+                  "offset": 1183,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 35,
+                  "offset": 1173,
+                },
+              },
+              "value": "2003/32864",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 37,
+              "offset": 1280,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 36,
+              "offset": 1186,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 22,
+                  "line": 36,
+                  "offset": 1207,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 36,
+                  "offset": 1197,
+                },
+              },
+              "value": "Stability ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 34,
+                  "line": 36,
+                  "offset": 1219,
+                },
+                "start": Object {
+                  "column": 22,
+                  "line": 36,
+                  "offset": 1207,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 33,
+                      "line": 36,
+                      "offset": 1218,
+                    },
+                    "start": Object {
+                      "column": 23,
+                      "line": 36,
+                      "offset": 1208,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 32,
+                          "line": 36,
+                          "offset": 1217,
+                        },
+                        "start": Object {
+                          "column": 24,
+                          "line": 36,
+                          "offset": 1209,
+                        },
+                      },
+                      "value": "Analysis",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 39,
+                  "line": 36,
+                  "offset": 1224,
+                },
+                "start": Object {
+                  "column": 34,
+                  "line": 36,
+                  "offset": 1219,
+                },
+              },
+              "value": " and ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 53,
+                  "line": 36,
+                  "offset": 1238,
+                },
+                "start": Object {
+                  "column": 39,
+                  "line": 36,
+                  "offset": 1224,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 52,
+                      "line": 36,
+                      "offset": 1237,
+                    },
+                    "start": Object {
+                      "column": 40,
+                      "line": 36,
+                      "offset": 1225,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 51,
+                          "line": 36,
+                          "offset": 1236,
+                        },
+                        "start": Object {
+                          "column": 41,
+                          "line": 36,
+                          "offset": 1226,
+                        },
+                      },
+                      "value": "Clustering",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 57,
+                  "line": 36,
+                  "offset": 1242,
+                },
+                "start": Object {
+                  "column": 53,
+                  "line": 36,
+                  "offset": 1238,
+                },
+              },
+              "value": " of ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 92,
+                  "line": 36,
+                  "offset": 1277,
+                },
+                "start": Object {
+                  "column": 57,
+                  "line": 36,
+                  "offset": 1242,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 91,
+                      "line": 36,
+                      "offset": 1276,
+                    },
+                    "start": Object {
+                      "column": 58,
+                      "line": 36,
+                      "offset": 1243,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 90,
+                          "line": 36,
+                          "offset": 1275,
+                        },
+                        "start": Object {
+                          "column": 59,
+                          "line": 36,
+                          "offset": 1244,
+                        },
+                      },
+                      "value": "Electrical Transmission Systems",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "url",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 38,
+              "offset": 1330,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 37,
+              "offset": 1280,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 49,
+                  "line": 37,
+                  "offset": 1328,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 37,
+                  "offset": 1289,
+                },
+              },
+              "value": "http://dx.doi.org/10.17877/DE290R-13190",
+            },
+          ],
+        },
+      ],
+      "type": "report",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 40,
+      "offset": 1333,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

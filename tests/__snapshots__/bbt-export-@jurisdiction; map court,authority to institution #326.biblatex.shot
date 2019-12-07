@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-@jurisdiction; map court,authority to institution #326.biblatex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "date": Array [
+          "2010-12-23",
+        ],
+        "institution": Array [
+          "<span class=\\"nocase\\">CE, Ass.</span>",
+        ],
+        "journaltitle": Array [
+          "Rec.",
+        ],
+        "langid": Array [
+          "french",
+        ],
+        "number": Array [
+          "337033",
+        ],
+        "pages": Array [
+          "649",
+        ],
+        "title": Array [
+          "Dalain",
+        ],
+        "volume": Array [
+          "I",
+        ],
+      },
+      "key": "_dalain_2010",
+      "type": "jurisdiction",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

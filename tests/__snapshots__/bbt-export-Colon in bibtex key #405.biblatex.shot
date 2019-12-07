@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-Colon in bibtex key #405.biblatex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Y.A.W.",
+            "lastName": "de Kort",
+          },
+          Object {
+            "firstName": "W.A.",
+            "lastName": "IJsselsteijn",
+          },
+          Object {
+            "firstName": "K.",
+            "lastName": "Poels",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "de Kort, Y.A.W.",
+          "IJsselsteijn, W.A.",
+          "Poels, K.",
+        ],
+        "booktitle": Array [
+          "Proceedings of the 10th <span class=\\"nocase\\">Annual International Workshop</span> on <span class=\\"nocase\\">Presence</span>",
+        ],
+        "date": Array [
+          "2007",
+        ],
+        "doi": Array [
+          "http://alexandria.tue.nl/campusonly/Metis215145.pdf",
+        ],
+        "location": Array [
+          "Barcelona",
+        ],
+        "options": Array [
+          "useprefix=true",
+        ],
+        "pages": Array [
+          "195 - 203",
+        ],
+        "publisher": Array [
+          "Starlab",
+        ],
+        "title": Array [
+          "Digital games as social presence technology: development of the social presence in gaming questionnaire (<span class=\\"nocase\\">SPGQ</span>)",
+        ],
+        "url": Array [
+          "http://repository.tue.nl/663080",
+        ],
+      },
+      "key": "deKort:2007:DigitalGamesSocial",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

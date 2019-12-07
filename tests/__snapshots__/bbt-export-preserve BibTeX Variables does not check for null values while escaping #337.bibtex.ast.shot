@@ -1,0 +1,493 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-preserve BibTeX Variables does not check for null values while escaping #337.bibtex to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "geophysicsstudycommittee_continental_1980",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 10,
+          "offset": 404,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 204,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 2,
+              "offset": 51,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 41,
+                  "line": 2,
+                  "offset": 89,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 2,
+                  "offset": 61,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 40,
+                      "line": 2,
+                      "offset": 88,
+                    },
+                    "start": Object {
+                      "column": 14,
+                      "line": 2,
+                      "offset": 62,
+                    },
+                  },
+                  "value": "Geophysics Study Committee",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 46,
+                  "line": 2,
+                  "offset": 94,
+                },
+                "start": Object {
+                  "column": 41,
+                  "line": 2,
+                  "offset": 89,
+                },
+              },
+              "value": " and ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 73,
+                  "line": 2,
+                  "offset": 121,
+                },
+                "start": Object {
+                  "column": 46,
+                  "line": 2,
+                  "offset": 94,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 72,
+                      "line": 2,
+                      "offset": 120,
+                    },
+                    "start": Object {
+                      "column": 47,
+                      "line": 2,
+                      "offset": 95,
+                    },
+                  },
+                  "value": "Geophysics Research Board",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 78,
+                  "line": 2,
+                  "offset": 126,
+                },
+                "start": Object {
+                  "column": 73,
+                  "line": 2,
+                  "offset": 121,
+                },
+              },
+              "value": " and ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 153,
+                  "line": 2,
+                  "offset": 201,
+                },
+                "start": Object {
+                  "column": 78,
+                  "line": 2,
+                  "offset": 126,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 152,
+                      "line": 2,
+                      "offset": 200,
+                    },
+                    "start": Object {
+                      "column": 79,
+                      "line": 2,
+                      "offset": 127,
+                    },
+                  },
+                  "value": "Assembly of Mathematical and Physical Sciences, National Research Council",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "isbn",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 234,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 204,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 28,
+                  "line": 3,
+                  "offset": 231,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 3,
+                  "offset": 214,
+                },
+              },
+              "value": "978-0-309-02928-5",
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 298,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 234,
+            },
+          },
+          "value": Array [
+            Object {
+              "arguments": Array [
+                Object {
+                  "kind": "RequiredArgument",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 62,
+                      "line": 4,
+                      "offset": 295,
+                    },
+                    "start": Object {
+                      "column": 15,
+                      "line": 4,
+                      "offset": 248,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 54,
+                          "line": 4,
+                          "offset": 287,
+                        },
+                        "start": Object {
+                          "column": 16,
+                          "line": 4,
+                          "offset": 249,
+                        },
+                      },
+                      "value": "http://www.nap.edu/openbook.php?record",
+                    },
+                    Object {
+                      "kind": "SubscriptCommand",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 56,
+                          "line": 4,
+                          "offset": 289,
+                        },
+                        "start": Object {
+                          "column": 54,
+                          "line": 4,
+                          "offset": 287,
+                        },
+                      },
+                      "value": "i",
+                    },
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 61,
+                          "line": 4,
+                          "offset": 294,
+                        },
+                        "start": Object {
+                          "column": 56,
+                          "line": 4,
+                          "offset": 289,
+                        },
+                      },
+                      "value": "d=203",
+                    },
+                  ],
+                },
+              ],
+              "kind": "RegularCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 62,
+                  "line": 4,
+                  "offset": 295,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 4,
+                  "offset": 244,
+                },
+              },
+              "value": "url",
+            },
+          ],
+        },
+        Object {
+          "key": "publisher",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 346,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 298,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 46,
+                  "line": 5,
+                  "offset": 343,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 5,
+                  "offset": 313,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 45,
+                      "line": 5,
+                      "offset": 342,
+                    },
+                    "start": Object {
+                      "column": 17,
+                      "line": 5,
+                      "offset": 314,
+                    },
+                  },
+                  "value": "The National Academies Press",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 385,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 346,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 24,
+                  "line": 6,
+                  "offset": 369,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 6,
+                  "offset": 357,
+                },
+              },
+              "value": "Continental ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 37,
+                  "line": 6,
+                  "offset": 382,
+                },
+                "start": Object {
+                  "column": 24,
+                  "line": 6,
+                  "offset": 369,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 36,
+                      "line": 6,
+                      "offset": 381,
+                    },
+                    "start": Object {
+                      "column": 25,
+                      "line": 6,
+                      "offset": 370,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 35,
+                          "line": 6,
+                          "offset": 380,
+                        },
+                        "start": Object {
+                          "column": 26,
+                          "line": 6,
+                          "offset": 371,
+                        },
+                      },
+                      "value": "Tectonics",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "year",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 401,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 385,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 7,
+                  "offset": 399,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 7,
+                  "offset": 395,
+                },
+              },
+              "value": "1980",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 10,
+      "offset": 404,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

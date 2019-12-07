@@ -1,0 +1,2005 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-Unbalanced vphantom escapes #1043.bibtex to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "mies1973",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 14,
+          "offset": 1298,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "abstract",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 809,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 2,
+              "offset": 21,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 98,
+                  "line": 2,
+                  "offset": 116,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 2,
+                  "offset": 33,
+                },
+              },
+              "value": "The results of a close-coupling calculation of the fine-structure transitions (j,mj",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 113,
+                  "line": 2,
+                  "offset": 131,
+                },
+                "start": Object {
+                  "column": 98,
+                  "line": 2,
+                  "offset": 116,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "MathMode",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 100,
+                      "line": 2,
+                      "offset": 118,
+                    },
+                    "start": Object {
+                      "column": 99,
+                      "line": 2,
+                      "offset": 117,
+                    },
+                  },
+                  "value": "$",
+                },
+                Object {
+                  "arguments": Array [],
+                  "kind": "RegularCommand",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 111,
+                      "line": 2,
+                      "offset": 129,
+                    },
+                    "start": Object {
+                      "column": 100,
+                      "line": 2,
+                      "offset": 118,
+                    },
+                  },
+                  "value": "rightarrow",
+                },
+                Object {
+                  "kind": "MathMode",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 112,
+                      "line": 2,
+                      "offset": 130,
+                    },
+                    "start": Object {
+                      "column": 111,
+                      "line": 2,
+                      "offset": 129,
+                    },
+                  },
+                  "value": "$",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 114,
+                  "line": 2,
+                  "offset": 132,
+                },
+                "start": Object {
+                  "column": 113,
+                  "line": 2,
+                  "offset": 131,
+                },
+              },
+              "value": "j",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 121,
+                  "line": 2,
+                  "offset": 139,
+                },
+                "start": Object {
+                  "column": 114,
+                  "line": 2,
+                  "offset": 132,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "MathMode",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 116,
+                      "line": 2,
+                      "offset": 134,
+                    },
+                    "start": Object {
+                      "column": 115,
+                      "line": 2,
+                      "offset": 133,
+                    },
+                  },
+                  "value": "$",
+                },
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 119,
+                      "line": 2,
+                      "offset": 137,
+                    },
+                    "start": Object {
+                      "column": 116,
+                      "line": 2,
+                      "offset": 134,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 118,
+                          "line": 2,
+                          "offset": 136,
+                        },
+                        "start": Object {
+                          "column": 117,
+                          "line": 2,
+                          "offset": 135,
+                        },
+                      },
+                      "value": "'",
+                    },
+                  ],
+                },
+                Object {
+                  "kind": "MathMode",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 120,
+                      "line": 2,
+                      "offset": 138,
+                    },
+                    "start": Object {
+                      "column": 119,
+                      "line": 2,
+                      "offset": 137,
+                    },
+                  },
+                  "value": "$",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 123,
+                  "line": 2,
+                  "offset": 141,
+                },
+                "start": Object {
+                  "column": 121,
+                  "line": 2,
+                  "offset": 139,
+                },
+              },
+              "value": ",m",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 130,
+                  "line": 2,
+                  "offset": 148,
+                },
+                "start": Object {
+                  "column": 123,
+                  "line": 2,
+                  "offset": 141,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "MathMode",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 125,
+                      "line": 2,
+                      "offset": 143,
+                    },
+                    "start": Object {
+                      "column": 124,
+                      "line": 2,
+                      "offset": 142,
+                    },
+                  },
+                  "value": "$",
+                },
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 128,
+                      "line": 2,
+                      "offset": 146,
+                    },
+                    "start": Object {
+                      "column": 125,
+                      "line": 2,
+                      "offset": 143,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 127,
+                          "line": 2,
+                          "offset": 145,
+                        },
+                        "start": Object {
+                          "column": 126,
+                          "line": 2,
+                          "offset": 144,
+                        },
+                      },
+                      "value": "'",
+                    },
+                  ],
+                },
+                Object {
+                  "kind": "MathMode",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 129,
+                      "line": 2,
+                      "offset": 147,
+                    },
+                    "start": Object {
+                      "column": 128,
+                      "line": 2,
+                      "offset": 146,
+                    },
+                  },
+                  "value": "$",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 329,
+                  "line": 2,
+                  "offset": 347,
+                },
+                "start": Object {
+                  "column": 130,
+                  "line": 2,
+                  "offset": 148,
+                },
+              },
+              "value": "j) are presented for collisions between photons and F(Pj,mj2). The theory is formulated in the perturbed-stationary-state approximation using accurate molecular wave functions for the ground II2 and ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 339,
+                  "line": 2,
+                  "offset": 357,
+                },
+                "start": Object {
+                  "column": 329,
+                  "line": 2,
+                  "offset": 347,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "MathMode",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 331,
+                      "line": 2,
+                      "offset": 349,
+                    },
+                    "start": Object {
+                      "column": 330,
+                      "line": 2,
+                      "offset": 348,
+                    },
+                  },
+                  "value": "$",
+                },
+                Object {
+                  "arguments": Array [],
+                  "kind": "RegularCommand",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 337,
+                      "line": 2,
+                      "offset": 355,
+                    },
+                    "start": Object {
+                      "column": 331,
+                      "line": 2,
+                      "offset": 349,
+                    },
+                  },
+                  "value": "Sigma",
+                },
+                Object {
+                  "kind": "MathMode",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 338,
+                      "line": 2,
+                      "offset": 356,
+                    },
+                    "start": Object {
+                      "column": 337,
+                      "line": 2,
+                      "offset": 355,
+                    },
+                  },
+                  "value": "$",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 454,
+                  "line": 2,
+                  "offset": 472,
+                },
+                "start": Object {
+                  "column": 339,
+                  "line": 2,
+                  "offset": 357,
+                },
+              },
+              "value": "2 states of HF+. Comparison is made to the predictions of the Born approximation. The magnetic selection rule (j,mj",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 469,
+                  "line": 2,
+                  "offset": 487,
+                },
+                "start": Object {
+                  "column": 454,
+                  "line": 2,
+                  "offset": 472,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "MathMode",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 456,
+                      "line": 2,
+                      "offset": 474,
+                    },
+                    "start": Object {
+                      "column": 455,
+                      "line": 2,
+                      "offset": 473,
+                    },
+                  },
+                  "value": "$",
+                },
+                Object {
+                  "arguments": Array [],
+                  "kind": "RegularCommand",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 467,
+                      "line": 2,
+                      "offset": 485,
+                    },
+                    "start": Object {
+                      "column": 456,
+                      "line": 2,
+                      "offset": 474,
+                    },
+                  },
+                  "value": "rightarrow",
+                },
+                Object {
+                  "kind": "MathMode",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 468,
+                      "line": 2,
+                      "offset": 486,
+                    },
+                    "start": Object {
+                      "column": 467,
+                      "line": 2,
+                      "offset": 485,
+                    },
+                  },
+                  "value": "$",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 630,
+                  "line": 2,
+                  "offset": 648,
+                },
+                "start": Object {
+                  "column": 469,
+                  "line": 2,
+                  "offset": 487,
+                },
+              },
+              "value": "j,-mj) is strongly violated in the j=32 state and less strongly violated in the j=12 state. It is concluded that the important region of interaction for the j=12",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 645,
+                  "line": 2,
+                  "offset": 663,
+                },
+                "start": Object {
+                  "column": 630,
+                  "line": 2,
+                  "offset": 648,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "MathMode",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 632,
+                      "line": 2,
+                      "offset": 650,
+                    },
+                    "start": Object {
+                      "column": 631,
+                      "line": 2,
+                      "offset": 649,
+                    },
+                  },
+                  "value": "$",
+                },
+                Object {
+                  "arguments": Array [],
+                  "kind": "RegularCommand",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 643,
+                      "line": 2,
+                      "offset": 661,
+                    },
+                    "start": Object {
+                      "column": 632,
+                      "line": 2,
+                      "offset": 650,
+                    },
+                  },
+                  "value": "rightarrow",
+                },
+                Object {
+                  "kind": "MathMode",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 644,
+                      "line": 2,
+                      "offset": 662,
+                    },
+                    "start": Object {
+                      "column": 643,
+                      "line": 2,
+                      "offset": 661,
+                    },
+                  },
+                  "value": "$",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 788,
+                  "line": 2,
+                  "offset": 806,
+                },
+                "start": Object {
+                  "column": 645,
+                  "line": 2,
+                  "offset": 663,
+                },
+              },
+              "value": "j=32 transition is at short-to-intermediate distances where accurate molecular potentials are required and close-coupling effects are dominant.",
+            },
+          ],
+        },
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 835,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 809,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 24,
+                  "line": 3,
+                  "offset": 832,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 3,
+                  "offset": 821,
+                },
+              },
+              "value": "Mies, F. H.",
+            },
+          ],
+        },
+        Object {
+          "key": "doi",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 869,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 835,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 32,
+                  "line": 4,
+                  "offset": 866,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 4,
+                  "offset": 844,
+                },
+              },
+              "value": "10.1103/PhysRevA.7.957",
+            },
+          ],
+        },
+        Object {
+          "key": "journal",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 902,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 869,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 31,
+                  "line": 5,
+                  "offset": 899,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 5,
+                  "offset": 882,
+                },
+              },
+              "value": "Physical Review A",
+            },
+          ],
+        },
+        Object {
+          "key": "month",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 917,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 902,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "String",
+              "loc": Object {
+                "end": Object {
+                  "column": 14,
+                  "line": 6,
+                  "offset": 915,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 6,
+                  "offset": 912,
+                },
+              },
+              "value": "mar",
+            },
+          ],
+        },
+        Object {
+          "key": "number",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 933,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 917,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 14,
+                  "line": 7,
+                  "offset": 930,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 7,
+                  "offset": 929,
+                },
+              },
+              "value": "3",
+            },
+          ],
+        },
+        Object {
+          "key": "pages",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 954,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 933,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 19,
+                  "line": 8,
+                  "offset": 951,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 8,
+                  "offset": 944,
+                },
+              },
+              "value": "957-967",
+            },
+          ],
+        },
+        Object {
+          "key": "shorttitle",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 1018,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 954,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 27,
+                  "line": 9,
+                  "offset": 980,
+                },
+                "start": Object {
+                  "column": 17,
+                  "line": 9,
+                  "offset": 970,
+                },
+              },
+              "value": "Molecular ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 37,
+                  "line": 9,
+                  "offset": 990,
+                },
+                "start": Object {
+                  "column": 27,
+                  "line": 9,
+                  "offset": 980,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 36,
+                      "line": 9,
+                      "offset": 989,
+                    },
+                    "start": Object {
+                      "column": 28,
+                      "line": 9,
+                      "offset": 981,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 35,
+                          "line": 9,
+                          "offset": 988,
+                        },
+                        "start": Object {
+                          "column": 29,
+                          "line": 9,
+                          "offset": 982,
+                        },
+                      },
+                      "value": "Theory",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 41,
+                  "line": 9,
+                  "offset": 994,
+                },
+                "start": Object {
+                  "column": 37,
+                  "line": 9,
+                  "offset": 990,
+                },
+              },
+              "value": " of ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 62,
+                  "line": 9,
+                  "offset": 1015,
+                },
+                "start": Object {
+                  "column": 41,
+                  "line": 9,
+                  "offset": 994,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 61,
+                      "line": 9,
+                      "offset": 1014,
+                    },
+                    "start": Object {
+                      "column": 42,
+                      "line": 9,
+                      "offset": 995,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 60,
+                          "line": 9,
+                          "offset": 1013,
+                        },
+                        "start": Object {
+                          "column": 43,
+                          "line": 9,
+                          "offset": 996,
+                        },
+                      },
+                      "value": "Atomic Collisions",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 1264,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 1018,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 22,
+                  "line": 10,
+                  "offset": 1039,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 10,
+                  "offset": 1029,
+                },
+              },
+              "value": "Molecular ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 32,
+                  "line": 10,
+                  "offset": 1049,
+                },
+                "start": Object {
+                  "column": 22,
+                  "line": 10,
+                  "offset": 1039,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 31,
+                      "line": 10,
+                      "offset": 1048,
+                    },
+                    "start": Object {
+                      "column": 23,
+                      "line": 10,
+                      "offset": 1040,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 30,
+                          "line": 10,
+                          "offset": 1047,
+                        },
+                        "start": Object {
+                          "column": 24,
+                          "line": 10,
+                          "offset": 1041,
+                        },
+                      },
+                      "value": "Theory",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 36,
+                  "line": 10,
+                  "offset": 1053,
+                },
+                "start": Object {
+                  "column": 32,
+                  "line": 10,
+                  "offset": 1049,
+                },
+              },
+              "value": " of ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 57,
+                  "line": 10,
+                  "offset": 1074,
+                },
+                "start": Object {
+                  "column": 36,
+                  "line": 10,
+                  "offset": 1053,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 56,
+                      "line": 10,
+                      "offset": 1073,
+                    },
+                    "start": Object {
+                      "column": 37,
+                      "line": 10,
+                      "offset": 1054,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 55,
+                          "line": 10,
+                          "offset": 1072,
+                        },
+                        "start": Object {
+                          "column": 38,
+                          "line": 10,
+                          "offset": 1055,
+                        },
+                      },
+                      "value": "Atomic Collisions",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 59,
+                  "line": 10,
+                  "offset": 1076,
+                },
+                "start": Object {
+                  "column": 57,
+                  "line": 10,
+                  "offset": 1074,
+                },
+              },
+              "value": ": ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 88,
+                  "line": 10,
+                  "offset": 1105,
+                },
+                "start": Object {
+                  "column": 59,
+                  "line": 10,
+                  "offset": 1076,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 87,
+                      "line": 10,
+                      "offset": 1104,
+                    },
+                    "start": Object {
+                      "column": 60,
+                      "line": 10,
+                      "offset": 1077,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 86,
+                          "line": 10,
+                          "offset": 1103,
+                        },
+                        "start": Object {
+                          "column": 61,
+                          "line": 10,
+                          "offset": 1078,
+                        },
+                      },
+                      "value": "Calculated Cross Sections",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 93,
+                  "line": 10,
+                  "offset": 1110,
+                },
+                "start": Object {
+                  "column": 88,
+                  "line": 10,
+                  "offset": 1105,
+                },
+              },
+              "value": " for ",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 95,
+                  "line": 10,
+                  "offset": 1112,
+                },
+                "start": Object {
+                  "column": 93,
+                  "line": 10,
+                  "offset": 1110,
+                },
+              },
+              "value": "$",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 97,
+                  "line": 10,
+                  "offset": 1114,
+                },
+                "start": Object {
+                  "column": 95,
+                  "line": 10,
+                  "offset": 1112,
+                },
+              },
+              "value": "{",
+            },
+            Object {
+              "arguments": Array [
+                Object {
+                  "kind": "RequiredArgument",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 113,
+                      "line": 10,
+                      "offset": 1130,
+                    },
+                    "start": Object {
+                      "column": 111,
+                      "line": 10,
+                      "offset": 1128,
+                    },
+                  },
+                  "value": Array [],
+                },
+              ],
+              "kind": "RegularCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 113,
+                  "line": 10,
+                  "offset": 1130,
+                },
+                "start": Object {
+                  "column": 97,
+                  "line": 10,
+                  "offset": 1114,
+                },
+              },
+              "value": "textbackslash",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 119,
+                  "line": 10,
+                  "offset": 1136,
+                },
+                "start": Object {
+                  "column": 113,
+                  "line": 10,
+                  "offset": 1130,
+                },
+              },
+              "value": "mathrm",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 121,
+                  "line": 10,
+                  "offset": 1138,
+                },
+                "start": Object {
+                  "column": 119,
+                  "line": 10,
+                  "offset": 1136,
+                },
+              },
+              "value": "{",
+            },
+            Object {
+              "arguments": Array [
+                Object {
+                  "kind": "RequiredArgument",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 136,
+                      "line": 10,
+                      "offset": 1153,
+                    },
+                    "start": Object {
+                      "column": 130,
+                      "line": 10,
+                      "offset": 1147,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "SymbolCommand",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 133,
+                          "line": 10,
+                          "offset": 1150,
+                        },
+                        "start": Object {
+                          "column": 131,
+                          "line": 10,
+                          "offset": 1148,
+                        },
+                      },
+                      "value": "}",
+                    },
+                    Object {
+                      "kind": "SymbolCommand",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 135,
+                          "line": 10,
+                          "offset": 1152,
+                        },
+                        "start": Object {
+                          "column": 133,
+                          "line": 10,
+                          "offset": 1150,
+                        },
+                      },
+                      "value": "}",
+                    },
+                  ],
+                },
+              ],
+              "kind": "RegularCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 136,
+                  "line": 10,
+                  "offset": 1153,
+                },
+                "start": Object {
+                  "column": 121,
+                  "line": 10,
+                  "offset": 1138,
+                },
+              },
+              "value": "vphantom",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 141,
+                  "line": 10,
+                  "offset": 1158,
+                },
+                "start": Object {
+                  "column": 136,
+                  "line": 10,
+                  "offset": 1153,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 140,
+                      "line": 10,
+                      "offset": 1157,
+                    },
+                    "start": Object {
+                      "column": 137,
+                      "line": 10,
+                      "offset": 1154,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 139,
+                          "line": 10,
+                          "offset": 1156,
+                        },
+                        "start": Object {
+                          "column": 138,
+                          "line": 10,
+                          "offset": 1155,
+                        },
+                      },
+                      "value": "H",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "arguments": Array [],
+              "kind": "RegularCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 150,
+                  "line": 10,
+                  "offset": 1167,
+                },
+                "start": Object {
+                  "column": 141,
+                  "line": 10,
+                  "offset": 1158,
+                },
+              },
+              "value": "vphantom",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 152,
+                  "line": 10,
+                  "offset": 1169,
+                },
+                "start": Object {
+                  "column": 150,
+                  "line": 10,
+                  "offset": 1167,
+                },
+              },
+              "value": "{",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 154,
+                  "line": 10,
+                  "offset": 1171,
+                },
+                "start": Object {
+                  "column": 152,
+                  "line": 10,
+                  "offset": 1169,
+                },
+              },
+              "value": "}",
+            },
+            Object {
+              "arguments": Array [],
+              "kind": "RegularCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 163,
+                  "line": 10,
+                  "offset": 1180,
+                },
+                "start": Object {
+                  "column": 154,
+                  "line": 10,
+                  "offset": 1171,
+                },
+              },
+              "value": "vphantom",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 165,
+                  "line": 10,
+                  "offset": 1182,
+                },
+                "start": Object {
+                  "column": 163,
+                  "line": 10,
+                  "offset": 1180,
+                },
+              },
+              "value": "{",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 167,
+                  "line": 10,
+                  "offset": 1184,
+                },
+                "start": Object {
+                  "column": 165,
+                  "line": 10,
+                  "offset": 1182,
+                },
+              },
+              "value": "}",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 169,
+                  "line": 10,
+                  "offset": 1186,
+                },
+                "start": Object {
+                  "column": 167,
+                  "line": 10,
+                  "offset": 1184,
+                },
+              },
+              "value": "^",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 171,
+                  "line": 10,
+                  "offset": 1188,
+                },
+                "start": Object {
+                  "column": 169,
+                  "line": 10,
+                  "offset": 1186,
+                },
+              },
+              "value": "{",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 172,
+                  "line": 10,
+                  "offset": 1189,
+                },
+                "start": Object {
+                  "column": 171,
+                  "line": 10,
+                  "offset": 1188,
+                },
+              },
+              "value": "+",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 174,
+                  "line": 10,
+                  "offset": 1191,
+                },
+                "start": Object {
+                  "column": 172,
+                  "line": 10,
+                  "offset": 1189,
+                },
+              },
+              "value": "}",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 175,
+                  "line": 10,
+                  "offset": 1192,
+                },
+                "start": Object {
+                  "column": 174,
+                  "line": 10,
+                  "offset": 1191,
+                },
+              },
+              "value": "+",
+            },
+            Object {
+              "arguments": Array [
+                Object {
+                  "kind": "RequiredArgument",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 191,
+                      "line": 10,
+                      "offset": 1208,
+                    },
+                    "start": Object {
+                      "column": 189,
+                      "line": 10,
+                      "offset": 1206,
+                    },
+                  },
+                  "value": Array [],
+                },
+              ],
+              "kind": "RegularCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 191,
+                  "line": 10,
+                  "offset": 1208,
+                },
+                "start": Object {
+                  "column": 175,
+                  "line": 10,
+                  "offset": 1192,
+                },
+              },
+              "value": "textbackslash",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 197,
+                  "line": 10,
+                  "offset": 1214,
+                },
+                "start": Object {
+                  "column": 191,
+                  "line": 10,
+                  "offset": 1208,
+                },
+              },
+              "value": "mathrm",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 199,
+                  "line": 10,
+                  "offset": 1216,
+                },
+                "start": Object {
+                  "column": 197,
+                  "line": 10,
+                  "offset": 1214,
+                },
+              },
+              "value": "{",
+            },
+            Object {
+              "arguments": Array [],
+              "kind": "RegularCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 208,
+                  "line": 10,
+                  "offset": 1225,
+                },
+                "start": Object {
+                  "column": 199,
+                  "line": 10,
+                  "offset": 1216,
+                },
+              },
+              "value": "vphantom",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 210,
+                  "line": 10,
+                  "offset": 1227,
+                },
+                "start": Object {
+                  "column": 208,
+                  "line": 10,
+                  "offset": 1225,
+                },
+              },
+              "value": "}",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 215,
+                  "line": 10,
+                  "offset": 1232,
+                },
+                "start": Object {
+                  "column": 210,
+                  "line": 10,
+                  "offset": 1227,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 214,
+                      "line": 10,
+                      "offset": 1231,
+                    },
+                    "start": Object {
+                      "column": 211,
+                      "line": 10,
+                      "offset": 1228,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 213,
+                          "line": 10,
+                          "offset": 1230,
+                        },
+                        "start": Object {
+                          "column": 212,
+                          "line": 10,
+                          "offset": 1229,
+                        },
+                      },
+                      "value": "F",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "arguments": Array [],
+              "kind": "RegularCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 224,
+                  "line": 10,
+                  "offset": 1241,
+                },
+                "start": Object {
+                  "column": 215,
+                  "line": 10,
+                  "offset": 1232,
+                },
+              },
+              "value": "vphantom",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 226,
+                  "line": 10,
+                  "offset": 1243,
+                },
+                "start": Object {
+                  "column": 224,
+                  "line": 10,
+                  "offset": 1241,
+                },
+              },
+              "value": "{",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 228,
+                  "line": 10,
+                  "offset": 1245,
+                },
+                "start": Object {
+                  "column": 226,
+                  "line": 10,
+                  "offset": 1243,
+                },
+              },
+              "value": "}",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 229,
+                  "line": 10,
+                  "offset": 1246,
+                },
+                "start": Object {
+                  "column": 228,
+                  "line": 10,
+                  "offset": 1245,
+                },
+              },
+              "value": "(",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 231,
+                  "line": 10,
+                  "offset": 1248,
+                },
+                "start": Object {
+                  "column": 229,
+                  "line": 10,
+                  "offset": 1246,
+                },
+              },
+              "value": "^",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 233,
+                  "line": 10,
+                  "offset": 1250,
+                },
+                "start": Object {
+                  "column": 231,
+                  "line": 10,
+                  "offset": 1248,
+                },
+              },
+              "value": "{",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 234,
+                  "line": 10,
+                  "offset": 1251,
+                },
+                "start": Object {
+                  "column": 233,
+                  "line": 10,
+                  "offset": 1250,
+                },
+              },
+              "value": "2",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 236,
+                  "line": 10,
+                  "offset": 1253,
+                },
+                "start": Object {
+                  "column": 234,
+                  "line": 10,
+                  "offset": 1251,
+                },
+              },
+              "value": "}",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 241,
+                  "line": 10,
+                  "offset": 1258,
+                },
+                "start": Object {
+                  "column": 236,
+                  "line": 10,
+                  "offset": 1253,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 240,
+                      "line": 10,
+                      "offset": 1257,
+                    },
+                    "start": Object {
+                      "column": 237,
+                      "line": 10,
+                      "offset": 1254,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 239,
+                          "line": 10,
+                          "offset": 1256,
+                        },
+                        "start": Object {
+                          "column": 238,
+                          "line": 10,
+                          "offset": 1255,
+                        },
+                      },
+                      "value": "P",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 242,
+                  "line": 10,
+                  "offset": 1259,
+                },
+                "start": Object {
+                  "column": 241,
+                  "line": 10,
+                  "offset": 1258,
+                },
+              },
+              "value": ")",
+            },
+            Object {
+              "kind": "SymbolCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 244,
+                  "line": 10,
+                  "offset": 1261,
+                },
+                "start": Object {
+                  "column": 242,
+                  "line": 10,
+                  "offset": 1259,
+                },
+              },
+              "value": "$",
+            },
+          ],
+        },
+        Object {
+          "key": "volume",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 1280,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 11,
+              "offset": 1264,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 14,
+                  "line": 11,
+                  "offset": 1277,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 11,
+                  "offset": 1276,
+                },
+              },
+              "value": "7",
+            },
+          ],
+        },
+        Object {
+          "key": "year",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 1296,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 12,
+              "offset": 1280,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 12,
+                  "offset": 1294,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 12,
+                  "offset": 1290,
+                },
+              },
+              "value": "1973",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 14,
+      "offset": 1298,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

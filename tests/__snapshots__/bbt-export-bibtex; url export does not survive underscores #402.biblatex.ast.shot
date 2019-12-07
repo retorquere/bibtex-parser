@@ -1,0 +1,709 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-bibtex; url export does not survive underscores #402.biblatex to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "EmmerJaens14a",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 10,
+          "offset": 411,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 120,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 2,
+              "offset": 32,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 88,
+                  "line": 2,
+                  "offset": 117,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 2,
+                  "offset": 42,
+                },
+              },
+              "value": "Emmert, Thomas and Jaensch, Stefan and Sovardi, Carlo and Polifke, Wolfgang",
+            },
+          ],
+        },
+        Object {
+          "key": "booktitle",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 161,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 120,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 3,
+                  "offset": 139,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 3,
+                  "offset": 135,
+                },
+              },
+              "value": "7th ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 39,
+                  "line": 3,
+                  "offset": 158,
+                },
+                "start": Object {
+                  "column": 20,
+                  "line": 3,
+                  "offset": 139,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 38,
+                      "line": 3,
+                      "offset": 157,
+                    },
+                    "start": Object {
+                      "column": 21,
+                      "line": 3,
+                      "offset": 140,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 37,
+                          "line": 3,
+                          "offset": 156,
+                        },
+                        "start": Object {
+                          "column": 22,
+                          "line": 3,
+                          "offset": 141,
+                        },
+                      },
+                      "value": "Forum Acusticum",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 181,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 161,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 18,
+                  "line": 4,
+                  "offset": 178,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 4,
+                  "offset": 171,
+                },
+              },
+              "value": "2014-09",
+            },
+          ],
+        },
+        Object {
+          "key": "keywords",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 207,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 181,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 24,
+                  "line": 5,
+                  "offset": 204,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 5,
+                  "offset": 195,
+                },
+              },
+              "value": "NonPerRev",
+            },
+          ],
+        },
+        Object {
+          "key": "location",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 232,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 207,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 23,
+                  "line": 6,
+                  "offset": 229,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 6,
+                  "offset": 221,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 22,
+                      "line": 6,
+                      "offset": 228,
+                    },
+                    "start": Object {
+                      "column": 16,
+                      "line": 6,
+                      "offset": 222,
+                    },
+                  },
+                  "value": "Krakow",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 359,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 232,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 19,
+                  "line": 7,
+                  "offset": 250,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 7,
+                  "offset": 243,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 18,
+                      "line": 7,
+                      "offset": 249,
+                    },
+                    "start": Object {
+                      "column": 13,
+                      "line": 7,
+                      "offset": 244,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 17,
+                          "line": 7,
+                          "offset": 248,
+                        },
+                        "start": Object {
+                          "column": 14,
+                          "line": 7,
+                          "offset": 245,
+                        },
+                      },
+                      "value": "taX",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 24,
+                  "line": 7,
+                  "offset": 255,
+                },
+                "start": Object {
+                  "column": 19,
+                  "line": 7,
+                  "offset": 250,
+                },
+              },
+              "value": " - a ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 41,
+                  "line": 7,
+                  "offset": 272,
+                },
+                "start": Object {
+                  "column": 24,
+                  "line": 7,
+                  "offset": 255,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 40,
+                      "line": 7,
+                      "offset": 271,
+                    },
+                    "start": Object {
+                      "column": 25,
+                      "line": 7,
+                      "offset": 256,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 39,
+                          "line": 7,
+                          "offset": 270,
+                        },
+                        "start": Object {
+                          "column": 26,
+                          "line": 7,
+                          "offset": 257,
+                        },
+                      },
+                      "value": "Flexible Tool",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 46,
+                  "line": 7,
+                  "offset": 277,
+                },
+                "start": Object {
+                  "column": 41,
+                  "line": 7,
+                  "offset": 272,
+                },
+              },
+              "value": " for ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 53,
+                  "line": 7,
+                  "offset": 284,
+                },
+                "start": Object {
+                  "column": 46,
+                  "line": 7,
+                  "offset": 277,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 52,
+                      "line": 7,
+                      "offset": 283,
+                    },
+                    "start": Object {
+                      "column": 47,
+                      "line": 7,
+                      "offset": 278,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 51,
+                          "line": 7,
+                          "offset": 282,
+                        },
+                        "start": Object {
+                          "column": 48,
+                          "line": 7,
+                          "offset": 279,
+                        },
+                      },
+                      "value": "Low",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 54,
+                  "line": 7,
+                  "offset": 285,
+                },
+                "start": Object {
+                  "column": 53,
+                  "line": 7,
+                  "offset": 284,
+                },
+              },
+              "value": "-",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 88,
+                  "line": 7,
+                  "offset": 319,
+                },
+                "start": Object {
+                  "column": 54,
+                  "line": 7,
+                  "offset": 285,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 87,
+                      "line": 7,
+                      "offset": 318,
+                    },
+                    "start": Object {
+                      "column": 55,
+                      "line": 7,
+                      "offset": 286,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 86,
+                          "line": 7,
+                          "offset": 317,
+                        },
+                        "start": Object {
+                          "column": 56,
+                          "line": 7,
+                          "offset": 287,
+                        },
+                      },
+                      "value": "Order Duct Acoustic Simulation",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 92,
+                  "line": 7,
+                  "offset": 323,
+                },
+                "start": Object {
+                  "column": 88,
+                  "line": 7,
+                  "offset": 319,
+                },
+              },
+              "value": " in ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 100,
+                  "line": 7,
+                  "offset": 331,
+                },
+                "start": Object {
+                  "column": 92,
+                  "line": 7,
+                  "offset": 323,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 99,
+                      "line": 7,
+                      "offset": 330,
+                    },
+                    "start": Object {
+                      "column": 93,
+                      "line": 7,
+                      "offset": 324,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 98,
+                          "line": 7,
+                          "offset": 329,
+                        },
+                        "start": Object {
+                          "column": 94,
+                          "line": 7,
+                          "offset": 325,
+                        },
+                      },
+                      "value": "Time",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 105,
+                  "line": 7,
+                  "offset": 336,
+                },
+                "start": Object {
+                  "column": 100,
+                  "line": 7,
+                  "offset": 331,
+                },
+              },
+              "value": " and ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 125,
+                  "line": 7,
+                  "offset": 356,
+                },
+                "start": Object {
+                  "column": 105,
+                  "line": 7,
+                  "offset": 336,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 124,
+                      "line": 7,
+                      "offset": 355,
+                    },
+                    "start": Object {
+                      "column": 106,
+                      "line": 7,
+                      "offset": 337,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 123,
+                          "line": 7,
+                          "offset": 354,
+                        },
+                        "start": Object {
+                          "column": 107,
+                          "line": 7,
+                          "offset": 338,
+                        },
+                      },
+                      "value": "Frequency Domain",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "url",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 409,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 359,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 49,
+                  "line": 8,
+                  "offset": 407,
+                },
+                "start": Object {
+                  "column": 10,
+                  "line": 8,
+                  "offset": 368,
+                },
+              },
+              "value": "http://www.fa2014.agh.edu.pl/fa2014_cd/",
+            },
+          ],
+        },
+      ],
+      "type": "inproceedings",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 10,
+      "offset": 411,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

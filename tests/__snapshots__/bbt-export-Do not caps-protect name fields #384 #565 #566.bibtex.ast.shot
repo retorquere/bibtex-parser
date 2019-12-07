@@ -1,0 +1,4572 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-Do not caps-protect name fields #384 #565 #566.bibtex to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "vangogh",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 6,
+          "offset": 83,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 49,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 2,
+              "offset": 17,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 23,
+                  "line": 2,
+                  "offset": 37,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 2,
+                  "offset": 27,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 22,
+                      "line": 2,
+                      "offset": 36,
+                    },
+                    "start": Object {
+                      "column": 14,
+                      "line": 2,
+                      "offset": 28,
+                    },
+                  },
+                  "value": "van Gogh",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 32,
+                  "line": 2,
+                  "offset": 46,
+                },
+                "start": Object {
+                  "column": 23,
+                  "line": 2,
+                  "offset": 37,
+                },
+              },
+              "value": ", Vincent",
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 80,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 49,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 30,
+                  "line": 3,
+                  "offset": 78,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 3,
+                  "offset": 59,
+                },
+              },
+              "value": "[van Gogh][Vincent]",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+    Object {
+      "id": "humboldt",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 11,
+          "offset": 177,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 6,
+          "offset": 83,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 137,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 7,
+              "offset": 101,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 36,
+                  "line": 7,
+                  "offset": 134,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 7,
+                  "offset": 111,
+                },
+              },
+              "value": "von Humboldt, Alexander",
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 174,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 137,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 36,
+                  "line": 8,
+                  "offset": 172,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 8,
+                  "offset": 147,
+                },
+              },
+              "value": "[Humboldt][Alexander von]",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+    Object {
+      "id": "beauvoir",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 16,
+          "offset": 263,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 11,
+          "offset": 177,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 227,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 12,
+              "offset": 195,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 32,
+                  "line": 12,
+                  "offset": 224,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 12,
+                  "offset": 205,
+                },
+              },
+              "value": "de Beauvoir, Simone",
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 14,
+              "offset": 260,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 13,
+              "offset": 227,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 32,
+                  "line": 13,
+                  "offset": 258,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 13,
+                  "offset": 237,
+                },
+              },
+              "value": "[Beauvoir][Simone de]",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+    Object {
+      "id": "degaulle",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 21,
+          "offset": 351,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 16,
+          "offset": 263,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 18,
+              "offset": 314,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 17,
+              "offset": 281,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 24,
+                  "line": 17,
+                  "offset": 302,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 17,
+                  "offset": 291,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 23,
+                      "line": 17,
+                      "offset": 301,
+                    },
+                    "start": Object {
+                      "column": 14,
+                      "line": 17,
+                      "offset": 292,
+                    },
+                  },
+                  "value": "de Gaulle",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 33,
+                  "line": 17,
+                  "offset": 311,
+                },
+                "start": Object {
+                  "column": 24,
+                  "line": 17,
+                  "offset": 302,
+                },
+              },
+              "value": ", Charles",
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 19,
+              "offset": 348,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 18,
+              "offset": 314,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 33,
+                  "line": 18,
+                  "offset": 346,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 18,
+                  "offset": 324,
+                },
+              },
+              "value": "[\\"de Gaulle\\"][Charles]",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+    Object {
+      "id": "king",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 26,
+          "offset": 443,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 21,
+          "offset": 351,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 23,
+              "offset": 402,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 22,
+              "offset": 365,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 37,
+                  "line": 22,
+                  "offset": 399,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 22,
+                  "offset": 375,
+                },
+              },
+              "value": "King, Jr., Martin Luther",
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 24,
+              "offset": 440,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 23,
+              "offset": 402,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 37,
+                  "line": 23,
+                  "offset": 438,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 23,
+                  "offset": 412,
+                },
+              },
+              "value": "[King][Martin Luther, Jr.]",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+    Object {
+      "id": "stevenson",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 31,
+          "offset": 541,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 26,
+          "offset": 443,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 28,
+              "offset": 499,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 27,
+              "offset": 462,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 37,
+                  "line": 27,
+                  "offset": 496,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 27,
+                  "offset": 472,
+                },
+              },
+              "value": "Stevenson, III, Adlai E.",
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 29,
+              "offset": 538,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 28,
+              "offset": 499,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 38,
+                  "line": 28,
+                  "offset": 536,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 28,
+                  "offset": 509,
+                },
+              },
+              "value": "[Stevenson][Adlai E.,! III]",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+    Object {
+      "id": "nationalaeronauticsandspaceadministration",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 36,
+          "offset": 716,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 31,
+          "offset": 541,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 33,
+              "offset": 652,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 32,
+              "offset": 592,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 60,
+                  "line": 32,
+                  "offset": 649,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 32,
+                  "offset": 602,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 59,
+                      "line": 32,
+                      "offset": 648,
+                    },
+                    "start": Object {
+                      "column": 14,
+                      "line": 32,
+                      "offset": 603,
+                    },
+                  },
+                  "value": "National Aeronautics and Space Administration",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 34,
+              "offset": 713,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 33,
+              "offset": 652,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 60,
+                  "line": 33,
+                  "offset": 711,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 33,
+                  "offset": 662,
+                },
+              },
+              "value": "[[National Aeronautics and Space Administration]]",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+    Object {
+      "id": "bovendeert",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 41,
+          "offset": 818,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 36,
+          "offset": 716,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 38,
+              "offset": 776,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 37,
+              "offset": 736,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 27,
+                  "line": 37,
+                  "offset": 760,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 37,
+                  "offset": 746,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 26,
+                      "line": 37,
+                      "offset": 759,
+                    },
+                    "start": Object {
+                      "column": 14,
+                      "line": 37,
+                      "offset": 747,
+                    },
+                  },
+                  "value": "boven d'Eert",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 40,
+                  "line": 37,
+                  "offset": 773,
+                },
+                "start": Object {
+                  "column": 27,
+                  "line": 37,
+                  "offset": 760,
+                },
+              },
+              "value": ", Christianus",
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 39,
+              "offset": 815,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 38,
+              "offset": 776,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 38,
+                  "line": 38,
+                  "offset": 813,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 38,
+                  "offset": 786,
+                },
+              },
+              "value": "[boven d'Eert][Christianus]",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+    Object {
+      "id": "s-gravesande",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 46,
+          "offset": 918,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 41,
+          "offset": 818,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 43,
+              "offset": 878,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 42,
+              "offset": 840,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 28,
+                  "line": 42,
+                  "offset": 865,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 42,
+                  "offset": 850,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 27,
+                      "line": 42,
+                      "offset": 864,
+                    },
+                    "start": Object {
+                      "column": 14,
+                      "line": 42,
+                      "offset": 851,
+                    },
+                  },
+                  "value": "'s-Gravesande",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 38,
+                  "line": 42,
+                  "offset": 875,
+                },
+                "start": Object {
+                  "column": 28,
+                  "line": 42,
+                  "offset": 865,
+                },
+              },
+              "value": ", Goverdus",
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 44,
+              "offset": 915,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 43,
+              "offset": 878,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 36,
+                  "line": 43,
+                  "offset": 913,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 43,
+                  "offset": 888,
+                },
+              },
+              "value": "['s-Gravesande][Goverdus]",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+    Object {
+      "id": "dequincey",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 51,
+          "offset": 1003,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 46,
+          "offset": 918,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 48,
+              "offset": 968,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 47,
+              "offset": 937,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 31,
+                  "line": 47,
+                  "offset": 965,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 47,
+                  "offset": 947,
+                },
+              },
+              "value": "De Quincey, Thomas",
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 49,
+              "offset": 1000,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 48,
+              "offset": 968,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 31,
+                  "line": 48,
+                  "offset": 998,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 48,
+                  "offset": 978,
+                },
+              },
+              "value": "[De Quincey][Thomas]",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+    Object {
+      "id": "ortegaygasset",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 56,
+          "offset": 1108,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 51,
+          "offset": 1003,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 53,
+              "offset": 1066,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 52,
+              "offset": 1026,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 30,
+                  "line": 52,
+                  "offset": 1053,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 52,
+                  "offset": 1036,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 29,
+                      "line": 52,
+                      "offset": 1052,
+                    },
+                    "start": Object {
+                      "column": 14,
+                      "line": 52,
+                      "offset": 1037,
+                    },
+                  },
+                  "value": "Ortega y Gasset",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 35,
+                  "line": 52,
+                  "offset": 1058,
+                },
+                "start": Object {
+                  "column": 30,
+                  "line": 52,
+                  "offset": 1053,
+                },
+              },
+              "value": ", Jos",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 40,
+                  "line": 52,
+                  "offset": 1063,
+                },
+                "start": Object {
+                  "column": 35,
+                  "line": 52,
+                  "offset": 1058,
+                },
+              },
+              "value": Array [
+                Object {
+                  "character": "e",
+                  "dotless": false,
+                  "kind": "DicraticalCommand",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 39,
+                      "line": 52,
+                      "offset": 1062,
+                    },
+                    "start": Object {
+                      "column": 36,
+                      "line": 52,
+                      "offset": 1059,
+                    },
+                  },
+                  "mark": "'",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 54,
+              "offset": 1105,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 53,
+              "offset": 1066,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 32,
+                  "line": 53,
+                  "offset": 1097,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 53,
+                  "offset": 1076,
+                },
+              },
+              "value": "[Ortega y Gasset][Jos",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 37,
+                  "line": 53,
+                  "offset": 1102,
+                },
+                "start": Object {
+                  "column": 32,
+                  "line": 53,
+                  "offset": 1097,
+                },
+              },
+              "value": Array [
+                Object {
+                  "character": "e",
+                  "dotless": false,
+                  "kind": "DicraticalCommand",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 36,
+                      "line": 53,
+                      "offset": 1101,
+                    },
+                    "start": Object {
+                      "column": 33,
+                      "line": 53,
+                      "offset": 1098,
+                    },
+                  },
+                  "mark": "'",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 38,
+                  "line": 53,
+                  "offset": 1103,
+                },
+                "start": Object {
+                  "column": 37,
+                  "line": 53,
+                  "offset": 1102,
+                },
+              },
+              "value": "]",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+    Object {
+      "id": "damato",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 61,
+          "offset": 1186,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 56,
+          "offset": 1108,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 58,
+              "offset": 1153,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 57,
+              "offset": 1124,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 29,
+                  "line": 57,
+                  "offset": 1150,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 57,
+                  "offset": 1134,
+                },
+              },
+              "value": "D'Amato, Alfonse",
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 59,
+              "offset": 1183,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 58,
+              "offset": 1153,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 29,
+                  "line": 58,
+                  "offset": 1181,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 58,
+                  "offset": 1163,
+                },
+              },
+              "value": "[D'Amato][Alfonse]",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+    Object {
+      "id": "sadat",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 66,
+          "offset": 1289,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 61,
+          "offset": 1186,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 63,
+              "offset": 1256,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 62,
+              "offset": 1201,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 16,
+                  "line": 62,
+                  "offset": 1214,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 62,
+                  "offset": 1211,
+                },
+              },
+              "value": "el-",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 42,
+                  "line": 62,
+                  "offset": 1240,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 62,
+                  "offset": 1214,
+                },
+              },
+              "value": Array [
+                Object {
+                  "arguments": Array [],
+                  "kind": "RegularCommand",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 28,
+                      "line": 62,
+                      "offset": 1226,
+                    },
+                    "start": Object {
+                      "column": 17,
+                      "line": 62,
+                      "offset": 1215,
+                    },
+                  },
+                  "value": "aftergroup",
+                },
+                Object {
+                  "arguments": Array [],
+                  "kind": "RegularCommand",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 41,
+                      "line": 62,
+                      "offset": 1239,
+                    },
+                    "start": Object {
+                      "column": 28,
+                      "line": 62,
+                      "offset": 1226,
+                    },
+                  },
+                  "value": "ignorespaces",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 55,
+                  "line": 62,
+                  "offset": 1253,
+                },
+                "start": Object {
+                  "column": 42,
+                  "line": 62,
+                  "offset": 1240,
+                },
+              },
+              "value": " Sadat, Anwar",
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 64,
+              "offset": 1286,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 63,
+              "offset": 1256,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 29,
+                  "line": 63,
+                  "offset": 1284,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 63,
+                  "offset": 1266,
+                },
+              },
+              "value": "[Sadat][Anwar el-]",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+    Object {
+      "id": "lafollette",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 71,
+          "offset": 1393,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 66,
+          "offset": 1289,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 68,
+              "offset": 1349,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 67,
+              "offset": 1309,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 40,
+                  "line": 67,
+                  "offset": 1346,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 67,
+                  "offset": 1319,
+                },
+              },
+              "value": "La Follette, Sr., Robert M.",
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 69,
+              "offset": 1390,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 68,
+              "offset": 1349,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 40,
+                  "line": 68,
+                  "offset": 1388,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 68,
+                  "offset": 1359,
+                },
+              },
+              "value": "[La Follette][Robert M., Sr.]",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+    Object {
+      "id": "delamare",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 76,
+          "offset": 1481,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 71,
+          "offset": 1393,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 73,
+              "offset": 1444,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 72,
+              "offset": 1411,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 25,
+                  "line": 72,
+                  "offset": 1433,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 72,
+                  "offset": 1421,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 24,
+                      "line": 72,
+                      "offset": 1432,
+                    },
+                    "start": Object {
+                      "column": 14,
+                      "line": 72,
+                      "offset": 1422,
+                    },
+                  },
+                  "value": "de la Mare",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 33,
+                  "line": 72,
+                  "offset": 1441,
+                },
+                "start": Object {
+                  "column": 25,
+                  "line": 72,
+                  "offset": 1433,
+                },
+              },
+              "value": ", Walter",
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 74,
+              "offset": 1478,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 73,
+              "offset": 1444,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 33,
+                  "line": 73,
+                  "offset": 1476,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 73,
+                  "offset": 1454,
+                },
+              },
+              "value": "[\\"de la Mare\\"][Walter]",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+    Object {
+      "id": "degette",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 81,
+          "offset": 1556,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 76,
+          "offset": 1481,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 78,
+              "offset": 1525,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 77,
+              "offset": 1498,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 27,
+                  "line": 77,
+                  "offset": 1522,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 77,
+                  "offset": 1508,
+                },
+              },
+              "value": "DeGette, Diana",
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 79,
+              "offset": 1553,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 78,
+              "offset": 1525,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 27,
+                  "line": 78,
+                  "offset": 1551,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 78,
+                  "offset": 1535,
+                },
+              },
+              "value": "[DeGette][Diana]",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+    Object {
+      "id": "saunders",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 86,
+          "offset": 1686,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 81,
+          "offset": 1556,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 83,
+              "offset": 1628,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 82,
+              "offset": 1574,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 54,
+                  "line": 82,
+                  "offset": 1625,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 82,
+                  "offset": 1584,
+                },
+              },
+              "value": "Saunders, John Bertrand de Cusance Morant",
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 84,
+              "offset": 1683,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 83,
+              "offset": 1628,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 54,
+                  "line": 83,
+                  "offset": 1681,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 83,
+                  "offset": 1638,
+                },
+              },
+              "value": "[Saunders][John Bertrand de Cusance Morant]",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+    Object {
+      "id": "marcusaurelius",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 91,
+          "offset": 1774,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 86,
+          "offset": 1686,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 88,
+              "offset": 1740,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 87,
+              "offset": 1710,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 30,
+                  "line": 87,
+                  "offset": 1737,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 87,
+                  "offset": 1720,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 29,
+                      "line": 87,
+                      "offset": 1736,
+                    },
+                    "start": Object {
+                      "column": 14,
+                      "line": 87,
+                      "offset": 1721,
+                    },
+                  },
+                  "value": "Marcus Aurelius",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 89,
+              "offset": 1771,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 88,
+              "offset": 1740,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 30,
+                  "line": 88,
+                  "offset": 1769,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 88,
+                  "offset": 1750,
+                },
+              },
+              "value": "[[Marcus Aurelius]]",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+    Object {
+      "id": "dumas",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 96,
+          "offset": 1871,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 91,
+          "offset": 1774,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 93,
+              "offset": 1828,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 92,
+              "offset": 1789,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 21,
+                  "line": 92,
+                  "offset": 1807,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 92,
+                  "offset": 1799,
+                },
+              },
+              "value": "Dumas, p",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 26,
+                  "line": 92,
+                  "offset": 1812,
+                },
+                "start": Object {
+                  "column": 21,
+                  "line": 92,
+                  "offset": 1807,
+                },
+              },
+              "value": Array [
+                Object {
+                  "character": "e",
+                  "dotless": false,
+                  "kind": "DicraticalCommand",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 25,
+                      "line": 92,
+                      "offset": 1811,
+                    },
+                    "start": Object {
+                      "column": 22,
+                      "line": 92,
+                      "offset": 1808,
+                    },
+                  },
+                  "mark": "\`",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 39,
+                  "line": 92,
+                  "offset": 1825,
+                },
+                "start": Object {
+                  "column": 26,
+                  "line": 92,
+                  "offset": 1812,
+                },
+              },
+              "value": "re, Alexandre",
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 94,
+              "offset": 1868,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 93,
+              "offset": 1828,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 31,
+                  "line": 93,
+                  "offset": 1858,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 93,
+                  "offset": 1838,
+                },
+              },
+              "value": "[Dumas][Alexandre, p",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 36,
+                  "line": 93,
+                  "offset": 1863,
+                },
+                "start": Object {
+                  "column": 31,
+                  "line": 93,
+                  "offset": 1858,
+                },
+              },
+              "value": Array [
+                Object {
+                  "character": "e",
+                  "dotless": false,
+                  "kind": "DicraticalCommand",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 35,
+                      "line": 93,
+                      "offset": 1862,
+                    },
+                    "start": Object {
+                      "column": 32,
+                      "line": 93,
+                      "offset": 1859,
+                    },
+                  },
+                  "mark": "\`",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 39,
+                  "line": 93,
+                  "offset": 1866,
+                },
+                "start": Object {
+                  "column": 36,
+                  "line": 93,
+                  "offset": 1863,
+                },
+              },
+              "value": "re]",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+    Object {
+      "id": "vanrensselaer",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 101,
+          "offset": 1970,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 96,
+          "offset": 1871,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 98,
+              "offset": 1930,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 97,
+              "offset": 1894,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 36,
+                  "line": 97,
+                  "offset": 1927,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 97,
+                  "offset": 1904,
+                },
+              },
+              "value": "Van Rensselaer, Stephen",
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 99,
+              "offset": 1967,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 98,
+              "offset": 1930,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 36,
+                  "line": 98,
+                  "offset": 1965,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 98,
+                  "offset": 1940,
+                },
+              },
+              "value": "[Van Rensselaer][Stephen]",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+    Object {
+      "id": "lenfant",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 106,
+          "offset": 2065,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 101,
+          "offset": 1970,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 103,
+              "offset": 2024,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 102,
+              "offset": 1987,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 37,
+                  "line": 102,
+                  "offset": 2021,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 102,
+                  "offset": 1997,
+                },
+              },
+              "value": "L'Enfant, Pierre-Charles",
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 104,
+              "offset": 2062,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 103,
+              "offset": 2024,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 37,
+                  "line": 103,
+                  "offset": 2060,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 103,
+                  "offset": 2034,
+                },
+              },
+              "value": "[L'Enfant][Pierre-Charles]",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+    Object {
+      "id": "vangulik",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 111,
+          "offset": 2151,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 106,
+          "offset": 2065,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 108,
+              "offset": 2115,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 107,
+              "offset": 2083,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 24,
+                  "line": 107,
+                  "offset": 2104,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 107,
+                  "offset": 2093,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 23,
+                      "line": 107,
+                      "offset": 2103,
+                    },
+                    "start": Object {
+                      "column": 14,
+                      "line": 107,
+                      "offset": 2094,
+                    },
+                  },
+                  "value": "van Gulik",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 32,
+                  "line": 107,
+                  "offset": 2112,
+                },
+                "start": Object {
+                  "column": 24,
+                  "line": 107,
+                  "offset": 2104,
+                },
+              },
+              "value": ", Robert",
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 109,
+              "offset": 2148,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 108,
+              "offset": 2115,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 32,
+                  "line": 108,
+                  "offset": 2146,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 108,
+                  "offset": 2125,
+                },
+              },
+              "value": "[\\"van Gulik\\"][Robert]",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+    Object {
+      "id": "sackville-west",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 116,
+          "offset": 2255,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 111,
+          "offset": 2151,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 113,
+              "offset": 2214,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 112,
+              "offset": 2175,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 29,
+                  "line": 112,
+                  "offset": 2201,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 112,
+                  "offset": 2185,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 28,
+                      "line": 112,
+                      "offset": 2200,
+                    },
+                    "start": Object {
+                      "column": 14,
+                      "line": 112,
+                      "offset": 2186,
+                    },
+                  },
+                  "value": "Sackville-West",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 39,
+                  "line": 112,
+                  "offset": 2211,
+                },
+                "start": Object {
+                  "column": 29,
+                  "line": 112,
+                  "offset": 2201,
+                },
+              },
+              "value": ", Victoria",
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 114,
+              "offset": 2252,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 113,
+              "offset": 2214,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 37,
+                  "line": 113,
+                  "offset": 2250,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 113,
+                  "offset": 2224,
+                },
+              },
+              "value": "[Sackville-West][Victoria]",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+    Object {
+      "id": "vaughanwilliams",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 121,
+          "offset": 2356,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 116,
+          "offset": 2255,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 118,
+              "offset": 2316,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 117,
+              "offset": 2280,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 36,
+                  "line": 117,
+                  "offset": 2313,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 117,
+                  "offset": 2290,
+                },
+              },
+              "value": "Vaughan Williams, Ralph",
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 119,
+              "offset": 2353,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 118,
+              "offset": 2316,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 36,
+                  "line": 118,
+                  "offset": 2351,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 118,
+                  "offset": 2326,
+                },
+              },
+              "value": "[Vaughan Williams][Ralph]",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+    Object {
+      "id": "miesvanderrohe",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 126,
+          "offset": 2462,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 121,
+          "offset": 2356,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 123,
+              "offset": 2420,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 122,
+              "offset": 2380,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 32,
+                  "line": 122,
+                  "offset": 2409,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 122,
+                  "offset": 2390,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 31,
+                      "line": 122,
+                      "offset": 2408,
+                    },
+                    "start": Object {
+                      "column": 14,
+                      "line": 122,
+                      "offset": 2391,
+                    },
+                  },
+                  "value": "Mies van der Rohe",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 40,
+                  "line": 122,
+                  "offset": 2417,
+                },
+                "start": Object {
+                  "column": 32,
+                  "line": 122,
+                  "offset": 2409,
+                },
+              },
+              "value": ", Ludwig",
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 124,
+              "offset": 2459,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 123,
+              "offset": 2420,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 38,
+                  "line": 123,
+                  "offset": 2457,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 123,
+                  "offset": 2430,
+                },
+              },
+              "value": "[Mies van der Rohe][Ludwig]",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+    Object {
+      "id": "dalembert",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 131,
+          "offset": 2561,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 126,
+          "offset": 2462,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 128,
+              "offset": 2520,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 127,
+              "offset": 2481,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 25,
+                  "line": 127,
+                  "offset": 2503,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 127,
+                  "offset": 2491,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 24,
+                      "line": 127,
+                      "offset": 2502,
+                    },
+                    "start": Object {
+                      "column": 14,
+                      "line": 127,
+                      "offset": 2492,
+                    },
+                  },
+                  "value": "d'Alembert",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 39,
+                  "line": 127,
+                  "offset": 2517,
+                },
+                "start": Object {
+                  "column": 25,
+                  "line": 127,
+                  "offset": 2503,
+                },
+              },
+              "value": ", Jean le Rond",
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 129,
+              "offset": 2558,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 128,
+              "offset": 2520,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 37,
+                  "line": 128,
+                  "offset": 2556,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 128,
+                  "offset": 2530,
+                },
+              },
+              "value": "[d'Alembert][Jean le Rond]",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+    Object {
+      "id": "tocqueville",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 136,
+          "offset": 2656,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 131,
+          "offset": 2561,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 133,
+              "offset": 2617,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 132,
+              "offset": 2582,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 35,
+                  "line": 132,
+                  "offset": 2614,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 132,
+                  "offset": 2592,
+                },
+              },
+              "value": "de Tocqueville, Alexis",
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 134,
+              "offset": 2653,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 133,
+              "offset": 2617,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 35,
+                  "line": 133,
+                  "offset": 2651,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 133,
+                  "offset": 2627,
+                },
+              },
+              "value": "[Tocqueville][Alexis de]",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+    Object {
+      "id": "lafontaine",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 141,
+          "offset": 2746,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 136,
+          "offset": 2656,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 138,
+              "offset": 2709,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 137,
+              "offset": 2676,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 33,
+                  "line": 137,
+                  "offset": 2706,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 137,
+                  "offset": 2686,
+                },
+              },
+              "value": "de La Fontaine, Jean",
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 139,
+              "offset": 2743,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 138,
+              "offset": 2709,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 33,
+                  "line": 138,
+                  "offset": 2741,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 138,
+                  "offset": 2719,
+                },
+              },
+              "value": "[La Fontaine][Jean de]",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+    Object {
+      "id": "lasalle",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 146,
+          "offset": 2867,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 141,
+          "offset": 2746,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 143,
+              "offset": 2813,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 142,
+              "offset": 2763,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 29,
+                  "line": 142,
+                  "offset": 2789,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 142,
+                  "offset": 2773,
+                },
+              },
+              "value": "de La Salle, Ren",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 34,
+                  "line": 142,
+                  "offset": 2794,
+                },
+                "start": Object {
+                  "column": 29,
+                  "line": 142,
+                  "offset": 2789,
+                },
+              },
+              "value": Array [
+                Object {
+                  "character": "e",
+                  "dotless": false,
+                  "kind": "DicraticalCommand",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 33,
+                      "line": 142,
+                      "offset": 2793,
+                    },
+                    "start": Object {
+                      "column": 30,
+                      "line": 142,
+                      "offset": 2790,
+                    },
+                  },
+                  "mark": "'",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 50,
+                  "line": 142,
+                  "offset": 2810,
+                },
+                "start": Object {
+                  "column": 34,
+                  "line": 142,
+                  "offset": 2794,
+                },
+              },
+              "value": "-Robert Cavelier",
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 144,
+              "offset": 2864,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 143,
+              "offset": 2813,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 25,
+                  "line": 143,
+                  "offset": 2837,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 143,
+                  "offset": 2823,
+                },
+              },
+              "value": "[La Salle][Ren",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 30,
+                  "line": 143,
+                  "offset": 2842,
+                },
+                "start": Object {
+                  "column": 25,
+                  "line": 143,
+                  "offset": 2837,
+                },
+              },
+              "value": Array [
+                Object {
+                  "character": "e",
+                  "dotless": false,
+                  "kind": "DicraticalCommand",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 29,
+                      "line": 143,
+                      "offset": 2841,
+                    },
+                    "start": Object {
+                      "column": 26,
+                      "line": 143,
+                      "offset": 2838,
+                    },
+                  },
+                  "mark": "'",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 50,
+                  "line": 143,
+                  "offset": 2862,
+                },
+                "start": Object {
+                  "column": 30,
+                  "line": 143,
+                  "offset": 2842,
+                },
+              },
+              "value": "-Robert Cavelier de]",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+    Object {
+      "id": "dupuydeclinchamps",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 151,
+          "offset": 3001,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 146,
+          "offset": 2867,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 148,
+              "offset": 2948,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 147,
+              "offset": 2894,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 35,
+                  "line": 147,
+                  "offset": 2926,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 147,
+                  "offset": 2904,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 34,
+                      "line": 147,
+                      "offset": 2925,
+                    },
+                    "start": Object {
+                      "column": 14,
+                      "line": 147,
+                      "offset": 2905,
+                    },
+                  },
+                  "value": "du Puy de Clinchamps",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 37,
+                  "line": 147,
+                  "offset": 2928,
+                },
+                "start": Object {
+                  "column": 35,
+                  "line": 147,
+                  "offset": 2926,
+                },
+              },
+              "value": ", ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 48,
+                  "line": 147,
+                  "offset": 2939,
+                },
+                "start": Object {
+                  "column": 37,
+                  "line": 147,
+                  "offset": 2928,
+                },
+              },
+              "value": Array [
+                Object {
+                  "arguments": Array [],
+                  "kind": "RegularCommand",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 44,
+                      "line": 147,
+                      "offset": 2935,
+                    },
+                    "start": Object {
+                      "column": 38,
+                      "line": 147,
+                      "offset": 2929,
+                    },
+                  },
+                  "value": "relax",
+                },
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 47,
+                      "line": 147,
+                      "offset": 2938,
+                    },
+                    "start": Object {
+                      "column": 44,
+                      "line": 147,
+                      "offset": 2935,
+                    },
+                  },
+                  "value": " Ph",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 54,
+                  "line": 147,
+                  "offset": 2945,
+                },
+                "start": Object {
+                  "column": 48,
+                  "line": 147,
+                  "offset": 2939,
+                },
+              },
+              "value": "ilippe",
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 149,
+              "offset": 2998,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 148,
+              "offset": 2948,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 49,
+                  "line": 148,
+                  "offset": 2996,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 148,
+                  "offset": 2958,
+                },
+              },
+              "value": "[du Puy de Clinchamps][PhU+0097ilippe]",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+    Object {
+      "id": "stein",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 156,
+          "offset": 3130,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 151,
+          "offset": 3001,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 153,
+              "offset": 3071,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 152,
+              "offset": 3016,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 55,
+                  "line": 152,
+                  "offset": 3068,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 152,
+                  "offset": 3026,
+                },
+              },
+              "value": "vom und zum Stein, Heinrich Friedrich Karl",
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 154,
+              "offset": 3127,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 153,
+              "offset": 3071,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 55,
+                  "line": 153,
+                  "offset": 3125,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 153,
+                  "offset": 3081,
+                },
+              },
+              "value": "[Stein][Heinrich Friedrich Karl vom und zum]",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+    Object {
+      "id": "silva",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 161,
+          "offset": 3213,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 156,
+          "offset": 3130,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 158,
+              "offset": 3177,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 157,
+              "offset": 3145,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 32,
+                  "line": 157,
+                  "offset": 3174,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 157,
+                  "offset": 3155,
+                },
+              },
+              "value": "da Silva, Agostinho",
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 159,
+              "offset": 3210,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 158,
+              "offset": 3177,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 32,
+                  "line": 158,
+                  "offset": 3208,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 158,
+                  "offset": 3187,
+                },
+              },
+              "value": "[Silva][Agostinho da]",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+    Object {
+      "id": "dagama",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 166,
+          "offset": 3291,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 161,
+          "offset": 3213,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 163,
+              "offset": 3258,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 162,
+              "offset": 3229,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 22,
+                  "line": 162,
+                  "offset": 3248,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 162,
+                  "offset": 3239,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 21,
+                      "line": 162,
+                      "offset": 3247,
+                    },
+                    "start": Object {
+                      "column": 14,
+                      "line": 162,
+                      "offset": 3240,
+                    },
+                  },
+                  "value": "da Gama",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 29,
+                  "line": 162,
+                  "offset": 3255,
+                },
+                "start": Object {
+                  "column": 22,
+                  "line": 162,
+                  "offset": 3248,
+                },
+              },
+              "value": ", Vasco",
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 164,
+              "offset": 3288,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 163,
+              "offset": 3258,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 29,
+                  "line": 163,
+                  "offset": 3286,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 163,
+                  "offset": 3268,
+                },
+              },
+              "value": "[\\"da Gama\\"][Vasco]",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+    Object {
+      "id": "dannunzio",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 171,
+          "offset": 3380,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 166,
+          "offset": 3291,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 168,
+              "offset": 3343,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 167,
+              "offset": 3310,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 33,
+                  "line": 167,
+                  "offset": 3340,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 167,
+                  "offset": 3320,
+                },
+              },
+              "value": "D'Annunzio, Gabriele",
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 169,
+              "offset": 3377,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 168,
+              "offset": 3343,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 33,
+                  "line": 168,
+                  "offset": 3375,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 168,
+                  "offset": 3353,
+                },
+              },
+              "value": "[D'Annunzio][Gabriele]",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+    Object {
+      "id": "daponte",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 176,
+          "offset": 3461,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 171,
+          "offset": 3380,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 173,
+              "offset": 3427,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 172,
+              "offset": 3397,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 30,
+                  "line": 172,
+                  "offset": 3424,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 172,
+                  "offset": 3407,
+                },
+              },
+              "value": "Da Ponte, Lorenzo",
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 174,
+              "offset": 3458,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 173,
+              "offset": 3427,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 30,
+                  "line": 173,
+                  "offset": 3456,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 173,
+                  "offset": 3437,
+                },
+              },
+              "value": "[Da Ponte][Lorenzo]",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+    Object {
+      "id": "dellarobbia",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 181,
+          "offset": 3548,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 176,
+          "offset": 3461,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 178,
+              "offset": 3513,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 177,
+              "offset": 3482,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 31,
+                  "line": 177,
+                  "offset": 3510,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 177,
+                  "offset": 3492,
+                },
+              },
+              "value": "Della Robbia, Luca",
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 179,
+              "offset": 3545,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 178,
+              "offset": 3513,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 31,
+                  "line": 178,
+                  "offset": 3543,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 178,
+                  "offset": 3523,
+                },
+              },
+              "value": "[Della Robbia][Luca]",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+    Object {
+      "id": "este",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 186,
+          "offset": 3652,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 181,
+          "offset": 3548,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 183,
+              "offset": 3618,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 182,
+              "offset": 3562,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 182,
+                  "offset": 3574,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 182,
+                  "offset": 3572,
+                },
+              },
+              "value": "d'",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 41,
+                  "line": 182,
+                  "offset": 3600,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 182,
+                  "offset": 3574,
+                },
+              },
+              "value": Array [
+                Object {
+                  "arguments": Array [],
+                  "kind": "RegularCommand",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 27,
+                      "line": 182,
+                      "offset": 3586,
+                    },
+                    "start": Object {
+                      "column": 16,
+                      "line": 182,
+                      "offset": 3575,
+                    },
+                  },
+                  "value": "aftergroup",
+                },
+                Object {
+                  "arguments": Array [],
+                  "kind": "RegularCommand",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 40,
+                      "line": 182,
+                      "offset": 3599,
+                    },
+                    "start": Object {
+                      "column": 27,
+                      "line": 182,
+                      "offset": 3586,
+                    },
+                  },
+                  "value": "ignorespaces",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 56,
+                  "line": 182,
+                  "offset": 3615,
+                },
+                "start": Object {
+                  "column": 41,
+                  "line": 182,
+                  "offset": 3600,
+                },
+              },
+              "value": " Este, Beatrice",
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 184,
+              "offset": 3649,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 183,
+              "offset": 3618,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 30,
+                  "line": 183,
+                  "offset": 3647,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 183,
+                  "offset": 3628,
+                },
+              },
+              "value": "[Este][Beatrice d']",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+    Object {
+      "id": "medici",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 191,
+          "offset": 3749,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 186,
+          "offset": 3652,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 188,
+              "offset": 3707,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 187,
+              "offset": 3668,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 16,
+                  "line": 187,
+                  "offset": 3681,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 187,
+                  "offset": 3678,
+                },
+              },
+              "value": "de'",
+            },
+            Object {
+              "arguments": Array [
+                Object {
+                  "kind": "RequiredArgument",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 23,
+                      "line": 187,
+                      "offset": 3688,
+                    },
+                    "start": Object {
+                      "column": 21,
+                      "line": 187,
+                      "offset": 3686,
+                    },
+                  },
+                  "value": Array [],
+                },
+              ],
+              "kind": "RegularCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 23,
+                  "line": 187,
+                  "offset": 3688,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 187,
+                  "offset": 3681,
+                },
+              },
+              "value": "mbox",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 39,
+                  "line": 187,
+                  "offset": 3704,
+                },
+                "start": Object {
+                  "column": 23,
+                  "line": 187,
+                  "offset": 3688,
+                },
+              },
+              "value": " Medici, Lorenzo",
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 189,
+              "offset": 3746,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 188,
+              "offset": 3707,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 38,
+                  "line": 188,
+                  "offset": 3744,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 188,
+                  "offset": 3717,
+                },
+              },
+              "value": "[Medici][Lorenzo de'U+200B]",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+    Object {
+      "id": "al-hakim",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 196,
+          "offset": 3831,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 191,
+          "offset": 3749,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 193,
+              "offset": 3798,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 192,
+              "offset": 3767,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 23,
+                  "line": 192,
+                  "offset": 3787,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 192,
+                  "offset": 3777,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 22,
+                      "line": 192,
+                      "offset": 3786,
+                    },
+                    "start": Object {
+                      "column": 14,
+                      "line": 192,
+                      "offset": 3778,
+                    },
+                  },
+                  "value": "al-Hakim",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 31,
+                  "line": 192,
+                  "offset": 3795,
+                },
+                "start": Object {
+                  "column": 23,
+                  "line": 192,
+                  "offset": 3787,
+                },
+              },
+              "value": ", Tawfiq",
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 194,
+              "offset": 3828,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 193,
+              "offset": 3798,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 29,
+                  "line": 193,
+                  "offset": 3826,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 193,
+                  "offset": 3808,
+                },
+              },
+              "value": "[al-Hakim][Tawfiq]",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+    Object {
+      "id": "levayer",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 200,
+          "offset": 3947,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 196,
+          "offset": 3831,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 198,
+              "offset": 3896,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 197,
+              "offset": 3848,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 27,
+                  "line": 197,
+                  "offset": 3872,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 197,
+                  "offset": 3858,
+                },
+              },
+              "value": "Le Vayer, Fran",
+            },
+            Object {
+              "character": "c",
+              "dotless": false,
+              "kind": "DicraticalCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 33,
+                  "line": 197,
+                  "offset": 3878,
+                },
+                "start": Object {
+                  "column": 27,
+                  "line": 197,
+                  "offset": 3872,
+                },
+              },
+              "mark": "c",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 48,
+                  "line": 197,
+                  "offset": 3893,
+                },
+                "start": Object {
+                  "column": 33,
+                  "line": 197,
+                  "offset": 3878,
+                },
+              },
+              "value": "ois de La Mothe",
+            },
+          ],
+        },
+        Object {
+          "key": "note",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 199,
+              "offset": 3945,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 198,
+              "offset": 3896,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 26,
+                  "line": 198,
+                  "offset": 3921,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 198,
+                  "offset": 3906,
+                },
+              },
+              "value": "[Le Vayer][Fran",
+            },
+            Object {
+              "character": "c",
+              "dotless": false,
+              "kind": "DicraticalCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 32,
+                  "line": 198,
+                  "offset": 3927,
+                },
+                "start": Object {
+                  "column": 26,
+                  "line": 198,
+                  "offset": 3921,
+                },
+              },
+              "mark": "c",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 48,
+                  "line": 198,
+                  "offset": 3943,
+                },
+                "start": Object {
+                  "column": 32,
+                  "line": 198,
+                  "offset": 3927,
+                },
+              },
+              "value": "ois de La Mothe]",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 200,
+      "offset": 3947,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

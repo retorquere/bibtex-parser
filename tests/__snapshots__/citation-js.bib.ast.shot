@@ -1,0 +1,582 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse citation-js.bib to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "key": "j",
+      "kind": "StringExpression",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 2,
+          "offset": 37,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "value": Array [
+        Object {
+          "kind": "Text",
+          "loc": Object {
+            "end": Object {
+              "column": 35,
+              "line": 1,
+              "offset": 34,
+            },
+            "start": Object {
+              "column": 14,
+              "line": 1,
+              "offset": 13,
+            },
+          },
+          "value": "a space between this ",
+        },
+      ],
+    },
+    Object {
+      "key": "a",
+      "kind": "StringExpression",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 3,
+          "offset": 62,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 2,
+          "offset": 37,
+        },
+      },
+      "value": Array [
+        Object {
+          "kind": "Text",
+          "loc": Object {
+            "end": Object {
+              "column": 23,
+              "line": 2,
+              "offset": 59,
+            },
+            "start": Object {
+              "column": 14,
+              "line": 2,
+              "offset": 50,
+            },
+          },
+          "value": " string a",
+        },
+      ],
+    },
+    Object {
+      "key": "b",
+      "kind": "StringExpression",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 4,
+          "offset": 87,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 3,
+          "offset": 62,
+        },
+      },
+      "value": Array [
+        Object {
+          "kind": "Text",
+          "loc": Object {
+            "end": Object {
+              "column": 23,
+              "line": 3,
+              "offset": 84,
+            },
+            "start": Object {
+              "column": 14,
+              "line": 3,
+              "offset": 75,
+            },
+          },
+          "value": " string b",
+        },
+      ],
+    },
+    Object {
+      "key": "c",
+      "kind": "StringExpression",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 5,
+          "offset": 112,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 4,
+          "offset": 87,
+        },
+      },
+      "value": Array [
+        Object {
+          "kind": "Text",
+          "loc": Object {
+            "end": Object {
+              "column": 23,
+              "line": 4,
+              "offset": 109,
+            },
+            "start": Object {
+              "column": 14,
+              "line": 4,
+              "offset": 100,
+            },
+          },
+          "value": " string c",
+        },
+      ],
+    },
+    Object {
+      "id": "key",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 12,
+          "offset": 257,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 5,
+          "offset": 112,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 150,
+            },
+            "start": Object {
+              "column": 5,
+              "line": 6,
+              "offset": 130,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 22,
+                  "line": 6,
+                  "offset": 147,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 6,
+                  "offset": 141,
+                },
+              },
+              "value": "Author",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 205,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 150,
+            },
+          },
+          "value": Array [
+            Object {
+              "character": "a",
+              "dotless": false,
+              "kind": "DicraticalCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 22,
+                  "line": 7,
+                  "offset": 171,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 7,
+                  "offset": 165,
+                },
+              },
+              "mark": "r",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 26,
+                  "line": 7,
+                  "offset": 175,
+                },
+                "start": Object {
+                  "column": 22,
+                  "line": 7,
+                  "offset": 171,
+                },
+              },
+              "value": Array [
+                Object {
+                  "arguments": Array [],
+                  "kind": "RegularCommand",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 25,
+                      "line": 7,
+                      "offset": 174,
+                    },
+                    "start": Object {
+                      "column": 23,
+                      "line": 7,
+                      "offset": 172,
+                    },
+                  },
+                  "value": "i",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 31,
+                  "line": 7,
+                  "offset": 180,
+                },
+                "start": Object {
+                  "column": 26,
+                  "line": 7,
+                  "offset": 175,
+                },
+              },
+              "value": " and ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 36,
+                  "line": 7,
+                  "offset": 185,
+                },
+                "start": Object {
+                  "column": 31,
+                  "line": 7,
+                  "offset": 180,
+                },
+              },
+              "value": Array [
+                Object {
+                  "character": "i",
+                  "dotless": false,
+                  "kind": "DicraticalCommand",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 35,
+                      "line": 7,
+                      "offset": 184,
+                    },
+                    "start": Object {
+                      "column": 32,
+                      "line": 7,
+                      "offset": 181,
+                    },
+                  },
+                  "mark": "'",
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 41,
+                  "line": 7,
+                  "offset": 190,
+                },
+                "start": Object {
+                  "column": 36,
+                  "line": 7,
+                  "offset": 185,
+                },
+              },
+              "value": "Title",
+            },
+            Object {
+              "kind": "String",
+              "loc": Object {
+                "end": Object {
+                  "column": 46,
+                  "line": 7,
+                  "offset": 195,
+                },
+                "start": Object {
+                  "column": 45,
+                  "line": 7,
+                  "offset": 194,
+                },
+              },
+              "value": "a",
+            },
+            Object {
+              "kind": "String",
+              "loc": Object {
+                "end": Object {
+                  "column": 50,
+                  "line": 7,
+                  "offset": 199,
+                },
+                "start": Object {
+                  "column": 49,
+                  "line": 7,
+                  "offset": 198,
+                },
+              },
+              "value": "b",
+            },
+            Object {
+              "kind": "String",
+              "loc": Object {
+                "end": Object {
+                  "column": 54,
+                  "line": 7,
+                  "offset": 203,
+                },
+                "start": Object {
+                  "column": 53,
+                  "line": 7,
+                  "offset": 202,
+                },
+              },
+              "value": "c",
+            },
+          ],
+        },
+        Object {
+          "key": "year",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 225,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 205,
+            },
+          },
+          "value": Object {
+            "kind": "Number",
+            "loc": Object {
+              "end": Object {
+                "column": 19,
+                "line": 8,
+                "offset": 223,
+              },
+              "start": Object {
+                "column": 15,
+                "line": 8,
+                "offset": 219,
+              },
+            },
+            "value": 1990,
+          },
+        },
+        Object {
+          "key": "journal",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 254,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 225,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "String",
+              "loc": Object {
+                "end": Object {
+                  "column": 16,
+                  "line": 9,
+                  "offset": 240,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 9,
+                  "offset": 239,
+                },
+              },
+              "value": "j",
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 28,
+                  "line": 9,
+                  "offset": 252,
+                },
+                "start": Object {
+                  "column": 20,
+                  "line": 9,
+                  "offset": 244,
+                },
+              },
+              "value": "and this",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+    Object {
+      "key": "i",
+      "kind": "StringExpression",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 13,
+          "offset": 277,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 12,
+          "offset": 257,
+        },
+      },
+      "value": Array [
+        Object {
+          "kind": "NestedLiteral",
+          "loc": Object {
+            "end": Object {
+              "column": 18,
+              "line": 12,
+              "offset": 274,
+            },
+            "start": Object {
+              "column": 14,
+              "line": 12,
+              "offset": 270,
+            },
+          },
+          "value": Array [
+            Object {
+              "arguments": Array [],
+              "kind": "RegularCommand",
+              "loc": Object {
+                "end": Object {
+                  "column": 17,
+                  "line": 12,
+                  "offset": 273,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 12,
+                  "offset": 271,
+                },
+              },
+              "value": "i",
+            },
+          ],
+        },
+      ],
+    },
+    Object {
+      "id": "label",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 14,
+          "offset": 302,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 13,
+          "offset": 277,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 24,
+              "line": 13,
+              "offset": 300,
+            },
+            "start": Object {
+              "column": 14,
+              "line": 13,
+              "offset": 290,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "String",
+              "loc": Object {
+                "end": Object {
+                  "column": 23,
+                  "line": 13,
+                  "offset": 299,
+                },
+                "start": Object {
+                  "column": 22,
+                  "line": 13,
+                  "offset": 298,
+                },
+              },
+              "value": "i",
+            },
+          ],
+        },
+      ],
+      "type": "book",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 14,
+      "offset": 302,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

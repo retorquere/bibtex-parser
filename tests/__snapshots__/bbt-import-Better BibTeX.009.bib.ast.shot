@@ -1,0 +1,587 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-import-Better BibTeX.009.bib to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "Adams2001",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 10,
+          "offset": 415,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 172,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 2,
+              "offset": 22,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 150,
+                  "line": 2,
+                  "offset": 169,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 2,
+                  "offset": 32,
+                },
+              },
+              "value": "Adams, Nancy K and DeSilva, Shanaka L and Self, Steven and Salas, Guido and Schubring, Steven and Permenter, Jason L and Arbesman, Kendra",
+            },
+          ],
+        },
+        Object {
+          "key": "journal",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 211,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 3,
+              "offset": 172,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 37,
+                  "line": 3,
+                  "offset": 208,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 3,
+                  "offset": 185,
+                },
+              },
+              "value": "Bulletin of Volcanology",
+            },
+          ],
+        },
+        Object {
+          "key": "keywords",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 266,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 211,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 53,
+                  "line": 4,
+                  "offset": 263,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 4,
+                  "offset": 225,
+                },
+              },
+              "value": "Vulcanian eruptions,breadcrust,plinian",
+            },
+          ],
+        },
+        Object {
+          "key": "pages",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 288,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 266,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 5,
+                  "offset": 285,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 5,
+                  "offset": 277,
+                },
+              },
+              "value": "493–518",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 380,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 288,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 90,
+                  "line": 6,
+                  "offset": 377,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 6,
+                  "offset": 299,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 89,
+                      "line": 6,
+                      "offset": 376,
+                    },
+                    "start": Object {
+                      "column": 13,
+                      "line": 6,
+                      "offset": 300,
+                    },
+                  },
+                  "value": "The physical volcanology of the 1600 eruption of Huaynaputina, southern Peru",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "volume",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 397,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 380,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 7,
+                  "offset": 394,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 7,
+                  "offset": 392,
+                },
+              },
+              "value": "62",
+            },
+          ],
+        },
+        Object {
+          "key": "year",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 413,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 397,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 8,
+                  "offset": 411,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 8,
+                  "offset": 407,
+                },
+              },
+              "value": "2001",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+    Object {
+      "id": "emptyreference",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 13,
+          "offset": 442,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 10,
+          "offset": 415,
+        },
+      },
+      "properties": Array [],
+      "type": "misc",
+    },
+    Object {
+      "id": "Adams2002",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 22,
+          "offset": 857,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 13,
+          "offset": 442,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 15,
+              "offset": 614,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 14,
+              "offset": 464,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 150,
+                  "line": 14,
+                  "offset": 611,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 14,
+                  "offset": 474,
+                },
+              },
+              "value": "Adams, Nancy K and DeSilva, Shanaka L and Self, Steven and Salas, Guido and Schubring, Steven and Permenter, Jason L and Arbesman, Kendra",
+            },
+          ],
+        },
+        Object {
+          "key": "journal",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 16,
+              "offset": 653,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 15,
+              "offset": 614,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 37,
+                  "line": 15,
+                  "offset": 650,
+                },
+                "start": Object {
+                  "column": 14,
+                  "line": 15,
+                  "offset": 627,
+                },
+              },
+              "value": "Bulletin of Volcanology",
+            },
+          ],
+        },
+        Object {
+          "key": "keywords",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 17,
+              "offset": 708,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 16,
+              "offset": 653,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 53,
+                  "line": 16,
+                  "offset": 705,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 16,
+                  "offset": 667,
+                },
+              },
+              "value": "Vulcanian eruptions,breadcrust,plinian",
+            },
+          ],
+        },
+        Object {
+          "key": "pages",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 18,
+              "offset": 730,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 17,
+              "offset": 708,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 17,
+                  "offset": 727,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 17,
+                  "offset": 719,
+                },
+              },
+              "value": "493–518",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 19,
+              "offset": 822,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 18,
+              "offset": 730,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 90,
+                  "line": 18,
+                  "offset": 819,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 18,
+                  "offset": 741,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "Text",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 89,
+                      "line": 18,
+                      "offset": 818,
+                    },
+                    "start": Object {
+                      "column": 13,
+                      "line": 18,
+                      "offset": 742,
+                    },
+                  },
+                  "value": "The physical volcanology of the 1600 eruption of Huaynaputina, southern Peru",
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "volume",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 20,
+              "offset": 839,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 19,
+              "offset": 822,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 19,
+                  "offset": 836,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 19,
+                  "offset": 834,
+                },
+              },
+              "value": "62",
+            },
+          ],
+        },
+        Object {
+          "key": "year",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 21,
+              "offset": 855,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 20,
+              "offset": 839,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 20,
+                  "offset": 853,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 20,
+                  "offset": 849,
+                },
+              },
+              "value": "2001",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 22,
+      "offset": 857,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;

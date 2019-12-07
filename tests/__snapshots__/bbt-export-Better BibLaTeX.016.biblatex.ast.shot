@@ -1,0 +1,394 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-Better BibLaTeX.016.biblatex to an AST 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "id": "arbesmanvonsecondname2001",
+      "kind": "Entry",
+      "loc": Object {
+        "end": Object {
+          "column": 1,
+          "line": 12,
+          "offset": 341,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 2,
+          "offset": 1,
+        },
+      },
+      "properties": Array [
+        Object {
+          "key": "author",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 83,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 3,
+              "offset": 39,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 44,
+                  "line": 3,
+                  "offset": 80,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 3,
+                  "offset": 49,
+                },
+              },
+              "value": "Arbesman von Secondname, Kendra",
+            },
+          ],
+        },
+        Object {
+          "key": "date",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 100,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 4,
+              "offset": 83,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 4,
+                  "offset": 97,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 4,
+                  "offset": 93,
+                },
+              },
+              "value": "2001",
+            },
+          ],
+        },
+        Object {
+          "key": "journaltitle",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 138,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 5,
+              "offset": 100,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 36,
+                  "line": 5,
+                  "offset": 135,
+                },
+                "start": Object {
+                  "column": 19,
+                  "line": 5,
+                  "offset": 118,
+                },
+              },
+              "value": "Title, with comma",
+            },
+          ],
+        },
+        Object {
+          "key": "keywords",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 193,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 6,
+              "offset": 138,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 53,
+                  "line": 6,
+                  "offset": 190,
+                },
+                "start": Object {
+                  "column": 15,
+                  "line": 6,
+                  "offset": 152,
+                },
+              },
+              "value": "breadcrust,plinian,Vulcanian eruptions",
+            },
+          ],
+        },
+        Object {
+          "key": "pages",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 215,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 7,
+              "offset": 193,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 7,
+                  "offset": 212,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 7,
+                  "offset": 204,
+                },
+              },
+              "value": "493–518",
+            },
+          ],
+        },
+        Object {
+          "key": "title",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 322,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 8,
+              "offset": 215,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 70,
+                  "line": 8,
+                  "offset": 284,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 8,
+                  "offset": 226,
+                },
+              },
+              "value": "The Physical: Violent Volcanology of the 1600 Eruption of ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 86,
+                  "line": 8,
+                  "offset": 300,
+                },
+                "start": Object {
+                  "column": 70,
+                  "line": 8,
+                  "offset": 284,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 85,
+                      "line": 8,
+                      "offset": 299,
+                    },
+                    "start": Object {
+                      "column": 71,
+                      "line": 8,
+                      "offset": 285,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 84,
+                          "line": 8,
+                          "offset": 298,
+                        },
+                        "start": Object {
+                          "column": 72,
+                          "line": 8,
+                          "offset": 286,
+                        },
+                      },
+                      "value": "Huaynaputina",
+                    },
+                  ],
+                },
+              ],
+            },
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 97,
+                  "line": 8,
+                  "offset": 311,
+                },
+                "start": Object {
+                  "column": 86,
+                  "line": 8,
+                  "offset": 300,
+                },
+              },
+              "value": ", Southern ",
+            },
+            Object {
+              "kind": "NestedLiteral",
+              "loc": Object {
+                "end": Object {
+                  "column": 105,
+                  "line": 8,
+                  "offset": 319,
+                },
+                "start": Object {
+                  "column": 97,
+                  "line": 8,
+                  "offset": 311,
+                },
+              },
+              "value": Array [
+                Object {
+                  "kind": "NestedLiteral",
+                  "loc": Object {
+                    "end": Object {
+                      "column": 104,
+                      "line": 8,
+                      "offset": 318,
+                    },
+                    "start": Object {
+                      "column": 98,
+                      "line": 8,
+                      "offset": 312,
+                    },
+                  },
+                  "value": Array [
+                    Object {
+                      "kind": "Text",
+                      "loc": Object {
+                        "end": Object {
+                          "column": 103,
+                          "line": 8,
+                          "offset": 317,
+                        },
+                        "start": Object {
+                          "column": 99,
+                          "line": 8,
+                          "offset": 313,
+                        },
+                      },
+                      "value": "Peru",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        Object {
+          "key": "volume",
+          "kind": "Property",
+          "loc": Object {
+            "end": Object {
+              "column": 1,
+              "line": 10,
+              "offset": 338,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 9,
+              "offset": 322,
+            },
+          },
+          "value": Array [
+            Object {
+              "kind": "Text",
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 9,
+                  "offset": 336,
+                },
+                "start": Object {
+                  "column": 13,
+                  "line": 9,
+                  "offset": 334,
+                },
+              },
+              "value": "62",
+            },
+          ],
+        },
+      ],
+      "type": "article",
+    },
+  ],
+  "kind": "File",
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 12,
+      "offset": 341,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+}
+`;
