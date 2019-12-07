@@ -1,142 +1,48 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BibTeX Parser should parse bbt-export-auth leaves punctuation in citation key #310.biblatex to an AST 1`] = `
-Object {
-  "children": Array [
-    Object {
-      "id": "Ohara2015",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 7,
-          "offset": 88,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 1,
-          "offset": 0,
-        },
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "id": "Ohara2015",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "author",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "O'hara, james",
+              },
+            ],
+          },
+          Object {
+            "key": "date",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2015",
+              },
+            ],
+          },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "A Testbook",
+              },
+            ],
+          },
+        ],
+        "type": "book",
       },
-      "properties": Array [
-        Object {
-          "key": "author",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 3,
-              "offset": 45,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 2,
-              "offset": 19,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 26,
-                  "line": 2,
-                  "offset": 42,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 2,
-                  "offset": 29,
-                },
-              },
-              "value": "O'hara, james",
-            },
-          ],
-        },
-        Object {
-          "key": "date",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 62,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 3,
-              "offset": 45,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 15,
-                  "line": 3,
-                  "offset": 59,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 3,
-                  "offset": 55,
-                },
-              },
-              "value": "2015",
-            },
-          ],
-        },
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 85,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 62,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 22,
-                  "line": 4,
-                  "offset": 83,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 4,
-                  "offset": 73,
-                },
-              },
-              "value": "A Testbook",
-            },
-          ],
-        },
-      ],
-      "type": "book",
-    },
-  ],
-  "kind": "File",
-  "loc": Object {
-    "end": Object {
-      "column": 1,
-      "line": 7,
-      "offset": 88,
-    },
-    "start": Object {
-      "column": 1,
-      "line": 1,
-      "offset": 0,
-    },
+    ],
+    "kind": "File",
   },
-}
+]
 `;

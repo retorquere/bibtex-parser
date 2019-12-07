@@ -1,477 +1,157 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BibTeX Parser should parse bbt-export-bibtex export of phdthesis does not case-protect -type- #435.bibtex to an AST 1`] = `
-Object {
-  "children": Array [
-    Object {
-      "id": "TayW12",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 9,
-          "offset": 234,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 1,
-          "offset": 0,
-        },
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "id": "TayW12",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "author",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Tay Wo Chong Hilares, Luis Roberto",
+              },
+            ],
+          },
+          Object {
+            "key": "school",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "TU M",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {},
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "ü",
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": "nchen",
+              },
+            ],
+          },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Numerical ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "Simulation",
+                      },
+                    ],
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": " of the ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "Dynamics",
+                      },
+                    ],
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": " of ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "Turbulent Swirling Flames",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "type",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": true,
+                "kind": "NestedLiteral",
+                "markup": Object {},
+                "value": Array [
+                  Object {
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "PhD Thesis",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "year",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2012",
+              },
+            ],
+          },
+        ],
+        "type": "phdthesis",
       },
-      "properties": Array [
-        Object {
-          "key": "author",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 3,
-              "offset": 68,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 2,
-              "offset": 21,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 47,
-                  "line": 2,
-                  "offset": 65,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 2,
-                  "offset": 31,
-                },
-              },
-              "value": "Tay Wo Chong Hilares, Luis Roberto",
-            },
-          ],
-        },
-        Object {
-          "key": "school",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 97,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 3,
-              "offset": 68,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 17,
-                  "line": 3,
-                  "offset": 84,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 3,
-                  "offset": 80,
-                },
-              },
-              "value": "TU M",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 22,
-                  "line": 3,
-                  "offset": 89,
-                },
-                "start": Object {
-                  "column": 17,
-                  "line": 3,
-                  "offset": 84,
-                },
-              },
-              "value": Array [
-                Object {
-                  "character": "u",
-                  "dotless": false,
-                  "kind": "DicraticalCommand",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 21,
-                      "line": 3,
-                      "offset": 88,
-                    },
-                    "start": Object {
-                      "column": 18,
-                      "line": 3,
-                      "offset": 85,
-                    },
-                  },
-                  "mark": "\\"",
-                },
-              ],
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 27,
-                  "line": 3,
-                  "offset": 94,
-                },
-                "start": Object {
-                  "column": 22,
-                  "line": 3,
-                  "offset": 89,
-                },
-              },
-              "value": "nchen",
-            },
-          ],
-        },
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 188,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 97,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 22,
-                  "line": 4,
-                  "offset": 118,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 4,
-                  "offset": 108,
-                },
-              },
-              "value": "Numerical ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 36,
-                  "line": 4,
-                  "offset": 132,
-                },
-                "start": Object {
-                  "column": 22,
-                  "line": 4,
-                  "offset": 118,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 35,
-                      "line": 4,
-                      "offset": 131,
-                    },
-                    "start": Object {
-                      "column": 23,
-                      "line": 4,
-                      "offset": 119,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 34,
-                          "line": 4,
-                          "offset": 130,
-                        },
-                        "start": Object {
-                          "column": 24,
-                          "line": 4,
-                          "offset": 120,
-                        },
-                      },
-                      "value": "Simulation",
-                    },
-                  ],
-                },
-              ],
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 44,
-                  "line": 4,
-                  "offset": 140,
-                },
-                "start": Object {
-                  "column": 36,
-                  "line": 4,
-                  "offset": 132,
-                },
-              },
-              "value": " of the ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 56,
-                  "line": 4,
-                  "offset": 152,
-                },
-                "start": Object {
-                  "column": 44,
-                  "line": 4,
-                  "offset": 140,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 55,
-                      "line": 4,
-                      "offset": 151,
-                    },
-                    "start": Object {
-                      "column": 45,
-                      "line": 4,
-                      "offset": 141,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 54,
-                          "line": 4,
-                          "offset": 150,
-                        },
-                        "start": Object {
-                          "column": 46,
-                          "line": 4,
-                          "offset": 142,
-                        },
-                      },
-                      "value": "Dynamics",
-                    },
-                  ],
-                },
-              ],
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 60,
-                  "line": 4,
-                  "offset": 156,
-                },
-                "start": Object {
-                  "column": 56,
-                  "line": 4,
-                  "offset": 152,
-                },
-              },
-              "value": " of ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 89,
-                  "line": 4,
-                  "offset": 185,
-                },
-                "start": Object {
-                  "column": 60,
-                  "line": 4,
-                  "offset": 156,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 88,
-                      "line": 4,
-                      "offset": 184,
-                    },
-                    "start": Object {
-                      "column": 61,
-                      "line": 4,
-                      "offset": 157,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 87,
-                          "line": 4,
-                          "offset": 183,
-                        },
-                        "start": Object {
-                          "column": 62,
-                          "line": 4,
-                          "offset": 158,
-                        },
-                      },
-                      "value": "Turbulent Swirling Flames",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "type",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 215,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 188,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 25,
-                  "line": 5,
-                  "offset": 212,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 5,
-                  "offset": 198,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 24,
-                      "line": 5,
-                      "offset": 211,
-                    },
-                    "start": Object {
-                      "column": 12,
-                      "line": 5,
-                      "offset": 199,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 23,
-                          "line": 5,
-                          "offset": 210,
-                        },
-                        "start": Object {
-                          "column": 13,
-                          "line": 5,
-                          "offset": 200,
-                        },
-                      },
-                      "value": "PhD Thesis",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "year",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 231,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 215,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 15,
-                  "line": 6,
-                  "offset": 229,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 6,
-                  "offset": 225,
-                },
-              },
-              "value": "2012",
-            },
-          ],
-        },
-      ],
-      "type": "phdthesis",
-    },
-  ],
-  "kind": "File",
-  "loc": Object {
-    "end": Object {
-      "column": 1,
-      "line": 9,
-      "offset": 234,
-    },
-    "start": Object {
-      "column": 1,
-      "line": 1,
-      "offset": 0,
-    },
+    ],
+    "kind": "File",
   },
-}
+]
 `;

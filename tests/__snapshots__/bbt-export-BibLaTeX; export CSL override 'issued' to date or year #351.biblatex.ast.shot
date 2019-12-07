@@ -1,142 +1,48 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BibTeX Parser should parse bbt-export-BibLaTeX; export CSL override 'issued' to date or year #351.biblatex to an AST 1`] = `
-Object {
-  "children": Array [
-    Object {
-      "id": "doe_test",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 6,
-          "offset": 95,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 1,
-          "offset": 0,
-        },
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "id": "doe_test",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "author",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Doe, John",
+              },
+            ],
+          },
+          Object {
+            "key": "date",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2014-12-31/2015-01-01",
+              },
+            ],
+          },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Test",
+              },
+            ],
+          },
+        ],
+        "type": "online",
       },
-      "properties": Array [
-        Object {
-          "key": "author",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 3,
-              "offset": 42,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 2,
-              "offset": 20,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 22,
-                  "line": 2,
-                  "offset": 39,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 2,
-                  "offset": 30,
-                },
-              },
-              "value": "Doe, John",
-            },
-          ],
-        },
-        Object {
-          "key": "date",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 76,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 3,
-              "offset": 42,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 32,
-                  "line": 3,
-                  "offset": 73,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 3,
-                  "offset": 52,
-                },
-              },
-              "value": "2014-12-31/2015-01-01",
-            },
-          ],
-        },
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 93,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 76,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 16,
-                  "line": 4,
-                  "offset": 91,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 4,
-                  "offset": 87,
-                },
-              },
-              "value": "Test",
-            },
-          ],
-        },
-      ],
-      "type": "online",
-    },
-  ],
-  "kind": "File",
-  "loc": Object {
-    "end": Object {
-      "column": 1,
-      "line": 6,
-      "offset": 95,
-    },
-    "start": Object {
-      "column": 1,
-      "line": 1,
-      "offset": 0,
-    },
+    ],
+    "kind": "File",
   },
-}
+]
 `;

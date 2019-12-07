@@ -1,705 +1,229 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BibTeX Parser should parse bbt-export-Sorting and optional particle handling #411.off.biblatex to an AST 1`] = `
-Object {
-  "children": Array [
-    Object {
-      "id": "macedo_catalogo_1799",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 13,
-          "offset": 538,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 1,
-          "offset": 0,
-        },
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "id": "macedo_catalogo_1799",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "langid",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "portuguese",
+              },
+            ],
+          },
+          Object {
+            "key": "author",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Macedo, Agostinho José da Costa de",
+              },
+            ],
+          },
+          Object {
+            "key": "date",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "1799",
+              },
+            ],
+          },
+          Object {
+            "key": "keywords",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Literary Criticism / European / Spanish & Portuguese,Portuguese literature",
+              },
+            ],
+          },
+          Object {
+            "key": "location",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": true,
+                "kind": "NestedLiteral",
+                "markup": Object {},
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "Lisboa",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "pagetotal",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "182",
+              },
+            ],
+          },
+          Object {
+            "key": "publisher",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": true,
+                "kind": "NestedLiteral",
+                "markup": Object {},
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "Na Typographia da Mesma Academia",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "shorttitle",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Catalogo dos livros, que se haõ de ler...",
+              },
+            ],
+          },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Catalogo dos livros, que se haõ de ler para a continuaçaõ do diccionario da lingua Portugueza: mandado publicar pela Academia Real das Sciencias de Lisboa",
+              },
+            ],
+          },
+        ],
+        "type": "book",
       },
-      "properties": Array [
-        Object {
-          "key": "author",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 3,
-              "offset": 77,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 2,
-              "offset": 30,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 47,
-                  "line": 2,
-                  "offset": 74,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 2,
-                  "offset": 40,
-                },
-              },
-              "value": "Macedo, Agostinho José da Costa de",
-            },
-          ],
-        },
-        Object {
-          "key": "date",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 94,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 3,
-              "offset": 77,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 15,
-                  "line": 3,
-                  "offset": 91,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 3,
-                  "offset": 87,
-                },
-              },
-              "value": "1799",
-            },
-          ],
-        },
-        Object {
-          "key": "keywords",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 185,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 94,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 89,
-                  "line": 4,
-                  "offset": 182,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 4,
-                  "offset": 108,
-                },
-              },
-              "value": "Literary Criticism / European / Spanish & Portuguese,Portuguese literature",
-            },
-          ],
-        },
-        Object {
-          "key": "langid",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 210,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 185,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 23,
-                  "line": 5,
-                  "offset": 207,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 5,
-                  "offset": 197,
-                },
-              },
-              "value": "portuguese",
-            },
-          ],
-        },
-        Object {
-          "key": "location",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 235,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 210,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 23,
-                  "line": 6,
-                  "offset": 232,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 6,
-                  "offset": 224,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "Text",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 22,
-                      "line": 6,
-                      "offset": 231,
-                    },
-                    "start": Object {
-                      "column": 16,
-                      "line": 6,
-                      "offset": 225,
-                    },
-                  },
-                  "value": "Lisboa",
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "pagetotal",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 256,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 235,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 19,
-                  "line": 7,
-                  "offset": 253,
-                },
-                "start": Object {
-                  "column": 16,
-                  "line": 7,
-                  "offset": 250,
-                },
-              },
-              "value": "182",
-            },
-          ],
-        },
-        Object {
-          "key": "publisher",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 308,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 256,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 50,
-                  "line": 8,
-                  "offset": 305,
-                },
-                "start": Object {
-                  "column": 16,
-                  "line": 8,
-                  "offset": 271,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "Text",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 49,
-                      "line": 8,
-                      "offset": 304,
-                    },
-                    "start": Object {
-                      "column": 17,
-                      "line": 8,
-                      "offset": 272,
-                    },
-                  },
-                  "value": "Na Typographia da Mesma Academia",
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "shorttitle",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 10,
-              "offset": 368,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 308,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 58,
-                  "line": 9,
-                  "offset": 365,
-                },
-                "start": Object {
-                  "column": 17,
-                  "line": 9,
-                  "offset": 324,
-                },
-              },
-              "value": "Catalogo dos livros, que se haõ de ler...",
-            },
-          ],
-        },
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 11,
-              "offset": 535,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 10,
-              "offset": 368,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 166,
-                  "line": 10,
-                  "offset": 533,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 10,
-                  "offset": 379,
-                },
-              },
-              "value": "Catalogo dos livros, que se haõ de ler para a continuaçaõ do diccionario da lingua Portugueza: mandado publicar pela Academia Real das Sciencias de Lisboa",
-            },
-          ],
-        },
-      ],
-      "type": "book",
-    },
-    Object {
-      "id": "oliveira_memoriam_2007",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 23,
-          "offset": 894,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 13,
-          "offset": 538,
-        },
-      },
-      "properties": Array [
-        Object {
-          "key": "author",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 15,
-              "offset": 621,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 14,
-              "offset": 572,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 49,
-                  "line": 14,
-                  "offset": 618,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 14,
-                  "offset": 582,
-                },
-              },
-              "value": "Oliveira, Maria Manuel Lobo Pinto de",
-            },
-          ],
-        },
-        Object {
-          "key": "date",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 16,
-              "offset": 638,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 15,
-              "offset": 621,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 15,
-                  "line": 15,
-                  "offset": 635,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 15,
-                  "offset": 631,
-                },
-              },
-              "value": "2007",
-            },
-          ],
-        },
-        Object {
-          "key": "institution",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 17,
-              "offset": 681,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 16,
-              "offset": 638,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 41,
-                  "line": 16,
-                  "offset": 678,
-                },
-                "start": Object {
-                  "column": 18,
-                  "line": 16,
-                  "offset": 655,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "Text",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 40,
-                      "line": 16,
-                      "offset": 677,
-                    },
-                    "start": Object {
-                      "column": 19,
-                      "line": 16,
-                      "offset": 656,
-                    },
-                  },
-                  "value": "Universidade do Minho",
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "location",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 18,
-              "offset": 719,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 17,
-              "offset": 681,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 36,
-                  "line": 17,
-                  "offset": 716,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 17,
-                  "offset": 695,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "Text",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 35,
-                      "line": 17,
-                      "offset": 715,
-                    },
-                    "start": Object {
-                      "column": 16,
-                      "line": 17,
-                      "offset": 696,
-                    },
-                  },
-                  "value": "Guimarães, Portugal",
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 19,
-              "offset": 755,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 18,
-              "offset": 719,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 34,
-                  "line": 18,
-                  "offset": 752,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 18,
-                  "offset": 730,
-                },
-              },
-              "value": "In Memoriam, Na Cidade",
-            },
-          ],
-        },
-        Object {
-          "key": "type",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 20,
-              "offset": 804,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 19,
-              "offset": 755,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 47,
-                  "line": 19,
-                  "offset": 801,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 19,
-                  "offset": 765,
-                },
-              },
-              "value": "Tese de Doutoramento em Arquitectura",
-            },
-          ],
-        },
-        Object {
-          "key": "url",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 21,
-              "offset": 867,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 20,
-              "offset": 804,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 61,
-                  "line": 20,
-                  "offset": 864,
-                },
-                "start": Object {
-                  "column": 10,
-                  "line": 20,
-                  "offset": 813,
-                },
-              },
-              "value": "http://repositorium.sdum.uminho.pt/handle/1822/6877",
-            },
-          ],
-        },
-        Object {
-          "key": "urldate",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 22,
-              "offset": 892,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 21,
-              "offset": 867,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 24,
-                  "line": 21,
-                  "offset": 890,
-                },
-                "start": Object {
-                  "column": 14,
-                  "line": 21,
-                  "offset": 880,
-                },
-              },
-              "value": "2015-03-24",
-            },
-          ],
-        },
-      ],
-      "type": "thesis",
-    },
-  ],
-  "kind": "File",
-  "loc": Object {
-    "end": Object {
-      "column": 1,
-      "line": 23,
-      "offset": 894,
-    },
-    "start": Object {
-      "column": 1,
-      "line": 1,
-      "offset": 0,
-    },
+    ],
+    "kind": "File",
   },
-}
+  Object {
+    "children": Array [
+      Object {
+        "id": "oliveira_memoriam_2007",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "author",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Oliveira, Maria Manuel Lobo Pinto de",
+              },
+            ],
+          },
+          Object {
+            "key": "date",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2007",
+              },
+            ],
+          },
+          Object {
+            "key": "institution",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "Universidade do Minho",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "location",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": true,
+                "kind": "NestedLiteral",
+                "markup": Object {},
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "Guimarães, Portugal",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "In Memoriam, Na Cidade",
+              },
+            ],
+          },
+          Object {
+            "key": "type",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Tese de Doutoramento em Arquitectura",
+              },
+            ],
+          },
+          Object {
+            "key": "url",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "http://repositorium.sdum.uminho.pt/handle/1822/6877",
+              },
+            ],
+          },
+          Object {
+            "key": "urldate",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2015-03-24",
+              },
+            ],
+          },
+        ],
+        "type": "thesis",
+      },
+    ],
+    "kind": "File",
+  },
+]
 `;

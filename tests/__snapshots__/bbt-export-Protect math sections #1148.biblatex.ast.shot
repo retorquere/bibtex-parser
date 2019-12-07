@@ -1,472 +1,153 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BibTeX Parser should parse bbt-export-Protect math sections #1148.biblatex to an AST 1`] = `
-Object {
-  "children": Array [
-    Object {
-      "id": "InputWikiGoLaTeX",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 7,
-          "offset": 184,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 1,
-          "offset": 0,
-        },
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "id": "InputWikiGoLaTeX",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "MathMode",
+                    "value": "$",
+                  },
+                  Object {
+                    "kind": "Text",
+                    "value": "¡\\\\",
+                  },
+                  Object {
+                    "kind": "MathMode",
+                    "value": "$",
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": "input ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "Wiki",
+                      },
+                    ],
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": " .:. ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "exemptFromSentenceCase": true,
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "goLaTeX",
+                      },
+                    ],
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": " - ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "Mein LaTeX",
+                      },
+                    ],
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": "-",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "Forum",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "url",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "https://golatex.de/wiki/%5Cinput",
+              },
+            ],
+          },
+          Object {
+            "key": "urldate",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2019-03-11",
+              },
+            ],
+          },
+        ],
+        "type": "online",
       },
-      "properties": Array [
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 3,
-              "offset": 112,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 2,
-              "offset": 28,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 27,
-                  "line": 2,
-                  "offset": 52,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 2,
-                  "offset": 37,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "MathMode",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 14,
-                      "line": 2,
-                      "offset": 39,
-                    },
-                    "start": Object {
-                      "column": 13,
-                      "line": 2,
-                      "offset": 38,
-                    },
-                  },
-                  "value": "$",
-                },
-                Object {
-                  "kind": "Text",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 15,
-                      "line": 2,
-                      "offset": 40,
-                    },
-                    "start": Object {
-                      "column": 14,
-                      "line": 2,
-                      "offset": 39,
-                    },
-                  },
-                  "value": "¡",
-                },
-                Object {
-                  "arguments": Array [],
-                  "kind": "RegularCommand",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 25,
-                      "line": 2,
-                      "offset": 50,
-                    },
-                    "start": Object {
-                      "column": 15,
-                      "line": 2,
-                      "offset": 40,
-                    },
-                  },
-                  "value": "backslash",
-                },
-                Object {
-                  "kind": "MathMode",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 26,
-                      "line": 2,
-                      "offset": 51,
-                    },
-                    "start": Object {
-                      "column": 25,
-                      "line": 2,
-                      "offset": 50,
-                    },
-                  },
-                  "value": "$",
-                },
-              ],
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 33,
-                  "line": 2,
-                  "offset": 58,
-                },
-                "start": Object {
-                  "column": 27,
-                  "line": 2,
-                  "offset": 52,
-                },
-              },
-              "value": "input ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 41,
-                  "line": 2,
-                  "offset": 66,
-                },
-                "start": Object {
-                  "column": 33,
-                  "line": 2,
-                  "offset": 58,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 40,
-                      "line": 2,
-                      "offset": 65,
-                    },
-                    "start": Object {
-                      "column": 34,
-                      "line": 2,
-                      "offset": 59,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 39,
-                          "line": 2,
-                          "offset": 64,
-                        },
-                        "start": Object {
-                          "column": 35,
-                          "line": 2,
-                          "offset": 60,
-                        },
-                      },
-                      "value": "Wiki",
-                    },
-                  ],
-                },
-              ],
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 46,
-                  "line": 2,
-                  "offset": 71,
-                },
-                "start": Object {
-                  "column": 41,
-                  "line": 2,
-                  "offset": 66,
-                },
-              },
-              "value": " .:. ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 57,
-                  "line": 2,
-                  "offset": 82,
-                },
-                "start": Object {
-                  "column": 46,
-                  "line": 2,
-                  "offset": 71,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 56,
-                      "line": 2,
-                      "offset": 81,
-                    },
-                    "start": Object {
-                      "column": 47,
-                      "line": 2,
-                      "offset": 72,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 55,
-                          "line": 2,
-                          "offset": 80,
-                        },
-                        "start": Object {
-                          "column": 48,
-                          "line": 2,
-                          "offset": 73,
-                        },
-                      },
-                      "value": "goLaTeX",
-                    },
-                  ],
-                },
-              ],
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 60,
-                  "line": 2,
-                  "offset": 85,
-                },
-                "start": Object {
-                  "column": 57,
-                  "line": 2,
-                  "offset": 82,
-                },
-              },
-              "value": " - ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 74,
-                  "line": 2,
-                  "offset": 99,
-                },
-                "start": Object {
-                  "column": 60,
-                  "line": 2,
-                  "offset": 85,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 73,
-                      "line": 2,
-                      "offset": 98,
-                    },
-                    "start": Object {
-                      "column": 61,
-                      "line": 2,
-                      "offset": 86,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 72,
-                          "line": 2,
-                          "offset": 97,
-                        },
-                        "start": Object {
-                          "column": 62,
-                          "line": 2,
-                          "offset": 87,
-                        },
-                      },
-                      "value": "Mein LaTeX",
-                    },
-                  ],
-                },
-              ],
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 75,
-                  "line": 2,
-                  "offset": 100,
-                },
-                "start": Object {
-                  "column": 74,
-                  "line": 2,
-                  "offset": 99,
-                },
-              },
-              "value": "-",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 84,
-                  "line": 2,
-                  "offset": 109,
-                },
-                "start": Object {
-                  "column": 75,
-                  "line": 2,
-                  "offset": 100,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 83,
-                      "line": 2,
-                      "offset": 108,
-                    },
-                    "start": Object {
-                      "column": 76,
-                      "line": 2,
-                      "offset": 101,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 82,
-                          "line": 2,
-                          "offset": 107,
-                        },
-                        "start": Object {
-                          "column": 77,
-                          "line": 2,
-                          "offset": 102,
-                        },
-                      },
-                      "value": "Forum",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "url",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 156,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 3,
-              "offset": 112,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 42,
-                  "line": 3,
-                  "offset": 153,
-                },
-                "start": Object {
-                  "column": 10,
-                  "line": 3,
-                  "offset": 121,
-                },
-              },
-              "value": "https://golatex.de/wiki/%5Cinput",
-            },
-          ],
-        },
-        Object {
-          "key": "urldate",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 181,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 156,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 24,
-                  "line": 4,
-                  "offset": 179,
-                },
-                "start": Object {
-                  "column": 14,
-                  "line": 4,
-                  "offset": 169,
-                },
-              },
-              "value": "2019-03-11",
-            },
-          ],
-        },
-      ],
-      "type": "online",
-    },
-  ],
-  "kind": "File",
-  "loc": Object {
-    "end": Object {
-      "column": 1,
-      "line": 7,
-      "offset": 184,
-    },
-    "start": Object {
-      "column": 1,
-      "line": 1,
-      "offset": 0,
-    },
+    ],
+    "kind": "File",
   },
-}
+]
 `;

@@ -1,715 +1,220 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BibTeX Parser should parse bbt-export-Export C as {v C}, not v{C} #152.bibtex to an AST 1`] = `
-Object {
-  "children": Array [
-    Object {
-      "id": "Procopio2014",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 17,
-          "offset": 1962,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 2,
-          "offset": 1,
-        },
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "id": "Procopio2014",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "abstract",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "In a quantum computer, creating superpositions of quantum bits (qubits) in different states can lead to a speed-up over classical computers [1], but quantum mechanics also allows for the superposition of quantum circuits [2]. In fact, it has recently been theoretically predicted that superimposing quantum circuits, each with a different gate order, could provide quantum computers with an even further computational advantage [3-5]. Here, we experimentally demonstrate this enhancement by applying two quantum gates in a superposition of both possible orders to determine whether the two gates commute or anti-commute. We are able to make this determination with only a single use (or query) of each gate, while all quantum circuits with a fixed order of gates would require at least two uses of one of the gates [3]. Remarkably, when the problem is scaled to N gates, creating a superposition of quantum circuits is likely to provide an exponential advantage over classical algorithms, and a linear advantage over quantum algorithms with fixed gate order [4]. The new resource that we exploit in our experiment can be interpreted as a \\"superposition of causal orders\\". We demonstrate such a superposition could allow some quantum algorithms to be implemented with an efficiency that is unlikely to be achieved on a quantum computer with a fixed gate order.",
+              },
+            ],
+          },
+          Object {
+            "key": "annote",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Comment: 10 pages, 7 figures, 2 tables",
+              },
+            ],
+          },
+          Object {
+            "key": "archiveprefix",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "arXiv",
+              },
+            ],
+          },
+          Object {
+            "key": "author",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Procopio, Lorenzo M. and Moqanaki, Amir and Ara",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {},
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "ú",
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": "jo, Mateus and Costa, Fabio and Calafell, Irati A. and Dowd, Emma G. and Hamel, Deny R. and Rozema, Lee A. and Brukner, Časlav and Walther, Philip",
+              },
+            ],
+          },
+          Object {
+            "key": "eprint",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "1412.4006",
+              },
+            ],
+          },
+          Object {
+            "key": "eprinttype",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "arxiv",
+              },
+            ],
+          },
+          Object {
+            "key": "journal",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "arXiv:1412.4006 [quant-ph]",
+              },
+            ],
+          },
+          Object {
+            "key": "keywords",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Quantum Physics",
+              },
+            ],
+          },
+          Object {
+            "key": "month",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": false,
+                "kind": "String",
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "12",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "primaryclass",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "quant-ph",
+              },
+            ],
+          },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Experimental ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "Superposition",
+                      },
+                    ],
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": " of ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "Orders",
+                      },
+                    ],
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": " of ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "Quantum Gates",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "year",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2014",
+              },
+            ],
+          },
+        ],
+        "type": "article",
       },
-      "properties": Array [
-        Object {
-          "key": "abstract",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 1400,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 3,
-              "offset": 26,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 1374,
-                  "line": 3,
-                  "offset": 1397,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 3,
-                  "offset": 38,
-                },
-              },
-              "value": "In a quantum computer, creating superpositions of quantum bits (qubits) in different states can lead to a speed-up over classical computers [1], but quantum mechanics also allows for the superposition of quantum circuits [2]. In fact, it has recently been theoretically predicted that superimposing quantum circuits, each with a different gate order, could provide quantum computers with an even further computational advantage [3-5]. Here, we experimentally demonstrate this enhancement by applying two quantum gates in a superposition of both possible orders to determine whether the two gates commute or anti-commute. We are able to make this determination with only a single use (or query) of each gate, while all quantum circuits with a fixed order of gates would require at least two uses of one of the gates [3]. Remarkably, when the problem is scaled to N gates, creating a superposition of quantum circuits is likely to provide an exponential advantage over classical algorithms, and a linear advantage over quantum algorithms with fixed gate order [4]. The new resource that we exploit in our experiment can be interpreted as a \\"superposition of causal orders\\". We demonstrate such a superposition could allow some quantum algorithms to be implemented with an efficiency that is unlikely to be achieved on a quantum computer with a fixed gate order.",
-            },
-          ],
-        },
-        Object {
-          "key": "annote",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 1453,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 1400,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 51,
-                  "line": 4,
-                  "offset": 1450,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 4,
-                  "offset": 1412,
-                },
-              },
-              "value": "Comment: 10 pages, 7 figures, 2 tables",
-            },
-          ],
-        },
-        Object {
-          "key": "archiveprefix",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 1480,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 1453,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 25,
-                  "line": 5,
-                  "offset": 1477,
-                },
-                "start": Object {
-                  "column": 20,
-                  "line": 5,
-                  "offset": 1472,
-                },
-              },
-              "value": "arXiv",
-            },
-          ],
-        },
-        Object {
-          "key": "author",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 1698,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 1480,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 60,
-                  "line": 6,
-                  "offset": 1539,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 6,
-                  "offset": 1492,
-                },
-              },
-              "value": "Procopio, Lorenzo M. and Moqanaki, Amir and Ara",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 65,
-                  "line": 6,
-                  "offset": 1544,
-                },
-                "start": Object {
-                  "column": 60,
-                  "line": 6,
-                  "offset": 1539,
-                },
-              },
-              "value": Array [
-                Object {
-                  "character": "u",
-                  "dotless": false,
-                  "kind": "DicraticalCommand",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 64,
-                      "line": 6,
-                      "offset": 1543,
-                    },
-                    "start": Object {
-                      "column": 61,
-                      "line": 6,
-                      "offset": 1540,
-                    },
-                  },
-                  "mark": "'",
-                },
-              ],
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 185,
-                  "line": 6,
-                  "offset": 1664,
-                },
-                "start": Object {
-                  "column": 65,
-                  "line": 6,
-                  "offset": 1544,
-                },
-              },
-              "value": "jo, Mateus and Costa, Fabio and Calafell, Irati A. and Dowd, Emma G. and Hamel, Deny R. and Rozema, Lee A. and Brukner, ",
-            },
-            Object {
-              "character": "C",
-              "dotless": false,
-              "kind": "DicraticalCommand",
-              "loc": Object {
-                "end": Object {
-                  "column": 191,
-                  "line": 6,
-                  "offset": 1670,
-                },
-                "start": Object {
-                  "column": 185,
-                  "line": 6,
-                  "offset": 1664,
-                },
-              },
-              "mark": "v",
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 216,
-                  "line": 6,
-                  "offset": 1695,
-                },
-                "start": Object {
-                  "column": 191,
-                  "line": 6,
-                  "offset": 1670,
-                },
-              },
-              "value": "aslav and Walther, Philip",
-            },
-          ],
-        },
-        Object {
-          "key": "eprint",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 1722,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 1698,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 22,
-                  "line": 7,
-                  "offset": 1719,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 7,
-                  "offset": 1710,
-                },
-              },
-              "value": "1412.4006",
-            },
-          ],
-        },
-        Object {
-          "key": "eprinttype",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 1746,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 1722,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 22,
-                  "line": 8,
-                  "offset": 1743,
-                },
-                "start": Object {
-                  "column": 17,
-                  "line": 8,
-                  "offset": 1738,
-                },
-              },
-              "value": "arxiv",
-            },
-          ],
-        },
-        Object {
-          "key": "journal",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 10,
-              "offset": 1788,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 1746,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 40,
-                  "line": 9,
-                  "offset": 1785,
-                },
-                "start": Object {
-                  "column": 14,
-                  "line": 9,
-                  "offset": 1759,
-                },
-              },
-              "value": "arXiv:1412.4006 [quant-ph]",
-            },
-          ],
-        },
-        Object {
-          "key": "keywords",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 11,
-              "offset": 1820,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 10,
-              "offset": 1788,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 30,
-                  "line": 10,
-                  "offset": 1817,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 10,
-                  "offset": 1802,
-                },
-              },
-              "value": "Quantum Physics",
-            },
-          ],
-        },
-        Object {
-          "key": "month",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 12,
-              "offset": 1835,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 11,
-              "offset": 1820,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "String",
-              "loc": Object {
-                "end": Object {
-                  "column": 14,
-                  "line": 11,
-                  "offset": 1833,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 11,
-                  "offset": 1830,
-                },
-              },
-              "value": "dec",
-            },
-          ],
-        },
-        Object {
-          "key": "primaryclass",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 13,
-              "offset": 1864,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 12,
-              "offset": 1835,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 27,
-                  "line": 12,
-                  "offset": 1861,
-                },
-                "start": Object {
-                  "column": 19,
-                  "line": 12,
-                  "offset": 1853,
-                },
-              },
-              "value": "quant-ph",
-            },
-          ],
-        },
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 14,
-              "offset": 1943,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 13,
-              "offset": 1864,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 25,
-                  "line": 13,
-                  "offset": 1888,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 13,
-                  "offset": 1875,
-                },
-              },
-              "value": "Experimental ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 42,
-                  "line": 13,
-                  "offset": 1905,
-                },
-                "start": Object {
-                  "column": 25,
-                  "line": 13,
-                  "offset": 1888,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 41,
-                      "line": 13,
-                      "offset": 1904,
-                    },
-                    "start": Object {
-                      "column": 26,
-                      "line": 13,
-                      "offset": 1889,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 40,
-                          "line": 13,
-                          "offset": 1903,
-                        },
-                        "start": Object {
-                          "column": 27,
-                          "line": 13,
-                          "offset": 1890,
-                        },
-                      },
-                      "value": "Superposition",
-                    },
-                  ],
-                },
-              ],
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 46,
-                  "line": 13,
-                  "offset": 1909,
-                },
-                "start": Object {
-                  "column": 42,
-                  "line": 13,
-                  "offset": 1905,
-                },
-              },
-              "value": " of ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 56,
-                  "line": 13,
-                  "offset": 1919,
-                },
-                "start": Object {
-                  "column": 46,
-                  "line": 13,
-                  "offset": 1909,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 55,
-                      "line": 13,
-                      "offset": 1918,
-                    },
-                    "start": Object {
-                      "column": 47,
-                      "line": 13,
-                      "offset": 1910,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 54,
-                          "line": 13,
-                          "offset": 1917,
-                        },
-                        "start": Object {
-                          "column": 48,
-                          "line": 13,
-                          "offset": 1911,
-                        },
-                      },
-                      "value": "Orders",
-                    },
-                  ],
-                },
-              ],
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 60,
-                  "line": 13,
-                  "offset": 1923,
-                },
-                "start": Object {
-                  "column": 56,
-                  "line": 13,
-                  "offset": 1919,
-                },
-              },
-              "value": " of ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 77,
-                  "line": 13,
-                  "offset": 1940,
-                },
-                "start": Object {
-                  "column": 60,
-                  "line": 13,
-                  "offset": 1923,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 76,
-                      "line": 13,
-                      "offset": 1939,
-                    },
-                    "start": Object {
-                      "column": 61,
-                      "line": 13,
-                      "offset": 1924,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 75,
-                          "line": 13,
-                          "offset": 1938,
-                        },
-                        "start": Object {
-                          "column": 62,
-                          "line": 13,
-                          "offset": 1925,
-                        },
-                      },
-                      "value": "Quantum Gates",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "year",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 15,
-              "offset": 1959,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 14,
-              "offset": 1943,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 15,
-                  "line": 14,
-                  "offset": 1957,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 14,
-                  "offset": 1953,
-                },
-              },
-              "value": "2014",
-            },
-          ],
-        },
-      ],
-      "type": "article",
-    },
-  ],
-  "kind": "File",
-  "loc": Object {
-    "end": Object {
-      "column": 1,
-      "line": 17,
-      "offset": 1962,
-    },
-    "start": Object {
-      "column": 1,
-      "line": 1,
-      "offset": 0,
-    },
+    ],
+    "kind": "File",
   },
-}
+]
 `;

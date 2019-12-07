@@ -1,224 +1,93 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BibTeX Parser should parse bbt-import-Spaces lost when expanding string variables during import #1081.bib to an AST 1`] = `
-Object {
-  "children": Array [
-    Object {
-      "key": "j",
-      "kind": "StringExpression",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 2,
-          "offset": 37,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 1,
-          "offset": 0,
-        },
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "key": "j",
+        "kind": "StringExpression",
+        "value": Array [
+          Object {
+            "kind": "Text",
+            "value": "a space between this ",
+          },
+        ],
       },
-      "value": Array [
-        Object {
-          "kind": "Text",
-          "loc": Object {
-            "end": Object {
-              "column": 35,
-              "line": 1,
-              "offset": 34,
-            },
-            "start": Object {
-              "column": 14,
-              "line": 1,
-              "offset": 13,
-            },
-          },
-          "value": "a space between this ",
-        },
-      ],
-    },
-    Object {
-      "id": "key",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 8,
-          "offset": 149,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 2,
-          "offset": 37,
-        },
-      },
-      "properties": Array [
-        Object {
-          "key": "author",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 75,
-            },
-            "start": Object {
-              "column": 5,
-              "line": 3,
-              "offset": 55,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 22,
-                  "line": 3,
-                  "offset": 72,
-                },
-                "start": Object {
-                  "column": 16,
-                  "line": 3,
-                  "offset": 66,
-                },
+    ],
+    "kind": "File",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "id": "key",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "author",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Author",
               },
-              "value": "Author",
-            },
-          ],
-        },
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 98,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 75,
-            },
+            ],
           },
-          "value": Array [
-            Object {
-              "kind": "Text",
+          Object {
+            "key": "journal",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": false,
+                "kind": "String",
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "a space between this ",
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": "and this",
+              },
+            ],
+          },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Title",
+              },
+            ],
+          },
+          Object {
+            "key": "year",
+            "kind": "Property",
+            "value": Object {
+              "kind": "Number",
               "loc": Object {
                 "end": Object {
-                  "column": 21,
+                  "column": 19,
                   "line": 4,
-                  "offset": 95,
-                },
-                "start": Object {
-                  "column": 16,
-                  "line": 4,
-                  "offset": 90,
-                },
-              },
-              "value": "Title",
-            },
-          ],
-        },
-        Object {
-          "key": "year",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 118,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 98,
-            },
-          },
-          "value": Object {
-            "kind": "Number",
-            "loc": Object {
-              "end": Object {
-                "column": 19,
-                "line": 5,
-                "offset": 116,
-              },
-              "start": Object {
-                "column": 15,
-                "line": 5,
-                "offset": 112,
-              },
-            },
-            "value": 1990,
-          },
-        },
-        Object {
-          "key": "journal",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 147,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 118,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "String",
-              "loc": Object {
-                "end": Object {
-                  "column": 16,
-                  "line": 6,
-                  "offset": 133,
+                  "offset": 79,
                 },
                 "start": Object {
                   "column": 15,
-                  "line": 6,
-                  "offset": 132,
+                  "line": 4,
+                  "offset": 75,
                 },
               },
-              "value": "j",
+              "value": 1990,
             },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 28,
-                  "line": 6,
-                  "offset": 145,
-                },
-                "start": Object {
-                  "column": 20,
-                  "line": 6,
-                  "offset": 137,
-                },
-              },
-              "value": "and this",
-            },
-          ],
-        },
-      ],
-      "type": "article",
-    },
-  ],
-  "kind": "File",
-  "loc": Object {
-    "end": Object {
-      "column": 1,
-      "line": 8,
-      "offset": 149,
-    },
-    "start": Object {
-      "column": 1,
-      "line": 1,
-      "offset": 0,
-    },
+          },
+        ],
+        "type": "article",
+      },
+    ],
+    "kind": "File",
   },
-}
+]
 `;

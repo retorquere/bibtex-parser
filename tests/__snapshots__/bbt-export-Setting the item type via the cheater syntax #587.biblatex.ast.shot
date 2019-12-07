@@ -1,1874 +1,544 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BibTeX Parser should parse bbt-export-Setting the item type via the cheater syntax #587.biblatex to an AST 1`] = `
-Object {
-  "children": Array [
-    Object {
-      "id": "clark_mesopotamia:_1957",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 11,
-          "offset": 264,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 2,
-          "offset": 1,
-        },
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "id": "clark_mesopotamia:_1957",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "abstract",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Example from CMoS, 16e, 14.249",
+              },
+            ],
+          },
+          Object {
+            "key": "author",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Clark, Hazel V.",
+              },
+            ],
+          },
+          Object {
+            "key": "date",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "1957",
+              },
+            ],
+          },
+          Object {
+            "key": "location",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": true,
+                "kind": "NestedLiteral",
+                "markup": Object {},
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "Mesopotamia, OH",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "publisher",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": true,
+                "kind": "NestedLiteral",
+                "markup": Object {},
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "Trumbull County Historical Society",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Mesopotamia: Between Two Rivers",
+              },
+            ],
+          },
+        ],
+        "type": "booklet",
       },
-      "properties": Array [
-        Object {
-          "key": "abstract",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 82,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 3,
-              "offset": 37,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 45,
-                  "line": 3,
-                  "offset": 79,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 3,
-                  "offset": 49,
-                },
-              },
-              "value": "Example from CMoS, 16e, 14.249",
-            },
-          ],
-        },
-        Object {
-          "key": "author",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 112,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 82,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 28,
-                  "line": 4,
-                  "offset": 109,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 4,
-                  "offset": 94,
-                },
-              },
-              "value": "Clark, Hazel V.",
-            },
-          ],
-        },
-        Object {
-          "key": "date",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 129,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 112,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 15,
-                  "line": 5,
-                  "offset": 126,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 5,
-                  "offset": 122,
-                },
-              },
-              "value": "1957",
-            },
-          ],
-        },
-        Object {
-          "key": "location",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 163,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 129,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 32,
-                  "line": 6,
-                  "offset": 160,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 6,
-                  "offset": 143,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "Text",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 31,
-                      "line": 6,
-                      "offset": 159,
-                    },
-                    "start": Object {
-                      "column": 16,
-                      "line": 6,
-                      "offset": 144,
-                    },
-                  },
-                  "value": "Mesopotamia, OH",
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "publisher",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 217,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 163,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 52,
-                  "line": 7,
-                  "offset": 214,
-                },
-                "start": Object {
-                  "column": 16,
-                  "line": 7,
-                  "offset": 178,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "Text",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 51,
-                      "line": 7,
-                      "offset": 213,
-                    },
-                    "start": Object {
-                      "column": 17,
-                      "line": 7,
-                      "offset": 179,
-                    },
-                  },
-                  "value": "Trumbull County Historical Society",
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 261,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 217,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 43,
-                  "line": 8,
-                  "offset": 259,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 8,
-                  "offset": 228,
-                },
-              },
-              "value": "Mesopotamia: Between Two Rivers",
-            },
-          ],
-        },
-      ],
-      "type": "booklet",
-    },
-    Object {
-      "id": "noauthor_object_nodate",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 19,
-          "offset": 511,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 11,
-          "offset": 264,
-        },
-      },
-      "properties": Array [
-        Object {
-          "key": "abstract",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 13,
-              "offset": 341,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 12,
-              "offset": 296,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 45,
-                  "line": 12,
-                  "offset": 338,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 12,
-                  "offset": 308,
-                },
-              },
-              "value": "Example from CMoS, 16e, 14.272",
-            },
-          ],
-        },
-        Object {
-          "key": "journaltitle",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 14,
-              "offset": 394,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 13,
-              "offset": 341,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 51,
-                  "line": 13,
-                  "offset": 391,
-                },
-                "start": Object {
-                  "column": 19,
-                  "line": 13,
-                  "offset": 359,
-                },
-              },
-              "value": "NASA/IPAC Extragalactic Database",
-            },
-          ],
-        },
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 15,
-              "offset": 440,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 14,
-              "offset": 394,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 24,
-                  "line": 14,
-                  "offset": 417,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 14,
-                  "offset": 405,
-                },
-              },
-              "value": "Object Name ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 39,
-                  "line": 14,
-                  "offset": 432,
-                },
-                "start": Object {
-                  "column": 24,
-                  "line": 14,
-                  "offset": 417,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 38,
-                      "line": 14,
-                      "offset": 431,
-                    },
-                    "start": Object {
-                      "column": 25,
-                      "line": 14,
-                      "offset": 418,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 37,
-                          "line": 14,
-                          "offset": 430,
-                        },
-                        "start": Object {
-                          "column": 26,
-                          "line": 14,
-                          "offset": 419,
-                        },
-                      },
-                      "value": "IRAS F00400",
-                    },
-                  ],
-                },
-              ],
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 44,
-                  "line": 14,
-                  "offset": 437,
-                },
-                "start": Object {
-                  "column": 39,
-                  "line": 14,
-                  "offset": 432,
-                },
-              },
-              "value": "+4059",
-            },
-          ],
-        },
-        Object {
-          "key": "url",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 16,
-              "offset": 483,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 15,
-              "offset": 440,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 41,
-                  "line": 15,
-                  "offset": 480,
-                },
-                "start": Object {
-                  "column": 10,
-                  "line": 15,
-                  "offset": 449,
-                },
-              },
-              "value": "http://nedwww.ipac.caltech.edu/",
-            },
-          ],
-        },
-        Object {
-          "key": "urldate",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 17,
-              "offset": 508,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 16,
-              "offset": 483,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 24,
-                  "line": 16,
-                  "offset": 506,
-                },
-                "start": Object {
-                  "column": 14,
-                  "line": 16,
-                  "offset": 496,
-                },
-              },
-              "value": "2009-10-06",
-            },
-          ],
-        },
-      ],
-      "type": "data",
-    },
-    Object {
-      "id": "mozart_sonatas_1960",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 32,
-          "offset": 891,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 19,
-          "offset": 511,
-        },
-      },
-      "properties": Array [
-        Object {
-          "key": "abstract",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 23,
-              "offset": 663,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 20,
-              "offset": 541,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 8,
-                  "line": 22,
-                  "offset": 660,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 20,
-                  "offset": 553,
-                },
-              },
-              "value": "Example from CMoS, 16e, 14.269 “Prepared from the autographs and earliest printed sources by Nathan Broder”",
-            },
-          ],
-        },
-        Object {
-          "key": "author",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 24,
-              "offset": 702,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 23,
-              "offset": 663,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 37,
-                  "line": 23,
-                  "offset": 699,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 23,
-                  "offset": 675,
-                },
-              },
-              "value": "Mozart, Wolfgang Amadeus",
-            },
-          ],
-        },
-        Object {
-          "key": "date",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 25,
-              "offset": 719,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 24,
-              "offset": 702,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 15,
-                  "line": 24,
-                  "offset": 716,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 24,
-                  "offset": 712,
-                },
-              },
-              "value": "1960",
-            },
-          ],
-        },
-        Object {
-          "key": "edition",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 26,
-              "offset": 743,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 25,
-              "offset": 719,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 22,
-                  "line": 25,
-                  "offset": 740,
-                },
-                "start": Object {
-                  "column": 14,
-                  "line": 25,
-                  "offset": 732,
-                },
-              },
-              "value": "Rev. ed.",
-            },
-          ],
-        },
-        Object {
-          "key": "editor",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 27,
-              "offset": 772,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 26,
-              "offset": 743,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 27,
-                  "line": 26,
-                  "offset": 769,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 26,
-                  "offset": 755,
-                },
-              },
-              "value": "Broder, Nathan",
-            },
-          ],
-        },
-        Object {
-          "key": "location",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 28,
-              "offset": 804,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 27,
-              "offset": 772,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 30,
-                  "line": 27,
-                  "offset": 801,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 27,
-                  "offset": 786,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "Text",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 29,
-                      "line": 27,
-                      "offset": 800,
-                    },
-                    "start": Object {
-                      "column": 16,
-                      "line": 27,
-                      "offset": 787,
-                    },
-                  },
-                  "value": "Bryn Mawr, PA",
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "publisher",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 29,
-              "offset": 840,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 28,
-              "offset": 804,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 34,
-                  "line": 28,
-                  "offset": 837,
-                },
-                "start": Object {
-                  "column": 16,
-                  "line": 28,
-                  "offset": 819,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "Text",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 33,
-                      "line": 28,
-                      "offset": 836,
-                    },
-                    "start": Object {
-                      "column": 17,
-                      "line": 28,
-                      "offset": 820,
-                    },
-                  },
-                  "value": "Theodore Presser",
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 30,
-              "offset": 888,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 29,
-              "offset": 840,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 47,
-                  "line": 29,
-                  "offset": 886,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 29,
-                  "offset": 851,
-                },
-              },
-              "value": "Sonatas and Fantasies for the Piano",
-            },
-          ],
-        },
-      ],
-      "type": "audio",
-    },
-    Object {
-      "id": "ratliff_mystery_1999",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 55,
-          "offset": 2421,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 32,
-          "offset": 891,
-        },
-      },
-      "properties": Array [
-        Object {
-          "key": "abstract",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 35,
-              "offset": 1007,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 33,
-              "offset": 923,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 39,
-                  "line": 34,
-                  "offset": 1004,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 33,
-                  "offset": 935,
-                },
-              },
-              "value": "Example from CMoS, 16e, 14.215 “ed. and trans. John Charles Chasteen”",
-            },
-          ],
-        },
-        Object {
-          "key": "annotation",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 44,
-              "offset": 2124,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 35,
-              "offset": 1007,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 56,
-                  "line": 35,
-                  "offset": 1062,
-                },
-                "start": Object {
-                  "column": 17,
-                  "line": 35,
-                  "offset": 1023,
-                },
-              },
-              "value": "biblatex-chicago example, adapted from ",
-            },
-            Object {
-              "arguments": Array [
-                Object {
-                  "kind": "RequiredArgument",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 169,
-                      "line": 35,
-                      "offset": 1175,
-                    },
-                    "start": Object {
-                      "column": 61,
-                      "line": 35,
-                      "offset": 1067,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 168,
-                          "line": 35,
-                          "offset": 1174,
-                        },
-                        "start": Object {
-                          "column": 62,
-                          "line": 35,
-                          "offset": 1068,
-                        },
-                      },
-                      "value": "http://mirrors.ctan.org/macros/latex/contrib/biblatex-contrib/biblatex-chicago/doc/examples/dates-test.bib",
-                    },
-                  ],
-                },
-                Object {
-                  "kind": "RequiredArgument",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 277,
-                      "line": 35,
-                      "offset": 1283,
-                    },
-                    "start": Object {
-                      "column": 169,
-                      "line": 35,
-                      "offset": 1175,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 276,
-                          "line": 35,
-                          "offset": 1282,
-                        },
-                        "start": Object {
-                          "column": 170,
-                          "line": 35,
-                          "offset": 1176,
-                        },
-                      },
-                      "value": "http://mirrors.ctan.org/macros/latex/contrib/biblatex-contrib/biblatex-chicago/doc/examples/dates-test.bib",
-                    },
-                  ],
-                },
-              ],
-              "kind": "RegularCommand",
-              "loc": Object {
-                "end": Object {
-                  "column": 277,
-                  "line": 35,
-                  "offset": 1283,
-                },
-                "start": Object {
-                  "column": 56,
-                  "line": 35,
-                  "offset": 1062,
-                },
-              },
-              "value": "href",
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 249,
-                  "line": 39,
-                  "offset": 1555,
-                },
-                "start": Object {
-                  "column": 277,
-                  "line": 35,
-                  "offset": 1283,
-                },
-              },
-              "value": " Original annotation: *16th edition only.* A Review entry presenting a review from a scholarly journaltitle, hence no entrysubtype needed.  Note the bibstrings in the title of the review, and the formatting of the title of the book reviewed there.  Also note the use of ",
-            },
-            Object {
-              "arguments": Array [
-                Object {
-                  "kind": "RequiredArgument",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 265,
-                      "line": 39,
-                      "offset": 1571,
-                    },
-                    "start": Object {
-                      "column": 263,
-                      "line": 39,
-                      "offset": 1569,
-                    },
-                  },
-                  "value": Array [],
-                },
-              ],
-              "kind": "RegularCommand",
-              "loc": Object {
-                "end": Object {
-                  "column": 265,
-                  "line": 39,
-                  "offset": 1571,
-                },
-                "start": Object {
-                  "column": 249,
-                  "line": 39,
-                  "offset": 1555,
-                },
-              },
-              "value": "textbackslash",
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 704,
-                  "line": 39,
-                  "offset": 2010,
-                },
-                "start": Object {
-                  "column": 265,
-                  "line": 39,
-                  "offset": 1571,
-                },
-              },
-              "value": "parteditandtrans.  The author-date system doesn't absolutely require the use of these mechanisms, which were invented to cope with the differences between notes and bibliography in the other Chicago style.  Still, although simply writing \\"edited and translated by\\" yourself will suffice, using these mechanisms will make your .bib file work across multiple languages, and will also allow it to work, with fewer modifications, in the notes ",
-            },
-            Object {
-              "arguments": Array [],
-              "kind": "RegularCommand",
-              "loc": Object {
-                "end": Object {
-                  "column": 718,
-                  "line": 39,
-                  "offset": 2024,
-                },
-                "start": Object {
-                  "column": 704,
-                  "line": 39,
-                  "offset": 2010,
-                },
-              },
-              "value": "textbackslash",
-            },
-            Object {
-              "kind": "SymbolCommand",
-              "loc": Object {
-                "end": Object {
-                  "column": 720,
-                  "line": 39,
-                  "offset": 2026,
-                },
-                "start": Object {
-                  "column": 718,
-                  "line": 39,
-                  "offset": 2024,
-                },
-              },
-              "value": "&",
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 31,
-                  "line": 43,
-                  "offset": 2121,
-                },
-                "start": Object {
-                  "column": 720,
-                  "line": 39,
-                  "offset": 2026,
-                },
-              },
-              "value": " bibliography style, should that be needed.  See next entry.   Example from CMoS, 16e, 14.125",
-            },
-          ],
-        },
-        Object {
-          "key": "author",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 45,
-              "offset": 2151,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 44,
-              "offset": 2124,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 25,
-                  "line": 44,
-                  "offset": 2148,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 44,
-                  "offset": 2136,
-                },
-              },
-              "value": "Ratliff, Ben",
-            },
-          ],
-        },
-        Object {
-          "key": "date",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 46,
-              "offset": 2171,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 45,
-              "offset": 2151,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 18,
-                  "line": 45,
-                  "offset": 2168,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 45,
-                  "offset": 2161,
-                },
-              },
-              "value": "1999-04",
-            },
-          ],
-        },
-        Object {
-          "key": "editora",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 47,
-              "offset": 2203,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 46,
-              "offset": 2171,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 30,
-                  "line": 46,
-                  "offset": 2200,
-                },
-                "start": Object {
-                  "column": 14,
-                  "line": 46,
-                  "offset": 2184,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "Text",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 29,
-                      "line": 46,
-                      "offset": 2199,
-                    },
-                    "start": Object {
-                      "column": 15,
-                      "line": 46,
-                      "offset": 2185,
-                    },
-                  },
-                  "value": "Hermano Vianna",
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "editoratype",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 48,
-              "offset": 2235,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 47,
-              "offset": 2203,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 30,
-                  "line": 47,
-                  "offset": 2232,
-                },
-                "start": Object {
-                  "column": 18,
-                  "line": 47,
-                  "offset": 2220,
-                },
-              },
-              "value": "collaborator",
-            },
-          ],
-        },
-        Object {
-          "key": "journaltitle",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 49,
-              "offset": 2269,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 48,
-              "offset": 2235,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 32,
-                  "line": 48,
-                  "offset": 2266,
-                },
-                "start": Object {
-                  "column": 19,
-                  "line": 48,
-                  "offset": 2253,
-                },
-              },
-              "value": "Lingua Franca",
-            },
-          ],
-        },
-        Object {
-          "key": "langid",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 50,
-              "offset": 2292,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 49,
-              "offset": 2269,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 21,
-                  "line": 49,
-                  "offset": 2289,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 49,
-                  "offset": 2281,
-                },
-              },
-              "value": "american",
-            },
-          ],
-        },
-        Object {
-          "key": "pages",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 51,
-              "offset": 2314,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 50,
-              "offset": 2292,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 20,
-                  "line": 50,
-                  "offset": 2311,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 50,
-                  "offset": 2303,
-                },
-              },
-              "value": "B13–B14",
-            },
-          ],
-        },
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 52,
-              "offset": 2403,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 51,
-              "offset": 2314,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 34,
-                  "line": 51,
-                  "offset": 2347,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 51,
-                  "offset": 2325,
-                },
-              },
-              "value": "The Mystery of Samba: ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 45,
-                  "line": 51,
-                  "offset": 2358,
-                },
-                "start": Object {
-                  "column": 34,
-                  "line": 51,
-                  "offset": 2347,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 44,
-                      "line": 51,
-                      "offset": 2357,
-                    },
-                    "start": Object {
-                      "column": 35,
-                      "line": 51,
-                      "offset": 2348,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 43,
-                          "line": 51,
-                          "offset": 2356,
-                        },
-                        "start": Object {
-                          "column": 36,
-                          "line": 51,
-                          "offset": 2349,
-                        },
-                      },
-                      "value": "Popular",
-                    },
-                  ],
-                },
-              ],
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 77,
-                  "line": 51,
-                  "offset": 2390,
-                },
-                "start": Object {
-                  "column": 45,
-                  "line": 51,
-                  "offset": 2358,
-                },
-              },
-              "value": " Music and National Identity in ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 87,
-                  "line": 51,
-                  "offset": 2400,
-                },
-                "start": Object {
-                  "column": 77,
-                  "line": 51,
-                  "offset": 2390,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 86,
-                      "line": 51,
-                      "offset": 2399,
-                    },
-                    "start": Object {
-                      "column": 78,
-                      "line": 51,
-                      "offset": 2391,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 85,
-                          "line": 51,
-                          "offset": 2398,
-                        },
-                        "start": Object {
-                          "column": 79,
-                          "line": 51,
-                          "offset": 2392,
-                        },
-                      },
-                      "value": "Brazil",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "volume",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 53,
-              "offset": 2418,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 52,
-              "offset": 2403,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 14,
-                  "line": 52,
-                  "offset": 2416,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 52,
-                  "offset": 2415,
-                },
-              },
-              "value": "9",
-            },
-          ],
-        },
-      ],
-      "type": "review",
-    },
-    Object {
-      "id": "kamp_deconstructing_2006",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 67,
-          "offset": 2746,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 55,
-          "offset": 2421,
-        },
-      },
-      "properties": Array [
-        Object {
-          "key": "abstract",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 57,
-              "offset": 2502,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 56,
-              "offset": 2457,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 45,
-                  "line": 56,
-                  "offset": 2499,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 56,
-                  "offset": 2469,
-                },
-              },
-              "value": "Example from CMoS, 16e, 14.125",
-            },
-          ],
-        },
-        Object {
-          "key": "author",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 58,
-              "offset": 2528,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 57,
-              "offset": 2502,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 24,
-                  "line": 57,
-                  "offset": 2525,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 57,
-                  "offset": 2514,
-                },
-              },
-              "value": "Kamp, David",
-            },
-          ],
-        },
-        Object {
-          "key": "date",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 59,
-              "offset": 2551,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 58,
-              "offset": 2528,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 21,
-                  "line": 58,
-                  "offset": 2548,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 58,
-                  "offset": 2538,
-                },
-              },
-              "value": "2006-04-23",
-            },
-          ],
-        },
-        Object {
-          "key": "editora",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 60,
-              "offset": 2582,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 59,
-              "offset": 2551,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 29,
-                  "line": 59,
-                  "offset": 2579,
-                },
-                "start": Object {
-                  "column": 14,
-                  "line": 59,
-                  "offset": 2564,
-                },
-              },
-              "value": "Pollan, Michael",
-            },
-          ],
-        },
-        Object {
-          "key": "editoratype",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 61,
-              "offset": 2614,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 60,
-              "offset": 2582,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 30,
-                  "line": 60,
-                  "offset": 2611,
-                },
-                "start": Object {
-                  "column": 18,
-                  "line": 60,
-                  "offset": 2599,
-                },
-              },
-              "value": "collaborator",
-            },
-          ],
-        },
-        Object {
-          "key": "langid",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 62,
-              "offset": 2637,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 61,
-              "offset": 2614,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 21,
-                  "line": 61,
-                  "offset": 2634,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 61,
-                  "offset": 2626,
-                },
-              },
-              "value": "american",
-            },
-          ],
-        },
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 63,
-              "offset": 2672,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 62,
-              "offset": 2637,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 33,
-                  "line": 62,
-                  "offset": 2669,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 62,
-                  "offset": 2648,
-                },
-              },
-              "value": "Deconstructing Dinner",
-            },
-          ],
-        },
-        Object {
-          "key": "url",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 64,
-              "offset": 2742,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 63,
-              "offset": 2672,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 69,
-                  "line": 63,
-                  "offset": 2740,
-                },
-                "start": Object {
-                  "column": 10,
-                  "line": 63,
-                  "offset": 2681,
-                },
-              },
-              "value": "http://www.nytimes.com/2006/04/23/books/review/23kamp.html.",
-            },
-          ],
-        },
-      ],
-      "type": "review",
-    },
-  ],
-  "kind": "File",
-  "loc": Object {
-    "end": Object {
-      "column": 1,
-      "line": 67,
-      "offset": 2746,
-    },
-    "start": Object {
-      "column": 1,
-      "line": 1,
-      "offset": 0,
-    },
+    ],
+    "kind": "File",
   },
-}
+  Object {
+    "children": Array [
+      Object {
+        "id": "noauthor_object_nodate",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "abstract",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Example from CMoS, 16e, 14.272",
+              },
+            ],
+          },
+          Object {
+            "key": "journaltitle",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "NASA/IPAC Extragalactic Database",
+              },
+            ],
+          },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Object Name ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "IRAS F00400",
+                      },
+                    ],
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": "+4059",
+              },
+            ],
+          },
+          Object {
+            "key": "url",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "http://nedwww.ipac.caltech.edu/",
+              },
+            ],
+          },
+          Object {
+            "key": "urldate",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2009-10-06",
+              },
+            ],
+          },
+        ],
+        "type": "data",
+      },
+    ],
+    "kind": "File",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "id": "mozart_sonatas_1960",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "abstract",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Example from CMoS, 16e, 14.269 “Prepared from the autographs and earliest printed sources by Nathan Broder”",
+              },
+            ],
+          },
+          Object {
+            "key": "author",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Mozart, Wolfgang Amadeus",
+              },
+            ],
+          },
+          Object {
+            "key": "date",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "1960",
+              },
+            ],
+          },
+          Object {
+            "key": "edition",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Rev. ed.",
+              },
+            ],
+          },
+          Object {
+            "key": "editor",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Broder, Nathan",
+              },
+            ],
+          },
+          Object {
+            "key": "location",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": true,
+                "kind": "NestedLiteral",
+                "markup": Object {},
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "Bryn Mawr, PA",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "publisher",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": true,
+                "kind": "NestedLiteral",
+                "markup": Object {},
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "Theodore Presser",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Sonatas and Fantasies for the Piano",
+              },
+            ],
+          },
+        ],
+        "type": "audio",
+      },
+    ],
+    "kind": "File",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "id": "ratliff_mystery_1999",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "langid",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "american",
+              },
+            ],
+          },
+          Object {
+            "key": "abstract",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Example from CMoS, 16e, 14.215 “ed. and trans. John Charles Chasteen”",
+              },
+            ],
+          },
+          Object {
+            "key": "annotation",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "biblatex-chicago example, adapted from http://mirrors.ctan.org/macros/latex/contrib/biblatex-contrib/biblatex-chicago/doc/examples/dates-test.bib Original annotation: *16th edition only.* A Review entry presenting a review from a scholarly journaltitle, hence no entrysubtype needed.  Note the bibstrings in the title of the review, and the formatting of the title of the book reviewed there.  Also note the use of \\\\parteditandtrans.  The author-date system doesn't absolutely require the use of these mechanisms, which were invented to cope with the differences between notes and bibliography in the other Chicago style.  Still, although simply writing \\"edited and translated by\\" yourself will suffice, using these mechanisms will make your .bib file work across multiple languages, and will also allow it to work, with fewer modifications, in the notes \\\\& bibliography style, should that be needed.  See next entry.   Example from CMoS, 16e, 14.125",
+              },
+            ],
+          },
+          Object {
+            "key": "author",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Ratliff, Ben",
+              },
+            ],
+          },
+          Object {
+            "key": "date",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "1999-04",
+              },
+            ],
+          },
+          Object {
+            "key": "editora",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "Hermano Vianna",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "editoratype",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "collaborator",
+              },
+            ],
+          },
+          Object {
+            "key": "journaltitle",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Lingua Franca",
+              },
+            ],
+          },
+          Object {
+            "key": "pages",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "B13–B14",
+              },
+            ],
+          },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "The Mystery of Samba: ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "Popular",
+                      },
+                    ],
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": " Music and National Identity in ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "Brazil",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "volume",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "9",
+              },
+            ],
+          },
+        ],
+        "type": "review",
+      },
+    ],
+    "kind": "File",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "id": "kamp_deconstructing_2006",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "langid",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "american",
+              },
+            ],
+          },
+          Object {
+            "key": "abstract",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Example from CMoS, 16e, 14.125",
+              },
+            ],
+          },
+          Object {
+            "key": "author",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Kamp, David",
+              },
+            ],
+          },
+          Object {
+            "key": "date",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2006-04-23",
+              },
+            ],
+          },
+          Object {
+            "key": "editora",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Pollan, Michael",
+              },
+            ],
+          },
+          Object {
+            "key": "editoratype",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "collaborator",
+              },
+            ],
+          },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Deconstructing Dinner",
+              },
+            ],
+          },
+          Object {
+            "key": "url",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "http://www.nytimes.com/2006/04/23/books/review/23kamp.html.",
+              },
+            ],
+          },
+        ],
+        "type": "review",
+      },
+    ],
+    "kind": "File",
+  },
+]
 `;

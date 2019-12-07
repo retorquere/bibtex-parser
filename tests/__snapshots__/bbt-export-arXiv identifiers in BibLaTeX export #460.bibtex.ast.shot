@@ -1,1979 +1,592 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BibTeX Parser should parse bbt-export-arXiv identifiers in BibLaTeX export #460.bibtex to an AST 1`] = `
-Object {
-  "children": Array [
-    Object {
-      "id": "Sen.2016.BV",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 22,
-          "offset": 1046,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 1,
-          "offset": 0,
-        },
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "id": "Sen.2016.BV",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "abstract",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "We construct the quantum BV master action for heterotic and type II string field theories.",
+              },
+            ],
+          },
+          Object {
+            "key": "annote",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "27/03/16 - overview - studying the papers of Ashoke This paper is of great importance because it constructs a fully consistent quantum action for (covariant) superstring field theory, including the Ramond sector. The idea is to introduce extra dynamical fields which are free (they don't even couple to gravity) and so they can be consistently decoupled.",
+              },
+            ],
+          },
+          Object {
+            "key": "archiveprefix",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "arXiv",
+              },
+            ],
+          },
+          Object {
+            "key": "author",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Sen, Ashoke",
+              },
+            ],
+          },
+          Object {
+            "key": "doi",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "10.1007/JHEP02(2016)087",
+              },
+            ],
+          },
+          Object {
+            "key": "eprint",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "1508.05387",
+              },
+            ],
+          },
+          Object {
+            "key": "eprinttype",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "arxiv",
+              },
+            ],
+          },
+          Object {
+            "key": "issn",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "1029-8479",
+              },
+            ],
+          },
+          Object {
+            "key": "journal",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Journal of High Energy Physics",
+              },
+            ],
+          },
+          Object {
+            "key": "keywords",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "ₜablet,Batalin-Vilkoviski formalism,covariant string field theory,futur: 3,note: 4,printed,superstring field theory",
+              },
+            ],
+          },
+          Object {
+            "key": "month",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": false,
+                "kind": "String",
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "02",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "note",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "http://arxiv.org/abs/1508.05387",
+              },
+            ],
+          },
+          Object {
+            "key": "number",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2",
+              },
+            ],
+          },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "BV Master Action",
+                      },
+                    ],
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": " for ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "Heterotic",
+                      },
+                    ],
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": " and ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "Type II String Field Theories",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "volume",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2016",
+              },
+            ],
+          },
+          Object {
+            "key": "year",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2016",
+              },
+            ],
+          },
+        ],
+        "type": "article",
       },
-      "properties": Array [
-        Object {
-          "key": "abstract",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 3,
-              "offset": 129,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 2,
-              "offset": 24,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 105,
-                  "line": 2,
-                  "offset": 126,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 2,
-                  "offset": 36,
-                },
-              },
-              "value": "We construct the quantum BV master action for heterotic and type II string field theories.",
-            },
-          ],
-        },
-        Object {
-          "key": "annote",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 499,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 3,
-              "offset": 129,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 303,
-                  "line": 5,
-                  "offset": 496,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 3,
-                  "offset": 141,
-                },
-              },
-              "value": "27/03/16 - overview - studying the papers of Ashoke This paper is of great importance because it constructs a fully consistent quantum action for (covariant) superstring field theory, including the Ramond sector. The idea is to introduce extra dynamical fields which are free (they don't even couple to gravity) and so they can be consistently decoupled.",
-            },
-          ],
-        },
-        Object {
-          "key": "archiveprefix",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 526,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 499,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 25,
-                  "line": 6,
-                  "offset": 523,
-                },
-                "start": Object {
-                  "column": 20,
-                  "line": 6,
-                  "offset": 518,
-                },
-              },
-              "value": "arXiv",
-            },
-          ],
-        },
-        Object {
-          "key": "author",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 552,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 526,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 24,
-                  "line": 7,
-                  "offset": 549,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 7,
-                  "offset": 538,
-                },
-              },
-              "value": "Sen, Ashoke",
-            },
-          ],
-        },
-        Object {
-          "key": "doi",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 587,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 552,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 33,
-                  "line": 8,
-                  "offset": 584,
-                },
-                "start": Object {
-                  "column": 10,
-                  "line": 8,
-                  "offset": 561,
-                },
-              },
-              "value": "10.1007/JHEP02(2016)087",
-            },
-          ],
-        },
-        Object {
-          "key": "eprint",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 10,
-              "offset": 612,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 587,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 23,
-                  "line": 9,
-                  "offset": 609,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 9,
-                  "offset": 599,
-                },
-              },
-              "value": "1508.05387",
-            },
-          ],
-        },
-        Object {
-          "key": "eprinttype",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 11,
-              "offset": 636,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 10,
-              "offset": 612,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 22,
-                  "line": 10,
-                  "offset": 633,
-                },
-                "start": Object {
-                  "column": 17,
-                  "line": 10,
-                  "offset": 628,
-                },
-              },
-              "value": "arxiv",
-            },
-          ],
-        },
-        Object {
-          "key": "issn",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 12,
-              "offset": 658,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 11,
-              "offset": 636,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 20,
-                  "line": 11,
-                  "offset": 655,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 11,
-                  "offset": 646,
-                },
-              },
-              "value": "1029-8479",
-            },
-          ],
-        },
-        Object {
-          "key": "journal",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 13,
-              "offset": 704,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 12,
-              "offset": 658,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 44,
-                  "line": 12,
-                  "offset": 701,
-                },
-                "start": Object {
-                  "column": 14,
-                  "line": 12,
-                  "offset": 671,
-                },
-              },
-              "value": "Journal of High Energy Physics",
-            },
-          ],
-        },
-        Object {
-          "key": "keywords",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 14,
-              "offset": 837,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 13,
-              "offset": 704,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "SubscriptCommand",
-              "loc": Object {
-                "end": Object {
-                  "column": 17,
-                  "line": 13,
-                  "offset": 720,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 13,
-                  "offset": 718,
-                },
-              },
-              "value": "t",
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 131,
-                  "line": 13,
-                  "offset": 834,
-                },
-                "start": Object {
-                  "column": 17,
-                  "line": 13,
-                  "offset": 720,
-                },
-              },
-              "value": "ablet,Batalin-Vilkoviski formalism,covariant string field theory,futur: 3,note: 4,printed,superstring field theory",
-            },
-          ],
-        },
-        Object {
-          "key": "month",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 15,
-              "offset": 852,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 14,
-              "offset": 837,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "String",
-              "loc": Object {
-                "end": Object {
-                  "column": 14,
-                  "line": 14,
-                  "offset": 850,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 14,
-                  "offset": 847,
-                },
-              },
-              "value": "feb",
-            },
-          ],
-        },
-        Object {
-          "key": "note",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 16,
-              "offset": 902,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 15,
-              "offset": 852,
-            },
-          },
-          "value": Array [
-            Object {
-              "arguments": Array [
-                Object {
-                  "kind": "RequiredArgument",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 48,
-                      "line": 15,
-                      "offset": 899,
-                    },
-                    "start": Object {
-                      "column": 15,
-                      "line": 15,
-                      "offset": 866,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 47,
-                          "line": 15,
-                          "offset": 898,
-                        },
-                        "start": Object {
-                          "column": 16,
-                          "line": 15,
-                          "offset": 867,
-                        },
-                      },
-                      "value": "http://arxiv.org/abs/1508.05387",
-                    },
-                  ],
-                },
-              ],
-              "kind": "RegularCommand",
-              "loc": Object {
-                "end": Object {
-                  "column": 48,
-                  "line": 15,
-                  "offset": 899,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 15,
-                  "offset": 862,
-                },
-              },
-              "value": "url",
-            },
-          ],
-        },
-        Object {
-          "key": "number",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 17,
-              "offset": 918,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 16,
-              "offset": 902,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 14,
-                  "line": 16,
-                  "offset": 915,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 16,
-                  "offset": 914,
-                },
-              },
-              "value": "2",
-            },
-          ],
-        },
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 18,
-              "offset": 1008,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 17,
-              "offset": 918,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 32,
-                  "line": 17,
-                  "offset": 949,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 17,
-                  "offset": 929,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 31,
-                      "line": 17,
-                      "offset": 948,
-                    },
-                    "start": Object {
-                      "column": 13,
-                      "line": 17,
-                      "offset": 930,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 30,
-                          "line": 17,
-                          "offset": 947,
-                        },
-                        "start": Object {
-                          "column": 14,
-                          "line": 17,
-                          "offset": 931,
-                        },
-                      },
-                      "value": "BV Master Action",
-                    },
-                  ],
-                },
-              ],
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 37,
-                  "line": 17,
-                  "offset": 954,
-                },
-                "start": Object {
-                  "column": 32,
-                  "line": 17,
-                  "offset": 949,
-                },
-              },
-              "value": " for ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 50,
-                  "line": 17,
-                  "offset": 967,
-                },
-                "start": Object {
-                  "column": 37,
-                  "line": 17,
-                  "offset": 954,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 49,
-                      "line": 17,
-                      "offset": 966,
-                    },
-                    "start": Object {
-                      "column": 38,
-                      "line": 17,
-                      "offset": 955,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 48,
-                          "line": 17,
-                          "offset": 965,
-                        },
-                        "start": Object {
-                          "column": 39,
-                          "line": 17,
-                          "offset": 956,
-                        },
-                      },
-                      "value": "Heterotic",
-                    },
-                  ],
-                },
-              ],
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 55,
-                  "line": 17,
-                  "offset": 972,
-                },
-                "start": Object {
-                  "column": 50,
-                  "line": 17,
-                  "offset": 967,
-                },
-              },
-              "value": " and ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 88,
-                  "line": 17,
-                  "offset": 1005,
-                },
-                "start": Object {
-                  "column": 55,
-                  "line": 17,
-                  "offset": 972,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 87,
-                      "line": 17,
-                      "offset": 1004,
-                    },
-                    "start": Object {
-                      "column": 56,
-                      "line": 17,
-                      "offset": 973,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 86,
-                          "line": 17,
-                          "offset": 1003,
-                        },
-                        "start": Object {
-                          "column": 57,
-                          "line": 17,
-                          "offset": 974,
-                        },
-                      },
-                      "value": "Type II String Field Theories",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "volume",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 19,
-              "offset": 1027,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 18,
-              "offset": 1008,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 17,
-                  "line": 18,
-                  "offset": 1024,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 18,
-                  "offset": 1020,
-                },
-              },
-              "value": "2016",
-            },
-          ],
-        },
-        Object {
-          "key": "year",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 20,
-              "offset": 1043,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 19,
-              "offset": 1027,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 15,
-                  "line": 19,
-                  "offset": 1041,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 19,
-                  "offset": 1037,
-                },
-              },
-              "value": "2016",
-            },
-          ],
-        },
-      ],
-      "type": "article",
-    },
-    Object {
-      "id": "Smolin.2013.Classical",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 38,
-          "offset": 1850,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 22,
-          "offset": 1046,
-        },
-      },
-      "properties": Array [
-        Object {
-          "key": "abstract",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 24,
-              "offset": 1441,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 23,
-              "offset": 1080,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 361,
-                  "line": 23,
-                  "offset": 1438,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 23,
-                  "offset": 1092,
-                },
-              },
-              "value": "A pair of recent articles concluded that the D-Wave One machine actually operates in the quantum regime, rather than performing some classical evolution. Here we give a classical model that leads to the same behaviors used in those works to infer quantum effects. Thus, the evidence presented does not demonstrate the presence of quantum effects.",
-            },
-          ],
-        },
-        Object {
-          "key": "annote",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 25,
-              "offset": 1487,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 24,
-              "offset": 1441,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 44,
-                  "line": 24,
-                  "offset": 1484,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 24,
-                  "offset": 1453,
-                },
-              },
-              "value": "Comment: 8 pages, 3 pdf figures",
-            },
-          ],
-        },
-        Object {
-          "key": "archiveprefix",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 26,
-              "offset": 1514,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 25,
-              "offset": 1487,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 25,
-                  "line": 25,
-                  "offset": 1511,
-                },
-                "start": Object {
-                  "column": 20,
-                  "line": 25,
-                  "offset": 1506,
-                },
-              },
-              "value": "arXiv",
-            },
-          ],
-        },
-        Object {
-          "key": "author",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 27,
-              "offset": 1562,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 26,
-              "offset": 1514,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 46,
-                  "line": 26,
-                  "offset": 1559,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 26,
-                  "offset": 1526,
-                },
-              },
-              "value": "Smolin, John A. and Smith, Graeme",
-            },
-          ],
-        },
-        Object {
-          "key": "eprint",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 28,
-              "offset": 1586,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 27,
-              "offset": 1562,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 22,
-                  "line": 27,
-                  "offset": 1583,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 27,
-                  "offset": 1574,
-                },
-              },
-              "value": "1305.4904",
-            },
-          ],
-        },
-        Object {
-          "key": "eprinttype",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 29,
-              "offset": 1610,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 28,
-              "offset": 1586,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 22,
-                  "line": 28,
-                  "offset": 1607,
-                },
-                "start": Object {
-                  "column": 17,
-                  "line": 28,
-                  "offset": 1602,
-                },
-              },
-              "value": "arxiv",
-            },
-          ],
-        },
-        Object {
-          "key": "journal",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 30,
-              "offset": 1652,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 29,
-              "offset": 1610,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 40,
-                  "line": 29,
-                  "offset": 1649,
-                },
-                "start": Object {
-                  "column": 14,
-                  "line": 29,
-                  "offset": 1623,
-                },
-              },
-              "value": "arXiv:1305.4904 [quant-ph]",
-            },
-          ],
-        },
-        Object {
-          "key": "keywords",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 31,
-              "offset": 1684,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 30,
-              "offset": 1652,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 30,
-                  "line": 30,
-                  "offset": 1681,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 30,
-                  "offset": 1666,
-                },
-              },
-              "value": "Quantum Physics",
-            },
-          ],
-        },
-        Object {
-          "key": "month",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 32,
-              "offset": 1699,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 31,
-              "offset": 1684,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "String",
-              "loc": Object {
-                "end": Object {
-                  "column": 14,
-                  "line": 31,
-                  "offset": 1697,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 31,
-                  "offset": 1694,
-                },
-              },
-              "value": "may",
-            },
-          ],
-        },
-        Object {
-          "key": "note",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 33,
-              "offset": 1748,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 32,
-              "offset": 1699,
-            },
-          },
-          "value": Array [
-            Object {
-              "arguments": Array [
-                Object {
-                  "kind": "RequiredArgument",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 47,
-                      "line": 32,
-                      "offset": 1745,
-                    },
-                    "start": Object {
-                      "column": 15,
-                      "line": 32,
-                      "offset": 1713,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 46,
-                          "line": 32,
-                          "offset": 1744,
-                        },
-                        "start": Object {
-                          "column": 16,
-                          "line": 32,
-                          "offset": 1714,
-                        },
-                      },
-                      "value": "http://arxiv.org/abs/1305.4904",
-                    },
-                  ],
-                },
-              ],
-              "kind": "RegularCommand",
-              "loc": Object {
-                "end": Object {
-                  "column": 47,
-                  "line": 32,
-                  "offset": 1745,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 32,
-                  "offset": 1709,
-                },
-              },
-              "value": "url",
-            },
-          ],
-        },
-        Object {
-          "key": "primaryclass",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 34,
-              "offset": 1777,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 33,
-              "offset": 1748,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 27,
-                  "line": 33,
-                  "offset": 1774,
-                },
-                "start": Object {
-                  "column": 19,
-                  "line": 33,
-                  "offset": 1766,
-                },
-              },
-              "value": "quant-ph",
-            },
-          ],
-        },
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 35,
-              "offset": 1831,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 34,
-              "offset": 1777,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 52,
-                  "line": 34,
-                  "offset": 1828,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 34,
-                  "offset": 1788,
-                },
-              },
-              "value": "Classical Signature of Quantum Annealing",
-            },
-          ],
-        },
-        Object {
-          "key": "year",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 36,
-              "offset": 1847,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 35,
-              "offset": 1831,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 15,
-                  "line": 35,
-                  "offset": 1845,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 35,
-                  "offset": 1841,
-                },
-              },
-              "value": "2013",
-            },
-          ],
-        },
-      ],
-      "type": "article",
-    },
-    Object {
-      "id": "Ronnow.2014.Defining",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 58,
-          "offset": 3508,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 38,
-          "offset": 1850,
-        },
-      },
-      "properties": Array [
-        Object {
-          "key": "abstract",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 40,
-              "offset": 2897,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 39,
-              "offset": 1883,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 1014,
-                  "line": 39,
-                  "offset": 2894,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 39,
-                  "offset": 1895,
-                },
-              },
-              "value": "The development of small-scale digital and analog quantum devices raises the question of how to fairly assess and compare the computational power of classical and quantum devices, and of how to detect quantum speedup. Here we show how to define and measure quantum speedup in various scenarios, and how to avoid pitfalls that might mask or fake quantum speedup. We illustrate our discussion with data from a randomized benchmark test on a D-Wave Two device with up to 503 qubits. Comparing the performance of the device on random spin glass instances with limited precision to simulated classical and quantum annealers, we find no evidence of quantum speedup when the entire data set is considered, and obtain inconclusive results when comparing subsets of instances on an instance-by-instance basis. Our results for one particular benchmark do not rule out the possibility of speedup for other classes of problems and illustrate that quantum speedup is elusive and can depend on the question posed.",
-            },
-          ],
-        },
-        Object {
-          "key": "archiveprefix",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 41,
-              "offset": 2924,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 40,
-              "offset": 2897,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 25,
-                  "line": 40,
-                  "offset": 2921,
-                },
-                "start": Object {
-                  "column": 20,
-                  "line": 40,
-                  "offset": 2916,
-                },
-              },
-              "value": "arXiv",
-            },
-          ],
-        },
-        Object {
-          "key": "author",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 42,
-              "offset": 3114,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 41,
-              "offset": 2924,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 14,
-                  "line": 41,
-                  "offset": 2937,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 41,
-                  "offset": 2936,
-                },
-              },
-              "value": "R",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 18,
-                  "line": 41,
-                  "offset": 2941,
-                },
-                "start": Object {
-                  "column": 14,
-                  "line": 41,
-                  "offset": 2937,
-                },
-              },
-              "value": Array [
-                Object {
-                  "arguments": Array [],
-                  "kind": "RegularCommand",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 17,
-                      "line": 41,
-                      "offset": 2940,
-                    },
-                    "start": Object {
-                      "column": 15,
-                      "line": 41,
-                      "offset": 2938,
-                    },
-                  },
-                  "value": "o",
-                },
-              ],
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 188,
-                  "line": 41,
-                  "offset": 3111,
-                },
-                "start": Object {
-                  "column": 18,
-                  "line": 41,
-                  "offset": 2941,
-                },
-              },
-              "value": "nnow, Troels F. and Wang, Zhihui and Job, Joshua and Boixo, Sergio and Isakov, Sergei V. and Wecker, David and Martinis, John M. and Lidar, Daniel A. and Troyer, Matthias",
-            },
-          ],
-        },
-        Object {
-          "key": "doi",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 43,
-              "offset": 3149,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 42,
-              "offset": 3114,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 33,
-                  "line": 42,
-                  "offset": 3146,
-                },
-                "start": Object {
-                  "column": 10,
-                  "line": 42,
-                  "offset": 3123,
-                },
-              },
-              "value": "10.1126/science.1252319",
-            },
-          ],
-        },
-        Object {
-          "key": "eprint",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 44,
-              "offset": 3173,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 43,
-              "offset": 3149,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 22,
-                  "line": 43,
-                  "offset": 3170,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 43,
-                  "offset": 3161,
-                },
-              },
-              "value": "1401.2910",
-            },
-          ],
-        },
-        Object {
-          "key": "eprinttype",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 45,
-              "offset": 3197,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 44,
-              "offset": 3173,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 22,
-                  "line": 44,
-                  "offset": 3194,
-                },
-                "start": Object {
-                  "column": 17,
-                  "line": 44,
-                  "offset": 3189,
-                },
-              },
-              "value": "arxiv",
-            },
-          ],
-        },
-        Object {
-          "key": "issn",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 46,
-              "offset": 3230,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 45,
-              "offset": 3197,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 31,
-                  "line": 45,
-                  "offset": 3227,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 45,
-                  "offset": 3207,
-                },
-              },
-              "value": "0036-8075, 1095-9203",
-            },
-          ],
-        },
-        Object {
-          "key": "journal",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 47,
-              "offset": 3253,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 46,
-              "offset": 3230,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 21,
-                  "line": 46,
-                  "offset": 3250,
-                },
-                "start": Object {
-                  "column": 14,
-                  "line": 46,
-                  "offset": 3243,
-                },
-              },
-              "value": "Science",
-            },
-          ],
-        },
-        Object {
-          "key": "keywords",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 48,
-              "offset": 3285,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 47,
-              "offset": 3253,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 30,
-                  "line": 47,
-                  "offset": 3282,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 47,
-                  "offset": 3267,
-                },
-              },
-              "value": "Quantum Physics",
-            },
-          ],
-        },
-        Object {
-          "key": "month",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 49,
-              "offset": 3300,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 48,
-              "offset": 3285,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "String",
-              "loc": Object {
-                "end": Object {
-                  "column": 14,
-                  "line": 48,
-                  "offset": 3298,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 48,
-                  "offset": 3295,
-                },
-              },
-              "value": "jul",
-            },
-          ],
-        },
-        Object {
-          "key": "note",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 50,
-              "offset": 3349,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 49,
-              "offset": 3300,
-            },
-          },
-          "value": Array [
-            Object {
-              "arguments": Array [
-                Object {
-                  "kind": "RequiredArgument",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 47,
-                      "line": 49,
-                      "offset": 3346,
-                    },
-                    "start": Object {
-                      "column": 15,
-                      "line": 49,
-                      "offset": 3314,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 46,
-                          "line": 49,
-                          "offset": 3345,
-                        },
-                        "start": Object {
-                          "column": 16,
-                          "line": 49,
-                          "offset": 3315,
-                        },
-                      },
-                      "value": "http://arxiv.org/abs/1401.2910",
-                    },
-                  ],
-                },
-              ],
-              "kind": "RegularCommand",
-              "loc": Object {
-                "end": Object {
-                  "column": 47,
-                  "line": 49,
-                  "offset": 3346,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 49,
-                  "offset": 3310,
-                },
-              },
-              "value": "url",
-            },
-          ],
-        },
-        Object {
-          "key": "number",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 51,
-              "offset": 3368,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 50,
-              "offset": 3349,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 17,
-                  "line": 50,
-                  "offset": 3365,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 50,
-                  "offset": 3361,
-                },
-              },
-              "value": "6195",
-            },
-          ],
-        },
-        Object {
-          "key": "pages",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 52,
-              "offset": 3390,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 51,
-              "offset": 3368,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 20,
-                  "line": 51,
-                  "offset": 3387,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 51,
-                  "offset": 3379,
-                },
-              },
-              "value": "420–424",
-            },
-          ],
-        },
-        Object {
-          "key": "primaryclass",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 53,
-              "offset": 3419,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 52,
-              "offset": 3390,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 27,
-                  "line": 52,
-                  "offset": 3416,
-                },
-                "start": Object {
-                  "column": 19,
-                  "line": 52,
-                  "offset": 3408,
-                },
-              },
-              "value": "quant-ph",
-            },
-          ],
-        },
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 54,
-              "offset": 3471,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 53,
-              "offset": 3419,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 50,
-                  "line": 53,
-                  "offset": 3468,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 53,
-                  "offset": 3430,
-                },
-              },
-              "value": "Defining and Detecting Quantum Speedup",
-            },
-          ],
-        },
-        Object {
-          "key": "volume",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 55,
-              "offset": 3489,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 54,
-              "offset": 3471,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 16,
-                  "line": 54,
-                  "offset": 3486,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 54,
-                  "offset": 3483,
-                },
-              },
-              "value": "345",
-            },
-          ],
-        },
-        Object {
-          "key": "year",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 56,
-              "offset": 3505,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 55,
-              "offset": 3489,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 15,
-                  "line": 55,
-                  "offset": 3503,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 55,
-                  "offset": 3499,
-                },
-              },
-              "value": "2014",
-            },
-          ],
-        },
-      ],
-      "type": "article",
-    },
-  ],
-  "kind": "File",
-  "loc": Object {
-    "end": Object {
-      "column": 1,
-      "line": 58,
-      "offset": 3508,
-    },
-    "start": Object {
-      "column": 1,
-      "line": 1,
-      "offset": 0,
-    },
+    ],
+    "kind": "File",
   },
-}
+  Object {
+    "children": Array [
+      Object {
+        "id": "Smolin.2013.Classical",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "abstract",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "A pair of recent articles concluded that the D-Wave One machine actually operates in the quantum regime, rather than performing some classical evolution. Here we give a classical model that leads to the same behaviors used in those works to infer quantum effects. Thus, the evidence presented does not demonstrate the presence of quantum effects.",
+              },
+            ],
+          },
+          Object {
+            "key": "annote",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Comment: 8 pages, 3 pdf figures",
+              },
+            ],
+          },
+          Object {
+            "key": "archiveprefix",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "arXiv",
+              },
+            ],
+          },
+          Object {
+            "key": "author",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Smolin, John A. and Smith, Graeme",
+              },
+            ],
+          },
+          Object {
+            "key": "eprint",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "1305.4904",
+              },
+            ],
+          },
+          Object {
+            "key": "eprinttype",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "arxiv",
+              },
+            ],
+          },
+          Object {
+            "key": "journal",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "arXiv:1305.4904 [quant-ph]",
+              },
+            ],
+          },
+          Object {
+            "key": "keywords",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Quantum Physics",
+              },
+            ],
+          },
+          Object {
+            "key": "month",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": false,
+                "kind": "String",
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "05",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "note",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "http://arxiv.org/abs/1305.4904",
+              },
+            ],
+          },
+          Object {
+            "key": "primaryclass",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "quant-ph",
+              },
+            ],
+          },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Classical Signature of Quantum Annealing",
+              },
+            ],
+          },
+          Object {
+            "key": "year",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2013",
+              },
+            ],
+          },
+        ],
+        "type": "article",
+      },
+    ],
+    "kind": "File",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "id": "Ronnow.2014.Defining",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "abstract",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "The development of small-scale digital and analog quantum devices raises the question of how to fairly assess and compare the computational power of classical and quantum devices, and of how to detect quantum speedup. Here we show how to define and measure quantum speedup in various scenarios, and how to avoid pitfalls that might mask or fake quantum speedup. We illustrate our discussion with data from a randomized benchmark test on a D-Wave Two device with up to 503 qubits. Comparing the performance of the device on random spin glass instances with limited precision to simulated classical and quantum annealers, we find no evidence of quantum speedup when the entire data set is considered, and obtain inconclusive results when comparing subsets of instances on an instance-by-instance basis. Our results for one particular benchmark do not rule out the possibility of speedup for other classes of problems and illustrate that quantum speedup is elusive and can depend on the question posed.",
+              },
+            ],
+          },
+          Object {
+            "key": "archiveprefix",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "arXiv",
+              },
+            ],
+          },
+          Object {
+            "key": "author",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "R",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {},
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "ø",
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": "nnow, Troels F. and Wang, Zhihui and Job, Joshua and Boixo, Sergio and Isakov, Sergei V. and Wecker, David and Martinis, John M. and Lidar, Daniel A. and Troyer, Matthias",
+              },
+            ],
+          },
+          Object {
+            "key": "doi",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "10.1126/science.1252319",
+              },
+            ],
+          },
+          Object {
+            "key": "eprint",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "1401.2910",
+              },
+            ],
+          },
+          Object {
+            "key": "eprinttype",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "arxiv",
+              },
+            ],
+          },
+          Object {
+            "key": "issn",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "0036-8075, 1095-9203",
+              },
+            ],
+          },
+          Object {
+            "key": "journal",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Science",
+              },
+            ],
+          },
+          Object {
+            "key": "keywords",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Quantum Physics",
+              },
+            ],
+          },
+          Object {
+            "key": "month",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": false,
+                "kind": "String",
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "07",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "note",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "http://arxiv.org/abs/1401.2910",
+              },
+            ],
+          },
+          Object {
+            "key": "number",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "6195",
+              },
+            ],
+          },
+          Object {
+            "key": "pages",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "420–424",
+              },
+            ],
+          },
+          Object {
+            "key": "primaryclass",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "quant-ph",
+              },
+            ],
+          },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Defining and Detecting Quantum Speedup",
+              },
+            ],
+          },
+          Object {
+            "key": "volume",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "345",
+              },
+            ],
+          },
+          Object {
+            "key": "year",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2014",
+              },
+            ],
+          },
+        ],
+        "type": "article",
+      },
+    ],
+    "kind": "File",
+  },
+]
 `;

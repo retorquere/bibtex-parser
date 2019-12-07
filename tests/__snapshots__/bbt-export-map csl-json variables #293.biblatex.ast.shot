@@ -1,1113 +1,360 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BibTeX Parser should parse bbt-export-map csl-json variables #293.biblatex to an AST 1`] = `
-Object {
-  "children": Array [
-    Object {
-      "id": "latour_ny_2008",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 16,
-          "offset": 395,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 2,
-          "offset": 1,
-        },
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "id": "latour_ny_2008",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "langid",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "danish",
+              },
+            ],
+          },
+          Object {
+            "key": "author",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Latour, Bruno",
+              },
+            ],
+          },
+          Object {
+            "key": "date",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2008",
+              },
+            ],
+          },
+          Object {
+            "key": "location",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": true,
+                "kind": "NestedLiteral",
+                "markup": Object {},
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "København",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "origdate",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2005",
+              },
+            ],
+          },
+          Object {
+            "key": "origlocation",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "origlocation",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "origpublisher",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "origpublisher",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "origtitle",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "origtitle",
+              },
+            ],
+          },
+          Object {
+            "key": "publisher",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": true,
+                "kind": "NestedLiteral",
+                "markup": Object {},
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "Akademisk Forlag",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "shorttitle",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "En ny sociologi",
+              },
+            ],
+          },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "En ny sociologi for et nyt samfund. Introduktion til Aktør-Netværk-Teori",
+              },
+            ],
+          },
+        ],
+        "type": "book",
       },
-      "properties": Array [
-        Object {
-          "key": "author",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 51,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 3,
-              "offset": 25,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 26,
-                  "line": 3,
-                  "offset": 48,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 3,
-                  "offset": 35,
-                },
-              },
-              "value": "Latour, Bruno",
-            },
-          ],
-        },
-        Object {
-          "key": "date",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 68,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 51,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 15,
-                  "line": 4,
-                  "offset": 65,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 4,
-                  "offset": 61,
-                },
-              },
-              "value": "2008",
-            },
-          ],
-        },
-        Object {
-          "key": "langid",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 89,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 68,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 19,
-                  "line": 5,
-                  "offset": 86,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 5,
-                  "offset": 80,
-                },
-              },
-              "value": "danish",
-            },
-          ],
-        },
-        Object {
-          "key": "location",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 117,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 89,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 26,
-                  "line": 6,
-                  "offset": 114,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 6,
-                  "offset": 103,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "Text",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 25,
-                      "line": 6,
-                      "offset": 113,
-                    },
-                    "start": Object {
-                      "column": 16,
-                      "line": 6,
-                      "offset": 104,
-                    },
-                  },
-                  "value": "København",
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "origdate",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 138,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 117,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 19,
-                  "line": 7,
-                  "offset": 135,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 7,
-                  "offset": 131,
-                },
-              },
-              "value": "2005",
-            },
-          ],
-        },
-        Object {
-          "key": "origlocation",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 173,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 138,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 33,
-                  "line": 8,
-                  "offset": 170,
-                },
-                "start": Object {
-                  "column": 19,
-                  "line": 8,
-                  "offset": 156,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "Text",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 32,
-                      "line": 8,
-                      "offset": 169,
-                    },
-                    "start": Object {
-                      "column": 20,
-                      "line": 8,
-                      "offset": 157,
-                    },
-                  },
-                  "value": "origlocation",
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "origpublisher",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 10,
-              "offset": 210,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 173,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 35,
-                  "line": 9,
-                  "offset": 207,
-                },
-                "start": Object {
-                  "column": 20,
-                  "line": 9,
-                  "offset": 192,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "Text",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 34,
-                      "line": 9,
-                      "offset": 206,
-                    },
-                    "start": Object {
-                      "column": 21,
-                      "line": 9,
-                      "offset": 193,
-                    },
-                  },
-                  "value": "origpublisher",
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "origtitle",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 11,
-              "offset": 237,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 10,
-              "offset": 210,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 25,
-                  "line": 10,
-                  "offset": 234,
-                },
-                "start": Object {
-                  "column": 16,
-                  "line": 10,
-                  "offset": 225,
-                },
-              },
-              "value": "origtitle",
-            },
-          ],
-        },
-        Object {
-          "key": "publisher",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 12,
-              "offset": 273,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 11,
-              "offset": 237,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 34,
-                  "line": 11,
-                  "offset": 270,
-                },
-                "start": Object {
-                  "column": 16,
-                  "line": 11,
-                  "offset": 252,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "Text",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 33,
-                      "line": 11,
-                      "offset": 269,
-                    },
-                    "start": Object {
-                      "column": 17,
-                      "line": 11,
-                      "offset": 253,
-                    },
-                  },
-                  "value": "Akademisk Forlag",
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "shorttitle",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 13,
-              "offset": 307,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 12,
-              "offset": 273,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 32,
-                  "line": 12,
-                  "offset": 304,
-                },
-                "start": Object {
-                  "column": 17,
-                  "line": 12,
-                  "offset": 289,
-                },
-              },
-              "value": "En ny sociologi",
-            },
-          ],
-        },
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 14,
-              "offset": 392,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 13,
-              "offset": 307,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 84,
-                  "line": 13,
-                  "offset": 390,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 13,
-                  "offset": 318,
-                },
-              },
-              "value": "En ny sociologi for et nyt samfund. Introduktion til Aktør-Netværk-Teori",
-            },
-          ],
-        },
-      ],
-      "type": "book",
-    },
-    Object {
-      "id": "kelsen_democratie_2004",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 37,
-          "offset": 1031,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 16,
-          "offset": 395,
-        },
-      },
-      "properties": Array [
-        Object {
-          "key": "abstract",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 20,
-              "offset": 590,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 17,
-              "offset": 427,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 45,
-                  "line": 19,
-                  "offset": 587,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 17,
-                  "offset": 439,
-                },
-              },
-              "value": "Préface de Ph. Raynaud. Trad. de : \\"Vom Wesen und Wert der Demokratie\\" - Tübingen : J.C.B. Mohr, 1929. Fac-sim. de la 2e éd., Paris : Sirey : 1932.",
-            },
-          ],
-        },
-        Object {
-          "key": "author",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 21,
-              "offset": 617,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 20,
-              "offset": 590,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 25,
-                  "line": 20,
-                  "offset": 614,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 20,
-                  "offset": 602,
-                },
-              },
-              "value": "Kelsen, Hans",
-            },
-          ],
-        },
-        Object {
-          "key": "date",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 22,
-              "offset": 634,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 21,
-              "offset": 617,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 15,
-                  "line": 21,
-                  "offset": 631,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 21,
-                  "offset": 627,
-                },
-              },
-              "value": "2004",
-            },
-          ],
-        },
-        Object {
-          "key": "edition",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 23,
-              "offset": 651,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 22,
-              "offset": 634,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 15,
-                  "line": 22,
-                  "offset": 648,
-                },
-                "start": Object {
-                  "column": 14,
-                  "line": 22,
-                  "offset": 647,
-                },
-              },
-              "value": "2",
-            },
-          ],
-        },
-        Object {
-          "key": "isbn",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 24,
-              "offset": 677,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 23,
-              "offset": 651,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 24,
-                  "line": 23,
-                  "offset": 674,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 23,
-                  "offset": 661,
-                },
-              },
-              "value": "2-247-04268-6",
-            },
-          ],
-        },
-        Object {
-          "key": "langid",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 25,
-              "offset": 698,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 24,
-              "offset": 677,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 19,
-                  "line": 24,
-                  "offset": 695,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 24,
-                  "offset": 689,
-                },
-              },
-              "value": "french",
-            },
-          ],
-        },
-        Object {
-          "key": "location",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 26,
-              "offset": 722,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 25,
-              "offset": 698,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 22,
-                  "line": 25,
-                  "offset": 719,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 25,
-                  "offset": 712,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "Text",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 21,
-                      "line": 25,
-                      "offset": 718,
-                    },
-                    "start": Object {
-                      "column": 16,
-                      "line": 25,
-                      "offset": 713,
-                    },
-                  },
-                  "value": "Paris",
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "origdate",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 27,
-              "offset": 743,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 26,
-              "offset": 722,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 19,
-                  "line": 26,
-                  "offset": 740,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 26,
-                  "offset": 736,
-                },
-              },
-              "value": "1929",
-            },
-          ],
-        },
-        Object {
-          "key": "origlocation",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 28,
-              "offset": 774,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 27,
-              "offset": 743,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 29,
-                  "line": 27,
-                  "offset": 771,
-                },
-                "start": Object {
-                  "column": 19,
-                  "line": 27,
-                  "offset": 761,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "Text",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 28,
-                      "line": 27,
-                      "offset": 770,
-                    },
-                    "start": Object {
-                      "column": 20,
-                      "line": 27,
-                      "offset": 762,
-                    },
-                  },
-                  "value": "Tübingen",
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "origpublisher",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 29,
-              "offset": 809,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 28,
-              "offset": 774,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 33,
-                  "line": 28,
-                  "offset": 806,
-                },
-                "start": Object {
-                  "column": 20,
-                  "line": 28,
-                  "offset": 793,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "Text",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 32,
-                      "line": 28,
-                      "offset": 805,
-                    },
-                    "start": Object {
-                      "column": 21,
-                      "line": 28,
-                      "offset": 794,
-                    },
-                  },
-                  "value": "J.C.B. Mohr",
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "origtitle",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 30,
-              "offset": 860,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 29,
-              "offset": 809,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 49,
-                  "line": 29,
-                  "offset": 857,
-                },
-                "start": Object {
-                  "column": 16,
-                  "line": 29,
-                  "offset": 824,
-                },
-              },
-              "value": "Vom Wesen und Wert der Demokratie",
-            },
-          ],
-        },
-        Object {
-          "key": "pagetotal",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 31,
-              "offset": 883,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 30,
-              "offset": 860,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 21,
-                  "line": 30,
-                  "offset": 880,
-                },
-                "start": Object {
-                  "column": 16,
-                  "line": 30,
-                  "offset": 875,
-                },
-              },
-              "value": "x+121",
-            },
-          ],
-        },
-        Object {
-          "key": "publisher",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 32,
-              "offset": 909,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 31,
-              "offset": 883,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 24,
-                  "line": 31,
-                  "offset": 906,
-                },
-                "start": Object {
-                  "column": 16,
-                  "line": 31,
-                  "offset": 898,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "Text",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 23,
-                      "line": 31,
-                      "offset": 905,
-                    },
-                    "start": Object {
-                      "column": 17,
-                      "line": 31,
-                      "offset": 899,
-                    },
-                  },
-                  "value": "Dalloz",
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "series",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 33,
-              "offset": 943,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 32,
-              "offset": 909,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 32,
-                  "line": 32,
-                  "offset": 940,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 32,
-                  "offset": 921,
-                },
-              },
-              "value": "Bibliothèque Dalloz",
-            },
-          ],
-        },
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 34,
-              "offset": 992,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 33,
-              "offset": 943,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 47,
-                  "line": 33,
-                  "offset": 989,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 33,
-                  "offset": 954,
-                },
-              },
-              "value": "La démocratie. Sa nature, sa valeur",
-            },
-          ],
-        },
-        Object {
-          "key": "translator",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 35,
-              "offset": 1028,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 34,
-              "offset": 992,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 35,
-                  "line": 34,
-                  "offset": 1026,
-                },
-                "start": Object {
-                  "column": 17,
-                  "line": 34,
-                  "offset": 1008,
-                },
-              },
-              "value": "Eisenmann, Charles",
-            },
-          ],
-        },
-      ],
-      "type": "book",
-    },
-  ],
-  "kind": "File",
-  "loc": Object {
-    "end": Object {
-      "column": 1,
-      "line": 37,
-      "offset": 1031,
-    },
-    "start": Object {
-      "column": 1,
-      "line": 1,
-      "offset": 0,
-    },
+    ],
+    "kind": "File",
   },
-}
+  Object {
+    "children": Array [
+      Object {
+        "id": "kelsen_democratie_2004",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "langid",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "french",
+              },
+            ],
+          },
+          Object {
+            "key": "abstract",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Préface de Ph. Raynaud. Trad. de : \\"Vom Wesen und Wert der Demokratie\\" - Tübingen : J.C.B. Mohr, 1929. Fac-sim. de la 2e éd., Paris : Sirey : 1932.",
+              },
+            ],
+          },
+          Object {
+            "key": "author",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Kelsen, Hans",
+              },
+            ],
+          },
+          Object {
+            "key": "date",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2004",
+              },
+            ],
+          },
+          Object {
+            "key": "edition",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2",
+              },
+            ],
+          },
+          Object {
+            "key": "isbn",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2-247-04268-6",
+              },
+            ],
+          },
+          Object {
+            "key": "location",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": true,
+                "kind": "NestedLiteral",
+                "markup": Object {},
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "Paris",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "origdate",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "1929",
+              },
+            ],
+          },
+          Object {
+            "key": "origlocation",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "Tübingen",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "origpublisher",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "J.C.B. Mohr",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "origtitle",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Vom Wesen und Wert der Demokratie",
+              },
+            ],
+          },
+          Object {
+            "key": "pagetotal",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "x+121",
+              },
+            ],
+          },
+          Object {
+            "key": "publisher",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": true,
+                "kind": "NestedLiteral",
+                "markup": Object {},
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "Dalloz",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "series",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Bibliothèque Dalloz",
+              },
+            ],
+          },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "La démocratie. Sa nature, sa valeur",
+              },
+            ],
+          },
+          Object {
+            "key": "translator",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Eisenmann, Charles",
+              },
+            ],
+          },
+        ],
+        "type": "book",
+      },
+    ],
+    "kind": "File",
+  },
+]
 `;

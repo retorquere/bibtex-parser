@@ -1,244 +1,100 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BibTeX Parser should parse bbt-import-Import fails to perform @String substitutions #154.bib to an AST 1`] = `
-Object {
-  "children": Array [
-    Object {
-      "key": "pub-FRED",
-      "kind": "StringExpression",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 2,
-          "offset": 39,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 1,
-          "offset": 0,
-        },
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "key": "pub-FRED",
+        "kind": "StringExpression",
+        "value": Array [
+          Object {
+            "kind": "Text",
+            "value": "Freds Publishing",
+          },
+        ],
       },
-      "value": Array [
-        Object {
-          "kind": "Text",
-          "loc": Object {
-            "end": Object {
-              "column": 37,
-              "line": 1,
-              "offset": 36,
-            },
-            "start": Object {
-              "column": 21,
-              "line": 1,
-              "offset": 20,
-            },
-          },
-          "value": "Freds Publishing",
-        },
-      ],
-    },
-    Object {
-      "key": "pub-FRED:adr",
-      "kind": "StringExpression",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 4,
-          "offset": 77,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 2,
-          "offset": 39,
-        },
-      },
-      "value": Array [
-        Object {
-          "kind": "Text",
-          "loc": Object {
-            "end": Object {
-              "column": 35,
-              "line": 2,
-              "offset": 73,
-            },
-            "start": Object {
-              "column": 25,
-              "line": 2,
-              "offset": 63,
-            },
-          },
-          "value": "London, UK",
-        },
-      ],
-    },
-    Object {
-      "id": "Bert:2001:SQL",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 10,
-          "offset": 201,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 4,
-          "offset": 77,
-        },
-      },
-      "properties": Array [
-        Object {
-          "key": "author",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 123,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 5,
-              "offset": 100,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 23,
-                  "line": 5,
-                  "offset": 120,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 5,
-                  "offset": 110,
-                },
-              },
-              "value": "R. A. Bert",
-            },
-          ],
-        },
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 149,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 123,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 24,
-                  "line": 6,
-                  "offset": 146,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 6,
-                  "offset": 134,
-                },
-              },
-              "value": "SQL is great",
-            },
-          ],
-        },
-        Object {
-          "key": "publisher",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 173,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 149,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "String",
-              "loc": Object {
-                "end": Object {
-                  "column": 23,
-                  "line": 7,
-                  "offset": 171,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 7,
-                  "offset": 163,
-                },
-              },
-              "value": "pub-FRED",
-            },
-          ],
-        },
-        Object {
-          "key": "address",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 199,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 173,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "String",
-              "loc": Object {
-                "end": Object {
-                  "column": 25,
-                  "line": 8,
-                  "offset": 197,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 8,
-                  "offset": 185,
-                },
-              },
-              "value": "pub-FRED:adr",
-            },
-          ],
-        },
-      ],
-      "type": "book",
-    },
-  ],
-  "kind": "File",
-  "loc": Object {
-    "end": Object {
-      "column": 1,
-      "line": 10,
-      "offset": 201,
-    },
-    "start": Object {
-      "column": 1,
-      "line": 1,
-      "offset": 0,
-    },
+    ],
+    "kind": "File",
   },
-}
+  Object {
+    "children": Array [
+      Object {
+        "key": "pub-FRED:adr",
+        "kind": "StringExpression",
+        "value": Array [
+          Object {
+            "kind": "Text",
+            "value": "London, UK",
+          },
+        ],
+      },
+    ],
+    "kind": "File",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "id": "Bert:2001:SQL",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "address",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": false,
+                "kind": "String",
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "London, UK",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "author",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "R. A. Bert",
+              },
+            ],
+          },
+          Object {
+            "key": "publisher",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": false,
+                "kind": "String",
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "Freds Publishing",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "SQL is great",
+              },
+            ],
+          },
+        ],
+        "type": "book",
+      },
+    ],
+    "kind": "File",
+  },
+]
 `;

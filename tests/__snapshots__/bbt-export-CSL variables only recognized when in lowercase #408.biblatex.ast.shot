@@ -1,899 +1,288 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BibTeX Parser should parse bbt-export-CSL variables only recognized when in lowercase #408.biblatex to an AST 1`] = `
-Object {
-  "children": Array [
-    Object {
-      "id": "bonomi_improved_2006",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 20,
-          "offset": 1455,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 1,
-          "offset": 0,
-        },
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "id": "bonomi_improved_2006",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "langid",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "english",
+              },
+            ],
+          },
+          Object {
+            "key": "abstract",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "A counting Bloom filter (CBF) generalizes a Bloom filter data structure so as to allow membership queries on a set that can be changing dynamically via insertions and deletions. As with a Bloom filter, a CBF obtains space savings by allowing false positives. We provide a simple hashing-based alternative based on d-left hashing called a d-left CBF (dlCBF). The dlCBF offers the same functionality as a CBF, but uses less space, generally saving a factor of two or more. We describe the construction of dlCBFs, provide an analysis, and demonstrate their effectiveness experimentally.",
+              },
+            ],
+          },
+          Object {
+            "key": "author",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Bonomi, Flavio and Mitzenmacher, Michael and Panigrahy, Rina and Singh, Sushil and Varghese, George",
+              },
+            ],
+          },
+          Object {
+            "key": "booktitle",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Algorithms – ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "exemptFromSentenceCase": true,
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "ESA",
+                      },
+                    ],
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": " 2006",
+              },
+            ],
+          },
+          Object {
+            "key": "date",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2006-09-11",
+              },
+            ],
+          },
+          Object {
+            "key": "doi",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "10.1007/11841036_61",
+              },
+            ],
+          },
+          Object {
+            "key": "editor",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Azar, Yossi and Erlebach, Thomas",
+              },
+            ],
+          },
+          Object {
+            "key": "isbn",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "978-3-540-38875-3 978-3-540-38876-0",
+              },
+            ],
+          },
+          Object {
+            "key": "keywords",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Algorithm Analysis and Problem Complexity,Computer Communication Networks,Computer Graphics,data structures,Discrete Mathematics in Computer Science,Numeric Computing",
+              },
+            ],
+          },
+          Object {
+            "key": "number",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "4168",
+              },
+            ],
+          },
+          Object {
+            "key": "pages",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "684–695",
+              },
+            ],
+          },
+          Object {
+            "key": "publisher",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": true,
+                "kind": "NestedLiteral",
+                "markup": Object {},
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "Springer Berlin Heidelberg",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "series",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Lecture ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "Notes",
+                      },
+                    ],
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": " in ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "Computer Science",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "An ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "Improved Construction",
+                      },
+                    ],
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": " for ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "Counting Bloom Filters",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "url",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "http://link.springer.com/chapter/10.1007/11841036_61",
+              },
+            ],
+          },
+          Object {
+            "key": "urldate",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2015-11-16",
+              },
+            ],
+          },
+        ],
+        "type": "incollection",
       },
-      "properties": Array [
-        Object {
-          "key": "abstract",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 3,
-              "offset": 636,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 2,
-              "offset": 38,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 598,
-                  "line": 2,
-                  "offset": 633,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 2,
-                  "offset": 50,
-                },
-              },
-              "value": "A counting Bloom filter (CBF) generalizes a Bloom filter data structure so as to allow membership queries on a set that can be changing dynamically via insertions and deletions. As with a Bloom filter, a CBF obtains space savings by allowing false positives. We provide a simple hashing-based alternative based on d-left hashing called a d-left CBF (dlCBF). The dlCBF offers the same functionality as a CBF, but uses less space, generally saving a factor of two or more. We describe the construction of dlCBFs, provide an analysis, and demonstrate their effectiveness experimentally.",
-            },
-          ],
-        },
-        Object {
-          "key": "author",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 750,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 3,
-              "offset": 636,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 112,
-                  "line": 3,
-                  "offset": 747,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 3,
-                  "offset": 648,
-                },
-              },
-              "value": "Bonomi, Flavio and Mitzenmacher, Michael and Panigrahy, Rina and Singh, Sushil and Varghese, George",
-            },
-          ],
-        },
-        Object {
-          "key": "booktitle",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 793,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 750,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 29,
-                  "line": 4,
-                  "offset": 778,
-                },
-                "start": Object {
-                  "column": 16,
-                  "line": 4,
-                  "offset": 765,
-                },
-              },
-              "value": "Algorithms – ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 36,
-                  "line": 4,
-                  "offset": 785,
-                },
-                "start": Object {
-                  "column": 29,
-                  "line": 4,
-                  "offset": 778,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 35,
-                      "line": 4,
-                      "offset": 784,
-                    },
-                    "start": Object {
-                      "column": 30,
-                      "line": 4,
-                      "offset": 779,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 34,
-                          "line": 4,
-                          "offset": 783,
-                        },
-                        "start": Object {
-                          "column": 31,
-                          "line": 4,
-                          "offset": 780,
-                        },
-                      },
-                      "value": "ESA",
-                    },
-                  ],
-                },
-              ],
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 41,
-                  "line": 4,
-                  "offset": 790,
-                },
-                "start": Object {
-                  "column": 36,
-                  "line": 4,
-                  "offset": 785,
-                },
-              },
-              "value": " 2006",
-            },
-          ],
-        },
-        Object {
-          "key": "date",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 816,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 793,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 21,
-                  "line": 5,
-                  "offset": 813,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 5,
-                  "offset": 803,
-                },
-              },
-              "value": "2006-09-11",
-            },
-          ],
-        },
-        Object {
-          "key": "doi",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 847,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 816,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 29,
-                  "line": 6,
-                  "offset": 844,
-                },
-                "start": Object {
-                  "column": 10,
-                  "line": 6,
-                  "offset": 825,
-                },
-              },
-              "value": "10.1007/11841036_61",
-            },
-          ],
-        },
-        Object {
-          "key": "editor",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 894,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 847,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 45,
-                  "line": 7,
-                  "offset": 891,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 7,
-                  "offset": 859,
-                },
-              },
-              "value": "Azar, Yossi and Erlebach, Thomas",
-            },
-          ],
-        },
-        Object {
-          "key": "isbn",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 942,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 894,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 46,
-                  "line": 8,
-                  "offset": 939,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 8,
-                  "offset": 904,
-                },
-              },
-              "value": "978-3-540-38875-3 978-3-540-38876-0",
-            },
-          ],
-        },
-        Object {
-          "key": "keywords",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 10,
-              "offset": 1125,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 942,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 181,
-                  "line": 9,
-                  "offset": 1122,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 9,
-                  "offset": 956,
-                },
-              },
-              "value": "Algorithm Analysis and Problem Complexity,Computer Communication Networks,Computer Graphics,data structures,Discrete Mathematics in Computer Science,Numeric Computing",
-            },
-          ],
-        },
-        Object {
-          "key": "langid",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 11,
-              "offset": 1147,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 10,
-              "offset": 1125,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 20,
-                  "line": 10,
-                  "offset": 1144,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 10,
-                  "offset": 1137,
-                },
-              },
-              "value": "english",
-            },
-          ],
-        },
-        Object {
-          "key": "number",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 12,
-              "offset": 1166,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 11,
-              "offset": 1147,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 17,
-                  "line": 11,
-                  "offset": 1163,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 11,
-                  "offset": 1159,
-                },
-              },
-              "value": "4168",
-            },
-          ],
-        },
-        Object {
-          "key": "pages",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 13,
-              "offset": 1188,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 12,
-              "offset": 1166,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 20,
-                  "line": 12,
-                  "offset": 1185,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 12,
-                  "offset": 1177,
-                },
-              },
-              "value": "684–695",
-            },
-          ],
-        },
-        Object {
-          "key": "publisher",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 14,
-              "offset": 1234,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 13,
-              "offset": 1188,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 44,
-                  "line": 13,
-                  "offset": 1231,
-                },
-                "start": Object {
-                  "column": 16,
-                  "line": 13,
-                  "offset": 1203,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "Text",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 43,
-                      "line": 13,
-                      "offset": 1230,
-                    },
-                    "start": Object {
-                      "column": 17,
-                      "line": 13,
-                      "offset": 1204,
-                    },
-                  },
-                  "value": "Springer Berlin Heidelberg",
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "series",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 15,
-              "offset": 1290,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 14,
-              "offset": 1234,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 21,
-                  "line": 14,
-                  "offset": 1254,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 14,
-                  "offset": 1246,
-                },
-              },
-              "value": "Lecture ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 30,
-                  "line": 14,
-                  "offset": 1263,
-                },
-                "start": Object {
-                  "column": 21,
-                  "line": 14,
-                  "offset": 1254,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 29,
-                      "line": 14,
-                      "offset": 1262,
-                    },
-                    "start": Object {
-                      "column": 22,
-                      "line": 14,
-                      "offset": 1255,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 28,
-                          "line": 14,
-                          "offset": 1261,
-                        },
-                        "start": Object {
-                          "column": 23,
-                          "line": 14,
-                          "offset": 1256,
-                        },
-                      },
-                      "value": "Notes",
-                    },
-                  ],
-                },
-              ],
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 34,
-                  "line": 14,
-                  "offset": 1267,
-                },
-                "start": Object {
-                  "column": 30,
-                  "line": 14,
-                  "offset": 1263,
-                },
-              },
-              "value": " in ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 54,
-                  "line": 14,
-                  "offset": 1287,
-                },
-                "start": Object {
-                  "column": 34,
-                  "line": 14,
-                  "offset": 1267,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 53,
-                      "line": 14,
-                      "offset": 1286,
-                    },
-                    "start": Object {
-                      "column": 35,
-                      "line": 14,
-                      "offset": 1268,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 52,
-                          "line": 14,
-                          "offset": 1285,
-                        },
-                        "start": Object {
-                          "column": 36,
-                          "line": 14,
-                          "offset": 1269,
-                        },
-                      },
-                      "value": "Computer Science",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 16,
-              "offset": 1363,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 15,
-              "offset": 1290,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 15,
-                  "line": 15,
-                  "offset": 1304,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 15,
-                  "offset": 1301,
-                },
-              },
-              "value": "An ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 40,
-                  "line": 15,
-                  "offset": 1329,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 15,
-                  "offset": 1304,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 39,
-                      "line": 15,
-                      "offset": 1328,
-                    },
-                    "start": Object {
-                      "column": 16,
-                      "line": 15,
-                      "offset": 1305,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 38,
-                          "line": 15,
-                          "offset": 1327,
-                        },
-                        "start": Object {
-                          "column": 17,
-                          "line": 15,
-                          "offset": 1306,
-                        },
-                      },
-                      "value": "Improved Construction",
-                    },
-                  ],
-                },
-              ],
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 45,
-                  "line": 15,
-                  "offset": 1334,
-                },
-                "start": Object {
-                  "column": 40,
-                  "line": 15,
-                  "offset": 1329,
-                },
-              },
-              "value": " for ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 71,
-                  "line": 15,
-                  "offset": 1360,
-                },
-                "start": Object {
-                  "column": 45,
-                  "line": 15,
-                  "offset": 1334,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 70,
-                      "line": 15,
-                      "offset": 1359,
-                    },
-                    "start": Object {
-                      "column": 46,
-                      "line": 15,
-                      "offset": 1335,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 69,
-                          "line": 15,
-                          "offset": 1358,
-                        },
-                        "start": Object {
-                          "column": 47,
-                          "line": 15,
-                          "offset": 1336,
-                        },
-                      },
-                      "value": "Counting Bloom Filters",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "url",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 17,
-              "offset": 1427,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 16,
-              "offset": 1363,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 62,
-                  "line": 16,
-                  "offset": 1424,
-                },
-                "start": Object {
-                  "column": 10,
-                  "line": 16,
-                  "offset": 1372,
-                },
-              },
-              "value": "http://link.springer.com/chapter/10.1007/11841036_61",
-            },
-          ],
-        },
-        Object {
-          "key": "urldate",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 18,
-              "offset": 1452,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 17,
-              "offset": 1427,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 24,
-                  "line": 17,
-                  "offset": 1450,
-                },
-                "start": Object {
-                  "column": 14,
-                  "line": 17,
-                  "offset": 1440,
-                },
-              },
-              "value": "2015-11-16",
-            },
-          ],
-        },
-      ],
-      "type": "incollection",
-    },
-  ],
-  "kind": "File",
-  "loc": Object {
-    "end": Object {
-      "column": 1,
-      "line": 20,
-      "offset": 1455,
-    },
-    "start": Object {
-      "column": 1,
-      "line": 1,
-      "offset": 0,
-    },
+    ],
+    "kind": "File",
   },
-}
+]
 `;

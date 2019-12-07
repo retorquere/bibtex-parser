@@ -1,482 +1,152 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BibTeX Parser should parse bbt-export-Book converted to mvbook #288.biblatex to an AST 1`] = `
-Object {
-  "children": Array [
-    Object {
-      "id": "russ_savoir_1990",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 16,
-          "offset": 366,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 1,
-          "offset": 0,
-        },
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "id": "russ_savoir_1990",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "langid",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "french",
+              },
+            ],
+          },
+          Object {
+            "key": "annotation",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Comprend : t. 1, La puissance du désordre ; t. 2, La fin des dogmes",
+              },
+            ],
+          },
+          Object {
+            "key": "author",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Russ, Jacqueline",
+              },
+            ],
+          },
+          Object {
+            "key": "date",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "1990",
+              },
+            ],
+          },
+          Object {
+            "key": "isbn",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2-218-05069-2",
+              },
+            ],
+          },
+          Object {
+            "key": "location",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": true,
+                "kind": "NestedLiteral",
+                "markup": Object {},
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "Paris",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "number",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "746",
+              },
+            ],
+          },
+          Object {
+            "key": "pagetotal",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "79",
+              },
+            ],
+          },
+          Object {
+            "key": "publisher",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": true,
+                "kind": "NestedLiteral",
+                "markup": Object {},
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "Hatier",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "series",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Profil",
+              },
+            ],
+          },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Savoir et pouvoir",
+              },
+            ],
+          },
+          Object {
+            "key": "volumes",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2",
+              },
+            ],
+          },
+        ],
+        "type": "mvbook",
       },
-      "properties": Array [
-        Object {
-          "key": "annotation",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 3,
-              "offset": 112,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 2,
-              "offset": 28,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 84,
-                  "line": 2,
-                  "offset": 109,
-                },
-                "start": Object {
-                  "column": 17,
-                  "line": 2,
-                  "offset": 42,
-                },
-              },
-              "value": "Comprend : t. 1, La puissance du désordre ; t. 2, La fin des dogmes",
-            },
-          ],
-        },
-        Object {
-          "key": "author",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 143,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 3,
-              "offset": 112,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 29,
-                  "line": 3,
-                  "offset": 140,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 3,
-                  "offset": 124,
-                },
-              },
-              "value": "Russ, Jacqueline",
-            },
-          ],
-        },
-        Object {
-          "key": "date",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 160,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 143,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 15,
-                  "line": 4,
-                  "offset": 157,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 4,
-                  "offset": 153,
-                },
-              },
-              "value": "1990",
-            },
-          ],
-        },
-        Object {
-          "key": "isbn",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 186,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 160,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 24,
-                  "line": 5,
-                  "offset": 183,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 5,
-                  "offset": 170,
-                },
-              },
-              "value": "2-218-05069-2",
-            },
-          ],
-        },
-        Object {
-          "key": "langid",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 207,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 186,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 19,
-                  "line": 6,
-                  "offset": 204,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 6,
-                  "offset": 198,
-                },
-              },
-              "value": "french",
-            },
-          ],
-        },
-        Object {
-          "key": "location",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 231,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 207,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 22,
-                  "line": 7,
-                  "offset": 228,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 7,
-                  "offset": 221,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "Text",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 21,
-                      "line": 7,
-                      "offset": 227,
-                    },
-                    "start": Object {
-                      "column": 16,
-                      "line": 7,
-                      "offset": 222,
-                    },
-                  },
-                  "value": "Paris",
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "number",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 249,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 231,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 16,
-                  "line": 8,
-                  "offset": 246,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 8,
-                  "offset": 243,
-                },
-              },
-              "value": "746",
-            },
-          ],
-        },
-        Object {
-          "key": "pagetotal",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 10,
-              "offset": 269,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 249,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 18,
-                  "line": 9,
-                  "offset": 266,
-                },
-                "start": Object {
-                  "column": 16,
-                  "line": 9,
-                  "offset": 264,
-                },
-              },
-              "value": "79",
-            },
-          ],
-        },
-        Object {
-          "key": "publisher",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 11,
-              "offset": 295,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 10,
-              "offset": 269,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 24,
-                  "line": 10,
-                  "offset": 292,
-                },
-                "start": Object {
-                  "column": 16,
-                  "line": 10,
-                  "offset": 284,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "Text",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 23,
-                      "line": 10,
-                      "offset": 291,
-                    },
-                    "start": Object {
-                      "column": 17,
-                      "line": 10,
-                      "offset": 285,
-                    },
-                  },
-                  "value": "Hatier",
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "series",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 12,
-              "offset": 316,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 11,
-              "offset": 295,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 19,
-                  "line": 11,
-                  "offset": 313,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 11,
-                  "offset": 307,
-                },
-              },
-              "value": "Profil",
-            },
-          ],
-        },
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 13,
-              "offset": 347,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 12,
-              "offset": 316,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 29,
-                  "line": 12,
-                  "offset": 344,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 12,
-                  "offset": 327,
-                },
-              },
-              "value": "Savoir et pouvoir",
-            },
-          ],
-        },
-        Object {
-          "key": "volumes",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 14,
-              "offset": 363,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 13,
-              "offset": 347,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 15,
-                  "line": 13,
-                  "offset": 361,
-                },
-                "start": Object {
-                  "column": 14,
-                  "line": 13,
-                  "offset": 360,
-                },
-              },
-              "value": "2",
-            },
-          ],
-        },
-      ],
-      "type": "mvbook",
-    },
-  ],
-  "kind": "File",
-  "loc": Object {
-    "end": Object {
-      "column": 1,
-      "line": 16,
-      "offset": 366,
-    },
-    "start": Object {
-      "column": 1,
-      "line": 1,
-      "offset": 0,
-    },
+    ],
+    "kind": "File",
   },
-}
+]
 `;

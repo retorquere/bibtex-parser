@@ -1,362 +1,120 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BibTeX Parser should parse bbt-export-Better BibLaTeX.023.biblatex to an AST 1`] = `
-Object {
-  "children": Array [
-    Object {
-      "id": "Manning2008",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 12,
-          "offset": 307,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 2,
-          "offset": 1,
-        },
-      },
-      "properties": Array [
-        Object {
-          "key": "author",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 103,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 3,
-              "offset": 22,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 81,
-                  "line": 3,
-                  "offset": 100,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 3,
-                  "offset": 32,
-                },
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "id": "Manning2008",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "author",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Manning, Christopher D. and Raghavan, Prabhakar and Schütze, Hinrich",
               },
-              "value": "Manning, Christopher D. and Raghavan, Prabhakar and Schütze, Hinrich",
-            },
-          ],
-        },
-        Object {
-          "key": "date",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 126,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 103,
-            },
+            ],
           },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 21,
-                  "line": 4,
-                  "offset": 123,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 4,
-                  "offset": 113,
-                },
+          Object {
+            "key": "date",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2008-07-07",
               },
-              "value": "2008-07-07",
-            },
-          ],
-        },
-        Object {
-          "key": "isbn",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 156,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 126,
-            },
+            ],
           },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 28,
-                  "line": 5,
-                  "offset": 153,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 5,
-                  "offset": 136,
-                },
+          Object {
+            "key": "isbn",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "978-0-521-86571-5",
               },
-              "value": "978-0-521-86571-5",
-            },
-          ],
-        },
-        Object {
-          "key": "location",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 183,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 156,
-            },
+            ],
           },
-          "value": Array [
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 25,
-                  "line": 6,
-                  "offset": 180,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 6,
-                  "offset": 170,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "Text",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 24,
-                      "line": 6,
-                      "offset": 179,
-                    },
-                    "start": Object {
-                      "column": 16,
-                      "line": 6,
-                      "offset": 171,
-                    },
+          Object {
+            "key": "location",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": true,
+                "kind": "NestedLiteral",
+                "markup": Object {},
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "New York",
                   },
-                  "value": "New York",
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "pagetotal",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 204,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 183,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 19,
-                  "line": 7,
-                  "offset": 201,
-                },
-                "start": Object {
-                  "column": 16,
-                  "line": 7,
-                  "offset": 198,
-                },
+                ],
               },
-              "value": "496",
-            },
-          ],
-        },
-        Object {
-          "key": "publisher",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 250,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 204,
-            },
+            ],
           },
-          "value": Array [
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 44,
-                  "line": 8,
-                  "offset": 247,
-                },
-                "start": Object {
-                  "column": 16,
-                  "line": 8,
-                  "offset": 219,
-                },
+          Object {
+            "key": "pagetotal",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "496",
               },
-              "value": Array [
-                Object {
-                  "kind": "Text",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 43,
-                      "line": 8,
-                      "offset": 246,
-                    },
-                    "start": Object {
-                      "column": 17,
-                      "line": 8,
-                      "offset": 220,
-                    },
+            ],
+          },
+          Object {
+            "key": "publisher",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": true,
+                "kind": "NestedLiteral",
+                "markup": Object {},
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "Cambridge University Press",
                   },
-                  "value": "Cambridge University Press",
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 10,
-              "offset": 304,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 250,
-            },
+                ],
+              },
+            ],
           },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 28,
-                  "line": 9,
-                  "offset": 277,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 9,
-                  "offset": 261,
-                },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Introduction to ",
               },
-              "value": "Introduction to ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 53,
-                  "line": 9,
-                  "offset": 302,
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
                 },
-                "start": Object {
-                  "column": 28,
-                  "line": 9,
-                  "offset": 277,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 52,
-                      "line": 9,
-                      "offset": 301,
-                    },
-                    "start": Object {
-                      "column": 29,
-                      "line": 9,
-                      "offset": 278,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 51,
-                          "line": 9,
-                          "offset": 300,
-                        },
-                        "start": Object {
-                          "column": 30,
-                          "line": 9,
-                          "offset": 279,
-                        },
+                "value": Array [
+                  Object {
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "Information Retrieval",
                       },
-                      "value": "Information Retrieval",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-      ],
-      "type": "book",
-    },
-  ],
-  "kind": "File",
-  "loc": Object {
-    "end": Object {
-      "column": 1,
-      "line": 12,
-      "offset": 307,
-    },
-    "start": Object {
-      "column": 1,
-      "line": 1,
-      "offset": 0,
-    },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+        "type": "book",
+      },
+    ],
+    "kind": "File",
   },
-}
+]
 `;

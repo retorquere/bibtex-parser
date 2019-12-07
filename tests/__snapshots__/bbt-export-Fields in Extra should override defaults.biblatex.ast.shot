@@ -1,462 +1,148 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BibTeX Parser should parse bbt-export-Fields in Extra should override defaults.biblatex to an AST 1`] = `
-Object {
-  "children": Array [
-    Object {
-      "id": "simonite2013declinewikipediaeven",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 13,
-          "offset": 672,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 1,
-          "offset": 0,
-        },
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "id": "simonite2013declinewikipediaeven",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "abstract",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "The community that built the largest encyclopedia in history is shrinking, even as more people and Internet services depend on it than ever. Can it be revived, or is this the end of the Web’s idealistic era?",
+              },
+            ],
+          },
+          Object {
+            "key": "author",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Simonite, Tom",
+              },
+            ],
+          },
+          Object {
+            "key": "date",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2013-10-22",
+              },
+            ],
+          },
+          Object {
+            "key": "journaltitle",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "MIT Technology Review",
+              },
+            ],
+          },
+          Object {
+            "key": "shorttitle",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "The Decline of ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "Wikipedia",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "The Decline of ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "Wikipedia",
+                      },
+                    ],
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": ": Even as More People than Ever Rely on It, Fewer People Create It",
+              },
+            ],
+          },
+          Object {
+            "key": "titleaddon",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "MIT Technology Review",
+              },
+            ],
+          },
+          Object {
+            "key": "url",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "http://www.technologyreview.com/featuredstory/520446/the-decline-of-wikipedia/",
+              },
+            ],
+          },
+          Object {
+            "key": "urldate",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2013-10-26",
+              },
+            ],
+          },
+        ],
+        "type": "online",
       },
-      "properties": Array [
-        Object {
-          "key": "abstract",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 3,
-              "offset": 266,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 2,
-              "offset": 44,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 222,
-                  "line": 2,
-                  "offset": 263,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 2,
-                  "offset": 56,
-                },
-              },
-              "value": "The community that built the largest encyclopedia in history is shrinking, even as more people and Internet services depend on it than ever. Can it be revived, or is this the end of the Web’s idealistic era?",
-            },
-          ],
-        },
-        Object {
-          "key": "author",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 294,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 3,
-              "offset": 266,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 26,
-                  "line": 3,
-                  "offset": 291,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 3,
-                  "offset": 278,
-                },
-              },
-              "value": "Simonite, Tom",
-            },
-          ],
-        },
-        Object {
-          "key": "date",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 317,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 294,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 21,
-                  "line": 4,
-                  "offset": 314,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 4,
-                  "offset": 304,
-                },
-              },
-              "value": "2013-10-22",
-            },
-          ],
-        },
-        Object {
-          "key": "journaltitle",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 359,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 317,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 40,
-                  "line": 5,
-                  "offset": 356,
-                },
-                "start": Object {
-                  "column": 19,
-                  "line": 5,
-                  "offset": 335,
-                },
-              },
-              "value": "MIT Technology Review",
-            },
-          ],
-        },
-        Object {
-          "key": "shorttitle",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 406,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 359,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 32,
-                  "line": 6,
-                  "offset": 390,
-                },
-                "start": Object {
-                  "column": 17,
-                  "line": 6,
-                  "offset": 375,
-                },
-              },
-              "value": "The Decline of ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 45,
-                  "line": 6,
-                  "offset": 403,
-                },
-                "start": Object {
-                  "column": 32,
-                  "line": 6,
-                  "offset": 390,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 44,
-                      "line": 6,
-                      "offset": 402,
-                    },
-                    "start": Object {
-                      "column": 33,
-                      "line": 6,
-                      "offset": 391,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 43,
-                          "line": 6,
-                          "offset": 401,
-                        },
-                        "start": Object {
-                          "column": 34,
-                          "line": 6,
-                          "offset": 392,
-                        },
-                      },
-                      "value": "Wikipedia",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 514,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 406,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 27,
-                  "line": 7,
-                  "offset": 432,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 7,
-                  "offset": 417,
-                },
-              },
-              "value": "The Decline of ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 40,
-                  "line": 7,
-                  "offset": 445,
-                },
-                "start": Object {
-                  "column": 27,
-                  "line": 7,
-                  "offset": 432,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 39,
-                      "line": 7,
-                      "offset": 444,
-                    },
-                    "start": Object {
-                      "column": 28,
-                      "line": 7,
-                      "offset": 433,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 38,
-                          "line": 7,
-                          "offset": 443,
-                        },
-                        "start": Object {
-                          "column": 29,
-                          "line": 7,
-                          "offset": 434,
-                        },
-                      },
-                      "value": "Wikipedia",
-                    },
-                  ],
-                },
-              ],
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 106,
-                  "line": 7,
-                  "offset": 511,
-                },
-                "start": Object {
-                  "column": 40,
-                  "line": 7,
-                  "offset": 445,
-                },
-              },
-              "value": ": Even as More People than Ever Rely on It, Fewer People Create It",
-            },
-          ],
-        },
-        Object {
-          "key": "titleaddon",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 554,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 514,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 38,
-                  "line": 8,
-                  "offset": 551,
-                },
-                "start": Object {
-                  "column": 17,
-                  "line": 8,
-                  "offset": 530,
-                },
-              },
-              "value": "MIT Technology Review",
-            },
-          ],
-        },
-        Object {
-          "key": "url",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 10,
-              "offset": 644,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 554,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 88,
-                  "line": 9,
-                  "offset": 641,
-                },
-                "start": Object {
-                  "column": 10,
-                  "line": 9,
-                  "offset": 563,
-                },
-              },
-              "value": "http://www.technologyreview.com/featuredstory/520446/the-decline-of-wikipedia/",
-            },
-          ],
-        },
-        Object {
-          "key": "urldate",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 11,
-              "offset": 669,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 10,
-              "offset": 644,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 24,
-                  "line": 10,
-                  "offset": 667,
-                },
-                "start": Object {
-                  "column": 14,
-                  "line": 10,
-                  "offset": 657,
-                },
-              },
-              "value": "2013-10-26",
-            },
-          ],
-        },
-      ],
-      "type": "online",
-    },
-  ],
-  "kind": "File",
-  "loc": Object {
-    "end": Object {
-      "column": 1,
-      "line": 13,
-      "offset": 672,
-    },
-    "start": Object {
-      "column": 1,
-      "line": 1,
-      "offset": 0,
-    },
+    ],
+    "kind": "File",
   },
-}
+]
 `;

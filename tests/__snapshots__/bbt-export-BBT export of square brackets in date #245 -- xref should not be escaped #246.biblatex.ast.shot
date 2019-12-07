@@ -1,1563 +1,473 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BibTeX Parser should parse bbt-export-BBT export of square brackets in date #245 -- xref should not be escaped #246.biblatex to an AST 1`] = `
-Object {
-  "children": Array [
-    Object {
-      "id": "bentley_academic_2011",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 21,
-          "offset": 1632,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 1,
-          "offset": 0,
-        },
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "id": "bentley_academic_2011",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "langid",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "english",
+              },
+            ],
+          },
+          Object {
+            "key": "abstract",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "State planning has been a defining means for modern subjects to regulate the passage of time. In practice, it is the focus of multiple conflicts and doubts, which planners attempt to mediate. In this paper, I address the regimes of time that planning both promotes and encounters, and tease out what these imply for anthropology. Using ethnography of Norwegian and Swedish planning offices and their encounters with participatory planning, I question recent claims that there has been an evacuation of the near future or a retreat of administrative intervention. I also suggest that recent anthropological concerns with time have been confined by their attempts to characterize the changing timescapes of specific modal shifts, such as from the modern to the neoliberal. Instead, in my ethnography, I focus not on tracking epochal breaks in time, but on demonstrating how time is manipulated, and how multiple temporalities are performed in ongoing projects of democratic planning.",
+              },
+            ],
+          },
+          Object {
+            "key": "annotation",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "This is the child note",
+              },
+            ],
+          },
+          Object {
+            "key": "author",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Abram, Simone",
+              },
+            ],
+          },
+          Object {
+            "key": "doi",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "10.1111/1467-9655.12097",
+              },
+            ],
+          },
+          Object {
+            "key": "issn",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "1467-9655",
+              },
+            ],
+          },
+          Object {
+            "key": "journaltitle",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Journal of the Royal Anthropological Institute",
+              },
+            ],
+          },
+          Object {
+            "key": "keywords",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "måske",
+              },
+            ],
+          },
+          Object {
+            "key": "origdate",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2014",
+              },
+            ],
+          },
+          Object {
+            "key": "pages",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "129–147",
+              },
+            ],
+          },
+          Object {
+            "key": "shortjournal",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "J R Anthropol Inst",
+              },
+            ],
+          },
+          Object {
+            "key": "shorttitle",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "6 ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "The",
+                      },
+                    ],
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": " Time It Takes",
+              },
+            ],
+          },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "6 ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "The",
+                      },
+                    ],
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": " Time It Takes: Temporalities of Planning",
+              },
+            ],
+          },
+          Object {
+            "key": "url",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "http://onlinelibrary.wiley.com.ep.fjernadgang.kb.dk/doi/10.1111/1467-9655.12097/abstract",
+              },
+            ],
+          },
+          Object {
+            "key": "urldate",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2014-12-27",
+              },
+            ],
+          },
+          Object {
+            "key": "volume",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "20",
+              },
+            ],
+          },
+          Object {
+            "key": "xref",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "welkerₐndreas₁999",
+              },
+            ],
+          },
+        ],
+        "type": "article",
       },
-      "properties": Array [
-        Object {
-          "key": "abstract",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 3,
-              "offset": 1030,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 2,
-              "offset": 34,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 996,
-                  "line": 2,
-                  "offset": 1027,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 2,
-                  "offset": 46,
-                },
-              },
-              "value": "State planning has been a defining means for modern subjects to regulate the passage of time. In practice, it is the focus of multiple conflicts and doubts, which planners attempt to mediate. In this paper, I address the regimes of time that planning both promotes and encounters, and tease out what these imply for anthropology. Using ethnography of Norwegian and Swedish planning offices and their encounters with participatory planning, I question recent claims that there has been an evacuation of the near future or a retreat of administrative intervention. I also suggest that recent anthropological concerns with time have been confined by their attempts to characterize the changing timescapes of specific modal shifts, such as from the modern to the neoliberal. Instead, in my ethnography, I focus not on tracking epochal breaks in time, but on demonstrating how time is manipulated, and how multiple temporalities are performed in ongoing projects of democratic planning.",
-            },
-          ],
-        },
-        Object {
-          "key": "annotation",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 1071,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 3,
-              "offset": 1030,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 39,
-                  "line": 3,
-                  "offset": 1068,
-                },
-                "start": Object {
-                  "column": 17,
-                  "line": 3,
-                  "offset": 1046,
-                },
-              },
-              "value": "This is the child note",
-            },
-          ],
-        },
-        Object {
-          "key": "author",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 1099,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 1071,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 26,
-                  "line": 4,
-                  "offset": 1096,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 4,
-                  "offset": 1083,
-                },
-              },
-              "value": "Abram, Simone",
-            },
-          ],
-        },
-        Object {
-          "key": "doi",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 1134,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 1099,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 33,
-                  "line": 5,
-                  "offset": 1131,
-                },
-                "start": Object {
-                  "column": 10,
-                  "line": 5,
-                  "offset": 1108,
-                },
-              },
-              "value": "10.1111/1467-9655.12097",
-            },
-          ],
-        },
-        Object {
-          "key": "issn",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 1156,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 1134,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 20,
-                  "line": 6,
-                  "offset": 1153,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 6,
-                  "offset": 1144,
-                },
-              },
-              "value": "1467-9655",
-            },
-          ],
-        },
-        Object {
-          "key": "journaltitle",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 1223,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 1156,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 65,
-                  "line": 7,
-                  "offset": 1220,
-                },
-                "start": Object {
-                  "column": 19,
-                  "line": 7,
-                  "offset": 1174,
-                },
-              },
-              "value": "Journal of the Royal Anthropological Institute",
-            },
-          ],
-        },
-        Object {
-          "key": "keywords",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 1245,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 1223,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 20,
-                  "line": 8,
-                  "offset": 1242,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 8,
-                  "offset": 1237,
-                },
-              },
-              "value": "måske",
-            },
-          ],
-        },
-        Object {
-          "key": "langid",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 10,
-              "offset": 1267,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 1245,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 20,
-                  "line": 9,
-                  "offset": 1264,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 9,
-                  "offset": 1257,
-                },
-              },
-              "value": "english",
-            },
-          ],
-        },
-        Object {
-          "key": "origdate",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 11,
-              "offset": 1288,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 10,
-              "offset": 1267,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 19,
-                  "line": 10,
-                  "offset": 1285,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 10,
-                  "offset": 1281,
-                },
-              },
-              "value": "2014",
-            },
-          ],
-        },
-        Object {
-          "key": "pages",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 12,
-              "offset": 1310,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 11,
-              "offset": 1288,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 20,
-                  "line": 11,
-                  "offset": 1307,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 11,
-                  "offset": 1299,
-                },
-              },
-              "value": "129–147",
-            },
-          ],
-        },
-        Object {
-          "key": "shortjournal",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 13,
-              "offset": 1349,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 12,
-              "offset": 1310,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 37,
-                  "line": 12,
-                  "offset": 1346,
-                },
-                "start": Object {
-                  "column": 19,
-                  "line": 12,
-                  "offset": 1328,
-                },
-              },
-              "value": "J R Anthropol Inst",
-            },
-          ],
-        },
-        Object {
-          "key": "shorttitle",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 14,
-              "offset": 1391,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 13,
-              "offset": 1349,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 19,
-                  "line": 13,
-                  "offset": 1367,
-                },
-                "start": Object {
-                  "column": 17,
-                  "line": 13,
-                  "offset": 1365,
-                },
-              },
-              "value": "6 ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 26,
-                  "line": 13,
-                  "offset": 1374,
-                },
-                "start": Object {
-                  "column": 19,
-                  "line": 13,
-                  "offset": 1367,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 25,
-                      "line": 13,
-                      "offset": 1373,
-                    },
-                    "start": Object {
-                      "column": 20,
-                      "line": 13,
-                      "offset": 1368,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 24,
-                          "line": 13,
-                          "offset": 1372,
-                        },
-                        "start": Object {
-                          "column": 21,
-                          "line": 13,
-                          "offset": 1369,
-                        },
-                      },
-                      "value": "The",
-                    },
-                  ],
-                },
-              ],
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 40,
-                  "line": 13,
-                  "offset": 1388,
-                },
-                "start": Object {
-                  "column": 26,
-                  "line": 13,
-                  "offset": 1374,
-                },
-              },
-              "value": " Time It Takes",
-            },
-          ],
-        },
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 15,
-              "offset": 1455,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 14,
-              "offset": 1391,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 14,
-                  "line": 14,
-                  "offset": 1404,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 14,
-                  "offset": 1402,
-                },
-              },
-              "value": "6 ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 21,
-                  "line": 14,
-                  "offset": 1411,
-                },
-                "start": Object {
-                  "column": 14,
-                  "line": 14,
-                  "offset": 1404,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 20,
-                      "line": 14,
-                      "offset": 1410,
-                    },
-                    "start": Object {
-                      "column": 15,
-                      "line": 14,
-                      "offset": 1405,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 19,
-                          "line": 14,
-                          "offset": 1409,
-                        },
-                        "start": Object {
-                          "column": 16,
-                          "line": 14,
-                          "offset": 1406,
-                        },
-                      },
-                      "value": "The",
-                    },
-                  ],
-                },
-              ],
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 62,
-                  "line": 14,
-                  "offset": 1452,
-                },
-                "start": Object {
-                  "column": 21,
-                  "line": 14,
-                  "offset": 1411,
-                },
-              },
-              "value": " Time It Takes: Temporalities of Planning",
-            },
-          ],
-        },
-        Object {
-          "key": "url",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 16,
-              "offset": 1555,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 15,
-              "offset": 1455,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 98,
-                  "line": 15,
-                  "offset": 1552,
-                },
-                "start": Object {
-                  "column": 10,
-                  "line": 15,
-                  "offset": 1464,
-                },
-              },
-              "value": "http://onlinelibrary.wiley.com.ep.fjernadgang.kb.dk/doi/10.1111/1467-9655.12097/abstract",
-            },
-          ],
-        },
-        Object {
-          "key": "urldate",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 17,
-              "offset": 1581,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 16,
-              "offset": 1555,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 24,
-                  "line": 16,
-                  "offset": 1578,
-                },
-                "start": Object {
-                  "column": 14,
-                  "line": 16,
-                  "offset": 1568,
-                },
-              },
-              "value": "2014-12-27",
-            },
-          ],
-        },
-        Object {
-          "key": "volume",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 18,
-              "offset": 1598,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 17,
-              "offset": 1581,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 15,
-                  "line": 17,
-                  "offset": 1595,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 17,
-                  "offset": 1593,
-                },
-              },
-              "value": "20",
-            },
-          ],
-        },
-        Object {
-          "key": "xref",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 19,
-              "offset": 1629,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 18,
-              "offset": 1598,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 17,
-                  "line": 18,
-                  "offset": 1614,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 18,
-                  "offset": 1608,
-                },
-              },
-              "value": "welker",
-            },
-            Object {
-              "kind": "SubscriptCommand",
-              "loc": Object {
-                "end": Object {
-                  "column": 19,
-                  "line": 18,
-                  "offset": 1616,
-                },
-                "start": Object {
-                  "column": 17,
-                  "line": 18,
-                  "offset": 1614,
-                },
-              },
-              "value": "a",
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 25,
-                  "line": 18,
-                  "offset": 1622,
-                },
-                "start": Object {
-                  "column": 19,
-                  "line": 18,
-                  "offset": 1616,
-                },
-              },
-              "value": "ndreas",
-            },
-            Object {
-              "kind": "SubscriptCommand",
-              "loc": Object {
-                "end": Object {
-                  "column": 27,
-                  "line": 18,
-                  "offset": 1624,
-                },
-                "start": Object {
-                  "column": 25,
-                  "line": 18,
-                  "offset": 1622,
-                },
-              },
-              "value": "1",
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 30,
-                  "line": 18,
-                  "offset": 1627,
-                },
-                "start": Object {
-                  "column": 27,
-                  "line": 18,
-                  "offset": 1624,
-                },
-              },
-              "value": "999",
-            },
-          ],
-        },
-      ],
-      "type": "article",
-    },
-    Object {
-      "id": "pollard_bicycle_2007",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 31,
-          "offset": 2018,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 21,
-          "offset": 1632,
-        },
-      },
-      "properties": Array [
-        Object {
-          "key": "author",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 23,
-              "offset": 1710,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 22,
-              "offset": 1665,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 45,
-                  "line": 22,
-                  "offset": 1707,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 22,
-                  "offset": 1675,
-                },
-              },
-              "value": "Pollard, A. Mark and Bray, Peter",
-            },
-          ],
-        },
-        Object {
-          "key": "journaltitle",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 24,
-              "offset": 1752,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 23,
-              "offset": 1710,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 40,
-                  "line": 23,
-                  "offset": 1749,
-                },
-                "start": Object {
-                  "column": 19,
-                  "line": 23,
-                  "offset": 1728,
-                },
-              },
-              "value": "Annu. Rev. Anthropol.",
-            },
-          ],
-        },
-        Object {
-          "key": "origdate",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 25,
-              "offset": 1773,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 24,
-              "offset": 1752,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 19,
-                  "line": 24,
-                  "offset": 1770,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 24,
-                  "offset": 1766,
-                },
-              },
-              "value": "2007",
-            },
-          ],
-        },
-        Object {
-          "key": "pages",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 26,
-              "offset": 1794,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 25,
-              "offset": 1773,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 19,
-                  "line": 25,
-                  "offset": 1791,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 25,
-                  "offset": 1784,
-                },
-              },
-              "value": "245–59",
-            },
-          ],
-        },
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 27,
-              "offset": 1911,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 26,
-              "offset": 1794,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 36,
-                  "line": 26,
-                  "offset": 1829,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 26,
-                  "offset": 1805,
-                },
-              },
-              "value": "A Bicycle Made for Two? ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 43,
-                  "line": 26,
-                  "offset": 1836,
-                },
-                "start": Object {
-                  "column": 36,
-                  "line": 26,
-                  "offset": 1829,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 42,
-                      "line": 26,
-                      "offset": 1835,
-                    },
-                    "start": Object {
-                      "column": 37,
-                      "line": 26,
-                      "offset": 1830,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 41,
-                          "line": 26,
-                          "offset": 1834,
-                        },
-                        "start": Object {
-                          "column": 38,
-                          "line": 26,
-                          "offset": 1831,
-                        },
-                      },
-                      "value": "The",
-                    },
-                  ],
-                },
-              ],
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 115,
-                  "line": 26,
-                  "offset": 1908,
-                },
-                "start": Object {
-                  "column": 43,
-                  "line": 26,
-                  "offset": 1836,
-                },
-              },
-              "value": " Integration of Scientific Techniques into Archaeological Interpretation",
-            },
-          ],
-        },
-        Object {
-          "key": "url",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 28,
-              "offset": 1999,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 27,
-              "offset": 1911,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 86,
-                  "line": 27,
-                  "offset": 1996,
-                },
-                "start": Object {
-                  "column": 10,
-                  "line": 27,
-                  "offset": 1920,
-                },
-              },
-              "value": "http://www.annualreviews.org/doi/pdf/10.1146/annurev.anthro.36.081406.094354",
-            },
-          ],
-        },
-        Object {
-          "key": "volume",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 29,
-              "offset": 2015,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 28,
-              "offset": 1999,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 15,
-                  "line": 28,
-                  "offset": 2013,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 28,
-                  "offset": 2011,
-                },
-              },
-              "value": "36",
-            },
-          ],
-        },
-      ],
-      "type": "article",
-    },
-    Object {
-      "id": "kartinyeri",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 44,
-          "offset": 2313,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 31,
-          "offset": 2018,
-        },
-      },
-      "properties": Array [
-        Object {
-          "key": "author",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 33,
-              "offset": 2084,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 32,
-              "offset": 2046,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 38,
-                  "line": 32,
-                  "offset": 2081,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 32,
-                  "offset": 2056,
-                },
-              },
-              "value": "Kaetinyeri v Commonwealth",
-            },
-          ],
-        },
-        Object {
-          "key": "date",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 34,
-              "offset": 2107,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 33,
-              "offset": 2084,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 21,
-                  "line": 33,
-                  "offset": 2104,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 33,
-                  "offset": 2094,
-                },
-              },
-              "value": "1998-04-01",
-            },
-          ],
-        },
-        Object {
-          "key": "institution",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 35,
-              "offset": 2132,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 34,
-              "offset": 2107,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 23,
-                  "line": 34,
-                  "offset": 2129,
-                },
-                "start": Object {
-                  "column": 18,
-                  "line": 34,
-                  "offset": 2124,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "Text",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 22,
-                      "line": 34,
-                      "offset": 2128,
-                    },
-                    "start": Object {
-                      "column": 19,
-                      "line": 34,
-                      "offset": 2125,
-                    },
-                  },
-                  "value": "HCA",
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "journaltitle",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 36,
-              "offset": 2156,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 35,
-              "offset": 2132,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 22,
-                  "line": 35,
-                  "offset": 2153,
-                },
-                "start": Object {
-                  "column": 19,
-                  "line": 35,
-                  "offset": 2150,
-                },
-              },
-              "value": "CLR",
-            },
-          ],
-        },
-        Object {
-          "key": "keywords",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 37,
-              "offset": 2175,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 36,
-              "offset": 2156,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 17,
-                  "line": 36,
-                  "offset": 2172,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 36,
-                  "offset": 2170,
-                },
-              },
-              "value": "au",
-            },
-          ],
-        },
-        Object {
-          "key": "pages",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 38,
-              "offset": 2192,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 37,
-              "offset": 2175,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 15,
-                  "line": 37,
-                  "offset": 2189,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 37,
-                  "offset": 2186,
-                },
-              },
-              "value": "337",
-            },
-          ],
-        },
-        Object {
-          "key": "shorttitle",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 39,
-              "offset": 2221,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 38,
-              "offset": 2192,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 27,
-                  "line": 38,
-                  "offset": 2218,
-                },
-                "start": Object {
-                  "column": 17,
-                  "line": 38,
-                  "offset": 2208,
-                },
-              },
-              "value": "Kartinyeri",
-            },
-          ],
-        },
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 40,
-              "offset": 2264,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 39,
-              "offset": 2221,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 25,
-                  "line": 39,
-                  "offset": 2245,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 39,
-                  "offset": 2232,
-                },
-              },
-              "value": "Kartinyeri v ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 41,
-                  "line": 39,
-                  "offset": 2261,
-                },
-                "start": Object {
-                  "column": 25,
-                  "line": 39,
-                  "offset": 2245,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 40,
-                      "line": 39,
-                      "offset": 2260,
-                    },
-                    "start": Object {
-                      "column": 26,
-                      "line": 39,
-                      "offset": 2246,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 39,
-                          "line": 39,
-                          "offset": 2259,
-                        },
-                        "start": Object {
-                          "column": 27,
-                          "line": 39,
-                          "offset": 2247,
-                        },
-                      },
-                      "value": "Commonwealth",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "translator",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 41,
-              "offset": 2293,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 40,
-              "offset": 2264,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 27,
-                  "line": 40,
-                  "offset": 2290,
-                },
-                "start": Object {
-                  "column": 17,
-                  "line": 40,
-                  "offset": 2280,
-                },
-              },
-              "value": "Kartinyeri",
-            },
-          ],
-        },
-        Object {
-          "key": "volume",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 42,
-              "offset": 2310,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 41,
-              "offset": 2293,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 16,
-                  "line": 41,
-                  "offset": 2308,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 41,
-                  "offset": 2305,
-                },
-              },
-              "value": "195",
-            },
-          ],
-        },
-      ],
-      "type": "jurisdiction",
-    },
-  ],
-  "kind": "File",
-  "loc": Object {
-    "end": Object {
-      "column": 1,
-      "line": 44,
-      "offset": 2313,
-    },
-    "start": Object {
-      "column": 1,
-      "line": 1,
-      "offset": 0,
-    },
+    ],
+    "kind": "File",
   },
-}
+  Object {
+    "children": Array [
+      Object {
+        "id": "pollard_bicycle_2007",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "author",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Pollard, A. Mark and Bray, Peter",
+              },
+            ],
+          },
+          Object {
+            "key": "journaltitle",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Annu. Rev. Anthropol.",
+              },
+            ],
+          },
+          Object {
+            "key": "origdate",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2007",
+              },
+            ],
+          },
+          Object {
+            "key": "pages",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "245–59",
+              },
+            ],
+          },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "A Bicycle Made for Two? ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "The",
+                      },
+                    ],
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": " Integration of Scientific Techniques into Archaeological Interpretation",
+              },
+            ],
+          },
+          Object {
+            "key": "url",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "http://www.annualreviews.org/doi/pdf/10.1146/annurev.anthro.36.081406.094354",
+              },
+            ],
+          },
+          Object {
+            "key": "volume",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "36",
+              },
+            ],
+          },
+        ],
+        "type": "article",
+      },
+    ],
+    "kind": "File",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "id": "kartinyeri",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "author",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Kaetinyeri v Commonwealth",
+              },
+            ],
+          },
+          Object {
+            "key": "date",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "1998-04-01",
+              },
+            ],
+          },
+          Object {
+            "key": "institution",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": true,
+                "kind": "NestedLiteral",
+                "markup": Object {},
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "HCA",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "journaltitle",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "CLR",
+              },
+            ],
+          },
+          Object {
+            "key": "keywords",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "au",
+              },
+            ],
+          },
+          Object {
+            "key": "pages",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "337",
+              },
+            ],
+          },
+          Object {
+            "key": "shorttitle",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Kartinyeri",
+              },
+            ],
+          },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Kartinyeri v ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "Commonwealth",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "translator",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Kartinyeri",
+              },
+            ],
+          },
+          Object {
+            "key": "volume",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "195",
+              },
+            ],
+          },
+        ],
+        "type": "jurisdiction",
+      },
+    ],
+    "kind": "File",
+  },
+]
 `;

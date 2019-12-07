@@ -1,1253 +1,370 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BibTeX Parser should parse bbt-export-error on exporting note with pre tags; duplicate field howpublished #1092.bibtex to an AST 1`] = `
-Object {
-  "children": Array [
-    Object {
-      "id": "blantonConservativeLossRecovery2012",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 20,
-          "offset": 925,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 1,
-          "offset": 0,
-        },
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "id": "blantonConservativeLossRecovery2012",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "annote",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "\\"",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "bold": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "Pipe",
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": "\\" is a sender's estimate of the number of bytes outstanding in the network. This is used during recovery for limiting the sender's sending rate. The pipe variable allows TCP to use fundamentally different congestion control than the algorithm specified in [https://tools.ietf.org/html/rfc5681]. The congestion control algorithm using the pipe estimate is often referred to as the \\"pipe algorithm\\". fast recovery algorithm",
+              },
+            ],
+          },
+          Object {
+            "key": "author",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Blanton, E. and Allman, M. and Wang, L. and Jarvinen, I. and Kojo, M. and Nishida, Y.",
+              },
+            ],
+          },
+          Object {
+            "key": "institution",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "RFC Editor",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "month",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": false,
+                "kind": "String",
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "08",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "note",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "https://tools.ietf.org/html/rfc6675",
+              },
+            ],
+          },
+          Object {
+            "key": "number",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "6675",
+              },
+            ],
+          },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "A ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "Conservative Loss Recovery Algorithm Based",
+                      },
+                    ],
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": " on ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "Selective Acknowledgment",
+                      },
+                    ],
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": " (",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "exemptFromSentenceCase": true,
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "SACK",
+                      },
+                    ],
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": ") for ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "exemptFromSentenceCase": true,
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "TCP",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "type",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": true,
+                "kind": "NestedLiteral",
+                "markup": Object {},
+                "value": Array [
+                  Object {
+                    "exemptFromSentenceCase": true,
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "RFC",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "year",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2012",
+              },
+            ],
+          },
+        ],
+        "type": "techreport",
       },
-      "properties": Array [
-        Object {
-          "key": "annote",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 10,
-              "offset": 549,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 2,
-              "offset": 51,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 14,
-                  "line": 2,
-                  "offset": 62,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 2,
-                  "offset": 61,
-                },
-              },
-              "value": "\\"",
-            },
-            Object {
-              "arguments": Array [
-                Object {
-                  "kind": "RequiredArgument",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 27,
-                      "line": 2,
-                      "offset": 75,
-                    },
-                    "start": Object {
-                      "column": 21,
-                      "line": 2,
-                      "offset": 69,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 26,
-                          "line": 2,
-                          "offset": 74,
-                        },
-                        "start": Object {
-                          "column": 22,
-                          "line": 2,
-                          "offset": 70,
-                        },
-                      },
-                      "value": "Pipe",
-                    },
-                  ],
-                },
-              ],
-              "kind": "RegularCommand",
-              "loc": Object {
-                "end": Object {
-                  "column": 27,
-                  "line": 2,
-                  "offset": 75,
-                },
-                "start": Object {
-                  "column": 14,
-                  "line": 2,
-                  "offset": 62,
-                },
-              },
-              "value": "textbf",
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 21,
-                  "line": 6,
-                  "offset": 358,
-                },
-                "start": Object {
-                  "column": 27,
-                  "line": 2,
-                  "offset": 75,
-                },
-              },
-              "value": "\\" is a sender's estimate of the number of bytes outstanding in the network. This is used during recovery for limiting the sender's sending rate. The pipe variable allows TCP to use fundamentally different congestion control than the algorithm specified in [",
-            },
-            Object {
-              "arguments": Array [
-                Object {
-                  "kind": "RequiredArgument",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 63,
-                      "line": 6,
-                      "offset": 400,
-                    },
-                    "start": Object {
-                      "column": 26,
-                      "line": 6,
-                      "offset": 363,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 62,
-                          "line": 6,
-                          "offset": 399,
-                        },
-                        "start": Object {
-                          "column": 27,
-                          "line": 6,
-                          "offset": 364,
-                        },
-                      },
-                      "value": "https://tools.ietf.org/html/rfc5681",
-                    },
-                  ],
-                },
-                Object {
-                  "kind": "RequiredArgument",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 72,
-                      "line": 6,
-                      "offset": 409,
-                    },
-                    "start": Object {
-                      "column": 63,
-                      "line": 6,
-                      "offset": 400,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 71,
-                          "line": 6,
-                          "offset": 408,
-                        },
-                        "start": Object {
-                          "column": 64,
-                          "line": 6,
-                          "offset": 401,
-                        },
-                      },
-                      "value": "RFC5681",
-                    },
-                  ],
-                },
-              ],
-              "kind": "RegularCommand",
-              "loc": Object {
-                "end": Object {
-                  "column": 72,
-                  "line": 6,
-                  "offset": 409,
-                },
-                "start": Object {
-                  "column": 21,
-                  "line": 6,
-                  "offset": 358,
-                },
-              },
-              "value": "href",
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 24,
-                  "line": 9,
-                  "offset": 546,
-                },
-                "start": Object {
-                  "column": 72,
-                  "line": 6,
-                  "offset": 409,
-                },
-              },
-              "value": "]. The congestion control algorithm using the pipe estimate is often referred to as the \\"pipe algorithm\\". fast recovery algorithm",
-            },
-          ],
-        },
-        Object {
-          "key": "author",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 11,
-              "offset": 649,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 10,
-              "offset": 549,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 98,
-                  "line": 10,
-                  "offset": 646,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 10,
-                  "offset": 561,
-                },
-              },
-              "value": "Blanton, E. and Allman, M. and Wang, L. and Jarvinen, I. and Kojo, M. and Nishida, Y.",
-            },
-          ],
-        },
-        Object {
-          "key": "institution",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 12,
-              "offset": 681,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 11,
-              "offset": 649,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 30,
-                  "line": 11,
-                  "offset": 678,
-                },
-                "start": Object {
-                  "column": 18,
-                  "line": 11,
-                  "offset": 666,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "Text",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 29,
-                      "line": 11,
-                      "offset": 677,
-                    },
-                    "start": Object {
-                      "column": 19,
-                      "line": 11,
-                      "offset": 667,
-                    },
-                  },
-                  "value": "RFC Editor",
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "month",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 13,
-              "offset": 696,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 12,
-              "offset": 681,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "String",
-              "loc": Object {
-                "end": Object {
-                  "column": 14,
-                  "line": 12,
-                  "offset": 694,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 12,
-                  "offset": 691,
-                },
-              },
-              "value": "aug",
-            },
-          ],
-        },
-        Object {
-          "key": "note",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 14,
-              "offset": 750,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 13,
-              "offset": 696,
-            },
-          },
-          "value": Array [
-            Object {
-              "arguments": Array [
-                Object {
-                  "kind": "RequiredArgument",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 52,
-                      "line": 13,
-                      "offset": 747,
-                    },
-                    "start": Object {
-                      "column": 15,
-                      "line": 13,
-                      "offset": 710,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 51,
-                          "line": 13,
-                          "offset": 746,
-                        },
-                        "start": Object {
-                          "column": 16,
-                          "line": 13,
-                          "offset": 711,
-                        },
-                      },
-                      "value": "https://tools.ietf.org/html/rfc6675",
-                    },
-                  ],
-                },
-              ],
-              "kind": "RegularCommand",
-              "loc": Object {
-                "end": Object {
-                  "column": 52,
-                  "line": 13,
-                  "offset": 747,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 13,
-                  "offset": 706,
-                },
-              },
-              "value": "url",
-            },
-          ],
-        },
-        Object {
-          "key": "number",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 15,
-              "offset": 769,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 14,
-              "offset": 750,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 17,
-                  "line": 14,
-                  "offset": 766,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 14,
-                  "offset": 762,
-                },
-              },
-              "value": "6675",
-            },
-          ],
-        },
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 16,
-              "offset": 886,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 15,
-              "offset": 769,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 14,
-                  "line": 15,
-                  "offset": 782,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 15,
-                  "offset": 780,
-                },
-              },
-              "value": "A ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 60,
-                  "line": 15,
-                  "offset": 828,
-                },
-                "start": Object {
-                  "column": 14,
-                  "line": 15,
-                  "offset": 782,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 59,
-                      "line": 15,
-                      "offset": 827,
-                    },
-                    "start": Object {
-                      "column": 15,
-                      "line": 15,
-                      "offset": 783,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 58,
-                          "line": 15,
-                          "offset": 826,
-                        },
-                        "start": Object {
-                          "column": 16,
-                          "line": 15,
-                          "offset": 784,
-                        },
-                      },
-                      "value": "Conservative Loss Recovery Algorithm Based",
-                    },
-                  ],
-                },
-              ],
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 64,
-                  "line": 15,
-                  "offset": 832,
-                },
-                "start": Object {
-                  "column": 60,
-                  "line": 15,
-                  "offset": 828,
-                },
-              },
-              "value": " on ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 92,
-                  "line": 15,
-                  "offset": 860,
-                },
-                "start": Object {
-                  "column": 64,
-                  "line": 15,
-                  "offset": 832,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 91,
-                      "line": 15,
-                      "offset": 859,
-                    },
-                    "start": Object {
-                      "column": 65,
-                      "line": 15,
-                      "offset": 833,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 90,
-                          "line": 15,
-                          "offset": 858,
-                        },
-                        "start": Object {
-                          "column": 66,
-                          "line": 15,
-                          "offset": 834,
-                        },
-                      },
-                      "value": "Selective Acknowledgment",
-                    },
-                  ],
-                },
-              ],
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 94,
-                  "line": 15,
-                  "offset": 862,
-                },
-                "start": Object {
-                  "column": 92,
-                  "line": 15,
-                  "offset": 860,
-                },
-              },
-              "value": " (",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 102,
-                  "line": 15,
-                  "offset": 870,
-                },
-                "start": Object {
-                  "column": 94,
-                  "line": 15,
-                  "offset": 862,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 101,
-                      "line": 15,
-                      "offset": 869,
-                    },
-                    "start": Object {
-                      "column": 95,
-                      "line": 15,
-                      "offset": 863,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 100,
-                          "line": 15,
-                          "offset": 868,
-                        },
-                        "start": Object {
-                          "column": 96,
-                          "line": 15,
-                          "offset": 864,
-                        },
-                      },
-                      "value": "SACK",
-                    },
-                  ],
-                },
-              ],
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 108,
-                  "line": 15,
-                  "offset": 876,
-                },
-                "start": Object {
-                  "column": 102,
-                  "line": 15,
-                  "offset": 870,
-                },
-              },
-              "value": ") for ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 115,
-                  "line": 15,
-                  "offset": 883,
-                },
-                "start": Object {
-                  "column": 108,
-                  "line": 15,
-                  "offset": 876,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 114,
-                      "line": 15,
-                      "offset": 882,
-                    },
-                    "start": Object {
-                      "column": 109,
-                      "line": 15,
-                      "offset": 877,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 113,
-                          "line": 15,
-                          "offset": 881,
-                        },
-                        "start": Object {
-                          "column": 110,
-                          "line": 15,
-                          "offset": 878,
-                        },
-                      },
-                      "value": "TCP",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "type",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 17,
-              "offset": 906,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 16,
-              "offset": 886,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 18,
-                  "line": 16,
-                  "offset": 903,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 16,
-                  "offset": 896,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 17,
-                      "line": 16,
-                      "offset": 902,
-                    },
-                    "start": Object {
-                      "column": 12,
-                      "line": 16,
-                      "offset": 897,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 16,
-                          "line": 16,
-                          "offset": 901,
-                        },
-                        "start": Object {
-                          "column": 13,
-                          "line": 16,
-                          "offset": 898,
-                        },
-                      },
-                      "value": "RFC",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "year",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 18,
-              "offset": 922,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 17,
-              "offset": 906,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 15,
-                  "line": 17,
-                  "offset": 920,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 17,
-                  "offset": 916,
-                },
-              },
-              "value": "2012",
-            },
-          ],
-        },
-      ],
-      "type": "techreport",
-    },
-    Object {
-      "id": "PortableSCTPUserland2018",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 27,
-          "offset": 1203,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 20,
-          "offset": 925,
-        },
-      },
-      "properties": Array [
-        Object {
-          "key": "howpublished",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 22,
-              "offset": 985,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 21,
-              "offset": 959,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 26,
-                  "line": 21,
-                  "offset": 982,
-                },
-                "start": Object {
-                  "column": 19,
-                  "line": 21,
-                  "offset": 975,
-                },
-              },
-              "value": "sctplab",
-            },
-          ],
-        },
-        Object {
-          "key": "month",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 23,
-              "offset": 1000,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 22,
-              "offset": 985,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "String",
-              "loc": Object {
-                "end": Object {
-                  "column": 14,
-                  "line": 22,
-                  "offset": 998,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 22,
-                  "offset": 995,
-                },
-              },
-              "value": "nov",
-            },
-          ],
-        },
-        Object {
-          "key": "note",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 24,
-              "offset": 1053,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 23,
-              "offset": 1000,
-            },
-          },
-          "value": Array [
-            Object {
-              "arguments": Array [
-                Object {
-                  "kind": "RequiredArgument",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 51,
-                      "line": 23,
-                      "offset": 1050,
-                    },
-                    "start": Object {
-                      "column": 15,
-                      "line": 23,
-                      "offset": 1014,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 50,
-                          "line": 23,
-                          "offset": 1049,
-                        },
-                        "start": Object {
-                          "column": 16,
-                          "line": 23,
-                          "offset": 1015,
-                        },
-                      },
-                      "value": "https://github.com/sctplab/usrsctp",
-                    },
-                  ],
-                },
-              ],
-              "kind": "RegularCommand",
-              "loc": Object {
-                "end": Object {
-                  "column": 51,
-                  "line": 23,
-                  "offset": 1050,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 23,
-                  "offset": 1010,
-                },
-              },
-              "value": "url",
-            },
-          ],
-        },
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 25,
-              "offset": 1185,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 24,
-              "offset": 1053,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 23,
-                  "line": 24,
-                  "offset": 1075,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 24,
-                  "offset": 1064,
-                },
-              },
-              "value": "A Portable ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 31,
-                  "line": 24,
-                  "offset": 1083,
-                },
-                "start": Object {
-                  "column": 23,
-                  "line": 24,
-                  "offset": 1075,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 30,
-                      "line": 24,
-                      "offset": 1082,
-                    },
-                    "start": Object {
-                      "column": 24,
-                      "line": 24,
-                      "offset": 1076,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 29,
-                          "line": 24,
-                          "offset": 1081,
-                        },
-                        "start": Object {
-                          "column": 25,
-                          "line": 24,
-                          "offset": 1077,
-                        },
-                      },
-                      "value": "SCTP",
-                    },
-                  ],
-                },
-              ],
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 48,
-                  "line": 24,
-                  "offset": 1100,
-                },
-                "start": Object {
-                  "column": 31,
-                  "line": 24,
-                  "offset": 1083,
-                },
-              },
-              "value": " Userland Stack. ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 62,
-                  "line": 24,
-                  "offset": 1114,
-                },
-                "start": Object {
-                  "column": 48,
-                  "line": 24,
-                  "offset": 1100,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 61,
-                      "line": 24,
-                      "offset": 1113,
-                    },
-                    "start": Object {
-                      "column": 49,
-                      "line": 24,
-                      "offset": 1101,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 60,
-                          "line": 24,
-                          "offset": 1112,
-                        },
-                        "start": Object {
-                          "column": 50,
-                          "line": 24,
-                          "offset": 1102,
-                        },
-                      },
-                      "value": "Contribute",
-                    },
-                  ],
-                },
-              ],
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 120,
-                  "line": 24,
-                  "offset": 1172,
-                },
-                "start": Object {
-                  "column": 62,
-                  "line": 24,
-                  "offset": 1114,
-                },
-              },
-              "value": " to Sctplab/Usrsctp Development by Creating an Account on ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 130,
-                  "line": 24,
-                  "offset": 1182,
-                },
-                "start": Object {
-                  "column": 120,
-                  "line": 24,
-                  "offset": 1172,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 129,
-                      "line": 24,
-                      "offset": 1181,
-                    },
-                    "start": Object {
-                      "column": 121,
-                      "line": 24,
-                      "offset": 1173,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 128,
-                          "line": 24,
-                          "offset": 1180,
-                        },
-                        "start": Object {
-                          "column": 122,
-                          "line": 24,
-                          "offset": 1174,
-                        },
-                      },
-                      "value": "GitHub",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "year",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 26,
-              "offset": 1201,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 25,
-              "offset": 1185,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 15,
-                  "line": 25,
-                  "offset": 1199,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 25,
-                  "offset": 1195,
-                },
-              },
-              "value": "2018",
-            },
-          ],
-        },
-      ],
-      "type": "misc",
-    },
-  ],
-  "kind": "File",
-  "loc": Object {
-    "end": Object {
-      "column": 1,
-      "line": 27,
-      "offset": 1203,
-    },
-    "start": Object {
-      "column": 1,
-      "line": 1,
-      "offset": 0,
-    },
+    ],
+    "kind": "File",
   },
-}
+  Object {
+    "children": Array [
+      Object {
+        "id": "PortableSCTPUserland2018",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "howpublished",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "sctplab",
+              },
+            ],
+          },
+          Object {
+            "key": "month",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": false,
+                "kind": "String",
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "11",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "note",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "https://github.com/sctplab/usrsctp",
+              },
+            ],
+          },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "A Portable ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "exemptFromSentenceCase": true,
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "SCTP",
+                      },
+                    ],
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": " Userland Stack. ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "Contribute",
+                      },
+                    ],
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": " to Sctplab/Usrsctp Development by Creating an Account on ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "exemptFromSentenceCase": true,
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "GitHub",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "year",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2018",
+              },
+            ],
+          },
+        ],
+        "type": "misc",
+      },
+    ],
+    "kind": "File",
+  },
+]
 `;

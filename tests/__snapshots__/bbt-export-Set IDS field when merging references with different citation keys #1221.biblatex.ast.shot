@@ -1,278 +1,88 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BibTeX Parser should parse bbt-export-Set IDS field when merging references with different citation keys #1221.biblatex to an AST 1`] = `
-Object {
-  "children": Array [
-    Object {
-      "id": "ShelahDifferentiallyclosedfields1973",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 10,
-          "offset": 264,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 1,
-          "offset": 0,
-        },
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "id": "ShelahDifferentiallyclosedfields1973",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "author",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Shelah, Saharon",
+              },
+            ],
+          },
+          Object {
+            "key": "date",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "1973",
+              },
+            ],
+          },
+          Object {
+            "key": "ids",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "ShelahErrataFirstorder1973",
+              },
+            ],
+          },
+          Object {
+            "key": "journaltitle",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Israel Journal of Mathematics",
+              },
+            ],
+          },
+          Object {
+            "key": "pages",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "314–328",
+              },
+            ],
+          },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Differentially Closed Fields",
+              },
+            ],
+          },
+          Object {
+            "key": "volume",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "16",
+              },
+            ],
+          },
+        ],
+        "type": "article",
       },
-      "properties": Array [
-        Object {
-          "key": "author",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 3,
-              "offset": 77,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 2,
-              "offset": 49,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 28,
-                  "line": 2,
-                  "offset": 74,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 2,
-                  "offset": 59,
-                },
-              },
-              "value": "Shelah, Saharon",
-            },
-          ],
-        },
-        Object {
-          "key": "date",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 94,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 3,
-              "offset": 77,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 15,
-                  "line": 3,
-                  "offset": 91,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 3,
-                  "offset": 87,
-                },
-              },
-              "value": "1973",
-            },
-          ],
-        },
-        Object {
-          "key": "ids",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 132,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 94,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 36,
-                  "line": 4,
-                  "offset": 129,
-                },
-                "start": Object {
-                  "column": 10,
-                  "line": 4,
-                  "offset": 103,
-                },
-              },
-              "value": "ShelahErrataFirstorder1973",
-            },
-          ],
-        },
-        Object {
-          "key": "journaltitle",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 182,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 132,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 48,
-                  "line": 5,
-                  "offset": 179,
-                },
-                "start": Object {
-                  "column": 19,
-                  "line": 5,
-                  "offset": 150,
-                },
-              },
-              "value": "Israel Journal of Mathematics",
-            },
-          ],
-        },
-        Object {
-          "key": "pages",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 204,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 182,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 20,
-                  "line": 6,
-                  "offset": 201,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 6,
-                  "offset": 193,
-                },
-              },
-              "value": "314–328",
-            },
-          ],
-        },
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 246,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 204,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 40,
-                  "line": 7,
-                  "offset": 243,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 7,
-                  "offset": 215,
-                },
-              },
-              "value": "Differentially Closed Fields",
-            },
-          ],
-        },
-        Object {
-          "key": "volume",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 262,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 246,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 15,
-                  "line": 8,
-                  "offset": 260,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 8,
-                  "offset": 258,
-                },
-              },
-              "value": "16",
-            },
-          ],
-        },
-      ],
-      "type": "article",
-    },
-  ],
-  "kind": "File",
-  "loc": Object {
-    "end": Object {
-      "column": 1,
-      "line": 10,
-      "offset": 264,
-    },
-    "start": Object {
-      "column": 1,
-      "line": 1,
-      "offset": 0,
-    },
+    ],
+    "kind": "File",
   },
-}
+]
 `;

@@ -1,736 +1,218 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BibTeX Parser should parse bbt-import-Better BibTeX.010.bib to an AST 1`] = `
-Object {
-  "children": Array [
-    Object {
-      "id": "Hulse2009",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 23,
-          "offset": 996,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 1,
-          "offset": 0,
-        },
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "id": "Hulse2009",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "added-at",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2010-01-27T00:00:00.000+0100",
+              },
+            ],
+          },
+          Object {
+            "key": "author",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Hulse, Jason Van and Khoshgoftaar, Taghi M. and Napolitano, Amri and Wald, Randall",
+              },
+            ],
+          },
+          Object {
+            "key": "biburl",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "http://www.bibsonomy.org/bibtex/2c97a29e90fbd958a0990360f70252458/dblp",
+              },
+            ],
+          },
+          Object {
+            "key": "booktitle",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "ICDM Workshops",
+              },
+            ],
+          },
+          Object {
+            "key": "crossref",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "conf/icdm/2009w",
+              },
+            ],
+          },
+          Object {
+            "key": "date",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2010-01-27",
+              },
+            ],
+          },
+          Object {
+            "key": "description",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "dblp",
+              },
+            ],
+          },
+          Object {
+            "key": "editor",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Saygin, Yücel and Yu, Jeffrey Xu and Kargupta, Hillol and Wang, Wei and Ranka, Sanjay and Yu, Philip S. and Wu, Xindong",
+              },
+            ],
+          },
+          Object {
+            "key": "ee",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "http://doi.ieeecomputersociety.org/10.1109/ICDMW.2009.35",
+              },
+            ],
+          },
+          Object {
+            "key": "groups",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "selekcja",
+              },
+            ],
+          },
+          Object {
+            "key": "interhash",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "aad604c231737dbf8f6155082e3535ae",
+              },
+            ],
+          },
+          Object {
+            "key": "intrahash",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "c97a29e90fbd958a0990360f70252458",
+              },
+            ],
+          },
+          Object {
+            "key": "isbn",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "978-0-7695-3902-7",
+              },
+            ],
+          },
+          Object {
+            "key": "keywords",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "dblp",
+              },
+            ],
+          },
+          Object {
+            "key": "owner",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "sstudent",
+              },
+            ],
+          },
+          Object {
+            "key": "pages",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "507-514",
+              },
+            ],
+          },
+          Object {
+            "key": "publisher",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "IEEE Computer Society",
+              },
+            ],
+          },
+          Object {
+            "key": "timestamp",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2011.01.03",
+              },
+            ],
+          },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Feature Selection with High-Dimensional Imbalanced Data#",
+              },
+            ],
+          },
+          Object {
+            "key": "url",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "http://dblp.uni-trier.de/db/conf/icdm/icdmw2009.html#HulseKNW09",
+              },
+            ],
+          },
+        ],
+        "type": "inproceedings",
       },
-      "properties": Array [
-        Object {
-          "key": "author",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 3,
-              "offset": 123,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 2,
-              "offset": 28,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 95,
-                  "line": 2,
-                  "offset": 120,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 2,
-                  "offset": 38,
-                },
-              },
-              "value": "Hulse, Jason Van and Khoshgoftaar, Taghi M. and Napolitano, Amri and Wald, Randall",
-            },
-          ],
-        },
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 194,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 3,
-              "offset": 123,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 67,
-                  "line": 3,
-                  "offset": 189,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 3,
-                  "offset": 134,
-                },
-              },
-              "value": "Feature Selection with High-Dimensional Imbalanced Data",
-            },
-            Object {
-              "kind": "SymbolCommand",
-              "loc": Object {
-                "end": Object {
-                  "column": 69,
-                  "line": 3,
-                  "offset": 191,
-                },
-                "start": Object {
-                  "column": 67,
-                  "line": 3,
-                  "offset": 189,
-                },
-              },
-              "value": "#",
-            },
-          ],
-        },
-        Object {
-          "key": "booktitle",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 226,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 194,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 30,
-                  "line": 4,
-                  "offset": 223,
-                },
-                "start": Object {
-                  "column": 16,
-                  "line": 4,
-                  "offset": 209,
-                },
-              },
-              "value": "ICDM Workshops",
-            },
-          ],
-        },
-        Object {
-          "key": "editor",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 360,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 226,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 132,
-                  "line": 5,
-                  "offset": 357,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 5,
-                  "offset": 238,
-                },
-              },
-              "value": "Saygin, Yücel and Yu, Jeffrey Xu and Kargupta, Hillol and Wang, Wei and Ranka, Sanjay and Yu, Philip S. and Wu, Xindong",
-            },
-          ],
-        },
-        Object {
-          "key": "pages",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 381,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 360,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 19,
-                  "line": 6,
-                  "offset": 378,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 6,
-                  "offset": 371,
-                },
-              },
-              "value": "507-514",
-            },
-          ],
-        },
-        Object {
-          "key": "publisher",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 420,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 381,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 37,
-                  "line": 7,
-                  "offset": 417,
-                },
-                "start": Object {
-                  "column": 16,
-                  "line": 7,
-                  "offset": 396,
-                },
-              },
-              "value": "IEEE Computer Society",
-            },
-          ],
-        },
-        Object {
-          "key": "added-at",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 465,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 420,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 43,
-                  "line": 8,
-                  "offset": 462,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 8,
-                  "offset": 434,
-                },
-              },
-              "value": "2010-01-27T00:00:00.000+0100",
-            },
-          ],
-        },
-        Object {
-          "key": "biburl",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 10,
-              "offset": 550,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 465,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 83,
-                  "line": 9,
-                  "offset": 547,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 9,
-                  "offset": 477,
-                },
-              },
-              "value": "http://www.bibsonomy.org/bibtex/2c97a29e90fbd958a0990360f70252458/dblp",
-            },
-          ],
-        },
-        Object {
-          "key": "crossref",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 11,
-              "offset": 582,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 10,
-              "offset": 550,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 30,
-                  "line": 10,
-                  "offset": 579,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 10,
-                  "offset": 564,
-                },
-              },
-              "value": "conf/icdm/2009w",
-            },
-          ],
-        },
-        Object {
-          "key": "date",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 12,
-              "offset": 605,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 11,
-              "offset": 582,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 21,
-                  "line": 11,
-                  "offset": 602,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 11,
-                  "offset": 592,
-                },
-              },
-              "value": "2010-01-27",
-            },
-          ],
-        },
-        Object {
-          "key": "description",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 13,
-              "offset": 629,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 12,
-              "offset": 605,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 22,
-                  "line": 12,
-                  "offset": 626,
-                },
-                "start": Object {
-                  "column": 18,
-                  "line": 12,
-                  "offset": 622,
-                },
-              },
-              "value": "dblp",
-            },
-          ],
-        },
-        Object {
-          "key": "ee",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 14,
-              "offset": 696,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 13,
-              "offset": 629,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 65,
-                  "line": 13,
-                  "offset": 693,
-                },
-                "start": Object {
-                  "column": 9,
-                  "line": 13,
-                  "offset": 637,
-                },
-              },
-              "value": "http://doi.ieeecomputersociety.org/10.1109/ICDMW.2009.35",
-            },
-          ],
-        },
-        Object {
-          "key": "groups",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 15,
-              "offset": 719,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 14,
-              "offset": 696,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 21,
-                  "line": 14,
-                  "offset": 716,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 14,
-                  "offset": 708,
-                },
-              },
-              "value": "selekcja",
-            },
-          ],
-        },
-        Object {
-          "key": "interhash",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 16,
-              "offset": 769,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 15,
-              "offset": 719,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 48,
-                  "line": 15,
-                  "offset": 766,
-                },
-                "start": Object {
-                  "column": 16,
-                  "line": 15,
-                  "offset": 734,
-                },
-              },
-              "value": "aad604c231737dbf8f6155082e3535ae",
-            },
-          ],
-        },
-        Object {
-          "key": "intrahash",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 17,
-              "offset": 819,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 16,
-              "offset": 769,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 48,
-                  "line": 16,
-                  "offset": 816,
-                },
-                "start": Object {
-                  "column": 16,
-                  "line": 16,
-                  "offset": 784,
-                },
-              },
-              "value": "c97a29e90fbd958a0990360f70252458",
-            },
-          ],
-        },
-        Object {
-          "key": "isbn",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 18,
-              "offset": 849,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 17,
-              "offset": 819,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 28,
-                  "line": 17,
-                  "offset": 846,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 17,
-                  "offset": 829,
-                },
-              },
-              "value": "978-0-7695-3902-7",
-            },
-          ],
-        },
-        Object {
-          "key": "keywords",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 19,
-              "offset": 870,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 18,
-              "offset": 849,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 19,
-                  "line": 18,
-                  "offset": 867,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 18,
-                  "offset": 863,
-                },
-              },
-              "value": "dblp",
-            },
-          ],
-        },
-        Object {
-          "key": "owner",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 20,
-              "offset": 892,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 19,
-              "offset": 870,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 20,
-                  "line": 19,
-                  "offset": 889,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 19,
-                  "offset": 881,
-                },
-              },
-              "value": "sstudent",
-            },
-          ],
-        },
-        Object {
-          "key": "timestamp",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 21,
-              "offset": 920,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 20,
-              "offset": 892,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 26,
-                  "line": 20,
-                  "offset": 917,
-                },
-                "start": Object {
-                  "column": 16,
-                  "line": 20,
-                  "offset": 907,
-                },
-              },
-              "value": "2011.01.03",
-            },
-          ],
-        },
-        Object {
-          "key": "url",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 22,
-              "offset": 994,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 21,
-              "offset": 920,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 73,
-                  "line": 21,
-                  "offset": 992,
-                },
-                "start": Object {
-                  "column": 10,
-                  "line": 21,
-                  "offset": 929,
-                },
-              },
-              "value": "http://dblp.uni-trier.de/db/conf/icdm/icdmw2009.html#HulseKNW09",
-            },
-          ],
-        },
-      ],
-      "type": "inproceedings",
-    },
-  ],
-  "kind": "File",
-  "loc": Object {
-    "end": Object {
-      "column": 1,
-      "line": 23,
-      "offset": 996,
-    },
-    "start": Object {
-      "column": 1,
-      "line": 1,
-      "offset": 0,
-    },
+    ],
+    "kind": "File",
   },
-}
+]
 `;

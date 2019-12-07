@@ -1,295 +1,95 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BibTeX Parser should parse bbt-export-transliteration for citekey #580.biblatex to an AST 1`] = `
-Object {
-  "children": Array [
-    Object {
-      "id": "Medvedev2002",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 10,
-          "offset": 305,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 1,
-          "offset": 0,
-        },
-      },
-      "properties": Array [
-        Object {
-          "key": "author",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 3,
-              "offset": 53,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 2,
-              "offset": 22,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 31,
-                  "line": 2,
-                  "offset": 50,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 2,
-                  "offset": 32,
-                },
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "id": "Medvedev2002",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "langid",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "russian",
               },
-              "value": "Медведев, Григорий",
-            },
-          ],
-        },
-        Object {
-          "key": "date",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 70,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 3,
-              "offset": 53,
-            },
+            ],
           },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 15,
-                  "line": 3,
-                  "offset": 67,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 3,
-                  "offset": 63,
-                },
+          Object {
+            "key": "author",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Медведев, Григорий",
               },
-              "value": "2002",
-            },
-          ],
-        },
-        Object {
-          "key": "keywords",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 202,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 70,
-            },
+            ],
           },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 130,
-                  "line": 4,
-                  "offset": 199,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 4,
-                  "offset": 84,
-                },
+          Object {
+            "key": "date",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2002",
               },
-              "value": "Chernobyl Nuclear Accident; Chornobylʹ; Ukraine; 1986,Nuclear industry,Nuclear reactor accidents,Radioactive wastes",
-            },
-          ],
-        },
-        Object {
-          "key": "langid",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 224,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 202,
-            },
+            ],
           },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 20,
-                  "line": 5,
-                  "offset": 221,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 5,
-                  "offset": 214,
-                },
+          Object {
+            "key": "keywords",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Chernobyl Nuclear Accident; Chornobylʹ; Ukraine; 1986,Nuclear industry,Nuclear reactor accidents,Radioactive wastes",
               },
-              "value": "russian",
-            },
-          ],
-        },
-        Object {
-          "key": "pagetotal",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 245,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 224,
-            },
+            ],
           },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 19,
-                  "line": 6,
-                  "offset": 242,
-                },
-                "start": Object {
-                  "column": 16,
-                  "line": 6,
-                  "offset": 239,
-                },
+          Object {
+            "key": "pagetotal",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "520",
               },
-              "value": "520",
-            },
-          ],
-        },
-        Object {
-          "key": "publisher",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 277,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 245,
-            },
+            ],
           },
-          "value": Array [
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 30,
-                  "line": 7,
-                  "offset": 274,
-                },
-                "start": Object {
-                  "column": 16,
-                  "line": 7,
-                  "offset": 260,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "Text",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 29,
-                      "line": 7,
-                      "offset": 273,
-                    },
-                    "start": Object {
-                      "column": 17,
-                      "line": 7,
-                      "offset": 261,
-                    },
+          Object {
+            "key": "publisher",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": true,
+                "kind": "NestedLiteral",
+                "markup": Object {},
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "МК-Периодика",
                   },
-                  "value": "МК-Периодика",
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 303,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 277,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 25,
-                  "line": 8,
-                  "offset": 301,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 8,
-                  "offset": 288,
-                },
+                ],
               },
-              "value": "Ядерный загар",
-            },
-          ],
-        },
-      ],
-      "type": "book",
-    },
-  ],
-  "kind": "File",
-  "loc": Object {
-    "end": Object {
-      "column": 1,
-      "line": 10,
-      "offset": 305,
-    },
-    "start": Object {
-      "column": 1,
-      "line": 1,
-      "offset": 0,
-    },
+            ],
+          },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Ядерный загар",
+              },
+            ],
+          },
+        ],
+        "type": "book",
+      },
+    ],
+    "kind": "File",
   },
-}
+]
 `;

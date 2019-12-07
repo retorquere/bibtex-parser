@@ -1,530 +1,137 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BibTeX Parser should parse bbt-export-Exporting to bibtex with unicode as plain-text latex commands does not convert U+2040 #1265.bibtex to an AST 1`] = `
-Object {
-  "children": Array [
-    Object {
-      "id": "golshtein_modified_1996",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 13,
-          "offset": 1348,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 1,
-          "offset": 0,
-        },
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "id": "golshtein_modified_1996",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "language",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "English",
+              },
+            ],
+          },
+          Object {
+            "key": "abstract",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "This translation of the important Russian text covers the theory and computational methods of modified Lagrangian functions (MLFs) - a new branch of mathematical programming used to solve optimization problems. Providing a thorough analysis for both traditional convex programming and monotone maps, the book shows the advantages of MLFs over classical Lagrangian functions in such practical applications as numerical algorithms, economic modeling, decomposition, and nonconvex local constrained optimization. For mathematicians involved in discrete math and optimization, and for graduate students taking courses in complex analysis and mathematical programming, Modified Lagrangians and Monotone Maps in Optimization serves as an indispensable professional reference and graduate-level text that goes beyond the classical Lagrange scheme, and offers diverse techniques for tackling this field. ix, 438 p. ; 24 cm. Mathematical optimization. Lagrangian functions.",
+              },
+            ],
+          },
+          Object {
+            "key": "annote",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "\\"A Wiley-Interscience publication.\\"",
+              },
+            ],
+          },
+          Object {
+            "key": "author",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Gol'shteĭn, E. G. and Tret'i︠a︡kov, N. V.",
+              },
+            ],
+          },
+          Object {
+            "key": "isbn",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "978-0-471-54821-8",
+              },
+            ],
+          },
+          Object {
+            "key": "keywords",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Separating axis theorem",
+              },
+            ],
+          },
+          Object {
+            "key": "publisher",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": true,
+                "kind": "NestedLiteral",
+                "markup": Object {},
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "New York : Wiley",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Modified ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "Lagrangians",
+                      },
+                    ],
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": " and Monotone Maps in Optimization",
+              },
+            ],
+          },
+          Object {
+            "key": "year",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "1996",
+              },
+            ],
+          },
+        ],
+        "type": "book",
       },
-      "properties": Array [
-        Object {
-          "key": "abstract",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 3,
-              "offset": 1013,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 2,
-              "offset": 33,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 980,
-                  "line": 2,
-                  "offset": 1010,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 2,
-                  "offset": 45,
-                },
-              },
-              "value": "This translation of the important Russian text covers the theory and computational methods of modified Lagrangian functions (MLFs) - a new branch of mathematical programming used to solve optimization problems. Providing a thorough analysis for both traditional convex programming and monotone maps, the book shows the advantages of MLFs over classical Lagrangian functions in such practical applications as numerical algorithms, economic modeling, decomposition, and nonconvex local constrained optimization. For mathematicians involved in discrete math and optimization, and for graduate students taking courses in complex analysis and mathematical programming, Modified Lagrangians and Monotone Maps in Optimization serves as an indispensable professional reference and graduate-level text that goes beyond the classical Lagrange scheme, and offers diverse techniques for tackling this field. ix, 438 p. ; 24 cm. Mathematical optimization. Lagrangian functions.",
-            },
-          ],
-        },
-        Object {
-          "key": "annote",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 1063,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 3,
-              "offset": 1013,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 48,
-                  "line": 3,
-                  "offset": 1060,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 3,
-                  "offset": 1025,
-                },
-              },
-              "value": "\\"A Wiley-Interscience publication.\\"",
-            },
-          ],
-        },
-        Object {
-          "key": "author",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 1127,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 1063,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 21,
-                  "line": 4,
-                  "offset": 1083,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 4,
-                  "offset": 1075,
-                },
-              },
-              "value": "Gol'shte",
-            },
-            Object {
-              "character": "i",
-              "dotless": true,
-              "kind": "DicraticalCommand",
-              "loc": Object {
-                "end": Object {
-                  "column": 28,
-                  "line": 4,
-                  "offset": 1090,
-                },
-                "start": Object {
-                  "column": 21,
-                  "line": 4,
-                  "offset": 1083,
-                },
-              },
-              "mark": "u",
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 46,
-                  "line": 4,
-                  "offset": 1108,
-                },
-                "start": Object {
-                  "column": 28,
-                  "line": 4,
-                  "offset": 1090,
-                },
-              },
-              "value": "n, E. G. and Tret'",
-            },
-            Object {
-              "arguments": Array [
-                Object {
-                  "kind": "RequiredArgument",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 52,
-                      "line": 4,
-                      "offset": 1114,
-                    },
-                    "start": Object {
-                      "column": 48,
-                      "line": 4,
-                      "offset": 1110,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 51,
-                          "line": 4,
-                          "offset": 1113,
-                        },
-                        "start": Object {
-                          "column": 49,
-                          "line": 4,
-                          "offset": 1111,
-                        },
-                      },
-                      "value": "ia",
-                    },
-                  ],
-                },
-              ],
-              "kind": "RegularCommand",
-              "loc": Object {
-                "end": Object {
-                  "column": 52,
-                  "line": 4,
-                  "offset": 1114,
-                },
-                "start": Object {
-                  "column": 46,
-                  "line": 4,
-                  "offset": 1108,
-                },
-              },
-              "value": "t",
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 62,
-                  "line": 4,
-                  "offset": 1124,
-                },
-                "start": Object {
-                  "column": 52,
-                  "line": 4,
-                  "offset": 1114,
-                },
-              },
-              "value": "kov, N. V.",
-            },
-          ],
-        },
-        Object {
-          "key": "isbn",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 1157,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 1127,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 28,
-                  "line": 5,
-                  "offset": 1154,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 5,
-                  "offset": 1137,
-                },
-              },
-              "value": "978-0-471-54821-8",
-            },
-          ],
-        },
-        Object {
-          "key": "keywords",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 1197,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 1157,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 38,
-                  "line": 6,
-                  "offset": 1194,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 6,
-                  "offset": 1171,
-                },
-              },
-              "value": "Separating axis theorem",
-            },
-          ],
-        },
-        Object {
-          "key": "language",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 1221,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 1197,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 22,
-                  "line": 7,
-                  "offset": 1218,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 7,
-                  "offset": 1211,
-                },
-              },
-              "value": "English",
-            },
-          ],
-        },
-        Object {
-          "key": "publisher",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 1257,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 1221,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 34,
-                  "line": 8,
-                  "offset": 1254,
-                },
-                "start": Object {
-                  "column": 16,
-                  "line": 8,
-                  "offset": 1236,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "Text",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 33,
-                      "line": 8,
-                      "offset": 1253,
-                    },
-                    "start": Object {
-                      "column": 17,
-                      "line": 8,
-                      "offset": 1237,
-                    },
-                  },
-                  "value": "New York : Wiley",
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 10,
-              "offset": 1329,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 1257,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 21,
-                  "line": 9,
-                  "offset": 1277,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 9,
-                  "offset": 1268,
-                },
-              },
-              "value": "Modified ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 36,
-                  "line": 9,
-                  "offset": 1292,
-                },
-                "start": Object {
-                  "column": 21,
-                  "line": 9,
-                  "offset": 1277,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 35,
-                      "line": 9,
-                      "offset": 1291,
-                    },
-                    "start": Object {
-                      "column": 22,
-                      "line": 9,
-                      "offset": 1278,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 34,
-                          "line": 9,
-                          "offset": 1290,
-                        },
-                        "start": Object {
-                          "column": 23,
-                          "line": 9,
-                          "offset": 1279,
-                        },
-                      },
-                      "value": "Lagrangians",
-                    },
-                  ],
-                },
-              ],
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 70,
-                  "line": 9,
-                  "offset": 1326,
-                },
-                "start": Object {
-                  "column": 36,
-                  "line": 9,
-                  "offset": 1292,
-                },
-              },
-              "value": " and Monotone Maps in Optimization",
-            },
-          ],
-        },
-        Object {
-          "key": "year",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 11,
-              "offset": 1345,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 10,
-              "offset": 1329,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 15,
-                  "line": 10,
-                  "offset": 1343,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 10,
-                  "offset": 1339,
-                },
-              },
-              "value": "1996",
-            },
-          ],
-        },
-      ],
-      "type": "book",
-    },
-  ],
-  "kind": "File",
-  "loc": Object {
-    "end": Object {
-      "column": 1,
-      "line": 13,
-      "offset": 1348,
-    },
-    "start": Object {
-      "column": 1,
-      "line": 1,
-      "offset": 0,
-    },
+    ],
+    "kind": "File",
   },
-}
+]
 `;

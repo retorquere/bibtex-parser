@@ -1,830 +1,268 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BibTeX Parser should parse bbt-export-Book sections have book title for journal in citekey #409.biblatex to an AST 1`] = `
-Object {
-  "children": Array [
-    Object {
-      "id": "Orlin1979SiLlaRh",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 16,
-          "offset": 709,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 1,
-          "offset": 0,
-        },
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "id": "Orlin1979SiLlaRh",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "langid",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "english",
+              },
+            ],
+          },
+          Object {
+            "key": "author",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Orlin, Eric M.",
+              },
+            ],
+          },
+          Object {
+            "key": "booktitle",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Studies in ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "Latin",
+                      },
+                    ],
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": " Literature and ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "Roman",
+                      },
+                    ],
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": " History",
+              },
+            ],
+          },
+          Object {
+            "key": "date",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "1979",
+              },
+            ],
+          },
+          Object {
+            "key": "editor",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Deroux, Carl",
+              },
+            ],
+          },
+          Object {
+            "key": "isbn",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "978-2-87031-104-2 978-2-87031-228-5 978-2-87031-179-0 978-2-87031-184-4 978-2-87031-195-0 978-2-87031-213-1 978-2-87031-256-8 978-2-87031-264-3 978-2-87031-284-1",
+              },
+            ],
+          },
+          Object {
+            "key": "keywords",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "History,History and criticism,Latin literature,Rome",
+              },
+            ],
+          },
+          Object {
+            "key": "location",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": true,
+                "kind": "NestedLiteral",
+                "markup": Object {},
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "Bruxelles",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "number",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "v. 164, 168, 180, 196, 206, 217, 227, 239, 244, 254, 272, 287, 301, 315, 323, 338",
+              },
+            ],
+          },
+          Object {
+            "key": "pages",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "70–90",
+              },
+            ],
+          },
+          Object {
+            "key": "publisher",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": true,
+                "kind": "NestedLiteral",
+                "markup": Object {},
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "Latomus",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "series",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Collection ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "Latomus",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Why a ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "Second Temple",
+                      },
+                    ],
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": " for ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "Venus Erycina",
+                      },
+                    ],
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": "?",
+              },
+            ],
+          },
+        ],
+        "type": "incollection",
       },
-      "properties": Array [
-        Object {
-          "key": "author",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 3,
-              "offset": 61,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 2,
-              "offset": 34,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 27,
-                  "line": 2,
-                  "offset": 58,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 2,
-                  "offset": 44,
-                },
-              },
-              "value": "Orlin, Eric M.",
-            },
-          ],
-        },
-        Object {
-          "key": "booktitle",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 132,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 3,
-              "offset": 61,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 27,
-                  "line": 3,
-                  "offset": 87,
-                },
-                "start": Object {
-                  "column": 16,
-                  "line": 3,
-                  "offset": 76,
-                },
-              },
-              "value": "Studies in ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 36,
-                  "line": 3,
-                  "offset": 96,
-                },
-                "start": Object {
-                  "column": 27,
-                  "line": 3,
-                  "offset": 87,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 35,
-                      "line": 3,
-                      "offset": 95,
-                    },
-                    "start": Object {
-                      "column": 28,
-                      "line": 3,
-                      "offset": 88,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 34,
-                          "line": 3,
-                          "offset": 94,
-                        },
-                        "start": Object {
-                          "column": 29,
-                          "line": 3,
-                          "offset": 89,
-                        },
-                      },
-                      "value": "Latin",
-                    },
-                  ],
-                },
-              ],
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 52,
-                  "line": 3,
-                  "offset": 112,
-                },
-                "start": Object {
-                  "column": 36,
-                  "line": 3,
-                  "offset": 96,
-                },
-              },
-              "value": " Literature and ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 61,
-                  "line": 3,
-                  "offset": 121,
-                },
-                "start": Object {
-                  "column": 52,
-                  "line": 3,
-                  "offset": 112,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 60,
-                      "line": 3,
-                      "offset": 120,
-                    },
-                    "start": Object {
-                      "column": 53,
-                      "line": 3,
-                      "offset": 113,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 59,
-                          "line": 3,
-                          "offset": 119,
-                        },
-                        "start": Object {
-                          "column": 54,
-                          "line": 3,
-                          "offset": 114,
-                        },
-                      },
-                      "value": "Roman",
-                    },
-                  ],
-                },
-              ],
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 69,
-                  "line": 3,
-                  "offset": 129,
-                },
-                "start": Object {
-                  "column": 61,
-                  "line": 3,
-                  "offset": 121,
-                },
-              },
-              "value": " History",
-            },
-          ],
-        },
-        Object {
-          "key": "date",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 149,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 132,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 15,
-                  "line": 4,
-                  "offset": 146,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 4,
-                  "offset": 142,
-                },
-              },
-              "value": "1979",
-            },
-          ],
-        },
-        Object {
-          "key": "editor",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 176,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 149,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 25,
-                  "line": 5,
-                  "offset": 173,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 5,
-                  "offset": 161,
-                },
-              },
-              "value": "Deroux, Carl",
-            },
-          ],
-        },
-        Object {
-          "key": "isbn",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 350,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 176,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 172,
-                  "line": 6,
-                  "offset": 347,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 6,
-                  "offset": 186,
-                },
-              },
-              "value": "978-2-87031-104-2 978-2-87031-228-5 978-2-87031-179-0 978-2-87031-184-4 978-2-87031-195-0 978-2-87031-213-1 978-2-87031-256-8 978-2-87031-264-3 978-2-87031-284-1",
-            },
-          ],
-        },
-        Object {
-          "key": "keywords",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 418,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 350,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 66,
-                  "line": 7,
-                  "offset": 415,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 7,
-                  "offset": 364,
-                },
-              },
-              "value": "History,History and criticism,Latin literature,Rome",
-            },
-          ],
-        },
-        Object {
-          "key": "langid",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 440,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 418,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 20,
-                  "line": 8,
-                  "offset": 437,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 8,
-                  "offset": 430,
-                },
-              },
-              "value": "english",
-            },
-          ],
-        },
-        Object {
-          "key": "location",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 10,
-              "offset": 468,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 440,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 26,
-                  "line": 9,
-                  "offset": 465,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 9,
-                  "offset": 454,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "Text",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 25,
-                      "line": 9,
-                      "offset": 464,
-                    },
-                    "start": Object {
-                      "column": 16,
-                      "line": 9,
-                      "offset": 455,
-                    },
-                  },
-                  "value": "Bruxelles",
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "number",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 11,
-              "offset": 564,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 10,
-              "offset": 468,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 94,
-                  "line": 10,
-                  "offset": 561,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 10,
-                  "offset": 480,
-                },
-              },
-              "value": "v. 164, 168, 180, 196, 206, 217, 227, 239, 244, 254, 272, 287, 301, 315, 323, 338",
-            },
-          ],
-        },
-        Object {
-          "key": "pages",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 12,
-              "offset": 584,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 11,
-              "offset": 564,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 18,
-                  "line": 11,
-                  "offset": 581,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 11,
-                  "offset": 575,
-                },
-              },
-              "value": "70–90",
-            },
-          ],
-        },
-        Object {
-          "key": "publisher",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 13,
-              "offset": 611,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 12,
-              "offset": 584,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 25,
-                  "line": 12,
-                  "offset": 608,
-                },
-                "start": Object {
-                  "column": 16,
-                  "line": 12,
-                  "offset": 599,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "Text",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 24,
-                      "line": 12,
-                      "offset": 607,
-                    },
-                    "start": Object {
-                      "column": 17,
-                      "line": 12,
-                      "offset": 600,
-                    },
-                  },
-                  "value": "Latomus",
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "series",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 14,
-              "offset": 648,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 13,
-              "offset": 611,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 24,
-                  "line": 13,
-                  "offset": 634,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 13,
-                  "offset": 623,
-                },
-              },
-              "value": "Collection ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 35,
-                  "line": 13,
-                  "offset": 645,
-                },
-                "start": Object {
-                  "column": 24,
-                  "line": 13,
-                  "offset": 634,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 34,
-                      "line": 13,
-                      "offset": 644,
-                    },
-                    "start": Object {
-                      "column": 25,
-                      "line": 13,
-                      "offset": 635,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 33,
-                          "line": 13,
-                          "offset": 643,
-                        },
-                        "start": Object {
-                          "column": 26,
-                          "line": 13,
-                          "offset": 636,
-                        },
-                      },
-                      "value": "Latomus",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 15,
-              "offset": 707,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 14,
-              "offset": 648,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 18,
-                  "line": 14,
-                  "offset": 665,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 14,
-                  "offset": 659,
-                },
-              },
-              "value": "Why a ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 35,
-                  "line": 14,
-                  "offset": 682,
-                },
-                "start": Object {
-                  "column": 18,
-                  "line": 14,
-                  "offset": 665,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 34,
-                      "line": 14,
-                      "offset": 681,
-                    },
-                    "start": Object {
-                      "column": 19,
-                      "line": 14,
-                      "offset": 666,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 33,
-                          "line": 14,
-                          "offset": 680,
-                        },
-                        "start": Object {
-                          "column": 20,
-                          "line": 14,
-                          "offset": 667,
-                        },
-                      },
-                      "value": "Second Temple",
-                    },
-                  ],
-                },
-              ],
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 40,
-                  "line": 14,
-                  "offset": 687,
-                },
-                "start": Object {
-                  "column": 35,
-                  "line": 14,
-                  "offset": 682,
-                },
-              },
-              "value": " for ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 57,
-                  "line": 14,
-                  "offset": 704,
-                },
-                "start": Object {
-                  "column": 40,
-                  "line": 14,
-                  "offset": 687,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 56,
-                      "line": 14,
-                      "offset": 703,
-                    },
-                    "start": Object {
-                      "column": 41,
-                      "line": 14,
-                      "offset": 688,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 55,
-                          "line": 14,
-                          "offset": 702,
-                        },
-                        "start": Object {
-                          "column": 42,
-                          "line": 14,
-                          "offset": 689,
-                        },
-                      },
-                      "value": "Venus Erycina",
-                    },
-                  ],
-                },
-              ],
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 58,
-                  "line": 14,
-                  "offset": 705,
-                },
-                "start": Object {
-                  "column": 57,
-                  "line": 14,
-                  "offset": 704,
-                },
-              },
-              "value": "?",
-            },
-          ],
-        },
-      ],
-      "type": "incollection",
-    },
-  ],
-  "kind": "File",
-  "loc": Object {
-    "end": Object {
-      "column": 1,
-      "line": 16,
-      "offset": 709,
-    },
-    "start": Object {
-      "column": 1,
-      "line": 1,
-      "offset": 0,
-    },
+    ],
+    "kind": "File",
   },
-}
+]
 `;

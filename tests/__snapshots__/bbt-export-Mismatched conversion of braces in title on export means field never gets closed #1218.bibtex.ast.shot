@@ -1,1203 +1,275 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BibTeX Parser should parse bbt-export-Mismatched conversion of braces in title on export means field never gets closed #1218.bibtex to an AST 1`] = `
-Object {
-  "children": Array [
-    Object {
-      "id": "Walinda2018",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 15,
-          "offset": 2453,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 1,
-          "offset": 0,
-        },
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "id": "Walinda2018",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "abstract",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Among the tools of structural biology, NMR spectroscopy is unique in that it not only derives a static three-dimensional structure, but also provides an atomic-level description of the local fluctuations and global dynamics around this static structure. A battery of NMR experiments is now available to probe the motions of proteins and nucleic acids over the whole biologically relevant timescale from picoseconds to hours. Here we focus on one of these methods, relaxation dispersion, which resolves dynamics on the micro- to millisecond timescale. Key biological processes that occur on this timescale include enzymatic catalysis, ligand binding, and local folding. In other words, relaxation-dispersion-resolved dynamics are often closely related to the function of the molecule and therefore highly interesting to the structural biochemist. With an astounding sensitivity of ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "MathMode",
+                    "value": "$",
+                  },
+                  Object {
+                    "kind": "Text",
+                    "value": "∼",
+                  },
+                  Object {
+                    "kind": "MathMode",
+                    "value": "$",
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": "0.5%, the method detects low-population excited states that are invisible to any other biophysical method. The kinetics of the exchange between the ground state and excited states are quantified in the form of the underlying exchange rate, while structural information about the invisible excited state is obtained in the form of its chemical shift. Lastly, the population of the excited state can be derived. This diversity in the information that can be obtained makes relaxation dispersion an excellent method to study the detailed mechanisms of conformational transitions and molecular interactions. Here we describe the two branches of relaxation dispersion, R2 and R1",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "MathMode",
+                    "value": "$",
+                  },
+                  Object {
+                    "kind": "Text",
+                    "value": "ρ",
+                  },
+                  Object {
+                    "kind": "MathMode",
+                    "value": "$",
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": ", discussing their applicability, similarities, and differences, as well as recent developments in pulse sequence design and data processing.",
+              },
+            ],
+          },
+          Object {
+            "key": "author",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Walinda, Erik and Morimoto, Daichi and Sugase, Kenji",
+              },
+            ],
+          },
+          Object {
+            "key": "bdsk-url-2",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "https://doi.org/10.1016/j.ymeth.2018.04.026",
+              },
+            ],
+          },
+          Object {
+            "key": "doi",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "https://doi.org/10.1016/j.ymeth.2018.04.026",
+              },
+            ],
+          },
+          Object {
+            "key": "issn",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "1046-2023",
+              },
+            ],
+          },
+          Object {
+            "key": "journal",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Methods",
+              },
+            ],
+          },
+          Object {
+            "key": "keywords",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Biomolecular interactions,Chemical exchange,Conformational exchange,DNA/RNA dynamics,NMR spectroscopy,Protein dynamics,Relaxation dispersion",
+              },
+            ],
+          },
+          Object {
+            "key": "pages",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "28-38",
+              },
+            ],
+          },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Resolving Biomolecular Motion and Interactions by $",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "exemptFromSentenceCase": true,
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "R",
+                      },
+                    ],
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": "_2$ and $",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "exemptFromSentenceCase": true,
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "R",
+                      },
+                    ],
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": "_{1\\\\text{",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "MathMode",
+                    "value": "$",
+                  },
+                  Object {
+                    "kind": "Text",
+                    "value": "ρ}}$",
+                  },
+                  Object {
+                    "kind": "MathMode",
+                    "value": "$",
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": " Relaxation Dispersion ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "exemptFromSentenceCase": true,
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "NMR",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "url",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "http://www.sciencedirect.com/science/article/pii/S1046202318300070",
+              },
+            ],
+          },
+          Object {
+            "key": "volume",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "148",
+              },
+            ],
+          },
+          Object {
+            "key": "year",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2018",
+              },
+            ],
+          },
+        ],
+        "type": "article",
       },
-      "properties": Array [
-        Object {
-          "key": "abstract",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 3,
-              "offset": 1750,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 2,
-              "offset": 24,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 895,
-                  "line": 2,
-                  "offset": 916,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 2,
-                  "offset": 36,
-                },
-              },
-              "value": "Among the tools of structural biology, NMR spectroscopy is unique in that it not only derives a static three-dimensional structure, but also provides an atomic-level description of the local fluctuations and global dynamics around this static structure. A battery of NMR experiments is now available to probe the motions of proteins and nucleic acids over the whole biologically relevant timescale from picoseconds to hours. Here we focus on one of these methods, relaxation dispersion, which resolves dynamics on the micro- to millisecond timescale. Key biological processes that occur on this timescale include enzymatic catalysis, ligand binding, and local folding. In other words, relaxation-dispersion-resolved dynamics are often closely related to the function of the molecule and therefore highly interesting to the structural biochemist. With an astounding sensitivity of ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 903,
-                  "line": 2,
-                  "offset": 924,
-                },
-                "start": Object {
-                  "column": 895,
-                  "line": 2,
-                  "offset": 916,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "MathMode",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 897,
-                      "line": 2,
-                      "offset": 918,
-                    },
-                    "start": Object {
-                      "column": 896,
-                      "line": 2,
-                      "offset": 917,
-                    },
-                  },
-                  "value": "$",
-                },
-                Object {
-                  "arguments": Array [],
-                  "kind": "RegularCommand",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 901,
-                      "line": 2,
-                      "offset": 922,
-                    },
-                    "start": Object {
-                      "column": 897,
-                      "line": 2,
-                      "offset": 918,
-                    },
-                  },
-                  "value": "sim",
-                },
-                Object {
-                  "kind": "MathMode",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 902,
-                      "line": 2,
-                      "offset": 923,
-                    },
-                    "start": Object {
-                      "column": 901,
-                      "line": 2,
-                      "offset": 922,
-                    },
-                  },
-                  "value": "$",
-                },
-              ],
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 906,
-                  "line": 2,
-                  "offset": 927,
-                },
-                "start": Object {
-                  "column": 903,
-                  "line": 2,
-                  "offset": 924,
-                },
-              },
-              "value": "0.5",
-            },
-            Object {
-              "kind": "SymbolCommand",
-              "loc": Object {
-                "end": Object {
-                  "column": 908,
-                  "line": 2,
-                  "offset": 929,
-                },
-                "start": Object {
-                  "column": 906,
-                  "line": 2,
-                  "offset": 927,
-                },
-              },
-              "value": "%",
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 1577,
-                  "line": 2,
-                  "offset": 1598,
-                },
-                "start": Object {
-                  "column": 908,
-                  "line": 2,
-                  "offset": 929,
-                },
-              },
-              "value": ", the method detects low-population excited states that are invisible to any other biophysical method. The kinetics of the exchange between the ground state and excited states are quantified in the form of the underlying exchange rate, while structural information about the invisible excited state is obtained in the form of its chemical shift. Lastly, the population of the excited state can be derived. This diversity in the information that can be obtained makes relaxation dispersion an excellent method to study the detailed mechanisms of conformational transitions and molecular interactions. Here we describe the two branches of relaxation dispersion, R2 and R1",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 1585,
-                  "line": 2,
-                  "offset": 1606,
-                },
-                "start": Object {
-                  "column": 1577,
-                  "line": 2,
-                  "offset": 1598,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "MathMode",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 1579,
-                      "line": 2,
-                      "offset": 1600,
-                    },
-                    "start": Object {
-                      "column": 1578,
-                      "line": 2,
-                      "offset": 1599,
-                    },
-                  },
-                  "value": "$",
-                },
-                Object {
-                  "arguments": Array [],
-                  "kind": "RegularCommand",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 1583,
-                      "line": 2,
-                      "offset": 1604,
-                    },
-                    "start": Object {
-                      "column": 1579,
-                      "line": 2,
-                      "offset": 1600,
-                    },
-                  },
-                  "value": "rho",
-                },
-                Object {
-                  "kind": "MathMode",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 1584,
-                      "line": 2,
-                      "offset": 1605,
-                    },
-                    "start": Object {
-                      "column": 1583,
-                      "line": 2,
-                      "offset": 1604,
-                    },
-                  },
-                  "value": "$",
-                },
-              ],
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 1726,
-                  "line": 2,
-                  "offset": 1747,
-                },
-                "start": Object {
-                  "column": 1585,
-                  "line": 2,
-                  "offset": 1606,
-                },
-              },
-              "value": ", discussing their applicability, similarities, and differences, as well as recent developments in pulse sequence design and data processing.",
-            },
-          ],
-        },
-        Object {
-          "key": "author",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 1817,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 3,
-              "offset": 1750,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 65,
-                  "line": 3,
-                  "offset": 1814,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 3,
-                  "offset": 1762,
-                },
-              },
-              "value": "Walinda, Erik and Morimoto, Daichi and Sugase, Kenji",
-            },
-          ],
-        },
-        Object {
-          "key": "bdsk-url-2",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 1879,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 1817,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 60,
-                  "line": 4,
-                  "offset": 1876,
-                },
-                "start": Object {
-                  "column": 17,
-                  "line": 4,
-                  "offset": 1833,
-                },
-              },
-              "value": "https://doi.org/10.1016/j.ymeth.2018.04.026",
-            },
-          ],
-        },
-        Object {
-          "key": "doi",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 1934,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 1879,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 53,
-                  "line": 5,
-                  "offset": 1931,
-                },
-                "start": Object {
-                  "column": 10,
-                  "line": 5,
-                  "offset": 1888,
-                },
-              },
-              "value": "https://doi.org/10.1016/j.ymeth.2018.04.026",
-            },
-          ],
-        },
-        Object {
-          "key": "issn",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 1956,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 1934,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 20,
-                  "line": 6,
-                  "offset": 1953,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 6,
-                  "offset": 1944,
-                },
-              },
-              "value": "1046-2023",
-            },
-          ],
-        },
-        Object {
-          "key": "journal",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 1979,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 1956,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 21,
-                  "line": 7,
-                  "offset": 1976,
-                },
-                "start": Object {
-                  "column": 14,
-                  "line": 7,
-                  "offset": 1969,
-                },
-              },
-              "value": "Methods",
-            },
-          ],
-        },
-        Object {
-          "key": "keywords",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 2136,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 1979,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 155,
-                  "line": 8,
-                  "offset": 2133,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 8,
-                  "offset": 1993,
-                },
-              },
-              "value": "Biomolecular interactions,Chemical exchange,Conformational exchange,DNA/RNA dynamics,NMR spectroscopy,Protein dynamics,Relaxation dispersion",
-            },
-          ],
-        },
-        Object {
-          "key": "pages",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 10,
-              "offset": 2155,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 2136,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 17,
-                  "line": 9,
-                  "offset": 2152,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 9,
-                  "offset": 2147,
-                },
-              },
-              "value": "28-38",
-            },
-          ],
-        },
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 11,
-              "offset": 2339,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 10,
-              "offset": 2155,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 62,
-                  "line": 10,
-                  "offset": 2216,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 10,
-                  "offset": 2166,
-                },
-              },
-              "value": "Resolving Biomolecular Motion and Interactions by ",
-            },
-            Object {
-              "kind": "SymbolCommand",
-              "loc": Object {
-                "end": Object {
-                  "column": 64,
-                  "line": 10,
-                  "offset": 2218,
-                },
-                "start": Object {
-                  "column": 62,
-                  "line": 10,
-                  "offset": 2216,
-                },
-              },
-              "value": "$",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 69,
-                  "line": 10,
-                  "offset": 2223,
-                },
-                "start": Object {
-                  "column": 64,
-                  "line": 10,
-                  "offset": 2218,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 68,
-                      "line": 10,
-                      "offset": 2222,
-                    },
-                    "start": Object {
-                      "column": 65,
-                      "line": 10,
-                      "offset": 2219,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 67,
-                          "line": 10,
-                          "offset": 2221,
-                        },
-                        "start": Object {
-                          "column": 66,
-                          "line": 10,
-                          "offset": 2220,
-                        },
-                      },
-                      "value": "R",
-                    },
-                  ],
-                },
-              ],
-            },
-            Object {
-              "kind": "SymbolCommand",
-              "loc": Object {
-                "end": Object {
-                  "column": 71,
-                  "line": 10,
-                  "offset": 2225,
-                },
-                "start": Object {
-                  "column": 69,
-                  "line": 10,
-                  "offset": 2223,
-                },
-              },
-              "value": "_",
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 72,
-                  "line": 10,
-                  "offset": 2226,
-                },
-                "start": Object {
-                  "column": 71,
-                  "line": 10,
-                  "offset": 2225,
-                },
-              },
-              "value": "2",
-            },
-            Object {
-              "kind": "SymbolCommand",
-              "loc": Object {
-                "end": Object {
-                  "column": 74,
-                  "line": 10,
-                  "offset": 2228,
-                },
-                "start": Object {
-                  "column": 72,
-                  "line": 10,
-                  "offset": 2226,
-                },
-              },
-              "value": "$",
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 79,
-                  "line": 10,
-                  "offset": 2233,
-                },
-                "start": Object {
-                  "column": 74,
-                  "line": 10,
-                  "offset": 2228,
-                },
-              },
-              "value": " and ",
-            },
-            Object {
-              "kind": "SymbolCommand",
-              "loc": Object {
-                "end": Object {
-                  "column": 81,
-                  "line": 10,
-                  "offset": 2235,
-                },
-                "start": Object {
-                  "column": 79,
-                  "line": 10,
-                  "offset": 2233,
-                },
-              },
-              "value": "$",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 86,
-                  "line": 10,
-                  "offset": 2240,
-                },
-                "start": Object {
-                  "column": 81,
-                  "line": 10,
-                  "offset": 2235,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 85,
-                      "line": 10,
-                      "offset": 2239,
-                    },
-                    "start": Object {
-                      "column": 82,
-                      "line": 10,
-                      "offset": 2236,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 84,
-                          "line": 10,
-                          "offset": 2238,
-                        },
-                        "start": Object {
-                          "column": 83,
-                          "line": 10,
-                          "offset": 2237,
-                        },
-                      },
-                      "value": "R",
-                    },
-                  ],
-                },
-              ],
-            },
-            Object {
-              "kind": "SymbolCommand",
-              "loc": Object {
-                "end": Object {
-                  "column": 88,
-                  "line": 10,
-                  "offset": 2242,
-                },
-                "start": Object {
-                  "column": 86,
-                  "line": 10,
-                  "offset": 2240,
-                },
-              },
-              "value": "_",
-            },
-            Object {
-              "kind": "SymbolCommand",
-              "loc": Object {
-                "end": Object {
-                  "column": 90,
-                  "line": 10,
-                  "offset": 2244,
-                },
-                "start": Object {
-                  "column": 88,
-                  "line": 10,
-                  "offset": 2242,
-                },
-              },
-              "value": "{",
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 91,
-                  "line": 10,
-                  "offset": 2245,
-                },
-                "start": Object {
-                  "column": 90,
-                  "line": 10,
-                  "offset": 2244,
-                },
-              },
-              "value": "1",
-            },
-            Object {
-              "arguments": Array [
-                Object {
-                  "kind": "RequiredArgument",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 107,
-                      "line": 10,
-                      "offset": 2261,
-                    },
-                    "start": Object {
-                      "column": 105,
-                      "line": 10,
-                      "offset": 2259,
-                    },
-                  },
-                  "value": Array [],
-                },
-              ],
-              "kind": "RegularCommand",
-              "loc": Object {
-                "end": Object {
-                  "column": 107,
-                  "line": 10,
-                  "offset": 2261,
-                },
-                "start": Object {
-                  "column": 91,
-                  "line": 10,
-                  "offset": 2245,
-                },
-              },
-              "value": "textbackslash",
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 111,
-                  "line": 10,
-                  "offset": 2265,
-                },
-                "start": Object {
-                  "column": 107,
-                  "line": 10,
-                  "offset": 2261,
-                },
-              },
-              "value": "text",
-            },
-            Object {
-              "kind": "SymbolCommand",
-              "loc": Object {
-                "end": Object {
-                  "column": 113,
-                  "line": 10,
-                  "offset": 2267,
-                },
-                "start": Object {
-                  "column": 111,
-                  "line": 10,
-                  "offset": 2265,
-                },
-              },
-              "value": "{",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 137,
-                  "line": 10,
-                  "offset": 2291,
-                },
-                "start": Object {
-                  "column": 113,
-                  "line": 10,
-                  "offset": 2267,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "MathMode",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 115,
-                      "line": 10,
-                      "offset": 2269,
-                    },
-                    "start": Object {
-                      "column": 114,
-                      "line": 10,
-                      "offset": 2268,
-                    },
-                  },
-                  "value": "$",
-                },
-                Object {
-                  "arguments": Array [],
-                  "kind": "RegularCommand",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 119,
-                      "line": 10,
-                      "offset": 2273,
-                    },
-                    "start": Object {
-                      "column": 115,
-                      "line": 10,
-                      "offset": 2269,
-                    },
-                  },
-                  "value": "rho",
-                },
-                Object {
-                  "arguments": Array [],
-                  "kind": "RegularCommand",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 126,
-                      "line": 10,
-                      "offset": 2280,
-                    },
-                    "start": Object {
-                      "column": 119,
-                      "line": 10,
-                      "offset": 2273,
-                    },
-                  },
-                  "value": "rbrace",
-                },
-                Object {
-                  "arguments": Array [],
-                  "kind": "RegularCommand",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 133,
-                      "line": 10,
-                      "offset": 2287,
-                    },
-                    "start": Object {
-                      "column": 126,
-                      "line": 10,
-                      "offset": 2280,
-                    },
-                  },
-                  "value": "rbrace",
-                },
-                Object {
-                  "kind": "SymbolCommand",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 135,
-                      "line": 10,
-                      "offset": 2289,
-                    },
-                    "start": Object {
-                      "column": 133,
-                      "line": 10,
-                      "offset": 2287,
-                    },
-                  },
-                  "value": "$",
-                },
-                Object {
-                  "kind": "MathMode",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 136,
-                      "line": 10,
-                      "offset": 2290,
-                    },
-                    "start": Object {
-                      "column": 135,
-                      "line": 10,
-                      "offset": 2289,
-                    },
-                  },
-                  "value": "$",
-                },
-              ],
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 160,
-                  "line": 10,
-                  "offset": 2314,
-                },
-                "start": Object {
-                  "column": 137,
-                  "line": 10,
-                  "offset": 2291,
-                },
-              },
-              "value": " Relaxation Dispersion ",
-            },
-            Object {
-              "arguments": Array [
-                Object {
-                  "kind": "RequiredArgument",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 175,
-                      "line": 10,
-                      "offset": 2329,
-                    },
-                    "start": Object {
-                      "column": 169,
-                      "line": 10,
-                      "offset": 2323,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "SymbolCommand",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 172,
-                          "line": 10,
-                          "offset": 2326,
-                        },
-                        "start": Object {
-                          "column": 170,
-                          "line": 10,
-                          "offset": 2324,
-                        },
-                      },
-                      "value": "}",
-                    },
-                    Object {
-                      "kind": "SymbolCommand",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 174,
-                          "line": 10,
-                          "offset": 2328,
-                        },
-                        "start": Object {
-                          "column": 172,
-                          "line": 10,
-                          "offset": 2326,
-                        },
-                      },
-                      "value": "}",
-                    },
-                  ],
-                },
-              ],
-              "kind": "RegularCommand",
-              "loc": Object {
-                "end": Object {
-                  "column": 175,
-                  "line": 10,
-                  "offset": 2329,
-                },
-                "start": Object {
-                  "column": 160,
-                  "line": 10,
-                  "offset": 2314,
-                },
-              },
-              "value": "vphantom",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 182,
-                  "line": 10,
-                  "offset": 2336,
-                },
-                "start": Object {
-                  "column": 175,
-                  "line": 10,
-                  "offset": 2329,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 181,
-                      "line": 10,
-                      "offset": 2335,
-                    },
-                    "start": Object {
-                      "column": 176,
-                      "line": 10,
-                      "offset": 2330,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 180,
-                          "line": 10,
-                          "offset": 2334,
-                        },
-                        "start": Object {
-                          "column": 177,
-                          "line": 10,
-                          "offset": 2331,
-                        },
-                      },
-                      "value": "NMR",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "url",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 12,
-              "offset": 2417,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 11,
-              "offset": 2339,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 76,
-                  "line": 11,
-                  "offset": 2414,
-                },
-                "start": Object {
-                  "column": 10,
-                  "line": 11,
-                  "offset": 2348,
-                },
-              },
-              "value": "http://www.sciencedirect.com/science/article/pii/S1046202318300070",
-            },
-          ],
-        },
-        Object {
-          "key": "volume",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 13,
-              "offset": 2435,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 12,
-              "offset": 2417,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 16,
-                  "line": 12,
-                  "offset": 2432,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 12,
-                  "offset": 2429,
-                },
-              },
-              "value": "148",
-            },
-          ],
-        },
-        Object {
-          "key": "year",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 14,
-              "offset": 2451,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 13,
-              "offset": 2435,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 15,
-                  "line": 13,
-                  "offset": 2449,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 13,
-                  "offset": 2445,
-                },
-              },
-              "value": "2018",
-            },
-          ],
-        },
-      ],
-      "type": "article",
-    },
-  ],
-  "kind": "File",
-  "loc": Object {
-    "end": Object {
-      "column": 1,
-      "line": 15,
-      "offset": 2453,
-    },
-    "start": Object {
-      "column": 1,
-      "line": 1,
-      "offset": 0,
-    },
+    ],
+    "kind": "File",
   },
-}
+]
 `;

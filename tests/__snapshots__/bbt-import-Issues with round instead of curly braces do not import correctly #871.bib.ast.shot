@@ -1,326 +1,116 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BibTeX Parser should parse bbt-import-Issues with round instead of curly braces do not import correctly #871.bib to an AST 1`] = `
-Object {
-  "children": Array [
-    Object {
-      "key": "MCDERMOTT",
-      "kind": "StringExpression",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 2,
-          "offset": 42,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 1,
-          "offset": 0,
-        },
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "key": "MCDERMOTT",
+        "kind": "StringExpression",
+        "value": Array [
+          Object {
+            "kind": "Text",
+            "value": "McDermott, Drew V.",
+          },
+        ],
       },
-      "value": Array [
-        Object {
-          "kind": "Text",
-          "loc": Object {
-            "end": Object {
-              "column": 40,
-              "line": 1,
-              "offset": 39,
-            },
-            "start": Object {
-              "column": 22,
-              "line": 1,
-              "offset": 21,
-            },
-          },
-          "value": "McDermott, Drew V.",
-        },
-      ],
-    },
-    Object {
-      "id": "McDermott:72",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 9,
-          "offset": 247,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 2,
-          "offset": 42,
-        },
-      },
-      "properties": Array [
-        Object {
-          "key": "author",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 115,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 3,
-              "offset": 68,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "String",
-              "loc": Object {
-                "end": Object {
-                  "column": 19,
-                  "line": 3,
-                  "offset": 86,
-                },
-                "start": Object {
-                  "column": 10,
-                  "line": 3,
-                  "offset": 77,
-                },
-              },
-              "value": "MCDERMOTT",
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 45,
-                  "line": 3,
-                  "offset": 112,
-                },
-                "start": Object {
-                  "column": 23,
-                  "line": 3,
-                  "offset": 90,
-                },
-              },
-              "value": " and Gerald J. Sussman",
-            },
-          ],
-        },
-        Object {
-          "key": "year",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 130,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 115,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 13,
-                  "line": 4,
-                  "offset": 127,
-                },
-                "start": Object {
-                  "column": 9,
-                  "line": 4,
-                  "offset": 123,
-                },
-              },
-              "value": "1972",
-            },
-          ],
-        },
-        Object {
-          "key": "month",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 143,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 130,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "String",
-              "loc": Object {
-                "end": Object {
-                  "column": 12,
-                  "line": 5,
-                  "offset": 141,
-                },
-                "start": Object {
-                  "column": 9,
-                  "line": 5,
-                  "offset": 138,
-                },
-              },
-              "value": "May",
-            },
-          ],
-        },
-        Object {
-          "key": "institution",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 199,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 143,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 54,
-                  "line": 6,
-                  "offset": 196,
-                },
-                "start": Object {
-                  "column": 16,
-                  "line": 6,
-                  "offset": 158,
-                },
-              },
-              "value": "MIT Artificial Intelligence Laboratory",
-            },
-          ],
-        },
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 245,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 199,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 14,
-                  "line": 7,
-                  "offset": 212,
-                },
-                "start": Object {
-                  "column": 10,
-                  "line": 7,
-                  "offset": 208,
-                },
-              },
-              "value": "The ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 28,
-                  "line": 7,
-                  "offset": 226,
-                },
-                "start": Object {
-                  "column": 14,
-                  "line": 7,
-                  "offset": 212,
-                },
-              },
-              "value": Array [
-                Object {
-                  "arguments": Array [],
-                  "kind": "RegularCommand",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 18,
-                      "line": 7,
-                      "offset": 216,
-                    },
-                    "start": Object {
-                      "column": 15,
-                      "line": 7,
-                      "offset": 213,
-                    },
-                  },
-                  "value": "sc",
-                },
-                Object {
-                  "kind": "Text",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 27,
-                      "line": 7,
-                      "offset": 225,
-                    },
-                    "start": Object {
-                      "column": 18,
-                      "line": 7,
-                      "offset": 216,
-                    },
-                  },
-                  "value": " CONNIVER",
-                },
-              ],
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 45,
-                  "line": 7,
-                  "offset": 243,
-                },
-                "start": Object {
-                  "column": 28,
-                  "line": 7,
-                  "offset": 226,
-                },
-              },
-              "value": " Reference Manual",
-            },
-          ],
-        },
-      ],
-      "type": "techreport",
-    },
-  ],
-  "kind": "File",
-  "loc": Object {
-    "end": Object {
-      "column": 1,
-      "line": 9,
-      "offset": 247,
-    },
-    "start": Object {
-      "column": 1,
-      "line": 1,
-      "offset": 0,
-    },
+    ],
+    "kind": "File",
   },
-}
+  Object {
+    "children": Array [
+      Object {
+        "id": "McDermott:72",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "author",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": false,
+                "kind": "String",
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "McDermott, Drew V.",
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": " and Gerald J. Sussman",
+              },
+            ],
+          },
+          Object {
+            "key": "institution",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "MIT Artificial Intelligence Laboratory",
+              },
+            ],
+          },
+          Object {
+            "key": "month",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": false,
+                "kind": "String",
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "05",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "The ",
+              },
+              Object {
+                "exemptFromSentenceCase": true,
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "smallCaps": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "CONNIVER",
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": " Reference Manual",
+              },
+            ],
+          },
+          Object {
+            "key": "year",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "1972",
+              },
+            ],
+          },
+        ],
+        "type": "techreport",
+      },
+    ],
+    "kind": "File",
+  },
+]
 `;

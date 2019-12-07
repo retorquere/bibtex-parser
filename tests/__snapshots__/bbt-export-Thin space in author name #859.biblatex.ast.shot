@@ -1,812 +1,214 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BibTeX Parser should parse bbt-export-Thin space in author name #859.biblatex to an AST 1`] = `
-Object {
-  "children": Array [
-    Object {
-      "id": "giustina2015significantloopholefree",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 13,
-          "offset": 842,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 1,
-          "offset": 0,
-        },
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "id": "giustina2015significantloopholefree",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "author",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Giustina, Marissa and Versteegh, Marijn A. M. and Wengerowsky, Sören and Handsteiner, Johannes and Hochrainer, Armin and Phelan, Kevin and Steinlechner, Fabian and Kofler, Johannes and Larsson, Jan-Åke and Abellán, Carlos and Amaya, Waldimar and Pruneri, Valerio and Mitchell, Morgan W. and Beyer, Jörn and Gerrits, Thomas and Lita, Adriana E. and Shalm, Lynden K. and Nam, Sae Woo and Scheidl, Thomas and Ursin, Rupert and Wittmann, Bernhard and Zeilinger, Anton",
+              },
+            ],
+          },
+          Object {
+            "key": "date",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2015-12-16",
+              },
+            ],
+          },
+          Object {
+            "key": "doi",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "10.1103/PhysRevLett.115.250401",
+              },
+            ],
+          },
+          Object {
+            "key": "journaltitle",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Physical Review Letters",
+              },
+            ],
+          },
+          Object {
+            "key": "number",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "25",
+              },
+            ],
+          },
+          Object {
+            "key": "pages",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "250401",
+              },
+            ],
+          },
+          Object {
+            "key": "shortjournal",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Phys. Rev. Lett.",
+              },
+            ],
+          },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Significant-",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "Loophole",
+                      },
+                    ],
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": "-",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "Free Test",
+                      },
+                    ],
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": " of ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "Bell",
+                      },
+                    ],
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": "'s ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "Theorem",
+                      },
+                    ],
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": " with ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "Entangled Photons",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "volume",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "115",
+              },
+            ],
+          },
+        ],
+        "type": "article",
       },
-      "properties": Array [
-        Object {
-          "key": "author",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 3,
-              "offset": 534,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 2,
-              "offset": 48,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 77,
-                  "line": 2,
-                  "offset": 122,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 2,
-                  "offset": 58,
-                },
-              },
-              "value": "Giustina, Marissa and Versteegh, Marijn A. M. and Wengerowsky, S",
-            },
-            Object {
-              "character": "o",
-              "dotless": false,
-              "kind": "DicraticalCommand",
-              "loc": Object {
-                "end": Object {
-                  "column": 80,
-                  "line": 2,
-                  "offset": 125,
-                },
-                "start": Object {
-                  "column": 77,
-                  "line": 2,
-                  "offset": 122,
-                },
-              },
-              "mark": "\\"",
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 213,
-                  "line": 2,
-                  "offset": 258,
-                },
-                "start": Object {
-                  "column": 80,
-                  "line": 2,
-                  "offset": 125,
-                },
-              },
-              "value": "ren and Handsteiner, Johannes and Hochrainer, Armin and Phelan, Kevin and Steinlechner, Fabian and Kofler, Johannes and Larsson, Jan-",
-            },
-            Object {
-              "arguments": Array [
-                Object {
-                  "kind": "RequiredArgument",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 218,
-                      "line": 2,
-                      "offset": 263,
-                    },
-                    "start": Object {
-                      "column": 216,
-                      "line": 2,
-                      "offset": 261,
-                    },
-                  },
-                  "value": Array [],
-                },
-              ],
-              "kind": "RegularCommand",
-              "loc": Object {
-                "end": Object {
-                  "column": 218,
-                  "line": 2,
-                  "offset": 263,
-                },
-                "start": Object {
-                  "column": 213,
-                  "line": 2,
-                  "offset": 258,
-                },
-              },
-              "value": "AA",
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 230,
-                  "line": 2,
-                  "offset": 275,
-                },
-                "start": Object {
-                  "column": 218,
-                  "line": 2,
-                  "offset": 263,
-                },
-              },
-              "value": "ke and Abell",
-            },
-            Object {
-              "character": "a",
-              "dotless": false,
-              "kind": "DicraticalCommand",
-              "loc": Object {
-                "end": Object {
-                  "column": 233,
-                  "line": 2,
-                  "offset": 278,
-                },
-                "start": Object {
-                  "column": 230,
-                  "line": 2,
-                  "offset": 275,
-                },
-              },
-              "mark": "'",
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 320,
-                  "line": 2,
-                  "offset": 365,
-                },
-                "start": Object {
-                  "column": 233,
-                  "line": 2,
-                  "offset": 278,
-                },
-              },
-              "value": "n, Carlos and Amaya, Waldimar and Pruneri, Valerio and Mitchell, Morgan W. and Beyer, J",
-            },
-            Object {
-              "character": "o",
-              "dotless": false,
-              "kind": "DicraticalCommand",
-              "loc": Object {
-                "end": Object {
-                  "column": 323,
-                  "line": 2,
-                  "offset": 368,
-                },
-                "start": Object {
-                  "column": 320,
-                  "line": 2,
-                  "offset": 365,
-                },
-              },
-              "mark": "\\"",
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 486,
-                  "line": 2,
-                  "offset": 531,
-                },
-                "start": Object {
-                  "column": 323,
-                  "line": 2,
-                  "offset": 368,
-                },
-              },
-              "value": "rn and Gerrits, Thomas and Lita, Adriana E. and Shalm, Lynden K. and Nam, Sae Woo and Scheidl, Thomas and Ursin, Rupert and Wittmann, Bernhard and Zeilinger, Anton",
-            },
-          ],
-        },
-        Object {
-          "key": "date",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 557,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 3,
-              "offset": 534,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 21,
-                  "line": 3,
-                  "offset": 554,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 3,
-                  "offset": 544,
-                },
-              },
-              "value": "2015-12-16",
-            },
-          ],
-        },
-        Object {
-          "key": "doi",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 599,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 557,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 40,
-                  "line": 4,
-                  "offset": 596,
-                },
-                "start": Object {
-                  "column": 10,
-                  "line": 4,
-                  "offset": 566,
-                },
-              },
-              "value": "10.1103/PhysRevLett.115.250401",
-            },
-          ],
-        },
-        Object {
-          "key": "journaltitle",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 643,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 599,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 42,
-                  "line": 5,
-                  "offset": 640,
-                },
-                "start": Object {
-                  "column": 19,
-                  "line": 5,
-                  "offset": 617,
-                },
-              },
-              "value": "Physical Review Letters",
-            },
-          ],
-        },
-        Object {
-          "key": "number",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 660,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 643,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 15,
-                  "line": 6,
-                  "offset": 657,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 6,
-                  "offset": 655,
-                },
-              },
-              "value": "25",
-            },
-          ],
-        },
-        Object {
-          "key": "pages",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 680,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 660,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 18,
-                  "line": 7,
-                  "offset": 677,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 7,
-                  "offset": 671,
-                },
-              },
-              "value": "250401",
-            },
-          ],
-        },
-        Object {
-          "key": "shortjournal",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 717,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 680,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 35,
-                  "line": 8,
-                  "offset": 714,
-                },
-                "start": Object {
-                  "column": 19,
-                  "line": 8,
-                  "offset": 698,
-                },
-              },
-              "value": "Phys. Rev. Lett.",
-            },
-          ],
-        },
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 10,
-              "offset": 822,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 717,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 24,
-                  "line": 9,
-                  "offset": 740,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 9,
-                  "offset": 728,
-                },
-              },
-              "value": "Significant-",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 36,
-                  "line": 9,
-                  "offset": 752,
-                },
-                "start": Object {
-                  "column": 24,
-                  "line": 9,
-                  "offset": 740,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 35,
-                      "line": 9,
-                      "offset": 751,
-                    },
-                    "start": Object {
-                      "column": 25,
-                      "line": 9,
-                      "offset": 741,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 34,
-                          "line": 9,
-                          "offset": 750,
-                        },
-                        "start": Object {
-                          "column": 26,
-                          "line": 9,
-                          "offset": 742,
-                        },
-                      },
-                      "value": "Loophole",
-                    },
-                  ],
-                },
-              ],
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 37,
-                  "line": 9,
-                  "offset": 753,
-                },
-                "start": Object {
-                  "column": 36,
-                  "line": 9,
-                  "offset": 752,
-                },
-              },
-              "value": "-",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 50,
-                  "line": 9,
-                  "offset": 766,
-                },
-                "start": Object {
-                  "column": 37,
-                  "line": 9,
-                  "offset": 753,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 49,
-                      "line": 9,
-                      "offset": 765,
-                    },
-                    "start": Object {
-                      "column": 38,
-                      "line": 9,
-                      "offset": 754,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 48,
-                          "line": 9,
-                          "offset": 764,
-                        },
-                        "start": Object {
-                          "column": 39,
-                          "line": 9,
-                          "offset": 755,
-                        },
-                      },
-                      "value": "Free Test",
-                    },
-                  ],
-                },
-              ],
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 54,
-                  "line": 9,
-                  "offset": 770,
-                },
-                "start": Object {
-                  "column": 50,
-                  "line": 9,
-                  "offset": 766,
-                },
-              },
-              "value": " of ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 62,
-                  "line": 9,
-                  "offset": 778,
-                },
-                "start": Object {
-                  "column": 54,
-                  "line": 9,
-                  "offset": 770,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 61,
-                      "line": 9,
-                      "offset": 777,
-                    },
-                    "start": Object {
-                      "column": 55,
-                      "line": 9,
-                      "offset": 771,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 60,
-                          "line": 9,
-                          "offset": 776,
-                        },
-                        "start": Object {
-                          "column": 56,
-                          "line": 9,
-                          "offset": 772,
-                        },
-                      },
-                      "value": "Bell",
-                    },
-                  ],
-                },
-              ],
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 65,
-                  "line": 9,
-                  "offset": 781,
-                },
-                "start": Object {
-                  "column": 62,
-                  "line": 9,
-                  "offset": 778,
-                },
-              },
-              "value": "'s ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 76,
-                  "line": 9,
-                  "offset": 792,
-                },
-                "start": Object {
-                  "column": 65,
-                  "line": 9,
-                  "offset": 781,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 75,
-                      "line": 9,
-                      "offset": 791,
-                    },
-                    "start": Object {
-                      "column": 66,
-                      "line": 9,
-                      "offset": 782,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 74,
-                          "line": 9,
-                          "offset": 790,
-                        },
-                        "start": Object {
-                          "column": 67,
-                          "line": 9,
-                          "offset": 783,
-                        },
-                      },
-                      "value": "Theorem",
-                    },
-                  ],
-                },
-              ],
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 82,
-                  "line": 9,
-                  "offset": 798,
-                },
-                "start": Object {
-                  "column": 76,
-                  "line": 9,
-                  "offset": 792,
-                },
-              },
-              "value": " with ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 103,
-                  "line": 9,
-                  "offset": 819,
-                },
-                "start": Object {
-                  "column": 82,
-                  "line": 9,
-                  "offset": 798,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 102,
-                      "line": 9,
-                      "offset": 818,
-                    },
-                    "start": Object {
-                      "column": 83,
-                      "line": 9,
-                      "offset": 799,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 101,
-                          "line": 9,
-                          "offset": 817,
-                        },
-                        "start": Object {
-                          "column": 84,
-                          "line": 9,
-                          "offset": 800,
-                        },
-                      },
-                      "value": "Entangled Photons",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "volume",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 11,
-              "offset": 839,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 10,
-              "offset": 822,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 16,
-                  "line": 10,
-                  "offset": 837,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 10,
-                  "offset": 834,
-                },
-              },
-              "value": "115",
-            },
-          ],
-        },
-      ],
-      "type": "article",
-    },
-  ],
-  "kind": "File",
-  "loc": Object {
-    "end": Object {
-      "column": 1,
-      "line": 13,
-      "offset": 842,
-    },
-    "start": Object {
-      "column": 1,
-      "line": 1,
-      "offset": 0,
-    },
+    ],
+    "kind": "File",
   },
-}
+]
 `;

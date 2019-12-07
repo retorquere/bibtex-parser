@@ -1,329 +1,106 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BibTeX Parser should parse bbt-export-@jurisdiction; map court,authority to institution #326.biblatex to an AST 1`] = `
-Object {
-  "children": Array [
-    Object {
-      "id": "_dalain_2010",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 12,
-          "offset": 203,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 1,
-          "offset": 0,
-        },
-      },
-      "properties": Array [
-        Object {
-          "key": "date",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 3,
-              "offset": 51,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 2,
-              "offset": 30,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 21,
-                  "line": 2,
-                  "offset": 48,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 2,
-                  "offset": 38,
-                },
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "id": "_dalain_2010",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "langid",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "french",
               },
-              "value": "2010-12-23",
-            },
-          ],
-        },
-        Object {
-          "key": "institution",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 81,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 3,
-              "offset": 51,
-            },
+            ],
           },
-          "value": Array [
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 28,
-                  "line": 3,
-                  "offset": 78,
-                },
-                "start": Object {
-                  "column": 18,
-                  "line": 3,
-                  "offset": 68,
-                },
+          Object {
+            "key": "date",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2010-12-23",
               },
-              "value": Array [
-                Object {
-                  "kind": "Text",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 27,
-                      "line": 3,
-                      "offset": 77,
-                    },
-                    "start": Object {
-                      "column": 19,
-                      "line": 3,
-                      "offset": 69,
-                    },
+            ],
+          },
+          Object {
+            "key": "institution",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "CE, Ass.",
                   },
-                  "value": "CE, Ass.",
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "journaltitle",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 106,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 81,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 23,
-                  "line": 4,
-                  "offset": 103,
-                },
-                "start": Object {
-                  "column": 19,
-                  "line": 4,
-                  "offset": 99,
-                },
+                ],
               },
-              "value": "Rec.",
-            },
-          ],
-        },
-        Object {
-          "key": "langid",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 127,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 106,
-            },
+            ],
           },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 19,
-                  "line": 5,
-                  "offset": 124,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 5,
-                  "offset": 118,
-                },
+          Object {
+            "key": "journaltitle",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Rec.",
               },
-              "value": "french",
-            },
-          ],
-        },
-        Object {
-          "key": "number",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 148,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 127,
-            },
+            ],
           },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 19,
-                  "line": 6,
-                  "offset": 145,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 6,
-                  "offset": 139,
-                },
+          Object {
+            "key": "number",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "337033",
               },
-              "value": "337033",
-            },
-          ],
-        },
-        Object {
-          "key": "pages",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 165,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 148,
-            },
+            ],
           },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 15,
-                  "line": 7,
-                  "offset": 162,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 7,
-                  "offset": 159,
-                },
+          Object {
+            "key": "pages",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "649",
               },
-              "value": "649",
-            },
-          ],
-        },
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 185,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 165,
-            },
+            ],
           },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 18,
-                  "line": 8,
-                  "offset": 182,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 8,
-                  "offset": 176,
-                },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Dalain",
               },
-              "value": "Dalain",
-            },
-          ],
-        },
-        Object {
-          "key": "volume",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 10,
-              "offset": 200,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 185,
-            },
+            ],
           },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 14,
-                  "line": 9,
-                  "offset": 198,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 9,
-                  "offset": 197,
-                },
+          Object {
+            "key": "volume",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "I",
               },
-              "value": "I",
-            },
-          ],
-        },
-      ],
-      "type": "jurisdiction",
-    },
-  ],
-  "kind": "File",
-  "loc": Object {
-    "end": Object {
-      "column": 1,
-      "line": 12,
-      "offset": 203,
-    },
-    "start": Object {
-      "column": 1,
-      "line": 1,
-      "offset": 0,
-    },
+            ],
+          },
+        ],
+        "type": "jurisdiction",
+      },
+    ],
+    "kind": "File",
   },
-}
+]
 `;

@@ -1,240 +1,69 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BibTeX Parser should parse bbt-export-Better BibLaTeX.006.biblatex to an AST 1`] = `
-Object {
-  "children": Array [
-    Object {
-      "id": "test-ticket1661",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 6,
-          "offset": 157,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 2,
-          "offset": 1,
-        },
-      },
-      "properties": Array [
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 154,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 3,
-              "offset": 29,
-            },
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "id": "test-ticket1661",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Non-Breaking Space: ; Accented Characters: Ñ and ñ; Tilde in ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "exemptFromSentenceCase": true,
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "URL",
+                      },
+                    ],
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": ": ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "http://example.com/~user",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
           },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 73,
-                  "line": 3,
-                  "offset": 99,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 3,
-                  "offset": 38,
-                },
-              },
-              "value": "Non-Breaking Space: ; Accented Characters: Ñ and ñ; Tilde in ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 80,
-                  "line": 3,
-                  "offset": 106,
-                },
-                "start": Object {
-                  "column": 73,
-                  "line": 3,
-                  "offset": 99,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 79,
-                      "line": 3,
-                      "offset": 105,
-                    },
-                    "start": Object {
-                      "column": 74,
-                      "line": 3,
-                      "offset": 100,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 78,
-                          "line": 3,
-                          "offset": 104,
-                        },
-                        "start": Object {
-                          "column": 75,
-                          "line": 3,
-                          "offset": 101,
-                        },
-                      },
-                      "value": "URL",
-                    },
-                  ],
-                },
-              ],
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 82,
-                  "line": 3,
-                  "offset": 108,
-                },
-                "start": Object {
-                  "column": 80,
-                  "line": 3,
-                  "offset": 106,
-                },
-              },
-              "value": ": ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 126,
-                  "line": 3,
-                  "offset": 152,
-                },
-                "start": Object {
-                  "column": 82,
-                  "line": 3,
-                  "offset": 108,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 125,
-                      "line": 3,
-                      "offset": 151,
-                    },
-                    "start": Object {
-                      "column": 83,
-                      "line": 3,
-                      "offset": 109,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 103,
-                          "line": 3,
-                          "offset": 129,
-                        },
-                        "start": Object {
-                          "column": 84,
-                          "line": 3,
-                          "offset": 110,
-                        },
-                      },
-                      "value": "http://example.com/",
-                    },
-                    Object {
-                      "arguments": Array [
-                        Object {
-                          "kind": "RequiredArgument",
-                          "loc": Object {
-                            "end": Object {
-                              "column": 120,
-                              "line": 3,
-                              "offset": 146,
-                            },
-                            "start": Object {
-                              "column": 118,
-                              "line": 3,
-                              "offset": 144,
-                            },
-                          },
-                          "value": Array [],
-                        },
-                      ],
-                      "kind": "RegularCommand",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 120,
-                          "line": 3,
-                          "offset": 146,
-                        },
-                        "start": Object {
-                          "column": 103,
-                          "line": 3,
-                          "offset": 129,
-                        },
-                      },
-                      "value": "textasciitilde",
-                    },
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 124,
-                          "line": 3,
-                          "offset": 150,
-                        },
-                        "start": Object {
-                          "column": 120,
-                          "line": 3,
-                          "offset": 146,
-                        },
-                      },
-                      "value": "user",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-      ],
-      "type": "article",
-    },
-  ],
-  "kind": "File",
-  "loc": Object {
-    "end": Object {
-      "column": 1,
-      "line": 6,
-      "offset": 157,
-    },
-    "start": Object {
-      "column": 1,
-      "line": 1,
-      "offset": 0,
-    },
+        ],
+        "type": "article",
+      },
+    ],
+    "kind": "File",
   },
-}
+]
 `;

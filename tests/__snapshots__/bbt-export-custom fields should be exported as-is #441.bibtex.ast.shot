@@ -1,671 +1,180 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BibTeX Parser should parse bbt-export-custom fields should be exported as-is #441.bibtex to an AST 1`] = `
-Object {
-  "children": Array [
-    Object {
-      "id": "Kokpinar2002",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 18,
-          "offset": 1846,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 2,
-          "offset": 1,
-        },
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "id": "Kokpinar2002",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "abstract",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "The characteristics of high-speed air-entrained jet flow over a spillway aerator were investigated using experimental data. Three different ramp designs (as well as the case of no ramp) were tested in a channel where the bed slope was adjusted to 0, 0.17, and 0.57, respectively. The effects of aerator geometry and flow condition on the air-entrainment process within the water jet and on the pressure fluctuations in the impact region are the main focus of the investigation. An extensive data analysis was performed for the data obtained from this study and from a similar laboratory study conducted by another investigator. Experimental relations were derived for nondimensional parameters of jet length, aerator cavity subpressure number, and aeration rates through the lower and upper nappes of the water jet. Scale effects for lower nappe aeration and aerator cavity subpressure number were considered and a good correlation was determined with prototype aerator measurements of Emborcaçao, Foz do Areia, and Keban dams for lower nappe aeration and Guri Dam for aerator cavity subpressure numbers. An aerator without a ramp may be subjected to excessive pressure fluctuations at the impact region due to insufficient air entrainment.",
+              },
+            ],
+          },
+          Object {
+            "key": "author",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "K",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {},
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "ö",
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": "kpinar, Mehmet Ali and G",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {},
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "ö",
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": "ğ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {},
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "ü",
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": "ş, Mustafa",
+              },
+            ],
+          },
+          Object {
+            "key": "issn",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "03151468 (ISSN)",
+              },
+            ],
+          },
+          Object {
+            "key": "journal",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Canadian Journal of Civil Engineering",
+              },
+            ],
+          },
+          Object {
+            "key": "keywords",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "aerator,Air entrainment,Cavity subpressure,Civil engineering,High speed jets,jet flow,Jet length,Jets,Pressure effects,Scale effect,spillway,Spillway aerators,Spillways,Structural design,Water aeration",
+              },
+            ],
+          },
+          Object {
+            "key": "number",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "6",
+              },
+            ],
+          },
+          Object {
+            "key": "pages",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "885–898",
+              },
+            ],
+          },
+          Object {
+            "key": "related",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "key₂",
+              },
+            ],
+          },
+          Object {
+            "key": "relatedtype",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "bytranslator",
+              },
+            ],
+          },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "High-Speed Jet Flows over Spillway Aerators",
+              },
+            ],
+          },
+          Object {
+            "key": "volume",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "29",
+              },
+            ],
+          },
+          Object {
+            "key": "year",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2002",
+              },
+            ],
+          },
+        ],
+        "type": "article",
       },
-      "properties": Array [
-        Object {
-          "key": "abstract",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 1286,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 3,
-              "offset": 26,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 1008,
-                  "line": 3,
-                  "offset": 1031,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 3,
-                  "offset": 38,
-                },
-              },
-              "value": "The characteristics of high-speed air-entrained jet flow over a spillway aerator were investigated using experimental data. Three different ramp designs (as well as the case of no ramp) were tested in a channel where the bed slope was adjusted to 0, 0.17, and 0.57, respectively. The effects of aerator geometry and flow condition on the air-entrainment process within the water jet and on the pressure fluctuations in the impact region are the main focus of the investigation. An extensive data analysis was performed for the data obtained from this study and from a similar laboratory study conducted by another investigator. Experimental relations were derived for nondimensional parameters of jet length, aerator cavity subpressure number, and aeration rates through the lower and upper nappes of the water jet. Scale effects for lower nappe aeration and aerator cavity subpressure number were considered and a good correlation was determined with prototype aerator measurements of Emborca",
-            },
-            Object {
-              "character": "c",
-              "dotless": false,
-              "kind": "DicraticalCommand",
-              "loc": Object {
-                "end": Object {
-                  "column": 1014,
-                  "line": 3,
-                  "offset": 1037,
-                },
-                "start": Object {
-                  "column": 1008,
-                  "line": 3,
-                  "offset": 1031,
-                },
-              },
-              "mark": "c",
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 1260,
-                  "line": 3,
-                  "offset": 1283,
-                },
-                "start": Object {
-                  "column": 1014,
-                  "line": 3,
-                  "offset": 1037,
-                },
-              },
-              "value": "ao, Foz do Areia, and Keban dams for lower nappe aeration and Guri Dam for aerator cavity subpressure numbers. An aerator without a ramp may be subjected to excessive pressure fluctuations at the impact region due to insufficient air entrainment.",
-            },
-          ],
-        },
-        Object {
-          "key": "author",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 1362,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 1286,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 14,
-                  "line": 4,
-                  "offset": 1299,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 4,
-                  "offset": 1298,
-                },
-              },
-              "value": "K",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 19,
-                  "line": 4,
-                  "offset": 1304,
-                },
-                "start": Object {
-                  "column": 14,
-                  "line": 4,
-                  "offset": 1299,
-                },
-              },
-              "value": Array [
-                Object {
-                  "character": "o",
-                  "dotless": false,
-                  "kind": "DicraticalCommand",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 18,
-                      "line": 4,
-                      "offset": 1303,
-                    },
-                    "start": Object {
-                      "column": 15,
-                      "line": 4,
-                      "offset": 1300,
-                    },
-                  },
-                  "mark": "\\"",
-                },
-              ],
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 43,
-                  "line": 4,
-                  "offset": 1328,
-                },
-                "start": Object {
-                  "column": 19,
-                  "line": 4,
-                  "offset": 1304,
-                },
-              },
-              "value": "kpinar, Mehmet Ali and G",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 48,
-                  "line": 4,
-                  "offset": 1333,
-                },
-                "start": Object {
-                  "column": 43,
-                  "line": 4,
-                  "offset": 1328,
-                },
-              },
-              "value": Array [
-                Object {
-                  "character": "o",
-                  "dotless": false,
-                  "kind": "DicraticalCommand",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 47,
-                      "line": 4,
-                      "offset": 1332,
-                    },
-                    "start": Object {
-                      "column": 44,
-                      "line": 4,
-                      "offset": 1329,
-                    },
-                  },
-                  "mark": "\\"",
-                },
-              ],
-            },
-            Object {
-              "character": "g",
-              "dotless": false,
-              "kind": "DicraticalCommand",
-              "loc": Object {
-                "end": Object {
-                  "column": 54,
-                  "line": 4,
-                  "offset": 1339,
-                },
-                "start": Object {
-                  "column": 48,
-                  "line": 4,
-                  "offset": 1333,
-                },
-              },
-              "mark": "u",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 59,
-                  "line": 4,
-                  "offset": 1344,
-                },
-                "start": Object {
-                  "column": 54,
-                  "line": 4,
-                  "offset": 1339,
-                },
-              },
-              "value": Array [
-                Object {
-                  "character": "u",
-                  "dotless": false,
-                  "kind": "DicraticalCommand",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 58,
-                      "line": 4,
-                      "offset": 1343,
-                    },
-                    "start": Object {
-                      "column": 55,
-                      "line": 4,
-                      "offset": 1340,
-                    },
-                  },
-                  "mark": "\\"",
-                },
-              ],
-            },
-            Object {
-              "character": "s",
-              "dotless": false,
-              "kind": "DicraticalCommand",
-              "loc": Object {
-                "end": Object {
-                  "column": 65,
-                  "line": 4,
-                  "offset": 1350,
-                },
-                "start": Object {
-                  "column": 59,
-                  "line": 4,
-                  "offset": 1344,
-                },
-              },
-              "mark": "c",
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 74,
-                  "line": 4,
-                  "offset": 1359,
-                },
-                "start": Object {
-                  "column": 65,
-                  "line": 4,
-                  "offset": 1350,
-                },
-              },
-              "value": ", Mustafa",
-            },
-          ],
-        },
-        Object {
-          "key": "issn",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 1390,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 1362,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 26,
-                  "line": 5,
-                  "offset": 1387,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 5,
-                  "offset": 1372,
-                },
-              },
-              "value": "03151468 (ISSN)",
-            },
-          ],
-        },
-        Object {
-          "key": "journal",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 1443,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 1390,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 51,
-                  "line": 6,
-                  "offset": 1440,
-                },
-                "start": Object {
-                  "column": 14,
-                  "line": 6,
-                  "offset": 1403,
-                },
-              },
-              "value": "Canadian Journal of Civil Engineering",
-            },
-          ],
-        },
-        Object {
-          "key": "keywords",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 1661,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 1443,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 216,
-                  "line": 7,
-                  "offset": 1658,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 7,
-                  "offset": 1457,
-                },
-              },
-              "value": "aerator,Air entrainment,Cavity subpressure,Civil engineering,High speed jets,jet flow,Jet length,Jets,Pressure effects,Scale effect,spillway,Spillway aerators,Spillways,Structural design,Water aeration",
-            },
-          ],
-        },
-        Object {
-          "key": "number",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 1677,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 1661,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 14,
-                  "line": 8,
-                  "offset": 1674,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 8,
-                  "offset": 1673,
-                },
-              },
-              "value": "6",
-            },
-          ],
-        },
-        Object {
-          "key": "pages",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 10,
-              "offset": 1699,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 1677,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 20,
-                  "line": 9,
-                  "offset": 1696,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 9,
-                  "offset": 1688,
-                },
-              },
-              "value": "885–898",
-            },
-          ],
-        },
-        Object {
-          "key": "related",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 11,
-              "offset": 1720,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 10,
-              "offset": 1699,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 17,
-                  "line": 10,
-                  "offset": 1715,
-                },
-                "start": Object {
-                  "column": 14,
-                  "line": 10,
-                  "offset": 1712,
-                },
-              },
-              "value": "key",
-            },
-            Object {
-              "kind": "SubscriptCommand",
-              "loc": Object {
-                "end": Object {
-                  "column": 19,
-                  "line": 10,
-                  "offset": 1717,
-                },
-                "start": Object {
-                  "column": 17,
-                  "line": 10,
-                  "offset": 1715,
-                },
-              },
-              "value": "2",
-            },
-          ],
-        },
-        Object {
-          "key": "relatedtype",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 12,
-              "offset": 1752,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 11,
-              "offset": 1720,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 30,
-                  "line": 11,
-                  "offset": 1749,
-                },
-                "start": Object {
-                  "column": 18,
-                  "line": 11,
-                  "offset": 1737,
-                },
-              },
-              "value": "bytranslator",
-            },
-          ],
-        },
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 13,
-              "offset": 1809,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 12,
-              "offset": 1752,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 55,
-                  "line": 12,
-                  "offset": 1806,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 12,
-                  "offset": 1763,
-                },
-              },
-              "value": "High-Speed Jet Flows over Spillway Aerators",
-            },
-          ],
-        },
-        Object {
-          "key": "volume",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 14,
-              "offset": 1826,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 13,
-              "offset": 1809,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 15,
-                  "line": 13,
-                  "offset": 1823,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 13,
-                  "offset": 1821,
-                },
-              },
-              "value": "29",
-            },
-          ],
-        },
-        Object {
-          "key": "year",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 15,
-              "offset": 1842,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 14,
-              "offset": 1826,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 15,
-                  "line": 14,
-                  "offset": 1840,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 14,
-                  "offset": 1836,
-                },
-              },
-              "value": "2002",
-            },
-          ],
-        },
-      ],
-      "type": "article",
-    },
-  ],
-  "kind": "File",
-  "loc": Object {
-    "end": Object {
-      "column": 1,
-      "line": 18,
-      "offset": 1846,
-    },
-    "start": Object {
-      "column": 1,
-      "line": 1,
-      "offset": 0,
-    },
+    ],
+    "kind": "File",
   },
-}
+]
 `;

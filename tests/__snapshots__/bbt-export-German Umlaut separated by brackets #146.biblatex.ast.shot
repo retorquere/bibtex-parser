@@ -1,410 +1,112 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BibTeX Parser should parse bbt-export-German Umlaut separated by brackets #146.biblatex to an AST 1`] = `
-Object {
-  "children": Array [
-    Object {
-      "id": "Kaufmann1995",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 17,
-          "offset": 714,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 2,
-          "offset": 1,
-        },
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "id": "Kaufmann1995",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "langid",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "german",
+              },
+            ],
+          },
+          Object {
+            "key": "annotation",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "\\"Der Gleichzeitigkeitsgrad g (n) der Spitzenlastanteile Ps von Wohnungen wurde\\\\ aus Messungen statistisch ermittelt [2.3]. Eine gute Näherung für die Praxis\\\\ ist die Gleichung (2.5) :\\" (S. 2.3) Keine Notwendigkeit, in ihrem Grundlegendem Charakter völlig verschiedenartige Belastungen (PV, Wärmepumpe) in dieses Schema zu pressen.",
+              },
+            ],
+          },
+          Object {
+            "key": "author",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Kaufmann, Wolfgang",
+              },
+            ],
+          },
+          Object {
+            "key": "date",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "1995",
+              },
+            ],
+          },
+          Object {
+            "key": "isbn",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "3-8007-2141-4 978-3-8007-2141-2 3-8022-0469-7 978-3-8022-0469-2",
+              },
+            ],
+          },
+          Object {
+            "key": "location",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": true,
+                "kind": "NestedLiteral",
+                "markup": Object {},
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "Berlin; Frankfurt am Main",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "publisher",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": true,
+                "kind": "NestedLiteral",
+                "markup": Object {},
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "VDE-Verl. ; Verl.- und Wirtschaftsges. der Elektrizitätswerke",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Planung öffentlicher Elektrizitätsverteilungs-Systeme",
+              },
+            ],
+          },
+        ],
+        "type": "book",
       },
-      "properties": Array [
-        Object {
-          "key": "annotation",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 373,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 3,
-              "offset": 23,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 95,
-                  "line": 3,
-                  "offset": 115,
-                },
-                "start": Object {
-                  "column": 17,
-                  "line": 3,
-                  "offset": 37,
-                },
-              },
-              "value": "\\"Der Gleichzeitigkeitsgrad g (n) der Spitzenlastanteile Ps von Wohnungen wurde",
-            },
-            Object {
-              "kind": "SymbolCommand",
-              "loc": Object {
-                "end": Object {
-                  "column": 97,
-                  "line": 3,
-                  "offset": 117,
-                },
-                "start": Object {
-                  "column": 95,
-                  "line": 3,
-                  "offset": 115,
-                },
-              },
-              "value": "\\\\",
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 77,
-                  "line": 4,
-                  "offset": 194,
-                },
-                "start": Object {
-                  "column": 97,
-                  "line": 3,
-                  "offset": 117,
-                },
-              },
-              "value": " aus Messungen statistisch ermittelt [2.3]. Eine gute Näherung für die Praxis",
-            },
-            Object {
-              "kind": "SymbolCommand",
-              "loc": Object {
-                "end": Object {
-                  "column": 79,
-                  "line": 4,
-                  "offset": 196,
-                },
-                "start": Object {
-                  "column": 77,
-                  "line": 4,
-                  "offset": 194,
-                },
-              },
-              "value": "\\\\",
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 137,
-                  "line": 7,
-                  "offset": 370,
-                },
-                "start": Object {
-                  "column": 79,
-                  "line": 4,
-                  "offset": 196,
-                },
-              },
-              "value": " ist die Gleichung (2.5) :\\" (S. 2.3) Keine Notwendigkeit, in ihrem Grundlegendem Charakter völlig verschiedenartige Belastungen (PV, Wärmepumpe) in dieses Schema zu pressen.",
-            },
-          ],
-        },
-        Object {
-          "key": "author",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 406,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 373,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 31,
-                  "line": 8,
-                  "offset": 403,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 8,
-                  "offset": 385,
-                },
-              },
-              "value": "Kaufmann, Wolfgang",
-            },
-          ],
-        },
-        Object {
-          "key": "date",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 10,
-              "offset": 423,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 406,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 15,
-                  "line": 9,
-                  "offset": 420,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 9,
-                  "offset": 416,
-                },
-              },
-              "value": "1995",
-            },
-          ],
-        },
-        Object {
-          "key": "isbn",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 11,
-              "offset": 499,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 10,
-              "offset": 423,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 74,
-                  "line": 10,
-                  "offset": 496,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 10,
-                  "offset": 433,
-                },
-              },
-              "value": "3-8007-2141-4 978-3-8007-2141-2 3-8022-0469-7 978-3-8022-0469-2",
-            },
-          ],
-        },
-        Object {
-          "key": "langid",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 12,
-              "offset": 520,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 11,
-              "offset": 499,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 19,
-                  "line": 11,
-                  "offset": 517,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 11,
-                  "offset": 511,
-                },
-              },
-              "value": "german",
-            },
-          ],
-        },
-        Object {
-          "key": "location",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 13,
-              "offset": 564,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 12,
-              "offset": 520,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 42,
-                  "line": 12,
-                  "offset": 561,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 12,
-                  "offset": 534,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "Text",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 41,
-                      "line": 12,
-                      "offset": 560,
-                    },
-                    "start": Object {
-                      "column": 16,
-                      "line": 12,
-                      "offset": 535,
-                    },
-                  },
-                  "value": "Berlin; Frankfurt am Main",
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "publisher",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 14,
-              "offset": 645,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 13,
-              "offset": 564,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 79,
-                  "line": 13,
-                  "offset": 642,
-                },
-                "start": Object {
-                  "column": 16,
-                  "line": 13,
-                  "offset": 579,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "Text",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 78,
-                      "line": 13,
-                      "offset": 641,
-                    },
-                    "start": Object {
-                      "column": 17,
-                      "line": 13,
-                      "offset": 580,
-                    },
-                  },
-                  "value": "VDE-Verl. ; Verl.- und Wirtschaftsges. der Elektrizitätswerke",
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 15,
-              "offset": 711,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 14,
-              "offset": 645,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 65,
-                  "line": 14,
-                  "offset": 709,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 14,
-                  "offset": 656,
-                },
-              },
-              "value": "Planung öffentlicher Elektrizitätsverteilungs-Systeme",
-            },
-          ],
-        },
-      ],
-      "type": "book",
-    },
-  ],
-  "kind": "File",
-  "loc": Object {
-    "end": Object {
-      "column": 1,
-      "line": 17,
-      "offset": 714,
-    },
-    "start": Object {
-      "column": 1,
-      "line": 1,
-      "offset": 0,
-    },
+    ],
+    "kind": "File",
   },
-}
+]
 `;

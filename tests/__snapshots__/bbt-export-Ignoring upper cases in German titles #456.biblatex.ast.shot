@@ -1,773 +1,244 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BibTeX Parser should parse bbt-export-Ignoring upper cases in German titles #456.biblatex to an AST 1`] = `
-Object {
-  "children": Array [
-    Object {
-      "id": "Kaufmann1990",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 14,
-          "offset": 431,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 1,
-          "offset": 0,
-        },
-      },
-      "properties": Array [
-        Object {
-          "key": "author",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 3,
-              "offset": 64,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 2,
-              "offset": 30,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 34,
-                  "line": 2,
-                  "offset": 61,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 2,
-                  "offset": 40,
-                },
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "id": "Kaufmann1990",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "langid",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "german",
               },
-              "value": "Kaufmann, Franz-Xaver",
-            },
-          ],
-        },
-        Object {
-          "key": "booktitle",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 135,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 3,
-              "offset": 64,
-            },
+            ],
           },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 69,
-                  "line": 3,
-                  "offset": 132,
-                },
-                "start": Object {
-                  "column": 16,
-                  "line": 3,
-                  "offset": 79,
-                },
+          Object {
+            "key": "author",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Kaufmann, Franz-Xaver",
               },
-              "value": "Sozialpolitik und Sozialstaat: Soziologische Analysen",
-            },
-          ],
-        },
-        Object {
-          "key": "date",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 152,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 135,
-            },
+            ],
           },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 15,
-                  "line": 4,
-                  "offset": 149,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 4,
-                  "offset": 145,
-                },
+          Object {
+            "key": "booktitle",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Sozialpolitik und Sozialstaat: Soziologische Analysen",
               },
-              "value": "2002",
-            },
-          ],
-        },
-        Object {
-          "key": "editor",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 189,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 152,
-            },
+            ],
           },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 35,
-                  "line": 5,
-                  "offset": 186,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 5,
-                  "offset": 164,
-                },
+          Object {
+            "key": "date",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2002",
               },
-              "value": "Kauffmann, Franz-Xaver",
-            },
-          ],
-        },
-        Object {
-          "key": "langid",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 210,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 189,
-            },
+            ],
           },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 19,
-                  "line": 6,
-                  "offset": 207,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 6,
-                  "offset": 201,
-                },
+          Object {
+            "key": "editor",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Kauffmann, Franz-Xaver",
               },
-              "value": "german",
-            },
-          ],
-        },
-        Object {
-          "key": "origdate",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 231,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 210,
-            },
+            ],
           },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 19,
-                  "line": 7,
-                  "offset": 228,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 7,
-                  "offset": 224,
-                },
+          Object {
+            "key": "origdate",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "1990",
               },
-              "value": "1990",
-            },
-          ],
-        },
-        Object {
-          "key": "pages",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 253,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 231,
-            },
+            ],
           },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 20,
-                  "line": 8,
-                  "offset": 250,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 8,
-                  "offset": 242,
-                },
+          Object {
+            "key": "pages",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "145–160",
               },
-              "value": "145–160",
-            },
-          ],
-        },
-        Object {
-          "key": "publisher",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 10,
-              "offset": 307,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 253,
-            },
+            ],
           },
-          "value": Array [
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 52,
-                  "line": 9,
-                  "offset": 304,
-                },
-                "start": Object {
-                  "column": 16,
-                  "line": 9,
-                  "offset": 268,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "Text",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 51,
-                      "line": 9,
-                      "offset": 303,
-                    },
-                    "start": Object {
-                      "column": 17,
-                      "line": 9,
-                      "offset": 269,
-                    },
+          Object {
+            "key": "publisher",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": true,
+                "kind": "NestedLiteral",
+                "markup": Object {},
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "VS Verlag für Sozialwissenschaften",
                   },
-                  "value": "VS Verlag für Sozialwissenschaften",
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 11,
-              "offset": 357,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 10,
-              "offset": 307,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 48,
-                  "line": 10,
-                  "offset": 354,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 10,
-                  "offset": 318,
-                },
+                ],
               },
-              "value": "Sozialpolitik und Bevölkerungsprozeß",
-            },
-          ],
-        },
-        Object {
-          "key": "url",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 12,
-              "offset": 428,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 11,
-              "offset": 357,
-            },
+            ],
           },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 70,
-                  "line": 11,
-                  "offset": 426,
-                },
-                "start": Object {
-                  "column": 10,
-                  "line": 11,
-                  "offset": 366,
-                },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Sozialpolitik und Bevölkerungsprozeß",
               },
-              "value": "http://link.springer.com/chapter/10.1007/978-3-322-99962-7_7",
-            },
-          ],
-        },
-      ],
-      "type": "incollection",
-    },
-    Object {
-      "id": "Kaufmann1997",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 26,
-          "offset": 879,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 14,
-          "offset": 431,
-        },
+            ],
+          },
+          Object {
+            "key": "url",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "http://link.springer.com/chapter/10.1007/978-3-322-99962-7_7",
+              },
+            ],
+          },
+        ],
+        "type": "incollection",
       },
-      "properties": Array [
-        Object {
-          "key": "author",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 16,
-              "offset": 495,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 15,
-              "offset": 461,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 34,
-                  "line": 15,
-                  "offset": 492,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 15,
-                  "offset": 471,
-                },
-              },
-              "value": "Kaufmann, Franz-Xaver",
-            },
-          ],
-        },
-        Object {
-          "key": "booktitle",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 17,
-              "offset": 566,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 16,
-              "offset": 495,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 69,
-                  "line": 16,
-                  "offset": 563,
-                },
-                "start": Object {
-                  "column": 16,
-                  "line": 16,
-                  "offset": 510,
-                },
-              },
-              "value": "Sozialpolitik und Sozialstaat: Soziologische Analysen",
-            },
-          ],
-        },
-        Object {
-          "key": "date",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 18,
-              "offset": 583,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 17,
-              "offset": 566,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 15,
-                  "line": 17,
-                  "offset": 580,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 17,
-                  "offset": 576,
-                },
-              },
-              "value": "2002",
-            },
-          ],
-        },
-        Object {
-          "key": "editor",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 19,
-              "offset": 620,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 18,
-              "offset": 583,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 35,
-                  "line": 18,
-                  "offset": 617,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 18,
-                  "offset": 595,
-                },
-              },
-              "value": "Kauffmann, Franz-Xaver",
-            },
-          ],
-        },
-        Object {
-          "key": "langid",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 20,
-              "offset": 641,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 19,
-              "offset": 620,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 19,
-                  "line": 19,
-                  "offset": 638,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 19,
-                  "offset": 632,
-                },
-              },
-              "value": "german",
-            },
-          ],
-        },
-        Object {
-          "key": "origdate",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 21,
-              "offset": 662,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 20,
-              "offset": 641,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 19,
-                  "line": 20,
-                  "offset": 659,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 20,
-                  "offset": 655,
-                },
-              },
-              "value": "1997",
-            },
-          ],
-        },
-        Object {
-          "key": "pages",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 22,
-              "offset": 684,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 21,
-              "offset": 662,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 20,
-                  "line": 21,
-                  "offset": 681,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 21,
-                  "offset": 673,
-                },
-              },
-              "value": "241–260",
-            },
-          ],
-        },
-        Object {
-          "key": "publisher",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 23,
-              "offset": 738,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 22,
-              "offset": 684,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 52,
-                  "line": 22,
-                  "offset": 735,
-                },
-                "start": Object {
-                  "column": 16,
-                  "line": 22,
-                  "offset": 699,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "Text",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 51,
-                      "line": 22,
-                      "offset": 734,
-                    },
-                    "start": Object {
-                      "column": 17,
-                      "line": 22,
-                      "offset": 700,
-                    },
-                  },
-                  "value": "VS Verlag für Sozialwissenschaften",
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 24,
-              "offset": 805,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 23,
-              "offset": 738,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 65,
-                  "line": 23,
-                  "offset": 802,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 23,
-                  "offset": 749,
-                },
-              },
-              "value": "Schwindet die integrative Funktion des Sozialstaates?",
-            },
-          ],
-        },
-        Object {
-          "key": "url",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 25,
-              "offset": 877,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 24,
-              "offset": 805,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 71,
-                  "line": 24,
-                  "offset": 875,
-                },
-                "start": Object {
-                  "column": 10,
-                  "line": 24,
-                  "offset": 814,
-                },
-              },
-              "value": "http://link.springer.com/chapter/10.1007/978-3-322-99962-7_11",
-            },
-          ],
-        },
-      ],
-      "type": "incollection",
-    },
-  ],
-  "kind": "File",
-  "loc": Object {
-    "end": Object {
-      "column": 1,
-      "line": 26,
-      "offset": 879,
-    },
-    "start": Object {
-      "column": 1,
-      "line": 1,
-      "offset": 0,
-    },
+    ],
+    "kind": "File",
   },
-}
+  Object {
+    "children": Array [
+      Object {
+        "id": "Kaufmann1997",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "langid",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "german",
+              },
+            ],
+          },
+          Object {
+            "key": "author",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Kaufmann, Franz-Xaver",
+              },
+            ],
+          },
+          Object {
+            "key": "booktitle",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Sozialpolitik und Sozialstaat: Soziologische Analysen",
+              },
+            ],
+          },
+          Object {
+            "key": "date",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2002",
+              },
+            ],
+          },
+          Object {
+            "key": "editor",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Kauffmann, Franz-Xaver",
+              },
+            ],
+          },
+          Object {
+            "key": "origdate",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "1997",
+              },
+            ],
+          },
+          Object {
+            "key": "pages",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "241–260",
+              },
+            ],
+          },
+          Object {
+            "key": "publisher",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": true,
+                "kind": "NestedLiteral",
+                "markup": Object {},
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "VS Verlag für Sozialwissenschaften",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Schwindet die integrative Funktion des Sozialstaates?",
+              },
+            ],
+          },
+          Object {
+            "key": "url",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "http://link.springer.com/chapter/10.1007/978-3-322-99962-7_11",
+              },
+            ],
+          },
+        ],
+        "type": "incollection",
+      },
+    ],
+    "kind": "File",
+  },
+]
 `;

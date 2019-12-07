@@ -1,550 +1,183 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BibTeX Parser should parse bbt-export-Better BibLaTeX.002.biblatex to an AST 1`] = `
-Object {
-  "children": Array [
-    Object {
-      "id": "Abramowitz1964",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 11,
-          "offset": 299,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 2,
-          "offset": 1,
-        },
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "id": "Abramowitz1964",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "author",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Abramowitz, Milton and Stegun, Irene A.",
+              },
+            ],
+          },
+          Object {
+            "key": "date",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "1964",
+              },
+            ],
+          },
+          Object {
+            "key": "edition",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "ninth Dover printing, tenth GPO printing",
+              },
+            ],
+          },
+          Object {
+            "key": "location",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": true,
+                "kind": "NestedLiteral",
+                "markup": Object {},
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "New York",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "publisher",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": true,
+                "kind": "NestedLiteral",
+                "markup": Object {},
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "Dover",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Handbook of Mathematical Functions with Formulas, Graphs, and Mathematical Tables",
+              },
+            ],
+          },
+        ],
+        "type": "book",
       },
-      "properties": Array [
-        Object {
-          "key": "author",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 77,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 3,
-              "offset": 25,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 52,
-                  "line": 3,
-                  "offset": 74,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 3,
-                  "offset": 35,
-                },
-              },
-              "value": "Abramowitz, Milton and Stegun, Irene A.",
-            },
-          ],
-        },
-        Object {
-          "key": "date",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 94,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 77,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 15,
-                  "line": 4,
-                  "offset": 91,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 4,
-                  "offset": 87,
-                },
-              },
-              "value": "1964",
-            },
-          ],
-        },
-        Object {
-          "key": "edition",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 150,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 94,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 54,
-                  "line": 5,
-                  "offset": 147,
-                },
-                "start": Object {
-                  "column": 14,
-                  "line": 5,
-                  "offset": 107,
-                },
-              },
-              "value": "ninth Dover printing, tenth GPO printing",
-            },
-          ],
-        },
-        Object {
-          "key": "location",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 177,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 150,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 25,
-                  "line": 6,
-                  "offset": 174,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 6,
-                  "offset": 164,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "Text",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 24,
-                      "line": 6,
-                      "offset": 173,
-                    },
-                    "start": Object {
-                      "column": 16,
-                      "line": 6,
-                      "offset": 165,
-                    },
-                  },
-                  "value": "New York",
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "publisher",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 202,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 177,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 23,
-                  "line": 7,
-                  "offset": 199,
-                },
-                "start": Object {
-                  "column": 16,
-                  "line": 7,
-                  "offset": 192,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "Text",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 22,
-                      "line": 7,
-                      "offset": 198,
-                    },
-                    "start": Object {
-                      "column": 17,
-                      "line": 7,
-                      "offset": 193,
-                    },
-                  },
-                  "value": "Dover",
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 296,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 202,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 93,
-                  "line": 8,
-                  "offset": 294,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 8,
-                  "offset": 213,
-                },
-              },
-              "value": "Handbook of Mathematical Functions with Formulas, Graphs, and Mathematical Tables",
-            },
-          ],
-        },
-      ],
-      "type": "book",
-    },
-    Object {
-      "id": "Torre2008",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 19,
-          "offset": 467,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 11,
-          "offset": 299,
-        },
-      },
-      "properties": Array [
-        Object {
-          "key": "author",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 13,
-              "offset": 359,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 12,
-              "offset": 318,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 41,
-                  "line": 12,
-                  "offset": 356,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 12,
-                  "offset": 328,
-                },
-              },
-              "value": "Torre, Joe and Verducci, Tom",
-            },
-          ],
-        },
-        Object {
-          "key": "date",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 14,
-              "offset": 376,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 13,
-              "offset": 359,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 15,
-                  "line": 13,
-                  "offset": 373,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 13,
-                  "offset": 369,
-                },
-              },
-              "value": "2008",
-            },
-          ],
-        },
-        Object {
-          "key": "isbn",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 15,
-              "offset": 402,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 14,
-              "offset": 376,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 24,
-                  "line": 14,
-                  "offset": 399,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 14,
-                  "offset": 386,
-                },
-              },
-              "value": "0-385-52740-3",
-            },
-          ],
-        },
-        Object {
-          "key": "publisher",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 16,
-              "offset": 431,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 15,
-              "offset": 402,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 27,
-                  "line": 15,
-                  "offset": 428,
-                },
-                "start": Object {
-                  "column": 16,
-                  "line": 15,
-                  "offset": 417,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "Text",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 26,
-                      "line": 15,
-                      "offset": 427,
-                    },
-                    "start": Object {
-                      "column": 17,
-                      "line": 15,
-                      "offset": 418,
-                    },
-                  },
-                  "value": "Doubleday",
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 17,
-              "offset": 464,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 16,
-              "offset": 431,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 16,
-                  "line": 16,
-                  "offset": 446,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 16,
-                  "offset": 442,
-                },
-              },
-              "value": "The ",
-            },
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 26,
-                  "line": 16,
-                  "offset": 456,
-                },
-                "start": Object {
-                  "column": 16,
-                  "line": 16,
-                  "offset": 446,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "NestedLiteral",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 25,
-                      "line": 16,
-                      "offset": 455,
-                    },
-                    "start": Object {
-                      "column": 17,
-                      "line": 16,
-                      "offset": 447,
-                    },
-                  },
-                  "value": Array [
-                    Object {
-                      "kind": "Text",
-                      "loc": Object {
-                        "end": Object {
-                          "column": 24,
-                          "line": 16,
-                          "offset": 454,
-                        },
-                        "start": Object {
-                          "column": 18,
-                          "line": 16,
-                          "offset": 448,
-                        },
-                      },
-                      "value": "Yankee",
-                    },
-                  ],
-                },
-              ],
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 32,
-                  "line": 16,
-                  "offset": 462,
-                },
-                "start": Object {
-                  "column": 26,
-                  "line": 16,
-                  "offset": 456,
-                },
-              },
-              "value": " Years",
-            },
-          ],
-        },
-      ],
-      "type": "book",
-    },
-  ],
-  "kind": "File",
-  "loc": Object {
-    "end": Object {
-      "column": 1,
-      "line": 19,
-      "offset": 467,
-    },
-    "start": Object {
-      "column": 1,
-      "line": 1,
-      "offset": 0,
-    },
+    ],
+    "kind": "File",
   },
-}
+  Object {
+    "children": Array [
+      Object {
+        "id": "Torre2008",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "author",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Torre, Joe and Verducci, Tom",
+              },
+            ],
+          },
+          Object {
+            "key": "date",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2008",
+              },
+            ],
+          },
+          Object {
+            "key": "isbn",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "0-385-52740-3",
+              },
+            ],
+          },
+          Object {
+            "key": "publisher",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": true,
+                "kind": "NestedLiteral",
+                "markup": Object {},
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "Doubleday",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "The ",
+              },
+              Object {
+                "kind": "NestedLiteral",
+                "markup": Object {
+                  "caseProtect": true,
+                },
+                "value": Array [
+                  Object {
+                    "kind": "NestedLiteral",
+                    "markup": Object {},
+                    "value": Array [
+                      Object {
+                        "kind": "Text",
+                        "value": "Yankee",
+                      },
+                    ],
+                  },
+                ],
+              },
+              Object {
+                "kind": "Text",
+                "value": " Years",
+              },
+            ],
+          },
+        ],
+        "type": "book",
+      },
+    ],
+    "kind": "File",
+  },
+]
 `;

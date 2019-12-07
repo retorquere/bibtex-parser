@@ -1,295 +1,89 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BibTeX Parser should parse bbt-import-Better BibTeX.012.bib to an AST 1`] = `
-Object {
-  "children": Array [
-    Object {
-      "id": "moller2012conceptsrisksafety",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 8,
-          "offset": 285,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 1,
-          "offset": 0,
-        },
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "id": "moller2012conceptsrisksafety",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "author",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Möller, Niklas",
+              },
+            ],
+          },
+          Object {
+            "key": "booktitle",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": true,
+                "kind": "NestedLiteral",
+                "markup": Object {},
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "Handbook of Risk Theory: Epistemology, Decision Theory, Ethics, and Social Implications of Risk",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "publisher",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": true,
+                "kind": "NestedLiteral",
+                "markup": Object {},
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "Springer",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "exemptFromSentenceCase": true,
+                "kind": "NestedLiteral",
+                "markup": Object {},
+                "value": Array [
+                  Object {
+                    "kind": "Text",
+                    "value": "The Concepts of Risk and Safety",
+                  },
+                ],
+              },
+            ],
+          },
+          Object {
+            "key": "year",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2012",
+              },
+            ],
+          },
+        ],
+        "type": "incollection",
       },
-      "properties": Array [
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 3,
-              "offset": 91,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 2,
-              "offset": 46,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 45,
-                  "line": 2,
-                  "offset": 88,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 2,
-                  "offset": 55,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "Text",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 44,
-                      "line": 2,
-                      "offset": 87,
-                    },
-                    "start": Object {
-                      "column": 13,
-                      "line": 2,
-                      "offset": 56,
-                    },
-                  },
-                  "value": "The Concepts of Risk and Safety",
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "booktitle",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 206,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 3,
-              "offset": 91,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 113,
-                  "line": 3,
-                  "offset": 203,
-                },
-                "start": Object {
-                  "column": 16,
-                  "line": 3,
-                  "offset": 106,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "Text",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 112,
-                      "line": 3,
-                      "offset": 202,
-                    },
-                    "start": Object {
-                      "column": 17,
-                      "line": 3,
-                      "offset": 107,
-                    },
-                  },
-                  "value": "Handbook of Risk Theory: Epistemology, Decision Theory, Ethics, and Social Implications of Risk",
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "publisher",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 234,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 206,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "NestedLiteral",
-              "loc": Object {
-                "end": Object {
-                  "column": 26,
-                  "line": 4,
-                  "offset": 231,
-                },
-                "start": Object {
-                  "column": 16,
-                  "line": 4,
-                  "offset": 221,
-                },
-              },
-              "value": Array [
-                Object {
-                  "kind": "Text",
-                  "loc": Object {
-                    "end": Object {
-                      "column": 25,
-                      "line": 4,
-                      "offset": 230,
-                    },
-                    "start": Object {
-                      "column": 17,
-                      "line": 4,
-                      "offset": 222,
-                    },
-                  },
-                  "value": "Springer",
-                },
-              ],
-            },
-          ],
-        },
-        Object {
-          "key": "author",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 267,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 234,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 14,
-                  "line": 5,
-                  "offset": 247,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 5,
-                  "offset": 246,
-                },
-              },
-              "value": "M",
-            },
-            Object {
-              "character": "o",
-              "dotless": false,
-              "kind": "DicraticalCommand",
-              "loc": Object {
-                "end": Object {
-                  "column": 19,
-                  "line": 5,
-                  "offset": 252,
-                },
-                "start": Object {
-                  "column": 14,
-                  "line": 5,
-                  "offset": 247,
-                },
-              },
-              "mark": "\\"",
-            },
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 31,
-                  "line": 5,
-                  "offset": 264,
-                },
-                "start": Object {
-                  "column": 19,
-                  "line": 5,
-                  "offset": 252,
-                },
-              },
-              "value": "ller, Niklas",
-            },
-          ],
-        },
-        Object {
-          "key": "year",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 283,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 267,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 15,
-                  "line": 6,
-                  "offset": 281,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 6,
-                  "offset": 277,
-                },
-              },
-              "value": "2012",
-            },
-          ],
-        },
-      ],
-      "type": "incollection",
-    },
-  ],
-  "kind": "File",
-  "loc": Object {
-    "end": Object {
-      "column": 1,
-      "line": 8,
-      "offset": 285,
-    },
-    "start": Object {
-      "column": 1,
-      "line": 1,
-      "offset": 0,
-    },
+    ],
+    "kind": "File",
   },
-}
+]
 `;

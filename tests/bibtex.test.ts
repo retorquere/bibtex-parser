@@ -5,7 +5,6 @@ const path = require('path')
 require('jest-specific-snapshot')
 
 import * as bibtex from '../index'
-import * as astrocite from 'astrocite-bibtex/lib/grammar'
 // import * as jabref from '../jabref'
 
 const snaps = path.join(__dirname, '__snapshots__')
@@ -14,8 +13,12 @@ const enable = {
   ast: process.env.AST !== 'false',
   zotero: process.env.ZOTERO !== 'false',
   case: (process.env.TESTCASE || '').toLowerCase(),
-  big: (process.env.BIG || process.enc.CI === 'true'),
+  big: (process.env.BIG || process.env.CI) === 'true',
 }
+const big = [
+  'Async import, large library #720',
+  'Really Big whopping library',
+]
 
 const ignoreErrors = {
   errorHandler(e) {
@@ -41,7 +44,7 @@ describe('BibTeX Parser', () => {
     const input = fs.readFileSync(path.join(root, f), 'utf-8')
     if (enable.ast) {
       it(`should parse ${caseName} to an AST`, () => {
-        (expect(astrocite.parse(input)) as any).toMatchSpecificSnapshot(path.join(snaps, caseName + '.ast.shot'))
+        (expect(bibtex.ast(input, f === 'long.bib' ? ignoreErrors : {})) as any).toMatchSpecificSnapshot(path.join(snaps, caseName + '.ast.shot'))
       })
     }
 
@@ -57,11 +60,9 @@ describe('BibTeX Parser', () => {
     for (const f of fs.readdirSync(root).sort()) {
       if (!f.replace(/(la)?tex$/, '').endsWith('.bib')) continue
 
-      if (!enable.big) {
-        if (f.includes('Async import, large library #720')) continue
-        if (f.includes('Really Big whopping library.')) continue
-        if (enable.case && !f.toLowerCase().includes(enable.case)) continue
-      }
+      if (!enable.big && big.find(s => f.includes(s))) continue
+
+      if (enable.case && !f.toLowerCase().includes(enable.case)) continue
 
       const caseName = `bbt-${mode}-${path.basename(f)}`
 
@@ -69,7 +70,7 @@ describe('BibTeX Parser', () => {
 
       if (enable.ast) {
         it(`should parse ${caseName} to an AST`, () => {
-          (expect(astrocite.parse(input)) as any).toMatchSpecificSnapshot(path.join(snaps, caseName + '.ast.shot'))
+          (expect(bibtex.ast(input)) as any).toMatchSpecificSnapshot(path.join(snaps, caseName + '.ast.shot'))
         })
       }
 

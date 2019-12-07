@@ -1,482 +1,148 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BibTeX Parser should parse bbt-export-Oriental dates trip up date parser #389.biblatex to an AST 1`] = `
-Object {
-  "children": Array [
-    Object {
-      "id": "Sammut1976",
-      "kind": "Entry",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 16,
-          "offset": 1043,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 1,
-          "offset": 0,
-        },
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "id": "Sammut1976",
+        "kind": "Entry",
+        "properties": Array [
+          Object {
+            "key": "abstract",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Because they are not proper spectral modes, leaky modes do not obey the usual power orthogonality relations for an ideal waveguide. Two methods for circumventing this problem are presented in this paper. One approach is to use the fact that weakly leaky modes are approximately power orthogonal within a restricted region of space to define a new set of slightly coupled modes. The other is to abandon power orthogonality in favor of a more general, mathematically exact orthogonality relation. The relative merits of these two approaches are discussed.",
+              },
+            ],
+          },
+          Object {
+            "key": "author",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Sammut, Rowland and Snyder, Allan W.",
+              },
+            ],
+          },
+          Object {
+            "key": "date",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "1976-04-01",
+              },
+            ],
+          },
+          Object {
+            "key": "doi",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "10.1364/AO.15.001040",
+              },
+            ],
+          },
+          Object {
+            "key": "journaltitle",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Applied Optics",
+              },
+            ],
+          },
+          Object {
+            "key": "number",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "4",
+              },
+            ],
+          },
+          Object {
+            "key": "pages",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "1040–1044",
+              },
+            ],
+          },
+          Object {
+            "key": "shortjournal",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Appl. Opt.",
+              },
+            ],
+          },
+          Object {
+            "key": "shorttitle",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Leaky Modes on a Dielectric Waveguide",
+              },
+            ],
+          },
+          Object {
+            "key": "title",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "Leaky Modes on a Dielectric Waveguide: Orthogonality and Excitation",
+              },
+            ],
+          },
+          Object {
+            "key": "url",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "http://ao.osa.org/abstract.cfm?URI=ao-15-4-1040",
+              },
+            ],
+          },
+          Object {
+            "key": "urldate",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "2015-04-02",
+              },
+            ],
+          },
+          Object {
+            "key": "volume",
+            "kind": "Property",
+            "value": Array [
+              Object {
+                "kind": "Text",
+                "value": "15",
+              },
+            ],
+          },
+        ],
+        "type": "article",
       },
-      "properties": Array [
-        Object {
-          "key": "abstract",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 3,
-              "offset": 591,
-            },
-            "start": Object {
-              "column": 3,
-              "line": 2,
-              "offset": 23,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 568,
-                  "line": 2,
-                  "offset": 588,
-                },
-                "start": Object {
-                  "column": 15,
-                  "line": 2,
-                  "offset": 35,
-                },
-              },
-              "value": "Because they are not proper spectral modes, leaky modes do not obey the usual power orthogonality relations for an ideal waveguide. Two methods for circumventing this problem are presented in this paper. One approach is to use the fact that weakly leaky modes are approximately power orthogonal within a restricted region of space to define a new set of slightly coupled modes. The other is to abandon power orthogonality in favor of a more general, mathematically exact orthogonality relation. The relative merits of these two approaches are discussed.",
-            },
-          ],
-        },
-        Object {
-          "key": "author",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 642,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 3,
-              "offset": 591,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 49,
-                  "line": 3,
-                  "offset": 639,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 3,
-                  "offset": 603,
-                },
-              },
-              "value": "Sammut, Rowland and Snyder, Allan W.",
-            },
-          ],
-        },
-        Object {
-          "key": "date",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 665,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 4,
-              "offset": 642,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 21,
-                  "line": 4,
-                  "offset": 662,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 4,
-                  "offset": 652,
-                },
-              },
-              "value": "1976-04-01",
-            },
-          ],
-        },
-        Object {
-          "key": "doi",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 697,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 5,
-              "offset": 665,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 30,
-                  "line": 5,
-                  "offset": 694,
-                },
-                "start": Object {
-                  "column": 10,
-                  "line": 5,
-                  "offset": 674,
-                },
-              },
-              "value": "10.1364/AO.15.001040",
-            },
-          ],
-        },
-        Object {
-          "key": "journaltitle",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 732,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 6,
-              "offset": 697,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 33,
-                  "line": 6,
-                  "offset": 729,
-                },
-                "start": Object {
-                  "column": 19,
-                  "line": 6,
-                  "offset": 715,
-                },
-              },
-              "value": "Applied Optics",
-            },
-          ],
-        },
-        Object {
-          "key": "number",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 748,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 732,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 14,
-                  "line": 7,
-                  "offset": 745,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 7,
-                  "offset": 744,
-                },
-              },
-              "value": "4",
-            },
-          ],
-        },
-        Object {
-          "key": "pages",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 772,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 8,
-              "offset": 748,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 22,
-                  "line": 8,
-                  "offset": 769,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 8,
-                  "offset": 759,
-                },
-              },
-              "value": "1040–1044",
-            },
-          ],
-        },
-        Object {
-          "key": "shortjournal",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 10,
-              "offset": 803,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 772,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 29,
-                  "line": 9,
-                  "offset": 800,
-                },
-                "start": Object {
-                  "column": 19,
-                  "line": 9,
-                  "offset": 790,
-                },
-              },
-              "value": "Appl. Opt.",
-            },
-          ],
-        },
-        Object {
-          "key": "shorttitle",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 11,
-              "offset": 859,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 10,
-              "offset": 803,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 54,
-                  "line": 10,
-                  "offset": 856,
-                },
-                "start": Object {
-                  "column": 17,
-                  "line": 10,
-                  "offset": 819,
-                },
-              },
-              "value": "Leaky Modes on a Dielectric Waveguide",
-            },
-          ],
-        },
-        Object {
-          "key": "title",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 12,
-              "offset": 940,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 11,
-              "offset": 859,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 79,
-                  "line": 11,
-                  "offset": 937,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 11,
-                  "offset": 870,
-                },
-              },
-              "value": "Leaky Modes on a Dielectric Waveguide: Orthogonality and Excitation",
-            },
-          ],
-        },
-        Object {
-          "key": "url",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 13,
-              "offset": 999,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 12,
-              "offset": 940,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 57,
-                  "line": 12,
-                  "offset": 996,
-                },
-                "start": Object {
-                  "column": 10,
-                  "line": 12,
-                  "offset": 949,
-                },
-              },
-              "value": "http://ao.osa.org/abstract.cfm?URI=ao-15-4-1040",
-            },
-          ],
-        },
-        Object {
-          "key": "urldate",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 14,
-              "offset": 1025,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 13,
-              "offset": 999,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 24,
-                  "line": 13,
-                  "offset": 1022,
-                },
-                "start": Object {
-                  "column": 14,
-                  "line": 13,
-                  "offset": 1012,
-                },
-              },
-              "value": "2015-04-02",
-            },
-          ],
-        },
-        Object {
-          "key": "volume",
-          "kind": "Property",
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 15,
-              "offset": 1041,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 14,
-              "offset": 1025,
-            },
-          },
-          "value": Array [
-            Object {
-              "kind": "Text",
-              "loc": Object {
-                "end": Object {
-                  "column": 15,
-                  "line": 14,
-                  "offset": 1039,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 14,
-                  "offset": 1037,
-                },
-              },
-              "value": "15",
-            },
-          ],
-        },
-      ],
-      "type": "article",
-    },
-  ],
-  "kind": "File",
-  "loc": Object {
-    "end": Object {
-      "column": 1,
-      "line": 16,
-      "offset": 1043,
-    },
-    "start": Object {
-      "column": 1,
-      "line": 1,
-      "offset": 0,
-    },
+    ],
+    "kind": "File",
   },
-}
+]
 `;

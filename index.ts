@@ -404,6 +404,14 @@ class Parser {
     }
   }
 
+  public ast(input, options: { verbatimFields?: string[] } = {}) {
+    const _ast = []
+    for (const chunk of chunker(input)) {
+      _ast.push(this.parseChunk(chunk, options))
+    }
+    return _ast
+  }
+
   public parse(input, options: { verbatimFields?: string[] } = {}): Bibliography {
     for (const chunk of chunker(input)) {
       this.parseChunk(chunk, options)
@@ -446,12 +454,14 @@ class Parser {
 
   private parseChunk(chunk, options: { verbatimFields?: string[] }) {
     try {
-      const ast = this.cleanup(bibtex.parse(chunk.text, { verbatimProperties: options.verbatimFields }), !this.caseProtect)
-      if (ast.kind !== 'File') throw new Error(this.show(ast))
+      const _ast = this.cleanup(bibtex.parse(chunk.text, { verbatimProperties: options.verbatimFields }), !this.caseProtect)
+      if (_ast.kind !== 'File') throw new Error(this.show(_ast))
 
-      for (const node of ast.children) {
+      for (const node of _ast.children) {
         this.convert(node)
       }
+
+      return _ast
 
     } catch (err) {
       if (!err.location) throw err
@@ -460,6 +470,8 @@ class Parser {
         line: err.location.start.line + chunk.offset.line,
         column: err.location.start.column,
       })
+
+      return null
     }
   }
 
@@ -1214,6 +1226,16 @@ export function parse(input: string, options: ParserOptions = {}): Bibliography 
     errorHandler: options.errorHandler,
   })
   return options.async ? parser.parseAsync(input, { verbatimFields: options.verbatimFields }) : parser.parse(input, { verbatimFields: options.verbatimFields })
+}
+
+export function ast(input: string, options: ParserOptions = {}) {
+  const parser = new Parser({
+    caseProtect: options.caseProtect,
+    sentenceCase: options.sentenceCase,
+    markup: options.markup,
+    errorHandler: options.errorHandler,
+  })
+  return parser.ast(input, { verbatimFields: options.verbatimFields })
 }
 
 export { parse as chunker } from './chunker'
