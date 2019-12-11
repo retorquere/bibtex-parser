@@ -69,14 +69,16 @@ const charClass = {
   LnotLu: charCategories.filter(cat => ['Lowercase_Letter', 'Modifier_Letter', 'Other_Letter', 'Nonspacing_Mark', 'Spacing_Mark', 'Decimal_Number', 'Letter_Number'].includes(cat.alias)).map(cat => cat.bmp).join(''),
   P: charCategories.find(cat => cat.alias === 'Punctuation').bmp,
   L: charCategories.find(cat => cat.alias === 'Letter').bmp,
+  N: charCategories.filter(cat => ['Decimal_Number', 'Letter_Number'].includes(cat.alias)).map(cat => cat.bmp).join(''),
 }
 
 const implicitlyNoCased = {
   leadingCap: new RegExp(`^[${charClass.Lu}][${charClass.LnotLu}]+[${charClass.P}]?$`),
   allCaps: new RegExp(`^${charClass.Lu}{2,}$`),
-  joined: new RegExp(`^[${charClass.Lu}][${charClass.LnotLu}]*(-[${charClass.L}]+)*[${charClass.P}]?$`),
+  joined: new RegExp(`^[${charClass.Lu}][${charClass.LnotLu}]*(-[${charClass.L}${charClass.N}]+)*[${charClass.P}]*$`),
   hasUppercase: new RegExp(`[${charClass.Lu}]`),
   isNumber: /^[0-9]+$/,
+  isAlphaNum: new RegExp(`[${charClass.Lu}${charClass.LnotLu}]`),
 }
 
 const marker = {
@@ -686,9 +688,9 @@ class Parser {
   private _clean_ScriptCommand(node, nocased) {
     let m, value, singlechar
     // recognize combined forms like \^\circ
-    if (singlechar = latex2unicode[node.text]) return this.text(singlechar)
-    if ((m = node.text.match(/^([\^_])([^{}]+)$/)) && ((singlechar = latex2unicode[`${m[1]}${m[2]}`]) || (singlechar = latex2unicode[`${m[1]}{${m[2]}}`]))) return this.text(singlechar)
-    if ((m = node.text.match(/^([\^_])\{([^{}]+)\}$/)) && ((singlechar = latex2unicode[`${m[1]}${m[2]}`]) || (singlechar = latex2unicode[`${m[1]}{${m[2]}}`]))) return this.text(singlechar)
+    if (singlechar = latex2unicode[node.source]) return this.text(singlechar)
+    if ((m = node.source.match(/^([\^_])([^{}]+)$/)) && ((singlechar = latex2unicode[`${m[1]}${m[2]}`]) || (singlechar = latex2unicode[`${m[1]}{${m[2]}}`]))) return this.text(singlechar)
+    if ((m = node.source.match(/^([\^_])\{([^{}]+)\}$/)) && ((singlechar = latex2unicode[`${m[1]}${m[2]}`]) || (singlechar = latex2unicode[`${m[1]}{${m[2]}}`]))) return this.text(singlechar)
 
     const cmd = node.kind === 'SuperscriptCommand' ? '^' : '_'
 
@@ -727,7 +729,9 @@ class Parser {
       delete node.markup.caseProtect
 
     } else if (node.value.length && node.value[0].kind === 'Text') {
-      const words = (node.value[0] as bibtex.TextValue).value.trim().split(/\s+/)
+      const value = (node.value[0] as bibtex.TextValue).value.trim()
+      if (value.includes("'De")) console.log(value) // tslint:disable-line no-console
+      const words = value.trim().split(/\s+/)
       const simpleWord = words.find(word => !this.implicitlyNoCased(word))
       if (!simpleWord) {
         delete node.markup.caseProtect
@@ -767,13 +771,9 @@ class Parser {
   protected clean_RegularCommand(node: bibtex.RegularCommand, nocased) {
     let arg, unicode
 
-    switch (node.value) {
-      case 't':
-        if ((arg = this.argument(node, 'Text')) && (unicode = latex2unicode[`\\t{${arg}}`])) {
-          return this.text(unicode)
-        }
-        break
+    if (unicode = latex2unicode[node.source]) return this.text(unicode)
 
+    switch (node.value) {
       case 'frac':
         if (arg = this.argument(node, 2)) {
           // not a spectactular solution but what ya gonna do.
@@ -793,6 +793,7 @@ class Parser {
       case 'aftergroup':
       case 'ignorespaces':
       case 'noopsort':
+      case 'relax':
         return this.text()
 
       case 'ElsevierGlyph':
@@ -808,7 +809,7 @@ class Parser {
         break
 
       case 'bibstring':
-        if (arg = this.argument(node, 'Text')) return this.text(arg)
+        if (arg = this.argument(node, 'NestedLiteral')) return this.cleanup(arg, nocased)
         break
 
       case 'cite':
@@ -888,6 +889,8 @@ class Parser {
 
   private implicitlyNoCased(word) {
     // word = word.replace(new RegExp(`"[${this.markup.enquote.open}${this.markup.enquote.close}:()]`, 'g'), '')
+
+    if (!word.match(implicitlyNoCased.isAlphaNum)) return true
 
     word = word.replace(/['”:()]/g, '')
     if (word.match(implicitlyNoCased.leadingCap)) return false
