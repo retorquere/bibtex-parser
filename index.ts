@@ -1,9 +1,9 @@
-import * as bibtex from 'astrocite-bibtex/lib/grammar'
+import * as bibtex from './grammar'
 // Set instead of {} because we need insertion order remembered
 type RichNestedLiteral = bibtex.NestedLiteral & { markup: Record<string, boolean>, exemptFromSentenceCase?: boolean }
 
 import { parse as chunker } from './chunker'
-import latex2unicode = require('./latex2unicode')
+import { latex as latex2unicode } from 'unicode2latex'
 
 class ParserError extends Error {
   public node: any
@@ -364,8 +364,15 @@ class Parser {
       if (open_close) this.markup[markup] = open_close
     }
 
-    // tslint:disable-next-line only-arrow-functions no-empty
-    this.errorHandler = (options.errorHandler === false) ? (function(msg) {}) : (options.errorHandler || function(err) { throw err })
+    if (options.errorHandler === false) {
+      // tslint:disable-next-line only-arrow-functions no-empty
+      this.errorHandler = function(err) {}
+    } else if (options.errorHandler === undefined) {
+      // tslint:disable-next-line only-arrow-functions
+      this.errorHandler = function(err) { throw err }
+    } else {
+      this.errorHandler = options.errorHandler
+    }
 
     this.errors = []
     this.comments = []
@@ -407,10 +414,14 @@ class Parser {
     }
   }
 
-  public ast(input, options: { verbatimFields?: string[] } = {}) {
+  public ast(input, options: { clean?: boolean, verbatimFields?: string[] } = {}) {
+    if (typeof options.clean === 'undefined') options.clean = true
+
     const _ast = []
     for (const chunk of chunker(input)) {
-      _ast.push(this.parseChunk(chunk, options))
+      let chunk_ast = bibtex.parse(chunk.text, { verbatimProperties: options.verbatimFields })
+      if (options.clean) chunk_ast = this.cleanup(chunk_ast, !this.caseProtect)
+      _ast.push(chunk_ast)
     }
     return _ast
   }
@@ -456,7 +467,7 @@ class Parser {
   }
 
   private parseChunk(chunk, options: { verbatimFields?: string[] }) {
-    this.chunk = chunk
+    this.chunk = chunk.text
 
     try {
       const _ast = this.cleanup(bibtex.parse(chunk.text, { verbatimProperties: options.verbatimFields }), !this.caseProtect)
@@ -481,7 +492,8 @@ class Parser {
   }
 
   private show(o) {
-    return JSON.stringify(o) + this.chunk
+    // tslint:disable-next-line prefer-template
+    return JSON.stringify(o) + '\n' + this.chunk.trim()
   }
 
   private text(value = '') {
@@ -516,33 +528,10 @@ class Parser {
       sf: 'sansSerif',
       verb: 'verbatim',
     }
+
     node.value = node.value.filter((child, i) => {
-      // if (child.kind === 'Text' && !child.value) return false
-
-      const next = node.value[i + 1] || {}
-
-      if (child.kind === 'RegularCommand' && child.value.match(/^text(super|sub)script$/) && !child.arguments.length && next.kind === 'NestedLiteral') {
-        child.arguments = [ { kind: 'RequiredArgument', value: next.value } ]
-        next.kind = 'Text'
-        next.value = ''
-        return true
-      }
-
-      // \frac can either be "\frac{n}{d}" or "\frac n d" -- shudder
-      if (child.kind === 'RegularCommand' && child.value === 'frac' && !child.arguments.length) {
-        if (next.kind === 'Text' && next.value.match(/^\s+[a-z0-9]+\s+[a-z0-9]+$/i)) {
-          child.arguments = next.value.trim().split(/\s+/).map(v => ({ kind: 'RequiredArgument', value: [ this.text(v) ] }))
-          next.value = ''
-          return true
-        }
-
-      // spaces after a bare command are consumed
-      } else if (child.kind === 'RegularCommand' && !child.arguments.length && next.kind === 'Text' && next.value.match(/^\s+/)) {
-        // despite Mozilla's claim that trimStart === trimLeft, and that trimStart should be preferred, trimStart does not seem to exist in FF chrome code.
-        next.value = next.value.trimLeft()
-      }
-
-      if (child.kind === 'RegularCommand' && markup[child.value] && !child.arguments.length) {
+      // handles cases like {\sl ...}, but apply it to the whole block even if they appear in the middle
+      if (child.kind === 'RegularCommand' && markup[child.value] && !child.arguments.required.length) {
         if (node.markup) {
           delete node.markup.caseProtect
           node.markup[markup[child.value]] = true
@@ -554,8 +543,11 @@ class Parser {
       return true
     })
 
+    // apply cleaning to resulting children
     node.value = node.value.map(child => this.cleanup(child, nocased || (node.markup && (node.markup.caseProtect || node.exemptFromSentenceCase))))
 
+    /*
+    // condense text nodes
     node.value = node.value.reduce((acc, child) => {
       const last = acc.length - 1
       if (acc.length === 0 || child.kind !== 'Text' || acc[last].kind !== 'Text') {
@@ -565,30 +557,50 @@ class Parser {
       }
       return acc
     }, [])
+    */
   }
 
-  private argument(node, type) {
-    if (type === 'none') {
-      if (!node.arguments.length) return true
-      if (node.arguments.find(arg => arg.kind !== 'RequiredArgument' || arg.value.length)) return false
-      return true
+  private argument(node, kind) {
+    if (!node.arguments || !node.arguments.required.length) return (kind === 'none')
+
+    // expect 'n' text arguments
+    if (typeof kind === 'number') {
+      if (node.arguments.required.length !== kind) return false
+      let valid = true
+      const args = node.arguments.required
+        .map(arg => {
+          if (arg.kind === 'Text') return arg.value
+          if (arg.kind === 'NestedLiteral' && arg.value.length === 1 && arg.value[0].kind === 'Text') return arg.value[0].value
+          valid = false
+          return null
+        })
+      return valid ? args : false
     }
 
-    if (typeof type === 'number') {
-      if (node.arguments.length !== type || node.arguments.find(arg => arg.value.length !== 1 || arg.value[0].kind !== 'Text')) return false
-      return node.arguments.map(arg => arg.value[0].value)
+    // return first argument if it's the only one
+    if (node.arguments.required.length !== 1) return false
+
+    // loose checking for text
+    if (kind === 'text') {
+      const first = node.arguments.required[0]
+      if (first.kind === 'NestedLiteral' && first.value.length === 1) {
+        if (first.value[0].kind === 'Text') return first.value[0].value
+      }
+      // fall back to strict kind check
+      kind = 'Text'
     }
 
-    if (!node.arguments || node.arguments.length !== 1 || node.arguments.find(arg => arg.kind !== 'RequiredArgument')) return false
-
-    switch (type) {
-      case 'array':
-        return node.arguments[0].value
-
+    // return first argument if it's the only one and is of the specified kind
+    if (node.arguments.required.length !== 1 || node.arguments.required[0].kind !== kind) return false
+    switch (kind) {
       case 'Text':
+        return node.arguments.required[0].value
+
       case 'RegularCommand':
-        return node.arguments[0].value.length === 1 && node.arguments[0].value[0].kind === type ? node.arguments[0].value[0].value : false
+      case 'NestedLiteral':
+        return node.arguments.required[0]
     }
+
     return false
   }
 
@@ -648,6 +660,7 @@ class Parser {
     }
 
     this.condense(node, [ 'url', 'doi', 'file', 'files', 'eprint', 'verba', 'verbb', 'verbc' ].includes(node.key) || !this.caseProtect)
+
     return node
   }
 
@@ -655,188 +668,15 @@ class Parser {
 
   protected clean_MathMode(node: bibtex.MathMode, nocased) { return node }
 
-  protected clean_RegularCommand(node: bibtex.RegularCommand, nocased) {
-    let arg, unicode
+  private _clean_ScriptCommand(node, nocased) {
+    let m, value, singlechar
+    // recognize combined forms like \^\circ
+    if (singlechar = latex2unicode[node.text]) return this.text(singlechar)
+    if ((m = node.text.match(/^([\^_])([^{}]+)$/)) && (singlechar = latex2unicode[`${m[1]}${m[2]}`])) return this.text(singlechar)
+    if ((m = node.text.match(/^([\^_])([^{}]+)$/)) && (singlechar = latex2unicode[`${m[1]}{${m[2]}}`])) return this.text(singlechar)
 
-    switch (node.value) {
-      case 't':
-        if ((arg = this.argument(node, 'Text')) && (unicode = latex2unicode[`\\t{${arg}}`])) {
-          return this.text(unicode)
-        }
-        break
+    const cmd = node.kind === 'SuperscriptCommand' ? '^' : '_'
 
-      case 'vphantom':
-        return this.text()
-
-      case 'frac':
-        // not a spectactular solution but what ya gonna do.
-        if (arg = this.argument(node, 2)) {
-          return this.cleanup({
-            kind: 'NestedLiteral',
-            exemptFromSentenceCase: true,
-            markup: {},
-            value: [ this.text(`${arg[0]}/${arg[1]}`) ],
-          }, nocased)
-        }
-        break
-
-      case 'path':
-      case 'aftergroup':
-      case 'ignorespaces':
-      case 'noopsort':
-        return this.text()
-
-      case 'chsf':
-        if (this.argument(node, 'none')) return this.text()
-        if (arg = this.argument(node, 'array')) {
-          return this.cleanup({
-            kind: 'NestedLiteral',
-            markup: {},
-            value: arg,
-          }, nocased)
-        }
-        return node
-
-      case 'bibstring':
-        if (arg = this.argument(node, 'Text')) return this.text(arg)
-        break
-
-      case 'cite':
-        if (arg = this.argument(node, 1)) {
-          return this.cleanup({
-            kind: 'NestedLiteral',
-            exemptFromSentenceCase: true,
-            markup: {},
-            value: [ this.text(arg[0]) ],
-          }, nocased)
-        }
-        break
-
-      case 'textsuperscript':
-        if (!(arg = this.argument(node, 'array'))) return this.error(new TeXError(node.value + this.show(node), node, this.chunk), this.text())
-
-        return this.cleanup({
-          kind: 'NestedLiteral',
-          markup: { sup: true },
-          value: arg,
-        }, nocased)
-
-      case 'textsubscript':
-        if (!(arg = this.argument(node, 'array'))) return this.error(new TeXError(node.value + this.show(node), node, this.chunk), this.text())
-
-        return this.cleanup({
-          kind: 'NestedLiteral',
-          markup: { sub: true },
-          value: arg,
-        }, nocased)
-
-      case 'textsc':
-        if (!(arg = this.argument(node, 'array'))) return this.error(new TeXError(node.value + this.show(node), node, this.chunk), this.text())
-
-        return this.cleanup({
-          kind: 'NestedLiteral',
-          exemptFromSentenceCase: true,
-          markup: { smallCaps: true },
-          value: arg,
-        }, nocased)
-
-      case 'enquote':
-      case 'mkbibquote':
-        if (!(arg = this.argument(node, 'array'))) return this.error(new TeXError(node.value + this.show(node), node, this.chunk), this.text())
-
-        return this.cleanup({
-          kind: 'NestedLiteral',
-          markup: { enquote: true },
-          value: arg,
-        }, nocased)
-
-      case 'textbf':
-      case 'mkbibbold':
-        if (!(arg = this.argument(node, 'array'))) return this.error(new TeXError(node.value + this.show(node), node, this.chunk), this.text())
-
-        return this.cleanup({
-          kind: 'NestedLiteral',
-          markup: { bold: true },
-          value: arg,
-        }, nocased)
-
-      case 'mkbibitalic':
-      case 'mkbibemph':
-      case 'textit':
-      case 'emph':
-        if (!(arg = this.argument(node, 'array'))) return this.error(new TeXError(node.value + this.show(node), node, this.chunk), this.text())
-
-        return this.cleanup({
-          kind: 'NestedLiteral',
-          markup: { italics: true },
-          value: arg,
-        }, nocased)
-
-      case 'bibcyr':
-        if (this.argument(node, 'none')) return this.text()
-
-        if (!(arg = this.argument(node, 'array'))) return this.error(new TeXError(node.value + this.show(node), node, this.chunk), this.text())
-
-        return this.cleanup({
-          kind: 'NestedLiteral',
-          markup: {},
-          value: arg,
-        }, nocased)
-
-      case 'mathrm':
-      case 'textrm':
-      case 'ocirc':
-      case 'mbox':
-        if (arg = this.argument(node, 'Text')) {
-          unicode = latex2unicode[`\\${node.value}{${arg}}`]
-          return this.text(unicode || arg)
-        } else if (!node.arguments.length) {
-          return this.text()
-        } else if (arg = this.argument(node, 'array')) {
-          return this.cleanup({
-            kind: 'NestedLiteral',
-            markup: {},
-            value: arg,
-          }, nocased)
-        }
-        break
-
-      case 'href':
-        if (arg = this.argument(node, 2)) {
-          return this.text(arg[0])
-        }
-        break
-
-      case 'url':
-        if (arg = this.argument(node, 'Text')) return this.text(arg)
-        if (arg = this.argument(node, 'array')) {
-          return this.cleanup({
-            kind: 'NestedLiteral',
-            markup: {},
-            value: arg,
-          }, nocased)
-        }
-        break
-
-      default:
-        unicode = latex2unicode[`\\${node.value}`] || latex2unicode[`\\${node.value}{}`]
-        if (unicode && this.argument(node, 'none')) {
-          return this.text(unicode)
-        }
-
-        if (arg = this.argument(node, 'Text')) {
-          if (unicode = latex2unicode[`\\${node.value}{${arg}}`]) {
-            return this.text(unicode)
-          }
-        }
-    }
-
-    return this.error(new TeXError('Unhandled command: ' + this.show(node), node, this.chunk), this.text())
-  }
-
-  private _clean_ScriptCommand(node, nocased, mode) {
-    let value, singlechar
-    const cmd = mode === 'sup' ? '^' : '_'
     if (typeof node.value === 'string' && (singlechar = latex2unicode[`${cmd}${node.value}`] || latex2unicode[`${cmd}{${node.value}}`])) {
       return this.text(singlechar)
     }
@@ -848,6 +688,8 @@ class Parser {
     } else {
       value = node.value
     }
+
+    const mode = node.kind === 'SuperscriptCommand' ? 'sup' : 'sub'
     return this.cleanup({
       kind: 'NestedLiteral',
       markup: { [mode]: true },
@@ -855,22 +697,25 @@ class Parser {
     }, nocased)
   }
   protected clean_SubscriptCommand(node: bibtex.SubscriptCommand, nocased) {
-    return this._clean_ScriptCommand(node, nocased, 'sub')
+    return this._clean_ScriptCommand(node, nocased)
   }
 
   protected clean_SuperscriptCommand(node: bibtex.SuperscriptCommand, nocased) {
-    return this._clean_ScriptCommand(node, nocased, 'sup')
+    return this._clean_ScriptCommand(node, nocased)
   }
 
   protected clean_NestedLiteral(node: RichNestedLiteral, nocased) {
     if (!node.markup) node.markup = nocased ? {} : { caseProtect: true }
 
     // https://github.com/retorquere/zotero-better-bibtex/issues/541#issuecomment-240156274
-    if (node.value.length && ['RegularCommand', 'DicraticalCommand'].includes(node.value[0].kind)) {
+    if (node.value.length && ['RegularCommand', 'DiacriticCommand'].includes(node.value[0].kind)) {
       delete node.markup.caseProtect
 
     } else if (node.value.length && node.value[0].kind === 'Text') {
-      if (!(node.value[0] as bibtex.TextValue).value.split(/\s+/).find(word => !this.implicitlyNoCased(word))) {
+      const words = (node.value[0] as bibtex.TextValue).value.trim().split(/\s+/)
+      const simpleWord = words.find(word => !this.implicitlyNoCased(word))
+      // console.log(simpleWord, words) // tslint:disable-line no-console
+      if (!simpleWord) {
         delete node.markup.caseProtect
         node.exemptFromSentenceCase = true
       }
@@ -878,10 +723,16 @@ class Parser {
 
     this.condense(node, nocased)
 
+    if (!node.markup.caseProtect && node.value.length && node.value[0].kind === 'RegularCommand') {
+      for (const arg of node.value[0].arguments.required) {
+        if (arg.kind === 'NestedLiteral') delete (arg as RichNestedLiteral).markup.caseProtect
+      }
+    }
+
     return node
   }
 
-  protected clean_DicraticalCommand(node: bibtex.DicraticalCommand, nocased) { // Should be DiacraticCommand
+  protected clean_DiacriticCommand(node: bibtex.DiacriticCommand, nocased) { // Should be DiacraticCommand
     const char = node.dotless ? `\\${node.character}` : node.character
     const unicode = latex2unicode[`\\${node.mark}{${char}}`]
       || latex2unicode[`\\${node.mark}${char}`]
@@ -889,7 +740,7 @@ class Parser {
       || latex2unicode[`{\\${node.mark}${char}}`]
       || latex2unicode[`\\${node.mark} ${char}`]
 
-    if (!unicode) return this.error(new TeXError(`Unhandled {\\${node.mark} ${char}}`, node, this.chunk), this.text())
+    if (!unicode) return this.error(new TeXError(`Unhandled \\${node.mark}${char}`, node, this.chunk), this.text())
     return this.text(unicode)
   }
 
@@ -898,6 +749,128 @@ class Parser {
   }
 
   protected clean_PreambleExpression(node: bibtex.PreambleExpression, nocased) { return node }
+
+  protected clean_RegularCommand(node: bibtex.RegularCommand, nocased) {
+    let arg, unicode
+
+    switch (node.value) {
+      case 't':
+        if ((arg = this.argument(node, 'Text')) && (unicode = latex2unicode[`\\t{${arg}}`])) {
+          return this.text(unicode)
+        }
+        break
+
+      case 'frac':
+        if (arg = this.argument(node, 2)) {
+          // not a spectactular solution but what ya gonna do.
+          return this.cleanup({
+            kind: 'NestedLiteral',
+            exemptFromSentenceCase: true,
+            markup: {},
+            value: [ arg[0], this.text('/'), arg[1] ],
+          }, nocased)
+        }
+        break
+
+      // ignore
+      case 'vspace':
+      case 'vphantom':
+      case 'path':
+      case 'aftergroup':
+      case 'ignorespaces':
+      case 'noopsort':
+        return this.text()
+
+      case 'ElsevierGlyph':
+        if (arg = this.argument(node, 'Text')) {
+          if (unicode = latex2unicode[`\\${node.value}{${arg}}`]) return this.text(unicode)
+          return this.text(String.fromCharCode(parseInt(arg, 16)))
+        }
+        break
+
+      case 'chsf':
+        if (this.argument(node, 'none')) return this.text()
+        if (arg = this.argument(node, 'NestedLiteral')) return this.cleanup(arg, nocased)
+        break
+
+      case 'bibstring':
+        if (arg = this.argument(node, 'Text')) return this.text(arg)
+        break
+
+      case 'cite':
+        if (arg = this.argument(node, 'NestedLiteral')) return this.cleanup(arg, true)
+        break
+
+      case 'textsuperscript':
+        if ((arg = this.argument(node, 'Text')) && (unicode = latex2unicode[`^{${arg}}`])) return this.text(unicode)
+        if (arg = this.argument(node, 'NestedLiteral')) return this.cleanup({...arg, markup: { sup: true } }, nocased)
+        break
+
+      case 'textsubscript':
+        if ((arg = this.argument(node, 'Text')) && (unicode = latex2unicode[`_{${arg}}`])) return this.text(unicode)
+        if (arg = this.argument(node, 'NestedLiteral')) return this.cleanup({...arg, markup: { sub: true } }, nocased)
+        break
+
+      case 'textsc':
+        if (arg = this.argument(node, 'NestedLiteral')) return this.cleanup({...arg, markup: { smallCaps: true } }, nocased)
+        break
+
+      case 'enquote':
+      case 'mkbibquote':
+        if (arg = this.argument(node, 'NestedLiteral')) return this.cleanup({...arg, markup: { enquote: true } }, nocased)
+        break
+
+      case 'textbf':
+      case 'mkbibbold':
+        if (arg = this.argument(node, 'NestedLiteral')) return this.cleanup({...arg, markup: { bold: true } }, nocased)
+        break
+
+      case 'mkbibitalic':
+      case 'mkbibemph':
+      case 'textit':
+      case 'emph':
+        if (arg = this.argument(node, 'NestedLiteral')) return this.cleanup({...arg, markup: { italics: true } }, nocased)
+        break
+
+      case 'bibcyr':
+        if (this.argument(node, 'none')) return this.text()
+        if (arg = this.argument(node, 'NestedLiteral')) return this.cleanup({...arg, markup: {} }, nocased)
+        break
+
+      case 'hspace':
+      case 'mathrm':
+      case 'textrm':
+      case 'ocirc':
+      case 'mbox':
+        if (arg = this.argument(node, 'text')) {
+          unicode = latex2unicode[`\\${node.value}{${arg}}`]
+          return this.text(unicode || (node.value === 'hspace' ? ' ' : arg))
+        } else if (!node.arguments.required.length) {
+          return this.text()
+        } else if (arg = this.argument(node, 'NestedLiteral')) {
+          return this.cleanup({...arg, markup: {} }, nocased)
+        }
+        break
+
+      // just take the URL? Not the label?
+      case 'href':
+        if (arg = this.argument(node, 2)) return this.text(arg[0])
+        break
+
+      case 'url':
+        if (arg = this.argument(node, 'Text')) return this.text(arg)
+        if (arg = this.argument(node, 'NestedLiteral')) return this.cleanup({...arg, markup: {} }, nocased)
+        break
+
+      default:
+        unicode = latex2unicode[`\\${node.value}`] || latex2unicode[`\\${node.value}{}`]
+        if (unicode && this.argument(node, 'none')) return this.text(unicode)
+        if ((arg = this.argument(node, 'Text')) && (unicode = latex2unicode[`\\${node.value}{${arg}}`])) return this.text(unicode)
+        break
+    }
+
+    return this.error(new TeXError('Unhandled command: ' + this.show(node), node, this.chunk), this.text())
+  }
 
   private implicitlyNoCased(word) {
     // word = word.replace(new RegExp(`"[${this.markup.enquote.open}${this.markup.enquote.close}:()]`, 'g'), '')
@@ -1233,14 +1206,14 @@ export function parse(input: string, options: ParserOptions = {}): Bibliography 
   return options.async ? parser.parseAsync(input, { verbatimFields: options.verbatimFields }) : parser.parse(input, { verbatimFields: options.verbatimFields })
 }
 
-export function ast(input: string, options: ParserOptions = {}) {
+export function ast(input: string, options: ParserOptions & { clean?: boolean } = {}) {
   const parser = new Parser({
     caseProtect: options.caseProtect,
     sentenceCase: options.sentenceCase,
     markup: options.markup,
     errorHandler: options.errorHandler,
   })
-  return parser.ast(input, { verbatimFields: options.verbatimFields })
+  return parser.ast(input, { clean: options.clean, verbatimFields: options.verbatimFields })
 }
 
 export { parse as chunker } from './chunker'
