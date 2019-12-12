@@ -75,7 +75,7 @@ const charClass = {
 const implicitlyNoCased = {
   leadingCap: new RegExp(`^[${charClass.Lu}][${charClass.LnotLu}]+[${charClass.P}]?$`),
   allCaps: new RegExp(`^${charClass.Lu}{2,}$`),
-  joined: new RegExp(`^[${charClass.Lu}][${charClass.LnotLu}]*(-[${charClass.L}${charClass.N}]+)*[${charClass.P}]*$`),
+  joined: new RegExp(`^[${charClass.Lu}][${charClass.LnotLu}]*([-+][${charClass.L}${charClass.N}]+)*[${charClass.P}]*$`),
   hasUppercase: new RegExp(`[${charClass.Lu}]`),
   isNumber: /^[0-9]+$/,
   isAlphaNum: new RegExp(`[${charClass.Lu}${charClass.LnotLu}]`),
@@ -511,7 +511,9 @@ class Parser {
 
   private show(o) {
     // tslint:disable-next-line prefer-template
-    return JSON.stringify(o) + '\n' + this.chunk.trim()
+    let text = JSON.stringify(o)
+    if (this.chunk) text += '\n' + this.chunk.trim()
+    return text
   }
 
   private text(value = '') {
@@ -730,7 +732,6 @@ class Parser {
 
     } else if (node.value.length && node.value[0].kind === 'Text') {
       const value = (node.value[0] as bibtex.TextValue).value.trim()
-      if (value.includes("'De")) console.log(value) // tslint:disable-line no-console
       const words = value.trim().split(/\s+/)
       const simpleWord = words.find(word => !this.implicitlyNoCased(word))
       if (!simpleWord) {
@@ -781,7 +782,7 @@ class Parser {
             kind: 'NestedLiteral',
             exemptFromSentenceCase: true,
             markup: {},
-            value: [ arg[0], this.text('/'), arg[1] ],
+            value: [ this.text(arg[0]), this.text('/'), this.text(arg[1]) ],
           }, nocased)
         }
         break
@@ -792,8 +793,8 @@ class Parser {
       case 'path':
       case 'aftergroup':
       case 'ignorespaces':
-      case 'noopsort':
       case 'relax':
+      case 'noopsort':
         return this.text()
 
       case 'ElsevierGlyph':
@@ -805,11 +806,12 @@ class Parser {
 
       case 'chsf':
         if (this.argument(node, 'none')) return this.text()
-        if (arg = this.argument(node, 'NestedLiteral')) return this.cleanup(arg, nocased)
+        // a bit cheaty to assume chsf to be nocased, but it's just more likely to be what people want
+        if (arg = this.argument(node, 'NestedLiteral')) return this.cleanup(arg, true)
         break
 
       case 'bibstring':
-        if (arg = this.argument(node, 'NestedLiteral')) return this.cleanup(arg, nocased)
+        if (arg = this.argument(node, 'NestedLiteral')) return this.cleanup(arg, true)
         break
 
       case 'cite':
