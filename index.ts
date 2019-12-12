@@ -70,6 +70,7 @@ const charClass = {
   P: charCategories.find(cat => cat.alias === 'Punctuation').bmp,
   L: charCategories.find(cat => cat.alias === 'Letter').bmp,
   N: charCategories.filter(cat => ['Decimal_Number', 'Letter_Number'].includes(cat.alias)).map(cat => cat.bmp).join(''),
+  AlphaNum: charCategories.filter(cat => ['Letter', 'Decimal_Number', 'Letter_Number'].includes(cat.alias)).map(cat => cat.bmp).join(''),
 }
 
 const implicitlyNoCased = {
@@ -78,7 +79,8 @@ const implicitlyNoCased = {
   joined: new RegExp(`^[${charClass.Lu}][${charClass.LnotLu}]*([-+][${charClass.L}${charClass.N}]+)*[${charClass.P}]*$`),
   hasUppercase: new RegExp(`[${charClass.Lu}]`),
   isNumber: /^[0-9]+$/,
-  isAlphaNum: new RegExp(`[${charClass.Lu}${charClass.LnotLu}]`),
+  hasAlphaNum: new RegExp(`[${charClass.AlphaNum}]`),
+  notAlphaNum: new RegExp(`[^${charClass.AlphaNum}]`, 'g'),
 }
 
 const marker = {
@@ -159,7 +161,7 @@ type FieldBuilder = {
     lowercase: number
     other: number
   }
-  exemptFromSentenceCase: Array<{ start: number, end: number }>
+  exemptRangesFromSentenceCase: Array<{ start: number, end: number }>
 }
 
 /**
@@ -471,7 +473,7 @@ class Parser {
           lowercase: 0,
           other: 0,
         },
-        exemptFromSentenceCase: null,
+        exemptRangesFromSentenceCase: null,
       }
       this.convert(value)
       strings[key] = this.field.text
@@ -892,9 +894,10 @@ class Parser {
   private implicitlyNoCased(word) {
     // word = word.replace(new RegExp(`"[${this.markup.enquote.open}${this.markup.enquote.close}:()]`, 'g'), '')
 
-    if (!word.match(implicitlyNoCased.isAlphaNum)) return true
+    if (!word.match(implicitlyNoCased.hasAlphaNum)) return true
 
     word = word.replace(/['”:()]/g, '')
+    // word = word.replace(implicitlyNoCased.notAlphaNum, '')
     if (word.match(implicitlyNoCased.leadingCap)) return false
     if (word.match(implicitlyNoCased.allCaps)) return false
     if (word.length > 1 && word.match(implicitlyNoCased.joined)) return false
@@ -914,14 +917,14 @@ class Parser {
 
     const exemptFromSentenceCase = (
       typeof start === 'number'
-      && this.field.exemptFromSentenceCase
+      && this.field.exemptRangesFromSentenceCase
       && (
         node.exemptFromSentenceCase
         ||
         (node.markup && node.markup.caseProtect)
       )
     )
-    if (exemptFromSentenceCase) this.field.exemptFromSentenceCase.push({ start, end: this.field.text.length })
+    if (exemptFromSentenceCase) this.field.exemptRangesFromSentenceCase.push({ start, end: this.field.text.length })
   }
 
   protected convert_BracedComment(node: bibtex.BracedComment) {
@@ -1062,7 +1065,7 @@ class Parser {
           lowercase: 0,
           other: 0,
         },
-        exemptFromSentenceCase: (sentenceCase && fields.title.includes(prop.key)) ? [] : null,
+        exemptRangesFromSentenceCase: (sentenceCase && fields.title.includes(prop.key)) ? [] : null,
       }
 
       this.entry.fields[this.field.name] = this.entry.fields[this.field.name] || []
@@ -1103,8 +1106,8 @@ class Parser {
         }
 
       } else {
-        if (this.field.words.lowercase > this.field.words.other) this.field.exemptFromSentenceCase = null
-        this.entry.fields[this.field.name].push(this.convertToSentenceCase(this.field.text, this.field.exemptFromSentenceCase))
+        if (this.field.words.lowercase > this.field.words.other) this.field.exemptRangesFromSentenceCase = null
+        this.entry.fields[this.field.name].push(this.convertToSentenceCase(this.field.text, this.field.exemptRangesFromSentenceCase))
 
       }
     }
@@ -1148,10 +1151,10 @@ class Parser {
       return
     }
 
-    if (this.field.exemptFromSentenceCase) {
+    if (this.field.exemptRangesFromSentenceCase) {
       const words = node.value.split(/(\s+)/)
       for (const word of words) {
-        if (this.implicitlyNoCased(word)) this.field.exemptFromSentenceCase.push({ start: this.field.text.length, end: this.field.text.length + word.length })
+        if (this.implicitlyNoCased(word)) this.field.exemptRangesFromSentenceCase.push({ start: this.field.text.length, end: this.field.text.length + word.length })
         this.field.text += word
       }
       return
