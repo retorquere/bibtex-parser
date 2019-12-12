@@ -1,6 +1,6 @@
 import * as bibtex from './grammar'
 // Set instead of {} because we need insertion order remembered
-type RichNestedLiteral = bibtex.NestedLiteral & { markup: Record<string, boolean>, exemptFromSentenceCase?: boolean }
+type RichNestedLiteral = bibtex.NestedLiteral & { markup: Record<string, boolean>, preserveCase?: boolean }
 
 import { parse as chunker } from './chunker'
 import { latex as latex2unicode } from 'unicode2latex'
@@ -73,7 +73,7 @@ const charClass = {
   AlphaNum: charCategories.filter(cat => ['Letter', 'Decimal_Number', 'Letter_Number'].includes(cat.alias)).map(cat => cat.bmp).join(''),
 }
 
-const implicitlyNoCased = {
+const preserveCase = {
   leadingCap: new RegExp(`^[${charClass.Lu}][${charClass.LnotLu}]+[${charClass.P}]?$`),
   allCaps: new RegExp(`^${charClass.Lu}{2,}$`),
   joined: new RegExp(`^[${charClass.Lu}][${charClass.LnotLu}]*([-+][${charClass.L}${charClass.N}]+)*[${charClass.P}]*$`),
@@ -161,7 +161,7 @@ type FieldBuilder = {
     lowercase: number
     other: number
   }
-  exemptRangesFromSentenceCase: Array<{ start: number, end: number }>
+  preserveRanges: Array<{ start: number, end: number }>
 }
 
 /**
@@ -473,7 +473,7 @@ class Parser {
           lowercase: 0,
           other: 0,
         },
-        exemptRangesFromSentenceCase: null,
+        preserveRanges: null,
       }
       this.convert(value)
       strings[key] = this.field.text
@@ -557,7 +557,7 @@ class Parser {
         if (node.markup) {
           delete node.markup.caseProtect
           node.markup[markup[child.value]] = true
-          if (markup[child.value] === 'smallCaps') node.exemptFromSentenceCase = true
+          if (markup[child.value] === 'smallCaps') node.preserveCase = true
         }
         return false
       }
@@ -566,7 +566,7 @@ class Parser {
     })
 
     // apply cleaning to resulting children
-    node.value = node.value.map(child => this.cleanup(child, nocased || (node.markup && (node.markup.caseProtect || node.exemptFromSentenceCase))))
+    node.value = node.value.map(child => this.cleanup(child, nocased || node.markup?.caseProtect || node.preserveCase))
 
     // condense text nodes to make whole words for sentence casing
     node.value = node.value.reduce((acc, child) => {
@@ -660,7 +660,7 @@ class Parser {
     // if the string isn't found, add it as-is but exempt it from sentence casing
     return {
       kind: 'String',
-      exemptFromSentenceCase: !_string,
+      preserveCase: !_string,
       value: this.cleanup(_string ? JSON.parse(JSON.stringify(_string)) : [ this.text(node.value) ], nocased),
     }
   }
@@ -677,7 +677,7 @@ class Parser {
     // because this was abused so much, many processors ignore second-level too
     if (fields.title.concat(fields.unnest).includes(node.key) && node.value.length === 1 && node.value[0].kind === 'NestedLiteral') {
       (node.value[0] as RichNestedLiteral).markup = {};
-      (node.value[0] as RichNestedLiteral).exemptFromSentenceCase = true
+      (node.value[0] as RichNestedLiteral).preserveCase = true
     }
 
     this.condense(node, [ 'url', 'doi', 'file', 'files', 'eprint', 'verba', 'verbb', 'verbc' ].includes(node.key) || !this.caseProtect)
@@ -735,10 +735,10 @@ class Parser {
     } else if (node.value.length && node.value[0].kind === 'Text') {
       const value = (node.value[0] as bibtex.TextValue).value.trim()
       const words = value.trim().split(/\s+/)
-      const simpleWord = words.find(word => !this.implicitlyNoCased(word))
+      const simpleWord = words.find(word => !this.preserveCase(word))
       if (!simpleWord) {
         delete node.markup.caseProtect
-        node.exemptFromSentenceCase = true
+        node.preserveCase = true
       }
     }
 
@@ -782,7 +782,7 @@ class Parser {
           // not a spectactular solution but what ya gonna do.
           return this.cleanup({
             kind: 'NestedLiteral',
-            exemptFromSentenceCase: true,
+            preserveCase: true,
             markup: {},
             value: [ this.text(arg[0]), this.text('/'), this.text(arg[1]) ],
           }, nocased)
@@ -891,18 +891,18 @@ class Parser {
     return this.error(new TeXError('Unhandled command: ' + this.show(node), node, this.chunk), this.text())
   }
 
-  private implicitlyNoCased(word) {
+  private preserveCase(word) {
     // word = word.replace(new RegExp(`"[${this.markup.enquote.open}${this.markup.enquote.close}:()]`, 'g'), '')
 
-    if (!word.match(implicitlyNoCased.hasAlphaNum)) return true
+    if (!word.match(preserveCase.hasAlphaNum)) return true
 
     word = word.replace(/['”:()]/g, '')
-    // word = word.replace(implicitlyNoCased.notAlphaNum, '')
-    if (word.match(implicitlyNoCased.leadingCap)) return false
-    if (word.match(implicitlyNoCased.allCaps)) return false
-    if (word.length > 1 && word.match(implicitlyNoCased.joined)) return false
-    if (word.match(implicitlyNoCased.hasUppercase)) return true
-    if (word.match(implicitlyNoCased.isNumber)) return true
+    // word = word.replace(preserveCase.notAlphaNum, '')
+    if (word.match(preserveCase.leadingCap)) return false
+    if (word.match(preserveCase.allCaps)) return false
+    if (word.length > 1 && word.match(preserveCase.joined)) return false
+    if (word.match(preserveCase.hasUppercase)) return true
+    if (word.match(preserveCase.isNumber)) return true
     return false
   }
 
@@ -915,16 +915,12 @@ class Parser {
 
     this['convert_' + node.kind](node)
 
-    const exemptFromSentenceCase = (
+    const preserve = (
       typeof start === 'number'
-      && this.field.exemptRangesFromSentenceCase
-      && (
-        node.exemptFromSentenceCase
-        ||
-        (node.markup && node.markup.caseProtect)
-      )
+      && this.field.preserveRanges
+      && (node.preserveCase || (node.markup?.caseProtect))
     )
-    if (exemptFromSentenceCase) this.field.exemptRangesFromSentenceCase.push({ start, end: this.field.text.length })
+    if (preserve) this.field.preserveRanges.push({ start, end: this.field.text.length })
   }
 
   protected convert_BracedComment(node: bibtex.BracedComment) {
@@ -1065,7 +1061,7 @@ class Parser {
           lowercase: 0,
           other: 0,
         },
-        exemptRangesFromSentenceCase: (sentenceCase && fields.title.includes(prop.key)) ? [] : null,
+        preserveRanges: (sentenceCase && fields.title.includes(prop.key)) ? [] : null,
       }
 
       this.entry.fields[this.field.name] = this.entry.fields[this.field.name] || []
@@ -1106,8 +1102,8 @@ class Parser {
         }
 
       } else {
-        if (this.field.words.lowercase > this.field.words.other) this.field.exemptRangesFromSentenceCase = null
-        this.entry.fields[this.field.name].push(this.convertToSentenceCase(this.field.text, this.field.exemptRangesFromSentenceCase))
+        if (this.field.words.lowercase > this.field.words.other) this.field.preserveRanges = null
+        this.entry.fields[this.field.name].push(this.convertToSentenceCase(this.field.text, this.field.preserveRanges))
 
       }
     }
@@ -1115,11 +1111,11 @@ class Parser {
     this.field = null
   }
 
-  private convertToSentenceCase(text, exemptions) {
-    if (!exemptions) return text
+  private convertToSentenceCase(text, preserve) {
+    if (!preserve) return text
 
     let sentenceCased = text.toLowerCase().replace(/(([\?!]\s*|^)([\'\"¡¿“‘„«\s]+)?[^\s])/g, x => x.toUpperCase())
-    for (const { start, end } of exemptions) {
+    for (const { start, end } of preserve) {
       sentenceCased = sentenceCased.substring(0, start) + text.substring(start, end) + sentenceCased.substring(end)
     }
     return sentenceCased
@@ -1151,10 +1147,10 @@ class Parser {
       return
     }
 
-    if (this.field.exemptRangesFromSentenceCase) {
+    if (this.field.preserveRanges) {
       const words = node.value.split(/(\s+)/)
       for (const word of words) {
-        if (this.implicitlyNoCased(word)) this.field.exemptRangesFromSentenceCase.push({ start: this.field.text.length, end: this.field.text.length + word.length })
+        if (this.preserveCase(word)) this.field.preserveRanges.push({ start: this.field.text.length, end: this.field.text.length + word.length })
         this.field.text += word
       }
       return
