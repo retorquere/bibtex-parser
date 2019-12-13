@@ -1,12 +1,16 @@
 // tslint:disable no-console
 
+import * as failFast from '@retorquere/jasmine-fail-fast'
+if (JSON.parse(process.env.npm_config_argv).original.includes('--bail')) {
+  const jasmineEnv = (jasmine as any).getEnv()
+  jasmineEnv.addReporter(failFast.init())
+}
+
 const fs = require('fs')
 const path = require('path')
 require('jest-specific-snapshot')
 
 import * as bibtex from '../index'
-// import * as jabref from '../jabref'
-
 const snaps = path.join(__dirname, '__snapshots__')
 
 const enable = {
