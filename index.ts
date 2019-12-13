@@ -71,6 +71,7 @@ const charClass = {
   L: charCategories.find(cat => cat.alias === 'Letter').bmp,
   N: charCategories.filter(cat => ['Decimal_Number', 'Letter_Number'].includes(cat.alias)).map(cat => cat.bmp).join(''),
   AlphaNum: charCategories.filter(cat => ['Letter', 'Decimal_Number', 'Letter_Number'].includes(cat.alias)).map(cat => cat.bmp).join(''),
+  LC: charCategories.find(cat => cat.alias === 'Cased_Letter').bmp,
 }
 
 const preserveCase = {
@@ -82,6 +83,8 @@ const preserveCase = {
   hasAlphaNum: new RegExp(`[${charClass.AlphaNum}]`),
   notAlphaNum: new RegExp(`[^${charClass.AlphaNum}]`, 'g'),
   sentenceStart: new RegExp(`(^|([;:?!]\\s+))[${charClass.Lu}]`, 'g'),
+  nonCased: new RegExp(`[^${charClass.LC}]`),
+  quoted: /"[^"]+"/g,
 }
 
 const marker = {
@@ -901,8 +904,12 @@ class Parser {
 
     word = word.replace(/[\/’'”:()]/g, '')
     if (word.length === 1) return false
+    if (word.replace(preserveCase.nonCased) === '') return false
     // word = word.replace(preserveCase.notAlphaNum, '')
-    if (word.match(preserveCase.leadingCap)) return false
+
+    // simple cap at start of field
+    if (word.match(preserveCase.leadingCap) && this.field?.text?.length === 0) return false
+
     if (word.match(preserveCase.allCaps)) return false
     if (word.length > 1 && word.match(preserveCase.joined)) return false
     if (word.match(preserveCase.hasUppercase)) return true
@@ -1154,10 +1161,14 @@ class Parser {
     if (this.field.preserveRanges) {
       const words = node.value.split(/(\s+)/)
 
+      let match
       preserveCase.sentenceStart.lastIndex = 0
-      let sentenceStart
-      while ((sentenceStart = preserveCase.sentenceStart.exec(node.value))) {
-        this.field.preserveRanges.push({ start: this.field.text.length + sentenceStart.index, end: this.field.text.length + sentenceStart.index + sentenceStart[0].length })
+      while ((match = preserveCase.sentenceStart.exec(node.value))) {
+        this.field.preserveRanges.push({ start: this.field.text.length + match.index, end: this.field.text.length + match.index + match[0].length })
+      }
+      preserveCase.quoted.lastIndex = 0
+      while ((match = preserveCase.quoted.exec(node.value))) {
+        this.field.preserveRanges.push({ start: this.field.text.length + match.index, end: this.field.text.length + match.index + match[0].length })
       }
 
       for (const word of words) {
