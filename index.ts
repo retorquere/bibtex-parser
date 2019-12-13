@@ -81,6 +81,7 @@ const preserveCase = {
   isNumber: /^[0-9]+$/,
   hasAlphaNum: new RegExp(`[${charClass.AlphaNum}]`),
   notAlphaNum: new RegExp(`[^${charClass.AlphaNum}]`, 'g'),
+  sentenceStart: new RegExp(`(^|([;:?!]\\s+))[${charClass.Lu}]`, 'g'),
 }
 
 const marker = {
@@ -896,7 +897,10 @@ class Parser {
 
     if (!word.match(preserveCase.hasAlphaNum)) return true
 
-    word = word.replace(/['”:()]/g, '')
+    if (word === 'I') return true
+
+    word = word.replace(/[\/’'”:()]/g, '')
+    if (word.length === 1) return false
     // word = word.replace(preserveCase.notAlphaNum, '')
     if (word.match(preserveCase.leadingCap)) return false
     if (word.match(preserveCase.allCaps)) return false
@@ -1149,10 +1153,18 @@ class Parser {
 
     if (this.field.preserveRanges) {
       const words = node.value.split(/(\s+)/)
+
+      preserveCase.sentenceStart.lastIndex = 0
+      let sentenceStart
+      while ((sentenceStart = preserveCase.sentenceStart.exec(node.value))) {
+        this.field.preserveRanges.push({ start: this.field.text.length + sentenceStart.index, end: this.field.text.length + sentenceStart.index + sentenceStart[0].length })
+      }
+
       for (const word of words) {
         if (this.preserveCase(word)) this.field.preserveRanges.push({ start: this.field.text.length, end: this.field.text.length + word.length })
         this.field.text += word
       }
+
       return
     }
 
