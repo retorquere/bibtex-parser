@@ -66,6 +66,7 @@ class Tracer {
 import charCategories = require('xregexp/tools/output/categories')
 const charClass = {
   Lu: charCategories.filter(cat => ['Uppercase_Letter', 'Titlecase_Letter'].includes(cat.alias)).map(cat => cat.bmp).join(''),
+  Ll: charCategories.find(cat => cat.alias === 'Lowercase_Letter').bmp,
   LnotLu: charCategories.filter(cat => ['Lowercase_Letter', 'Modifier_Letter', 'Other_Letter', 'Nonspacing_Mark', 'Spacing_Mark', 'Decimal_Number', 'Letter_Number'].includes(cat.alias)).map(cat => cat.bmp).join(''),
   P: charCategories.find(cat => cat.alias === 'Punctuation').bmp,
   L: charCategories.find(cat => cat.alias === 'Letter').bmp,
@@ -76,15 +77,18 @@ const charClass = {
 
 const preserveCase = {
   leadingCap: new RegExp(`^[${charClass.Lu}][${charClass.LnotLu}]+[${charClass.P}]?$`),
-  allCaps: new RegExp(`^${charClass.Lu}{2,}$`),
+  allCaps: new RegExp(`^[${charClass.Lu}${charClass.N}]{2,}$`),
+  allLower: new RegExp(`^[${charClass.Ll}${charClass.N}]{2,}$`),
   joined: new RegExp(`^[${charClass.Lu}][${charClass.LnotLu}]*([-+][${charClass.L}${charClass.N}]+)*[${charClass.P}]*$`),
   hasUppercase: new RegExp(`[${charClass.Lu}]`),
   isNumber: /^[0-9]+$/,
+  hasAlpha: new RegExp(`[${charClass.L}]`),
   hasAlphaNum: new RegExp(`[${charClass.AlphaNum}]`),
   notAlphaNum: new RegExp(`[^${charClass.AlphaNum}]`, 'g'),
-  sentenceStart: new RegExp(`(^|([;:?!]\\s+))[${charClass.Lu}]`, 'g'),
+  sentenceStart: new RegExp(`(^|([;:?!.]\\s+))[${charClass.Lu}]`, 'g'),
   nonCased: new RegExp(`[^${charClass.LC}]`),
-  quoted: /"[^"]+"/g,
+  hasCased: new RegExp(`[${charClass.LC}]`),
+  quoted: /("[^"]+")|(“[^“]+“)/g,
 }
 
 const marker = {
@@ -162,10 +166,11 @@ type FieldBuilder = {
   text: string
   level: number
   words: {
-    lowercase: number
+    cased: number
     other: number
   }
   preserveRanges: Array<{ start: number, end: number }>
+  mathStart: number
 }
 
 /**
@@ -474,10 +479,11 @@ class Parser {
         text: '',
         level: 0,
         words: {
-          lowercase: 0,
+          cased: 0,
           other: 0,
         },
         preserveRanges: null,
+        mathStart: null,
       }
       this.convert(value)
       strings[key] = this.field.text
@@ -736,11 +742,16 @@ class Parser {
     if (node.value.length && ['RegularCommand', 'DiacriticCommand'].includes(node.value[0].kind)) {
       delete node.markup.caseProtect
 
+    } else if (node.value.length && node.value[0].kind === 'MathMode' && node.value[node.value.length - 1].kind === 'MathMode' && node.value.filter(n => n.kind === 'MathMode').length === 2) {
+      // braced around math mode, really unnecesary
+      delete node.markup.caseProtect
+
     } else if (node.value.length && node.value[0].kind === 'Text') {
       const value = (node.value[0] as bibtex.TextValue).value.trim()
       const words = value.trim().split(/\s+/)
-      const simpleWord = words.find(word => !this.preserveCase(word))
-      if (!simpleWord) {
+      // heye: " matches implicit, this can't be right lc
+      const implicitNoCase = !value.match(preserveCase.hasCased) || !words.find(word => !word.match(preserveCase.hasUppercase) && !word.match(preserveCase.isNumber))
+      if (implicitNoCase) {
         delete node.markup.caseProtect
         node.preserveCase = true
       }
@@ -910,7 +921,7 @@ class Parser {
     // simple cap at start of field
     if (word.match(preserveCase.leadingCap) && this.field?.text?.length === 0) return false
 
-    if (word.match(preserveCase.allCaps)) return false
+    if (word.match(preserveCase.allCaps)) return true
     if (word.length > 1 && word.match(preserveCase.joined)) return false
     if (word.match(preserveCase.hasUppercase)) return true
     if (word.match(preserveCase.isNumber)) return true
@@ -1069,10 +1080,11 @@ class Parser {
         text: '',
         level: 0,
         words: {
-          lowercase: 0,
+          cased: 0,
           other: 0,
         },
         preserveRanges: (sentenceCase && fields.title.includes(prop.key)) ? [] : null,
+        mathStart: null,
       }
 
       this.entry.fields[this.field.name] = this.entry.fields[this.field.name] || []
@@ -1113,10 +1125,23 @@ class Parser {
         }
 
       } else {
-        if (this.field.words.lowercase > this.field.words.other) this.field.preserveRanges = null
+        if (this.field.preserveRanges) {
+          let match
+          preserveCase.sentenceStart.lastIndex = 0
+          while ((match = preserveCase.sentenceStart.exec(this.field.text))) {
+            this.field.preserveRanges.push({ start: match.index, end: match.index + match[0].length })
+          }
+          preserveCase.quoted.lastIndex = 0
+          while ((match = preserveCase.quoted.exec(this.field.text))) {
+            this.field.preserveRanges.push({ start: match.index, end: match.index + match[0].length })
+          }
+        }
+
+        if (this.field.words.cased > this.field.words.other) this.field.preserveRanges = null
         this.entry.fields[this.field.name].push(this.convertToSentenceCase(this.field.text, this.field.preserveRanges))
 
       }
+
     }
 
     this.field = null
@@ -1124,6 +1149,8 @@ class Parser {
 
   private convertToSentenceCase(text, preserve) {
     if (!preserve) return text
+
+    preserve.push({start: 0, end: 1}) // always keep the leading char
 
     let sentenceCased = text.toLowerCase().replace(/(([\?!]\s*|^)([\'\"¡¿“‘„«\s]+)?[^\s])/g, x => x.toUpperCase())
     for (const { start, end } of preserve) {
@@ -1140,13 +1167,21 @@ class Parser {
     node.value = node.value.replace(/``/g, this.markup.enquote.open).replace(/''/g, this.markup.enquote.close)
 
     // heuristic to detect pre-sentencecased text
+    const cased = {
+      upper: 0,
+      lower: 0,
+    }
     for (const word of node.value.split(/\b/)) {
-      if (word.match(/^[a-z0-9]+$/)) {
-        this.field.words.lowercase++
-      } else if (word.match(/[a-z]/i)) {
+      if (word.match(preserveCase.allLower)) {
+        cased.lower++
+      } else if (word.match(preserveCase.allCaps)) {
+        cased.upper++
+      } else if (word.match(preserveCase.hasAlpha)) {
         this.field.words.other++
       }
     }
+    this.field.words.cased = (cased.lower > cased.upper) ? cased.lower : cased.upper
+    this.field.words.other += (cased.lower > cased.upper) ? cased.upper : cased.lower
 
     if (this.field.level === 0 && this.field.creator) {
       this.field.text += node.value.replace(/\s+and\s+/ig, marker.and).replace(/\s*,\s*/g, marker.comma).replace(/\s+/g, marker.space)
@@ -1160,29 +1195,25 @@ class Parser {
 
     if (this.field.preserveRanges) {
       const words = node.value.split(/(\s+)/)
-
-      let match
-      preserveCase.sentenceStart.lastIndex = 0
-      while ((match = preserveCase.sentenceStart.exec(node.value))) {
-        this.field.preserveRanges.push({ start: this.field.text.length + match.index, end: this.field.text.length + match.index + match[0].length })
-      }
-      preserveCase.quoted.lastIndex = 0
-      while ((match = preserveCase.quoted.exec(node.value))) {
-        this.field.preserveRanges.push({ start: this.field.text.length + match.index, end: this.field.text.length + match.index + match[0].length })
-      }
-
       for (const word of words) {
         if (this.preserveCase(word)) this.field.preserveRanges.push({ start: this.field.text.length, end: this.field.text.length + word.length })
         this.field.text += word
       }
-
-      return
+    } else {
+      this.field.text += node.value
     }
 
-    this.field.text += node.value
   }
 
-  protected convert_MathMode(node: bibtex.MathMode) { return }
+  protected convert_MathMode(node: bibtex.MathMode) {
+    if (typeof this.field.mathStart === 'number') {
+      if (this.field.preserveRanges) this.field.preserveRanges.push({ start: this.field.mathStart, end: this.field.text.length })
+      this.field.mathStart = null
+    } else {
+      this.field.mathStart = this.field.text.length + 1
+    }
+  }
+
   protected convert_PreambleExpression(node: bibtex.PreambleExpression) { return }
   protected convert_StringExpression(node: bibtex.StringExpression) { return }
 
