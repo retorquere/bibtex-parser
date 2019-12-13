@@ -32,59 +32,54 @@ const ignoreErrors = {
 }
 
 describe('BibTeX Parser', () => {
-  /*
-  it('should parse sample2', () => {
-    expect(parse(fs.readFileSync('sample2.bib', 'utf-8'))).toMatchSnapshot()
-  })
-  */
-
   let root = path.join(__dirname, 'cases')
-  for (const f of fs.readdirSync(root).sort()) {
+  const cases: { caseName: string, input: string }[] = []
+
+  for (const f of fs.readdirSync(root)) {
     if (!f.replace(/(la)?tex$/, '').endsWith('.bib')) continue
     if (enable.case && !f.toLowerCase().includes(enable.case)) continue
 
-    const caseName = path.basename(f)
-
-    const input = fs.readFileSync(path.join(root, f), 'utf-8')
-    if (enable.ast) {
-      it(`should parse ${caseName} to an AST`, () => {
-        (expect(bibtex.ast(input, f === 'long.bib' ? ignoreErrors : {})) as any).toMatchSpecificSnapshot(path.join(snaps, caseName + '.ast.shot'))
-      })
-    }
-
-    if (enable.zotero) {
-      it(`should parse ${caseName}`, () => {
-        (expect(bibtex.parse(input, f === 'long.bib' ? ignoreErrors : {})) as any).toMatchSpecificSnapshot(path.join(snaps, caseName + '.shot'))
-      })
-    }
+    cases.push({
+      caseName: path.basename(f),
+      input: path.join(root, f),
+    })
   }
 
   for (const mode of ['export', 'import']) {
     root = path.join(__dirname, 'better-bibtex', mode)
-    for (const f of fs.readdirSync(root).sort()) {
+    for (const f of fs.readdirSync(root)) {
       if (!f.replace(/(la)?tex$/, '').endsWith('.bib')) continue
 
       if (!enable.big && big.find(s => f.includes(s))) continue
 
       if (enable.case && !f.toLowerCase().includes(enable.case)) continue
 
-      const caseName = `bbt-${mode}-${path.basename(f)}`
+      cases.push({
+        caseName: `bbt-${mode}-${path.basename(f)}`,
+        input: path.join(root, f),
+      })
+    }
+  }
 
-      const input = fs.readFileSync(path.join(root, f), 'utf-8')
+  cases.sort(function(a, b) {
+    return fs.statSync(a.input).size - fs.statSync(b.input).size
+  })
 
-      if (enable.ast) {
-        it(`should parse ${caseName} to an AST`, () => {
-          (expect(bibtex.ast(input)) as any).toMatchSpecificSnapshot(path.join(snaps, caseName + '.ast.shot'))
-        })
-      }
+  for (let {caseName, input} of cases) {
+    const options = input.endsWith('/long.bib') ? ignoreErrors : {}
 
-      if (enable.zotero) {
-        it(`should parse ${caseName}`, () => {
-          (expect(bibtex.parse(input)) as any).toMatchSpecificSnapshot(path.join(snaps, caseName + '.shot'))
-        })
-      }
+    input = fs.readFileSync(input, 'utf-8')
+
+    if (enable.ast) {
+      it(`should parse ${caseName} to an AST`, () => {
+        (expect(bibtex.ast(input, options)) as any).toMatchSpecificSnapshot(path.join(snaps, caseName + '.ast.shot'))
+      })
+    }
+
+    if (enable.zotero) {
+      it(`should parse ${caseName}`, () => {
+        (expect(bibtex.parse(input, options)) as any).toMatchSpecificSnapshot(path.join(snaps, caseName + '.shot'))
+      })
     }
   }
 })
-// const bib = require('./dump/Maintain the JabRef group and subgroup structure when importing a BibTeX db #97-import.json')
-// console.log(jabref.parse(bib.comments))
