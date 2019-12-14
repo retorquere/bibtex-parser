@@ -162,7 +162,6 @@ export interface Entry {
 
 type FieldBuilder = {
   name: string
-  creator: boolean
   text: string
   level: number
   words: {
@@ -362,6 +361,7 @@ class Parser {
   private comments: string[]
   private entries: Entry[]
   private entry: Entry
+  private fieldType: 'title' | 'creator' | 'other'
   private field: FieldBuilder
   private errorHandler: (message: string) => void
   private markup: MarkupMapping
@@ -475,7 +475,6 @@ class Parser {
     for (const [key, value] of Object.entries(this.strings)) {
       this.field = {
         name: '@string',
-        creator: false,
         text: '',
         level: 0,
         words: {
@@ -561,19 +560,21 @@ class Parser {
       verb: 'verbatim',
     }
 
-    node.value = node.value.filter((child, i) => {
-      // handles cases like {\sl ...}, but apply it to the whole block even if they appear in the middle
-      if (child.kind === 'RegularCommand' && markup[child.value] && !child.arguments.required.length) {
-        if (node.markup) {
-          delete node.markup.caseProtect
-          node.markup[markup[child.value]] = true
-          if (markup[child.value] === 'smallCaps') node.preserveCase = true
+    if (this.fieldType === 'title') {
+      node.value = node.value.filter((child, i) => {
+        // handles cases like {\sl ...}, but apply it to the whole block even if they appear in the middle
+        if (child.kind === 'RegularCommand' && markup[child.value] && !child.arguments.required.length) {
+          if (node.markup) {
+            delete node.markup.caseProtect
+            node.markup[markup[child.value]] = true
+            if (markup[child.value] === 'smallCaps') node.preserveCase = true
+          }
+          return false
         }
-        return false
-      }
 
-      return true
-    })
+        return true
+      })
+    }
 
     // apply cleaning to resulting children
     node.value = node.value.map(child => this.cleanup(child, nocased || node.markup?.caseProtect || node.preserveCase))
@@ -680,9 +681,20 @@ class Parser {
     return node
   }
 
+  protected setFieldType(field) {
+    if (fields.title.includes(field)) {
+      this.fieldType = 'title'
+    } else if (fields.creator.includes(field)) {
+      this.fieldType = 'creator'
+    } else {
+      this.fieldType = 'other'
+    }
+  }
+
   protected clean_Property(node: bibtex.Property, nocased) {
     // normalize field names to lowercase
     node.key = node.key.toLowerCase()
+    this.setFieldType(node.key)
 
     // because this was abused so much, many processors ignore second-level too
     if (fields.title.concat(fields.unnest).includes(node.key) && node.value.length === 1 && node.value[0].kind === 'NestedLiteral') {
@@ -738,30 +750,32 @@ class Parser {
   protected clean_NestedLiteral(node: RichNestedLiteral, nocased) {
     if (!node.markup) node.markup = nocased ? {} : { caseProtect: true }
 
-    // https://github.com/retorquere/zotero-better-bibtex/issues/541#issuecomment-240156274
-    if (node.value.length && ['RegularCommand', 'DiacriticCommand'].includes(node.value[0].kind)) {
-      delete node.markup.caseProtect
-
-    } else if (node.value.length && node.value[0].kind === 'MathMode' && node.value[node.value.length - 1].kind === 'MathMode' && node.value.filter(n => n.kind === 'MathMode').length === 2) {
-      // braced around math mode, really unnecesary
-      delete node.markup.caseProtect
-
-    } else if (node.value.length && node.value[0].kind === 'Text') {
-      const value = (node.value[0] as bibtex.TextValue).value.trim()
-      const words = value.trim().split(/\s+/)
-      // heye: " matches implicit, this can't be right lc
-      const implicitNoCase = !value.match(preserveCase.hasCased) || !words.find(word => !word.match(preserveCase.hasUppercase) && !word.match(preserveCase.isNumber))
-      if (implicitNoCase) {
+    if (this.fieldType === 'title') {
+      // https://github.com/retorquere/zotero-better-bibtex/issues/541#issuecomment-240156274
+      if (node.value.length && ['RegularCommand', 'DiacriticCommand'].includes(node.value[0].kind)) {
         delete node.markup.caseProtect
-        node.preserveCase = true
+
+      } else if (node.value.length && node.value[0].kind === 'MathMode' && node.value[node.value.length - 1].kind === 'MathMode' && node.value.filter(n => n.kind === 'MathMode').length === 2) {
+        // braced around math mode, really unnecesary
+        delete node.markup.caseProtect
+
+      } else if (node.value.length && node.value[0].kind === 'Text') {
+        const value = (node.value[0] as bibtex.TextValue).value.trim()
+        const preserve = value.match(preserveCase.hasCased) && value.match(preserveCase.hasUppercase)
+        if (!preserve) {
+          delete node.markup.caseProtect
+          node.preserveCase = true
+        }
       }
     }
 
     this.condense(node, nocased)
 
-    if (!node.markup.caseProtect && node.value.length && node.value[0].kind === 'RegularCommand') {
-      for (const arg of node.value[0].arguments.required) {
-        if (arg.kind === 'NestedLiteral') delete (arg as RichNestedLiteral).markup.caseProtect
+    if (this.fieldType === 'title') {
+      if (!node.markup.caseProtect && node.value.length && node.value[0].kind === 'RegularCommand') {
+        for (const arg of node.value[0].arguments.required) {
+          if (arg.kind === 'NestedLiteral') delete (arg as RichNestedLiteral).markup.caseProtect
+        }
       }
     }
 
@@ -1004,7 +1018,7 @@ class Parser {
       case 1: // name without commas
         // literal
         if (markerRE.literalName.test(parts[0])) {
-          parsed = { literal: parts[0] }
+          parsed = { literal: parts[0].slice(1, -1) }
 
         } else if (m = parts[0].replace(markerRE.space, ' ').match(prefix)) { // split on prefix
           parsed = {
@@ -1039,11 +1053,8 @@ class Parser {
         }
     }
 
-    for (let [k, v] of Object.entries(parsed)) {
+    for (const [k, v] of Object.entries(parsed)) {
       if (typeof v !== 'string') continue
-
-      // why do people have '{Lastname}, Firstname'?
-      if (markerRE.literalName.test(v)) v = v.replace(markerRE.literal, '"').slice(1, -1)
       parsed[k] = v.replace(markerRE.space, ' ').replace(markerRE.comma, ', ').replace(markerRE.literal, '"').trim()
     }
 
@@ -1073,10 +1084,10 @@ class Parser {
     let sentenceCase = !!this.sentenceCase.length // if sentenceCase is empty, no sentence casing
     for (const prop of node.properties) {
       if (prop.kind !== 'Property') return this.error(new ParserError(`Expected Property, got ${prop.kind}`, node), undefined)
+      this.setFieldType(prop.key)
 
       this.field = {
         name: prop.key,
-        creator: fields.creator.includes(prop.key.toLowerCase()),
         text: '',
         level: 0,
         words: {
@@ -1111,7 +1122,7 @@ class Parser {
           if (text) this.entry.fields[this.field.name].push(text)
         }
 
-      } else if (this.field.creator) {
+      } else if (this.fieldType === 'creator') {
         if (!this.entry.creators[this.field.name]) this.entry.creators[this.field.name] = []
 
         // {M. Halle, J. Bresnan, and G. Miller}
@@ -1183,7 +1194,7 @@ class Parser {
     this.field.words.cased = (cased.lower > cased.upper) ? cased.lower : cased.upper
     this.field.words.other += (cased.lower > cased.upper) ? cased.upper : cased.lower
 
-    if (this.field.level === 0 && this.field.creator) {
+    if (this.field.level === 0 && this.fieldType === 'creator') {
       this.field.text += node.value.replace(/\s+and\s+/ig, marker.and).replace(/\s*,\s*/g, marker.comma).replace(/\s+/g, marker.space)
       return
     }
@@ -1225,12 +1236,16 @@ class Parser {
     const prefix = []
     const postfix = []
 
+    if (this.fieldType === 'other') delete node.markup.caseProtect
+
     // relies on objects remembering insertion order
     for (const markup of Object.keys(node.markup)) {
-      if (markup === 'caseProtect' && this.field.creator) {
-        prefix.push(marker.literal)
-        postfix.unshift(marker.literal)
-        continue
+      if (markup === 'caseProtect') {
+        if (this.fieldType === 'creator') {
+          prefix.push(marker.literal)
+          postfix.unshift(marker.literal)
+          continue
+        }
       }
 
       if (!this.markup[markup]) return this.error(new ParserError(`markup: ${markup}`, node), undefined)

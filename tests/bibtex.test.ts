@@ -33,7 +33,7 @@ const ignoreErrors = {
 
 describe('BibTeX Parser', () => {
   let root = path.join(__dirname, 'cases')
-  const cases: { caseName: string, input: string }[] = []
+  const cases: { caseName: string, input: string, options: any }[] = []
 
   for (const f of fs.readdirSync(root)) {
     if (!f.replace(/(la)?tex$/, '').endsWith('.bib')) continue
@@ -41,7 +41,8 @@ describe('BibTeX Parser', () => {
 
     cases.push({
       caseName: path.basename(f),
-      input: path.join(root, f),
+      input: fs.readFileSync(path.join(root, f), 'utf-8'),
+      options: f.endsWith('/long.bib') ? ignoreErrors : {},
     })
   }
 
@@ -56,20 +57,17 @@ describe('BibTeX Parser', () => {
 
       cases.push({
         caseName: `bbt-${mode}-${path.basename(f)}`,
-        input: path.join(root, f),
+        input: fs.readFileSync(path.join(root, f), 'utf-8'),
+        options: f.endsWith('/long.bib') ? ignoreErrors : {},
       })
     }
   }
 
   cases.sort(function(a, b) {
-    return fs.statSync(a.input).size - fs.statSync(b.input).size
+    return a.input.length - b.input.length
   })
 
-  for (let {caseName, input} of cases) {
-    const options = input.endsWith('/long.bib') ? ignoreErrors : {}
-
-    input = fs.readFileSync(input, 'utf-8')
-
+  for (let {caseName, input, options} of cases) {
     if (enable.ast) {
       it(`should parse ${caseName} to an AST`, () => {
         (expect(bibtex.ast(input, options)) as any).toMatchSpecificSnapshot(path.join(snaps, caseName + '.ast.shot'))
