@@ -75,27 +75,12 @@ const charClass = {
   LC: charCategories.find(cat => cat.alias === 'Cased_Letter').bmp,
 }
 
-const preserveCase = {
-  leadingCap: new RegExp(`^[${charClass.Lu}][${charClass.LnotLu}]+[${charClass.P}]?$`),
-  allCaps: new RegExp(`^[${charClass.Lu}${charClass.N}]{2,}$`),
-  allLower: new RegExp(`^[${charClass.Ll}${charClass.N}]{2,}$`),
-  joined: new RegExp(`^[${charClass.Lu}][${charClass.LnotLu}]*([-+][${charClass.L}${charClass.N}]+)*[${charClass.P}]*$`),
-  hasUppercase: new RegExp(`[${charClass.Lu}]`),
-  isNumber: /^[0-9]+$/,
-  hasAlpha: new RegExp(`[${charClass.L}]`),
-  hasAlphaNum: new RegExp(`[${charClass.AlphaNum}]`),
-  notAlphaNum: new RegExp(`[^${charClass.AlphaNum}]`, 'g'),
-  sentenceStart: new RegExp(`(^|([;:?!.]\\s+))[${charClass.Lu}]`, 'g'),
-  nonCased: new RegExp(`[^${charClass.LC}]`),
-  hasCased: new RegExp(`[${charClass.LC}]`),
-  quoted: /("[^"]+")|(“[^“]+“)/g,
-}
-
 const marker = {
   and: '\u0001',
   comma: '\u0002',
   space: '\u0003',
   literal: '\u0004',
+  markup: '\u0005',
 
   re: {
     and: /./,
@@ -113,6 +98,27 @@ marker.re = {
   literal: new RegExp(marker.literal, 'g'),
 
   literalName: new RegExp(`^${marker.literal}[^${marker.literal}]*${marker.literal}$`),
+}
+
+const preserveCase = {
+  leadingCap: new RegExp(`^[${charClass.Lu}][${charClass.LnotLu}]+[${charClass.P}]?$`),
+  allCaps: new RegExp(`^[${charClass.Lu}${charClass.N}]{2,}$`),
+  allLower: new RegExp(`^[${charClass.Ll}${charClass.N}]{2,}$`),
+  joined: new RegExp(`^[${charClass.Lu}][${charClass.LnotLu}]*([-+][${charClass.L}${charClass.N}]+)*[${charClass.P}]*$`),
+  hasUppercase: new RegExp(`[${charClass.Lu}]`),
+  isNumber: /^[0-9]+$/,
+  hasAlpha: new RegExp(`[${charClass.L}]`),
+  hasAlphaNum: new RegExp(`[${charClass.AlphaNum}]`),
+  notAlphaNum: new RegExp(`[^${charClass.AlphaNum}]`, 'g'),
+  sentenceStart: new RegExp(`(^|([;:?!.]\\s+))[${charClass.Lu}]`, 'g'),
+
+  markup: /<\/?span[^>]*>/g,
+  acronym: new RegExp(`.*[.]${marker.markup}*[${charClass.Lu}]${marker.markup}*[.]$`),
+
+  nonCased: new RegExp(`[^${charClass.LC}]`),
+  hasCased: new RegExp(`[${charClass.LC}]`),
+  quoted: /("[^"]+")|(“[^“]+“)/g,
+
 }
 
 export interface Name {
@@ -1139,15 +1145,20 @@ class Parser {
         }
 
         for (const creator of this.field.text.split(marker.and)) {
-          this.entry.fields[this.field.name].push(creator.replace(marker.re.comma, ', ').replace(marker.re.space, ' ').replace(marker.re.literal, '"'))
+          this.entry.fields[this.field.name].push(creator.replace(marker.re.comma, ', ').replace(marker.re.space, ' ').replace(marker.re.literal, ''))
           this.entry.creators[this.field.name].push(this.parseName(creator))
         }
 
       } else {
         if (this.field.preserveRanges) {
+          const txt = this.field.text.replace(preserveCase.markup, markup => marker.markup.repeat(markup.length))
+
           let match
           preserveCase.sentenceStart.lastIndex = 0
           while ((match = preserveCase.sentenceStart.exec(this.field.text))) {
+            // exclude stuff like "U.S. Taxes"
+            if (match.index > 2 && txt.substr(0, match.index + 1).match(preserveCase.acronym)) continue
+
             this.field.preserveRanges.push({ start: match.index, end: match.index + match[0].length })
           }
           preserveCase.quoted.lastIndex = 0
