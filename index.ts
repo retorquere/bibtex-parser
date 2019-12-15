@@ -110,7 +110,7 @@ const preserveCase = {
   hasAlpha: new RegExp(`[${charClass.L}]`),
   hasAlphaNum: new RegExp(`[${charClass.AlphaNum}]`),
   notAlphaNum: new RegExp(`[^${charClass.AlphaNum}]`, 'g'),
-  sentenceStart: new RegExp(`(^|([;:?!.]\\s+))[${charClass.Lu}]`, 'g'),
+  sentenceStart: new RegExp(`(^|([\u2014:?!.]\\s+))[${charClass.Lu}]`, 'g'),
 
   markup: /<\/?span[^>]*>/g,
   acronym: new RegExp(`.*[.]${marker.markup}*[${charClass.Lu}]${marker.markup}*[.]$`),
