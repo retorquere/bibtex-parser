@@ -96,8 +96,17 @@ const marker = {
   comma: '\u0002',
   space: '\u0003',
   literal: '\u0004',
+
+  re: {
+    and: /./,
+    comma: /./,
+    space: /./,
+    literal: /./,
+
+    literalName: /./,
+  },
 }
-const markerRE = {
+marker.re = {
   and: new RegExp(marker.and, 'g'),
   comma: new RegExp(marker.comma, 'g'),
   space: new RegExp(marker.space, 'g'),
@@ -169,7 +178,6 @@ type FieldBuilder = {
     other: number
   }
   preserveRanges: Array<{ start: number, end: number }>
-  mathStart: number
 }
 
 /**
@@ -472,6 +480,7 @@ class Parser {
   private parsed(): Bibliography {
     this.field = null
     const strings = {}
+    this.fieldType = 'other'
     for (const [key, value] of Object.entries(this.strings)) {
       this.field = {
         name: '@string',
@@ -482,7 +491,6 @@ class Parser {
           other: 0,
         },
         preserveRanges: null,
-        mathStart: null,
       }
       this.convert(value)
       strings[key] = this.field.text
@@ -709,8 +717,6 @@ class Parser {
 
   protected clean_Text(node: bibtex.TextValue, nocased) { return node }
 
-  protected clean_MathMode(node: bibtex.MathMode, nocased) { return node }
-
   private _clean_ScriptCommand(node, nocased) {
     let m, value, singlechar
     // recognize combined forms like \^\circ
@@ -747,16 +753,19 @@ class Parser {
     return this._clean_ScriptCommand(node, nocased)
   }
 
+  protected clean_InlineMath(node: RichNestedLiteral, nocased) {
+    return this.clean_NestedLiteral(node, nocased)
+  }
+  protected clean_DisplayMath(node: RichNestedLiteral, nocased) {
+    return this.clean_NestedLiteral(node, nocased)
+  }
+
   protected clean_NestedLiteral(node: RichNestedLiteral, nocased) {
     if (!node.markup) node.markup = nocased ? {} : { caseProtect: true }
 
     if (this.fieldType === 'title') {
       // https://github.com/retorquere/zotero-better-bibtex/issues/541#issuecomment-240156274
       if (node.value.length && ['RegularCommand', 'DiacriticCommand'].includes(node.value[0].kind)) {
-        delete node.markup.caseProtect
-
-      } else if (node.value.length && node.value[0].kind === 'MathMode' && node.value[node.value.length - 1].kind === 'MathMode' && node.value.filter(n => n.kind === 'MathMode').length === 2) {
-        // braced around math mode, really unnecesary
         delete node.markup.caseProtect
 
       } else if (node.value.length && node.value[0].kind === 'Text') {
@@ -979,7 +988,7 @@ class Parser {
       parsed = {}
 
       for (const part of parts) {
-        const [ attr, value ] = this.splitOnce(part.replace(markerRE.space, ''), '=').map(v => v.trim())
+        const [ attr, value ] = this.splitOnce(part.replace(marker.re.space, ''), '=').map(v => v.trim())
         switch (attr.toLowerCase()) {
           case 'family':
             parsed.lastName = value
@@ -1017,10 +1026,10 @@ class Parser {
 
       case 1: // name without commas
         // literal
-        if (markerRE.literalName.test(parts[0])) {
-          parsed = { literal: parts[0].slice(1, -1) }
+        if (marker.re.literalName.test(parts[0])) {
+          parsed = { literal: parts[0] }
 
-        } else if (m = parts[0].replace(markerRE.space, ' ').match(prefix)) { // split on prefix
+        } else if (m = parts[0].replace(marker.re.space, ' ').match(prefix)) { // split on prefix
           parsed = {
             firstName: m[1],
             prefix: m[2],
@@ -1055,7 +1064,7 @@ class Parser {
 
     for (const [k, v] of Object.entries(parsed)) {
       if (typeof v !== 'string') continue
-      parsed[k] = v.replace(markerRE.space, ' ').replace(markerRE.comma, ', ').replace(markerRE.literal, '"').trim()
+      parsed[k] = v.replace(marker.re.space, ' ').replace(marker.re.comma, ', ').replace(marker.re.literal, '').trim()
     }
 
     return parsed
@@ -1095,7 +1104,6 @@ class Parser {
           other: 0,
         },
         preserveRanges: (sentenceCase && fields.title.includes(prop.key)) ? [] : null,
-        mathStart: null,
       }
 
       this.entry.fields[this.field.name] = this.entry.fields[this.field.name] || []
@@ -1131,7 +1139,7 @@ class Parser {
         }
 
         for (const creator of this.field.text.split(marker.and)) {
-          this.entry.fields[this.field.name].push(creator.replace(markerRE.comma, ', ').replace(markerRE.space, ' ').replace(markerRE.literal, '"'))
+          this.entry.fields[this.field.name].push(creator.replace(marker.re.comma, ', ').replace(marker.re.space, ' ').replace(marker.re.literal, '"'))
           this.entry.creators[this.field.name].push(this.parseName(creator))
         }
 
@@ -1216,15 +1224,6 @@ class Parser {
 
   }
 
-  protected convert_MathMode(node: bibtex.MathMode) {
-    if (typeof this.field.mathStart === 'number') {
-      if (this.field.preserveRanges) this.field.preserveRanges.push({ start: this.field.mathStart, end: this.field.text.length })
-      this.field.mathStart = null
-    } else {
-      this.field.mathStart = this.field.text.length + 1
-    }
-  }
-
   protected convert_PreambleExpression(node: bibtex.PreambleExpression) { return }
   protected convert_StringExpression(node: bibtex.StringExpression) { return }
 
@@ -1232,22 +1231,27 @@ class Parser {
     this.convert(node.value)
   }
 
+  protected convert_DisplayMath(node: RichNestedLiteral) {
+    this.field.text += '\n\n'
+    this.convert_NestedLiteral(node)
+    this.field.text += '\n\n'
+  }
+  protected convert_InlineMath(node: RichNestedLiteral) {
+    this.convert_NestedLiteral(node)
+  }
   protected convert_NestedLiteral(node: RichNestedLiteral) {
     const prefix = []
     const postfix = []
 
     if (this.fieldType === 'other') delete node.markup.caseProtect
+    if (this.fieldType === 'creator' && node.markup.caseProtect) {
+      prefix.push(marker.literal)
+      postfix.unshift(marker.literal)
+      delete node.markup.caseProtect
+    }
 
     // relies on objects remembering insertion order
     for (const markup of Object.keys(node.markup)) {
-      if (markup === 'caseProtect') {
-        if (this.fieldType === 'creator') {
-          prefix.push(marker.literal)
-          postfix.unshift(marker.literal)
-          continue
-        }
-      }
-
       if (!this.markup[markup]) return this.error(new ParserError(`markup: ${markup}`, node), undefined)
       prefix.push(this.markup[markup].open)
       postfix.unshift(this.markup[markup].close)
