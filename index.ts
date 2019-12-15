@@ -118,7 +118,6 @@ const preserveCase = {
   nonCased: new RegExp(`[^${charClass.LC}]`),
   hasCased: new RegExp(`[${charClass.LC}]`),
   quoted: /("[^"]+")|(“[^“]+“)/g,
-
 }
 
 export interface Name {
@@ -594,16 +593,39 @@ class Parser {
     node.value = node.value.map(child => this.cleanup(child, nocased || node.markup?.caseProtect || node.preserveCase))
 
     // condense text nodes to make whole words for sentence casing
-    node.value = node.value.reduce((acc, child) => {
-      const last = acc.length - 1
-      if (acc.length === 0 || child.kind !== 'Text' || acc[last].kind !== 'Text') {
+    node.value = node.value.reduce((acc, child, i) => {
+      if (acc.length === 0) {
         acc.push(child)
-      } else {
-        acc[last].value += child.value
-        acc[last].text += child.text
+        return acc
       }
+
+      const last = acc[acc.length - 1]
+      const next = node.value[i + 1]
+
+      if (this.onlyCaseProtected(last) && child.kind === 'Text' && !child.value.match(preserveCase.hasCased) && this.onlyCaseProtected(next) && (!!last.math == !!next.math)) {
+        last.value.push(child)
+        last.source += child.source
+        return acc
+      }
+
+      if (last.kind === 'NestedLiteral' && child.kind === 'NestedLiteral' && Object.keys(last.markup).sort().join('/') === Object.keys(last.markup).sort().join('/') && (!!last.math == !!child.math)) {
+        last.value = last.value.concat(child.value)
+        last.source += child.source
+        return acc
+      }
+
+      if (last.kind === 'Text' && child.kind === 'Text') {
+        last.value += child.value
+        last.source += child.source
+        return acc
+      }
+
+      acc.push(child)
       return acc
     }, [])
+  }
+  private onlyCaseProtected(node) {
+    return node && node.kind === 'NestedLiteral' && Object.keys(node.markup).join('/') === 'caseProtect'
   }
 
   private argument(node, kind) {
@@ -779,7 +801,7 @@ class Parser {
       } else if (node.value.length && node.value[0].kind === 'Text') {
         const value = (node.value[0] as bibtex.TextValue).value.trim()
         const preserved = !value.match(preserveCase.hasCased) || !value.split(/\s+/).find(word => !word.match(preserveCase.hasUppercase) && !word.match(preserveCase.isNumber))
-        if (preserved) {
+        if (preserved && node.markup.caseProtect) {
           delete node.markup.caseProtect
           node.preserveCase = true
         }
@@ -1171,7 +1193,6 @@ class Parser {
 
         if (this.field.words.cased > this.field.words.other) this.field.preserveRanges = null
         this.entry.fields[this.field.name].push(this.convertToSentenceCase(this.field.text, this.field.preserveRanges))
-
       }
 
     }
