@@ -1,6 +1,6 @@
 import * as bibtex from './grammar'
 // Set instead of {} because we need insertion order remembered
-type RichNestedLiteral = bibtex.NestedLiteral & { markup: Record<string, boolean>, preserveCase?: boolean }
+type RichNestedLiteral = bibtex.NestedLiteral & { markup: Record<string, boolean>, preserveCase?: boolean, math?: true }
 
 import { parse as chunker } from './chunker'
 import { latex as latex2unicode } from 'unicode2latex'
@@ -574,7 +574,7 @@ class Parser {
       verb: 'verbatim',
     }
 
-    if (this.fieldType === 'title') {
+    if (this.fieldType === 'title' && node.kind ) {
       node.value = node.value.filter((child, i) => {
         // handles cases like {\sl ...}, but apply it to the whole block even if they appear in the middle
         if (child.kind === 'RegularCommand' && markup[child.value] && !child.arguments.required.length) {
@@ -760,24 +760,26 @@ class Parser {
   }
 
   protected clean_InlineMath(node: RichNestedLiteral, nocased) {
+    node.math = true
     return this.clean_NestedLiteral(node, nocased)
   }
   protected clean_DisplayMath(node: RichNestedLiteral, nocased) {
+    node.math = true
     return this.clean_NestedLiteral(node, nocased)
   }
 
   protected clean_NestedLiteral(node: RichNestedLiteral, nocased) {
     if (!node.markup) node.markup = nocased ? {} : { caseProtect: true }
 
-    if (this.fieldType === 'title') {
+    if (this.fieldType === 'title' && !node.math) {
       // https://github.com/retorquere/zotero-better-bibtex/issues/541#issuecomment-240156274
       if (node.value.length && ['RegularCommand', 'DiacriticCommand'].includes(node.value[0].kind)) {
         delete node.markup.caseProtect
 
       } else if (node.value.length && node.value[0].kind === 'Text') {
         const value = (node.value[0] as bibtex.TextValue).value.trim()
-        const preserve = value.match(preserveCase.hasCased) && value.match(preserveCase.hasUppercase)
-        if (!preserve) {
+        const preserved = !value.match(preserveCase.hasCased) || !value.split(/\s+/).find(word => !word.match(preserveCase.hasUppercase) && !word.match(preserveCase.isNumber))
+        if (preserved) {
           delete node.markup.caseProtect
           node.preserveCase = true
         }
@@ -786,7 +788,7 @@ class Parser {
 
     this.condense(node, nocased)
 
-    if (this.fieldType === 'title') {
+    if (this.fieldType === 'title' && !node.math) {
       if (!node.markup.caseProtect && node.value.length && node.value[0].kind === 'RegularCommand') {
         for (const arg of node.value[0].arguments.required) {
           if (arg.kind === 'NestedLiteral') delete (arg as RichNestedLiteral).markup.caseProtect
