@@ -608,7 +608,7 @@ class Parser {
         return acc
       }
 
-      if (last.kind === 'NestedLiteral' && child.kind === 'NestedLiteral' && Object.keys(last.markup).sort().join('/') === Object.keys(last.markup).sort().join('/') && (!!last.math == !!child.math)) {
+      if (last.kind === 'NestedLiteral' && child.kind === 'NestedLiteral' && Object.keys(last.markup).sort().join('/') === Object.keys(child.markup).sort().join('/') && (!!last.math == !!child.math)) {
         last.value = last.value.concat(child.value)
         last.source += child.source
         return acc
