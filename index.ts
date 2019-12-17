@@ -602,13 +602,13 @@ class Parser {
       const last = acc[acc.length - 1]
       const next = node.value[i + 1]
 
-      if (this.onlyCaseProtected(last) && child.kind === 'Text' && !child.value.match(preserveCase.hasCased) && this.onlyCaseProtected(next) && (!!last.math == !!next.math)) {
+      if (this.onlyCaseProtected(last) && child.kind === 'Text' && !child.value.match(preserveCase.hasCased) && this.onlyCaseProtected(next)) { // && (!!last.math == !!next.math)) {
         last.value.push(child)
         last.source += child.source
         return acc
       }
 
-      if (last.kind === 'NestedLiteral' && child.kind === 'NestedLiteral' && Object.keys(last.markup).sort().join('/') === Object.keys(child.markup).sort().join('/') && (!!last.math == !!child.math)) {
+      if (last.kind === 'NestedLiteral' && child.kind === 'NestedLiteral' && Object.keys(last.markup).sort().join('/') === Object.keys(child.markup).sort().join('/')) { // && (!!last.math == !!child.math)) {
         last.value = last.value.concat(child.value)
         last.source += child.source
         return acc
@@ -793,9 +793,9 @@ class Parser {
   protected clean_NestedLiteral(node: RichNestedLiteral, nocased) {
     if (!node.markup) node.markup = nocased ? {} : { caseProtect: true }
 
-    if (this.fieldType === 'title' && !node.math) {
+    if (this.fieldType === 'title') {
       // https://github.com/retorquere/zotero-better-bibtex/issues/541#issuecomment-240156274
-      if (node.value.length && ['RegularCommand', 'DiacriticCommand'].includes(node.value[0].kind)) {
+      if (!node.math && node.value.length && ['RegularCommand', 'DiacriticCommand'].includes(node.value[0].kind)) {
         delete node.markup.caseProtect
 
       } else if (node.value.length && node.value[0].kind === 'Text') {
@@ -1274,38 +1274,41 @@ class Parser {
     this.convert_NestedLiteral(node)
   }
   protected convert_NestedLiteral(node: RichNestedLiteral) {
-    const prefix = []
-    const postfix = []
+    let prefix = ''
+    let postfix = ''
 
     if (this.fieldType === 'other') delete node.markup.caseProtect
     if (this.fieldType === 'creator' && node.markup.caseProtect) {
-      prefix.push(marker.literal)
-      postfix.unshift(marker.literal)
+      prefix += marker.literal
+      postfix = marker.literal + postfix
       delete node.markup.caseProtect
     }
 
     // relies on objects remembering insertion order
     for (const markup of Object.keys(node.markup)) {
       if (!this.markup[markup]) return this.error(new ParserError(`markup: ${markup}`, node), undefined)
-      prefix.push(this.markup[markup].open)
-      postfix.unshift(this.markup[markup].close)
+
+      prefix += this.markup[markup].open
+      postfix = this.markup[markup].close + postfix
     }
 
     const end = {
       withoutPrefix: this.field.text.length,
-      withPrefix: 0,
+      withPrefix: this.field.text.length + prefix.length,
     }
-    this.field.text += prefix.join('')
-    end.withPrefix = this.field.text.length
+    this.field.text += prefix
 
     this.field.level++
     this.convert(node.value)
     this.field.level--
 
-    if (this.field.text.length === end.withPrefix) { // nothing was added, so remove prefix
+    const added = this.field.text.substring(end.withPrefix)
+    if (!added) { // nothing was added, so remove prefix
       this.field.text = this.field.text.substring(0, end.withoutPrefix)
+    } else if (prefix === this.markup.caseProtect.open && !added.match(preserveCase.hasCased)) { // something was added that didn't actually need case protecion
+      this.field.text = this.field.text.substring(0, end.withoutPrefix) + added
     } else {
-      this.field.text += postfix.reverse().join('')
+      this.field.text += postfix
     }
 
     this.field.text = this.field.text.replace(/<(sup|sub)>([^<>]+)<\/\1>$/i, (m, mode, chars) => {
