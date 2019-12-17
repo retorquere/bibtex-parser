@@ -64,6 +64,7 @@ describe('BibTeX Parser', () => {
   }
 
   cases.sort(function(a, b) {
+    if (a.input.length === b.input.length) return a.caseName.localeCompare(b.caseName)
     return a.input.length - b.input.length
   })
 
