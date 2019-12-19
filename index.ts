@@ -484,7 +484,7 @@ class Parser {
         },
         preserveRanges: null,
       }
-      this.convert(value)
+      this.convert(this.clean(value))
       strings[key] = this.field.text
     }
     return {
@@ -500,15 +500,13 @@ class Parser {
     if (!options.unnestFields) options.unnestFields = fields.title.concat(fields.unnest)
 
     try {
-      let _ast = bibtex.parse(chunk.text, options)
-      if (_ast.kind !== 'Bibliography') throw new Error(this.show(_ast))
-      _ast = this.clean(_ast)
+      let bib = bibtex.parse(chunk.text, options)
+      if (bib.kind !== 'Bibliography') throw new Error(this.show(bib))
+      bib = this.clean(bib)
 
-      for (const node of _ast.children) {
-        this.convert(node as Node)
-      }
+      bib.children.filter(entry => entry.kind === 'Entry').map(entry => this.convert(entry as bibtex.Entry))
 
-      return _ast
+      return bib
 
     } catch (err) {
       if (!err.location) throw err
@@ -819,7 +817,7 @@ class Parser {
       || latex2unicode[`{\\${node.mark}${char}}`]
       || latex2unicode[`\\${node.mark} ${char}`]
 
-    if (!unicode) return this.error(new TeXError(`Unhandled \\${node.mark}${char}`, node, this.chunk), this.text())
+    if (!unicode) return this.error(new TeXError(`Unhandled \\${node.mark}{${char}}`, node, this.chunk), this.text())
     return this.text(unicode)
   }
 
@@ -936,6 +934,21 @@ class Parser {
         if (arg = this.argument(node, 'Block')) return this.clean(arg)
         break
 
+      case 'sl':
+      case 'em':
+      case 'it':
+      case 'itshape':
+      case 'bf':
+      case 'bfseries':
+      case 'sc':
+      case 'scshape':
+      case 'tt':
+      case 'rm':
+      case 'sf':
+      case 'verb':
+        // handled in the grammar
+        return this.text()
+
       default:
         unicode = latex2unicode[`\\${node.command}`] || latex2unicode[`\\${node.command}{}`]
         if (unicode && this.argument(node, 'none')) return this.text(unicode)
@@ -986,7 +999,7 @@ class Parser {
         break
 
       case 'Text':
-        this.convert_Text(node)
+        this.convert_text(node)
         break
 
       case 'InlineMath':
@@ -1220,7 +1233,7 @@ class Parser {
     this.field.text += `${node.value}`
   }
 
-  private convert_Text(node: bibtex.TextValue) {
+  private convert_text(node: bibtex.TextValue) {
     node.value = node.value.replace(/``/g, this.markup.enquote.open).replace(/''/g, this.markup.enquote.close)
 
     // heuristic to detect pre-sentencecased text

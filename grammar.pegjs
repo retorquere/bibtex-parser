@@ -261,7 +261,9 @@ Field
     }
 
     // because this was abused so much, many processors treat double-outer-braces as single
-    if (unnestFields.includes(field.name) && Array.isArray(v) && v.length === 1 && v.kind === 'Block') field.value = v[0]
+    if (unnestFields.includes(field.name) && Array.isArray(v) && v.length === 1 && v[0].kind === 'Block') {
+      field.value = v[0].value
+    }
 
     return field
   }
@@ -370,14 +372,14 @@ Block
 
     // https://github.com/retorquere/zotero-better-bibtex/issues/541#issuecomment-240156274
     if (cmd) {
-      if (cmdblock) { // command with a block cancels out case protection with containing block
-        delete block.case
-        // if it's a smallcaps block we want to keep this
-        if (cmdblock.case === 'protect') delete cmdblock.case
-      } else if (markup[cmd.command]) { // \sl, \it etc
-        delete block.case
-        block.markup[markup[cmd.command]] = true
-      }
+      delete block.case
+
+      // command with a block cancels out case protection with containing block
+      // if a smallcaps block has set case to 'preserve' we want to keep this
+      if (cmdblock && cmdblock.case === 'protect') delete cmdblock.case
+
+      // \sl, \it etc
+      if (markup[cmd.command]) block.markup[markup[cmd.command]] = true
     }
 
     return block
