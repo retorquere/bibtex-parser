@@ -14,10 +14,10 @@ import * as bibtex from '../index'
 const snaps = path.join(__dirname, '__snapshots__')
 
 const enable = {
-  ast: (process.env.AST || process.env.CI) === 'true',
   zotero: process.env.ZOTERO !== 'false',
   case: (process.env.TESTCASE || '').toLowerCase(),
   big: (process.env.BIG || process.env.CI) === 'true',
+  strict: !!process.env.STRICT
 }
 const big = [
   'Async import, large library #720',
@@ -42,7 +42,7 @@ describe('BibTeX Parser', () => {
     cases.push({
       caseName: path.basename(f),
       input: fs.readFileSync(path.join(root, f), 'utf-8'),
-      options: f.endsWith('/long.bib') ? ignoreErrors : {},
+      options: f.endsWith('/long.bib') ? ignoreErrors : { strictNoCase: enable.strict },
     })
   }
 
@@ -58,7 +58,7 @@ describe('BibTeX Parser', () => {
       cases.push({
         caseName: `bbt-${mode}-${path.basename(f)}`,
         input: fs.readFileSync(path.join(root, f), 'utf-8'),
-        options: f.endsWith('/long.bib') ? ignoreErrors : {},
+        options: f.endsWith('/long.bib') ? ignoreErrors : { strictNoCase: enable.strict },
       })
     }
   }
@@ -69,12 +69,6 @@ describe('BibTeX Parser', () => {
   })
 
   for (let {caseName, input, options} of cases) {
-    if (enable.ast) {
-      it(`should parse ${caseName} to an AST`, () => {
-        (expect(bibtex.ast(input, options)) as any).toMatchSpecificSnapshot(path.join(snaps, caseName + '.ast.shot'))
-      })
-    }
-
     if (enable.zotero) {
       it(`should parse ${caseName}`, () => {
         (expect(bibtex.parse(input, options)) as any).toMatchSpecificSnapshot(path.join(snaps, caseName + '.shot'))

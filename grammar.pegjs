@@ -22,12 +22,33 @@
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
   */
+
+  const markup = {
+    sl: 'italics',
+    em: 'italics',
+    it: 'italics',
+    itshape: 'italics',
+
+    bf: 'bold',
+    bfseries: 'bold',
+
+    sc: 'smallCaps',
+    scshape: 'smallCaps',
+
+    tt: 'fixedWidth',
+    rm: 'roman',
+    sf: 'sansSerif',
+    verb: 'verbatim',
+  }
+
+  const unnestFields = (options.unnestFields || []).map(field => field.toLowerCase())
+
   const verbatim = {
     active: 0,
-    property: null,
+    field: null,
     closer: null,
     
-    verbatimProperties: options.verbatimProperties ? options.verbatimProperties.map(prop => prop.toLowerCase()) : [
+    verbatimFields: options.verbatimFields ? options.verbatimFields.map(prop => prop.toLowerCase()) : [
       'url',
       'doi',
       'file',
@@ -38,20 +59,20 @@
     ],
     verbatimCommands: options.verbatimCommands || [ 'url' ],
 
-    verbatimProperty: function(prop) {
-      return this.verbatimProperties.includes(prop.toLowerCase())
+    verbatimField: function(prop) {
+      return this.verbatimFields.includes(prop.toLowerCase())
     },
-    enterProperty: function(closer) {
-      if (!this.property || !this.verbatimProperty(this.property)) return true;
-      this.property = null;
+    enterField: function(closer) {
+      if (!this.field || !this.verbatimField(this.field)) return true;
+      this.field = null;
       this.active = 1;
       this.closer = closer;
       return true;
     },
-    leaveProperty: function() {
+    leaveField: function() {
       this.active = 0;
       this.closer = ''
-      this.property = ''
+      this.field = ''
       return true;
     },
 
@@ -147,10 +168,10 @@
   }
 }
 
-File
+Bibliography
   = __ r:Node* __ {
     return {
-      kind: 'File',
+      kind: 'Bibliography',
       loc: location(),
       source: text(),
       children: r,
@@ -184,7 +205,7 @@ Comment
   }
 
 Node
-  = n:(Comment / PreambleExpression / StringExpression / Entry) { return n; }
+  = n:(Comment / PreambleExpression / StringDeclaration / Entry) { return n; }
 
 BracedComment
   = '{' comment:( [^{}] / BracedComment )* '}' { return '{' + comment.join('') + '}' }
@@ -192,14 +213,14 @@ BracedComment
 //-----------------  Top-level Nodes
 
 Entry
-  = '@' type:$[A-Za-z]+ __ [({] __ id:EntryId? __ props:Property* __ [})] __ {
+  = '@' type:$[A-Za-z]+ __ [({] __ id:EntryId? __ fields:Field* __ [})] __ {
     return {
       kind: 'Entry',
       id: id || '',
       type: type.toLowerCase(),
       loc: location(),
       source: text(),
-      properties: props,
+      fields: fields,
     }
   }
 
@@ -213,13 +234,13 @@ PreambleExpression
     }
   }
 
-StringExpression
-  = '@string'i __ [({] __ k:VariableName PropertySeparator v:RegularValue+ __ [})] __ {
+StringDeclaration
+  = '@string'i __ [({] __ k:VariableName FieldSeparator v:RegularValue+ __ [})] __ {
     return {
-      kind: 'StringExpression',
+      kind: 'StringDeclaration',
       loc: location(),
       source: text(),
-      key: k,
+      name: k,
       value: v.reduce((a, b) => a.concat(b), []),
     }
   }
@@ -229,34 +250,39 @@ StringExpression
 EntryId
   = __ id:$[^ \t\r\n,]* __ ',' { return id; }
 
-Property
-  = k:PropertyKey PropertySeparator &{ verbatim.property = k; return true } v:PropertyValue &{ return verbatim.leaveProperty() } PropertyTerminator {
-    return {
-      kind: 'Property',
+Field
+  = k:FieldName FieldSeparator &{ verbatim.field = k; return true } v:FieldValue &{ return verbatim.leaveField() } FieldTerminator {
+    const field = {
+      kind: 'Field',
       loc: location(),
       source: text(),
-      key: k.toLowerCase(),
+      name: k.toLowerCase(),
       value: v,
     }
+
+    // because this was abused so much, many processors treat double-outer-braces as single
+    if (unnestFields.includes(field.name) && Array.isArray(v) && v.length === 1 && v.kind === 'Block') field.value = v[0]
+
+    return field
   }
 
-PropertyKey
+FieldName
   = __ k:$[_:a-zA-Z0-9-]+ { return k; }
 
 //----------------------- Value Descriptors
 
-PropertyValue
+FieldValue
   = Number
   / v:(RegularValue / StringValue)* {
     return v.reduce((a, b) => a.concat(b), []);
   }
 
 RegularValue
-  = '"' &{ return verbatim.enterProperty('"') } v:(NestedLiteral / VerbatimText / Command / TextNoQuotes)* '"' Concat? { return v; }
-  / '{' &{ return verbatim.enterProperty('{}') }v:(NestedLiteral / VerbatimText / Command / Text)* '}' Concat? { return v; }
+  = '"' &{ return verbatim.enterField('"') } v:(Block / Math / VerbatimText / Command / TextNoQuotes)* '"' Concat? { return v; }
+  / '{' &{ return verbatim.enterField('{}') }v:(Block / Math / VerbatimText / Command / Text)* '}' Concat? { return v; }
 
 StringValue
-  = v:String Concat? { return v; }
+  = v:StringReference Concat? { return v; }
 
 //---------------------- Value Kinds
 
@@ -308,17 +334,17 @@ Number
     }
   }
 
-String
+StringReference
   = v:VariableName {
     return {
-      kind: 'String',
+      kind: 'StringReference',
       loc: location(),
       source: text(),
-      value: v,
+      name: v,
     }
   }
 
-NestedLiteral
+Block
   = '{\\' mark:ExtendedDiacritic __ char:([a-zA-Z0-9] / '\\' [ij]) '}' {
     return {
       kind: 'DiacriticCommand',
@@ -329,28 +355,53 @@ NestedLiteral
       character: char[1] || char[0],
     }
   }
-  / '{' v:(VerbatimText / Text / Command / NestedLiteral )* '}' {
-    return {
-      kind: 'NestedLiteral',
+  / '{' v:(VerbatimText / Text / Command / Block / Math )* '}' {
+    const block = {
+      kind: 'Block',
       loc: location(),
       source: text(),
       value: v,
+      markup: {},
+      case: 'protect',
     }
+
+    let cmd = v.length && v[0].kind.endsWith('Command') ? v[0] : null
+    let cmdblock = cmd && cmd.kind === 'RegularCommand' && cmd.arguments.required.length && cmd.arguments.required[0] && cmd.arguments.required[0].kind === 'Block'
+
+    // https://github.com/retorquere/zotero-better-bibtex/issues/541#issuecomment-240156274
+    if (cmd) {
+      if (cmdblock) { // command with a block cancels out case protection with containing block
+        delete block.case
+        // if it's a smallcaps block we want to keep this
+        if (cmdblock.case === 'protect') delete cmdblock.case
+      } else if (markup[cmd.command]) { // \sl, \it etc
+        delete block.case
+        block.markup[markup[cmd.command]] = true
+      }
+    }
+
+    return block
   }
-  / '$$' &{ return mode.to('math') } v:(VerbatimText / Text / Command / NestedLiteral )* &{ return mode.to('text') } '$$' {
+
+Math
+  = '$$' &{ return mode.to('math') } v:(VerbatimText / Text / Command / Block )* &{ return mode.to('text') } '$$' {
     return {
       kind: 'DisplayMath',
       loc: location(),
       source: text(),
       value: v,
+      case: 'protect',
+      markup: {},
     }
   }
-  / '$' &{ return mode.to('math') } v:(VerbatimText / Text / Command / NestedLiteral )* &{ return mode.to('text') } '$' {
+  / '$' &{ return mode.to('math') } v:(VerbatimText / Text / Command / Block )* &{ return mode.to('text') } '$' {
     return {
       kind: 'InlineMath',
       loc: location(),
       source: text(),
       value: v,
+      case: 'protect',
+      markup: {},
     }
   }
 
@@ -429,7 +480,7 @@ SymbolCommand
       kind: 'SymbolCommand',
       loc: location(),
       source: text(),
-      value: v,
+      command: v,
     }
   }
 
@@ -439,7 +490,7 @@ RegularCommand
       kind: 'RegularCommand',
       loc: location(),
       source: text(),
-      value: v,
+      command: v,
       arguments: {
         optional: optional,
         required: [req1, req2],
@@ -447,11 +498,45 @@ RegularCommand
     }
   }
   / '\\' v:$[A-Za-z]+ &{ return (has_arguments[v] === 1) && verbatim.enterCommand(v) } optional:OptionalArgument* req:RequiredArgument &{ return verbatim.leaveCommand(v) } {
+    if (req.kind === 'Block') {
+      switch (v) {
+        case 'textsuperscript':
+          req.markup.sup = true
+          break
+        case 'textsubscript':
+          req.markup.sub = true
+          break
+        case 'textsc':
+          req.markup.smallCaps = true
+          break
+        case 'enquote':
+        case 'mkbibquote':
+          req.markup.enquote = true
+          break
+        case 'textbf':
+        case 'mkbibbold':
+          req.markup.bold = true
+          break
+        case 'emph':
+        case 'textit':
+        case 'mkbibitalic':
+        case 'mkbibemph':
+          req.markup.italics = true
+          break
+      }
+    }
+
+    // preserve case on smallcaps but don't caps-protect
+    if (req.markup.smallCaps && req.kind === 'Block') req.case = 'preserve'
+
+    // ignore case stuff on bibcyr
+    if (v === 'bibcyr') delete req.case
+
     return {
       kind: 'RegularCommand',
       loc: location(),
       source: text(),
-      value: v,
+      command: v,
       arguments: {
         optional: optional,
         required: [req],
@@ -463,17 +548,13 @@ RegularCommand
       kind: 'RegularCommand',
       loc: location(),
       source: text(),
-      value: v,
+      command: v,
       arguments: {
         optional: optional,
         required: [],
       }
     }
   }
-
-Argument
-  = RequiredArgument
-  / OptionalArgument
 
 OptionalArgument
   = '[' __h v:$[^\]]+ __h ']' {
@@ -494,7 +575,7 @@ RequiredArgument
       value: mode.convert(normalizeWhitespace(v)),
     }
   }
-  / v:(Command / NestedLiteral) { return v }
+  / v:(Command / Block) { return v }
 
 //-------------- Helpers
 
@@ -507,10 +588,10 @@ SimpleDiacritic
 ExtendedDiacritic
   = ['`"=~\^.cbuvdrHk]
 
-PropertySeparator
+FieldSeparator
   = __ '=' __
 
-PropertyTerminator
+FieldTerminator
   = __ ','? __h (LineComment / EOL)*
 
 Concat

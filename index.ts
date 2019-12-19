@@ -1,9 +1,24 @@
 import * as bibtex from './grammar'
-// Set instead of {} because we need insertion order remembered
-type RichNestedLiteral = bibtex.NestedLiteral & { markup: Record<string, boolean>, preserveCase?: boolean, math?: true }
-
 import { parse as chunker } from './chunker'
 import { latex as latex2unicode } from 'unicode2latex'
+
+type Node =
+  | bibtex.Bibliography
+  | bibtex.Block
+  | bibtex.RegularCommand
+  | bibtex.DiacriticCommand
+  | bibtex.Entry
+  | bibtex.Field
+  | bibtex.NumberValue
+  | bibtex.StringDeclaration
+  | bibtex.StringReference
+  | bibtex.SubscriptCommand
+  | bibtex.SuperscriptCommand
+  | bibtex.SymbolCommand
+  | bibtex.TextValue
+  | bibtex.PreambleExpression
+  | bibtex.BracedComment
+  | bibtex.LineComment
 
 class ParserError extends Error {
   public node: any
@@ -28,40 +43,6 @@ class TeXError extends Error {
     this.text = text
   }
 }
-
-/*
-function pad(s, n) {
-  return `${s}${' '.repeat(n)}`.substr(0, n)
-}
-
-class Tracer {
-  private input: string
-  private level: number
-  constructor(input) {
-    this.input = input
-    this.level = 0
-  }
-
-  trace(evt) {
-    switch (evt.type) {
-      case 'rule.enter':
-        this.level++
-        break
-
-      case 'rule.fail':
-      case 'rule.match':
-        this.level--
-        break
-
-      default:
-        throw new Error(JSON.stringify(evt))
-
-    }
-
-    console.log(pad(`${evt.location.start.offset}`, 6), pad(evt.type.split('.')[1], 5), pad(evt.rule, 10), '.'.repeat(this.level), JSON.stringify(this.input.substring(evt.location.start.offset, evt.location.end.offset)))
-  }
-}
-*/
 
 import charCategories = require('xregexp/tools/output/categories')
 const charClass = {
@@ -312,9 +293,11 @@ export interface ParserOptions {
   sentenceCase?: string[] | boolean
 
   /**
-   * translate braced parts of text into a case-protected counterpart; uses the [[MarkupMapping]] table in `markup`.
+   * translate braced parts of text into a case-protected counterpart; uses the [[MarkupMapping]] table in `markup`. Default == true == loose.
+   * In loose mode the parser will assume that words that have capitals in them imply "nocase" behavior in the consuming application. If you don't want this, turn this option on, and you'll get
+   * case protection exactly as the input has it
    */
-  caseProtect?: boolean
+  caseProtection?: 'loose' | 'strict' | boolean
 
   /**
    * The parser can change TeX markup (\textsc, \emph, etc) to a text equivalent. The defaults are HTML-oriented, but you can pass in your own configuration here
@@ -368,9 +351,10 @@ const english = [
 
 class Parser {
   private errors: ParseError[]
-  private strings: { [key: string]: any[] }
+  private strings: { [key: string]: bibtex.ValueType[] }
+  private strictNoCase: boolean
   private unresolvedStrings: { [key: string]: boolean }
-  private default_strings: { [key: string]: any[] }
+  private default_strings: { [key: string]: bibtex.TextValue[] }
   private comments: string[]
   private entries: Entry[]
   private entry: Entry
@@ -383,8 +367,11 @@ class Parser {
   private chunk: string
 
   constructor(options: ParserOptions = {}) {
+    if (typeof options.caseProtection === 'undefined') options = { ...options, caseProtection: 'loose' }
+    this.strictNoCase = options.caseProtection === 'strict'
+    this.caseProtect = !!options.caseProtection
+
     this.unresolvedStrings = {}
-    this.caseProtect = typeof options.caseProtect === 'undefined' ? true : options.caseProtect
     if (typeof options.sentenceCase === 'boolean') {
       this.sentenceCase = options.sentenceCase ? english : []
     } else {
@@ -461,8 +448,8 @@ class Parser {
 
     const _ast = []
     for (const chunk of chunker(input)) {
-      let chunk_ast = bibtex.parse(chunk.text, { verbatimProperties: options.verbatimFields })
-      if (options.clean) chunk_ast = this.cleanup(chunk_ast, !this.caseProtect)
+      let chunk_ast = bibtex.parse(chunk.text, { verbatimFields: options.verbatimFields })
+      if (options.clean) chunk_ast = this.clean(chunk_ast)
       _ast.push(chunk_ast)
     }
     return _ast
@@ -508,15 +495,17 @@ class Parser {
     }
   }
 
-  private parseChunk(chunk, options: { verbatimFields?: string[] }) {
+  private parseChunk(chunk, options: { verbatimFields?: string[], unnestFields?: string[] }) {
     this.chunk = chunk.text
+    if (!options.unnestFields) options.unnestFields = fields.title.concat(fields.unnest)
 
     try {
-      const _ast = this.cleanup(bibtex.parse(chunk.text, { verbatimProperties: options.verbatimFields }), !this.caseProtect)
-      if (_ast.kind !== 'File') throw new Error(this.show(_ast))
+      let _ast = bibtex.parse(chunk.text, options)
+      if (_ast.kind !== 'Bibliography') throw new Error(this.show(_ast))
+      _ast = this.clean(_ast)
 
       for (const node of _ast.children) {
-        this.convert(node)
+        this.convert(node as Node)
       }
 
       return _ast
@@ -540,7 +529,7 @@ class Parser {
     return text
   }
 
-  private text(value = '') {
+  private text(value = ''): bibtex.TextValue {
     return { kind: 'Text', value }
   }
 
@@ -549,48 +538,19 @@ class Parser {
     return returnvalue
   }
 
-  private condense(node, nocased) {
-    if (!Array.isArray(node.value)) {
-      if (node.value.kind === 'Number') return
-      return this.error(new ParserError(`cannot condense a ${node.value.kind}: ${this.show(node)}`, node), undefined)
-    }
-
-    const markup = {
-      sl: 'italics',
-      em: 'italics',
-      it: 'italics',
-      itshape: 'italics',
-
-      bf: 'bold',
-      bfseries: 'bold',
-
-      sc: 'smallCaps',
-      scshape: 'smallCaps',
-
-      tt: 'fixedWidth',
-      rm: 'roman',
-      sf: 'sansSerif',
-      verb: 'verbatim',
-    }
-
-    if (this.fieldType === 'title' && node.kind ) {
-      node.value = node.value.filter((child, i) => {
-        // handles cases like {\sl ...}, but apply it to the whole block even if they appear in the middle
-        if (child.kind === 'RegularCommand' && markup[child.value] && !child.arguments.required.length) {
-          if (node.markup) {
-            delete node.markup.caseProtect
-            node.markup[markup[child.value]] = true
-            if (markup[child.value] === 'smallCaps') node.preserveCase = true
-          }
-          return false
-        }
-
-        return true
-      })
-    }
-
+  private condense(node: bibtex.Field | bibtex.Block) {
     // apply cleaning to resulting children
-    node.value = node.value.map(child => this.cleanup(child, nocased || node.markup?.caseProtect || node.preserveCase))
+    node.value = node.value.map(child => this.clean(child))
+
+    // unpack redundant blocks
+    node.value = node.value.reduce((acc, child, i) => {
+      if (child.kind === 'Block' && !child.case && Object.keys(child.markup).length === 0) {
+        acc = acc.concat(child.value)
+      } else {
+        acc.push(child)
+      }
+      return acc
+    }, [])
 
     // condense text nodes to make whole words for sentence casing
     node.value = node.value.reduce((acc, child, i) => {
@@ -602,13 +562,13 @@ class Parser {
       const last = acc[acc.length - 1]
       const next = node.value[i + 1]
 
-      if (this.onlyCaseProtected(last) && child.kind === 'Text' && !child.value.match(preserveCase.hasCased) && this.onlyCaseProtected(next)) { // && (!!last.math == !!next.math)) {
+      if (this.strictNoCase && this.onlyCaseProtected(last) && child.kind === 'Text' && !child.value.match(preserveCase.hasCased) && this.onlyCaseProtected(next)) {
         last.value.push(child)
         last.source += child.source
         return acc
       }
 
-      if (last.kind === 'NestedLiteral' && child.kind === 'NestedLiteral' && Object.keys(last.markup).sort().join('/') === Object.keys(child.markup).sort().join('/')) { // && (!!last.math == !!child.math)) {
+      if (last.kind === 'Block' && child.kind === 'Block' && Object.keys(last.markup).sort().join('/') === Object.keys(child.markup).sort().join('/')) {
         last.value = last.value.concat(child.value)
         last.source += child.source
         return acc
@@ -625,7 +585,7 @@ class Parser {
     }, [])
   }
   private onlyCaseProtected(node) {
-    return node && node.kind === 'NestedLiteral' && Object.keys(node.markup).join('/') === 'caseProtect'
+    return node?.kind === 'Block' && node.case === 'protect' && Object.keys(node.markup).join('/') === ''
   }
 
   private argument(node, kind) {
@@ -638,7 +598,7 @@ class Parser {
       const args = node.arguments.required
         .map(arg => {
           if (arg.kind === 'Text') return arg.value
-          if (arg.kind === 'NestedLiteral' && arg.value.length === 1 && arg.value[0].kind === 'Text') return arg.value[0].value
+          if (arg.kind === 'Block' && arg.value.length === 1 && arg.value[0].kind === 'Text') return arg.value[0].value
           valid = false
           return null
         })
@@ -651,7 +611,7 @@ class Parser {
     // loose checking for text
     if (kind === 'text') {
       const first = node.arguments.required[0]
-      if (first.kind === 'NestedLiteral' && first.value.length === 1) {
+      if (first.kind === 'Block' && first.value.length === 1) {
         if (first.value[0].kind === 'Text') return first.value[0].value
       }
       // fall back to strict kind check
@@ -665,59 +625,98 @@ class Parser {
         return node.arguments.required[0].value
 
       case 'RegularCommand':
-      case 'NestedLiteral':
+      case 'Block':
         return node.arguments.required[0]
     }
 
     return false
   }
 
-  private cleanup(node, nocased) {
-    if (Array.isArray(node)) return node.map(child => this.cleanup(child, nocased))
+  private clean(node: Node | Node[]) {
+    if (Array.isArray(node)) return node.map(child => this.clean(child))
 
     delete node.loc
 
-    if (!this['clean_' + node.kind]) return this.error(new ParserError(`no cleanup method for '${node.kind}' (${this.show(node)})`, node), this.text())
-    return this['clean_' + node.kind](node, nocased)
+    switch (node.kind) {
+      case 'Block':
+      case 'InlineMath':
+      case 'DisplayMath':
+        return this.clean_block(node)
+
+      case 'Bibliography':
+        return this.clean_bib(node)
+
+      case 'RegularCommand':
+        return this.clean_command(node)
+
+      case 'DiacriticCommand':
+        return this.clean_diacritic(node)
+
+      case 'Entry':
+        return this.clean_entry(node)
+
+      case 'Field':
+        return this.clean_field(node)
+
+      case 'StringDeclaration':
+        return this.clean_stringdecl(node)
+
+      case 'StringReference':
+        return this.clean_stringref(node)
+
+      case 'SubscriptCommand':
+      case 'SuperscriptCommand':
+        return this.clean_script(node)
+
+      case 'SymbolCommand':
+        return this.clean_symbol(node)
+
+      case 'Number':
+      case 'Text':
+      case 'PreambleExpression':
+      case 'BracedComment':
+      case 'LineComment':
+        return node
+
+      default:
+        return this.error(new ParserError(`no cleanup method for ${this.show(node)}`, node), this.text())
+    }
   }
 
-  protected clean_BracedComment(node: bibtex.BracedComment, nocased) { return node }
-  protected clean_LineComment(node: bibtex.LineComment, nocased) { return node }
-
-  protected clean_File(node: bibtex.AST, nocased) {
-    node.children = node.children.filter(child => child.kind !== 'NonEntryText').map(child => this.cleanup(child, nocased))
+  private clean_bib(node: bibtex.Bibliography) {
+    node.children = node.children.filter(child => child.kind !== 'NonEntryText').map(child => this.clean(child as Node))
     return node
   }
 
-  protected clean_StringExpression(node: bibtex.StringExpression, nocased) { // should have been StringDeclaration
-    this.condense(node, nocased)
-    this.strings[node.key.toUpperCase()] = node.value
+  private clean_stringdecl(node: bibtex.StringDeclaration) {
+    this.strings[node.name.toUpperCase()] = node.value
     return node
   }
 
-  protected clean_String(node: bibtex.StringValue, nocased) { // should have been StringReference
-    const reference = node.value.toUpperCase()
-    const _string = this.strings[reference] || this.default_strings[reference]
+  private clean_stringref(node: bibtex.StringReference) {
+    const name = node.name.toUpperCase()
+    const _string = this.strings[name] || this.default_strings[name]
 
     if (!_string) {
-      if (!this.unresolvedStrings[reference]) this.errors.push({ message: `Unresolved @string reference ${JSON.stringify(node.value)}` })
-      this.unresolvedStrings[reference] = true
+      if (!this.unresolvedStrings[name]) this.errors.push({ message: `Unresolved @string reference ${JSON.stringify(node.name)}` })
+      this.unresolvedStrings[name] = true
     }
 
-    // if the string isn't found, add it as-is but exempt it from sentence casing
-    return {
-      kind: 'String',
-      preserveCase: !_string,
-      value: this.cleanup(_string ? JSON.parse(JSON.stringify(_string)) : [ this.text(node.value) ], nocased),
-    }
+    return this.clean({
+      kind: 'Block',
+      // if the string isn't found, add it as-is but exempt it from sentence casing
+      case: _string ? undefined : 'preserve',
+      markup: {},
+      value: _string ? (JSON.parse(JSON.stringify(_string)) as bibtex.ValueType[]) : [ this.text(node.name) ],
+    })
   }
 
-  protected clean_Entry(node: bibtex.Entry, nocased) {
-    node.properties = node.properties.map(child => this.cleanup(child, nocased))
+  private clean_entry(node: bibtex.Entry) {
+    node.fields = node.fields.map(child => this.clean(child))
     return node
   }
 
-  protected setFieldType(field) {
+  private setFieldType(field) {
     if (fields.title.includes(field)) {
       this.fieldType = 'title'
     } else if (fields.creator.includes(field)) {
@@ -727,25 +726,38 @@ class Parser {
     }
   }
 
-  protected clean_Property(node: bibtex.Property, nocased) {
-    // normalize field names to lowercase
-    node.key = node.key.toLowerCase()
-    this.setFieldType(node.key)
+  private stripNoCase(node: Node, strip = false) {
+    switch (node.kind) {
+      case 'RegularCommand':
+        // a bit cheaty to assume these to be nocased, but it's just more likely to be what people want
+        if (['chsf', 'bibstring', 'cite'].includes(node.command)) strip = true
+        node.arguments.required.map(arg => this.stripNoCase(arg, strip))
+        break
 
-    // because this was abused so much, many processors ignore second-level too
-    if (fields.title.concat(fields.unnest).includes(node.key) && node.value.length === 1 && node.value[0].kind === 'NestedLiteral') {
-      (node.value[0] as RichNestedLiteral).markup = {};
-      (node.value[0] as RichNestedLiteral).preserveCase = true
+      case 'InlineMath':
+      case 'DisplayMath':
+      case 'Block':
+        if (strip && node.case === 'protect') delete node.case
+        node.value.map(v => this.stripNoCase(v, strip || node.case === 'protect'))
+        break
+
+      case 'Field':
+        if (Array.isArray(node.value)) node.value.map(v => this.stripNoCase(v, strip))
+        break
     }
+  }
 
-    this.condense(node, [ 'url', 'doi', 'file', 'files', 'eprint', 'verba', 'verbb', 'verbc' ].includes(node.key) || !this.caseProtect)
+  private clean_field(node: bibtex.Field) {
+    this.setFieldType(node.name)
+
+    this.stripNoCase(node, !this.caseProtect || [ 'url', 'doi', 'file', 'files', 'eprint', 'verba', 'verbb', 'verbc' ].includes(node.name))
+
+    if (Array.isArray(node.value)) this.condense(node)
 
     return node
   }
 
-  protected clean_Text(node: bibtex.TextValue, nocased) { return node }
-
-  private _clean_ScriptCommand(node, nocased) {
+  private clean_script(node: bibtex.SubscriptCommand | bibtex.SuperscriptCommand) {
     let m, value, singlechar
     // recognize combined forms like \^\circ
     if (singlechar = latex2unicode[node.source]) return this.text(singlechar)
@@ -767,61 +779,39 @@ class Parser {
     }
 
     const mode = node.kind === 'SuperscriptCommand' ? 'sup' : 'sub'
-    return this.cleanup({
-      kind: 'NestedLiteral',
+    return this.clean({
+      kind: 'Block',
       markup: { [mode]: true },
       value,
-    }, nocased)
-  }
-  protected clean_SubscriptCommand(node: bibtex.SubscriptCommand, nocased) {
-    return this._clean_ScriptCommand(node, nocased)
+    })
   }
 
-  protected clean_SuperscriptCommand(node: bibtex.SuperscriptCommand, nocased) {
-    return this._clean_ScriptCommand(node, nocased)
-  }
+  private clean_block(node: bibtex.Block) {
+    this.condense(node)
 
-  protected clean_InlineMath(node: RichNestedLiteral, nocased) {
-    node.math = true
-    return this.clean_NestedLiteral(node, nocased)
-  }
-  protected clean_DisplayMath(node: RichNestedLiteral, nocased) {
-    node.math = true
-    return this.clean_NestedLiteral(node, nocased)
-  }
-
-  protected clean_NestedLiteral(node: RichNestedLiteral, nocased) {
-    if (!node.markup) node.markup = nocased ? {} : { caseProtect: true }
-
-    if (this.fieldType === 'title') {
-      // https://github.com/retorquere/zotero-better-bibtex/issues/541#issuecomment-240156274
-      if (!node.math && node.value.length && ['RegularCommand', 'DiacriticCommand'].includes(node.value[0].kind)) {
-        delete node.markup.caseProtect
-
-      } else if (node.value.length && node.value[0].kind === 'Text') {
-        const value = (node.value[0] as bibtex.TextValue).value.trim()
-        const preserved = !value.match(preserveCase.hasCased) || !value.split(/\s+/).find(word => !word.match(preserveCase.hasUppercase) && !word.match(preserveCase.isNumber))
-        if (preserved && node.markup.caseProtect) {
-          delete node.markup.caseProtect
-          node.preserveCase = true
+    if (!this.strictNoCase && this.fieldType === 'title' && node.case === 'protect') {
+      // test whether we can get away with skipping case protection because it contains all words that will be preserved anyway when converting back to Title Case
+      let preserve = true
+      for (const child of node.value) {
+        if (child.kind === 'Text') {
+          const value = child.value.trim()
+          preserve = !value.match(preserveCase.hasCased) || !value.split(/\s+/).find(word => !word.match(preserveCase.hasUppercase) && !word.match(preserveCase.isNumber))
+        } else {
+          preserve = false
         }
+        if (!preserve) break
       }
+      if (preserve) node.case = 'preserve'
     }
 
-    this.condense(node, nocased)
-
-    if (this.fieldType === 'title' && !node.math) {
-      if (!node.markup.caseProtect && node.value.length && node.value[0].kind === 'RegularCommand') {
-        for (const arg of node.value[0].arguments.required) {
-          if (arg.kind === 'NestedLiteral') delete (arg as RichNestedLiteral).markup.caseProtect
-        }
-      }
+    for (const [markup, on] of Object.entries(node.markup)) {
+      if (!on) delete node.markup[markup]
     }
 
     return node
   }
 
-  protected clean_DiacriticCommand(node: bibtex.DiacriticCommand, nocased) { // Should be DiacraticCommand
+  private clean_diacritic(node: bibtex.DiacriticCommand) {
     const char = node.dotless ? `\\${node.character}` : node.character
     const unicode = latex2unicode[`\\${node.mark}{${char}}`]
       || latex2unicode[`\\${node.mark}${char}`]
@@ -833,27 +823,25 @@ class Parser {
     return this.text(unicode)
   }
 
-  protected clean_SymbolCommand(node: bibtex.SymbolCommand, nocased) {
-    return this.text(latex2unicode[`\\${node.value}`] || node.value)
+  private clean_symbol(node: bibtex.SymbolCommand) {
+    return this.text(latex2unicode[`\\${node.command}`] || node.command)
   }
 
-  protected clean_PreambleExpression(node: bibtex.PreambleExpression, nocased) { return node }
-
-  protected clean_RegularCommand(node: bibtex.RegularCommand, nocased) {
+  private clean_command(node: bibtex.RegularCommand) {
     let arg, unicode
 
     if (unicode = latex2unicode[node.source]) return this.text(unicode)
 
-    switch (node.value) {
+    switch (node.command) {
       case 'frac':
         if (arg = this.argument(node, 2)) {
           // not a spectactular solution but what ya gonna do.
-          return this.cleanup({
-            kind: 'NestedLiteral',
-            preserveCase: true,
+          return this.clean({
+            kind: 'Block',
+            case: 'preserve',
             markup: {},
             value: [ this.text(arg[0]), this.text('/'), this.text(arg[1]) ],
-          }, nocased)
+          })
         }
         break
 
@@ -869,59 +857,58 @@ class Parser {
 
       case 'ElsevierGlyph':
         if (arg = this.argument(node, 'Text')) {
-          if (unicode = latex2unicode[`\\${node.value}{${arg}}`]) return this.text(unicode)
+          if (unicode = latex2unicode[`\\${node.command}{${arg}}`]) return this.text(unicode)
           return this.text(String.fromCharCode(parseInt(arg, 16)))
         }
         break
 
       case 'chsf':
         if (this.argument(node, 'none')) return this.text()
-        // a bit cheaty to assume chsf to be nocased, but it's just more likely to be what people want
-        if (arg = this.argument(node, 'NestedLiteral')) return this.cleanup(arg, true)
+        if (arg = this.argument(node, 'Block')) return this.clean(arg)
         break
 
       case 'bibstring':
-        if (arg = this.argument(node, 'NestedLiteral')) return this.cleanup(arg, true)
+        if (arg = this.argument(node, 'Block')) return this.clean(arg)
         break
 
       case 'cite':
-        if (arg = this.argument(node, 'NestedLiteral')) return this.cleanup(arg, true)
+        if (arg = this.argument(node, 'Block')) return this.clean(arg)
         break
 
       case 'textsuperscript':
         if ((arg = this.argument(node, 'Text')) && (unicode = latex2unicode[`^{${arg}}`])) return this.text(unicode)
-        if (arg = this.argument(node, 'NestedLiteral')) return this.cleanup({...arg, markup: { sup: true } }, nocased)
+        if (arg = this.argument(node, 'Block')) return this.clean(arg)
         break
 
       case 'textsubscript':
         if ((arg = this.argument(node, 'Text')) && (unicode = latex2unicode[`_{${arg}}`])) return this.text(unicode)
-        if (arg = this.argument(node, 'NestedLiteral')) return this.cleanup({...arg, markup: { sub: true } }, nocased)
+        if (arg = this.argument(node, 'Block')) return this.clean(arg)
         break
 
       case 'textsc':
-        if (arg = this.argument(node, 'NestedLiteral')) return this.cleanup({...arg, markup: { smallCaps: true } }, nocased)
+        if (arg = this.argument(node, 'Block')) return this.clean(arg)
         break
 
       case 'enquote':
       case 'mkbibquote':
-        if (arg = this.argument(node, 'NestedLiteral')) return this.cleanup({...arg, markup: { enquote: true } }, nocased)
+        if (arg = this.argument(node, 'Block')) return this.clean(arg)
         break
 
       case 'textbf':
       case 'mkbibbold':
-        if (arg = this.argument(node, 'NestedLiteral')) return this.cleanup({...arg, markup: { bold: true } }, nocased)
+        if (arg = this.argument(node, 'Block')) return this.clean(arg)
         break
 
       case 'mkbibitalic':
       case 'mkbibemph':
       case 'textit':
       case 'emph':
-        if (arg = this.argument(node, 'NestedLiteral')) return this.cleanup({...arg, markup: { italics: true } }, nocased)
+        if (arg = this.argument(node, 'Block')) return this.clean(arg)
         break
 
       case 'bibcyr':
         if (this.argument(node, 'none')) return this.text()
-        if (arg = this.argument(node, 'NestedLiteral')) return this.cleanup({...arg, markup: {} }, nocased)
+        if (arg = this.argument(node, 'Block')) return this.clean(arg)
         break
 
       case 'hspace':
@@ -930,12 +917,12 @@ class Parser {
       case 'ocirc':
       case 'mbox':
         if (arg = this.argument(node, 'text')) {
-          unicode = latex2unicode[`\\${node.value}{${arg}}`]
-          return this.text(unicode || (node.value === 'hspace' ? ' ' : arg))
+          unicode = latex2unicode[`\\${node.command}{${arg}}`]
+          return this.text(unicode || (node.command === 'hspace' ? ' ' : arg))
         } else if (!node.arguments.required.length) {
           return this.text()
-        } else if (arg = this.argument(node, 'NestedLiteral')) {
-          return this.cleanup({...arg, markup: {} }, nocased)
+        } else if (arg = this.argument(node, 'Block')) {
+          return this.clean(arg)
         }
         break
 
@@ -946,17 +933,17 @@ class Parser {
 
       case 'url':
         if (arg = this.argument(node, 'Text')) return this.text(arg)
-        if (arg = this.argument(node, 'NestedLiteral')) return this.cleanup({...arg, markup: {} }, nocased)
+        if (arg = this.argument(node, 'Block')) return this.clean(arg)
         break
 
       default:
-        unicode = latex2unicode[`\\${node.value}`] || latex2unicode[`\\${node.value}{}`]
+        unicode = latex2unicode[`\\${node.command}`] || latex2unicode[`\\${node.command}{}`]
         if (unicode && this.argument(node, 'none')) return this.text(unicode)
-        if ((arg = this.argument(node, 'Text')) && (unicode = latex2unicode[`\\${node.value}{${arg}}`])) return this.text(unicode)
+        if ((arg = this.argument(node, 'Text')) && (unicode = latex2unicode[`\\${node.command}{${arg}}`])) return this.text(unicode)
         break
     }
 
-    return this.error(new TeXError('Unhandled command: ' + this.show(node), node, this.chunk), this.text())
+    return this.error(new TeXError(`Unhandled command: ${node.command}` + this.show(node), node, this.chunk), this.text())
   }
 
   private preserveCase(word) {
@@ -981,28 +968,45 @@ class Parser {
     return false
   }
 
-  private convert(node) {
-    if (Array.isArray(node)) return node.map(child => this.convert(child)).join('')
+  private convert(node: Node | Node[]) {
+    if (Array.isArray(node)) return node.map(child => this.convert(child))
 
-    if (!this['convert_' + node.kind]) return this.error(new ParserError(`no converter for ${node.kind}: ${this.show(node)}`, node), undefined)
+    switch (node.kind) {
+      case 'BracedComment':
+      case 'LineComment':
+        this.comments.push(node.value)
+        break
 
-    const start = this.field ? this.field.text.length : null
+      case 'Entry':
+        this.convert_entry(node)
+        break
 
-    this['convert_' + node.kind](node)
+      case 'Number':
+        this.convert_number(node)
+        break
 
-    const preserve = (
-      typeof start === 'number'
-      && this.field.preserveRanges
-      && (node.preserveCase || (node.markup?.caseProtect))
-    )
-    if (preserve) this.field.preserveRanges.push({ start, end: this.field.text.length })
-  }
+      case 'Text':
+        this.convert_Text(node)
+        break
 
-  protected convert_BracedComment(node: bibtex.BracedComment) {
-    this.comments.push(node.value)
-  }
-  protected convert_LineComment(node: bibtex.LineComment) {
-    this.comments.push(node.value)
+      case 'InlineMath':
+      case 'DisplayMath':
+      case 'Block':
+        const start = this.field ? this.field.text.length : null
+        const preserve = typeof start === 'number' && this.field.preserveRanges
+
+        this.convert_block(node)
+
+        if (preserve && (node.case || node.kind.endsWith('Math'))) this.field.preserveRanges.push({ start, end: this.field.text.length })
+        break
+
+      case 'PreambleExpression':
+      case 'StringDeclaration':
+        break
+
+      default:
+        return this.error(new ParserError(`no converter for ${node.kind}: ${this.show(node)}`, node), undefined)
+    }
   }
 
   private splitOnce(s, sep, fromEnd = false) {
@@ -1100,7 +1104,7 @@ class Parser {
     return parsed
   }
 
-  protected convert_Entry(node: bibtex.Entry) {
+  private convert_entry(node: bibtex.Entry) {
     this.entry = {
       key: node.id,
       type: node.type,
@@ -1111,33 +1115,33 @@ class Parser {
 
     // order these first for language-dependent sentence casing
     const order = ['langid', 'hyphenation', 'language']
-    node.properties.sort((a, b) => {
-      const ia = order.indexOf(a.key)
-      const ib = order.indexOf(b.key)
-      if (ia === -1 && ib === -1) return a.key.localeCompare(b.key) // doesn't matter really
+    node.fields.sort((a, b) => {
+      const ia = order.indexOf(a.name)
+      const ib = order.indexOf(b.name)
+      if (ia === -1 && ib === -1) return a.name.localeCompare(b.name) // doesn't matter really
       if (ia === -1) return 1
       if (ib === -1) return -1
       return ia - ib
     })
 
     let sentenceCase = !!this.sentenceCase.length // if sentenceCase is empty, no sentence casing
-    for (const prop of node.properties) {
-      if (prop.kind !== 'Property') return this.error(new ParserError(`Expected Property, got ${prop.kind}`, node), undefined)
-      this.setFieldType(prop.key)
+    for (const field of node.fields) {
+      if (field.kind !== 'Field') return this.error(new ParserError(`Expected Field, got ${field.kind}`, node), undefined)
+      this.setFieldType(field.name)
 
       this.field = {
-        name: prop.key,
+        name: field.name,
         text: '',
         level: 0,
         words: {
           cased: 0,
           other: 0,
         },
-        preserveRanges: (sentenceCase && fields.title.includes(prop.key)) ? [] : null,
+        preserveRanges: (sentenceCase && fields.title.includes(field.name)) ? [] : null,
       }
 
       this.entry.fields[this.field.name] = this.entry.fields[this.field.name] || []
-      this.convert(prop.value)
+      this.convert(field.value)
       this.field.text = this.field.text.trim()
       if (!this.field.text) continue
 
@@ -1191,7 +1195,7 @@ class Parser {
           }
         }
 
-        if (this.field.words.cased > this.field.words.other) this.field.preserveRanges = null
+        if (!this.strictNoCase && this.field.words.cased > this.field.words.other) this.field.preserveRanges = null
         this.entry.fields[this.field.name].push(this.convertToSentenceCase(this.field.text, this.field.preserveRanges))
       }
 
@@ -1212,11 +1216,11 @@ class Parser {
     return sentenceCased
   }
 
-  protected convert_Number(node: bibtex.NumberValue) {
+  private convert_number(node: bibtex.NumberValue) {
     this.field.text += `${node.value}`
   }
 
-  protected convert_Text(node: bibtex.TextValue) {
+  private convert_Text(node: bibtex.TextValue) {
     node.value = node.value.replace(/``/g, this.markup.enquote.open).replace(/''/g, this.markup.enquote.close)
 
     // heuristic to detect pre-sentencecased text
@@ -1258,33 +1262,25 @@ class Parser {
 
   }
 
-  protected convert_PreambleExpression(node: bibtex.PreambleExpression) { return }
-  protected convert_StringExpression(node: bibtex.StringExpression) { return }
+  private convert_block(node: bibtex.Block) {
+    const start = this.field.text.length
 
-  protected convert_String(node: bibtex.StringValue) {
-    this.convert(node.value)
-  }
+    if (node.kind === 'DisplayMath') this.field.text += '\n\n'
 
-  protected convert_DisplayMath(node: RichNestedLiteral) {
-    this.field.text += '\n\n'
-    this.convert_NestedLiteral(node)
-    this.field.text += '\n\n'
-  }
-  protected convert_InlineMath(node: RichNestedLiteral) {
-    this.convert_NestedLiteral(node)
-  }
-  protected convert_NestedLiteral(node: RichNestedLiteral) {
     let prefix = ''
     let postfix = ''
 
-    if (this.fieldType === 'other') delete node.markup.caseProtect
-    if (this.fieldType === 'creator' && node.markup.caseProtect) {
+    if (!this.strictNoCase && this.fieldType === 'other') delete node.case
+    if (this.fieldType === 'creator' && node.case === 'protect') {
       prefix += marker.literal
       postfix = marker.literal + postfix
-      delete node.markup.caseProtect
+      delete node.case
     }
 
-    // relies on objects remembering insertion order
+    if (node.case === 'protect') {
+      prefix += this.markup.caseProtect.open
+      postfix = this.markup.caseProtect.close + postfix
+    }
     for (const markup of Object.keys(node.markup)) {
       if (!this.markup[markup]) return this.error(new ParserError(`markup: ${markup}`, node), undefined)
 
@@ -1321,6 +1317,10 @@ class Parser {
       script = script.replace(new RegExp(`</${mode}><${mode}>`, 'g'), '')
       return script.length < m.length ? script : m
     })
+
+    if (node.kind === 'DisplayMath') this.field.text += '\n\n'
+
+    if (node.case) this.field.preserveRanges.push({ start, end: this.field.text.length })
   }
 }
 
@@ -1329,7 +1329,7 @@ class Parser {
  */
 export function parse(input: string, options: ParserOptions = {}): Bibliography | Promise<Bibliography> {
   const parser = new Parser({
-    caseProtect: options.caseProtect,
+    caseProtection: options.caseProtection,
     sentenceCase: options.sentenceCase,
     markup: options.markup,
     errorHandler: options.errorHandler,
@@ -1339,7 +1339,7 @@ export function parse(input: string, options: ParserOptions = {}): Bibliography 
 
 export function ast(input: string, options: ParserOptions & { clean?: boolean } = {}) {
   const parser = new Parser({
-    caseProtect: options.caseProtect,
+    caseProtection: options.caseProtection,
     sentenceCase: options.sentenceCase,
     markup: options.markup,
     errorHandler: options.errorHandler,
