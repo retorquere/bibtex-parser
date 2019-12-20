@@ -366,7 +366,7 @@ class Parser {
   private sentenceCase: string[]
   private chunk: string
 
-  public log: (string) => void = function(){}
+  public log: (string) => void = function(){} // tslint:disable-line variable-name only-arrow-functions no-empty
 
   constructor(options: ParserOptions = {}) {
     if (typeof options.caseProtection === 'undefined') options = { ...options, caseProtection: 'loose' }
