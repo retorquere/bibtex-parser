@@ -1314,8 +1314,9 @@ class Parser {
     const added = this.field.text.substring(end.withPrefix)
     if (!added) { // nothing was added, so remove prefix
       this.field.text = this.field.text.substring(0, end.withoutPrefix)
-    } else if (prefix === this.markup.caseProtect.open && !added.match(preserveCase.hasCased)) { // something was added that didn't actually need case protecion
+    } else if (prefix === this.markup.caseProtect.open && !added.match(preserveCase.hasCased)) { // something was added that didn't actually need case protection
       this.field.text = this.field.text.substring(0, end.withoutPrefix) + added
+      this.field.preserveRanges = this.field.preserveRanges.filter(range => range.start < end.withoutPrefix)
     } else {
       this.field.text += postfix
     }
