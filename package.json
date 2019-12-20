@@ -10,7 +10,7 @@
     "poststart": "npm run docs",
     "pretest": "npm start",
     "test": "jest",
-    "minitest": "npm start && node tt.js",
+    "minitest": "pegjs grammar.pegjs && tsc -d && node tt.js",
     "list": "tar tvf $(npm pack)",
     "prepublishOnly": "npm start",
     "preversion": "npm test",

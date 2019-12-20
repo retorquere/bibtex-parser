@@ -566,12 +566,12 @@ OptionalArgument
   }
 
 RequiredArgument
-  = __h v:[^ \t\^_${}\\]+ {
+  = __h v:[^ \t\^_${}\\] {
     return {
       kind: 'Text',
       loc: location(),
       source: text(),
-      value: mode.convert(normalizeWhitespace(v)),
+      value: mode.convert(normalizeWhitespace([v])),
     }
   }
   / v:(Command / Block) { return v }

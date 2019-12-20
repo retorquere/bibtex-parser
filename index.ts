@@ -650,7 +650,6 @@ class Parser {
 
   private clean(node: Node | Node[]) {
     if (Array.isArray(node)) return node.map(child => this.clean(child))
-
     delete node.loc
 
     switch (node.kind) {
@@ -920,6 +919,7 @@ class Parser {
       case 'textit':
       case 'emph':
         if (arg = this.argument(node, 'Block')) return this.clean(arg)
+        if (arg = this.argument(node, 'Text')) return this.clean({ kind: 'Block', markup: { italics: true }, value: [ this.text(arg) ] })
         break
 
       case 'bibcyr':
