@@ -4,6 +4,8 @@
 //
 
 class ParseError extends Error {
+  public source: string
+
   constructor(message, parser) {
     message += ` @ ${parser.pos}`
     if (parser.parsing) message += ` in ${JSON.stringify(parser.parsing)}`

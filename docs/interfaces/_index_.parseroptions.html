@@ -81,7 +81,7 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_index_.parseroptions.html#async" class="tsd-kind-icon">async</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_index_.parseroptions.html#caseprotect" class="tsd-kind-icon">case<wbr>Protect</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_index_.parseroptions.html#caseprotection" class="tsd-kind-icon">case<wbr>Protection</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_index_.parseroptions.html#errorhandler" class="tsd-kind-icon">error<wbr>Handler</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_index_.parseroptions.html#markup" class="tsd-kind-icon">markup</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_index_.parseroptions.html#sentencecase" class="tsd-kind-icon">sentence<wbr>Case</a></li>
@@ -99,7 +99,7 @@
 					<div class="tsd-signature tsd-kind-icon">async<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L308">index.ts:308</a></li>
+							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L310">index.ts:310</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -109,17 +109,19 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="caseprotect" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> case<wbr>Protect</h3>
-					<div class="tsd-signature tsd-kind-icon">case<wbr>Protect<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<a name="caseprotection" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> case<wbr>Protection</h3>
+					<div class="tsd-signature tsd-kind-icon">case<wbr>Protection<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"loose"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"strict"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L298">index.ts:298</a></li>
+							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L300">index.ts:300</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>translate braced parts of text into a case-protected counterpart; uses the <a href="_index_.markupmapping.html">MarkupMapping</a> table in <code>markup</code>.</p>
+							<p>translate braced parts of text into a case-protected counterpart; uses the <a href="_index_.markupmapping.html">MarkupMapping</a> table in <code>markup</code>. Default == true == loose.
+								In loose mode the parser will assume that words that have capitals in them imply &quot;nocase&quot; behavior in the consuming application. If you don&#39;t want this, turn this option on, and you&#39;ll get
+							case protection exactly as the input has it</p>
 						</div>
 					</div>
 				</section>
@@ -129,7 +131,7 @@
 					<div class="tsd-signature tsd-kind-icon">error<wbr>Handler<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L314">index.ts:314</a></li>
+							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L316">index.ts:316</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -145,7 +147,7 @@
 					<div class="tsd-signature tsd-kind-icon">markup<span class="tsd-signature-symbol">:</span> <a href="_index_.markupmapping.html" class="tsd-signature-type">MarkupMapping</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L303">index.ts:303</a></li>
+							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L305">index.ts:305</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -203,7 +205,7 @@
 					<div class="tsd-signature tsd-kind-icon">verbatim<wbr>Fields<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L320">index.ts:320</a></li>
+							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L322">index.ts:322</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -261,7 +263,7 @@
 								<a href="_index_.parseroptions.html#async" class="tsd-kind-icon">async</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_index_.parseroptions.html#caseprotect" class="tsd-kind-icon">case<wbr>Protect</a>
+								<a href="_index_.parseroptions.html#caseprotection" class="tsd-kind-icon">case<wbr>Protection</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_index_.parseroptions.html#errorhandler" class="tsd-kind-icon">error<wbr>Handler</a>

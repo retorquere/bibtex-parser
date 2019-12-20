@@ -528,9 +528,6 @@ RegularCommand
       }
     }
 
-    // preserve case on smallcaps but don't caps-protect
-    if (req.markup.smallCaps && req.kind === 'Block') req.case = 'preserve'
-
     // ignore case stuff on bibcyr
     if (v === 'bibcyr') delete req.case
 

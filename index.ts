@@ -94,7 +94,7 @@ const preserveCase = {
   sentenceStart: new RegExp(`(^|([\u2014:?!.]\\s+))[${charClass.Lu}]`, 'g'),
 
   markup: /<\/?span[^>]*>/g,
-  acronym: new RegExp(`.*[.]${marker.markup}*[${charClass.Lu}]${marker.markup}*[.]$`),
+  acronym: new RegExp(`.*\\.${marker.markup}*[${charClass.Lu}]${marker.markup}*\\.$`),
 
   nonCased: new RegExp(`[^${charClass.LC}]`),
   hasCased: new RegExp(`[${charClass.LC}]`),
@@ -366,6 +366,8 @@ class Parser {
   private sentenceCase: string[]
   private chunk: string
 
+  public log: (string) => void = function(){}
+
   constructor(options: ParserOptions = {}) {
     if (typeof options.caseProtection === 'undefined') options = { ...options, caseProtection: 'loose' }
     this.strictNoCase = options.caseProtection === 'strict'
@@ -495,6 +497,21 @@ class Parser {
     }
   }
 
+  private preserve(range, reason?) {
+    if (range && !this.field.preserveRanges) {
+      this.log(`ignoring ${range}`)
+      return
+    }
+    if (!range && this.field.preserveRanges) {
+      this.log(`disabling preserve: ${reason}`)
+      this.field.preserveRanges = null
+      return
+    }
+
+    if (reason) this.log(`preserve: ${range} (${reason})`)
+    if (this.field.preserveRanges) this.field.preserveRanges.push(range)
+  }
+
   private parseChunk(chunk, options: { verbatimFields?: string[], unnestFields?: string[] }) {
     this.chunk = chunk.text
     if (!options.unnestFields) options.unnestFields = fields.title.concat(fields.unnest)
@@ -514,6 +531,7 @@ class Parser {
         message: err.message,
         line: err.location.start.line + chunk.offset.line,
         column: err.location.start.column,
+        source: this.chunk,
       })
 
       return null
@@ -964,9 +982,9 @@ class Parser {
 
     if (!word.match(preserveCase.hasAlphaNum)) return true
 
-    if (word === 'I') return true
-
     word = word.replace(/[\/’'”:()]/g, '')
+
+    if (word === 'I') return true
     if (word.length === 1) return false
     if (word.replace(preserveCase.nonCased) === '') return false
     // word = word.replace(preserveCase.notAlphaNum, '')
@@ -1010,7 +1028,7 @@ class Parser {
 
         this.convert_block(node)
 
-        if (preserve && (node.case || node.kind.endsWith('Math'))) this.field.preserveRanges.push({ start, end: this.field.text.length })
+        if (preserve && (node.case || node.kind.endsWith('Math'))) this.preserve({ start, end: this.field.text.length }, 'block')
         break
 
       case 'PreambleExpression':
@@ -1200,15 +1218,15 @@ class Parser {
             // exclude stuff like "U.S. Taxes"
             if (match.index > 2 && txt.substr(0, match.index + 1).match(preserveCase.acronym)) continue
 
-            this.field.preserveRanges.push({ start: match.index, end: match.index + match[0].length })
+            this.preserve({ start: match.index, end: match.index + match[0].length }, `sentenceStart: ${match[0]} at ${match.index}..${match.index + match[0].length} of ${this.field.text}`)
           }
           preserveCase.quoted.lastIndex = 0
           while ((match = preserveCase.quoted.exec(this.field.text))) {
-            this.field.preserveRanges.push({ start: match.index, end: match.index + match[0].length })
+            this.preserve({ start: match.index, end: match.index + match[0].length }, 'quoted')
           }
         }
 
-        if (!this.strictNoCase && this.field.words.cased > this.field.words.other) this.field.preserveRanges = null
+        if (!this.strictNoCase && this.field.words.cased > this.field.words.other) this.preserve(null, 'mostly sentence cased already')
         this.entry.fields[this.field.name].push(this.convertToSentenceCase(this.field.text, this.field.preserveRanges))
       }
 
@@ -1266,7 +1284,7 @@ class Parser {
     if (this.field.preserveRanges) {
       const words = node.value.split(/(\s+)/)
       for (const word of words) {
-        if (this.preserveCase(word)) this.field.preserveRanges.push({ start: this.field.text.length, end: this.field.text.length + word.length })
+        if (this.preserveCase(word)) this.preserve({ start: this.field.text.length, end: this.field.text.length + word.length }, `word:${word}`)
         this.field.text += word
       }
     } else {
@@ -1334,7 +1352,7 @@ class Parser {
 
     if (node.kind === 'DisplayMath') this.field.text += '\n\n'
 
-    if (node.case) this.field.preserveRanges.push({ start, end: this.field.text.length })
+    if (node.case && this.field.preserveRanges) this.preserve({ start, end: this.field.text.length }, 'node')
   }
 }
 
