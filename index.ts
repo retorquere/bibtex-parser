@@ -164,6 +164,10 @@ type FieldBuilder = {
   level: number
   preserveRanges: Array<{ start: number, end: number }>
   html?: boolean
+  words: {
+    cased: number
+    other: number
+  }
 }
 
 /**
@@ -303,6 +307,12 @@ export interface ParserOptions {
   sentenceCase?: string[] | boolean
 
   /**
+   * Some bibtex has titles in sentence case, or all-uppercase. If this is on, and there is a field that would normally have sentence-casing applied in which more words are all-`X`case
+   * (where `X` is either lower or upper) than mixed-case, it is assumed that you want them this way, and no sentence-casing will be applied to that field
+   */
+  guessAlreadySentenceCased?: boolean
+
+  /**
    * translate braced parts of text into a case-protected counterpart; uses the [[MarkupMapping]] table in `markup`. Default == true == as-needed.
    * In as-needed mode the parser will assume that words that have capitals in them imply "nocase" behavior in the consuming application. If you don't want this, turn this option on, and you'll get
    * case protection exactly as the input has it
@@ -378,7 +388,6 @@ const english = [
 class Parser {
   private errors: ParseError[]
   private strings: { [key: string]: bibtex.ValueType[] }
-  private strictNoCase: boolean
   private unresolvedStrings: { [key: string]: boolean }
   private default_strings: { [key: string]: bibtex.TextValue[] }
   private comments: string[]
@@ -386,61 +395,68 @@ class Parser {
   private entry: Entry
   private fieldType: 'title' | 'creator' | 'other'
   private field: FieldBuilder
-  private errorHandler: (message: string) => void
-  private markup: MarkupMapping
-  private caseProtect: boolean
-  private sentenceCase: string[]
   private chunk: string
-  private verbatimFields: string[]
-  private verbatimCommands: string[]
-  private unnestFields: string[]
-  private htmlFields: string[]
+  // private verbatimFields: string[]
+  // private verbatimCommands: string[]
+  // private unnestFields: string[]
+  // private htmlFields: string[]
+  // private errorHandler: (message: string) => void
+  // private markup: MarkupMapping
+  // private caseProtect: boolean
+  // private sentenceCase: string[]
+  private options: ParserOptions
 
   public log: (string) => void = function(){} // tslint:disable-line variable-name only-arrow-functions no-empty
 
   constructor(options: ParserOptions = {}) {
+    if (options.errorHandler === false) {
+      // tslint:disable-next-line only-arrow-functions no-empty
+      options.errorHandler = function(err) {}
+    } else if (options.errorHandler === undefined) {
+      // tslint:disable-next-line only-arrow-functions
+      options.errorHandler = function(err) { throw err }
+    }
+
+    if (typeof options.sentenceCase === 'boolean') {
+      options.sentenceCase = options.sentenceCase ? english : []
+    } else {
+      options.sentenceCase = options.sentenceCase || english
+    }
+
+    this.options = {
+      caseProtection: 'as-needed',
+      verbatimFields: [ 'url', 'doi', 'file', 'files', 'eprint', 'verba', 'verbb', 'verbc' ],
+      verbatimCommands: [ 'url', 'href' ],
+      unnestFields: fields.title.concat(fields.unnest),
+      htmlFields: fields.html,
+      guessAlreadySentenceCased: true,
+      markup: {
+        enquote: { open: '\u201c', close: '\u201d' },
+        sub: { open: '<sub>', close: '</sub>' },
+        sup: { open: '<sup>', close: '</sup>' },
+        bold: { open: '<b>', close: '</b>' },
+        italics: { open: '<i>', close: '</i>' },
+        smallCaps: { open: '<span style="font-variant:small-caps;">', close: '</span>' },
+        caseProtect: { open: '<span class="nocase">', close: '</span>' },
+        roman: { open: '', close: '' },
+        fixedWidth: { open: '', close: '' },
+        h1: { open: '<h1>', close: '</h1>' },
+        h2: { open: '<h2>', close: '</h2>' },
+      },
+
+      ...options,
+    }
+    /*
     if (typeof options.caseProtection === 'undefined') options = { ...options, caseProtection: 'as-needed' }
-    this.strictNoCase = options.caseProtection === 'strict'
     this.caseProtect = !!options.caseProtection
 
     this.verbatimFields = options.verbatimFields || [ 'url', 'doi', 'file', 'files', 'eprint', 'verba', 'verbb', 'verbc' ]
     this.verbatimCommands = options.verbatimCommands || [ 'url', 'href' ]
     this.unnestFields = options.unnestFields || fields.title.concat(fields.unnest)
     this.htmlFields = options.htmlFields || fields.html
+    */
 
     this.unresolvedStrings = {}
-    if (typeof options.sentenceCase === 'boolean') {
-      this.sentenceCase = options.sentenceCase ? english : []
-    } else {
-      this.sentenceCase = options.sentenceCase || english
-    }
-
-    this.markup = {
-      enquote: { open: '\u201c', close: '\u201d' },
-      sub: { open: '<sub>', close: '</sub>' },
-      sup: { open: '<sup>', close: '</sup>' },
-      bold: { open: '<b>', close: '</b>' },
-      italics: { open: '<i>', close: '</i>' },
-      smallCaps: { open: '<span style="font-variant:small-caps;">', close: '</span>' },
-      caseProtect: { open: '<span class="nocase">', close: '</span>' },
-      roman: { open: '', close: '' },
-      fixedWidth: { open: '', close: '' },
-      h1: { open: '<h1>', close: '</h1>' },
-      h2: { open: '<h2>', close: '</h2>' },
-    }
-    for (const [markup, open_close ] of Object.entries(options.markup || {})) {
-      if (open_close) this.markup[markup] = open_close
-    }
-
-    if (options.errorHandler === false) {
-      // tslint:disable-next-line only-arrow-functions no-empty
-      this.errorHandler = function(err) {}
-    } else if (options.errorHandler === undefined) {
-      // tslint:disable-next-line only-arrow-functions
-      this.errorHandler = function(err) { throw err }
-    } else {
-      this.errorHandler = options.errorHandler
-    }
 
     this.errors = []
     this.comments = []
@@ -486,9 +502,9 @@ class Parser {
     const _ast = []
     for (const chunk of chunker(input)) {
       let chunk_ast = bibtex.parse(chunk.text, {
-        verbatimFields: this.verbatimFields,
-        verbatimCommands: this.verbatimCommands,
-        unnestFields: this.unnestFields,
+        verbatimFields: this.options.verbatimFields,
+        verbatimCommands: this.options.verbatimCommands,
+        unnestFields: this.options.unnestFields,
       })
       if (clean) chunk_ast = this.clean(chunk_ast)
       _ast.push(chunk_ast)
@@ -520,6 +536,10 @@ class Parser {
         text: '',
         level: 0,
         preserveRanges: null,
+        words: {
+          cased: 0,
+          other: 0,
+        },
       }
       this.convert(this.clean(value))
       strings[key] = this.field.text
@@ -552,9 +572,9 @@ class Parser {
 
     try {
       let bib = bibtex.parse(chunk.text, {
-        verbatimFields: this.verbatimFields,
-        verbatimCommands: this.verbatimCommands,
-        unnestFields: this.unnestFields,
+        verbatimFields: this.options.verbatimFields,
+        verbatimCommands: this.options.verbatimCommands,
+        unnestFields: this.options.unnestFields,
       })
       if (bib.kind !== 'Bibliography') throw new Error(this.show(bib))
       bib = this.clean(bib)
@@ -588,7 +608,7 @@ class Parser {
   }
 
   private error(err, returnvalue) {
-    this.errorHandler(err)
+    if (typeof this.options.errorHandler === 'function') this.options.errorHandler(err)
     return returnvalue
   }
 
@@ -616,7 +636,7 @@ class Parser {
       const last = acc[acc.length - 1]
       const next = node.value[i + 1]
 
-      if (this.strictNoCase && this.onlyCaseProtected(last) && child.kind === 'Text' && !child.value.match(preserveCase.hasCased) && this.onlyCaseProtected(next)) {
+      if (this.options.caseProtection === 'strict' && this.onlyCaseProtected(last) && child.kind === 'Text' && !child.value.match(preserveCase.hasCased) && this.onlyCaseProtected(next)) {
         last.value.push(child)
         delete last.source
         return acc
@@ -796,7 +816,7 @@ class Parser {
   private clean_field(node: bibtex.Field) {
     this.setFieldType(node.name)
 
-    this.stripNoCase(node, !this.caseProtect || [ 'url', 'doi', 'file', 'files', 'eprint', 'verba', 'verbb', 'verbc' ].includes(node.name))
+    this.stripNoCase(node, !this.options.caseProtection || [ 'url', 'doi', 'file', 'files', 'eprint', 'verba', 'verbb', 'verbc' ].includes(node.name))
 
     if (Array.isArray(node.value)) this.condense(node)
 
@@ -835,7 +855,7 @@ class Parser {
   private clean_block(node: bibtex.Block) {
     this.condense(node)
 
-    if (!this.strictNoCase && this.fieldType === 'title' && node.case === 'protect') {
+    if (this.options.caseProtection !== 'strict' && this.fieldType === 'title' && node.case === 'protect') {
       // test whether we can get away with skipping case protection because it contains all words that will be preserved anyway when converting back to Title Case
       let preserve = true
       for (const child of node.value) {
@@ -1216,7 +1236,7 @@ class Parser {
       return ia - ib
     })
 
-    let sentenceCase = !!this.sentenceCase.length // if sentenceCase is empty, no sentence casing
+    let sentenceCase = !!(this.options.sentenceCase as string[]).length // if sentenceCase is empty, no sentence casing
     for (const field of node.fields) {
       if (field.kind !== 'Field') return this.error(new ParserError(`Expected Field, got ${field.kind}`, node), undefined)
 
@@ -1226,8 +1246,12 @@ class Parser {
         name: field.name,
         text: '',
         level: 0,
+        words: {
+          cased: 0,
+          other: 0,
+        },
         preserveRanges: (sentenceCase && fields.title.includes(field.name)) ? [] : null,
-        html: this.htmlFields.includes(field.name),
+        html: this.options.htmlFields.includes(field.name),
       }
 
       this.entry.fields[this.field.name] = this.entry.fields[this.field.name] || []
@@ -1239,11 +1263,11 @@ class Parser {
       switch (this.field.name) {
         case 'langid':
         case 'hyphenation':
-          sentenceCase = sentenceCase && this.sentenceCase.includes(this.field.text.toLowerCase())
+          sentenceCase = sentenceCase && (this.options.sentenceCase as string[]).includes(this.field.text.toLowerCase())
           break
 
         case 'language':
-          sentenceCase = sentenceCase && !!(this.field.text.toLowerCase().trim().split(/\s*,\s*/).find(lang => this.sentenceCase.includes(lang)))
+          sentenceCase = sentenceCase && !!(this.field.text.toLowerCase().trim().split(/\s*,\s*/).find(lang => (this.options.sentenceCase as string[]).includes(lang)))
           break
       }
 
@@ -1285,6 +1309,7 @@ class Parser {
           }
         }
 
+        if (this.options.guessAlreadySentenceCased && this.field.words.cased > this.field.words.other) this.preserve(null, 'mostly sentence cased already')
         this.entry.fields[this.field.name].push(this.convertToSentenceCase(this.field.text, this.field.preserveRanges))
       }
 
@@ -1317,8 +1342,25 @@ class Parser {
 
     // maybe move to grammar so it's only done in text, not math
     node.value = node.value
-      .replace(/``/g, this.markup.enquote.open)
-      .replace(/''/g, this.markup.enquote.close)
+      .replace(/``/g, this.options.markup.enquote.open)
+      .replace(/''/g, this.options.markup.enquote.close)
+
+    // heuristic to detect pre-sentencecased text
+    const cased = {
+      upper: 0,
+      lower: 0,
+    }
+    for (const word of node.value.split(/\b/)) {
+      if (word.match(preserveCase.allLower)) {
+        cased.lower++
+      } else if (word.match(preserveCase.allCaps)) {
+        cased.upper++
+      } else if (word.match(preserveCase.hasAlpha)) {
+        this.field.words.other++
+      }
+    }
+    this.field.words.cased += (cased.lower > cased.upper) ? cased.lower : cased.upper
+    this.field.words.other += (cased.lower > cased.upper) ? cased.upper : cased.lower
 
     if (this.field.level === 0 && this.fieldType === 'creator') {
       this.field.text += node.value.replace(/\s+and\s+/ig, marker.and).replace(/\s*,\s*/g, marker.comma).replace(/\s+/g, marker.space)
@@ -1349,7 +1391,7 @@ class Parser {
     let prefix = ''
     let postfix = ''
 
-    if (!this.strictNoCase && this.fieldType === 'other') delete node.case
+    if (this.options.caseProtection !== 'strict' && this.fieldType === 'other') delete node.case
     if (this.fieldType === 'creator' && node.case === 'protect') {
       prefix += marker.literal
       postfix = marker.literal + postfix
@@ -1357,14 +1399,14 @@ class Parser {
     }
 
     if (node.case === 'protect') {
-      prefix += this.markup.caseProtect.open
-      postfix = this.markup.caseProtect.close + postfix
+      prefix += this.options.markup.caseProtect.open
+      postfix = this.options.markup.caseProtect.close + postfix
     }
     for (const markup of Object.keys(node.markup)) {
-      if (!this.markup[markup]) return this.error(new ParserError(`markup: ${markup}`, node), undefined)
+      if (!this.options.markup[markup]) return this.error(new ParserError(`markup: ${markup}`, node), undefined)
 
-      prefix += this.markup[markup].open
-      postfix = this.markup[markup].close + postfix
+      prefix += this.options.markup[markup].open
+      postfix = this.options.markup[markup].close + postfix
     }
 
     const end = {
@@ -1380,7 +1422,7 @@ class Parser {
     const added = this.field.text.substring(end.withPrefix)
     if (!added) { // nothing was added, so remove prefix
       this.field.text = this.field.text.substring(0, end.withoutPrefix)
-    } else if (prefix === this.markup.caseProtect.open && !added.match(preserveCase.hasCased)) { // something was added that didn't actually need case protection
+    } else if (prefix === this.options.markup.caseProtect.open && !added.match(preserveCase.hasCased)) { // something was added that didn't actually need case protection
       this.field.text = this.field.text.substring(0, end.withoutPrefix) + added
       this.field.preserveRanges = this.field.preserveRanges.filter(range => range.start < end.withoutPrefix)
     } else {
