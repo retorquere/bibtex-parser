@@ -249,6 +249,7 @@ Field
     // because this was abused so much, many processors treat double-outer-braces as single
     if (unnestFields.includes(field.name) && Array.isArray(v) && v.length === 1 && v[0].kind === 'Block') {
       field.value = v[0].value
+      // v[0].case = 'preserve'
     }
 
     return field
