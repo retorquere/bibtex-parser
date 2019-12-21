@@ -409,6 +409,10 @@ class Parser {
   public log: (string) => void = function(){} // tslint:disable-line variable-name only-arrow-functions no-empty
 
   constructor(options: ParserOptions = {}) {
+    for (const [option, value] of Object.entries(options)) {
+      if (typeof value === 'undefined') delete options[option]
+    }
+
     if (options.errorHandler === false) {
       // tslint:disable-next-line only-arrow-functions no-empty
       options.errorHandler = function(err) {}
@@ -446,6 +450,7 @@ class Parser {
 
       ...options,
     }
+
     /*
     if (typeof options.caseProtection === 'undefined') options = { ...options, caseProtection: 'as-needed' }
     this.caseProtect = !!options.caseProtection
@@ -1456,6 +1461,7 @@ export function parse(input: string, options: ParserOptions = {}): Bibliography 
     verbatimFields: options.verbatimFields,
     verbatimCommands: options.verbatimCommands,
     htmlFields: options.htmlFields,
+    unnestFields: options.unnestFields,
   })
   return options.async ? parser.parseAsync(input) : parser.parse(input)
 }
@@ -1470,6 +1476,7 @@ export function ast(input: string, options: ParserOptions & { clean?: boolean } 
     verbatimFields: options.verbatimFields,
     verbatimCommands: options.verbatimCommands,
     htmlFields: options.htmlFields,
+    unnestFields: options.unnestFields,
   })
   return parser.ast(input, options.clean)
 }
