@@ -98,16 +98,49 @@
     return true
   }
 
-  const mode = {
-    state: 'text',
+  const math = {
+    on: false,
 
-    seen: function(state) {
-      if (state === 'text') {
-        this.state = state
-      } else {
-        this.state = 'text'
-      }
-    },
+    set: function(state) {
+      this.on = state
+      return true
+    }
+  }
+
+  function basicTextConversions(node) {
+    if (node.kind !== 'Text') throw new Error(node.kind + ' is not a Text node')
+
+    switch (node.mode) {
+      case 'verbatim':
+        break
+
+      case 'math':
+        node.value = node.value.replace(/~/g, '\u00A0')
+        break
+
+      case 'text':
+        node.value = node.value
+          .replace(/---/g, '\u2014')
+          .replace(/--/g, '\u2013')
+          .replace(/</g, '\u00A1')
+          .replace(/>/g, '\u00BF')
+          .replace(/~/g, '\u00A0')
+        break
+
+      default:
+        throw new Error(`Unexpected text mode ${node.mode}`)
+    }
+
+    return node
+  }
+
+  function protect(v) {
+    return {
+      kind: 'Block',
+      value: [v],
+      markup: {},
+      case: 'protect',
+    }
   }
 }
 
@@ -200,7 +233,8 @@ Field
       loc: location(),
       source: text(),
       name: k.toLowerCase(),
-      value: v,
+      loc: location(),
+      value: [ protect(v) ]
     }
   }
   / k:FieldName FieldSeparator v:FieldValue FieldTerminator {
@@ -227,37 +261,39 @@ FieldName
 
 VerbatimFieldValue
   = '"' v:TextNoQuotes? '"' {
-    return {
+    v = v || {
       kind: 'Text',
       loc: location(),
       source: text(),
-      value: (v || '').trim(),
+      value: '',
       mode: 'verbatim',
     }
+    v.mode = 'verbatim'
+    return basicTextConversions(v)
   }
   / '{' v:VerbatimText* '}' {
-    return {
+    return basicTextConversions({
       kind: 'Text',
       loc: location(),
       source: text(),
       value: v.join('').trim(),
       mode: 'verbatim',
-    }
+    })
   }
 
 VerbatimText
   = v:$[^{}]+ { return v }
-  / '{' VerbatimText* '}' { return '{' + v.join('') + '}' }
+  / '{' v:VerbatimText* '}' { return '{' + v.join('') + '}' }
 
 FieldValue
   = Number
-  / &{ mode.state = 'text'; return true } v:(RegularValue / StringValue)* {
+  / &{ return math.set(false) } v:(RegularValue / StringValue)* {
     return v.reduce((a, b) => a.concat(b), []);
   }
 
 RegularValue
-  = '"' v:(Block / MathMode / Command / TextNoQuotes)* '"' Concat? { return v; }
-  / '{' v:(Block / MathMode / Command / Text)* '}' Concat? { return v; }
+  = '"' v:(Block / Math / Command / TextNoQuotes)* '"' Concat? { return v; }
+  / '{' v:(Block / Math / Command / Text)* '}' Concat? { return v; }
 
 StringValue
   = v:StringReference Concat? { return v; }
@@ -266,24 +302,24 @@ StringValue
 
 Text
   = v:[^\^_${}\\]+ {
-    return {
+    return basicTextConversions({
       kind: 'Text',
       loc: location(),
       source: text(),
       value: normalizeWhitespace(v),
-      mode: mode.state,
-    }
+      mode: math.on ? 'math' : 'text',
+    })
   }
 
 TextNoQuotes
   = v:[^\^_${}"\\]+ {
-    return {
+    return basicTextConversions({
       kind: 'Text',
       loc: location(),
       source: text(),
       value: normalizeWhitespace(v),
-      mode: mode.state,
-    }
+      mode: math.on ? 'math' : 'text',
+    })
   }
 
 Number
@@ -317,7 +353,7 @@ Block
       character: char[1] || char[0],
     }
   }
-  / '{' v:(Text / Command / Block / MathMode )* '}' {
+  / '{' v:(Text / Command / Block / Math )* '}' {
     const block = {
       kind: 'Block',
       loc: location(),
@@ -345,9 +381,17 @@ Block
     return block
   }
 
-MathMode
-  = '$$' { mode.seen('display'); return { kind: 'DisplayMath' } }
-  / '$' { mode.seen('inline'); return { kind: 'InlineMath' } }
+Math
+  = &{ return !math.on } mode:('$' / '$$') &{ return math.set(true) } v:(Text / Command / Block )* ('$' / '$$') &{ return math.set(false) } {
+    return {
+      kind: mode == '$$' ? 'DisplayMath' : 'InlineMath',
+      loc: location(),
+      source: text(),
+      value: v,
+      case: 'protect',
+      markup: {},
+    }
+  }
 
 //---------------- Comments
 
@@ -437,21 +481,22 @@ RegularCommand
       command: v,
       arguments: {
         optional: optional,
-        required: [req1, req2],
+        required: [protect(req1), protect(req2)],
       },
     }
   }
   / '\\' v:$[A-Za-z]+ &{ return verbatimCommands.includes(v) && (has_arguments[v] === 1) } optional:OptionalArgument* &'{' req:VerbatimFieldValue {
-    return {
+    const cmd  = {
       kind: 'RegularCommand',
       loc: location(),
       source: text(),
       command: v,
       arguments: {
         optional: optional,
-        required: [req],
+        required: [protect(req)],
       },
     }
+    return cmd
   }
   / '\\' v:$[A-Za-z]+ &{ return (has_arguments[v] === 2) } optional:OptionalArgument* req1:RequiredArgument req2:RequiredArgument {
     return {
@@ -529,24 +574,24 @@ RegularCommand
 
 OptionalArgument
   = '[' __h v:$[^\]]+ __h ']' {
-    return {
+    return basicTextConversions({
       kind: 'Text', // this isn't really correct but I don't need these right now
       loc: location(),
       source: text(),
       value: v,
-      mode: mode.state,
-    }
+      mode: math.on ? 'math' : 'text',
+    })
   }
 
 RequiredArgument
   = __h v:[^ \t\^_${}\\] {
-    return {
+    return basicTextConversions({
       kind: 'Text',
       loc: location(),
       source: text(),
       value: normalizeWhitespace([v]),
-      mode: mode.state,
-    }
+      mode: math.on ? 'math' : 'text',
+    })
   }
   / v:(Command / Block) { return v }
 

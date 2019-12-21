@@ -83,6 +83,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_index_.parseroptions.html#async" class="tsd-kind-icon">async</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_index_.parseroptions.html#caseprotection" class="tsd-kind-icon">case<wbr>Protection</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_index_.parseroptions.html#errorhandler" class="tsd-kind-icon">error<wbr>Handler</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_index_.parseroptions.html#htmlfields" class="tsd-kind-icon">html<wbr>Fields</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_index_.parseroptions.html#markup" class="tsd-kind-icon">markup</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_index_.parseroptions.html#sentencecase" class="tsd-kind-icon">sentence<wbr>Case</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_index_.parseroptions.html#unnestfields" class="tsd-kind-icon">unnest<wbr>Fields</a></li>
@@ -101,7 +102,7 @@
 					<div class="tsd-signature tsd-kind-icon">async<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L325">index.ts:325</a></li>
+							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L324">index.ts:324</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -116,7 +117,7 @@
 					<div class="tsd-signature tsd-kind-icon">case<wbr>Protection<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"loose"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"strict"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L315">index.ts:315</a></li>
+							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L314">index.ts:314</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -133,7 +134,7 @@
 					<div class="tsd-signature tsd-kind-icon">error<wbr>Handler<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L331">index.ts:331</a></li>
+							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L330">index.ts:330</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -144,12 +145,27 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="htmlfields" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> html<wbr>Fields</h3>
+					<div class="tsd-signature tsd-kind-icon">html<wbr>Fields<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L352">index.ts:352</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Some note-like fields may have more rich formatting. If listed here, more HTML conversions will be applied.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="markup" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> markup</h3>
 					<div class="tsd-signature tsd-kind-icon">markup<span class="tsd-signature-symbol">:</span> <a href="_index_.markupmapping.html" class="tsd-signature-type">MarkupMapping</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L320">index.ts:320</a></li>
+							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L319">index.ts:319</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -164,7 +180,7 @@
 					<div class="tsd-signature tsd-kind-icon">sentence<wbr>Case<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L308">index.ts:308</a></li>
+							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L307">index.ts:307</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -207,9 +223,15 @@
 					<div class="tsd-signature tsd-kind-icon">unnest<wbr>Fields<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L341">index.ts:341</a></li>
+							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L347">index.ts:347</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>In the past many bibtex entries would just always wrap a field in double braces ({{ title here }}), likely because whomever was writing them couldn&#39;t figure out the case meddling rules (and who could
+							blame them. Fields listed here will have one outer layer of braces removed if this is detected</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="verbatimcommands" class="tsd-anchor"></a>
@@ -217,9 +239,14 @@
 					<div class="tsd-signature tsd-kind-icon">verbatim<wbr>Commands<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L339">index.ts:339</a></li>
+							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L341">index.ts:341</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Some commands such as <code>url</code> are parsed in what is called &quot;verbatim mode&quot; where pretty much everything except braces is treated as regular text, not TeX commands.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="verbatimfields" class="tsd-anchor"></a>
@@ -227,7 +254,7 @@
 					<div class="tsd-signature tsd-kind-icon">verbatim<wbr>Fields<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L337">index.ts:337</a></li>
+							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L336">index.ts:336</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -289,6 +316,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_index_.parseroptions.html#errorhandler" class="tsd-kind-icon">error<wbr>Handler</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_index_.parseroptions.html#htmlfields" class="tsd-kind-icon">html<wbr>Fields</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_index_.parseroptions.html#markup" class="tsd-kind-icon">markup</a>

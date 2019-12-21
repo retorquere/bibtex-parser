@@ -24,27 +24,33 @@ const big = [
   'Really Big whopping library',
 ]
 
-const ignoreErrors = {
-  errorHandler(e) {
-    return
-    // if (e.name === 'TeXError') return // ignore TeX
-    // throw e
+function ignoreErrors(e) {
+  if (e.name === 'TeXError') return // ignore TeX
+  throw e
+}
+
+function parseOptions(f) {
+  const opts: bibtex.ParserOptions = {}
+  if (enable.strict) opts.caseProtection = 'strict'
+  if (f.endsWith('/long.bib') || f === 'long.bib') opts.errorHandler = ignoreErrors
+  if (f.includes('/Async') || f.startsWith('Async')) { // Oh Mendeley....
+    opts.verbatimFields = [ 'doi', 'eprint', 'verba', 'verbb', 'verbc' ]
   }
+  return opts
 }
 
 describe('BibTeX Parser', () => {
   let root = path.join(__dirname, 'cases')
-  const cases: { caseName: string, input: string, options: any }[] = []
+  const cases: { caseName: string, input: string, options: bibtex.ParserOptions }[] = []
 
   for (const f of fs.readdirSync(root)) {
     if (!f.replace(/(la)?tex$/, '').endsWith('.bib')) continue
     if (enable.case && !f.toLowerCase().includes(enable.case)) continue
 
-    const options = f.endsWith('/long.bib') || f === 'long.bib' ? ignoreErrors : { strictNoCase: enable.strict }
     cases.push({
       caseName: path.basename(f),
       input: fs.readFileSync(path.join(root, f), 'utf-8'),
-      options,
+      options: parseOptions(f),
     })
   }
 
@@ -57,11 +63,10 @@ describe('BibTeX Parser', () => {
 
       if (enable.case && !f.toLowerCase().includes(enable.case)) continue
 
-      const options = f.endsWith('/long.bib') || f === 'long.bib' ? ignoreErrors : { strictNoCase: enable.strict }
       cases.push({
         caseName: `bbt-${mode}-${path.basename(f)}`,
         input: fs.readFileSync(path.join(root, f), 'utf-8'),
-        options,
+        options: parseOptions(f),
       })
     }
   }

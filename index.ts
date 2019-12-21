@@ -21,7 +21,6 @@ type Node =
   | bibtex.PreambleExpression
   | bibtex.BracedComment
   | bibtex.LineComment
-  | bibtex.MathMode
   | Markup
 
 class ParserError extends Error {
@@ -336,9 +335,21 @@ export interface ParserOptions {
    */
   verbatimFields?: string[]
 
+  /**
+   * Some commands such as `url` are parsed in what is called "verbatim mode" where pretty much everything except braces is treated as regular text, not TeX commands.
+   */
   verbatimCommands?: string[]
 
+  /**
+   * In the past many bibtex entries would just always wrap a field in double braces ({{ title here }}), likely because whomever was writing them couldn't figure out the case meddling rules (and who could
+   * blame them. Fields listed here will have one outer layer of braces removed if this is detected
+   */
   unnestFields?: string[]
+
+  /**
+   * Some note-like fields may have more rich formatting. If listed here, more HTML conversions will be applied.
+   */
+  htmlFields?: string[]
 }
 
 const english = [
@@ -387,6 +398,7 @@ class Parser {
   private verbatimFields: string[]
   private verbatimCommands: string[]
   private unnestFields: string[]
+  private htmlFields: string[]
 
   public log: (string) => void = function(){} // tslint:disable-line variable-name only-arrow-functions no-empty
 
@@ -398,6 +410,7 @@ class Parser {
     this.verbatimFields = options.verbatimFields || [ 'url', 'doi', 'file', 'files', 'eprint', 'verba', 'verbb', 'verbc' ]
     this.verbatimCommands = options.verbatimCommands || [ 'url', 'href' ]
     this.unnestFields = options.unnestFields || fields.title.concat(fields.unnest)
+    this.htmlFields = options.htmlFields || fields.html
 
     this.unresolvedStrings = {}
     if (typeof options.sentenceCase === 'boolean') {
@@ -623,7 +636,7 @@ class Parser {
         return acc
       }
 
-      if (last.kind === 'Text' && child.kind === 'Text') {
+      if (last.kind === 'Text' && child.kind === 'Text' && (last.mode === 'verbatim' ? 'verbatim' : 'text') === (child.mode === 'verbatim' ? 'verbatim' : 'text')) {
         last.value += child.value
         delete last.source
         return acc
@@ -678,6 +691,8 @@ class Parser {
     delete node.loc
 
     switch (node.kind) {
+      case 'InlineMath':
+      case 'DisplayMath':
       case 'Block':
         return this.clean_block(node)
 
@@ -714,8 +729,6 @@ class Parser {
       case 'PreambleExpression':
       case 'BracedComment':
       case 'LineComment':
-      case 'InlineMath':
-      case 'DisplayMath':
         return node
 
       default:
@@ -776,6 +789,8 @@ class Parser {
         break
 
       case 'Block':
+      case 'InlineMath':
+      case 'DisplayMath':
         if (strip && node.case === 'protect') delete node.case
         node.value.map(v => this.stripNoCase(v, strip || node.case === 'protect'))
         break
@@ -1073,12 +1088,14 @@ class Parser {
         break
 
       case 'Block':
+      case 'InlineMath':
+      case 'DisplayMath':
         const start = this.field ? this.field.text.length : null
         const preserve = typeof start === 'number' && this.field.preserveRanges
 
         this.convert_block(node)
 
-        if (preserve && node.case) this.preserve({ start, end: this.field.text.length }, 'block')
+        if (preserve && (node.case || node.kind.endsWith('Math'))) this.preserve({ start, end: this.field.text.length }, 'block')
         break
 
       case 'DisplayMath':
@@ -1222,7 +1239,7 @@ class Parser {
           other: 0,
         },
         preserveRanges: (sentenceCase && fields.title.includes(field.name)) ? [] : null,
-        html: fields.html.includes(field.name),
+        html: this.htmlFields.includes(field.name),
       }
 
       this.entry.fields[this.field.name] = this.entry.fields[this.field.name] || []
@@ -1306,29 +1323,15 @@ class Parser {
   }
 
   private convert_text(node: bibtex.TextValue) {
-    switch (node.mode) {
-      case 'verbatim':
-        this.field.text += node.value.trim()
-        return
-
-      case 'math':
-        node.value = node.value.replace(/~/g, '\u00A0')
-        break
-
-      case 'text':
-        node.value = node.value
-          .replace(/---/g, '\u2014')
-          .replace(/--/g, '\u2013')
-          .replace(/</g, '\u00A1')
-          .replace(/>/g, '\u00BF')
-          .replace(/~/g, '\u00A0')
-          .replace(/``/g, this.markup.enquote.open)
-          .replace(/''/g, this.markup.enquote.close)
-        break
-
-      default:
-        throw new Error(`Unexpected text mode ${node.mode}`)
+    if (node.mode === 'verbatim') {
+      this.field.text += node.value.trim()
+      return
     }
+
+    // maybe move to grammar so it's only done in text, not math
+    node.value = node.value
+      .replace(/``/g, this.markup.enquote.open)
+      .replace(/''/g, this.markup.enquote.close)
 
     // heuristic to detect pre-sentencecased text
     const cased = {
@@ -1440,6 +1443,7 @@ export function parse(input: string, options: ParserOptions = {}): Bibliography 
     errorHandler: options.errorHandler,
     verbatimFields: options.verbatimFields,
     verbatimCommands: options.verbatimCommands,
+    htmlFields: options.htmlFields,
   })
   return options.async ? parser.parseAsync(input) : parser.parse(input)
 }
@@ -1453,6 +1457,7 @@ export function ast(input: string, options: ParserOptions & { clean?: boolean } 
     errorHandler: options.errorHandler,
     verbatimFields: options.verbatimFields,
     verbatimCommands: options.verbatimCommands,
+    htmlFields: options.htmlFields,
   })
   return parser.ast(input, options.clean)
 }
