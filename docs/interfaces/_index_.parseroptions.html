@@ -85,6 +85,8 @@
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_index_.parseroptions.html#errorhandler" class="tsd-kind-icon">error<wbr>Handler</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_index_.parseroptions.html#markup" class="tsd-kind-icon">markup</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_index_.parseroptions.html#sentencecase" class="tsd-kind-icon">sentence<wbr>Case</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_index_.parseroptions.html#unnestfields" class="tsd-kind-icon">unnest<wbr>Fields</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_index_.parseroptions.html#verbatimcommands" class="tsd-kind-icon">verbatim<wbr>Commands</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_index_.parseroptions.html#verbatimfields" class="tsd-kind-icon">verbatim<wbr>Fields</a></li>
 							</ul>
 						</section>
@@ -99,7 +101,7 @@
 					<div class="tsd-signature tsd-kind-icon">async<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L310">index.ts:310</a></li>
+							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L325">index.ts:325</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -114,7 +116,7 @@
 					<div class="tsd-signature tsd-kind-icon">case<wbr>Protection<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"loose"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"strict"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L300">index.ts:300</a></li>
+							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L315">index.ts:315</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -131,7 +133,7 @@
 					<div class="tsd-signature tsd-kind-icon">error<wbr>Handler<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L316">index.ts:316</a></li>
+							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L331">index.ts:331</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -147,7 +149,7 @@
 					<div class="tsd-signature tsd-kind-icon">markup<span class="tsd-signature-symbol">:</span> <a href="_index_.markupmapping.html" class="tsd-signature-type">MarkupMapping</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L305">index.ts:305</a></li>
+							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L320">index.ts:320</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -162,7 +164,7 @@
 					<div class="tsd-signature tsd-kind-icon">sentence<wbr>Case<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L293">index.ts:293</a></li>
+							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L308">index.ts:308</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -200,12 +202,32 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="unnestfields" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> unnest<wbr>Fields</h3>
+					<div class="tsd-signature tsd-kind-icon">unnest<wbr>Fields<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L341">index.ts:341</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="verbatimcommands" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> verbatim<wbr>Commands</h3>
+					<div class="tsd-signature tsd-kind-icon">verbatim<wbr>Commands<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L339">index.ts:339</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="verbatimfields" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> verbatim<wbr>Fields</h3>
 					<div class="tsd-signature tsd-kind-icon">verbatim<wbr>Fields<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L322">index.ts:322</a></li>
+							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L337">index.ts:337</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -273,6 +295,12 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_index_.parseroptions.html#sentencecase" class="tsd-kind-icon">sentence<wbr>Case</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_index_.parseroptions.html#unnestfields" class="tsd-kind-icon">unnest<wbr>Fields</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_index_.parseroptions.html#verbatimcommands" class="tsd-kind-icon">verbatim<wbr>Commands</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_index_.parseroptions.html#verbatimfields" class="tsd-kind-icon">verbatim<wbr>Fields</a>

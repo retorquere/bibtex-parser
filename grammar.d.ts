@@ -38,6 +38,7 @@ export interface TextValue {
   loc?: Location
   source?: string
   value: string
+  mode: 'text' | 'math' | 'verbatim'
 }
 
 export interface StringReference {
@@ -98,7 +99,7 @@ export interface DiacriticCommand {
 }
 
 export interface Block {
-  kind: 'Block' | 'InlineMath' | 'DisplayMath'
+  kind: 'Block'
   loc?: Location
   source?: string
   value: ValueType[]
@@ -112,6 +113,11 @@ export interface Block {
     smallCaps?: boolean
     enquote?: boolean
   }
+}
+
+export interface MathMode {
+  kind: 'InlineMath' | 'DisplayMath'
+  loc?: Location
 }
 
 export interface Field {
@@ -171,7 +177,7 @@ export type Comment = BracedComment | LineComment | NonEntryText
 
 export type Command = RegularCommand | SymbolCommand | DiacriticCommand | SubscriptCommand | SuperscriptCommand
 
-export type ValueType = TextValue | StringReference | Block | NumberValue | Command
+export type ValueType = TextValue | StringReference | Block | NumberValue | Command | MathMode
 
 export type Children = Entry | PreambleExpression | StringDeclaration | Comment
 

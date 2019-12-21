@@ -2,6 +2,8 @@ import * as bibtex from './grammar'
 import { parse as chunker } from './chunker'
 import { latex as latex2unicode } from 'unicode2latex'
 
+type Markup = { kind: 'Markup', value: string, loc?: any }
+
 type Node =
   | bibtex.Bibliography
   | bibtex.Block
@@ -19,6 +21,8 @@ type Node =
   | bibtex.PreambleExpression
   | bibtex.BracedComment
   | bibtex.LineComment
+  | bibtex.MathMode
+  | Markup
 
 class ParserError extends Error {
   public node: any
@@ -164,6 +168,7 @@ type FieldBuilder = {
     other: number
   }
   preserveRanges: Array<{ start: number, end: number }>
+  html?: boolean
 }
 
 /**
@@ -177,6 +182,8 @@ export interface MarkupMapping {
   smallCaps?: { open: string, close: string }
   caseProtect?: { open: string, close: string }
   enquote?: { open: string, close: string }
+  h1?: { open: string, close: string }
+  h2?: { open: string, close: string }
 
   roman?: { open: string, close: string }
   fixedWidth?: { open: string, close: string }
@@ -256,6 +263,14 @@ const fields = {
     'publisher',
     'location',
   ],
+  html: [
+    'annotation',
+    'comment',
+    'annote',
+    'review',
+    'notes',
+    'note',
+  ],
 }
 
 export interface ParserOptions {
@@ -320,6 +335,10 @@ export interface ParserOptions {
    * for example to help parse Mendeley `file` fields, which against spec are not in verbatim mode.
    */
   verbatimFields?: string[]
+
+  verbatimCommands?: string[]
+
+  unnestFields?: string[]
 }
 
 const english = [
@@ -365,6 +384,9 @@ class Parser {
   private caseProtect: boolean
   private sentenceCase: string[]
   private chunk: string
+  private verbatimFields: string[]
+  private verbatimCommands: string[]
+  private unnestFields: string[]
 
   public log: (string) => void = function(){} // tslint:disable-line variable-name only-arrow-functions no-empty
 
@@ -372,6 +394,10 @@ class Parser {
     if (typeof options.caseProtection === 'undefined') options = { ...options, caseProtection: 'loose' }
     this.strictNoCase = options.caseProtection === 'strict'
     this.caseProtect = !!options.caseProtection
+
+    this.verbatimFields = options.verbatimFields || [ 'url', 'doi', 'file', 'files', 'eprint', 'verba', 'verbb', 'verbc' ]
+    this.verbatimCommands = options.verbatimCommands || [ 'url', 'href' ]
+    this.unnestFields = options.unnestFields || fields.title.concat(fields.unnest)
 
     this.unresolvedStrings = {}
     if (typeof options.sentenceCase === 'boolean') {
@@ -390,6 +416,8 @@ class Parser {
       caseProtect: { open: '<span class="nocase">', close: '</span>' },
       roman: { open: '', close: '' },
       fixedWidth: { open: '', close: '' },
+      h1: { open: '<h1>', close: '</h1>' },
+      h2: { open: '<h2>', close: '</h2>' },
     }
     for (const [markup, open_close ] of Object.entries(options.markup || {})) {
       if (open_close) this.markup[markup] = open_close
@@ -445,28 +473,30 @@ class Parser {
     }
   }
 
-  public ast(input, options: { clean?: boolean, verbatimFields?: string[] } = {}) {
-    if (typeof options.clean === 'undefined') options.clean = true
-
+  public ast(input, clean = true) {
     const _ast = []
     for (const chunk of chunker(input)) {
-      let chunk_ast = bibtex.parse(chunk.text, { verbatimFields: options.verbatimFields })
-      if (options.clean) chunk_ast = this.clean(chunk_ast)
+      let chunk_ast = bibtex.parse(chunk.text, {
+        verbatimFields: this.verbatimFields,
+        verbatimCommands: this.verbatimCommands,
+        unnestFields: this.unnestFields,
+      })
+      if (clean) chunk_ast = this.clean(chunk_ast)
       _ast.push(chunk_ast)
     }
     return _ast
   }
 
-  public parse(input, options: { verbatimFields?: string[] } = {}): Bibliography {
+  public parse(input): Bibliography {
     for (const chunk of chunker(input)) {
-      this.parseChunk(chunk, options)
+      this.parseChunk(chunk)
     }
     return this.parsed()
   }
 
-  public async parseAsync(input, options: { verbatimFields?: string[] } = {}): Promise<Bibliography> {
+  public async parseAsync(input): Promise<Bibliography> {
     for (const chunk of await chunker(input, { async: true })) {
-      this.parseChunk(chunk, options)
+      this.parseChunk(chunk)
     }
     return this.parsed()
   }
@@ -512,12 +542,15 @@ class Parser {
     if (this.field.preserveRanges) this.field.preserveRanges.push(range)
   }
 
-  private parseChunk(chunk, options: { verbatimFields?: string[], unnestFields?: string[] }) {
+  private parseChunk(chunk) {
     this.chunk = chunk.text
-    if (!options.unnestFields) options.unnestFields = fields.title.concat(fields.unnest)
 
     try {
-      let bib = bibtex.parse(chunk.text, options)
+      let bib = bibtex.parse(chunk.text, {
+        verbatimFields: this.verbatimFields,
+        verbatimCommands: this.verbatimCommands,
+        unnestFields: this.unnestFields,
+      })
       if (bib.kind !== 'Bibliography') throw new Error(this.show(bib))
       bib = this.clean(bib)
 
@@ -546,7 +579,7 @@ class Parser {
   }
 
   private text(value = ''): bibtex.TextValue {
-    return { kind: 'Text', value }
+    return { kind: 'Text', value, mode: 'text' }
   }
 
   private error(err, returnvalue) {
@@ -580,19 +613,19 @@ class Parser {
 
       if (this.strictNoCase && this.onlyCaseProtected(last) && child.kind === 'Text' && !child.value.match(preserveCase.hasCased) && this.onlyCaseProtected(next)) {
         last.value.push(child)
-        last.source += child.source
+        delete last.source
         return acc
       }
 
       if (last.kind === 'Block' && child.kind === 'Block' && Object.keys(last.markup).sort().join('/') === Object.keys(child.markup).sort().join('/')) {
         last.value = last.value.concat(child.value)
-        last.source += child.source
+        delete last.source
         return acc
       }
 
       if (last.kind === 'Text' && child.kind === 'Text') {
         last.value += child.value
-        last.source += child.source
+        delete last.source
         return acc
       }
 
@@ -610,15 +643,7 @@ class Parser {
     // expect 'n' text arguments
     if (typeof kind === 'number') {
       if (node.arguments.required.length !== kind) return false
-      let valid = true
-      const args = node.arguments.required
-        .map(arg => {
-          if (arg.kind === 'Text') return arg.value
-          if (arg.kind === 'Block' && arg.value.length === 1 && arg.value[0].kind === 'Text') return arg.value[0].value
-          valid = false
-          return null
-        })
-      return valid ? args : false
+      return node.arguments.required
     }
 
     // return first argument if it's the only one
@@ -654,8 +679,6 @@ class Parser {
 
     switch (node.kind) {
       case 'Block':
-      case 'InlineMath':
-      case 'DisplayMath':
         return this.clean_block(node)
 
       case 'Bibliography':
@@ -691,6 +714,8 @@ class Parser {
       case 'PreambleExpression':
       case 'BracedComment':
       case 'LineComment':
+      case 'InlineMath':
+      case 'DisplayMath':
         return node
 
       default:
@@ -728,6 +753,7 @@ class Parser {
 
   private clean_entry(node: bibtex.Entry) {
     node.fields = node.fields.map(child => this.clean(child))
+
     return node
   }
 
@@ -749,8 +775,6 @@ class Parser {
         node.arguments.required.map(arg => this.stripNoCase(arg, strip))
         break
 
-      case 'InlineMath':
-      case 'DisplayMath':
       case 'Block':
         if (strip && node.case === 'protect') delete node.case
         node.value.map(v => this.stripNoCase(v, strip || node.case === 'protect'))
@@ -848,6 +872,25 @@ class Parser {
     if (unicode = latex2unicode[node.source]) return this.text(unicode)
 
     switch (node.command) {
+      case 'begin':
+        if (arg = this.argument(node, 'text')) {
+          switch (arg) {
+            case 'itemize': return { kind: 'Markup', value: '<ul>' }
+            case 'enumerate': return { kind: 'Markup', value: '<ol>' }
+          }
+        }
+        break
+      case 'end':
+        if (arg = this.argument(node, 'text')) {
+          switch (arg) {
+            case 'itemize': return { kind: 'Markup', value: '</ul>' }
+            case 'enumerate': return { kind: 'Markup', value: '</ol>' }
+          }
+        }
+        break
+      case 'item':
+        return { kind: 'Markup', value: '<li>' }
+
       case 'frac':
         if (arg = this.argument(node, 2)) {
           // not a spectactular solution but what ya gonna do.
@@ -855,7 +898,7 @@ class Parser {
             kind: 'Block',
             case: 'preserve',
             markup: {},
-            value: [ this.text(arg[0]), this.text('/'), this.text(arg[1]) ],
+            value: [ arg[0], this.text('/'), arg[1] ],
           })
         }
         break
@@ -914,6 +957,11 @@ class Parser {
         if (arg = this.argument(node, 'Block')) return this.clean(arg)
         break
 
+      case 'section':
+      case 'subsection':
+        if (arg = this.argument(node, 'Block')) return this.clean(arg)
+        break
+
       case 'mkbibitalic':
       case 'mkbibemph':
       case 'textit':
@@ -944,7 +992,7 @@ class Parser {
 
       // just take the URL? Not the label?
       case 'href':
-        if (arg = this.argument(node, 2)) return this.text(arg[0])
+        if (arg = this.argument(node, 2)) return this.clean(arg[0])
         break
 
       case 'url':
@@ -1003,6 +1051,10 @@ class Parser {
     if (Array.isArray(node)) return node.map(child => this.convert(child))
 
     switch (node.kind) {
+      case 'Markup':
+        if (this.field) this.field.text += node.value
+        break
+
       case 'BracedComment':
       case 'LineComment':
         this.comments.push(node.value)
@@ -1020,17 +1072,17 @@ class Parser {
         this.convert_text(node)
         break
 
-      case 'InlineMath':
-      case 'DisplayMath':
       case 'Block':
         const start = this.field ? this.field.text.length : null
         const preserve = typeof start === 'number' && this.field.preserveRanges
 
         this.convert_block(node)
 
-        if (preserve && (node.case || node.kind.endsWith('Math'))) this.preserve({ start, end: this.field.text.length }, 'block')
+        if (preserve && node.case) this.preserve({ start, end: this.field.text.length }, 'block')
         break
 
+      case 'DisplayMath':
+      case 'InlineMath':
       case 'PreambleExpression':
       case 'StringDeclaration':
         break
@@ -1158,6 +1210,7 @@ class Parser {
     let sentenceCase = !!this.sentenceCase.length // if sentenceCase is empty, no sentence casing
     for (const field of node.fields) {
       if (field.kind !== 'Field') return this.error(new ParserError(`Expected Field, got ${field.kind}`, node), undefined)
+
       this.setFieldType(field.name)
 
       this.field = {
@@ -1169,6 +1222,7 @@ class Parser {
           other: 0,
         },
         preserveRanges: (sentenceCase && fields.title.includes(field.name)) ? [] : null,
+        html: fields.html.includes(field.name),
       }
 
       this.entry.fields[this.field.name] = this.entry.fields[this.field.name] || []
@@ -1252,7 +1306,29 @@ class Parser {
   }
 
   private convert_text(node: bibtex.TextValue) {
-    node.value = node.value.replace(/``/g, this.markup.enquote.open).replace(/''/g, this.markup.enquote.close)
+    switch (node.mode) {
+      case 'verbatim':
+        this.field.text += node.value.trim()
+        return
+
+      case 'math':
+        node.value = node.value.replace(/~/g, '\u00A0')
+        break
+
+      case 'text':
+        node.value = node.value
+          .replace(/---/g, '\u2014')
+          .replace(/--/g, '\u2013')
+          .replace(/</g, '\u00A1')
+          .replace(/>/g, '\u00BF')
+          .replace(/~/g, '\u00A0')
+          .replace(/``/g, this.markup.enquote.open)
+          .replace(/''/g, this.markup.enquote.close)
+        break
+
+      default:
+        throw new Error(`Unexpected text mode ${node.mode}`)
+    }
 
     // heuristic to detect pre-sentencecased text
     const cased = {
@@ -1281,7 +1357,9 @@ class Parser {
       return
     }
 
-    if (this.field.preserveRanges) {
+    if (this.field.html) {
+      this.field.text += node.value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    } else if (this.field.preserveRanges) {
       const words = node.value.split(/(\s+)/)
       for (const word of words) {
         if (this.preserveCase(word)) this.preserve({ start: this.field.text.length, end: this.field.text.length + word.length }, `word:${word}`)
@@ -1290,13 +1368,10 @@ class Parser {
     } else {
       this.field.text += node.value
     }
-
   }
 
   private convert_block(node: bibtex.Block) {
     const start = this.field.text.length
-
-    if (node.kind === 'DisplayMath') this.field.text += '\n\n'
 
     let prefix = ''
     let postfix = ''
@@ -1350,8 +1425,6 @@ class Parser {
       return script.length < m.length ? script : m
     })
 
-    if (node.kind === 'DisplayMath') this.field.text += '\n\n'
-
     if (node.case && this.field.preserveRanges) this.preserve({ start, end: this.field.text.length }, 'node')
   }
 }
@@ -1365,18 +1438,23 @@ export function parse(input: string, options: ParserOptions = {}): Bibliography 
     sentenceCase: options.sentenceCase,
     markup: options.markup,
     errorHandler: options.errorHandler,
+    verbatimFields: options.verbatimFields,
+    verbatimCommands: options.verbatimCommands,
   })
-  return options.async ? parser.parseAsync(input, { verbatimFields: options.verbatimFields }) : parser.parse(input, { verbatimFields: options.verbatimFields })
+  return options.async ? parser.parseAsync(input) : parser.parse(input)
 }
 
 export function ast(input: string, options: ParserOptions & { clean?: boolean } = {}) {
+  if (typeof options.clean === 'undefined') options.clean = true
   const parser = new Parser({
     caseProtection: options.caseProtection,
     sentenceCase: options.sentenceCase,
     markup: options.markup,
     errorHandler: options.errorHandler,
+    verbatimFields: options.verbatimFields,
+    verbatimCommands: options.verbatimCommands,
   })
-  return parser.ast(input, { clean: options.clean, verbatimFields: options.verbatimFields })
+  return parser.ast(input, options.clean)
 }
 
 export { parse as chunker } from './chunker'

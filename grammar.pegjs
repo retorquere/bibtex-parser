@@ -42,81 +42,8 @@
   }
 
   const unnestFields = (options.unnestFields || []).map(field => field.toLowerCase())
-
-  const verbatim = {
-    active: 0,
-    field: null,
-    closer: null,
-    
-    verbatimFields: options.verbatimFields ? options.verbatimFields.map(prop => prop.toLowerCase()) : [
-      'url',
-      'doi',
-      'file',
-      'eprint',
-      'verba',
-      'verbb',
-      'verbc',
-    ],
-    verbatimCommands: options.verbatimCommands || [ 'url' ],
-
-    verbatimField: function(prop) {
-      return this.verbatimFields.includes(prop.toLowerCase())
-    },
-    enterField: function(closer) {
-      if (!this.field || !this.verbatimField(this.field)) return true;
-      this.field = null;
-      this.active = 1;
-      this.closer = closer;
-      return true;
-    },
-    leaveField: function() {
-      this.active = 0;
-      this.closer = ''
-      this.field = ''
-      return true;
-    },
-
-    verbatimCommand: function(cmd) {
-      return this.verbatimCommands.includes(cmd)
-    },
-    enterCommand: function(cmd) {
-      if (this.verbatimCommand(cmd)) this.active++;
-      return true;
-    },
-    leaveCommand: function(cmd) {
-      if (this.verbatimCommand(cmd)) this.active--;
-      if (this.active < 0) this.active = 0;
-      return true;
-    },
-  }
-
-  const mode = {
-    mode: 'text',
-
-    to: function(newMode) {
-      if (this.mode === newMode) return false
-      this.mode = newMode
-      return true
-    },
-
-    convert: function (text) {
-      if (verbatim.active) {
-        return text
-
-      } else if (this.mode === 'text') {
-        return text
-          .replace(/---/g, '\u2014')
-          .replace(/--/g, '\u2013')
-          .replace(/</g, '\u00A1')
-          .replace(/>/g, '\u00BF')
-          .replace(/~/g, '\u00A0')
-
-      } else {
-        return text.replace(/~/g, '\u00A0')
-
-      }
-    }
-  }
+  const verbatimFields = (options.verbatimFields || [ 'url', 'doi', 'file', 'files', 'eprint', 'verba', 'verbb', 'verbc' ]).map(field => field.toLowerCase())
+  const verbatimCommands = (options.verbatimCommands || ['url', 'href'])
 
   function normalizeWhitespace(textArr) {
     return textArr.reduce((prev, curr) => {
@@ -133,6 +60,8 @@
 
   const has_arguments = {
     ElsevierGlyph: 1,
+    end: 1,
+    begin: 1,
     bibcyr: 1,
     bibstring: 1,
     chsf: 1,
@@ -150,6 +79,8 @@
     mkbibquote: 1,
     noopsort: 1,
     ocirc: 1,
+    section: 1,
+    subsection: 1,
     t: 1,
     textbf: 1,
     textit: 1,
@@ -165,6 +96,18 @@
   function say() {
     console.log(JSON.stringify(Array.from(arguments), null, 2))
     return true
+  }
+
+  const mode = {
+    state: 'text',
+
+    seen: function(state) {
+      if (state === 'text') {
+        this.state = state
+      } else {
+        this.state = 'text'
+      }
+    },
   }
 }
 
@@ -192,7 +135,7 @@ Comment
       kind: 'LineComment',
       loc: location(),
       source: text(),
-      value: mode.convert(normalizeWhitespace(v)),
+      value: normalizeWhitespace(v),
     }
     }
   / v:([^@] [^\n\r]*) [\n\r]* {
@@ -200,7 +143,7 @@ Comment
       kind: 'NonEntryText',
       loc: location(),
       source: text(),
-      value: mode.convert(normalizeWhitespace(v)),
+      value: normalizeWhitespace(v),
     }
   }
 
@@ -251,7 +194,16 @@ EntryId
   = __ id:$[^ \t\r\n,]* __ ',' { return id; }
 
 Field
-  = k:FieldName FieldSeparator &{ verbatim.field = k; return true } v:FieldValue &{ return verbatim.leaveField() } FieldTerminator {
+  = k:FieldName &{ return verbatimFields.includes(k.toLowerCase()) } FieldSeparator v:VerbatimFieldValue FieldTerminator {
+    return {
+      kind: 'Field',
+      loc: location(),
+      source: text(),
+      name: k.toLowerCase(),
+      value: v,
+    }
+  }
+  / k:FieldName FieldSeparator v:FieldValue FieldTerminator {
     const field = {
       kind: 'Field',
       loc: location(),
@@ -273,38 +225,44 @@ FieldName
 
 //----------------------- Value Descriptors
 
+VerbatimFieldValue
+  = '"' v:TextNoQuotes? '"' {
+    return {
+      kind: 'Text',
+      loc: location(),
+      source: text(),
+      value: (v || '').trim(),
+      mode: 'verbatim',
+    }
+  }
+  / '{' v:VerbatimText* '}' {
+    return {
+      kind: 'Text',
+      loc: location(),
+      source: text(),
+      value: v.join('').trim(),
+      mode: 'verbatim',
+    }
+  }
+
+VerbatimText
+  = v:$[^{}]+ { return v }
+  / '{' VerbatimText* '}' { return '{' + v.join('') + '}' }
+
 FieldValue
   = Number
-  / v:(RegularValue / StringValue)* {
+  / &{ mode.state = 'text'; return true } v:(RegularValue / StringValue)* {
     return v.reduce((a, b) => a.concat(b), []);
   }
 
 RegularValue
-  = '"' &{ return verbatim.enterField('"') } v:(Block / Math / VerbatimText / Command / TextNoQuotes)* '"' Concat? { return v; }
-  / '{' &{ return verbatim.enterField('{}') }v:(Block / Math / VerbatimText / Command / Text)* '}' Concat? { return v; }
+  = '"' v:(Block / MathMode / Command / TextNoQuotes)* '"' Concat? { return v; }
+  / '{' v:(Block / MathMode / Command / Text)* '}' Concat? { return v; }
 
 StringValue
   = v:StringReference Concat? { return v; }
 
 //---------------------- Value Kinds
-
-VerbatimText
-  = &{ return verbatim.active && verbatim.closer === '"' } v:[^"]+ {
-    return {
-      kind: 'Text',
-      loc: location(),
-      source: text(),
-      value: mode.convert(normalizeWhitespace(v)),
-    }
-  }
-  / &{ return verbatim.active && verbatim.closer === '{}' } v:[^{}]+ {
-    return {
-      kind: 'Text',
-      loc: location(),
-      source: text(),
-      value: mode.convert(normalizeWhitespace(v)),
-    }
-  }
 
 Text
   = v:[^\^_${}\\]+ {
@@ -312,7 +270,8 @@ Text
       kind: 'Text',
       loc: location(),
       source: text(),
-      value: mode.convert(normalizeWhitespace(v)),
+      value: normalizeWhitespace(v),
+      mode: mode.state,
     }
   }
 
@@ -322,7 +281,8 @@ TextNoQuotes
       kind: 'Text',
       loc: location(),
       source: text(),
-      value: mode.convert(normalizeWhitespace(v)),
+      value: normalizeWhitespace(v),
+      mode: mode.state,
     }
   }
 
@@ -357,7 +317,7 @@ Block
       character: char[1] || char[0],
     }
   }
-  / '{' v:(VerbatimText / Text / Command / Block / Math )* '}' {
+  / '{' v:(Text / Command / Block / MathMode )* '}' {
     const block = {
       kind: 'Block',
       loc: location(),
@@ -385,27 +345,9 @@ Block
     return block
   }
 
-Math
-  = '$$' &{ return mode.to('math') } v:(VerbatimText / Text / Command / Block )* &{ return mode.to('text') } '$$' {
-    return {
-      kind: 'DisplayMath',
-      loc: location(),
-      source: text(),
-      value: v,
-      case: 'protect',
-      markup: {},
-    }
-  }
-  / '$' &{ return mode.to('math') } v:(VerbatimText / Text / Command / Block )* &{ return mode.to('text') } '$' {
-    return {
-      kind: 'InlineMath',
-      loc: location(),
-      source: text(),
-      value: v,
-      case: 'protect',
-      markup: {},
-    }
-  }
+MathMode
+  = '$$' { mode.seen('display'); return { kind: 'DisplayMath' } }
+  / '$' { mode.seen('inline'); return { kind: 'InlineMath' } }
 
 //---------------- Comments
 
@@ -487,7 +429,7 @@ SymbolCommand
   }
 
 RegularCommand
-  = '\\' v:$[A-Za-z]+ &{ return (has_arguments[v] === 2) && verbatim.enterCommand(v) } optional:OptionalArgument* req1:RequiredArgument req2:RequiredArgument &{ return verbatim.leaveCommand(v) } {
+  = '\\' v:$[A-Za-z]+ &{ return verbatimCommands.includes(v) && (has_arguments[v] === 2) } optional:OptionalArgument* &'{' req1:VerbatimFieldValue req2:VerbatimFieldValue {
     return {
       kind: 'RegularCommand',
       loc: location(),
@@ -499,7 +441,31 @@ RegularCommand
       },
     }
   }
-  / '\\' v:$[A-Za-z]+ &{ return (has_arguments[v] === 1) && verbatim.enterCommand(v) } optional:OptionalArgument* req:RequiredArgument &{ return verbatim.leaveCommand(v) } {
+  / '\\' v:$[A-Za-z]+ &{ return verbatimCommands.includes(v) && (has_arguments[v] === 1) } optional:OptionalArgument* &'{' req:VerbatimFieldValue {
+    return {
+      kind: 'RegularCommand',
+      loc: location(),
+      source: text(),
+      command: v,
+      arguments: {
+        optional: optional,
+        required: [req],
+      },
+    }
+  }
+  / '\\' v:$[A-Za-z]+ &{ return (has_arguments[v] === 2) } optional:OptionalArgument* req1:RequiredArgument req2:RequiredArgument {
+    return {
+      kind: 'RegularCommand',
+      loc: location(),
+      source: text(),
+      command: v,
+      arguments: {
+        optional: optional,
+        required: [req1, req2],
+      },
+    }
+  }
+  / '\\' v:$[A-Za-z]+ &{ return (has_arguments[v] === 1) } optional:OptionalArgument* req:RequiredArgument {
     if (req.kind === 'Block') {
       switch (v) {
         case 'textsuperscript':
@@ -524,6 +490,12 @@ RegularCommand
         case 'mkbibitalic':
         case 'mkbibemph':
           req.markup.italics = true
+          break
+        case 'section':
+          req.markup.h1 = true
+          break
+        case 'subsection':
+          req.markup.h2 = true
           break
       }
     }
@@ -562,6 +534,7 @@ OptionalArgument
       loc: location(),
       source: text(),
       value: v,
+      mode: mode.state,
     }
   }
 
@@ -571,7 +544,8 @@ RequiredArgument
       kind: 'Text',
       loc: location(),
       source: text(),
-      value: mode.convert(normalizeWhitespace([v])),
+      value: normalizeWhitespace([v]),
+      mode: mode.state,
     }
   }
   / v:(Command / Block) { return v }
