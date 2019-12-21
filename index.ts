@@ -162,10 +162,6 @@ type FieldBuilder = {
   name: string
   text: string
   level: number
-  words: {
-    cased: number
-    other: number
-  }
   preserveRanges: Array<{ start: number, end: number }>
   html?: boolean
 }
@@ -307,11 +303,11 @@ export interface ParserOptions {
   sentenceCase?: string[] | boolean
 
   /**
-   * translate braced parts of text into a case-protected counterpart; uses the [[MarkupMapping]] table in `markup`. Default == true == loose.
-   * In loose mode the parser will assume that words that have capitals in them imply "nocase" behavior in the consuming application. If you don't want this, turn this option on, and you'll get
+   * translate braced parts of text into a case-protected counterpart; uses the [[MarkupMapping]] table in `markup`. Default == true == as-needed.
+   * In as-needed mode the parser will assume that words that have capitals in them imply "nocase" behavior in the consuming application. If you don't want this, turn this option on, and you'll get
    * case protection exactly as the input has it
    */
-  caseProtection?: 'loose' | 'strict' | boolean
+  caseProtection?: 'as-needed' | 'strict' | boolean
 
   /**
    * The parser can change TeX markup (\textsc, \emph, etc) to a text equivalent. The defaults are HTML-oriented, but you can pass in your own configuration here
@@ -403,7 +399,7 @@ class Parser {
   public log: (string) => void = function(){} // tslint:disable-line variable-name only-arrow-functions no-empty
 
   constructor(options: ParserOptions = {}) {
-    if (typeof options.caseProtection === 'undefined') options = { ...options, caseProtection: 'loose' }
+    if (typeof options.caseProtection === 'undefined') options = { ...options, caseProtection: 'as-needed' }
     this.strictNoCase = options.caseProtection === 'strict'
     this.caseProtect = !!options.caseProtection
 
@@ -523,10 +519,6 @@ class Parser {
         name: '@string',
         text: '',
         level: 0,
-        words: {
-          cased: 0,
-          other: 0,
-        },
         preserveRanges: null,
       }
       this.convert(this.clean(value))
@@ -1234,10 +1226,6 @@ class Parser {
         name: field.name,
         text: '',
         level: 0,
-        words: {
-          cased: 0,
-          other: 0,
-        },
         preserveRanges: (sentenceCase && fields.title.includes(field.name)) ? [] : null,
         html: this.htmlFields.includes(field.name),
       }
@@ -1297,7 +1285,6 @@ class Parser {
           }
         }
 
-        if (!this.strictNoCase && this.field.words.cased > this.field.words.other) this.preserve(null, 'mostly sentence cased already')
         this.entry.fields[this.field.name].push(this.convertToSentenceCase(this.field.text, this.field.preserveRanges))
       }
 
@@ -1332,23 +1319,6 @@ class Parser {
     node.value = node.value
       .replace(/``/g, this.markup.enquote.open)
       .replace(/''/g, this.markup.enquote.close)
-
-    // heuristic to detect pre-sentencecased text
-    const cased = {
-      upper: 0,
-      lower: 0,
-    }
-    for (const word of node.value.split(/\b/)) {
-      if (word.match(preserveCase.allLower)) {
-        cased.lower++
-      } else if (word.match(preserveCase.allCaps)) {
-        cased.upper++
-      } else if (word.match(preserveCase.hasAlpha)) {
-        this.field.words.other++
-      }
-    }
-    this.field.words.cased = (cased.lower > cased.upper) ? cased.lower : cased.upper
-    this.field.words.other += (cased.lower > cased.upper) ? cased.upper : cased.lower
 
     if (this.field.level === 0 && this.fieldType === 'creator') {
       this.field.text += node.value.replace(/\s+and\s+/ig, marker.and).replace(/\s*,\s*/g, marker.comma).replace(/\s+/g, marker.space)
