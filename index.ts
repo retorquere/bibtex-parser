@@ -517,14 +517,18 @@ class Parser {
     return _ast
   }
 
-  public parse(input): Bibliography {
+  public parse(input: string): Bibliography | Promise<Bibliography> {
+    return this.options.async ? this.parseAsync(input) : this.parseSync(input)
+  }
+
+  private parseSync(input): Bibliography {
     for (const chunk of chunker(input)) {
       this.parseChunk(chunk)
     }
     return this.parsed()
   }
 
-  public async parseAsync(input): Promise<Bibliography> {
+  private async parseAsync(input): Promise<Bibliography> {
     for (const chunk of await chunker(input, { async: true })) {
       this.parseChunk(chunk)
     }
@@ -1453,32 +1457,13 @@ class Parser {
  * parse bibtex. This will try to convert TeX commands into unicode equivalents, and apply `@string` expansion
  */
 export function parse(input: string, options: ParserOptions = {}): Bibliography | Promise<Bibliography> {
-  const parser = new Parser({
-    caseProtection: options.caseProtection,
-    sentenceCase: options.sentenceCase,
-    markup: options.markup,
-    errorHandler: options.errorHandler,
-    verbatimFields: options.verbatimFields,
-    verbatimCommands: options.verbatimCommands,
-    htmlFields: options.htmlFields,
-    unnestFields: options.unnestFields,
-  })
-  return options.async ? parser.parseAsync(input) : parser.parse(input)
+  const parser = new Parser(options)
+  return parser.parse(input)
 }
 
-export function ast(input: string, options: ParserOptions & { clean?: boolean } = {}) {
-  if (typeof options.clean === 'undefined') options.clean = true
-  const parser = new Parser({
-    caseProtection: options.caseProtection,
-    sentenceCase: options.sentenceCase,
-    markup: options.markup,
-    errorHandler: options.errorHandler,
-    verbatimFields: options.verbatimFields,
-    verbatimCommands: options.verbatimCommands,
-    htmlFields: options.htmlFields,
-    unnestFields: options.unnestFields,
-  })
-  return parser.ast(input, options.clean)
+export function ast(input: string, options: ParserOptions, clean = true) {
+  const parser = new Parser(options)
+  return parser.ast(input, clean)
 }
 
 export { parse as chunker } from './chunker'
