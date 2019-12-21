@@ -396,14 +396,6 @@ class Parser {
   private fieldType: 'title' | 'creator' | 'other'
   private field: FieldBuilder
   private chunk: string
-  // private verbatimFields: string[]
-  // private verbatimCommands: string[]
-  // private unnestFields: string[]
-  // private htmlFields: string[]
-  // private errorHandler: (message: string) => void
-  // private markup: MarkupMapping
-  // private caseProtect: boolean
-  // private sentenceCase: string[]
   private options: ParserOptions
 
   public log: (string) => void = function(){} // tslint:disable-line variable-name only-arrow-functions no-empty
@@ -434,32 +426,28 @@ class Parser {
       unnestFields: fields.title.concat(fields.unnest),
       htmlFields: fields.html,
       guessAlreadySentenceCased: true,
-      markup: {
-        enquote: { open: '\u201c', close: '\u201d' },
-        sub: { open: '<sub>', close: '</sub>' },
-        sup: { open: '<sup>', close: '</sup>' },
-        bold: { open: '<b>', close: '</b>' },
-        italics: { open: '<i>', close: '</i>' },
-        smallCaps: { open: '<span style="font-variant:small-caps;">', close: '</span>' },
-        caseProtect: { open: '<span class="nocase">', close: '</span>' },
-        roman: { open: '', close: '' },
-        fixedWidth: { open: '', close: '' },
-        h1: { open: '<h1>', close: '</h1>' },
-        h2: { open: '<h2>', close: '</h2>' },
-      },
+      markup: {},
 
       ...options,
     }
 
-    /*
-    if (typeof options.caseProtection === 'undefined') options = { ...options, caseProtection: 'as-needed' }
-    this.caseProtect = !!options.caseProtection
-
-    this.verbatimFields = options.verbatimFields || [ 'url', 'doi', 'file', 'files', 'eprint', 'verba', 'verbb', 'verbc' ]
-    this.verbatimCommands = options.verbatimCommands || [ 'url', 'href' ]
-    this.unnestFields = options.unnestFields || fields.title.concat(fields.unnest)
-    this.htmlFields = options.htmlFields || fields.html
-    */
+    const markup_defaults = {
+      enquote: { open: '\u201c', close: '\u201d' },
+      sub: { open: '<sub>', close: '</sub>' },
+      sup: { open: '<sup>', close: '</sup>' },
+      bold: { open: '<b>', close: '</b>' },
+      italics: { open: '<i>', close: '</i>' },
+      smallCaps: { open: '<span style="font-variant:small-caps;">', close: '</span>' },
+      caseProtect: { open: '<span class="nocase">', close: '</span>' },
+      roman: { open: '', close: '' },
+      fixedWidth: { open: '', close: '' },
+      h1: { open: '<h1>', close: '</h1>' },
+      h2: { open: '<h2>', close: '</h2>' },
+    }
+    // patch in because the options will likely not have enquote and case-protect
+    for (const [markup, {open, close}] of Object.entries(markup_defaults)) {
+      this.options.markup[markup] = this.options.markup[markup] || { open, close }
+    }
 
     this.unresolvedStrings = {}
 
