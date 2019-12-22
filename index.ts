@@ -165,7 +165,8 @@ type FieldBuilder = {
   preserveRanges: Array<{ start: number, end: number }>
   html?: boolean
   words: {
-    cased: number
+    upper: number
+    lower: number
     other: number
   }
 }
@@ -339,7 +340,7 @@ export interface ParserOptions {
    * Some fields such as `url` are parsed in what is called "verbatim mode" where pretty much everything except braces is treated as regular text, not TeX commands. You can change the default list here if you want,
    * for example to help parse Mendeley `file` fields, which against spec are not in verbatim mode.
    */
-  verbatimFields?: string[]
+  verbatimFields?: Array<string | RegExp>
 
   /**
    * Some commands such as `url` are parsed in what is called "verbatim mode" where pretty much everything except braces is treated as regular text, not TeX commands.
@@ -422,7 +423,7 @@ class Parser {
 
     this.options = {
       caseProtection: 'as-needed',
-      verbatimFields: [ 'url', 'doi', 'file', 'files', 'eprint', 'verba', 'verbb', 'verbc' ],
+      verbatimFields: [ /^citeulike-linkout-[0-9]+$/, 'url', 'doi', 'file', 'files', 'eprint', 'verba', 'verbb', 'verbc' ],
       verbatimCommands: [ 'url', 'href' ],
       unnestFields: fields.title.concat(fields.unnest),
       unnestMode: 'unwrap',
@@ -532,7 +533,8 @@ class Parser {
         level: 0,
         preserveRanges: null,
         words: {
-          cased: 0,
+          upper: 0,
+          lower: 0,
           other: 0,
         },
       }
@@ -639,7 +641,7 @@ class Parser {
         return acc
       }
 
-      if (last.kind === 'Text' && child.kind === 'Text' && (last.mode === 'verbatim' ? 'verbatim' : 'text') === (child.mode === 'verbatim' ? 'verbatim' : 'text')) {
+      if (last.kind === 'Text' && child.kind === 'Text' && last.mode === child.mode) {
         last.value += child.value
         delete last.source
         return acc
@@ -1238,7 +1240,8 @@ class Parser {
         text: '',
         level: 0,
         words: {
-          cased: 0,
+          upper: 0,
+          lower: 0,
           other: 0,
         },
         preserveRanges: (sentenceCase && fields.title.includes(field.name)) ? [] : null,
@@ -1300,7 +1303,9 @@ class Parser {
           }
         }
 
-        if (this.options.guessAlreadySentenceCased && this.field.words.cased > this.field.words.other) this.preserve(null, 'mostly sentence cased already')
+        if (this.options.guessAlreadySentenceCased && Math.max(this.field.words.upper, this.field.words.lower) > (this.field.words.other + Math.min(this.field.words.upper, this.field.words.lower))) {
+          this.preserve(null, 'mostly sentence cased already')
+        }
         this.entry.fields[this.field.name].push(this.convertToSentenceCase(this.field.text, this.field.preserveRanges))
       }
 
@@ -1331,27 +1336,16 @@ class Parser {
       return
     }
 
-    // maybe move to grammar so it's only done in text, not math
-    node.value = node.value
-      .replace(/``/g, this.options.markup.enquote.open)
-      .replace(/''/g, this.options.markup.enquote.close)
-
     // heuristic to detect pre-sentencecased text
-    const cased = {
-      upper: 0,
-      lower: 0,
-    }
     for (const word of node.value.split(/\b/)) {
       if (word.match(preserveCase.allLower)) {
-        cased.lower++
+        this.field.words.lower++
       } else if (word.match(preserveCase.allCaps)) {
-        cased.upper++
+        this.field.words.upper++
       } else if (word.match(preserveCase.hasAlpha)) {
         this.field.words.other++
       }
     }
-    this.field.words.cased += (cased.lower > cased.upper) ? cased.lower : cased.upper
-    this.field.words.other += (cased.lower > cased.upper) ? cased.upper : cased.lower
 
     if (this.field.level === 0 && this.fieldType === 'creator') {
       this.field.text += node.value.replace(/\s+and\s+/ig, marker.and).replace(/\s*,\s*/g, marker.comma).replace(/\s+/g, marker.space)

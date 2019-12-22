@@ -186,7 +186,7 @@ export interface Bibliography {
 }
 
 export interface ParseOptions {
-  verbatimFields?: string[]
+  verbatimFields?: Array<string | RegExp>
   verbatimCommands?: string[]
   unnestFields?: string[]
 }

@@ -42,8 +42,12 @@
   }
 
   const unnestFields = (options.unnestFields || []).map(field => field.toLowerCase())
-  const verbatimFields = (options.verbatimFields || [ 'url', 'doi', 'file', 'files', 'eprint', 'verba', 'verbb', 'verbc' ]).map(field => field.toLowerCase())
+  const verbatimFields = (options.verbatimFields || [ 'url', 'doi', 'file', 'files', 'eprint', 'verba', 'verbb', 'verbc' ]).map(field => typeof field === 'string' ? field.toLowerCase() : field)
   const verbatimCommands = (options.verbatimCommands || ['url', 'href'])
+
+  function isVerbatimField(name) {
+    return verbatimFields.find(p => (typeof p === 'string') ? name === p : name.match(p))
+  }
 
   function normalizeWhitespace(textArr) {
     return textArr.reduce((prev, curr) => {
@@ -125,6 +129,8 @@
           .replace(/</g, '\u00A1')
           .replace(/>/g, '\u00BF')
           .replace(/~/g, '\u00A0')
+          .replace(/``/g, options.markup.enquote.open)
+          .replace(/''/g, options.markup.enquote.close)
         break
 
       default:
@@ -227,7 +233,7 @@ EntryId
   = __ id:$[^ \t\r\n,]* __ ',' { return id; }
 
 Field
-  = k:FieldName &{ return verbatimFields.includes(k.toLowerCase()) } FieldSeparator v:VerbatimFieldValue FieldTerminator {
+  = k:FieldName &{ return isVerbatimField(k.toLowerCase()) } FieldSeparator v:VerbatimFieldValue FieldTerminator {
     return {
       kind: 'Field',
       loc: location(),
