@@ -348,9 +348,10 @@ export interface ParserOptions {
 
   /**
    * In the past many bibtex entries would just always wrap a field in double braces ({{ title here }}), likely because whomever was writing them couldn't figure out the case meddling rules (and who could
-   * blame them. Fields listed here will have one outer layer of braces removed if this is detected
+   * blame them. Fields listed here will either have one outer layer of braces treated as case-preserve, or have the outer braced be ignored completely, if this is detected.
    */
   unnestFields?: string[]
+  unnestMode?: 'preserve' | 'unwrap'
 
   /**
    * Some note-like fields may have more rich formatting. If listed here, more HTML conversions will be applied.
@@ -424,6 +425,7 @@ class Parser {
       verbatimFields: [ 'url', 'doi', 'file', 'files', 'eprint', 'verba', 'verbb', 'verbc' ],
       verbatimCommands: [ 'url', 'href' ],
       unnestFields: fields.title.concat(fields.unnest),
+      unnestMode: 'unwrap',
       htmlFields: fields.html,
       guessAlreadySentenceCased: true,
       markup: {},
@@ -494,11 +496,7 @@ class Parser {
   public ast(input, clean = true) {
     const _ast = []
     for (const chunk of chunker(input)) {
-      let chunk_ast = bibtex.parse(chunk.text, {
-        verbatimFields: this.options.verbatimFields,
-        verbatimCommands: this.options.verbatimCommands,
-        unnestFields: this.options.unnestFields,
-      })
+      let chunk_ast = bibtex.parse(chunk.text, this.options)
       if (clean) chunk_ast = this.clean(chunk_ast)
       _ast.push(chunk_ast)
     }
@@ -568,11 +566,7 @@ class Parser {
     this.chunk = chunk.text
 
     try {
-      let bib = bibtex.parse(chunk.text, {
-        verbatimFields: this.options.verbatimFields,
-        verbatimCommands: this.options.verbatimCommands,
-        unnestFields: this.options.unnestFields,
-      })
+      let bib = bibtex.parse(chunk.text, this.options)
       if (bib.kind !== 'Bibliography') throw new Error(this.show(bib))
       bib = this.clean(bib)
 
