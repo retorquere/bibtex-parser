@@ -806,10 +806,13 @@ class Parser {
     }
   }
 
+  private isVerbatimField(name) {
+    return !!this.options.verbatimFields.find(p => (typeof p === 'string') ? name === p : name.match(p))
+  }
   private clean_field(node: bibtex.Field) {
     this.setFieldType(node.name)
 
-    this.stripNoCase(node, !this.options.caseProtection || [ 'url', 'doi', 'file', 'files', 'eprint', 'verba', 'verbb', 'verbc' ].includes(node.name))
+    this.stripNoCase(node, !this.options.caseProtection || this.isVerbatimField(node.name))
 
     if (Array.isArray(node.value)) this.condense(node)
 
