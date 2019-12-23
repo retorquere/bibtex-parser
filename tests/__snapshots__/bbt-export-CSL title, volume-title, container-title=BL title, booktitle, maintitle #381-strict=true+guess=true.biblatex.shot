@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-CSL title, volume-title, container-title=BL title, booktitle, maintitle #381-strict=true+guess=true.biblatex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "literal": "Plato",
+          },
+        ],
+        "editor": Array [
+          Object {
+            "firstName": "John",
+            "lastName": "Burnet",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Plato",
+        ],
+        "date": Array [
+          "1902",
+        ],
+        "editor": Array [
+          "Burnet, John",
+        ],
+        "langid": Array [
+          "british",
+        ],
+        "location": Array [
+          "Oxford",
+        ],
+        "maintitle": Array [
+          "Opera",
+        ],
+        "publisher": Array [
+          "Clarendon Press",
+        ],
+        "series": Array [
+          "Oxford classical texts CSL-VAR",
+        ],
+        "title": Array [
+          "Clitophon, Republic, Timaeus, Critias",
+        ],
+        "volume": Array [
+          "4",
+        ],
+      },
+      "key": "Plato1902",
+      "type": "book",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "literal": "Plato",
+          },
+        ],
+        "editor": Array [
+          Object {
+            "firstName": "John",
+            "lastName": "Burnet",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Plato",
+        ],
+        "booktitle": Array [
+          "Clitophon, Republic, Timaeus, Critias",
+        ],
+        "date": Array [
+          "1901",
+        ],
+        "editor": Array [
+          "Burnet, John",
+        ],
+        "langid": Array [
+          "british",
+        ],
+        "location": Array [
+          "Oxford",
+        ],
+        "maintitle": Array [
+          "Opera",
+        ],
+        "pages": Array [
+          "327–621",
+        ],
+        "publisher": Array [
+          "Clarendon Press",
+        ],
+        "series": Array [
+          "Oxford classical texts",
+        ],
+        "title": Array [
+          "Republic",
+        ],
+        "volume": Array [
+          "4",
+        ],
+      },
+      "key": "Plato1901",
+      "type": "incollection",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

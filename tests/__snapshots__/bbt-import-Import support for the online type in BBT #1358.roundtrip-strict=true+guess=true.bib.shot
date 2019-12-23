@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-import-Import support for the online type in BBT #1358.roundtrip-strict=true+guess=true.bib 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "literal": "Intel",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Intel",
+        ],
+        "date": Array [
+          "2019",
+        ],
+        "title": Array [
+          "Intel Atom E3826 specifications",
+        ],
+        "url": Array [
+          "https://ark.intel.com/content/www/us/en/ark/products/78477/intel-atom-processor-e3826-1m-cache-1-46-ghz.html",
+        ],
+      },
+      "key": "WEB:intel-ark-atom",
+      "type": "online",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

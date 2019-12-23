@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-Ignore HTML tags when generating citation key #264-strict=true+guess=true.biblatex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Walter A.",
+            "lastName": "Hannam",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Hannam, Walter A.",
+        ],
+        "date": Array [
+          "1998",
+        ],
+        "journaltitle": Array [
+          "Florilegium",
+        ],
+        "pages": Array [
+          "145–165",
+        ],
+        "title": Array [
+          "<span class=\\"nocase\\"><i>Nodo unitatis et caritatis</i></span>: The structure and argument of Augustine's <span class=\\"nocase\\"><i>De doctrina Christiana</i></span>",
+        ],
+        "url": Array [
+          "https://journals.lib.unb.ca/index.php/flor/article/view/14263",
+        ],
+        "urldate": Array [
+          "2015-07-07",
+        ],
+        "volume": Array [
+          "15",
+        ],
+      },
+      "key": "hannam_nodo_1998",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

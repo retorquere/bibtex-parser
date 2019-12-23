@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-Better BibLaTeX.004-strict=true+guess=true.biblatex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Michael",
+            "lastName": "von Hicks",
+            "suffix": "III",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "von Hicks, III, Michael",
+        ],
+        "date": Array [
+          "2001",
+        ],
+        "edition": Array [
+          "1st,",
+        ],
+        "isbn": Array [
+          "0-69-697269-4",
+        ],
+        "location": Array [
+          "Palo Alto",
+        ],
+        "options": Array [
+          "useprefix=true",
+        ],
+        "publisher": Array [
+          "Stanford Press",
+        ],
+        "title": Array [
+          "Design of a Carbon Fiber Composite Grid Structure for the GLAST spacecraft using a novel manufacturing technique",
+        ],
+      },
+      "key": "hicks2001",
+      "type": "book",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;
