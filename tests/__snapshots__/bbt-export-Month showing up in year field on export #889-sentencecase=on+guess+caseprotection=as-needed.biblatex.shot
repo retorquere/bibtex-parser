@@ -55,3 +55,59 @@ Object {
   "strings": Object {},
 }
 `;
+
+exports[`should parse bbt-export-Month showing up in year field on export #889-sentencecase=on+guess+caseprotection=as-needed.biblatex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "J. C.",
+            "lastName": "Houk",
+          },
+          Object {
+            "firstName": "S. P.",
+            "lastName": "Wise",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Houk, J. C.",
+          "Wise, S. P.",
+        ],
+        "date": Array [
+          "1995-08",
+        ],
+        "eprint": Array [
+          "7620294",
+        ],
+        "eprinttype": Array [
+          "pubmed",
+        ],
+        "journaltitle": Array [
+          "Cerebral Cortex",
+        ],
+        "number": Array [
+          "2",
+        ],
+        "pages": Array [
+          "95–110",
+        ],
+        "title": Array [
+          "Distributed modular architectures linking basal ganglia, cerebellum, and cerebral cortex: Their role in planning and controlling action.",
+        ],
+        "volume": Array [
+          "5",
+        ],
+      },
+      "key": "HoukWise95",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

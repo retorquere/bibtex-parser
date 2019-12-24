@@ -32,3 +32,36 @@ Object {
   "strings": Object {},
 }
 `;
+
+exports[`should parse bbt-export-pre not working in Extra field #559-sentencecase=on+guess+caseprotection=as-needed.biblatex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Morten",
+            "lastName": "Brøns",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Brøns, Morten",
+        ],
+        "note": Array [
+          "Hello hej",
+        ],
+        "title": Array [
+          "<span class=\\"nocase\\">pretest</span>",
+        ],
+      },
+      "key": "Brons:pretest",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

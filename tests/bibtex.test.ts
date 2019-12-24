@@ -64,48 +64,46 @@ function parseOptions(f) {
 
 const mode = `sentencecase=${process.env.SENTENCECASE}+caseprotection=${process.env.CASEPROTECTION}`
 
-describe('BibTeX Parser', () => {
-  let root = path.join(__dirname, 'cases')
-  const cases: { caseName: string, input: string, options: bibtex.ParserOptions }[] = []
+let root = path.join(__dirname, 'other')
+const cases: { caseName: string, input: string, options: bibtex.ParserOptions }[] = []
 
+for (const f of fs.readdirSync(root)) {
+  if (!f.replace(/(la)?tex$/, '').endsWith('.bib')) continue
+  if (enable.case && !f.toLowerCase().includes(enable.case)) continue
+
+  const caseName = `${path.basename(f, path.extname(f))}-${mode}${path.extname(f)}`
+  cases.push({
+    caseName,
+    input: fs.readFileSync(path.join(root, f), 'utf-8'),
+    options: parseOptions(f),
+  })
+}
+
+for (const section of ['export', 'import']) {
+  root = path.join(__dirname, 'better-bibtex', section)
   for (const f of fs.readdirSync(root)) {
     if (!f.replace(/(la)?tex$/, '').endsWith('.bib')) continue
+
+    if (!enable.big && big.find(s => f.includes(s))) continue
+
     if (enable.case && !f.toLowerCase().includes(enable.case)) continue
 
-    const caseName = `${path.basename(f, path.extname(f))}-${mode}${path.extname(f)}`
+    const caseName = `bbt-${section}-${path.basename(f, path.extname(f))}-${mode}${path.extname(f)}`
     cases.push({
       caseName,
       input: fs.readFileSync(path.join(root, f), 'utf-8'),
       options: parseOptions(f),
     })
   }
+}
 
-  for (const section of ['export', 'import']) {
-    root = path.join(__dirname, 'better-bibtex', section)
-    for (const f of fs.readdirSync(root)) {
-      if (!f.replace(/(la)?tex$/, '').endsWith('.bib')) continue
-
-      if (!enable.big && big.find(s => f.includes(s))) continue
-
-      if (enable.case && !f.toLowerCase().includes(enable.case)) continue
-
-      const caseName = `bbt-${section}-${path.basename(f, path.extname(f))}-${mode}${path.extname(f)}`
-      cases.push({
-        caseName,
-        input: fs.readFileSync(path.join(root, f), 'utf-8'),
-        options: parseOptions(f),
-      })
-    }
-  }
-
-  cases.sort(function(a, b) {
-    if (a.input.length === b.input.length || process.env.CI) return a.caseName.localeCompare(b.caseName)
-    return a.input.length - b.input.length
-  })
-
-  for (let {caseName, input, options} of cases) {
-    it(`should parse ${caseName}`, () => {
-      (expect(bibtex.parse(input, options)) as any).toMatchSpecificSnapshot(path.join(snaps, caseName + '.shot'))
-    })
-  }
+cases.sort(function(a, b) {
+  if (a.input.length === b.input.length || process.env.CI) return a.caseName.localeCompare(b.caseName)
+  return a.input.length - b.input.length
 })
+
+for (let {caseName, input, options} of cases) {
+  it(`should parse ${caseName}`, () => {
+    (expect(bibtex.parse(input, options)) as any).toMatchSpecificSnapshot(path.join(snaps, caseName + '.shot'))
+  })
+}

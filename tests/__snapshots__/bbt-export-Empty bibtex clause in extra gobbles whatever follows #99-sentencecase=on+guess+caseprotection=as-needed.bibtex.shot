@@ -31,3 +31,35 @@ Object {
   "strings": Object {},
 }
 `;
+
+exports[`should parse bbt-export-Empty bibtex clause in extra gobbles whatever follows #99-sentencecase=on+guess+caseprotection=as-needed.bibtex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "note": Array [
+          "http://ptolemy.org/books/Systems",
+        ],
+        "ptolemaeus-14-systemdesigneditor": Array [
+          "Claudius Ptolemaeus",
+        ],
+        "publisher": Array [
+          "Ptolemy.org",
+        ],
+        "title": Array [
+          "System design, modeling, and simulation using Ptolemy II",
+        ],
+        "year": Array [
+          "2014",
+        ],
+      },
+      "key": "2014",
+      "type": "book",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

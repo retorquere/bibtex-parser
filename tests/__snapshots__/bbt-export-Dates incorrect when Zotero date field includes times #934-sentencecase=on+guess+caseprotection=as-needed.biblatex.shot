@@ -22,3 +22,26 @@ Object {
   "strings": Object {},
 }
 `;
+
+exports[`should parse bbt-export-Dates incorrect when Zotero date field includes times #934-sentencecase=on+guess+caseprotection=as-needed.biblatex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "date": Array [
+          "2016-09-22",
+        ],
+        "title": Array [
+          "Dates incorrect when Zotero date field includes times #934",
+        ],
+      },
+      "key": "2016",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

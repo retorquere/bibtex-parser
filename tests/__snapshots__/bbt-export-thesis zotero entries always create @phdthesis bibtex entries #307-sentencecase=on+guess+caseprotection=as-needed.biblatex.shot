@@ -61,3 +61,65 @@ Object {
   "strings": Object {},
 }
 `;
+
+exports[`should parse bbt-export-thesis zotero entries always create @phdthesis bibtex entries #307-sentencecase=on+guess+caseprotection=as-needed.biblatex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Sune Brøndum",
+            "lastName": "Wøller",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Wøller, Sune Brøndum",
+        ],
+        "date": Array [
+          "2011",
+        ],
+        "langid": Array [
+          "norsk",
+        ],
+        "title": Array [
+          "Det multiple arkæologiske objekt. Et studie af materialitet og arkæologiske tekstiler",
+        ],
+      },
+      "key": "Woller2011DetMultiple",
+      "type": "mastersthesis",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Sune Brøndum",
+            "lastName": "Wøller",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Wøller, Sune Brøndum",
+        ],
+        "date": Array [
+          "2011",
+        ],
+        "langid": Array [
+          "norsk",
+        ],
+        "title": Array [
+          "CTR Det multiple arkæologiske objekt. Et studie af materialitet og arkæologiske tekstiler",
+        ],
+      },
+      "key": "Woller2011CTRDet",
+      "type": "phdthesis",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

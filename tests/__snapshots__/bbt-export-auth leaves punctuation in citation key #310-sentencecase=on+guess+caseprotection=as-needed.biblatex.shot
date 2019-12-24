@@ -32,3 +32,36 @@ Object {
   "strings": Object {},
 }
 `;
+
+exports[`should parse bbt-export-auth leaves punctuation in citation key #310-sentencecase=on+guess+caseprotection=as-needed.biblatex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "james",
+            "lastName": "O'hara",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "O'hara, james",
+        ],
+        "date": Array [
+          "2015",
+        ],
+        "title": Array [
+          "A testbook",
+        ],
+      },
+      "key": "Ohara2015",
+      "type": "book",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;
