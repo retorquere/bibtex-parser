@@ -10,15 +10,11 @@
     "poststart": "npm run docs",
     "pretest": "npm start",
     "test": "jest",
-    "tt": "STRICTCASEPROTECION=true GUESSSENTENCECASE=true npm test",
-    "tf": "STRICTCASEPROTECION=true GUESSSENTENCECASE=false npm test",
-    "ft": "STRICTCASEPROTECION=false GUESSSENTENCECASE=true npm test",
-    "ff": "STRICTCASEPROTECION=false GUESSSENTENCECASE=false npm test",
     "minitest": "pegjs grammar.pegjs && tsc -d && node tt.js",
     "list": "tar tvf $(npm pack)",
     "prepublishOnly": "npm start",
     "preversion": "npm test",
-    "postversion": "git push --follow-tags && npm publish --access public",
+    "postversion": "git push --follow-tags",
     "update-cases": "rsync -av --delete --include='import/' --include='export/' --exclude='*/' --include='*.bib' --include='*.bibtex' --include='*.biblatex' --exclude='*' ../better-bibtex/test/fixtures/ tests/better-bibtex/",
     "update-snapshots": "jest --updateSnapshot",
     "docs": "typedoc --disableOutputCheck . && touch docs/.nojekyll"
@@ -74,5 +70,8 @@
     "jabref.d.ts",
     "jabref.js",
     "README.md"
-  ]
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }

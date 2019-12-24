@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-Protect math sections #1148-sentencecase=off+caseprotection=strict.biblatex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "title": Array [
+          "<span class=\\"nocase\\"><\\\\</span>input <span class=\\"nocase\\">Wiki .:. goLaTeX - Mein LaTeX-Forum</span>",
+        ],
+        "url": Array [
+          "https://golatex.de/wiki/%5Cinput",
+        ],
+        "urldate": Array [
+          "2019-03-11",
+        ],
+      },
+      "key": "InputWikiGoLaTeX",
+      "type": "online",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;
