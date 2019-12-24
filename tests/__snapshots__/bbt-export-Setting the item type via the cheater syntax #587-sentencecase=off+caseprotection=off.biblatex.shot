@@ -1,0 +1,205 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-Setting the item type via the cheater syntax #587-sentencecase=off+caseprotection=off.biblatex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Hazel V.",
+            "lastName": "Clark",
+          },
+        ],
+      },
+      "fields": Object {
+        "abstract": Array [
+          "Example from CMoS, 16e, 14.249",
+        ],
+        "author": Array [
+          "Clark, Hazel V.",
+        ],
+        "date": Array [
+          "1957",
+        ],
+        "location": Array [
+          "Mesopotamia, OH",
+        ],
+        "publisher": Array [
+          "Trumbull County Historical Society",
+        ],
+        "title": Array [
+          "Mesopotamia: Between Two Rivers",
+        ],
+      },
+      "key": "clark_mesopotamia:_1957",
+      "type": "booklet",
+    },
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "abstract": Array [
+          "Example from CMoS, 16e, 14.272",
+        ],
+        "journaltitle": Array [
+          "NASA/IPAC Extragalactic Database",
+        ],
+        "title": Array [
+          "Object Name IRAS F00400+4059",
+        ],
+        "url": Array [
+          "http://nedwww.ipac.caltech.edu/",
+        ],
+        "urldate": Array [
+          "2009-10-06",
+        ],
+      },
+      "key": "noauthor_object_nodate",
+      "type": "data",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Wolfgang Amadeus",
+            "lastName": "Mozart",
+          },
+        ],
+        "editor": Array [
+          Object {
+            "firstName": "Nathan",
+            "lastName": "Broder",
+          },
+        ],
+      },
+      "fields": Object {
+        "abstract": Array [
+          "Example from CMoS, 16e, 14.269 “Prepared from the autographs and earliest printed sources by Nathan Broder”",
+        ],
+        "author": Array [
+          "Mozart, Wolfgang Amadeus",
+        ],
+        "date": Array [
+          "1960",
+        ],
+        "edition": Array [
+          "Rev. ed.",
+        ],
+        "editor": Array [
+          "Broder, Nathan",
+        ],
+        "location": Array [
+          "Bryn Mawr, PA",
+        ],
+        "publisher": Array [
+          "Theodore Presser",
+        ],
+        "title": Array [
+          "Sonatas and Fantasies for the Piano",
+        ],
+      },
+      "key": "mozart_sonatas_1960",
+      "type": "audio",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Ben",
+            "lastName": "Ratliff",
+          },
+        ],
+        "editora": Array [
+          Object {
+            "lastName": "Hermano Vianna",
+          },
+        ],
+      },
+      "fields": Object {
+        "abstract": Array [
+          "Example from CMoS, 16e, 14.215 “ed. and trans. John Charles Chasteen”",
+        ],
+        "annotation": Array [
+          "biblatex-chicago example, adapted from http://mirrors.ctan.org/macros/latex/contrib/biblatex-contrib/biblatex-chicago/doc/examples/dates-test.bib Original annotation: *16th edition only.* A Review entry presenting a review from a scholarly journaltitle, hence no entrysubtype needed.  Note the bibstrings in the title of the review, and the formatting of the title of the book reviewed there.  Also note the use of \\\\parteditandtrans.  The author-date system doesn't absolutely require the use of these mechanisms, which were invented to cope with the differences between notes and bibliography in the other Chicago style.  Still, although simply writing \\"edited and translated by\\" yourself will suffice, using these mechanisms will make your .bib file work across multiple languages, and will also allow it to work, with fewer modifications, in the notes \\\\&amp; bibliography style, should that be needed.  See next entry.   Example from CMoS, 16e, 14.125",
+        ],
+        "author": Array [
+          "Ratliff, Ben",
+        ],
+        "date": Array [
+          "1999-04",
+        ],
+        "editora": Array [
+          "Hermano Vianna",
+        ],
+        "editoratype": Array [
+          "collaborator",
+        ],
+        "journaltitle": Array [
+          "Lingua Franca",
+        ],
+        "langid": Array [
+          "american",
+        ],
+        "pages": Array [
+          "B13–B14",
+        ],
+        "title": Array [
+          "The Mystery of Samba: Popular Music and National Identity in Brazil",
+        ],
+        "volume": Array [
+          "9",
+        ],
+      },
+      "key": "ratliff_mystery_1999",
+      "type": "review",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "David",
+            "lastName": "Kamp",
+          },
+        ],
+        "editora": Array [
+          Object {
+            "firstName": "Michael",
+            "lastName": "Pollan",
+          },
+        ],
+      },
+      "fields": Object {
+        "abstract": Array [
+          "Example from CMoS, 16e, 14.125",
+        ],
+        "author": Array [
+          "Kamp, David",
+        ],
+        "date": Array [
+          "2006-04-23",
+        ],
+        "editora": Array [
+          "Pollan, Michael",
+        ],
+        "editoratype": Array [
+          "collaborator",
+        ],
+        "langid": Array [
+          "american",
+        ],
+        "title": Array [
+          "Deconstructing Dinner",
+        ],
+        "url": Array [
+          "http://www.nytimes.com/2006/04/23/books/review/23kamp.html.",
+        ],
+      },
+      "key": "kamp_deconstructing_2006",
+      "type": "review",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

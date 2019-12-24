@@ -1,0 +1,195 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-Don't title-case sup-subscripts #1037-sentencecase=off+caseprotection=strict.biblatex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Name",
+            "lastName": "Name",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Name, Name",
+        ],
+        "date": Array [
+          "2018",
+        ],
+        "title": Array [
+          "1 <span class=\\"nocase\\">O</span><span class=\\"nocase\\"><sub>abcde</sub></span>",
+        ],
+      },
+      "key": "ref1",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Name",
+            "lastName": "Name",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Name, Name",
+        ],
+        "date": Array [
+          "2018",
+        ],
+        "title": Array [
+          "2 <span class=\\"nocase\\">O</span><span class=\\"nocase\\"><sub>abcde</sub></span> Test",
+        ],
+      },
+      "key": "ref2",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Name",
+            "lastName": "Name",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Name, Name",
+        ],
+        "date": Array [
+          "2018",
+        ],
+        "title": Array [
+          "<span class=\\"nocase\\">O<sub>abcde</sub></span>",
+        ],
+      },
+      "key": "ref3",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Name",
+            "lastName": "Name",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Name, Name",
+        ],
+        "date": Array [
+          "2018",
+        ],
+        "title": Array [
+          "Oₓ",
+        ],
+      },
+      "key": "ref4",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Name",
+            "lastName": "Name",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Name, Name",
+        ],
+        "date": Array [
+          "2018",
+        ],
+        "title": Array [
+          "Oₓ Test",
+        ],
+      },
+      "key": "ref5",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Name",
+            "lastName": "Name",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Name, Name",
+        ],
+        "date": Array [
+          "2018",
+        ],
+        "title": Array [
+          "<span class=\\"nocase\\">Oₓ</span>",
+        ],
+      },
+      "key": "ref6",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Name",
+            "lastName": "Name",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Name, Name",
+        ],
+        "date": Array [
+          "2018",
+        ],
+        "title": Array [
+          "O<span class=\\"nocase\\"><sub>7-x</sub></span>",
+        ],
+      },
+      "key": "ref7",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Name",
+            "lastName": "Name",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Name, Name",
+        ],
+        "date": Array [
+          "2018",
+        ],
+        "title": Array [
+          "O<span class=\\"nocase\\"><sub>7-x</sub></span> Test",
+        ],
+      },
+      "key": "ref8",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-BetterBibLaTeX; Software field company is mapped to publisher instead of organization #1054-sentencecase=off+caseprotection=off.biblatex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "lastName": "Blup",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Blup",
+        ],
+        "date": Array [
+          "9265",
+        ],
+        "organization": Array [
+          "BliBlaBlup",
+        ],
+        "title": Array [
+          "Bla",
+        ],
+      },
+      "key": "blup_bla_9265",
+      "type": "software",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

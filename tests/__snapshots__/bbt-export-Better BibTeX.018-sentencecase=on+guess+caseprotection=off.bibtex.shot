@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-Better BibTeX.018-sentencecase=on+guess+caseprotection=off.bibtex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Klaus",
+            "lastName": "Däßler",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Däßler, Klaus",
+        ],
+        "doi": Array [
+          "10.1175/1520-0493(1987)115<1606:GARSPP>2.0.CO;2",
+        ],
+        "journal": Array [
+          "Title, with comma",
+        ],
+        "keywords": Array [
+          "breadcrust",
+          "plinian",
+          "Vulcanian eruptions",
+        ],
+        "title": Array [
+          "The physical: Violent volcanology of the 1600 eruption of huaynaputina, southern peru",
+        ],
+        "volume": Array [
+          "62",
+        ],
+        "year": Array [
+          "2001",
+        ],
+      },
+      "key": "Dassler2001",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

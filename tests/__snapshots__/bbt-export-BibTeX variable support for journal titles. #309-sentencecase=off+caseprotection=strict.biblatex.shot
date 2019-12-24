@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-BibTeX variable support for journal titles. #309-sentencecase=off+caseprotection=strict.biblatex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Richard E",
+            "lastName": "Blahut",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Blahut, Richard E",
+        ],
+        "date": Array [
+          "1972",
+        ],
+        "journaltitle": Array [
+          "IEEE_J_IT",
+        ],
+        "number": Array [
+          "4",
+        ],
+        "pages": Array [
+          "460–473",
+        ],
+        "title": Array [
+          "Computation of Channel Capacity and Rate-Distortion Functions",
+        ],
+        "volume": Array [
+          "18",
+        ],
+      },
+      "key": "blahut_capacity",
+      "type": "article",
+    },
+  ],
+  "errors": Array [
+    Object {
+      "message": "Unresolved @string reference \\"IEEE_J_IT\\"",
+    },
+  ],
+  "strings": Object {},
+}
+`;

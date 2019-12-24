@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-Date parses incorrectly with year 1000 when source Zotero field is in datetime format. #515-sentencecase=on+guess+caseprotection=strict.biblatex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Anne",
+            "lastName": "Barker",
+          },
+        ],
+      },
+      "fields": Object {
+        "abstract": Array [
+          "Voters in Switzerland overwhelmingly reject a proposal to introduce a guaranteed monthly income for all citizens.",
+        ],
+        "author": Array [
+          "Barker, Anne",
+        ],
+        "date": Array [
+          "2016-06-06T15:26:37+1000",
+        ],
+        "entrysubtype": Array [
+          "newspaper",
+        ],
+        "journaltitle": Array [
+          "ABC News",
+        ],
+        "langid": Array [
+          "australian",
+        ],
+        "title": Array [
+          "Swiss voters say no to guaranteed free money",
+        ],
+        "url": Array [
+          "http://www.abc.net.au/news/2016-06-06/swiss-voters-reject-basic-income-proposal/7481672",
+        ],
+        "urldate": Array [
+          "2017-12-06",
+        ],
+      },
+      "key": "barker_2016_swiss",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

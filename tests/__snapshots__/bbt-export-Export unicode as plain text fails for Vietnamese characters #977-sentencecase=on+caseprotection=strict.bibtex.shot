@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-Export unicode as plain text fails for Vietnamese characters #977-sentencecase=on+caseprotection=strict.bibtex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "San",
+            "lastName": "Vũ Ngọc",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Vũ Ngọc, San",
+        ],
+        "journal": Array [
+          "Asymptotic Analysis",
+        ],
+        "number": Array [
+          "3, 4",
+        ],
+        "pages": Array [
+          "319–342",
+        ],
+        "title": Array [
+          "Formes normales semi-classiques des systèmes complètement intégrables au voisinage d'un point critique de l'application moment",
+        ],
+        "volume": Array [
+          "24",
+        ],
+        "year": Array [
+          "2000",
+        ],
+      },
+      "key": "vu_ngoc_formes_2000",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

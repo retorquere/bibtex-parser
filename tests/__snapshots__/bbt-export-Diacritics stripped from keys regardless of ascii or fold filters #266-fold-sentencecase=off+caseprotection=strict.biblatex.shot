@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-Diacritics stripped from keys regardless of ascii or fold filters #266-fold-sentencecase=off+caseprotection=strict.biblatex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Martin",
+            "lastName": "Vlček",
+          },
+          Object {
+            "firstName": "Marek",
+            "lastName": "Vácha",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Vlček, Martin",
+          "Vácha, Marek",
+        ],
+        "date": Array [
+          "2014-05-15",
+        ],
+        "doi": Array [
+          "10.1007/s00276-014-1305-7",
+        ],
+        "eprint": Array [
+          "24828123",
+        ],
+        "eprinttype": Array [
+          "pmid",
+        ],
+        "issn": Array [
+          "1279-8517",
+        ],
+        "journaltitle": Array [
+          "Surgical and Radiologic Anatomy",
+        ],
+        "langid": Array [
+          "english",
+        ],
+        "shortjournal": Array [
+          "Surg Radiol Anat",
+        ],
+        "title": Array [
+          "The History of <span class=\\"nocase\\">Latin</span> Terminology of Human Skeletal Muscles (from <span class=\\"nocase\\">Vesalius</span> to the Present)",
+        ],
+        "url": Array [
+          "http://link.springer.com/10.1007/s00276-014-1305-7",
+        ],
+      },
+      "key": "VlcekVacha2014HistoryLatin",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-bibtex; url export does not survive underscores #402-sentencecase=on+guess+caseprotection=as-needed.bibtex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Thomas",
+            "lastName": "Emmert",
+          },
+          Object {
+            "firstName": "Stefan",
+            "lastName": "Jaensch",
+          },
+          Object {
+            "firstName": "Carlo",
+            "lastName": "Sovardi",
+          },
+          Object {
+            "firstName": "Wolfgang",
+            "lastName": "Polifke",
+          },
+        ],
+      },
+      "fields": Object {
+        "address": Array [
+          "Krakow",
+        ],
+        "author": Array [
+          "Emmert, Thomas",
+          "Jaensch, Stefan",
+          "Sovardi, Carlo",
+          "Polifke, Wolfgang",
+        ],
+        "booktitle": Array [
+          "7th Forum Acusticum",
+        ],
+        "keywords": Array [
+          "NonPerRev",
+        ],
+        "month": Array [
+          "09",
+        ],
+        "note": Array [
+          "http://www.fa2014.agh.edu.pl/fa2014_cd/",
+        ],
+        "title": Array [
+          "taX - a Flexible Tool for Low-Order Duct Acoustic Simulation in Time and Frequency Domain",
+        ],
+        "year": Array [
+          "2014",
+        ],
+      },
+      "key": "EmmerJaens14a",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

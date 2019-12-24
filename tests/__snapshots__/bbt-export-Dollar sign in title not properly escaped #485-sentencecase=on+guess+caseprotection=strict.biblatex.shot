@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-Dollar sign in title not properly escaped #485-sentencecase=on+guess+caseprotection=strict.biblatex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Bernie",
+            "lastName": "Sanders",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Sanders, Bernie",
+        ],
+        "date": Array [
+          "2016-04-06",
+        ],
+        "title": Array [
+          "The largest <span class=\\"nocase\\">U.S</span>. companies would owe $620 billion in <span class=\\"nocase\\">U.S</span>. taxes on the cash they store in tax havens, the equivalent of our defense budget. [<span class=\\"nocase\\">Tweet</span>]",
+        ],
+        "titleaddon": Array [
+          "SenSanders",
+        ],
+        "url": Array [
+          "https://twitter.com/SenSanders/status/717771426284060673",
+        ],
+      },
+      "key": "sanders_largest_2016",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

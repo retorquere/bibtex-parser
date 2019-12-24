@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-German Umlaut separated by brackets #146-sentencecase=on+guess+caseprotection=strict.biblatex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Wolfgang",
+            "lastName": "Kaufmann",
+          },
+        ],
+      },
+      "fields": Object {
+        "annotation": Array [
+          "\\"Der Gleichzeitigkeitsgrad g (n) der Spitzenlastanteile Ps von Wohnungen wurde\\\\ aus Messungen statistisch ermittelt [2.3]. Eine gute Näherung für die Praxis\\\\ ist die Gleichung (2.5) :\\" (S. 2.3) Keine Notwendigkeit, in ihrem Grundlegendem Charakter völlig verschiedenartige Belastungen (PV, Wärmepumpe) in dieses Schema zu pressen.",
+        ],
+        "author": Array [
+          "Kaufmann, Wolfgang",
+        ],
+        "date": Array [
+          "1995",
+        ],
+        "isbn": Array [
+          "3-8007-2141-4 978-3-8007-2141-2 3-8022-0469-7 978-3-8022-0469-2",
+        ],
+        "langid": Array [
+          "german",
+        ],
+        "location": Array [
+          "Berlin; Frankfurt am Main",
+        ],
+        "publisher": Array [
+          "VDE-Verl. ; Verl.- und Wirtschaftsges. der Elektrizitätswerke",
+        ],
+        "title": Array [
+          "Planung öffentlicher Elektrizitätsverteilungs-Systeme",
+        ],
+      },
+      "key": "Kaufmann1995",
+      "type": "book",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

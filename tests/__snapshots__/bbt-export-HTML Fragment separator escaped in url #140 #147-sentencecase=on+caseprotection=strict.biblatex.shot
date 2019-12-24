@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-HTML Fragment separator escaped in url #140 #147-sentencecase=on+caseprotection=strict.biblatex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "John",
+            "lastName": "MacFarlane",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "MacFarlane, John",
+        ],
+        "title": Array [
+          "Pandoc <span class=\\"nocase\\">User</span>’s <span class=\\"nocase\\">Guide</span>",
+        ],
+        "url": Array [
+          "http://johnmacfarlane.net/pandoc/README.html#citations",
+        ],
+        "urldate": Array [
+          "2015-01-31",
+        ],
+      },
+      "key": "MacFarlaneJohna",
+      "type": "archived",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

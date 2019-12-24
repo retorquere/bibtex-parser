@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-Export error for items without publicationTitle and Preserve BibTeX variables enabled #201-sentencecase=off+caseprotection=as-needed.biblatex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Roger D.",
+            "lastName": "Blandford",
+          },
+          Object {
+            "firstName": "Kip S.",
+            "lastName": "Thorne",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Blandford, Roger D.",
+          "Thorne, Kip S.",
+        ],
+        "date": Array [
+          "2006",
+        ],
+        "publisher": Array [
+          "Caltech",
+        ],
+        "title": Array [
+          "Applications of <span class=\\"nocase\\">Classical Physics</span>",
+        ],
+      },
+      "key": "Blandford2006",
+      "type": "book",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

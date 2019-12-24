@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-import-Better BibTeX.008-sentencecase=off+caseprotection=off.bib 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "American Rights",
+            "lastName": "at Work",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "at Work, American Rights",
+        ],
+        "howpublished": Array [
+          "http://www.americanrightsatwork.org/blogcategory-275/",
+        ],
+        "title": Array [
+          "Public Service Research Foundation",
+        ],
+        "url": Array [
+          "http://www.americanrightsatwork.org/blogcategory-275/",
+        ],
+        "urldate": Array [
+          "2012-07-27",
+        ],
+        "year": Array [
+          "2012",
+        ],
+      },
+      "key": "american_rights_at_work_public_2012",
+      "type": "misc",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

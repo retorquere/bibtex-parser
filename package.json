@@ -10,6 +10,10 @@
     "poststart": "npm run docs",
     "pretest": "npm start",
     "test": "jest",
+    "tt": "STRICTCASEPROTECION=true GUESSSENTENCECASE=true npm test",
+    "tf": "STRICTCASEPROTECION=true GUESSSENTENCECASE=false npm test",
+    "ft": "STRICTCASEPROTECION=false GUESSSENTENCECASE=true npm test",
+    "ff": "STRICTCASEPROTECION=false GUESSSENTENCECASE=false npm test",
     "minitest": "pegjs grammar.pegjs && tsc -d && node tt.js",
     "list": "tar tvf $(npm pack)",
     "prepublishOnly": "npm start",
@@ -33,6 +37,7 @@
     "@types/jest": "^24.0.24",
     "@types/node": "^12.12.21",
     "jest": "^24.9.0",
+    "jest-progress-tracker": "^2.0.2",
     "jest-specific-snapshot": "^2.0.0",
     "jsesc": "^2.5.2",
     "pegjs": "^0.10.0",
@@ -52,7 +57,11 @@
       "*.ts",
       "!*.d.ts"
     ],
-    "preset": "ts-jest"
+    "preset": "ts-jest",
+    "reporters": [
+      "default",
+      "jest-progress-tracker"
+    ]
   },
   "files": [
     "package.json",

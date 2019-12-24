@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-Fields in Extra should override defaults-sentencecase=off+caseprotection=strict.biblatex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Tom",
+            "lastName": "Simonite",
+          },
+        ],
+      },
+      "fields": Object {
+        "abstract": Array [
+          "The community that built the largest encyclopedia in history is shrinking, even as more people and Internet services depend on it than ever. Can it be revived, or is this the end of the Web’s idealistic era?",
+        ],
+        "author": Array [
+          "Simonite, Tom",
+        ],
+        "date": Array [
+          "2013-10-22",
+        ],
+        "journaltitle": Array [
+          "MIT Technology Review",
+        ],
+        "shorttitle": Array [
+          "The Decline of <span class=\\"nocase\\">Wikipedia</span>",
+        ],
+        "title": Array [
+          "The Decline of <span class=\\"nocase\\">Wikipedia</span>: Even as More People than Ever Rely on It, Fewer People Create It",
+        ],
+        "titleaddon": Array [
+          "MIT Technology Review",
+        ],
+        "url": Array [
+          "http://www.technologyreview.com/featuredstory/520446/the-decline-of-wikipedia/",
+        ],
+        "urldate": Array [
+          "2013-10-26",
+        ],
+      },
+      "key": "simonite2013declinewikipediaeven",
+      "type": "online",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

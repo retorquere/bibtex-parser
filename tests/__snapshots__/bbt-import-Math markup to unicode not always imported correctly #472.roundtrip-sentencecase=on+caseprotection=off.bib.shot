@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-import-Math markup to unicode not always imported correctly #472.roundtrip-sentencecase=on+caseprotection=off.bib 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "J.",
+            "lastName": "Doe",
+          },
+          Object {
+            "firstName": "R.",
+            "lastName": "Smith",
+          },
+        ],
+      },
+      "fields": Object {
+        "abstract": Array [
+          "Abstract here",
+        ],
+        "author": Array [
+          "Doe, J.",
+          "Smith, R.",
+        ],
+        "booktitle": Array [
+          "IEEE_J_PROC",
+        ],
+        "doi": Array [
+          "10.1109/JPROC.2016.2526118",
+        ],
+        "issn": Array [
+          "0193-6530",
+        ],
+        "keywords": Array [
+          "Keyword 1",
+          "Keyword 2",
+        ],
+        "month": Array [
+          "02",
+        ],
+        "pages": Array [
+          "300-301",
+        ],
+        "title": Array [
+          "Test title with 100 μj, 200 μj energy, and ±0.1% accuracy, 0.2 mm² size, and -50 dB attenuation",
+        ],
+        "year": Array [
+          "2016",
+        ],
+      },
+      "key": "test_citation1",
+      "type": "inproceedings",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "J.",
+            "lastName": "Doe",
+          },
+          Object {
+            "firstName": "R.",
+            "lastName": "Smith",
+          },
+        ],
+      },
+      "fields": Object {
+        "abstract": Array [
+          "Abstract here",
+        ],
+        "author": Array [
+          "Doe, J.",
+          "Smith, R.",
+        ],
+        "booktitle": Array [
+          "IEEE_J_PROC",
+        ],
+        "doi": Array [
+          "10.1109/JPROC.2016.2526118",
+        ],
+        "issn": Array [
+          "0193-6530",
+        ],
+        "keywords": Array [
+          "Keyword 1",
+          "Keyword 2",
+        ],
+        "month": Array [
+          "02",
+        ],
+        "pages": Array [
+          "300-301",
+        ],
+        "title": Array [
+          "Test title with space quad, space semi-colon, space colon, space comma, space nbsp",
+        ],
+        "year": Array [
+          "2016",
+        ],
+      },
+      "key": "test_citation2",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [
+    Object {
+      "message": "Unresolved @string reference \\"IEEE_J_PROC\\"",
+    },
+  ],
+  "strings": Object {},
+}
+`;

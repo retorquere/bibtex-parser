@@ -1,0 +1,131 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-import-Jabref groups import does not work #717.3.8-sentencecase=on+guess+caseprotection=off.bib 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "John",
+            "lastName": "Doe",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "John Doe",
+        ],
+        "groups": Array [
+          "my-subgroup-3",
+        ],
+        "owner": Array [
+          "klein",
+        ],
+        "timestamp": Array [
+          "2017.09.11",
+        ],
+        "title": Array [
+          "The paper in subgroup",
+        ],
+        "year": Array [
+          "2017",
+        ],
+      },
+      "key": "Doe-2017",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "I.",
+            "lastName": "Other",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "I. Other",
+        ],
+        "groups": Array [
+          "my-other-subgroup-3",
+        ],
+        "owner": Array [
+          "klein",
+        ],
+        "timestamp": Array [
+          "2017.09.11",
+        ],
+        "title": Array [
+          "The article in my other subgroup",
+        ],
+      },
+      "key": "Other-",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "I",
+            "lastName": "Unkonw",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "I Unkonw",
+        ],
+        "groups": Array [
+          "my-subgroup-3",
+          "my-other-subgroup-3",
+        ],
+        "owner": Array [
+          "klein",
+        ],
+        "timestamp": Array [
+          "2017.09.11",
+        ],
+        "title": Array [
+          "the paper in two groups",
+        ],
+      },
+      "key": "Unkonw-",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "I",
+            "lastName": "Unkonw",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "I Unkonw",
+        ],
+        "groups": Array [
+          "my-main-group-3",
+        ],
+        "owner": Array [
+          "klein",
+        ],
+        "timestamp": Array [
+          "2017.09.11",
+        ],
+        "title": Array [
+          "the paper not in a group",
+        ],
+      },
+      "key": "Unkonw",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

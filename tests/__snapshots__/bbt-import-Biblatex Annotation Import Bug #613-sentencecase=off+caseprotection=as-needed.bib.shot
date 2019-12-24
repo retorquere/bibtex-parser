@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-import-Biblatex Annotation Import Bug #613-sentencecase=off+caseprotection=as-needed.bib 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Otto",
+            "lastName": "Demus",
+          },
+        ],
+      },
+      "fields": Object {
+        "annotation": Array [
+          "a \\"monumental\\" work on the mosaics of San Marco",
+        ],
+        "author": Array [
+          "Demus, Otto",
+        ],
+        "date": Array [
+          "1984",
+        ],
+        "location": Array [
+          "Chicago",
+        ],
+        "publisher": Array [
+          "University of Chicago Press",
+        ],
+        "title": Array [
+          "The Mosaics of San Marco in Venice",
+        ],
+      },
+      "key": "Demus1984",
+      "type": "book",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

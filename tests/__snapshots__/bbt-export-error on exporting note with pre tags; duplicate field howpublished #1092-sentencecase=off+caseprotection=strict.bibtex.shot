@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-error on exporting note with pre tags; duplicate field howpublished #1092-sentencecase=off+caseprotection=strict.bibtex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "E.",
+            "lastName": "Blanton",
+          },
+          Object {
+            "firstName": "M.",
+            "lastName": "Allman",
+          },
+          Object {
+            "firstName": "L.",
+            "lastName": "Wang",
+          },
+          Object {
+            "firstName": "I.",
+            "lastName": "Jarvinen",
+          },
+          Object {
+            "firstName": "M.",
+            "lastName": "Kojo",
+          },
+          Object {
+            "firstName": "Y.",
+            "lastName": "Nishida",
+          },
+        ],
+      },
+      "fields": Object {
+        "annote": Array [
+          "\\"<span class=\\"nocase\\"><b>Pipe</b></span>\\" is a sender's estimate of the number of bytes outstanding in the network. This is used during recovery for limiting the sender's sending rate. The pipe variable allows TCP to use fundamentally different congestion control than the algorithm specified in [<span class=\\"nocase\\">https://tools.ietf.org/html/rfc5681</span>]. The congestion control algorithm using the pipe estimate is often referred to as the \\"pipe algorithm\\". fast recovery algorithm",
+        ],
+        "author": Array [
+          "Blanton, E.",
+          "Allman, M.",
+          "Wang, L.",
+          "Jarvinen, I.",
+          "Kojo, M.",
+          "Nishida, Y.",
+        ],
+        "institution": Array [
+          "<span class=\\"nocase\\">RFC Editor</span>",
+        ],
+        "month": Array [
+          "08",
+        ],
+        "note": Array [
+          "<span class=\\"nocase\\">https://tools.ietf.org/html/rfc6675</span>",
+        ],
+        "number": Array [
+          "6675",
+        ],
+        "title": Array [
+          "A <span class=\\"nocase\\">Conservative Loss Recovery Algorithm Based</span> on <span class=\\"nocase\\">Selective Acknowledgment (SACK</span>) for <span class=\\"nocase\\">TCP</span>",
+        ],
+        "type": Array [
+          "<span class=\\"nocase\\">RFC</span>",
+        ],
+        "year": Array [
+          "2012",
+        ],
+      },
+      "key": "blantonConservativeLossRecovery2012",
+      "type": "techreport",
+    },
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "howpublished": Array [
+          "sctplab",
+        ],
+        "month": Array [
+          "11",
+        ],
+        "note": Array [
+          "<span class=\\"nocase\\">https://github.com/sctplab/usrsctp</span>",
+        ],
+        "title": Array [
+          "A Portable <span class=\\"nocase\\">SCTP</span> Userland Stack. <span class=\\"nocase\\">Contribute</span> to Sctplab/Usrsctp Development by Creating an Account on <span class=\\"nocase\\">GitHub</span>",
+        ],
+        "year": Array [
+          "2018",
+        ],
+      },
+      "key": "PortableSCTPUserland2018",
+      "type": "misc",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

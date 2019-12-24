@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-BibLaTeX; export CSL override 'issued' to date or year #351-sentencecase=on+guess+caseprotection=as-needed.biblatex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "John",
+            "lastName": "Doe",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Doe, John",
+        ],
+        "date": Array [
+          "2014-12-31/2015-01-01",
+        ],
+        "title": Array [
+          "Test",
+        ],
+      },
+      "key": "doe_test",
+      "type": "online",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

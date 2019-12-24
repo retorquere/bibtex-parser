@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-Export web page to misc type with notes and howpublished custom fields #329-sentencecase=on+caseprotection=off.bibtex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "lastName": "NTP.org",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "NTP.org",
+        ],
+        "howpublished": Array [
+          "http://www.ntp.org/ntpfaq/NTP-s-sw-clocks-quality.htm",
+        ],
+        "note": Array [
+          "(accessed 2015-02-13)",
+        ],
+        "title": Array [
+          "Clock quality",
+        ],
+        "year": Array [
+          "2015",
+        ],
+      },
+      "key": "ntp.org_clock_2015",
+      "type": "misc",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "lastName": "NTP.org",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "NTP.org",
+        ],
+        "howpublished": Array [
+          "http://www.ntp.org/ntpfaq/NTP-s-sw-clocks-quality.htm",
+        ],
+        "title": Array [
+          "Clock quality",
+        ],
+        "year": Array [
+          "2015",
+        ],
+      },
+      "key": "ntp.org_clock_2015-1",
+      "type": "misc",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "lastName": "NTP.org",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "NTP.org",
+        ],
+        "howpublished": Array [
+          "http://www.ntp.org/ntpfaq/NTP-s-sw-clocks-quality.htm",
+        ],
+        "title": Array [
+          "Clock quality",
+        ],
+        "year": Array [
+          "2015",
+        ],
+      },
+      "key": "ntp.org_clock_2015-2",
+      "type": "misc",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

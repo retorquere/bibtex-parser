@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse citation-js-sentencecase=off+caseprotection=strict.bib 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "lastName": "Author",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Author",
+        ],
+        "journal": Array [
+          "a space between this and this",
+        ],
+        "title": Array [
+          "åı and íTitle string a string b string c",
+        ],
+        "year": Array [
+          "1990",
+        ],
+      },
+      "key": "key",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "title": Array [
+          "ı",
+        ],
+      },
+      "key": "label",
+      "type": "book",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {
+    "A": " string a",
+    "B": " string b",
+    "C": " string c",
+    "I": "ı",
+    "J": "a space between this ",
+  },
+}
+`;

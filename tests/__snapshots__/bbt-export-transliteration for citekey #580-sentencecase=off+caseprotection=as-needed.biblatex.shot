@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-transliteration for citekey #580-sentencecase=off+caseprotection=as-needed.biblatex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Григорий",
+            "lastName": "Медведев",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Медведев, Григорий",
+        ],
+        "date": Array [
+          "2002",
+        ],
+        "keywords": Array [
+          "Chernobyl Nuclear Accident",
+          "Chornobylʹ",
+          "Ukraine",
+          "1986",
+          "Nuclear industry",
+          "Nuclear reactor accidents",
+          "Radioactive wastes",
+        ],
+        "langid": Array [
+          "russian",
+        ],
+        "pagetotal": Array [
+          "520",
+        ],
+        "publisher": Array [
+          "МК-Периодика",
+        ],
+        "title": Array [
+          "Ядерный загар",
+        ],
+      },
+      "key": "Medvedev2002",
+      "type": "book",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

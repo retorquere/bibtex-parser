@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-BibTeX; URL missing in bibtex for Book Section #412.note-sentencecase=on+guess+caseprotection=strict.bibtex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Thibaut",
+            "lastName": "Lust",
+          },
+          Object {
+            "firstName": "Jacques",
+            "lastName": "Teghem",
+          },
+        ],
+        "editor": Array [
+          Object {
+            "firstName": "Carlos A. Coello",
+            "lastName": "Coello",
+          },
+          Object {
+            "firstName": "Clarisse",
+            "lastName": "Dhaenens",
+          },
+          Object {
+            "firstName": "Laetitia",
+            "lastName": "Jourdan",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Lust, Thibaut",
+          "Teghem, Jacques",
+        ],
+        "booktitle": Array [
+          "Advances in <span class=\\"nocase\\">Multi-Objective Nature Inspired Computing</span>",
+        ],
+        "doi": Array [
+          "10.1007/978-3-642-11218-8_6",
+        ],
+        "editor": Array [
+          "Coello, Carlos A. Coello",
+          "Dhaenens, Clarisse",
+          "Jourdan, Laetitia",
+        ],
+        "isbn": Array [
+          "978-3-642-11217-1 978-3-642-11218-8",
+        ],
+        "note": Array [
+          "<span class=\\"nocase\\">http://link.springer.com/chapter/10.1007/978-3-642-11218-8_6</span>",
+        ],
+        "number": Array [
+          "272",
+        ],
+        "pages": Array [
+          "119–141",
+        ],
+        "publisher": Array [
+          "Springer Berlin Heidelberg",
+        ],
+        "series": Array [
+          "Studies in <span class=\\"nocase\\">Computational Intelligence</span>",
+        ],
+        "title": Array [
+          "The <span class=\\"nocase\\">Multiobjective Traveling Salesman Problem: A Survey</span> and a <span class=\\"nocase\\">New Approach</span>",
+        ],
+        "year": Array [
+          "2010",
+        ],
+      },
+      "key": "lt2010",
+      "type": "incollection",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

@@ -1,0 +1,184 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-BetterBibtex export fails for missing last name #978-sentencecase=off+caseprotection=off.bibtex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Michael",
+            "lastName": "Waskom",
+          },
+          Object {
+            "firstName": "Olga",
+            "lastName": "Botvinnik",
+          },
+          Object {
+            "lastName": "Drewokane",
+          },
+          Object {
+            "firstName": "Paul",
+            "lastName": "Hobson",
+          },
+          Object {},
+          Object {
+            "firstName": "Yaroslav",
+            "lastName": "Halchenko",
+          },
+          Object {
+            "firstName": "Saulius",
+            "lastName": "Lukauskas",
+          },
+          Object {
+            "firstName": "John B.",
+            "lastName": "Cole",
+          },
+          Object {
+            "firstName": "Jordi",
+            "lastName": "Warmenhoven",
+          },
+          Object {
+            "firstName": "Julian De",
+            "lastName": "Ruiter",
+          },
+          Object {
+            "firstName": "Stephan",
+            "lastName": "Hoyer",
+          },
+          Object {
+            "firstName": "Jake",
+            "lastName": "Vanderplas",
+          },
+          Object {
+            "firstName": "Santi",
+            "lastName": "Villalba",
+          },
+          Object {
+            "firstName": "Gero",
+            "lastName": "Kunter",
+          },
+          Object {
+            "firstName": "Eric",
+            "lastName": "Quintero",
+          },
+          Object {
+            "firstName": "Marcel",
+            "lastName": "Martin",
+          },
+          Object {
+            "firstName": "Alistair",
+            "lastName": "Miles",
+          },
+          Object {
+            "firstName": "Kyle",
+            "lastName": "Meyer",
+          },
+          Object {
+            "firstName": "Tom",
+            "lastName": "Augspurger",
+          },
+          Object {
+            "firstName": "Tal",
+            "lastName": "Yarkoni",
+          },
+          Object {
+            "firstName": "Pete",
+            "lastName": "Bachant",
+          },
+          Object {
+            "firstName": "Mike",
+            "lastName": "Williams",
+          },
+          Object {
+            "firstName": "Constantine",
+            "lastName": "Evans",
+          },
+          Object {
+            "firstName": "Clark",
+            "lastName": "Fitzgerald",
+          },
+          Object {},
+          Object {
+            "firstName": "Daniel",
+            "lastName": "Wehner",
+          },
+          Object {
+            "firstName": "Gregory",
+            "lastName": "Hitz",
+          },
+          Object {
+            "firstName": "Erik",
+            "lastName": "Ziegler",
+          },
+          Object {
+            "firstName": "Adel",
+            "lastName": "Qalieh",
+          },
+          Object {
+            "firstName": "Antony",
+            "lastName": "Lee",
+          },
+        ],
+      },
+      "fields": Object {
+        "abstract": Array [
+          "v0.7.1 (June 2016) Added the ability to put \\"caps\\" on the error bars that are drawn by barplot or pointplot (and, by extension, factorplot). Additionally, the line width of the error bars can now be controlled. These changes involve the new parameters capsize and errwidth. See the github pull request for examples of usage. Improved the row and column colors display in clustermap. It is now possible to pass Pandas objects for these elements and, when possible, the semantic information in the Pandas objects will be used to add labels to the plot. When Pandas objects are used, the color data is matched against the main heatmap based on the index, not on position. This is more accurate, but it may lead to different results if current code assumed positional matching. Improved the luminance calculation that determines the annotation color in heatmap. The annot parameter of heatmap now accepts a rectangular dataset in addition to a boolean value. If a dataset is passed, its values will be used for the annotations, while the main dataset will be used for the heatmap cell colors. Fixed a bug in FacetGrid that appeared when using col_wrap with missing col levels. Made it possible to pass a tick locator object to the heatmap colorbar. Made it possible to use different styles (e.g., step) for PairGrid histograms when there are multiple hue levels. Fixed a bug in scipy-based univariate kernel density bandwidth calculation. The reset_orig function (and, by extension, importing seaborn.apionly) resets matplotlib rcParams to their values at the time seaborn itself was imported, which should work better with rcParams changed by the jupyter notebook backend. Removed some objects from the top-level seaborn namespace. Improved unicode compatibility in FacetGrid.",
+        ],
+        "author": Array [
+          "Waskom, Michael",
+          "Botvinnik, Olga",
+          "Drewokane",
+          "Hobson, Paul",
+          ", David",
+          "Halchenko, Yaroslav",
+          "Lukauskas, Saulius",
+          "Cole, John B.",
+          "Warmenhoven, Jordi",
+          "Ruiter, Julian De",
+          "Hoyer, Stephan",
+          "Vanderplas, Jake",
+          "Villalba, Santi",
+          "Kunter, Gero",
+          "Quintero, Eric",
+          "Martin, Marcel",
+          "Miles, Alistair",
+          "Meyer, Kyle",
+          "Augspurger, Tom",
+          "Yarkoni, Tal",
+          "Bachant, Pete",
+          "Williams, Mike",
+          "Evans, Constantine",
+          "Fitzgerald, Clark",
+          ", Brian",
+          "Wehner, Daniel",
+          "Hitz, Gregory",
+          "Ziegler, Erik",
+          "Qalieh, Adel",
+          "Lee, Antony",
+        ],
+        "howpublished": Array [
+          "Zenodo",
+        ],
+        "month": Array [
+          "06",
+        ],
+        "shorttitle": Array [
+          "Seaborn",
+        ],
+        "title": Array [
+          "Seaborn: V0.7.1 (June 2016)",
+        ],
+        "year": Array [
+          "2016",
+        ],
+      },
+      "key": "Waskom2016",
+      "type": "misc",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

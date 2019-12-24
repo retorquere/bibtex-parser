@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-thesis zotero entries always create @phdthesis bibtex entries #307-sentencecase=off+caseprotection=strict.bibtex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Sune Brøndum",
+            "lastName": "Wøller",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Wøller, Sune Brøndum",
+        ],
+        "language": Array [
+          "norsk",
+        ],
+        "title": Array [
+          "Det multiple arkæologiske objekt. Et studie af materialitet og arkæologiske tekstiler",
+        ],
+        "year": Array [
+          "2011",
+        ],
+      },
+      "key": "Woller2011DetMultiple",
+      "type": "mastersthesis",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Sune Brøndum",
+            "lastName": "Wøller",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Wøller, Sune Brøndum",
+        ],
+        "language": Array [
+          "norsk",
+        ],
+        "title": Array [
+          "CTR Det multiple arkæologiske objekt. Et studie af materialitet og arkæologiske tekstiler",
+        ],
+        "year": Array [
+          "2011",
+        ],
+      },
+      "key": "Woller2011CTRDet",
+      "type": "phdthesis",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

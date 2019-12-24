@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-import-Better BibTeX.006-sentencecase=on+caseprotection=as-needed.bib 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "title": Array [
+          "non-braking space:  ; accented characters: ñ and ñ; tilde in URL: <span class=\\"nocase\\">http://example.com/~user</span>",
+        ],
+      },
+      "key": "test-ticket1661",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

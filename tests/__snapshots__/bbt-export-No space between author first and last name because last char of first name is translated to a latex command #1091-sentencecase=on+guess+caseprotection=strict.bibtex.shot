@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-No space between author first and last name because last char of first name is translated to a latex command #1091-sentencecase=on+guess+caseprotection=strict.bibtex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Claire Le",
+            "lastName": "Goues",
+          },
+          Object {
+            "firstName": "Michał",
+            "lastName": "Moskal",
+          },
+          Object {
+            "firstName": "Michał",
+            "lastName": "Moskal",
+          },
+        ],
+      },
+      "fields": Object {
+        "abstract": Array [
+          "The Boogie Verification Debugger (BVD) is a tool that lets users explore the potential program errors reported by a deductive program verifier. The user interface is like that of a dynamic debugger, but the debugging happens statically without executing the program. BVD integrates with the programverification engine Boogie. Just as Boogie supports multiple language front-ends, BVD can work with those front-ends through a plug-in architecture. BVD plugins have been implemented for two state-of-the-art verifiers, VCC and Dafny.",
+        ],
+        "author": Array [
+          "Goues, Claire Le",
+          "Moskal, Michał",
+          "Moskal, Michał",
+        ],
+        "language": Array [
+          "en",
+        ],
+        "note": Array [
+          "<span class=\\"nocase\\">https://www.microsoft.com/en-us/research/wp-content/uploads/2016/12/krml213.pdf</span>",
+        ],
+        "title": Array [
+          "The <span class=\\"nocase\\">Boogie Verification Debugger</span>",
+        ],
+        "year": Array [
+          "2011",
+        ],
+      },
+      "key": "bvd2011",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

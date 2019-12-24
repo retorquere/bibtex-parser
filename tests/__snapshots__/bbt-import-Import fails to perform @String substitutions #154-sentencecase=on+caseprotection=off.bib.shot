@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-import-Import fails to perform @String substitutions #154-sentencecase=on+caseprotection=off.bib 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "R. A.",
+            "lastName": "Bert",
+          },
+        ],
+      },
+      "fields": Object {
+        "address": Array [
+          "London, UK",
+        ],
+        "author": Array [
+          "R. A. Bert",
+        ],
+        "publisher": Array [
+          "Freds Publishing",
+        ],
+        "title": Array [
+          "SQL is great",
+        ],
+      },
+      "key": "Bert:2001:SQL",
+      "type": "book",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {
+    "PUB-FRED": "Freds Publishing",
+    "PUB-FRED:ADR": "London, UK",
+  },
+}
+`;

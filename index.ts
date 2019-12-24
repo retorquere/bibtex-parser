@@ -785,23 +785,29 @@ class Parser {
     }
   }
 
-  private stripNoCase(node: Node, strip = false) {
+  private stripNoCase(node: Node, strip, preserve) {
     switch (node.kind) {
       case 'RegularCommand':
         // a bit cheaty to assume these to be nocased, but it's just more likely to be what people want
         if (['chsf', 'bibstring', 'cite'].includes(node.command)) strip = true
-        node.arguments.required.map(arg => this.stripNoCase(arg, strip))
+        node.arguments.required.map(arg => this.stripNoCase(arg, strip, preserve))
         break
 
       case 'Block':
       case 'InlineMath':
       case 'DisplayMath':
-        if (strip && node.case === 'protect') delete node.case
-        node.value.map(v => this.stripNoCase(v, strip || node.case === 'protect'))
+        if (strip && node.case === 'protect') {
+          if (preserve) {
+            node.case = 'preserve'
+          } else {
+            delete node.case
+          }
+        }
+        node.value.map(v => this.stripNoCase(v, strip || node.case === 'protect', preserve))
         break
 
       case 'Field':
-        if (Array.isArray(node.value)) node.value.map(v => this.stripNoCase(v, strip))
+        if (Array.isArray(node.value)) node.value.map(v => this.stripNoCase(v, strip, preserve))
         break
     }
   }
@@ -812,7 +818,7 @@ class Parser {
   private clean_field(node: bibtex.Field) {
     this.setFieldType(node.name)
 
-    this.stripNoCase(node, !this.options.caseProtection || this.isVerbatimField(node.name))
+    this.stripNoCase(node, !this.options.caseProtection || this.isVerbatimField(node.name), (this.options.sentenceCase as string[]).length === 0)
 
     if (Array.isArray(node.value)) this.condense(node)
 

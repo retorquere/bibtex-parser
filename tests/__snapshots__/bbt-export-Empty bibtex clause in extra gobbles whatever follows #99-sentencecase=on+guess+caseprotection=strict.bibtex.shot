@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-Empty bibtex clause in extra gobbles whatever follows #99-sentencecase=on+guess+caseprotection=strict.bibtex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "note": Array [
+          "<span class=\\"nocase\\">http://ptolemy.org/books/Systems</span>",
+        ],
+        "ptolemaeus-14-systemdesigneditor": Array [
+          "Claudius Ptolemaeus",
+        ],
+        "publisher": Array [
+          "Ptolemy.org",
+        ],
+        "title": Array [
+          "System design, modeling, and simulation using <span class=\\"nocase\\">Ptolemy II</span>",
+        ],
+        "year": Array [
+          "2014",
+        ],
+      },
+      "key": "2014",
+      "type": "book",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

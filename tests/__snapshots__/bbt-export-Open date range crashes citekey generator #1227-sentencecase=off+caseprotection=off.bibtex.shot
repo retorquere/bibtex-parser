@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-Open date range crashes citekey generator #1227-sentencecase=off+caseprotection=off.bibtex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Saharon",
+            "lastName": "Shelah",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Shelah, Saharon",
+        ],
+        "journal": Array [
+          "Pacific Journal of Mathematics",
+        ],
+        "pages": Array [
+          "247–261",
+        ],
+        "title": Array [
+          "A Combinatorial Problem; Stability and Order for Models and Theories in Infinitary Languages",
+        ],
+        "volume": Array [
+          "41",
+        ],
+        "year": Array [
+          "undefined",
+        ],
+      },
+      "key": "Shelahcombinatorialproblemstability",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

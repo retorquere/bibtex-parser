@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-import-Jabref groups import does not work #717.2.10-sentencecase=off+caseprotection=off.bib 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "John",
+            "lastName": "Doe",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "John Doe",
+        ],
+        "owner": Array [
+          "klein",
+        ],
+        "timestamp": Array [
+          "2017.09.11",
+        ],
+        "title": Array [
+          "The paper in subgroup",
+        ],
+        "year": Array [
+          "2017",
+        ],
+      },
+      "key": "Doe-2017",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "I.",
+            "lastName": "Other",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "I. Other",
+        ],
+        "owner": Array [
+          "klein",
+        ],
+        "timestamp": Array [
+          "2017.09.11",
+        ],
+        "title": Array [
+          "The article in my other subgroup",
+        ],
+      },
+      "key": "Other-",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "I",
+            "lastName": "Unkonw",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "I Unkonw",
+        ],
+        "owner": Array [
+          "klein",
+        ],
+        "timestamp": Array [
+          "2017.09.11",
+        ],
+        "title": Array [
+          "the paper not in a group",
+        ],
+      },
+      "key": "Unkonw-",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

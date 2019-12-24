@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-Shortjournal does not get exported to biblatex format #102 - biblatexcitekey #105-sentencecase=on+guess+caseprotection=strict.biblatex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Antonio",
+            "lastName": "Acín",
+          },
+          Object {
+            "firstName": "Nicolas",
+            "lastName": "Gisin",
+          },
+          Object {
+            "firstName": "Lluis",
+            "lastName": "Masanes",
+          },
+        ],
+      },
+      "fields": Object {
+        "abstract": Array [
+          "The first step in any quantum key distribution (QKD) protocol consists of sequences of measurements that produce correlated classical data. We show that these correlation data must violate some Bell inequality in order to contain distillable secrecy, if not they could be produced by quantum measurements performed on a separable state of larger dimension. We introduce a new QKD protocol and prove its security against any individual attack by an adversary only limited by the no-signaling condition.",
+        ],
+        "author": Array [
+          "Acín, Antonio",
+          "Gisin, Nicolas",
+          "Masanes, Lluis",
+        ],
+        "date": Array [
+          "2006-09-20",
+        ],
+        "doi": Array [
+          "10.1103/PhysRevLett.97.120405",
+        ],
+        "journaltitle": Array [
+          "Physical Review Letters",
+        ],
+        "number": Array [
+          "12",
+        ],
+        "pages": Array [
+          "120405",
+        ],
+        "shortjournal": Array [
+          "Phys. Rev. Lett.",
+        ],
+        "title": Array [
+          "From <span class=\\"nocase\\">Bell</span>’s <span class=\\"nocase\\">Theorem</span> to secure quantum key distribution",
+        ],
+        "url": Array [
+          "http://link.aps.org/doi/10.1103/PhysRevLett.97.120405",
+        ],
+        "urldate": Array [
+          "2014-08-20",
+        ],
+        "volume": Array [
+          "97",
+        ],
+      },
+      "key": "Acin2006-105",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

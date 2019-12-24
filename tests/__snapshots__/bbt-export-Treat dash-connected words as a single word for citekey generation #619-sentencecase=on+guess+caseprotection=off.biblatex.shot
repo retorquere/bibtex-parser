@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-Treat dash-connected words as a single word for citekey generation #619-sentencecase=on+guess+caseprotection=off.biblatex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Hannes",
+            "lastName": "Schulz",
+          },
+          Object {
+            "firstName": "Jeremie",
+            "lastName": "Zumer",
+          },
+          Object {
+            "firstName": "Layla El",
+            "lastName": "Asri",
+          },
+          Object {
+            "firstName": "Shikhar",
+            "lastName": "Sharma",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Schulz, Hannes",
+          "Zumer, Jeremie",
+          "Asri, Layla El",
+          "Sharma, Shikhar",
+        ],
+        "date": Array [
+          "2017",
+        ],
+        "journaltitle": Array [
+          "arXiv preprint arXiv:1706.01690",
+        ],
+        "keywords": Array [
+          "ₜabletₘodified",
+        ],
+        "title": Array [
+          "A frame tracking model for memory-enhanced dialogue systems",
+        ],
+        "url": Array [
+          "https://arxiv.org/abs/1706.01690",
+        ],
+        "urldate": Array [
+          "2017-08-17",
+        ],
+      },
+      "key": "SchulzZumerEtAl_2017_A_Frame_Tracking_Model_for_Memory-Enhanced_Dialogue_Systems",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

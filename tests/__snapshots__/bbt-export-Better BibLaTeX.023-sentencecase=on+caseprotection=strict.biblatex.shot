@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-Better BibLaTeX.023-sentencecase=on+caseprotection=strict.biblatex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Christopher D.",
+            "lastName": "Manning",
+          },
+          Object {
+            "firstName": "Prabhakar",
+            "lastName": "Raghavan",
+          },
+          Object {
+            "firstName": "Hinrich",
+            "lastName": "Schütze",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Manning, Christopher D.",
+          "Raghavan, Prabhakar",
+          "Schütze, Hinrich",
+        ],
+        "date": Array [
+          "2008-07-07",
+        ],
+        "isbn": Array [
+          "978-0-521-86571-5",
+        ],
+        "location": Array [
+          "New York",
+        ],
+        "pagetotal": Array [
+          "496",
+        ],
+        "publisher": Array [
+          "Cambridge University Press",
+        ],
+        "title": Array [
+          "Introduction to <span class=\\"nocase\\">Information Retrieval</span>",
+        ],
+      },
+      "key": "Manning2008",
+      "type": "book",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

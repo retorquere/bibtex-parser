@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-import-space after citekey creates confusion #716-sentencecase=on+guess+caseprotection=strict.bib 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "lastName": "Hoffmann",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Hoffmann",
+        ],
+        "title": Array [
+          "Phase transitions",
+        ],
+      },
+      "key": "HoSp-87",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "editor": Array [
+          Object {
+            "lastName": "Sprekels",
+          },
+        ],
+      },
+      "fields": Object {
+        "editor": Array [
+          "Sprekels",
+        ],
+        "title": Array [
+          "Free boundary problems",
+        ],
+      },
+      "key": "HoSp-90",
+      "type": "book",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

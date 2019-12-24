@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-BibTeX name escaping has a million inconsistencies #438-sentencecase=on+caseprotection=off.bibtex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Name",
+            "lastName": "Nöme",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Nöme, Name",
+        ],
+        "title": Array [
+          "Why is apple launching a new version of the iPod?",
+        ],
+        "year": Array [
+          "2014",
+        ],
+      },
+      "key": "Nome2014",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Vincent",
+            "lastName": "van Gögh",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "van Gögh, Vincent",
+        ],
+        "title": Array [
+          "Why is apple launching a new version of the iPod?",
+        ],
+        "year": Array [
+          "2014",
+        ],
+      },
+      "key": "vanGogh2014",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

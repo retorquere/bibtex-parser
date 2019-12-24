@@ -1,0 +1,116 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-No brace protection when suppressTitleCase set to true #1188-sentencecase=on+guess+caseprotection=strict.bibtex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "John",
+            "lastName": "Smith",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Smith, John",
+        ],
+        "journal": Array [
+          "Journal of Testing",
+        ],
+        "number": Array [
+          "1",
+        ],
+        "pages": Array [
+          "27-49",
+        ],
+        "title": Array [
+          "This <span class=\\"nocase\\">Article</span> is <span class=\\"nocase\\">Title Case</span> in <span class=\\"nocase\\">Zotero</span>",
+        ],
+        "volume": Array [
+          "3",
+        ],
+        "year": Array [
+          "2019",
+        ],
+      },
+      "key": "Smith2019",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Jane",
+            "lastName": "Doe",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Doe, Jane",
+        ],
+        "journal": Array [
+          "Journal of Testing",
+        ],
+        "number": Array [
+          "4",
+        ],
+        "pages": Array [
+          "1-31",
+        ],
+        "title": Array [
+          "This article is sentence case in <span class=\\"nocase\\">Zotero</span>",
+        ],
+        "volume": Array [
+          "2",
+        ],
+        "year": Array [
+          "2018",
+        ],
+      },
+      "key": "Doe2018",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Jill",
+            "lastName": "Jackson",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Jackson, Jill",
+        ],
+        "journal": Array [
+          "Internet Quarterly",
+        ],
+        "number": Array [
+          "4",
+        ],
+        "pages": Array [
+          "399-412",
+        ],
+        "title": Array [
+          "I like <span class=\\"nocase\\">ISDN</span> heaps better than dialup",
+        ],
+        "volume": Array [
+          "12",
+        ],
+        "year": Array [
+          "2019",
+        ],
+      },
+      "key": "Jackson2019",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

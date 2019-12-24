@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-export-pre not working in Extra field #559-sentencecase=on+guess+caseprotection=off.biblatex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Morten",
+            "lastName": "Brøns",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Brøns, Morten",
+        ],
+        "note": Array [
+          "Hello hej",
+        ],
+        "title": Array [
+          "pretest",
+        ],
+      },
+      "key": "Brons:pretest",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;

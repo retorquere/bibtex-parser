@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Parser should parse bbt-import-Wrong ring-above import #1115-sentencecase=on+guess+caseprotection=strict.bib 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Radim",
+            "lastName": "Řehůřek",
+          },
+          Object {
+            "firstName": "Petr",
+            "lastName": "Sojka",
+          },
+        ],
+      },
+      "fields": Object {
+        "address": Array [
+          "Valletta, Malta",
+        ],
+        "author": Array [
+          "Radim Řehůřek",
+          "Petr Sojka",
+        ],
+        "booktitle": Array [
+          "Proceedings of the LREC 2010 workshop on new challenges for NLP frameworks",
+        ],
+        "day": Array [
+          "22",
+        ],
+        "language": Array [
+          "English",
+        ],
+        "month": Array [
+          "05",
+        ],
+        "pages": Array [
+          "45–50",
+        ],
+        "publisher": Array [
+          "ELRA",
+        ],
+        "title": Array [
+          "Software framework for topic modelling with large corpora",
+        ],
+        "url": Array [
+          "http://is.muni.cz/publication/884893/en",
+        ],
+        "year": Array [
+          "2010",
+        ],
+      },
+      "key": "rehurek_lrec",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [],
+  "strings": Object {},
+}
+`;
