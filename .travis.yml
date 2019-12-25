@@ -5,6 +5,10 @@ cache: npm
 #install:
 #- npm install
 
+stages:
+- test
+- deploy
+
 env:
 - SENTENCECASE=off CASEPROTECTION=off
 - SENTENCECASE=off CASEPROTECTION=strict
@@ -19,13 +23,13 @@ script: npm test
 
 jobs:
   include:
-    - stage: deploy
-      if: branch = master AND tag IS present
-      script: npm run build
-      deploy:
-        provider: npm
-        email: emiliano.heyns@iris-advies.com
-        on:
-          tags: true
-        api_key:
-          secure: oEILF9wQUZMrW4F2u/GAWrgWE4OyLi2yI4o3hPN1EcVax11fn++E0lOum8/+MYqH4/ufuJlbkxAV5JXfWg/ARgJMnH3pbAzqz7H/LaqS0HAWpJI+3C6wgqi3t+GqOdU5UMSMmO76SutLL63daAYYrNTrXw/kIgiDyYKA5waaNGanTjyER530B9xesdneKwdnm9355PRlxe5SQxzssnz4Dz2cDf613bcHqmsvTWkMudS1njb92aII1u9s/34Pegv7nJpE4tzV878VXSSYPGeY466RAQA8GlT924pWckyxYWbDP8x4Nn8jyOtnEICvomy+uCphm9uXv3kfK+kSVRITOhpnn3ZbvAItpl6LCoQHn4JVnlvi6q+g4DUSZd8AJkiFtHu+pADI+0GY2HrXdRV8fqcrbN0nUUJw3SkQ2LkK1iZL5/zlVEPtxOv2Q5YWLnzrfhd/N8AxDJ4ZqLFwYMS3NVhVkGcjBwMIQnPvO6vUOtOyo2uaE1RVtHqGEAUBTtPS0yQaEjbgZ9VPQ5G4NpbBZFoJT9qGKyz4EM9Ums4lnCtoJHbQaY7YyV39GsuFwhDN/fzHv6g1O4pYD0MenIeGzuiaJpwNdFYO6xd6tYuojsQMm8DIl0UCiR+dN84VyhLfdaa3EwAijHYaAn+pkHDwhOBWsqeomW9LcgcLJINbElU=
+  - stage: deploy
+    if: branch = master AND tag IS present
+    script: npm run build
+    deploy:
+      provider: npm
+      email: emiliano.heyns@iris-advies.com
+      on:
+        tags: true
+      api_key:
+        secure: oEILF9wQUZMrW4F2u/GAWrgWE4OyLi2yI4o3hPN1EcVax11fn++E0lOum8/+MYqH4/ufuJlbkxAV5JXfWg/ARgJMnH3pbAzqz7H/LaqS0HAWpJI+3C6wgqi3t+GqOdU5UMSMmO76SutLL63daAYYrNTrXw/kIgiDyYKA5waaNGanTjyER530B9xesdneKwdnm9355PRlxe5SQxzssnz4Dz2cDf613bcHqmsvTWkMudS1njb92aII1u9s/34Pegv7nJpE4tzV878VXSSYPGeY466RAQA8GlT924pWckyxYWbDP8x4Nn8jyOtnEICvomy+uCphm9uXv3kfK+kSVRITOhpnn3ZbvAItpl6LCoQHn4JVnlvi6q+g4DUSZd8AJkiFtHu+pADI+0GY2HrXdRV8fqcrbN0nUUJw3SkQ2LkK1iZL5/zlVEPtxOv2Q5YWLnzrfhd/N8AxDJ4ZqLFwYMS3NVhVkGcjBwMIQnPvO6vUOtOyo2uaE1RVtHqGEAUBTtPS0yQaEjbgZ9VPQ5G4NpbBZFoJT9qGKyz4EM9Ums4lnCtoJHbQaY7YyV39GsuFwhDN/fzHv6g1O4pYD0MenIeGzuiaJpwNdFYO6xd6tYuojsQMm8DIl0UCiR+dN84VyhLfdaa3EwAijHYaAn+pkHDwhOBWsqeomW9LcgcLJINbElU=
