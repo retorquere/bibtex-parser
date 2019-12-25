@@ -1,50 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`BibTeX Parser should parse bbt-export-References with multiple notes fail to export #174-sentencecase=on+guess+caseprotection=as-needed.biblatex 1`] = `
-Object {
-  "comments": Array [],
-  "entries": Array [
-    Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Joe",
-            "lastName": "Torre",
-          },
-          Object {
-            "firstName": "Tom",
-            "lastName": "Verducci",
-          },
-        ],
-      },
-      "fields": Object {
-        "annotation": Array [
-          "note 1 note 2",
-        ],
-        "author": Array [
-          "Torre, Joe",
-          "Verducci, Tom",
-        ],
-        "date": Array [
-          "2008",
-        ],
-        "publisher": Array [
-          "Doubleday",
-        ],
-        "title": Array [
-          "XYZZY",
-        ],
-      },
-      "key": "Torre2008",
-      "type": "misc",
-    },
-  ],
-  "errors": Array [],
-  "strings": Object {},
-}
-`;
-
-exports[`should parse bbt-export-References with multiple notes fail to export #174-sentencecase=on+guess+caseprotection=as-needed.biblatex 1`] = `
+exports[`bbt-export-References with multiple notes fail to export #174-sentencecase=on+guess+caseprotection=as-needed.biblatex 1`] = `
 Object {
   "comments": Array [],
   "entries": Array [

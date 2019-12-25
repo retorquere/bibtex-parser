@@ -103,7 +103,7 @@ cases.sort(function(a, b) {
 })
 
 for (let {caseName, input, options} of cases) {
-  it(`should parse ${caseName}`, () => {
-    (expect(bibtex.parse(input, options)) as any).toMatchSpecificSnapshot(path.join(snaps, caseName + '.shot'))
+  it(caseName, () => {
+    (expect(bibtex.parse(input, options)) as any).toMatchSpecificSnapshot(path.join(snaps, caseName + '.shot'));
   })
 }
