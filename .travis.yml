@@ -5,19 +5,20 @@ cache: npm
 #install:
 #- npm install
 
+env:
+- SENTENCECASE=off CASEPROTECTION=off
+- SENTENCECASE=off CASEPROTECTION=strict
+- SENTENCECASE=off CASEPROTECTION=as-needed
+- SENTENCECASE=on CASEPROTECTION=off
+- SENTENCECASE=on CASEPROTECTION=strict
+- SENTENCECASE=on CASEPROTECTION=as-needed
+- SENTENCECASE=on+guess CASEPROTECTION=off
+- SENTENCECASE=on+guess CASEPROTECTION=strict
+- SENTENCECASE=on+guess CASEPROTECTION=as-needed
+
 jobs:
   include:
     - stage: test
-      env:
-      - SENTENCECASE=off CASEPROTECTION=off
-      - SENTENCECASE=off CASEPROTECTION=strict
-      - SENTENCECASE=off CASEPROTECTION=as-needed
-      - SENTENCECASE=on CASEPROTECTION=off
-      - SENTENCECASE=on CASEPROTECTION=strict
-      - SENTENCECASE=on CASEPROTECTION=as-needed
-      - SENTENCECASE=on+guess CASEPROTECTION=off
-      - SENTENCECASE=on+guess CASEPROTECTION=strict
-      - SENTENCECASE=on+guess CASEPROTECTION=as-needed
       script: npm test
     - stage: deploy
       if: branch = master AND tag IS present
