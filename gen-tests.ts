@@ -2,6 +2,7 @@
 
 import slugify from 'slugify'
 import * as bibtex from './index'
+import mkdirp = require('mkdirp')
 
 /*
 import * as failFast from '@retorquere/jasmine-fail-fast'
@@ -60,6 +61,7 @@ function parseOptions(f) {
 }
 
 const scripts = path.join(__dirname, '__tests__', 'cases')
+mkdirp.sync(scripts)
 for (const f of fs.readdirSync(scripts)) {
   fs.unlinkSync(path.join(scripts, f))
 }
