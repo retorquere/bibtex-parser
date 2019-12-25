@@ -15,11 +15,10 @@ env:
 - SENTENCECASE=on+guess CASEPROTECTION=off
 - SENTENCECASE=on+guess CASEPROTECTION=strict
 - SENTENCECASE=on+guess CASEPROTECTION=as-needed
+script: npm test
 
 jobs:
   include:
-    - stage: test
-      script: npm test
     - stage: deploy
       if: branch = master AND tag IS present
       script: npm run build
