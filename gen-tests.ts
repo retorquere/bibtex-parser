@@ -113,7 +113,7 @@ cases.sort((a, b) => {
   return a.size - b.size
 })
 
-fs.writeFileSync(path.join(scripts, 'order.json'), JSON.stringify(cases.map(c => c.script)), 'utf-8')
+fs.writeFileSync(path.join(scripts, 'order.json'), JSON.stringify(cases.map(c => c.script), null, 2), 'utf-8')
 
 for (const {caseName, input, options, snapshot, script, ignoreErrors} of cases) {
   const js = `
