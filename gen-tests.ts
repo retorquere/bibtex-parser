@@ -30,8 +30,10 @@ const enable = {
   big: (process.env.BIG || process.env.CI) === 'true',
 }
 const big = [
-  'Async import, large library #720',
-  'Really Big whopping library',
+  'Async import, large library #720.bib',
+  'Really Big whopping library.bibtex',
+  'long.bib',
+  'Cache does not seem to fill #1296.bibtex',
 ]
 
 function parseOptions(f) {
@@ -74,6 +76,7 @@ const cases: Array<{ caseName: string, input: string, options: bibtex.ParserOpti
 for (const f of fs.readdirSync(root)) {
   if (!f.replace(/(la)?tex$/, '').endsWith('.bib')) continue
   if (enable.case && !f.toLowerCase().includes(enable.case)) continue
+  if (!enable.big && big.includes(f)) continue
 
   const caseName = `${path.basename(f, path.extname(f))}-${mode}${path.extname(f)}`
   cases.push({
@@ -91,10 +94,8 @@ for (const section of ['export', 'import']) {
   root = path.join(__dirname, '__tests__', 'better-bibtex', section)
   for (const f of fs.readdirSync(root)) {
     if (!f.replace(/(la)?tex$/, '').endsWith('.bib')) continue
-
-    if (!enable.big && big.find(s => f.includes(s))) continue
-
     if (enable.case && !f.toLowerCase().includes(enable.case)) continue
+    if (!enable.big && big.includes(f)) continue
 
     const caseName = `bbt-${section}-${path.basename(f, path.extname(f))}-${mode}${path.extname(f)}`
     cases.push({
