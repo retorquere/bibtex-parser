@@ -18,7 +18,8 @@ jobs:
   include:
     # - stage: test # optional to declare this
     - stage: deploy
-      script: npm run build
+      if: branch = master AND tag IS present
+      script: npm start
   deploy:
     provider: npm
     email: emiliano.heyns@iris-advies.com
