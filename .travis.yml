@@ -18,7 +18,6 @@ jobs:
   include:
     # - stage: test # optional to declare this
     - stage: deploy
-      if: branch = master AND tag IS present
       script: npm start
   deploy:
     provider: npm
