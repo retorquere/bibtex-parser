@@ -90,7 +90,7 @@ for (const f of fs.readdirSync(root)) {
   })
 }
 
-for (const section of ['export', 'import']) {
+for (const section of ['export', 'import', 'merge']) {
   root = path.join(__dirname, '__tests__', 'better-bibtex', section)
   for (const f of fs.readdirSync(root)) {
     if (!f.replace(/(la)?tex$/, '').endsWith('.bib')) continue
