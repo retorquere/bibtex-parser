@@ -37,20 +37,42 @@ Object {
       "type": "booklet",
     },
     Object {
-      "creators": Object {},
-      "fields": Object {
-        "abstract": Array [
-          "Example from CMoS, 16e, 14.272",
-        ],
-        "journal": Array [
-          "NASA/IPAC Extragalactic Database",
-        ],
-        "title": Array [
-          "Object Name IRAS F00400+4059",
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "David",
+            "lastName": "Kamp",
+          },
         ],
       },
-      "key": "noauthor_object_nodate",
-      "type": "misc",
+      "fields": Object {
+        "abstract": Array [
+          "Example from CMoS, 16e, 14.125",
+        ],
+        "author": Array [
+          "Kamp, David",
+        ],
+        "chapter": Array [
+          "Sunday Book Review",
+        ],
+        "collaborator": Array [
+          "Pollan, Michael",
+        ],
+        "language": Array [
+          "en-US",
+        ],
+        "month": Array [
+          "04",
+        ],
+        "title": Array [
+          "Deconstructing Dinner",
+        ],
+        "year": Array [
+          "2006",
+        ],
+      },
+      "key": "kamp_deconstructing_2006",
+      "type": "article",
     },
     Object {
       "creators": Object {
@@ -94,6 +116,22 @@ Object {
         ],
       },
       "key": "mozart_sonatas_1960",
+      "type": "misc",
+    },
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "abstract": Array [
+          "Example from CMoS, 16e, 14.272",
+        ],
+        "journal": Array [
+          "NASA/IPAC Extragalactic Database",
+        ],
+        "title": Array [
+          "Object Name IRAS F00400+4059",
+        ],
+      },
+      "key": "noauthor_object_nodate",
       "type": "misc",
     },
     Object {
@@ -141,44 +179,6 @@ Object {
         ],
       },
       "key": "ratliff_mystery_1999",
-      "type": "article",
-    },
-    Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "David",
-            "lastName": "Kamp",
-          },
-        ],
-      },
-      "fields": Object {
-        "abstract": Array [
-          "Example from CMoS, 16e, 14.125",
-        ],
-        "author": Array [
-          "Kamp, David",
-        ],
-        "chapter": Array [
-          "Sunday Book Review",
-        ],
-        "collaborator": Array [
-          "Pollan, Michael",
-        ],
-        "language": Array [
-          "en-US",
-        ],
-        "month": Array [
-          "04",
-        ],
-        "title": Array [
-          "Deconstructing Dinner",
-        ],
-        "year": Array [
-          "2006",
-        ],
-      },
-      "key": "kamp_deconstructing_2006",
       "type": "article",
     },
   ],

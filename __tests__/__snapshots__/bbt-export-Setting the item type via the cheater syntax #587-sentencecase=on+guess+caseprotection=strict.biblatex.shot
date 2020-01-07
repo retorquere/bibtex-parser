@@ -37,26 +37,48 @@ Object {
       "type": "booklet",
     },
     Object {
-      "creators": Object {},
-      "fields": Object {
-        "abstract": Array [
-          "Example from CMoS, 16e, 14.272",
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "David",
+            "lastName": "Kamp",
+          },
         ],
-        "journaltitle": Array [
-          "NASA/IPAC Extragalactic Database",
-        ],
-        "title": Array [
-          "Object name <span class=\\"nocase\\">IRAS F00400</span>+4059",
-        ],
-        "url": Array [
-          "http://nedwww.ipac.caltech.edu/",
-        ],
-        "urldate": Array [
-          "2009-10-06",
+        "editora": Array [
+          Object {
+            "firstName": "Michael",
+            "lastName": "Pollan",
+          },
         ],
       },
-      "key": "noauthor_object_nodate",
-      "type": "data",
+      "fields": Object {
+        "abstract": Array [
+          "Example from CMoS, 16e, 14.125",
+        ],
+        "author": Array [
+          "Kamp, David",
+        ],
+        "date": Array [
+          "2006-04-23",
+        ],
+        "editora": Array [
+          "Pollan, Michael",
+        ],
+        "editoratype": Array [
+          "collaborator",
+        ],
+        "langid": Array [
+          "american",
+        ],
+        "title": Array [
+          "Deconstructing dinner",
+        ],
+        "url": Array [
+          "http://www.nytimes.com/2006/04/23/books/review/23kamp.html.",
+        ],
+      },
+      "key": "kamp_deconstructing_2006",
+      "type": "review",
     },
     Object {
       "creators": Object {
@@ -101,6 +123,28 @@ Object {
       },
       "key": "mozart_sonatas_1960",
       "type": "audio",
+    },
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "abstract": Array [
+          "Example from CMoS, 16e, 14.272",
+        ],
+        "journaltitle": Array [
+          "NASA/IPAC Extragalactic Database",
+        ],
+        "title": Array [
+          "Object name <span class=\\"nocase\\">IRAS F00400</span>+4059",
+        ],
+        "url": Array [
+          "http://nedwww.ipac.caltech.edu/",
+        ],
+        "urldate": Array [
+          "2009-10-06",
+        ],
+      },
+      "key": "noauthor_object_nodate",
+      "type": "data",
     },
     Object {
       "creators": Object {
@@ -152,50 +196,6 @@ Object {
         ],
       },
       "key": "ratliff_mystery_1999",
-      "type": "review",
-    },
-    Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "David",
-            "lastName": "Kamp",
-          },
-        ],
-        "editora": Array [
-          Object {
-            "firstName": "Michael",
-            "lastName": "Pollan",
-          },
-        ],
-      },
-      "fields": Object {
-        "abstract": Array [
-          "Example from CMoS, 16e, 14.125",
-        ],
-        "author": Array [
-          "Kamp, David",
-        ],
-        "date": Array [
-          "2006-04-23",
-        ],
-        "editora": Array [
-          "Pollan, Michael",
-        ],
-        "editoratype": Array [
-          "collaborator",
-        ],
-        "langid": Array [
-          "american",
-        ],
-        "title": Array [
-          "Deconstructing dinner",
-        ],
-        "url": Array [
-          "http://www.nytimes.com/2006/04/23/books/review/23kamp.html.",
-        ],
-      },
-      "key": "kamp_deconstructing_2006",
       "type": "review",
     },
   ],
