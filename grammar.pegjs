@@ -146,6 +146,7 @@
       value: [v],
       markup: {},
       case: 'protect',
+      source: v.source,
     }
   }
 }

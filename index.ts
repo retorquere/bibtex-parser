@@ -2,7 +2,7 @@ import * as bibtex from './grammar'
 import { parse as chunker } from './chunker'
 import { latex as latex2unicode } from 'unicode2latex'
 
-type Markup = { kind: 'Markup', value: string, loc?: any }
+type Markup = { kind: 'Markup', value: string, loc?: any, source: string }
 
 type Node =
   | bibtex.Bibliography
@@ -358,6 +358,11 @@ export interface ParserOptions {
    * Some note-like fields may have more rich formatting. If listed here, more HTML conversions will be applied.
    */
   htmlFields?: string[]
+
+  /**
+   * If this flag is set entries will be returned without conversion of LaTeX to unicode equivalents.
+   */
+  raw?: boolean
 }
 
 const english = [
@@ -692,6 +697,7 @@ class Parser {
   }
 
   private clean(node: Node | Node[]) {
+
     if (Array.isArray(node)) return node.map(child => this.clean(child))
     delete node.loc
 
@@ -714,7 +720,7 @@ class Parser {
         return this.clean_entry(node)
 
       case 'Field':
-        return this.clean_field(node)
+        return this.options.raw ? node : this.clean_field(node)
 
       case 'StringDeclaration':
         return this.clean_stringdecl(node)
@@ -904,21 +910,21 @@ class Parser {
       case 'begin':
         if (arg = this.argument(node, 'text')) {
           switch (arg) {
-            case 'itemize': return { kind: 'Markup', value: '<ul>' }
-            case 'enumerate': return { kind: 'Markup', value: '<ol>' }
+            case 'itemize': return { kind: 'Markup', value: '<ul>', source: node.source }
+            case 'enumerate': return { kind: 'Markup', value: '<ol>', source: node.source }
           }
         }
         break
       case 'end':
         if (arg = this.argument(node, 'text')) {
           switch (arg) {
-            case 'itemize': return { kind: 'Markup', value: '</ul>' }
-            case 'enumerate': return { kind: 'Markup', value: '</ol>' }
+            case 'itemize': return { kind: 'Markup', value: '</ul>', source: node.source }
+            case 'enumerate': return { kind: 'Markup', value: '</ol>', source: node.source }
           }
         }
         break
       case 'item':
-        return { kind: 'Markup', value: '<li>' }
+        return { kind: 'Markup', value: '<li>', source: node.source }
 
       case 'frac':
         if (arg = this.argument(node, 2)) {
@@ -1078,6 +1084,8 @@ class Parser {
 
   private convert(node: Node | Node[]) {
     if (Array.isArray(node)) return node.map(child => this.convert(child))
+
+    if (this.options.raw && this.field) node = this.text(node.source)
 
     switch (node.kind) {
       case 'Markup':
@@ -1243,6 +1251,11 @@ class Parser {
       if (field.kind !== 'Field') return this.error(new ParserError(`Expected Field, got ${field.kind}`, node), undefined)
 
       this.setFieldType(field.name)
+
+      if (this.options.raw && this.fieldType !== 'creator') {
+        this.entry.fields[field.name] = [ field.value.map(v => v.source).join('') ]
+        continue
+      }
 
       this.field = {
         name: field.name,

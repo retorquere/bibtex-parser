@@ -59,6 +59,8 @@ function parseOptions(f) {
     opts.verbatimFields = [ 'doi', 'eprint', 'verba', 'verbb', 'verbc' ]
   }
 
+  if (f.includes('-raw.bib')) opts.raw = true
+
   return opts
 }
 
