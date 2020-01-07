@@ -15,7 +15,7 @@
     "prepublishOnly": "npm start",
     "preversion": "npm test",
     "postversion": "git push --tags",
-    "update-cases": "rsync -av --delete --include='import/' --include='export/' --exclude='*/' --include='*.bib' --include='*.bibtex' --include='*.biblatex' --exclude='*' ../better-bibtex/test/fixtures/ tests/better-bibtex/",
+    "update-cases": "rsync -av --delete --include='merge/' --include='import/' --include='export/' --exclude='*/' --include='*.bib' --include='*.bibtex' --include='*.biblatex' --exclude='*' ../better-bibtex/test/fixtures/ __tests__/better-bibtex/",
     "update-snapshots": "jest --updateSnapshot",
     "docs": "typedoc --disableOutputCheck . && touch docs/.nojekyll"
   },
