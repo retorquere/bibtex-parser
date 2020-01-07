@@ -426,6 +426,11 @@ class Parser {
       options.sentenceCase = options.sentenceCase || english
     }
 
+    if (options.raw) {
+      options.sentenceCase = false
+      options.caseProtection = false
+    }
+
     this.options = {
       caseProtection: 'as-needed',
       verbatimFields: [ /^citeulike-linkout-[0-9]+$/, 'url', 'doi', 'file', 'files', 'eprint', 'verba', 'verbb', 'verbc' ],
@@ -1252,10 +1257,12 @@ class Parser {
 
       this.setFieldType(field.name)
 
+      /*
       if (this.options.raw && this.fieldType !== 'creator') {
         this.entry.fields[field.name] = [ field.value.map(v => v.source).join('') ]
         continue
       }
+      */
 
       this.field = {
         name: field.name,
