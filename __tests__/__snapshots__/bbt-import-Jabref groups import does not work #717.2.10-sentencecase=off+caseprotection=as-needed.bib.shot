@@ -2,7 +2,15 @@
 
 exports[`bbt-import-Jabref groups import does not work #717.2.10-sentencecase=off+caseprotection=as-needed.bib 1`] = `
 Object {
-  "comments": Array [],
+  "comments": Array [
+    "jabref-meta: groupsversion:3;",
+    "jabref-meta: groupstree:
+0 AllEntriesGroup:;
+1 ExplicitGroup:my-main-group-2\\\\;2\\\\;;
+2 ExplicitGroup:my-subgroup-2\\\\;0\\\\;Doe-2017\\\\;;
+2 ExplicitGroup:my-other-subgroup-2\\\\;0\\\\;Other-\\\\;;
+",
+  ],
   "entries": Array [
     Object {
       "creators": Object {
@@ -24,7 +32,7 @@ Object {
           "2017.09.11",
         ],
         "title": Array [
-          "The paper in subgroup",
+          "2.10: The paper in subgroup",
         ],
         "year": Array [
           "2017",
@@ -53,7 +61,7 @@ Object {
           "2017.09.11",
         ],
         "title": Array [
-          "The article in my other subgroup",
+          "2.10: The article in my other subgroup",
         ],
       },
       "key": "Other-",
@@ -79,7 +87,7 @@ Object {
           "2017.09.11",
         ],
         "title": Array [
-          "the paper not in a group",
+          "2.10: the paper not in a group",
         ],
       },
       "key": "Unkonw-",
@@ -87,6 +95,68 @@ Object {
     },
   ],
   "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {
+      "my-main-group-2": Object {
+        "entries": Array [],
+        "groups": Array [
+          Object {
+            "entries": Array [
+              "Doe-2017",
+            ],
+            "groups": Array [],
+            "name": "my-subgroup-2",
+          },
+          Object {
+            "entries": Array [
+              "Other-",
+            ],
+            "groups": Array [],
+            "name": "my-other-subgroup-2",
+          },
+        ],
+        "name": "my-main-group-2",
+      },
+      "my-other-subgroup-2": Object {
+        "entries": Array [
+          "Other-",
+        ],
+        "groups": Array [],
+        "name": "my-other-subgroup-2",
+      },
+      "my-subgroup-2": Object {
+        "entries": Array [
+          "Doe-2017",
+        ],
+        "groups": Array [],
+        "name": "my-subgroup-2",
+      },
+    },
+    "root": Array [
+      Object {
+        "entries": Array [],
+        "groups": Array [
+          Object {
+            "entries": Array [
+              "Doe-2017",
+            ],
+            "groups": Array [],
+            "name": "my-subgroup-2",
+          },
+          Object {
+            "entries": Array [
+              "Other-",
+            ],
+            "groups": Array [],
+            "name": "my-other-subgroup-2",
+          },
+        ],
+        "name": "my-main-group-2",
+      },
+    ],
+    "version": "3",
+  },
   "strings": Object {},
 }
 `;

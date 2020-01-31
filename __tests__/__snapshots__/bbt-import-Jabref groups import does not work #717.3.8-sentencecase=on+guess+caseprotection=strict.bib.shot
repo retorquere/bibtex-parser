@@ -2,7 +2,16 @@
 
 exports[`bbt-import-Jabref groups import does not work #717.3.8-sentencecase=on+guess+caseprotection=strict.bib 1`] = `
 Object {
-  "comments": Array [],
+  "comments": Array [
+    "jabref-meta: databaseType:bibtex;",
+    "jabref-meta: groupstree:
+0 AllEntriesGroup:;
+1 ExplicitGroup:my-main-group-3\\\\;2\\\\;;
+2 ExplicitGroup:my-subgroup-3\\\\;0\\\\;;
+3 ExplicitGroup:sub-sub-group-3\\\\;0\\\\;;
+2 ExplicitGroup:my-other-subgroup-3\\\\;0\\\\;;
+",
+  ],
   "entries": Array [
     Object {
       "creators": Object {
@@ -27,7 +36,7 @@ Object {
           "2017.09.11",
         ],
         "title": Array [
-          "The paper in subgroup",
+          "3.8: The paper in subgroup",
         ],
         "year": Array [
           "2017",
@@ -59,7 +68,7 @@ Object {
           "2017.09.11",
         ],
         "title": Array [
-          "The article in my other subgroup",
+          "3.8: The article in my other subgroup",
         ],
       },
       "key": "Other-",
@@ -89,7 +98,7 @@ Object {
           "2017.09.11",
         ],
         "title": Array [
-          "the paper in two groups",
+          "3.8: the paper in two groups",
         ],
       },
       "key": "Unkonw-",
@@ -118,7 +127,7 @@ Object {
           "2017.09.11",
         ],
         "title": Array [
-          "the paper not in a group",
+          "3.8: the paper not in a group",
         ],
       },
       "key": "Unkonw",
@@ -126,6 +135,79 @@ Object {
     },
   ],
   "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {
+      "my-main-group-3": Object {
+        "entries": Array [],
+        "groups": Array [
+          Object {
+            "entries": Array [],
+            "groups": Array [
+              Object {
+                "entries": Array [],
+                "groups": Array [],
+                "name": "sub-sub-group-3",
+              },
+            ],
+            "name": "my-subgroup-3",
+          },
+          Object {
+            "entries": Array [],
+            "groups": Array [],
+            "name": "my-other-subgroup-3",
+          },
+        ],
+        "name": "my-main-group-3",
+      },
+      "my-other-subgroup-3": Object {
+        "entries": Array [],
+        "groups": Array [],
+        "name": "my-other-subgroup-3",
+      },
+      "my-subgroup-3": Object {
+        "entries": Array [],
+        "groups": Array [
+          Object {
+            "entries": Array [],
+            "groups": Array [],
+            "name": "sub-sub-group-3",
+          },
+        ],
+        "name": "my-subgroup-3",
+      },
+      "sub-sub-group-3": Object {
+        "entries": Array [],
+        "groups": Array [],
+        "name": "sub-sub-group-3",
+      },
+    },
+    "root": Array [
+      Object {
+        "entries": Array [],
+        "groups": Array [
+          Object {
+            "entries": Array [],
+            "groups": Array [
+              Object {
+                "entries": Array [],
+                "groups": Array [],
+                "name": "sub-sub-group-3",
+              },
+            ],
+            "name": "my-subgroup-3",
+          },
+          Object {
+            "entries": Array [],
+            "groups": Array [],
+            "name": "my-other-subgroup-3",
+          },
+        ],
+        "name": "my-main-group-3",
+      },
+    ],
+    "version": null,
+  },
   "strings": Object {},
 }
 `;

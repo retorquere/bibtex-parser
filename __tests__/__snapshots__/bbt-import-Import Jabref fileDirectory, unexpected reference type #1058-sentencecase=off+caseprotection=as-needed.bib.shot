@@ -2,7 +2,10 @@
 
 exports[`bbt-import-Import Jabref fileDirectory, unexpected reference type #1058-sentencecase=off+caseprotection=as-needed.bib 1`] = `
 Object {
-  "comments": Array [],
+  "comments": Array [
+    "jabref-meta: databaseType:bibtex;",
+    "jabref-meta: fileDirectory:/home/emile/github/better-bibtex/test/fixtures/import/attachments;",
+  ],
   "entries": Array [
     Object {
       "creators": Object {
@@ -118,6 +121,12 @@ Object {
     },
   ],
   "errors": Array [],
+  "groups": Object {
+    "fileDirectory": "/home/emile/github/better-bibtex/test/fixtures/import/attachments",
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
   "strings": Object {},
 }
 `;

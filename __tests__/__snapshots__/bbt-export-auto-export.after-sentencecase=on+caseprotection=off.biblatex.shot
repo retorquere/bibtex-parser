@@ -2,7 +2,13 @@
 
 exports[`bbt-export-auto-export.after-sentencecase=on+caseprotection=off.biblatex 1`] = `
 Object {
-  "comments": Array [],
+  "comments": Array [
+    "jabref-meta: groupsversion:3;",
+    "jabref-meta: groupstree:
+0 AllEntriesGroup:;
+1 ExplicitGroup:auto-export\\\\;0\\\\;CumEA14\\\\;TayEA11\\\\;;
+",
+  ],
   "entries": Array [
     Object {
       "creators": Object {
@@ -155,6 +161,30 @@ Object {
     },
   ],
   "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {
+      "auto-export": Object {
+        "entries": Array [
+          "CumEA14",
+          "TayEA11",
+        ],
+        "groups": Array [],
+        "name": "auto-export",
+      },
+    },
+    "root": Array [
+      Object {
+        "entries": Array [
+          "CumEA14",
+          "TayEA11",
+        ],
+        "groups": Array [],
+        "name": "auto-export",
+      },
+    ],
+    "version": "3",
+  },
   "strings": Object {},
 }
 `;

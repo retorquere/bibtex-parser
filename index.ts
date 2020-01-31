@@ -582,7 +582,20 @@ class Parser {
       if (bib.kind !== 'Bibliography') throw new Error(this.show(bib))
       bib = this.clean(bib)
 
-      bib.children.filter(entry => entry.kind === 'Entry').map(entry => this.convert(entry as bibtex.Entry))
+      for (const entity of bib.children) {
+        switch (entity.kind) {
+          case 'Entry':
+          case 'BracedComment':
+          case 'LineComment':
+            this.convert(entity)
+            break
+
+          case 'PreambleExpression':
+          case 'StringDeclaration':
+          case 'NonEntryText':
+            break
+        }
+      }
 
       return bib
 

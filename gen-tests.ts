@@ -137,7 +137,9 @@ for (const {caseName, input, options, snapshot, script, ignoreErrors} of cases) 
   }
 
   it(caseName, () => {
-    expect(bibtex.parse(input, options)).toMatchSpecificSnapshot(snapshot);
+    const bib = bibtex.parse(input, options)
+    bib.groups = bibtex.jabref(bib.comments)
+    expect(bib).toMatchSpecificSnapshot(snapshot);
   })
   `
   fs.writeFileSync(script, js, 'utf-8')

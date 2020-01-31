@@ -18,7 +18,6 @@ jobs:
   include:
     # - stage: test # optional to declare this
     - stage: deploy
-      script: npm start
   deploy:
     provider: npm
     email: emiliano.heyns@iris-advies.com
