@@ -14,10 +14,21 @@ env:
 - SENTENCECASE=on+guess CASEPROTECTION=strict
 - SENTENCECASE=on+guess CASEPROTECTION=as-needed
 
+stages:
+  - test
+  - deploy
+
 jobs:
   include:
-    # - stage: test # optional to declare this
+    - stage: test # optional to declare this
+      script: npm test
     - stage: deploy
+      script:
+        - echo _auth=$NPM_TOKEN > .npmrc
+        - echo email=emiliano.heyns@iris-advies.com >> .npmrc
+        - echo always-auth=true >> .npmrc
+        - npm publish
+      if: tag IS present
   deploy:
     provider: npm
     email: emiliano.heyns@iris-advies.com
