@@ -162,7 +162,7 @@ type FieldBuilder = {
   name: string
   text: string
   level: number
-  preserveRanges: Array<{ start: number, end: number }>
+  preserveRanges: { start: number, end: number }[]
   html?: boolean
   words: {
     upper: number
@@ -340,7 +340,7 @@ export interface ParserOptions {
    * Some fields such as `url` are parsed in what is called "verbatim mode" where pretty much everything except braces is treated as regular text, not TeX commands. You can change the default list here if you want,
    * for example to help parse Mendeley `file` fields, which against spec are not in verbatim mode.
    */
-  verbatimFields?: Array<string | RegExp>
+  verbatimFields?: (string | RegExp)[]
 
   /**
    * Some commands such as `url` are parsed in what is called "verbatim mode" where pretty much everything except braces is treated as regular text, not TeX commands.

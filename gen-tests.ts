@@ -73,7 +73,7 @@ for (const f of fs.readdirSync(scripts)) {
 const mode = `sentencecase=${process.env.SENTENCECASE}+caseprotection=${process.env.CASEPROTECTION}`
 
 let root = path.join(__dirname, '__tests__', 'other')
-const cases: Array<{ caseName: string, input: string, options: bibtex.ParserOptions, size: number, snapshot: string, script: string, ignoreErrors?: boolean }> = []
+const cases: { caseName: string, input: string, options: bibtex.ParserOptions, size: number, snapshot: string, script: string, ignoreErrors?: boolean }[] = []
 
 for (const f of fs.readdirSync(root)) {
   if (!f.replace(/(la)?tex$/, '').endsWith('.bib')) continue
