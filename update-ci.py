@@ -34,7 +34,7 @@ for sc in ['off', 'on', 'on+guess']:
     elif env in ran:
       print(colored('skipping', 'green'))
 
-    elif os.system(f'{env} npm test -- -u') == 0:
+    elif os.system(f'{env} npm ci') == 0 and os.system(f'{env} npm test -- -u') == 0:
       ran.append(env)
       with open(status, 'w') as f:
         json.dump(ran, f)
