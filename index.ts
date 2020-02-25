@@ -405,6 +405,24 @@ class Parser {
   private chunk: string
   private options: ParserOptions
 
+  private combining_diacritic = {
+    '`': '\u0300',
+    "'": '\u0301',
+    '^': '\u0302',
+    '~': '\u0303',
+    '=': '\u0304',
+    u: '\u0306',
+    '.': '\u0307',
+    '"': '\u0308',
+    r: '\u030A',
+    H: '\u030B',
+    v: '\u030C',
+    d: '\u0323',
+    c: '\u0327',
+    k: '\u0328',
+    b: '\u0331',
+  }
+
   public log: (string) => void = function(){} // tslint:disable-line variable-name only-arrow-functions no-empty
 
   constructor(options: ParserOptions = {}) {
@@ -905,12 +923,13 @@ class Parser {
 
   private clean_diacritic(node: bibtex.DiacriticCommand) {
     const char = node.dotless ? `\\${node.character}` : node.character
-    const unicode = latex2unicode[`\\${node.mark}{${char}}`]
+    let unicode = latex2unicode[`\\${node.mark}{${char}}`]
       || latex2unicode[`\\${node.mark}${char}`]
       || latex2unicode[`{\\${node.mark} ${char}}`]
       || latex2unicode[`{\\${node.mark}${char}}`]
       || latex2unicode[`\\${node.mark} ${char}`]
 
+    if (!unicode && !node.dotless && node.character.length === 1 && this.combining_diacritic[node.mark]) unicode = node.character + this.combining_diacritic[node.mark]
     if (!unicode) return this.error(new TeXError(`Unhandled \\${node.mark}{${char}}`, node, this.chunk), this.text())
     return this.text(unicode)
   }
@@ -1067,6 +1086,9 @@ class Parser {
       case 'verb':
         // handled in the grammar
         return this.text()
+
+      case 'par':
+        return this.text('\n\n')
 
       default:
         unicode = latex2unicode[`\\${node.command}`] || latex2unicode[`\\${node.command}{}`]
