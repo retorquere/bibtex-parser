@@ -20,6 +20,9 @@ if (! ['on+guess', 'on', 'off'].includes(process.env.SENTENCECASE)) throw new Er
 process.env.CASEPROTECTION = process.env.CASEPROTECTION || 'as-needed'
 if (! [ 'as-needed', 'strict', 'off' ].includes(process.env.CASEPROTECTION)) throw new Error(`CASEPROTECTION=${process.env.CASEPROTECTION}`)
 
+process.env.UNABBREVIATE = process.env.UNABBREVIATE || 'off'
+if (! [ 'on', 'off' ].includes(process.env.UNABBREVIATE)) throw new Error(`UNABBREVIATE=${process.env.UNABBREVIATE}`)
+
 const fs = require('fs')
 const path = require('path')
 
@@ -132,7 +135,7 @@ for (const {caseName, input, options, snapshot, script, ignoreErrors} of cases) 
   const ignoreErrors = ${JSON.stringify(ignoreErrors)};
   `
 
-  if (caseName.toLowerCase().includes('unabbre')) {
+  if (process.env.UNABBREVIATE === 'on' || caseName.toLowerCase().includes('unabbre')) {
     js += `
     options.unabbreviate = JSON.parse(${unabbr})
     `
