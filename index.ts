@@ -825,7 +825,7 @@ class Parser {
   }
 
   private clean_entry(node: bibtex.Entry) {
-    node.fields = node.fields.map(child => this.clean(child))
+    node.fields = [].concat.apply([], node.fields.map(child => this.clean(child))) // clean can return multiple entries in the case of shortjournal
 
     return node
   }
@@ -873,17 +873,28 @@ class Parser {
   private clean_field(node: bibtex.Field) {
     this.setFieldType(node.name)
 
+    let shortjournal: bibtex.Field = null
+
     if (node.name.startsWith('journal') && Array.isArray(node.value)) {
       const abbr = node.value.map(v => v.source).join('')
       const full = this.options.unabbreviate[abbr]
-      if (full) node.value = JSON.parse(JSON.stringify(full))
+      if (full && full !== abbr) {
+        shortjournal = JSON.parse(JSON.stringify(node))
+        shortjournal.name = 'shortjournal'
+
+        node.value = JSON.parse(JSON.stringify(full))
+      }
     }
 
     this.stripNoCase(node, !this.options.caseProtection || this.isVerbatimField(node.name), (this.options.sentenceCase as string[]).length === 0)
 
     if (Array.isArray(node.value)) this.condense(node)
 
-    return node
+    if (shortjournal) {
+      return [ node, this.clean_field(shortjournal) ]
+    } else {
+      return node
+    }
   }
 
   private clean_script(node: bibtex.SubscriptCommand | bibtex.SuperscriptCommand) {
