@@ -46,7 +46,7 @@ ___
 Name | Type | Default |
 ------ | ------ | ------ |
 `input` | string | - |
-`options` | [ParserOptions](../interfaces/_index_.parseroptions.md) | - |
+`options` | [ParserOptions](../interfaces/_index_.parseroptions.md) | {} |
 `clean` | boolean | true |
 
 **Returns:** *any[]*

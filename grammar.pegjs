@@ -84,6 +84,8 @@
     noopsort: 1,
     ocirc: 1,
     section: 1,
+    sb: 1,
+    sp: 1,
     subsection: 1,
     t: 1,
     textbf: 1,
@@ -484,7 +486,7 @@ SymbolCommand
   }
 
 RegularCommand
-  = '\\' v:$[A-Za-z]+ &{ return verbatimCommands.includes(v) && (has_arguments[v] === 2) } optional:OptionalArgument* &'{' req1:VerbatimFieldValue req2:VerbatimFieldValue {
+  = '\\' v:$[A-Za-z]+ &{ return verbatimCommands.includes(v) && (has_arguments[v] === 2) } optional:OptionalArgument* __h &'{' req1:VerbatimFieldValue req2:VerbatimFieldValue {
     return {
       kind: 'RegularCommand',
       loc: location(),
@@ -496,7 +498,7 @@ RegularCommand
       },
     }
   }
-  / '\\' v:$[A-Za-z]+ &{ return verbatimCommands.includes(v) && (has_arguments[v] === 1) } optional:OptionalArgument* &'{' req:VerbatimFieldValue {
+  / '\\' v:$[A-Za-z]+ &{ return verbatimCommands.includes(v) && (has_arguments[v] === 1) } optional:OptionalArgument* __h &'{' req:VerbatimFieldValue {
     const cmd  = {
       kind: 'RegularCommand',
       loc: location(),
@@ -509,7 +511,7 @@ RegularCommand
     }
     return cmd
   }
-  / '\\' v:$[A-Za-z]+ &{ return (has_arguments[v] === 2) } optional:OptionalArgument* req1:RequiredArgument req2:RequiredArgument {
+  / '\\' v:$[A-Za-z]+ &{ return (has_arguments[v] === 2) } optional:OptionalArgument* __h req1:RequiredArgument req2:RequiredArgument {
     return {
       kind: 'RegularCommand',
       loc: location(),
@@ -521,13 +523,15 @@ RegularCommand
       },
     }
   }
-  / '\\' v:$[A-Za-z]+ &{ return (has_arguments[v] === 1) } optional:OptionalArgument* req:RequiredArgument {
+  / '\\' v:$[A-Za-z]+ &{ return (has_arguments[v] === 1) } optional:OptionalArgument* __h req:RequiredArgument {
     if (req.kind === 'Block') {
       switch (v) {
         case 'textsuperscript':
+        case 'sp':
           req.markup.sup = true
           break
         case 'textsubscript':
+        case 'sb':
           req.markup.sub = true
           break
         case 'textsc':

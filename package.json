@@ -5,10 +5,11 @@
   "main": "index.js",
   "scripts": {
     "lint": "tslint -t stylish --project .",
-    "prestart": "npm run lint && pegjs grammar.pegjs",
+    "prestart": "npm run lint && pegjs grammar.pegjs && git submodule update --init --recursive --remote && git submodule foreach git checkout master && git submodule foreach git pull origin master",
     "start": "tsc -d",
-    "poststart": "npm run docs",
+    "poststart": "ts-node build/parse-abbrevs.ts && npm run docs",
     "pretest": "npm start && ts-node gen-tests.ts",
+    "update-ci": "jest -u",
     "test": "jest",
     "minitest": "pegjs grammar.pegjs && tsc -d && node tt.js",
     "list": "tar tvf $(npm pack)",
@@ -31,10 +32,12 @@
   "devDependencies": {
     "@retorquere/jasmine-fail-fast": "^2.0.4",
     "@types/jest": "^25.1.3",
-    "@types/node": "^13.7.4",
+    "@types/node": "^13.7.6",
+    "csv": "^5.3.1",
+    "digital-tree": "^2.0.1",
     "jest": "^25.1.0",
     "jest-progress-tracker": "^2.0.2",
-    "jest-specific-snapshot": "^2.0.0",
+    "jest-specific-snapshot": "^3.0.0",
     "jsesc": "^2.5.2",
     "mkdirp": "^1.0.3",
     "pegjs": "^0.10.0",
@@ -43,9 +46,9 @@
     "ts-node": "^8.6.2",
     "tslint": "^6.0.0",
     "typedoc": "^0.16.10",
-    "typedoc-plugin-markdown": "^2.2.16",
+    "typedoc-plugin-markdown": "^2.2.17",
     "typescript": "^3.8.2",
-    "unicode2latex": "^1.0.44"
+    "unicode2latex": "^1.0.47"
   },
   "dependencies": {
     "xregexp": "^4.3.0"
@@ -72,7 +75,9 @@
     "index.js",
     "jabref.d.ts",
     "jabref.js",
-    "README.md"
+    "README.md",
+    "strings.json",
+    "unabbrev.json"
   ],
   "publishConfig": {
     "access": "public"

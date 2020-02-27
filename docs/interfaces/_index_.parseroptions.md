@@ -18,6 +18,8 @@
 * [markup](_index_.parseroptions.md#optional-markup)
 * [raw](_index_.parseroptions.md#optional-raw)
 * [sentenceCase](_index_.parseroptions.md#optional-sentencecase)
+* [strings](_index_.parseroptions.md#optional-strings)
+* [unabbreviate](_index_.parseroptions.md#optional-unabbreviate)
 * [unnestFields](_index_.parseroptions.md#optional-unnestfields)
 * [unnestMode](_index_.parseroptions.md#optional-unnestmode)
 * [verbatimCommands](_index_.parseroptions.md#optional-verbatimcommands)
@@ -118,6 +120,22 @@ language processing, so you should always inspect the results. Default languages
 - en-zw
 
 If you pass an empty array, or `false`, no sentence casing will be applied (even when there's no language field).
+
+___
+
+### `Optional` strings
+
+• **strings**? : *Record‹string, string›*
+
+You can pass in an existing @string dictionary
+
+___
+
+### `Optional` unabbreviate
+
+• **unabbreviate**? : *Record‹string, string›*
+
+BibTeX files may have abbreviations in the journal field. If you provide a dictionary, journal names that are found in the dictionary are replaced with the attached full name
 
 ___
 

@@ -118,8 +118,10 @@ cases.sort((a, b) => {
 
 fs.writeFileSync(path.join(scripts, 'order.json'), JSON.stringify(cases.map(c => c.script), null, 2), 'utf-8')
 
+const unabbr = JSON.stringify(JSON.stringify(require(path.join(__dirname, 'unabbrev.json'))))
+
 for (const {caseName, input, options, snapshot, script, ignoreErrors} of cases) {
-  const js = `
+  let js = `
   const fs = require('fs');
   const bibtex = require('../../index');
   require('jest-specific-snapshot');
@@ -128,7 +130,15 @@ for (const {caseName, input, options, snapshot, script, ignoreErrors} of cases) 
   const options = ${JSON.stringify(options)};
   const snapshot = ${JSON.stringify(snapshot)};
   const ignoreErrors = ${JSON.stringify(ignoreErrors)};
+  `
 
+  if (caseName.toLowerCase().includes('unabbre')) {
+    js += `
+    options.unabbreviate = JSON.parse(${unabbr})
+    `
+  }
+
+  js += `
   if (ignoreErrors) {
     options.errorHandler = function ignoreErrors(e) {
       if (e.name === 'TeXError') return // ignore TeX

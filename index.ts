@@ -363,6 +363,16 @@ export interface ParserOptions {
    * If this flag is set entries will be returned without conversion of LaTeX to unicode equivalents.
    */
   raw?: boolean
+
+  /**
+   * You can pass in an existing @string dictionary
+   */
+  strings?: Record<string, string>
+
+  /**
+   * BibTeX files may have abbreviations in the journal field. If you provide a dictionary, journal names that are found in the dictionary are replaced with the attached full name
+   */
+  unabbreviate?: Record<string, string>
 }
 
 const english = [
@@ -443,6 +453,9 @@ class Parser {
     } else {
       options.sentenceCase = options.sentenceCase || english
     }
+
+    if (!options.strings) options.strings = {}
+    if (!options.unabbreviate) options.unabbreviate = {}
 
     if (options.raw) {
       options.sentenceCase = false
@@ -795,7 +808,7 @@ class Parser {
 
   private clean_stringref(node: bibtex.StringReference) {
     const name = node.name.toUpperCase()
-    const _string = this.strings[name] || this.default_strings[name]
+    const _string = this.options.strings[name] || this.strings[name] || this.default_strings[name]
 
     if (!_string) {
       if (!this.unresolvedStrings[name]) this.errors.push({ message: `Unresolved @string reference ${JSON.stringify(node.name)}` })
@@ -859,6 +872,12 @@ class Parser {
   }
   private clean_field(node: bibtex.Field) {
     this.setFieldType(node.name)
+
+    if (node.name.startsWith('journal') && Array.isArray(node.value)) {
+      const abbr = node.value.map(v => v.source).join('')
+      const full = this.options.unabbreviate[abbr]
+      if (full) node.value = JSON.parse(JSON.stringify(full))
+    }
 
     this.stripNoCase(node, !this.options.caseProtection || this.isVerbatimField(node.name), (this.options.sentenceCase as string[]).length === 0)
 
@@ -1006,11 +1025,13 @@ class Parser {
         break
 
       case 'textsuperscript':
+      case 'sp':
         if ((arg = this.argument(node, 'Text')) && (unicode = latex2unicode[`^{${arg}}`])) return this.text(unicode)
         if (arg = this.argument(node, 'Block')) return this.clean(arg)
         break
 
       case 'textsubscript':
+      case 'sb':
         if ((arg = this.argument(node, 'Text')) && (unicode = latex2unicode[`_{${arg}}`])) return this.text(unicode)
         if (arg = this.argument(node, 'Block')) return this.clean(arg)
         break
@@ -1089,6 +1110,15 @@ class Parser {
 
       case 'par':
         return this.text('\n\n')
+
+      case 'cyr':
+        if (this.argument(node, 'none')) return this.text()
+
+      case 'polhk':
+        if (unicode = this.argument(node, 'text')) {
+          if (unicode.length === 1) return this.text(unicode + '\u0328')
+        }
+        if (this.argument(node, 'none')) return this.text('\u0328')
 
       default:
         unicode = latex2unicode[`\\${node.command}`] || latex2unicode[`\\${node.command}{}`]
@@ -1501,7 +1531,7 @@ export function parse(input: string, options: ParserOptions = {}): Bibliography 
   return parser.parse(input)
 }
 
-export function ast(input: string, options: ParserOptions, clean = true) {
+export function ast(input: string, options: ParserOptions = {}, clean = true) {
   const parser = new Parser(options)
   return parser.ast(input, clean)
 }

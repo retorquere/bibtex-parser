@@ -21,6 +21,9 @@ else:
 
 aborted = False
 n = 0
+if os.system(f'npm ci') != 0 or os.system(f'npm start') != 0:
+  sys.exit(1)
+
 for sc in ['off', 'on', 'on+guess']:
   for cp in ['off', 'strict', 'as-needed']:
     n += 1
@@ -29,12 +32,12 @@ for sc in ['off', 'on', 'on+guess']:
     print(colored(n, 'yellow'), colored(env, 'red'))
     print()
     if aborted:
-      print(colored('skipping', 'orange'))
+      print(colored('skipping', 'green'))
       
     elif env in ran:
       print(colored('skipping', 'green'))
 
-    elif os.system(f'{env} npm ci') == 0 and os.system(f'{env} npm test -- -u') == 0:
+    elif os.system(f'{env} npm run update-ci') == 0:
       ran.append(env)
       with open(status, 'w') as f:
         json.dump(ran, f)
