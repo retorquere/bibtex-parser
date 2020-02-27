@@ -70,6 +70,7 @@
     bibstring: 1,
     chsf: 1,
     cite: 1,
+    ding: 1,
     emph: 1,
     enquote: 1,
     frac: 2,
