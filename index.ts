@@ -1132,8 +1132,8 @@ class Parser {
         if (this.argument(node, 'none')) return this.text('\u0328')
 
       default:
-        unicode = latex2unicode[`\\${node.command}`] || latex2unicode[`\\${node.command}{}`]
-        if (unicode && this.argument(node, 'none')) return this.text(unicode)
+        if (unicode = latex2unicode[node.source] || latex2unicode[`${node.source}{}`]) return this.text(unicode)
+        if ((unicode = latex2unicode[`\\${node.command}`] || latex2unicode[`\\${node.command}{}`]) && this.argument(node, 'none')) return this.text(unicode)
         if ((arg = this.argument(node, 'Text')) && (unicode = latex2unicode[`\\${node.command}{${arg}}`])) return this.text(unicode)
         break
     }

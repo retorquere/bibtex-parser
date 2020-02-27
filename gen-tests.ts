@@ -37,6 +37,8 @@ const big = [
   'Really Big whopping library.bibtex',
   'long.bib',
   'Cache does not seem to fill #1296.bibtex',
+  'Unabbreviate on import #1436-2.bib',
+  'Unabbreviate on import #1436-3.bib',
 ]
 
 function parseOptions(f) {

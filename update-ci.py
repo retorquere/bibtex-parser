@@ -11,6 +11,7 @@ status = 'update-ci.json'
 opts, args = getopt.getopt(sys.argv[1:], 'r', ['restart'])
 for opt, arg in opts:
   if opt in ('-r', '--restart'):
+    print('restarting')
     if os.path.isfile(status): os.remove(status)
 
 if os.path.isfile(status):
