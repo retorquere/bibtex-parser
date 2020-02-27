@@ -9,7 +9,7 @@
     "start": "tsc -d",
     "poststart": "ts-node build/parse-abbrevs.ts && npm run docs",
     "pretest": "npm start && ts-node gen-tests.ts",
-    "update-ci": "jest -u",
+    "update-ci": "ts-node gen-tests.ts && jest -u",
     "test": "jest",
     "minitest": "pegjs grammar.pegjs && tsc -d && node tt.js",
     "list": "tar tvf $(npm pack)",
