@@ -62,31 +62,7 @@ function parse(list) {
   }
 }
 
-const lists = [
-  'abbrv.jabref.org/journals/journal_abbreviations_ams.csv',
-  'abbrv.jabref.org/journals/journal_abbreviations_annee-philologique.csv',
-  'abbrv.jabref.org/journals/journal_abbreviations_dainst.csv',
-  'abbrv.jabref.org/journals/journal_abbreviations_entrez.csv',
-  'abbrv.jabref.org/journals/journal_abbreviations_ieee.csv',
-  'abbrv.jabref.org/journals/journal_abbreviations_lifescience.csv',
-  'abbrv.jabref.org/journals/journal_abbreviations_mathematics.csv',
-  'abbrv.jabref.org/journals/journal_abbreviations_mechanical.csv',
-  'abbrv.jabref.org/journals/journal_abbreviations_medicus.csv',
-  'abbrv.jabref.org/journals/journal_abbreviations_meteorology.csv',
-  'abbrv.jabref.org/journals/journal_abbreviations_sociology.csv',
-  'abbrv.jabref.org/journals/journal_abbreviations_webofscience-dots.csv',
-  'abbrv.jabref.org/journals/journal_abbreviations_webofscience.csv',
-  'abbrv.jabref.org/journals/journal_abbreviations_general.csv',
-  'abbrv.jabref.org/journals/journal_abbreviations_acs.csv',
-  'abbrv.jabref.org/journals/journal_abbreviations_geology_physics.csv',
-
-  'jabref/src/main/resources/journals/journalList.csv',
-  'jabref/src/main/resources/journals/IEEEJournalListCode.csv',
-  'jabref/src/main/resources/journals/IEEEJournalListText.csv',
-  'unabbr-amendments.csv',
-]
-
-for (const list of lists) {
+for (const list of require('./load-order.json')) {
   parse(list)
 }
 
