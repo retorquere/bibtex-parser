@@ -62,7 +62,6 @@ function parse(list, mode = ['abbr', 'unabbr']) {
   }
 }
 
-parse('unabbr-amendments.csv', ['unabbr'])
 for (const list of fs.readdirSync(journals)) {
   if (list.endsWith('.csv')) parse(path.join(journals, list))
 }
@@ -70,6 +69,7 @@ for (const list of fs.readdirSync(journals)) {
 parse('jabref/src/main/resources/journals/IEEEJournalListCode.csv')
 parse('jabref/src/main/resources/journals/IEEEJournalListText.csv')
 parse('jabref/src/main/resources/journals/journalList.csv')
+parse('unabbr-amendments.csv', ['unabbr'])
 
 console.log('AST-ing unabbreviations')
 for (const [abbr, full] of Object.entries(unabbrev)) {
