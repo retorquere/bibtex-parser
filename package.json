@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "lint": "tslint -t stylish --project .",
-    "prestart": "npm run lint && pegjs grammar.pegjs && git submodule update --init --recursive --remote && git submodule foreach git checkout master && git submodule foreach git pull origin master",
+    "prestart": "npm run lint && pegjs grammar.pegjs && git submodule update --init --recursive --remote && git submodule foreach git reset --hard && git submodule foreach git checkout master && git submodule foreach git pull origin master && cd abbrv.jabref.org && patch -p1 < ../build/51.patch",
     "start": "tsc -d",
-    "poststart": "ts-node build/parse-abbrevs.ts && npm run docs",
+    "poststart": "ts-node build/parse-abbrevs.ts && git submodule foreach git reset --hard && npm run docs",
     "pretest": "npm start && ts-node gen-tests.ts",
     "update-ci": "ts-node gen-tests.ts && jest -u",
     "test": "jest",

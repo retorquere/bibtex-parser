@@ -36,9 +36,9 @@ function unjunk(str) {
   // so much junk in there
   str = (str || '').replace(/\s*[\\\/]+$/, '')
   if (str.replace(/[^$]/g, '').length % 2 == 1) return null // *really*?!
-  return str
+  return str.trim()
 }
-function parse(list) {
+function parse(list, mode = ['abbr', 'unabbr']) {
   console.log('parsing', list, '...')
   for (let [journal, abbr] of csv(fs.readFileSync(list, 'utf-8'), { delimiter: ';'})) {
     journal = unjunk(journal)
@@ -51,15 +51,18 @@ function parse(list) {
     if (abbr.match(/^#.+#$/)) {
       strings[abbr.slice(1, -1)] = journal
     } else {
-        unabbrev[abbr] = journal
+      if (mode.includes('unabbr')) unabbrev[abbr] = journal
 
+      if (mode.includes('abbr')) {
         const id = lists[path.basename(list)]
         if (!abbrev[id]) abbrev[id] = {}
         abbrev[id][journal] = abbr
+      }
     }
   }
 }
 
+parse('unabbr-amendments.csv', ['unabbr'])
 for (const list of fs.readdirSync(journals)) {
   if (list.endsWith('.csv')) parse(path.join(journals, list))
 }
@@ -68,12 +71,14 @@ parse('jabref/src/main/resources/journals/IEEEJournalListCode.csv')
 parse('jabref/src/main/resources/journals/IEEEJournalListText.csv')
 parse('jabref/src/main/resources/journals/journalList.csv')
 
+console.log('AST-ing unabbreviations')
 for (const [abbr, full] of Object.entries(unabbrev)) {
   const bib = `@article{key, journal={${full}}}`
   unabbrev[abbr] = bibtex.ast(bib)[0].children[0].fields[0].value
 }
 
-for (const mapping of Object.values(abbrev)) {
+for (const [list, mapping] of Object.entries(abbrev)) {
+  console.log('Scrubbing TeX from abbreviation mapping', list)
   for (const full of Object.keys(mapping)) {
     // const bib = `@article{key, abbr={${abbr}},full={${full}}}`
     const bib = `@article{key, full={${full}}}`
