@@ -13,7 +13,7 @@ const abbrev: Record<string, Record<string, string>> = {}
 const journals = 'abbrv.jabref.org/journals'
 
 const readme = markdown.parse(fs.readFileSync(path.join(journals, 'README.md'), 'utf-8'))
-const lists: Record<string, string> = {
+const titles: Record<string, string> = {
   'IEEEJournalListCode.csv': 'IEEEStrings',
   'IEEEJournalListText.csv': 'IEEE',
   'journalList.csv': 'JabRef',
@@ -22,7 +22,7 @@ function find_links(tree) {
   if (!Array.isArray(tree)) return
 
   if (tree[0] === 'link') {
-    if (tree[1].href.startsWith('journal_abbreviations_')) lists[tree[1].href] = tree[2]
+    if (tree[1].href.startsWith('journal_abbreviations_')) titles[tree[1].href] = tree[2]
   } else {
     tree.forEach(find_links)
   }
@@ -38,7 +38,7 @@ function unjunk(str) {
   if (str.replace(/[^$]/g, '').length % 2 == 1) return null // *really*?!
   return str.trim()
 }
-function parse(list, mode = ['abbr', 'unabbr']) {
+function parse(list) {
   console.log('parsing', list, '...')
   for (let [journal, abbr] of csv(fs.readFileSync(list, 'utf-8'), { delimiter: ';'})) {
     journal = unjunk(journal)
@@ -51,10 +51,10 @@ function parse(list, mode = ['abbr', 'unabbr']) {
     if (abbr.match(/^#.+#$/)) {
       strings[abbr.slice(1, -1)] = journal
     } else {
-      if (mode.includes('unabbr')) unabbrev[abbr] = journal
+      unabbrev[abbr] = journal
 
-      if (mode.includes('abbr')) {
-        const id = lists[path.basename(list)]
+      if (list !== 'unabbr-amendments.csv') {
+        const id = titles[path.basename(list)]
         if (!abbrev[id]) abbrev[id] = {}
         abbrev[id][journal] = abbr
       }
@@ -62,27 +62,33 @@ function parse(list, mode = ['abbr', 'unabbr']) {
   }
 }
 
-parse('abbrv.jabref.org/journals/journal_abbreviations_ams.csv')
-parse('abbrv.jabref.org/journals/journal_abbreviations_annee-philologique.csv')
-parse('abbrv.jabref.org/journals/journal_abbreviations_dainst.csv')
-parse('abbrv.jabref.org/journals/journal_abbreviations_entrez.csv')
-parse('abbrv.jabref.org/journals/journal_abbreviations_ieee.csv')
-parse('abbrv.jabref.org/journals/journal_abbreviations_lifescience.csv')
-parse('abbrv.jabref.org/journals/journal_abbreviations_mathematics.csv')
-parse('abbrv.jabref.org/journals/journal_abbreviations_mechanical.csv')
-parse('abbrv.jabref.org/journals/journal_abbreviations_medicus.csv')
-parse('abbrv.jabref.org/journals/journal_abbreviations_meteorology.csv')
-parse('abbrv.jabref.org/journals/journal_abbreviations_sociology.csv')
-parse('abbrv.jabref.org/journals/journal_abbreviations_webofscience-dots.csv')
-parse('abbrv.jabref.org/journals/journal_abbreviations_webofscience.csv')
-parse('abbrv.jabref.org/journals/journal_abbreviations_general.csv')
-parse('abbrv.jabref.org/journals/journal_abbreviations_acs.csv')
-parse('abbrv.jabref.org/journals/journal_abbreviations_geology_physics.csv')
+const lists = [
+  'abbrv.jabref.org/journals/journal_abbreviations_ams.csv',
+  'abbrv.jabref.org/journals/journal_abbreviations_annee-philologique.csv',
+  'abbrv.jabref.org/journals/journal_abbreviations_dainst.csv',
+  'abbrv.jabref.org/journals/journal_abbreviations_entrez.csv',
+  'abbrv.jabref.org/journals/journal_abbreviations_ieee.csv',
+  'abbrv.jabref.org/journals/journal_abbreviations_lifescience.csv',
+  'abbrv.jabref.org/journals/journal_abbreviations_mathematics.csv',
+  'abbrv.jabref.org/journals/journal_abbreviations_mechanical.csv',
+  'abbrv.jabref.org/journals/journal_abbreviations_medicus.csv',
+  'abbrv.jabref.org/journals/journal_abbreviations_meteorology.csv',
+  'abbrv.jabref.org/journals/journal_abbreviations_sociology.csv',
+  'abbrv.jabref.org/journals/journal_abbreviations_webofscience-dots.csv',
+  'abbrv.jabref.org/journals/journal_abbreviations_webofscience.csv',
+  'abbrv.jabref.org/journals/journal_abbreviations_general.csv',
+  'abbrv.jabref.org/journals/journal_abbreviations_acs.csv',
+  'abbrv.jabref.org/journals/journal_abbreviations_geology_physics.csv',
 
-parse('jabref/src/main/resources/journals/journalList.csv')
-parse('jabref/src/main/resources/journals/IEEEJournalListCode.csv')
-parse('jabref/src/main/resources/journals/IEEEJournalListText.csv')
-parse('unabbr-amendments.csv', ['unabbr'])
+  'jabref/src/main/resources/journals/journalList.csv',
+  'jabref/src/main/resources/journals/IEEEJournalListCode.csv',
+  'jabref/src/main/resources/journals/IEEEJournalListText.csv',
+  'unabbr-amendments.csv',
+]
+
+for (const list of lists) {
+  parse(list)
+}
 
 console.log('AST-ing unabbreviations')
 for (const [abbr, full] of Object.entries(unabbrev)) {
