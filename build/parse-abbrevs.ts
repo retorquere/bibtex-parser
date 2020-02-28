@@ -62,13 +62,26 @@ function parse(list, mode = ['abbr', 'unabbr']) {
   }
 }
 
-for (const list of fs.readdirSync(journals)) {
-  if (list.endsWith('.csv')) parse(path.join(journals, list))
-}
+parse('abbrv.jabref.org/journals/journal_abbreviations_ams.csv')
+parse('abbrv.jabref.org/journals/journal_abbreviations_annee-philologique.csv')
+parse('abbrv.jabref.org/journals/journal_abbreviations_dainst.csv')
+parse('abbrv.jabref.org/journals/journal_abbreviations_entrez.csv')
+parse('abbrv.jabref.org/journals/journal_abbreviations_ieee.csv')
+parse('abbrv.jabref.org/journals/journal_abbreviations_lifescience.csv')
+parse('abbrv.jabref.org/journals/journal_abbreviations_mathematics.csv')
+parse('abbrv.jabref.org/journals/journal_abbreviations_mechanical.csv')
+parse('abbrv.jabref.org/journals/journal_abbreviations_medicus.csv')
+parse('abbrv.jabref.org/journals/journal_abbreviations_meteorology.csv')
+parse('abbrv.jabref.org/journals/journal_abbreviations_sociology.csv')
+parse('abbrv.jabref.org/journals/journal_abbreviations_webofscience-dots.csv')
+parse('abbrv.jabref.org/journals/journal_abbreviations_webofscience.csv')
+parse('abbrv.jabref.org/journals/journal_abbreviations_general.csv')
+parse('abbrv.jabref.org/journals/journal_abbreviations_acs.csv')
+parse('abbrv.jabref.org/journals/journal_abbreviations_geology_physics.csv')
 
+parse('jabref/src/main/resources/journals/journalList.csv')
 parse('jabref/src/main/resources/journals/IEEEJournalListCode.csv')
 parse('jabref/src/main/resources/journals/IEEEJournalListText.csv')
-parse('jabref/src/main/resources/journals/journalList.csv')
 parse('unabbr-amendments.csv', ['unabbr'])
 
 console.log('AST-ing unabbreviations')
