@@ -53,7 +53,9 @@ function parse(list) {
     } else {
       unabbrev[abbr] = journal
 
-      if (list !== 'unabbr-amendments.csv') {
+      if (list === 'unabbr-amendments.csv') {
+        if (abbr.includes('. ')) unabbrev[abbr.replace(/\. /g, ' ').replace(/\.$/, '')] = journal
+      } else {
         const id = titles[path.basename(list)]
         if (!abbrev[id]) abbrev[id] = {}
         abbrev[id][journal] = abbr
