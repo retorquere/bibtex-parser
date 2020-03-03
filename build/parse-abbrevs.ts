@@ -6,7 +6,7 @@ import * as path from 'path'
 import * as bibtex from '../index'
 import { markdown } from 'markdown'
 
-const unabbrev: Record<string, any> = {}
+const unabbrev: Record<string, { ast: any, text: string}> = {}
 const strings: Record<string, string> = {}
 const abbrev: Record<string, Record<string, string>> = {}
 
@@ -44,17 +44,21 @@ function parse(list) {
     journal = unjunk(journal)
     abbr = unjunk(abbr)
 
-    if (!journal || !abbr) continue
-    if (journal.toLowerCase() === abbr.toLowerCase()) continue
+    if (!abbr) continue
+    if (!journal) journal = ''
+    if (journal.toLowerCase() === abbr.toLowerCase()) journal = ''
     if (obviously_wrong.includes(abbr)) continue
 
     if (abbr.match(/^#.+#$/)) {
       strings[abbr.slice(1, -1)] = journal
+    } else if (!journal) {
+      delete unabbrev[abbr]
+
     } else {
-      unabbrev[abbr] = journal
+      unabbrev[abbr] = { text: journal, ast: null }
 
       if (list === 'unabbr-amendments.csv') {
-        if (abbr.includes('. ')) unabbrev[abbr.replace(/\. /g, ' ').replace(/\.$/, '')] = journal
+        if (abbr.includes('. ')) unabbrev[abbr.replace(/\. /g, ' ').replace(/\.$/, '')] = { text: journal, ast: null }
       } else {
         const id = titles[path.basename(list)]
         if (!abbrev[id]) abbrev[id] = {}
@@ -70,8 +74,10 @@ for (const list of require('./load-order.json')) {
 
 console.log('AST-ing unabbreviations')
 for (const [abbr, full] of Object.entries(unabbrev)) {
-  const bib = `@article{key, journal={${full}}}`
-  unabbrev[abbr] = bibtex.ast(bib)[0].children[0].fields[0].value
+  const bib = `@article{key, journal={${full.text}}}`
+  unabbrev[abbr].ast = bibtex.ast(bib)[0].children[0].fields[0].value
+
+  if (unabbrev[abbr].ast.length !== 1 || unabbrev[abbr].ast[0].kind !== 'Text') unabbrev[abbr].text = ''
 }
 
 for (const [list, mapping] of Object.entries(abbrev)) {

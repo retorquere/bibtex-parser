@@ -372,7 +372,7 @@ export interface ParserOptions {
   /**
    * BibTeX files may have abbreviations in the journal field. If you provide a dictionary, journal names that are found in the dictionary are replaced with the attached full name
    */
-  unabbreviate?: Record<string, string>
+  unabbreviate?: Record<string, { ast: any, text: string }>
 }
 
 const english = [
@@ -878,11 +878,11 @@ class Parser {
     if (node.name.startsWith('journal') && Array.isArray(node.value)) {
       const abbr = node.value.map(v => v.source).join('')
       const full = this.options.unabbreviate[abbr]
-      if (full && full !== abbr) {
+      if (full) {
         shortjournal = JSON.parse(JSON.stringify(node))
         shortjournal.name = 'shortjournal'
 
-        node.value = JSON.parse(JSON.stringify(full))
+        node.value = JSON.parse(JSON.stringify(full.ast))
       }
     }
 
@@ -1389,6 +1389,9 @@ class Parser {
           this.entry.fields[this.field.name].push(creator.replace(marker.re.comma, ', ').replace(marker.re.space, ' ').replace(marker.re.literal, ''))
           this.entry.creators[this.field.name].push(this.parseName(creator))
         }
+
+      } else if (field.name.startsWith('journal')) { // doesn't get sentence casing anyhow
+        this.entry.fields[this.field.name].push(this.options.unabbreviate[this.field.text]?.text || this.field.text)
 
       } else {
         if (this.field.preserveRanges) {

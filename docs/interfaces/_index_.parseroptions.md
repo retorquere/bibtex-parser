@@ -133,7 +133,7 @@ ___
 
 ### `Optional` unabbreviate
 
-• **unabbreviate**? : *Record‹string, string›*
+• **unabbreviate**? : *Record‹string, object›*
 
 BibTeX files may have abbreviations in the journal field. If you provide a dictionary, journal names that are found in the dictionary are replaced with the attached full name
 
