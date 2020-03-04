@@ -137,7 +137,7 @@ for (const {caseName, input, options, snapshot, script, ignoreErrors} of cases) 
   const ignoreErrors = ${JSON.stringify(ignoreErrors)};
   `
 
-  if (process.env.UNABBREVIATE === 'on' || caseName.toLowerCase().includes('unabbre')) {
+  if (process.env.UNABBREVIATE === 'on' || caseName.toLowerCase().includes('unabbre') || caseName.includes('873')) {
     js += `
     options.unabbreviate = JSON.parse(${unabbr})
     `
