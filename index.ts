@@ -271,6 +271,11 @@ const fields = {
     'notes',
     'note',
   ],
+  unabbrev: [
+    'journal',
+    'journaltitle',
+    'journal-full',
+  ],
 }
 
 export interface ParserOptions {
@@ -404,13 +409,16 @@ const english = [
 
 class Parser {
   private errors: ParseError[]
-  private strings: { [key: string]: bibtex.ValueType[] }
-  private unresolvedStrings: { [key: string]: boolean }
-  private default_strings: { [key: string]: bibtex.TextValue[] }
+  private strings: Record<string, bibtex.ValueType[]>
+  private unresolvedStrings: Record<string, boolean>
+  private default_strings: Record<string, bibtex.TextValue[]>
   private comments: string[]
   private entries: Entry[]
   private entry: Entry
-  private fieldType: 'title' | 'creator' | 'other'
+  private cleaning: {
+    type: 'title' | 'creator' | 'other'
+    name?: string
+  }
   private field: FieldBuilder
   private chunk: string
   private options: ParserOptions
@@ -566,7 +574,7 @@ class Parser {
   private parsed(): Bibliography {
     this.field = null
     const strings = {}
-    this.fieldType = 'other'
+    this.cleaning = { type: 'other' }
     for (const [key, value] of Object.entries(this.strings)) {
       this.field = {
         name: '@string',
@@ -808,7 +816,7 @@ class Parser {
 
   private clean_stringref(node: bibtex.StringReference) {
     const name = node.name.toUpperCase()
-    const _string = this.options.strings[name] || this.strings[name] || this.default_strings[name]
+    const _string = this.options.strings[name] || this.strings[name] || this.default_strings[name] || (fields.unabbrev.includes(this.cleaning.name) && this.options.unabbreviate[name]?.text)
 
     if (!_string) {
       if (!this.unresolvedStrings[name]) this.errors.push({ message: `Unresolved @string reference ${JSON.stringify(node.name)}` })
@@ -825,18 +833,30 @@ class Parser {
   }
 
   private clean_entry(node: bibtex.Entry) {
-    node.fields = [].concat.apply([], node.fields.map(child => this.clean(child))) // clean can return multiple entries in the case of shortjournal
+    const shortjournals = []
+    for (const field of node.fields) {
+      if (fields.unabbrev.includes(field.name) && Array.isArray(field.value)) {
+        const abbr = field.value.map(v => v.source).join('')
+        const journal = this.options.unabbreviate[abbr]
+        if (journal) {
+          shortjournals.push({ ...JSON.parse(JSON.stringify(field)), name: 'shortjournal' })
+          field.value = JSON.parse(JSON.stringify(journal.ast))
+        }
+      }
+    }
+    node.fields = node.fields.concat(shortjournals).map(child => this.clean(child))
 
     return node
   }
 
-  private setFieldType(field) {
-    if (fields.title.includes(field)) {
-      this.fieldType = 'title'
-    } else if (fields.creator.includes(field)) {
-      this.fieldType = 'creator'
+  private startCleaning(name) {
+    name = name.toLowerCase()
+    if (fields.title.includes(name)) {
+      this.cleaning = { type: 'title', name }
+    } else if (fields.creator.includes(name)) {
+      this.cleaning = { type: 'creator', name }
     } else {
-      this.fieldType = 'other'
+      this.cleaning = { type: 'other', name }
     }
   }
 
@@ -871,30 +891,13 @@ class Parser {
     return !!this.options.verbatimFields.find(p => (typeof p === 'string') ? name === p : name.match(p))
   }
   private clean_field(node: bibtex.Field) {
-    this.setFieldType(node.name)
-
-    let shortjournal: bibtex.Field = null
-
-    if (node.name.startsWith('journal') && Array.isArray(node.value)) {
-      const abbr = node.value.map(v => v.source).join('')
-      const full = this.options.unabbreviate[abbr]
-      if (full) {
-        shortjournal = JSON.parse(JSON.stringify(node))
-        shortjournal.name = 'shortjournal'
-
-        node.value = JSON.parse(JSON.stringify(full.ast))
-      }
-    }
+    this.startCleaning(node.name)
 
     this.stripNoCase(node, !this.options.caseProtection || this.isVerbatimField(node.name), (this.options.sentenceCase as string[]).length === 0)
 
     if (Array.isArray(node.value)) this.condense(node)
 
-    if (shortjournal) {
-      return [ node, this.clean_field(shortjournal) ]
-    } else {
-      return node
-    }
+    return node
   }
 
   private clean_script(node: bibtex.SubscriptCommand | bibtex.SuperscriptCommand) {
@@ -929,7 +932,7 @@ class Parser {
   private clean_block(node: bibtex.Block) {
     this.condense(node)
 
-    if (this.options.caseProtection !== 'strict' && this.fieldType === 'title' && node.case === 'protect') {
+    if (this.options.caseProtection !== 'strict' && this.cleaning.type === 'title' && node.case === 'protect') {
       // test whether we can get away with skipping case protection because it contains all words that will be preserved anyway when converting back to Title Case
       let preserve = true
       for (const child of node.value) {
@@ -1331,7 +1334,7 @@ class Parser {
     for (const field of node.fields) {
       if (field.kind !== 'Field') return this.error(new ParserError(`Expected Field, got ${field.kind}`, node), undefined)
 
-      this.setFieldType(field.name)
+      this.startCleaning(field.name)
 
       /*
       if (this.options.raw && this.fieldType !== 'creator') {
@@ -1377,7 +1380,7 @@ class Parser {
           if (text) this.entry.fields[this.field.name].push(text)
         }
 
-      } else if (this.fieldType === 'creator') {
+      } else if (this.cleaning.type === 'creator') {
         if (!this.entry.creators[this.field.name]) this.entry.creators[this.field.name] = []
 
         // {M. Halle, J. Bresnan, and G. Miller}
@@ -1390,7 +1393,7 @@ class Parser {
           this.entry.creators[this.field.name].push(this.parseName(creator))
         }
 
-      } else if (field.name.startsWith('journal')) { // doesn't get sentence casing anyhow
+      } else if (fields.unabbrev.includes(field.name)) { // doesn't get sentence casing anyhow TODO: booktitle does!
         this.entry.fields[this.field.name].push(this.options.unabbreviate[this.field.text]?.text || this.field.text)
 
       } else {
@@ -1455,7 +1458,7 @@ class Parser {
       }
     }
 
-    if (this.field.level === 0 && this.fieldType === 'creator') {
+    if (this.field.level === 0 && this.cleaning.type === 'creator') {
       this.field.text += node.value.replace(/\s+and\s+/ig, marker.and).replace(/\s*,\s*/g, marker.comma).replace(/\s+/g, marker.space)
       return
     }
@@ -1484,8 +1487,8 @@ class Parser {
     let prefix = ''
     let postfix = ''
 
-    if (this.options.caseProtection !== 'strict' && this.fieldType === 'other') delete node.case
-    if (this.fieldType === 'creator' && node.case === 'protect') {
+    if (this.options.caseProtection !== 'strict' && this.cleaning.type === 'other') delete node.case
+    if (this.cleaning.type === 'creator' && node.case === 'protect') {
       prefix += marker.literal
       postfix = marker.literal + postfix
       delete node.case
