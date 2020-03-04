@@ -816,7 +816,10 @@ class Parser {
 
   private clean_stringref(node: bibtex.StringReference) {
     const name = node.name.toUpperCase()
-    const _string = this.options.strings[name] || this.strings[name] || this.default_strings[name] || (fields.unabbrev.includes(this.cleaning.name) && this.options.unabbreviate[name]?.text)
+    const _string = this.strings[name]
+      || this.options.strings[name]
+      || this.default_strings[name]
+      || (fields.unabbrev.includes(this.cleaning.name) && this.options.unabbreviate[name]?.text && [ this.text(this.options.unabbreviate[name].text) ])
 
     if (!_string) {
       if (!this.unresolvedStrings[name]) this.errors.push({ message: `Unresolved @string reference ${JSON.stringify(node.name)}` })

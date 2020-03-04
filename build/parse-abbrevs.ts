@@ -7,7 +7,7 @@ import * as bibtex from '../index'
 import { markdown } from 'markdown'
 
 const unabbrev: Record<string, { ast: any, text: string}> = {}
-const strings: Record<string, string> = {}
+const strings: Record<string, any> = {}
 const abbrev: Record<string, Record<string, string>> = {}
 
 const journals = 'abbrv.jabref.org/journals'
@@ -50,7 +50,7 @@ function parse(list) {
     if (obviously_wrong.includes(abbr)) continue
 
     if (abbr.match(/^#.+#$/)) {
-      strings[abbr.slice(1, -1)] = journal
+      strings[abbr.slice(1, -1)] = [{ kind: 'Text', value: journal, mode: 'text' }]
     } else if (!journal) {
       delete unabbrev[abbr]
 
