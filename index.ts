@@ -971,6 +971,7 @@ class Parser {
   }
 
   private clean_symbol(node: bibtex.SymbolCommand) {
+    if (node.command === '\\') return this.text('\n')
     return this.text(latex2unicode[`\\${node.command}`] || node.command)
   }
 
