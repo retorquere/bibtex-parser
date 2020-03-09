@@ -181,7 +181,7 @@ class BibtexParser {
           break
 
         case '}':
-          bracecount++
+          bracecount--
           break
 
         case '"':
