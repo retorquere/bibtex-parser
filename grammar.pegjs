@@ -380,7 +380,7 @@ Block
     }
 
     let cmd = v.length && v[0].kind.endsWith('Command') ? v[0] : null
-    let cmdblock = cmd && cmd.kind === 'RegularCommand' && cmd.arguments.required.length && cmd.arguments.required[0] && cmd.arguments.required[0].kind === 'Block'
+    let cmdblock = cmd && cmd.kind === 'RegularCommand' && cmd.arguments.required.length && cmd.arguments.required[0] && cmd.arguments.required[0].kind === 'Block' && cmd.arguments.required[0]
 
     // https://github.com/retorquere/zotero-better-bibtex/issues/541#issuecomment-240156274
     if (cmd) {
