@@ -11,6 +11,8 @@
 ### Properties
 
 * [firstName](_index_.name.md#optional-firstname)
+* [initial](_index_.name.md#optional-initial)
+* [juniorcomma](_index_.name.md#optional-juniorcomma)
 * [lastName](_index_.name.md#optional-lastname)
 * [literal](_index_.name.md#optional-literal)
 * [prefix](_index_.name.md#optional-prefix)
@@ -24,6 +26,22 @@
 • **firstName**? : *string*
 
 given name. Will include middle names and initials.
+
+___
+
+### `Optional` initial
+
+• **initial**? : *string*
+
+Initials.
+
+___
+
+### `Optional` juniorcomma
+
+• **juniorcomma**? : *boolean*
+
+available when parsing biblatex extended name format
 
 ___
 
