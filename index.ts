@@ -1361,6 +1361,14 @@ class Parser {
       }
 
       this.entry.fields[this.field.name] = this.entry.fields[this.field.name] || []
+
+      // special case for 'title = 2020'
+      if ((field.value as any).kind === 'Number') {
+        this.entry.fields[this.field.name].push((field.value as any).value as string)
+        this.field = null
+        continue
+      }
+
       this.convert(field.value)
       this.field.text = this.field.text.trim()
       if (!this.field.text) continue

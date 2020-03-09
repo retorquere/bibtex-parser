@@ -166,7 +166,7 @@ Bibliography
   }
 
 Comment
-  = '@comment'i __h v:BracedComment {
+  = '@' __ 'comment'i __h v:BracedComment {
     return {
       kind: 'BracedComment',
       loc: location(),
@@ -174,7 +174,7 @@ Comment
       value: v.slice(1, -1),
     }
   }
-  / '@comment'i __h v:[^\n\r]* [\n\r]* {
+  / '@' __ 'comment'i __h v:[^\n\r]* [\n\r]* {
     return {
       kind: 'LineComment',
       loc: location(),
@@ -200,7 +200,7 @@ BracedComment
 //-----------------  Top-level Nodes
 
 Entry
-  = '@' type:$[A-Za-z]+ __ [({] __ id:EntryId? __ fields:Field* __ [})] __ {
+  = '@' __ type:$[A-Za-z]+ __ [({] __ id:EntryId? __ fields:Field* __ [})] __ {
     return {
       kind: 'Entry',
       id: id || '',
@@ -212,7 +212,7 @@ Entry
   }
 
 PreambleExpression
-  = '@preamble'i __ [({] __ v:RegularValue* __ [})] __ {
+  = '@' __ 'preamble'i __ [({] __ v:RegularValue* __ [})] __ {
     return {
       kind: 'PreambleExpression',
       loc: location(),
@@ -222,7 +222,7 @@ PreambleExpression
   }
 
 StringDeclaration
-  = '@string'i __ [({] __ k:VariableName FieldSeparator v:RegularValue+ __ [})] __ {
+  = '@' __ 'string'i __ [({] __ k:VariableName FieldSeparator v:RegularValue+ __ [})] __ {
     return {
       kind: 'StringDeclaration',
       loc: location(),
@@ -309,6 +309,7 @@ FieldValue
 RegularValue
   = '"' v:(Block / Math / Command / TextNoQuotes)* '"' Concat? { return v; }
   / '{' v:(Block / Math / Command / Text)* '}' Concat? { return v; }
+  / v:StringReference Concat? { return v; }
 
 StringValue
   = v:StringReference Concat? { return v; }

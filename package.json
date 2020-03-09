@@ -6,10 +6,9 @@
   "scripts": {
     "lint": "tslint -t stylish --project .",
     "prestart": "npm run lint && pegjs grammar.pegjs && npm run submodules",
-    "_submodules": "git submodule update --init --recursive --remote && git submodule foreach git reset --hard && git submodule foreach git checkout master && git submodule foreach git pull origin master && cd abbrv.jabref.org",
-    "submodules": "echo submodules",
+    "submodules": "git submodule update --init --recursive --remote && git submodule foreach git reset --hard && git submodule foreach git checkout master && git submodule foreach git pull origin master && cd abbrv.jabref.org",
     "start": "tsc -d",
-    "_poststart": "ts-node build/parse-abbrevs.ts && git submodule foreach git reset --hard && npm run docs",
+    "poststart": "ts-node build/parse-abbrevs.ts && git submodule foreach git reset --hard && npm run docs",
     "pretest": "npm start && ts-node gen-tests.ts",
     "update-ci": "ts-node gen-tests.ts && jest -u",
     "test": "jest",
@@ -51,7 +50,7 @@
     "typedoc": "^0.16.11",
     "typedoc-plugin-markdown": "^2.2.17",
     "typescript": "^3.8.3",
-    "unicode2latex": "^1.0.49"
+    "unicode2latex": "^1.0.51"
   },
   "dependencies": {
     "xregexp": "^4.3.0"
