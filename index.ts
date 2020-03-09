@@ -126,6 +126,11 @@ export interface Name {
   firstName?: string
 
   /**
+   * Initials.
+   */
+  initial?: string
+
+  /**
    * things like `Jr.`, `III`, etc
    */
   suffix?: string
@@ -1228,7 +1233,7 @@ class Parser {
 
     const parts = name.split(marker.comma)
 
-    if (parts.length && !parts.find(p => !p.match(/^[a-z]+=/i))) { // extended name format
+    if (parts.length && !parts.find(p => !p.match(/^[a-z]+(-i)?=/i))) { // extended name format
       parsed = {}
 
       for (const part of parts) {
@@ -1236,6 +1241,10 @@ class Parser {
         switch (attr.toLowerCase()) {
           case 'family':
             parsed.lastName = value
+            break
+
+          case 'given-i':
+            parsed.initial = value
             break
 
           case 'given':
@@ -1254,8 +1263,14 @@ class Parser {
             parsed.useprefix = value.toLowerCase() === 'true'
             break
 
+          default:
+            parsed = null
+            break
+
         }
       }
+
+      if (parsed) return parsed
     }
 
     const prefix = /(.+?)\s+(vere|von|van den|van der|van|de|del|della|der|di|da|pietro|vanden|du|st.|st|la|lo|ter|bin|ibn|te|ten|op|ben|al)\s+(.+)/
