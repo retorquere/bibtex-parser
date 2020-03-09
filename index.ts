@@ -121,6 +121,11 @@ export interface Name {
   useprefix?: boolean
 
   /**
+   * available when parsing biblatex extended name format
+   */
+  juniorcomma?: boolean
+
+  /**
    * given name. Will include middle names and initials.
    */
   firstName?: string
@@ -1260,6 +1265,10 @@ class Parser {
             break
 
           case 'useprefix':
+            parsed.useprefix = value.toLowerCase() === 'true'
+            break
+
+          case 'juniorcomma':
             parsed.useprefix = value.toLowerCase() === 'true'
             break
 
