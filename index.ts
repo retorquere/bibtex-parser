@@ -1012,12 +1012,17 @@ class Parser {
 
       case 'frac':
         if (arg = this.argument(node, 2)) {
-          // not a spectactular solution but what ya gonna do.
+          if (arg[0].kind === 'Text' && arg[1].kind === 'Text' && (unicode = latex2unicode[`\\frac{${arg[0].value}}{${arg[1].value}}`])) return this.text(unicode)
+
           return this.clean({
             kind: 'Block',
-            case: 'preserve',
+            case: 'protect',
             markup: {},
-            value: [ arg[0], this.text('/'), arg[1] ],
+            value: [
+              { kind: 'Block', markup: { sup: true }, value: [ arg[0] ] },
+              this.text('\u2044'),
+              { kind: 'Block', markup: { sub: true }, value: [ arg[1] ] },
+            ],
           })
         }
         break
