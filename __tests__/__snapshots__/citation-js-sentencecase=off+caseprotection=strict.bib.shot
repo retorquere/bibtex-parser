@@ -2,7 +2,9 @@
 
 exports[`citation-js-sentencecase=off+caseprotection=strict.bib 1`] = `
 Object {
-  "comments": Array [],
+  "comments": Array [
+    "@book{a, title = \\"foo\\"}",
+  ],
   "entries": Array [
     Object {
       "creators": Object {
@@ -39,6 +41,271 @@ Object {
       "key": "label",
       "type": "book",
     },
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "title": Array [
+          "foo",
+        ],
+      },
+      "key": "a",
+      "type": "book",
+    },
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "title": Array [
+          "foo",
+        ],
+      },
+      "key": "a",
+      "type": "book",
+    },
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "title": Array [
+          "foo",
+        ],
+      },
+      "key": "a",
+      "type": "book",
+    },
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "title": Array [
+          "foo",
+        ],
+      },
+      "key": "a",
+      "type": "book",
+    },
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "title": Array [
+          "foo",
+        ],
+      },
+      "key": "a",
+      "type": "book",
+    },
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "title": Array [
+          "foo",
+        ],
+      },
+      "key": "a",
+      "type": "book",
+    },
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "a:a": Array [
+          "foo",
+        ],
+      },
+      "key": "a",
+      "type": "book",
+    },
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "title": Array [
+          "foo",
+        ],
+      },
+      "key": "a1",
+      "type": "book",
+    },
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "title": Array [
+          "foo",
+        ],
+      },
+      "key": "b:b",
+      "type": "book",
+    },
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "title": Array [
+          "foo",
+        ],
+      },
+      "key": "\\"a\\"",
+      "type": "book",
+    },
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "title": Array [
+          "foo",
+        ],
+      },
+      "key": "a",
+      "type": "book",
+    },
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "title": Array [
+          "foo",
+        ],
+      },
+      "key": "a",
+      "type": "book",
+    },
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "title": Array [
+          "foo",
+        ],
+      },
+      "key": "a",
+      "type": "book",
+    },
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "title": Array [
+          "foo",
+        ],
+      },
+      "key": "a",
+      "type": "book",
+    },
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "title": Array [
+          "foo",
+        ],
+      },
+      "key": "a",
+      "type": "book",
+    },
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "title": Array [
+          "foo",
+        ],
+      },
+      "key": "a",
+      "type": "book",
+    },
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "title": Array [
+          "foo",
+        ],
+      },
+      "key": "a",
+      "type": "book",
+    },
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "title": Array [
+          "foo",
+        ],
+      },
+      "key": "b",
+      "type": "book",
+    },
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "title": Array [
+          "foo",
+        ],
+      },
+      "key": "a",
+      "type": "book",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "lastName": "Bausch",
+          },
+          Object {
+            "lastName": "Lomb",
+          },
+          Object {
+            "literal": "Bausch and Lomb",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Bausch",
+          "Lomb",
+          "Bausch and Lomb",
+        ],
+        "title": Array [
+          "Stability <span class=\\"nocase\\">Analysis</span> and <i>Optimization</i>",
+        ],
+      },
+      "key": "test",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Philippe",
+            "initial": "Ph",
+            "lastName": "Duchamp",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "family=Duchamp, given=Philippe, given-i=Ph",
+        ],
+      },
+      "key": "test",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "file": Array [
+          "files/Zuniga:2016jt/A4FA1025_A4E7{}422A-9368-1E1F1B9B0166.pdf",
+        ],
+      },
+      "key": "test",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "publisher": Array [
+          "Dŏ}ëad Po<span class=\\"nocase\\">ₑₑₑ</span>t Society",
+        ],
+      },
+      "key": "test",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "title": Array [
+          "<span class=\\"nocase\\">½</span> and <span class=\\"nocase\\"><span class=\\"nocase\\">ⁿ⁄₂</span></span>",
+        ],
+      },
+      "key": "test",
+      "type": "article",
+    },
   ],
   "errors": Array [],
   "groups": Object {
@@ -49,10 +316,17 @@ Object {
   },
   "strings": Object {
     "A": " string a",
+    "A:A": "o",
     "B": " string b",
+    "B:B": "o",
     "C": " string c",
+    "F": "f",
+    "FO": "fo",
+    "FOO": "foo",
     "I": "ı",
+    "INCLUDE": "a",
     "J": "a space between this ",
+    "O": "o",
   },
 }
 `;

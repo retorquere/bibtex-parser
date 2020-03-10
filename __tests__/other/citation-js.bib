@@ -11,3 +11,60 @@
 
 @string(i = "{\i}")
 @book{label, title = i }
+@book{a, title = "foo"}
+@BoOk{a, title = "foo"}
+@BOOK{a, title = "foo"}
+@book(a, title = "foo")
+@
+      book
+    {
+      a
+    ,
+      title = "foo"
+    }
+@string{ a:a = "o" }
+            @string{ b:b = a:a }
+            @book{a, title = "f" # a:a # b:b}
+@book{a, a:a = "foo" }
+@book{a1, title = "foo"}
+@book{b:b, title = "foo"}
+@book{"a", title = "foo"}
+@book{a, title = "foo"}
+@book{a, title = {foo}}
+@string{ foo = "foo" }
+@book{a, title = foo}
+@StRiNg{ foo = "foo" }
+@book{a, title = foo}
+@STRING{ foo = "foo" }
+@book{a, title = foo}
+@string( foo = "foo" )
+@book{a, title = foo}
+@string{ foo = "foo" }
+@book{a, title = foo}
+@book{b, title = FOO}
+@string{ f = "f" }
+@string{ o = "o" }
+@string{ fo = f # o }
+@book{a, title = fo # o}
+@preamble { "test" }
+@string{ include = "a" }
+@preamble { include }
+@string{ include = "a" }
+@preamble { include # include }
+@comment{@book{a, title = "foo"}}
+@article{test,
+      author = {Bausch and Lomb and {Bausch and Lomb}},
+      title = {Stability {Analysis} and {\emph{Optimization}}}
+    }
+@article{test,
+      author = {family=Duchamp, given=Philippe, given-i={Ph}}
+    }
+@article{test,
+      file = {files/Zuniga:2016jt/A4FA1025_A4E7{}422A-9368-1E1F1B9B0166.pdf}
+    }
+@article{test,
+      publisher =  { D{\u{o}}\}\"ead Po$_{eee}$t Society},
+    }
+@article{test,
+      title = {$\frac 1 2$ and $\frac{n}{2}$}
+    }
