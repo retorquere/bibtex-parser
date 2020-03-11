@@ -1469,7 +1469,13 @@ class Parser {
   private convertToSentenceCase(text, preserve) {
     if (!preserve) return text
 
-    preserve.push({start: 0, end: 1}) // always keep the leading char
+    // always keep the leading char, but skip markup
+    const lead = text.match(/^(<[^>]+>)*./)
+    if (lead) {
+      preserve.push({ start: lead[0].length - 1, end: lead[0].length })
+    } else {
+      preserve.push({ start: 0, end: 1 })
+    }
 
     let sentenceCased = text.toLowerCase().replace(/(([\?!]\s*|^)([\'\"¡¿“‘„«\s]+)?[^\s])/g, x => x.toUpperCase())
     for (const { start, end } of preserve) {
