@@ -985,6 +985,26 @@ class Parser {
     return this.text(latex2unicode[`\\${node.command}`] || node.command)
   }
 
+  private first_text_block(node): bibtex.Block {
+    if (node.kind === 'Block') {
+      for (const child of node.value) {
+        switch (child.kind) {
+          case 'Text':
+            return node
+
+          case 'Block':
+            const candidate = this.first_text_block(child)
+            if (candidate) return candidate
+            break
+
+          default:
+            return null
+        }
+      }
+    } else {
+      return null
+    }
+  }
   private clean_command(node: bibtex.RegularCommand) {
     let arg, unicode
 
@@ -1155,16 +1175,27 @@ class Parser {
 
       default:
         if (this.combining_diacritic[node.command]) {
-          if (node.arguments.required.length === 1 && node.arguments.required[0].kind === 'Text') {
+          node.arguments.required = this.clean(node.arguments.required)
+
+          const block = this.first_text_block(node.arguments.required[0])
+          if (block) {
+            let fixed = false
+            block.value = block.value.reduce((value, child) => {
+              if (fixed || child.kind !== 'Text') {
+                value.push(child)
+              } else {
+                fixed = true
+                value.push({ kind: 'DiacriticCommand', mark: node.command, character: child.value[0] })
+                value.push({ ...child, value: child.value.substring(1) })
+              }
+              return value
+            }, [])
             return this.clean({
               kind: 'Block',
-              case: 'protect',
               markup: {},
-              value: [
-                { kind: 'DiacriticCommand', mark: node.command, character: node.arguments[0].value[0] },
-                { ...node.arguments[0], value: node.arguments[0].value.substring(1) },
-              ],
+              value: node.arguments.required,
             })
+
           } else {
             return this.clean({
               kind: 'Block',

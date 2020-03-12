@@ -145,12 +145,20 @@
   }
 
   function protect(v) {
+    let source
+    if (Array.isArray(v)) {
+      source = v.map(e => e.source).join('')
+    } else {
+      v = [ v ]
+      source = v.source
+    }
+
     return {
       kind: 'Block',
-      value: [v],
+      value: v,
       markup: {},
       case: 'protect',
-      source: v.source,
+      source: source,
     }
   }
 }
@@ -485,7 +493,7 @@ DiacriticCommand
       command: mark,
       arguments: {
         optional: [],
-        required: [protect(v)],
+        required: [ protect(v) ],
       },
     }
   }
