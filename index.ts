@@ -1155,7 +1155,6 @@ class Parser {
 
       default:
         if (this.combining_diacritic[node.command]) {
-          console.log(node.arguments)
           if (node.arguments.required.length === 1 && node.arguments.required[0].kind === 'Text') {
             return this.clean({
               kind: 'Block',
