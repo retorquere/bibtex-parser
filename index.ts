@@ -1154,6 +1154,27 @@ class Parser {
         if (this.argument(node, 'none')) return this.text('\u0328')
 
       default:
+        if (this.combining_diacritic[node.command]) {
+          console.log(node.arguments)
+          if (node.arguments.required.length === 1 && node.arguments.required[0].kind === 'Text') {
+            return this.clean({
+              kind: 'Block',
+              case: 'protect',
+              markup: {},
+              value: [
+                { kind: 'DiacriticCommand', mark: node.command, character: node.arguments[0].value[0] },
+                { ...node.arguments[0], value: node.arguments[0].value.substring(1) },
+              ],
+            })
+          } else {
+            return this.clean({
+              kind: 'Block',
+              markup: {},
+              value: ([ this.text(' ' + this.combining_diacritic[node.command]) ] as bibtex.ValueType[]).concat(node.arguments.required),
+            })
+          }
+        }
+
         if (unicode = latex2unicode[node.source] || latex2unicode[`${node.source}{}`]) return this.text(unicode)
         if ((unicode = latex2unicode[`\\${node.command}`] || latex2unicode[`\\${node.command}{}`]) && this.argument(node, 'none')) return this.text(unicode)
         if ((arg = this.argument(node, 'Text')) && (unicode = latex2unicode[`\\${node.command}{${arg}}`])) return this.text(unicode)

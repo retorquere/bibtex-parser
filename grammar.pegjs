@@ -477,6 +477,18 @@ DiacriticCommand
       character: char[1] || char[0],
     }
   }
+  / '\\' mark:ExtendedDiacritic &'{' v:RegularValue {
+    return {
+      kind: 'RegularCommand',
+      loc: location(),
+      source: text(),
+      command: mark,
+      arguments: {
+        optional: [],
+        required: [protect(v)],
+      },
+    }
+  }
 
 SymbolCommand
   = '\\' v:$[^A-Za-z0-9\t\r\n] {
