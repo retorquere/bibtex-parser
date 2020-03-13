@@ -1493,7 +1493,7 @@ class Parser {
         }
 
       } else if (fields.unabbrev.includes(field.name)) { // doesn't get sentence casing anyhow TODO: booktitle does!
-        this.entry.fields[this.field.name].push(this.options.unabbreviate[this.field.text]?.text || this.field.text)
+        this.entry.fields[this.field.name].push((this.options.unabbreviate[this.field.text]?.text || this.field.text).normalize('NFC'))
 
       } else {
         if (this.field.preserveRanges) {
@@ -1516,7 +1516,7 @@ class Parser {
         if (this.options.guessAlreadySentenceCased && Math.max(this.field.words.upper, this.field.words.lower) > (this.field.words.other + Math.min(this.field.words.upper, this.field.words.lower))) {
           this.preserve(null, 'mostly sentence cased already')
         }
-        this.entry.fields[this.field.name].push(this.convertToSentenceCase(this.field.text, this.field.preserveRanges))
+        this.entry.fields[this.field.name].push(this.convertToSentenceCase(this.field.text, this.field.preserveRanges).normalize('NFC'))
       }
 
     }
