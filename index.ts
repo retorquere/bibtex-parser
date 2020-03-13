@@ -986,11 +986,13 @@ class Parser {
   }
 
   private first_text_block(node): bibtex.Block {
+    if (!node) return null
+
     if (node.kind === 'Block') {
       for (const child of node.value) {
         switch (child.kind) {
           case 'Text':
-            return node
+            return child.value ? node : null
 
           case 'Block':
             const candidate = this.first_text_block(child)
@@ -1181,15 +1183,20 @@ class Parser {
           if (block) {
             let fixed = false
             block.value = block.value.reduce((value, child) => {
-              if (fixed || child.kind !== 'Text') {
-                value.push(child)
-              } else {
+              if (!fixed && child.kind === 'Text') {
                 fixed = true
+
                 value.push({ kind: 'DiacriticCommand', mark: node.command, character: child.value[0] })
                 value.push({ ...child, value: child.value.substring(1) })
+
+              } else {
+                value.push(child)
+
               }
+
               return value
             }, [])
+
             return this.clean({
               kind: 'Block',
               markup: {},
