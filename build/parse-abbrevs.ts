@@ -34,8 +34,9 @@ const obviously_wrong = [
 ]
 function unjunk(str) {
   // so much junk in there
-  str = (str || '').replace(/\s*[\\\/]+$/, '')
-  if (str.replace(/[^$]/g, '').length % 2 == 1) return null // *really*?!
+  str = (str || '').replace(/\s*[\\\/]+$/, '') // trailing slashes
+  if (str.replace(/[^$]/g, '').length % 2 == 1) return null // unbalanced math
+  if (str.match(/^".*"$/)) str = str.slice(1, -1)
   return str.trim()
 }
 function parse(list) {
