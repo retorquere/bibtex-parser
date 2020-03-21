@@ -101,6 +101,12 @@
     vspace: 1,
   }
 
+  if (options.combiningDiacritics) {
+    for (const cmd of options.combiningDiacritics) {
+      has_arguments[cmd] = 1
+    }
+  }
+
   function say() {
     console.log(JSON.stringify(Array.from(arguments), null, 2))
     return true

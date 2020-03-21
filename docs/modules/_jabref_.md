@@ -1,6 +1,6 @@
 [@retorquere/bibtex-parser](../README.md) › [Globals](../globals.md) › ["jabref"](_jabref_.md)
 
-# External module: "jabref"
+# Module: "jabref"
 
 ## Index
 

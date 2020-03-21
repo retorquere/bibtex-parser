@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "lint": "tslint -t stylish --project .",
-    "prestart": "npm run lint && pegjs grammar.pegjs && npm run submodules",
     "submodules": "git submodule update --init --recursive --remote && git submodule foreach git reset --hard && git submodule foreach git checkout master && git submodule foreach git pull origin master",
+    "prestart": "npm run lint && pegjs grammar.pegjs && npm run submodules",
     "start": "tsc -d",
     "poststart": "ts-node build/parse-abbrevs.ts && npm run docs",
     "pretest": "npm start && ts-node gen-tests.ts",
@@ -39,7 +39,6 @@
     "jest": "^25.1.0",
     "jest-progress-tracker": "^2.0.2",
     "jest-specific-snapshot": "^3.0.0",
-    "jsesc": "^2.5.2",
     "markdown": "^0.5.0",
     "mkdirp": "^1.0.3",
     "pegjs": "^0.10.0",
@@ -47,13 +46,13 @@
     "ts-jest": "^25.2.1",
     "ts-node": "^8.7.0",
     "tslint": "^6.1.0",
-    "typedoc": "^0.17.1",
+    "typedoc": "^0.17.2",
     "typedoc-plugin-markdown": "^2.2.17",
     "typescript": "^3.8.3"
   },
   "dependencies": {
     "xregexp": "^4.3.0",
-    "unicode2latex": "^1.1.1"
+    "unicode2latex": "^2.1.1"
   },
   "jest": {
     "coverageDirectory": "node_modules/.cache/coverage",

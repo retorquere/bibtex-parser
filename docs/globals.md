@@ -4,7 +4,7 @@
 
 ## Index
 
-### External modules
+### Modules
 
 * ["chunker"](modules/_chunker_.md)
 * ["index"](modules/_index_.md)

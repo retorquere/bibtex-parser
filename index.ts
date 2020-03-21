@@ -1,6 +1,6 @@
 import * as bibtex from './grammar'
 import { parse as chunker } from './chunker'
-import { latex as latex2unicode } from 'unicode2latex'
+import { latex as latex2unicode, diacritics } from 'unicode2latex'
 
 type Markup = { kind: 'Markup', value: string, loc?: any, source: string }
 
@@ -433,24 +433,6 @@ class Parser {
   private chunk: string
   private options: ParserOptions
 
-  private combining_diacritic = {
-    '`': '\u0300',
-    "'": '\u0301',
-    '^': '\u0302',
-    '~': '\u0303',
-    '=': '\u0304',
-    u: '\u0306',
-    '.': '\u0307',
-    '"': '\u0308',
-    r: '\u030A',
-    H: '\u030B',
-    v: '\u030C',
-    d: '\u0323',
-    c: '\u0327',
-    k: '\u0328',
-    b: '\u0331',
-  }
-
   public log: (string) => void = function(){} // tslint:disable-line variable-name only-arrow-functions no-empty
 
   constructor(options: ParserOptions = {}) {
@@ -556,7 +538,7 @@ class Parser {
   public ast(input, clean = true) {
     const _ast = []
     for (const chunk of chunker(input)) {
-      let chunk_ast = bibtex.parse(chunk.text, this.options)
+      let chunk_ast = bibtex.parse(chunk.text, {...this.options, combiningDiacritics: diacritics.commands})
       if (clean) chunk_ast = this.clean(chunk_ast)
       _ast.push(chunk_ast)
     }
@@ -627,7 +609,7 @@ class Parser {
     this.chunk = chunk.text
 
     try {
-      let bib = bibtex.parse(chunk.text, this.options)
+      let bib = bibtex.parse(chunk.text, {...this.options, combiningDiacritics: diacritics.commands})
       if (bib.kind !== 'Bibliography') throw new Error(this.show(bib))
       bib = this.clean(bib)
 
@@ -975,7 +957,7 @@ class Parser {
       || latex2unicode[`{\\${node.mark}${char}}`]
       || latex2unicode[`\\${node.mark} ${char}`]
 
-    if (!unicode && !node.dotless && node.character.length === 1 && this.combining_diacritic[node.mark]) unicode = node.character + this.combining_diacritic[node.mark]
+    if (!unicode && !node.dotless && node.character.length === 1 && diacritics.tounicode[node.mark]) unicode = node.character + diacritics.tounicode[node.mark]
     if (!unicode) return this.error(new TeXError(`Unhandled \\${node.mark}{${char}}`, node, this.chunk), this.text())
     return this.text(unicode)
   }
@@ -1176,7 +1158,7 @@ class Parser {
         if (this.argument(node, 'none')) return this.text('\u0328')
 
       default:
-        if (this.combining_diacritic[node.command]) {
+        if (diacritics.tounicode[node.command]) {
           node.arguments.required = this.clean(node.arguments.required)
 
           const block = this.first_text_block(node.arguments.required[0])
@@ -1207,7 +1189,7 @@ class Parser {
             return this.clean({
               kind: 'Block',
               markup: {},
-              value: ([ this.text(' ' + this.combining_diacritic[node.command]) ] as bibtex.ValueType[]).concat(node.arguments.required),
+              value: ([ this.text(' ' + diacritics.tounicode[node.command]) ] as bibtex.ValueType[]).concat(node.arguments.required),
             })
           }
         }

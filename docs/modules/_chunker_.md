@@ -1,6 +1,6 @@
 [@retorquere/bibtex-parser](../README.md) › [Globals](../globals.md) › ["chunker"](_chunker_.md)
 
-# External module: "chunker"
+# Module: "chunker"
 
 ## Index
 

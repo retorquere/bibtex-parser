@@ -189,6 +189,7 @@ export interface ParseOptions {
   verbatimFields?: Array<string | RegExp>
   verbatimCommands?: string[]
   unnestFields?: string[]
+  combiningDiacritics?: string[]
 }
 
 export function parse(input: string, options?: ParseOptions): Bibliography
