@@ -1200,6 +1200,9 @@ class Parser {
             })
 
           } else {
+            // overline without arguments doesn't seem to render in LaTeX
+            if (node.command === 'overline') return this.text(' ')
+
             return this.clean({
               kind: 'Block',
               markup: {},
