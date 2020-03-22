@@ -42,7 +42,7 @@
   }
 
   const unnestFields = (options.unnestFields || []).map(field => field.toLowerCase())
-  const verbatimFields = (options.verbatimFields || [ 'url', 'doi', 'file', 'files', 'eprint', 'verba', 'verbb', 'verbc' ]).map(field => typeof field === 'string' ? field.toLowerCase() : field)
+  const verbatimFields = (options.verbatimFields || [ 'urlraw', 'url', 'doi', 'file', 'files', 'eprint', 'verba', 'verbb', 'verbc' ]).map(field => typeof field === 'string' ? field.toLowerCase() : field)
   const verbatimCommands = (options.verbatimCommands || ['url', 'href'])
 
   function isVerbatimField(name) {
@@ -105,6 +105,11 @@
     for (const cmd of options.combiningDiacritics) {
       has_arguments[cmd] = 1
     }
+  }
+
+  const script_command = {
+    '_': 'SubscriptCommand',
+    '^': 'SuperscriptCommand',
   }
 
   function say() {
@@ -445,28 +450,12 @@ Command
   / SymbolCommand
 
 ScriptCommand
-  = mode:[_\^] &'{' v:RegularValue {
+  = mode:[_\^] __h v:RequiredArgument {
     return {
-      kind: (mode === '_' ? 'Sub' : 'Super') + 'scriptCommand',
+      kind: script_command[mode],
       loc: location(),
       source: text(),
-      value: v
-    }
-  }
-  / mode:[_\^] &'\\' v:Command {
-    return {
-      kind: (mode === '_' ? 'Sub' : 'Super') + 'scriptCommand',
-      loc: location(),
-      source: text(),
-      value: v
-    }
-  }
-  / mode:[_\^] v:. {
-    return {
-      kind: (mode === '_' ? 'Sub' : 'Super') + 'scriptCommand',
-      loc: location(),
-      source: text(),
-      value: v
+      value: v,
     }
   }
 

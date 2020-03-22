@@ -1150,12 +1150,14 @@ class Parser {
 
       case 'cyr':
         if (this.argument(node, 'none')) return this.text()
+        break
 
       case 'polhk':
         if (unicode = this.argument(node, 'text')) {
           if (unicode.length === 1) return this.text(unicode + '\u0328')
         }
         if (this.argument(node, 'none')) return this.text('\u0328')
+        break
 
       default:
         if (diacritics.tounicode[node.command]) {
