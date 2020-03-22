@@ -591,7 +591,6 @@ class Parser {
   }
 
   private preserve(start, end?, reason?) {
-    // if (end) console.log('preserve:', {start, end, reason, length: this.field.text.length, text: this.field.text.substring(start, end)})
     if (!this.field.preserveRanges) return
 
     if (!end) {
@@ -1153,6 +1152,11 @@ class Parser {
         // handled in the grammar
         return this.text()
 
+      // wouldn't know what to do with these
+      case 'left':
+      case 'right':
+        return this.text()
+
       case 'par':
         return this.text('\n\n')
 
@@ -1271,7 +1275,7 @@ class Parser {
 
         this.convert_block(node)
 
-        if (preserve && (node.case || node.kind.endsWith('Math'))) this.preserve(start, this.field.text.length, `convert-block: case=${node.case}, math=${node.kind.endsWith('Math')}`)
+        if (preserve && (node.case || node.kind.endsWith('Math'))) this.preserve(start, this.field.text.length) // , `convert-block: case=${node.case}, math=${node.kind.endsWith('Math')}`)
         break
 
       case 'DisplayMath':
@@ -1491,7 +1495,7 @@ class Parser {
       } else {
         if (this.field.preserveRanges) {
           if (this.options.guessAlreadySentenceCased && Math.max(this.field.words.upper, this.field.words.lower) > (this.field.words.other + Math.min(this.field.words.upper, this.field.words.lower))) {
-            this.preserve(null, null, 'mostly sentence cased already')
+            this.preserve(null, null) // , 'mostly sentence cased already')
 
           } else {
             const txt = this.field.text.replace(preserveCase.markup, markup => marker.markup.repeat(markup.length))
@@ -1502,12 +1506,12 @@ class Parser {
               // exclude stuff like "U.S. Taxes"
               if (match.index > 2 && txt.substr(0, match.index + 1).match(preserveCase.acronym)) continue
 
-              this.preserve(match.index, match.index + match[0].length, `sentenceStart: ${match[0]} at ${match.index}..${match.index + match[0].length}`)
+              this.preserve(match.index, match.index + match[0].length) // , `sentenceStart: ${match[0]} at ${match.index}..${match.index + match[0].length}`)
             }
 
             preserveCase.quoted.lastIndex = 0
             while ((match = preserveCase.quoted.exec(this.field.text))) {
-              this.preserve(match.index, match.index + match[0].length, 'quoted')
+              this.preserve(match.index, match.index + match[0].length) // , 'quoted')
             }
           }
         }
@@ -1532,9 +1536,8 @@ class Parser {
     }
 
     let sentenceCased = text.toLowerCase().replace(/(([\?!]\s*|^)([\'\"¡¿“‘„«\s]+)?[^\s])/g, x => x.toUpperCase())
-    for (const { start, end, reason } of this.field.preserveRanges) {
+    for (const { start, end } of this.field.preserveRanges) {
       sentenceCased = sentenceCased.substring(0, start) + text.substring(start, end) + sentenceCased.substring(end)
-      console.log(start, end, reason, JSON.stringify([sentenceCased.substring(0, start), text.substring(start, end), sentenceCased.substring(end)]))
     }
     return sentenceCased
   }
@@ -1577,7 +1580,7 @@ class Parser {
       for (const word of words) {
         const start = this.field.text.length
         this.field.text += word
-        if (this.preserveCase(word)) this.preserve(start, this.field.text.length, `word: ${JSON.stringify(word)}`)
+        if (this.preserveCase(word)) this.preserve(start, this.field.text.length) // , `word: ${JSON.stringify(word)}`)
       }
     } else {
       this.field.text += node.value
@@ -1639,7 +1642,7 @@ class Parser {
       return script.length < m.length ? script : m
     })
 
-    if (node.case && this.field.preserveRanges) this.preserve(start, this.field.text.length, 'in convert-block ' + node.source || '<source>')
+    if (node.case && this.field.preserveRanges) this.preserve(start, this.field.text.length) // , 'in convert-block ' + node.source || '<source>')
   }
 }
 

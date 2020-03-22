@@ -107,11 +107,6 @@
     }
   }
 
-  const script_command = {
-    '_': 'SubscriptCommand',
-    '^': 'SuperscriptCommand',
-  }
-
   function say() {
     console.log(JSON.stringify(Array.from(arguments), null, 2))
     return true
@@ -451,8 +446,10 @@ Command
 
 ScriptCommand
   = mode:[_\^] __h v:RequiredArgument {
+    if (v.kind === 'Block') v = v.value
+
     return {
-      kind: script_command[mode],
+      kind: mode === '_' ? 'SubscriptCommand' : 'SuperscriptCommand',
       loc: location(),
       source: text(),
       value: v,
