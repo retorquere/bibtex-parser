@@ -41,7 +41,8 @@ function unjunk(str) {
 }
 function parse(list) {
   console.log('parsing', list, '...')
-  for (let [journal, abbr] of csv(fs.readFileSync(list, 'utf-8'), { delimiter: ';'})) {
+  for (const row of csv(fs.readFileSync(list, 'utf-8'), { delimiter: ';', relax_column_count: true })) {
+    let [journal, abbr] = row.slice(0, 2)
     journal = unjunk(journal)
     abbr = unjunk(abbr)
 
