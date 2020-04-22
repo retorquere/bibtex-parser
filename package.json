@@ -19,7 +19,8 @@
     "postversion": "git push --follow-tags",
     "update-cases": "rsync -av --delete --include='merge/' --include='import/' --include='export/' --exclude='*/' --include='*.bib' --include='*.bibtex' --include='*.biblatex' --exclude='*' ../better-bibtex/test/fixtures/ __tests__/better-bibtex/",
     "update-snapshots": "jest --updateSnapshot",
-    "docs": "typedoc --theme markdown --disableOutputCheck . && touch docs/.nojekyll"
+    "docs": "typedoc --theme markdown --disableOutputCheck . && touch docs/.nojekyll",
+    "ncu": "ncu -u && npm i && git add package.json package-lock.json && git commit -m ncu"
   },
   "repository": {
     "type": "git",
@@ -33,26 +34,26 @@
   "devDependencies": {
     "@retorquere/jasmine-fail-fast": "^2.0.4",
     "@types/jest": "^25.2.1",
-    "@types/node": "^13.11.0",
+    "@types/node": "^13.13.2",
     "csv": "^5.3.2",
     "digital-tree": "^2.0.1",
-    "jest": "^25.2.7",
+    "jest": "^25.4.0",
     "jest-progress-tracker": "^2.0.2",
     "jest-specific-snapshot": "^3.0.0",
     "markdown": "^0.5.0",
     "mkdirp": "^1.0.4",
     "pegjs": "^0.10.0",
     "slugify": "^1.4.0",
-    "ts-jest": "^25.3.1",
-    "ts-node": "^8.8.1",
+    "ts-jest": "^25.4.0",
+    "ts-node": "^8.9.0",
     "tslint": "^6.1.1",
-    "typedoc": "^0.17.3",
+    "typedoc": "^0.17.4",
     "typedoc-plugin-markdown": "^2.2.17",
     "typescript": "^3.8.3"
   },
   "dependencies": {
     "xregexp": "^4.3.0",
-    "unicode2latex": "^2.1.10"
+    "unicode2latex": "^2.1.18"
   },
   "jest": {
     "coverageDirectory": "node_modules/.cache/coverage",
