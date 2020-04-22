@@ -20,7 +20,7 @@
     "update-cases": "rsync -av --delete --include='merge/' --include='import/' --include='export/' --exclude='*/' --include='*.bib' --include='*.bibtex' --include='*.biblatex' --exclude='*' ../better-bibtex/test/fixtures/ __tests__/better-bibtex/",
     "update-snapshots": "jest --updateSnapshot",
     "docs": "typedoc --theme markdown --disableOutputCheck . && touch docs/.nojekyll",
-    "ncu": "ncu -u && npm i && git add package.json package-lock.json && git commit -m ncu"
+    "ncu": "npm run submodules && git add jabref abbrv.jabref.org && ncu -u && npm i && git add package.json package-lock.json && git commit -m ncu"
   },
   "repository": {
     "type": "git",
