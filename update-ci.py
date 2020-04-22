@@ -3,7 +3,6 @@
 import json
 import os
 import getopt
-from termcolor import colored
 import sys
 import argparse, shlex
 
@@ -21,7 +20,7 @@ for sc in ['off', 'on', 'on+guess']:
     env = f'CI=true SENTENCECASE={sc} CASEPROTECTION={cp}'
     if args.test: env += f' TESTCASE={shlex.quote(args.test)}'
     print()
-    print(colored(n, 'yellow'), colored(env, 'red'))
+    print(n, env)
     print()
 
     if os.system(f'{env} npm run update-ci') != 0:
