@@ -247,7 +247,7 @@ const fields = {
   creator: [
     'author',
     'bookauthor',
-    'collaborators',
+    'collaborator',
     'commentator',
     'director',
     'editor',
@@ -257,7 +257,6 @@ const fields = {
     'holder',
     'scriptwriter',
     'translator',
-    'translators',
   ],
   title: [
     'title',
@@ -855,8 +854,8 @@ class Parser {
     name = name.toLowerCase()
     if (fields.title.includes(name)) {
       this.cleaning = { type: 'title', name }
-    } else if (fields.creator.includes(name)) {
-      this.cleaning = { type: 'creator', name }
+    } else if (fields.creator.includes(name.replace(/s$/, ''))) {
+      this.cleaning = { type: 'creator', name: name.replace(/s$/, '') }
     } else {
       this.cleaning = { type: 'other', name }
     }
@@ -1172,11 +1171,28 @@ class Parser {
         break
 
       default:
+        // console.log(node.kind)
         if (diacritics.tounicode[node.command]) {
           node.arguments.required = this.clean(node.arguments.required)
 
-          const block = this.first_text_block(node.arguments.required[0])
-          if (block) {
+          let block: bibtex.Block
+          if (node.arguments.required.length === 1 && node.arguments.required[0].kind === 'Text') {
+            // no idea why I can't just straight return this but typescript just won't shut up
+            block = {
+              kind: 'Block',
+              markup: {},
+              value: [ {
+                kind: 'DiacriticCommand',
+                mark: node.command,
+                character: (node.arguments.required[0] as bibtex.TextValue).value,
+                dotless: false,
+                loc: node.arguments.required[0].loc,
+                source: node.arguments.required[0].source,
+              } ],
+            }
+            return this.clean(block)
+
+          } else if (block = this.first_text_block(node.arguments.required[0])) {
             let fixed = false
             block.value = block.value.reduce((value, child) => {
               if (!fixed && child.kind === 'Text') {

@@ -29,9 +29,10 @@ function find_links(tree) {
 }
 find_links(readme)
 
-const obviously_wrong = [
-  '20 21',
-]
+const obviously_wrong = {
+  abbr: ['20 21'],
+  full: ['IEEE Expert (through 1997)'],
+}
 function unjunk(str) {
   // so much junk in there
   str = (str || '').replace(/\s*[\\\/]+$/, '') // trailing slashes
@@ -41,6 +42,10 @@ function unjunk(str) {
 }
 function parse(list) {
   console.log('parsing', list, '...')
+  if (!fs.existsSync(list)) {
+    console.log('!!!', list, 'IS GONE!!!')
+    return
+  }
   for (const row of csv(fs.readFileSync(list, 'utf-8'), { delimiter: ';', relax_column_count: true })) {
     let [journal, abbr] = row.slice(0, 2)
     journal = unjunk(journal)
@@ -49,7 +54,8 @@ function parse(list) {
     if (!abbr) continue
     if (!journal) journal = ''
     if (journal.toLowerCase() === abbr.toLowerCase()) journal = ''
-    if (obviously_wrong.includes(abbr)) continue
+    if (obviously_wrong.abbr.includes(abbr)) continue
+    if (obviously_wrong.full.includes(journal)) continue
 
     if (abbr.match(/^#.+#$/)) {
       strings[abbr.slice(1, -1)] = [{ kind: 'Text', value: journal, mode: 'text' }]
