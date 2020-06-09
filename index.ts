@@ -221,9 +221,9 @@ export interface Bibliography {
   strings: { [key: string]: string }
 
   /**
-   * `@preamble` found in the bibtex file
+   * `@preamble` declarations found in the bibtex file
    */
-  preamble: string
+  preamble: string[]
 }
 
 export interface ParseError {
@@ -436,7 +436,7 @@ class Parser {
   private field: FieldBuilder
   private chunk: string
   private options: ParserOptions
-  private preamble: string = ''
+  private preamble: string[] = []
 
   public log: (string) => void = function(str) {} // tslint:disable-line variable-name only-arrow-functions no-empty
 
@@ -1303,7 +1303,7 @@ class Parser {
         break
 
       case 'PreambleExpression':
-        this.preamble += node.value.map(preamble => preamble.source).join('\n\n')
+        this.preamble.push(node.value.map(preamble => preamble.source).join('\n\n'))
         break
 
       case 'DisplayMath':

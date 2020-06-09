@@ -44,9 +44,9 @@ ___
 
 ###  preamble
 
-• **preamble**: *string*
+• **preamble**: *string[]*
 
-`@preamble` found in the bibtex file
+`@preamble` declarations found in the bibtex file
 
 ___
 
