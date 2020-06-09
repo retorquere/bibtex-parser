@@ -13,6 +13,7 @@
 * [comments](_index_.bibliography.md#comments)
 * [entries](_index_.bibliography.md#entries)
 * [errors](_index_.bibliography.md#errors)
+* [preamble](_index_.bibliography.md#preamble)
 * [strings](_index_.bibliography.md#strings)
 
 ## Properties
@@ -38,6 +39,14 @@ ___
 • **errors**: *[ParseError](_index_.parseerror.md)[]*
 
 errors found while parsing
+
+___
+
+###  preamble
+
+• **preamble**: *string*
+
+`@preamble` found in the bibtex file
 
 ___
 

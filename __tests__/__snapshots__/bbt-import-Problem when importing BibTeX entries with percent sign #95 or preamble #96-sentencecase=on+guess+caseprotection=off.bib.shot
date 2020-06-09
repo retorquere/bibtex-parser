@@ -80,6 +80,49 @@ Object {
     "root": Array [],
     "version": null,
   },
+  "preamble": "\\" 
+
+\\\\makeatletter
+
+
+\\\\@
+
+ifundefined
+
+{url}
+
+{\\\\newcommand{\\\\url}[1]{\\\\texttt{#1}}}
+
+{}
+
+
+
+
+\\\\@
+
+ifundefined
+
+{bibcyr}
+
+{\\\\newcommand{\\\\bibcyr}[1]{---}}
+
+{}
+
+
+
+
+\\\\ProvideTextCommandDefault
+
+{\\\\textmu}
+
+{\\\\ensuremath{\\\\mu}}
+
+
+
+
+\\\\makeatother 
+
+\\"",
   "strings": Object {},
 }
 `;
