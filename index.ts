@@ -219,6 +219,11 @@ export interface Bibliography {
    * `@string`s found in the bibtex file.
    */
   strings: { [key: string]: string }
+
+  /**
+   * `@preamble` found in the bibtex file
+   */
+  preamble: string
 }
 
 export interface ParseError {
@@ -431,6 +436,7 @@ class Parser {
   private field: FieldBuilder
   private chunk: string
   private options: ParserOptions
+  private preamble: string = ''
 
   public log: (string) => void = function(str) {} // tslint:disable-line variable-name only-arrow-functions no-empty
 
@@ -586,6 +592,7 @@ class Parser {
       entries: this.entries,
       comments: this.comments,
       strings,
+      preamble: this.preamble,
     }
   }
 
@@ -624,10 +631,10 @@ class Parser {
           case 'Entry':
           case 'BracedComment':
           case 'LineComment':
+          case 'PreambleExpression':
             this.convert(entity)
             break
 
-          case 'PreambleExpression':
           case 'StringDeclaration':
           case 'NonEntryText':
             break
@@ -752,7 +759,6 @@ class Parser {
   }
 
   private clean(node: Node | Node[]) {
-
     if (Array.isArray(node)) return node.map(child => this.clean(child))
     delete node.loc
 
@@ -1171,7 +1177,6 @@ class Parser {
         break
 
       default:
-        // console.log(node.kind)
         if (diacritics.tounicode[node.command]) {
           node.arguments.required = this.clean(node.arguments.required)
 
@@ -1297,9 +1302,12 @@ class Parser {
         if (preserve && (node.case || node.kind.endsWith('Math'))) this.preserve(start, this.field.text.length) // , `convert-block: case=${node.case}, math=${node.kind.endsWith('Math')}`)
         break
 
+      case 'PreambleExpression':
+        this.preamble += node.value.map(preamble => preamble.source).join('\n\n')
+        break
+
       case 'DisplayMath':
       case 'InlineMath':
-      case 'PreambleExpression':
       case 'StringDeclaration':
         break
 

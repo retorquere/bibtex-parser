@@ -226,7 +226,15 @@ Entry
   }
 
 PreambleExpression
-  = '@' __ 'preamble'i __ [({] __ v:RegularValue* __ [})] __ {
+  = '@' __ 'preamble'i __ opener:[({] __ v:(Block / Math / Command / Text)* __ closer:[})] __ {
+    switch (opener + closer) {
+      case '{}':
+      case '()':
+        break
+      default:
+        throw new Error(`Unbalanced opener-closer for preamble: ${opener}...${closer}`)
+        break
+    }
     return {
       kind: 'PreambleExpression',
       loc: location(),
