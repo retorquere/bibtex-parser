@@ -260,35 +260,46 @@ EntryId
   = __ id:$[^ \t\r\n,]* __ ',' { return id; }
 
 Field
-  = k:FieldName &{ return isVerbatimField(k.toLowerCase()) } FieldSeparator v:VerbatimFieldValue FieldTerminator {
+  = name:FieldName &{ return isVerbatimField(name.toLowerCase()) && unnestFields.includes(name.toLowerCase()) } FieldSeparator '{' &'{' value:VerbatimFieldValue '}' FieldTerminator {
+    // because this was abused so much, many processors treat double-outer-braces as single
     return {
       kind: 'Field',
       loc: location(),
       source: text(),
-      name: k.toLowerCase(),
+      name: name.toLowerCase(),
       loc: location(),
-      value: [ protect(v) ]
+      value: [ protect(value) ]
     }
   }
-  / k:FieldName FieldSeparator v:FieldValue FieldTerminator {
-    const field = {
+  / name:FieldName &{ return isVerbatimField(name.toLowerCase()) } FieldSeparator value:VerbatimFieldValue FieldTerminator {
+    return {
       kind: 'Field',
       loc: location(),
       source: text(),
-      name: k.toLowerCase(),
-      value: v,
+      name: name.toLowerCase(),
+      loc: location(),
+      value: [ protect(value) ]
     }
+  }
+  / name:FieldName FieldSeparator value:FieldValue FieldTerminator {
+    name = name.toLowerCase()
 
     // because this was abused so much, many processors treat double-outer-braces as single
-    if (unnestFields.includes(field.name) && Array.isArray(v) && v.length === 1 && v[0].kind === 'Block') {
+    if (unnestFields.includes(name) && Array.isArray(value) && value.length === 1 && value[0].kind === 'Block') {
       if (options.unnestMode === 'preserve') {
-        v[0].case = 'preserve'
+        value[0].case = 'preserve'
       } else {
-        field.value = v[0].value
+        value = value[0].value
       }
     }
 
-    return field
+    return {
+      kind: 'Field',
+      loc: location(),
+      source: text(),
+      name: name,
+      value: value,
+    }
   }
 
 FieldName
