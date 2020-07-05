@@ -260,30 +260,28 @@ EntryId
   = __ id:$[^ \t\r\n,]* __ ',' { return id; }
 
 Field
-  = name:FieldName &{ return isVerbatimField(name.toLowerCase()) && unnestFields.includes(name.toLowerCase()) } FieldSeparator '{' &'{' value:VerbatimFieldValue '}' FieldTerminator {
+  = name:FieldName &{ return isVerbatimField(name) && unnestFields.includes(name) } FieldSeparator '{' &'{' value:VerbatimFieldValue '}' FieldTerminator {
     // because this was abused so much, many processors treat double-outer-braces as single
     return {
       kind: 'Field',
       loc: location(),
       source: text(),
-      name: name.toLowerCase(),
+      name: name,
       loc: location(),
       value: [ protect(value) ]
     }
   }
-  / name:FieldName &{ return isVerbatimField(name.toLowerCase()) } FieldSeparator value:VerbatimFieldValue FieldTerminator {
+  / name:FieldName &{ return isVerbatimField(name) } FieldSeparator value:VerbatimFieldValue FieldTerminator {
     return {
       kind: 'Field',
       loc: location(),
       source: text(),
-      name: name.toLowerCase(),
+      name: name,
       loc: location(),
       value: [ protect(value) ]
     }
   }
   / name:FieldName FieldSeparator value:FieldValue FieldTerminator {
-    name = name.toLowerCase()
-
     // because this was abused so much, many processors treat double-outer-braces as single
     if (unnestFields.includes(name) && Array.isArray(value) && value.length === 1 && value[0].kind === 'Block') {
       if (options.unnestMode === 'preserve') {
@@ -303,7 +301,7 @@ Field
   }
 
 FieldName
-  = __ k:$[_:a-zA-Z0-9-]+ { return k; }
+  = __ name:$[_:a-zA-Z0-9-]+ { return name.toLowerCase() }
 
 //----------------------- Value Descriptors
 
