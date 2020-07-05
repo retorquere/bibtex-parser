@@ -330,6 +330,7 @@ class BibtexParser {
     this.skipWhitespace()
     if (this.pos >= this.input.length) return
 
+    let guard = ''
     try {
       const d = this.directive()
       switch (d) {
@@ -353,9 +354,16 @@ class BibtexParser {
           break
 
         default:
-          this.match('{')
+          if (this.tryMatch('{')) {
+            guard = '{}'
+          } else if (this.tryMatch('(')) {
+            guard = '()'
+          } else {
+            throw new ParseError(`Token mismatch, expected '{' or '(', found ${JSON.stringify(this.input.substr(this.pos, 20))}...`, this) // tslint:disable-line no-magic-numbers
+          }
+          this.match(guard[0])
           this.entry(d)
-          this.match('}')
+          this.match(guard[1])
           chunk.entry = true
           this.entries++
           break
