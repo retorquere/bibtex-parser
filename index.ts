@@ -277,6 +277,16 @@ const fields = {
     'publisher',
     'location',
   ],
+  verbatim: [
+    'url',
+    'doi',
+    'file',
+    'files',
+    'eprint',
+    'verba',
+    'verbb',
+    'verbc',
+  ],
   html: [
     'annotation',
     'comment',
@@ -469,9 +479,9 @@ class Parser {
 
     this.options = {
       caseProtection: 'as-needed',
-      verbatimFields: [ /^citeulike-linkout-[0-9]+$/, 'url', 'doi', 'file', 'files', 'eprint', 'verba', 'verbb', 'verbc' ],
+      verbatimFields: [ /^citeulike-linkout-[0-9]+$/, ...fields.verbatim],
       verbatimCommands: [ 'url', 'href' ],
-      unnestFields: fields.title.concat(fields.unnest),
+      unnestFields: [ ...fields.title, ...fields.unnest, ...fields.verbatim],
       unnestMode: 'unwrap',
       htmlFields: fields.html,
       guessAlreadySentenceCased: true,
