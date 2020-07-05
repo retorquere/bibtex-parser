@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`bbt-export-Unicode ø in author name is exported with trailing space which does not work in bibtex #1538-sentencecase=off+caseprotection=as-needed.bibtex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Henrik Enggaard",
+            "lastName": "Hansen",
+          },
+          Object {
+            "firstName": "Metodi P",
+            "lastName": "Yankov",
+          },
+          Object {
+            "firstName": "Pawel M",
+            "lastName": "Kaminski",
+          },
+          Object {
+            "firstName": "Francesco Da",
+            "lastName": "Ros",
+          },
+          Object {
+            "firstName": "Leif K.",
+            "lastName": "Oxenløwe",
+          },
+          Object {
+            "firstName": "Søren",
+            "lastName": "Forchhammer",
+          },
+        ],
+      },
+      "fields": Object {
+        "annote": Array [
+          "Review from CLEO 2020 
+
+<ul> <li>Clean experiment, shows different optimal constellation for OPC than for regular transmission. Good work <li>The amount of work is impressive, and the problem is addressed for the first time in case of OPC, however, it is not an important problem, since OPC is not industrially feasible. Borderline. </ul>",
+        ],
+        "author": Array [
+          "Hansen, Henrik Enggaard",
+          "Yankov, Metodi P",
+          "Kaminski, Pawel M",
+          "Ros, Francesco Da",
+          "Oxenløwe, Leif K.",
+          "Forchhammer, Søren",
+        ],
+        "booktitle": Array [
+          "Conference on <span class=\\"nocase\\">Lasers</span> and <span class=\\"nocase\\">Electro</span>-Optics",
+        ],
+        "copyright": Array [
+          "All rights reserved",
+        ],
+        "language": Array [
+          "en",
+        ],
+        "lccn": Array [
+          "STu3L.5",
+        ],
+        "pages": Array [
+          "2",
+        ],
+        "title": Array [
+          "Noise Statistics and Its Implications on Optimal Constellation Shapes for Channels with Optical Phase Conjugation",
+        ],
+        "year": Array [
+          "2020",
+        ],
+      },
+      "key": "hansenNoiseStatisticsIts2020",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;
