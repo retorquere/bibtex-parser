@@ -1,0 +1,111 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`bbt-export-Error exporting with custom Extra field #1118-sentencecase=on+guess+caseprotection=as-needed.bibtex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Saharon",
+            "lastName": "Shelah",
+          },
+        ],
+      },
+      "fields": Object {
+        "annote": Array [
+          "MR 46:7018",
+        ],
+        "author": Array [
+          "Shelah, Saharon",
+        ],
+        "editortype": Array [
+          "translated and edited under the supervision of",
+        ],
+        "journal": Array [
+          "Pacific Journal of Mathematics",
+        ],
+        "note": Array [
+          "{biblatex{ editortype: \\"translated and edited under the supervision of\\", referencetype: mvlexicon }} {}",
+        ],
+        "pages": Array [
+          "247–261",
+        ],
+        "title": Array [
+          "A combinatorial problem; stability and order for models and theories in infinitary languages",
+        ],
+        "volume": Array [
+          "41",
+        ],
+        "year": Array [
+          "1972",
+        ],
+      },
+      "key": "Shelahcombinatorialproblemstability1972",
+      "type": "mvlexicon",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;
+
+exports[`export Error exporting with custom Extra field #1118.bibtex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Saharon",
+            "lastName": "Shelah",
+          },
+        ],
+      },
+      "fields": Object {
+        "annote": Array [
+          "MR 46:7018",
+        ],
+        "author": Array [
+          "Shelah, Saharon",
+        ],
+        "editortype": Array [
+          "translated and edited under the supervision of",
+        ],
+        "journal": Array [
+          "Pacific Journal of Mathematics",
+        ],
+        "note": Array [
+          "{biblatex{ editortype: \\"translated and edited under the supervision of\\", referencetype: mvlexicon }} {}",
+        ],
+        "pages": Array [
+          "247–261",
+        ],
+        "title": Array [
+          "A combinatorial problem; stability and order for models and theories in infinitary languages",
+        ],
+        "volume": Array [
+          "41",
+        ],
+        "year": Array [
+          "1972",
+        ],
+      },
+      "key": "Shelahcombinatorialproblemstability1972",
+      "type": "mvlexicon",
+    },
+  ],
+  "errors": Array [],
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;

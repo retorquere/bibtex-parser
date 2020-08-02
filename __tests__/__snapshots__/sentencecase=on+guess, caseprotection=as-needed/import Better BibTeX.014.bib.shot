@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`bbt-import-Better BibTeX.014-sentencecase=on+guess+caseprotection=as-needed.bib 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "title": Array [
+          "\\\\\\\\{}:",
+        ],
+      },
+      "key": "BibTeXEscapeTest1",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;
+
+exports[`import Better BibTeX.014.bib 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "title": Array [
+          "\\\\\\\\{}:",
+        ],
+      },
+      "key": "BibTeXEscapeTest1",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;

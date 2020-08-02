@@ -194,6 +194,8 @@ export interface MarkupMapping {
   enquote?: { open: string, close: string }
   h1?: { open: string, close: string }
   h2?: { open: string, close: string }
+  h3?: { open: string, close: string }
+  h4?: { open: string, close: string }
 
   roman?: { open: string, close: string }
   fixedWidth?: { open: string, close: string }
@@ -502,6 +504,8 @@ class Parser {
       fixedWidth: { open: '', close: '' },
       h1: { open: '<h1>', close: '</h1>' },
       h2: { open: '<h2>', close: '</h2>' },
+      h3: { open: '<h3>', close: '</h3>' },
+      h4: { open: '<h4>', close: '</h4>' },
     }
     // patch in because the options will likely not have enquote and case-protect
     for (const [markup, {open, close}] of Object.entries(markup_defaults)) {
@@ -564,14 +568,14 @@ class Parser {
     return this.options.async ? this.parseAsync(input) : this.parseSync(input)
   }
 
-  private parseSync(input): Bibliography {
+  public parseSync(input): Bibliography {
     for (const chunk of chunker(input)) {
       this.parseChunk(chunk)
     }
     return this.parsed()
   }
 
-  private async parseAsync(input): Promise<Bibliography> {
+  public async parseAsync(input): Promise<Bibliography> {
     for (const chunk of await chunker(input, { async: true })) {
       this.parseChunk(chunk)
     }
@@ -1111,6 +1115,8 @@ class Parser {
 
       case 'section':
       case 'subsection':
+      case 'subsubsection':
+      case 'subsubsubsection':
         if (arg = this.argument(node, 'Block')) return this.clean(arg)
         break
 
@@ -1689,6 +1695,14 @@ class Parser {
 export function parse(input: string, options: ParserOptions = {}): Bibliography | Promise<Bibliography> {
   const parser = new Parser(options)
   return parser.parse(input)
+}
+export function parseSync(input: string, options: ParserOptions = {}): Bibliography {
+  const parser = new Parser(options)
+  return parser.parseSync(input)
+}
+export function parseAsync(input: string, options: ParserOptions = {}): Promise<Bibliography> {
+  const parser = new Parser(options)
+  return parser.parseAsync(input)
 }
 
 export function ast(input: string, options: ParserOptions = {}, clean = true) {

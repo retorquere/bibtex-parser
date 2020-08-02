@@ -22,6 +22,8 @@
 
 * [ast](_index_.md#ast)
 * [parse](_index_.md#parse)
+* [parseAsync](_index_.md#parseasync)
+* [parseSync](_index_.md#parsesync)
 
 ## References
 
@@ -67,3 +69,33 @@ Name | Type | Default |
 `options` | [ParserOptions](../interfaces/_index_.parseroptions.md) | {} |
 
 **Returns:** *[Bibliography](../interfaces/_index_.bibliography.md) | Promise‹[Bibliography](../interfaces/_index_.bibliography.md)›*
+
+___
+
+###  parseAsync
+
+▸ **parseAsync**(`input`: string, `options`: [ParserOptions](../interfaces/_index_.parseroptions.md)): *Promise‹[Bibliography](../interfaces/_index_.bibliography.md)›*
+
+**Parameters:**
+
+Name | Type | Default |
+------ | ------ | ------ |
+`input` | string | - |
+`options` | [ParserOptions](../interfaces/_index_.parseroptions.md) | {} |
+
+**Returns:** *Promise‹[Bibliography](../interfaces/_index_.bibliography.md)›*
+
+___
+
+###  parseSync
+
+▸ **parseSync**(`input`: string, `options`: [ParserOptions](../interfaces/_index_.parseroptions.md)): *[Bibliography](../interfaces/_index_.bibliography.md)*
+
+**Parameters:**
+
+Name | Type | Default |
+------ | ------ | ------ |
+`input` | string | - |
+`options` | [ParserOptions](../interfaces/_index_.parseroptions.md) | {} |
+
+**Returns:** *[Bibliography](../interfaces/_index_.bibliography.md)*

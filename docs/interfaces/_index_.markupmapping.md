@@ -18,6 +18,8 @@ Markup mapping. As the bibtex file is parsed, markup will be transformed accordi
 * [fixedWidth](_index_.markupmapping.md#optional-fixedwidth)
 * [h1](_index_.markupmapping.md#optional-h1)
 * [h2](_index_.markupmapping.md#optional-h2)
+* [h3](_index_.markupmapping.md#optional-h3)
+* [h4](_index_.markupmapping.md#optional-h4)
 * [italics](_index_.markupmapping.md#optional-italics)
 * [roman](_index_.markupmapping.md#optional-roman)
 * [smallCaps](_index_.markupmapping.md#optional-smallcaps)
@@ -89,6 +91,30 @@ ___
 ### `Optional` h2
 
 • **h2**? : *object*
+
+#### Type declaration:
+
+* **close**: *string*
+
+* **open**: *string*
+
+___
+
+### `Optional` h3
+
+• **h3**? : *object*
+
+#### Type declaration:
+
+* **close**: *string*
+
+* **open**: *string*
+
+___
+
+### `Optional` h4
+
+• **h4**? : *object*
 
 #### Type declaration:
 

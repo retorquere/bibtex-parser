@@ -85,10 +85,12 @@
     mkbibquote: 1,
     noopsort: 1,
     ocirc: 1,
-    section: 1,
     sb: 1,
     sp: 1,
+    section: 1,
     subsection: 1,
+    subsubsection: 1,
+    subsubsubsection: 1,
     t: 1,
     textbf: 1,
     textit: 1,
@@ -588,6 +590,12 @@ RegularCommand
           break
         case 'subsection':
           req.markup.h2 = true
+          break
+        case 'subsubsection':
+          req.markup.h3 = true
+          break
+        case 'subsubsubsection':
+          req.markup.h4 = true
           break
       }
     }
