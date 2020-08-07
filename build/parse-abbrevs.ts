@@ -14,8 +14,6 @@ const journals = 'abbrv.jabref.org/journals'
 
 const readme = markdown.parse(fs.readFileSync(path.join(journals, 'README.md'), 'utf-8'))
 const titles: Record<string, string> = {
-  'IEEEJournalListCode.csv': 'IEEEStrings',
-  'IEEEJournalListText.csv': 'IEEE',
   'journalList.csv': 'JabRef',
 }
 function find_links(tree) {
@@ -30,8 +28,8 @@ function find_links(tree) {
 find_links(readme)
 
 const obviously_wrong = {
-  abbr: ['20 21'],
-  full: ['IEEE Expert (through 1997)'],
+  abbr: ['20 21', 'Journal'],
+  full: ['IEEE Expert (through 1997)', 'The Journal'],
 }
 function unjunk(str) {
   // so much junk in there
