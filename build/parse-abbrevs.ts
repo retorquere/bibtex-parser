@@ -38,6 +38,7 @@ function unjunk(str) {
   if (str.match(/^".*"$/)) str = str.slice(1, -1)
   return str.trim()
 }
+
 function parse(list) {
   console.log('parsing', list, '...')
   if (!fs.existsSync(list)) {
@@ -61,10 +62,10 @@ function parse(list) {
       delete unabbrev[abbr]
 
     } else {
-      unabbrev[abbr] = { text: journal, ast: null }
+      if (journal) unabbrev[abbr] = { text: journal, ast: null }
 
       if (list === 'unabbr-amendments.csv') {
-        if (abbr.includes('. ')) unabbrev[abbr.replace(/\. /g, ' ').replace(/\.$/, '')] = { text: journal, ast: null }
+        if (journal && abbr.includes('. ')) unabbrev[abbr.replace(/\. /g, ' ').replace(/\.$/, '')] = { text: journal, ast: null }
       } else {
         const id = titles[path.basename(list)]
         if (!abbrev[id]) abbrev[id] = {}
@@ -74,8 +75,13 @@ function parse(list) {
   }
 }
 
+const parsed: Record<string, boolean> = {}
 for (const list of require('./load-order.json')) {
   parse(list)
+  parsed[path.basename(list)] = true
+}
+for (const [file, title] of Object.entries(titles)) {
+  if (!parsed[file]) console.log('Unparsed:', file, title)
 }
 
 console.log('AST-ing unabbreviations')
