@@ -62,10 +62,10 @@ function parse(list) {
       delete unabbrev[abbr]
 
     } else {
-      if (journal) unabbrev[abbr] = { text: journal, ast: null }
+      unabbrev[abbr] = { text: journal, ast: null }
 
       if (list === 'unabbr-amendments.csv') {
-        if (journal && abbr.includes('. ')) unabbrev[abbr.replace(/\. /g, ' ').replace(/\.$/, '')] = { text: journal, ast: null }
+        if (abbr.includes('. ')) unabbrev[abbr.replace(/\. /g, ' ').replace(/\.$/, '')] = { text: journal, ast: null }
       } else {
         const id = titles[path.basename(list)]
         if (!abbrev[id]) abbrev[id] = {}
