@@ -13,6 +13,7 @@
 * [creators](_index_.entry.md#creators)
 * [fields](_index_.entry.md#fields)
 * [key](_index_.entry.md#key)
+* [sentenceCased](_index_.entry.md#optional-sentencecased)
 * [type](_index_.entry.md#type)
 
 ## Properties
@@ -46,6 +47,14 @@ ___
 • **key**: *string*
 
 citation key
+
+___
+
+### `Optional` sentenceCased
+
+• **sentenceCased**? : *boolean*
+
+will be set to `true` if sentence casing was applied to the entry
 
 ___
 

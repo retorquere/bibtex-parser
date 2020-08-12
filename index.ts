@@ -166,6 +166,11 @@ export interface Entry {
    * authors, editors, by creator type. Name order within the creator-type is retained.
    */
   creators: { [type: string]: Name[] }
+
+  /**
+   * will be set to `true` if sentence casing was applied to the entry
+   */
+  sentenceCased?: boolean
 }
 
 type FieldBuilder = {
@@ -1576,6 +1581,9 @@ class Parser {
     for (const { start, end } of this.field.preserveRanges) {
       sentenceCased = sentenceCased.substring(0, start) + text.substring(start, end) + sentenceCased.substring(end)
     }
+
+    if (text !== sentenceCased) this.entry.sentenceCased = true
+
     return sentenceCased
   }
 
