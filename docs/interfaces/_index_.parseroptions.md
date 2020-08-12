@@ -13,7 +13,6 @@
 * [async](_index_.parseroptions.md#optional-async)
 * [caseProtection](_index_.parseroptions.md#optional-caseprotection)
 * [errorHandler](_index_.parseroptions.md#optional-errorhandler)
-* [guessAlreadySentenceCased](_index_.parseroptions.md#optional-guessalreadysentencecased)
 * [htmlFields](_index_.parseroptions.md#optional-htmlfields)
 * [markup](_index_.parseroptions.md#optional-markup)
 * [raw](_index_.parseroptions.md#optional-raw)
@@ -51,15 +50,6 @@ ___
 
 By default, when an unexpected parsing error is found (such as a TeX command which I did not anticipate), the parser will throw an error. You can pass a function to handle the error instead,
 where you can log it, display it, or even still throw an error
-
-___
-
-### `Optional` guessAlreadySentenceCased
-
-• **guessAlreadySentenceCased**? : *boolean*
-
-Some bibtex has titles in sentence case, or all-uppercase. If this is on, and there is a field that would normally have sentence-casing applied in which more words are all-`X`case
-(where `X` is either lower or upper) than mixed-case, it is assumed that you want them this way, and no sentence-casing will be applied to that field
 
 ___
 

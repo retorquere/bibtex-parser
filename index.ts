@@ -342,12 +342,6 @@ export interface ParserOptions {
   sentenceCase?: string[] | boolean
 
   /**
-   * Some bibtex has titles in sentence case, or all-uppercase. If this is on, and there is a field that would normally have sentence-casing applied in which more words are all-`X`case
-   * (where `X` is either lower or upper) than mixed-case, it is assumed that you want them this way, and no sentence-casing will be applied to that field
-   */
-  guessAlreadySentenceCased?: boolean
-
-  /**
    * translate braced parts of text into a case-protected counterpart; uses the [[MarkupMapping]] table in `markup`. Default == true == as-needed.
    * In as-needed mode the parser will assume that words that have capitals in them imply "nocase" behavior in the consuming application. If you don't want this, turn this option on, and you'll get
    * case protection exactly as the input has it
@@ -489,7 +483,6 @@ class Parser {
       unnestFields: [ ...fields.title, ...fields.unnest, ...fields.verbatim],
       unnestMode: 'unwrap',
       htmlFields: fields.html,
-      guessAlreadySentenceCased: true,
       markup: {},
 
       ...options,
@@ -1536,25 +1529,20 @@ class Parser {
 
       } else {
         if (this.field.preserveRanges) {
-          if (this.options.guessAlreadySentenceCased && Math.max(this.field.words.upper, this.field.words.lower) > (this.field.words.other + Math.min(this.field.words.upper, this.field.words.lower))) {
-            this.preserve(null, null) // , 'mostly sentence cased already')
+          const txt = this.field.text.replace(preserveCase.markup, markup => marker.markup.repeat(markup.length))
 
-          } else {
-            const txt = this.field.text.replace(preserveCase.markup, markup => marker.markup.repeat(markup.length))
+          let match
+          preserveCase.sentenceStart.lastIndex = 0
+          while ((match = preserveCase.sentenceStart.exec(txt))) {
+            // exclude stuff like "U.S. Taxes"
+            if (match.index > 2 && txt.substr(0, match.index + 1).match(preserveCase.acronym)) continue
 
-            let match
-            preserveCase.sentenceStart.lastIndex = 0
-            while ((match = preserveCase.sentenceStart.exec(txt))) {
-              // exclude stuff like "U.S. Taxes"
-              if (match.index > 2 && txt.substr(0, match.index + 1).match(preserveCase.acronym)) continue
+            this.preserve(match.index, match.index + match[0].length) // , `sentenceStart: ${match[0]} at ${match.index}..${match.index + match[0].length}`)
+          }
 
-              this.preserve(match.index, match.index + match[0].length) // , `sentenceStart: ${match[0]} at ${match.index}..${match.index + match[0].length}`)
-            }
-
-            preserveCase.quoted.lastIndex = 0
-            while ((match = preserveCase.quoted.exec(this.field.text))) {
-              this.preserve(match.index, match.index + match[0].length) // , 'quoted')
-            }
+          preserveCase.quoted.lastIndex = 0
+          while ((match = preserveCase.quoted.exec(this.field.text))) {
+            this.preserve(match.index, match.index + match[0].length) // , 'quoted')
           }
         }
 
