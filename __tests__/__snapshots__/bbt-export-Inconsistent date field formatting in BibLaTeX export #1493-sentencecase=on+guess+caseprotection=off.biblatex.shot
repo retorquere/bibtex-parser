@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`bbt-export-Inconsistent date field formatting in BibLaTeX export #1493-sentencecase=on+guess+caseprotection=off.biblatex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Neil",
+            "lastName": "Beckford",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Beckford, Neil",
+        ],
+        "date": Array [
+          "2019-04-10",
+        ],
+        "journaltitle": Array [
+          "Cryptoline news",
+        ],
+        "langid": Array [
+          "english",
+        ],
+        "title": Array [
+          "Blockchain africa conference 2019 was a success",
+        ],
+        "url": Array [
+          "www.cryptolinenews.com/industry-analysis/blockchain-africa-conference-2019",
+        ],
+        "urldate": Array [
+          "2019-04-10",
+        ],
+      },
+      "key": "Beckford2019",
+      "sentenceCased": true,
+      "type": "online",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;

@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`bbt-import-BibTeX import; preamble with def create problems #732-sentencecase=on+guess+caseprotection=strict.bib 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Jan",
+            "lastName": "Franců",
+          },
+          Object {
+            "firstName": "Pavel",
+            "lastName": "Krejčí",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Franců, Jan",
+          "Krejčí, Pavel",
+        ],
+        "title": Array [
+          "Homogenization of scalar wave equation with hysteresis operator",
+        ],
+      },
+      "key": "MR1870153",
+      "type": "incollection",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [
+    "\\"
+
+\\\\def
+
+\\\\ocirc#
+
+1
+
+{\\\\ifmmode\\\\setbox0=\\\\hbox{$#1$}\\\\dimen0=\\\\ht0
+	       \\\\advance\\\\dimen0 by1pt\\\\rlap{\\\\hbox to\\\\wd0{\\\\hss\\\\raise\\\\dimen0
+		       \\\\hbox{\\\\hskip.2em$\\\\scriptscriptstyle\\\\circ$}\\\\hss}}#1\\\\else
+		           {\\\\accent\\"17 #1}\\\\fi}
+
+ \\"
+			   ",
+  ],
+  "strings": Object {},
+}
+`;

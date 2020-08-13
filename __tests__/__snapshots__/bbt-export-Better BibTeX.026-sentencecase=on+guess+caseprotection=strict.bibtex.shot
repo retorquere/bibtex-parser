@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`bbt-export-Better BibTeX.026-sentencecase=on+guess+caseprotection=strict.bibtex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "David",
+            "lastName": "Traum",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Traum, David",
+        ],
+        "file": Array [
+          "files/traumNDcomputationalmodelsnoncooperative/Traum - Computational Models of Non-cooperative dialogue.pdf",
+        ],
+        "title": Array [
+          "Computational <span class=\\"nocase\\">Models</span> of <span class=\\"nocase\\">Non</span>-Cooperative dialogue",
+        ],
+      },
+      "key": "traumNDcomputationalmodelsnoncooperative",
+      "sentenceCased": true,
+      "type": "unpublished",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;

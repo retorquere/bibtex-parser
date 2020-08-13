@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`bbt-export-auth leaves punctuation in citation key #310-sentencecase=on+guess+caseprotection=strict.biblatex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "james",
+            "lastName": "O'hara",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "O'hara, james",
+        ],
+        "date": Array [
+          "2015",
+        ],
+        "title": Array [
+          "A testbook",
+        ],
+      },
+      "key": "Ohara2015",
+      "sentenceCased": true,
+      "type": "book",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;

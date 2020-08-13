@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`bbt-export-Multiple locations and-or publishers and BibLaTeX export #689-sentencecase=on+guess+caseprotection=strict.biblatex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Vincenzo",
+            "lastName": "de Risi",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "de Risi, Vincenzo",
+        ],
+        "date": Array [
+          "2007",
+        ],
+        "isbn": Array [
+          "978-3-7643-7986-5",
+        ],
+        "langid": Array [
+          "english",
+        ],
+        "location": Array [
+          "Basel and Boston and Berlin",
+        ],
+        "pagetotal": Array [
+          "676",
+        ],
+        "publisher": Array [
+          "Birkhäuser",
+        ],
+        "shorttitle": Array [
+          "Geometry and <span class=\\"nocase\\">Monadology</span>",
+        ],
+        "title": Array [
+          "Geometry and <span class=\\"nocase\\">Monadology: Leibniz</span>'s <span class=\\"nocase\\">Analysis Situs</span> and <span class=\\"nocase\\">Philosophy</span> of <span class=\\"nocase\\">Space</span>",
+        ],
+      },
+      "key": "risi_geometry_2007",
+      "type": "book",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;

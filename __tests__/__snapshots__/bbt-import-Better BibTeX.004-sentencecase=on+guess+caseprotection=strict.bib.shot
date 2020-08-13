@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`bbt-import-Better BibTeX.004-sentencecase=on+guess+caseprotection=strict.bib 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Michael",
+            "lastName": "von Hicks",
+            "suffix": "III",
+          },
+        ],
+      },
+      "fields": Object {
+        "address": Array [
+          "Palo Alto",
+        ],
+        "author": Array [
+          "von Hicks, III, Michael",
+        ],
+        "edition": Array [
+          "1st,",
+        ],
+        "isbn": Array [
+          "0-69-697269-4",
+        ],
+        "publisher": Array [
+          "Stanford Press",
+        ],
+        "title": Array [
+          "Design of a carbon fiber composite grid structure for the GLAST spacecraft using a novel manufacturing technique",
+        ],
+        "year": Array [
+          "2001",
+        ],
+      },
+      "key": "hicks2001",
+      "sentenceCased": true,
+      "type": "book",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;

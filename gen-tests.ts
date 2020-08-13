@@ -12,9 +12,9 @@ if (JSON.parse(process.env.npm_config_argv).original.includes('--bail')) {
 }
 */
 
-// off, on
-process.env.SENTENCECASE = process.env.SENTENCECASE || 'on'
-if (! ['on', 'off'].includes(process.env.SENTENCECASE)) throw new Error(`SENTENCECASE=${process.env.SENTENCECASE}`)
+// off, on, on+guess
+process.env.SENTENCECASE = process.env.SENTENCECASE || 'on+guess'
+if (! ['on+guess', 'on', 'off'].includes(process.env.SENTENCECASE)) throw new Error(`SENTENCECASE=${process.env.SENTENCECASE}`)
 
 // off, strict, as-needed
 process.env.CASEPROTECTION = process.env.CASEPROTECTION || 'as-needed'
@@ -57,6 +57,7 @@ function parseOptions(f) {
     default:
       throw new Error(`CASEPROTECTION=${process.env.CASEPROTECTION}`)
   }
+  opts.guessAlreadySentenceCased = process.env.SENTENCECASE.endsWith('guess')
   opts.sentenceCase = process.env.SENTENCECASE.startsWith('on')
 
   if (f.includes('/Async') || f.startsWith('Async')) { // Oh Mendeley....

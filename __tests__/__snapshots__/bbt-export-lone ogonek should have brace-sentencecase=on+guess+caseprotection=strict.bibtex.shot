@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`bbt-export-lone ogonek should have brace-sentencecase=on+guess+caseprotection=strict.bibtex 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "M. R.",
+            "lastName": "MunafĂ ̨",
+          },
+          Object {
+            "firstName": "T.",
+            "lastName": "Clark",
+          },
+          Object {
+            "firstName": "J.",
+            "lastName": "Flint",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "MunafĂ ̨, M. R.",
+          "Clark, T.",
+          "Flint, J.",
+        ],
+        "journal": Array [
+          "Molecular psychiatry",
+        ],
+        "month": Array [
+          "04",
+        ],
+        "number": Array [
+          "4",
+        ],
+        "pages": Array [
+          "415–419",
+        ],
+        "title": Array [
+          "Does measurement instrument moderate the association between the serotonin transporter gene and anxiety-related personality traits? <span class=\\"nocase\\">A</span> meta-analysis.",
+        ],
+        "volume": Array [
+          "10",
+        ],
+        "year": Array [
+          "2005",
+        ],
+      },
+      "key": "MunafAClarkFlint05",
+      "sentenceCased": true,
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;

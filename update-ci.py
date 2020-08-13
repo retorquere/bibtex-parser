@@ -14,7 +14,7 @@ parser.add_argument('-t', '--test')
 args = parser.parse_args()
 
 n = 0
-for sc in ['off', 'on']:
+for sc in ['off', 'on', 'on+guess']:
   for cp in ['off', 'strict', 'as-needed']:
     n += 1
     env = f'CI=true SENTENCECASE={sc} CASEPROTECTION={cp}'
