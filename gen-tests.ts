@@ -4,14 +4,6 @@ import slugify from 'slugify'
 import * as bibtex from './index'
 import mkdirp = require('mkdirp')
 
-/*
-import * as failFast from '@retorquere/jasmine-fail-fast'
-if (JSON.parse(process.env.npm_config_argv).original.includes('--bail')) {
-  const jasmineEnv = (jasmine as any).getEnv()
-  jasmineEnv.addReporter(failFast.init())
-}
-*/
-
 // off, on, on+guess
 process.env.SENTENCECASE = process.env.SENTENCECASE || 'on+guess'
 if (! ['on+guess', 'on', 'off'].includes(process.env.SENTENCECASE)) throw new Error(`SENTENCECASE=${process.env.SENTENCECASE}`)
