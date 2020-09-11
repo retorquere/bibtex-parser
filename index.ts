@@ -1375,13 +1375,13 @@ class Parser {
             break
 
           default:
-            parsed = null
+            parsed[attr.toLowerCase()] = value
             break
 
         }
       }
 
-      if (parsed) return parsed
+      if (parsed.family || parsed.given) return parsed
     }
 
     const prefix = /(.+?)\s+(vere|von|van den|van der|van|de|del|della|der|di|da|pietro|vanden|du|st.|st|la|lo|ter|bin|ibn|te|ten|op|ben|al)\s+(.+)/
