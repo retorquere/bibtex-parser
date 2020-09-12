@@ -50,6 +50,9 @@ function parse(list) {
     journal = unjunk(journal)
     abbr = unjunk(abbr)
 
+    // some of these jabref lists are really garbage
+    if (list.includes('webofscience') && abbr === 'J. Phys. Conf. Ser.') continue
+
     if (!abbr) continue
     if (!journal) journal = ''
     if (journal.toLowerCase() === abbr.toLowerCase()) journal = ''
