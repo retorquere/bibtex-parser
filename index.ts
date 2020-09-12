@@ -1345,6 +1345,12 @@ class Parser {
 
       for (const part of parts) {
         const [ attr, value ] = this.splitOnce(part.replace(marker.re.space, ''), '=').map(v => v.trim())
+
+        if (!value) {
+          parsed = null
+          break
+        }
+
         switch (attr.toLowerCase()) {
           case 'family':
             parsed.lastName = value
@@ -1375,13 +1381,13 @@ class Parser {
             break
 
           default:
-            parsed[attr.toLowerCase()] = value
+            // parsed[attr.toLowerCase()] = value
             break
 
         }
       }
 
-      if (parsed.family || parsed.given) return parsed
+      if (parsed && (parsed.firstName || parsed.lastName)) return parsed
     }
 
     const prefix = /(.+?)\s+(vere|von|van den|van der|van|de|del|della|der|di|da|pietro|vanden|du|st.|st|la|lo|ter|bin|ibn|te|ten|op|ben|al)\s+(.+)/
