@@ -1,4 +1,6 @@
-[@retorquere/bibtex-parser](../README.md) › [Globals](../globals.md) › ["chunker"](../modules/_chunker_.md) › [Chunk](_chunker_.chunk.md)
+**@retorquere/bibtex-parser**
+
+[README](../README.md) / [Globals](../globals.md) / ["chunker"](../modules/_chunker_.md) / Chunk
 
 # Interface: Chunk
 
@@ -10,72 +12,73 @@
 
 ### Properties
 
-* [comment](_chunker_.chunk.md#optional-comment)
-* [entry](_chunker_.chunk.md#optional-entry)
-* [error](_chunker_.chunk.md#optional-error)
+* [comment](_chunker_.chunk.md#comment)
+* [entry](_chunker_.chunk.md#entry)
+* [error](_chunker_.chunk.md#error)
 * [offset](_chunker_.chunk.md#offset)
-* [preamble](_chunker_.chunk.md#optional-preamble)
-* [stringDeclaration](_chunker_.chunk.md#optional-stringdeclaration)
+* [preamble](_chunker_.chunk.md#preamble)
+* [stringDeclaration](_chunker_.chunk.md#stringdeclaration)
 * [text](_chunker_.chunk.md#text)
 
 ## Properties
 
-### `Optional` comment
+### comment
 
-• **comment**? : *boolean*
+• `Optional` **comment**: boolean
 
 set to `true` if the chunk is an `@comment`
 
 ___
 
-### `Optional` entry
+### entry
 
-• **entry**? : *boolean*
+• `Optional` **entry**: boolean
 
 set to `true` if the chunk is a bibtex entry
 
 ___
 
-### `Optional` error
+### error
 
-• **error**? : *string*
+• `Optional` **error**: string
 
 error found, if any.
 
 ___
 
-###  offset
+### offset
 
-• **offset**: *object*
+•  **offset**: { line: number ; pos: number  }
 
 Start location of the chunk in the bib file
 
 #### Type declaration:
 
-* **line**: *number*
-
-* **pos**: *number*
+Name | Type |
+------ | ------ |
+`line` | number |
+`pos` | number |
 
 ___
 
-### `Optional` preamble
+### preamble
 
-• **preamble**? : *boolean*
+• `Optional` **preamble**: boolean
 
 set to `true` if the chunk is a `@preamble` block
 
 ___
 
-### `Optional` stringDeclaration
+### stringDeclaration
 
-• **stringDeclaration**? : *boolean*
+• `Optional` **stringDeclaration**: boolean
 
 set to `true` if the chunk is an `@string` declaration
 
 ___
 
-###  text
+### text
 
-• **text**: *string*
+•  **text**: string
 
 The text content of the chunk

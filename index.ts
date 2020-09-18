@@ -74,6 +74,9 @@ const marker = {
 
     literalName: /./,
   },
+  clean(s) {
+    return s.replace(marker.re.space, ' ').replace(marker.re.comma, ', ').replace(marker.re.literal, '')
+  },
 }
 marker.re = {
   and: new RegExp(marker.and, 'g'),
@@ -81,7 +84,7 @@ marker.re = {
   space: new RegExp(marker.space, 'g'),
   literal: new RegExp(marker.literal, 'g'),
 
-  literalName: new RegExp(`^${marker.literal}[^${marker.literal}]*${marker.literal}$`),
+  literalName: new RegExp(`^${marker.literal}([^${marker.literal}]*)${marker.literal}$`),
 }
 
 const preserveCase = {
@@ -1344,9 +1347,10 @@ class Parser {
     const parts = name.split(marker.comma)
 
     if (parts.length && !parts.find(p => !p.match(/^[a-z]+(-i)?=/i))) { // extended name format
-      parsed = {}
 
       for (const part of parts) {
+        parsed = parsed || {}
+
         const [ attr, value ] = this.splitOnce(part.replace(marker.re.space, ''), '=').map(v => v.trim())
 
         if (!value) {
@@ -1384,24 +1388,19 @@ class Parser {
             break
 
           default:
-            // parsed[attr.toLowerCase()] = value
+            parsed[attr.toLowerCase()] = value
             break
 
         }
       }
-
-      if (parsed && (parsed.firstName || parsed.lastName)) return parsed
     }
 
     const prefix = /(.+?)\s+(vere|von|van den|van der|van|de|del|della|der|di|da|pietro|vanden|du|st.|st|la|lo|ter|bin|ibn|te|ten|op|ben|al)\s+(.+)/
     let m
-    switch (parsed ? -1 : parts.length) {
-      case -1:
+    switch (parsed ? 0 : parts.length) {
+      case 0:
         // already parsed
         break
-
-      case 0: // should never happen
-        throw new Error(name)
 
       case 1: // name without commas
         // literal
@@ -1443,7 +1442,7 @@ class Parser {
 
     for (const [k, v] of Object.entries(parsed)) {
       if (typeof v !== 'string') continue
-      parsed[k] = v.replace(marker.re.space, ' ').replace(marker.re.comma, ', ').replace(marker.re.literal, '').trim()
+      parsed[k] = marker.clean(v).trim()
     }
 
     return parsed
@@ -1536,7 +1535,7 @@ class Parser {
         }
 
         for (const creator of this.field.text.split(marker.and)) {
-          this.entry.fields[this.field.name].push(creator.replace(marker.re.comma, ', ').replace(marker.re.space, ' ').replace(marker.re.literal, ''))
+          this.entry.fields[this.field.name].push(marker.clean(creator))
           this.entry.creators[this.field.name].push(this.parseName(creator))
         }
 

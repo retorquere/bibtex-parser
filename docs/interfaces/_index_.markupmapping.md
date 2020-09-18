@@ -1,4 +1,6 @@
-[@retorquere/bibtex-parser](../README.md) › [Globals](../globals.md) › ["index"](../modules/_index_.md) › [MarkupMapping](_index_.markupmapping.md)
+**@retorquere/bibtex-parser**
+
+[README](../README.md) / [Globals](../globals.md) / ["index"](../modules/_index_.md) / MarkupMapping
 
 # Interface: MarkupMapping
 
@@ -12,146 +14,157 @@ Markup mapping. As the bibtex file is parsed, markup will be transformed accordi
 
 ### Properties
 
-* [bold](_index_.markupmapping.md#optional-bold)
-* [caseProtect](_index_.markupmapping.md#optional-caseprotect)
-* [enquote](_index_.markupmapping.md#optional-enquote)
-* [fixedWidth](_index_.markupmapping.md#optional-fixedwidth)
-* [h1](_index_.markupmapping.md#optional-h1)
-* [h2](_index_.markupmapping.md#optional-h2)
-* [italics](_index_.markupmapping.md#optional-italics)
-* [roman](_index_.markupmapping.md#optional-roman)
-* [smallCaps](_index_.markupmapping.md#optional-smallcaps)
-* [sub](_index_.markupmapping.md#optional-sub)
-* [sup](_index_.markupmapping.md#optional-sup)
+* [bold](_index_.markupmapping.md#bold)
+* [caseProtect](_index_.markupmapping.md#caseprotect)
+* [enquote](_index_.markupmapping.md#enquote)
+* [fixedWidth](_index_.markupmapping.md#fixedwidth)
+* [h1](_index_.markupmapping.md#h1)
+* [h2](_index_.markupmapping.md#h2)
+* [italics](_index_.markupmapping.md#italics)
+* [roman](_index_.markupmapping.md#roman)
+* [smallCaps](_index_.markupmapping.md#smallcaps)
+* [sub](_index_.markupmapping.md#sub)
+* [sup](_index_.markupmapping.md#sup)
 
 ## Properties
 
-### `Optional` bold
+### bold
 
-• **bold**? : *object*
+• `Optional` **bold**: { close: string ; open: string  }
 
 #### Type declaration:
 
-* **close**: *string*
-
-* **open**: *string*
+Name | Type |
+------ | ------ |
+`close` | string |
+`open` | string |
 
 ___
 
-### `Optional` caseProtect
+### caseProtect
 
-• **caseProtect**? : *object*
+• `Optional` **caseProtect**: { close: string ; open: string  }
 
 #### Type declaration:
 
-* **close**: *string*
-
-* **open**: *string*
+Name | Type |
+------ | ------ |
+`close` | string |
+`open` | string |
 
 ___
 
-### `Optional` enquote
+### enquote
 
-• **enquote**? : *object*
+• `Optional` **enquote**: { close: string ; open: string  }
 
 #### Type declaration:
 
-* **close**: *string*
-
-* **open**: *string*
+Name | Type |
+------ | ------ |
+`close` | string |
+`open` | string |
 
 ___
 
-### `Optional` fixedWidth
+### fixedWidth
 
-• **fixedWidth**? : *object*
+• `Optional` **fixedWidth**: { close: string ; open: string  }
 
 #### Type declaration:
 
-* **close**: *string*
-
-* **open**: *string*
+Name | Type |
+------ | ------ |
+`close` | string |
+`open` | string |
 
 ___
 
-### `Optional` h1
+### h1
 
-• **h1**? : *object*
+• `Optional` **h1**: { close: string ; open: string  }
 
 #### Type declaration:
 
-* **close**: *string*
-
-* **open**: *string*
+Name | Type |
+------ | ------ |
+`close` | string |
+`open` | string |
 
 ___
 
-### `Optional` h2
+### h2
 
-• **h2**? : *object*
+• `Optional` **h2**: { close: string ; open: string  }
 
 #### Type declaration:
 
-* **close**: *string*
-
-* **open**: *string*
+Name | Type |
+------ | ------ |
+`close` | string |
+`open` | string |
 
 ___
 
-### `Optional` italics
+### italics
 
-• **italics**? : *object*
+• `Optional` **italics**: { close: string ; open: string  }
 
 #### Type declaration:
 
-* **close**: *string*
-
-* **open**: *string*
+Name | Type |
+------ | ------ |
+`close` | string |
+`open` | string |
 
 ___
 
-### `Optional` roman
+### roman
 
-• **roman**? : *object*
+• `Optional` **roman**: { close: string ; open: string  }
 
 #### Type declaration:
 
-* **close**: *string*
-
-* **open**: *string*
+Name | Type |
+------ | ------ |
+`close` | string |
+`open` | string |
 
 ___
 
-### `Optional` smallCaps
+### smallCaps
 
-• **smallCaps**? : *object*
+• `Optional` **smallCaps**: { close: string ; open: string  }
 
 #### Type declaration:
 
-* **close**: *string*
-
-* **open**: *string*
+Name | Type |
+------ | ------ |
+`close` | string |
+`open` | string |
 
 ___
 
-### `Optional` sub
+### sub
 
-• **sub**? : *object*
+• `Optional` **sub**: { close: string ; open: string  }
 
 #### Type declaration:
 
-* **close**: *string*
-
-* **open**: *string*
+Name | Type |
+------ | ------ |
+`close` | string |
+`open` | string |
 
 ___
 
-### `Optional` sup
+### sup
 
-• **sup**? : *object*
+• `Optional` **sup**: { close: string ; open: string  }
 
 #### Type declaration:
 
-* **close**: *string*
-
-* **open**: *string*
+Name | Type |
+------ | ------ |
+`close` | string |
+`open` | string |

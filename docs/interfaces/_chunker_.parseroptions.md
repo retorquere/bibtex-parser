@@ -1,4 +1,6 @@
-[@retorquere/bibtex-parser](../README.md) › [Globals](../globals.md) › ["chunker"](../modules/_chunker_.md) › [ParserOptions](_chunker_.parseroptions.md)
+**@retorquere/bibtex-parser**
+
+[README](../README.md) / [Globals](../globals.md) / ["chunker"](../modules/_chunker_.md) / ParserOptions
 
 # Interface: ParserOptions
 
@@ -10,21 +12,21 @@
 
 ### Properties
 
-* [async](_chunker_.parseroptions.md#optional-async)
-* [max_entries](_chunker_.parseroptions.md#optional-max_entries)
+* [async](_chunker_.parseroptions.md#async)
+* [max\_entries](_chunker_.parseroptions.md#max_entries)
 
 ## Properties
 
-### `Optional` async
+### async
 
-• **async**? : *boolean*
+• `Optional` **async**: boolean
 
 if `true`, return a promise for an array of chunks rather than an array of chunks.
 
 ___
 
-### `Optional` max_entries
+### max\_entries
 
-• **max_entries**? : *number*
+• `Optional` **max\_entries**: number
 
 stop parsing after `max_entries` entries have been found. Useful for quick detection if a text file is in fact a bibtex file

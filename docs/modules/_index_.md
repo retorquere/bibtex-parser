@@ -1,4 +1,6 @@
-[@retorquere/bibtex-parser](../README.md) › [Globals](../globals.md) › ["index"](_index_.md)
+**@retorquere/bibtex-parser**
+
+[README](../README.md) / [Globals](../globals.md) / "index"
 
 # Module: "index"
 
@@ -25,45 +27,45 @@
 
 ## References
 
-###  chunker
+### chunker
 
-• **chunker**:
+Renames and re-exports: [parse](_chunker_.md#parse)
 
 ___
 
-###  jabref
+### jabref
 
-• **jabref**:
+Renames and re-exports: [parse](_jabref_.md#parse)
 
 ## Functions
 
-###  ast
+### ast
 
-▸ **ast**(`input`: string, `options`: [ParserOptions](../interfaces/_index_.parseroptions.md), `clean`: boolean): *any[]*
+▸ **ast**(`input`: string, `options`: [ParserOptions](../interfaces/_index_.parseroptions.md), `clean`: boolean): any[]
 
-**Parameters:**
+#### Parameters:
 
-Name | Type | Default |
+Name | Type | Default value |
 ------ | ------ | ------ |
 `input` | string | - |
 `options` | [ParserOptions](../interfaces/_index_.parseroptions.md) | {} |
 `clean` | boolean | true |
 
-**Returns:** *any[]*
+**Returns:** any[]
 
 ___
 
-###  parse
+### parse
 
-▸ **parse**(`input`: string, `options`: [ParserOptions](../interfaces/_index_.parseroptions.md)): *[Bibliography](../interfaces/_index_.bibliography.md) | Promise‹[Bibliography](../interfaces/_index_.bibliography.md)›*
+▸ **parse**(`input`: string, `options`: [ParserOptions](../interfaces/_index_.parseroptions.md)): [Bibliography](../interfaces/_index_.bibliography.md) \| Promise\<[Bibliography](../interfaces/_index_.bibliography.md)>
 
 parse bibtex. This will try to convert TeX commands into unicode equivalents, and apply `@string` expansion
 
-**Parameters:**
+#### Parameters:
 
-Name | Type | Default |
+Name | Type | Default value |
 ------ | ------ | ------ |
 `input` | string | - |
 `options` | [ParserOptions](../interfaces/_index_.parseroptions.md) | {} |
 
-**Returns:** *[Bibliography](../interfaces/_index_.bibliography.md) | Promise‹[Bibliography](../interfaces/_index_.bibliography.md)›*
+**Returns:** [Bibliography](../interfaces/_index_.bibliography.md) \| Promise\<[Bibliography](../interfaces/_index_.bibliography.md)>

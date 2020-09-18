@@ -1,4 +1,6 @@
-[@retorquere/bibtex-parser](../README.md) › [Globals](../globals.md) › ["index"](../modules/_index_.md) › [Bibliography](_index_.bibliography.md)
+**@retorquere/bibtex-parser**
+
+[README](../README.md) / [Globals](../globals.md) / ["index"](../modules/_index_.md) / Bibliography
 
 # Interface: Bibliography
 
@@ -18,44 +20,40 @@
 
 ## Properties
 
-###  comments
+### comments
 
-• **comments**: *string[]*
+•  **comments**: string[]
 
 `@comment`s found in the bibtex file. See also [[jabref.parse]]
 
 ___
 
-###  entries
+### entries
 
-• **entries**: *[Entry](_index_.entry.md)[]*
+•  **entries**: [Entry](_index_.entry.md)[]
 
 entries in the order in which they are found, omitting those which could not be parsed.
 
 ___
 
-###  errors
+### errors
 
-• **errors**: *[ParseError](_index_.parseerror.md)[]*
+•  **errors**: [ParseError](_index_.parseerror.md)[]
 
 errors found while parsing
 
 ___
 
-###  preamble
+### preamble
 
-• **preamble**: *string[]*
+•  **preamble**: string[]
 
 `@preamble` declarations found in the bibtex file
 
 ___
 
-###  strings
+### strings
 
-• **strings**: *object*
+•  **strings**: { [key:string]: string;  }
 
 `@string`s found in the bibtex file.
-
-#### Type declaration:
-
-* \[ **key**: *string*\]: string

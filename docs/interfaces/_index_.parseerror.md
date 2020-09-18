@@ -1,4 +1,6 @@
-[@retorquere/bibtex-parser](../README.md) › [Globals](../globals.md) › ["index"](../modules/_index_.md) › [ParseError](_index_.parseerror.md)
+**@retorquere/bibtex-parser**
+
+[README](../README.md) / [Globals](../globals.md) / ["index"](../modules/_index_.md) / ParseError
 
 # Interface: ParseError
 
@@ -10,39 +12,39 @@
 
 ### Properties
 
-* [column](_index_.parseerror.md#optional-column)
-* [line](_index_.parseerror.md#optional-line)
+* [column](_index_.parseerror.md#column)
+* [line](_index_.parseerror.md#line)
 * [message](_index_.parseerror.md#message)
-* [source](_index_.parseerror.md#optional-source)
+* [source](_index_.parseerror.md#source)
 
 ## Properties
 
-### `Optional` column
+### column
 
-• **column**? : *number*
+• `Optional` **column**: number
 
 Error column number within the bibtex file
 
 ___
 
-### `Optional` line
+### line
 
-• **line**? : *number*
+• `Optional` **line**: number
 
 Error line number within the bibtex file
 
 ___
 
-###  message
+### message
 
-• **message**: *string*
+•  **message**: string
 
 error message
 
 ___
 
-### `Optional` source
+### source
 
-• **source**? : *string*
+• `Optional` **source**: string
 
 text block that was parsed where the error was found

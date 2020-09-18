@@ -1,4 +1,6 @@
-[@retorquere/bibtex-parser](../README.md) › [Globals](../globals.md) › ["index"](../modules/_index_.md) › [Name](_index_.name.md)
+**@retorquere/bibtex-parser**
+
+[README](../README.md) / [Globals](../globals.md) / ["index"](../modules/_index_.md) / Name
 
 # Interface: Name
 
@@ -10,75 +12,75 @@
 
 ### Properties
 
-* [firstName](_index_.name.md#optional-firstname)
-* [initial](_index_.name.md#optional-initial)
-* [juniorcomma](_index_.name.md#optional-juniorcomma)
-* [lastName](_index_.name.md#optional-lastname)
-* [literal](_index_.name.md#optional-literal)
-* [prefix](_index_.name.md#optional-prefix)
-* [suffix](_index_.name.md#optional-suffix)
-* [useprefix](_index_.name.md#optional-useprefix)
+* [firstName](_index_.name.md#firstname)
+* [initial](_index_.name.md#initial)
+* [juniorcomma](_index_.name.md#juniorcomma)
+* [lastName](_index_.name.md#lastname)
+* [literal](_index_.name.md#literal)
+* [prefix](_index_.name.md#prefix)
+* [suffix](_index_.name.md#suffix)
+* [useprefix](_index_.name.md#useprefix)
 
 ## Properties
 
-### `Optional` firstName
+### firstName
 
-• **firstName**? : *string*
+• `Optional` **firstName**: string
 
 given name. Will include middle names and initials.
 
 ___
 
-### `Optional` initial
+### initial
 
-• **initial**? : *string*
+• `Optional` **initial**: string
 
 Initials.
 
 ___
 
-### `Optional` juniorcomma
+### juniorcomma
 
-• **juniorcomma**? : *boolean*
+• `Optional` **juniorcomma**: boolean
 
 available when parsing biblatex extended name format
 
 ___
 
-### `Optional` lastName
+### lastName
 
-• **lastName**? : *string*
+• `Optional` **lastName**: string
 
 Family name
 
 ___
 
-### `Optional` literal
+### literal
 
-• **literal**? : *string*
+• `Optional` **literal**: string
 
 If the name is a literal (surrounded by braces) it will be in this property, and none of the other properties will be set
 
 ___
 
-### `Optional` prefix
+### prefix
 
-• **prefix**? : *string*
+• `Optional` **prefix**: string
 
 things like `von`, `van der`, etc
 
 ___
 
-### `Optional` suffix
+### suffix
 
-• **suffix**? : *string*
+• `Optional` **suffix**: string
 
 things like `Jr.`, `III`, etc
 
 ___
 
-### `Optional` useprefix
+### useprefix
 
-• **useprefix**? : *boolean*
+• `Optional` **useprefix**: boolean
 
 available when parsing biblatex extended name format

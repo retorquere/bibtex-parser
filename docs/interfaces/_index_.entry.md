@@ -1,4 +1,6 @@
-[@retorquere/bibtex-parser](../README.md) › [Globals](../globals.md) › ["index"](../modules/_index_.md) › [Entry](_index_.entry.md)
+**@retorquere/bibtex-parser**
+
+[README](../README.md) / [Globals](../globals.md) / ["index"](../modules/_index_.md) / Entry
 
 # Interface: Entry
 
@@ -13,53 +15,45 @@
 * [creators](_index_.entry.md#creators)
 * [fields](_index_.entry.md#fields)
 * [key](_index_.entry.md#key)
-* [sentenceCased](_index_.entry.md#optional-sentencecased)
+* [sentenceCased](_index_.entry.md#sentencecased)
 * [type](_index_.entry.md#type)
 
 ## Properties
 
-###  creators
+### creators
 
-• **creators**: *object*
+•  **creators**: { [type:string]: [Name](_index_.name.md)[];  }
 
 authors, editors, by creator type. Name order within the creator-type is retained.
 
-#### Type declaration:
-
-* \[ **type**: *string*\]: [Name](_index_.name.md)[]
-
 ___
 
-###  fields
+### fields
 
-• **fields**: *object*
+•  **fields**: { [key:string]: string[];  }
 
 entry fields. The keys are always in lowercase
 
-#### Type declaration:
-
-* \[ **key**: *string*\]: string[]
-
 ___
 
-###  key
+### key
 
-• **key**: *string*
+•  **key**: string
 
 citation key
 
 ___
 
-### `Optional` sentenceCased
+### sentenceCased
 
-• **sentenceCased**? : *boolean*
+• `Optional` **sentenceCased**: boolean
 
 will be set to `true` if sentence casing was applied to the entry
 
 ___
 
-###  type
+### type
 
-• **type**: *string*
+•  **type**: string
 
 entry type

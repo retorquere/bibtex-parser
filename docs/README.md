@@ -1,6 +1,6 @@
-[@retorquere/bibtex-parser](README.md) › [Globals](globals.md)
+**@retorquere/bibtex-parser**
 
-# @retorquere/bibtex-parser
+README / [Globals](globals.md)
 
 # bibtex-parser
 

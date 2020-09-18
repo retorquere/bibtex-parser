@@ -1,4 +1,6 @@
-[@retorquere/bibtex-parser](../README.md) › [Globals](../globals.md) › ["jabref"](../modules/_jabref_.md) › [Group](_jabref_.group.md)
+**@retorquere/bibtex-parser**
+
+[README](../README.md) / [Globals](../globals.md) / ["jabref"](../modules/_jabref_.md) / Group
 
 # Interface: Group
 
@@ -18,24 +20,24 @@ A JabRef group.
 
 ## Properties
 
-###  entries
+### entries
 
-• **entries**: *string[]*
+•  **entries**: string[]
 
 The citation keys which are specified to belong to this group, after intersection calculation has been applied
 
 ___
 
-###  groups
+### groups
 
-• **groups**: *[Group](_jabref_.group.md)[]*
+•  **groups**: [Group](_jabref_.group.md)[]
 
 Sub-groups under this group
 
 ___
 
-###  name
+### name
 
-• **name**: *string*
+•  **name**: string
 
 the group name

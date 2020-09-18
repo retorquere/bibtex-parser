@@ -1,4 +1,6 @@
-[@retorquere/bibtex-parser](../README.md) › [Globals](../globals.md) › ["jabref"](_jabref_.md)
+**@retorquere/bibtex-parser**
+
+[README](../README.md) / [Globals](../globals.md) / "jabref"
 
 # Module: "jabref"
 
@@ -15,9 +17,9 @@
 
 ## Functions
 
-###  parse
+### parse
 
-▸ **parse**(`comments`: string[]): *[JabrefMetadata](../interfaces/_jabref_.jabrefmetadata.md)*
+▸ **parse**(`comments`: string[]): [JabrefMetadata](../interfaces/_jabref_.jabrefmetadata.md)
 
 Import the JabRef groups from the `@string` comments in which they were stored. You would typically pass the comments parsed by [[bibtex.parse]] in here.
 
@@ -28,10 +30,10 @@ JabRef knows several group types, and this parser parses most, but not all of th
 * union: the keys listed in the group are considered to belong to the group, and also the keys that are in the parent group
 * query: not supported by this parser
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `comments` | string[] |
 
-**Returns:** *[JabrefMetadata](../interfaces/_jabref_.jabrefmetadata.md)*
+**Returns:** [JabrefMetadata](../interfaces/_jabref_.jabrefmetadata.md)

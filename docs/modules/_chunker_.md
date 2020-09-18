@@ -1,4 +1,6 @@
-[@retorquere/bibtex-parser](../README.md) › [Globals](../globals.md) › ["chunker"](_chunker_.md)
+**@retorquere/bibtex-parser**
+
+[README](../README.md) / [Globals](../globals.md) / "chunker"
 
 # Module: "chunker"
 
@@ -15,20 +17,18 @@
 
 ## Functions
 
-###  parse
+### parse
 
-▸ **parse**(`input`: string, `options`: [ParserOptions](../interfaces/_chunker_.parseroptions.md)): *[Chunk](../interfaces/_chunker_.chunk.md)[]*
+▸ **parse**(`input`: string, `options`: [ParserOptions](../interfaces/_chunker_.parseroptions.md)): [Chunk](../interfaces/_chunker_.chunk.md)[]
 
 Reads the bibtex input and splits it into separate chunks of `@string`s, `@comment`s, and bibtex entries. Useful for detecting if a file is bibtex file and for filtering out basic errors that would
 make the more sophisticated [[bibtex.parse]] reject the whole file
 
-**Parameters:**
+#### Parameters:
 
-Name | Type | Default |
+Name | Type | Default value |
 ------ | ------ | ------ |
 `input` | string | - |
 `options` | [ParserOptions](../interfaces/_chunker_.parseroptions.md) | {} |
 
-**Returns:** *[Chunk](../interfaces/_chunker_.chunk.md)[]*
-
-array of chunks, with markers for type and errors (if any) found.
+**Returns:** [Chunk](../interfaces/_chunker_.chunk.md)[]
