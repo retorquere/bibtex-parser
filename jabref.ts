@@ -25,6 +25,7 @@ const prefixes = {
   fileDirectory: 'jabref-meta: fileDirectory:',
   groupsversion: 'jabref-meta: groupsversion:',
   groupstree: 'jabref-meta: groupstree:',
+  grouping: 'jabref-meta: grouping:',
 }
 
 /**
@@ -56,7 +57,7 @@ export interface JabrefMetadata {
   /**
    * JabRef since 3.8 has changed their groups format. Entries have a `groups` field which has the names of the groups they belong to -- this name does not have to be unique in the groups hierarchy so if you
    * have multiple groups with the same name, it's not well-defined where the entries should end up. This property gives you the for each group name the first time the group showed up in the hierarchy. Note that
-   * keys from the entries themselves have *not* yet been added to the [[Group]]s.
+   * keys from the entries themselves have *not* yet been added to the [[Group]]s. You need to combine this yourself as you're parsing the entries.
    */
   groups: { [key: string]: Group }
 
@@ -95,6 +96,7 @@ export function parse(comments: string[]): JabrefMetadata {
     fileDirectory: null,
     groupsversion: null,
     groupstree: null,
+    grouping: null,
   }
   for (const comment of comments) {
     for (const [ meta, prefix ] of Object.entries(prefixes)) {
@@ -107,55 +109,57 @@ export function parse(comments: string[]): JabrefMetadata {
   result.version = decoded.groupsversion && decoded.groupsversion[0]
   result.fileDirectory = decoded.fileDirectory && decoded.fileDirectory[0]
 
-  if (!decoded.groupstree) return result
+  for (const tree of ['groupstree', 'grouping']) {
+    if (!decoded[tree]) continue
 
-  for (const encoded of decoded.groupstree) {
-    const fields = decode(encoded)
+    for (const encoded of decoded[tree]) {
+      const fields = decode(encoded)
 
-    const level_type_name = decode(fields.shift(), ':')
-    const m = /^([0-9]+) (.+)/.exec(level_type_name[0])
-    if (!m) break
+      const level_type_name = decode(fields.shift(), ':')
+      const m = /^([0-9]+) (.+)/.exec(level_type_name[0])
+      if (!m) break
 
-    const level = parseInt(m[1])
-    // const type = m[2]
+      const level = parseInt(m[1])
+      const type = m[2] // test for StaticGroup?
 
-    if (level === 0) continue // root
+      if (type === 'AllEntriesGroup') continue // root
 
-    const name = level_type_name[1]
-    const intersection = decode(fields.shift())[0]
-    const keys = fields.map(field => decode(field)[0])
+      const name = level_type_name[1]
+      const intersection = decode(fields.shift())[0]
+      const keys = tree === 'grouping' ? [] : fields.map(field => decode(field)[0])
 
-    const group = {
-      name,
-      entries: keys,
-      groups: [],
-    }
-
-    result.groups[name] = result.groups[name] || group
-
-    if (levels.length < level) {
-      levels.push(group)
-    } else {
-      levels[level - 1] = group
-    }
-
-    if (level === 1) {
-      result.root.push(group)
-
-    } else {
-      const parent: Group = levels[level - 2]
-      switch (intersection) {
-        case '0': // independent
-          break
-        case '1': // intersect
-          group.entries = group.entries.filter(key => parent.entries.includes(key))
-          break
-        case '2': // union
-          group.entries = group.entries.concat(parent.entries.filter(key => !group.entries.includes(key)))
-          break
+      const group = {
+        name,
+        entries: keys,
+        groups: [],
       }
 
-      levels[level - 2].groups.push(group)
+      result.groups[name] = result.groups[name] || group
+
+      if (levels.length < level) {
+        levels.push(group)
+      } else {
+        levels[level - 1] = group
+      }
+
+      if (level === 1) {
+        result.root.push(group)
+
+      } else {
+        const parent: Group = levels[level - 2]
+        switch (intersection) {
+          case '0': // independent
+            break
+          case '1': // intersect
+            group.entries = group.entries.filter(key => parent.entries.includes(key))
+            break
+          case '2': // union
+            group.entries = group.entries.concat(parent.entries.filter(key => !group.entries.includes(key)))
+            break
+        }
+
+        levels[level - 2].groups.push(group)
+      }
     }
   }
 

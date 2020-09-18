@@ -291,6 +291,7 @@ const fields = {
     'verba',
     'verbb',
     'verbc',
+    'groups', // jabref unilaterally decided to make this non-standard field verbatim
   ],
   html: [
     'annotation',
@@ -1116,6 +1117,8 @@ class Parser {
 
       case 'section':
       case 'subsection':
+      case 'subsubsection':
+      case 'subsubsubsection':
         if (arg = this.argument(node, 'Block')) return this.clean(arg)
         break
 

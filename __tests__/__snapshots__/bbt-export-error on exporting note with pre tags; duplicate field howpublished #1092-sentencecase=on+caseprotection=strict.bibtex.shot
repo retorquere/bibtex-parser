@@ -34,11 +34,6 @@ Object {
         ],
       },
       "fields": Object {
-        "annote": Array [
-          "\\"<span class=\\"nocase\\"><b>Pipe</b></span>\\" is a sender's estimate of the number of bytes outstanding in the network. This is used during recovery for limiting the sender's sending rate. The pipe variable allows TCP to use fundamentally different congestion control than the algorithm specified in [<span class=\\"nocase\\">https://tools.ietf.org/html/rfc5681</span>]. The congestion control algorithm using the pipe estimate is often referred to as the \\"pipe algorithm\\". 
-
-fast recovery algorithm",
-        ],
         "author": Array [
           "Blanton, E.",
           "Allman, M.",
