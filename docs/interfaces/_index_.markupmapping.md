@@ -1,6 +1,6 @@
 **@retorquere/bibtex-parser**
 
-[README](../README.md) / [Globals](../globals.md) / ["index"](../modules/_index_.md) / MarkupMapping
+> [README](../README.md) / [Globals](../globals.md) / ["index"](../modules/_index_.md) / MarkupMapping
 
 # Interface: MarkupMapping
 

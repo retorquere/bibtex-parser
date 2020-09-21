@@ -1,6 +1,6 @@
 **@retorquere/bibtex-parser**
 
-[README](../README.md) / [Globals](../globals.md) / ["jabref"](../modules/_jabref_.md) / JabrefMetadata
+> [README](../README.md) / [Globals](../globals.md) / ["jabref"](../modules/_jabref_.md) / JabrefMetadata
 
 # Interface: JabrefMetadata
 

@@ -1,6 +1,6 @@
 **@retorquere/bibtex-parser**
 
-[README](../README.md) / [Globals](../globals.md) / ["chunker"](../modules/_chunker_.md) / ParserOptions
+> [README](../README.md) / [Globals](../globals.md) / ["chunker"](../modules/_chunker_.md) / ParserOptions
 
 # Interface: ParserOptions
 

@@ -1,6 +1,6 @@
 **@retorquere/bibtex-parser**
 
-[README](../README.md) / [Globals](../globals.md) / ["chunker"](../modules/_chunker_.md) / Chunk
+> [README](../README.md) / [Globals](../globals.md) / ["chunker"](../modules/_chunker_.md) / Chunk
 
 # Interface: Chunk
 
