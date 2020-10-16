@@ -1031,6 +1031,10 @@ class Parser {
           switch (arg) {
             case 'itemize': return { kind: 'Markup', value: '<ul>', source: node.source }
             case 'enumerate': return { kind: 'Markup', value: '<ol>', source: node.source }
+            case 'bf': return { kind: 'Markup', value: '<b>', source: node.source }
+            case 'sl': return { kind: 'Markup', value: '<i>', source: node.source }
+            case 'em': return { kind: 'Markup', value: '<i>', source: node.source }
+            case 'it': return { kind: 'Markup', value: '<i>', source: node.source }
           }
         }
         break
@@ -1039,6 +1043,10 @@ class Parser {
           switch (arg) {
             case 'itemize': return { kind: 'Markup', value: '</ul>', source: node.source }
             case 'enumerate': return { kind: 'Markup', value: '</ol>', source: node.source }
+            case 'bf': return { kind: 'Markup', value: '</b>', source: node.source }
+            case 'sl': return { kind: 'Markup', value: '</i>', source: node.source }
+            case 'em': return { kind: 'Markup', value: '</i>', source: node.source }
+            case 'it': return { kind: 'Markup', value: '</i>', source: node.source }
           }
         }
         break
