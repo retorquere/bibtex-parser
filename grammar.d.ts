@@ -98,8 +98,24 @@ export interface DiacriticCommand {
   dotless: boolean
 }
 
+export interface Math {
+  kind: 'InlineMath' | 'DisplayMath'
+  loc?: Location
+  source?: string
+  value: ValueType[]
+  case?: 'protect' | 'preserve'
+}
+
+export interface Environment {
+  kind: 'Environment'
+  loc?: Location
+  source?: string
+  value: ValueType[]
+  env: string
+}
+
 export interface Block {
-  kind: 'Block' | 'InlineMath' | 'DisplayMath'
+  kind: 'Block'
   loc?: Location
   source?: string
   value: ValueType[]
@@ -172,7 +188,7 @@ export type Comment = BracedComment | LineComment | NonEntryText
 
 export type Command = RegularCommand | SymbolCommand | DiacriticCommand | SubscriptCommand | SuperscriptCommand
 
-export type ValueType = TextValue | StringReference | Block | NumberValue | Command 
+export type ValueType = TextValue | StringReference | Block | Environment | Math | NumberValue | Command
 
 export type Children = Entry | PreambleExpression | StringDeclaration | Comment
 

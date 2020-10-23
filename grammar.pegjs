@@ -228,7 +228,7 @@ Entry
   }
 
 PreambleExpression
-  = '@' __ 'preamble'i __ opener:[({] __ v:(Block / Math / Command / Text)* __ closer:[})] __ {
+  = '@' __ 'preamble'i __ opener:[({] __ v:(Environment / Block / Math / Command / Text)* __ closer:[})] __ {
     switch (opener + closer) {
       case '{}':
       case '()':
@@ -340,8 +340,8 @@ FieldValue
   }
 
 RegularValue
-  = '"' v:(Block / Math / Command / TextNoQuotes)* '"' Concat? { return v; }
-  / '{' v:(Block / Math / Command / Text)* '}' Concat? { return v; }
+  = '"' v:(Environment / Block / Math / Command / TextNoQuotes)* '"' Concat? { return v; }
+  / '{' v:(Environment / Block / Math / Command / Text)* '}' Concat? { return v; }
   / v:StringReference Concat? { return v; }
 
 StringValue
@@ -391,6 +391,27 @@ StringReference
     }
   }
 
+Environment
+  = '\\begin{' env:$[a-zA-Z0-9]+ '}' v:(Environment / Block / Command / Math / Text )* '\\end{' cenv:$[a-zA-Z0-9]+ '}' &{ return env === cenv } {
+    if (markup[env]) {
+      return {
+        kind: 'Block',
+        loc: location(),
+        source: text(),
+        value: v,
+        markup: { [markup[env]]: true },
+      }
+    } else {
+      return {
+        kind: 'Environment',
+        loc: location(),
+        source: text(),
+        value: v,
+        env: env,
+      }
+    }
+  }
+
 Block
   = '{\\' mark:ExtendedDiacritic __ char:([a-zA-Z0-9] / '\\' [ij]) '}' {
     return {
@@ -402,36 +423,97 @@ Block
       character: char[1] || char[0],
     }
   }
-  / '{' v:(Text / Command / Block / Math )* '}' {
+  / '{' v:(Environment / Block / Command / Math / Text)* '}' {
     const block = {
       kind: 'Block',
       loc: location(),
       source: text(),
-      value: v,
+      value: [],
       markup: {},
       case: 'protect',
     }
 
-    let cmd = v.length && v[0].kind.endsWith('Command') ? v[0] : null
-    let cmdblock = cmd && cmd.kind === 'RegularCommand' && cmd.arguments.required.length && cmd.arguments.required[0] && cmd.arguments.required[0].kind === 'Block' && cmd.arguments.required[0]
+    let leadingcmd = v.length && (v[0].kind.endsWith('Command') || v[0].kind === 'Environment') ? v[0] : null
+    let leadingcmdblockarg = leadingcmd
+      && leadingcmd.kind === 'RegularCommand'
+      && leadingcmd.arguments.required.length
+      && leadingcmd.arguments.required[0].kind === 'Block'
+      && leadingcmd.arguments.required[0]
 
     // https://github.com/retorquere/zotero-better-bibtex/issues/541#issuecomment-240156274
-    if (cmd) {
+    if (leadingcmd) {
       delete block.case
 
       // command with a block cancels out case protection with containing block
       // if a smallcaps block has set case to 'preserve' we want to keep this
-      if (cmdblock && cmdblock.case === 'protect') delete cmdblock.case
+      if (leadingcmdblockarg && leadingcmdblockarg.case === 'protect') delete leadingcmdblockarg.case
 
       // \sl, \it etc
-      if (markup[cmd.command]) block.markup[markup[cmd.command]] = true
+      if (markup[leadingcmd.command]) {
+        block.markup[markup[leadingcmd.command]] = true
+        v.shift()
+      }
     }
+
+    const pseudo = {
+      block: null,
+      markup: {},
+    }
+    function pseudo_block() {
+      pseudo.block = {
+        kind: 'Block',
+        loc: location(),
+        source: '',
+        value: [],
+        markup: JSON.parse(JSON.stringify(pseudo.markup)),
+        pseudo: true,
+      }
+      block.value.push(pseudo.block)
+    }
+    for (const node of v) {
+      if (node.kind === 'Environment' || node.kind === 'Block') {
+        block.value.push(node)
+
+        if (Object.keys(pseudo.markup).length) {
+          pseudo_block()
+        } else {
+          pseudo.block = null
+        }
+        continue
+      }
+
+      if (node.kind === 'RegularCommand' && markup[node.command]) {
+        if (pseudo.markup.italics) { // https://github.com/citation-js/bibtex-parser-experiments/commit/cae475f075a05d1c074485a061b08ed245170c7e
+          delete pseudo.markup.italics
+          if (markup[node.command] !== 'italics') pseudo.markup[markup[node.command]] = true
+        } else {
+          pseudo.markup[markup[node.command]] = true
+        }
+
+        if (Object.keys(pseudo.markup).length) {
+          pseudo_block()
+        } else {
+           pseudo.block = null
+        }
+      }
+
+      if (pseudo.block) {
+        pseudo.block.source += node.source
+        pseudo.block.value.push(node)
+
+      } else {
+        block.value.push(node)
+
+      }
+    }
+
+    block.value = block.value.filter(node => !(node.pseudo && node.value.length === 0))
 
     return block
   }
 
 Math
-  = &{ return !math.on } mode:('$' / '$$') &{ return math.set(true) } v:(Text / Command / Block )* ('$' / '$$') &{ return math.set(false) } {
+  = &{ return !math.on } mode:('$' / '$$') &{ return math.set(true) } v:(Block / Command / Text)* ('$' / '$$') &{ return math.set(false) } {
     return {
       kind: mode == '$$' ? 'DisplayMath' : 'InlineMath',
       loc: location(),
@@ -520,46 +602,46 @@ SymbolCommand
   }
 
 RegularCommand
-  = '\\' v:$[A-Za-z]+ &{ return verbatimCommands.includes(v) && (has_arguments[v] === 2) } optional:OptionalArgument* __h &'{' req1:VerbatimFieldValue req2:VerbatimFieldValue {
+  = '\\' !'begin' !'end' cmd:$[A-Za-z]+ &{ return verbatimCommands.includes(cmd) && (has_arguments[cmd] === 2) } optional:OptionalArgument* __h &'{' req1:VerbatimFieldValue req2:VerbatimFieldValue {
     return {
       kind: 'RegularCommand',
       loc: location(),
       source: text(),
-      command: v,
+      command: cmd,
       arguments: {
         optional: optional,
         required: [protect(req1), protect(req2)],
       },
     }
   }
-  / '\\' v:$[A-Za-z]+ &{ return verbatimCommands.includes(v) && (has_arguments[v] === 1) } optional:OptionalArgument* __h &'{' req:VerbatimFieldValue {
-    const cmd  = {
+  / '\\' !'begin' !'end' cmd:$[A-Za-z]+ &{ return verbatimCommands.includes(cmd) && (has_arguments[cmd] === 1) } optional:OptionalArgument* __h &'{' req:VerbatimFieldValue {
+    return {
       kind: 'RegularCommand',
       loc: location(),
       source: text(),
-      command: v,
+      command: cmd,
       arguments: {
         optional: optional,
         required: [protect(req)],
       },
     }
-    return cmd
   }
-  / '\\' v:$[A-Za-z]+ &{ return (has_arguments[v] === 2) } optional:OptionalArgument* __h req1:RequiredArgument req2:RequiredArgument {
+  / '\\' !'begin' !'end' cmd:$[A-Za-z]+ &{ return (has_arguments[cmd] === 2) } optional:OptionalArgument* __h req1:RequiredArgument req2:RequiredArgument {
     return {
       kind: 'RegularCommand',
       loc: location(),
       source: text(),
-      command: v,
+      command: cmd,
       arguments: {
         optional: optional,
         required: [req1, req2],
       },
     }
   }
-  / '\\' v:$[A-Za-z]+ &{ return (has_arguments[v] === 1) } optional:OptionalArgument* __h req:RequiredArgument {
+  / '\\' !'begin' !'end' cmd:$[A-Za-z]+ &{ return (has_arguments[cmd] === 1) } optional:OptionalArgument* __h req:RequiredArgument {
+    let m
     if (req.kind === 'Block') {
-      switch (v) {
+      switch (cmd) {
         case 'textsuperscript':
         case 'sp':
           req.markup.sup = true
@@ -585,35 +667,33 @@ RegularCommand
         case 'mkbibemph':
           req.markup.italics = true
           break
-        case 'section':
-          req.markup.h1 = true
-          break
-        case 'subsection':
-          req.markup.h2 = true
-          break
+        default:
+          if (m = cmd.match(/^((sub)*)section$/)) {
+            req.markup[`h${(m[1].length / 3) + 1}`] = true
+          }
       }
     }
 
     // ignore case stuff on bibcyr
-    if (v === 'bibcyr') delete req.case
+    if (cmd === 'bibcyr') delete req.case
 
     return {
       kind: 'RegularCommand',
       loc: location(),
       source: text(),
-      command: v,
+      command: cmd,
       arguments: {
         optional: optional,
         required: [req],
       }
     }
   }
-  / '\\' v:$[A-Za-z]+ optional:OptionalArgument* __ {
+  / '\\' !'begin' !'end' cmd:$[A-Za-z]+ optional:OptionalArgument* __ {
     return {
       kind: 'RegularCommand',
       loc: location(),
       source: text(),
-      command: v,
+      command: cmd,
       arguments: {
         optional: optional,
         required: [],
@@ -642,7 +722,7 @@ RequiredArgument
       mode: math.on ? 'math' : 'text',
     })
   }
-  / v:(Command / Block) { return v }
+  / v:(Block / Command) { return v }
 
 //-------------- Helpers
 

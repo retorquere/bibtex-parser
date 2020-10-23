@@ -6,6 +6,8 @@ type Markup = { kind: 'Markup', value: string, loc?: any, source: string }
 
 type Node =
   | bibtex.Bibliography
+  | bibtex.Math
+  | bibtex.Environment
   | bibtex.Block
   | bibtex.RegularCommand
   | bibtex.DiacriticCommand
@@ -92,7 +94,8 @@ const preserveCase = {
   allCaps: new RegExp(`^[${charClass.Lu}${charClass.N}]{2,}$`),
   allLower: new RegExp(`^[${charClass.Ll}${charClass.N}]{2,}$`),
   joined: new RegExp(`^[${charClass.Lu}][${charClass.LnotLu}]*([-+][${charClass.L}${charClass.N}]+)*[${charClass.P}]*$`),
-  hasUppercase: new RegExp(`[${charClass.Lu}]`),
+  hasUpper: new RegExp(`[${charClass.Lu}]`),
+  hasLower: new RegExp(`[${charClass.Ll}]`),
   isNumber: /^[0-9]+$/,
   hasAlpha: new RegExp(`[${charClass.L}]`),
   hasAlphaNum: new RegExp(`[${charClass.AlphaNum}]`),
@@ -102,8 +105,8 @@ const preserveCase = {
   markup: /<\/?span[^>]*>/g,
   acronym: new RegExp(`.*\\.${marker.markup}*[${charClass.Lu}]${marker.markup}*\\.$`),
 
-  nonCased: new RegExp(`[^${charClass.LC}]`),
-  hasCased: new RegExp(`[${charClass.LC}]`),
+  notCaseSensitive: new RegExp(`[^${charClass.LC}]`),
+  isCaseSensitive: new RegExp(`[${charClass.LC}]`),
   quoted: /("[^"]+")|(“[^“]+“)/g,
 }
 
@@ -499,7 +502,7 @@ class Parser {
       ...options,
     }
 
-    const markup_defaults = {
+    const markup_defaults: Record<string, { open: string, close: string}> = {
       enquote: { open: '\u201c', close: '\u201d' },
       sub: { open: '<sub>', close: '</sub>' },
       sup: { open: '<sup>', close: '</sup>' },
@@ -509,12 +512,13 @@ class Parser {
       caseProtect: { open: '<span class="nocase">', close: '</span>' },
       roman: { open: '', close: '' },
       fixedWidth: { open: '', close: '' },
-      h1: { open: '<h1>', close: '</h1>' },
-      h2: { open: '<h2>', close: '</h2>' },
     }
     // patch in because the options will likely not have enquote and case-protect
     for (const [markup, {open, close}] of Object.entries(markup_defaults)) {
       this.options.markup[markup] = this.options.markup[markup] || { open, close }
+    }
+    for (const i of [1, 2, 3, 4]) { // tslint:disable-line:no-magic-numbers
+      this.options.markup[`h${i}`] = this.options.markup[`h${i}`] || { open: `<h${i}>`, close: `</h${i}>` }
     }
 
     this.unresolvedStrings = {}
@@ -691,7 +695,7 @@ class Parser {
     return returnvalue
   }
 
-  private condense(node: bibtex.Field | bibtex.Block) {
+  private condense(node: bibtex.Field | bibtex.Block | bibtex.Math | bibtex.Environment) {
     // apply cleaning to resulting children
     node.value = node.value.map(child => this.clean(child))
 
@@ -715,7 +719,7 @@ class Parser {
       const last = acc[acc.length - 1]
       const next = node.value[i + 1]
 
-      if (this.options.caseProtection === 'strict' && this.onlyCaseProtected(last) && child.kind === 'Text' && !child.value.match(preserveCase.hasCased) && this.onlyCaseProtected(next)) {
+      if (this.options.caseProtection === 'strict' && this.onlyCaseProtected(last) && child.kind === 'Text' && !child.value.match(preserveCase.isCaseSensitive) && this.onlyCaseProtected(next)) {
         last.value.push(child)
         delete last.source
         return acc
@@ -784,6 +788,11 @@ class Parser {
     switch (node.kind) {
       case 'InlineMath':
       case 'DisplayMath':
+        return this.clean_block(node)
+
+      case 'Environment':
+        return this.clean_environment(node)
+
       case 'Block':
         return this.clean_block(node)
 
@@ -955,7 +964,16 @@ class Parser {
     })
   }
 
-  private clean_block(node: bibtex.Block) {
+  private clean_environment(node: bibtex.Environment) {
+    this.condense(node)
+    return node
+  }
+
+  private needsProtection(word) {
+    return !word.match(preserveCase.hasUpper) && word.match(preserveCase.hasLower)
+  }
+
+  private clean_block(node: bibtex.Block | bibtex.Math) {
     this.condense(node)
 
     if (this.options.caseProtection !== 'strict' && this.cleaning.type === 'title' && node.case === 'protect') {
@@ -964,7 +982,7 @@ class Parser {
       for (const child of node.value) {
         if (child.kind === 'Text') {
           const value = child.value.trim()
-          preserve = !value.match(preserveCase.hasCased) || !value.split(/\s+/).find(word => !word.match(preserveCase.hasUppercase) && !word.match(preserveCase.isNumber))
+          preserve = !value.match(preserveCase.isCaseSensitive) || !value.split(/\s+/).find(word => this.needsProtection(word))
         } else {
           preserve = false
         }
@@ -973,8 +991,10 @@ class Parser {
       if (preserve) node.case = 'preserve'
     }
 
-    for (const [markup, on] of Object.entries(node.markup)) {
-      if (!on) delete node.markup[markup]
+    if (node.kind === 'Block') {
+      for (const [markup, on] of Object.entries(node.markup)) {
+        if (!on) delete node.markup[markup]
+      }
     }
 
     return node
@@ -1026,30 +1046,6 @@ class Parser {
     if (unicode = latex2unicode[node.source]) return this.text(unicode)
 
     switch (node.command) {
-      case 'begin':
-        if (arg = this.argument(node, 'text')) {
-          switch (arg) {
-            case 'itemize': return { kind: 'Markup', value: '<ul>', source: node.source }
-            case 'enumerate': return { kind: 'Markup', value: '<ol>', source: node.source }
-            case 'bf': return { kind: 'Markup', value: '<b>', source: node.source }
-            case 'sl': return { kind: 'Markup', value: '<i>', source: node.source }
-            case 'em': return { kind: 'Markup', value: '<i>', source: node.source }
-            case 'it': return { kind: 'Markup', value: '<i>', source: node.source }
-          }
-        }
-        break
-      case 'end':
-        if (arg = this.argument(node, 'text')) {
-          switch (arg) {
-            case 'itemize': return { kind: 'Markup', value: '</ul>', source: node.source }
-            case 'enumerate': return { kind: 'Markup', value: '</ol>', source: node.source }
-            case 'bf': return { kind: 'Markup', value: '</b>', source: node.source }
-            case 'sl': return { kind: 'Markup', value: '</i>', source: node.source }
-            case 'em': return { kind: 'Markup', value: '</i>', source: node.source }
-            case 'it': return { kind: 'Markup', value: '</i>', source: node.source }
-          }
-        }
-        break
       case 'item':
         return { kind: 'Markup', value: '<li>', source: node.source }
 
@@ -1280,7 +1276,7 @@ class Parser {
 
     if (word === 'I') return true
     if (word.length === 1) return false
-    if (word.replace(preserveCase.nonCased) === '') return false
+    if (word.replace(preserveCase.notCaseSensitive) === '') return false
     // word = word.replace(preserveCase.notAlphaNum, '')
 
     // simple cap at start of field
@@ -1288,7 +1284,7 @@ class Parser {
 
     if (word.match(preserveCase.allCaps)) return true
     if (word.length > 1 && word.match(preserveCase.joined)) return false
-    if (word.match(preserveCase.hasUppercase)) return true
+    if (word.match(preserveCase.hasUpper)) return true
     if (word.match(preserveCase.isNumber)) return true
     return false
   }
@@ -1329,6 +1325,10 @@ class Parser {
         this.convert_block(node)
 
         if (preserve && (node.case || node.kind.endsWith('Math'))) this.preserve(start, this.field.text.length) // , `convert-block: case=${node.case}, math=${node.kind.endsWith('Math')}`)
+        break
+
+      case 'Environment':
+        this.convert_environment(node)
         break
 
       case 'PreambleExpression':
@@ -1513,6 +1513,8 @@ class Parser {
 
       this.convert(field.value)
       this.field.text = this.field.text.trim()
+      this.field.text = this.field.text.replace(/<\/([a-z])><\1>/g, '')
+      this.field.text = this.field.text.replace(/<([a-z])>(\s*)<\/\1>/g, '$1')
       if (!this.field.text) continue
 
       // disable sentenceCasing if not an english
@@ -1648,7 +1650,14 @@ class Parser {
     }
   }
 
-  private convert_block(node: bibtex.Block) {
+  private convert_environment(node: bibtex.Environment) {
+    this.field.text += { enumerate: '<ol>', itemize: '<ul>'}[node.env]
+
+    this.convert_block({...node, kind: 'Block', markup: {} })
+
+    this.field.text += { enumerate: '</ol>', itemize: '</ul>'}[node.env]
+  }
+  private convert_block(node: bibtex.Block | bibtex.Math) {
     const start = this.field.text.length
 
     let prefix = ''
@@ -1665,11 +1674,14 @@ class Parser {
       prefix += this.options.markup.caseProtect.open
       postfix = this.options.markup.caseProtect.close + postfix
     }
-    for (const markup of Object.keys(node.markup)) {
-      if (!this.options.markup[markup]) return this.error(new ParserError(`markup: ${markup}`, node), undefined)
 
-      prefix += this.options.markup[markup].open
-      postfix = this.options.markup[markup].close + postfix
+    if (node.kind === 'Block') {
+      for (const markup of Object.keys(node.markup)) {
+        if (!this.options.markup[markup]) return this.error(new ParserError(`markup: ${markup}`, node), undefined)
+
+        prefix += this.options.markup[markup].open
+        postfix = this.options.markup[markup].close + postfix
+      }
     }
 
     const end = {
@@ -1683,9 +1695,17 @@ class Parser {
     this.field.level--
 
     const added = this.field.text.substring(end.withPrefix)
+    const added_text = added.replace(/<\/?[^>]+>/g, '')
+    const needsProtection = added_text && (
+      (this.options.caseProtection === 'strict' && added_text.match(preserveCase.isCaseSensitive))
+      ||
+      (this.options.caseProtection === 'as-needed' && added_text.split(/\s+/).find(word => this.needsProtection(word)))
+    )
+
     if (!added) { // nothing was added, so remove prefix
       this.field.text = this.field.text.substring(0, end.withoutPrefix)
-    } else if (this.field.preserveRanges && prefix === this.options.markup.caseProtect.open && !added.match(preserveCase.hasCased)) { // something was added that didn't actually need case protection
+    } else if (this.field.preserveRanges && prefix === this.options.markup.caseProtect.open && !needsProtection) {
+      // something was added that didn't actually need case protection
       this.field.text = this.field.text.substring(0, end.withoutPrefix) + added
       this.field.preserveRanges = this.field.preserveRanges.filter(range => range.start < end.withoutPrefix)
     } else {
