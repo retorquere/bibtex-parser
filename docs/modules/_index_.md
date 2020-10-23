@@ -1,6 +1,6 @@
-**@retorquere/bibtex-parser**
+**[@retorquere/bibtex-parser](../README.md)**
 
-> [README](../README.md) / [Globals](../globals.md) / "index"
+> [Globals](../globals.md) / "index"
 
 # Module: "index"
 
@@ -41,7 +41,7 @@ Renames and re-exports: [parse](_jabref_.md#parse)
 
 ### ast
 
-▸ **ast**(`input`: string, `options`: [ParserOptions](../interfaces/_index_.parseroptions.md), `clean`: boolean): any[]
+▸ **ast**(`input`: string, `options?`: [ParserOptions](../interfaces/_index_.parseroptions.md), `clean?`: boolean): any[]
 
 #### Parameters:
 
@@ -57,7 +57,7 @@ ___
 
 ### parse
 
-▸ **parse**(`input`: string, `options`: [ParserOptions](../interfaces/_index_.parseroptions.md)): [Bibliography](../interfaces/_index_.bibliography.md) \| Promise\<[Bibliography](../interfaces/_index_.bibliography.md)>
+▸ **parse**(`input`: string, `options?`: [ParserOptions](../interfaces/_index_.parseroptions.md)): [Bibliography](../interfaces/_index_.bibliography.md) \| Promise\<[Bibliography](../interfaces/_index_.bibliography.md)>
 
 parse bibtex. This will try to convert TeX commands into unicode equivalents, and apply `@string` expansion
 

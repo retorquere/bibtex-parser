@@ -1,6 +1,6 @@
-**@retorquere/bibtex-parser**
+**[@retorquere/bibtex-parser](../README.md)**
 
-> [README](../README.md) / [Globals](../globals.md) / ["index"](../modules/_index_.md) / Entry
+> [Globals](../globals.md) / ["index"](../modules/_index_.md) / Entry
 
 # Interface: Entry
 

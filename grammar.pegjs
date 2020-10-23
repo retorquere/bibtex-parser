@@ -114,6 +114,10 @@
     return true
   }
 
+  function peek(n) {
+    return input.substr(peg$savedPos, n)
+  }
+
   const math = {
     on: false,
 
@@ -168,6 +172,69 @@
       case: 'protect',
       source: source,
     }
+  }
+
+  function handle_markup_switches(block) {
+    const value = block.value
+    if (!Array.isArray(value)) return block
+
+    block.value = []
+
+    const pseudo = {
+      block: null,
+      markup: {},
+    }
+    function pseudo_block() {
+      pseudo.block = {
+        kind: 'Block',
+        loc: location(),
+        source: '',
+        value: [],
+        markup: JSON.parse(JSON.stringify(pseudo.markup)),
+        pseudo: true,
+      }
+      block.value.push(pseudo.block)
+    }
+    for (const node of value) {
+      if (node.kind === 'Environment' || node.kind === 'Block') {
+        block.value.push(node)
+
+        if (Object.keys(pseudo.markup).length) {
+          pseudo_block()
+        } else {
+          pseudo.block = null
+        }
+        continue
+      }
+
+      if (node.kind === 'RegularCommand' && markup[node.command]) {
+        if (pseudo.markup.italics) { // https://github.com/citation-js/bibtex-parser-experiments/commit/cae475f075a05d1c074485a061b08ed245170c7e
+          delete pseudo.markup.italics
+          if (markup[node.command] !== 'italics') pseudo.markup[markup[node.command]] = true
+        } else {
+          pseudo.markup[markup[node.command]] = true
+        }
+
+        if (Object.keys(pseudo.markup).length) {
+          pseudo_block()
+        } else {
+           pseudo.block = null
+        }
+      }
+
+      if (pseudo.block) {
+        pseudo.block.source += node.source
+        pseudo.block.value.push(node)
+
+      } else {
+        block.value.push(node)
+
+      }
+    }
+
+    block.value = block.value.filter(node => !(node.pseudo && node.value.length === 0))
+
+    return block
   }
 }
 
@@ -293,13 +360,13 @@ Field
       }
     }
 
-    return {
+    return handle_markup_switches({
       kind: 'Field',
       loc: location(),
       source: text(),
       name: name,
       value: value,
-    }
+    })
   }
 
 FieldName
@@ -314,7 +381,6 @@ VerbatimFieldValue
       loc: location(),
       source: text(),
       value: '',
-      mode: 'verbatim',
     }
     v.mode = 'verbatim'
     return basicTextConversions(v)
@@ -341,6 +407,15 @@ FieldValue
 
 RegularValue
   = '"' v:(Environment / Block / Math / Command / TextNoQuotes)* '"' Concat? { return v; }
+  / '{\\verb' ![a-zA-Z] v:VerbatimText* '}' Concat? {
+    return basicTextConversions({
+      kind: 'Text',
+      loc: location(),
+      source: text(),
+      value: v.join('').trim(),
+      mode: 'verbatim',
+    })
+  }
   / '{' v:(Environment / Block / Math / Command / Text)* '}' Concat? { return v; }
   / v:StringReference Concat? { return v; }
 
@@ -423,17 +498,26 @@ Block
       character: char[1] || char[0],
     }
   }
+  / '{\\verb' ![a-zA-Z] v:VerbatimText* '}' {
+      return basicTextConversions({
+        kind: 'Text',
+        loc: location(),
+        source: text(),
+        value: v.join('').trim(),
+        mode: 'verbatim',
+      })
+  }
   / '{' v:(Environment / Block / Command / Math / Text)* '}' {
     const block = {
       kind: 'Block',
       loc: location(),
       source: text(),
-      value: [],
+      value: v,
       markup: {},
       case: 'protect',
     }
 
-    let leadingcmd = v.length && (v[0].kind.endsWith('Command') || v[0].kind === 'Environment') ? v[0] : null
+    let leadingcmd = block.value.length && (block.value[0].kind.endsWith('Command') || block.value[0].kind === 'Environment') ? block.value[0] : null
     let leadingcmdblockarg = leadingcmd
       && leadingcmd.kind === 'RegularCommand'
       && leadingcmd.arguments.required.length
@@ -451,65 +535,11 @@ Block
       // \sl, \it etc
       if (markup[leadingcmd.command]) {
         block.markup[markup[leadingcmd.command]] = true
-        v.shift()
+        block.value.shift()
       }
     }
 
-    const pseudo = {
-      block: null,
-      markup: {},
-    }
-    function pseudo_block() {
-      pseudo.block = {
-        kind: 'Block',
-        loc: location(),
-        source: '',
-        value: [],
-        markup: JSON.parse(JSON.stringify(pseudo.markup)),
-        pseudo: true,
-      }
-      block.value.push(pseudo.block)
-    }
-    for (const node of v) {
-      if (node.kind === 'Environment' || node.kind === 'Block') {
-        block.value.push(node)
-
-        if (Object.keys(pseudo.markup).length) {
-          pseudo_block()
-        } else {
-          pseudo.block = null
-        }
-        continue
-      }
-
-      if (node.kind === 'RegularCommand' && markup[node.command]) {
-        if (pseudo.markup.italics) { // https://github.com/citation-js/bibtex-parser-experiments/commit/cae475f075a05d1c074485a061b08ed245170c7e
-          delete pseudo.markup.italics
-          if (markup[node.command] !== 'italics') pseudo.markup[markup[node.command]] = true
-        } else {
-          pseudo.markup[markup[node.command]] = true
-        }
-
-        if (Object.keys(pseudo.markup).length) {
-          pseudo_block()
-        } else {
-           pseudo.block = null
-        }
-      }
-
-      if (pseudo.block) {
-        pseudo.block.source += node.source
-        pseudo.block.value.push(node)
-
-      } else {
-        block.value.push(node)
-
-      }
-    }
-
-    block.value = block.value.filter(node => !(node.pseudo && node.value.length === 0))
-
-    return block
+    return handle_markup_switches(block)
   }
 
 Math
