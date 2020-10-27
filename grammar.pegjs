@@ -43,7 +43,7 @@
 
   const unnestFields = (options.unnestFields || []).map(field => field.toLowerCase())
   const verbatimFields = (options.verbatimFields || [ 'urlraw', 'url', 'doi', 'file', 'files', 'eprint', 'verba', 'verbb', 'verbc' ]).map(field => typeof field === 'string' ? field.toLowerCase() : field)
-  const verbatimCommands = (options.verbatimCommands || ['url', 'href'])
+  const verbatimCommands = (options.verbatimCommands || ['texttt', 'url', 'href'])
 
   function isVerbatimField(name) {
     return verbatimFields.find(p => (typeof p === 'string') ? name === p : name.match(p))
@@ -98,6 +98,7 @@
     textsc: 1,
     textsubscript: 1,
     textsuperscript: 1,
+    texttt: 1,
     url: 1,
     vphantom: 1,
     vspace: 1,
