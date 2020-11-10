@@ -119,12 +119,12 @@ class BibtexParser {
   }
 
   private skipWhitespace() {
-    while (this.isWhitespace(this.input[this.pos])) this.pos++
+    while (this.pos < this.input.length && this.isWhitespace(this.input[this.pos])) this.pos++
 
     // shady
     if (this.input[this.pos] === '%') {
-      while (this.input[this.pos] !== '\n') this.pos++
-      this.skipWhitespace()
+      while (this.pos < this.input.length && this.input[this.pos] !== '\n') this.pos++
+      while (this.pos < this.input.length && this.isWhitespace(this.input[this.pos])) this.pos++
     }
   }
 
