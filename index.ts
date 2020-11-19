@@ -1670,11 +1670,6 @@ class Parser {
       delete node.case
     }
 
-    if (node.case === 'protect') {
-      prefix += this.options.markup.caseProtect.open
-      postfix = this.options.markup.caseProtect.close + postfix
-    }
-
     if (node.kind === 'Block') {
       for (const markup of Object.keys(node.markup)) {
         if (!this.options.markup[markup]) return this.error(new ParserError(`markup: ${markup}`, node), undefined)
@@ -1682,6 +1677,11 @@ class Parser {
         prefix += this.options.markup[markup].open
         postfix = this.options.markup[markup].close + postfix
       }
+    }
+
+    if (node.case === 'protect') {
+      prefix += this.options.markup.caseProtect.open
+      postfix = this.options.markup.caseProtect.close + postfix
     }
 
     const end = {
