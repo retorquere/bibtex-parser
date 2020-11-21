@@ -11,18 +11,16 @@ jobs:
         sentencecase: [ 'off', 'on', 'on+guess' ]
         caseprotection: [ 'off', 'strict', 'as-needed' ]
     steps:
+    - uses: actions/checkout@v2
     - run: echo "::set-output name=version::"`jq -r .version package.json`
       id: version
     - run: echo "::set-output name=bogus::true"
       id: bogus
       if: github.event.head_commit.message == steps.version.outputs.version && !startsWith(github.ref, 'refs/tags/')
-
     - run: |
         echo commit message ${{ github.event.head_commit.message }}
         echo version ${{ steps.version.outputs.version }}
         echo bogus ${{ steps.bogus.outputs.bogus }}
-    - uses: actions/checkout@v2
-      if: steps.bogus.outputs.bogus != 'true'
 
     - name: install node
       if: steps.bogus.outputs.bogus != 'true'
