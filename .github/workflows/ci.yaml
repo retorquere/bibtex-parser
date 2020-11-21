@@ -21,6 +21,7 @@ jobs:
       if: steps.bogus.outputs.bogus != 'true'
 
     - name: install node
+      if: steps.bogus.outputs.bogus != 'true'
       uses: actions/setup-node@v1
       with:
         node-version: 14.x
