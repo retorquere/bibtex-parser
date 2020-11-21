@@ -77,8 +77,7 @@ jobs:
       run: npm ci --ignore-scripts
     - name: Publish
       if: startsWith(github.ref, 'refs/tags/')
-      run: |
-        npm config set //registry.npmjs.com/:_authToken ${NPM_TOKEN}
-        npm publish --access public --ignore-scripts
-      env:
-        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        access: public
