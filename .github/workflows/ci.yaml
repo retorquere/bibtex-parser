@@ -11,14 +11,21 @@ jobs:
         sentencecase: [ 'off', 'on', 'on+guess' ]
         caseprotection: [ 'off', 'strict', 'as-needed' ]
     steps:
+    - run: echo "::set-output name=version::"`jq -r .version package.json`
+      id: version
+    - run: echo "::set-output name=bogus::true"
+      id: bogus
+      if: ${{ github.event.head_commit.message }} == ${{ steps.version.outputs.version }} && !startsWith(github.ref, 'refs/tags/')
+
     - uses: actions/checkout@v2
+      if: steps.bogus.outputs.bogus != 'true'
 
     - name: install node
       uses: actions/setup-node@v1
       with:
         node-version: 14.x
-
     - name: Cache node dependencies
+      if: steps.bogus.outputs.bogus != 'true'
       uses: actions/cache@v2
       env:
         cache-name: cache-dependencies
@@ -31,8 +38,11 @@ jobs:
           ${{ runner.os }}-build-
           ${{ runner.os }}-
     - name: install node dependencies
+      if: steps.bogus.outputs.bogus != 'true'
       run: npm ci --ignore-scripts
+
     - run: npm test
+      if: steps.bogus.outputs.bogus != 'true'
       env:
         SENTENCECASE: ${{ matrix.sentencecase }}
         CASEPROTECTION: ${{ matrix.caseprotection }}
@@ -41,6 +51,29 @@ jobs:
     runs-on: ubuntu-latest
     needs: test
     steps:
+    - uses: actions/checkout@v2
+      if: startsWith(github.ref, 'refs/tags/')
+    - name: install node
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Cache node dependencies
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: actions/cache@v2
+      env:
+        cache-name: cache-dependencies
+      with:
+        path: |
+          ~/.npm
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-build-${{ env.cache-name }}-
+          ${{ runner.os }}-build-
+          ${{ runner.os }}-
+    - name: install node dependencies
+      if: startsWith(github.ref, 'refs/tags/')
+      run: npm ci --ignore-scripts
     - name: Publish
       if: startsWith(github.ref, 'refs/tags/')
       run: |
