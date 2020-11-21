@@ -17,7 +17,10 @@ jobs:
       id: bogus
       if: github.event.head_commit.message == steps.version.outputs.version && !startsWith(github.ref, 'refs/tags/')
 
-    - run: echo "${{ github.event.head_commit.message }} :: ${{ steps.version.outputs.version }} :: ${{ steps.bogus.outputs.bogus }}"
+    - run: |
+        echo commit message ${{ github.event.head_commit.message }}
+        echo version ${{ steps.version.outputs.version }}
+        echo bogus ${{ steps.bogus.outputs.bogus }}
     - uses: actions/checkout@v2
       if: steps.bogus.outputs.bogus != 'true'
 
