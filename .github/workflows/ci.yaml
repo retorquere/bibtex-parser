@@ -15,8 +15,9 @@ jobs:
       id: version
     - run: echo "::set-output name=bogus::true"
       id: bogus
-      if: ${{ github.event.head_commit.message }} == ${{ steps.version.outputs.version }} && !startsWith(github.ref, 'refs/tags/')
+      if: github.event.head_commit.message == steps.version.outputs.version && !startsWith(github.ref, 'refs/tags/')
 
+    - run: echo ${{ github.event.head_commit.message }} :: ${{ steps.version.outputs.version }} :: ${{ steps.bogus.outputs.bogus }}
     - uses: actions/checkout@v2
       if: steps.bogus.outputs.bogus != 'true'
 
