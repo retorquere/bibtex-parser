@@ -80,51 +80,7 @@ Object {
     "root": Array [],
     "version": null,
   },
-  "preamble": Array [
-    "\\" 
-
-\\\\makeatletter
-
-
-\\\\@
-
-ifundefined
-
-{url}
-
-{\\\\newcommand{\\\\url}[1]{\\\\texttt{#1}}}
-
-{}
-
-
-
-
-\\\\@
-
-ifundefined
-
-{bibcyr}
-
-{\\\\newcommand{\\\\bibcyr}[1]{---}}
-
-{}
-
-
-
-
-\\\\ProvideTextCommandDefault
-
-{\\\\textmu}
-
-{\\\\ensuremath{\\\\mu}}
-
-
-
-
-\\\\makeatother 
-
-\\"",
-  ],
+  "preamble": Array [],
   "strings": Object {},
 }
 `;

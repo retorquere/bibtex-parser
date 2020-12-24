@@ -446,6 +446,8 @@ const english = [
 class Parser {
   private errors: ParseError[]
   private strings: Record<string, bibtex.ValueType[]>
+  private in_preamble: boolean = false
+  private newcommands: Record<string, bibtex.ValueType[]>
   private unresolvedStrings: Record<string, boolean>
   private default_strings: Record<string, bibtex.TextValue[]>
   private comments: string[]
@@ -527,6 +529,7 @@ class Parser {
     this.comments = []
     this.entries = []
     this.strings = { }
+    this.newcommands = { }
     this.default_strings = {
       JAN: [ this.text('01') ],
       FEB: [ this.text('02') ],
@@ -824,9 +827,11 @@ class Parser {
       case 'SymbolCommand':
         return this.clean_symbol(node)
 
+      case 'PreambleExpression':
+        return this.clean_preamble(node)
+
       case 'Number':
       case 'Text':
-      case 'PreambleExpression':
       case 'BracedComment':
       case 'LineComment':
         return node
@@ -836,6 +841,12 @@ class Parser {
     }
   }
 
+  private clean_preamble(node: bibtex.PreambleExpression) {
+    this.in_preamble = true
+    const clean = this.clean(node.value)
+    this.in_preamble = false
+    return clean
+  }
   private clean_bib(node: bibtex.Bibliography) {
     node.children = node.children.filter(child => child.kind !== 'NonEntryText').map(child => this.clean(child as Node))
     return node
@@ -976,7 +987,7 @@ class Parser {
   private clean_block(node: bibtex.Block | bibtex.Math) {
     this.condense(node)
 
-    if (this.options.caseProtection !== 'strict' && this.cleaning.type === 'title' && node.case === 'protect') {
+    if (this.options.caseProtection !== 'strict' && this.cleaning?.type === 'title' && node.case === 'protect') {
       // test whether we can get away with skipping case protection because it contains all words that will be preserved anyway when converting back to Title Case
       let preserve = true
       for (const child of node.value) {
@@ -1009,7 +1020,7 @@ class Parser {
       || latex2unicode[`\\${node.mark} ${char}`]
 
     if (!unicode && !node.dotless && node.character.length === 1 && diacritics.tounicode[node.mark]) unicode = node.character + diacritics.tounicode[node.mark]
-    if (!unicode) return this.error(new TeXError(`Unhandled \\${node.mark}{${char}}`, node, this.chunk), this.text())
+    if (!unicode && !this.in_preamble) return this.error(new TeXError(`Unhandled \\${node.mark}{${char}}`, node, this.chunk), this.text())
     return this.text(unicode)
   }
 
@@ -1046,6 +1057,19 @@ class Parser {
     if (unicode = latex2unicode[node.source]) return this.text(unicode)
 
     switch (node.command) {
+      case 'newcommand':
+        if (node.arguments?.required.length === 2
+          && node.arguments.required[0].kind === 'Block'
+          && node.arguments.required[0].value.length === 1
+          && node.arguments.required[0].value[0].kind === 'RegularCommand'
+          && node.arguments.required[1].kind === 'Block'
+        ) {
+          this.newcommands[node.arguments.required[0].value[0].command] = node.arguments.required[1].value
+          return this.text()
+        }
+        // console.log('newcommand?', JSON.stringify(node, null, 2))
+        break
+
       case 'item':
         return { kind: 'Markup', value: '<li>', source: node.source }
 
@@ -1074,6 +1098,11 @@ class Parser {
       case 'ignorespaces':
       case 'relax':
       case 'noopsort':
+      case 'ifdefined':
+      case 'DeclarePrefChars':
+      case 'else':
+      case 'fi':
+      case 'makeatletter':
         return this.text()
 
       case 'ElsevierGlyph':
@@ -1202,6 +1231,14 @@ class Parser {
         break
 
       default:
+        if (node.kind === 'RegularCommand' && this.newcommands[node.command]) {
+          return this.clean({
+            kind: 'Block',
+            markup: {},
+            value: (JSON.parse(JSON.stringify(this.newcommands[node.command])) as bibtex.ValueType[]),
+          })
+        }
+
         if (diacritics.tounicode[node.command]) {
           node.arguments.required = this.clean(node.arguments.required)
 
@@ -1263,6 +1300,7 @@ class Parser {
         break
     }
 
+    if (this.in_preamble) return this.text(node.source)
     return this.error(new TeXError(`Unhandled command: ${node.command}` + this.show(node), node, this.chunk), this.text())
   }
 

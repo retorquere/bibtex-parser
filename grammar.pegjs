@@ -83,6 +83,7 @@
     mkbibemph: 1,
     mkbibitalic: 1,
     mkbibquote: 1,
+    newcommand: 2,
     noopsort: 1,
     ocirc: 1,
     section: 1,
@@ -633,7 +634,19 @@ SymbolCommand
   }
 
 RegularCommand
-  = '\\' !'begin' !'end' cmd:$[A-Za-z]+ &{ return verbatimCommands.includes(cmd) && (has_arguments[cmd] === 2) } optional:OptionalArgument* __h &'{' req1:VerbatimFieldValue req2:VerbatimFieldValue {
+  = '\\' cmd:'newcommand' name:Block &{ return name.value.length == 1 && name.value[0].kind === 'RegularCommand' } optional:OptionalArgument* def:RequiredArgument {
+    return {
+      kind: 'RegularCommand',
+      loc: location(),
+      source: text(),
+      command: cmd,
+      arguments: {
+        optional: [],
+        required: [name, def],
+      },
+    }
+  }
+  / '\\' !'begin' !'end' cmd:$[A-Za-z]+ &{ return verbatimCommands.includes(cmd) && (has_arguments[cmd] === 2) } optional:OptionalArgument* __h &'{' req1:VerbatimFieldValue req2:VerbatimFieldValue {
     return {
       kind: 'RegularCommand',
       loc: location(),
