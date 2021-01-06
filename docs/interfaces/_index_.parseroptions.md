@@ -127,7 +127,7 @@ ___
 
 ### strings
 
-• `Optional` **strings**: Record\<string, string>
+• `Optional` **strings**: Record<string, string\>
 
 You can pass in an existing @string dictionary
 
@@ -135,7 +135,7 @@ ___
 
 ### unabbreviate
 
-• `Optional` **unabbreviate**: Record\<string, { ast: any ; text: string  }>
+• `Optional` **unabbreviate**: Record<string, { ast: any ; text: string  }\>
 
 BibTeX files may have abbreviations in the journal field. If you provide a dictionary, journal names that are found in the dictionary are replaced with the attached full name
 

@@ -285,7 +285,7 @@ BracedComment
 //-----------------  Top-level Nodes
 
 Entry
-  = '@' __ type:$[A-Za-z]+ __ [({] __ id:EntryId? __ fields:Field* __ [})] __ {
+  = '@' __ type:$[_A-Za-z]+ __ [({] __ id:EntryId? __ fields:Field* __ [})] __ {
     return {
       kind: 'Entry',
       id: id || '',

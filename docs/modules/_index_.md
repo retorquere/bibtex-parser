@@ -57,7 +57,7 @@ ___
 
 ### parse
 
-▸ **parse**(`input`: string, `options?`: [ParserOptions](../interfaces/_index_.parseroptions.md)): [Bibliography](../interfaces/_index_.bibliography.md) \| Promise\<[Bibliography](../interfaces/_index_.bibliography.md)>
+▸ **parse**(`input`: string, `options?`: [ParserOptions](../interfaces/_index_.parseroptions.md)): [Bibliography](../interfaces/_index_.bibliography.md) \| Promise<[Bibliography](../interfaces/_index_.bibliography.md)\>
 
 parse bibtex. This will try to convert TeX commands into unicode equivalents, and apply `@string` expansion
 
@@ -68,4 +68,4 @@ Name | Type | Default value |
 `input` | string | - |
 `options` | [ParserOptions](../interfaces/_index_.parseroptions.md) | {} |
 
-**Returns:** [Bibliography](../interfaces/_index_.bibliography.md) \| Promise\<[Bibliography](../interfaces/_index_.bibliography.md)>
+**Returns:** [Bibliography](../interfaces/_index_.bibliography.md) \| Promise<[Bibliography](../interfaces/_index_.bibliography.md)\>
