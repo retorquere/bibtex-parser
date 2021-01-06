@@ -43,9 +43,11 @@ jobs:
           ${{ runner.os }}-
     - name: install node dependencies
       if: steps.bogus.outputs.bogus != 'true'
-      run: pnpm install --ignore-scripts
+      uses: pnpm/action-setup@v1.2.1
+      with:
+        run_install: true
 
-    - run: pnpm test
+    - run: npm test
       if: steps.bogus.outputs.bogus != 'true'
       env:
         SENTENCECASE: ${{ matrix.sentencecase }}
@@ -78,7 +80,9 @@ jobs:
           ${{ runner.os }}-
     - name: install node dependencies
       if: startsWith(github.ref, 'refs/tags/')
-      run: pnpm install ci --ignore-scripts
+      uses: pnpm/action-setup@v1.2.1
+      with:
+        run_install: true
     - name: Publish
       if: startsWith(github.ref, 'refs/tags/')
       uses: JS-DevTools/npm-publish@v1
