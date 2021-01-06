@@ -35,6 +35,7 @@ jobs:
       with:
         path: |
           ~/.npm
+          ~/.pnpm-store
         key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-build-${{ env.cache-name }}-
@@ -42,9 +43,9 @@ jobs:
           ${{ runner.os }}-
     - name: install node dependencies
       if: steps.bogus.outputs.bogus != 'true'
-      run: npm ci --ignore-scripts
+      run: pnpm ci --ignore-scripts
 
-    - run: npm test
+    - run: pnpm test
       if: steps.bogus.outputs.bogus != 'true'
       env:
         SENTENCECASE: ${{ matrix.sentencecase }}
@@ -69,6 +70,7 @@ jobs:
       with:
         path: |
           ~/.npm
+          ~/.pnpm-store
         key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-build-${{ env.cache-name }}-
@@ -76,7 +78,7 @@ jobs:
           ${{ runner.os }}-
     - name: install node dependencies
       if: startsWith(github.ref, 'refs/tags/')
-      run: npm ci --ignore-scripts
+      run: pnpm ci --ignore-scripts
     - name: Publish
       if: startsWith(github.ref, 'refs/tags/')
       uses: JS-DevTools/npm-publish@v1
