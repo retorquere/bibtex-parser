@@ -6,7 +6,7 @@ import getopt
 import sys
 import argparse, shlex
 
-if os.system(f'pnpm install') != 0 or os.system(f'pnpm start') != 0:
+if os.system(f'pnpm install') != 0 or os.system(f'npm start') != 0:
   sys.exit(1)
 
 parser = argparse.ArgumentParser()
@@ -23,6 +23,6 @@ for sc in ['off', 'on', 'on+guess']:
     print(n, env)
     print()
 
-    if os.system(f'{env} pnpm run update-ci') != 0:
+    if os.system(f'{env} npm run update-ci') != 0:
       sys.exit(1)
 
