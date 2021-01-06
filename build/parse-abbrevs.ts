@@ -1,6 +1,6 @@
 // tslint:disable:no-console
 
-import * as csv from 'csv-parse/lib/sync'
+import * as csv from 'csv/lib/sync'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as bibtex from '../index'
@@ -45,7 +45,7 @@ function parse(list) {
     console.log('!!!', list, 'IS GONE!!!')
     return
   }
-  for (const row of csv(fs.readFileSync(list, 'utf-8'), { delimiter: ';', relax_column_count: true })) {
+  for (const row of csv.parse(fs.readFileSync(list, 'utf-8'), { delimiter: ';', relax_column_count: true })) {
     let [journal, abbr] = row.slice(0, 2)
     journal = unjunk(journal)
     abbr = unjunk(abbr)
