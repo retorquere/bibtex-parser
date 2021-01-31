@@ -1,5 +1,5 @@
 function decode(s, sep = ';') {
-  s = s.replace(/\n/g, '')
+  s = s.replace(/\r?\n/g, '')
   let pos = 0
   const records = ['']
   while (pos < s.length) {

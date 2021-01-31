@@ -3,8 +3,8 @@ dependencies:
   unicode2latex: 2.1.35
   xregexp: 4.4.1
 devDependencies:
-  '@types/jest': 26.0.19
-  '@types/node': 14.14.20
+  '@types/jest': 26.0.20
+  '@types/node': 14.14.22
   csv: 5.3.2
   digital-tree: 2.0.1
   jest: 26.6.3_ts-node@9.1.1
@@ -13,12 +13,12 @@ devDependencies:
   mkdirp: 1.0.4
   pegjs: 0.10.0
   slugify: 1.4.6
-  ts-jest: 26.4.4_jest@26.6.3+typescript@4.1.3
+  ts-jest: 26.5.0_jest@26.6.3+typescript@4.1.3
   ts-node: 9.1.1_typescript@4.1.3
   tslib: 2.1.0
   tslint: 6.1.3_typescript@4.1.3
-  typedoc: 0.20.12_typescript@4.1.3
-  typedoc-plugin-markdown: 3.3.0_typedoc@0.20.12
+  typedoc: 0.20.19_typescript@4.1.3
+  typedoc-plugin-markdown: 3.4.5_typedoc@0.20.19
   typescript: 4.1.3
 lockfileVersion: 5.2
 packages:
@@ -582,17 +582,21 @@ packages:
     dev: true
     resolution:
       integrity: sha512-nwKNbvnwJ2/mndE9ItP/zc2TCzw6uuodnF4EHYWD+gCQDVBuRQL5UzbZD0/ezy1iKsFU2ZQiDqg4M9dN4+wZgA==
-  /@types/jest/26.0.19:
+  /@types/jest/26.0.20:
     dependencies:
       jest-diff: 26.6.2
       pretty-format: 26.6.2
     dev: true
     resolution:
-      integrity: sha512-jqHoirTG61fee6v6rwbnEuKhpSKih0tuhqeFbCmMmErhtu3BYlOZaXWjffgOstMM4S/3iQD31lI5bGLTrs97yQ==
+      integrity: sha512-9zi2Y+5USJRxd0FsahERhBwlcvFh6D2GLQnY2FH2BzK8J9s9omvNHIbvABwIluXa0fD8XVKMLTO0aOEuUfACAA==
   /@types/node/14.14.20:
     dev: true
     resolution:
       integrity: sha512-Y93R97Ouif9JEOWPIUyU+eyIdyRqQR0I8Ez1dzku4hDx34NWh4HbtIc3WNzwB1Y9ULvNGeu5B8h8bVL5cAk4/A==
+  /@types/node/14.14.22:
+    dev: true
+    resolution:
+      integrity: sha512-g+f/qj/cNcqKkc3tFqlXOYjrmZA+jNBiDzbP3kH+B+otKFqAdPgVTGP1IeKRdMml/aE69as5S4FqtxAbl+LaMw==
   /@types/normalize-package-data/2.4.0:
     dev: true
     resolution:
@@ -2685,10 +2689,6 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-t7hw9pI+WvuwNJXwk5zVHpyhIqzg2qTlklJOf0mVxGSbe3Fp2VieZcduNYjaLDoy6p9uGpQEGWG87WpMKlNq8g==
-  /lodash.memoize/4.1.2:
-    dev: true
-    resolution:
-      integrity: sha1-vMbEmkKihA7Zl/Mj6tpezRguC/4=
   /lodash.sortby/4.7.0:
     dev: true
     resolution:
@@ -3866,16 +3866,16 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-3n1qG+/5kg+jrbTzwAykB5yRYtQCTqOGKq5U5PE3b0a1/mzo6snDhjGS0zJVJunO0NrT3Dg1MLy5TjWP/UJppg==
-  /ts-jest/26.4.4_jest@26.6.3+typescript@4.1.3:
+  /ts-jest/26.5.0_jest@26.6.3+typescript@4.1.3:
     dependencies:
-      '@types/jest': 26.0.19
+      '@types/jest': 26.0.20
       bs-logger: 0.2.6
       buffer-from: 1.1.1
       fast-json-stable-stringify: 2.1.0
       jest: 26.6.3_ts-node@9.1.1
       jest-util: 26.6.2
       json5: 2.1.3
-      lodash.memoize: 4.1.2
+      lodash: 4.17.20
       make-error: 1.3.6
       mkdirp: 1.0.4
       semver: 7.3.4
@@ -3889,7 +3889,7 @@ packages:
       jest: '>=26 <27'
       typescript: '>=3.8 <5.0'
     resolution:
-      integrity: sha512-3lFWKbLxJm34QxyVNNCgXX1u4o/RV0myvA2y2Bxm46iGIjKlaY0own9gIckbjZJPn+WaJEnfPPJ20HHGpoq4yg==
+      integrity: sha512-Ya4IQgvIFNa2Mgq52KaO8yBw2W8tWp61Ecl66VjF0f5JaV8u50nGoptHVILOPGoI7SDnShmEqnYQEmyHdQ+56g==
   /ts-node/9.1.1_typescript@4.1.3:
     dependencies:
       arg: 4.1.3
@@ -3997,24 +3997,24 @@ packages:
     dev: true
     resolution:
       integrity: sha512-zdu8XMNEDepKKR+XYOXAVPtWui0ly0NtohUscw+UmaHiAWT8hrV1rr//H6V+0DvJ3OQ19S979M0laLfX8rm82Q==
-  /typedoc-default-themes/0.12.0:
+  /typedoc-default-themes/0.12.5:
     dev: true
     engines:
       node: '>= 8'
     resolution:
-      integrity: sha512-0hHBxwmfxE0rkIslOiO39fJyYwaScQEhUIxcpqx3uS1BL3zhFW5oQfUaPx2cv2XLL/GXhYFxhdFLoVmNptbxEQ==
-  /typedoc-plugin-markdown/3.3.0_typedoc@0.20.12:
+      integrity: sha512-JQ2O9laZ/EhfWUWYp/8EyuShYhtXLhIa6DU8eZNUfaurMhEgKdffbadKNv6HMmTfOxAcgiePg06OCxNX8EyP3g==
+  /typedoc-plugin-markdown/3.4.5_typedoc@0.20.19:
     dependencies:
       handlebars: 4.7.6
-      typedoc: 0.20.12_typescript@4.1.3
+      typedoc: 0.20.19_typescript@4.1.3
     dev: true
     engines:
-      node: '>=10.0.0'
+      node: '>= 10.8.0'
     peerDependencies:
       typedoc: '>=0.20.0'
     resolution:
-      integrity: sha512-F9o+y9QDxVCljmtRHKHKQ4FhaJD3Lmpd4IpJE1xiLDIIcS5J4nW7oxQquC5Zwnj4v2+5hZE1y9xEmSm4jhEgjQ==
-  /typedoc/0.20.12_typescript@4.1.3:
+      integrity: sha512-m24mSCGcEk6tQDCHIG4TM3AS2a7e9NtC/YdO0mefyF+z1/bKYnZ/oQswLZmm2zBngiLIoKX6eNdufdBpQNPtrA==
+  /typedoc/0.20.19_typescript@4.1.3:
     dependencies:
       colors: 1.4.0
       fs-extra: 9.0.1
@@ -4026,7 +4026,7 @@ packages:
       progress: 2.0.3
       shelljs: 0.8.4
       shiki: 0.2.7
-      typedoc-default-themes: 0.12.0
+      typedoc-default-themes: 0.12.5
       typescript: 4.1.3
     dev: true
     engines:
@@ -4035,7 +4035,7 @@ packages:
     peerDependencies:
       typescript: 3.9.x || 4.0.x || 4.1.x
     resolution:
-      integrity: sha512-Cdg6tLicmhomai+GkVOLy1spmiZ8iAC4lrkU6oylK3KHNex9TrJjl++B2iCQ7eC5uiiv3MBfv4t6WzQ/M6jLTg==
+      integrity: sha512-9FjQ1xQGtxpXm8R5QKvU8wFBaaYe8RW3NzrhGWB8RigbOALwG+4ywJ/EyArPGWXvmXYB7I8h2YHzeyFvZ2s0ow==
   /typescript/4.1.3:
     dev: true
     engines:
@@ -4331,8 +4331,8 @@ packages:
     resolution:
       integrity: sha512-Ux4ygGWsu2c7isFWe8Yu1YluJmqVhxqK2cLXNQA5AcC3QfbGNpM7fu0Y8b/z16pXLnFxZYvWhd3fhBY9DLmC6Q==
 specifiers:
-  '@types/jest': ^26.0.19
-  '@types/node': ^14.14.20
+  '@types/jest': ^26.0.20
+  '@types/node': ^14.14.22
   chevrotain: ^7.1.0
   csv: ^5.3.2
   digital-tree: ^2.0.1
@@ -4342,12 +4342,12 @@ specifiers:
   mkdirp: ^1.0.4
   pegjs: ^0.10.0
   slugify: ^1.4.6
-  ts-jest: ^26.4.4
+  ts-jest: ^26.5.0
   ts-node: ^9.1.1
   tslib: ^2.1.0
   tslint: ^6.1.3
-  typedoc: ^0.20.12
-  typedoc-plugin-markdown: ^3.3.0
+  typedoc: ^0.20.19
+  typedoc-plugin-markdown: ^3.4.5
   typescript: ^4.1.3
   unicode2latex: ^2.1.35
   xregexp: ^4.4.1
