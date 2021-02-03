@@ -372,10 +372,15 @@ export interface ParserOptions {
   async?: boolean
 
   /**
-   * By default, when an unexpected parsing error is found (such as a TeX command which I did not anticipate), the parser will throw an error. You can pass a function to handle the error instead,
+   * By default, when an unexpected parsing error is found (such as a TeX command which the parser does not know about), the parser will throw an error. You can pass a function to handle the error instead,
    * where you can log it, display it, or even still throw an error
    */
   errorHandler?: false | ((message: string) => void)
+
+  /**
+   * By default, when a TeX command is encountered which the parser does not know about, the parser will throw an error. You can pass a function here to return the appropriate AST for the command.
+   */
+  unknownCommandHandler?: false | ((node: bibtex.RegularCommand) => Node)
 
   /**
    * Some fields such as `url` are parsed in what is called "verbatim mode" where pretty much everything except braces is treated as regular text, not TeX commands. You can change the default list here if you want,
@@ -1301,6 +1306,7 @@ class Parser {
     }
 
     if (this.in_preamble) return this.text(node.source)
+    if (this.options.unknownCommandHandler) return this.options.unknownCommandHandler.call(this, node)
     return this.error(new TeXError(`Unhandled command: ${node.command}` + this.show(node), node, this.chunk), this.text())
   }
 
