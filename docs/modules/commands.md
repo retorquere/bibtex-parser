@@ -2,62 +2,62 @@
 
 # Module: commands
 
-## Index
+## Table of contents
 
 ### Variables
 
-* [command\_arguments](commands.md#command_arguments)
+- [command\_arguments](commands.md#command_arguments)
 
 ## Variables
 
 ### command\_arguments
 
-• `Const` **command\_arguments**: object
+• `Const` **command\_arguments**: *object*
 
 #### Type declaration:
 
-Name | Type | Value |
------- | ------ | ------ |
-\ElsevierGlyph | *string*[] | *string*[] |
-\begin | *string*[] | *string*[] |
-\bibcyr | *string*[] | *string*[] |
-\bibstring | *string*[] | *string*[] |
-\chsf | *string*[] | *string*[] |
-\cite | *string*[] | *string*[] |
-\cyrchar | *string*[] | *string*[] |
-\ding | *string*[] | *string*[] |
-\emph | *string*[] | *string*[] |
-\end | *string*[] | *string*[] |
-\enquote | *string*[] | *string*[] |
-\frac | *string*[] | *string*[] |
-\href | *string*[] | *string*[] |
-\hspace | *string*[] | *string*[] |
-\mathrm | *string*[] | *string*[] |
-\mbox | *string*[] | *string*[] |
-\mkbibbold | *string*[] | *string*[] |
-\mkbibemph | *string*[] | *string*[] |
-\mkbibitalic | *string*[] | *string*[] |
-\mkbibquote | *string*[] | *string*[] |
-\noopsort | *string*[] | *string*[] |
-\ocirc | *string*[] | *string*[] |
-\sb | *string*[] | *string*[] |
-\section | *string*[] | *string*[] |
-\sp | *string*[] | *string*[] |
-\subsection | *string*[] | *string*[] |
-\subsubsection | *string*[] | *string*[] |
-\subsubsubsection | *string*[] | *string*[] |
-\t | *string*[] | *string*[] |
-\textbf | *string*[] | *string*[] |
-\textit | *string*[] | *string*[] |
-\textrm | *string*[] | *string*[] |
-\textsc | *string*[] | *string*[] |
-\textsubscript | *string*[] | *string*[] |
-\textsuperscript | *string*[] | *string*[] |
-\texttt | *string*[] | *string*[] |
-\url | *string*[] | *string*[] |
-\vphantom | *string*[] | *string*[] |
-\vspace | *string*[] | *string*[] |
-`^` | *string*[] | *string*[] |
-`_` | *string*[] | *string*[] |
+Name | Type |
+------ | ------ |
+\ElsevierGlyph | *string*[] |
+\begin | *string*[] |
+\bibcyr | *string*[] |
+\bibstring | *string*[] |
+\chsf | *string*[] |
+\cite | *string*[] |
+\cyrchar | *string*[] |
+\ding | *string*[] |
+\emph | *string*[] |
+\end | *string*[] |
+\enquote | *string*[] |
+\frac | *string*[] |
+\href | *string*[] |
+\hspace | *string*[] |
+\mathrm | *string*[] |
+\mbox | *string*[] |
+\mkbibbold | *string*[] |
+\mkbibemph | *string*[] |
+\mkbibitalic | *string*[] |
+\mkbibquote | *string*[] |
+\noopsort | *string*[] |
+\ocirc | *string*[] |
+\sb | *string*[] |
+\section | *string*[] |
+\sp | *string*[] |
+\subsection | *string*[] |
+\subsubsection | *string*[] |
+\subsubsubsection | *string*[] |
+\t | *string*[] |
+\textbf | *string*[] |
+\textit | *string*[] |
+\textrm | *string*[] |
+\textsc | *string*[] |
+\textsubscript | *string*[] |
+\textsuperscript | *string*[] |
+\texttt | *string*[] |
+\url | *string*[] |
+\vphantom | *string*[] |
+\vspace | *string*[] |
+`^` | *string*[] |
+`_` | *string*[] |
 
 Defined in: commands.d.ts:1

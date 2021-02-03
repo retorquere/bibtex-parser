@@ -2,19 +2,21 @@
 
 # Interface: RegularCommand
 
+[grammar](../modules/grammar.md).RegularCommand
+
 ## Hierarchy
 
 * **RegularCommand**
 
-## Index
+## Table of contents
 
 ### Properties
 
-* [arguments](grammar.regularcommand.md#arguments)
-* [command](grammar.regularcommand.md#command)
-* [kind](grammar.regularcommand.md#kind)
-* [loc](grammar.regularcommand.md#loc)
-* [source](grammar.regularcommand.md#source)
+- [arguments](grammar.regularcommand.md#arguments)
+- [command](grammar.regularcommand.md#command)
+- [kind](grammar.regularcommand.md#kind)
+- [loc](grammar.regularcommand.md#loc)
+- [source](grammar.regularcommand.md#source)
 
 ## Properties
 

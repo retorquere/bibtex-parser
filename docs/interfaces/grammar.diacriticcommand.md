@@ -2,20 +2,22 @@
 
 # Interface: DiacriticCommand
 
+[grammar](../modules/grammar.md).DiacriticCommand
+
 ## Hierarchy
 
 * **DiacriticCommand**
 
-## Index
+## Table of contents
 
 ### Properties
 
-* [character](grammar.diacriticcommand.md#character)
-* [dotless](grammar.diacriticcommand.md#dotless)
-* [kind](grammar.diacriticcommand.md#kind)
-* [loc](grammar.diacriticcommand.md#loc)
-* [mark](grammar.diacriticcommand.md#mark)
-* [source](grammar.diacriticcommand.md#source)
+- [character](grammar.diacriticcommand.md#character)
+- [dotless](grammar.diacriticcommand.md#dotless)
+- [kind](grammar.diacriticcommand.md#kind)
+- [loc](grammar.diacriticcommand.md#loc)
+- [mark](grammar.diacriticcommand.md#mark)
+- [source](grammar.diacriticcommand.md#source)
 
 ## Properties
 

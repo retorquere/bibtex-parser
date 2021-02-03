@@ -2,16 +2,16 @@
 
 # Module: chunker
 
-## Index
+## Table of contents
 
 ### Interfaces
 
-* [Chunk](../interfaces/chunker.chunk.md)
-* [ParserOptions](../interfaces/chunker.parseroptions.md)
+- [Chunk](../interfaces/chunker.chunk.md)
+- [ParserOptions](../interfaces/chunker.parseroptions.md)
 
 ### Functions
 
-* [parse](chunker.md#parse)
+- [parse](chunker.md#parse)
 
 ## Functions
 

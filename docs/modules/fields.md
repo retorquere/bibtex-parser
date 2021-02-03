@@ -2,27 +2,27 @@
 
 # Module: fields
 
-## Index
+## Table of contents
 
 ### Variables
 
-* [fields](fields.md#fields)
+- [fields](fields.md#fields)
 
 ## Variables
 
 ### fields
 
-• `Const` **fields**: object
+• `Const` **fields**: *object*
 
 #### Type declaration:
 
-Name | Type | Value |
------- | ------ | ------ |
-`creator` | *string*[] | *string*[] |
-`html` | *string*[] | *string*[] |
-`title` | *string*[] | *string*[] |
-`unabbrev` | *string*[] | *string*[] |
-`unnest` | *string*[] | *string*[] |
-`verbatim` | *string*[] | *string*[] |
+Name | Type |
+------ | ------ |
+`creator` | *string*[] |
+`html` | *string*[] |
+`title` | *string*[] |
+`unabbrev` | *string*[] |
+`unnest` | *string*[] |
+`verbatim` | *string*[] |
 
 Defined in: fields.d.ts:1

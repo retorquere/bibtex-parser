@@ -2,19 +2,21 @@
 
 # Interface: Entry
 
+[index](../modules/index.md).Entry
+
 ## Hierarchy
 
 * **Entry**
 
-## Index
+## Table of contents
 
 ### Properties
 
-* [creators](index.entry.md#creators)
-* [fields](index.entry.md#fields)
-* [key](index.entry.md#key)
-* [sentenceCased](index.entry.md#sentencecased)
-* [type](index.entry.md#type)
+- [creators](index.entry.md#creators)
+- [fields](index.entry.md#fields)
+- [key](index.entry.md#key)
+- [sentenceCased](index.entry.md#sentencecased)
+- [type](index.entry.md#type)
 
 ## Properties
 

@@ -2,18 +2,20 @@
 
 # Interface: SuperscriptCommand
 
+[grammar](../modules/grammar.md).SuperscriptCommand
+
 ## Hierarchy
 
 * **SuperscriptCommand**
 
-## Index
+## Table of contents
 
 ### Properties
 
-* [kind](grammar.superscriptcommand.md#kind)
-* [loc](grammar.superscriptcommand.md#loc)
-* [source](grammar.superscriptcommand.md#source)
-* [value](grammar.superscriptcommand.md#value)
+- [kind](grammar.superscriptcommand.md#kind)
+- [loc](grammar.superscriptcommand.md#loc)
+- [source](grammar.superscriptcommand.md#source)
+- [value](grammar.superscriptcommand.md#value)
 
 ## Properties
 

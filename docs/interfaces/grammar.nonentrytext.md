@@ -2,18 +2,20 @@
 
 # Interface: NonEntryText
 
+[grammar](../modules/grammar.md).NonEntryText
+
 ## Hierarchy
 
 * **NonEntryText**
 
-## Index
+## Table of contents
 
 ### Properties
 
-* [kind](grammar.nonentrytext.md#kind)
-* [loc](grammar.nonentrytext.md#loc)
-* [source](grammar.nonentrytext.md#source)
-* [value](grammar.nonentrytext.md#value)
+- [kind](grammar.nonentrytext.md#kind)
+- [loc](grammar.nonentrytext.md#loc)
+- [source](grammar.nonentrytext.md#source)
+- [value](grammar.nonentrytext.md#value)
 
 ## Properties
 

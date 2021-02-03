@@ -2,18 +2,20 @@
 
 # Interface: StringReference
 
+[grammar](../modules/grammar.md).StringReference
+
 ## Hierarchy
 
 * **StringReference**
 
-## Index
+## Table of contents
 
 ### Properties
 
-* [kind](grammar.stringreference.md#kind)
-* [loc](grammar.stringreference.md#loc)
-* [name](grammar.stringreference.md#name)
-* [source](grammar.stringreference.md#source)
+- [kind](grammar.stringreference.md#kind)
+- [loc](grammar.stringreference.md#loc)
+- [name](grammar.stringreference.md#name)
+- [source](grammar.stringreference.md#source)
 
 ## Properties
 

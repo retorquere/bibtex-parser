@@ -2,19 +2,21 @@
 
 # Interface: Field
 
+[grammar](../modules/grammar.md).Field
+
 ## Hierarchy
 
 * **Field**
 
-## Index
+## Table of contents
 
 ### Properties
 
-* [kind](grammar.field.md#kind)
-* [loc](grammar.field.md#loc)
-* [name](grammar.field.md#name)
-* [source](grammar.field.md#source)
-* [value](grammar.field.md#value)
+- [kind](grammar.field.md#kind)
+- [loc](grammar.field.md#loc)
+- [name](grammar.field.md#name)
+- [source](grammar.field.md#source)
+- [value](grammar.field.md#value)
 
 ## Properties
 

@@ -2,19 +2,21 @@
 
 # Interface: Group
 
+[jabref](../modules/jabref.md).Group
+
 A JabRef group.
 
 ## Hierarchy
 
 * **Group**
 
-## Index
+## Table of contents
 
 ### Properties
 
-* [entries](jabref.group.md#entries)
-* [groups](jabref.group.md#groups)
-* [name](jabref.group.md#name)
+- [entries](jabref.group.md#entries)
+- [groups](jabref.group.md#groups)
+- [name](jabref.group.md#name)
 
 ## Properties
 

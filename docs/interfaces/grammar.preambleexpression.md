@@ -2,18 +2,20 @@
 
 # Interface: PreambleExpression
 
+[grammar](../modules/grammar.md).PreambleExpression
+
 ## Hierarchy
 
 * **PreambleExpression**
 
-## Index
+## Table of contents
 
 ### Properties
 
-* [kind](grammar.preambleexpression.md#kind)
-* [loc](grammar.preambleexpression.md#loc)
-* [source](grammar.preambleexpression.md#source)
-* [value](grammar.preambleexpression.md#value)
+- [kind](grammar.preambleexpression.md#kind)
+- [loc](grammar.preambleexpression.md#loc)
+- [source](grammar.preambleexpression.md#source)
+- [value](grammar.preambleexpression.md#value)
 
 ## Properties
 

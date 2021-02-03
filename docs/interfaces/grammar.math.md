@@ -2,19 +2,21 @@
 
 # Interface: Math
 
+[grammar](../modules/grammar.md).Math
+
 ## Hierarchy
 
 * **Math**
 
-## Index
+## Table of contents
 
 ### Properties
 
-* [case](grammar.math.md#case)
-* [kind](grammar.math.md#kind)
-* [loc](grammar.math.md#loc)
-* [source](grammar.math.md#source)
-* [value](grammar.math.md#value)
+- [case](grammar.math.md#case)
+- [kind](grammar.math.md#kind)
+- [loc](grammar.math.md#loc)
+- [source](grammar.math.md#source)
+- [value](grammar.math.md#value)
 
 ## Properties
 

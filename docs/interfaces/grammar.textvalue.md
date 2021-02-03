@@ -2,19 +2,21 @@
 
 # Interface: TextValue
 
+[grammar](../modules/grammar.md).TextValue
+
 ## Hierarchy
 
 * **TextValue**
 
-## Index
+## Table of contents
 
 ### Properties
 
-* [kind](grammar.textvalue.md#kind)
-* [loc](grammar.textvalue.md#loc)
-* [mode](grammar.textvalue.md#mode)
-* [source](grammar.textvalue.md#source)
-* [value](grammar.textvalue.md#value)
+- [kind](grammar.textvalue.md#kind)
+- [loc](grammar.textvalue.md#loc)
+- [mode](grammar.textvalue.md#mode)
+- [source](grammar.textvalue.md#source)
+- [value](grammar.textvalue.md#value)
 
 ## Properties
 

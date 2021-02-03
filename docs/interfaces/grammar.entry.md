@@ -2,20 +2,22 @@
 
 # Interface: Entry
 
+[grammar](../modules/grammar.md).Entry
+
 ## Hierarchy
 
 * **Entry**
 
-## Index
+## Table of contents
 
 ### Properties
 
-* [fields](grammar.entry.md#fields)
-* [id](grammar.entry.md#id)
-* [kind](grammar.entry.md#kind)
-* [loc](grammar.entry.md#loc)
-* [source](grammar.entry.md#source)
-* [type](grammar.entry.md#type)
+- [fields](grammar.entry.md#fields)
+- [id](grammar.entry.md#id)
+- [kind](grammar.entry.md#kind)
+- [loc](grammar.entry.md#loc)
+- [source](grammar.entry.md#source)
+- [type](grammar.entry.md#type)
 
 ## Properties
 

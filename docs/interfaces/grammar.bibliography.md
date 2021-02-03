@@ -2,18 +2,20 @@
 
 # Interface: Bibliography
 
+[grammar](../modules/grammar.md).Bibliography
+
 ## Hierarchy
 
 * **Bibliography**
 
-## Index
+## Table of contents
 
 ### Properties
 
-* [children](grammar.bibliography.md#children)
-* [kind](grammar.bibliography.md#kind)
-* [loc](grammar.bibliography.md#loc)
-* [source](grammar.bibliography.md#source)
+- [children](grammar.bibliography.md#children)
+- [kind](grammar.bibliography.md#kind)
+- [loc](grammar.bibliography.md#loc)
+- [source](grammar.bibliography.md#source)
 
 ## Properties
 

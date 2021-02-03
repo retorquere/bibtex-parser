@@ -2,26 +2,26 @@
 
 # Module: index
 
-## Index
+## Table of contents
 
 ### References
 
-* [chunker](index.md#chunker)
-* [jabref](index.md#jabref)
+- [chunker](index.md#chunker)
+- [jabref](index.md#jabref)
 
 ### Interfaces
 
-* [Bibliography](../interfaces/index.bibliography.md)
-* [Entry](../interfaces/index.entry.md)
-* [MarkupMapping](../interfaces/index.markupmapping.md)
-* [Name](../interfaces/index.name.md)
-* [ParseError](../interfaces/index.parseerror.md)
-* [ParserOptions](../interfaces/index.parseroptions.md)
+- [Bibliography](../interfaces/index.bibliography.md)
+- [Entry](../interfaces/index.entry.md)
+- [MarkupMapping](../interfaces/index.markupmapping.md)
+- [Name](../interfaces/index.name.md)
+- [ParseError](../interfaces/index.parseerror.md)
+- [ParserOptions](../interfaces/index.parseroptions.md)
 
 ### Functions
 
-* [ast](index.md#ast)
-* [parse](index.md#parse)
+- [ast](index.md#ast)
+- [parse](index.md#parse)
 
 ## References
 
@@ -51,7 +51,7 @@ Name | Type | Default value |
 
 **Returns:** *any*[]
 
-Defined in: [index.ts:1776](https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L1776)
+Defined in: [index.ts:1782](https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L1782)
 
 ___
 
@@ -70,4 +70,4 @@ Name | Type | Default value |
 
 **Returns:** [*Bibliography*](../interfaces/index.bibliography.md) \| *Promise*<[*Bibliography*](../interfaces/index.bibliography.md)\>
 
-Defined in: [index.ts:1771](https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L1771)
+Defined in: [index.ts:1777](https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L1777)

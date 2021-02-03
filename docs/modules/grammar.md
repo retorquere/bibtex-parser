@@ -2,45 +2,45 @@
 
 # Module: grammar
 
-## Index
+## Table of contents
 
 ### Interfaces
 
-* [Bibliography](../interfaces/grammar.bibliography.md)
-* [Block](../interfaces/grammar.block.md)
-* [BracedComment](../interfaces/grammar.bracedcomment.md)
-* [DiacriticCommand](../interfaces/grammar.diacriticcommand.md)
-* [Entry](../interfaces/grammar.entry.md)
-* [Environment](../interfaces/grammar.environment.md)
-* [Field](../interfaces/grammar.field.md)
-* [LineComment](../interfaces/grammar.linecomment.md)
-* [Location](../interfaces/grammar.location.md)
-* [LocationInfo](../interfaces/grammar.locationinfo.md)
-* [Math](../interfaces/grammar.math.md)
-* [NonEntryText](../interfaces/grammar.nonentrytext.md)
-* [NumberValue](../interfaces/grammar.numbervalue.md)
-* [ParseOptions](../interfaces/grammar.parseoptions.md)
-* [PreambleExpression](../interfaces/grammar.preambleexpression.md)
-* [RegularCommand](../interfaces/grammar.regularcommand.md)
-* [StringDeclaration](../interfaces/grammar.stringdeclaration.md)
-* [StringReference](../interfaces/grammar.stringreference.md)
-* [SubscriptCommand](../interfaces/grammar.subscriptcommand.md)
-* [SuperscriptCommand](../interfaces/grammar.superscriptcommand.md)
-* [SymbolCommand](../interfaces/grammar.symbolcommand.md)
-* [TextValue](../interfaces/grammar.textvalue.md)
+- [Bibliography](../interfaces/grammar.bibliography.md)
+- [Block](../interfaces/grammar.block.md)
+- [BracedComment](../interfaces/grammar.bracedcomment.md)
+- [DiacriticCommand](../interfaces/grammar.diacriticcommand.md)
+- [Entry](../interfaces/grammar.entry.md)
+- [Environment](../interfaces/grammar.environment.md)
+- [Field](../interfaces/grammar.field.md)
+- [LineComment](../interfaces/grammar.linecomment.md)
+- [Location](../interfaces/grammar.location.md)
+- [LocationInfo](../interfaces/grammar.locationinfo.md)
+- [Math](../interfaces/grammar.math.md)
+- [NonEntryText](../interfaces/grammar.nonentrytext.md)
+- [NumberValue](../interfaces/grammar.numbervalue.md)
+- [ParseOptions](../interfaces/grammar.parseoptions.md)
+- [PreambleExpression](../interfaces/grammar.preambleexpression.md)
+- [RegularCommand](../interfaces/grammar.regularcommand.md)
+- [StringDeclaration](../interfaces/grammar.stringdeclaration.md)
+- [StringReference](../interfaces/grammar.stringreference.md)
+- [SubscriptCommand](../interfaces/grammar.subscriptcommand.md)
+- [SuperscriptCommand](../interfaces/grammar.superscriptcommand.md)
+- [SymbolCommand](../interfaces/grammar.symbolcommand.md)
+- [TextValue](../interfaces/grammar.textvalue.md)
 
 ### Type aliases
 
-* [Children](grammar.md#children)
-* [Command](grammar.md#command)
-* [Comment](grammar.md#comment)
-* [Node](grammar.md#node)
-* [RequiredArgument](grammar.md#requiredargument)
-* [ValueType](grammar.md#valuetype)
+- [Children](grammar.md#children)
+- [Command](grammar.md#command)
+- [Comment](grammar.md#comment)
+- [Node](grammar.md#node)
+- [RequiredArgument](grammar.md#requiredargument)
+- [ValueType](grammar.md#valuetype)
 
 ### Functions
 
-* [parse](grammar.md#parse)
+- [parse](grammar.md#parse)
 
 ## Type aliases
 

@@ -2,18 +2,20 @@
 
 # Interface: ParseOptions
 
+[grammar](../modules/grammar.md).ParseOptions
+
 ## Hierarchy
 
 * **ParseOptions**
 
-## Index
+## Table of contents
 
 ### Properties
 
-* [combiningDiacritics](grammar.parseoptions.md#combiningdiacritics)
-* [unnestFields](grammar.parseoptions.md#unnestfields)
-* [verbatimCommands](grammar.parseoptions.md#verbatimcommands)
-* [verbatimFields](grammar.parseoptions.md#verbatimfields)
+- [combiningDiacritics](grammar.parseoptions.md#combiningdiacritics)
+- [unnestFields](grammar.parseoptions.md#unnestfields)
+- [verbatimCommands](grammar.parseoptions.md#verbatimcommands)
+- [verbatimFields](grammar.parseoptions.md#verbatimfields)
 
 ## Properties
 

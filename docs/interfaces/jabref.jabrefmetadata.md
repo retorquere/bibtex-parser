@@ -2,18 +2,20 @@
 
 # Interface: JabrefMetadata
 
+[jabref](../modules/jabref.md).JabrefMetadata
+
 ## Hierarchy
 
 * **JabrefMetadata**
 
-## Index
+## Table of contents
 
 ### Properties
 
-* [fileDirectory](jabref.jabrefmetadata.md#filedirectory)
-* [groups](jabref.jabrefmetadata.md#groups)
-* [root](jabref.jabrefmetadata.md#root)
-* [version](jabref.jabrefmetadata.md#version)
+- [fileDirectory](jabref.jabrefmetadata.md#filedirectory)
+- [groups](jabref.jabrefmetadata.md#groups)
+- [root](jabref.jabrefmetadata.md#root)
+- [version](jabref.jabrefmetadata.md#version)
 
 ## Properties
 

@@ -2,18 +2,20 @@
 
 # Interface: LineComment
 
+[grammar](../modules/grammar.md).LineComment
+
 ## Hierarchy
 
 * **LineComment**
 
-## Index
+## Table of contents
 
 ### Properties
 
-* [kind](grammar.linecomment.md#kind)
-* [loc](grammar.linecomment.md#loc)
-* [source](grammar.linecomment.md#source)
-* [value](grammar.linecomment.md#value)
+- [kind](grammar.linecomment.md#kind)
+- [loc](grammar.linecomment.md#loc)
+- [source](grammar.linecomment.md#source)
+- [value](grammar.linecomment.md#value)
 
 ## Properties
 

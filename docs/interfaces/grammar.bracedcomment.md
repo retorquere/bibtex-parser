@@ -2,18 +2,20 @@
 
 # Interface: BracedComment
 
+[grammar](../modules/grammar.md).BracedComment
+
 ## Hierarchy
 
 * **BracedComment**
 
-## Index
+## Table of contents
 
 ### Properties
 
-* [kind](grammar.bracedcomment.md#kind)
-* [loc](grammar.bracedcomment.md#loc)
-* [source](grammar.bracedcomment.md#source)
-* [value](grammar.bracedcomment.md#value)
+- [kind](grammar.bracedcomment.md#kind)
+- [loc](grammar.bracedcomment.md#loc)
+- [source](grammar.bracedcomment.md#source)
+- [value](grammar.bracedcomment.md#value)
 
 ## Properties
 

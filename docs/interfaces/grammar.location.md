@@ -2,16 +2,18 @@
 
 # Interface: Location
 
+[grammar](../modules/grammar.md).Location
+
 ## Hierarchy
 
 * **Location**
 
-## Index
+## Table of contents
 
 ### Properties
 
-* [end](grammar.location.md#end)
-* [start](grammar.location.md#start)
+- [end](grammar.location.md#end)
+- [start](grammar.location.md#start)
 
 ## Properties
 

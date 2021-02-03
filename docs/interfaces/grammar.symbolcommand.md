@@ -2,18 +2,20 @@
 
 # Interface: SymbolCommand
 
+[grammar](../modules/grammar.md).SymbolCommand
+
 ## Hierarchy
 
 * **SymbolCommand**
 
-## Index
+## Table of contents
 
 ### Properties
 
-* [command](grammar.symbolcommand.md#command)
-* [kind](grammar.symbolcommand.md#kind)
-* [loc](grammar.symbolcommand.md#loc)
-* [source](grammar.symbolcommand.md#source)
+- [command](grammar.symbolcommand.md#command)
+- [kind](grammar.symbolcommand.md#kind)
+- [loc](grammar.symbolcommand.md#loc)
+- [source](grammar.symbolcommand.md#source)
 
 ## Properties
 

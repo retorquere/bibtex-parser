@@ -2,16 +2,18 @@
 
 # Interface: ParserOptions
 
+[chunker](../modules/chunker.md).ParserOptions
+
 ## Hierarchy
 
 * **ParserOptions**
 
-## Index
+## Table of contents
 
 ### Properties
 
-* [async](chunker.parseroptions.md#async)
-* [max\_entries](chunker.parseroptions.md#max_entries)
+- [async](chunker.parseroptions.md#async)
+- [max\_entries](chunker.parseroptions.md#max_entries)
 
 ## Properties
 

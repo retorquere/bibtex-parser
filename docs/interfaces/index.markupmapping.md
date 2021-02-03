@@ -2,27 +2,29 @@
 
 # Interface: MarkupMapping
 
+[index](../modules/index.md).MarkupMapping
+
 Markup mapping. As the bibtex file is parsed, markup will be transformed according to this table
 
 ## Hierarchy
 
 * **MarkupMapping**
 
-## Index
+## Table of contents
 
 ### Properties
 
-* [bold](index.markupmapping.md#bold)
-* [caseProtect](index.markupmapping.md#caseprotect)
-* [enquote](index.markupmapping.md#enquote)
-* [fixedWidth](index.markupmapping.md#fixedwidth)
-* [h1](index.markupmapping.md#h1)
-* [h2](index.markupmapping.md#h2)
-* [italics](index.markupmapping.md#italics)
-* [roman](index.markupmapping.md#roman)
-* [smallCaps](index.markupmapping.md#smallcaps)
-* [sub](index.markupmapping.md#sub)
-* [sup](index.markupmapping.md#sup)
+- [bold](index.markupmapping.md#bold)
+- [caseProtect](index.markupmapping.md#caseprotect)
+- [enquote](index.markupmapping.md#enquote)
+- [fixedWidth](index.markupmapping.md#fixedwidth)
+- [h1](index.markupmapping.md#h1)
+- [h2](index.markupmapping.md#h2)
+- [italics](index.markupmapping.md#italics)
+- [roman](index.markupmapping.md#roman)
+- [smallCaps](index.markupmapping.md#smallcaps)
+- [sub](index.markupmapping.md#sub)
+- [sup](index.markupmapping.md#sup)
 
 ## Properties
 

@@ -2,17 +2,19 @@
 
 # Interface: LocationInfo
 
+[grammar](../modules/grammar.md).LocationInfo
+
 ## Hierarchy
 
 * **LocationInfo**
 
-## Index
+## Table of contents
 
 ### Properties
 
-* [column](grammar.locationinfo.md#column)
-* [line](grammar.locationinfo.md#line)
-* [offset](grammar.locationinfo.md#offset)
+- [column](grammar.locationinfo.md#column)
+- [line](grammar.locationinfo.md#line)
+- [offset](grammar.locationinfo.md#offset)
 
 ## Properties
 

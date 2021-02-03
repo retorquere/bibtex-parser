@@ -2,18 +2,20 @@
 
 # Interface: ParseError
 
+[index](../modules/index.md).ParseError
+
 ## Hierarchy
 
 * **ParseError**
 
-## Index
+## Table of contents
 
 ### Properties
 
-* [column](index.parseerror.md#column)
-* [line](index.parseerror.md#line)
-* [message](index.parseerror.md#message)
-* [source](index.parseerror.md#source)
+- [column](index.parseerror.md#column)
+- [line](index.parseerror.md#line)
+- [message](index.parseerror.md#message)
+- [source](index.parseerror.md#source)
 
 ## Properties
 

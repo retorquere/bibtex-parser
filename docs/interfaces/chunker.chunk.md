@@ -2,21 +2,23 @@
 
 # Interface: Chunk
 
+[chunker](../modules/chunker.md).Chunk
+
 ## Hierarchy
 
 * **Chunk**
 
-## Index
+## Table of contents
 
 ### Properties
 
-* [comment](chunker.chunk.md#comment)
-* [entry](chunker.chunk.md#entry)
-* [error](chunker.chunk.md#error)
-* [offset](chunker.chunk.md#offset)
-* [preamble](chunker.chunk.md#preamble)
-* [stringDeclaration](chunker.chunk.md#stringdeclaration)
-* [text](chunker.chunk.md#text)
+- [comment](chunker.chunk.md#comment)
+- [entry](chunker.chunk.md#entry)
+- [error](chunker.chunk.md#error)
+- [offset](chunker.chunk.md#offset)
+- [preamble](chunker.chunk.md#preamble)
+- [stringDeclaration](chunker.chunk.md#stringdeclaration)
+- [text](chunker.chunk.md#text)
 
 ## Properties
 

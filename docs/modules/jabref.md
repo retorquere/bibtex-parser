@@ -2,16 +2,16 @@
 
 # Module: jabref
 
-## Index
+## Table of contents
 
 ### Interfaces
 
-* [Group](../interfaces/jabref.group.md)
-* [JabrefMetadata](../interfaces/jabref.jabrefmetadata.md)
+- [Group](../interfaces/jabref.group.md)
+- [JabrefMetadata](../interfaces/jabref.jabrefmetadata.md)
 
 ### Functions
 
-* [parse](jabref.md#parse)
+- [parse](jabref.md#parse)
 
 ## Functions
 

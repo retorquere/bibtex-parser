@@ -2,19 +2,21 @@
 
 # Interface: Bibliography
 
+[index](../modules/index.md).Bibliography
+
 ## Hierarchy
 
 * **Bibliography**
 
-## Index
+## Table of contents
 
 ### Properties
 
-* [comments](index.bibliography.md#comments)
-* [entries](index.bibliography.md#entries)
-* [errors](index.bibliography.md#errors)
-* [preamble](index.bibliography.md#preamble)
-* [strings](index.bibliography.md#strings)
+- [comments](index.bibliography.md#comments)
+- [entries](index.bibliography.md#entries)
+- [errors](index.bibliography.md#errors)
+- [preamble](index.bibliography.md#preamble)
+- [strings](index.bibliography.md#strings)
 
 ## Properties
 

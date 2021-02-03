@@ -2,18 +2,20 @@
 
 # Interface: SubscriptCommand
 
+[grammar](../modules/grammar.md).SubscriptCommand
+
 ## Hierarchy
 
 * **SubscriptCommand**
 
-## Index
+## Table of contents
 
 ### Properties
 
-* [kind](grammar.subscriptcommand.md#kind)
-* [loc](grammar.subscriptcommand.md#loc)
-* [source](grammar.subscriptcommand.md#source)
-* [value](grammar.subscriptcommand.md#value)
+- [kind](grammar.subscriptcommand.md#kind)
+- [loc](grammar.subscriptcommand.md#loc)
+- [source](grammar.subscriptcommand.md#source)
+- [value](grammar.subscriptcommand.md#value)
 
 ## Properties
 

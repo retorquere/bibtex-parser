@@ -2,18 +2,20 @@
 
 # Interface: NumberValue
 
+[grammar](../modules/grammar.md).NumberValue
+
 ## Hierarchy
 
 * **NumberValue**
 
-## Index
+## Table of contents
 
 ### Properties
 
-* [kind](grammar.numbervalue.md#kind)
-* [loc](grammar.numbervalue.md#loc)
-* [source](grammar.numbervalue.md#source)
-* [value](grammar.numbervalue.md#value)
+- [kind](grammar.numbervalue.md#kind)
+- [loc](grammar.numbervalue.md#loc)
+- [source](grammar.numbervalue.md#source)
+- [value](grammar.numbervalue.md#value)
 
 ## Properties
 

@@ -2,22 +2,24 @@
 
 # Interface: Name
 
+[index](../modules/index.md).Name
+
 ## Hierarchy
 
 * **Name**
 
-## Index
+## Table of contents
 
 ### Properties
 
-* [firstName](index.name.md#firstname)
-* [initial](index.name.md#initial)
-* [juniorcomma](index.name.md#juniorcomma)
-* [lastName](index.name.md#lastname)
-* [literal](index.name.md#literal)
-* [prefix](index.name.md#prefix)
-* [suffix](index.name.md#suffix)
-* [useprefix](index.name.md#useprefix)
+- [firstName](index.name.md#firstname)
+- [initial](index.name.md#initial)
+- [juniorcomma](index.name.md#juniorcomma)
+- [lastName](index.name.md#lastname)
+- [literal](index.name.md#literal)
+- [prefix](index.name.md#prefix)
+- [suffix](index.name.md#suffix)
+- [useprefix](index.name.md#useprefix)
 
 ## Properties
 

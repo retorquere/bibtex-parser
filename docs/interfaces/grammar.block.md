@@ -2,20 +2,22 @@
 
 # Interface: Block
 
+[grammar](../modules/grammar.md).Block
+
 ## Hierarchy
 
 * **Block**
 
-## Index
+## Table of contents
 
 ### Properties
 
-* [case](grammar.block.md#case)
-* [kind](grammar.block.md#kind)
-* [loc](grammar.block.md#loc)
-* [markup](grammar.block.md#markup)
-* [source](grammar.block.md#source)
-* [value](grammar.block.md#value)
+- [case](grammar.block.md#case)
+- [kind](grammar.block.md#kind)
+- [loc](grammar.block.md#loc)
+- [markup](grammar.block.md#markup)
+- [source](grammar.block.md#source)
+- [value](grammar.block.md#value)
 
 ## Properties
 

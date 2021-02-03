@@ -2,19 +2,21 @@
 
 # Interface: Environment
 
+[grammar](../modules/grammar.md).Environment
+
 ## Hierarchy
 
 * **Environment**
 
-## Index
+## Table of contents
 
 ### Properties
 
-* [env](grammar.environment.md#env)
-* [kind](grammar.environment.md#kind)
-* [loc](grammar.environment.md#loc)
-* [source](grammar.environment.md#source)
-* [value](grammar.environment.md#value)
+- [env](grammar.environment.md#env)
+- [kind](grammar.environment.md#kind)
+- [loc](grammar.environment.md#loc)
+- [source](grammar.environment.md#source)
+- [value](grammar.environment.md#value)
 
 ## Properties
 

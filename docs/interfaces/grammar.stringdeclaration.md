@@ -2,19 +2,21 @@
 
 # Interface: StringDeclaration
 
+[grammar](../modules/grammar.md).StringDeclaration
+
 ## Hierarchy
 
 * **StringDeclaration**
 
-## Index
+## Table of contents
 
 ### Properties
 
-* [kind](grammar.stringdeclaration.md#kind)
-* [loc](grammar.stringdeclaration.md#loc)
-* [name](grammar.stringdeclaration.md#name)
-* [source](grammar.stringdeclaration.md#source)
-* [value](grammar.stringdeclaration.md#value)
+- [kind](grammar.stringdeclaration.md#kind)
+- [loc](grammar.stringdeclaration.md#loc)
+- [name](grammar.stringdeclaration.md#name)
+- [source](grammar.stringdeclaration.md#source)
+- [value](grammar.stringdeclaration.md#value)
 
 ## Properties
 

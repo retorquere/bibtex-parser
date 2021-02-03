@@ -2,28 +2,31 @@
 
 # Interface: ParserOptions
 
+[index](../modules/index.md).ParserOptions
+
 ## Hierarchy
 
 * **ParserOptions**
 
-## Index
+## Table of contents
 
 ### Properties
 
-* [async](index.parseroptions.md#async)
-* [caseProtection](index.parseroptions.md#caseprotection)
-* [errorHandler](index.parseroptions.md#errorhandler)
-* [guessAlreadySentenceCased](index.parseroptions.md#guessalreadysentencecased)
-* [htmlFields](index.parseroptions.md#htmlfields)
-* [markup](index.parseroptions.md#markup)
-* [raw](index.parseroptions.md#raw)
-* [sentenceCase](index.parseroptions.md#sentencecase)
-* [strings](index.parseroptions.md#strings)
-* [unabbreviate](index.parseroptions.md#unabbreviate)
-* [unnestFields](index.parseroptions.md#unnestfields)
-* [unnestMode](index.parseroptions.md#unnestmode)
-* [verbatimCommands](index.parseroptions.md#verbatimcommands)
-* [verbatimFields](index.parseroptions.md#verbatimfields)
+- [async](index.parseroptions.md#async)
+- [caseProtection](index.parseroptions.md#caseprotection)
+- [errorHandler](index.parseroptions.md#errorhandler)
+- [guessAlreadySentenceCased](index.parseroptions.md#guessalreadysentencecased)
+- [htmlFields](index.parseroptions.md#htmlfields)
+- [markup](index.parseroptions.md#markup)
+- [raw](index.parseroptions.md#raw)
+- [sentenceCase](index.parseroptions.md#sentencecase)
+- [strings](index.parseroptions.md#strings)
+- [unabbreviate](index.parseroptions.md#unabbreviate)
+- [unknownCommandHandler](index.parseroptions.md#unknowncommandhandler)
+- [unnestFields](index.parseroptions.md#unnestfields)
+- [unnestMode](index.parseroptions.md#unnestmode)
+- [verbatimCommands](index.parseroptions.md#verbatimcommands)
+- [verbatimFields](index.parseroptions.md#verbatimfields)
 
 ## Properties
 
@@ -53,7 +56,7 @@ ___
 
 • `Optional` **errorHandler**: *false* \| (`message`: *string*) => *void*
 
-By default, when an unexpected parsing error is found (such as a TeX command which I did not anticipate), the parser will throw an error. You can pass a function to handle the error instead,
+By default, when an unexpected parsing error is found (such as a TeX command which the parser does not know about), the parser will throw an error. You can pass a function to handle the error instead,
 where you can log it, display it, or even still throw an error
 
 Defined in: [index.ts:378](https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L378)
@@ -77,7 +80,7 @@ ___
 
 Some note-like fields may have more rich formatting. If listed here, more HTML conversions will be applied.
 
-Defined in: [index.ts:401](https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L401)
+Defined in: [index.ts:406](https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L406)
 
 ___
 
@@ -97,7 +100,7 @@ ___
 
 If this flag is set entries will be returned without conversion of LaTeX to unicode equivalents.
 
-Defined in: [index.ts:406](https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L406)
+Defined in: [index.ts:411](https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L411)
 
 ___
 
@@ -145,7 +148,7 @@ ___
 
 You can pass in an existing @string dictionary
 
-Defined in: [index.ts:411](https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L411)
+Defined in: [index.ts:416](https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L416)
 
 ___
 
@@ -155,7 +158,17 @@ ___
 
 BibTeX files may have abbreviations in the journal field. If you provide a dictionary, journal names that are found in the dictionary are replaced with the attached full name
 
-Defined in: [index.ts:416](https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L416)
+Defined in: [index.ts:421](https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L421)
+
+___
+
+### unknownCommandHandler
+
+• `Optional` **unknownCommandHandler**: *false* \| (`node`: [*RegularCommand*](grammar.regularcommand.md)) => Node
+
+By default, when a TeX command is encountered which the parser does not know about, the parser will throw an error. You can pass a function here to return the appropriate AST for the command.
+
+Defined in: [index.ts:383](https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L383)
 
 ___
 
@@ -166,7 +179,7 @@ ___
 In the past many bibtex entries would just always wrap a field in double braces ({{ title here }}), likely because whomever was writing them couldn't figure out the case meddling rules (and who could
 blame them. Fields listed here will either have one outer layer of braces treated as case-preserve, or have the outer braced be ignored completely, if this is detected.
 
-Defined in: [index.ts:395](https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L395)
+Defined in: [index.ts:400](https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L400)
 
 ___
 
@@ -174,7 +187,7 @@ ___
 
 • `Optional` **unnestMode**: *preserve* \| *unwrap*
 
-Defined in: [index.ts:396](https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L396)
+Defined in: [index.ts:401](https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L401)
 
 ___
 
@@ -184,7 +197,7 @@ ___
 
 Some commands such as `url` are parsed in what is called "verbatim mode" where pretty much everything except braces is treated as regular text, not TeX commands.
 
-Defined in: [index.ts:389](https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L389)
+Defined in: [index.ts:394](https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L394)
 
 ___
 
@@ -195,4 +208,4 @@ ___
 Some fields such as `url` are parsed in what is called "verbatim mode" where pretty much everything except braces is treated as regular text, not TeX commands. You can change the default list here if you want,
 for example to help parse Mendeley `file` fields, which against spec are not in verbatim mode.
 
-Defined in: [index.ts:384](https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L384)
+Defined in: [index.ts:389](https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L389)
