@@ -1,12 +1,8 @@
-[](../README.md) / [Exports](../modules.md) / [grammar](../modules/grammar.md) / Bibliography
+[BibTeX parser](../README.md) / [grammar](../modules/grammar.md) / Bibliography
 
 # Interface: Bibliography
 
 [grammar](../modules/grammar.md).Bibliography
-
-## Hierarchy
-
-* **Bibliography**
 
 ## Table of contents
 
@@ -21,7 +17,7 @@
 
 ### children
 
-• **children**: [*Children*](../modules/grammar.md#children)[]
+• **children**: ([*Entry*](grammar.entry.md) \| [*PreambleExpression*](grammar.preambleexpression.md) \| [*StringDeclaration*](grammar.stringdeclaration.md) \| [*Comment*](../modules/grammar.md#comment))[]
 
 Defined in: [grammar.d.ts:201](https://github.com/retorquere/bibtex-parser/blob/master/grammar.d.ts#L201)
 

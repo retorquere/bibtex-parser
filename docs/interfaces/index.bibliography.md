@@ -1,12 +1,8 @@
-[](../README.md) / [Exports](../modules.md) / [index](../modules/index.md) / Bibliography
+[BibTeX parser](../README.md) / [index](../modules/index.md) / Bibliography
 
 # Interface: Bibliography
 
 [index](../modules/index.md).Bibliography
-
-## Hierarchy
-
-* **Bibliography**
 
 ## Table of contents
 
@@ -62,8 +58,10 @@ ___
 
 ### strings
 
-• **strings**: { [key: string]: *string*;  }
+• **strings**: *object*
 
 `@string`s found in the bibtex file.
+
+#### Type declaration:
 
 Defined in: [index.ts:232](https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L232)

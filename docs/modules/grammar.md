@@ -1,4 +1,4 @@
-[](../README.md) / [Exports](../modules.md) / grammar
+[BibTeX parser](../README.md) / grammar
 
 # Module: grammar
 
@@ -99,7 +99,7 @@ Defined in: [grammar.d.ts:191](https://github.com/retorquere/bibtex-parser/blob/
 #### Parameters:
 
 Name | Type |
------- | ------ |
+:------ | :------ |
 `input` | *string* |
 `options?` | [*ParseOptions*](../interfaces/grammar.parseoptions.md) |
 

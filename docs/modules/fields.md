@@ -1,4 +1,4 @@
-[](../README.md) / [Exports](../modules.md) / fields
+[BibTeX parser](../README.md) / fields
 
 # Module: fields
 
@@ -17,7 +17,7 @@
 #### Type declaration:
 
 Name | Type |
------- | ------ |
+:------ | :------ |
 `creator` | *string*[] |
 `html` | *string*[] |
 `title` | *string*[] |

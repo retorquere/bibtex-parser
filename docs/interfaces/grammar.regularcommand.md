@@ -1,12 +1,8 @@
-[](../README.md) / [Exports](../modules.md) / [grammar](../modules/grammar.md) / RegularCommand
+[BibTeX parser](../README.md) / [grammar](../modules/grammar.md) / RegularCommand
 
 # Interface: RegularCommand
 
 [grammar](../modules/grammar.md).RegularCommand
-
-## Hierarchy
-
-* **RegularCommand**
 
 ## Table of contents
 
@@ -22,14 +18,14 @@
 
 ### arguments
 
-• **arguments**: { `optional`: [*TextValue*](grammar.textvalue.md)[] ; `required`: [*RequiredArgument*](../modules/grammar.md#requiredargument)[]  }
+• **arguments**: *object*
 
 #### Type declaration:
 
 Name | Type |
------- | ------ |
+:------ | :------ |
 `optional` | [*TextValue*](grammar.textvalue.md)[] |
-`required` | [*RequiredArgument*](../modules/grammar.md#requiredargument)[] |
+`required` | ([*TextValue*](grammar.textvalue.md) \| [*Block*](grammar.block.md) \| [*Command*](../modules/grammar.md#command))[] |
 
 Defined in: [grammar.d.ts:65](https://github.com/retorquere/bibtex-parser/blob/master/grammar.d.ts#L65)
 

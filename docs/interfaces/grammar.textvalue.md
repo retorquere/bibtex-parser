@@ -1,12 +1,8 @@
-[](../README.md) / [Exports](../modules.md) / [grammar](../modules/grammar.md) / TextValue
+[BibTeX parser](../README.md) / [grammar](../modules/grammar.md) / TextValue
 
 # Interface: TextValue
 
 [grammar](../modules/grammar.md).TextValue
-
-## Hierarchy
-
-* **TextValue**
 
 ## Table of contents
 

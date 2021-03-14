@@ -1,12 +1,8 @@
-[](../README.md) / [Exports](../modules.md) / [grammar](../modules/grammar.md) / DiacriticCommand
+[BibTeX parser](../README.md) / [grammar](../modules/grammar.md) / DiacriticCommand
 
 # Interface: DiacriticCommand
 
 [grammar](../modules/grammar.md).DiacriticCommand
-
-## Hierarchy
-
-* **DiacriticCommand**
 
 ## Table of contents
 

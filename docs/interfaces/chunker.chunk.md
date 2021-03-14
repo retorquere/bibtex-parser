@@ -1,12 +1,8 @@
-[](../README.md) / [Exports](../modules.md) / [chunker](../modules/chunker.md) / Chunk
+[BibTeX parser](../README.md) / [chunker](../modules/chunker.md) / Chunk
 
 # Interface: Chunk
 
 [chunker](../modules/chunker.md).Chunk
-
-## Hierarchy
-
-* **Chunk**
 
 ## Table of contents
 
@@ -54,14 +50,14 @@ ___
 
 ### offset
 
-• **offset**: { `line`: *number* ; `pos`: *number*  }
+• **offset**: *object*
 
 Start location of the chunk in the bib file
 
 #### Type declaration:
 
 Name | Type |
------- | ------ |
+:------ | :------ |
 `line` | *number* |
 `pos` | *number* |
 

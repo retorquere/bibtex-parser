@@ -1,12 +1,8 @@
-[](../README.md) / [Exports](../modules.md) / [grammar](../modules/grammar.md) / SymbolCommand
+[BibTeX parser](../README.md) / [grammar](../modules/grammar.md) / SymbolCommand
 
 # Interface: SymbolCommand
 
 [grammar](../modules/grammar.md).SymbolCommand
-
-## Hierarchy
-
-* **SymbolCommand**
 
 ## Table of contents
 

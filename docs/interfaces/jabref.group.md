@@ -1,14 +1,10 @@
-[](../README.md) / [Exports](../modules.md) / [jabref](../modules/jabref.md) / Group
+[BibTeX parser](../README.md) / [jabref](../modules/jabref.md) / Group
 
 # Interface: Group
 
 [jabref](../modules/jabref.md).Group
 
 A JabRef group.
-
-## Hierarchy
-
-* **Group**
 
 ## Table of contents
 

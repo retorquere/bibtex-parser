@@ -1,12 +1,8 @@
-[](../README.md) / [Exports](../modules.md) / [jabref](../modules/jabref.md) / JabrefMetadata
+[BibTeX parser](../README.md) / [jabref](../modules/jabref.md) / JabrefMetadata
 
 # Interface: JabrefMetadata
 
 [jabref](../modules/jabref.md).JabrefMetadata
-
-## Hierarchy
-
-* **JabrefMetadata**
 
 ## Table of contents
 
@@ -31,11 +27,13 @@ ___
 
 ### groups
 
-• **groups**: { [key: string]: [*Group*](jabref.group.md);  }
+• **groups**: *object*
 
 JabRef since 3.8 has changed their groups format. Entries have a `groups` field which has the names of the groups they belong to -- this name does not have to be unique in the groups hierarchy so if you
 have multiple groups with the same name, it's not well-defined where the entries should end up. This property gives you the for each group name the first time the group showed up in the hierarchy. Note that
 keys from the entries themselves have *not* yet been added to the [Group](jabref.group.md)s. You need to combine this yourself as you're parsing the entries.
+
+#### Type declaration:
 
 Defined in: [jabref.ts:62](https://github.com/retorquere/bibtex-parser/blob/master/jabref.ts#L62)
 

@@ -1,4 +1,4 @@
-[](../README.md) / [Exports](../modules.md) / index
+[BibTeX parser](../README.md) / index
 
 # Module: index
 
@@ -44,9 +44,9 @@ Renames and exports: [parse](jabref.md#parse)
 #### Parameters:
 
 Name | Type | Default value |
------- | ------ | ------ |
+:------ | :------ | :------ |
 `input` | *string* | - |
-`options` | [*ParserOptions*](../interfaces/index.parseroptions.md) | ... |
+`options` | [*ParserOptions*](../interfaces/index.parseroptions.md) | - |
 `clean` | *boolean* | true |
 
 **Returns:** *any*[]
@@ -63,10 +63,10 @@ parse bibtex. This will try to convert TeX commands into unicode equivalents, an
 
 #### Parameters:
 
-Name | Type | Default value |
------- | ------ | ------ |
-`input` | *string* | - |
-`options` | [*ParserOptions*](../interfaces/index.parseroptions.md) | ... |
+Name | Type |
+:------ | :------ |
+`input` | *string* |
+`options` | [*ParserOptions*](../interfaces/index.parseroptions.md) |
 
 **Returns:** [*Bibliography*](../interfaces/index.bibliography.md) \| *Promise*<[*Bibliography*](../interfaces/index.bibliography.md)\>
 

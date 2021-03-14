@@ -1,12 +1,8 @@
-[](../README.md) / [Exports](../modules.md) / [index](../modules/index.md) / Entry
+[BibTeX parser](../README.md) / [index](../modules/index.md) / Entry
 
 # Interface: Entry
 
 [index](../modules/index.md).Entry
-
-## Hierarchy
-
-* **Entry**
 
 ## Table of contents
 
@@ -22,9 +18,11 @@
 
 ### creators
 
-• **creators**: { [type: string]: [*Name*](index.name.md)[];  }
+• **creators**: *object*
 
 authors, editors, by creator type. Name order within the creator-type is retained.
+
+#### Type declaration:
 
 Defined in: [index.ts:174](https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L174)
 
@@ -32,9 +30,11 @@ ___
 
 ### fields
 
-• **fields**: { [key: string]: *string*[];  }
+• **fields**: *object*
 
 entry fields. The keys are always in lowercase
+
+#### Type declaration:
 
 Defined in: [index.ts:169](https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L169)
 

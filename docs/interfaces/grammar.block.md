@@ -1,12 +1,8 @@
-[](../README.md) / [Exports](../modules.md) / [grammar](../modules/grammar.md) / Block
+[BibTeX parser](../README.md) / [grammar](../modules/grammar.md) / Block
 
 # Interface: Block
 
 [grammar](../modules/grammar.md).Block
-
-## Hierarchy
-
-* **Block**
 
 ## Table of contents
 
@@ -47,18 +43,18 @@ ___
 
 ### markup
 
-• **markup**: { `bold?`: *boolean* ; `enquote?`: *boolean* ; `italics?`: *boolean* ; `smallCaps?`: *boolean* ; `sub?`: *boolean* ; `sup?`: *boolean*  }
+• **markup**: *object*
 
 #### Type declaration:
 
 Name | Type |
------- | ------ |
-`bold?` | *boolean* |
-`enquote?` | *boolean* |
-`italics?` | *boolean* |
-`smallCaps?` | *boolean* |
-`sub?` | *boolean* |
-`sup?` | *boolean* |
+:------ | :------ |
+`bold`? | *boolean* |
+`enquote`? | *boolean* |
+`italics`? | *boolean* |
+`smallCaps`? | *boolean* |
+`sub`? | *boolean* |
+`sup`? | *boolean* |
 
 Defined in: [grammar.d.ts:124](https://github.com/retorquere/bibtex-parser/blob/master/grammar.d.ts#L124)
 
@@ -74,6 +70,6 @@ ___
 
 ### value
 
-• **value**: [*ValueType*](../modules/grammar.md#valuetype)[]
+• **value**: ([*TextValue*](grammar.textvalue.md) \| [*StringReference*](grammar.stringreference.md) \| [*NumberValue*](grammar.numbervalue.md) \| [*Block*](grammar.block.md) \| [*Command*](../modules/grammar.md#command) \| [*Math*](grammar.math.md) \| [*Environment*](grammar.environment.md))[]
 
 Defined in: [grammar.d.ts:121](https://github.com/retorquere/bibtex-parser/blob/master/grammar.d.ts#L121)

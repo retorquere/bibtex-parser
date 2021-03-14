@@ -1,4 +1,4 @@
-[](../README.md) / [Exports](../modules.md) / jabref
+[BibTeX parser](../README.md) / jabref
 
 # Module: jabref
 
@@ -31,7 +31,7 @@ JabRef knows several group types, and this parser parses most, but not all of th
 #### Parameters:
 
 Name | Type |
------- | ------ |
+:------ | :------ |
 `comments` | *string*[] |
 
 **Returns:** [*JabrefMetadata*](../interfaces/jabref.jabrefmetadata.md)

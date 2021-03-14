@@ -1,12 +1,8 @@
-[](../README.md) / [Exports](../modules.md) / [grammar](../modules/grammar.md) / SuperscriptCommand
+[BibTeX parser](../README.md) / [grammar](../modules/grammar.md) / SuperscriptCommand
 
 # Interface: SuperscriptCommand
 
 [grammar](../modules/grammar.md).SuperscriptCommand
-
-## Hierarchy
-
-* **SuperscriptCommand**
 
 ## Table of contents
 

@@ -1,12 +1,8 @@
-[](../README.md) / [Exports](../modules.md) / [grammar](../modules/grammar.md) / NonEntryText
+[BibTeX parser](../README.md) / [grammar](../modules/grammar.md) / NonEntryText
 
 # Interface: NonEntryText
 
 [grammar](../modules/grammar.md).NonEntryText
-
-## Hierarchy
-
-* **NonEntryText**
 
 ## Table of contents
 

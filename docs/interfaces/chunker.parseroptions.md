@@ -1,12 +1,8 @@
-[](../README.md) / [Exports](../modules.md) / [chunker](../modules/chunker.md) / ParserOptions
+[BibTeX parser](../README.md) / [chunker](../modules/chunker.md) / ParserOptions
 
 # Interface: ParserOptions
 
 [chunker](../modules/chunker.md).ParserOptions
-
-## Hierarchy
-
-* **ParserOptions**
 
 ## Table of contents
 

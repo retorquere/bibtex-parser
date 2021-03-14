@@ -1,12 +1,8 @@
-[](../README.md) / [Exports](../modules.md) / [grammar](../modules/grammar.md) / ParseOptions
+[BibTeX parser](../README.md) / [grammar](../modules/grammar.md) / ParseOptions
 
 # Interface: ParseOptions
 
 [grammar](../modules/grammar.md).ParseOptions
-
-## Hierarchy
-
-* **ParseOptions**
 
 ## Table of contents
 

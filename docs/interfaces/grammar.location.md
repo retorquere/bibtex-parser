@@ -1,12 +1,8 @@
-[](../README.md) / [Exports](../modules.md) / [grammar](../modules/grammar.md) / Location
+[BibTeX parser](../README.md) / [grammar](../modules/grammar.md) / Location
 
 # Interface: Location
 
 [grammar](../modules/grammar.md).Location
-
-## Hierarchy
-
-* **Location**
 
 ## Table of contents
 

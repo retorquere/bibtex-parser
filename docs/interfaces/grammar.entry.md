@@ -1,12 +1,8 @@
-[](../README.md) / [Exports](../modules.md) / [grammar](../modules/grammar.md) / Entry
+[BibTeX parser](../README.md) / [grammar](../modules/grammar.md) / Entry
 
 # Interface: Entry
 
 [grammar](../modules/grammar.md).Entry
-
-## Hierarchy
-
-* **Entry**
 
 ## Table of contents
 

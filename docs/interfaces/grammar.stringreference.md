@@ -1,12 +1,8 @@
-[](../README.md) / [Exports](../modules.md) / [grammar](../modules/grammar.md) / StringReference
+[BibTeX parser](../README.md) / [grammar](../modules/grammar.md) / StringReference
 
 # Interface: StringReference
 
 [grammar](../modules/grammar.md).StringReference
-
-## Hierarchy
-
-* **StringReference**
 
 ## Table of contents
 

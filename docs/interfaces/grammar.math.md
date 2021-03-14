@@ -1,12 +1,8 @@
-[](../README.md) / [Exports](../modules.md) / [grammar](../modules/grammar.md) / Math
+[BibTeX parser](../README.md) / [grammar](../modules/grammar.md) / Math
 
 # Interface: Math
 
 [grammar](../modules/grammar.md).Math
-
-## Hierarchy
-
-* **Math**
 
 ## Table of contents
 
@@ -54,6 +50,6 @@ ___
 
 ### value
 
-• **value**: [*ValueType*](../modules/grammar.md#valuetype)[]
+• **value**: ([*TextValue*](grammar.textvalue.md) \| [*StringReference*](grammar.stringreference.md) \| [*NumberValue*](grammar.numbervalue.md) \| [*Block*](grammar.block.md) \| [*Command*](../modules/grammar.md#command) \| [*Math*](grammar.math.md) \| [*Environment*](grammar.environment.md))[]
 
 Defined in: [grammar.d.ts:105](https://github.com/retorquere/bibtex-parser/blob/master/grammar.d.ts#L105)

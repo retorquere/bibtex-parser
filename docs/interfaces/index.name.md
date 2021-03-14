@@ -1,12 +1,8 @@
-[](../README.md) / [Exports](../modules.md) / [index](../modules/index.md) / Name
+[BibTeX parser](../README.md) / [index](../modules/index.md) / Name
 
 # Interface: Name
 
 [index](../modules/index.md).Name
-
-## Hierarchy
-
-* **Name**
 
 ## Table of contents
 

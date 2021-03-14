@@ -1,12 +1,8 @@
-[](../README.md) / [Exports](../modules.md) / [grammar](../modules/grammar.md) / LineComment
+[BibTeX parser](../README.md) / [grammar](../modules/grammar.md) / LineComment
 
 # Interface: LineComment
 
 [grammar](../modules/grammar.md).LineComment
-
-## Hierarchy
-
-* **LineComment**
 
 ## Table of contents
 

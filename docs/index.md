@@ -1,6 +1,6 @@
-[](README.md) / Exports
+BibTeX parser
 
-# 
+# BibTeX parser
 
 ## Table of contents
 

@@ -1,12 +1,8 @@
-[](../README.md) / [Exports](../modules.md) / [grammar](../modules/grammar.md) / BracedComment
+[BibTeX parser](../README.md) / [grammar](../modules/grammar.md) / BracedComment
 
 # Interface: BracedComment
 
 [grammar](../modules/grammar.md).BracedComment
-
-## Hierarchy
-
-* **BracedComment**
 
 ## Table of contents
 

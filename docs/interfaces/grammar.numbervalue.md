@@ -1,12 +1,8 @@
-[](../README.md) / [Exports](../modules.md) / [grammar](../modules/grammar.md) / NumberValue
+[BibTeX parser](../README.md) / [grammar](../modules/grammar.md) / NumberValue
 
 # Interface: NumberValue
 
 [grammar](../modules/grammar.md).NumberValue
-
-## Hierarchy
-
-* **NumberValue**
 
 ## Table of contents
 

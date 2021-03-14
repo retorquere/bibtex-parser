@@ -1,12 +1,8 @@
-[](../README.md) / [Exports](../modules.md) / [index](../modules/index.md) / ParseError
+[BibTeX parser](../README.md) / [index](../modules/index.md) / ParseError
 
 # Interface: ParseError
 
 [index](../modules/index.md).ParseError
-
-## Hierarchy
-
-* **ParseError**
 
 ## Table of contents
 

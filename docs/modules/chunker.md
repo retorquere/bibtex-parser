@@ -1,4 +1,4 @@
-[](../README.md) / [Exports](../modules.md) / chunker
+[BibTeX parser](../README.md) / chunker
 
 # Module: chunker
 
@@ -24,10 +24,10 @@ make the more sophisticated [[bibtex.parse]] reject the whole file
 
 #### Parameters:
 
-Name | Type | Default value |
------- | ------ | ------ |
-`input` | *string* | - |
-`options` | [*ParserOptions*](../interfaces/chunker.parseroptions.md) | ... |
+Name | Type |
+:------ | :------ |
+`input` | *string* |
+`options` | [*ParserOptions*](../interfaces/chunker.parseroptions.md) |
 
 **Returns:** [*Chunk*](../interfaces/chunker.chunk.md)[]
 

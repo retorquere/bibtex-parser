@@ -1,14 +1,10 @@
-[](../README.md) / [Exports](../modules.md) / [index](../modules/index.md) / MarkupMapping
+[BibTeX parser](../README.md) / [index](../modules/index.md) / MarkupMapping
 
 # Interface: MarkupMapping
 
 [index](../modules/index.md).MarkupMapping
 
 Markup mapping. As the bibtex file is parsed, markup will be transformed according to this table
-
-## Hierarchy
-
-* **MarkupMapping**
 
 ## Table of contents
 
@@ -30,12 +26,12 @@ Markup mapping. As the bibtex file is parsed, markup will be transformed accordi
 
 ### bold
 
-• `Optional` **bold**: { `close`: *string* ; `open`: *string*  }
+• `Optional` **bold**: *object*
 
 #### Type declaration:
 
 Name | Type |
------- | ------ |
+:------ | :------ |
 `close` | *string* |
 `open` | *string* |
 
@@ -45,12 +41,12 @@ ___
 
 ### caseProtect
 
-• `Optional` **caseProtect**: { `close`: *string* ; `open`: *string*  }
+• `Optional` **caseProtect**: *object*
 
 #### Type declaration:
 
 Name | Type |
------- | ------ |
+:------ | :------ |
 `close` | *string* |
 `open` | *string* |
 
@@ -60,12 +56,12 @@ ___
 
 ### enquote
 
-• `Optional` **enquote**: { `close`: *string* ; `open`: *string*  }
+• `Optional` **enquote**: *object*
 
 #### Type declaration:
 
 Name | Type |
------- | ------ |
+:------ | :------ |
 `close` | *string* |
 `open` | *string* |
 
@@ -75,12 +71,12 @@ ___
 
 ### fixedWidth
 
-• `Optional` **fixedWidth**: { `close`: *string* ; `open`: *string*  }
+• `Optional` **fixedWidth**: *object*
 
 #### Type declaration:
 
 Name | Type |
------- | ------ |
+:------ | :------ |
 `close` | *string* |
 `open` | *string* |
 
@@ -90,12 +86,12 @@ ___
 
 ### h1
 
-• `Optional` **h1**: { `close`: *string* ; `open`: *string*  }
+• `Optional` **h1**: *object*
 
 #### Type declaration:
 
 Name | Type |
------- | ------ |
+:------ | :------ |
 `close` | *string* |
 `open` | *string* |
 
@@ -105,12 +101,12 @@ ___
 
 ### h2
 
-• `Optional` **h2**: { `close`: *string* ; `open`: *string*  }
+• `Optional` **h2**: *object*
 
 #### Type declaration:
 
 Name | Type |
------- | ------ |
+:------ | :------ |
 `close` | *string* |
 `open` | *string* |
 
@@ -120,12 +116,12 @@ ___
 
 ### italics
 
-• `Optional` **italics**: { `close`: *string* ; `open`: *string*  }
+• `Optional` **italics**: *object*
 
 #### Type declaration:
 
 Name | Type |
------- | ------ |
+:------ | :------ |
 `close` | *string* |
 `open` | *string* |
 
@@ -135,12 +131,12 @@ ___
 
 ### roman
 
-• `Optional` **roman**: { `close`: *string* ; `open`: *string*  }
+• `Optional` **roman**: *object*
 
 #### Type declaration:
 
 Name | Type |
------- | ------ |
+:------ | :------ |
 `close` | *string* |
 `open` | *string* |
 
@@ -150,12 +146,12 @@ ___
 
 ### smallCaps
 
-• `Optional` **smallCaps**: { `close`: *string* ; `open`: *string*  }
+• `Optional` **smallCaps**: *object*
 
 #### Type declaration:
 
 Name | Type |
------- | ------ |
+:------ | :------ |
 `close` | *string* |
 `open` | *string* |
 
@@ -165,12 +161,12 @@ ___
 
 ### sub
 
-• `Optional` **sub**: { `close`: *string* ; `open`: *string*  }
+• `Optional` **sub**: *object*
 
 #### Type declaration:
 
 Name | Type |
------- | ------ |
+:------ | :------ |
 `close` | *string* |
 `open` | *string* |
 
@@ -180,12 +176,12 @@ ___
 
 ### sup
 
-• `Optional` **sup**: { `close`: *string* ; `open`: *string*  }
+• `Optional` **sup**: *object*
 
 #### Type declaration:
 
 Name | Type |
------- | ------ |
+:------ | :------ |
 `close` | *string* |
 `open` | *string* |
 
