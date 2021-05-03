@@ -1,6 +1,7 @@
 import * as bibtex from './grammar'
 import { parse as chunker } from './chunker'
 import { latex as latex2unicode, diacritics } from 'unicode2latex'
+import crossref from './crossref.json'
 
 type Markup = { kind: 'Markup', value: string, loc?: any, source: string }
 
@@ -419,6 +420,11 @@ export interface ParserOptions {
    * BibTeX files may have abbreviations in the journal field. If you provide a dictionary, journal names that are found in the dictionary are replaced with the attached full name
    */
   unabbreviate?: Record<string, { ast: any, text: string }>
+
+  /**
+   * Apply crossref inheritance
+   */
+  applyCrossRef?: boolean
 }
 
 const english = [
@@ -504,6 +510,7 @@ class Parser {
       unnestMode: 'unwrap',
       htmlFields: fields.html,
       guessAlreadySentenceCased: true,
+      applyCrossRef: options.applyCrossRef || typeof options.applyCrossRef === 'undefined',
       markup: {},
 
       ...options,
@@ -618,6 +625,29 @@ class Parser {
       this.convert(this.clean(value))
       strings[key] = this.field.text
     }
+
+    if (this.options.applyCrossRef) {
+      const entries: Record<string, Entry> = this.entries.reduce((acc, entry) => {
+        acc[entry.key] = entry
+        return acc
+      }, {})
+      for (const entry of this.entries) {
+        if (entry.fields.crossref) {
+          for (const parent_key of entry.fields.crossref) {
+            const parent = entries[parent_key]
+            const mapping = parent && crossref.find(xref => xref.source.includes(parent.type) && xref.target.includes(entry.type))
+            if (parent && mapping) {
+              for (const { source, target } of mapping.fields) {
+                if (parent.fields[source] && !entry.fields[target]) {
+                  entry.fields[target] = JSON.parse(JSON.stringify(parent.fields[source]))
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
     return {
       errors: this.errors,
       entries: this.entries,
