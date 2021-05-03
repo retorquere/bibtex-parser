@@ -43,7 +43,7 @@ jobs:
           ${{ runner.os }}-
     - name: install node dependencies
       if: steps.bogus.outputs.bogus != 'true'
-      uses: pnpm/action-setup@v1.2.1
+      uses: pnpm/action-setup@v2
       with:
         version: latest
         run_install: true
