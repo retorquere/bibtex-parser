@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "lint": "tslint -t stylish --project .",
-    "submodules": "git submodule update --init --recursive --remote && git submodule foreach git reset --hard && git submodule foreach git checkout master && git submodule foreach git pull origin master",
     "prestart": "npm run lint && pegjs grammar.pegjs && npm run submodules",
     "start": "tsc -d",
     "poststart": "npm run docs",
@@ -21,7 +20,7 @@
     "update-cases": "rsync -av --delete --include='merge/' --include='import/' --include='export/' --exclude='*/' --include='*.bib' --include='*.bibtex' --include='*.biblatex' --exclude='*' ../better-bibtex/test/fixtures/ __tests__/better-bibtex/",
     "update-snapshots": "jest --updateSnapshot",
     "docs": "rm -rf docs && typedoc --name 'BibTeX parser' index.ts && touch docs/.nojekyll",
-    "ncu": "npm run submodules && git add jabref abbrv.jabref.org && ncu -u && pnpm i && git add package.json pnpm-lock.yaml && git commit -m ncu"
+    "ncu": "ncu -u && pnpm i && git add package.json pnpm-lock.yaml && git commit -m ncu"
   },
   "repository": {
     "type": "git",
