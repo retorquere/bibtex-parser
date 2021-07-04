@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Match against @string value for export #1597, export, sentencecase=off, caseprotection=as-needed 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Emil",
+            "lastName": "Björnson",
+          },
+          Object {
+            "firstName": "Luca",
+            "lastName": "Sanguinetti",
+          },
+        ],
+      },
+      "fields": Object {
+        "archiveprefix": Array [
+          "arXiv",
+        ],
+        "author": Array [
+          "Björnson, Emil",
+          "Sanguinetti, Luca",
+        ],
+        "doi": Array [
+          "10.1109/TCOMM.2020.2987311",
+        ],
+        "eprint": Array [
+          "1908.03119",
+        ],
+        "eprinttype": Array [
+          "arxiv",
+        ],
+        "issn": Array [
+          "0090-6778, 1558-0857",
+        ],
+        "journal": Array [
+          "IEEE_J_WC",
+        ],
+        "note": Array [
+          "Comment: To appear in IEEE Transactions on Communications, 14 pages, 6 figures",
+        ],
+        "pages": Array [
+          "1–1",
+        ],
+        "title": Array [
+          "Scalable Cell-Free Massive MIMO Systems",
+        ],
+        "year": Array [
+          "2020",
+        ],
+      },
+      "key": "bjornsonScalable2020",
+      "type": "article",
+    },
+  ],
+  "errors": Array [
+    Object {
+      "message": "Unresolved @string reference \\"IEEE_J_WC\\"",
+    },
+  ],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;

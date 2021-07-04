@@ -5,40 +5,16 @@ import * as fs from 'fs'
 import * as path from 'path'
 import * as bibtex from '../index'
 import { markdown } from 'markdown'
+import fetch from 'node-fetch'
+import type { Node } from '../grammar'
 
 const unabbrev: Record<string, { ast: any, text: string}> = {}
-const strings: Record<string, any> = {}
+const strings: Record<string, bibtex.ValueType[]> = {}
 const abbrev: Record<string, Record<string, string>> = {}
 
-const journals = 'abbrv.jabref.org/journals'
+https://www.netlib.org/bibnet/tools/strings/
 
-const readme = markdown.parse(fs.readFileSync(path.join(journals, 'README.md'), 'utf-8'))
-const titles: Record<string, string> = {
-  'journalList.csv': 'JabRef',
-}
-function find_links(tree) {
-  if (!Array.isArray(tree)) return
-
-  if (tree[0] === 'link') {
-    if (tree[1].href.startsWith('journal_abbreviations_')) titles[tree[1].href] = tree[2]
-  } else {
-    tree.forEach(find_links)
-  }
-}
-find_links(readme)
-
-const obviously_wrong = {
-  abbr: ['20 21', 'Journal'],
-  full: ['IEEE Expert (through 1997)', 'The Journal'],
-}
-function unjunk(str) {
-  // so much junk in there
-  str = (str || '').replace(/\s*[\\\/]+$/, '') // trailing slashes
-  if (str.replace(/[^$]/g, '').length % 2 == 1) return null // unbalanced math
-  if (str.match(/^".*"$/)) str = str.slice(1, -1)
-  return str.trim()
-}
-
+/*
 function parse(list) {
   console.log('parsing', list, '...')
   if (!fs.existsSync(list)) {
@@ -109,6 +85,9 @@ for (const [list, mapping] of Object.entries(abbrev)) {
     }
   }
 }
+*/
+
+const strings = 
 
 fs.writeFileSync('unabbrev.json', JSON.stringify(unabbrev, null, 2))
 fs.writeFileSync('strings.json', JSON.stringify(strings, null, 2))

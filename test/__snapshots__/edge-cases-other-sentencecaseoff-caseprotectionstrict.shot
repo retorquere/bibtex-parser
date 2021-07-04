@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`edge-cases, other, sentencecase=off, caseprotection=strict 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {},
+      "fields": Object {},
+      "key": "",
+      "type": "foo",
+    },
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "foo": Array [
+          "bar",
+        ],
+      },
+      "key": "",
+      "type": "article",
+    },
+  ],
+  "errors": Array [
+    Object {
+      "message": "Unresolved @string reference \\"bar\\"",
+    },
+  ],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;

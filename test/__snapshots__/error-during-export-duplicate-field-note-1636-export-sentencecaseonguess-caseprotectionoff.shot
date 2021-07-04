@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`error during export: duplicate field note #1636, export, sentencecase=on+guess, caseprotection=off 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Lichess",
+            "lastName": "Team",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Lichess Team",
+        ],
+        "date": Array [
+          "2019-12-31",
+        ],
+        "langid": Array [
+          "american",
+        ],
+        "note": Array [
+          "Siehe auch https://lichess.org/analysis",
+        ],
+        "organization": Array [
+          "lichess.org",
+        ],
+        "title": Array [
+          "Lichess end of year update 2019",
+        ],
+        "type": Array [
+          "Lichess official blog",
+        ],
+        "url": Array [
+          "https://lichess.org/blog/XgttDRAAAB8AmHcb/lichess-end-of-year-update-2019",
+        ],
+        "urldate": Array [
+          "2020-03-30",
+        ],
+      },
+      "key": "LichessTeamLichessEndYear",
+      "sentenceCased": true,
+      "type": "online",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;

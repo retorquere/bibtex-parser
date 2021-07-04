@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Exporting of single-field author lacks braces #130, export, sentencecase=off, caseprotection=strict 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Adam",
+            "lastName": "Kolawa",
+          },
+          Object {
+            "firstName": "Dorota",
+            "lastName": "Huizinga",
+          },
+          Object {
+            "literal": "Wiley InterScience (Online service)",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Kolawa, Adam",
+          "Huizinga, Dorota",
+          "Wiley InterScience (Online service)",
+        ],
+        "date": Array [
+          "2007",
+        ],
+        "isbn": Array [
+          "978-0-470-16516-4",
+        ],
+        "keywords": Array [
+          "Computer programs – Correctness.",
+          "Computer programs – Testing – Data processing.",
+          "Debugging in computer science – Automatic control.",
+          "Software failures – Prevention – Data processing.",
+          "Software maintenance – Data processing.",
+        ],
+        "location": Array [
+          "Hoboken, NJ, USA",
+        ],
+        "publisher": Array [
+          "IEEE Computer Society Press",
+        ],
+        "shorttitle": Array [
+          "Automated <span class=\\"nocase\\">Defect Prevention</span>",
+        ],
+        "title": Array [
+          "Automated <span class=\\"nocase\\">Defect Prevention : Best Practices</span> in <span class=\\"nocase\\">Software Management</span>",
+        ],
+        "url": Array [
+          "http://site.ebrary.com/lib/alltitles/docDetail.action?docID=10296302",
+        ],
+        "urldate": Array [
+          "2015-01-09",
+        ],
+      },
+      "key": "Kolawa2007",
+      "type": "book",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;

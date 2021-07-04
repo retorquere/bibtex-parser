@@ -91,11 +91,11 @@ export interface SymbolCommand {
 
 export interface DiacriticCommand {
   kind: 'DiacriticCommand'
-  loc: Location
-  source: string
+  loc?: Location
+  source?: string
   mark: string
   character: string
-  dotless: boolean
+  dotless?: boolean
 }
 
 export interface Math {
@@ -184,21 +184,26 @@ export interface NonEntryText {
   value: string
 }
 
+export interface Markup {
+  kind: 'Markup',
+  loc?: Location,
+  value: string,
+  source: string
+}
+
 export type Comment = BracedComment | LineComment | NonEntryText
 
 export type Command = RegularCommand | SymbolCommand | DiacriticCommand | SubscriptCommand | SuperscriptCommand
 
 export type ValueType = TextValue | StringReference | Block | Environment | Math | NumberValue | Command
 
-export type Children = Entry | PreambleExpression | StringDeclaration | Comment
-
-export type Node = Comment | PreambleExpression | StringDeclaration | Entry
+export type Node = Comment | Entry | PreambleExpression | StringDeclaration | Markup
 
 export interface Bibliography {
   kind: 'Bibliography'
   loc: Location
   source: string
-  children: Children[]
+  children: Node[]
 }
 
 export interface ParseOptions {

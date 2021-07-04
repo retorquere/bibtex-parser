@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`customized fields with curly brackets are not exported correctly anymore #775, export, sentencecase=off, caseprotection=as-needed 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Karl",
+            "lastName": "Knoblauch",
+            "prefix": "von",
+            "useprefix": false,
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "family=Knoblauch, given=Karl, prefix=von, useprefix=false",
+        ],
+        "date": Array [
+          "1789",
+        ],
+        "keywords": Array [
+          "anonym",
+          "Knoblauch",
+          "Monographie",
+          "Quelle",
+        ],
+        "langid": Array [
+          "german",
+        ],
+        "location": Array [
+          "[Marburg]",
+        ],
+        "options": Array [
+          "pseudoauthor=true",
+        ],
+        "pagetotal": Array [
+          "72",
+        ],
+        "publisher": Array [
+          "Krieger",
+        ],
+        "shorttitle": Array [
+          "Dialogen",
+        ],
+        "title": Array [
+          "Dialogen über einige Gegenstände der politischen Oekonomie und Philosophie",
+        ],
+      },
+      "key": "knoblauch_dialogen_1789-1",
+      "type": "book",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;

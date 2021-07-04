@@ -1,0 +1,261 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`auto-export.before, export, sentencecase=off, caseprotection=off 1`] = `
+Object {
+  "comments": Array [
+    "jabref-meta: groupsversion:3;",
+    "jabref-meta: groupstree:
+0 AllEntriesGroup:;
+1 ExplicitGroup:auto-export\\\\;0\\\\;CapEA11\\\\;CumEA14\\\\;TayEA11\\\\;;
+",
+  ],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Franck",
+            "lastName": "Cappello",
+          },
+          Object {
+            "firstName": "Mathias",
+            "lastName": "Jacquelin",
+          },
+          Object {
+            "firstName": "Loris",
+            "lastName": "Marchal",
+          },
+          Object {
+            "firstName": "Yves",
+            "lastName": "Robert",
+          },
+          Object {
+            "firstName": "Marc",
+            "lastName": "Snir",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Cappello, Franck",
+          "Jacquelin, Mathias",
+          "Marchal, Loris",
+          "Robert, Yves",
+          "Snir, Marc",
+        ],
+        "booktitle": Array [
+          "High Performance Computing (HiPC), 2011 18th International Conference On",
+        ],
+        "date": Array [
+          "2011",
+        ],
+        "doi": Array [
+          "10.1109/HiPC.2011.6152428",
+        ],
+        "keywords": Array [
+          "bdec15",
+          "zoteroₜestcase",
+        ],
+        "pages": Array [
+          "1–10",
+        ],
+        "publisher": Array [
+          "IEEE",
+        ],
+        "timestamp": Array [
+          "2015-02-24 12:14:36 +0100",
+        ],
+        "title": Array [
+          "Comparing Archival Policies for Blue Waters",
+        ],
+        "url": Array [
+          "http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=6152428",
+        ],
+        "urldate": Array [
+          "2014-10-23",
+        ],
+      },
+      "key": "CapEA11",
+      "type": "inproceedings",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Ben",
+            "lastName": "Cumming",
+          },
+          Object {
+            "firstName": "Gilles",
+            "lastName": "Fourestey",
+          },
+          Object {
+            "firstName": "Oliver",
+            "lastName": "Fuhrer",
+          },
+          Object {
+            "firstName": "Tobias",
+            "lastName": "Gysi",
+          },
+          Object {
+            "firstName": "Massimiliano",
+            "lastName": "Fatica",
+          },
+          Object {
+            "firstName": "Thomas C.",
+            "lastName": "Schulthess",
+          },
+        ],
+      },
+      "fields": Object {
+        "abstract": Array [
+          "We study the energy used by a production-level regional climate and weather simulation code on a distributed memory system with hybrid CPU-GPU nodes. The code is optimised for both processor architectures, for which we investigate both time and energy to solution. Operational constraints for time to solution can be met with both processor types, although on different numbers of nodes. Energy to solution is a factor 3 lower with GPUs, but strong scaling can be pushed to larger node counts with CPUs to minimize time to solution. Our data shows that an affine relationship exists between energy and nodehours consumed by the simulation. We use this property to devise a simple and practical methodology for optimising for energy efficiency that can be applied to other applications, which we demonstrate with the HPCG benchmark. We conclude with a discussion about the relationship to the commonly-used GF/Watt metric.",
+        ],
+        "author": Array [
+          "Cumming, Ben",
+          "Fourestey, Gilles",
+          "Fuhrer, Oliver",
+          "Gysi, Tobias",
+          "Fatica, Massimiliano",
+          "Schulthess, Thomas C.",
+        ],
+        "booktitle": Array [
+          "Proceedings of the International Conference for High Performance Computing, Networking, Storage and Analysis",
+        ],
+        "date": Array [
+          "2014",
+        ],
+        "doi": Array [
+          "10.1109/SC.2014.72",
+        ],
+        "isbn": Array [
+          "978-1-4799-5500-8",
+        ],
+        "keywords": Array [
+          "bdec15",
+          "zoteroₜestcase",
+        ],
+        "location": Array [
+          "Piscataway, NJ, USA",
+        ],
+        "pages": Array [
+          "819–829",
+        ],
+        "publisher": Array [
+          "IEEE Press",
+        ],
+        "series": Array [
+          "SC '14",
+        ],
+        "timestamp": Array [
+          "2015-02-24 12:14:36 +0100",
+        ],
+        "title": Array [
+          "Application Centric Energy-Efficiency Study of Distributed Multi-Core and Hybrid CPU-GPU Systems",
+        ],
+        "url": Array [
+          "http://dx.doi.org/10.1109/SC.2014.72",
+        ],
+        "urldate": Array [
+          "2015-01-12",
+        ],
+      },
+      "key": "CumEA14",
+      "type": "inproceedings",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Karl E.",
+            "lastName": "Taylor",
+          },
+          Object {
+            "firstName": "Ronald J.",
+            "lastName": "Stouffer",
+          },
+          Object {
+            "firstName": "Gerald A.",
+            "lastName": "Meehl",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Taylor, Karl E.",
+          "Stouffer, Ronald J.",
+          "Meehl, Gerald A.",
+        ],
+        "date": Array [
+          "2011-10-07",
+        ],
+        "doi": Array [
+          "10.1175/BAMS-D-11-00094.1",
+        ],
+        "issn": Array [
+          "0003-0007, 1520-0477",
+        ],
+        "journaltitle": Array [
+          "Bulletin of the American Meteorological Society",
+        ],
+        "keywords": Array [
+          "bdec15",
+          "jasmin13a",
+          "p-12-iam",
+          "p-gmdm41",
+          "zoteroₜestcase",
+        ],
+        "pages": Array [
+          "485–498",
+        ],
+        "timestamp": Array [
+          "2015-02-24 12:14:36 +0100",
+        ],
+        "title": Array [
+          "An Overview of CMIP5 and the Experiment Design",
+        ],
+        "url": Array [
+          "http://journals.ametsoc.org/doi/abs/10.1175/BAMS-D-11-00094.1",
+        ],
+        "urldate": Array [
+          "2012-04-17",
+        ],
+        "volume": Array [
+          "93",
+        ],
+      },
+      "key": "TayEA11",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {
+      "auto-export": Object {
+        "entries": Array [
+          "CapEA11",
+          "CumEA14",
+          "TayEA11",
+        ],
+        "groups": Array [],
+        "name": "auto-export",
+      },
+    },
+    "root": Array [
+      Object {
+        "entries": Array [
+          "CapEA11",
+          "CumEA14",
+          "TayEA11",
+        ],
+        "groups": Array [],
+        "name": "auto-export",
+      },
+    ],
+    "version": "3",
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;

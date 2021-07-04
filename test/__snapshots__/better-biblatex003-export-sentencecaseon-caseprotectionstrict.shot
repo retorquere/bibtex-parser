@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Better BibLaTeX.003, export, sentencecase=on, caseprotection=strict 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "First",
+            "lastName": "Author",
+          },
+          Object {
+            "firstName": "Second",
+            "lastName": "Author",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Author, First",
+          "Author, Second",
+        ],
+        "crossref": Array [
+          "conference:06",
+        ],
+        "pages": Array [
+          "330—331",
+        ],
+        "title": Array [
+          "Some publication title",
+        ],
+      },
+      "key": "author:06",
+      "sentenceCased": true,
+      "type": "inproceedings",
+    },
+    Object {
+      "creators": Object {
+        "editor": Array [
+          Object {
+            "firstName": "First",
+            "lastName": "Editor",
+          },
+          Object {
+            "firstName": "Second",
+            "lastName": "Editor",
+          },
+        ],
+      },
+      "fields": Object {
+        "date": Array [
+          "2006-10",
+        ],
+        "editor": Array [
+          "Editor, First",
+          "Editor, Second",
+        ],
+        "title": Array [
+          "Proceedings of the <span class=\\"nocase\\">Xth</span> conference on <span class=\\"nocase\\">XYZ</span>",
+        ],
+      },
+      "key": "conference:06",
+      "sentenceCased": true,
+      "type": "book",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;

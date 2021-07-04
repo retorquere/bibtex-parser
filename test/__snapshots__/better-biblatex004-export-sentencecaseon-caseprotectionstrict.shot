@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Better BibLaTeX.004, export, sentencecase=on, caseprotection=strict 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Michael",
+            "lastName": "von Hicks",
+            "suffix": "III",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "von Hicks, III, Michael",
+        ],
+        "date": Array [
+          "2001",
+        ],
+        "edition": Array [
+          "1st,",
+        ],
+        "isbn": Array [
+          "0-69-697269-4",
+        ],
+        "location": Array [
+          "Palo Alto",
+        ],
+        "options": Array [
+          "useprefix=true",
+        ],
+        "publisher": Array [
+          "Stanford Press",
+        ],
+        "title": Array [
+          "Design of a <span class=\\"nocase\\">Carbon Fiber Composite Grid Structure</span> for the <span class=\\"nocase\\">GLAST</span> spacecraft using a novel manufacturing technique",
+        ],
+      },
+      "key": "hicks2001",
+      "sentenceCased": true,
+      "type": "book",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;

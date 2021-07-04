@@ -138,14 +138,16 @@ export function parse(comments: string[]): JabrefMetadata {
 
       if (levels.length < level) {
         levels.push(group)
-      } else {
+      }
+      else {
         levels[level - 1] = group
       }
 
       if (level === 1) {
         result.root.push(group)
 
-      } else {
+      }
+      else {
         const parent: Group = levels[level - 2]
         switch (intersection) {
           case '0': // independent

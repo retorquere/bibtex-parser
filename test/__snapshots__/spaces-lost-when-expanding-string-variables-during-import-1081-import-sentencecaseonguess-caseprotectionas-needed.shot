@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Spaces lost when expanding string variables during import #1081, import, sentencecase=on+guess, caseprotection=as-needed 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "lastName": "Author",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Author",
+        ],
+        "journal": Array [
+          "a space between this and this",
+        ],
+        "title": Array [
+          "Title",
+        ],
+        "year": Array [
+          1990,
+        ],
+      },
+      "key": "key",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {
+    "J": "a space between this ",
+  },
+}
+`;

@@ -1,0 +1,168 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`google-scholar like references #1705, export, sentencecase=on, caseprotection=off 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Ali",
+            "lastName": "El Kaafarani",
+          },
+          Object {
+            "firstName": "Shuichi",
+            "lastName": "Katsumata",
+          },
+          Object {
+            "firstName": "Federico",
+            "lastName": "Pintore",
+          },
+        ],
+        "editor": Array [
+          Object {
+            "firstName": "Aggelos",
+            "lastName": "Kiayias",
+          },
+          Object {
+            "firstName": "Markulf",
+            "lastName": "Kohlweiss",
+          },
+          Object {
+            "firstName": "Petros",
+            "lastName": "Wallden",
+          },
+          Object {
+            "firstName": "Vassilis",
+            "lastName": "Zikas",
+          },
+        ],
+      },
+      "fields": Object {
+        "abstract": Array [
+          "Recently, Beullens, Kleinjung, and Vercauteren (Asiacrypt’19) provided the first practical isogeny-based digital signature, obtained from the Fiat-Shamir (FS) paradigm. They worked with the CSIDH-512 parameters and passed through a new record class group computation. However, as with all standard FS signatures, the security proof is highly non-tight and the concrete parameters are set under the heuristic that the only way to attack the scheme is by finding collisions for a hash function.In this paper, we propose an FS-style signature scheme, called Lossy CSI-FiSh, constructed using the CSIDH-512 parameters and with a security proof based on the “Lossy Keys” technique introduced by Kiltz, Lyubashevsky and Schaffner (Eurocrypt’18). Lossy CSI-FiSh is provably secure under the same assumption which underlies the security of the key exchange protocol CSIDH (Castryck et al. (Asiacrypt’18)) and is almost as efficient as CSI-FiSh. For instance, aiming for small signature size, our scheme is expected to take around \\\\approx 800≈800\\\\approx 800 ms to sign/verify while producing signatures of size \\\\approx 280≈280\\\\approx 280 bytes. This is only twice slower than CSI-FiSh while having similar signature size for the same parameter set. As an additional benefit, our scheme is by construction secure both in the classical and quantum random oracle model.",
+        ],
+        "author": Array [
+          "El Kaafarani, Ali",
+          "Katsumata, Shuichi",
+          "Pintore, Federico",
+        ],
+        "booktitle": Array [
+          "Public-key cryptography – PKC 2020",
+        ],
+        "date": Array [
+          "2020",
+        ],
+        "doi": Array [
+          "10.1007/978-3-030-45388-6_6",
+        ],
+        "editor": Array [
+          "Kiayias, Aggelos",
+          "Kohlweiss, Markulf",
+          "Wallden, Petros",
+          "Zikas, Vassilis",
+        ],
+        "isbn": Array [
+          "978-3-030-45388-6",
+        ],
+        "langid": Array [
+          "english",
+        ],
+        "location": Array [
+          "Cham",
+        ],
+        "pages": Array [
+          "157–186",
+        ],
+        "publisher": Array [
+          "Springer International Publishing",
+        ],
+        "series": Array [
+          "Lecture notes in computer science",
+        ],
+        "shorttitle": Array [
+          "Lossy CSI-FiSh",
+        ],
+        "title": Array [
+          "Lossy CSI-FiSh: Efficient signature scheme with tight reduction to decisional CSIDH-512",
+        ],
+      },
+      "key": "el2020lossy",
+      "sentenceCased": true,
+      "type": "inproceedings",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Youngho",
+            "lastName": "Yoo",
+          },
+          Object {
+            "firstName": "Reza",
+            "lastName": "Azarderakhsh",
+          },
+          Object {
+            "firstName": "Amir",
+            "lastName": "Jalali",
+          },
+          Object {
+            "firstName": "David",
+            "lastName": "Jao",
+          },
+          Object {
+            "firstName": "Vladimir",
+            "lastName": "Soukharev",
+          },
+        ],
+      },
+      "fields": Object {
+        "abstract": Array [
+          "We present the first general-purpose digital signature scheme based on supersingular elliptic curve isogenies secure against quantum adversaries in the quantum random oracle model with small key sizes. This scheme is an application of Unruh’s construction of non-interactive zero-knowledge proofs to an interactive zero-knowledge proof proposed by De Feo, Jao, and Plût. We implement our proposed scheme on an x86-64 PC platform as well as an ARM-powered device. We exploit the state-of-the-art techniques to speed up the computations for general C and assembly. Finally, we provide timing results for real world applications.",
+        ],
+        "author": Array [
+          "Yoo, Youngho",
+          "Azarderakhsh, Reza",
+          "Jalali, Amir",
+          "Jao, David",
+          "Soukharev, Vladimir",
+        ],
+        "date": Array [
+          "2017",
+        ],
+        "keywords": Array [
+          "digital signatures",
+          "isogenies",
+          "post-quantum cryptography",
+          "public-key cryptography",
+        ],
+        "number": Array [
+          "186",
+        ],
+        "title": Array [
+          "A post-quantum digital signature scheme based on supersingular isogenies",
+        ],
+        "url": Array [
+          "http://eprint.iacr.org/2017/186",
+        ],
+        "urldate": Array [
+          "2020-11-03",
+        ],
+      },
+      "key": "yoo2017post",
+      "sentenceCased": true,
+      "type": "report",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;

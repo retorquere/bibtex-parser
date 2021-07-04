@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX variable support for journal titles. #309, export, sentencecase=on+guess, caseprotection=strict 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Richard E",
+            "lastName": "Blahut",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Blahut, Richard E",
+        ],
+        "date": Array [
+          "1972",
+        ],
+        "journaltitle": Array [
+          "IEEE_J_IT",
+        ],
+        "number": Array [
+          "4",
+        ],
+        "pages": Array [
+          "460–473",
+        ],
+        "title": Array [
+          "Computation of channel capacity and rate-distortion functions",
+        ],
+        "volume": Array [
+          "18",
+        ],
+      },
+      "key": "blahut_capacity",
+      "sentenceCased": true,
+      "type": "article",
+    },
+  ],
+  "errors": Array [
+    Object {
+      "message": "Unresolved @string reference \\"IEEE_J_IT\\"",
+    },
+  ],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;

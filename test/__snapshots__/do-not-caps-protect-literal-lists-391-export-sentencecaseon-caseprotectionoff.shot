@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Do not caps-protect literal lists #391, export, sentencecase=on, caseprotection=off 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "institution": Array [
+          "Office of Information Management and Communications",
+        ],
+        "title": Array [
+          "Institution",
+        ],
+      },
+      "key": "institution",
+      "type": "report",
+    },
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "location": Array [
+          "Trinidad and Tobago",
+        ],
+        "origlocation": Array [
+          "Saint Kitts and Nevis",
+        ],
+        "origpublisher": Array [
+          "Doe and Company",
+        ],
+        "publisher": Array [
+          "Miller, Smith and Jones",
+        ],
+        "title": Array [
+          "Publisher",
+        ],
+      },
+      "key": "publisher",
+      "type": "book",
+    },
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "institution": Array [
+          "University of Saint Kitts and Nevis",
+        ],
+        "title": Array [
+          "University",
+        ],
+      },
+      "key": "university",
+      "type": "thesis",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;

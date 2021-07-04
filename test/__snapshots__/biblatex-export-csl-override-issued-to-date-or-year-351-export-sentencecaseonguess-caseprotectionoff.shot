@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibLaTeX; export CSL override 'issued' to date or year #351, export, sentencecase=on+guess, caseprotection=off 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "John",
+            "lastName": "Doe",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Doe, John",
+        ],
+        "date": Array [
+          "2014-12-31/2015-01-01",
+        ],
+        "title": Array [
+          "Test",
+        ],
+      },
+      "key": "doe_test",
+      "type": "online",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;

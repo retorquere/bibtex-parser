@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Better BibLaTeX.017, export, sentencecase=on, caseprotection=as-needed 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Kendra",
+            "lastName": "Arbesman von Secondname",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Arbesman von Secondname, Kendra",
+        ],
+        "date": Array [
+          "2001",
+        ],
+        "doi": Array [
+          "10.1175/1520-0493(1987)115<1606:GARSPP>2.0.CO;2",
+        ],
+        "journaltitle": Array [
+          "Title, with comma",
+        ],
+        "keywords": Array [
+          "breadcrust",
+          "plinian",
+          "Vulcanian eruptions",
+        ],
+        "title": Array [
+          "The physical: Violent volcanology of the 1600 eruption of Huaynaputina, southern Peru",
+        ],
+        "volume": Array [
+          "62",
+        ],
+      },
+      "key": "arbesmanvonsecondname2001",
+      "sentenceCased": true,
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;

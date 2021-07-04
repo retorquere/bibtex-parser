@@ -1,0 +1,122 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Math markup to unicode not always imported correctly #472.roundtrip, import, sentencecase=off, caseprotection=off 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "J.",
+            "lastName": "Doe",
+          },
+          Object {
+            "firstName": "R.",
+            "lastName": "Smith",
+          },
+        ],
+      },
+      "fields": Object {
+        "abstract": Array [
+          "Abstract here",
+        ],
+        "author": Array [
+          "Doe, J.",
+          "Smith, R.",
+        ],
+        "booktitle": Array [
+          "IEEE_J_PROC",
+        ],
+        "doi": Array [
+          "10.1109/JPROC.2016.2526118",
+        ],
+        "issn": Array [
+          "0193-6530",
+        ],
+        "keywords": Array [
+          "Keyword 1",
+          "Keyword 2",
+        ],
+        "month": Array [
+          "02",
+        ],
+        "pages": Array [
+          "300–301",
+        ],
+        "title": Array [
+          "Test Title With 100 𝜇J, 200 𝜇J Energy, and ±0.1% Accuracy, 0.2 Mm² Size, and -50 dB Attenuation",
+        ],
+        "year": Array [
+          "2016",
+        ],
+      },
+      "key": "test_citation1",
+      "type": "inproceedings",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "J.",
+            "lastName": "Doe",
+          },
+          Object {
+            "firstName": "R.",
+            "lastName": "Smith",
+          },
+        ],
+      },
+      "fields": Object {
+        "abstract": Array [
+          "Abstract here",
+        ],
+        "author": Array [
+          "Doe, J.",
+          "Smith, R.",
+        ],
+        "booktitle": Array [
+          "IEEE_J_PROC",
+        ],
+        "doi": Array [
+          "10.1109/JPROC.2016.2526118",
+        ],
+        "issn": Array [
+          "0193-6530",
+        ],
+        "keywords": Array [
+          "Keyword 1",
+          "Keyword 2",
+        ],
+        "month": Array [
+          "02",
+        ],
+        "pages": Array [
+          "300–301",
+        ],
+        "title": Array [
+          "Test Title with Space Quad, Space Semi-Colon, Space Colon, Space Comma, Space Nbsp",
+        ],
+        "year": Array [
+          "2016",
+        ],
+      },
+      "key": "test_citation2",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [
+    Object {
+      "message": "Unresolved @string reference \\"IEEE_J_PROC\\"",
+    },
+  ],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;

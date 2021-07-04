@@ -1,0 +1,255 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Better BibLaTeX import improvements #549, import, sentencecase=on+guess, caseprotection=as-needed 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "lastName": "01e",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "01e",
+        ],
+        "title": Array [
+          "Blah <span class=\\"nocase\\"><i>emph</i></span> and <span class=\\"nocase\\">“enquote”</span>.",
+        ],
+      },
+      "key": "1e",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "lastName": "01b",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "01b",
+        ],
+        "title": Array [
+          "Blah <span class=\\"nocase\\"><i>mkbibemph</i></span> and <span class=\\"nocase\\">“mkbibquote”</span>.",
+        ],
+      },
+      "key": "1b",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "lastName": "02e",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "02e",
+        ],
+        "title": Array [
+          "Blah <span class=\\"nocase\\"><i>emph</i></span> and <span class=\\"nocase\\">“enquote”</span>.",
+        ],
+      },
+      "key": "2e",
+      "type": "book",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "lastName": "02b",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "02b",
+        ],
+        "title": Array [
+          "Blah <span class=\\"nocase\\"><i>mkbibemph</i></span> and <span class=\\"nocase\\">“mkbibquote”</span>.",
+        ],
+      },
+      "key": "2b",
+      "type": "book",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "David Christopher",
+            "lastName": "Bennett",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Bennett, David Christopher",
+        ],
+        "date": Array [
+          "2003",
+        ],
+        "institution": Array [
+          "University of London",
+        ],
+        "title": Array [
+          "Xenonika: medical texts associated with xenones in the late Byzantine period",
+        ],
+        "type": Array [
+          "Ph.D.",
+        ],
+      },
+      "key": "Bennett2003",
+      "type": "thesis",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Glen",
+            "lastName": "Cooper",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Glen Cooper",
+        ],
+        "crossref": Array [
+          "Classen2013",
+        ],
+        "date": Array [
+          "2013",
+        ],
+        "pages": Array [
+          "263-87",
+        ],
+        "title": Array [
+          "Byzantium between east and west: Competing hellenisms in the <i>Alexiad</i> of anna komnene and her contemporaries",
+        ],
+      },
+      "key": "Cooper2013",
+      "sentenceCased": true,
+      "type": "incollection",
+    },
+    Object {
+      "creators": Object {
+        "editor": Array [
+          Object {
+            "firstName": "Paul",
+            "lastName": "Correns",
+          },
+        ],
+      },
+      "fields": Object {
+        "date": Array [
+          "1891",
+        ],
+        "editor": Array [
+          "Correns, Paul",
+        ],
+        "journaltitle": Array [
+          "Beiträge zur Geschichte der Philosophie des Mittelalters",
+        ],
+        "pages": Array [
+          "1-11",
+        ],
+        "title": Array [
+          "Die dem boethius fälschlich zugeschriebene abhandlung des dominicus gundisalvi 'De unitate'",
+        ],
+        "volume": Array [
+          "1",
+        ],
+      },
+      "key": "Correns1891",
+      "sentenceCased": true,
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Hamid",
+            "lastName": "Algar",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Algar, Hamid",
+        ],
+        "date": Array [
+          "1985",
+        ],
+        "lista": Array [
+          "Besmallah: in exegesis, jurisprudence, and cultural life",
+        ],
+        "pages": Array [
+          "172-4",
+        ],
+        "title": Array [
+          "Encyclopedia iranica",
+        ],
+        "volume": Array [
+          "4",
+        ],
+      },
+      "key": "Algar1985",
+      "sentenceCased": true,
+      "type": "inreference",
+    },
+    Object {
+      "creators": Object {
+        "editor": Array [
+          Object {
+            "firstName": "Anne",
+            "lastName": "Arsdall",
+            "prefix": "van",
+          },
+          Object {
+            "firstName": "Timothy",
+            "lastName": "Graham",
+          },
+        ],
+      },
+      "fields": Object {
+        "date": Array [
+          "2012",
+        ],
+        "editor": Array [
+          "Anne van Arsdall",
+          "Timothy Graham",
+        ],
+        "location": Array [
+          "Burlington, VT",
+        ],
+        "publisher": Array [
+          "Ashgate",
+        ],
+        "title": Array [
+          "Herbs and healers from the ancient mediterranean through the medieval west: Essays in honor of john m. Riddle",
+        ],
+      },
+      "key": "Arsdall2012",
+      "sentenceCased": true,
+      "type": "collection",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;

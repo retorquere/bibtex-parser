@@ -1,0 +1,134 @@
+'use strict';
+
+let args = require('command-line-args')
+const fs = require('fs')
+const path = require('path')
+const slugify = require('slug')
+const ejs = require('ejs')
+
+const bibtex = require('../index')
+
+const SENTENCECASE = ['on+guess', 'on', 'off']
+const CASEPROTECTION = [ 'as-needed', 'strict', 'off' ]
+const updateSnapshot = process.argv.includes('--updateSnapshot')
+
+const options = [
+  { name: 'sentence-case', type: String, multiple: true, defaultValue: updateSnapshot ? SENTENCECASE : [ SENTENCECASE[0] ], valid: SENTENCECASE },
+  { name: 'case-protection', type: String, multiple: true, defaultValue: updateSnapshot ? CASEPROTECTION : [ CASEPROTECTION[0] ], valid: CASEPROTECTION },
+  { name: 'big', type: Boolean },
+  { name: 'help', alias: 'h', type: Boolean },
+]
+args = args(options, { camelCase: true, partial: true })
+args.big = args.big || updateSnapshot || process.env.CI === 'true'
+
+process.argv = process.argv.slice(0, 2).concat(args._unknown || [])
+
+delete args._unknown
+
+for (const option of options) {
+  const camelCased = option.name.replace(/-[a-z]/g, cc => cc.toUpperCase().replace('-', ''))
+  if (option.valid) {
+    const invalid = (option.multiple ? args[camelCased] : [ args[camelCased] ]).filter(o => !option.valid.includes(o))
+    if (invalid.length) {
+      console.log('Invalid', option.name, JSON.stringify(args[camelCased]))
+      args.help = true
+    }
+  }
+}
+
+if (args.help) {
+  process.argv.push('--help')
+
+  for (const option of options) {
+    if (option.name === 'help') continue
+
+    if (option.valid) {
+      console.log(`--${option.name}: one of`, option.valid)
+    }
+    else if (option.type === String) {
+      console.log(`--${option.name}: <argument>`)
+    }
+    else if (option.type === Boolean) {
+      console.log(`--${option.name}`)
+    }
+    else {
+      console.error('unexpected option', option)
+    }
+  }
+}
+
+const gen = path.join(__dirname, 'gen')
+
+if (!fs.existsSync(gen)) fs.mkdirSync(gen)
+for (const test of fs.readdirSync(gen)) {
+  fs.unlinkSync(path.join(gen, test))
+}
+
+const big = [
+  'Async import, large library #720.bib',
+  'Really Big whopping library.bibtex',
+  'long.bib',
+  'Cache does not seem to fill #1296.bibtex',
+  'Unabbreviate on import #1436-2.bib',
+  'Unabbreviate on import #1436-3.bib',
+]
+
+function include(bibfile) {
+  if (!bibfile.replace(/(la)?tex$/, '').endsWith('.bib')) return false
+  if (!args.big && big.includes(path.basename(bibfile))) return false
+  return true
+}
+
+const template = ejs.compile(fs.readFileSync(path.join(__dirname, 'test.ejs'), 'utf-8'), { escape: o => JSON.stringify(o, null, 2) })
+function writeTest(test) {
+  const options = {
+    caseProtection: test.caseProtection === 'off' ? false : test.caseProtection,
+    sentenceCase: test.sentenceCase.startsWith('on'),
+    guessAlreadySentenceCased: test.sentenceCase.endsWith('guess'),
+  }
+  if (test.bibfile.includes('-raw.bib')) options.raw = true
+  // Oh Mendeley....
+  if (path.basename(test.bibfile).startsWith('Async')) options.verbatimFields = bibtex.fields.verbatim.filter(field => !field.startsWith('file'))
+
+  const name = `${path.basename(test.bibfile, path.extname(test.bibfile))}, ${test.section}, sentencecase=${test.sentenceCase}, caseprotection=${test.caseProtection}`
+  const slug = slugify(name)
+  const snapshot = path.join(__dirname, '__snapshots__', `${slug}.shot`)
+  const script = path.join(gen, `${slug}.test.js`)
+  fs.writeFileSync(script, template({
+    name,
+    bibfile: test.bibfile,
+    options,
+    snapshot,
+  }))
+}
+
+for (const sentenceCase of args.sentenceCase) {
+  for (const caseProtection of args.caseProtection) {
+    let root = path.join(__dirname, 'other')
+    for (const bibfile of fs.readdirSync(root)) {
+      if (!include(bibfile)) continue
+
+      writeTest({
+        bibfile: path.join(root, bibfile),
+        sentenceCase,
+        caseProtection,
+        section: 'other',
+      })
+    }
+    for (const section of ['export', 'import', 'merge']) {
+      root = path.join(__dirname, 'better-bibtex', section)
+      for (const bibfile of fs.readdirSync(root)) {
+        if (!include(bibfile)) continue
+
+        writeTest({
+          bibfile: path.join(root, bibfile),
+          sentenceCase,
+          caseProtection,
+          section: section,
+        })
+      }
+    }
+  }
+}
+
+require('jest-cli/bin/jest')
