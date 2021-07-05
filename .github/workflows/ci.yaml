@@ -14,15 +14,22 @@ jobs:
     - uses: actions/checkout@v2
     - run: echo "::set-output name=version::"`jq -r .version package.json`
       id: version
+    - name: check for spurious build on tagged version
+      run: echo "::set-output name=spurious::true"
+      id: spurious
+      if: github.event.head_commit.message == steps.version.outputs.version && !startsWith(github.ref, 'refs/tags/')
     - run: |
         echo commit message ${{ github.event.head_commit.message }}
         echo version ${{ steps.version.outputs.version }}
+        echo spurious ${{ steps.spurious.outputs.spurious }}
 
     - name: install node
+      if: steps.spurious.outputs.spurious != 'true'
       uses: actions/setup-node@v1
       with:
         node-version: 14.x
     - name: Cache node dependencies
+      if: steps.spurious.outputs.spurious != 'true'
       uses: actions/cache@v2
       env:
         cache-name: cache-dependencies
@@ -36,12 +43,14 @@ jobs:
           ${{ runner.os }}-build-
           ${{ runner.os }}-
     - name: install node dependencies
+      if: steps.spurious.outputs.spurious != 'true'
       uses: pnpm/action-setup@v2
       with:
         version: latest
         run_install: true
 
     - run: npm test -- --sentence-case ${{ matrix.sentencecase }} --case-protection ${{ matrix.caseprotection }}
+      if: steps.spurious.outputs.spurious != 'true'
 
   release:
     runs-on: ubuntu-latest
