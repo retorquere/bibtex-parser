@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`No booktitle field when exporting references from conference proceedings #1069.bibtex, export, sentencecase: off, caseprotection: strict 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Alex",
+            "lastName": "Kendall",
+          },
+          Object {
+            "firstName": "Matthew",
+            "lastName": "Grimes",
+          },
+          Object {
+            "firstName": "Roberto",
+            "lastName": "Cipolla",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Kendall, Alex",
+          "Grimes, Matthew",
+          "Cipolla, Roberto",
+        ],
+        "booktitle": Array [
+          "Proceedings of the <span class=\\"nocase\\">IEEE International Conference</span> on <span class=\\"nocase\\">Computer Vision</span>",
+        ],
+        "pages": Array [
+          "2938–2946",
+        ],
+        "title": Array [
+          "<span class=\\"nocase\\">PoseNet: A Convolutional Network</span> for <span class=\\"nocase\\">Real-Time 6-DOF Camera Relocalization</span>",
+        ],
+        "year": Array [
+          "2015",
+        ],
+      },
+      "key": "kendall2015",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;

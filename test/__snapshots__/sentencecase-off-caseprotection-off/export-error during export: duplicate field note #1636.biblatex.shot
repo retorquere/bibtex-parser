@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`error during export: duplicate field note #1636.biblatex, export, sentencecase: off, caseprotection: off 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "lastName": "Lichess Team",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Lichess Team",
+        ],
+        "date": Array [
+          "2019-12-31",
+        ],
+        "langid": Array [
+          "american",
+        ],
+        "note": Array [
+          "Siehe auch https://lichess.org/analysis",
+        ],
+        "organization": Array [
+          "lichess.org",
+        ],
+        "title": Array [
+          "Lichess End of Year Update 2019",
+        ],
+        "type": Array [
+          "Lichess Official Blog",
+        ],
+        "url": Array [
+          "https://lichess.org/blog/XgttDRAAAB8AmHcb/lichess-end-of-year-update-2019",
+        ],
+        "urldate": Array [
+          "2020-03-30",
+        ],
+      },
+      "key": "LichessTeamLichessEndYear",
+      "type": "online",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;

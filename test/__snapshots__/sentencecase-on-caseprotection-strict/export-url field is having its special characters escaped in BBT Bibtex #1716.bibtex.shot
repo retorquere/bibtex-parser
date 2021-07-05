@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`url field is having its special characters escaped in BBT Bibtex #1716.bibtex, export, sentencecase: on, caseprotection: strict 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Adriano",
+            "lastName": "Avelar",
+          },
+        ],
+      },
+      "fields": Object {
+        "abstract": Array [
+          "Em aprendizagem de máquina, a medição de desempenho é uma tarefa crucial. As métricas ROC (Receiver Operating Characteristics) e AUC (Area…",
+        ],
+        "author": Array [
+          "Avelar, Adriano",
+        ],
+        "language": Array [
+          "pt-BR",
+        ],
+        "month": Array [
+          "09",
+        ],
+        "title": Array [
+          "O que é AUC e ROC nos modelos de Machine Learning",
+        ],
+        "url": Array [
+          "https://medium.com/@eam.avelar/o-que-%C3%A9-auc-e-roc-nos-modelos-de-machine-learning-2e2c4112033d",
+        ],
+        "urldate": Array [
+          "2020-11-23",
+        ],
+        "year": Array [
+          "2020",
+        ],
+      },
+      "key": "AvelarQueAUC2019",
+      "type": "misc",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;

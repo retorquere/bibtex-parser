@@ -1,0 +1,95 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BibTeX Warning for Inbook Entries with Author and Editor Fields #1541.bibtex, export, sentencecase: on, caseprotection: strict 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "J. H.",
+            "lastName": "Wilkinson",
+          },
+        ],
+        "collaborator": Array [
+          Object {
+            "firstName": "J. H.",
+            "lastName": "Wilkinson",
+          },
+          Object {
+            "firstName": "C.",
+            "lastName": "Reinsch",
+          },
+        ],
+      },
+      "fields": Object {
+        "address": Array [
+          "<span class=\\"nocase\\">Berlin</span>",
+        ],
+        "author": Array [
+          "Wilkinson, J. H.",
+        ],
+        "booktitle": Array [
+          "Linear algebra",
+        ],
+        "collaborator": Array [
+          "Wilkinson, J. H.",
+          "Reinsch, C.",
+        ],
+        "copyright": Array [
+          "© by Springer-Verlag Berlin Heidelberg 1971",
+        ],
+        "doi": Array [
+          "10.1007/978-3-662-39778-7",
+        ],
+        "edition": Array [
+          "First",
+        ],
+        "isbn": Array [
+          "978-3-662-39778-7",
+        ],
+        "language": Array [
+          "en-GB",
+        ],
+        "pages": Array [
+          "191–201",
+        ],
+        "publisher": Array [
+          "Springer",
+        ],
+        "series": Array [
+          "Handbook for automatic computation",
+        ],
+        "shorttitle": Array [
+          "Introduction to part <span class=\\"nocase\\">II</span>",
+        ],
+        "title": Array [
+          "Introduction to part <span class=\\"nocase\\">II</span>: The algebraic eigenvalue problem",
+        ],
+        "url": Array [
+          "https://link.springer.com/book/10.1007%2F978-3-662-39778-7",
+        ],
+        "volume": Array [
+          "2",
+        ],
+        "year": Array [
+          "2013",
+        ],
+      },
+      "key": "wilkinson2013",
+      "sentenceCased": true,
+      "type": "inbook",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;

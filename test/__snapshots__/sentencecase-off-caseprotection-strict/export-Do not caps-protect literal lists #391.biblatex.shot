@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Do not caps-protect literal lists #391.biblatex, export, sentencecase: off, caseprotection: strict 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "institution": Array [
+          "<span class=\\"nocase\\">Office of Information Management and Communications</span>",
+        ],
+        "title": Array [
+          "Institution",
+        ],
+      },
+      "key": "institution",
+      "type": "report",
+    },
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "location": Array [
+          "Trinidad and Tobago",
+        ],
+        "origlocation": Array [
+          "<span class=\\"nocase\\">Saint Kitts and Nevis</span>",
+        ],
+        "origpublisher": Array [
+          "<span class=\\"nocase\\">Doe and Company</span>",
+        ],
+        "publisher": Array [
+          "Miller, Smith and Jones",
+        ],
+        "title": Array [
+          "Publisher",
+        ],
+      },
+      "key": "publisher",
+      "type": "book",
+    },
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "institution": Array [
+          "<span class=\\"nocase\\">University of Saint Kitts and Nevis</span>",
+        ],
+        "title": Array [
+          "University",
+        ],
+      },
+      "key": "university",
+      "type": "thesis",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;

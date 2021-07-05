@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`tex.IDs= foo_bar are escaped despite the equals sign #1449.biblatex, export, sentencecase: on, caseprotection: as-needed 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "David",
+            "lastName": "Shaw",
+          },
+          Object {
+            "firstName": "Lutz",
+            "lastName": "Donnerhacke",
+          },
+          Object {
+            "firstName": "Rodney",
+            "lastName": "Thayer",
+          },
+          Object {
+            "firstName": "Hal",
+            "lastName": "Finney",
+          },
+          Object {
+            "firstName": "Jon",
+            "lastName": "Callas",
+          },
+        ],
+      },
+      "fields": Object {
+        "annotation": Array [
+          "CCitation Key: rfc4880",
+        ],
+        "author": Array [
+          "Shaw, David",
+          "Donnerhacke, Lutz",
+          "Thayer, Rodney",
+          "Finney, Hal",
+          "Callas, Jon",
+        ],
+        "date": Array [
+          "2007-11",
+        ],
+        "ids": Array [
+          "rfc4880",
+        ],
+        "title": Array [
+          "RFC4880: OpenPGP Message Format",
+        ],
+        "url": Array [
+          "http://tools.ietf.org/html/rfc4880",
+        ],
+        "urldate": Array [
+          "2014-08-19",
+        ],
+      },
+      "key": "shaw_rfc4880_2007",
+      "type": "online",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;

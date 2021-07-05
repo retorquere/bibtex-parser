@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Book sections have book title for journal in citekey #409.biblatex, export, sentencecase: on+guess, caseprotection: strict 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Eric M.",
+            "lastName": "Orlin",
+          },
+        ],
+        "editor": Array [
+          Object {
+            "firstName": "Carl",
+            "lastName": "Deroux",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Orlin, Eric M.",
+        ],
+        "booktitle": Array [
+          "Studies in <span class=\\"nocase\\">Latin</span> literature and <span class=\\"nocase\\">Roman</span> history",
+        ],
+        "date": Array [
+          "1979",
+        ],
+        "editor": Array [
+          "Deroux, Carl",
+        ],
+        "isbn": Array [
+          "978-2-87031-104-2 978-2-87031-228-5 978-2-87031-179-0 978-2-87031-184-4 978-2-87031-195-0 978-2-87031-213-1 978-2-87031-256-8 978-2-87031-264-3 978-2-87031-284-1",
+        ],
+        "keywords": Array [
+          "History",
+          "History and criticism",
+          "Latin literature",
+          "Rome",
+        ],
+        "langid": Array [
+          "english",
+        ],
+        "location": Array [
+          "Bruxelles",
+        ],
+        "number": Array [
+          "v. 164, 168, 180, 196, 206, 217, 227, 239, 244, 254, 272, 287, 301, 315, 323, 338",
+        ],
+        "pages": Array [
+          "70–90",
+        ],
+        "publisher": Array [
+          "Latomus",
+        ],
+        "series": Array [
+          "Collection <span class=\\"nocase\\">Latomus</span>",
+        ],
+        "title": Array [
+          "Why a <span class=\\"nocase\\">Second Temple</span> for <span class=\\"nocase\\">Venus Erycina</span>?",
+        ],
+      },
+      "key": "Orlin1979SiLlaRh",
+      "sentenceCased": true,
+      "type": "incollection",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;

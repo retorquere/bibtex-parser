@@ -1,0 +1,405 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Date export to Better CSL-JSON #360 #811.biblatex, export, sentencecase: on, caseprotection: off 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "John",
+            "lastName": "Doe10",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Doe10, John",
+        ],
+        "date": Array [
+          "2011-05-25 /2012-06-26",
+        ],
+        "title": Array [
+          "EDTF date range, circa begin & end: 2011-05-25~/2012-06-26~",
+        ],
+      },
+      "key": "doe10_edtf_2011",
+      "sentenceCased": true,
+      "type": "online",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "John",
+            "lastName": "Doe11",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Doe11, John",
+        ],
+        "date": Array [
+          "2011-05-25/2012-06-26",
+        ],
+        "title": Array [
+          "EDTF date range, circa end: 2011-05-25/2012-06-26~",
+        ],
+      },
+      "key": "doe11_edtf_2011",
+      "sentenceCased": true,
+      "type": "online",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "John",
+            "lastName": "Doe12",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Doe12, John",
+        ],
+        "date": Array [
+          "2011-05",
+        ],
+        "title": Array [
+          "EDTF date YYYY-MM~ [Month precision & circa]: 2011-05~",
+        ],
+      },
+      "key": "doe12_edtf_2011",
+      "sentenceCased": true,
+      "type": "online",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "John",
+            "lastName": "Doe13",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Doe13, John",
+        ],
+        "date": Array [
+          "2017-24",
+        ],
+        "title": Array [
+          "Season circa: : 2017-24~",
+        ],
+      },
+      "key": "doe13_season_2017",
+      "type": "online",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "lastName": "Doe14",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Doe14",
+        ],
+        "date": Array [
+          "2011",
+        ],
+        "title": Array [
+          "Date=2010 & Extra=issued:2011",
+        ],
+      },
+      "key": "doe14_date2010_2010",
+      "type": "book",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "lastName": "Doe15",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Doe15",
+        ],
+        "date": Array [
+          "2017",
+        ],
+        "isbn": Array [
+          "0-943396-04-2 0-85131-041-9",
+        ],
+        "title": Array [
+          "Multiple ISBNs",
+        ],
+      },
+      "key": "doe15_multiple_2017",
+      "type": "book",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "John",
+            "lastName": "Doe7",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Doe7, John",
+        ],
+        "date": Array [
+          "1985-21",
+        ],
+        "eprint": Array [
+          "1225428",
+        ],
+        "eprinttype": Array [
+          "jstor",
+        ],
+        "journaltitle": Array [
+          "Cinema Journal",
+        ],
+        "number": Array [
+          "3",
+        ],
+        "pages": Array [
+          "4–23",
+        ],
+        "title": Array [
+          "The politics of film canons: Printemps 1985",
+        ],
+        "volume": Array [
+          "24",
+        ],
+      },
+      "key": "doe7_politics_1985",
+      "sentenceCased": true,
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "John",
+            "lastName": "Doe8",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Doe8, John",
+        ],
+        "date": Array [
+          "2017-23",
+        ],
+        "title": Array [
+          "Title: 2017-23",
+        ],
+      },
+      "key": "doe8_title_2017",
+      "type": "online",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "John",
+            "lastName": "Doe9",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Doe9, John",
+        ],
+        "date": Array [
+          "2011-05-25 /2012-06-26",
+        ],
+        "title": Array [
+          "EDTF date range, circa begin: 2011-05-25~/2012-06-26",
+        ],
+      },
+      "key": "doe9_edtf_2011",
+      "sentenceCased": true,
+      "type": "online",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "John",
+            "lastName": "Doe1",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Doe1, John",
+        ],
+        "date": Array [
+          "2014-12-31/2015-01-01",
+        ],
+        "eventdate": Array [
+          "1888-08-28",
+        ],
+        "origdate": Array [
+          "1777-07-27/1888-08-28",
+        ],
+        "title": Array [
+          "A manuscript: 2014-12-31/2015-01-01",
+        ],
+      },
+      "key": "t1",
+      "sentenceCased": true,
+      "type": "unpublished",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "John",
+            "lastName": "Doe2",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Doe2, John",
+        ],
+        "eventdate": Array [
+          "1800-01-01/1800-12-31",
+        ],
+        "title": Array [
+          "Event-date and submitted test",
+        ],
+      },
+      "key": "t2",
+      "sentenceCased": true,
+      "type": "book",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "John",
+            "lastName": "Doe3",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Doe3, John",
+        ],
+        "date": Array [
+          "2014-12-31/",
+        ],
+        "title": Array [
+          "Open-ended date range test: 2014-12-31/",
+        ],
+      },
+      "key": "t3",
+      "sentenceCased": true,
+      "type": "book",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "John",
+            "lastName": "Doe4",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Doe4, John",
+        ],
+        "date": Array [
+          "2014-12-31",
+        ],
+        "title": Array [
+          "Single date test: 2014-12-31",
+        ],
+      },
+      "key": "t4",
+      "sentenceCased": true,
+      "type": "book",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "John",
+            "lastName": "Doe5",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Doe5, John",
+        ],
+        "date": Array [
+          "-0333",
+        ],
+        "eventdate": Array [
+          "0000",
+        ],
+        "origdate": Array [
+          "-0333/-0332",
+        ],
+        "title": Array [
+          "BC tests: -0333",
+        ],
+      },
+      "key": "t5",
+      "sentenceCased": true,
+      "type": "book",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "John",
+            "lastName": "Doe6",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Doe6, John",
+        ],
+        "date": Array [
+          "-0099-07-12/-0043-03-15",
+        ],
+        "title": Array [
+          "BC tests 2: -0099-07-12/-0043-03-15",
+        ],
+      },
+      "key": "t6",
+      "sentenceCased": true,
+      "type": "book",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;

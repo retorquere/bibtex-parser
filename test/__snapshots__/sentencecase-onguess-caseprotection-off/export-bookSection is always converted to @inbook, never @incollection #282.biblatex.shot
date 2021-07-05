@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`bookSection is always converted to @inbook, never @incollection #282.biblatex, export, sentencecase: on+guess, caseprotection: off 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Charles",
+            "lastName": "Eisenmann",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Eisenmann, Charles",
+        ],
+        "booktitle": Array [
+          "Cours de droit administratif",
+        ],
+        "date": Array [
+          "1982",
+        ],
+        "isbn": Array [
+          "2-275-01408-X",
+        ],
+        "langid": Array [
+          "french",
+        ],
+        "location": Array [
+          "Paris",
+        ],
+        "pages": Array [
+          "155–300",
+        ],
+        "publisher": Array [
+          "LGDJ",
+        ],
+        "title": Array [
+          "Problèmes d’organisation de l’Administration [1966-1967]",
+        ],
+        "volume": Array [
+          "t. 1",
+        ],
+        "volumes": Array [
+          "2 vol. (786, xxiv+908 p.)",
+        ],
+      },
+      "key": "eisenmann_problemes_1982",
+      "type": "incollection",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;

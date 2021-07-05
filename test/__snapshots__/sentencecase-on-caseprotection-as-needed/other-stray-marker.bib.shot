@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`stray-marker.bib, other, sentencecase: on, caseprotection: as-needed 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Philippe",
+            "initial": "Ph",
+            "lastName": "Duchamp",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "family=Duchamp, given=Philippe, given-i=Ph",
+        ],
+      },
+      "key": "test",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;

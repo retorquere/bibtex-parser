@@ -5,8 +5,8 @@
 let args = require('command-line-args')
 const fs = require('fs')
 const path = require('path')
-const slugify = require('slug')
 const ejs = require('ejs')
+const slugify = require('slug')
 
 const bibtex = require('../index')
 
@@ -94,12 +94,12 @@ function writeTest(test) {
   // Oh Mendeley....
   if (path.basename(test.bibfile).startsWith('Async')) options.verbatimFields = bibtex.fields.verbatim.filter(field => !field.startsWith('file'))
 
-  const name = `${path.basename(test.bibfile, path.extname(test.bibfile))}, ${test.section}, sentencecase=${test.sentenceCase}, caseprotection=${test.caseProtection}`
-  const slug = slugify(name)
-  const snapshot = path.join(__dirname, '__snapshots__', `${slug}.shot`)
-  const script = path.join(gen, `${slug}.test.js`)
+  const source = path.basename(test.bibfile)
+  const context = `sentencecase: ${test.sentenceCase}, caseprotection: ${test.caseProtection}`
+  const snapshot = path.join(__dirname, '__snapshots__', slugify(context), `${test.section}-${source}.shot`)
+  const script = path.join(gen, `${test.section}-${source}-${slugify(context)}.test.js`)
   fs.writeFileSync(script, template({
-    name,
+    name: `${source}, ${test.section}, ${context}`,
     bibfile: test.bibfile,
     options,
     snapshot,

@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Author splitter failure.bib, import, sentencecase: on+guess, caseprotection: off 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "M. E.",
+            "lastName": "Abu-Zeid",
+          },
+          Object {
+            "firstName": "A. E.",
+            "lastName": "Rakhshani",
+          },
+          Object {
+            "firstName": "A. A.",
+            "lastName": "Al-Jassar",
+          },
+          Object {
+            "firstName": "Y. A.",
+            "lastName": "Youssef",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Abu-Zeid, M. E.",
+          "Rakhshani, A. E.",
+          "Al-Jassar, A. A.",
+          "Youssef, Y. A.",
+        ],
+        "doi": Array [
+          "10.1002/pssa.2210930226",
+        ],
+        "journal": Array [
+          "Physica Status Solidi (a)",
+        ],
+        "pages": Array [
+          "613–620",
+        ],
+        "title": Array [
+          "Determination of the thickness and refractive index of cu₂o thin film using thermal and optical interferometry",
+        ],
+        "volume": Array [
+          "93",
+        ],
+        "year": Array [
+          "1986",
+        ],
+      },
+      "key": "Abu-Zeid_1986",
+      "sentenceCased": true,
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;

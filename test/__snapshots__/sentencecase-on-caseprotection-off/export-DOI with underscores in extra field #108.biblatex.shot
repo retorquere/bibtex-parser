@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DOI with underscores in extra field #108.biblatex, export, sentencecase: on, caseprotection: off 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Pieter",
+            "lastName": "Koopman",
+          },
+          Object {
+            "firstName": "Rinus",
+            "lastName": "Plasmeijer",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Koopman, Pieter",
+          "Plasmeijer, Rinus",
+        ],
+        "booktitle": Array [
+          "Implementation of functional languages",
+        ],
+        "date": Array [
+          "1999",
+        ],
+        "doi": Array [
+          "10.1007/3-540-48515-5_8",
+        ],
+        "pages": Array [
+          "120–136",
+        ],
+        "publisher": Array [
+          "Springer",
+        ],
+        "title": Array [
+          "Efficient combinator parsers",
+        ],
+      },
+      "key": "koopman_efficient_99",
+      "sentenceCased": true,
+      "type": "incollection",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;

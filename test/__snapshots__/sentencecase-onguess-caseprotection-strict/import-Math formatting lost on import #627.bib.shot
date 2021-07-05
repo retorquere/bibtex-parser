@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Math formatting lost on import #627.bib, import, sentencecase: on+guess, caseprotection: strict 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "J",
+            "lastName": "Bonča",
+          },
+          Object {
+            "firstName": "M",
+            "lastName": "Mierzejewski",
+          },
+          Object {
+            "firstName": "L",
+            "lastName": "Vidmar",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Bonča, J",
+          "Mierzejewski, M",
+          "Vidmar, L",
+        ],
+        "doi": Array [
+          "10.1103/physrevlett.109.156404",
+        ],
+        "journal": Array [
+          "Phys. Rev. Lett.",
+        ],
+        "month": Array [
+          "10",
+        ],
+        "number": Array [
+          "15",
+        ],
+        "pages": Array [
+          "156404",
+        ],
+        "title": Array [
+          "Nonequilibrium propagation and decay of a bound pair in driven <span class=\\"nocase\\">t</span>-<span class=\\"nocase\\">J</span> models",
+        ],
+        "volume": Array [
+          "109",
+        ],
+        "year": Array [
+          "2012",
+        ],
+      },
+      "key": "Bonca:2012in",
+      "sentenceCased": true,
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;

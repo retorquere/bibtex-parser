@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`biber 2.14 rejects the date field generated from Better BibLaTex #1695.biblatex, export, sentencecase: on, caseprotection: strict 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Sebastian",
+            "lastName": "Ruder",
+          },
+        ],
+      },
+      "fields": Object {
+        "abstract": Array [
+          "Gradient descent is the preferred way to optimize neural networks and many other machine learning algorithms but is often used as a black box. This post explores how many of the most popular gradient-based optimization algorithms such as Momentum, Adagrad, and Adam actually work.",
+        ],
+        "author": Array [
+          "Ruder, Sebastian",
+        ],
+        "date": Array [
+          "2016-01-19T14:20:00",
+        ],
+        "langid": Array [
+          "english",
+        ],
+        "organization": Array [
+          "<span class=\\"nocase\\">Sebastian Ruder</span>",
+        ],
+        "title": Array [
+          "An overview of gradient descent optimization algorithms",
+        ],
+        "url": Array [
+          "https://ruder.io/optimizing-gradient-descent/",
+        ],
+        "urldate": Array [
+          "2020-11-24",
+        ],
+      },
+      "key": "ruderOverviewGradientDescent2016",
+      "sentenceCased": true,
+      "type": "online",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;

@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Issues with round instead of curly braces do not import correctly #871.bib, import, sentencecase: off, caseprotection: off 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Drew V.",
+            "lastName": "McDermott",
+          },
+          Object {
+            "firstName": "Gerald J.",
+            "lastName": "Sussman",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "McDermott, Drew V.",
+          "Gerald J. Sussman",
+        ],
+        "institution": Array [
+          "MIT Artificial Intelligence Laboratory",
+        ],
+        "month": Array [
+          "05",
+        ],
+        "title": Array [
+          "The <span style=\\"font-variant:small-caps;\\">CONNIVER</span> Reference Manual",
+        ],
+        "year": Array [
+          "1972",
+        ],
+      },
+      "key": "McDermott:72",
+      "type": "techreport",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {
+    "MCDERMOTT": "McDermott, Drew V.",
+  },
+}
+`;

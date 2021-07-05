@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`bibtex export of phdthesis does not case-protect -type- #435.bibtex, export, sentencecase: on+guess, caseprotection: as-needed 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Luis Roberto",
+            "lastName": "Tay Wo Chong Hilares",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Tay Wo Chong Hilares, Luis Roberto",
+        ],
+        "school": Array [
+          "TU München",
+        ],
+        "title": Array [
+          "Numerical Simulation of the Dynamics of Turbulent Swirling Flames",
+        ],
+        "type": Array [
+          "PhD Thesis",
+        ],
+        "year": Array [
+          "2012",
+        ],
+      },
+      "key": "TayW12",
+      "type": "phdthesis",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;

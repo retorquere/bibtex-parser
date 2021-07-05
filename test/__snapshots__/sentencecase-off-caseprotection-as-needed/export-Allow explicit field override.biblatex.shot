@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Allow explicit field override.biblatex, export, sentencecase: off, caseprotection: as-needed 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Abhishek",
+            "lastName": "Anand",
+          },
+          Object {
+            "firstName": "Vincent",
+            "lastName": "Rahli",
+          },
+        ],
+      },
+      "fields": Object {
+        "annotation": Array [
+          "http://www.nuprl.org/html/verification/",
+        ],
+        "author": Array [
+          "Anand, Abhishek",
+          "Rahli, Vincent",
+        ],
+        "date": Array [
+          "2014",
+        ],
+        "origdate": Array [
+          "1856",
+        ],
+        "origtitle": Array [
+          "An Old Title",
+        ],
+        "timestamp": Array [
+          "2011.03.22",
+        ],
+        "title": Array [
+          "Technical <span class=\\"nocase\\">Report</span> : <span class=\\"nocase\\">Towards</span> a <span class=\\"nocase\\">Formally Verified Proof Assistant</span>",
+        ],
+        "url": Array [
+          "http://www.nuprl.org/html/verification/",
+        ],
+      },
+      "key": "anand2014technicalreportformally",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;

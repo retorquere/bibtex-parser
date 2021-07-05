@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`suppressBraceProtection does not work for BibTeX export (non-English items) #1194.bibtex, export, sentencecase: off, caseprotection: as-needed 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Л. Д.",
+            "lastName": "Ландау",
+          },
+          Object {
+            "firstName": "Е. М.",
+            "lastName": "Лифшиц",
+          },
+        ],
+      },
+      "fields": Object {
+        "address": Array [
+          "М.",
+        ],
+        "author": Array [
+          "Ландау, Л. Д.",
+          "Лифшиц, Е. М.",
+        ],
+        "edition": Array [
+          "Fifth",
+        ],
+        "isbn": Array [
+          "5-9221-0122-6",
+        ],
+        "language": Array [
+          "russian",
+        ],
+        "pagetotal": Array [
+          "259",
+        ],
+        "publisher": Array [
+          "Физматлит",
+        ],
+        "series": Array [
+          "Теоретическая физика",
+        ],
+        "title": Array [
+          "Теория упругости",
+        ],
+        "volume": Array [
+          "7",
+        ],
+        "year": Array [
+          "2007",
+        ],
+      },
+      "key": "Landafshits.V7",
+      "type": "book",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;

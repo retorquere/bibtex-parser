@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BBT yields error with quality report #1387.biblatex, export, sentencecase: off, caseprotection: strict 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "J. J.",
+            "lastName": "Hopfield",
+          },
+          Object {
+            "firstName": "D. W.",
+            "lastName": "Tank",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Hopfield, J. J.",
+          "Tank, D. W.",
+        ],
+        "eprint": Array [
+          "4027280",
+        ],
+        "eprinttype": Array [
+          "pubmed",
+        ],
+        "organization": Array [
+          "Biological Cybernetics",
+        ],
+        "title": Array [
+          "<span class=\\"nocase\\">\`Neural'</span> computation of decisions in optimization problems.",
+        ],
+        "year": Array [
+          "xx 1985",
+        ],
+      },
+      "key": "HopfieldTank85",
+      "type": "online",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;

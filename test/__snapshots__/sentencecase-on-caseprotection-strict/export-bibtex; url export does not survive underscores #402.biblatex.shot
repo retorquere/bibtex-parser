@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`bibtex; url export does not survive underscores #402.biblatex, export, sentencecase: on, caseprotection: strict 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Thomas",
+            "lastName": "Emmert",
+          },
+          Object {
+            "firstName": "Stefan",
+            "lastName": "Jaensch",
+          },
+          Object {
+            "firstName": "Carlo",
+            "lastName": "Sovardi",
+          },
+          Object {
+            "firstName": "Wolfgang",
+            "lastName": "Polifke",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Emmert, Thomas",
+          "Jaensch, Stefan",
+          "Sovardi, Carlo",
+          "Polifke, Wolfgang",
+        ],
+        "booktitle": Array [
+          "7th <span class=\\"nocase\\">Forum Acusticum</span>",
+        ],
+        "date": Array [
+          "2014-09",
+        ],
+        "keywords": Array [
+          "NonPerRev",
+        ],
+        "location": Array [
+          "Krakow",
+        ],
+        "title": Array [
+          "<span class=\\"nocase\\">taX</span> - a <span class=\\"nocase\\">Flexible Tool</span> for <span class=\\"nocase\\">Low-Order Duct Acoustic Simulation</span> in <span class=\\"nocase\\">Time</span> and <span class=\\"nocase\\">Frequency Domain</span>",
+        ],
+        "url": Array [
+          "http://www.fa2014.agh.edu.pl/fa2014_cd/",
+        ],
+      },
+      "key": "EmmerJaens14a",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;

@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`space after citekey creates confusion #716.bib, import, sentencecase: off, caseprotection: off 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "lastName": "Hoffmann",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Hoffmann",
+        ],
+        "title": Array [
+          "Phase transitions",
+        ],
+      },
+      "key": "HoSp-87",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "editor": Array [
+          Object {
+            "lastName": "Sprekels",
+          },
+        ],
+      },
+      "fields": Object {
+        "editor": Array [
+          "Sprekels",
+        ],
+        "title": Array [
+          "Free Boundary Problems",
+        ],
+      },
+      "key": "HoSp-90",
+      "type": "book",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;

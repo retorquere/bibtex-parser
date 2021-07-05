@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`error on exporting note with pre tags; duplicate field howpublished #1092.bibtex, export, sentencecase: on, caseprotection: strict 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "E.",
+            "lastName": "Blanton",
+          },
+          Object {
+            "firstName": "M.",
+            "lastName": "Allman",
+          },
+          Object {
+            "firstName": "L.",
+            "lastName": "Wang",
+          },
+          Object {
+            "firstName": "I.",
+            "lastName": "Jarvinen",
+          },
+          Object {
+            "firstName": "M.",
+            "lastName": "Kojo",
+          },
+          Object {
+            "firstName": "Y.",
+            "lastName": "Nishida",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Blanton, E.",
+          "Allman, M.",
+          "Wang, L.",
+          "Jarvinen, I.",
+          "Kojo, M.",
+          "Nishida, Y.",
+        ],
+        "institution": Array [
+          "<span class=\\"nocase\\">RFC Editor</span>",
+        ],
+        "month": Array [
+          "08",
+        ],
+        "note": Array [
+          "<span class=\\"nocase\\">https://tools.ietf.org/html/rfc6675</span>",
+        ],
+        "number": Array [
+          "6675",
+        ],
+        "title": Array [
+          "A <span class=\\"nocase\\">Conservative Loss Recovery Algorithm Based</span> on <span class=\\"nocase\\">Selective Acknowledgment (SACK</span>) for <span class=\\"nocase\\">TCP</span>",
+        ],
+        "type": Array [
+          "<span class=\\"nocase\\">RFC</span>",
+        ],
+        "year": Array [
+          "2012",
+        ],
+      },
+      "key": "blantonConservativeLossRecovery2012",
+      "type": "techreport",
+    },
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "howpublished": Array [
+          "sctplab",
+        ],
+        "month": Array [
+          "11",
+        ],
+        "note": Array [
+          "<span class=\\"nocase\\">https://github.com/sctplab/usrsctp</span>",
+        ],
+        "title": Array [
+          "A portable <span class=\\"nocase\\">SCTP</span> userland stack. <span class=\\"nocase\\">Contribute</span> to Sctplab/Usrsctp development by creating an account on <span class=\\"nocase\\">GitHub</span>",
+        ],
+        "year": Array [
+          "2018",
+        ],
+      },
+      "key": "PortableSCTPUserland2018",
+      "sentenceCased": true,
+      "type": "misc",
+    },
+  ],
+  "errors": Array [],
+  "groups": Object {
+    "fileDirectory": null,
+    "groups": Object {},
+    "root": Array [],
+    "version": null,
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`;
