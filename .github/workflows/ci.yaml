@@ -8,8 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        sentencecase: [ 'off', 'on', 'on+guess' ]
-        caseprotection: [ 'off', 'strict', 'as-needed' ]
+        sentencecase: ['on+guess', 'on', 'off']
+        caseprotection: [ 'as-needed', 'strict', 'off' ]
     steps:
     - uses: actions/checkout@v2
     - run: echo "::set-output name=version::"`jq -r .version package.json`
