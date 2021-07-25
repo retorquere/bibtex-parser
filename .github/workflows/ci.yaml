@@ -32,17 +32,9 @@ jobs:
       with:
         path: |
           ~/.npm
-          ~/.pnpm-store
         key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-build-${{ env.cache-name }}-
-          ${{ runner.os }}-build-
-          ${{ runner.os }}-
     - name: install node dependencies
-      uses: pnpm/action-setup@v2
-      with:
-        version: latest
-        run_install: true
+      run: npm install
 
     - run: npm test -- --sentence-case ${{ matrix.sentencecase }} --case-protection ${{ matrix.caseprotection }}
 
@@ -63,17 +55,9 @@ jobs:
       with:
         path: |
           ~/.npm
-          ~/.pnpm-store
         key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-build-${{ env.cache-name }}-
-          ${{ runner.os }}-build-
-          ${{ runner.os }}-
     - name: install node dependencies
-      uses: pnpm/action-setup@v2
-      with:
-        version: latest
-        run_install: true
+      run: npm install
     - name: Publish
       uses: JS-DevTools/npm-publish@v1
       with:
