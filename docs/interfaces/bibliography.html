@@ -53,7 +53,7 @@
 					<a href="../modules.html">BibTeX parser</a>
 				</li>
 				<li>
-					<a href="bibliography.html">Bibliography</a>
+					<a href="Bibliography.html">Bibliography</a>
 				</li>
 			</ul>
 			<h1>Interface Bibliography</h1>
@@ -78,11 +78,12 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="bibliography.html#comments" class="tsd-kind-icon">comments</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="bibliography.html#entries" class="tsd-kind-icon">entries</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="bibliography.html#errors" class="tsd-kind-icon">errors</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="bibliography.html#preamble" class="tsd-kind-icon">preamble</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="bibliography.html#strings" class="tsd-kind-icon">strings</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="Bibliography.html#comments" class="tsd-kind-icon">comments</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="Bibliography.html#entries" class="tsd-kind-icon">entries</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="Bibliography.html#errors" class="tsd-kind-icon">errors</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="Bibliography.html#jabref" class="tsd-kind-icon">jabref</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="Bibliography.html#preamble" class="tsd-kind-icon">preamble</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="Bibliography.html#strings" class="tsd-kind-icon">strings</a></li>
 							</ul>
 						</section>
 					</div>
@@ -96,7 +97,7 @@
 					<div class="tsd-signature tsd-kind-icon">comments<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L233">index.ts:233</a></li>
+							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L234">index.ts:234</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -108,10 +109,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="entries" class="tsd-anchor"></a>
 					<h3>entries</h3>
-					<div class="tsd-signature tsd-kind-icon">entries<span class="tsd-signature-symbol">:</span> <a href="entry.html" class="tsd-signature-type" data-tsd-kind="Interface">Entry</a><span class="tsd-signature-symbol">[]</span></div>
+					<div class="tsd-signature tsd-kind-icon">entries<span class="tsd-signature-symbol">:</span> <a href="Entry.html" class="tsd-signature-type" data-tsd-kind="Interface">Entry</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L228">index.ts:228</a></li>
+							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L229">index.ts:229</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -123,10 +124,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="errors" class="tsd-anchor"></a>
 					<h3>errors</h3>
-					<div class="tsd-signature tsd-kind-icon">errors<span class="tsd-signature-symbol">:</span> <a href="parseerror.html" class="tsd-signature-type" data-tsd-kind="Interface">ParseError</a><span class="tsd-signature-symbol">[]</span></div>
+					<div class="tsd-signature tsd-kind-icon">errors<span class="tsd-signature-symbol">:</span> <a href="ParseError.html" class="tsd-signature-type" data-tsd-kind="Interface">ParseError</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L223">index.ts:223</a></li>
+							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L224">index.ts:224</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -136,12 +137,27 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="jabref" class="tsd-anchor"></a>
+					<h3>jabref</h3>
+					<div class="tsd-signature tsd-kind-icon">jabref<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">JabRefMetadata</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L249">index.ts:249</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>jabref metadata (such as groups information) found in the bibtex file</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="preamble" class="tsd-anchor"></a>
 					<h3>preamble</h3>
 					<div class="tsd-signature tsd-kind-icon">preamble<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L243">index.ts:243</a></li>
+							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L244">index.ts:244</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -156,7 +172,7 @@
 					<div class="tsd-signature tsd-kind-icon">strings<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{}</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L238">index.ts:238</a></li>
+							<li>Defined in <a href="https://github.com/retorquere/bibtex-parser/blob/master/index.ts#L239">index.ts:239</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -188,41 +204,44 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="bibliography.html" class="tsd-kind-icon">Bibliography</a>
+						<a href="Bibliography.html" class="tsd-kind-icon">Bibliography</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="bibliography.html#comments" class="tsd-kind-icon">comments</a>
+								<a href="Bibliography.html#comments" class="tsd-kind-icon">comments</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="bibliography.html#entries" class="tsd-kind-icon">entries</a>
+								<a href="Bibliography.html#entries" class="tsd-kind-icon">entries</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="bibliography.html#errors" class="tsd-kind-icon">errors</a>
+								<a href="Bibliography.html#errors" class="tsd-kind-icon">errors</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="bibliography.html#preamble" class="tsd-kind-icon">preamble</a>
+								<a href="Bibliography.html#jabref" class="tsd-kind-icon">jabref</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="bibliography.html#strings" class="tsd-kind-icon">strings</a>
+								<a href="Bibliography.html#preamble" class="tsd-kind-icon">preamble</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="Bibliography.html#strings" class="tsd-kind-icon">strings</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-interface">
-						<a href="entry.html" class="tsd-kind-icon">Entry</a>
+						<a href="Entry.html" class="tsd-kind-icon">Entry</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="markupmapping.html" class="tsd-kind-icon">Markup<wbr>Mapping</a>
+						<a href="MarkupMapping.html" class="tsd-kind-icon">Markup<wbr>Mapping</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="name.html" class="tsd-kind-icon">Name</a>
+						<a href="Name.html" class="tsd-kind-icon">Name</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="parseerror.html" class="tsd-kind-icon">Parse<wbr>Error</a>
+						<a href="ParseError.html" class="tsd-kind-icon">Parse<wbr>Error</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="parseroptions.html" class="tsd-kind-icon">Parser<wbr>Options</a>
+						<a href="ParserOptions.html" class="tsd-kind-icon">Parser<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-variable">
 						<a href="../modules.html#fields" class="tsd-kind-icon">fields</a>
@@ -232,9 +251,6 @@
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="../modules.html#ast" class="tsd-kind-icon">ast</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="../modules.html#jabref" class="tsd-kind-icon">jabref</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="../modules.html#parse" class="tsd-kind-icon">parse</a>

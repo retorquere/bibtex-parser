@@ -2,16 +2,7 @@
 
 exports[`Jabref groups import does not work #717.3.8.bib, import, sentencecase: off, caseprotection: as-needed 1`] = `
 Object {
-  "comments": Array [
-    "jabref-meta: databaseType:bibtex;",
-    "jabref-meta: groupstree:
-0 AllEntriesGroup:;
-1 ExplicitGroup:my-main-group-3\\\\;2\\\\;;
-2 ExplicitGroup:my-subgroup-3\\\\;0\\\\;;
-3 ExplicitGroup:sub-sub-group-3\\\\;0\\\\;;
-2 ExplicitGroup:my-other-subgroup-3\\\\;0\\\\;;
-",
-  ],
+  "comments": Array [],
   "entries": Array [
     Object {
       "creators": Object {
@@ -135,7 +126,7 @@ Object {
   ],
   "errors": Array [],
   "jabref": Object {
-    "fileDirectory": null,
+    "databaseType": "bibtex",
     "groups": Object {
       "my-main-group-3": Object {
         "entries": Array [],
@@ -205,7 +196,6 @@ Object {
         "name": "my-main-group-3",
       },
     ],
-    "version": null,
   },
   "preamble": Array [],
   "strings": Object {},

@@ -21,6 +21,5 @@ module.exports = function parse(bibfile, options) {
     options.unknownCommandHandler = false
   }
 
-  const bib = bibtex.parse(input, options)
-  return {...bib, groups: bibtex.jabref(bib.comments) }
+  return bibtex.parse(input, options)
 }

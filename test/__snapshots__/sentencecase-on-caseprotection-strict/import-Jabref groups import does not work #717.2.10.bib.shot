@@ -2,15 +2,7 @@
 
 exports[`Jabref groups import does not work #717.2.10.bib, import, sentencecase: on, caseprotection: strict 1`] = `
 Object {
-  "comments": Array [
-    "jabref-meta: groupsversion:3;",
-    "jabref-meta: groupstree:
-0 AllEntriesGroup:;
-1 ExplicitGroup:my-main-group-2\\\\;2\\\\;;
-2 ExplicitGroup:my-subgroup-2\\\\;0\\\\;Doe-2017\\\\;;
-2 ExplicitGroup:my-other-subgroup-2\\\\;0\\\\;Other-\\\\;;
-",
-  ],
+  "comments": Array [],
   "entries": Array [
     Object {
       "creators": Object {
@@ -96,7 +88,6 @@ Object {
   ],
   "errors": Array [],
   "jabref": Object {
-    "fileDirectory": null,
     "groups": Object {
       "my-main-group-2": Object {
         "entries": Array [],
@@ -133,6 +124,7 @@ Object {
         "name": "my-subgroup-2",
       },
     },
+    "groupsversion": 3,
     "root": Array [
       Object {
         "entries": Array [],
@@ -155,7 +147,6 @@ Object {
         "name": "my-main-group-2",
       },
     ],
-    "version": "3",
   },
   "preamble": Array [],
   "strings": Object {},

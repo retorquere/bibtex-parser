@@ -2,21 +2,7 @@
 
 exports[`Jabref import - groups lost #1730-5.bib, import, sentencecase: on+guess, caseprotection: strict 1`] = `
 Object {
-  "comments": Array [
-    "jabref-meta: databaseType:bibtex;",
-    "jabref-meta: grouping:
-0 AllEntriesGroup:;
-1 StaticGroup:Markings\\\\;2\\\\;1\\\\;\\\\;\\\\;\\\\;;
-2 StaticGroup:jfd1:1\\\\;2\\\\;1\\\\;\\\\;\\\\;\\\\;;
-1 StaticGroup:Group1\\\\;2\\\\;1\\\\;\\\\;\\\\;\\\\;;
-2 StaticGroup:Group1a\\\\;2\\\\;1\\\\;\\\\;\\\\;\\\\;;
-2 StaticGroup:Group1b\\\\;2\\\\;1\\\\;\\\\;\\\\;\\\\;;
-1 StaticGroup:Group2\\\\;2\\\\;1\\\\;\\\\;\\\\;\\\\;;
-",
-    "jabref-meta: groupsversion:
-3;
-",
-  ],
+  "comments": Array [],
   "entries": Array [
     Object {
       "creators": Object {
@@ -306,7 +292,7 @@ Object {
   ],
   "errors": Array [],
   "jabref": Object {
-    "fileDirectory": null,
+    "databaseType": "bibtex",
     "groups": Object {
       "Group1": Object {
         "entries": Array [],
@@ -356,6 +342,7 @@ Object {
         "name": "jfd1",
       },
     },
+    "groupsversion": 3,
     "root": Array [
       Object {
         "entries": Array [],
@@ -390,7 +377,6 @@ Object {
         "name": "Group2",
       },
     ],
-    "version": "3",
   },
   "preamble": Array [],
   "strings": Object {},

@@ -1,5 +1,6 @@
 import * as bibtex from './grammar'
 import * as chunker from './chunker'
+import { JabRefMetadata, parse as parseJabRef } from './jabref'
 import { latex as latex2unicode, diacritics } from 'unicode2latex'
 import crossref from './crossref.json'
 
@@ -241,6 +242,11 @@ export interface Bibliography {
    * `@preamble` declarations found in the bibtex file
    */
   preamble: string[]
+
+  /**
+   * jabref metadata (such as groups information) found in the bibtex file
+   */
+  jabref: JabRefMetadata
 }
 
 export interface ParseError {
@@ -648,10 +654,13 @@ class Parser {
       }
     }
 
+    const { comments, jabref } = parseJabRef(this.comments)
+
     return {
       errors: this.errors,
       entries: this.entries,
-      comments: this.comments,
+      comments,
+      jabref,
       strings,
       preamble: this.preamble,
     }
@@ -1854,4 +1863,3 @@ export const promises = {
 }
 
 export * as chunker from './chunker'
-export { parse as jabref } from './jabref'

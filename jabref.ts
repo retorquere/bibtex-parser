@@ -21,13 +21,6 @@ function decode(s, sep = ';') {
   return records.reverse().filter(record => record)
 }
 
-const prefixes = {
-  fileDirectory: 'jabref-meta: fileDirectory:',
-  groupsversion: 'jabref-meta: groupsversion:',
-  groupstree: 'jabref-meta: groupstree:',
-  grouping: 'jabref-meta: grouping:',
-}
-
 /**
  * A JabRef group.
  */
@@ -48,7 +41,7 @@ export interface Group {
   groups: Group[]
 }
 
-export interface JabrefMetadata {
+export interface JabRefMetadata {
   /**
    * The root groups. You can find the nested groups in their `groups` property
    */
@@ -64,12 +57,17 @@ export interface JabrefMetadata {
   /**
    * The base path for file paths
    */
-  fileDirectory: string
+  fileDirectory?: string
 
   /**
    * The JabRef metadata format version
    */
-  version: string
+  groupsversion?: number
+
+  /**
+   * The JabRef metadata database type
+   */
+  databaseType?: string
 }
 
 /**
@@ -82,12 +80,10 @@ export interface JabrefMetadata {
  * * union: the keys listed in the group are considered to belong to the group, and also the keys that are in the parent group
  * * query: not supported by this parser
  */
-export function parse(comments: string[]): JabrefMetadata {
-  const result: JabrefMetadata = {
+export function parse(comments: string[]): { comments: string[], jabref: JabRefMetadata } {
+  const result: JabRefMetadata = {
     root: [],
     groups: {},
-    fileDirectory: '',
-    version: '',
   }
 
   const levels: Group[] = []
@@ -97,17 +93,21 @@ export function parse(comments: string[]): JabrefMetadata {
     groupsversion: null,
     groupstree: null,
     grouping: null,
-  }
-  for (const comment of comments) {
-    for (const [ meta, prefix ] of Object.entries(prefixes)) {
-      if (comment.startsWith(prefix)) {
-        decoded[meta] = decode(comment.substring(prefix.length))
-      }
-    }
+    databaseType: null,
   }
 
-  result.version = decoded.groupsversion && decoded.groupsversion[0]
-  result.fileDirectory = decoded.fileDirectory && decoded.fileDirectory[0]
+  comments = comments.filter(comment => {
+    const m = comment.match(/^jabref-meta:\s*([^:]+):(.*)/s)
+    if (m) {
+      decoded[m[1]] = decode(m[2])
+      return false
+    }
+    return true
+  })
+
+  if (decoded.groupsversion) result.groupsversion = parseInt(decoded.groupsversion[0].trim()) || decoded.groupsversion[0]
+  if (decoded.fileDirectory) result.fileDirectory = decoded.fileDirectory[0]
+  if (decoded.databaseType) result.databaseType = decoded.databaseType[0]
 
   for (const tree of ['groupstree', 'grouping']) {
     if (!decoded[tree]) continue
@@ -165,5 +165,5 @@ export function parse(comments: string[]): JabrefMetadata {
     }
   }
 
-  return result
+  return { comments, jabref: result }
 }
