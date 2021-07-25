@@ -97,7 +97,7 @@ export function parse(comments: string[]): { comments: string[], jabref: JabRefM
   }
 
   comments = comments.filter(comment => {
-    const m = comment.match(/^jabref-meta:\s*([^:]+):(.*)/s)
+    const m = comment.match(/^jabref-meta:\s*([^:]+):([\s\S]*)/) // use \s\S because mozilla doesn't understand /s
     if (m) {
       decoded[m[1]] = decode(m[2])
       return false
