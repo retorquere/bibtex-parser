@@ -6,8 +6,8 @@ import re
 import urllib.request
 
 def unthe(j):
-  for prefix in ['the ', 'la ']:
-    if j.startswith(prefix): return re.sub('^' + prefix, '', j, re.I).strip()
+  for prefix in ['^the ', '^la ']:
+    if re.match(prefix, j, re.I): return re.sub(prefix, '', j, flags=re.I).strip()
   return j
 
 unabbr = {}
@@ -17,6 +17,7 @@ for path in Path('abbreviations').rglob('*.json'):
     for full, abbr in json.load(f)['default']['container-title'].items():
       if len(abbr) == len(full): continue
       if len(abbr) == 0: continue
+      if unthe(full).lower() == 'journal' and unthe(full).lower() == 'journal': continue
 
       if abbr in unabbr:
         existing = unabbr[abbr]
