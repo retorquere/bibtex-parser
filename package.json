@@ -1,6 +1,6 @@
 {
   "name": "@retorquere/bibtex-parser",
-  "version": "5.0.1",
+  "version": "5.1.0",
   "description": "BibTeX parser",
   "main": "index.js",
   "scripts": {
@@ -23,7 +23,6 @@
     "docs": "rm -rf docs && typedoc --name 'BibTeX parser' index.ts && touch docs/.nojekyll",
     "prencu": "git submodule update --init --recursive --remote && git submodule foreach git reset --hard && git submodule foreach git checkout master && git submodule foreach git pull origin master",
     "ncu": "ncu -u && npm i && git add package.json package-lock.json && git commit -m ncu"
-
   },
   "repository": {
     "type": "git",
