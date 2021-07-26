@@ -16,7 +16,8 @@
     "minitest": "pegjs grammar.pegjs && tsc -d && node i.js",
     "list": "tar tvf $(npm pack)",
     "prepublishOnly": "npm start",
-    "preversion": "npm test",
+    "abbr": "./build/abbr.py",
+    "preversion": "npm test && npm run abbr",
     "postversion": "git push --follow-tags",
     "update-cases": "curl -s https://raw.githubusercontent.com/retorquere/zotero-better-bibtex/master/test/loaded.json | jq -r '.[] | select(test(\"\\\\.bib((la)?tex)?$\"))' | rsync -av --delete -m --files-from=- ../better-bibtex/test/fixtures/ test/better-bibtex/",
     "docs": "rm -rf docs && typedoc --name 'BibTeX parser' index.ts && touch docs/.nojekyll",
@@ -73,9 +74,8 @@
     "jabref.js",
     "README.md",
     "crossref.json",
-    "strings.json",
-    "unabbrev.json",
-    "abbrev.json"
+    "strings.bib",
+    "unabbrev.json"
   ],
   "publishConfig": {
     "access": "public"

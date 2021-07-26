@@ -21,5 +21,14 @@ module.exports = function parse(bibfile, options) {
     options.unknownCommandHandler = false
   }
 
+  if (options.unabbreviations) {
+    options.unabbreviate = require(options.unabbreviations)
+    options.strings = fs.readFileSync(options.strings, 'utf-8')
+  }
+  else {
+    delete options.unabbrevations
+    delete options.strings
+  }
+
   return bibtex.parse(input, options)
 }

@@ -236,7 +236,7 @@ export interface Bibliography {
   /**
    * `@string`s found in the bibtex file.
    */
-  strings: { [key: string]: string }
+  strings: Record<string, string>
 
   /**
    * `@preamble` declarations found in the bibtex file
@@ -421,12 +421,12 @@ export interface ParserOptions {
   /**
    * You can pass in an existing @string dictionary
    */
-  strings?: Record<string, string>
+  strings?: Record<string, string> | string
 
   /**
    * BibTeX files may have abbreviations in the journal field. If you provide a dictionary, journal names that are found in the dictionary are replaced with the attached full name
    */
-  unabbreviate?: Record<string, { ast: any, text: string }>
+  unabbreviate?: Record<string, string>
 
   /**
    * Apply crossref inheritance
@@ -468,6 +468,7 @@ class Parser {
   private newcommands: Record<string, bibtex.ValueType[]>
   private unresolvedStrings: Record<string, boolean>
   private default_strings: Record<string, bibtex.TextValue[]>
+  private preloaded_strings: Record<string, bibtex.ValueType[]>
   private comments: string[]
   private entries: Entry[]
   private entry: Entry
@@ -584,6 +585,17 @@ class Parser {
       TOOIS: [ this.text('ACM Transactions on Office Information Systems') ],
       TOPLAS: [ this.text('ACM Transactions on Programming Languages and Systems') ],
       TCS: [ this.text('Theoretical Computer Science') ],
+    }
+
+    if (typeof this.options.strings === 'string') {
+      const strings = this.options.strings
+      this.options.strings = {}
+      this.parseChunk({ text: strings, offset: { pos: 0, line: 0 } })
+      this.preloaded_strings = this.strings
+      this.strings = {}
+    }
+    else {
+      this.preloaded_strings = {}
     }
   }
 
@@ -914,8 +926,9 @@ class Parser {
     const name = node.name.toUpperCase()
     const stringvalue = this.strings[name]
       || this.options.strings[name]
+      || this.preloaded_strings[name]
       || this.default_strings[name]
-      || (fields.unabbrev.includes(this.cleaning.name) && this.options.unabbreviate[name]?.text && [ this.text(this.options.unabbreviate[name].text) ])
+      || (fields.unabbrev.includes(this.cleaning.name) && this.options.unabbreviate[name] && [ this.text(this.options.unabbreviate[name]) ])
 
     if (!stringvalue) {
       if (!this.unresolvedStrings[name]) this.errors.push({ message: `Unresolved @string reference ${JSON.stringify(node.name)}` })
@@ -939,7 +952,7 @@ class Parser {
         const journal = this.options.unabbreviate[abbr]
         if (journal) {
           shortjournals.push({ ...JSON.parse(JSON.stringify(field)), name: 'shortjournal' })
-          field.value = JSON.parse(JSON.stringify(journal.ast))
+          field.value = [ this.text(journal) ]
         }
       }
     }
@@ -1649,7 +1662,7 @@ class Parser {
         }
       }
       else if (fields.unabbrev.includes(field.name)) { // doesn't get sentence casing anyhow TODO: booktitle does!
-        this.entry.fields[this.field.name].push((this.options.unabbreviate[this.field.text]?.text || this.field.text).normalize('NFC'))
+        this.entry.fields[this.field.name].push((this.options.unabbreviate[this.field.text] || this.field.text).normalize('NFC'))
       }
       else {
         if (this.field.preserveRanges) {

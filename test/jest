@@ -85,10 +85,13 @@ function include(bibfile) {
 
 const template = ejs.compile(fs.readFileSync(path.join(__dirname, 'test.ejs'), 'utf-8'), { escape: o => JSON.stringify(o, null, 2) })
 function writeTest(test) {
+  const unabbreviate = test.bibfile.toLowerCase().includes('unabbreviate')
   const options = {
     caseProtection: test.caseProtection === 'off' ? false : test.caseProtection,
     sentenceCase: test.sentenceCase.startsWith('on'),
     guessAlreadySentenceCased: test.sentenceCase.endsWith('guess'),
+    unabbreviations: unabbreviate ? path.resolve(path.join(__dirname, '..', 'unabbrev.json')) : false,
+    strings: unabbreviate ? path.resolve(path.join(__dirname, '..', 'strings.bib')) : false,
   }
   if (test.bibfile.includes('-raw.bib')) options.raw = true
   // Oh Mendeley....
