@@ -948,7 +948,7 @@ class Parser {
     const shortjournals = []
     for (const field of node.fields) {
       if (fields.unabbrev.includes(field.name) && Array.isArray(field.value)) {
-        const abbr = field.value.map(v => v.source).join('')
+        const abbr = field.value.map(v => v.source).join('').toUpperCase()
         const journal = this.options.unabbreviate[abbr]
         if (journal) {
           shortjournals.push({ ...JSON.parse(JSON.stringify(field)), name: 'shortjournal' })
