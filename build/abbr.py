@@ -171,6 +171,8 @@ fixups = {
   "TECHNIKGESCHICHTE": "Technik Geschichte",
   "TEXTS THEORET. COMPUT. SCI. EATCS SER.": "Texts in Theoretical Computer Science. An EATCS Series",
   "VDI BERICHT.": "35 Vdi Jahrestagung Schadensanalyse:produktverbesserung Durch Schadensanalyse",
+  "PHYS. STATUS SOLIDI RRL - RAPID RES. LETT.": "physica status solidi (RRL) \u2013 Rapid Research Letters",
+  "J. Phys. Conf. Ser.": "Journal of physics. Conference series",
 }
 for abbr, full in fixups.items():
   unabbr[abbr] = full
