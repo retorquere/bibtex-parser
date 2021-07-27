@@ -10,6 +10,19 @@ import glob
 unabbr = {}
 strings = ''
 
+with open('node_modules/unicode2latex/tables/unicode.json') as f:
+  u2l = json.load(f)
+def unicode2latex(s):
+  l = ''
+  for c in s:
+    if not c in u2l:
+      l += c
+    elif 'text' in u2l[c]:
+      l += u2l[c]['text']
+    else:
+      l += '$' + u2l[c]['math'] + '$'
+  return l.replace('$$', '')
+
 def minimize(s):
   return re.sub(r'[.\s]', '', s)
 
@@ -28,7 +41,7 @@ def clean(abbr, full):
   if len(abbr) < 2: return ''
   if abbr[0] == '#' and abbr[-1] == '#':
     abbr = abbr[1:-2]
-    if '"' not in full and accept(abbr, full): strings += '@string{' + abbr + ' = "' + full + '" }\n'
+    if '"' not in full and accept(abbr, full): strings += '@string{' + abbr + ' = "' + unicode2latex(full) + '"}\n'
   return abbr
 
 def unthe(j):
