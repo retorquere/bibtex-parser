@@ -71,7 +71,7 @@ fixups = {
   "ACT. ACAD. AB.": "Acta Academiae Aboensis : Ser B Math Et Phys",
   "ACTA UNIV. PALACK. OLOMUC. FAC. RERUM NATUR. MATH.": "Acta Universitatis Palackianae Olomucensis. Facultas Rerum Naturalium. Mathematica",
   "ADV. AIR POLLUT. SER.": "Advances in Air Pollution Series",
-  "ADV. BOUND. ELEM. SER.": "Boundary Elements XXIV: Incorporating Meshless Solutions"
+  "ADV. BOUND. ELEM. SER.": "Boundary Elements XXIV: Incorporating Meshless Solutions",
   "ADV. PUBLIC. INTER. ACC.": "Extending Schumacher's Concept of Total Accounting and Accountability Into The 21st Century",
   "ADV. UNDERWAT. TECHNOL.": "Subsea Control and Data Acquisition for Oil and Gas Production Systems",
   "AGID. GEO. IN.": "Agid Report Series : Geosciences in International Development",
