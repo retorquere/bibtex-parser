@@ -229,7 +229,7 @@ export interface Bibliography {
   entries: Entry[]
 
   /**
-   * `@comment`s found in the bibtex file. See also [[jabref.parse]]
+   * `@comment`s found in the bibtex file.
    */
   comments: string[]
 
