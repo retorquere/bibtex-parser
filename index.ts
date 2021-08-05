@@ -1876,3 +1876,4 @@ export const promises = {
 }
 
 export * as chunker from './chunker'
+export * as jabref from './jabref'
