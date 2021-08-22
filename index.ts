@@ -812,8 +812,7 @@ class Parser {
 
     // expect 'n' text arguments
     if (typeof kind === 'number') {
-      if (node.arguments.required.length !== kind) return false
-      return node.arguments.required
+      return node.arguments.required.length === kind ? node.arguments.required : false
     }
 
     // return first argument if it's the only one
@@ -822,8 +821,14 @@ class Parser {
     // loose checking for text
     if (kind === 'text') {
       const first = node.arguments.required[0]
-      if (first.kind === 'Block' && first.value.length === 1) {
-        if (first.value[0].kind === 'Text') return first.value[0].value
+      if (first.kind === 'Block') {
+        switch (first.value.length) {
+          case 0:
+            return ''
+          case 1:
+            if (first.value[0].kind === 'Text') return first.value[0].value
+            break
+        }
       }
       // fall back to strict kind check
       kind = 'Text'
@@ -1236,11 +1241,12 @@ class Parser {
       case 'ocirc':
       case 'mbox':
         if (arg = this.argument(node, 'text')) {
+          if (node.command === 'mbox' && !arg) return this.text('\u200b')
           unicode = latex2unicode[`\\${node.command}{${arg}}`]
           return this.text(unicode || (node.command === 'hspace' ? ' ' : arg))
         }
         else if (!node.arguments.required.length) {
-          return this.text()
+          return (node.command === 'mbox') ? this.text('\u200b') : this.text()
         }
         else if (arg = this.argument(node, 'Block')) {
           return this.clean(arg as Node)

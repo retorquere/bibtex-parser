@@ -17,6 +17,7 @@ const updateSnapshot = process.argv.includes('--updateSnapshot')
 const options = [
   { name: 'sentence-case', type: String, multiple: true, defaultValue: updateSnapshot ? SENTENCECASE : [ SENTENCECASE[0] ], valid: SENTENCECASE },
   { name: 'case-protection', type: String, multiple: true, defaultValue: updateSnapshot ? CASEPROTECTION : [ CASEPROTECTION[0] ], valid: CASEPROTECTION },
+  { name: 'test', type: String },
   { name: 'big', type: Boolean },
   { name: 'help', alias: 'h', type: Boolean },
 ]
@@ -80,6 +81,7 @@ const big = [
 function include(bibfile) {
   if (!bibfile.replace(/(la)?tex$/, '').endsWith('.bib')) return false
   if (!args.big && big.includes(path.basename(bibfile))) return false
+  if (args.test && !bibfile.includes(args.test)) return false
   return true
 }
 
