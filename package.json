@@ -21,7 +21,7 @@
     "postversion": "git push --follow-tags",
     "update-cases": "curl -s https://raw.githubusercontent.com/retorquere/zotero-better-bibtex/master/test/loaded.json | jq -r '.[] | select(test(\"\\\\.bib((la)?tex)?$\"))' | rsync -av --delete -m --files-from=- ../better-bibtex/test/fixtures/ test/better-bibtex/",
     "docs": "rm -rf docs && typedoc --name 'BibTeX parser' index.ts && touch docs/.nojekyll",
-    "prencu": "git submodule update --init --recursive --remote && git submodule foreach git reset --hard && git submodule foreach git checkout master && git submodule foreach git pull origin master",
+    "prencu": "git submodule update --init --recursive --remote && git submodule foreach git reset --hard && git submodule foreach git checkout master && git submodule foreach git pull origin master && git add abbrv.jabref.org",
     "ncu": "ncu -u && npm i && git add package.json package-lock.json && git commit -m ncu"
   },
   "repository": {
@@ -47,7 +47,6 @@
     "jest": "^27.0.6",
     "jest-cli": "^27.0.6",
     "jest-specific-snapshot": "^5.0.0",
-    "markdown": "^0.5.0",
     "mkdirp": "^1.0.4",
     "node-fetch": "^2.6.1",
     "pegjs": "^0.10.0",
