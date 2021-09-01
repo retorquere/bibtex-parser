@@ -1780,12 +1780,19 @@ class Parser {
   }
 
   private convert_environment(node: bibtex.Environment) {
-    this.field.text += { enumerate: '<ol>', itemize: '<ul>'}[node.env]
+    const [ open, close ] = {
+      enumerate: [ '<ol>', '</ol>' ],
+      itemize: [ '<ul>', '</ul>' ],
+      quotation: [ '<blockquote>', '</blockquote>' ],
+    }[node.env] || [ '', '' ]
 
+    if (!open) this.error(new TeXError(`Unhandled \\${node.env}{...}`, node, this.chunk))
+
+    this.field.text += open
     this.convert_block({...node, kind: 'Block', markup: {} })
-
-    this.field.text += { enumerate: '</ol>', itemize: '</ul>'}[node.env]
+    this.field.text += close
   }
+
   private convert_block(node: bibtex.Block | bibtex.Math): void {
     const start = this.field.text.length
 
