@@ -545,7 +545,7 @@ Block
   }
 
 Math
-  = &{ return !math.on } mode:('$' / '$$') &{ return math.set(true) } v:(Block / Command / Text)* ('$' / '$$') &{ return math.set(false) } {
+  = &{ return !math.on } mode:('$' / '$$' / '\\[') &{ return math.set(true) } v:(Block / Command / Text)* ('$' / '$$' / '\\]') &{ return math.set(false) } {
     return {
       kind: mode == '$$' ? 'DisplayMath' : 'InlineMath',
       loc: location(),
