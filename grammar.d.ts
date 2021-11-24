@@ -55,7 +55,7 @@ export interface NumberValue {
   value: number
 }
 
-export type RequiredArgument = Block | Command | TextValue
+export type Argument = Block | Command | TextValue
 
 export interface RegularCommand {
   kind: 'RegularCommand'
@@ -64,7 +64,7 @@ export interface RegularCommand {
   command: string
   arguments: {
     optional: TextValue[]
-    required: RequiredArgument[]
+    required: Argument[]
   }
 }
 

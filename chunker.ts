@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 // Original work by Henrik Muehe (c) 2010
 //
 // CommonJS port by Mikola Lysenko 2013

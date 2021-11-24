@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import * as bibtex from './grammar'
 import * as chunker from './chunker'
 import { JabRefMetadata, parse as parseJabRef } from './jabref'
@@ -515,7 +516,7 @@ class Parser {
     this.options = {
       caseProtection: 'as-needed',
       verbatimFields: [ /^citeulike-linkout-[0-9]+$/, ...fields.verbatim],
-      verbatimCommands: [ 'url', 'href' ],
+      verbatimCommands: [ 'url' ],
       unnestFields: [ ...fields.title, ...fields.unnest, ...fields.verbatim],
       unnestMode: 'unwrap',
       htmlFields: fields.html,
@@ -1130,6 +1131,7 @@ class Parser {
       return null
     }
   }
+
   private clean_command(node: bibtex.RegularCommand): Node {
     let arg, unicode
 
@@ -1253,10 +1255,9 @@ class Parser {
         }
         break
 
-      // just take the URL? Not the label?
       case 'href':
-        if (arg = this.argument(node, 2)) return this.clean(arg[0] as Node)
-        break
+        node.arguments.required = node.arguments.required.map(a => this.clean(a)) as bibtex.Argument[]
+        return node
 
       case 'url':
         if (arg = this.argument(node, 'Text')) return this.text(arg)
@@ -1307,7 +1308,7 @@ class Parser {
         }
 
         if (diacritics.tounicode[node.command]) {
-          node.arguments.required = this.clean(node.arguments.required) as bibtex.RequiredArgument[]
+          node.arguments.required = this.clean(node.arguments.required) as bibtex.Argument[]
 
           let block: bibtex.Block
           if (node.arguments.required.length === 1 && node.arguments.required[0].kind === 'Text') {
@@ -1458,7 +1459,12 @@ class Parser {
         break
 
       default:
-        return this.error(new ParserError(`no converter for ${node.kind}: ${this.show(node)}`, node))
+        if (node.kind === 'RegularCommand' && node.command === 'href') {
+          this.convert_href(node)
+        }
+        else {
+          return this.error(new ParserError(`no converter for ${node.kind}: ${this.show(node)}`, node))
+        }
     }
   }
 
@@ -1791,6 +1797,14 @@ class Parser {
     this.field.text += open
     this.convert_block({...node, kind: 'Block', markup: {} })
     this.field.text += close
+  }
+
+  private convert_href(node: bibtex.RegularCommand): void {
+    this.field.text += '<a href="'
+    this.convert(node.arguments.required[0])
+    this.field.text += '">'
+    this.convert(node.arguments.required[1])
+    this.field.text += '</a>'
   }
 
   private convert_block(node: bibtex.Block | bibtex.Math): void {

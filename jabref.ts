@@ -105,7 +105,7 @@ export function parse(comments: string[]): { comments: string[], jabref: JabRefM
     return true
   })
 
-  if (decoded.groupsversion) result.groupsversion = parseInt(decoded.groupsversion[0].trim()) || decoded.groupsversion[0]
+  if (decoded.groupsversion) result.groupsversion = parseInt(decoded.groupsversion[0].trim()) || decoded.groupsversion[0] // eslint-disable-line @typescript-eslint/no-unsafe-argument
   if (decoded.fileDirectory) result.fileDirectory = decoded.fileDirectory[0]
   if (decoded.databaseType) result.databaseType = decoded.databaseType[0]
 
