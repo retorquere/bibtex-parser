@@ -536,7 +536,7 @@ class Parser {
       smallCaps: { open: '<span style="font-variant:small-caps;">', close: '</span>' },
       caseProtect: { open: '<span class="nocase">', close: '</span>' },
       roman: { open: '', close: '' },
-      fixedWidth: { open: '', close: '' },
+      fixedWidth: { open: '<tt>', close: '</tt>' },
     }
     // patch in because the options will likely not have enquote and case-protect
     for (const [markup, {open, close}] of Object.entries(markup_defaults)) {

@@ -36,6 +36,7 @@
     scshape: 'smallCaps',
 
     tt: 'fixedWidth',
+    texttt: 'fixedWidth',
     rm: 'roman',
     sf: 'sansSerif',
     verb: 'verbatim',
