@@ -21,7 +21,7 @@
     "postversion": "git push --follow-tags",
     "update-cases": "curl -s https://raw.githubusercontent.com/retorquere/zotero-better-bibtex/master/test/loaded.json | jq -r '.[] | select(test(\"\\\\.bib((la)?tex)?$\"))' | rsync -av --delete -m --files-from=- ../better-bibtex/test/fixtures/ test/better-bibtex/",
     "docs": "rm -rf docs && typedoc --name 'BibTeX parser' index.ts && touch docs/.nojekyll",
-    "ncu": "./build/submodules.py && ncu -u && npm i && git add package.json package-lock.json && git commit -m ncu"
+    "ncu": "./build/submodules.py && ncu -u && npm i && git add package.json package-lock.json && npm audit fix && git commit -m ncu"
   },
   "repository": {
     "type": "git",
