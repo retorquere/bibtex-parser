@@ -77,6 +77,8 @@ for (const sentence_case of config.sentence_case) {
 
         ((bibfile, options, name, snapshot) => {
           tap.test(name, async t => {
+            const result = await piscina.run({ bibfile, options })
+            if (typeof result !== 'string' && result.errors.length && !config.error.includes(path.basename(bibfile))) throw JSON.stringify(result.errors[0], null, 2)
             t.snapshotFile = snapshot
             t.matchSnapshot(await piscina.run({ bibfile, options }))
           })
