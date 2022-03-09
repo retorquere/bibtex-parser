@@ -9,7 +9,7 @@
     "start": "tsc -d",
     "poststart": "npm run docs",
     "pretest": "npm start",
-    "test": "./test/tap",
+    "test": "tap test/tap --no-coverage",
     "snap": "npm test --snapshot",
     "snap:big": "npm test --snapshot --big",
     "minitest": "peggy grammar.peggy && tsc -d && node i.js",
