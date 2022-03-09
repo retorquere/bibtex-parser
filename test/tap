@@ -4,18 +4,19 @@ const path = require('path')
 const Piscina = require('piscina')
 const fs = require('fs')
 const os = require('os')
+const glob = require('glob').sync
 
 const prefix = 'npm_config_'
 const valid = {
   sentence_case: ['on+guess', 'on', 'off'],
   case_protection: [ 'as-needed', 'strict', 'off' ],
-  section: [ 'export', 'import', 'merge', 'other' ],
 }
+const multi = ['test']
+
 const config = Object.assign({
   sentence_case: valid.sentence_case.slice(0, 1),
   case_protection: valid.case_protection.slice(0, 1),
-  section: valid.section,
-  test: '',
+  test: [''],
   snapshot: '',
   unabbreviations: path.resolve(path.join(__dirname, '..', 'unabbrev.json')),
   strings: path.resolve(path.join(__dirname, '..', 'strings.bib')),
@@ -28,9 +29,9 @@ for (let [option, value] of Object.entries(process.env)) {
   option = option.substr(prefix.length)
 
   let err
-  if (valid[option]) {
+  if (valid[option] || multi.includes(option)) {
     value = value.split('\n\n')
-    if (err = value.find(v => !valid[option].includes(v))) {
+    if (valid[option] && (err = value.find(v => !valid[option].includes(v)))) {
       throw new Error(`Invalid value ${JSON.stringify(err)} for ${option}`)
     }
   }
@@ -47,7 +48,9 @@ if (config.snapshot) { // reset to all for snapshots
   for (const [key, value] of Object.entries(valid)) {
     if (!process.env[prefix + key]) config[key] = value
   }
+  config.big = []
 }
+if (config.test.length !== 1 || config.test[0] !== '') config.big=[] // if you pick out a test, you want it ran
 
 if (config.snapshot) process.env.TAP_SNAPSHOT = '1'
 console.log(config)
@@ -56,25 +59,20 @@ console.log(config)
 const tap = require('tap')
 tap.jobs = os.cpus().length - 1
 
-function isTestcase(bibfile) {
-  if (!bibfile.replace(/(la)?tex$/, '').endsWith('.bib')) return false
-  if (config.big.includes(path.basename(bibfile))) return false
-  if (config.test && !bibfile.includes(config.test)) return false
-  return true
-}
-
 const piscina = new Piscina({ filename: path.resolve(__dirname, 'worker') })
+
+function testcases(pattern) {
+  return glob(path.join(__dirname, '**', config.test[0] + '*.{bib,bibtex,biblatex}'), { nocase: true, matchBase: true, nonull: false, nodir: true })
+}
 
 for (const sentence_case of config.sentence_case) {
   for (const case_protection of config.case_protection) {
-    for (const section of config.section) {
-      let root = path.join(__dirname, section === 'other' ? '' : 'better-bibtex', section)
-
-      for (let bibfile of fs.readdirSync(root)) {
-        bibfile = path.join(root, bibfile)
-        if (!isTestcase(bibfile)) continue
-
+    for (const pattern of config.test) {
+      for (const bibfile of testcases(pattern)) {
         const basename = path.basename(bibfile)
+        if (config.big.includes(basename)) continue
+
+        const section = path.basename(path.dirname(bibfile))
         const unabbreviate = config.unabbreviate.includes(basename);
 
         ((bibfile, options, name, snapshot) => {

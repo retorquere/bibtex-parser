@@ -34,7 +34,7 @@ jobs:
     - name: install node dependencies
       run: npm install
 
-    - run: npm test --sentence-case=${{ matrix.sentencecase }} --case-protection=${{ matrix.caseprotection }}
+    - run: npm test --sentence-case=${{ matrix.sentencecase }} --case-protection=${{ matrix.caseprotection }} --big
 
   release:
     runs-on: ubuntu-latest
