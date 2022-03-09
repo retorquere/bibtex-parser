@@ -1,0 +1,58 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=Better BibLaTeX.016.biblatex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Kendra",
+            "lastName": "Arbesman von Secondname",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Arbesman von Secondname, Kendra",
+        ],
+        "date": Array [
+          "2001",
+        ],
+        "journaltitle": Array [
+          "Title, with comma",
+        ],
+        "keywords": Array [
+          "breadcrust",
+          "plinian",
+          "Vulcanian eruptions",
+        ],
+        "pages": Array [
+          "493–518",
+        ],
+        "title": Array [
+          "The Physical: Violent Volcanology of the 1600 Eruption of Huaynaputina, Southern Peru",
+        ],
+        "volume": Array [
+          "62",
+        ],
+      },
+      "key": "arbesmanvonsecondname2001",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

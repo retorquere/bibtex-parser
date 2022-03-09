@@ -1,0 +1,59 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=biber 2.14 rejects the date field generated from Better BibLaTex #1695.biblatex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Sebastian",
+            "lastName": "Ruder",
+          },
+        ],
+      },
+      "fields": Object {
+        "abstract": Array [
+          "Gradient descent is the preferred way to optimize neural networks and many other machine learning algorithms but is often used as a black box. This post explores how many of the most popular gradient-based optimization algorithms such as Momentum, Adagrad, and Adam actually work.",
+        ],
+        "author": Array [
+          "Ruder, Sebastian",
+        ],
+        "date": Array [
+          "2016-01-19T14:20:00",
+        ],
+        "langid": Array [
+          "english",
+        ],
+        "organization": Array [
+          "Sebastian Ruder",
+        ],
+        "title": Array [
+          "An Overview of Gradient Descent Optimization Algorithms",
+        ],
+        "url": Array [
+          "https://ruder.io/optimizing-gradient-descent/",
+        ],
+        "urldate": Array [
+          "2020-11-24",
+        ],
+      },
+      "key": "ruderOverviewGradientDescent2016",
+      "type": "online",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

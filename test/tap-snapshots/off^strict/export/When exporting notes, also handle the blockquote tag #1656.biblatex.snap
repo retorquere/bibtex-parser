@@ -1,0 +1,67 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=When exporting notes, also handle the blockquote tag #1656.biblatex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Emmanuel",
+            "lastName": "Kant",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Kant, Emmanuel",
+        ],
+        "location": Array [
+          "Here",
+        ],
+        "note": Array [
+          String(
+            <span class="nocase"><h1>This is a heading</h1></span> 
+            
+            This is some text 
+            
+            <blockquote> 
+            
+            Then this is a quote from the book. It is inserted using the " icon in Zotero. It appears indented and with a blue vertical line to  its left. 
+            
+            It can span several paragraphs. 
+            
+            </blockquote> 
+            
+            And this is some regular text again.
+          ),
+        ],
+        "publisher": Array [
+          "Him",
+        ],
+        "timestamp": Array [
+          "2015-02-24 12:14:36 +0100",
+        ],
+        "title": Array [
+          "A Book",
+        ],
+      },
+      "key": "Kant-Book",
+      "type": "book",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

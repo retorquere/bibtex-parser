@@ -1,0 +1,52 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=Field Institution not available anymore in key pattern for Zotero #1568.biblatex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "date": Array [
+          "2020-03-09",
+        ],
+        "institution": Array [
+          "<span class=\\"nocase\\">Cisco Systems, Inc.</span>",
+        ],
+        "langid": Array [
+          "english",
+        ],
+        "pages": Array [
+          "35",
+        ],
+        "title": Array [
+          "Cisco <span class=\\"nocase\\">Annual Internet Report - Cisco Annual Internet Report (2018–2023) White Paper</span>",
+        ],
+        "type": Array [
+          "White paper",
+        ],
+        "url": Array [
+          "https://www.cisco.com/c/en/us/solutions/collateral/executive-perspectives/annual-internet-report/white-paper-c11-741490.html",
+        ],
+        "urldate": Array [
+          "2020-07-08",
+        ],
+      },
+      "key": "CiscoSystemsInc_CiscoAnnualInternet_2020",
+      "type": "report",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

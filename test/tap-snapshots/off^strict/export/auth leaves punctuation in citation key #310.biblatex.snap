@@ -1,0 +1,44 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=auth leaves punctuation in citation key #310.biblatex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "james",
+            "lastName": "O'hara",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "O'hara, james",
+        ],
+        "date": Array [
+          "2015",
+        ],
+        "title": Array [
+          "A Testbook",
+        ],
+      },
+      "key": "Ohara2015",
+      "type": "book",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

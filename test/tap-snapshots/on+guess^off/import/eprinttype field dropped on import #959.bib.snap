@@ -1,0 +1,69 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP import=eprinttype field dropped on import #959.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Richard",
+            "lastName": "Zach",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Richard Zach",
+        ],
+        "doi": Array [
+          "10.1023/B:LOGI.0000021744.10237.d0",
+        ],
+        "eprint": Array [
+          "ZACDOQ",
+        ],
+        "eprinttype": Array [
+          "philpapers",
+        ],
+        "journal": Array [
+          "Journal of Philosophical Logic",
+        ],
+        "keywords": Array [
+          "article",
+        ],
+        "pages": Array [
+          "155–164",
+        ],
+        "scholar": Array [
+          "15184825758825835157,15198214561219081821",
+        ],
+        "title": Array [
+          "Decidability of quantified propositional intuitionistic logic and S4 on trees of height and arity ≤ω",
+        ],
+        "volume": Array [
+          33,
+        ],
+        "year": Array [
+          2004,
+        ],
+      },
+      "key": "Zach2004a",
+      "sentenceCased": true,
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

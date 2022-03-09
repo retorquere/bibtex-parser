@@ -1,0 +1,102 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=Exporting Book Sections as Inbook #1474.bibtex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Albert-Jan N.",
+            "lastName": "Yzelman",
+          },
+          Object {
+            "firstName": "Dirk",
+            "lastName": "Roose",
+          },
+          Object {
+            "firstName": "Karl",
+            "lastName": "Meerbergen",
+          },
+        ],
+        "collaborator": Array [
+          Object {
+            "firstName": "James",
+            "lastName": "Reinders",
+          },
+          Object {
+            "firstName": "Jim",
+            "lastName": "Jeffers",
+          },
+        ],
+      },
+      "fields": Object {
+        "address": Array [
+          "<span class=\\"nocase\\">Waltham, MA, USA</span>",
+        ],
+        "author": Array [
+          "Yzelman, Albert-Jan N.",
+          "Roose, Dirk",
+          "Meerbergen, Karl",
+        ],
+        "booktitle": Array [
+          "High performance parallelism pearls: Multicore and many-core programming approaches",
+        ],
+        "collaborator": Array [
+          "Reinders, James",
+          "Jeffers, Jim",
+        ],
+        "copyright": Array [
+          "© 2015 Elsevier Inc.",
+        ],
+        "doi": Array [
+          "10.1016/B978-0-12-802118-7.00027-3",
+        ],
+        "isbn": Array [
+          "978-0-12-802118-7",
+        ],
+        "language": Array [
+          "en-US",
+        ],
+        "month": Array [
+          "01",
+        ],
+        "pages": Array [
+          "457–476",
+        ],
+        "publisher": Array [
+          "Morgan Kaufmann",
+        ],
+        "shorttitle": Array [
+          "Sparse matrix-vector multiplication",
+        ],
+        "title": Array [
+          "Sparse matrix-vector multiplication: Parallelization and vectorization",
+        ],
+        "url": Array [
+          "https://www.sciencedirect.com/science/article/pii/B9780128021187000273",
+        ],
+        "year": Array [
+          "2015",
+        ],
+      },
+      "key": "yzelman2015",
+      "sentenceCased": true,
+      "type": "inbook",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

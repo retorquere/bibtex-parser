@@ -1,0 +1,73 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=use author dash separation rather than camel casing in citekey #1495.bibtex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Marina",
+            "lastName": "Salnikova",
+          },
+          Object {
+            "firstName": "Bruce",
+            "lastName": "D'Arcus",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Salnikova, Marina",
+          "D'Arcus, Bruce",
+        ],
+        "doi": Array [
+          "10.1080/13602004.2019.1575022",
+        ],
+        "issn": Array [
+          "1360-2004",
+        ],
+        "journal": Array [
+          "Journal of Muslim Minority Affairs",
+        ],
+        "month": Array [
+          "01",
+        ],
+        "note": Array [
+          "doi: 10.1080/13602004.2019.1575022",
+        ],
+        "number": Array [
+          "1",
+        ],
+        "pages": Array [
+          "106–117",
+        ],
+        "title": Array [
+          "Spaces of Muslim Identity in Inverness, Scotland",
+        ],
+        "volume": Array [
+          "39",
+        ],
+        "year": Array [
+          "2019",
+        ],
+      },
+      "key": "salnikova-darcus_2019-spaces-muslim-identity",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

@@ -1,0 +1,37 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=Protect math sections #1148.biblatex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {},
+      "fields": Object {
+        "title": Array [
+          "<span class=\\"nocase\\"><\\\\</span>input <span class=\\"nocase\\">Wiki .:. goLaTeX - Mein LaTeX-Forum</span>",
+        ],
+        "url": Array [
+          "https://golatex.de/wiki/%5Cinput",
+        ],
+        "urldate": Array [
+          "2019-03-11",
+        ],
+      },
+      "key": "InputWikiGoLaTeX",
+      "type": "online",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

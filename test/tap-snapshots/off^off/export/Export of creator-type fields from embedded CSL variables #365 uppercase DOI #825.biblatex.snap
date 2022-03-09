@@ -1,0 +1,341 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=Export of creator-type fields from embedded CSL variables #365 uppercase DOI #825.biblatex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Ann",
+            "lastName": "Author",
+          },
+        ],
+        "editor": Array [
+          Object {
+            "firstName": "Emma",
+            "lastName": "Editrix",
+          },
+          Object {
+            "firstName": "Ed",
+            "lastName": "Editor",
+          },
+        ],
+      },
+      "fields": Object {
+        "annotation": Array [
+          "{:X-genre: xxx}",
+        ],
+        "author": Array [
+          "Author, Ann",
+        ],
+        "date": Array [
+          "2015",
+        ],
+        "editor": Array [
+          "Editrix, Emma",
+          "Editor, Ed",
+        ],
+        "institution": Array [
+          "Institution",
+        ],
+        "location": Array [
+          "Place",
+        ],
+        "number": Array [
+          "77",
+        ],
+        "title": Array [
+          "A Report",
+        ],
+        "type": Array [
+          "working paper",
+        ],
+      },
+      "key": "Author2015",
+      "type": "report",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "John",
+            "lastName": "Blair",
+          },
+        ],
+        "editor": Array [
+          Object {
+            "firstName": "H.C.G.",
+            "lastName": "Matthew",
+          },
+          Object {
+            "firstName": "Brian Howard",
+            "lastName": "Harrison",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Blair, John",
+        ],
+        "booktitle": Array [
+          "Oxford Dictionary of National Biography",
+        ],
+        "date": Array [
+          "2004",
+        ],
+        "doi": Array [
+          "10.1093/ref:odnb/10183",
+        ],
+        "editor": Array [
+          "Matthew, H.C.G.",
+          "Harrison, Brian Howard",
+        ],
+        "location": Array [
+          "Oxford",
+        ],
+        "publisher": Array [
+          "Oxford University Press",
+        ],
+        "title": Array [
+          "Frithuswith (<i>d.</i> 727)",
+        ],
+        "url": Array [
+          "http://www.oxforddnb.com/view/article/10183",
+        ],
+        "urldate": Array [
+          "2014-06-13",
+        ],
+      },
+      "key": "Blair2004",
+      "type": "inreference",
+    },
+    Object {
+      "creators": Object {
+        "editor": Array [
+          Object {
+            "firstName": "John",
+            "lastName": "Doe",
+          },
+          Object {
+            "firstName": "Rob",
+            "lastName": "Roe",
+          },
+        ],
+      },
+      "fields": Object {
+        "date": Array [
+          "2015",
+        ],
+        "editor": Array [
+          "Doe, John",
+          "Roe, Rob",
+        ],
+        "editortype": Array [
+          "director",
+        ],
+        "location": Array [
+          "US/GB",
+        ],
+        "publisher": Array [
+          "The Distributor",
+        ],
+        "title": Array [
+          "A Film",
+        ],
+      },
+      "key": "Doe2015",
+      "type": "movie",
+    },
+    Object {
+      "creators": Object {
+        "editor": Array [
+          Object {
+            "lastName": "Xxx",
+          },
+        ],
+      },
+      "fields": Object {
+        "annotation": Array [
+          "{:X-genre: xxx}",
+        ],
+        "editor": Array [
+          "Xxx",
+        ],
+      },
+      "key": "emptybook",
+      "type": "inreference",
+    },
+    Object {
+      "creators": Object {
+        "editor": Array [
+          Object {
+            "firstName": "Gail",
+            "lastName": "Mancuso",
+          },
+        ],
+        "editora": Array [
+          Object {
+            "firstName": "Michael",
+            "lastName": "Curtis",
+          },
+          Object {
+            "firstName": "Gregory S.",
+            "lastName": "Malins",
+          },
+        ],
+      },
+      "fields": Object {
+        "booktitle": Array [
+          "Friends",
+        ],
+        "date": Array [
+          "2003",
+        ],
+        "editor": Array [
+          "Mancuso, Gail",
+        ],
+        "editora": Array [
+          "Curtis, Michael",
+          "Malins, Gregory S.",
+        ],
+        "editoratype": Array [
+          "scriptwriter",
+        ],
+        "editortype": Array [
+          "director",
+        ],
+        "langid": Array [
+          "american",
+        ],
+        "location": Array [
+          "US",
+        ],
+        "number": Array [
+          "1",
+        ],
+        "origdate": Array [
+          "1996-09-16",
+        ],
+        "origpublisher": Array [
+          "NBC",
+        ],
+        "publisher": Array [
+          "Warner Home Video",
+        ],
+        "title": Array [
+          "The One with the Princess Leia Fantasy",
+        ],
+        "volume": Array [
+          "3",
+        ],
+      },
+      "key": "friends:leia:dvd",
+      "type": "video",
+    },
+    Object {
+      "creators": Object {
+        "editor": Array [
+          Object {
+            "firstName": "Gail",
+            "lastName": "Mancuso",
+          },
+        ],
+        "editora": Array [
+          Object {
+            "firstName": "Michael",
+            "lastName": "Curtis",
+          },
+          Object {
+            "firstName": "Gregory S.",
+            "lastName": "Malins",
+          },
+        ],
+      },
+      "fields": Object {
+        "booktitle": Array [
+          "Friends",
+        ],
+        "date": Array [
+          "1996-09-16",
+        ],
+        "editor": Array [
+          "Mancuso, Gail",
+        ],
+        "editora": Array [
+          "Curtis, Michael",
+          "Malins, Gregory S.",
+        ],
+        "editoratype": Array [
+          "scriptwriter",
+        ],
+        "editortype": Array [
+          "director",
+        ],
+        "langid": Array [
+          "american",
+        ],
+        "location": Array [
+          "US",
+        ],
+        "number": Array [
+          "1",
+        ],
+        "publisher": Array [
+          "NBC",
+        ],
+        "title": Array [
+          "The One with the Princess Leia Fantasy",
+        ],
+        "volume": Array [
+          "3",
+        ],
+      },
+      "key": "friends:leia:tv",
+      "type": "video",
+    },
+    Object {
+      "creators": Object {
+        "editor": Array [
+          Object {
+            "firstName": "Stanley",
+            "lastName": "Kubrick",
+          },
+        ],
+      },
+      "fields": Object {
+        "date": Array [
+          "1964",
+        ],
+        "editor": Array [
+          "Kubrick, Stanley",
+        ],
+        "editortype": Array [
+          "director",
+        ],
+        "shorttitle": Array [
+          "Dr. Strangelove",
+        ],
+        "title": Array [
+          "Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb",
+        ],
+      },
+      "key": "Kubrick1964",
+      "type": "video",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

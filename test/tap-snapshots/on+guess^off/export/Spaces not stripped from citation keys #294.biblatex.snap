@@ -1,0 +1,74 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=Spaces not stripped from citation keys #294.biblatex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Martin",
+            "lastName": "Vlček",
+          },
+          Object {
+            "firstName": "Marek",
+            "lastName": "Vácha",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Vlček, Martin",
+          "Vácha, Marek",
+        ],
+        "date": Array [
+          "2014-05-15",
+        ],
+        "doi": Array [
+          "10.1007/s00276-014-1305-7",
+        ],
+        "eprint": Array [
+          "24828123",
+        ],
+        "eprinttype": Array [
+          "pmid",
+        ],
+        "issn": Array [
+          "1279-8517",
+        ],
+        "journaltitle": Array [
+          "Surgical and Radiologic Anatomy",
+        ],
+        "langid": Array [
+          "english",
+        ],
+        "shortjournal": Array [
+          "Surg Radiol Anat",
+        ],
+        "title": Array [
+          "The history of latin terminology of human skeletal muscles (from vesalius to the present)",
+        ],
+        "url": Array [
+          "http://link.springer.com/10.1007/s00276-014-1305-7",
+        ],
+      },
+      "key": "vlcek_historylatinterminology_2014",
+      "sentenceCased": true,
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

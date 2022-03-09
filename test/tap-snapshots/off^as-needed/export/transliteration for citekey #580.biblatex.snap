@@ -1,0 +1,62 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=transliteration for citekey #580.biblatex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Григорий",
+            "lastName": "Медведев",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Медведев, Григорий",
+        ],
+        "date": Array [
+          "2002",
+        ],
+        "keywords": Array [
+          "Chernobyl Nuclear Accident",
+          "Chornobylʹ",
+          "Ukraine",
+          "1986",
+          "Nuclear industry",
+          "Nuclear reactor accidents",
+          "Radioactive wastes",
+        ],
+        "langid": Array [
+          "russian",
+        ],
+        "pagetotal": Array [
+          "520",
+        ],
+        "publisher": Array [
+          "МК-Периодика",
+        ],
+        "title": Array [
+          "Ядерный загар",
+        ],
+      },
+      "key": "Medvedev2002",
+      "type": "book",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

@@ -1,0 +1,60 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=No booktitle field when exporting references from conference proceedings #1069.bibtex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Alex",
+            "lastName": "Kendall",
+          },
+          Object {
+            "firstName": "Matthew",
+            "lastName": "Grimes",
+          },
+          Object {
+            "firstName": "Roberto",
+            "lastName": "Cipolla",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Kendall, Alex",
+          "Grimes, Matthew",
+          "Cipolla, Roberto",
+        ],
+        "booktitle": Array [
+          "Proceedings of the <span class=\\"nocase\\">IEEE International Conference</span> on <span class=\\"nocase\\">Computer Vision</span>",
+        ],
+        "pages": Array [
+          "2938–2946",
+        ],
+        "title": Array [
+          "<span class=\\"nocase\\">PoseNet</span>: <span class=\\"nocase\\">A Convolutional Network</span> for <span class=\\"nocase\\">Real</span>-<span class=\\"nocase\\">Time</span> 6-<span class=\\"nocase\\">DOF Camera Relocalization</span>",
+        ],
+        "year": Array [
+          "2015",
+        ],
+      },
+      "key": "kendall2015",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

@@ -1,0 +1,14 @@
+const fs = require('fs')
+const bibtex = require('../index')
+
+module.exports = async function ({ bibfile, options }) {
+  const source = await fs.promises.readFile(bibfile, 'utf-8')
+  let result = ''
+  if (options.exception) {
+    await bibtex.promises.parse(source, {...options, errorHandler: err => { result = `caught error: ${err.message}` } })
+  }
+  else {
+    result = await bibtex.promises.parse(source, options)
+  }
+  return result
+}

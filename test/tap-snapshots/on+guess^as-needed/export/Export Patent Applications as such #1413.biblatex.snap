@@ -1,0 +1,91 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=Export Patent Applications as such #1413.biblatex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Nils",
+            "lastName": "Werner",
+          },
+        ],
+        "holder": Array [
+          Object {
+            "literal": "My Employer",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Werner, Nils",
+        ],
+        "holder": Array [
+          "My Employer",
+        ],
+        "number": Array [
+          "456456456",
+        ],
+        "title": Array [
+          "This is a patent application. It has the application number EP456456456",
+        ],
+        "type": Array [
+          "patreqeu",
+        ],
+      },
+      "key": "wernerThisPatentApplication",
+      "sentenceCased": true,
+      "type": "patent",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Nils",
+            "lastName": "Werner",
+          },
+        ],
+        "holder": Array [
+          Object {
+            "literal": "My Employer",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Werner, Nils",
+        ],
+        "holder": Array [
+          "My Employer",
+        ],
+        "number": Array [
+          "123123123",
+        ],
+        "title": Array [
+          "This is a patent. It has the patent number EP123123123. It had the application number EP789789789 when it was first submitted.",
+        ],
+        "type": Array [
+          "patenteu",
+        ],
+      },
+      "key": "wernerThisPatentIt",
+      "sentenceCased": true,
+      "type": "patent",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

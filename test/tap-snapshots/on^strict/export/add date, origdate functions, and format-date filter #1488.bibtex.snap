@@ -1,0 +1,121 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=add date, origdate functions, and format-date filter #1488.bibtex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "literal": "austadísimos",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "austadísimos",
+        ],
+        "month": Array [
+          "04",
+        ],
+        "title": Array [
+          "Book",
+        ],
+        "year": Array [
+          "2020",
+        ],
+      },
+      "key": "Book-2020",
+      "type": "book",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "literal": "austadísimos",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "austadísimos",
+        ],
+        "month": Array [
+          "04",
+        ],
+        "title": Array [
+          "Forum post with full date and time",
+        ],
+        "year": Array [
+          "2020",
+        ],
+      },
+      "key": "Forumpostfull-2020-04-11.08:09",
+      "sentenceCased": true,
+      "type": "misc",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "literal": "austadísimos",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "austadísimos",
+        ],
+        "title": Array [
+          "Forum <span class=\\"nocase\\">Post</span> with year only",
+        ],
+        "year": Array [
+          "2020",
+        ],
+      },
+      "key": "ForumPostyear-2020",
+      "sentenceCased": true,
+      "type": "misc",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "J. H",
+            "lastName": "Brennan",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Brennan, J. H",
+        ],
+        "language": Array [
+          "Spanish",
+        ],
+        "title": Array [
+          "Magia experimental",
+        ],
+        "year": Array [
+          "1982",
+        ],
+      },
+      "key": "Magiaexperimental1976",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

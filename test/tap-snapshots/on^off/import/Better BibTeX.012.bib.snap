@@ -1,0 +1,51 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP import=Better BibTeX.012.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Niklas",
+            "lastName": "Möller",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Möller, Niklas",
+        ],
+        "booktitle": Array [
+          "Handbook of risk theory: Epistemology, decision theory, ethics, and social implications of risk",
+        ],
+        "publisher": Array [
+          "Springer",
+        ],
+        "title": Array [
+          "The concepts of risk and safety",
+        ],
+        "year": Array [
+          "2012",
+        ],
+      },
+      "key": "moller2012conceptsrisksafety",
+      "sentenceCased": true,
+      "type": "incollection",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

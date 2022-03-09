@@ -1,0 +1,95 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=Non-ascii in dates is not matched by date parser #376.biblatex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Julia",
+            "lastName": "Wendt",
+          },
+          Object {
+            "firstName": "Martin",
+            "lastName": "Lotze",
+          },
+          Object {
+            "firstName": "Almut I.",
+            "lastName": "Weike",
+          },
+          Object {
+            "firstName": "Norbert",
+            "lastName": "Hosten",
+          },
+          Object {
+            "firstName": "Alfons O.",
+            "lastName": "Hamm",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Wendt, Julia",
+          "Lotze, Martin",
+          "Weike, Almut I.",
+          "Hosten, Norbert",
+          "Hamm, Alfons O.",
+        ],
+        "date": Array [
+          "2008-03-01",
+        ],
+        "doi": Array [
+          "10.1111/j.1469-8986.2007.00620.x",
+        ],
+        "journaltitle": Array [
+          "Psychophysiology",
+        ],
+        "keywords": Array [
+          "Amygdala",
+          "fMRI",
+          "Insula",
+          "Spider phobia",
+          "Startle",
+        ],
+        "langid": Array [
+          "english",
+        ],
+        "number": Array [
+          "2",
+        ],
+        "pages": Array [
+          "205–215",
+        ],
+        "title": Array [
+          "Brain Activation and Defensive Response Mobilization during Sustained Exposure to Phobia-Related and Other Affective Pictures in Spider Phobia",
+        ],
+        "url": Array [
+          "http://onlinelibrary.wiley.com/doi/10.1111/j.1469-8986.2007.00620.x/abstract",
+        ],
+        "urldate": Array [
+          "2014-05-12",
+        ],
+        "volume": Array [
+          "45",
+        ],
+      },
+      "key": "Wendt2008BrainW.L.W.H.H+",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

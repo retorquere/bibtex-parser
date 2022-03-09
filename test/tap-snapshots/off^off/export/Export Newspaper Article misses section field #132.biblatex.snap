@@ -1,0 +1,62 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=Export Newspaper Article misses section field #132.biblatex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Anders",
+            "lastName": "Boas",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Boas, Anders",
+        ],
+        "date": Array [
+          "2014-07-04",
+        ],
+        "entrysubtype": Array [
+          "newspaper",
+        ],
+        "journalsubtitle": Array [
+          "Ideer",
+        ],
+        "journaltitle": Array [
+          "Weekendavisen",
+        ],
+        "pages": Array [
+          "12",
+        ],
+        "title": Array [
+          "Stikord Til En Hukommelse",
+        ],
+        "url": Array [
+          "http://apps.infomedia.dk.ep.fjernadgang.kb.dk/Ms3E/ShowArticle.aspx?outputFormat=Full&Duid=e4798c41",
+        ],
+        "urldate": Array [
+          "2014-09-15",
+        ],
+      },
+      "key": "Boas2014StikordTil",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

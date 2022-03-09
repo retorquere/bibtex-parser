@@ -1,0 +1,85 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=Publisher Address of BibTeX Inproceedings Entries #1471.bibtex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Weifeng",
+            "lastName": "Liu",
+          },
+          Object {
+            "firstName": "Brian",
+            "lastName": "Vinter",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Liu, Weifeng",
+          "Vinter, Brian",
+        ],
+        "booktitle": Array [
+          "Proceedings of the 29th <span class=\\"nocase\\">ACM</span> International Conference on Supercomputing",
+        ],
+        "copyright": Array [
+          "Copyright is held by the owner/author(s). Publication rights licensed to ACM.",
+        ],
+        "doi": Array [
+          "10.1145/2751205.2751209",
+        ],
+        "isbn": Array [
+          "978-1-4503-3559-1",
+        ],
+        "language": Array [
+          "en-US",
+        ],
+        "month": Array [
+          "06",
+        ],
+        "organization": Array [
+          "ACM SIGARCH",
+        ],
+        "pages": Array [
+          "339–350",
+        ],
+        "publisher": Array [
+          "Association for Computing Machinery",
+        ],
+        "series": Array [
+          "<span class=\\"nocase\\">ICS</span> '15",
+        ],
+        "shorttitle": Array [
+          "CSR5",
+        ],
+        "title": Array [
+          "<span class=\\"nocase\\">CSR5</span>: An Efficient Storage Format for Cross-Platform Sparse Matrix-Vector Multiplication",
+        ],
+        "url": Array [
+          "https://dl.acm.org/doi/10.1145/2751205.2751209",
+        ],
+        "year": Array [
+          "2015",
+        ],
+      },
+      "key": "liu2015",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

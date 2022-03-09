@@ -1,0 +1,45 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=type dataset exported as @data instead of @dataset for BibLaTeX #1720.biblatex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "John",
+            "lastName": "Doe",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Doe, John",
+        ],
+        "date": Array [
+          "2021",
+        ],
+        "title": Array [
+          "Faulty dataset export",
+        ],
+      },
+      "key": "Doe2021",
+      "sentenceCased": true,
+      "type": "dataset",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

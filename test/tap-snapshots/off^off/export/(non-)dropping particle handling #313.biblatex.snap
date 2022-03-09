@@ -1,0 +1,1595 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=(non-)dropping particle handling #313.biblatex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "François Hédelin",
+            "lastName": "Aubignac",
+            "suffix": "abbé d'",
+          },
+        ],
+      },
+      "fields": Object {
+        "annotation": Array [
+          "relies on paricleParser fallback detection",
+        ],
+        "author": Array [
+          "Aubignac, abbé d', François Hédelin",
+        ],
+        "title": Array [
+          "(Aubignac) (François Hédelin, abbé d')",
+        ],
+      },
+      "key": "abbot1",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "François Hédelin",
+            "lastName": "abbé d' Aubignac",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "abbé d' Aubignac, François Hédelin",
+        ],
+        "options": Array [
+          "useprefix=true",
+        ],
+        "title": Array [
+          "(abbé d' Aubignac) (François Hédelin)",
+        ],
+      },
+      "key": "abbot3",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "editor": Array [
+          Object {
+            "firstName": "Luís",
+            "lastName": "d' Almeida",
+          },
+          Object {
+            "firstName": "James",
+            "lastName": "Edwards",
+          },
+          Object {
+            "firstName": "Andrea",
+            "lastName": "Dolcetti",
+          },
+        ],
+      },
+      "fields": Object {
+        "date": Array [
+          "2013",
+        ],
+        "editor": Array [
+          "d' Almeida, Luís",
+          "Edwards, James",
+          "Dolcetti, Andrea",
+        ],
+        "isbn": Array [
+          "978-1-84946-324-9",
+        ],
+        "langid": Array [
+          "english",
+        ],
+        "location": Array [
+          "Oxford",
+        ],
+        "pagetotal": Array [
+          "vi+309",
+        ],
+        "publisher": Array [
+          "Hart Publishing",
+        ],
+        "title": Array [
+          "Reading HLA Hart's: <i>The Concept of Law</i>",
+        ],
+      },
+      "key": "almeida_reading_2013",
+      "type": "book",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Frank G.",
+            "lastName": "Bennett",
+            "suffix": "Jr.",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Bennett, Jr., Frank G.",
+        ],
+        "date": Array [
+          "2013",
+        ],
+        "isbn": Array [
+          "978-1-4793-4771-1",
+        ],
+        "location": Array [
+          "Lexington Kentucky",
+        ],
+        "pagetotal": Array [
+          "137",
+        ],
+        "publisher": Array [
+          "CreateSpace Independent Publishing Platform",
+        ],
+        "title": Array [
+          "Citations, Out of the Box",
+        ],
+      },
+      "key": "bennett_citations_2013",
+      "type": "book",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "John",
+            "lastName": "d' Jones",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "d' Jones, John",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "options": Array [
+          "useprefix=true",
+        ],
+        "title": Array [
+          "Bugreports_ApostropheOnParticle",
+        ],
+      },
+      "key": "bugreports_ApostropheOnParticle",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Doe",
+            "lastName": "Co.",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Doe Co.",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "title": Array [
+          "Bugreports_AsmJournals",
+        ],
+      },
+      "key": "bugreports_AsmJournals",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "lastName": "U.S. Bureau of the Census",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "U.S. Bureau of the Census",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "title": Array [
+          "Bugreports_DemoPageFullCiteCruftOnSubsequent",
+        ],
+      },
+      "key": "bugreports_DemoPageFullCiteCruftOnSubsequent",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Bruce",
+            "lastName": "D'Arcus",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "D'Arcus, Bruce",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "title": Array [
+          "Bugreports_DuplicateSpaces",
+        ],
+      },
+      "key": "bugreports_DuplicateSpaces",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "N",
+            "lastName": "Family Name",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Family Name, N",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "title": Array [
+          "Bugreports_DuplicateSpaces3",
+        ],
+      },
+      "key": "bugreports_DuplicateSpaces3",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Κώστας",
+            "lastName": "Καρυωτάκης",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Καρυωτάκης, Κώστας",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "title": Array [
+          "Bugreports_GreekStyleProblems",
+        ],
+      },
+      "key": "bugreports_GreekStyleProblems",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Eduard",
+            "lastName": "van Happel",
+          },
+          Object {
+            "firstName": "Gustav",
+            "lastName": "von Hoppel",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "van Happel, Eduard",
+          "von Hoppel, Gustav",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "options": Array [
+          "useprefix=true",
+        ],
+        "title": Array [
+          "Bugreports_parseName",
+        ],
+      },
+      "key": "bugreports_parseName",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "R.",
+            "lastName": "Reynoso-Santos",
+          },
+          Object {
+            "firstName": "L.",
+            "lastName": "Soto-Pinto",
+          },
+          Object {
+            "firstName": "C.",
+            "lastName": "Tejeda-Cruz",
+          },
+          Object {
+            "firstName": "G.",
+            "lastName": "Williams-Linera",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Reynoso-Santos, R.",
+          "Soto-Pinto, L.",
+          "Tejeda-Cruz, C.",
+          "Williams-Linera, G.",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "title": Array [
+          "Bugreports_ProcessorHang1",
+        ],
+      },
+      "key": "bugreports_ProcessorHang1",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "lastName": "Africa News",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Africa News",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "title": Array [
+          "Bugreports_YearSuffixInHarvard1",
+        ],
+      },
+      "key": "bugreports_YearSuffixInHarvard1",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "John",
+            "lastName": "Doe",
+            "suffix": "III",
+          },
+          Object {
+            "firstName": "Jane",
+            "lastName": "van Roe",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Doe, III, John",
+          "van Roe, Jane",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "options": Array [
+          "useprefix=true",
+        ],
+        "title": Array [
+          "Decorations_AndTermUnaffectedByNameDecorations",
+        ],
+      },
+      "key": "decorations_AndTermUnaffectedByNameDecorations",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Doug",
+            "lastName": "von Dipheria",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "von Dipheria, Doug",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "options": Array [
+          "useprefix=true",
+        ],
+        "title": Array [
+          "Disambiguate_CitationLabelInData",
+        ],
+      },
+      "key": "disambiguate_CitationLabelInData",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "lastName": "Caritas Europa",
+          },
+          Object {
+            "lastName": "JRS-Europe",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Caritas Europa",
+          "JRS-Europe",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "title": Array [
+          "Disambiguate_FailWithYearSuffix",
+        ],
+      },
+      "key": "disambiguate_FailWithYearSuffix",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Smith",
+            "lastName": "Co",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Smith Co",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "title": Array [
+          "Disambiguate_YearCollapseWithInstitution",
+        ],
+      },
+      "key": "disambiguate_YearCollapseWithInstitution",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Frank G.",
+            "lastName": "Bennett",
+            "suffix": "Jr.",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Bennett, Jr., Frank G.",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "title": Array [
+          "Display_SecondFieldAlignMigratePunctuation",
+        ],
+      },
+      "key": "display_SecondFieldAlignMigratePunctuation",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Alexander",
+            "lastName": "von Humboldt",
+          },
+          Object {
+            "firstName": "Cuba",
+            "lastName": "Gooding",
+            "suffix": "Jr.",
+          },
+          Object {
+            "firstName": "Jean",
+            "lastName": "de La Fontaine",
+          },
+          Object {
+            "firstName": "Georg Henrik Auto",
+            "lastName": "von Wright",
+          },
+          Object {
+            "firstName": "Georg Henrik Explicit",
+            "lastName": "von Wright",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "von Humboldt, Alexander",
+          "Gooding, Jr., Cuba",
+          "de La Fontaine, Jean",
+          "von Wright, Georg Henrik Auto",
+          "von Wright, Georg Henrik Explicit",
+        ],
+        "date": Array [
+          "1963",
+        ],
+        "isbn": Array [
+          "0-7100-3616-7",
+        ],
+        "langid": Array [
+          "anglais",
+        ],
+        "location": Array [
+          "Londres",
+        ],
+        "options": Array [
+          "useprefix=true",
+        ],
+        "pagetotal": Array [
+          "xviii+214",
+        ],
+        "publisher": Array [
+          "Routledge & Kegan Paul",
+        ],
+        "series": Array [
+          "International Library of Philosophy and Scientific Method",
+        ],
+        "shorttitle": Array [
+          "Norm and Action",
+        ],
+        "title": Array [
+          "Norm and Action. A Logical Enquiry",
+        ],
+      },
+      "key": "fixedkey",
+      "type": "book",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Doe",
+            "lastName": "Inc.",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Doe Inc.",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "title": Array [
+          "Group_ComplexNesting",
+        ],
+      },
+      "key": "group_ComplexNesting",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "S. P",
+            "lastName": "la Berge",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "la Berge, S. P",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "options": Array [
+          "useprefix=true",
+        ],
+        "title": Array [
+          "Integration_DuplicateItem",
+        ],
+      },
+      "key": "integration_DuplicateItem",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Martin Luther",
+            "lastName": "King",
+            "suffix": "Jr.",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "King, Jr., Martin Luther",
+        ],
+        "date": Array [
+          "1968",
+        ],
+        "location": Array [
+          "New York",
+        ],
+        "pagetotal": Array [
+          "154",
+        ],
+        "publisher": Array [
+          "Grosset & Dunlap",
+        ],
+        "title": Array [
+          "\\"I Have a Dream\\" : The Quotations of Martin Luther King JR",
+        ],
+      },
+      "key": "king_have_1968",
+      "type": "book",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Samuel",
+            "lastName": "de Simone",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "de Simone, Samuel",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "options": Array [
+          "useprefix=true",
+        ],
+        "title": Array [
+          "Magic_CapitalizeFirstOccurringNameParticle",
+        ],
+      },
+      "key": "magic_CapitalizeFirstOccurringNameParticle",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "John",
+            "lastName": "von Doe",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "von Doe, John",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "options": Array [
+          "useprefix=true",
+        ],
+        "title": Array [
+          "Magic_NameParticle",
+        ],
+      },
+      "key": "magic_NameParticle",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "lastName": "Blob",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Blob",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "title": Array [
+          "Magic_SuppressDuplicateVariableRendering",
+        ],
+      },
+      "key": "magic_SuppressDuplicateVariableRendering",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "James",
+            "lastName": "Doe",
+            "suffix": "III",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Doe, III, James",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "title": Array [
+          "Name_ArticularNameAsSortOrder",
+        ],
+      },
+      "key": "name_ArticularNameAsSortOrder",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "James",
+            "lastName": "Doe",
+            "suffix": "Jr",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Doe, Jr, James",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "title": Array [
+          "Name_ArticularShortFormCommaSuffix",
+        ],
+      },
+      "key": "name_ArticularShortFormCommaSuffix",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Jeffrey",
+            "lastName": "Doe",
+            "suffix": "Jr.",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Doe, Jr., Jeffrey",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "title": Array [
+          "Name_ArticularWithComma",
+        ],
+      },
+      "key": "name_ArticularWithComma",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Noakes",
+            "lastName": "Inc.",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Noakes Inc.",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "title": Array [
+          "Name_Delimiter",
+        ],
+      },
+      "key": "name_Delimiter",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Gerard",
+            "lastName": "van der Meer",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "van der Meer, Gerard",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "options": Array [
+          "useprefix=true",
+        ],
+        "title": Array [
+          "Name_FormattingOfParticles",
+        ],
+      },
+      "key": "name_FormattingOfParticles",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Alan",
+            "lastName": "al- One",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "al- One, Alan",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "options": Array [
+          "useprefix=true",
+        ],
+        "title": Array [
+          "Name_HyphenatedNonDroppingParticle1",
+        ],
+      },
+      "key": "name_HyphenatedNonDroppingParticle1",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "lastName": "Multi-National United",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Multi-National United",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "title": Array [
+          "Name_Institution",
+        ],
+      },
+      "key": "name_Institution",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "lastName": "São Paulo (Estado)",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "São Paulo (Estado)",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "title": Array [
+          "Name_InstitutionDecoration",
+        ],
+      },
+      "key": "name_InstitutionDecoration",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Rip",
+            "lastName": "van Winkle",
+          },
+          Object {
+            "firstName": "Carl",
+            "lastName": "Thucydides",
+            "suffix": "III",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "van Winkle, Rip",
+          "Thucydides, III, Carl",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "options": Array [
+          "useprefix=true",
+        ],
+        "title": Array [
+          "Name_MixedFormatsInitialSortOrderAllWithDecorationsEtAl",
+        ],
+      },
+      "key": "name_MixedFormatsInitialSortOrderAllWithDecorationsEtAl",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "lastName": "Alfred Benzon Foundation",
+          },
+          Object {
+            "lastName": "James Benson Foundation",
+          },
+          Object {
+            "lastName": "John Candy Foundation",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Alfred Benzon Foundation",
+          "James Benson Foundation",
+          "John Candy Foundation",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "title": Array [
+          "Name_MultipleLiteral",
+        ],
+      },
+      "key": "name_MultipleLiteral",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Jean",
+            "lastName": "de La Fontaine",
+            "suffix": "III",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "de La Fontaine, III, Jean",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "options": Array [
+          "useprefix=true",
+        ],
+        "title": Array [
+          "Name_namepartAffixes",
+        ],
+      },
+      "key": "name_namepartAffixes",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Jean",
+            "lastName": "de La Fontaine",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "de La Fontaine, Jean",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "title": Array [
+          "Name_ParsedDroppingParticleWithAffixes",
+        ],
+      },
+      "key": "name_ParsedDroppingParticleWithAffixes",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Jean",
+            "lastName": "de la Fontaine",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "de la Fontaine, Jean",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "options": Array [
+          "useprefix=true",
+        ],
+        "title": Array [
+          "Name_ParsedNonDroppingParticleWithAffixes",
+        ],
+      },
+      "key": "name_ParsedNonDroppingParticleWithAffixes",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "François Hédelin",
+            "lastName": "d' Aubignac",
+            "suffix": "abbé d'",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "d' Aubignac, abbé d', François Hédelin",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "options": Array [
+          "useprefix=true",
+        ],
+        "title": Array [
+          "Name_ParsedNonDroppingParticleWithApostrophe",
+        ],
+      },
+      "key": "name_ParsedNonDroppingParticleWithApostrophe",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Eric",
+            "lastName": "van der Vlist",
+          },
+          Object {
+            "firstName": "Vincent",
+            "lastName": "van Gogh",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "van der Vlist, Eric",
+          "van Gogh, Vincent",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "options": Array [
+          "useprefix=true",
+        ],
+        "title": Array [
+          "Name_ParseNames",
+        ],
+      },
+      "key": "name_ParseNames",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Onename",
+            "lastName": "van One",
+          },
+          Object {
+            "firstName": "Twoname",
+            "lastName": "van Two",
+          },
+          Object {
+            "firstName": "Threename",
+            "lastName": "van Three",
+          },
+          Object {
+            "firstName": "Fourname",
+            "lastName": "Van Four",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "van One, Onename",
+          "van Two, Twoname",
+          "van Three, Threename",
+          "Van Four, Fourname",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "options": Array [
+          "useprefix=true",
+        ],
+        "title": Array [
+          "Name_ParticleCaps1",
+        ],
+      },
+      "key": "name_ParticleCaps1",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Dick",
+            "lastName": "Van Dyke",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Van Dyke, Dick",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "title": Array [
+          "Name_ParticleCaps3",
+        ],
+      },
+      "key": "name_ParticleCaps3",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "John",
+            "lastName": "de la Doe",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "de la Doe, John",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "options": Array [
+          "useprefix=true",
+        ],
+        "title": Array [
+          "Name_ParticleFormatting",
+        ],
+      },
+      "key": "name_ParticleFormatting",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Givenname",
+            "lastName": "de Las Familyname",
+          },
+          Object {
+            "firstName": "Givenname",
+            "lastName": "del Familyname",
+          },
+          Object {
+            "firstName": "Givenname",
+            "lastName": "Di Familyname",
+          },
+          Object {
+            "firstName": "Givenname",
+            "lastName": "Da Familyname",
+          },
+          Object {
+            "firstName": "Givenname",
+            "lastName": "Do Familyname",
+          },
+          Object {
+            "firstName": "Givenname",
+            "lastName": "Des Familyname",
+          },
+          Object {
+            "firstName": "Givenname",
+            "lastName": "Lou Familyname",
+          },
+          Object {
+            "firstName": "Givenname",
+            "lastName": "Pietro Familyname",
+          },
+          Object {
+            "firstName": "Givenname",
+            "lastName": "de Familyname",
+          },
+          Object {
+            "firstName": "Givenname",
+            "lastName": "de La Familyname",
+          },
+          Object {
+            "firstName": "Givenname",
+            "lastName": "Le Familyname",
+          },
+          Object {
+            "firstName": "Givenname",
+            "lastName": "La Familyname",
+          },
+          Object {
+            "firstName": "Givenname",
+            "lastName": "L'Familyname",
+          },
+          Object {
+            "firstName": "Givenname",
+            "lastName": "Saint Familyname",
+          },
+          Object {
+            "firstName": "Givenname",
+            "lastName": "Sainte Familyname",
+          },
+          Object {
+            "firstName": "Givenname",
+            "lastName": "St. Familyname",
+          },
+          Object {
+            "firstName": "Givenname",
+            "lastName": "Ste. Familyname",
+          },
+          Object {
+            "firstName": "Givenname",
+            "lastName": "van Familyname",
+          },
+          Object {
+            "firstName": "Givenname",
+            "lastName": "van de Familyname",
+          },
+          Object {
+            "firstName": "Givenname",
+            "lastName": "van der Familyname",
+          },
+          Object {
+            "firstName": "Givenname",
+            "lastName": "van den Familyname",
+          },
+          Object {
+            "firstName": "Givenname",
+            "lastName": "vander Familyname",
+          },
+          Object {
+            "firstName": "Givenname",
+            "lastName": "v.d. Familyname",
+          },
+          Object {
+            "firstName": "Givenname",
+            "lastName": "vd Familyname",
+          },
+          Object {
+            "firstName": "Givenname",
+            "lastName": "van het Familyname",
+          },
+          Object {
+            "firstName": "Givenname",
+            "lastName": "ver Familyname",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "de Las Familyname, Givenname",
+          "del Familyname, Givenname",
+          "Di Familyname, Givenname",
+          "Da Familyname, Givenname",
+          "Do Familyname, Givenname",
+          "Des Familyname, Givenname",
+          "Lou Familyname, Givenname",
+          "Pietro Familyname, Givenname",
+          "de Familyname, Givenname",
+          "de La Familyname, Givenname",
+          "Le Familyname, Givenname",
+          "La Familyname, Givenname",
+          "L'Familyname, Givenname",
+          "Saint Familyname, Givenname",
+          "Sainte Familyname, Givenname",
+          "St. Familyname, Givenname",
+          "Ste. Familyname, Givenname",
+          "van Familyname, Givenname",
+          "van de Familyname, Givenname",
+          "van der Familyname, Givenname",
+          "van den Familyname, Givenname",
+          "vander Familyname, Givenname",
+          "v.d. Familyname, Givenname",
+          "vd Familyname, Givenname",
+          "van het Familyname, Givenname",
+          "ver Familyname, Givenname",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "options": Array [
+          "useprefix=true",
+        ],
+        "title": Array [
+          "Name_ParticlesDemoteNonDroppingNever",
+        ],
+      },
+      "key": "name_ParticlesDemoteNonDroppingNever",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Jacques",
+            "lastName": "van Doe",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "van Doe, Jacques",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "options": Array [
+          "useprefix=true",
+        ],
+        "title": Array [
+          "Name_WesternArticularLowercase",
+        ],
+      },
+      "key": "name_WesternArticularLowercase",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Gérard",
+            "lastName": "de la Martinière",
+            "suffix": "III",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "de la Martinière, III, Gérard",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "options": Array [
+          "useprefix=true",
+        ],
+        "title": Array [
+          "Nameorder_Long",
+        ],
+      },
+      "key": "nameorder_Long",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Al-Khatib",
+            "lastName": "Organization",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Al-Khatib Organization",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "title": Array [
+          "Position_IbidWithSuffix",
+        ],
+      },
+      "key": "position_IbidWithSuffix",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Alan",
+            "lastName": "De Quincey",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "De Quincey, Alan",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "title": Array [
+          "Sort_ChangeInNameSort",
+        ],
+      },
+      "key": "sort_ChangeInNameSort",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Beijing",
+            "lastName": "Zoo",
+          },
+          Object {
+            "lastName": "Beijing Zoo",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Beijing Zoo",
+          "Beijing Zoo",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "title": Array [
+          "Sort_ChicagoYearSuffix1",
+        ],
+      },
+      "key": "sort_ChicagoYearSuffix1",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "ANZ",
+            "lastName": "Group",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "ANZ Group",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "title": Array [
+          "Sort_FamilyOnly",
+        ],
+      },
+      "key": "sort_FamilyOnly",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Peter A.C.",
+            "lastName": "'t Horvath",
+          },
+          Object {
+            "firstName": "Peter A.D.",
+            "lastName": "in 't Horvath",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "'t Horvath, Peter A.C.",
+          "in 't Horvath, Peter A.D.",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "options": Array [
+          "useprefix=true",
+        ],
+        "title": Array [
+          "Sort_LeadingApostropheOnNameParticle",
+        ],
+      },
+      "key": "sort_LeadingApostropheOnNameParticle",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "John",
+            "lastName": "di Noakes",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "di Noakes, John",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "options": Array [
+          "useprefix=true",
+        ],
+        "title": Array [
+          "Sort_NameParticleInNameSortFalse",
+        ],
+      },
+      "key": "sort_NameParticleInNameSortFalse",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Jacob",
+            "lastName": "[F]linders",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "[F]linders, Jacob",
+        ],
+        "keywords": Array [
+          "imported",
+        ],
+        "title": Array [
+          "Sort_NameVariable",
+        ],
+      },
+      "key": "sort_NameVariable",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

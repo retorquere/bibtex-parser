@@ -1,0 +1,58 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=BBT yields error with quality report #1387.biblatex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "J. J.",
+            "lastName": "Hopfield",
+          },
+          Object {
+            "firstName": "D. W.",
+            "lastName": "Tank",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Hopfield, J. J.",
+          "Tank, D. W.",
+        ],
+        "eprint": Array [
+          "4027280",
+        ],
+        "eprinttype": Array [
+          "pubmed",
+        ],
+        "organization": Array [
+          "Biological Cybernetics",
+        ],
+        "title": Array [
+          "<span class=\\"nocase\\">\`Neural'</span> computation of decisions in optimization problems.",
+        ],
+        "year": Array [
+          "xx 1985",
+        ],
+      },
+      "key": "HopfieldTank85",
+      "type": "online",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

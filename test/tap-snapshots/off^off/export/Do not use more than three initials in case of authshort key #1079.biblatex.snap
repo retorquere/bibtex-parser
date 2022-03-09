@@ -1,0 +1,78 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=Do not use more than three initials in case of authshort key #1079.biblatex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Ion",
+            "lastName": "Iancu",
+          },
+          Object {
+            "lastName": "Alpha",
+          },
+          Object {
+            "lastName": "Beta",
+          },
+          Object {
+            "lastName": "Gamma",
+          },
+          Object {
+            "lastName": "Delta",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Iancu, Ion",
+          "Alpha",
+          "Beta",
+          "Gamma",
+          "Delta",
+        ],
+        "booktitle": Array [
+          "Fuzzy Logic - Controls, Concepts, Theories and Applications",
+        ],
+        "date": Array [
+          "2012-03-28",
+        ],
+        "doi": Array [
+          "10.5772/2662",
+        ],
+        "isbn": Array [
+          "978-953-51-0396-7",
+        ],
+        "langid": Array [
+          "english",
+        ],
+        "title": Array [
+          "A Mamdani Type Fuzzy Logic Controller",
+        ],
+        "url": Array [
+          "https://www.intechopen.com/books/fuzzy-logic-controls-concepts-theories-and-applications",
+        ],
+        "urldate": Array [
+          "2018-11-08",
+        ],
+      },
+      "key": "IAB+12",
+      "type": "incollection",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

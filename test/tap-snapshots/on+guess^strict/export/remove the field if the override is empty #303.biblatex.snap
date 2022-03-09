@@ -1,0 +1,62 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=remove the field if the override is empty #303.biblatex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Enrico",
+            "lastName": "Pattaro",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Pattaro, Enrico",
+        ],
+        "date": Array [
+          "1988",
+        ],
+        "journaltitle": Array [
+          "Revue interdisciplinaire d’études juridiques",
+        ],
+        "langid": Array [
+          "french",
+        ],
+        "number": Array [
+          "spécial anniversaire 1978-1988",
+        ],
+        "pages": Array [
+          "135–162",
+        ],
+        "shortjournal": Array [
+          "RIEJ",
+        ],
+        "title": Array [
+          "Dimensions du savoir juridique et orientations philosophiques",
+        ],
+        "volume": Array [
+          "21",
+        ],
+      },
+      "key": "pattaro_dimensions_1988",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

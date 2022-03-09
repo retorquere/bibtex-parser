@@ -1,0 +1,68 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=Month showing up in year field on export #889.biblatex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "J. C.",
+            "lastName": "Houk",
+          },
+          Object {
+            "firstName": "S. P.",
+            "lastName": "Wise",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Houk, J. C.",
+          "Wise, S. P.",
+        ],
+        "date": Array [
+          "1995-08",
+        ],
+        "eprint": Array [
+          "7620294",
+        ],
+        "eprinttype": Array [
+          "pubmed",
+        ],
+        "journaltitle": Array [
+          "Cerebral Cortex",
+        ],
+        "number": Array [
+          "2",
+        ],
+        "pages": Array [
+          "95–110",
+        ],
+        "title": Array [
+          "Distributed modular architectures linking basal ganglia, cerebellum, and cerebral cortex: <span class=\\"nocase\\">Their</span> role in planning and controlling action.",
+        ],
+        "volume": Array [
+          "5",
+        ],
+      },
+      "key": "HoukWise95",
+      "sentenceCased": true,
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

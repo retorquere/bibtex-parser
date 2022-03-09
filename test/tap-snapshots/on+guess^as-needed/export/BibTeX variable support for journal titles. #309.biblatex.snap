@@ -1,0 +1,61 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=BibTeX variable support for journal titles. #309.biblatex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Richard E",
+            "lastName": "Blahut",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Blahut, Richard E",
+        ],
+        "date": Array [
+          "1972",
+        ],
+        "journaltitle": Array [
+          "IEEE_J_IT",
+        ],
+        "number": Array [
+          "4",
+        ],
+        "pages": Array [
+          "460–473",
+        ],
+        "title": Array [
+          "Computation of channel capacity and rate-distortion functions",
+        ],
+        "volume": Array [
+          "18",
+        ],
+      },
+      "key": "blahut_capacity",
+      "sentenceCased": true,
+      "type": "article",
+    },
+  ],
+  "errors": Array [
+    Object {
+      "message": "Unresolved @string reference \\"IEEE_J_IT\\"",
+    },
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

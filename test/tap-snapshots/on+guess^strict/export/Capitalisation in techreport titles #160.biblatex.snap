@@ -1,0 +1,58 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=Capitalisation in techreport titles #160.biblatex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "T.",
+            "lastName": "Hald",
+          },
+          Object {
+            "firstName": "D.M.A.L.F.",
+            "lastName": "Wong",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Hald, T.",
+          "Wong, D.M.A.L.F.",
+        ],
+        "date": Array [
+          "2000",
+        ],
+        "institution": Array [
+          "<span class=\\"nocase\\">Royal Veterinary and Agricultural University, Department of Animal Health and Animal Science, Division of Ethology and Health</span>",
+        ],
+        "shorttitle": Array [
+          "<span class=\\"nocase\\"><i>Salmonella</i></span> in <span class=\\"nocase\\">Pork (SALINPORK</span>)",
+        ],
+        "title": Array [
+          "<span class=\\"nocase\\"><i>Salmonella</i></span> in <span class=\\"nocase\\">Pork (SALINPORK): Pre</span>-Harvest and <span class=\\"nocase\\">Harvest Control Options Based</span> on <span class=\\"nocase\\">Epidemiologic, Diagnostic</span> and <span class=\\"nocase\\">Economic Research: Final Report</span>",
+        ],
+        "url": Array [
+          "http://www.dfvf.dk/Files/Filer/Zoonosecentret/Publikationer/Salinpork/SALINPORK_final_report.pdf",
+        ],
+      },
+      "key": "Hald_2000",
+      "type": "report",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

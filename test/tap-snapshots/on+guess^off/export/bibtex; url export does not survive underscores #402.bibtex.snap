@@ -1,0 +1,75 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=bibtex; url export does not survive underscores #402.bibtex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Thomas",
+            "lastName": "Emmert",
+          },
+          Object {
+            "firstName": "Stefan",
+            "lastName": "Jaensch",
+          },
+          Object {
+            "firstName": "Carlo",
+            "lastName": "Sovardi",
+          },
+          Object {
+            "firstName": "Wolfgang",
+            "lastName": "Polifke",
+          },
+        ],
+      },
+      "fields": Object {
+        "address": Array [
+          "Krakow",
+        ],
+        "author": Array [
+          "Emmert, Thomas",
+          "Jaensch, Stefan",
+          "Sovardi, Carlo",
+          "Polifke, Wolfgang",
+        ],
+        "booktitle": Array [
+          "7th forum acusticum",
+        ],
+        "keywords": Array [
+          "NonPerRev",
+        ],
+        "month": Array [
+          "09",
+        ],
+        "note": Array [
+          "http://www.fa2014.agh.edu.pl/fa2014_cd/",
+        ],
+        "title": Array [
+          "taX - a flexible tool for low-order duct acoustic simulation in time and frequency domain",
+        ],
+        "year": Array [
+          "2014",
+        ],
+      },
+      "key": "EmmerJaens14a",
+      "sentenceCased": true,
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

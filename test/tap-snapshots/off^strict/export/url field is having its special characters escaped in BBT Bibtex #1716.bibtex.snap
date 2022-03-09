@@ -1,0 +1,59 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=url field is having its special characters escaped in BBT Bibtex #1716.bibtex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Adriano",
+            "lastName": "Avelar",
+          },
+        ],
+      },
+      "fields": Object {
+        "abstract": Array [
+          "Em aprendizagem de máquina, a medição de desempenho é uma tarefa crucial. As métricas ROC (Receiver Operating Characteristics) e AUC (Area…",
+        ],
+        "author": Array [
+          "Avelar, Adriano",
+        ],
+        "language": Array [
+          "pt-BR",
+        ],
+        "month": Array [
+          "09",
+        ],
+        "title": Array [
+          "O que é AUC e ROC nos modelos de Machine Learning",
+        ],
+        "url": Array [
+          "https://medium.com/@eam.avelar/o-que-%C3%A9-auc-e-roc-nos-modelos-de-machine-learning-2e2c4112033d",
+        ],
+        "urldate": Array [
+          "2020-11-23",
+        ],
+        "year": Array [
+          "2020",
+        ],
+      },
+      "key": "AvelarQueAUC2019",
+      "type": "misc",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

@@ -1,0 +1,73 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=Abbreviations in key generated for Conference Proceedings #548.biblatex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Robert M.",
+            "lastName": "Corless",
+          },
+          Object {
+            "firstName": "David J.",
+            "lastName": "Jeffrey",
+          },
+          Object {
+            "firstName": "Donald E.",
+            "lastName": "Knuth",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Corless, Robert M.",
+          "Jeffrey, David J.",
+          "Knuth, Donald E.",
+        ],
+        "booktitle": Array [
+          "Proceedings of the 1997 <span class=\\"nocase\\">International Symposium</span> on <span class=\\"nocase\\">Symbolic</span> and <span class=\\"nocase\\">Algebraic Computation</span>",
+        ],
+        "date": Array [
+          "1997",
+        ],
+        "doi": Array [
+          "10.1145/258726.258783",
+        ],
+        "isbn": Array [
+          "0-89791-875-4",
+        ],
+        "langid": Array [
+          "english",
+        ],
+        "pages": Array [
+          "197–204",
+        ],
+        "publisher": Array [
+          "ACM Press",
+        ],
+        "title": Array [
+          "A sequence of series for the <span class=\\"nocase\\">Lambert <i>W</i></span> function",
+        ],
+      },
+      "key": "CorlessJeffreyKnuth1997Proc1997IntSympSymbAlgebrComput",
+      "sentenceCased": true,
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

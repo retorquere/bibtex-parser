@@ -1,0 +1,71 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=Book converted to mvbook #288.biblatex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Jacqueline",
+            "lastName": "Russ",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Russ, Jacqueline",
+        ],
+        "date": Array [
+          "1990",
+        ],
+        "isbn": Array [
+          "2-218-05069-2",
+        ],
+        "langid": Array [
+          "french",
+        ],
+        "location": Array [
+          "Paris",
+        ],
+        "note": Array [
+          "Comprend : t. 1, La puissance du désordre ; t. 2, La fin des dogmes",
+        ],
+        "number": Array [
+          "746",
+        ],
+        "pagetotal": Array [
+          "79",
+        ],
+        "publisher": Array [
+          "Hatier",
+        ],
+        "series": Array [
+          "Profil",
+        ],
+        "title": Array [
+          "Savoir et pouvoir",
+        ],
+        "volumes": Array [
+          "2",
+        ],
+      },
+      "key": "russ_savoir_1990",
+      "type": "mvbook",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

@@ -1,0 +1,61 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=DOI with underscores in extra field #108.biblatex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Pieter",
+            "lastName": "Koopman",
+          },
+          Object {
+            "firstName": "Rinus",
+            "lastName": "Plasmeijer",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Koopman, Pieter",
+          "Plasmeijer, Rinus",
+        ],
+        "booktitle": Array [
+          "Implementation of <span class=\\"nocase\\">Functional Languages</span>",
+        ],
+        "date": Array [
+          "1999",
+        ],
+        "doi": Array [
+          "10.1007/3-540-48515-5_8",
+        ],
+        "pages": Array [
+          "120–136",
+        ],
+        "publisher": Array [
+          "Springer",
+        ],
+        "title": Array [
+          "Efficient Combinator Parsers",
+        ],
+      },
+      "key": "koopman_efficient_99",
+      "type": "incollection",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

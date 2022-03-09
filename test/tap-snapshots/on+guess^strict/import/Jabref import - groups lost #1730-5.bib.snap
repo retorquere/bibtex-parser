@@ -1,0 +1,389 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP import=Jabref import - groups lost #1730-5.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Arnold",
+            "lastName": "Chau",
+          },
+          Object {
+            "firstName": "John",
+            "lastName": "Dawson",
+          },
+          Object {
+            "firstName": "Paul",
+            "lastName": "Mitchell",
+          },
+          Object {
+            "firstName": "Tian Hong",
+            "lastName": "Loh",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Arnold Chau",
+          "John Dawson",
+          "Paul Mitchell",
+          "Tian Hong Loh",
+        ],
+        "doi": Array [
+          "10.3390/electronics9081219",
+        ],
+        "file": Array [
+          "R1:C\\\\:\\\\\\\\Users\\\\\\\\jfd1\\\\\\\\jfd1\\\\\\\\group\\\\\\\\papers\\\\\\\\2019\\\\\\\\A_Chau_Journal\\\\\\\\VSDH_MAC_MDPI_R1_electronics-845046.pdf:PDF;R2:C\\\\:\\\\\\\\Users\\\\\\\\jfd1\\\\\\\\jfd1\\\\\\\\group\\\\\\\\papers\\\\\\\\2019\\\\\\\\A_Chau_Journal\\\\\\\\VSDH_MAC_MDPI_R2_electronics-845046.pdf:PDF;Published version:C\\\\:\\\\\\\\Users\\\\\\\\jfd1\\\\\\\\jfd1\\\\\\\\group\\\\\\\\papers\\\\\\\\2019\\\\\\\\A_Chau_Journal\\\\\\\\electronics-09-01219.pdf:PDF",
+        ],
+        "groups": Array [
+          "Group2",
+        ],
+        "journal": Array [
+          "Electronics",
+        ],
+        "note": Array [
+          "Submitted: 8 June 2020; Revised 13 July 2020, Accepted 27 July 2020",
+        ],
+        "number": Array [
+          "8",
+        ],
+        "owner": Array [
+          "jfd1",
+        ],
+        "pages": Array [
+          "1219",
+        ],
+        "timestamp": Array [
+          "2020.07.14",
+        ],
+        "title": Array [
+          "Virtual sensing directional hub MAC (VSDH-MAC) protocol with power control",
+        ],
+        "url": Array [
+          "http://eprints.whiterose.ac.uk/163808/",
+        ],
+        "volume": Array [
+          "9",
+        ],
+        "year": Array [
+          "2020",
+        ],
+      },
+      "key": "Chau2020",
+      "sentenceCased": true,
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Andy",
+            "lastName": "Marvin",
+          },
+          Object {
+            "firstName": "John",
+            "lastName": "Dawson",
+          },
+          Object {
+            "firstName": "Linda",
+            "lastName": "Dawson",
+          },
+          Object {
+            "firstName": "Haiyan",
+            "lastName": "Xie",
+          },
+          Object {
+            "firstName": "Arunkumar",
+            "lastName": "Venkateshaiah",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Andy Marvin",
+          "John Dawson",
+          "Linda Dawson",
+          "Haiyan Xie",
+          "Arunkumar Venkateshaiah",
+        ],
+        "booktitle": Array [
+          "2020 international symposium on electromagnetic compatibility - EMC EUROPE",
+        ],
+        "doi": Array [
+          "10.1109/EMCEUROPE48519.2020.9245741",
+        ],
+        "file": Array [
+          "Postprint:C\\\\:\\\\\\\\Users\\\\\\\\jfd1\\\\\\\\jfd1\\\\\\\\group\\\\\\\\papers\\\\\\\\2020\\\\\\\\EMC_Europe\\\\\\\\BLS Stats\\\\\\\\BLS_Stats_postprint.pdf:PDF",
+        ],
+        "groups": Array [
+          "Group1",
+        ],
+        "note": Array [
+          "Submitted 6 Feb 2020, Accepted 17 April 2020,",
+        ],
+        "owner": Array [
+          "jfd1",
+        ],
+        "timestamp": Array [
+          "2020.02.07",
+        ],
+        "title": Array [
+          "An experimental study of the variability of the shielding effectiveness of circuit board shields",
+        ],
+        "url": Array [
+          "http://eprints.whiterose.ac.uk/160135/",
+        ],
+        "year": Array [
+          "2020",
+        ],
+      },
+      "key": "Marvin2020",
+      "sentenceCased": true,
+      "type": "inproceedings",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Arunkumar H.",
+            "lastName": "Venkateshaiah",
+          },
+          Object {
+            "firstName": "Haiyan",
+            "lastName": "Xie",
+          },
+          Object {
+            "firstName": "John F.",
+            "lastName": "Dawson",
+          },
+          Object {
+            "firstName": "Andrew C.",
+            "lastName": "Marvin",
+          },
+          Object {
+            "firstName": "Linda",
+            "lastName": "Dawson",
+          },
+          Object {
+            "firstName": "Martin P.",
+            "lastName": "Robinson",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Arunkumar H. Venkateshaiah",
+          "Haiyan Xie",
+          "John F. Dawson",
+          "Andrew C. Marvin",
+          "Linda Dawson",
+          "Martin P. Robinson",
+        ],
+        "booktitle": Array [
+          "2020 international symposium on electromagnetic compatibility - EMC EUROPE",
+        ],
+        "doi": Array [
+          "10.1109/EMCEUROPE48519.2020.9245804",
+        ],
+        "file": Array [
+          "Submitted:C\\\\:\\\\\\\\Users\\\\\\\\jfd1\\\\\\\\jfd1\\\\\\\\group\\\\\\\\papers\\\\\\\\2020\\\\\\\\EMC_Europe\\\\\\\\PCB_Coupling\\\\\\\\Initial_Submitted_copy\\\\\\\\Coupling-of-Venkateshaiah.pdf:PDF;GSN from Mark:C\\\\:\\\\\\\\Users\\\\\\\\jfd1\\\\\\\\jfd1\\\\\\\\group\\\\\\\\projects\\\\\\\\2019\\\\\\\\EU_PETER\\\\\\\\Publications\\\\\\\\2020\\\\\\\\Practice_Seminar\\\\\\\\Coupling Energy PCB.pdf:PDF",
+        ],
+        "groups": Array [
+          "Group1a, jfd1:1, Group2",
+        ],
+        "note": Array [
+          "Submitted 6 Feb 2020, Accepted 17 April 2020,",
+        ],
+        "owner": Array [
+          "jfd1",
+        ],
+        "timestamp": Array [
+          "2020.04.20",
+        ],
+        "title": Array [
+          "Coupling of Energy into PCB traces in a reverberant environment: Absorption cross-section and Risk of Susceptibility",
+        ],
+        "url": Array [
+          "http://eprints.whiterose.ac.uk/160133/",
+        ],
+        "year": Array [
+          "2020",
+        ],
+      },
+      "key": "Venkateshaiah2020",
+      "sentenceCased": true,
+      "type": "inproceedings",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Haiyan",
+            "lastName": "Xie",
+          },
+          Object {
+            "firstName": "John F.",
+            "lastName": "Dawson",
+          },
+          Object {
+            "firstName": "Andy C.",
+            "lastName": "Marvin",
+          },
+          Object {
+            "firstName": "Martin P.",
+            "lastName": "Robinson",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Haiyan Xie",
+          "John F. Dawson",
+          "Andy C. Marvin",
+          "Martin P. Robinson",
+        ],
+        "doi": Array [
+          "10.1109/TEMC.2019.2954303",
+        ],
+        "file": Array [
+          "Published:C\\\\:\\\\\\\\Users\\\\\\\\jfd1\\\\\\\\jfd1\\\\\\\\group\\\\\\\\papers\\\\\\\\2019\\\\\\\\TEMC_PCB\\\\\\\\08922890.pdf:PDF",
+        ],
+        "groups": Array [
+          "Group1a",
+        ],
+        "journal": Array [
+          "Electromagnetic Compatibility, IEEE Transactions on",
+        ],
+        "month": Array [
+          "Aug",
+        ],
+        "number": Array [
+          "4",
+        ],
+        "owner": Array [
+          "jfd1",
+        ],
+        "pages": Array [
+          "1128-1135",
+        ],
+        "timestamp": Array [
+          "2021.01.28",
+        ],
+        "title": Array [
+          "Numerical and analytical analysis of stochastic electromagnetic fields coupling to a printed circuit board trace",
+        ],
+        "url": Array [
+          "http://eprints.whiterose.ac.uk/154302/",
+        ],
+        "volume": Array [
+          "62",
+        ],
+        "year": Array [
+          "2020",
+        ],
+      },
+      "key": "Xie2020",
+      "sentenceCased": true,
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "databaseType": "bibtex",
+    "groups": Object {
+      "Group1": Object {
+        "entries": Array [],
+        "groups": Array [
+          Object {
+            "entries": Array [],
+            "groups": Array [],
+            "name": "Group1a",
+          },
+          Object {
+            "entries": Array [],
+            "groups": Array [],
+            "name": "Group1b",
+          },
+        ],
+        "name": "Group1",
+      },
+      "Group1a": Object {
+        "entries": Array [],
+        "groups": Array [],
+        "name": "Group1a",
+      },
+      "Group1b": Object {
+        "entries": Array [],
+        "groups": Array [],
+        "name": "Group1b",
+      },
+      "Group2": Object {
+        "entries": Array [],
+        "groups": Array [],
+        "name": "Group2",
+      },
+      "jfd1": Object {
+        "entries": Array [],
+        "groups": Array [],
+        "name": "jfd1",
+      },
+      "Markings": Object {
+        "entries": Array [],
+        "groups": Array [
+          Object {
+            "entries": Array [],
+            "groups": Array [],
+            "name": "jfd1",
+          },
+        ],
+        "name": "Markings",
+      },
+    },
+    "groupsversion": 3,
+    "root": Array [
+      Object {
+        "entries": Array [],
+        "groups": Array [
+          Object {
+            "entries": Array [],
+            "groups": Array [],
+            "name": "jfd1",
+          },
+        ],
+        "name": "Markings",
+      },
+      Object {
+        "entries": Array [],
+        "groups": Array [
+          Object {
+            "entries": Array [],
+            "groups": Array [],
+            "name": "Group1a",
+          },
+          Object {
+            "entries": Array [],
+            "groups": Array [],
+            "name": "Group1b",
+          },
+        ],
+        "name": "Group1",
+      },
+      Object {
+        "entries": Array [],
+        "groups": Array [],
+        "name": "Group2",
+      },
+    ],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

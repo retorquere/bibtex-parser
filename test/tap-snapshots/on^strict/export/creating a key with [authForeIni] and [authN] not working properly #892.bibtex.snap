@@ -1,0 +1,96 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=creating a key with [authForeIni] and [authN] not working properly #892.bibtex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Florian",
+            "lastName": "Modler",
+          },
+          Object {
+            "firstName": "Martin",
+            "lastName": "Kreh",
+          },
+        ],
+      },
+      "fields": Object {
+        "address": Array [
+          "<span class=\\"nocase\\">Berlin [u.~a.]</span>",
+        ],
+        "author": Array [
+          "Modler, Florian",
+          "Kreh, Martin",
+        ],
+        "edition": Array [
+          "3. Aufl.",
+        ],
+        "isbn": Array [
+          "978-3-642-37365-7",
+        ],
+        "language": Array [
+          "ger",
+        ],
+        "publisher": Array [
+          "Springer",
+        ],
+        "shorttitle": Array [
+          "Tutorium",
+        ],
+        "title": Array [
+          "Tutorium Analysis 1 und Lineare Algebra 1. Mathematik von Studenten für Studenten erklärt und kommenteiert",
+        ],
+        "year": Array [
+          "2014",
+        ],
+      },
+      "key": "FMO14",
+      "type": "book",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Otto",
+            "lastName": "Forster",
+          },
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Forster, Otto",
+        ],
+        "publisher": Array [
+          "Springer",
+        ],
+        "title": Array [
+          "Analysis 1",
+        ],
+        "volume": Array [
+          "12",
+        ],
+        "year": Array [
+          "2013",
+        ],
+      },
+      "key": "OFO13",
+      "type": "book",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

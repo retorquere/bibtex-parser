@@ -1,0 +1,76 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=tex.IDs= foo_bar are escaped despite the equals sign #1449.biblatex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "David",
+            "lastName": "Shaw",
+          },
+          Object {
+            "firstName": "Lutz",
+            "lastName": "Donnerhacke",
+          },
+          Object {
+            "firstName": "Rodney",
+            "lastName": "Thayer",
+          },
+          Object {
+            "firstName": "Hal",
+            "lastName": "Finney",
+          },
+          Object {
+            "firstName": "Jon",
+            "lastName": "Callas",
+          },
+        ],
+      },
+      "fields": Object {
+        "annotation": Array [
+          "CCitation Key: rfc4880",
+        ],
+        "author": Array [
+          "Shaw, David",
+          "Donnerhacke, Lutz",
+          "Thayer, Rodney",
+          "Finney, Hal",
+          "Callas, Jon",
+        ],
+        "date": Array [
+          "2007-11",
+        ],
+        "ids": Array [
+          "rfc4880",
+        ],
+        "title": Array [
+          "<span class=\\"nocase\\">RFC4880</span>: <span class=\\"nocase\\">OpenPGP Message Format</span>",
+        ],
+        "url": Array [
+          "http://tools.ietf.org/html/rfc4880",
+        ],
+        "urldate": Array [
+          "2014-08-19",
+        ],
+      },
+      "key": "shaw_rfc4880_2007",
+      "type": "online",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`
