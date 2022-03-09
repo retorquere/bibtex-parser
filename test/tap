@@ -1,60 +1,84 @@
-const fs = require('fs')
-const path = require('path')
-const bibtex = require('../index')
+#!/usr/bin/env node
 
-const valid = {
-  sentence_case: ['on+guess', 'on', 'off'],
-  case_protection: [ 'as-needed', 'strict', 'off' ],
-}
-const config = {
-  sentence_case: valid.sentence_case[0],
-  case_protection: valid.case_protection[0],
-  test: '',
-  big: process.env.CI === 'true' ? [] : [
-    'Async import, large library #720.bib',
-    'Really Big whopping library.bibtex',
-    'long.bib',
-    'Cache does not seem to fill #1296.bibtex',
-    'Unabbreviate on import #1436-2.bib',
-    'Unabbreviate on import #1436-3.bib',
-  ],
-  exception: [
-    'unknown command handler #1733.bib',
-    'web_page and other mendeley idiocy.bib',
-  ],
-  snapshot: '',
-}
+const { Worker, isMainThread, parentPort, workerData } = require('worker_threads')
 
-const prefix = 'npm_config_'
-for (let [option, value] of Object.entries(process.env)) {
-  if (!option.startsWith(prefix)) continue
+if (isMainThread) {
+  const fs = require('fs')
+  const path = require('path')
+  const os = require('os')
 
-  option = option.substr(prefix.length)
+  const prefix = 'npm_config_'
+  const valid = {
+    sentence_case: ['on+guess', 'on', 'off'],
+    case_protection: [ 'as-needed', 'strict', 'off' ],
+    section: [ 'export', 'import', 'merge', 'other' ],
+  }
+  const config = {
+    sentence_case: valid.sentence_case[0],
+    case_protection: valid.case_protection[0],
+    section: valid.section,
+    test: '',
+    big: process.env.CI === 'true' ? [] : require('./tap.json').big,
+    exception: require('./tap.json').exception,
+    snapshot: '',
+  }
 
-  let err
-  if (valid[option]) {
-    value = value.split('\n\n')
-    if (err = value.find(v => !valid[option].includes(v))) {
-      throw new Error(`Invalid value ${JSON.stringify(err)} for ${option}`)
+  for (let [option, value] of Object.entries(process.env)) {
+    if (!option.startsWith(prefix)) continue
+
+    option = option.substr(prefix.length)
+
+    let err
+    if (valid[option]) {
+      value = value.split('\n\n')
+      if (err = value.find(v => !valid[option].includes(v))) {
+        throw new Error(`Invalid value ${JSON.stringify(err)} for ${option}`)
+      }
+    }
+    else if (typeof config[option] === 'undefined') {
+      continue
+    }
+    else if (option === 'big' || option === 'exception') {
+      value = []
+    }
+    config[option] = value
+  }
+
+  if (config.snapshot) { // reset to all for snapshots
+    for (const [key, value] of Object.entries(valid)) {
+      if (!process.env[prefix + key]) config[key] = value
     }
   }
-  else if (typeof config[option] === 'undefined') {
-    continue
-  }
-  else if (option === 'big' || option === 'exception') {
-    value = []
-  }
-  config[option] = value
-}
-if (config.snapshot) {
-  process.env.TAP_SNAPSHOT = '1'
-  for (const [key, value] of Object.entries(valid)) {
-    if (!process.env[prefix + key]) config[key] = value
-  }
-}
 
-// require *after* setting TAP_SNAPSHOT
-const tap = require('tap')
+  if (config.snapshot) process.env.TAP_SNAPSHOT = '1'
+  // require *after* setting TAP_SNAPSHOT
+  const tap = require('tap')
+
+  tap.jobs = os.cpus().length
+  for (const section of config.section) {
+    tap.test(`worker ${i}`, tap => {
+      tap.plan(2)
+      const worker = new Worker(__filename, { workerData: { ...config, section })
+      worker.on('message', m => tap.same(m, { index: i }))
+      worker.on('exit', code => t.equal(code, 0, 'exited successfully'))
+
+            t.matchSnapshot(result)
+    })
+  }
+}
+else {
+
+  const bibtex = require('../index')
+
+
+if (!config.spawned) {
+  (async () => {
+    for (const section of config.section) {
+      tap.spawn('npm', ['test', '--ignore-scripts', `--config=${JSON.stringify({...config, section, spawned: true})}`], null, section).finally(() => tap.end())
+    }
+  })()
+  process.exit()
+}
 
 function isTestcase(bibfile) {
   if (!bibfile.replace(/(la)?tex$/, '').endsWith('.bib')) return false
@@ -65,7 +89,7 @@ function isTestcase(bibfile) {
 
 for (const sentence_case of config.sentence_case) {
   for (const case_protection of config.case_protection) {
-    for (const section of ['other', 'export', 'import', 'merge']) {
+    for (const section of config.section) {
       let root = path.join(__dirname, section === 'other' ? '' : 'better-bibtex', section)
 
       for (const bibfile of fs.readdirSync(root)) {
@@ -97,6 +121,7 @@ for (const sentence_case of config.sentence_case) {
 
             t.snapshotFile = path.resolve(__dirname, 'tap-snapshots', `${test.sentence_case}^${test.case_protection}`, test.section, basename + '.snap')
             t.matchSnapshot(result)
+            t.end()
           })
         })({
           bibfile: path.join(root, bibfile),
