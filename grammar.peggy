@@ -378,15 +378,14 @@ FieldName
 //----------------------- Value Descriptors
 
 VerbatimFieldValue
-  = '"' v:TextNoQuotes? '"' {
-    v = v || {
+  = '"' v:VerbatimString? '"' {
+    return basicTextConversions({
       kind: 'Text',
       loc: location(),
       source: text(),
-      value: '',
-    }
-    v.mode = 'verbatim'
-    return basicTextConversions(v)
+      value: (v || '').trim(),
+      mode: 'verbatim',
+    })
   }
   / '{' v:VerbatimText* '}' {
     return basicTextConversions({
@@ -400,7 +399,11 @@ VerbatimFieldValue
 
 VerbatimText
   = v:$[^{}]+ { return v }
-  / '{' v:VerbatimText* '}' { return '{' + v.join('') + '}' }
+  / '{' v:$VerbatimText* '}' { return '{' + v + '}' }
+
+VerbatimString
+  = v:$[^{}"]+ { return v }
+  / '{' v:$VerbatimString* '}' { return '{' + v + '}' }
 
 FieldValue
   = Number
