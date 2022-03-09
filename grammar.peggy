@@ -51,6 +51,8 @@
   }
 
   function normalizeWhitespace(textArr) {
+    if (typeof textArr === 'string') textArr = Array.from(textArr)
+
     return textArr.reduce((prev, curr) => {
       if (/\s/.test(curr)) {
         if (/\s/.test(prev[prev.length - 1])) {
@@ -383,7 +385,7 @@ VerbatimFieldValue
       kind: 'Text',
       loc: location(),
       source: text(),
-      value: (v || '').trim(),
+      value: normalizeWhitespace((v || '').trim()),
       mode: 'verbatim',
     })
   }
@@ -392,7 +394,7 @@ VerbatimFieldValue
       kind: 'Text',
       loc: location(),
       source: text(),
-      value: v.join('').trim(),
+      value: normalizeWhitespace(v.join('').trim()),
       mode: 'verbatim',
     })
   }

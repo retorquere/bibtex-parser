@@ -63,7 +63,7 @@ const piscina = new Piscina({ filename: path.resolve(__dirname, 'worker') })
 
 let testcases = []
 for (const pattern of config.test) {
-  testcases = testcases.concat(glob(path.join(__dirname, '**', config.test[0] + '*.{bib,bibtex,biblatex}'), { nocase: true, matchBase: true, nonull: false, nodir: true }))
+  testcases = testcases.concat(glob(path.join(__dirname, '**', (pattern ? '*' : '') + pattern + '*.{bib,bibtex,biblatex}'), { nocase: true, matchBase: true, nonull: false, nodir: true }))
 }
 
 for (const sentence_case of config.sentence_case) {
