@@ -50,6 +50,7 @@ if (config.snapshot) { // reset to all for snapshots
 }
 
 if (config.snapshot) process.env.TAP_SNAPSHOT = '1'
+console.log(config)
 
 // require *after* setting TAP_SNAPSHOT
 const tap = require('tap')
