@@ -11,6 +11,7 @@ class SentenceCaser {
   private sentenceStart: boolean
   private acronym = /^[A-Z][.]([A-Z][.])+(?=$|[^\w])/
   private quoted = /^"[^"]+"(?=$|[^\w])/
+  private innerCaps = /[a-zA-Z][A-Z]/
 
   convert(text: string): string {
     this.input = text
@@ -28,7 +29,7 @@ class SentenceCaser {
       else if (m = this.input.match(/^[a-z]+n't\b/i)) { // isn't
         this.add(m[0])
       }
-      else if (m = this.input.match(/^[\w-]+/)) { // gallium-nitride
+      else if (m = this.input.match(/^[\w-]+/)) { // also match gallium-nitride as one word
         this.add(m[0])
       }
       else {
@@ -43,7 +44,7 @@ class SentenceCaser {
     const result = []
     if (this.sentenceStart || keep) result.push(parts.shift())
     for (word of parts) {
-      if (!word.match(/[a-z][A-Z]/)) word = word.toLowerCase()
+      if (!word.match(this.innerCaps)) word = word.toLowerCase()
       result.push(word)
     }
     word = result.join('-')
