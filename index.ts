@@ -5,6 +5,85 @@ import { JabRefMetadata, parse as parseJabRef } from './jabref'
 import { latex as latex2unicode, diacritics } from 'unicode2latex'
 import crossref from './crossref.json'
 
+class SentenceCaser {
+  private input: string
+  private result: string
+  private sentenceStart: boolean
+  private acronym = /^[A-Z][.]([A-Z][.])+(?=$|[^\w])/
+
+  convert(text: string): string {
+    this.input = text
+    this.result = ''
+    this.sentenceStart = true
+
+    let m
+    while (this.input) {
+      if (m = this.input.match(this.acronym)) { // U.S.
+        this.add(m[0], true)
+      }
+      else if (m = this.input.match(/^[a-z]+n't\b/i)) { // isn't
+        this.add(m[0])
+      }
+      else if (m = this.input.match(/^[\w-]+/)) { // gallium-nitride
+        this.add(m[0])
+      }
+      else {
+        this.add(this.input[0])
+      }
+    }
+    return this.result
+  }
+
+  add(word: string, keep=false) {
+    const parts = word.split('-')
+    const result = []
+    if (this.sentenceStart || keep) result.push(parts.shift())
+    for (word of parts) {
+      if (!word.match(/[a-z][A-Z]/)) word = word.toLowerCase()
+      result.push(word)
+    }
+    word = result.join('-')
+    this.result += word
+    this.input = this.input.substr(word.length)
+    if (!word.match(/^\s+$/)) {
+      this.sentenceStart = !!word.match(/^[.?!]$/)
+    }
+  }
+}
+const sentenceCaser = new SentenceCaser
+
+export function toSentenceCase(text: string): string {
+  return sentenceCaser.convert(text)
+}
+/*
+export function toSentenceCase(text: string): string {
+  let haslowercase = false
+  const restore: [number, number, string][] = []
+  let sentencecased = text.replace(/((?:^|[?!]|[-.:;[\]<>'*\\(),{}—_“”‘’])?\s*)([^-\s;?:.![\]<>'*\\(),{}—_“”‘’]+)/g, (match: string, leader:string, word:string, offset: number) => {
+    // if (word.match(/^[A-Z]$/) && word !== 'I') {
+    if (word === 'I') {
+      const leaderlen = leader?.length || 0
+      restore.push([offset + leaderlen, offset + leaderlen + word.length, word])
+    }
+    else if (word.match(/^[a-z]/)) {
+      haslowercase = true
+    }
+    if (leader && !leader.match(/^[?!]/) && word.match(/^[A-Z][^A-Z]*$/)) {
+      word = word.toLowerCase()
+    }
+    return (leader || '') + word
+  })
+
+  if (haslowercase) {
+    for (const [start, end, word] of restore) {
+      sentencecased = sentencecased.substr(0, start) + word + sentencecased.substr(end)
+    }
+  }
+
+  return sentencecased
+}
+*/
+
 type Node =
   | bibtex.Bibliography
   | bibtex.Math
@@ -1726,7 +1805,7 @@ class Parser {
       this.preserve(0, 1)
     }
 
-    let sentenceCased = text.toLowerCase().replace(/(([?!]\s*|^)(['"¡¿“‘„«\s]+)?[^\s])/g, x => x.toUpperCase())
+    let sentenceCased = toSentenceCase(text)
     for (const { start, end } of this.field.preserveRanges) {
       sentenceCased = sentenceCased.substring(0, start) + text.substring(start, end) + sentenceCased.substring(end)
     }
