@@ -10,6 +10,7 @@ class SentenceCaser {
   private result: string
   private sentenceStart: boolean
   private acronym = /^[A-Z][.]([A-Z][.])+(?=$|[^\w])/
+  private quoted = /^"[^"]+"(?=$|[^\w])/
 
   convert(text: string): string {
     this.input = text
@@ -18,7 +19,10 @@ class SentenceCaser {
 
     let m
     while (this.input) {
-      if (m = this.input.match(this.acronym)) { // U.S.
+      if (m = this.input.match(this.quoted)) { // "Hello There"
+        this.add(m[0], true)
+      }
+      else if (m = this.input.match(this.acronym)) { // U.S.
         this.add(m[0], true)
       }
       else if (m = this.input.match(/^[a-z]+n't\b/i)) { // isn't
@@ -55,34 +59,6 @@ const sentenceCaser = new SentenceCaser
 export function toSentenceCase(text: string): string {
   return sentenceCaser.convert(text)
 }
-/*
-export function toSentenceCase(text: string): string {
-  let haslowercase = false
-  const restore: [number, number, string][] = []
-  let sentencecased = text.replace(/((?:^|[?!]|[-.:;[\]<>'*\\(),{}—_“”‘’])?\s*)([^-\s;?:.![\]<>'*\\(),{}—_“”‘’]+)/g, (match: string, leader:string, word:string, offset: number) => {
-    // if (word.match(/^[A-Z]$/) && word !== 'I') {
-    if (word === 'I') {
-      const leaderlen = leader?.length || 0
-      restore.push([offset + leaderlen, offset + leaderlen + word.length, word])
-    }
-    else if (word.match(/^[a-z]/)) {
-      haslowercase = true
-    }
-    if (leader && !leader.match(/^[?!]/) && word.match(/^[A-Z][^A-Z]*$/)) {
-      word = word.toLowerCase()
-    }
-    return (leader || '') + word
-  })
-
-  if (haslowercase) {
-    for (const [start, end, word] of restore) {
-      sentencecased = sentencecased.substr(0, start) + word + sentencecased.substr(end)
-    }
-  }
-
-  return sentencecased
-}
-*/
 
 type Node =
   | bibtex.Bibliography
