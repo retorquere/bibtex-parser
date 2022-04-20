@@ -3,6 +3,12 @@ const bibtex = require('../index')
 
 module.exports = async function ({ bibfile, options }) {
   const source = await fs.promises.readFile(bibfile, 'utf-8')
+
+  if (bibfile.endsWith('.json')) {
+    const data = JSON.parse(source)
+    return data.items.map(item => bibtex.toSentenceCase(item.title))
+  }
+
   let result = ''
   if (options.exception) {
     await bibtex.promises.parse(source, {...options, errorHandler: err => { result = `caught error: ${err.message}` } })

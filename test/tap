@@ -14,6 +14,7 @@ const valid = {
 const multi = ['test']
 
 const config = Object.assign({
+  all: '',
   sentence_case: valid.sentence_case.slice(0, 1),
   case_protection: valid.case_protection.slice(0, 1),
   test: [''],
@@ -44,7 +45,7 @@ for (let [option, value] of Object.entries(process.env)) {
   config[option] = value
 }
 
-if (config.snapshot) { // reset to all for snapshots
+if (config.snapshot || config.all) { // reset to all for snapshots
   for (const [key, value] of Object.entries(valid)) {
     if (!process.env[prefix + key]) config[key] = value
   }
@@ -63,16 +64,36 @@ const piscina = new Piscina({ filename: path.resolve(__dirname, 'worker') })
 
 let testcases = []
 for (const pattern of config.test) {
-  testcases = testcases.concat(glob(path.join(__dirname, '**', (pattern ? '*' : '') + pattern + '*.{bib,bibtex,biblatex}'), { nocase: true, matchBase: true, nonull: false, nodir: true }))
+  testcases = testcases.concat(glob(path.join(__dirname, '**', (pattern ? '*' : '') + pattern + '*.{json,bib,bibtex,biblatex}'), { nocase: true, matchBase: true, nonull: false, nodir: true }))
 }
 
-for (const sentence_case of config.sentence_case) {
-  for (const case_protection of config.case_protection) {
-    for (const bibfile of testcases) {
-      const basename = path.basename(bibfile)
+for (const bibfile of testcases) {
+  const basename = path.basename(bibfile)
+  const section = path.basename(path.dirname(bibfile))
+
+  if (basename === 'tap.json') continue
+
+  if (bibfile.endsWith('.json')) {
+    ((bibfile, options, name, snapshot) => {
+      tap.test(name, async t => {
+        const result = await piscina.run({ bibfile, options })
+        t.snapshotFile = snapshot
+        // t.matchSnapshot(await piscina.run({ bibfile, options }))
+        t.matchSnapshot(result)
+      })
+    })(
+      bibfile,
+      {},
+      `${section}=${basename}`,
+      path.resolve(__dirname, 'tap-snapshots', section, basename + '.snap')
+    )
+    continue
+  }
+
+  for (const sentence_case of config.sentence_case) {
+    for (const case_protection of config.case_protection) {
       if (config.big.includes(basename)) continue
 
-      const section = path.basename(path.dirname(bibfile))
       const unabbreviate = config.unabbreviate.includes(basename);
 
       ((bibfile, options, name, snapshot) => {
@@ -80,7 +101,8 @@ for (const sentence_case of config.sentence_case) {
           const result = await piscina.run({ bibfile, options })
           if (typeof result !== 'string' && result.errors.length && !config.error.includes(path.basename(bibfile))) throw JSON.stringify(result.errors[0], null, 2)
           t.snapshotFile = snapshot
-          t.matchSnapshot(await piscina.run({ bibfile, options }))
+          // t.matchSnapshot(await piscina.run({ bibfile, options }))
+          t.matchSnapshot(result)
         })
       })(
         bibfile,
