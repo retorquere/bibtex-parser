@@ -25,6 +25,7 @@ class SentenceCaser {
   private allCaps = XRegExp('^\\p{Lu}+$')
   private aint = XRegExp("^\\p{L}n't(?=$|[\\P{L}])") // isn't
   private word = XRegExp('^\\p{L}+(-\\p{L}+)*') // also match gallium-nitride as one word
+  private and = XRegExp('^\\p{Lu}&\\p{Lu}(?=$|[\\P{L}])') // Q&A
 
   public convert(text: string, ignoreHTML=false): string {
     this.input = text
@@ -55,42 +56,50 @@ class SentenceCaser {
       }
     }
 
+    this.input = this.input.replace(/[;:]\s+A\s/g, match => match.toLowerCase())
+    this.input = this.input.replace(/[–—]\s*A\s/g, match => match.toLowerCase())
     let m
     while (this.input) {
       if (m = XRegExp.exec(this.input, this.quoted)) { // "Hello There"
-        this.add(m[0], true)
+        this.add(m[0], undefined, true)
       }
       else if (m = XRegExp.exec(this.input, this.acronym)) { // U.S.
-        this.add(m[0], m[0].length > 2)
+        this.add(m[0], undefined, true)
       }
       else if (m = XRegExp.exec(this.input, this.aint)) { // isn't
-        this.add(m[0])
+        this.add(m[0], undefined, false)
       }
       else if (m = XRegExp.exec(this.input, this.word)) {
-        this.add(m[0])
+        this.add(m[0], '-', false)
+      }
+      else if (m = XRegExp.exec(this.input, this.and)) {
+        this.add(m[0], undefined, true)
       }
       else {
-        this.add(this.input[0])
+        this.add(this.input[0], undefined, false)
       }
     }
 
     return restore(this.result, text, preserve)
   }
 
-  private add(word: string, keep=false) {
-    word = word.split('-').map((part, i, parts) => {
-      if ((keep || this.sentenceStart) && i === 0) return part
-      if (XRegExp.exec(part, this.acronym) && part.length === 2) return part.toLowerCase() // name initial?
-      if (part === 'A' && parts.length === 1) return part.toLowerCase()
-      if (XRegExp.exec(part, this.innerCaps)) return part
-      if (XRegExp.exec(part, this.allCaps)) return part
-      return part.toLowerCase()
-    }).join('-')
+  private add(word: string, splitter: string, keep: boolean) {
+    if (splitter) {
+      word = word.split(splitter).map((part, i) => {
+        if ((keep || this.sentenceStart) && i === 0) return part
+        if (XRegExp.exec(part, this.innerCaps)) return part
+        if (XRegExp.exec(part, this.allCaps)) return part
+        return part.toLowerCase()
+      }).join(splitter)
+    }
+    else {
+      if (!keep) word = word.toLowerCase()
+    }
 
     this.result += word
     this.input = this.input.substr(word.length)
     if (!word.match(/^\s+$/)) {
-      this.sentenceStart = !!word.match(/^[.?!]$/)
+      this.sentenceStart = !!word.match(/^[.?!]$/) || (word.length === 2 && word[1] === '.') // Vitamin A. Vitamin B.
     }
   }
 }
