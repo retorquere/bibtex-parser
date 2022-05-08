@@ -648,7 +648,7 @@ class Parser {
 
     this.options = {
       caseProtection: 'as-needed',
-      verbatimFields: [ /^citeulike-linkout-[0-9]+$/, ...fields.verbatim],
+      verbatimFields: [ /^citeulike-linkout-[0-9]+$/, /^bdsk-url-[0-9]+$/, ...fields.verbatim],
       verbatimCommands: [ 'url' ],
       unnestFields: [ ...fields.title, ...fields.unnest, ...fields.verbatim],
       unnestMode: 'unwrap',
