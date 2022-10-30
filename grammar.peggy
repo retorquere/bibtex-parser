@@ -385,7 +385,7 @@ VerbatimFieldValue
       kind: 'Text',
       loc: location(),
       source: text(),
-      value: normalizeWhitespace((v || '').trim()),
+      value: v || '',
       mode: 'verbatim',
     })
   }
@@ -394,7 +394,7 @@ VerbatimFieldValue
       kind: 'Text',
       loc: location(),
       source: text(),
-      value: normalizeWhitespace(v.join('').trim()),
+      value: v.join(''),
       mode: 'verbatim',
     })
   }
