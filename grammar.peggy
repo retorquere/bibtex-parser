@@ -579,9 +579,39 @@ LineComment
 
 Command
   = ScriptCommand
+  / LineBreak
+  / ParBreak
   / DiacriticCommand
   / RegularCommand
   / SymbolCommand
+
+LineBreak
+  = __ '\\\\' __ {
+    return {
+      kind: 'RegularCommand',
+      loc: location(),
+      source: text(),
+      command: '\\',
+      arguments: {
+        optional: [],
+        required: [],
+      },
+    }
+  }
+
+ParBreak
+  = __h '\r'? '\n' __h '\r'? '\n' __ {
+    return {
+      kind: 'RegularCommand',
+      loc: location(),
+      source: text(),
+      command: 'par',
+      arguments: {
+        optional: [],
+        required: [],
+      },
+    }
+  }
 
 ScriptCommand
   = mode:[_\^] __h v:Argument {

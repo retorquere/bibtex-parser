@@ -536,8 +536,8 @@ export interface ParserOptions {
   verbatimCommands?: string[]
 
   /**
-   * In the past many bibtex entries would just always wrap a field in double braces ({{ title here }}), likely because whomever was writing them couldn't figure out the case meddling rules (and who could
-   * blame them. Fields listed here will either have one outer layer of braces treated as case-preserve, or have the outer braced be ignored completely, if this is detected.
+   * In the past many bibtex entries would just always wrap a field in double braces, likely because whomever was writing them couldn't figure out the case meddling rules (and who could
+   * blame them). Fields listed here will either have one outer layer of braces treated as case-preserve, or have the outer braced be ignored completely, if this is detected.
    */
   unnestFields?: string[]
   unnestMode?: 'preserve' | 'unwrap'
@@ -983,10 +983,19 @@ class Parser {
     return false
   }
 
+  private isBreak(node: Node, kind: string[]) {
+    return node && node.kind === 'RegularCommand' && kind.includes(node.command)
+  }
+
   private clean(node: Node[]): Node[]
   private clean(node: Node): Node
   private clean(node: Node | Node[]): Node | Node[] {
-    if (Array.isArray(node)) return node.map(child => this.clean(child)) // eslint-disable-line @typescript-eslint/no-unsafe-return
+    if (Array.isArray(node)) {
+      return node
+        .filter((child, i) => !(this.isBreak(child, ['\\']) && this.isBreak(node[i-1], ['\\', 'par']))) // condense linebreaks
+        .filter((child, i) => !this.isBreak(child, ['par']) || !this.isBreak(node[i-1], ['par'])) // condense parbreaks
+        .map(child => this.clean(child)) // eslint-disable-line @typescript-eslint/no-unsafe-return
+    }
     delete node.loc
 
     switch (node.kind) {
@@ -1035,6 +1044,7 @@ class Parser {
       case 'Text':
       case 'BracedComment':
       case 'LineComment':
+      case 'NonEntryText':
         return node
 
       default:
@@ -1418,7 +1428,8 @@ class Parser {
         return this.text()
 
       case 'par':
-        return this.text('\n\n')
+      case '\\':
+        return node
 
       case 'cyr':
         if (this.argument(node, 'none')) return this.text()
@@ -1594,6 +1605,12 @@ class Parser {
       default:
         if (node.kind === 'RegularCommand' && node.command === 'href') {
           this.convert_href(node)
+        }
+        else if (node.kind === 'RegularCommand' && node.command === 'par') {
+          this.field.text += this.field.html ? '<p>\n' : ' '
+        }
+        else if (node.kind === 'RegularCommand' && node.command === '\\') {
+          this.field.text += this.field.html ? '<b>\n' : ' '
         }
         else {
           return this.error(new ParserError(`no converter for ${node.kind}: ${this.show(node)}`, node))
