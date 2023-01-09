@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 import * as bibtex from './grammar'
 import * as chunker from './chunker'
+import * as jabref from './jabref'
 import { JabRefMetadata, parse as parseJabRef } from './jabref'
 import { latex as latex2unicode, diacritics } from 'unicode2latex'
 import crossref from './crossref.json'
@@ -509,7 +510,7 @@ export interface ParserOptions {
   caseProtection?: 'as-needed' | 'strict' | boolean
 
   /**
-   * The parser can change TeX markup (\textsc, \emph, etc) to a text equivalent. The defaults are HTML-oriented, but you can pass in your own configuration here
+   * The parser can change TeX markup (\\textsc, \\emph, etc) to a text equivalent. The defaults are HTML-oriented, but you can pass in your own configuration here
    */
   markup?: MarkupMapping
 
@@ -783,24 +784,29 @@ class Parser {
         acc[entry.key] = entry
         return acc
       }, {})
+
       for (const entry of this.entries) {
         if (entry.fields.crossref) {
+          let applied
           for (const parent_key of entry.fields.crossref) {
             const parent = entries[parent_key]
-            const mapping = parent && crossref.find(xref => xref.source.includes(parent.type) && xref.target.includes(entry.type))
-            if (parent && mapping) {
+            if (!parent) continue
+            for (const mapping of crossref.filter(xref => xref.source.includes(parent.type) && xref.target.includes(entry.type))) {
               for (const { source, target } of mapping.fields) {
                 if (parent.fields[source] && !entry.fields[target]) {
+                  applied = true
                   entry.fields[target] = JSON.parse(JSON.stringify(parent.fields[source]))
                 }
               }
             }
           }
+
+          if (applied) delete entry.fields.crossref
         }
       }
     }
 
-    const { comments, jabref } = parseJabRef(this.comments)
+    const { comments, jabref } = parseJabRef(this.comments) // eslint-disable-line @typescript-eslint/no-shadow
 
     return {
       errors: this.errors,
@@ -2040,5 +2046,5 @@ export const promises = {
   },
 }
 
-export * as chunker from './chunker'
-export * as jabref from './jabref'
+export { chunker }
+export { jabref }
