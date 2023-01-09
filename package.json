@@ -21,7 +21,7 @@
     "postversion": "git push --follow-tags",
     "update-cases": "curl -s https://raw.githubusercontent.com/retorquere/zotero-better-bibtex/master/test/loaded.json | jq -r '.[] | select(test(\"\\\\.bib((la)?tex)?$\"))' | rsync -av --delete -m --files-from=- ../better-bibtex/test/fixtures/ test/better-bibtex/",
     "x-docs": "rm -rf docs temp && typedoc --name 'BibTeX parser' index.ts && touch docs/.nojekyll",
-    "docs": "mkdir etc && npm run api-extractor && npm run api-documenter",
+    "docs": "mkdir -p etc temp && npm run api-extractor && npm run api-documenter",
     "ncu": "./build/submodules.py && ncu -u && npm i && git add package.json package-lock.json && npm audit fix && git commit -m ncu",
     "api-documenter": "api-documenter markdown --input temp --output docs",
     "api-extractor": "api-extractor run --local --verbose"
