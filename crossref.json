@@ -1,78 +1,138 @@
-[
-  {
-    "source": ["mvbook", "book"],
-    "target": ["inbook", "bookinbook", "suppbook"],
-    "fields": [
-      {"source": "author", "target": "author"},
-      {"source": "author", "target": "bookauthor"}
-    ]
+{
+  "inbook": {
+    "mvbook": {
+      "author": "author",
+      "bookauthor": "author",
+      "maintitle": "title",
+      "mainsubtitle": "subtitle",
+      "maintitleaddon": "titleaddon"
+    },
+    "book": {
+      "author": "author",
+      "bookauthor": "author",
+      "booktitle": "title",
+      "booksubtitle": "subtitle",
+      "booktitleaddon": "titleaddon"
+    }
   },
-  {
-    "source": ["mvbook"],
-    "target": ["book", "inbook", "bookinbook", "suppbook"],
-    "fields": [
-      {"source": "title", "target": "maintitle"},
-      {"source": "subtitle", "target": "mainsubtitle"},
-      {"source": "titleaddon", "target": "maintitleaddon"}
-    ]
+  "bookinbook": {
+    "mvbook": {
+      "author": "author",
+      "bookauthor": "author",
+      "maintitle": "title",
+      "mainsubtitle": "subtitle",
+      "maintitleaddon": "titleaddon"
+    },
+    "book": {
+      "author": "author",
+      "bookauthor": "author",
+      "booktitle": "title",
+      "booksubtitle": "subtitle",
+      "booktitleaddon": "titleaddon"
+    }
   },
-  {
-    "source": ["mvcollection", "mvreference"],
-    "target": [
-      "collection",
-      "reference",
-      "incollection",
-      "inreference",
-      "suppcollection"
-    ],
-    "fields": [
-      {"source": "title", "target": "maintitle"},
-      {"source": "subtitle", "target": "mainsubtitle"},
-      {"source": "titleaddon", "target": "maintitleaddon"}
-    ]
+  "suppbook": {
+    "mvbook": {
+      "author": "author",
+      "bookauthor": "author",
+      "maintitle": "title",
+      "mainsubtitle": "subtitle",
+      "maintitleaddon": "titleaddon"
+    },
+    "book": {
+      "author": "author",
+      "bookauthor": "author",
+      "booktitle": "title",
+      "booksubtitle": "subtitle",
+      "booktitleaddon": "titleaddon"
+    }
   },
-  {
-    "source": ["mvproceedings"],
-    "target": ["proceedings", "inproceedings"],
-    "fields": [
-      {"source": "title", "target": "maintitle"},
-      {"source": "subtitle", "target": "mainsubtitle"},
-      {"source": "titleaddon", "target": "maintitleaddon"}
-    ]
+  "book": {
+    "mvbook": {
+      "maintitle": "title",
+      "mainsubtitle": "subtitle",
+      "maintitleaddon": "titleaddon"
+    }
   },
-  {
-    "source": ["book"],
-    "target": ["inbook", "bookinbook", "suppbook"],
-    "fields": [
-      {"source": "title", "target": "booktitle"},
-      {"source": "subtitle", "target": "booksubtitle"},
-      {"source": "titleaddon", "target": "booktitleaddon"}
-    ]
+  "collection": {
+    "mvcollection": {
+      "maintitle": "title",
+      "mainsubtitle": "subtitle",
+      "maintitleaddon": "titleaddon"
+    }
   },
-  {
-    "source": ["collection", "reference"],
-    "target": ["incollection", "inreference", "suppcollection"],
-    "fields": [
-      {"source": "title", "target": "booktitle"},
-      {"source": "subtitle", "target": "booksubtitle"},
-      {"source": "titleaddon", "target": "booktitleaddon"}
-    ]
+  "incollection": {
+    "mvcollection": {
+      "maintitle": "title",
+      "mainsubtitle": "subtitle",
+      "maintitleaddon": "titleaddon"
+    },
+    "collection": {
+      "booktitle": "title",
+      "booksubtitle": "subtitle",
+      "booktitleaddon": "titleaddon"
+    }
   },
-  {
-    "source": ["proceedings"],
-    "target": ["inproceedings"],
-    "fields": [
-      {"source": "title", "target": "booktitle"},
-      {"source": "subtitle", "target": "booksubtitle"},
-      {"source": "titleaddon", "target": "booktitleaddon"}
-    ]
+  "suppcollection": {
+    "mvcollection": {
+      "maintitle": "title",
+      "mainsubtitle": "subtitle",
+      "maintitleaddon": "titleaddon"
+    },
+    "collection": {
+      "booktitle": "title",
+      "booksubtitle": "subtitle",
+      "booktitleaddon": "titleaddon"
+    }
   },
-  {
-    "source": ["periodical"],
-    "target": ["article", "suppperiodical"],
-    "fields": [
-      {"source": "title", "target": "journaltitle"},
-      {"source": "subtitle", "target": "journalsubtitle"}
-    ]
+  "proceedings": {
+    "mvproceedings": {
+      "maintitle": "title",
+      "mainsubtitle": "subtitle",
+      "maintitleaddon": "titleaddon"
+    }
+  },
+  "inproceedings": {
+    "mvproceedings": {
+      "maintitle": "title",
+      "mainsubtitle": "subtitle",
+      "maintitleaddon": "titleaddon"
+    },
+    "proceedings": {
+      "booktitle": "title",
+      "booksubtitle": "subtitle",
+      "booktitleaddon": "titleaddon"
+    }
+  },
+  "reference": {
+    "mvreference": {
+      "maintitle": "title",
+      "mainsubtitle": "subtitle",
+      "maintitleaddon": "titleaddon"
+    }
+  },
+  "inreference": {
+    "mvreference": {
+      "maintitle": "title",
+      "mainsubtitle": "subtitle",
+      "maintitleaddon": "titleaddon"
+    },
+    "reference": {
+      "booktitle": "title",
+      "booksubtitle": "subtitle",
+      "booktitleaddon": "titleaddon"
+    }
+  },
+  "article": {
+    "periodical": {
+      "journaltitle": "title",
+      "journalsubtitle": "subtitle"
+    }
+  },
+  "suppperiodical": {
+    "periodical": {
+      "journaltitle": "title",
+      "journalsubtitle": "subtitle"
+    }
   }
-]
+}

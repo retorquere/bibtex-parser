@@ -786,23 +786,23 @@ class Parser {
       }, {})
 
       for (const entry of this.entries) {
-        if (entry.fields.crossref) {
-          let applied
-          for (const parent_key of entry.fields.crossref) {
-            const parent = entries[parent_key]
-            if (!parent) continue
-            for (const mapping of crossref.filter(xref => xref.source.includes(parent.type) && xref.target.includes(entry.type))) {
-              for (const { source, target } of mapping.fields) {
-                if (parent.fields[source] && !entry.fields[target]) {
-                  applied = true
-                  entry.fields[target] = JSON.parse(JSON.stringify(parent.fields[source]))
-                }
-              }
+        if (!entry.fields.crossref || !crossref[entry.type]) continue
+
+        let applied = false
+        let parent: Entry
+        for (parent of entry.fields.crossref.map(key => entries[key])) {
+          if (!parent) continue
+          const mapping: Record<string, string> = crossref[entry.type][parent.type]
+          if (!mapping) continue
+          for (const [target, source] of Object.entries(mapping)) {
+            if (!entry.fields[target] && parent.fields[source]) {
+              entry.fields[target] = parent.fields[source]
+              applied = true
             }
           }
-
-          if (applied) delete entry.fields.crossref
         }
+
+        if (applied) delete entry.fields.crossref
       }
     }
 
