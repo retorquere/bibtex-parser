@@ -802,9 +802,11 @@ class Parser {
       }, {})
 
       for (const entry of this.entries) {
-        for (const xref of ['crossref', 'xref']) {
+        for (const xref of ['crossref', 'xdata']) {
           if (!entry.fields[xref]) continue
           const xrefapplied = entry.fields[xref]
+            .map((keys: string) => keys.split(/\s*,\s*/))
+            .reduce((acc, keys) => acc.concat(keys), [])
             .map(key => this.applyCrossref(entries[key], entry))
             .reduce((acc, applied) => acc || applied, false)
           if (xrefapplied) delete entry.fields[xref]
