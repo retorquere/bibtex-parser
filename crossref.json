@@ -1,138 +1,186 @@
 {
-  "inbook": {
-    "mvbook": {
-      "author": "author",
-      "bookauthor": "author",
-      "maintitle": "title",
-      "mainsubtitle": "subtitle",
-      "maintitleaddon": "titleaddon"
-    },
-    "book": {
-      "author": "author",
-      "bookauthor": "author",
-      "booktitle": "title",
-      "booksubtitle": "subtitle",
-      "booktitleaddon": "titleaddon"
+  "*": {
+    "*": {
+      "verbb": "verba"
     }
   },
-  "bookinbook": {
-    "mvbook": {
-      "author": "author",
-      "bookauthor": "author",
-      "maintitle": "title",
-      "mainsubtitle": "subtitle",
-      "maintitleaddon": "titleaddon"
-    },
-    "book": {
-      "author": "author",
-      "bookauthor": "author",
-      "booktitle": "title",
-      "booksubtitle": "subtitle",
-      "booktitleaddon": "titleaddon"
-    }
-  },
-  "suppbook": {
-    "mvbook": {
-      "author": "author",
-      "bookauthor": "author",
-      "maintitle": "title",
-      "mainsubtitle": "subtitle",
-      "maintitleaddon": "titleaddon"
-    },
-    "book": {
-      "author": "author",
-      "bookauthor": "author",
-      "booktitle": "title",
-      "booksubtitle": "subtitle",
-      "booktitleaddon": "titleaddon"
+  "article": {
+    "periodical": {
+      "journalsubtitle": "subtitle",
+      "journaltitle": "title"
     }
   },
   "book": {
     "mvbook": {
-      "maintitle": "title",
       "mainsubtitle": "subtitle",
+      "maintitle": "title",
+      "maintitleaddon": "titleaddon"
+    }
+  },
+  "bookinbook": {
+    "book": {
+      "author": "author",
+      "bookauthor": "author",
+      "booksubtitle": "subtitle",
+      "booktitle": "title",
+      "booktitleaddon": "titleaddon"
+    },
+    "mvbook": {
+      "author": "author",
+      "bookauthor": "author",
+      "mainsubtitle": "subtitle",
+      "maintitle": "title",
       "maintitleaddon": "titleaddon"
     }
   },
   "collection": {
     "mvcollection": {
-      "maintitle": "title",
       "mainsubtitle": "subtitle",
+      "maintitle": "title",
+      "maintitleaddon": "titleaddon"
+    },
+    "mvreference": {
+      "mainsubtitle": "subtitle",
+      "maintitle": "title",
+      "maintitleaddon": "titleaddon"
+    }
+  },
+  "inbook": {
+    "*": {
+      "bookauthor": "author"
+    },
+    "book": {
+      "author": "author",
+      "bookauthor": "author",
+      "booksubtitle": "subtitle",
+      "booktitle": "title",
+      "booktitleaddon": "titleaddon"
+    },
+    "mvbook": {
+      "author": "author",
+      "bookauthor": "author",
+      "mainsubtitle": "subtitle",
+      "maintitle": "title",
       "maintitleaddon": "titleaddon"
     }
   },
   "incollection": {
+    "collection": {
+      "booksubtitle": "subtitle",
+      "booktitle": "title",
+      "booktitleaddon": "titleaddon"
+    },
     "mvcollection": {
-      "maintitle": "title",
       "mainsubtitle": "subtitle",
+      "maintitle": "title",
       "maintitleaddon": "titleaddon"
     },
-    "collection": {
-      "booktitle": "title",
+    "mvreference": {
+      "mainsubtitle": "subtitle",
+      "maintitle": "title",
+      "maintitleaddon": "titleaddon"
+    },
+    "reference": {
       "booksubtitle": "subtitle",
+      "booktitle": "title",
       "booktitleaddon": "titleaddon"
     }
   },
-  "suppcollection": {
-    "mvcollection": {
-      "maintitle": "title",
+  "inproceedings": {
+    "mvproceedings": {
       "mainsubtitle": "subtitle",
+      "maintitle": "title",
       "maintitleaddon": "titleaddon"
     },
-    "collection": {
-      "booktitle": "title",
+    "proceedings": {
       "booksubtitle": "subtitle",
+      "booktitle": "title",
+      "booktitleaddon": "titleaddon"
+    }
+  },
+  "inreference": {
+    "collection": {
+      "booksubtitle": "subtitle",
+      "booktitle": "title",
+      "booktitleaddon": "titleaddon"
+    },
+    "mvcollection": {
+      "mainsubtitle": "subtitle",
+      "maintitle": "title",
+      "maintitleaddon": "titleaddon"
+    },
+    "mvreference": {
+      "mainsubtitle": "subtitle",
+      "maintitle": "title",
+      "maintitleaddon": "titleaddon"
+    },
+    "reference": {
+      "booksubtitle": "subtitle",
+      "booktitle": "title",
       "booktitleaddon": "titleaddon"
     }
   },
   "proceedings": {
     "mvproceedings": {
-      "maintitle": "title",
       "mainsubtitle": "subtitle",
-      "maintitleaddon": "titleaddon"
-    }
-  },
-  "inproceedings": {
-    "mvproceedings": {
       "maintitle": "title",
-      "mainsubtitle": "subtitle",
       "maintitleaddon": "titleaddon"
-    },
-    "proceedings": {
-      "booktitle": "title",
-      "booksubtitle": "subtitle",
-      "booktitleaddon": "titleaddon"
     }
   },
   "reference": {
-    "mvreference": {
-      "maintitle": "title",
+    "mvcollection": {
       "mainsubtitle": "subtitle",
+      "maintitle": "title",
+      "maintitleaddon": "titleaddon"
+    },
+    "mvreference": {
+      "mainsubtitle": "subtitle",
+      "maintitle": "title",
       "maintitleaddon": "titleaddon"
     }
   },
-  "inreference": {
-    "mvreference": {
-      "maintitle": "title",
+  "suppbook": {
+    "book": {
+      "author": "author",
+      "bookauthor": "author",
+      "booksubtitle": "subtitle",
+      "booktitle": "title",
+      "booktitleaddon": "titleaddon"
+    },
+    "mvbook": {
+      "author": "author",
+      "bookauthor": "author",
       "mainsubtitle": "subtitle",
+      "maintitle": "title",
+      "maintitleaddon": "titleaddon"
+    }
+  },
+  "suppcollection": {
+    "collection": {
+      "booksubtitle": "subtitle",
+      "booktitle": "title",
+      "booktitleaddon": "titleaddon"
+    },
+    "mvcollection": {
+      "mainsubtitle": "subtitle",
+      "maintitle": "title",
+      "maintitleaddon": "titleaddon"
+    },
+    "mvreference": {
+      "mainsubtitle": "subtitle",
+      "maintitle": "title",
       "maintitleaddon": "titleaddon"
     },
     "reference": {
-      "booktitle": "title",
       "booksubtitle": "subtitle",
+      "booktitle": "title",
       "booktitleaddon": "titleaddon"
-    }
-  },
-  "article": {
-    "periodical": {
-      "journaltitle": "title",
-      "journalsubtitle": "subtitle"
     }
   },
   "suppperiodical": {
     "periodical": {
-      "journaltitle": "title",
-      "journalsubtitle": "subtitle"
+      "journalsubtitle": "subtitle",
+      "journaltitle": "title"
     }
   }
 }

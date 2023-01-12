@@ -759,6 +759,22 @@ class Parser {
     return this.parsed()
   }
 
+  applyCrossref(parent, child) {
+    if (!parent) return false
+    let applied = false
+    for (const mappings of [crossref[child.type], crossref['*']].filter(m => m)) {
+      for (const mapping of [mappings[parent.type], mappings['*']].filter(m => m)) {
+        for (const [target, source] of Object.entries(mapping as Record<string, string>)) {
+          if (!child.fields[target] && parent.fields[source]) {
+            child.fields[target] = parent.fields[source]
+            applied = true
+          }
+        }
+      }
+    }
+    return applied
+  }
+
   private parsed(): Bibliography {
     this.field = null
     const strings = {}
@@ -786,23 +802,11 @@ class Parser {
       }, {})
 
       for (const entry of this.entries) {
-        if (!entry.fields.crossref || !crossref[entry.type]) continue
-
-        let applied = false
-        let parent: Entry
-        for (parent of entry.fields.crossref.map(key => entries[key])) {
-          if (!parent) continue
-          const mapping: Record<string, string> = crossref[entry.type][parent.type]
-          if (!mapping) continue
-          for (const [target, source] of Object.entries(mapping)) {
-            if (!entry.fields[target] && parent.fields[source]) {
-              entry.fields[target] = parent.fields[source]
-              applied = true
-            }
-          }
-        }
-
-        if (applied) delete entry.fields.crossref
+        if (!entry.fields.crossref) continue
+        const xrefapplied = entry.fields.crossref
+          .map(key => this.applyCrossref(entries[key], entry))
+          .reduce((acc, applied) => acc || applied, false)
+        if (xrefapplied) delete entry.fields.crossref
       }
     }
 
