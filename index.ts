@@ -5,6 +5,7 @@ import * as jabref from './jabref'
 import { JabRefMetadata, parse as parseJabRef } from './jabref'
 import { latex as latex2unicode, diacritics } from 'unicode2latex'
 import crossref from './crossref.json'
+import allowed from './fields.json'
 import XRegExp from 'xregexp'
 
 type TextRange = { start: number, end: number, description?: string }
@@ -759,7 +760,7 @@ class Parser {
     return this.parsed()
   }
 
-  private applyCrossref(entry, entries) {
+  private applyCrossref(entry: Entry, entries: Record<string, Entry>) {
     for (const xref of ['crossref', 'xdata']) {
       if (!entry.fields[xref]) continue
       for (const parents of entry.fields[xref]) {
@@ -772,6 +773,13 @@ class Parser {
               for (const [target, source] of Object.entries(mapping as Record<string, string>)) {
                 if (!entry.fields[target] && parent.fields[source]) {
                   entry.fields[target] = parent.fields[source]
+                  applied = true
+                }
+              }
+
+              for (const field of (allowed[entry.type] || [])) {
+                if (!entry.fields[field] && parent.fields[field]) {
+                  entry.fields[field] = parent.fields[field]
                   applied = true
                 }
               }

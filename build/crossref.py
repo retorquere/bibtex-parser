@@ -28,3 +28,27 @@ for bcf in glob.glob('biber/t/tdata/*.bcf'):
 
 with open('crossref.json', 'w') as f:
   json.dump(crossref, f, indent='  ', sort_keys=True)
+
+allowed = {}
+tree = ET.parse('biber/data/biber-tool.conf')
+root = tree.getroot()
+for entrytype in root.findall('.//entrytypes/entrytype'):
+  allowed[entrytype.text] = []
+# just to be sure
+for entrytype in root.findall('.//entryfields/entrytype'):
+  allowed[entrytype.text] = []
+
+for entryfields in root.findall('.//entryfields'):
+  entrytypes = [entrytype.text for entrytype in entryfields.findall('./entrytype')]
+  entryfields = [entryfield.text for entryfield in entryfields.findall('./field')]
+  if len(entrytypes) == 0:
+    entrytypes = list(allowed.keys())
+  for entrytype in entrytypes:
+    for entryfield in entryfields:
+      allowed[entrytype].append(entryfield)
+
+for entrytype in allowed.keys():
+  allowed[entrytype] = sorted(list(set(allowed[entrytype])))
+
+with open('fields.json', 'w') as f:
+  json.dump(allowed, f, indent='  ', sort_keys=True)

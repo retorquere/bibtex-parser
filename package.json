@@ -13,7 +13,7 @@
     "test": "tap test/tap --no-timeout --no-coverage",
     "snap": "npm test --snapshot",
     "snap:big": "npm test --snapshot --big",
-    "minitest": "peggy grammar.peggy && tsc -d && node i.js",
+    "minitest": "peggy grammar.peggy && ./build/crossref.py && tsc -d && node i.js",
     "list": "tar tvf $(npm pack)",
     "prepublishOnly": "npm start",
     "abbr": "./build/abbr.py",
@@ -75,6 +75,7 @@
     "jabref.js",
     "README.md",
     "crossref.json",
+    "fields.json",
     "strings.bib",
     "unabbrev.json"
   ],
