@@ -21,14 +21,25 @@ Object {
             "lastName": "Author",
           },
         ],
+        "editor": Array [
+          Object {
+            "firstName": "First",
+            "lastName": "Editor",
+          },
+          Object {
+            "firstName": "Second",
+            "lastName": "Editor",
+          },
+        ],
       },
       "fields": Object {
         "author": Array [
           "Author, First",
           "Author, Second",
         ],
-        "crossref": Array [
-          "conference:06",
+        "editor": Array [
+          "Editor, First",
+          "Editor, Second",
         ],
         "pages": Array [
           "330—331",

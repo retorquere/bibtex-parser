@@ -760,6 +760,17 @@ class Parser {
     return this.parsed()
   }
 
+  private applyField(parent: Entry, parentfield: string, child: Entry, childfield: string) {
+    let applied = false
+    for (const field of ['fields', 'creators']) {
+      if (!child[field][childfield] && parent[field][parentfield]) {
+        child[field][childfield] = parent[field][parentfield]
+        applied = true
+      }
+    }
+    return applied
+  }
+
   private applyCrossref(entry: Entry, entries: Record<string, Entry>) {
     for (const xref of ['crossref', 'xdata']) {
       if (!entry.fields[xref]) continue
@@ -771,17 +782,11 @@ class Parser {
           for (const mappings of [crossref[entry.type], crossref['*']].filter(m => m)) {
             for (const mapping of [mappings[parent.type], mappings['*']].filter(m => m)) {
               for (const [target, source] of Object.entries(mapping as Record<string, string>)) {
-                if (!entry.fields[target] && parent.fields[source]) {
-                  entry.fields[target] = parent.fields[source]
-                  applied = true
-                }
+                if (this.applyField(parent, source, entry, target)) applied = true
               }
 
               for (const field of (allowed[entry.type] || [])) {
-                if (!entry.fields[field] && parent.fields[field]) {
-                  entry.fields[field] = parent.fields[field]
-                  applied = true
-                }
+                if (this.applyField(parent, field, entry, field)) applied = true
               }
             }
           }

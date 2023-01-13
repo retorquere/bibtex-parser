@@ -8,7 +8,6 @@ namespaces = {'bcf': 'https://sourceforge.net/projects/biblatex'}
 
 crossref = {}
 for bcf in glob.glob('biber/t/tdata/*.bcf'):
-  print(bcf)
   tree = ET.parse(bcf)
   for inherit in tree.getroot().findall('.//bcf:inherit', namespaces=namespaces):
     for type_pair in inherit.findall('.//bcf:type_pair', namespaces=namespaces):

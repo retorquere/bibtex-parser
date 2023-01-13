@@ -21,6 +21,16 @@ Object {
             "lastName": "Author",
           },
         ],
+        "editor": Array [
+          Object {
+            "firstName": "First",
+            "lastName": "Editor",
+          },
+          Object {
+            "firstName": "Second",
+            "lastName": "Editor",
+          },
+        ],
       },
       "fields": Object {
         "author": Array [
@@ -30,11 +40,21 @@ Object {
         "booktitle": Array [
           "Proceedings of the Xth Conference on XYZ",
         ],
+        "editor": Array [
+          "Editor, First",
+          "Editor, Second",
+        ],
+        "month": Array [
+          "oct",
+        ],
         "pages": Array [
           "330—331",
         ],
         "title": Array [
           "Some publication title",
+        ],
+        "year": Array [
+          "2006",
         ],
       },
       "key": "author:06",
