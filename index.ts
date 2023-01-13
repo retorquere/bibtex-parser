@@ -759,20 +759,28 @@ class Parser {
     return this.parsed()
   }
 
-  applyCrossref(parent, child) {
-    if (!parent) return false
-    let applied = false
-    for (const mappings of [crossref[child.type], crossref['*']].filter(m => m)) {
-      for (const mapping of [mappings[parent.type], mappings['*']].filter(m => m)) {
-        for (const [target, source] of Object.entries(mapping as Record<string, string>)) {
-          if (!child.fields[target] && parent.fields[source]) {
-            child.fields[target] = parent.fields[source]
-            applied = true
+  private applyCrossref(entry, entries) {
+    for (const xref of ['crossref', 'xdata']) {
+      if (!entry.fields[xref]) continue
+      for (const parents of entry.fields[xref]) {
+        let applied = false
+        for (const parent of parents.split(/\s*,\s*/).map(key => entries[key]).filter(p => p)) {
+          this.applyCrossref(parent, entries)
+
+          for (const mappings of [crossref[entry.type], crossref['*']].filter(m => m)) {
+            for (const mapping of [mappings[parent.type], mappings['*']].filter(m => m)) {
+              for (const [target, source] of Object.entries(mapping as Record<string, string>)) {
+                if (!entry.fields[target] && parent.fields[source]) {
+                  entry.fields[target] = parent.fields[source]
+                  applied = true
+                }
+              }
+            }
           }
         }
+        if (applied) delete entry.fields[xref]
       }
     }
-    return applied
   }
 
   private parsed(): Bibliography {
@@ -802,15 +810,7 @@ class Parser {
       }, {})
 
       for (const entry of this.entries) {
-        for (const xref of ['crossref', 'xdata']) {
-          if (!entry.fields[xref]) continue
-          const xrefapplied = entry.fields[xref]
-            .map((keys: string) => keys.split(/\s*,\s*/))
-            .reduce((acc, keys) => acc.concat(keys), [])
-            .map(key => this.applyCrossref(entries[key], entry))
-            .reduce((acc, applied) => acc || applied, false)
-          if (xrefapplied) delete entry.fields[xref]
-        }
+        this.applyCrossref(entry, entries)
       }
     }
 
