@@ -15,6 +15,7 @@ export interface Entry
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
 |  [creators](./bibtex-parser.entry.creators.md) |  | { \[type: string\]: [Name](./bibtex-parser.name.md)<!-- -->\[\]; } | authors, editors, by creator type. Name order within the creator-type is retained. |
+|  [crossref](./bibtex-parser.entry.crossref.md) |  | { donated: string\[\]; inherited: string\[\]; } | list of fields that have been inherited/donated using crossref/xdata |
 |  [fields](./bibtex-parser.entry.fields.md) |  | { \[key: string\]: string\[\]; } | entry fields. The keys are always in lowercase |
 |  [key](./bibtex-parser.entry.key.md) |  | string | citation key |
 |  [sentenceCased?](./bibtex-parser.entry.sentencecased.md) |  | boolean | <i>(Optional)</i> will be set to <code>true</code> if sentence casing was applied to the entry |

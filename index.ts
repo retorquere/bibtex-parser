@@ -320,6 +320,14 @@ export interface Entry {
    * will be set to `true` if sentence casing was applied to the entry
    */
   sentenceCased?: boolean
+
+  /**
+   * list of fields that have been inherited/donated using crossref/xdata
+   */
+  crossref: {
+    donated: string[]
+    inherited: string[]
+  }
 }
 
 type FieldBuilder = {
@@ -760,12 +768,14 @@ class Parser {
     return this.parsed()
   }
 
-  private applyField(parent: Entry, parentfield: string, child: Entry, childfield: string) {
+  private applyCrossrefField(parent: Entry, parentfield: string, child: Entry, childfield: string) {
     let applied = false
     for (const field of ['fields', 'creators']) {
       if (!child[field][childfield] && parent[field][parentfield]) {
         child[field][childfield] = parent[field][parentfield]
         applied = true
+        if (!child.crossref.inherited.includes(childfield)) child.crossref.inherited.push(childfield)
+        if (!parent.crossref.donated.includes(parentfield)) parent.crossref.donated.push(parentfield)
       }
     }
     return applied
@@ -782,11 +792,11 @@ class Parser {
           for (const mappings of [crossref[entry.type], crossref['*']].filter(m => m)) {
             for (const mapping of [mappings[parent.type], mappings['*']].filter(m => m)) {
               for (const [target, source] of Object.entries(mapping as Record<string, string>)) {
-                if (this.applyField(parent, source, entry, target)) applied = true
+                if (this.applyCrossrefField(parent, source, entry, target)) applied = true
               }
 
               for (const field of (allowed[entry.type] || [])) {
-                if (this.applyField(parent, field, entry, field)) applied = true
+                if (this.applyCrossrefField(parent, field, entry, field)) applied = true
               }
             }
           }
@@ -1763,6 +1773,10 @@ class Parser {
       type: node.type,
       fields: {},
       creators: {},
+      crossref: {
+        inherited: [],
+        donated: [],
+      },
     }
     this.entries.push(this.entry)
 
