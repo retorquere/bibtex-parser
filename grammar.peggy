@@ -334,7 +334,7 @@ EntryId
   = __ id:$[^ \t\r\n,]* __ ',' { return id; }
 
 Field
-  = name:FieldName &{ return isVerbatimField(name) && unnestFields.includes(name) } FieldSeparator '{' &'{' value:VerbatimFieldValue '}' FieldTerminator {
+  = name:FieldName &{ return isVerbatimField(name) && unnestFields.includes(name) } FieldSeparator '{' &'{' value:VerbatimFieldValue '}' FieldTerminator* {
     // because this was abused so much, many processors treat double-outer-braces as single
     return {
       kind: 'Field',
@@ -345,7 +345,7 @@ Field
       value: [ protect(value) ]
     }
   }
-  / name:FieldName &{ return isVerbatimField(name) } FieldSeparator value:VerbatimFieldValue FieldTerminator {
+  / name:FieldName &{ return isVerbatimField(name) } FieldSeparator value:VerbatimFieldValue FieldTerminator* {
     return {
       kind: 'Field',
       loc: location(),
@@ -355,7 +355,7 @@ Field
       value: [ protect(value) ]
     }
   }
-  / name:FieldName FieldSeparator value:FieldValue FieldTerminator {
+  / name:FieldName FieldSeparator value:FieldValue FieldTerminator* {
     // because this was abused so much, many processors treat double-outer-braces as single
     if (unnestFields.includes(name) && Array.isArray(value) && value.length === 1 && value[0].kind === 'Block') {
       if (options.unnestMode === 'preserve') {
@@ -831,7 +831,9 @@ FieldSeparator
   = __ '=' __
 
 FieldTerminator
-  = __ ','? __h (LineComment / EOL)*
+  = _
+  / ','
+  / LineComment
 
 Concat
   = __ '#' __
