@@ -449,6 +449,7 @@ export const fields = {
     'eprint',
     'file',
     'files',
+    'pdf',
     'groups', // jabref unilaterally decided to make this non-standard field verbatim
     'ids',
     'url',
