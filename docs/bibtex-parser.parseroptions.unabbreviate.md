@@ -6,7 +6,7 @@
 
 BibTeX files may have abbreviations in the journal field. If you provide a dictionary, journal names that are found in the dictionary are replaced with the attached full name
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 unabbreviate?: Record<string, string>;

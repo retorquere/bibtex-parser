@@ -4,7 +4,7 @@
 
 ## ParseError interface
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface ParseError 
@@ -14,8 +14,8 @@ export interface ParseError
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
-|  [column?](./bibtex-parser.parseerror.column.md) |  | number | <i>(Optional)</i> Error column number within the bibtex file |
-|  [line?](./bibtex-parser.parseerror.line.md) |  | number | <i>(Optional)</i> Error line number within the bibtex file |
+|  [column?](./bibtex-parser.parseerror.column.md) |  | number | _(Optional)_ Error column number within the bibtex file |
+|  [line?](./bibtex-parser.parseerror.line.md) |  | number | _(Optional)_ Error line number within the bibtex file |
 |  [message](./bibtex-parser.parseerror.message.md) |  | string | error message |
-|  [source?](./bibtex-parser.parseerror.source.md) |  | string | <i>(Optional)</i> text block that was parsed where the error was found |
+|  [source?](./bibtex-parser.parseerror.source.md) |  | string | _(Optional)_ text block that was parsed where the error was found |
 

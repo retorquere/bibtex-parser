@@ -4,7 +4,7 @@
 
 ## Entry interface
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface Entry 
@@ -18,6 +18,6 @@ export interface Entry
 |  [crossref](./bibtex-parser.entry.crossref.md) |  | { donated: string\[\]; inherited: string\[\]; } | list of fields that have been inherited/donated using crossref/xdata |
 |  [fields](./bibtex-parser.entry.fields.md) |  | { \[key: string\]: string\[\]; } | entry fields. The keys are always in lowercase |
 |  [key](./bibtex-parser.entry.key.md) |  | string | citation key |
-|  [sentenceCased?](./bibtex-parser.entry.sentencecased.md) |  | boolean | <i>(Optional)</i> will be set to <code>true</code> if sentence casing was applied to the entry |
+|  [sentenceCased?](./bibtex-parser.entry.sentencecased.md) |  | boolean | _(Optional)_ will be set to <code>true</code> if sentence casing was applied to the entry |
 |  [type](./bibtex-parser.entry.type.md) |  | string | entry type |
 

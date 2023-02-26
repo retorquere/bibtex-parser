@@ -4,7 +4,7 @@
 
 ## toSentenceCase() function
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function toSentenceCase(text: string, ignoreHTML?: boolean): string;
@@ -15,9 +15,9 @@ export declare function toSentenceCase(text: string, ignoreHTML?: boolean): stri
 |  Parameter | Type | Description |
 |  --- | --- | --- |
 |  text | string |  |
-|  ignoreHTML | boolean | <i>(Optional)</i> |
+|  ignoreHTML | boolean | _(Optional)_ |
 
-<b>Returns:</b>
+**Returns:**
 
 string
 

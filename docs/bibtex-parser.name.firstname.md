@@ -6,7 +6,7 @@
 
 given name. Will include middle names and initials.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 firstName?: string;

@@ -4,7 +4,7 @@
 
 ## MarkupMapping.h2 property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 h2?: {

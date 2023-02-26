@@ -6,7 +6,7 @@
 
 In the past many bibtex entries would just always wrap a field in double braces, likely because whomever was writing them couldn't figure out the case meddling rules (and who could blame them). Fields listed here will either have one outer layer of braces treated as case-preserve, or have the outer braced be ignored completely, if this is detected.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 unnestFields?: string[];

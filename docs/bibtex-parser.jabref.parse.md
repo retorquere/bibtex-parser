@@ -10,7 +10,7 @@ JabRef knows several group types, and this parser parses most, but not all of th
 
 \* independent group: the keys listed in the group are the entries that are considered to belong to it \* intersection: the keys listed in the group are considered to belong to the group if they're also in the parent group \* union: the keys listed in the group are considered to belong to the group, and also the keys that are in the parent group \* query: not supported by this parser
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function parse(comments: string[]): {
@@ -25,7 +25,7 @@ export declare function parse(comments: string[]): {
 |  --- | --- | --- |
 |  comments | string\[\] |  |
 
-<b>Returns:</b>
+**Returns:**
 
 { comments: string\[\]; jabref: [JabRefMetadata](./bibtex-parser.jabref.jabrefmetadata.md)<!-- -->; }
 

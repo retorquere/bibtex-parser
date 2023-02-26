@@ -6,7 +6,7 @@
 
 stop parsing after `max_entries` entries have been found. Useful for quick detection if a text file is in fact a bibtex file
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 max_entries?: number;

@@ -6,7 +6,7 @@
 
 parse bibtex. This will try to convert TeX commands into unicode equivalents, and apply `@string` expansion
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function parse(input: string, options?: ParserOptions): Bibliography;
@@ -17,9 +17,9 @@ export declare function parse(input: string, options?: ParserOptions): Bibliogra
 |  Parameter | Type | Description |
 |  --- | --- | --- |
 |  input | string |  |
-|  options | [ParserOptions](./bibtex-parser.parseroptions.md) | <i>(Optional)</i> |
+|  options | [ParserOptions](./bibtex-parser.parseroptions.md) | _(Optional)_ |
 
-<b>Returns:</b>
+**Returns:**
 
 [Bibliography](./bibtex-parser.bibliography.md)
 

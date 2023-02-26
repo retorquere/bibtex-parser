@@ -6,7 +6,7 @@
 
 A JabRef group.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface Group 

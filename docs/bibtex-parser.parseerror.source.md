@@ -6,7 +6,7 @@
 
 text block that was parsed where the error was found
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 source?: string;

@@ -4,7 +4,7 @@
 
 ## promises variable
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 promises: {

@@ -6,7 +6,7 @@
 
 `@preamble` declarations found in the bibtex file
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 preamble: string[];

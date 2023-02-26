@@ -6,7 +6,7 @@
 
 Sub-groups under this group
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 groups: Group[];

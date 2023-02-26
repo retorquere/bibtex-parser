@@ -6,7 +6,7 @@
 
 By default, when an unexpected parsing error is found (such as a TeX command which the parser does not know about), the parser will throw an error. You can pass a function to handle the error instead, where you can log it, display it, or even still throw an error
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 errorHandler?: false | ((err: Error) => void);

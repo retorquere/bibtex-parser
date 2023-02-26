@@ -6,7 +6,7 @@
 
 Reads the bibtex input and splits it into separate chunks of `@string`<!-- -->s, `@comment`<!-- -->s, and bibtex entries. Useful for detecting if a file is bibtex file and for filtering out basic errors that would make the more sophisticated \[\[bibtex.parse\]\] reject the whole file
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function parse(input: string, options?: ParserOptions): Chunk[];
@@ -17,9 +17,9 @@ export declare function parse(input: string, options?: ParserOptions): Chunk[];
 |  Parameter | Type | Description |
 |  --- | --- | --- |
 |  input | string |  |
-|  options | ParserOptions | <i>(Optional)</i> |
+|  options | ParserOptions | _(Optional)_ |
 
-<b>Returns:</b>
+**Returns:**
 
 [Chunk](./bibtex-parser.chunker.chunk.md)<!-- -->\[\]
 

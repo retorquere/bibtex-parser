@@ -6,7 +6,7 @@
 
 Apply crossref inheritance
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 applyCrossRef?: boolean;

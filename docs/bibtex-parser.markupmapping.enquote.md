@@ -4,7 +4,7 @@
 
 ## MarkupMapping.enquote property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 enquote?: {

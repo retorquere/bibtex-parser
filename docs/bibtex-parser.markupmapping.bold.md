@@ -4,7 +4,7 @@
 
 ## MarkupMapping.bold property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 bold?: {

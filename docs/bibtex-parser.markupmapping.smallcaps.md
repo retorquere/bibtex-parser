@@ -4,7 +4,7 @@
 
 ## MarkupMapping.smallCaps property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 smallCaps?: {

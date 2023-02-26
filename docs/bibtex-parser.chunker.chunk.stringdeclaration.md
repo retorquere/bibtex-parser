@@ -6,7 +6,7 @@
 
 set to `true` if the chunk is an `@string` declaration
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 stringDeclaration?: boolean;

@@ -6,7 +6,7 @@
 
 `@string`<!-- -->s found in the bibtex file.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 strings: Record<string, string>;

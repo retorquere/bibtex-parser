@@ -6,7 +6,7 @@
 
 The parser can change TeX markup (<!-- -->\\<!-- -->textsc, \\<!-- -->emph, etc) to a text equivalent. The defaults are HTML-oriented, but you can pass in your own configuration here
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 markup?: MarkupMapping;

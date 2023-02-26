@@ -6,7 +6,7 @@
 
 Some bibtex has titles in sentence case, or all-uppercase. If this is on, and there is a field that would normally have sentence-casing applied in which more words are all-`X`<!-- -->case (where `X` is either lower or upper) than mixed-case, it is assumed that you want them this way, and no sentence-casing will be applied to that field
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 guessAlreadySentenceCased?: boolean;

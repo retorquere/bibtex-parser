@@ -6,7 +6,7 @@
 
 The root groups. You can find the nested groups in their `groups` property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 root: Group[];

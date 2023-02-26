@@ -6,7 +6,7 @@
 
 set to `true` if the chunk is an `@comment`
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 comment?: boolean;

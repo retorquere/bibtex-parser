@@ -4,7 +4,7 @@
 
 ## Name interface
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface Name 
@@ -14,12 +14,12 @@ export interface Name
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
-|  [firstName?](./bibtex-parser.name.firstname.md) |  | string | <i>(Optional)</i> given name. Will include middle names and initials. |
-|  [initial?](./bibtex-parser.name.initial.md) |  | string | <i>(Optional)</i> Initials. |
-|  [juniorcomma?](./bibtex-parser.name.juniorcomma.md) |  | boolean | <i>(Optional)</i> available when parsing biblatex extended name format |
-|  [lastName?](./bibtex-parser.name.lastname.md) |  | string | <i>(Optional)</i> Family name |
-|  [literal?](./bibtex-parser.name.literal.md) |  | string | <i>(Optional)</i> If the name is a literal (surrounded by braces) it will be in this property, and none of the other properties will be set |
-|  [prefix?](./bibtex-parser.name.prefix.md) |  | string | <i>(Optional)</i> things like <code>von</code>, <code>van der</code>, etc |
-|  [suffix?](./bibtex-parser.name.suffix.md) |  | string | <i>(Optional)</i> things like <code>Jr.</code>, <code>III</code>, etc |
-|  [useprefix?](./bibtex-parser.name.useprefix.md) |  | boolean | <i>(Optional)</i> available when parsing biblatex extended name format |
+|  [firstName?](./bibtex-parser.name.firstname.md) |  | string | _(Optional)_ given name. Will include middle names and initials. |
+|  [initial?](./bibtex-parser.name.initial.md) |  | string | _(Optional)_ Initials. |
+|  [juniorcomma?](./bibtex-parser.name.juniorcomma.md) |  | boolean | _(Optional)_ available when parsing biblatex extended name format |
+|  [lastName?](./bibtex-parser.name.lastname.md) |  | string | _(Optional)_ Family name |
+|  [literal?](./bibtex-parser.name.literal.md) |  | string | _(Optional)_ If the name is a literal (surrounded by braces) it will be in this property, and none of the other properties will be set |
+|  [prefix?](./bibtex-parser.name.prefix.md) |  | string | _(Optional)_ things like <code>von</code>, <code>van der</code>, etc |
+|  [suffix?](./bibtex-parser.name.suffix.md) |  | string | _(Optional)_ things like <code>Jr.</code>, <code>III</code>, etc |
+|  [useprefix?](./bibtex-parser.name.useprefix.md) |  | boolean | _(Optional)_ available when parsing biblatex extended name format |
 

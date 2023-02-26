@@ -6,7 +6,7 @@
 
 Start location of the chunk in the bib file
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 offset: {

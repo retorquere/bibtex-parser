@@ -4,7 +4,7 @@
 
 ## MarkupMapping.fixedWidth property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 fixedWidth?: {

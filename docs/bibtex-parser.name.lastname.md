@@ -6,7 +6,7 @@
 
 Family name
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 lastName?: string;

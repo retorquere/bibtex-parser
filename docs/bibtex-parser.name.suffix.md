@@ -6,7 +6,7 @@
 
 things like `Jr.`<!-- -->, `III`<!-- -->, etc
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 suffix?: string;

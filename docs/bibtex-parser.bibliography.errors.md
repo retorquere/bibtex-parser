@@ -6,7 +6,7 @@
 
 errors found while parsing
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 errors: ParseError[];

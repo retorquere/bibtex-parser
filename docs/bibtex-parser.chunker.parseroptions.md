@@ -4,7 +4,7 @@
 
 ## chunker.ParserOptions interface
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface ParserOptions 
@@ -14,5 +14,5 @@ export interface ParserOptions
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
-|  [max\_entries?](./bibtex-parser.chunker.parseroptions.max_entries.md) |  | number | <i>(Optional)</i> stop parsing after <code>max_entries</code> entries have been found. Useful for quick detection if a text file is in fact a bibtex file |
+|  [max\_entries?](./bibtex-parser.chunker.parseroptions.max_entries.md) |  | number | _(Optional)_ stop parsing after <code>max_entries</code> entries have been found. Useful for quick detection if a text file is in fact a bibtex file |
 

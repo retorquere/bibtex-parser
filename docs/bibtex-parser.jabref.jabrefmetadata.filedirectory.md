@@ -6,7 +6,7 @@
 
 The base path for file paths
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 fileDirectory?: string;

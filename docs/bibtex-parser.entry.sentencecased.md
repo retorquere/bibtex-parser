@@ -6,7 +6,7 @@
 
 will be set to `true` if sentence casing was applied to the entry
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 sentenceCased?: boolean;

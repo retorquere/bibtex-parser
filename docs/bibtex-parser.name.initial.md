@@ -6,7 +6,7 @@
 
 Initials.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 initial?: string;

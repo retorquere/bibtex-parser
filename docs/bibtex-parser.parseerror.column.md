@@ -6,7 +6,7 @@
 
 Error column number within the bibtex file
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 column?: number;

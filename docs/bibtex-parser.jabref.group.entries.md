@@ -6,7 +6,7 @@
 
 The citation keys which are specified to belong to this group, after intersection calculation has been applied
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 entries: string[];

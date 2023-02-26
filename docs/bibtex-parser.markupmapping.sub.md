@@ -4,7 +4,7 @@
 
 ## MarkupMapping.sub property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 sub?: {

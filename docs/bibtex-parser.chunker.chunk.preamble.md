@@ -6,7 +6,7 @@
 
 set to `true` if the chunk is a `@preamble` block
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 preamble?: boolean;

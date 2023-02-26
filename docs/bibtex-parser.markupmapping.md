@@ -6,7 +6,7 @@
 
 Markup mapping. As the bibtex file is parsed, markup will be transformed according to this table
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface MarkupMapping 
@@ -16,15 +16,15 @@ export interface MarkupMapping
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
-|  [bold?](./bibtex-parser.markupmapping.bold.md) |  | { open: string; close: string; } | <i>(Optional)</i> |
-|  [caseProtect?](./bibtex-parser.markupmapping.caseprotect.md) |  | { open: string; close: string; } | <i>(Optional)</i> |
-|  [enquote?](./bibtex-parser.markupmapping.enquote.md) |  | { open: string; close: string; } | <i>(Optional)</i> |
-|  [fixedWidth?](./bibtex-parser.markupmapping.fixedwidth.md) |  | { open: string; close: string; } | <i>(Optional)</i> |
-|  [h1?](./bibtex-parser.markupmapping.h1.md) |  | { open: string; close: string; } | <i>(Optional)</i> |
-|  [h2?](./bibtex-parser.markupmapping.h2.md) |  | { open: string; close: string; } | <i>(Optional)</i> |
-|  [italics?](./bibtex-parser.markupmapping.italics.md) |  | { open: string; close: string; } | <i>(Optional)</i> |
-|  [roman?](./bibtex-parser.markupmapping.roman.md) |  | { open: string; close: string; } | <i>(Optional)</i> |
-|  [smallCaps?](./bibtex-parser.markupmapping.smallcaps.md) |  | { open: string; close: string; } | <i>(Optional)</i> |
-|  [sub?](./bibtex-parser.markupmapping.sub.md) |  | { open: string; close: string; } | <i>(Optional)</i> |
-|  [sup?](./bibtex-parser.markupmapping.sup.md) |  | { open: string; close: string; } | <i>(Optional)</i> |
+|  [bold?](./bibtex-parser.markupmapping.bold.md) |  | { open: string; close: string; } | _(Optional)_ |
+|  [caseProtect?](./bibtex-parser.markupmapping.caseprotect.md) |  | { open: string; close: string; } | _(Optional)_ |
+|  [enquote?](./bibtex-parser.markupmapping.enquote.md) |  | { open: string; close: string; } | _(Optional)_ |
+|  [fixedWidth?](./bibtex-parser.markupmapping.fixedwidth.md) |  | { open: string; close: string; } | _(Optional)_ |
+|  [h1?](./bibtex-parser.markupmapping.h1.md) |  | { open: string; close: string; } | _(Optional)_ |
+|  [h2?](./bibtex-parser.markupmapping.h2.md) |  | { open: string; close: string; } | _(Optional)_ |
+|  [italics?](./bibtex-parser.markupmapping.italics.md) |  | { open: string; close: string; } | _(Optional)_ |
+|  [roman?](./bibtex-parser.markupmapping.roman.md) |  | { open: string; close: string; } | _(Optional)_ |
+|  [smallCaps?](./bibtex-parser.markupmapping.smallcaps.md) |  | { open: string; close: string; } | _(Optional)_ |
+|  [sub?](./bibtex-parser.markupmapping.sub.md) |  | { open: string; close: string; } | _(Optional)_ |
+|  [sup?](./bibtex-parser.markupmapping.sup.md) |  | { open: string; close: string; } | _(Optional)_ |
 

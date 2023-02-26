@@ -6,7 +6,7 @@
 
 By default, when a TeX command is encountered which the parser does not know about, the parser will throw an error. You can pass a function here to return the appropriate AST for the command.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 unknownCommandHandler?: false | ((node: bibtex.RegularCommand) => Node);

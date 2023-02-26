@@ -6,7 +6,7 @@
 
 translate braced parts of text into a case-protected counterpart; uses the \[\[MarkupMapping\]\] table in `markup`<!-- -->. Default == true == as-needed. In as-needed mode the parser will assume that words that have capitals in them imply "nocase" behavior in the consuming application. If you don't want this, turn this option on, and you'll get case protection exactly as the input has it
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 caseProtection?: 'as-needed' | 'strict' | boolean;

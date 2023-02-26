@@ -6,7 +6,7 @@
 
 Error line number within the bibtex file
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 line?: number;

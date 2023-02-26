@@ -6,7 +6,7 @@
 
 authors, editors, by creator type. Name order within the creator-type is retained.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 creators: {

@@ -6,7 +6,7 @@
 
 Some note-like fields may have more rich formatting. If listed here, more HTML conversions will be applied.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 htmlFields?: string[];

@@ -6,7 +6,7 @@
 
 `@comment`<!-- -->s found in the bibtex file.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 comments: string[];

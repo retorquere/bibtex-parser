@@ -6,7 +6,7 @@
 
 The JabRef metadata format version
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 groupsversion?: number;

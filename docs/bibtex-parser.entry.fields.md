@@ -6,7 +6,7 @@
 
 entry fields. The keys are always in lowercase
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 fields: {

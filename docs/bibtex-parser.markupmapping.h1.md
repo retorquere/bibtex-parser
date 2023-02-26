@@ -4,7 +4,7 @@
 
 ## MarkupMapping.h1 property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 h1?: {

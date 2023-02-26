@@ -6,7 +6,7 @@
 
 set to `true` if the chunk is a bibtex entry
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 entry?: boolean;

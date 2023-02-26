@@ -6,7 +6,7 @@
 
 entries in the order in which they are found, omitting those which could not be parsed.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 entries: Entry[];

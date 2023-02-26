@@ -6,7 +6,7 @@
 
 citation key
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 key: string;

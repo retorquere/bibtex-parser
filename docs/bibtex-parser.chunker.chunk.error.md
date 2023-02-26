@@ -6,7 +6,7 @@
 
 error found, if any.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 error?: string;

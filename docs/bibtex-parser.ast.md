@@ -4,7 +4,7 @@
 
 ## ast() function
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function ast(input: string, options?: ParserOptions, clean?: boolean): Node[];
@@ -15,10 +15,10 @@ export declare function ast(input: string, options?: ParserOptions, clean?: bool
 |  Parameter | Type | Description |
 |  --- | --- | --- |
 |  input | string |  |
-|  options | [ParserOptions](./bibtex-parser.parseroptions.md) | <i>(Optional)</i> |
-|  clean | boolean | <i>(Optional)</i> |
+|  options | [ParserOptions](./bibtex-parser.parseroptions.md) | _(Optional)_ |
+|  clean | boolean | _(Optional)_ |
 
-<b>Returns:</b>
+**Returns:**
 
 Node\[\]
 

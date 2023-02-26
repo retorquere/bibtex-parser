@@ -4,7 +4,7 @@
 
 ## MarkupMapping.roman property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 roman?: {

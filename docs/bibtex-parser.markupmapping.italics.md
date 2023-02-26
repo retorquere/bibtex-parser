@@ -4,7 +4,7 @@
 
 ## MarkupMapping.italics property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 italics?: {

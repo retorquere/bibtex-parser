@@ -6,7 +6,7 @@
 
 entry type
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 type: string;

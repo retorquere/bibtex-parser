@@ -4,7 +4,7 @@
 
 ## MarkupMapping.caseProtect property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 caseProtect?: {

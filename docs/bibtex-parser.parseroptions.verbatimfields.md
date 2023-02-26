@@ -6,7 +6,7 @@
 
 Some fields such as `url` are parsed in what is called "verbatim mode" where pretty much everything except braces is treated as regular text, not TeX commands. You can change the default list here if you want, for example to help parse Mendeley `file` fields, which against spec are not in verbatim mode.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 verbatimFields?: (string | RegExp)[];

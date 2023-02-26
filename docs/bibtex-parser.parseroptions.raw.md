@@ -6,7 +6,7 @@
 
 If this flag is set entries will be returned without conversion of LaTeX to unicode equivalents.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 raw?: boolean;

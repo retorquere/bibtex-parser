@@ -6,7 +6,7 @@
 
 You can pass in an existing  dictionary
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 strings?: Record<string, string> | string;

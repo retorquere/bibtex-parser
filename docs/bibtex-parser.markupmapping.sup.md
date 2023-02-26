@@ -4,7 +4,7 @@
 
 ## MarkupMapping.sup property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 sup?: {

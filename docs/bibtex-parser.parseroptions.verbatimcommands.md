@@ -6,7 +6,7 @@
 
 Some commands such as `url` are parsed in what is called "verbatim mode" where pretty much everything except braces is treated as regular text, not TeX commands.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 verbatimCommands?: string[];

@@ -6,7 +6,7 @@
 
 things like `von`<!-- -->, `van der`<!-- -->, etc
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 prefix?: string;

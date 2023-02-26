@@ -4,7 +4,7 @@
 
 ## ParserOptions.unnestMode property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 unnestMode?: 'preserve' | 'unwrap';

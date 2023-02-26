@@ -6,7 +6,7 @@
 
 The JabRef metadata database type
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 databaseType?: string;

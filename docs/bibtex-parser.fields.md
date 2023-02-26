@@ -4,7 +4,7 @@
 
 ## fields variable
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 fields: {

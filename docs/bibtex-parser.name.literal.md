@@ -6,7 +6,7 @@
 
 If the name is a literal (surrounded by braces) it will be in this property, and none of the other properties will be set
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 literal?: string;

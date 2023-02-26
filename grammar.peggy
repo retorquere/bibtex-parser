@@ -496,14 +496,14 @@ Environment
   }
 
 Block
-  = '{\\' mark:ExtendedDiacritic __ char:([a-zA-Z0-9] / '\\' [ij]) '}' {
+  = '{\\' mark:ExtendedDiacritic __ chr:([a-zA-Z0-9] / '\\' [ij]) '}' {
     return {
       kind: 'DiacriticCommand',
       loc: location(),
       source: text(),
       mark: mark,
-      dotless: !!char[1],
-      character: char[1] || char[0],
+      dotless: !!chr[1],
+      character: chr[1] || chr[0],
     }
   }
   / '{\\verb' ![a-zA-Z] v:VerbatimText* '}' {
@@ -626,24 +626,24 @@ ScriptCommand
   }
 
 DiacriticCommand
-  = '\\' mark:SimpleDiacritic __ char:([a-zA-Z0-9] / '\\' [ij]) {
+  = '\\' mark:SimpleDiacritic __ chr:([a-zA-Z0-9] / '\\' [ij]) {
     return {
       kind: 'DiacriticCommand',
       loc: location(),
       source: text(),
       mark: mark,
-      dotless: !!char[1],
-      character: char[1] || char[0],
+      dotless: !!chr[1],
+      character: chr[1] || chr[0],
     }
   }
-  / '\\' mark:ExtendedDiacritic '{' char:([a-zA-Z0-9] / '\\' [ij]) '}' {
+  / '\\' mark:ExtendedDiacritic '{' chr:([a-zA-Z0-9] / '\\' [ij]) '}' {
     return {
       kind: 'DiacriticCommand',
       loc: location(),
       source: text(),
       mark: mark,
-      dotless: !!char[1],
-      character: char[1] || char[0],
+      dotless: !!chr[1],
+      character: chr[1] || chr[0],
     }
   }
   / '\\' mark:ExtendedDiacritic &'{' v:RegularValue {

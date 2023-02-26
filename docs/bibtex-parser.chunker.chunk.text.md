@@ -6,7 +6,7 @@
 
 The text content of the chunk
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 text: string;

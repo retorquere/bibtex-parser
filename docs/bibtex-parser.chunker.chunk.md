@@ -4,7 +4,7 @@
 
 ## chunker.Chunk interface
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface Chunk 
@@ -14,11 +14,11 @@ export interface Chunk
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
-|  [comment?](./bibtex-parser.chunker.chunk.comment.md) |  | boolean | <i>(Optional)</i> set to <code>true</code> if the chunk is an <code>@comment</code> |
-|  [entry?](./bibtex-parser.chunker.chunk.entry.md) |  | boolean | <i>(Optional)</i> set to <code>true</code> if the chunk is a bibtex entry |
-|  [error?](./bibtex-parser.chunker.chunk.error.md) |  | string | <i>(Optional)</i> error found, if any. |
+|  [comment?](./bibtex-parser.chunker.chunk.comment.md) |  | boolean | _(Optional)_ set to <code>true</code> if the chunk is an <code>@comment</code> |
+|  [entry?](./bibtex-parser.chunker.chunk.entry.md) |  | boolean | _(Optional)_ set to <code>true</code> if the chunk is a bibtex entry |
+|  [error?](./bibtex-parser.chunker.chunk.error.md) |  | string | _(Optional)_ error found, if any. |
 |  [offset](./bibtex-parser.chunker.chunk.offset.md) |  | { pos: number; line: number; } | Start location of the chunk in the bib file |
-|  [preamble?](./bibtex-parser.chunker.chunk.preamble.md) |  | boolean | <i>(Optional)</i> set to <code>true</code> if the chunk is a <code>@preamble</code> block |
-|  [stringDeclaration?](./bibtex-parser.chunker.chunk.stringdeclaration.md) |  | boolean | <i>(Optional)</i> set to <code>true</code> if the chunk is an <code>@string</code> declaration |
+|  [preamble?](./bibtex-parser.chunker.chunk.preamble.md) |  | boolean | _(Optional)_ set to <code>true</code> if the chunk is a <code>@preamble</code> block |
+|  [stringDeclaration?](./bibtex-parser.chunker.chunk.stringdeclaration.md) |  | boolean | _(Optional)_ set to <code>true</code> if the chunk is an <code>@string</code> declaration |
 |  [text](./bibtex-parser.chunker.chunk.text.md) |  | string | The text content of the chunk |
 

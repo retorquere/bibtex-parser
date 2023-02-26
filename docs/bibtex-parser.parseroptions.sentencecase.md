@@ -10,7 +10,7 @@ BibTeX files are expected to store title-type fields in Sentence Case, where oth
 
 If you pass an empty array, or `false`<!-- -->, no sentence casing will be applied (even when there's no language field).
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 sentenceCase?: string[] | boolean;

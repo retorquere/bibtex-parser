@@ -6,7 +6,7 @@
 
 available when parsing biblatex extended name format
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 useprefix?: boolean;
