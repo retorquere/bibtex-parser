@@ -1385,6 +1385,7 @@ class Parser {
       case 'cite':
       case 'textsc':
       case 'textbf':
+      case 'texttt':
       case 'mkbibbold':
       case 'section':
       case 'subsection':

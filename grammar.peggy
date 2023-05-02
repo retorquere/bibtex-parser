@@ -541,7 +541,7 @@ Block
       if (leadingcmdblockarg && leadingcmdblockarg.case === 'protect') delete leadingcmdblockarg.case
 
       // \sl, \it etc
-      if (markup[leadingcmd.command]) {
+      if (markup[leadingcmd.command] && leadingcmd.arguments.required.length === 0) {
         block.markup[markup[leadingcmd.command]] = true
         block.value.shift()
       }
@@ -814,7 +814,7 @@ Argument
       mode: math.on ? 'math' : 'text',
     })
   }
-  / v:(Block / Command) { return v }
+  / __h v:(Block / Command) { return v }
 
 //-------------- Helpers
 
