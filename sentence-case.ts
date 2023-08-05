@@ -29,26 +29,16 @@ class SentenceCaser {
     const preserve: TextRange[] = []
 
     if (ignoreHTML) {
-      let replace = true
-      while (replace) {
-        replace = false
-        // always keep the leading char, but skip markup
-        this.input = this.input.replace(/[^<>]<[^>]+>/, (match: string, i: number) => {
-          preserve.push({ start: i + 1, end: i + match.length })
-          replace = true
-          return match[0].repeat(match.length)
-        })
-      }
-      replace = true
-      while (replace) {
-        replace = false
-        // always keep the leading char, but skip markup
-        this.input = this.input.replace(/<[^>]+>[^<>]/, (match: string, i: number) => {
-          preserve.push({ start: i, end: i + match.length - 1})
-          replace = true
-          return match[match.length - 1].repeat(match.length)
-        })
-      }
+      this.input.replace(/[^<>]<[^>]+>/g, (match: string, i: number) => {
+        preserve.push({ start: i + 1, end: i + match.length })
+        // replace markup by the preceding char
+        return match[0].repeat(match.length)
+      })
+      this.input = this.input.replace(/<[^>]+>[^<>]/g, (match: string, i: number) => {
+        preserve.push({ start: i, end: i + match.length - 1})
+        // replace markup by the following char
+        return match[match.length - 1].repeat(match.length)
+      })
     }
 
     this.input = this.input.replace(/[;:]\s+A\s/g, match => match.toLowerCase())
