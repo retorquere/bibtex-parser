@@ -1,5 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 import XRegExp from 'xregexp'
+import categories = require('xregexp/tools/output/categories')
+
+const LN = new RegExp(`[${categories.filter(cat => ['L', 'N', 'No'].includes(cat.name)).map(cat => cat.bmp as string).join('')}]+`, 'g')
 
 export type TextRange = { start: number, end: number, description?: string }
 
@@ -10,86 +13,81 @@ export function restore(text: string, orig: string, preserve: TextRange[]): stri
   return text
 }
 
-class SentenceCaser {
-  private input: string
-  private result: string
-  private sentenceStart: boolean
-  private acronym = XRegExp('^(\\p{Lu}[.])+(?=$|[\\P{L}])')
-  private quoted = XRegExp('^"[^"]+"(?=$|[\\P{L}])')
-  private innerCaps = XRegExp('\\p{Ll}\\p{Lu}')
-  private allCaps = XRegExp('^\\p{Lu}+$')
-  private aint = XRegExp("^\\p{L}n't(?=$|[\\P{L}])") // isn't
-  private word = XRegExp('^\\p{L}+(-\\p{L}+)*') // also match gallium-nitride as one word
-  private and = XRegExp('^\\p{Lu}&\\p{Lu}(?=$|[\\P{L}])') // Q&A
-
-  public convert(text: string, ignoreHTML=false): string {
-    this.input = text
-    this.result = ''
-    this.sentenceStart = true
-    const preserve: TextRange[] = []
-
-    if (ignoreHTML) {
-      this.input.replace(/[^<>]<[^>]+>/g, (match: string, i: number) => {
-        preserve.push({ start: i + 1, end: i + match.length })
-        // replace markup by the preceding char
-        return match[0].repeat(match.length)
-      })
-      this.input = this.input.replace(/<[^>]+>[^<>]/g, (match: string, i: number) => {
-        preserve.push({ start: i, end: i + match.length - 1})
-        // replace markup by the following char
-        return match[match.length - 1].repeat(match.length)
-      })
-    }
-
-    this.input = this.input.replace(/[;:]\s+A\s/g, match => match.toLowerCase())
-    this.input = this.input.replace(/[–—]\s*A\s/g, match => match.toLowerCase())
-    let m
-    while (this.input) {
-      if (m = XRegExp.exec(this.input, this.quoted)) { // "Hello There"
-        this.add(m[0], undefined, true)
-      }
-      else if (m = XRegExp.exec(this.input, this.acronym)) { // U.S.
-        this.add(m[0], undefined, true)
-      }
-      else if (m = XRegExp.exec(this.input, this.aint)) { // isn't
-        this.add(m[0], undefined, false)
-      }
-      else if (m = XRegExp.exec(this.input, this.word)) {
-        this.add(m[0], '-', false)
-      }
-      else if (m = XRegExp.exec(this.input, this.and)) {
-        this.add(m[0], undefined, true)
-      }
-      else {
-        this.add(this.input[0], undefined, false)
-      }
-    }
-
-    return restore(this.result, text, preserve)
-  }
-
-  private add(word: string, splitter: string, keep: boolean) {
-    if (splitter) {
-      word = word.split(splitter).map((part, i) => {
-        if ((keep || this.sentenceStart) && i === 0) return part
-        if (XRegExp.exec(part, this.innerCaps)) return part
-        if (XRegExp.exec(part, this.allCaps)) return part
-        return part.toLowerCase()
-      }).join(splitter)
-    }
-    else {
-      if (!keep) word = word.toLowerCase()
-    }
-
-    this.result += word
-    this.input = this.input.substr(word.length)
-    if (!word.match(/^\s+$/)) {
-      this.sentenceStart = !!word.match(/^[.?!]$/) || (word.length === 2 && word[1] === '.') // Vitamin A. Vitamin B.
-    }
-  }
+const re = {
+  acronym: XRegExp('(\\p{Lu}[.])+$'),
+  innerCaps: XRegExp('.\\p{Lu}'),
+  ident: XRegExp('^\\p{L}\\p{L}*[\\p{N}\\p{No}][\\p{L}\\p{N}\\p{No}]*$'),
+  allCaps: XRegExp('^\\[p{Lu}\\p{N}\\p{No}]+$'),
+  // private aint = XRegExp("^\\p{L}n't(?=$|[\\P{L}])") // isn't
+  // private word = XRegExp('^\\p{L}+([-.]\\p{L}+)*') // also match gallium-nitride as one word
+  // private and = XRegExp('^\\p{Lu}&\\p{Lu}(?=$|[\\P{L}])') // Q&A
 }
-const sentenceCaser = new SentenceCaser
 
-export function toSentenceCase(text: string, ignoreHTML = false): string {
-  return sentenceCaser.convert(text, ignoreHTML)
+function lowercase(word: string): string {
+  if (word.length === 1) {
+    return word === 'A' ? word.toLowerCase() : word
+  }
+
+  if (XRegExp.exec(word, re.innerCaps)) {
+    return word
+  }
+
+  if (XRegExp.exec(word, re.ident) || XRegExp.exec(word, re.allCaps)) {
+    return word
+  }
+
+  return word.toLowerCase()
+}
+
+export function toSentenceCase(text: string): string {
+  const preserve: TextRange[] = []
+
+  text.replace(/“.*?”/g, (match: string, i: number) => {
+    preserve.push({ start: i, end: i + match.length, description: 'quoted'})
+    return ''
+  })
+  text.replace(/‘.*?’/g, (match: string, i: number) => {
+    preserve.push({ start: i, end: i + match.length, description: 'quoted'})
+    return ''
+  })
+  text.replace(/(["]).*?\1/g, (match: string, _quote: string, i: number) => {
+    preserve.push({ start: i, end: i + match.length, description: 'quoted'})
+    return ''
+  })
+
+  text.replace(/([.?!][\s]+)[A-Z]/g, (match: string, period: string, i: number) => {
+    if (!XRegExp.exec(text.substring(0, i + 1), re.acronym)) {
+      preserve.push({ start: i + period.length, end: i + match.length, description: 'sub-sentence' })
+    }
+    return ''
+  })
+
+  text.replace(/^[A-Z]/g, (match: string, i: number) => {
+    preserve.push({ start: i, end: i + match.length, description: 'sentence-start' })
+    return ''
+  })
+
+  text.replace(/<span class="nocase">.*?<\/span>|<nc>.*?<\/nc>/gi, (match: string, i: number) => {
+    preserve.push({ start: i, end: i + match.length, description: 'nocase' })
+    return ''
+  })
+
+
+  let masked = text.replace(/[^<>]<[^>]+>/g, (match: string, i: number) => {
+    preserve.push({ start: i + 1, end: i + match.length, description: 'markup' })
+    // replace markup by the preceding char
+    return match[0].repeat(match.length)
+  })
+
+  masked = masked.replace(/<[^>]+>[^<>]/g, (match: string, i: number) => {
+    preserve.push({ start: i, end: i + match.length - 1, description: 'markup' })
+    // replace markup by the following char
+    return match[match.length - 1].repeat(match.length)
+  })
+
+  masked = masked
+    .replace(/[;:]\s+A\s/g, match => match.toLowerCase())
+    .replace(/[–—]\s*A\s/g, match => match.toLowerCase())
+    .replace(LN, word => lowercase(word))
+  return restore(masked, text, preserve)
 }
