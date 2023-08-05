@@ -1,8 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
-import XRegExp from 'xregexp'
 import categories = require('xregexp/tools/output/categories')
 
-const LN = new RegExp(`[${categories.filter(cat => ['L', 'N', 'No'].includes(cat.name)).map(cat => cat.bmp as string).join('')}]+`, 'g')
+const cat = name => categories.find(c => c.name === name).bmp as string
+const L = cat('L')
+const Lu = cat('Lu')
+const Ll = cat('Ll')
+const N = cat('N')
+const No = cat('No')
+const Pc = cat('Pc')
 
 export type TextRange = { start: number, end: number, description?: string }
 
@@ -14,27 +19,36 @@ export function restore(text: string, orig: string, preserve: TextRange[]): stri
 }
 
 const re = {
-  acronym: XRegExp('(\\p{Lu}[.])+$'),
-  innerCaps: XRegExp('.\\p{Lu}'),
-  ident: XRegExp('^\\p{L}\\p{L}*[\\p{N}\\p{No}][\\p{L}\\p{N}\\p{No}]*$'),
-  allCaps: XRegExp('^\\[p{Lu}\\p{N}\\p{No}]+$'),
+  acronym: new RegExp(`([${Lu}][.])+$`),
+  innerCaps: new RegExp(`.[${Lu}]`),
+  ident: new RegExp(`^[$p{L}]+[${N}${No}][${L}${N}${No}]*$`),
+  allCaps: new RegExp(`^[${Lu}${N}${No}]+$`),
+  skipWords: /^(but|or|yet|so|for|and|nor|a|an|the|at|by|from|in|into|of|on|to|with|updown|as)$/i,
+  // chemElements: /^(H|He|Li|Be|B|C|N|O|F|Ne|Na|Mg|Al|Si|P|S|Cl|Ar|K|Ca|Sc|Ti|V|Cr|Mn|Fe|Co|Ni|Cu|Zn|Ga|Ge|As|Se|Br|Kr|Rb|Sr|Y|Zr|Nb|Mo|Tc|Ru|Rh|Pb|Ag|Cd|In|Sn|Sb|Te|I|Xe|Cs|Ba|La|Hf|Ta|W|Re|Os|Ir|Pt|Au|Hg|Tl|Pb|Bi|Po|At|Rn|Fr|Ra|Ac|Rf|Db|Sg|Bh|Hs|Mt|Ds|Rg|Cn|Nh|Fl|Mc|Lv|Ts|Og|La|Ce|Pr|Nd|Pm|Sm|Eu|Gd|Tb|Dy|Ho|Er|Tm|Yb|Lu|Ac|Th|Pa|U|Np|Pu|Am|Cm|Bk|Cf|Es|Fm|Md|No|Lr)$/,
+  words: new RegExp(`([\uFFFD${L}${N}${No}]+([\uFFFD${Pc}${L}${N}${No}]*))|(\\s([\uFFFD${Lu}]+[.]){2,})?`, 'g'), // compound words and acronyms
+  titleCase: new RegExp(`^[${Lu}][${Ll}${N}${No}]+$`),
+
   // private aint = XRegExp("^\\p{L}n't(?=$|[\\P{L}])") // isn't
   // private word = XRegExp('^\\p{L}+([-.]\\p{L}+)*') // also match gallium-nitride as one word
   // private and = XRegExp('^\\p{Lu}&\\p{Lu}(?=$|[\\P{L}])') // Q&A
 }
 
 function lowercase(word: string): string {
-  if (word.length === 1) {
-    return word === 'A' ? word.toLowerCase() : word
-  }
+  if (!word) return word
 
-  if (XRegExp.exec(word, re.innerCaps)) {
-    return word
-  }
+  const unmasked = word.replace(/\uFFFD/g, '')
 
-  if (XRegExp.exec(word, re.ident) || XRegExp.exec(word, re.allCaps)) {
-    return word
-  }
+  if (unmasked.match(re.skipWords)) return word.toLowerCase()
+
+  if (unmasked.match(re.titleCase)) return word.toLowerCase()
+
+  // if (unmasked.match(re.chemElements)) return word
+
+  if (unmasked.length === 1) return unmasked === 'A' ? word.toLowerCase() : word
+
+  if (unmasked.match(re.innerCaps)) return word
+
+  if (unmasked.match(re.ident) || unmasked.match(re.allCaps)) return word
 
   return word.toLowerCase()
 }
@@ -55,15 +69,15 @@ export function toSentenceCase(text: string): string {
     return ''
   })
 
-  text.replace(/([.?!][\s]+)[A-Z]/g, (match: string, period: string, i: number) => {
-    if (!XRegExp.exec(text.substring(0, i + 1), re.acronym)) {
-      preserve.push({ start: i + period.length, end: i + match.length, description: 'sub-sentence' })
+  text.replace(/([.?!][\s]+)(<[^>]+>)?([A-Z])/g, (match: string, end: string, markup: string, char: string, i: number) => {
+    if (!text.substring(0, i + 1).match(re.acronym)) {
+      preserve.push({ start: i + end.length + (markup?.length || 0), end: i + end.length + (markup?.length || 0) + char.length, description: 'sub-sentence-start' })
     }
     return ''
   })
 
-  text.replace(/^[A-Z]/g, (match: string, i: number) => {
-    preserve.push({ start: i, end: i + match.length, description: 'sentence-start' })
+  text.replace(/^(<[^>]+>)?([A-Z])/, (match: string, markup: string, char: string) => {
+    preserve.push({ start: (markup?.length || 0), end: (markup?.length || 0) + char.length, description: 'sentence-start' })
     return ''
   })
 
@@ -72,22 +86,14 @@ export function toSentenceCase(text: string): string {
     return ''
   })
 
-
-  let masked = text.replace(/[^<>]<[^>]+>/g, (match: string, i: number) => {
-    preserve.push({ start: i + 1, end: i + match.length, description: 'markup' })
-    // replace markup by the preceding char
-    return match[0].repeat(match.length)
-  })
-
-  masked = masked.replace(/<[^>]+>[^<>]/g, (match: string, i: number) => {
-    preserve.push({ start: i, end: i + match.length - 1, description: 'markup' })
-    // replace markup by the following char
-    return match[match.length - 1].repeat(match.length)
+  let masked = text.replace(/<[^>]+>/g, (match: string, i: number) => {
+    preserve.push({ start: i, end: i + match.length, description: 'markup' })
+    return '\uFFFD'.repeat(match.length)
   })
 
   masked = masked
-    .replace(/[;:]\s+A\s/g, match => match.toLowerCase())
-    .replace(/[–—]\s*A\s/g, match => match.toLowerCase())
-    .replace(LN, word => lowercase(word))
+    .replace(/[;:]\uFFFD*\s+\uFFFD*A\s/g, match => match.toLowerCase())
+    .replace(/[–—]\uFFFD*\s*\uFFFD*A\s/g, match => match.toLowerCase())
+    .replace(re.words, word => lowercase(word))
   return restore(masked, text, preserve)
 }

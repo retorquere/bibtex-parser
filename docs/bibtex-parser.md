@@ -10,7 +10,7 @@
 |  --- | --- |
 |  [ast(input, options, clean)](./bibtex-parser.ast.md) |  |
 |  [parse(input, options)](./bibtex-parser.parse.md) | parse bibtex. This will try to convert TeX commands into unicode equivalents, and apply <code>@string</code> expansion |
-|  [toSentenceCase(text, ignoreHTML)](./bibtex-parser.tosentencecase.md) |  |
+|  [toSentenceCase(text)](./bibtex-parser.tosentencecase.md) |  |
 
 ## Interfaces
 
