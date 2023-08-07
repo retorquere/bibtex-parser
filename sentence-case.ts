@@ -44,21 +44,8 @@ function lowercase(word: string): string {
   return word.toLowerCase()
 }
 
-export function toSentenceCase(sentence: string): string {
+export function toSentenceCase(sentence: string, preserveQuoted=true): string {
   const preserve: { pos: number, text: string, description?: string }[] = []
-
-  sentence.replace(/“.*?”/g, (text: string, pos: number) => {
-    preserve.push({ pos, text, description: 'quoted'})
-    return ''
-  })
-  sentence.replace(/‘.*?’/g, (text: string, pos: number) => {
-    preserve.push({ pos, text, description: 'quoted'})
-    return ''
-  })
-  sentence.replace(/(["]).*?\1/g, (text: string, _quote: string, pos: number) => {
-    preserve.push({ pos, text, description: 'quoted'})
-    return ''
-  })
 
   sentence.replace(/([.?!][\s]+)(<[^>]+>)?([A-Z])/g, (match: string, end: string, markup: string, char: string, i: number) => {
     if (!sentence.substring(0, i + 1).match(re.acronym)) {
@@ -81,6 +68,18 @@ export function toSentenceCase(sentence: string): string {
     preserve.push({ pos, text, description: 'markup' })
     return '\uFFFD'.repeat(text.length)
   })
+
+  // last because we're potentially modifying the original
+  for (const q of [/(“)(.*?)”/g, /(‘)(.*?)’/g, /(["])(.*?)\1/g]) {
+    sentence.replace(q, (text: string, quote: string, quoted: string, pos: number) => {
+      preserve.push({
+        pos: pos + (preserveQuoted ? 0 : quote.length),
+        text: preserveQuoted ? text : toSentenceCase(quoted, preserveQuoted),
+        description: `quoted with ${q}`,
+      })
+      return ''
+    })
+  }
 
   masked = masked
     .replace(/[;:]\uFFFD*\s+\uFFFD*A\s/g, match => match.toLowerCase())
