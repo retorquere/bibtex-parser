@@ -7,14 +7,15 @@
 **Signature:**
 
 ```typescript
-export declare function toSentenceCase(text: string): string;
+export declare function toSentenceCase(sentence: string, preserveQuoted?: boolean): string;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  text | string |  |
+|  sentence | string |  |
+|  preserveQuoted | boolean | _(Optional)_ |
 
 **Returns:**
 
