@@ -11,6 +11,7 @@ jobs:
       matrix:
         sentencecase: ['on+guess', 'on', 'off']
         caseprotection: [ 'as-needed', 'strict', 'off' ]
+        preservequoted: [ 'false', 'true' ]
     steps:
     - uses: actions/checkout@v3
     - run: echo "::version="`jq -r .version package.json` >> $GITHUB_OUTPUT
@@ -34,7 +35,7 @@ jobs:
     - name: install node dependencies
       run: npm install
 
-    - run: npm test --sentence-case=${{ matrix.sentencecase }} --case-protection=${{ matrix.caseprotection }} --big
+    - run: npm test --sentence-case=${{ matrix.sentencecase }} --case-protection=${{ matrix.caseprotection }} --preserve-quoted=${{ matrix.preservequoted }}--big
 
   release:
     runs-on: ubuntu-latest
