@@ -10,7 +10,7 @@ const prefix = 'npm_config_'
 const valid = {
   sentence_case: ['on+guess', 'on', 'off'],
   case_protection: [ 'as-needed', 'strict', 'off' ],
-  preserveQuoted: [ 'true', 'false' ],
+  preserveQuoted: [ 'false', 'true' ],
 }
 const multi = ['test']
 
