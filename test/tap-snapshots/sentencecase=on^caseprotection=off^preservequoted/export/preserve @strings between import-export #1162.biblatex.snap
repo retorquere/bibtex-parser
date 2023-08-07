@@ -1,0 +1,86 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=preserve @strings between import-export #1162.biblatex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Don P.",
+            "lastName": "Mitchell",
+          },
+        ],
+        "editor": Array [
+          Object {
+            "firstName": "Holly",
+            "lastName": "Rushmeier",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "author": Array [
+          "Mitchell, Don P.",
+        ],
+        "booktitle": Array [
+          "PROC_SIGGRAPH93_01",
+        ],
+        "date": Array [
+          "1996-08",
+        ],
+        "editor": Array [
+          "Rushmeier, Holly",
+        ],
+        "organization": Array [
+          "ACM_SIGGRAPH",
+        ],
+        "pages": Array [
+          "277–280",
+        ],
+        "publisher": Array [
+          "AW",
+        ],
+        "series": Array [
+          "ACS",
+        ],
+        "title": Array [
+          "Consequences of stratified sampling in graphics",
+        ],
+      },
+      "key": "Mitchell96",
+      "sentenceCased": true,
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [
+    Object {
+      "message": "Unresolved @string reference \\"PROC_SIGGRAPH93_01\\"",
+    },
+    Object {
+      "message": "Unresolved @string reference \\"AW\\"",
+    },
+    Object {
+      "message": "Unresolved @string reference \\"ACM_SIGGRAPH\\"",
+    },
+    Object {
+      "message": "Unresolved @string reference \\"ACS\\"",
+    },
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

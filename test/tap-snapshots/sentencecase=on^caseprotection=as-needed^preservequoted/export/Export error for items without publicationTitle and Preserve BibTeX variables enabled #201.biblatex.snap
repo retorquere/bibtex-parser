@@ -1,0 +1,56 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=Export error for items without publicationTitle and Preserve BibTeX variables enabled #201.biblatex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Roger D.",
+            "lastName": "Blandford",
+          },
+          Object {
+            "firstName": "Kip S.",
+            "lastName": "Thorne",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "author": Array [
+          "Blandford, Roger D.",
+          "Thorne, Kip S.",
+        ],
+        "date": Array [
+          "2006",
+        ],
+        "publisher": Array [
+          "Caltech",
+        ],
+        "title": Array [
+          "Applications of Classical Physics",
+        ],
+      },
+      "key": "Blandford2006",
+      "type": "book",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

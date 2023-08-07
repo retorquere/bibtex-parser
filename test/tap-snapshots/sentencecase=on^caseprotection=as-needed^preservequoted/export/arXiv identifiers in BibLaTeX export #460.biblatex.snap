@@ -1,0 +1,266 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=arXiv identifiers in BibLaTeX export #460.biblatex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Troels F.",
+            "lastName": "Rønnow",
+          },
+          Object {
+            "firstName": "Zhihui",
+            "lastName": "Wang",
+          },
+          Object {
+            "firstName": "Joshua",
+            "lastName": "Job",
+          },
+          Object {
+            "firstName": "Sergio",
+            "lastName": "Boixo",
+          },
+          Object {
+            "firstName": "Sergei V.",
+            "lastName": "Isakov",
+          },
+          Object {
+            "firstName": "David",
+            "lastName": "Wecker",
+          },
+          Object {
+            "firstName": "John M.",
+            "lastName": "Martinis",
+          },
+          Object {
+            "firstName": "Daniel A.",
+            "lastName": "Lidar",
+          },
+          Object {
+            "firstName": "Matthias",
+            "lastName": "Troyer",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "abstract": Array [
+          "The development of small-scale digital and analog quantum devices raises the question of how to fairly assess and compare the computational power of classical and quantum devices, and of how to detect quantum speedup. Here we show how to define and measure quantum speedup in various scenarios, and how to avoid pitfalls that might mask or fake quantum speedup. We illustrate our discussion with data from a randomized benchmark test on a D-Wave Two device with up to 503 qubits. Comparing the performance of the device on random spin glass instances with limited precision to simulated classical and quantum annealers, we find no evidence of quantum speedup when the entire data set is considered, and obtain inconclusive results when comparing subsets of instances on an instance-by-instance basis. Our results for one particular benchmark do not rule out the possibility of speedup for other classes of problems and illustrate that quantum speedup is elusive and can depend on the question posed.",
+        ],
+        "archiveprefix": Array [
+          "arXiv",
+        ],
+        "author": Array [
+          "Rønnow, Troels F.",
+          "Wang, Zhihui",
+          "Job, Joshua",
+          "Boixo, Sergio",
+          "Isakov, Sergei V.",
+          "Wecker, David",
+          "Martinis, John M.",
+          "Lidar, Daniel A.",
+          "Troyer, Matthias",
+        ],
+        "date": Array [
+          "2014-07-25",
+        ],
+        "doi": Array [
+          "10.1126/science.1252319",
+        ],
+        "eprint": Array [
+          "1401.2910",
+        ],
+        "eprinttype": Array [
+          "arxiv",
+        ],
+        "issn": Array [
+          "0036-8075, 1095-9203",
+        ],
+        "journaltitle": Array [
+          "Science",
+        ],
+        "keywords": Array [
+          "Quantum Physics",
+        ],
+        "number": Array [
+          "6195",
+        ],
+        "pages": Array [
+          "420–424",
+        ],
+        "primaryclass": Array [
+          "quant-ph",
+        ],
+        "title": Array [
+          "Defining and detecting quantum speedup",
+        ],
+        "url": Array [
+          "http://arxiv.org/abs/1401.2910",
+        ],
+        "urldate": Array [
+          "2016-04-18",
+        ],
+        "volume": Array [
+          "345",
+        ],
+      },
+      "key": "Ronnow.2014.Defining",
+      "sentenceCased": true,
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Ashoke",
+            "lastName": "Sen",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "abstract": Array [
+          "We construct the quantum BV master action for heterotic and type II string field theories.",
+        ],
+        "archiveprefix": Array [
+          "arXiv",
+        ],
+        "author": Array [
+          "Sen, Ashoke",
+        ],
+        "date": Array [
+          "2016-02",
+        ],
+        "doi": Array [
+          "10.1007/JHEP02(2016)087",
+        ],
+        "eprint": Array [
+          "1508.05387",
+        ],
+        "eprinttype": Array [
+          "arxiv",
+        ],
+        "issn": Array [
+          "1029-8479",
+        ],
+        "journaltitle": Array [
+          "Journal of High Energy Physics",
+        ],
+        "keywords": Array [
+          "ₜablet",
+          "Batalin-Vilkoviski formalism",
+          "covariant string field theory",
+          "futur: 3",
+          "note: 4",
+          "printed",
+          "superstring field theory",
+        ],
+        "note": Array [
+          String(
+            27/03/16 - overview - studying the papers of Ashoke <p>
+            This paper is of great importance because it constructs a fully consistent quantum action for (covariant) superstring field theory, including the Ramond sector. The idea is to introduce extra dynamical fields which are free (they don't even couple to gravity) and so they can be consistently decoupled.
+          ),
+        ],
+        "number": Array [
+          "2",
+        ],
+        "title": Array [
+          "BV Master Action for Heterotic and Type II String Field Theories",
+        ],
+        "url": Array [
+          "http://arxiv.org/abs/1508.05387",
+        ],
+        "urldate": Array [
+          "2016-04-17",
+        ],
+        "volume": Array [
+          "2016",
+        ],
+      },
+      "key": "Sen.2016.BV",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "John A.",
+            "lastName": "Smolin",
+          },
+          Object {
+            "firstName": "Graeme",
+            "lastName": "Smith",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "abstract": Array [
+          "A pair of recent articles concluded that the D-Wave One machine actually operates in the quantum regime, rather than performing some classical evolution. Here we give a classical model that leads to the same behaviors used in those works to infer quantum effects. Thus, the evidence presented does not demonstrate the presence of quantum effects.",
+        ],
+        "archiveprefix": Array [
+          "arXiv",
+        ],
+        "author": Array [
+          "Smolin, John A.",
+          "Smith, Graeme",
+        ],
+        "date": Array [
+          "2013-05-21",
+        ],
+        "eprint": Array [
+          "1305.4904",
+        ],
+        "eprinttype": Array [
+          "arxiv",
+        ],
+        "keywords": Array [
+          "Quantum Physics",
+        ],
+        "note": Array [
+          "Comment: 8 pages, 3 pdf figures",
+        ],
+        "primaryclass": Array [
+          "quant-ph",
+        ],
+        "title": Array [
+          "Classical signature of quantum annealing",
+        ],
+        "url": Array [
+          "http://arxiv.org/abs/1305.4904",
+        ],
+        "urldate": Array [
+          "2016-04-18",
+        ],
+      },
+      "key": "Smolin.2013.Classical",
+      "sentenceCased": true,
+      "type": "online",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

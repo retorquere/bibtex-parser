@@ -1,0 +1,66 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=Error exporting with custom Extra field #1118.bibtex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Saharon",
+            "lastName": "Shelah",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "annotation": Array [
+          "{biblatex{ editortype: \\"translated and edited under the supervision of\\", referencetype: mvlexicon }} {}",
+        ],
+        "author": Array [
+          "Shelah, Saharon",
+        ],
+        "editortype": Array [
+          "translated and edited under the supervision of",
+        ],
+        "journal": Array [
+          "Pacific Journal of Mathematics",
+        ],
+        "note": Array [
+          "MR 46:7018",
+        ],
+        "pages": Array [
+          "247–261",
+        ],
+        "title": Array [
+          "A Combinatorial Problem; Stability and Order for Models and Theories in Infinitary Languages",
+        ],
+        "volume": Array [
+          "41",
+        ],
+        "year": Array [
+          "1972",
+        ],
+      },
+      "key": "Shelahcombinatorialproblemstability1972",
+      "type": "mvlexicon",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

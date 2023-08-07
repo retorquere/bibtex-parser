@@ -1,0 +1,54 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=bibtex export of phdthesis does not case-protect -type- #435.bibtex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Luis Roberto",
+            "lastName": "Tay Wo Chong Hilares",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "author": Array [
+          "Tay Wo Chong Hilares, Luis Roberto",
+        ],
+        "school": Array [
+          "TU München",
+        ],
+        "title": Array [
+          "Numerical Simulation of the Dynamics of Turbulent Swirling Flames",
+        ],
+        "type": Array [
+          "PhD Thesis",
+        ],
+        "year": Array [
+          "2012",
+        ],
+      },
+      "key": "TayW12",
+      "type": "phdthesis",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

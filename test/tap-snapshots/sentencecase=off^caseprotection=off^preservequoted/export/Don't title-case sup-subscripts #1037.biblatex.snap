@@ -1,0 +1,237 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=Don't title-case sup-subscripts #1037.biblatex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Name",
+            "lastName": "Name",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "author": Array [
+          "Name, Name",
+        ],
+        "date": Array [
+          "2018",
+        ],
+        "title": Array [
+          "1 O<sub>abcde</sub>",
+        ],
+      },
+      "key": "ref1",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Name",
+            "lastName": "Name",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "author": Array [
+          "Name, Name",
+        ],
+        "date": Array [
+          "2018",
+        ],
+        "title": Array [
+          "2 O<sub>abcde</sub> Test",
+        ],
+      },
+      "key": "ref2",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Name",
+            "lastName": "Name",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "author": Array [
+          "Name, Name",
+        ],
+        "date": Array [
+          "2018",
+        ],
+        "title": Array [
+          "O<sub>abcde</sub>",
+        ],
+      },
+      "key": "ref3",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Name",
+            "lastName": "Name",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "author": Array [
+          "Name, Name",
+        ],
+        "date": Array [
+          "2018",
+        ],
+        "title": Array [
+          "Oₓ",
+        ],
+      },
+      "key": "ref4",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Name",
+            "lastName": "Name",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "author": Array [
+          "Name, Name",
+        ],
+        "date": Array [
+          "2018",
+        ],
+        "title": Array [
+          "Oₓ Test",
+        ],
+      },
+      "key": "ref5",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Name",
+            "lastName": "Name",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "author": Array [
+          "Name, Name",
+        ],
+        "date": Array [
+          "2018",
+        ],
+        "title": Array [
+          "Oₓ",
+        ],
+      },
+      "key": "ref6",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Name",
+            "lastName": "Name",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "author": Array [
+          "Name, Name",
+        ],
+        "date": Array [
+          "2018",
+        ],
+        "title": Array [
+          "O₇₋ₓ",
+        ],
+      },
+      "key": "ref7",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Name",
+            "lastName": "Name",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "author": Array [
+          "Name, Name",
+        ],
+        "date": Array [
+          "2018",
+        ],
+        "title": Array [
+          "O₇₋ₓ Test",
+        ],
+      },
+      "key": "ref8",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

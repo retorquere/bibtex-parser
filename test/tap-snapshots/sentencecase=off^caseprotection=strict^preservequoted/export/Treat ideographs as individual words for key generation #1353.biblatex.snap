@@ -1,0 +1,53 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=Treat ideographs as individual words for key generation #1353.biblatex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "literal": "李文辉",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "author": Array [
+          "李文辉",
+        ],
+        "date": Array [
+          "2014",
+        ],
+        "institution": Array [
+          "<span class=\\"nocase\\">西安: 西安电子科技大学</span>",
+        ],
+        "title": Array [
+          "航拍视频中运动目标的检测与跟踪算法研究",
+        ],
+        "type": Array [
+          "PhD Thesis",
+        ],
+      },
+      "key": "ribunHui_2014_kohakuShi",
+      "type": "thesis",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

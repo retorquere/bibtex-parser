@@ -1,0 +1,93 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=BibTeX; URL missing in bibtex for Book Section #412.off.bibtex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Thibaut",
+            "lastName": "Lust",
+          },
+          Object {
+            "firstName": "Jacques",
+            "lastName": "Teghem",
+          },
+        ],
+        "editor": Array [
+          Object {
+            "firstName": "Carlos A. Coello",
+            "lastName": "Coello",
+          },
+          Object {
+            "firstName": "Clarisse",
+            "lastName": "Dhaenens",
+          },
+          Object {
+            "firstName": "Laetitia",
+            "lastName": "Jourdan",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "author": Array [
+          "Lust, Thibaut",
+          "Teghem, Jacques",
+        ],
+        "booktitle": Array [
+          "Advances in <span class=\\"nocase\\">Multi</span>-<span class=\\"nocase\\">Objective Nature Inspired Computing</span>",
+        ],
+        "doi": Array [
+          "10.1007/978-3-642-11218-8_6",
+        ],
+        "editor": Array [
+          "Coello, Carlos A. Coello",
+          "Dhaenens, Clarisse",
+          "Jourdan, Laetitia",
+        ],
+        "isbn": Array [
+          "978-3-642-11217-1 978-3-642-11218-8",
+        ],
+        "number": Array [
+          "272",
+        ],
+        "pages": Array [
+          "119–141",
+        ],
+        "publisher": Array [
+          "Springer Berlin Heidelberg",
+        ],
+        "series": Array [
+          "Studies in <span class=\\"nocase\\">Computational Intelligence</span>",
+        ],
+        "title": Array [
+          "The <span class=\\"nocase\\">Multiobjective Traveling Salesman Problem</span>: <span class=\\"nocase\\">A Survey</span> and a <span class=\\"nocase\\">New Approach</span>",
+        ],
+        "year": Array [
+          "2010",
+        ],
+      },
+      "key": "lt2010",
+      "type": "incollection",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

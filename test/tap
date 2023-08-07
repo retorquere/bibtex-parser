@@ -10,6 +10,7 @@ const prefix = 'npm_config_'
 const valid = {
   sentence_case: ['on+guess', 'on', 'off'],
   case_protection: [ 'as-needed', 'strict', 'off' ],
+  preserveQuoted: [ 'true', 'false' ],
 }
 const multi = ['test']
 
@@ -17,12 +18,13 @@ const config = Object.assign({
   all: '',
   sentence_case: valid.sentence_case.slice(0, 1),
   case_protection: valid.case_protection.slice(0, 1),
+  preserveQuoted: valid.preserveQuoted.slice(0, 1),
   test: [''],
   snapshot: '',
   unabbreviations: path.resolve(path.join(__dirname, '..', 'unabbrev.json')),
   strings: path.resolve(path.join(__dirname, '..', 'strings.bib')),
 }, require('./tap.json'))
-if (process.env.CI === 'true') config.big = []
+if (process.env.CI === 'true') config.toobig = []
 
 for (let [option, value] of Object.entries(process.env)) {
   if (!option.startsWith(prefix)) continue
@@ -49,9 +51,9 @@ if (config.snapshot || config.all) { // reset to all for snapshots
   for (const [key, value] of Object.entries(valid)) {
     if (!process.env[prefix + key]) config[key] = value
   }
-  config.big = []
+  config.toobig = []
 }
-if (config.test.length !== 1 || config.test[0] !== '') config.big=[] // if you pick out a test, you want it ran
+if (config.test.length !== 1 || config.test[0] !== '') config.toobig=[] // if you pick out a test, you want it ran
 
 if (config.snapshot) process.env.TAP_SNAPSHOT = '1'
 // if (require.main === module) console.log(config)
@@ -92,34 +94,38 @@ for (const bibfile of testcases) {
 
   for (const sentence_case of config.sentence_case) {
     for (const case_protection of config.case_protection) {
-      if (config.big.includes(basename)) continue
-
-      const unabbreviate = config.unabbreviate.includes(basename);
-
-      ((bibfile, options, name, snapshot) => {
-        tap.test(name, async t => {
-          const result = await piscina.run({ bibfile, options })
-          if (typeof result !== 'string' && result.errors.length && !config.error.includes(path.basename(bibfile))) throw JSON.stringify(result.errors[0], null, 2)
-          t.snapshotFile = snapshot
-          // t.matchSnapshot(await piscina.run({ bibfile, options }))
-          t.matchSnapshot(result)
-        })
-      })(
-        bibfile,
-        {
-          caseProtection: case_protection === 'off' ? false : case_protection,
-          sentenceCase: sentence_case.startsWith('on'),
-          guessAlreadySentenceCased: sentence_case.endsWith('guess'),
-          unabbreviations: unabbreviate && config.unabbreviations,
-          strings: unabbreviate && config.strings,
-          exception: config.exception.includes(basename),
-          raw: config.raw.includes(basename),
-          // Oh Mendeley....
-          verbatimFields: config.mendeley.includes(basename) ? bibtex.fields.verbatim.filter(field => !field.startsWith('file')) : undefined
-        },
-        `${section}=${basename}`,
-        path.resolve(__dirname, 'tap-snapshots', `${sentence_case}^${case_protection}`, section, basename + '.snap')
-      )
+      for (const preserveQuoted of config.preserveQuoted) {
+        if (config.toobig.includes(basename)) continue
+  
+        const unabbreviate = config.unabbreviate.includes(basename);
+        const settings = `sentencecase=${sentence_case}^caseprotection=${case_protection}${preserveQuoted === 'true' ? '^preservequoted' : ''}`;
+  
+        ; ((bibfile, options, name, snapshot) => {
+          tap.test(name, async t => {
+            const result = await piscina.run({ bibfile, options })
+            if (typeof result !== 'string' && result.errors.length && !config.error.includes(path.basename(bibfile))) throw JSON.stringify(result.errors[0], null, 2)
+            t.snapshotFile = snapshot
+            // t.matchSnapshot(await piscina.run({ bibfile, options }))
+            t.matchSnapshot(result)
+          })
+        })(
+          bibfile,
+          {
+            caseProtection: case_protection === 'off' ? false : case_protection,
+            sentenceCase: sentence_case.startsWith('on'),
+            preserveQuoted: preserveQuoted === 'true',
+            guessAlreadySentenceCased: sentence_case.endsWith('guess'),
+            unabbreviations: unabbreviate && config.unabbreviations,
+            strings: unabbreviate && config.strings,
+            exception: config.exception.includes(basename),
+            raw: config.raw.includes(basename),
+            // Oh Mendeley....
+            verbatimFields: config.mendeley.includes(basename) ? bibtex.fields.verbatim.filter(field => !field.startsWith('file')) : undefined
+          },
+          `${section}=${basename}`,
+          path.resolve(__dirname, 'tap-snapshots', settings, section, basename + '.snap')
+        )
+      }
     }
   }
 }

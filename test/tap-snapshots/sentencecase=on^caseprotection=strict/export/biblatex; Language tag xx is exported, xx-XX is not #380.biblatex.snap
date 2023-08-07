@@ -1,0 +1,69 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=biblatex; Language tag xx is exported, xx-XX is not #380.biblatex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Leo",
+            "lastName": "Spitzer",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "author": Array [
+          "Spitzer, Leo",
+        ],
+        "date": Array [
+          "1941",
+        ],
+        "doi": Array [
+          "10.2307/2911510",
+        ],
+        "issn": Array [
+          "01496611",
+        ],
+        "journaltitle": Array [
+          "Modern Language Notes",
+        ],
+        "langid": Array [
+          "french",
+        ],
+        "number": Array [
+          "2",
+        ],
+        "pages": Array [
+          "110–113",
+        ],
+        "title": Array [
+          "Le poêle de Descartes",
+        ],
+        "volume": Array [
+          "56",
+        ],
+      },
+      "key": "Spitzer1941",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

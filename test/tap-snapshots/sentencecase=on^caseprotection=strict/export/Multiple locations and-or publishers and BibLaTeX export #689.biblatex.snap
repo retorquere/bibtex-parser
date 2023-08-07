@@ -1,0 +1,66 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=Multiple locations and-or publishers and BibLaTeX export #689.biblatex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Vincenzo",
+            "lastName": "de Risi",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "author": Array [
+          "de Risi, Vincenzo",
+        ],
+        "date": Array [
+          "2007",
+        ],
+        "isbn": Array [
+          "978-3-7643-7986-5",
+        ],
+        "langid": Array [
+          "english",
+        ],
+        "location": Array [
+          "Basel and Boston and Berlin",
+        ],
+        "pagetotal": Array [
+          "676",
+        ],
+        "publisher": Array [
+          "Birkhäuser",
+        ],
+        "shorttitle": Array [
+          "Geometry and <span class=\\"nocase\\">Monadology</span>",
+        ],
+        "title": Array [
+          "Geometry and <span class=\\"nocase\\">Monadology: Leibniz</span>'s <span class=\\"nocase\\">Analysis Situs</span> and <span class=\\"nocase\\">Philosophy</span> of <span class=\\"nocase\\">Space</span>",
+        ],
+      },
+      "key": "risi_geometry_2007",
+      "type": "book",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

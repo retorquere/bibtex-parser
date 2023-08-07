@@ -1,0 +1,54 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=Dollar sign in title not properly escaped #485.biblatex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Bernie",
+            "lastName": "Sanders",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "author": Array [
+          "Sanders, Bernie",
+        ],
+        "date": Array [
+          "2016-04-06",
+        ],
+        "title": Array [
+          "The Largest <span class=\\"nocase\\">U.S.</span> Companies Would Owe $620 Billion in <span class=\\"nocase\\">U.S.</span> Taxes on the Cash They Store in Tax Havens, the Equivalent of Our Defense Budget. [<span class=\\"nocase\\">Tweet</span>]",
+        ],
+        "titleaddon": Array [
+          "SenSanders",
+        ],
+        "url": Array [
+          "https://twitter.com/SenSanders/status/717771426284060673",
+        ],
+      },
+      "key": "sanders_largest_2016",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

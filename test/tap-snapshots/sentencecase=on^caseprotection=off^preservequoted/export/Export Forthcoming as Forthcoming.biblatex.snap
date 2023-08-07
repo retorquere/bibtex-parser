@@ -1,0 +1,74 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=Export Forthcoming as Forthcoming.biblatex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Stefano",
+            "lastName": "Bartolini",
+          },
+          Object {
+            "firstName": "Ennio",
+            "lastName": "Bilancini",
+          },
+          Object {
+            "firstName": "Francesco",
+            "lastName": "Sarracino",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "author": Array [
+          "Bartolini, Stefano",
+          "Bilancini, Ennio",
+          "Sarracino, Francesco",
+        ],
+        "booktitle": Array [
+          "Policies for happiness",
+        ],
+        "location": Array [
+          "Oxford",
+        ],
+        "publisher": Array [
+          "Oxford University Press",
+        ],
+        "title": Array [
+          "Social capital predicts happiness: World-wide evidence from time series",
+        ],
+        "url": Array [
+          "http://www.econ-pol.unisi.it/bartolini/papers/BARTOLINI-BILANCINI-SARRACINO.pdf",
+        ],
+        "urldate": Array [
+          "2015-02-07",
+        ],
+        "year": Array [
+          "Forthcoming",
+        ],
+      },
+      "key": "BartoliniForthcoming",
+      "sentenceCased": true,
+      "type": "incollection",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

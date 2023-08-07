@@ -1,0 +1,78 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=bibtex; url export does not survive underscores #402.bibtex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Thomas",
+            "lastName": "Emmert",
+          },
+          Object {
+            "firstName": "Stefan",
+            "lastName": "Jaensch",
+          },
+          Object {
+            "firstName": "Carlo",
+            "lastName": "Sovardi",
+          },
+          Object {
+            "firstName": "Wolfgang",
+            "lastName": "Polifke",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "address": Array [
+          "<span class=\\"nocase\\">Krakow</span>",
+        ],
+        "author": Array [
+          "Emmert, Thomas",
+          "Jaensch, Stefan",
+          "Sovardi, Carlo",
+          "Polifke, Wolfgang",
+        ],
+        "booktitle": Array [
+          "7th <span class=\\"nocase\\">Forum Acusticum</span>",
+        ],
+        "keywords": Array [
+          "NonPerRev",
+        ],
+        "month": Array [
+          "09",
+        ],
+        "note": Array [
+          "<span class=\\"nocase\\">http://www.fa2014.agh.edu.pl/fa2014_cd/</span>",
+        ],
+        "title": Array [
+          "<span class=\\"nocase\\">taX</span> - a <span class=\\"nocase\\">Flexible Tool</span> for <span class=\\"nocase\\">Low-Order Duct Acoustic Simulation</span> in <span class=\\"nocase\\">Time</span> and <span class=\\"nocase\\">Frequency Domain</span>",
+        ],
+        "year": Array [
+          "2014",
+        ],
+      },
+      "key": "EmmerJaens14a",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

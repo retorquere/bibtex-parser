@@ -1,0 +1,60 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP import=Better BibTeX.005.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "A",
+            "lastName": "Oliveira",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "author": Array [
+          "Oliveira, A",
+        ],
+        "journal": Array [
+          "Oil & Gas Journal",
+        ],
+        "number": Array [
+          "29",
+        ],
+        "pages": Array [
+          "29",
+        ],
+        "title": Array [
+          "USGS monitoring ecological impacts",
+        ],
+        "volume": Array [
+          "107",
+        ],
+        "year": Array [
+          "2009",
+        ],
+      },
+      "key": "Oliveira_2009",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

@@ -1,0 +1,57 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP import=Biblatex Annotation Import Bug #613.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Otto",
+            "lastName": "Demus",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "annotation": Array [
+          "a \\"monumental\\" work on the mosaics of San Marco",
+        ],
+        "author": Array [
+          "Demus, Otto",
+        ],
+        "date": Array [
+          "1984",
+        ],
+        "location": Array [
+          "Chicago",
+        ],
+        "publisher": Array [
+          "University of Chicago Press",
+        ],
+        "title": Array [
+          "The Mosaics of San Marco in Venice",
+        ],
+      },
+      "key": "Demus1984",
+      "type": "book",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

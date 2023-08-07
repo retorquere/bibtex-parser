@@ -378,6 +378,11 @@ export interface ParserOptions {
   sentenceCase?: string[] | boolean
 
   /**
+   * If you have sentence-casing on, you can independently choose whether quoted titles within a title are preserved as-is (true) or also sentence-cased(false)
+   */
+  sentenceCasePreserveQuoted?: boolean
+
+  /**
    * Some bibtex has titles in sentence case, or all-uppercase. If this is on, and there is a field that would normally have sentence-casing applied in which more words are all-`X`case
    * (where `X` is either lower or upper) than mixed-case, it is assumed that you want them this way, and no sentence-casing will be applied to that field
    */
@@ -1788,7 +1793,7 @@ class Parser {
   private convertToSentenceCase(text: string): string {
     if (!this.field.preserveRanges) return text
 
-    const sentenceCased = this.restore(toSentenceCase(text), text, this.field.preserveRanges)
+    const sentenceCased = this.restore(toSentenceCase(text, this.options.sentenceCasePreserveQuoted || false), text, this.field.preserveRanges)
 
     if (text !== sentenceCased) this.entry.sentenceCased = true
 

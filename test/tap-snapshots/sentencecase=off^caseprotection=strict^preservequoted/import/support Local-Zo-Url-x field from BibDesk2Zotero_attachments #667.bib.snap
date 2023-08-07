@@ -1,0 +1,68 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP import=support Local-Zo-Url-x field from BibDesk2Zotero_attachments #667.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Roderick",
+            "lastName": "Abbott",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "address": Array [
+          "Brussels, Belgium",
+        ],
+        "author": Array [
+          "Abbott, Roderick",
+        ],
+        "class": Array [
+          "States & Markets 2009, Diss Tax & Democracy 2010ff",
+        ],
+        "date-modified": Array [
+          "2014-06-14 15:13:01 +0000",
+        ],
+        "institution": Array [
+          "European Center for International Political Economy",
+        ],
+        "keywords": Array [
+          "Political Economy",
+          "Finance",
+          "Markets",
+        ],
+        "local-zo-url-1": Array [
+          "./attachments/1.pdf",
+        ],
+        "title": Array [
+          "Are Developing Countries Deterred from Using the WTO Dispute Settlement System? - Participation of Developing Countries in the DSM in the years 1995-2005",
+        ],
+        "year": Array [
+          "2007",
+        ],
+      },
+      "key": "Abbott-2007-aa",
+      "type": "techreport",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

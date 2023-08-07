@@ -1,0 +1,54 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=Changing item type for only BibLaTeX does not work #1694.bibtex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Jane",
+            "lastName": "Doe",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "author": Array [
+          "Doe, Jane",
+        ],
+        "title": Array [
+          "Test title of test book",
+        ],
+        "weirdfield": Array [
+          "Blam",
+        ],
+        "wonderfield": Array [
+          "Bla",
+        ],
+        "year": Array [
+          "2020",
+        ],
+      },
+      "key": "Doe2020",
+      "type": "misc",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

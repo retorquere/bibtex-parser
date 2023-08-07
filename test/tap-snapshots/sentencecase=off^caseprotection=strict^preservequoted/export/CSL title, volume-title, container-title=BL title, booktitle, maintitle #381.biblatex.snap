@@ -1,0 +1,133 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=CSL title, volume-title, container-title=BL title, booktitle, maintitle #381.biblatex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "literal": "Plato",
+          },
+        ],
+        "editor": Array [
+          Object {
+            "firstName": "John",
+            "lastName": "Burnet",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "author": Array [
+          "Plato",
+        ],
+        "booktitle": Array [
+          "Clitophon, <span class=\\"nocase\\">Republic, Timaeus, Critias</span>",
+        ],
+        "date": Array [
+          "1901",
+        ],
+        "editor": Array [
+          "Burnet, John",
+        ],
+        "langid": Array [
+          "british",
+        ],
+        "location": Array [
+          "Oxford",
+        ],
+        "maintitle": Array [
+          "Opera",
+        ],
+        "pages": Array [
+          "327–621",
+        ],
+        "publisher": Array [
+          "Clarendon Press",
+        ],
+        "series": Array [
+          "Oxford Classical Texts",
+        ],
+        "title": Array [
+          "Republic",
+        ],
+        "volume": Array [
+          "4",
+        ],
+      },
+      "key": "Plato1901",
+      "type": "incollection",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "literal": "Plato",
+          },
+        ],
+        "editor": Array [
+          Object {
+            "firstName": "John",
+            "lastName": "Burnet",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "author": Array [
+          "Plato",
+        ],
+        "date": Array [
+          "1902",
+        ],
+        "editor": Array [
+          "Burnet, John",
+        ],
+        "langid": Array [
+          "british",
+        ],
+        "location": Array [
+          "Oxford",
+        ],
+        "maintitle": Array [
+          "Opera",
+        ],
+        "publisher": Array [
+          "Clarendon Press",
+        ],
+        "series": Array [
+          "Oxford Classical Texts <span class=\\"nocase\\">CSL-VAR</span>",
+        ],
+        "title": Array [
+          "Clitophon, <span class=\\"nocase\\">Republic, Timaeus, Critias</span>",
+        ],
+        "volume": Array [
+          "4",
+        ],
+      },
+      "key": "Plato1902",
+      "type": "book",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

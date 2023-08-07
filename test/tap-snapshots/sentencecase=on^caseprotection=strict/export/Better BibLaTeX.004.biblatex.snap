@@ -1,0 +1,65 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=Better BibLaTeX.004.biblatex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Michael",
+            "lastName": "von Hicks",
+            "suffix": "III",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "author": Array [
+          "von Hicks, III, Michael",
+        ],
+        "date": Array [
+          "2001",
+        ],
+        "edition": Array [
+          "1st,",
+        ],
+        "isbn": Array [
+          "0-69-697269-4",
+        ],
+        "location": Array [
+          "Palo Alto",
+        ],
+        "options": Array [
+          "useprefix=true",
+        ],
+        "publisher": Array [
+          "Stanford Press",
+        ],
+        "title": Array [
+          "Design of a <span class=\\"nocase\\">Carbon Fiber Composite Grid Structure</span> for the <span class=\\"nocase\\">GLAST</span> spacecraft using a novel manufacturing technique",
+        ],
+      },
+      "key": "hicks2001",
+      "sentenceCased": true,
+      "type": "book",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

@@ -1,0 +1,67 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP import=space after citekey creates confusion #716.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "lastName": "Hoffmann",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "author": Array [
+          "Hoffmann",
+        ],
+        "title": Array [
+          "Phase transitions",
+        ],
+      },
+      "key": "HoSp-87",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {
+        "editor": Array [
+          Object {
+            "lastName": "Sprekels",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "editor": Array [
+          "Sprekels",
+        ],
+        "title": Array [
+          "Free Boundary Problems",
+        ],
+      },
+      "key": "HoSp-90",
+      "type": "book",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

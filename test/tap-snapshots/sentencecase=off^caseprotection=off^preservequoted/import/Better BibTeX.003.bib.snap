@@ -1,0 +1,124 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP import=Better BibTeX.003.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "First",
+            "lastName": "Author",
+          },
+          Object {
+            "firstName": "Second",
+            "lastName": "Author",
+          },
+        ],
+        "editor": Array [
+          Object {
+            "firstName": "First",
+            "lastName": "Editor",
+          },
+          Object {
+            "firstName": "Second",
+            "lastName": "Editor",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [
+          "booktitle",
+          "editor",
+          "month",
+          "year",
+        ],
+      },
+      "fields": Object {
+        "author": Array [
+          "Author, First",
+          "Author, Second",
+        ],
+        "booktitle": Array [
+          "Proceedings of the Xth Conference on XYZ",
+        ],
+        "editor": Array [
+          "Editor, First",
+          "Editor, Second",
+        ],
+        "month": Array [
+          "oct",
+        ],
+        "pages": Array [
+          "330—331",
+        ],
+        "title": Array [
+          "Some publication title",
+        ],
+        "year": Array [
+          "2006",
+        ],
+      },
+      "key": "author:06",
+      "type": "inproceedings",
+    },
+    Object {
+      "creators": Object {
+        "editor": Array [
+          Object {
+            "firstName": "First",
+            "lastName": "Editor",
+          },
+          Object {
+            "firstName": "Second",
+            "lastName": "Editor",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [
+          "title",
+          "editor",
+          "month",
+          "year",
+        ],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "booktitle": Array [
+          "Proceedings of the Xth Conference on XYZ (Book)",
+        ],
+        "editor": Array [
+          "Editor, First",
+          "Editor, Second",
+        ],
+        "month": Array [
+          "oct",
+        ],
+        "title": Array [
+          "Proceedings of the Xth Conference on XYZ",
+        ],
+        "year": Array [
+          "2006",
+        ],
+      },
+      "key": "conference:06",
+      "type": "proceedings",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

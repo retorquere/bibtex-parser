@@ -1,0 +1,77 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=suppressBraceProtection does not work for BibTeX export (non-English items) #1194.bibtex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Л. Д.",
+            "lastName": "Ландау",
+          },
+          Object {
+            "firstName": "Е. М.",
+            "lastName": "Лифшиц",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "address": Array [
+          "<span class=\\"nocase\\">М.</span>",
+        ],
+        "author": Array [
+          "Ландау, Л. Д.",
+          "Лифшиц, Е. М.",
+        ],
+        "edition": Array [
+          "Fifth",
+        ],
+        "isbn": Array [
+          "5-9221-0122-6",
+        ],
+        "language": Array [
+          "russian",
+        ],
+        "pagetotal": Array [
+          "259",
+        ],
+        "publisher": Array [
+          "Физматлит",
+        ],
+        "series": Array [
+          "Теоретическая физика",
+        ],
+        "title": Array [
+          "Теория упругости",
+        ],
+        "volume": Array [
+          "7",
+        ],
+        "year": Array [
+          "2007",
+        ],
+      },
+      "key": "Landafshits.V7",
+      "type": "book",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

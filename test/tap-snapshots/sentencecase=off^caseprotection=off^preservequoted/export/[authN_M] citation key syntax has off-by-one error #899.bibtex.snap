@@ -1,0 +1,71 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=[authN_M] citation key syntax has off-by-one error #899.bibtex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "lastName": "One, Author",
+          },
+          Object {
+            "lastName": "Two, Author",
+          },
+          Object {
+            "lastName": "Three, Author",
+          },
+          Object {
+            "lastName": "Four, Author",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "author": Array [
+          "One, Author",
+          "Two, Author",
+          "Three, Author",
+          "Four, Author",
+        ],
+        "journal": Array [
+          "A Fancy Journal",
+        ],
+        "number": Array [
+          "1",
+        ],
+        "pages": Array [
+          "1–2",
+        ],
+        "title": Array [
+          "My Article",
+        ],
+        "volume": Array [
+          "1",
+        ],
+        "year": Array [
+          "2018",
+        ],
+      },
+      "key": "OnTwTh2018",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

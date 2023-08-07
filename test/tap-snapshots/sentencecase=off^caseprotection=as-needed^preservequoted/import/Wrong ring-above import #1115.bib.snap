@@ -1,0 +1,77 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP import=Wrong ring-above import #1115.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Radim",
+            "lastName": "Řehůřek",
+          },
+          Object {
+            "firstName": "Petr",
+            "lastName": "Sojka",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "address": Array [
+          "Valletta, Malta",
+        ],
+        "author": Array [
+          "Radim Řehůřek",
+          "Petr Sojka",
+        ],
+        "booktitle": Array [
+          "Proceedings of the LREC 2010 Workshop on New Challenges for NLP Frameworks",
+        ],
+        "day": Array [
+          22,
+        ],
+        "language": Array [
+          "English",
+        ],
+        "month": Array [
+          "05",
+        ],
+        "pages": Array [
+          "45–50",
+        ],
+        "publisher": Array [
+          "ELRA",
+        ],
+        "title": Array [
+          "Software Framework for Topic Modelling with Large Corpora",
+        ],
+        "url": Array [
+          "http://is.muni.cz/publication/884893/en",
+        ],
+        "year": Array [
+          2010,
+        ],
+      },
+      "key": "rehurek_lrec",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

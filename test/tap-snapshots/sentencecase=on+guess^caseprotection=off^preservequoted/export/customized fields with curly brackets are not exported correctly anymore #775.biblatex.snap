@@ -1,0 +1,74 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=customized fields with curly brackets are not exported correctly anymore #775.biblatex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Karl",
+            "lastName": "Knoblauch",
+            "prefix": "von",
+            "useprefix": false,
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "author": Array [
+          "family=Knoblauch, given=Karl, prefix=von, useprefix=false",
+        ],
+        "date": Array [
+          "1789",
+        ],
+        "keywords": Array [
+          "anonym",
+          "Knoblauch",
+          "Monographie",
+          "Quelle",
+        ],
+        "langid": Array [
+          "german",
+        ],
+        "location": Array [
+          "[Marburg]",
+        ],
+        "options": Array [
+          "pseudoauthor=true",
+        ],
+        "pagetotal": Array [
+          "72",
+        ],
+        "publisher": Array [
+          "Krieger",
+        ],
+        "shorttitle": Array [
+          "Dialogen",
+        ],
+        "title": Array [
+          "Dialogen über einige Gegenstände der politischen Oekonomie und Philosophie",
+        ],
+      },
+      "key": "knoblauch_dialogen_1789-1",
+      "type": "book",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

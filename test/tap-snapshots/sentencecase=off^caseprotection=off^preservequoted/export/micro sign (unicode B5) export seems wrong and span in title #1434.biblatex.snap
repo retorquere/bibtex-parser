@@ -1,0 +1,77 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=micro sign (unicode B5) export seems wrong and span in title #1434.biblatex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {},
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "note": Array [
+          "In Yamaha tuner IC101 en IC102",
+        ],
+        "title": Array [
+          "NEC µPC577H Tri State Hex Buffers",
+        ],
+      },
+      "key": "_NECuPC577HTristatehexbuffers_",
+      "type": "misc",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "P. A.",
+            "lastName": "Author",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "abstract": Array [
+          "This is an example The first mu should be a greek mu which will turn out italic, the second is a textmu which schould look the same as the surrounding text",
+        ],
+        "author": Array [
+          "Author, P. A.",
+        ],
+        "booktitle": Array [
+          "Proceedings of the test",
+        ],
+        "date": Array [
+          "2025",
+        ],
+        "langid": Array [
+          "dutch",
+        ],
+        "pages": Array [
+          "123—432",
+        ],
+        "title": Array [
+          "A-D test title with lower case greek letter 𝜇PC4570, which is not the same as 1µF",
+        ],
+      },
+      "key": "Author_ADtesttitlewithlowercasegreeklettermPC4570whichisnotthesameas1uF_2025",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

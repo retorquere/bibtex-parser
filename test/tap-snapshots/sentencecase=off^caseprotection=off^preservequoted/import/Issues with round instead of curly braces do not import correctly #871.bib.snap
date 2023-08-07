@@ -1,0 +1,61 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP import=Issues with round instead of curly braces do not import correctly #871.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Drew V.",
+            "lastName": "McDermott",
+          },
+          Object {
+            "firstName": "Gerald J.",
+            "lastName": "Sussman",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "author": Array [
+          "McDermott, Drew V.",
+          "Gerald J. Sussman",
+        ],
+        "institution": Array [
+          "MIT Artificial Intelligence Laboratory",
+        ],
+        "month": Array [
+          "05",
+        ],
+        "title": Array [
+          "The <span style=\\"font-variant:small-caps;\\">CONNIVER</span> Reference Manual",
+        ],
+        "year": Array [
+          "1972",
+        ],
+      },
+      "key": "McDermott:72",
+      "type": "techreport",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {
+    "MCDERMOTT": "McDermott, Drew V.",
+  },
+}
+`

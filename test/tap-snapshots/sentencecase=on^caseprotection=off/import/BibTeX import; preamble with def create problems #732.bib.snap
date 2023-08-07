@@ -1,0 +1,50 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP import=BibTeX import; preamble with def create problems #732.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Jan",
+            "lastName": "Franců",
+          },
+          Object {
+            "firstName": "Pavel",
+            "lastName": "Krejčí",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "author": Array [
+          "Franců, Jan",
+          "Krejčí, Pavel",
+        ],
+        "title": Array [
+          "Homogenization of scalar wave equation with hysteresis operator",
+        ],
+      },
+      "key": "MR1870153",
+      "type": "incollection",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

@@ -44,7 +44,7 @@ function lowercase(word: string): string {
   return word.toLowerCase()
 }
 
-export function toSentenceCase(sentence: string, preserveQuoted=true): string {
+export function toSentenceCase(sentence: string, preserveQuoted=false): string {
   const preserve: { pos: number, text: string, description?: string }[] = []
 
   sentence.replace(/([.?!][\s]+)(<[^>]+>)?([A-Z])/g, (match: string, end: string, markup: string, char: string, i: number) => {

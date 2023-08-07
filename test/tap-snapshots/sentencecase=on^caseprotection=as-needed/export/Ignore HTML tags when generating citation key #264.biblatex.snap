@@ -1,0 +1,64 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=Ignore HTML tags when generating citation key #264.biblatex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Walter A.",
+            "lastName": "Hannam",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "author": Array [
+          "Hannam, Walter A.",
+        ],
+        "date": Array [
+          "1998",
+        ],
+        "journaltitle": Array [
+          "Florilegium",
+        ],
+        "pages": Array [
+          "145–165",
+        ],
+        "title": Array [
+          "<span class=\\"nocase\\"><i>Nodo unitatis et caritatis</i></span>: The structure and argument of Augustine's <span class=\\"nocase\\"><i>De doctrina Christiana</i></span>",
+        ],
+        "url": Array [
+          "https://journals.lib.unb.ca/index.php/flor/article/view/14263",
+        ],
+        "urldate": Array [
+          "2015-07-07",
+        ],
+        "volume": Array [
+          "15",
+        ],
+      },
+      "key": "hannam_nodo_1998",
+      "sentenceCased": true,
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

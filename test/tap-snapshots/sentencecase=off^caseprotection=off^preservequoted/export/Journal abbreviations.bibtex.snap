@@ -1,0 +1,68 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=Journal abbreviations.bibtex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Paul B",
+            "lastName": "Baltes",
+          },
+          Object {
+            "firstName": "Ursula M",
+            "lastName": "Staudinger",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "author": Array [
+          "Baltes, Paul B",
+          "Staudinger, Ursula M",
+        ],
+        "file": Array [
+          "files/BaltesStaudinger2000Am.Psychol./Baltes_Staudinger_2000_Wisdom.pdf",
+        ],
+        "journal": Array [
+          "American psychologist",
+        ],
+        "number": Array [
+          "1",
+        ],
+        "pages": Array [
+          "122",
+        ],
+        "title": Array [
+          "Wisdom: A Metaheuristic (Pragmatic) to Orchestrate Mind and Virtue toward Excellence.",
+        ],
+        "volume": Array [
+          "55",
+        ],
+        "year": Array [
+          "2000",
+        ],
+      },
+      "key": "BaltesStaudinger2000Am.Psychol.",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

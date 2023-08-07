@@ -1,0 +1,81 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=Treat dash-connected words as a single word for citekey generation #619.biblatex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Hannes",
+            "lastName": "Schulz",
+          },
+          Object {
+            "firstName": "Jeremie",
+            "lastName": "Zumer",
+          },
+          Object {
+            "firstName": "Layla El",
+            "lastName": "Asri",
+          },
+          Object {
+            "firstName": "Shikhar",
+            "lastName": "Sharma",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "archiveprefix": Array [
+          "arXiv",
+        ],
+        "author": Array [
+          "Schulz, Hannes",
+          "Zumer, Jeremie",
+          "Asri, Layla El",
+          "Sharma, Shikhar",
+        ],
+        "date": Array [
+          "2017",
+        ],
+        "eprint": Array [
+          "1706.01690",
+        ],
+        "eprinttype": Array [
+          "arxiv",
+        ],
+        "keywords": Array [
+          "ₜabletₘodified",
+        ],
+        "title": Array [
+          "A <span class=\\"nocase\\">Frame Tracking Model</span> for <span class=\\"nocase\\">Memory-Enhanced Dialogue Systems</span>",
+        ],
+        "url": Array [
+          "https://arxiv.org/abs/1706.01690",
+        ],
+        "urldate": Array [
+          "2017-08-17",
+        ],
+      },
+      "key": "SchulzZumerEtAl_2017_A_Frame_Tracking_Model_for_Memory-Enhanced_Dialogue_Systems",
+      "type": "online",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

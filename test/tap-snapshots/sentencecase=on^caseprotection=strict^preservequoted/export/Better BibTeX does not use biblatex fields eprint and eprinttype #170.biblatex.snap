@@ -1,0 +1,82 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=Better BibTeX does not use biblatex fields eprint and eprinttype #170.biblatex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Sven",
+            "lastName": "Bachmann",
+          },
+          Object {
+            "firstName": "Wojciech",
+            "lastName": "Dybalski",
+          },
+          Object {
+            "firstName": "Pieter",
+            "lastName": "Naaijkens",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "archiveprefix": Array [
+          "arXiv",
+        ],
+        "author": Array [
+          "Bachmann, Sven",
+          "Dybalski, Wojciech",
+          "Naaijkens, Pieter",
+        ],
+        "date": Array [
+          "2014-12-09",
+        ],
+        "eprint": Array [
+          "1412.2970",
+        ],
+        "eprinttype": Array [
+          "arxiv",
+        ],
+        "keywords": Array [
+          "Lieb-Robinson bounds",
+          "Mathematical Physics",
+          "Quantum Physics",
+        ],
+        "primaryclass": Array [
+          "math-ph, physics:quant-ph",
+        ],
+        "title": Array [
+          "Lieb-<span class=\\"nocase\\">Robinson</span> bounds, <span class=\\"nocase\\">Arveson</span> spectrum and <span class=\\"nocase\\">Haag-Ruelle</span> scattering theory for gapped quantum spin systems",
+        ],
+        "url": Array [
+          "http://arxiv.org/abs/1412.2970",
+        ],
+        "urldate": Array [
+          "2015-02-07",
+        ],
+      },
+      "key": "BachmannDybalskiNaaijkens14",
+      "sentenceCased": true,
+      "type": "online",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

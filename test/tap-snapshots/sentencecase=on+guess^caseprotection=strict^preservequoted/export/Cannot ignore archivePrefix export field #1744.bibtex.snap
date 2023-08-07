@@ -1,0 +1,74 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=Cannot ignore archivePrefix export field #1744.bibtex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Rob",
+            "lastName": "Brekelmans",
+          },
+          Object {
+            "firstName": "Vaden",
+            "lastName": "Masrani",
+          },
+          Object {
+            "firstName": "Frank",
+            "lastName": "Wood",
+          },
+          Object {
+            "firstName": "Greg Ver",
+            "lastName": "Steeg",
+          },
+          Object {
+            "firstName": "Aram",
+            "lastName": "Galstyan",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "author": Array [
+          "Brekelmans, Rob",
+          "Masrani, Vaden",
+          "Wood, Frank",
+          "Steeg, Greg Ver",
+          "Galstyan, Aram",
+        ],
+        "journal": Array [
+          "ICML",
+        ],
+        "note": Array [
+          "Comment: ICML 2020",
+        ],
+        "title": Array [
+          "All in the <span class=\\"nocase\\">Exponential Family: Bregman Duality</span> in <span class=\\"nocase\\">Thermodynamic Variational Inference</span>",
+        ],
+        "year": Array [
+          "2020",
+        ],
+      },
+      "key": "brekelmans2020All",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

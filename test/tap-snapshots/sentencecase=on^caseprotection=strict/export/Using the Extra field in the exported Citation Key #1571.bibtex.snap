@@ -1,0 +1,81 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=Using the Extra field in the exported Citation Key #1571.bibtex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "Petra",
+            "lastName": "Heck",
+          },
+          Object {
+            "firstName": "Andy",
+            "lastName": "Zaidman",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "address": Array [
+          "<span class=\\"nocase\\">New York, NY, USA</span>",
+        ],
+        "author": Array [
+          "Heck, Petra",
+          "Zaidman, Andy",
+        ],
+        "booktitle": Array [
+          "Proceedings of the 2013 <span class=\\"nocase\\">International Workshop</span> on <span class=\\"nocase\\">Principles</span> of <span class=\\"nocase\\">Software Evolution</span>",
+        ],
+        "doi": Array [
+          "10.1145/2501543.2501550",
+        ],
+        "isbn": Array [
+          "978-1-4503-2311-6",
+        ],
+        "month": Array [
+          "08",
+        ],
+        "pages": Array [
+          "43–52",
+        ],
+        "publisher": Array [
+          "Association for Computing Machinery",
+        ],
+        "series": Array [
+          "<span class=\\"nocase\\">IWPSE</span> 2013",
+        ],
+        "shorttitle": Array [
+          "An analysis of requirements evolution in open source projects",
+        ],
+        "title": Array [
+          "An analysis of requirements evolution in open source projects: Recommendations for issue trackers",
+        ],
+        "year": Array [
+          "2013",
+        ],
+      },
+      "key": "Heck_IWPSE_2013",
+      "sentenceCased": true,
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

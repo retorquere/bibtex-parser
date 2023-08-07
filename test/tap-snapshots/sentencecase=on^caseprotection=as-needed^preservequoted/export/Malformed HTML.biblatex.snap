@@ -1,0 +1,48 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=Malformed HTML.biblatex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "firstName": "P. M. S.",
+            "lastName": "Hacker",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "abstract": Array [
+          "P. M. S. \\\\ensuremathHacker\\\\ensuremath</span\\\\ensuremath> 1. The ?confusion of psychology? On the concluding page of what is now called ?Part II? of the Investigations, Wittgenstein wrote..",
+        ],
+        "author": Array [
+          "Hacker, P. M. S.",
+        ],
+        "title": Array [
+          "The Relevance of Wittgenstein's Philosophy of Psychology to the Psychological Sciences",
+        ],
+      },
+      "key": "HackerManuscript-HACTRO",
+      "type": "unpublished",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`
