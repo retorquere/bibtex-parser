@@ -9,7 +9,7 @@
     "prestart": "npm run lint && peggy grammar.peggy",
     "start": "tsc -d",
     "tsc": "tsc -d",
-    "poststart": "echo npm run docs",
+    "poststart": "npm run docs",
     "pretest": "npm start",
     "test": "tap test/tap --no-timeout --no-coverage",
     "snap": "npm test --snapshot",
