@@ -9,15 +9,6 @@ const N = cat('N')
 const No = cat('No')
 const Pc = cat('Pc')
 
-export type TextRange = { start: number, end: number, description?: string }
-
-export function restore(text: string, orig: string, preserve: TextRange[]): string {
-  for (const { start, end } of preserve) {
-    text = text.substring(0, start) + orig.substring(start, end) + text.substring(end)
-  }
-  return text
-}
-
 const re = {
   acronym: new RegExp(`([${Lu}][.])+$`),
   innerCaps: new RegExp(`.[${Lu}]`),
@@ -53,47 +44,52 @@ function lowercase(word: string): string {
   return word.toLowerCase()
 }
 
-export function toSentenceCase(text: string): string {
-  const preserve: TextRange[] = []
+export function toSentenceCase(sentence: string): string {
+  const preserve: { pos: number, text: string, description?: string }[] = []
 
-  text.replace(/“.*?”/g, (match: string, i: number) => {
-    preserve.push({ start: i, end: i + match.length, description: 'quoted'})
+  sentence.replace(/“.*?”/g, (text: string, pos: number) => {
+    preserve.push({ pos, text, description: 'quoted'})
     return ''
   })
-  text.replace(/‘.*?’/g, (match: string, i: number) => {
-    preserve.push({ start: i, end: i + match.length, description: 'quoted'})
+  sentence.replace(/‘.*?’/g, (text: string, pos: number) => {
+    preserve.push({ pos, text, description: 'quoted'})
     return ''
   })
-  text.replace(/(["]).*?\1/g, (match: string, _quote: string, i: number) => {
-    preserve.push({ start: i, end: i + match.length, description: 'quoted'})
+  sentence.replace(/(["]).*?\1/g, (text: string, _quote: string, pos: number) => {
+    preserve.push({ pos, text, description: 'quoted'})
     return ''
   })
 
-  text.replace(/([.?!][\s]+)(<[^>]+>)?([A-Z])/g, (match: string, end: string, markup: string, char: string, i: number) => {
-    if (!text.substring(0, i + 1).match(re.acronym)) {
-      preserve.push({ start: i + end.length + (markup?.length || 0), end: i + end.length + (markup?.length || 0) + char.length, description: 'sub-sentence-start' })
+  sentence.replace(/([.?!][\s]+)(<[^>]+>)?([A-Z])/g, (match: string, end: string, markup: string, char: string, i: number) => {
+    if (!sentence.substring(0, i + 1).match(re.acronym)) {
+      preserve.push({ pos: i + end.length + (markup?.length || 0), text: char, description: 'sub-sentence-start' })
     }
     return ''
   })
 
-  text.replace(/^(<[^>]+>)?([A-Z])/, (match: string, markup: string, char: string) => {
-    preserve.push({ start: (markup?.length || 0), end: (markup?.length || 0) + char.length, description: 'sentence-start' })
+  sentence.replace(/^(<[^>]+>)?([A-Z])/, (match: string, markup: string, char: string) => {
+    preserve.push({ pos: (markup?.length || 0), text: char, description: 'sentence-start' })
     return ''
   })
 
-  text.replace(/<span class="nocase">.*?<\/span>|<nc>.*?<\/nc>/gi, (match: string, i: number) => {
-    preserve.push({ start: i, end: i + match.length, description: 'nocase' })
+  sentence.replace(/<span class="nocase">.*?<\/span>|<nc>.*?<\/nc>/gi, (text: string, pos: number) => {
+    preserve.push({ pos, text, description: 'nocase' })
     return ''
   })
 
-  let masked = text.replace(/<[^>]+>/g, (match: string, i: number) => {
-    preserve.push({ start: i, end: i + match.length, description: 'markup' })
-    return '\uFFFD'.repeat(match.length)
+  let masked = sentence.replace(/<[^>]+>/g, (text: string, pos: number) => {
+    preserve.push({ pos, text, description: 'markup' })
+    return '\uFFFD'.repeat(text.length)
   })
 
   masked = masked
     .replace(/[;:]\uFFFD*\s+\uFFFD*A\s/g, match => match.toLowerCase())
     .replace(/[–—]\uFFFD*\s*\uFFFD*A\s/g, match => match.toLowerCase())
     .replace(re.words, word => lowercase(word))
-  return restore(masked, text, preserve)
+
+  sentence = masked
+  for (const { pos, text } of preserve) {
+    sentence = sentence.substring(0, pos) + text + sentence.substring(pos + text.length)
+  }
+  return sentence
 }

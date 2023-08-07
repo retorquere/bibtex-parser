@@ -7,7 +7,9 @@ import { latex as latex2unicode, diacritics } from 'unicode2latex'
 import crossref from './crossref.json'
 import allowed from './fields.json'
 export { toSentenceCase } from './sentence-case'
-import { toSentenceCase, TextRange, restore } from './sentence-case'
+import { toSentenceCase } from './sentence-case'
+
+type TextRange = { start: number, end: number, description?: string }
 
 type Node =
   | bibtex.Bibliography
@@ -1638,6 +1640,13 @@ class Parser {
     return parsed
   }
 
+  restore(text: string, orig: string, preserve: TextRange[]): string {
+    for (const { start, end } of preserve) {
+      text = text.substring(0, start) + orig.substring(start, end) + text.substring(end)
+    }
+    return text
+  }
+
   private convert_entry(node: bibtex.Entry) {
     this.entry = {
       key: node.id,
@@ -1779,7 +1788,7 @@ class Parser {
   private convertToSentenceCase(text: string): string {
     if (!this.field.preserveRanges) return text
 
-    const sentenceCased = restore(toSentenceCase(text), text, this.field.preserveRanges)
+    const sentenceCased = this.restore(toSentenceCase(text), text, this.field.preserveRanges)
 
     if (text !== sentenceCased) this.entry.sentenceCased = true
 
