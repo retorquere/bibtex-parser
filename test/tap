@@ -8,9 +8,20 @@ const glob = require('glob').globSync
 
 const prefix = 'npm_config_'
 const valid = {
-  sentence_case: ['on+guess', 'on', 'off'],
-  case_protection: [ 'as-needed', 'strict', 'off' ],
-  preserve_quoted: [ 'false', 'true' ],
+  sentence_case: [
+    'on+guess',
+    'on',
+    'off',
+  ],
+  case_protection: [
+    'as-needed',
+    'strict',
+    'off',
+  ],
+  preserve_quoted: [
+    'false',
+    'true',
+  ],
 }
 const multi = ['test']
 
