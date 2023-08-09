@@ -22,6 +22,9 @@ const re = {
   // private aint = XRegExp("^\\p{L}n't(?=$|[\\P{L}])") // isn't
   // private word = XRegExp('^\\p{L}+([-.]\\p{L}+)*') // also match gallium-nitride as one word
   // private and = XRegExp('^\\p{Lu}&\\p{Lu}(?=$|[\\P{L}])') // Q&A
+
+  subSentenceStart: new RegExp(`([.?!][\\s]+)(<[^>]+>)?([${Lu}])`, 'g'),
+  sentenceStart: new RegExp(`^(<[^>]+>)?([${Lu}])`, 'g'),
 }
 
 function lowercase(word: string, allcaps): string {
@@ -52,14 +55,14 @@ export function toSentenceCase(sentence: string, preserveQuoted=false): string {
 
   const preserve: { pos: number, text: string, description?: string }[] = []
 
-  sentence.replace(/([.?!][\s]+)(<[^>]+>)?([A-Z])/g, (match: string, end: string, markup: string, char: string, i: number) => {
+  sentence.replace(re.subSentenceStart, (match: string, end: string, markup: string, char: string, i: number) => {
     if (!sentence.substring(0, i + 1).match(re.acronym)) {
       preserve.push({ pos: i + end.length + (markup?.length || 0), text: char, description: 'sub-sentence-start' })
     }
     return ''
   })
 
-  sentence.replace(/^(<[^>]+>)?([A-Z])/, (match: string, markup: string, char: string) => {
+  sentence.replace(re.sentenceStart, (match: string, markup: string, char: string) => {
     preserve.push({ pos: (markup?.length || 0), text: char, description: 'sentence-start' })
     return ''
   })
