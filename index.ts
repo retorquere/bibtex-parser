@@ -1754,10 +1754,14 @@ class Parser {
       }
       else {
         if (this.field.preserveRanges) {
-          if (this.options.guessAlreadySentenceCased && Math.max(this.field.words.upper, this.field.words.lower) > (this.field.words.other + Math.min(this.field.words.upper, this.field.words.lower))) {
+          const allCaps = this.field.text.match(/\s/) && this.field.words.upper && !this.field.words.lower && !this.field.words.other
+          const seemsSentenceCased = Math.max(this.field.words.upper, this.field.words.lower) > (this.field.words.other + Math.min(this.field.words.upper, this.field.words.lower))
+          if (!allCaps && seemsSentenceCased && this.options.guessAlreadySentenceCased) {
             this.preserve(null, null) // , 'mostly sentence cased already')
           }
           else {
+            if (allCaps) this.field.preserveRanges = []
+
             const txt = this.field.text.replace(preserveCase.markup, markup => marker.markup.repeat(markup.length))
 
             let match
@@ -1784,7 +1788,6 @@ class Parser {
 
         this.entry.fields[this.field.name].push(this.convertToSentenceCase(this.field.text).normalize('NFC'))
       }
-
     }
 
     this.field = null

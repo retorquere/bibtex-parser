@@ -24,14 +24,17 @@ const re = {
   // private and = XRegExp('^\\p{Lu}&\\p{Lu}(?=$|[\\P{L}])') // Q&A
 }
 
-function lowercase(word: string): string {
+function lowercase(word: string, allcaps): string {
   if (!word) return word
+
+  if (allcaps) return word.toLowerCase()
 
   const unmasked = word.replace(/\uFFFD/g, '')
 
   if (unmasked.match(re.skipWords)) return word.toLowerCase()
 
   if (unmasked.match(re.titleCase)) return word.toLowerCase()
+
 
   // if (unmasked.match(re.chemElements)) return word
 
@@ -45,6 +48,8 @@ function lowercase(word: string): string {
 }
 
 export function toSentenceCase(sentence: string, preserveQuoted=false): string {
+  const allcaps = sentence === sentence.toUpperCase()
+
   const preserve: { pos: number, text: string, description?: string }[] = []
 
   sentence.replace(/([.?!][\s]+)(<[^>]+>)?([A-Z])/g, (match: string, end: string, markup: string, char: string, i: number) => {
@@ -84,7 +89,7 @@ export function toSentenceCase(sentence: string, preserveQuoted=false): string {
   masked = masked
     .replace(/[;:]\uFFFD*\s+\uFFFD*A\s/g, match => match.toLowerCase())
     .replace(/[–—]\uFFFD*\s*\uFFFD*A\s/g, match => match.toLowerCase())
-    .replace(re.words, word => lowercase(word))
+    .replace(re.words, word => lowercase(word, allcaps))
 
   sentence = masked
   for (const { pos, text } of preserve) {
