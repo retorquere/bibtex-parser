@@ -1,0 +1,131 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/tap TAP export=BBT does not escape # in first argument of href in note #2617.bibtex > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "lastName": "TheAuthor",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "author": Array [
+          "TheAuthor",
+        ],
+        "title": Array [
+          "TheTitle",
+        ],
+        "year": Array [
+          "2023",
+        ],
+      },
+      "key": "theauthorTheTitle2023",
+      "type": "misc",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "lastName": "TheAuthor",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "author": Array [
+          "TheAuthor",
+        ],
+        "howpublished": Array [
+          "https://www.example.com/#foo",
+        ],
+        "title": Array [
+          "TheTitle",
+        ],
+        "year": Array [
+          "2023",
+        ],
+      },
+      "key": "TheKey",
+      "type": "misc",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "lastName": "TheAuthor",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "author": Array [
+          "TheAuthor",
+        ],
+        "note": Array [
+          "<a href=\\"https://www.example.com/#foo\\">https://www.example.com/#foo</a>",
+        ],
+        "title": Array [
+          "TheTitle",
+        ],
+        "year": Array [
+          "2023",
+        ],
+      },
+      "key": "theauthorTheTitle2023",
+      "type": "misc",
+    },
+    Object {
+      "creators": Object {
+        "author": Array [
+          Object {
+            "lastName": "TheAuthor",
+          },
+        ],
+      },
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "author": Array [
+          "TheAuthor",
+        ],
+        "title": Array [
+          "TheTitle",
+        ],
+        "year": Array [
+          "2023",
+        ],
+      },
+      "key": "TheKey",
+      "type": "misc",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

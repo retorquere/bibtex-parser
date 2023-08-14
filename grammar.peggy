@@ -682,7 +682,23 @@ RegularCommand
       },
     }
   }
+  / '\\' cmd:'url' __h &'{' url:VerbatimFieldValue {
+    // https://github.com/retorquere/zotero-better-bibtex/issues/2617
+    url.value = url.value.replace(/\\#/g, '#')
+    return {
+      kind: 'RegularCommand',
+      loc: location(),
+      source: text(),
+      command: cmd,
+      arguments: {
+        optional: [],
+        required: [url],
+      },
+    }
+  }
   / '\\' cmd:'href' __h &'{' url:VerbatimFieldValue label:Argument {
+    // https://github.com/retorquere/zotero-better-bibtex/issues/2617
+    url.value = url.value.replace(/\\#/g, '#')
     return {
       kind: 'RegularCommand',
       loc: location(),
