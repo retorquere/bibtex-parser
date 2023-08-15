@@ -17,10 +17,24 @@ Object {
       },
       "fields": Object {
         "title": Array [
-          "non-braking space:  ; accented characters: ñ and ñ; tilde in URL: <span class=\\"nocase\\">http://example.com/~user</span>",
+          "non-braking space:  ; accented characters: ñ and ñ; tilde in URL: <a href=\\"http://example.com/~user\\">http://example.com/~user</a>",
         ],
       },
       "key": "test-ticket1661",
+      "type": "article",
+    },
+    Object {
+      "creators": Object {},
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "title": Array [
+          "non-braking space:  ; accented characters: ñ and ñ; tilde in URL: <a href=\\"http://example.com/~user\\"><span class=\\"nocase\\">Home</span></a>",
+        ],
+      },
+      "key": "test-ticket1661a",
       "type": "article",
     },
   ],

@@ -1314,13 +1314,16 @@ class Parser {
         break
 
       case 'href':
+      case 'url':
         node.arguments.required = node.arguments.required.map(a => this.clean(a)) as bibtex.Argument[]
         return node
 
+        /*
       case 'url':
         if (arg = this.argument(node, 'Text')) return this.text(arg)
         if (arg = this.argument(node, 'Block')) return this.clean(arg as Node)
         break
+        */
 
       case 'sl':
       case 'em':
@@ -1518,7 +1521,7 @@ class Parser {
         break
 
       default:
-        if (node.kind === 'RegularCommand' && node.command === 'href') {
+        if (node.kind === 'RegularCommand' && (node.command === 'href' || node.command === 'url')) {
           this.convert_href(node)
         }
         else if (node.kind === 'RegularCommand' && node.command === 'par') {
@@ -1870,7 +1873,7 @@ class Parser {
     this.field.text += '<a href="'
     this.convert(node.arguments.required[0])
     this.field.text += '">'
-    this.convert(node.arguments.required[1])
+    this.convert(node.arguments.required[1] || node.arguments.required[0])
     this.field.text += '</a>'
   }
 
