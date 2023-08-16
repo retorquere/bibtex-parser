@@ -684,7 +684,7 @@ RegularCommand
   }
   / '\\' cmd:'url' __h &'{' url:VerbatimFieldValue {
     // https://github.com/retorquere/zotero-better-bibtex/issues/2617
-    url.value = url.value.replace(/\\#/g, '#')
+    url.value = url.value.replace(/\\([\#%])/g, '$1')
     return {
       kind: 'RegularCommand',
       loc: location(),
@@ -698,7 +698,7 @@ RegularCommand
   }
   / '\\' cmd:'href' __h &'{' url:VerbatimFieldValue label:Argument {
     // https://github.com/retorquere/zotero-better-bibtex/issues/2617
-    url.value = url.value.replace(/\\#/g, '#')
+    url.value = url.value.replace(/\\([\#%])/g, '$1')
     return {
       kind: 'RegularCommand',
       loc: location(),

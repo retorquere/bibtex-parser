@@ -1318,13 +1318,6 @@ class Parser {
         node.arguments.required = node.arguments.required.map(a => this.clean(a)) as bibtex.Argument[]
         return node
 
-        /*
-      case 'url':
-        if (arg = this.argument(node, 'Text')) return this.text(arg)
-        if (arg = this.argument(node, 'Block')) return this.clean(arg as Node)
-        break
-        */
-
       case 'sl':
       case 'em':
       case 'it':
