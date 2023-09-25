@@ -375,7 +375,7 @@ Field
   }
 
 FieldName
-  = __ name:$[_:a-zA-Z0-9-]+ { return name.toLowerCase() }
+  = __ name:$[0-9A-Za-z!$&*+\-./:;<>?@[\\\]^_`|~]+ { return name.toLowerCase() }
 
 //----------------------- Value Descriptors
 
