@@ -1259,6 +1259,9 @@ class Parser {
       case 'mkbibquote':
       case 'bibstring':
       case 'cite':
+      case 'textcite':
+      case 'textup':
+      case 'citeauthor':
       case 'textsc':
       case 'textbf':
       case 'texttt':
