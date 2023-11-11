@@ -663,7 +663,7 @@ DiacriticCommand
   }
 
 SymbolCommand
-  = '\\' v:$[^A-Za-z0-9\t\r\n] {
+  = '\\' v:$[^A-Za-z0-9\[\]\t\r\n] {
     return {
       kind: 'SymbolCommand',
       loc: location(),
