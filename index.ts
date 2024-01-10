@@ -1241,6 +1241,7 @@ class Parser {
       case 'else':
       case 'fi':
       case 'makeatletter':
+      case 'mathslbb':
         return this.text()
 
       case 'ElsevierGlyph':
