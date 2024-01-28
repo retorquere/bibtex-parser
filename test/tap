@@ -26,11 +26,13 @@ const valid = {
 const multi = ['test']
 
 function normalize(result) {
+  if (!Array.isArray(result.entries)) return result
+
   // multiple combining chars can appear in any order
   const n = v => {
     switch (typeof v) {
       case 'number': return v
-      case 'string': return v.normalize('NFD')
+      case 'string': return v.normalize('NFC')
       default:
         console.log('normalize', typeof v, v)
         return v
@@ -107,8 +109,6 @@ let testcases = []
 for (const pattern of config.test) {
   testcases = testcases.concat(glob(path.join(__dirname, '**', (pattern ? '*' : '') + pattern + '*.{json,bib,bibtex,biblatex}'), { nocase: true, matchBase: true, nonull: false, nodir: true }))
 }
-
-testcases = testcases.filter(t => t.match(/1481/))
 
 for (const bibfile of testcases) {
   const basename = path.basename(bibfile)
