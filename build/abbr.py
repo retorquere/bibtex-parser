@@ -8,9 +8,10 @@ import csv
 import glob
 
 unabbr = {}
-strings = ''
+with open('build/strings-base.bib') as f:
+  strings = f.read()
 
-with open('node_modules/unicode2latex/tables/unicode.json') as f:
+with open('node_modules/unicode2latex/tables/biblatex.json') as f:
   u2l = json.load(f)
 def unicode2latex(s):
   l = ''
@@ -48,6 +49,12 @@ def unthe(j):
   for prefix in ['^the ', '^la ']:
     if re.match(prefix, j, re.I): return re.sub(prefix, '', j, flags=re.I).strip()
   return j
+
+with open('build/unabbrev-base.json') as f:
+  base = json.load(f)
+  for abbr, full in base.items():
+    abbr = clean(abbr, full)
+    unabbr[abbr] = full
 
 for abbrevs in glob.glob('abbrv.jabref.org/journals/journal_abbreviations_*.csv'):
   with open(abbrevs) as f:
