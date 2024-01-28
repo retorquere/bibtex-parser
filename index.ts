@@ -1750,7 +1750,7 @@ class Parser {
         }
       }
       else if (fields.unabbrev.includes(field.name)) { // doesn't get sentence casing anyhow TODO: booktitle does!
-        this.entry.fields[this.field.name].push((this.options.unabbreviate[this.field.text] || this.field.text).normalize('NFC'))
+        this.entry.fields[this.field.name].push(this.options.unabbreviate[this.field.text] || this.field.text)
       }
       else {
         if (this.field.preserveRanges) {
@@ -1786,9 +1786,10 @@ class Parser {
           }
         }
 
-        this.entry.fields[this.field.name].push(this.convertToSentenceCase(this.field.text).normalize('NFC'))
+        this.entry.fields[this.field.name].push(this.convertToSentenceCase(this.field.text))
       }
     }
+
 
     this.field = null
   }

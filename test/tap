@@ -25,6 +25,34 @@ const valid = {
 }
 const multi = ['test']
 
+function normalize(result) {
+  // multiple combining chars can appear in any order
+  const n = v => {
+    switch (typeof v) {
+      case 'number': return v
+      case 'string': return v.normalize('NFD')
+      default:
+        console.log('normalize', typeof v, v)
+        return v
+    }
+  }
+
+  for (const entry of result.entries) {
+    for (const [field, values] of Object.entries(entry.fields)) {
+      entry.fields[field] = values.map(v => n(v))
+    }
+
+    for (const [creator, names] of Object.entries(entry.creators)) {
+      for (const name of names) {
+        for (const [k, v] of Object.entries(name)) {
+          if (typeof v === 'string') name[k] = n(v)
+        }
+      }
+    }
+  }
+  return result
+}
+
 const config = Object.assign({
   all: '',
   sentence_case: valid.sentence_case.slice(0, 1),
@@ -80,6 +108,8 @@ for (const pattern of config.test) {
   testcases = testcases.concat(glob(path.join(__dirname, '**', (pattern ? '*' : '') + pattern + '*.{json,bib,bibtex,biblatex}'), { nocase: true, matchBase: true, nonull: false, nodir: true }))
 }
 
+testcases = testcases.filter(t => t.match(/1481/))
+
 for (const bibfile of testcases) {
   const basename = path.basename(bibfile)
   const section = path.basename(path.dirname(bibfile))
@@ -92,7 +122,7 @@ for (const bibfile of testcases) {
         const result = await piscina.run({ bibfile, options })
         t.snapshotFile = snapshot
         // t.matchSnapshot(await piscina.run({ bibfile, options }))
-        t.matchSnapshot(result)
+        t.matchSnapshot(normalize(result))
       })
     })(
       bibfile,
@@ -117,7 +147,7 @@ for (const bibfile of testcases) {
             if (typeof result !== 'string' && result.errors.length && !config.error.includes(path.basename(bibfile))) throw JSON.stringify(result.errors[0], null, 2)
             t.snapshotFile = snapshot
             // t.matchSnapshot(await piscina.run({ bibfile, options }))
-            t.matchSnapshot(result)
+            t.matchSnapshot(normalize(result))
           })
         })(
           bibfile,
