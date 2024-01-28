@@ -587,6 +587,7 @@ Command
   / DiacriticCommand
   / RegularCommand
   / SymbolCommand
+  / InvalidCommand // *must* be last; https://github.com/retorquere/zotero-better-bibtex/issues/2771
 
 LineBreak
   = __ '\\\\' __ {
@@ -810,6 +811,17 @@ RegularCommand
         required: [],
       }
     }
+  }
+
+InvalidCommand
+  = '\\' !'begin' !'end' char:[0-9] __ {
+    return basicTextConversions({
+      kind: 'Text',
+      loc: location(),
+      source: text(),
+      value: char,
+      mode: math.on ? 'math' : 'text',
+    })
   }
 
 OptionalArgument
