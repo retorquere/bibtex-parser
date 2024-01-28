@@ -1,10 +1,30 @@
 #!/usr/bin/env node
 
 const path = require('path')
-const Piscina = require('piscina')
 const fs = require('fs')
 const os = require('os')
 const glob = require('glob').globSync
+const tap = require('tap')
+
+const bibtex = require('../index')
+
+function tryparse({ bibfile, options }) {
+  const source = fs.readFileSync(bibfile, 'utf-8')
+
+  if (bibfile.endsWith('.json')) {
+    const data = JSON.parse(source)
+    return data.items.map(item => bibtex.toSentenceCase(item.title))
+  }
+
+  let result = ''
+  if (options.exception) {
+    bibtex.parse(source, {...options, errorHandler: err => { result = `caught error: ${err.message}` } })
+  }
+  else {
+    result = bibtex.parse(source, options)
+  }
+  return result
+}
 
 const prefix = 'npm_config_'
 const valid = {
@@ -97,13 +117,9 @@ if (config.snapshot || config.all) { // reset to all for snapshots
 if (config.test.length !== 1 || config.test[0] !== '') config.toobig=[] // if you pick out a test, you want it ran
 
 if (config.snapshot) process.env.TAP_SNAPSHOT = '1'
+if (process.env.TAP_SNAPSHOT === '1') config.snapshot = 'true'
+
 // if (require.main === module) console.log(config)
-
-// require *after* setting TAP_SNAPSHOT
-const tap = require('tap')
-tap.jobs = os.cpus().length - 1
-
-const piscina = new Piscina({ filename: path.resolve(__dirname, 'worker') })
 
 let testcases = []
 for (const pattern of config.test) {
@@ -119,9 +135,8 @@ for (const bibfile of testcases) {
   if (bibfile.endsWith('.json')) {
     ((bibfile, options, name, snapshot) => {
       tap.test(name, async t => {
-        const result = await piscina.run({ bibfile, options })
+        const result = tryparse({ bibfile, options })
         t.snapshotFile = snapshot
-        // t.matchSnapshot(await piscina.run({ bibfile, options }))
         t.matchSnapshot(normalize(result))
       })
     })(
@@ -143,10 +158,9 @@ for (const bibfile of testcases) {
   
         ; ((bibfile, options, name, snapshot) => {
           tap.test(name, async t => {
-            const result = await piscina.run({ bibfile, options })
+            const result = tryparse({ bibfile, options })
             if (typeof result !== 'string' && result.errors.length && !config.error.includes(path.basename(bibfile))) throw JSON.stringify(result.errors[0], null, 2)
             t.snapshotFile = snapshot
-            // t.matchSnapshot(await piscina.run({ bibfile, options }))
             t.matchSnapshot(normalize(result))
           })
         })(
