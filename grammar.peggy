@@ -44,7 +44,7 @@
 
   const unnestFields = (options.unnestFields || []).map(field => field.toLowerCase())
   const verbatimFields = (options.verbatimFields || [ 'urlraw', 'url', 'doi', 'file', 'files', 'eprint', 'verba', 'verbb', 'verbc' ]).map(field => typeof field === 'string' ? field.toLowerCase() : field)
-  const verbatimCommands = (options.verbatimCommands || [ 'texttt', 'url' ])
+  const verbatimCommands = (options.verbatimCommands || [ 'url' ])
 
   function isVerbatimField(name) {
     return verbatimFields.find(p => (typeof p === 'string') ? name === p : name.match(p))
@@ -131,6 +131,15 @@
 
     set: function(state) {
       this.on = state
+      return true
+    }
+  }
+
+  const verbatim = {
+    delim: '',
+
+    set: function(delim) {
+      this.delim = delim
       return true
     }
   }
@@ -418,15 +427,6 @@ FieldValue
 
 RegularValue
   = '"' v:(Environment / Block / Math / Command / TextNoQuotes)* '"' Concat? { return v; }
-  / '{\\verb' ![a-zA-Z] v:VerbatimText* '}' Concat? {
-    return basicTextConversions({
-      kind: 'Text',
-      loc: location(),
-      source: text(),
-      value: v.join('').trim(),
-      mode: 'verbatim',
-    })
-  }
   / '{' v:(Environment / Block / Math / Command / Text)* '}' Concat? { return v; }
   / v:StringReference Concat? { return v; }
 
@@ -508,15 +508,6 @@ Block
       dotless: !!chr[1],
       character: chr[1] || chr[0],
     }
-  }
-  / '{\\verb' ![a-zA-Z] v:VerbatimText* '}' {
-      return basicTextConversions({
-        kind: 'Text',
-        loc: location(),
-        source: text(),
-        value: v.join('').trim(),
-        mode: 'verbatim',
-      })
   }
   / '{' v:(Environment / Block / Command / Math / Text)* '}' {
     const block = {
@@ -714,6 +705,15 @@ RegularCommand
       },
     }
   }
+  / '\\verb' delim:. &{ return verbatim.set(delim) } v:VerbatimChar* . &{ return verbatim.set('') } {
+    return basicTextConversions({
+      kind: 'Text',
+      loc: location(),
+      source: text(),
+      value: v.join(''),
+      mode: 'verbatim',
+    })
+  }
   / '\\' !'begin' !'end' cmd:$[A-Za-z]+ &{ return verbatimCommands.includes(cmd) && (has_arguments[cmd] === 2) } optional:OptionalArgument* __h &'{' req1:VerbatimFieldValue req2:VerbatimFieldValue {
     return {
       kind: 'RegularCommand',
@@ -812,6 +812,9 @@ RegularCommand
       }
     }
   }
+
+VerbatimChar
+  = char:. &{ return char !== verbatim.delim } { return char }
 
 InvalidCommand
   = '\\' !'begin' !'end' char:[0-9] __ {
