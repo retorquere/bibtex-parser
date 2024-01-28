@@ -111,8 +111,8 @@
     vspace: 1,
   }
 
-  if (options.combiningDiacritics) {
-    for (const cmd of options.combiningDiacritics) {
+  if (options.combining) {
+    for (const cmd of options.combining) {
       has_arguments[cmd] = 1
     }
   }

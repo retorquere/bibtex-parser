@@ -3,7 +3,7 @@ import * as bibtex from './grammar'
 import * as chunker from './chunker'
 import * as jabref from './jabref'
 import { JabRefMetadata, parse as parseJabRef } from './jabref'
-import { latex as latex2unicode, diacritics } from 'unicode2latex'
+import { latex2unicode, combining } from 'unicode2latex'
 import crossref from './crossref.json'
 import allowed from './fields.json'
 export { toSentenceCase } from './sentence-case'
@@ -623,7 +623,7 @@ class Parser {
   public ast(input, clean = true): Node[] {
     let parsed: Node[] = []
     for (const chunk of chunker.parse(input)) {
-      const { children } = bibtex.parse(chunk.text, {...this.options, combiningDiacritics: diacritics.commands})
+      const { children } = bibtex.parse(chunk.text, {...this.options, combining: combining.commands})
       if (clean) this.clean(children)
       parsed = parsed.concat(children)
     }
@@ -752,7 +752,7 @@ class Parser {
     this.chunk = chunk.text
 
     try {
-      let bib = bibtex.parse(chunk.text, {...this.options, combiningDiacritics: diacritics.commands})
+      let bib = bibtex.parse(chunk.text, {...this.options, combining: combining.commands})
       if (bib.kind !== 'Bibliography') throw new Error(this.show(bib))
       bib = (this.clean(bib) as bibtex.Bibliography)
 
@@ -1154,7 +1154,7 @@ class Parser {
       || latex2unicode[`{\\${node.mark}${char}}`]
       || latex2unicode[`\\${node.mark} ${char}`]
 
-    if (!unicode && !node.dotless && node.character.length === 1 && diacritics.tounicode[node.mark]) unicode = node.character + diacritics.tounicode[node.mark]
+    if (!unicode && !node.dotless && node.character.length === 1 && combining.tounicode[node.mark]) unicode = node.character + combining.tounicode[node.mark]
     if (!unicode && !this.in_preamble) return this.error(new TeXError(`Unhandled \\${node.mark}{${char}}`, node, this.chunk))
     return this.text(unicode)
   }
@@ -1366,7 +1366,7 @@ class Parser {
           })
         }
 
-        if (diacritics.tounicode[node.command]) {
+        if (combining.tounicode[node.command]) {
           node.arguments.required = this.clean(node.arguments.required) as bibtex.Argument[]
 
           let block: bibtex.Block
@@ -1417,7 +1417,7 @@ class Parser {
             return this.clean({
               kind: 'Block',
               markup: {},
-              value: ([ this.text(` ${diacritics.tounicode[node.command]}`) ] as bibtex.ValueType[]).concat(node.arguments.required),
+              value: ([ this.text(` ${combining.tounicode[node.command]}`) ] as bibtex.ValueType[]).concat(node.arguments.required),
             })
           }
         }
