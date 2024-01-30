@@ -39,7 +39,6 @@
     texttt: 'fixedWidth',
     rm: 'roman',
     sf: 'sansSerif',
-    verb: 'verbatim',
   }
 
   const unnestFields = (options.unnestFields || []).map(field => field.toLowerCase())
