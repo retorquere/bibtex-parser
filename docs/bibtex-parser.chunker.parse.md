@@ -4,7 +4,7 @@
 
 ## chunker.parse() function
 
-Reads the bibtex input and splits it into separate chunks of `@string`<!-- -->s, `@comment`<!-- -->s, and bibtex entries. Useful for detecting if a file is bibtex file and for filtering out basic errors that would make the more sophisticated \[\[bibtex.parse\]\] reject the whole file
+Reads the bibtex input and splits it into separate chunks of `string`<!-- -->s, `@comment`<!-- -->s, and bibtex entries. Useful for detecting if a file is bibtex file and for filtering out basic errors that would make the more sophisticated \[\[bibtex.parse\]\] reject the whole file
 
 **Signature:**
 

@@ -8,7 +8,8 @@
 
 |  Function | Description |
 |  --- | --- |
-|  [parse(input, options)](./bibtex-parser.chunker.parse.md) | Reads the bibtex input and splits it into separate chunks of <code>@string</code>s, <code>@comment</code>s, and bibtex entries. Useful for detecting if a file is bibtex file and for filtering out basic errors that would make the more sophisticated \[\[bibtex.parse\]\] reject the whole file |
+|  [entries(input, options)](./bibtex-parser.chunker.entries.md) |  |
+|  [parse(input, options)](./bibtex-parser.chunker.parse.md) | Reads the bibtex input and splits it into separate chunks of <code>string</code>s, <code>@comment</code>s, and bibtex entries. Useful for detecting if a file is bibtex file and for filtering out basic errors that would make the more sophisticated \[\[bibtex.parse\]\] reject the whole file |
 
 ## Interfaces
 
