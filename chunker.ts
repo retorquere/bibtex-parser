@@ -77,32 +77,43 @@ export interface ParserOptions {
   max_entries?: number
 }
 
+type Entry = {
+  type: string
+  key?: string
+  fields: Record<string, string>
+}
+
 class BibtexParser {
   public parsing: string
+  public chunks: Chunk[]
+  public entries: Entry[]
 
   private pos: number
+  // private linebreaks: { pos: number, line: number}[]
   private input: string
-  private chunks: Chunk[]
 
-  private entries: number
+  private strings: Record<string, string>
   private max_entries: number
 
-  constructor() {
+  reset(input) {
+    this.input = input
     this.pos = 0
-    this.entries = 0
+    this.entries = []
+    this.strings = {}
     this.parsing = null
     this.chunks = []
+    // this.linebreaks = undefined
   }
 
   public parse(input, options: ParserOptions = {}): Chunk[] {
+    this.reset(input)
     this.max_entries = options.max_entries || 0
-    this.input = input
     this.bibtex()
     return this.chunks
   }
   public async parseAsync(input, options: ParserOptions = {}): Promise<Chunk[]> {
+    this.reset(input)
     this.max_entries = options.max_entries || 0
-    this.input = input
     await this.bibtexAsync()
     return this.chunks
   }
@@ -216,7 +227,8 @@ class BibtexParser {
       return this.value_quotes()
     }
     else {
-      return this.key()
+      const bare = this.key()
+      return this.strings[bare] || bare
     }
   }
 
@@ -258,10 +270,18 @@ class BibtexParser {
 
     this.match('=')
     const val = this.value()
-    return [ key, val ]
+
+    if (this.parsing === 'string') {
+      this.strings[key.toLowerCase()] = val
+    }
+    else {
+      this.entries[0].fields[key] = val
+    }
   }
 
-  private key_value_list() {
+  private entry(_d) {
+    this.entries[0].key = this.key(true)
+    this.match(',')
     this.key_equals_value()
     while (this.tryMatch(',')) {
       this.match(',')
@@ -273,15 +293,9 @@ class BibtexParser {
     }
   }
 
-  private entry(_d) {
-    this.parsing = this.key(true)
-    this.match(',')
-    this.key_value_list()
-  }
-
   private directive() {
     this.match('@')
-    return `@${this.key()}`.toLowerCase()
+    return this.key().toLowerCase()
   }
 
   private string() { // eslint-disable-line id-blacklist
@@ -314,7 +328,7 @@ class BibtexParser {
   */
 
   private hasMore() {
-    if (this.max_entries && this.entries >= this.max_entries) return false
+    if (this.max_entries && this.entries.length >= this.max_entries) return false
     return (this.pos < this.input.length)
   }
 
@@ -327,6 +341,17 @@ class BibtexParser {
   private bibtexAsync() {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return this.hasMore() ? (new Promise(resolve => resolve(this.parseNext()))).then(() => this.bibtexAsync()) : Promise.resolve(null)
+  }
+
+  private matchGuard() {
+    for (const guard of ['{}', '()']) {
+      if (this.tryMatch(guard[0])) {
+        this.match(guard[0])
+        return guard[1]
+      }
+    }
+
+    throw new ParseError(`Token mismatch, expected '{' or '(', found ${JSON.stringify(this.input.substr(this.pos, 20))}...`, this) // eslint-disable-line no-magic-numbers
   }
 
   private parseNext() {
@@ -346,56 +371,62 @@ class BibtexParser {
 
     let guard = ''
     try {
-      const d = this.directive()
+      const d = this.parsing = this.directive()
       switch (d) {
-        case '@string':
-          this.match('{')
+        case 'string':
+          guard = this.matchGuard()
           this.string()
-          this.match('}')
+          this.match(guard)
           chunk.stringDeclaration = true
           break
 
-        case '@preamble':
-          this.match('{')
+        case 'preamble':
+          guard = this.matchGuard()
           this.preamble()
-          this.match('}')
+          this.match(guard)
           chunk.preamble = true
           break
 
-        case '@comment':
+        case 'comment':
           this.comment()
           chunk.comment = true
           break
 
         default:
-          if (this.tryMatch('{')) {
-            guard = '{}'
-          }
-          else if (this.tryMatch('(')) {
-            guard = '()'
-          }
-          else {
-            throw new ParseError(`Token mismatch, expected '{' or '(', found ${JSON.stringify(this.input.substr(this.pos, 20))}...`, this) // eslint-disable-line no-magic-numbers
-          }
-          this.match(guard[0])
+          guard = this.matchGuard()
+          this.entries.unshift({ type: d, fields: {} })
           this.entry(d)
-          this.match(guard[1])
+          this.match(guard)
           chunk.entry = true
-          this.entries++
           break
       }
     }
     catch (err) {
       if (err.name !== 'ParseError') throw err
-
       chunk.error = err.message
       // skip ahead to the next @ and try again
       this.pos = chunk.offset.pos + 1
       while (this.pos < this.input.length && this.input[this.pos] !== '@') this.pos++
+
+      /*
+      if (!this.linebreaks) {
+        this.linebreaks = []
+        for (let pos = 0; pos < this.input.length; pos++) {
+          if (this.input[pos] === '\n') this.linebreaks.push({ pos, line: this.linebreaks.length + 1 })
+        }
+      }
+      const line = this.linebreaks.find(l => l.pos >= chunk.offset.pos)
+      if (line) {
+        chunk.offset.line = line.line
+        chunk.offset.pos = chunk.offset.pos - line.pos
+      }
+      else {
+        chunk.offset.line = 1
+      }
+      */
     }
 
     const text = this.input.substring(chunk.offset.pos, this.pos)
-
     const last = this.chunks.length - 1
     if (chunk.error && this.chunks.length && this.chunks[last].error) {
       this.chunks[last].text += text
@@ -408,13 +439,22 @@ class BibtexParser {
 }
 
 /**
- * Reads the bibtex input and splits it into separate chunks of `@string`s, `@comment`s, and bibtex entries. Useful for detecting if a file is bibtex file and for filtering out basic errors that would
+ * Reads the bibtex input and splits it into separate chunks of `string`s, `@comment`s, and bibtex entries. Useful for detecting if a file is bibtex file and for filtering out basic errors that would
  * make the more sophisticated [[bibtex.parse]] reject the whole file
  *
  * @returns array of chunks, with markers for type and errors (if any) found.
  */
 export function parse(input: string, options: ParserOptions = {}): Chunk[] {
   return (new BibtexParser).parse(input, options)
+}
+
+export function entries(input: string, options: ParserOptions = {}): { entries: Entry[], errors: Chunk[] } {
+  const parser = new BibtexParser
+  parser.parse(input, options)
+  return {
+    entries: parser.entries.reverse(),
+    errors: parser.chunks.filter(chunk => chunk.error),
+  }
 }
 
 export const promises = {
