@@ -249,7 +249,7 @@
         broken.push(node)
       }
       else {
-        node.value.split(/([ \t\r]*\n[ \t\r]*\n[ \t\r\n]*)/).forEach((par, i) => {
+        node.value.split(/([ \t\r]*\n[ \t\r]*\n[ \t\r\n]*|[ \t\r\n]*\u2029[ \t\r\n]*)/).forEach((par, i) => {
           if (i % 2 == 0) {
             broken.push(basicTextConversions({...node, value: normalizeWhitespace(par)}))
           }
