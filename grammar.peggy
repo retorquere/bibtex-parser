@@ -49,19 +49,8 @@
     return verbatimFields.find(p => (typeof p === 'string') ? name === p : name.match(p))
   }
 
-  function normalizeWhitespace(textArr) {
-    if (typeof textArr === 'string') textArr = Array.from(textArr)
-
-    return textArr.reduce((prev, curr) => {
-      if (/\s/.test(curr)) {
-        if (/\s/.test(prev[prev.length - 1])) {
-          return prev;
-        } else {
-          return prev + ' ';
-        }
-      }
-      return prev + curr;
-    }, '');
+  function normalizeWhitespace(t) {
+    return t.replace(/\r/g, '').replace(/[ \t\n]+/g, ' ')
   }
 
   const has_arguments = {
@@ -252,6 +241,34 @@
 
     return block
   }
+
+  function parBreak(nodes) {
+    const broken = []
+    for (const node of nodes) {
+      if (node.kind !== 'Text') {
+        broken.push(node)
+      }
+      else {
+        node.value.split(/([ \t\r]*\n[ \t\r]*\n[ \t\r\n]*)/).forEach((par, i) => {
+          if (i % 2 == 0) {
+            broken.push(basicTextConversions({...node, value: normalizeWhitespace(par)}))
+          }
+          else {
+            broken.push({
+              ...node,
+              kind: 'RegularCommand',
+              command: 'par',
+              arguments: {
+                optional: [],
+                required: [],
+              },
+            })
+          }
+        })
+      }
+    }
+    return broken
+  }
 }
 
 Bibliography
@@ -273,7 +290,7 @@ Comment
       value: v.slice(1, -1),
     }
   }
-  / '@' __ 'comment'i __h v:[^\n\r]* [\n\r]* {
+  / '@' __ 'comment'i __h v:$[^\n\r]* [\n\r]* {
     return {
       kind: 'LineComment',
       loc: location(),
@@ -281,7 +298,7 @@ Comment
       value: normalizeWhitespace(v),
     }
     }
-  / v:([^@] [^\n\r]*) [\n\r]* {
+  / v:$([^@] [^\n\r]*) [\n\r]* {
     return {
       kind: 'NonEntryText',
       loc: location(),
@@ -425,8 +442,8 @@ FieldValue
   }
 
 RegularValue
-  = '"' v:(Environment / Block / Math / Command / TextNoQuotes / Newline)* '"' Concat? { return v; }
-  / '{' v:(Environment / Block / Math / Command / Text / Newline)* '}' Concat? { return v; }
+  = '"' v:(Environment / Block / Math / Command / TextNoQuotes)* '"' Concat? { return parBreak(v); }
+  / '{' v:(Environment / Block / Math / Command / Text)* '}' Concat? { return parBreak(v); }
   / v:StringReference Concat? { return v; }
 
 StringValue
@@ -435,36 +452,25 @@ StringValue
 //---------------------- Value Kinds
 
 Text
-  = v:[^\^_${}\\\r\n]+ {
+  = v:$[^\^_${}\\]+ {
     return basicTextConversions({
       kind: 'Text',
       loc: location(),
       source: text(),
-      value: normalizeWhitespace(v),
+      value: v,
       mode: math.on ? 'math' : 'text',
     })
   }
 
 TextNoQuotes
-  = v:[^\^_${}"\\\r\n]+ {
+  = v:$[^\^_${}"\\]+ {
     return basicTextConversions({
       kind: 'Text',
       loc: location(),
       source: text(),
-      value: normalizeWhitespace(v),
+      value: v,
       mode: math.on ? 'math' : 'text',
     })
-  }
-
-Newline
-  = __h '\r'? '\n' __h {
-    return {
-      kind: 'Text',
-      loc: location(),
-      source: text(),
-      value: ' ',
-      mode: math.on ? 'math' : 'text',
-    }
   }
 
 Number
@@ -551,6 +557,8 @@ Block
       }
     }
 
+    block.value = parBreak(block.value)
+
     return handle_markup_switches(block)
   }
 
@@ -584,7 +592,6 @@ LineComment
 Command
   = ScriptCommand
   / LineBreak
-  / ParBreak
   / DiacriticCommand
   / RegularCommand
   / SymbolCommand
@@ -597,20 +604,6 @@ LineBreak
       loc: location(),
       source: text(),
       command: '\\',
-      arguments: {
-        optional: [],
-        required: [],
-      },
-    }
-  }
-
-ParBreak
-  = __h '\r'? '\n' __h '\r'? '\n' __ {
-    return {
-      kind: 'RegularCommand',
-      loc: location(),
-      source: text(),
-      command: 'par',
       arguments: {
         optional: [],
         required: [],
@@ -854,7 +847,7 @@ Argument
       kind: 'Text',
       loc: location(),
       source: text(),
-      value: normalizeWhitespace([v]),
+      value: normalizeWhitespace(v),
       mode: math.on ? 'math' : 'text',
     })
   }
