@@ -425,8 +425,8 @@ FieldValue
   }
 
 RegularValue
-  = '"' v:(Environment / Block / Math / Command / TextNoQuotes)* '"' Concat? { return v; }
-  / '{' v:(Environment / Block / Math / Command / Text)* '}' Concat? { return v; }
+  = '"' v:(Environment / Block / Math / Command / TextNoQuotes / Newline)* '"' Concat? { return v; }
+  / '{' v:(Environment / Block / Math / Command / Text / Newline)* '}' Concat? { return v; }
   / v:StringReference Concat? { return v; }
 
 StringValue
@@ -435,7 +435,7 @@ StringValue
 //---------------------- Value Kinds
 
 Text
-  = v:[^\^_${}\\]+ {
+  = v:[^\^_${}\\\r\n]+ {
     return basicTextConversions({
       kind: 'Text',
       loc: location(),
@@ -446,7 +446,7 @@ Text
   }
 
 TextNoQuotes
-  = v:[^\^_${}"\\]+ {
+  = v:[^\^_${}"\\\r\n]+ {
     return basicTextConversions({
       kind: 'Text',
       loc: location(),
@@ -454,6 +454,17 @@ TextNoQuotes
       value: normalizeWhitespace(v),
       mode: math.on ? 'math' : 'text',
     })
+  }
+
+Newline
+  = __h '\r'? '\n' __h {
+    return {
+      kind: 'Text',
+      loc: location(),
+      source: text(),
+      value: ' ',
+      mode: math.on ? 'math' : 'text',
+    }
   }
 
 Number
