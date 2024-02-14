@@ -1,4 +1,5 @@
 import { unified } from 'unified'
+import { printRaw } from "@unified-latex/unified-latex-util-print-raw"
 import * as chunker from './chunker'
 import { unifiedLatexFromString } from '@unified-latex/unified-latex-util-parse'
 // import { replaceNode } from '@unified-latex/unified-latex-util-replace'
@@ -54,7 +55,7 @@ const parser = unified().use(unifiedLatexFromString, {
 })
 
 let input = require('./test.json').bib
-input = "@article{x, x={\\em{x}\\href{url}{label}}}"
+input = "@article{x, x={\\em{x}\\href{url\\too}{label}}}"
 const entries = chunker.entries(input).entries
 import { visit } from '@unified-latex/unified-latex-util-visit'
 
@@ -64,11 +65,7 @@ function convert(tree) {
       return // manual math mode
     }
 
-    if (nodes.length === 1) {
-      const href = info.parents.find(p => p.type === 'macro' && (p.content === 'url' || p.content === 'href'))
-      if (href) console.log(href.args[0], nodes[0], nodes[0] === href.args[0])
-      if (href && nodes[0] === href.args[0]) return
-    }
+    if (info.parents[0]?.type === 'macro' && info.parents[0].content === 'href') console.log(nodes, printRaw(nodes[0].content))
 
     const parsed = parseLigatures(nodes)
     nodes.length = 0
