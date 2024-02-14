@@ -99,7 +99,40 @@ class BibtexParser {
     this.input = input
     this.pos = 0
     this.entries = []
-    this.strings = {}
+    this.strings = {
+      jan: '01',
+      feb: '02',
+      mar: '03',
+      apr: '04',
+      may: '05',
+      jun: '06',
+      jul: '07',
+      aug: '08',
+      sep: '09',
+      oct: '10',
+      nov: '11',
+      dec: '12',
+      acmcs: 'ACM Computing Surveys',
+      acta: 'Acta Informatica',
+      cacm: 'Communications of the ACM',
+      ibmjrd: 'IBM Journal of Research and Development',
+      ibmsj: 'IBM Systems Journal',
+      ieeese: 'IEEE Transactions on Software Engineering',
+      ieeetc: 'IEEE Transactions on Computers',
+      ieeetcad: 'IEEE Transactions on Computer-Aided Design of Integrated Circuits',
+      ipl: 'Information Processing Letters',
+      jacm: 'Journal of the ACM',
+      jcss: 'Journal of Computer and System Sciences',
+      scp: 'Science of Computer Programming',
+      sicomp: 'SIAM Journal on Computing',
+      tocs: 'ACM Transactions on Computer Systems',
+      tods: 'ACM Transactions on Database Systems',
+      tog: 'ACM Transactions on Graphics',
+      toms: 'ACM Transactions on Mathematical Software',
+      toois: 'ACM Transactions on Office Information Systems',
+      toplas: 'ACM Transactions on Programming Languages and Systems',
+      tcs: 'Theoretical Computer Science',
+    }
     this.parsing = null
     this.chunks = []
     // this.linebreaks = undefined
@@ -447,6 +480,7 @@ export function parse(input: string, options: ParserOptions = {}): Chunk[] {
   return (new BibtexParser).parse(input, options)
 }
 
+function convert(entry: Entry)
 export function entries(input: string, options: ParserOptions = {}): { entries: Entry[], errors: Chunk[] } {
   const parser = new BibtexParser
   parser.parse(input, options)
