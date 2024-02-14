@@ -279,8 +279,8 @@ class BibtexParser {
     }
   }
 
-  private entry(_d) {
-    this.entries[0].key = this.key(true)
+  private entry(d) {
+    this.entries.unshift({ type: d, key: this.key(true), fields: {} })
     this.match(',')
     this.key_equals_value()
     while (this.tryMatch(',')) {
@@ -394,7 +394,6 @@ class BibtexParser {
 
         default:
           guard = this.matchGuard()
-          this.entries.unshift({ type: d, fields: {} })
           this.entry(d)
           this.match(guard)
           chunk.entry = true
