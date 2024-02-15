@@ -59,18 +59,28 @@ input = "@article{x, x={\\em{x}\\href{url\\too}{label}}}"
 const entries = chunker.entries(input).entries
 import { visit } from '@unified-latex/unified-latex-util-visit'
 
+function context(parents) {
+  let ctx = {}
+  for (const node of parents) {
+    if (node.bibtex) ctx = {...node.bibtex, ...ctx}
+  }
+  return ctx
+}
+
 function convert(tree) {
   visit(tree, (nodes, info) => { // eslint-disable-line @typescript-eslint/no-unsafe-argument
-    if (info.context.inMathMode || info.context.hasMathModeAncestor) {
-      return // manual math mode
-    }
-
-    if (info.parents[0]?.type === 'macro' && info.parents[0].content === 'href') console.log(nodes, printRaw(nodes[0].content))
+    if (info.context.inMathMode || info.context.hasMathModeAncestor) return
 
     const parsed = parseLigatures(nodes)
     nodes.length = 0
     nodes.push(...parsed)
   }, { includeArrays: true, test: Array.isArray })
+  
+  visit(tree, (node, info) => { // eslint-disable-line @typescript-eslint/no-unsafe-argument
+    if (node.type === 'macro' && node.content.match(/^(url|href)$/)) {
+      node.args[0].content = [ { type: 'string', content: printRaw(node.args[0].content) } ]
+    }
+  })
 }
 
 /*
