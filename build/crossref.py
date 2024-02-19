@@ -7,7 +7,7 @@ import xml.etree.ElementTree as ET
 namespaces = {'bcf': 'https://sourceforge.net/projects/biblatex'}
 
 crossref = {}
-for bcf in glob.glob('biber/t/tdata/*.bcf'):
+for bcf in glob.glob('submodules/biber/t/tdata/*.bcf'):
   tree = ET.parse(bcf)
   for inherit in tree.getroot().findall('.//bcf:inherit', namespaces=namespaces):
     for type_pair in inherit.findall('.//bcf:type_pair', namespaces=namespaces):
@@ -29,7 +29,7 @@ with open('crossref.json', 'w') as f:
   json.dump(crossref, f, indent='  ', sort_keys=True)
 
 allowed = {}
-tree = ET.parse('biber/data/biber-tool.conf')
+tree = ET.parse('submodules/biber/data/biber-tool.conf')
 root = tree.getroot()
 for entrytype in root.findall('.//entrytypes/entrytype'):
   allowed[entrytype.text] = []
