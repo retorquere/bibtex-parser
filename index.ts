@@ -623,7 +623,7 @@ class Parser {
   public ast(input, clean = true): Node[] {
     let parsed: Node[] = []
     for (const chunk of chunker.parse(input)) {
-      const { children } = bibtex.parse(chunk.text, {...this.options, combining: combining.commands})
+      const { children } = bibtex.parse(chunk.text, {...this.options, combining: combining.macros})
       if (clean) this.clean(children)
       parsed = parsed.concat(children)
     }
@@ -752,7 +752,7 @@ class Parser {
     this.chunk = chunk.text
 
     try {
-      let bib = bibtex.parse(chunk.text, {...this.options, combining: combining.commands})
+      let bib = bibtex.parse(chunk.text, {...this.options, combining: combining.macros})
       if (bib.kind !== 'Bibliography') throw new Error(this.show(bib))
       bib = (this.clean(bib) as bibtex.Bibliography)
 
