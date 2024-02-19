@@ -1,173 +1,144 @@
-import { unified } from 'unified'
+import { LatexPegParser } from '@unified-latex/unified-latex-util-pegjs'
 import { printRaw } from "@unified-latex/unified-latex-util-print-raw"
-import * as chunker from './chunker'
-import { unifiedLatexFromString } from '@unified-latex/unified-latex-util-parse'
-import { replaceNode } from '@unified-latex/unified-latex-util-replace'
-import { parseLigatures } from '@unified-latex/unified-latex-util-ligatures'
+import { inspect } from 'util'
 import { latex2unicode, combining } from 'unicode2latex'
 
-import * as fs from 'fs'
-
-const content = "``Heyns'', \\mbox{Emiliano} and Heyns, Emile, Jr."
-
-function argumentParser
-
-const parser = unified().use(unifiedLatexFromString, {
-  macros: {
-    ElsevierGlyph: { signature: 'm' },
-    bibcyr: { signature: 'm' },
-    bibstring: { signature: 'm' },
-    chsf: { signature: 'm' },
-    cite: { signature: 'm' },
-    citeauthor: { signature: 'm' },
-    cyrchar: { signature: 'm' },
-    ding: { signature: 'm' },
-    emph: { signature: 'm' },
-    enquote: { signature: 'm' },
-    frac: { signature: 'm m' },
-    href: { signature: 'm m' },
-    hspace: { signature: 'm' },
-    mathrm: { signature: 'm' },
-    mbox: { signature: 'm' },
-    mkbibbold: { signature: 'm' },
-    mkbibemph: { signature: 'm' },
-    mkbibitalic: { signature: 'm' },
-    mkbibquote: { signature: 'm' },
-    newcommand: { signature: 'm m' },
-    noopsort: { signature: 'm' },
-    ocirc: { signature: 'm' },
-    sb: { signature: 'm' },
-    section: { signature: 'm' },
-    sp: { signature: 'm' },
-    subsection: { signature: 'm' },
-    subsubsection: { signature: 'm' },
-    subsubsubsection: { signature: 'm' },
-    t: { signature: 'm' },
-    textbf: { signature: 'm' },
-    textcite: { signature: 'm' },
-    textit: { signature: 'm' },
-    textrm: { signature: 'm' },
-    textsc: { signature: 'm' },
-    textsubscript: { signature: 'm' },
-    textsuperscript: { signature: 'm' },
-    texttt: { signature: 'm' },
-    textup: { signature: 'm' },
-    url: { signature: 'm' },
-    vphantom: { signature: 'm' },
-    vspace: { signature: 'm' },
-    em:  { signature: 'm' },
-  },
-})
-
-import { visit } from '@unified-latex/unified-latex-util-visit'
-
-function context(parents) {
-  let ctx = {}
-  for (const node of parents) {
-    if (node.bibtex) ctx = {...node.bibtex, ...ctx}
-  }
-  return ctx
+function show(obj) {
+  return inspect(obj, {showHidden: false, depth: null, colors: true})
 }
 
-function convert(tree) {
-  /*
-  visit(tree, {
-    enter(node, info) {
-      let parent
-      switch (node.type) {
-        case 'group':
-          node.bibtex = { protectCase: true }
-          break
-        case 'argument':
-          node.bibtex = { protectCase: node.openMark === '{' }
-          break
+const macros = {
+  ElsevierGlyph: 'm',
+  bibcyr: 'm',
+  bibstring: 'm',
+  chsf: 'm',
+  cite: 'm',
+  citeauthor: 'm',
+  cyrchar: 'm',
+  ding: 'm',
+  emph: 'm',
+  enquote: 'm',
+  frac: 'm m',
+  href: 'm m',
+  hspace: 'm',
+  mathrm: 'm',
+  mbox: 'm',
+  mkbibbold: 'm',
+  mkbibemph: 'm',
+  mkbibitalic: 'm',
+  mkbibquote: 'm',
+  newcommand: 'm m',
+  noopsort: 'm',
+  ocirc: 'm',
+  sb: 'm',
+  section: 'm',
+  sp: 'm',
+  subsection: 'm',
+  subsubsection: 'm',
+  subsubsubsection: 'm',
+  t: 'm',
+  textbf: 'm',
+  textcite: 'm',
+  textit: 'm',
+  textrm: 'm',
+  textsc: 'm',
+  textsubscript: 'm',
+  textsuperscript: 'm',
+  texttt: 'm',
+  textup: 'm',
+  url: 'm',
+  vphantom: 'm',
+  vspace: 'm',
+  em:  'm',
 
-        case 'macro':
-          if ((parent = info.parents[0]) && parent.bibtex && (Array.isArray(parent.content) ? parent.content[0] : parent.content) === node) {
-            delete parent.bibtex.protectCase
-          }
+  // math
+  _: 'm',
+}
+for (const m of combining.macros) {
+  macros[m] = 'm'
+}
+
+function textmatch(car, cdr, n) {
+  if (car.type !== 'string') return undefined
+  if (cdr.length < n) return undefined
+  
+  let latex = car.content
+  for (let i = 0; i < n; i++) {
+    if (cdr[i].type !== 'string') return undefined
+    latex += cdr[i].content
+  }
+
+  if (!latex2unicode[latex]) return undefined
+
+  for (let i = 0; i < n; i++) cdr.shift()
+  return latex2unicode[latex]
+}
+
+function walk(node, info={ index: 0, parents: [], inMath: false }) {
+  delete node.position
+
+  let text
+
+  if (Array.isArray(node.content)) {
+    node.content = node.content.map(child => {
+      if (text = latex2unicode[printRaw(child)]) return { type: 'string', content: text }
+      return child
+    })
+
+    node.content.forEach((child, index) => walk(child, {...info, index, parents: [node, ...info.parents] }))
+
+    const content = []
+    let child
+    let argspec
+    while (child = node.content.shift()) {
+      // pure-text "macros"
+      text = undefined
+      for (let l = 2; l >= 0; l--) {
+        text = textmatch(child, node.content, l)
+        if (typeof text === 'string') {
+          child = { type: 'string', content: text }
           break
+        }
       }
-    },
-    leave(node, info) {
-      // console.log('  '.repeat(info.parents.length), 'leave', info, node.type)
-    }
-  })
-  */
 
-  replaceNode(tree, (node, info) => {
-    if (info.parents[0]?.type === 'macro' && info.parents[0].content.match(/^(url|href)$/) && node === info.parents[0].args[0]) {
-      return {
-        type: 'verbatim',
-        env: 'verbatim',
-        content: printRaw(node.content),
-      }
-    }
-
-    // return null to delete
-    if (node.type === 'macro') {
-      let text: string
-      switch (node.content) {
-        case 'frac':
-          if (text = latex2unicode[`\\frac{${printRaw(node.args[0].content)}}{${printRaw(node.args[1].content)}}`]) {
-            return { type: 'string', content: text }
+      if (child.type === 'macro' && (argspec = macros[child.content])) {
+        child.args = []
+        for (const spec of argspec.split(' ')) {
+          let car = node.content.shift()
+          if (car?.type === 'whitespace') car = node.content.shift()
+          if (car.type === 'string') {
+            child.args.push({ type: 'string', content: car.content[0] })
+            if (car.content.length > 1) {
+              node.content.unshift({ type: 'string', content: car.content.substring(1) })
+            }
           }
           else {
-            return [...node.args[0].content, { type: 'string', contents: '\u2044' }, ...node.args[1].content]
+            child.args.push(car)
           }
+        }
+
+        if (child.args.length && child.content.match(/^(href|url)$/)) {
+          child.args[0] = { type: 'verbatim', env: 'verbatim', content: printRaw(child.args[0].content) }
+        }
+
+        const args = child.args.map(arg => `{${printRaw(arg.content)}}`).join('')
+        if (text = (latex2unicode[`\\${child.content}${args}`] || latex2unicode[`${child.content}${args}`])) {
+          child = { type: 'string', content: text }
+        }
       }
-    }
-    else if (node.type === 'string') {
-      if (node.content === '~') return {...node, content: '\u00A0' }
-    }
-  })
-
-  visit(tree, (nodes, info) => { // eslint-disable-line @typescript-eslint/no-unsafe-argument
-    if (info.context.inMathMode || info.context.hasMathModeAncestor) return
-
-    const parsed = parseLigatures(nodes)
-    nodes.length = 0
-    nodes.push(...parsed)
-  }, { includeArrays: true, test: Array.isArray })
-
-  visit(tree, (nodes, info) => { // eslint-disable-line @typescript-eslint/no-unsafe-argument
-    if (nodes.length === 1) return
-    const condensed = []
-    let node
-    while (node = nodes.shift()) {
-      if (!condensed.length || node.type !== 'string' || condensed[condensed.length - 1].type !== 'string') {
-        condensed.push(node)
+      else if (child.type === 'macro' && (text = latex2unicode[`\\${child.content}`])) {
+        child = { type: 'string', content: text }
       }
-      else {
-        condensed[condensed.length - 1].content += node.content
-      }
+
+      content.push(child)
     }
-    nodes.push(...condensed)
-  }, { includeArrays: true, test: Array.isArray })
-}
+    node.content = content
 
-const verbatim = [
-    'doi',
-    'eprint',
-    'file',
-    'files',
-    'pdf',
-    'groups', // jabref unilaterally decided to make this non-standard field verbatim                                                                                        'ids',
-    'url',
-    'verba',
-    'verbb',
-    'verbc',
-]
-
-let input = fs.readFileSync('test.bib', 'utf-8')
-const entries = chunker.entries(input).entries
-
-for (const entry of entries) {
-  for (const [k, v] of Object.entries(entry.fields)) {
-    const ast = parser.parse(v)
-    if (!verbatim.includes(k)) {
-      convert(ast)
-      console.log(entry.type, entry.key, k, JSON.stringify(ast, null, 2)) // eslint-disable-line no-console
+    if (node.type === 'inlinemath' || (node.type === 'group' && node.content.length && node.content[0].type !== 'macro')) {
+      node.bibtex = node.bibtex || {}
+      node.bibtex.protectCase = true
     }
   }
+  return node
 }
+console.log(show(walk(LatexPegParser.parse('{\\r A}---\\textbf{C}\\textbf {C}\\textbf CD\\href{\\foo}{x}$_1$ --- '))))
