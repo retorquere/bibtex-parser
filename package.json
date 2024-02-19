@@ -1,6 +1,6 @@
 {
   "name": "@retorquere/bibtex-parser",
-  "version": "7.0.11",
+  "version": "7.0.12",
   "description": "BibTeX parser",
   "main": "index.js",
   "typings": "./index.d.ts",
@@ -42,6 +42,7 @@
     "@types/node": "^20.11.9",
     "@typescript-eslint/eslint-plugin": "^6.19.1",
     "@typescript-eslint/parser": "^6.19.1",
+    "@unified-latex/unified-latex-util-pegjs": "^1.6.0",
     "command-line-args": "^5.2.1",
     "csv": "^6.3.6",
     "digital-tree": "^2.0.4",
@@ -61,10 +62,6 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "@unified-latex/unified-latex-util-ligatures": "^1.6.0",
-    "@unified-latex/unified-latex-util-parse": "^1.6.0",
-    "@unified-latex/unified-latex-util-replace": "^1.6.0",
-    "@unified-latex/unified-latex-util-visit": "^1.6.0",
     "unicode2latex": "^4.0.42",
     "xregexp": "^5.1.1"
   },
