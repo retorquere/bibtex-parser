@@ -2,10 +2,29 @@ import { LatexPegParser } from '@unified-latex/unified-latex-util-pegjs'
 import { printRaw } from "@unified-latex/unified-latex-util-print-raw"
 import { inspect } from 'util'
 import { latex2unicode, combining } from 'unicode2latex'
+import { globSync as glob } from 'glob'
+import * as fs from 'fs'
+import * as bibtex from './chunker'
 
 function show(obj) {
   return inspect(obj, {showHidden: false, depth: null, colors: true})
 }
+
+const verbatim = [
+    'doi',
+    'eprint',
+    'file',
+    'files',
+    'pdf',
+    'groups', // jabref unilaterally decided to make this non-standard field verbatim
+    'ids',
+    'url',
+    'verba',
+    'verbb',
+    'verbc',
+    /^citeulike-linkout-[0-9]+$/,
+    /^bdsk-url-[0-9]+$/,
+]
 
 const macros = {
   ElsevierGlyph: 'm',
@@ -74,30 +93,36 @@ function textmatch(car, cdr, n) {
   return latex2unicode[latex]
 }
 
-function walk(node, info={ index: 0, parents: [], inMath: false }) {
+function walk(node, info={ parents: [], inMath: false }) {
   delete node.position
 
-  let text
+  if (node.type === 'inlinemath' || (node.type === 'group' && node.content.length && node.content[0].type !== 'macro')) {
+    node.bibtex = node.bibtex || {}
+    node.bibtex.protectCase = true
+  }
 
   if (Array.isArray(node.content)) {
-    node.content = node.content.map(child => {
-      if (text = latex2unicode[printRaw(child)]) return { type: 'string', content: text }
-      return child
-    })
-
-    node.content.forEach((child, index) => walk(child, {...info, index, parents: [node, ...info.parents] }))
-
-    const content = []
     let child
+    for (child of node.content) {
+      walk(child, {...info, parents: [node, ...info.parents] })
+    }
+    
+    const content = []
+    let text
     let argspec
     while (child = node.content.shift()) {
-      // pure-text "macros"
-      text = undefined
-      for (let l = 2; l >= 0; l--) {
-        text = textmatch(child, node.content, l)
-        if (typeof text === 'string') {
-          child = { type: 'string', content: text }
-          break
+      if (text = latex2unicode[printRaw(child)]) {
+        child = { type: 'string', content: text }
+      }
+      else {
+        // pure-text "macros"
+        text = undefined
+        for (let l = 2; l >= 0; l--) {
+          text = textmatch(child, node.content, l)
+          if (typeof text === 'string') {
+            child = { type: 'string', content: text }
+            break
+          }
         }
       }
 
@@ -106,7 +131,10 @@ function walk(node, info={ index: 0, parents: [], inMath: false }) {
         for (const spec of argspec.split(' ')) {
           let car = node.content.shift()
           if (car?.type === 'whitespace') car = node.content.shift()
-          if (car.type === 'string') {
+          if (!car) {
+            child.args.push({ type: 'string', content: '' })
+          }
+          else if (car.type === 'string') {
             child.args.push({ type: 'string', content: car.content[0] })
             if (car.content.length > 1) {
               node.content.unshift({ type: 'string', content: car.content.substring(1) })
@@ -133,12 +161,20 @@ function walk(node, info={ index: 0, parents: [], inMath: false }) {
       content.push(child)
     }
     node.content = content
-
-    if (node.type === 'inlinemath' || (node.type === 'group' && node.content.length && node.content[0].type !== 'macro')) {
-      node.bibtex = node.bibtex || {}
-      node.bibtex.protectCase = true
-    }
   }
+
   return node
 }
-console.log(show(walk(LatexPegParser.parse('{\\r A}---\\textbf{C}\\textbf {C}\\textbf CD\\href{\\foo}{x}$_1$ --- '))))
+
+for (let bib of glob('test/better-bibtex/*/*.bib*')) {
+  bib = bibtex.entries(fs.readFileSync(bib, 'utf-8')).entries
+  for (const entry of bib) {
+    for (const [field, value] of Object.entries(entry.fields)) {
+      if (verbatim.find(m => typeof m === 'string' ? field === m : field.match(m))) continue
+      if (field !== 'author') continue
+      // console.log(show(walk(LatexPegParser.parse(value))))
+    }
+  }
+}
+
+console.log(show(walk(LatexPegParser.parse('\\begin{markdown} some text here \\end{markdown}'))))

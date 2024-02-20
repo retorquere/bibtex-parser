@@ -480,7 +480,6 @@ export function parse(input: string, options: ParserOptions = {}): Chunk[] {
   return (new BibtexParser).parse(input, options)
 }
 
-function convert(entry: Entry)
 export function entries(input: string, options: ParserOptions = {}): { entries: Entry[], errors: Chunk[] } {
   const parser = new BibtexParser
   parser.parse(input, options)
