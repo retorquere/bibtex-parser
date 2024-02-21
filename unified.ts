@@ -1,4 +1,5 @@
 import { LatexPegParser } from '@unified-latex/unified-latex-util-pegjs'
+import { visit } from '@unified-latex/unified-latex-util-visit'
 import { printRaw } from "@unified-latex/unified-latex-util-print-raw"
 import { inspect } from 'util'
 import { latex2unicode, combining } from 'unicode2latex'
@@ -11,70 +12,70 @@ function show(obj) {
 }
 
 const verbatim = [
-    'doi',
-    'eprint',
-    'file',
-    'files',
-    'pdf',
-    'groups', // jabref unilaterally decided to make this non-standard field verbatim
-    'ids',
-    'url',
-    'verba',
-    'verbb',
-    'verbc',
-    /^citeulike-linkout-[0-9]+$/,
-    /^bdsk-url-[0-9]+$/,
+  'doi',
+  'eprint',
+  'file',
+  'files',
+  'pdf',
+  'groups', // jabref unilaterally decided to make this non-standard field verbatim
+  'ids',
+  'url',
+  'verba',
+  'verbb',
+  'verbc',
+  /^citeulike-linkout-[0-9]+$/,
+  /^bdsk-url-[0-9]+$/,
 ]
 
-const macros = {
-  ElsevierGlyph: 'm',
-  bibcyr: 'm',
-  bibstring: 'm',
-  chsf: 'm',
-  cite: 'm',
-  citeauthor: 'm',
-  cyrchar: 'm',
-  ding: 'm',
-  emph: 'm',
-  enquote: 'm',
-  frac: 'm m',
-  href: 'm m',
-  hspace: 'm',
-  mathrm: 'm',
-  mbox: 'm',
-  mkbibbold: 'm',
-  mkbibemph: 'm',
-  mkbibitalic: 'm',
-  mkbibquote: 'm',
-  newcommand: 'm m',
-  noopsort: 'm',
-  ocirc: 'm',
-  sb: 'm',
-  section: 'm',
-  sp: 'm',
-  subsection: 'm',
-  subsubsection: 'm',
-  subsubsubsection: 'm',
-  t: 'm',
-  textbf: 'm',
-  textcite: 'm',
-  textit: 'm',
-  textrm: 'm',
-  textsc: 'm',
-  textsubscript: 'm',
-  textsuperscript: 'm',
-  texttt: 'm',
-  textup: 'm',
-  url: 'm',
-  vphantom: 'm',
-  vspace: 'm',
-  em:  'm',
+const narguments = {
+  ElsevierGlyph: 1,
+  bibcyr: 1,
+  bibstring: 1,
+  chsf: 1,
+  cite: 1,
+  citeauthor: 1,
+  cyrchar: 1,
+  ding: 1,
+  emph: 1,
+  enquote: 1,
+  frac: 2,
+  href: 2,
+  hspace: 1,
+  mathrm: 1,
+  mbox: 1,
+  mkbibbold: 1,
+  mkbibemph: 1,
+  mkbibitalic: 1,
+  mkbibquote: 1,
+  newcommand: 2,
+  noopsort: 1,
+  ocirc: 1,
+  sb: 1,
+  section: 1,
+  sp: 1,
+  subsection: 1,
+  subsubsection: 1,
+  subsubsubsection: 1,
+  t: 1,
+  textbf: 1,
+  textcite: 1,
+  textit: 1,
+  textrm: 1,
+  textsc: 1,
+  textsubscript: 1,
+  textsuperscript: 1,
+  texttt: 1,
+  textup: 1,
+  url: 1,
+  vphantom: 1,
+  vspace: 1,
+  em:  1,
 
   // math
-  _: 'm',
+  _: 1,
 }
 for (const m of combining.macros) {
-  macros[m] = 'm'
+  narguments[m] = 1
 }
 
 function textmatch(car, cdr, n) {
@@ -93,77 +94,78 @@ function textmatch(car, cdr, n) {
   return latex2unicode[latex]
 }
 
-function walk(node, info={ parents: [], inMath: false }) {
-  delete node.position
+function ligature(nodes) {
+  const max = 3
+  const type = nodes.slice(0, max).map(n => n.type === 'string' ? 's' : ' ').join('')
+  if (type[0] !== 's') return false
 
-  if (node.type === 'inlinemath' || (node.type === 'group' && node.content.length && node.content[0].type !== 'macro')) {
-    node.bibtex = node.bibtex || {}
-    node.bibtex.protectCase = true
+  let content = nodes.slice(0, max).map(n => n.type === 'string' ? n.content : '')
+  let latex: string
+
+  while (content.length) {
+    if (type.startsWith('s'.repeat(content.length)) && (latex = latex2unicode[content.join('')])) {
+      try {
+        return { type: 'string', content: latex }
+      }
+      finally {
+        nodes.splice(0, content.length)
+      }
+    }
+    content.pop()
   }
 
-  if (Array.isArray(node.content)) {
-    let child
-    for (child of node.content) {
-      walk(child, {...info, parents: [node, ...info.parents] })
+  return false
+}
+
+function argument(nodes) {
+  if (!nodes.length) return false
+  if (nodes[0].type === 'whitespace') nodes.shift()
+  if (!nodes.length) return false
+  return nodes.shift()
+}
+
+function convert(s: string) {
+  const ast = LatexPegParser.parse(s)
+
+  // pass 1 -- mark & normalize
+  visit(ast, (nodes, info) => { // eslint-disable-line @typescript-eslint/no-unsafe-argument
+    let node
+
+    if (!Array.isArray(nodes)) {
+      if (info.context.inMathMode || info.context.hasMathModeAncestor) return
+
+      if (nodes.type === 'inlinemath' || (nodes.type === 'group' && nodes.content[0]?.type === 'macro')) {
+        nodes.bibtex = nodes.bibtex || {}
+        nodes.bibtex.protectCase = true
+      }
+
+      return
     }
-    
-    const content = []
-    let text
-    let argspec
-    while (child = node.content.shift()) {
-      if (text = latex2unicode[printRaw(child)]) {
-        child = { type: 'string', content: text }
+
+    console.log('nodes:', nodes)
+
+    const compacted = []
+    while (nodes.length) {
+      if (node = ligature(nodes)) {
+        compacted.push(node)
+        continue
       }
-      else {
-        // pure-text "macros"
-        text = undefined
-        for (let l = 2; l >= 0; l--) {
-          text = textmatch(child, node.content, l)
-          if (typeof text === 'string') {
-            child = { type: 'string', content: text }
-            break
-          }
+
+      node = nodes.shift()
+      if (node.type === 'macro' && narguments[node.content]) {
+        node.args = Array(narguments[node.content]).fill().map(i => argument(nodes)).filter(arg => arg !== false)
+        if (node.content.match(/^(url|href)$/) && args.length) {
+          node.args[0] = { type: 'verbatim', env: 'verbatim', content: printRaw(node.args[0].content) }
         }
       }
 
-      if (child.type === 'macro' && (argspec = macros[child.content])) {
-        child.args = []
-        for (const spec of argspec.split(' ')) {
-          let car = node.content.shift()
-          if (car?.type === 'whitespace') car = node.content.shift()
-          if (!car) {
-            child.args.push({ type: 'string', content: '' })
-          }
-          else if (car.type === 'string') {
-            child.args.push({ type: 'string', content: car.content[0] })
-            if (car.content.length > 1) {
-              node.content.unshift({ type: 'string', content: car.content.substring(1) })
-            }
-          }
-          else {
-            child.args.push(car)
-          }
-        }
-
-        if (child.args.length && child.content.match(/^(href|url)$/)) {
-          child.args[0] = { type: 'verbatim', env: 'verbatim', content: printRaw(child.args[0].content) }
-        }
-
-        const args = child.args.map(arg => `{${printRaw(arg.content)}}`).join('')
-        if (text = (latex2unicode[`\\${child.content}${args}`] || latex2unicode[`${child.content}${args}`])) {
-          child = { type: 'string', content: text }
-        }
-      }
-      else if (child.type === 'macro' && (text = latex2unicode[`\\${child.content}`])) {
-        child = { type: 'string', content: text }
-      }
-
-      content.push(child)
+      compacted.push(node)
     }
-    node.content = content
-  }
 
-  return node
+    nodes.push(...compacted)
+  }, { includeArrays: true })
+
+  return ast
 }
 
 for (let bib of glob('test/better-bibtex/*/*.bib*')) {
@@ -172,9 +174,8 @@ for (let bib of glob('test/better-bibtex/*/*.bib*')) {
     for (const [field, value] of Object.entries(entry.fields)) {
       if (verbatim.find(m => typeof m === 'string' ? field === m : field.match(m))) continue
       if (field !== 'author') continue
+      convert(value)
       // console.log(show(walk(LatexPegParser.parse(value))))
     }
   }
 }
-
-console.log(show(walk(LatexPegParser.parse('\\begin{markdown} some text here \\end{markdown}'))))
