@@ -26,6 +26,20 @@ const verbatim = [
   /^citeulike-linkout-[0-9]+$/,
   /^bdsk-url-[0-9]+$/,
 ]
+const creator =[
+  'author',
+  'bookauthor',
+  'collaborator',
+  'commentator',
+  'director',
+  'editor',
+  'editora',
+  'editorb',
+  'editors',
+  'holder',
+  'scriptwriter',
+  'translator',
+]
 
 const narguments = {
   ElsevierGlyph: 1,
@@ -117,6 +131,21 @@ function ligature(nodes) {
   return false
 }
 
+function splitter(nodes, content) {
+  switch (nodes.slice(0, 3).map(n => n.type === 'string' && n.content === content ? 'splitter' : n.type).join(',')) {
+    case 'whitespace,splitter,whitespace':
+      nodes.splice(0,3)
+      return true
+
+    case 'splitter,whitespace':
+    case 'whitespace,splitter':
+      nodes.splice(0,2)
+      return true
+  }
+
+  return false
+}
+
 function argument(nodes) {
   if (!nodes.length) return false
   if (nodes[0].type === 'whitespace') nodes.shift()
@@ -124,14 +153,15 @@ function argument(nodes) {
   return nodes.shift()
 }
 
-function convert(s: string) {
+function convert(s: string, split?: string) {
   const ast = LatexPegParser.parse(s)
 
   // pass 1 -- mark & normalize
   visit(ast, (nodes, info) => { // eslint-disable-line @typescript-eslint/no-unsafe-argument
-    let node
 
     if (!Array.isArray(nodes)) {
+      delete nodes.position
+
       if (info.context.inMathMode || info.context.hasMathModeAncestor) return
 
       if (nodes.type === 'inlinemath' || (nodes.type === 'group' && nodes.content[0]?.type === 'macro')) {
@@ -142,8 +172,7 @@ function convert(s: string) {
       return
     }
 
-    console.log('nodes:', nodes)
-
+    let node
     const compacted = []
     while (nodes.length) {
       if (node = ligature(nodes)) {
@@ -165,6 +194,22 @@ function convert(s: string) {
     nodes.push(...compacted)
   }, { includeArrays: true })
 
+  if (split) {
+    const parts = []
+    let last = -1
+    while (ast.content.length) {
+      if (!parts.length || splitter(ast.content, split)) {
+        parts.push({ type: 'root', content: [] })
+        last += 1
+      }
+      else {
+        parts[last].content.push(ast.content.shift())
+      }
+    }
+    console.log(show(parts))
+    return parts.filter(p => p.content.length)
+  }
+
   return ast
 }
 
@@ -173,9 +218,12 @@ for (let bib of glob('test/better-bibtex/*/*.bib*')) {
   for (const entry of bib) {
     for (const [field, value] of Object.entries(entry.fields)) {
       if (verbatim.find(m => typeof m === 'string' ? field === m : field.match(m))) continue
-      if (field !== 'author') continue
-      convert(value)
-      // console.log(show(walk(LatexPegParser.parse(value))))
+      if (creator.includes(field)) {
+        convert(value, 'and')
+      }
+      else {
+        // convert(value)
+      }
     }
   }
 }
