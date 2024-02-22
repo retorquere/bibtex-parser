@@ -88,6 +88,7 @@ const narguments = {
 
   // math
   _: 1,
+  '^': 1,
 }
 for (const m of combining.macros) {
   narguments[m] = 1
@@ -154,13 +155,69 @@ function argument(nodes) {
   return nodes.shift()
 }
 
+function macro(node) {
+  switch (node.content) {
+    case 'textsc':
+    case 'textrm':
+    case 'texttt':
+      return node.args.map(stringify).join('')
+
+    case 'href':
+      return `<a href="${stringify(node.args?.[0])}">${stringify(node.args?.[1])}</a>`
+
+    case 'aap':
+      return ''
+
+    case 'textbf':
+      return `<b>${stringify(node.args?.[0])}</b>`
+
+    case 'textit':
+      return `<i>${stringify(node.args?.[0])}</i>`
+
+    case '^':
+      return `<sup>${stringify(node.args?.[0])}</sup>`
+
+    case '_':
+      return `<sub>${stringify(node.args?.[0])}</sub>`
+
+    default:
+      throw new Error(`unhandled macro ${printRaw(node)}`)
+  }
+}
+
+function stringify(node) {
+  if (!node) return ''
+
+  switch (node.type) {
+    case 'root':
+    case 'group':
+    case 'inlinemath':
+      return node.content.map(stringify).join('')
+
+    case 'string':
+    case 'verbatim':
+      return node.content
+
+    case 'macro':
+      return macro(node)
+
+    case 'parbreak':
+      return '<p>'
+
+    case 'whitespace':
+      return ' '
+
+    default:
+      console.log(node)
+      throw new Error(`unhandled ${node.type} ${printRaw(node)}`)
+  }
+}
+
 function convert(s: string, split?: string) {
   const ast = LatexPegParser.parse(s)
 
   // pass 1 -- mark & normalize
   visit(ast, (nodes, info) => { // eslint-disable-line @typescript-eslint/no-unsafe-argument
-    console.log('nodes:', nodes)
-
     if (!Array.isArray(nodes)) {
       delete nodes.position
 
@@ -170,6 +227,8 @@ function convert(s: string, split?: string) {
         nodes.bibtex = nodes.bibtex || {}
         nodes.bibtex.protectCase = true
       }
+
+      if (nodes.type === 'macro' && typeof nodes.escapeToken !== 'string') nodes.escapeToken = '\\'
 
       return
     }
@@ -197,14 +256,22 @@ function convert(s: string, split?: string) {
   }, { includeArrays: true })
 
   replaceNode(ast, (node, info) => {
-    if (node.type === 'macro') {
-      if (combining.tounicode[node.content] && node.args?.length === 1 && node.args[0].type.match(/^verbatim|string$/)) {
-        return { type: 'verbatim', env: 'verbatim', content: node.args[0].content + combining.tounicode[node.content] }
+    if (node.type !== 'macro') return
+
+    if (node.escapeToken && combining.tounicode[node.content]) {
+      if (node.args?.length) {
+        if (node.args[0].type.match(/^verbatim|string$/)) {
+          return { type: 'string', content: node.args[0].content + combining.tounicode[node.content] }
+        }
       }
-      let latex = `\\${node.content}`
-      latex += (node.args || []).map(arg => `{${printRaw(arg)}}`).join('')
-      if (latex2unicode[latex]) return { type: 'verbatim', env: 'verbatim', content: latex2unicode[latex] }
+      else {
+        return { type: 'string', content: ' ' + combining.tounicode[node.content] }
+      }
     }
+
+    let latex = `${node.escapeToken}${node.content}`
+    latex += (node.args || []).map(arg => `{${printRaw(arg)}}`).join('')
+    if (latex2unicode[latex]) return { type: 'verbatim', env: 'verbatim', content: latex2unicode[latex] }
     // return null to delete
   })
 
@@ -220,12 +287,10 @@ function convert(s: string, split?: string) {
         parts[last].content.push(ast.content.shift())
       }
     }
-    console.log(show(parts))
-    return parts.filter(p => p.content.length)
+    return parts.filter(p => p.content.length).map(stringify)
   }
 
-  console.log(ast)
-  return ast
+  return stringify(ast)
 }
 
 for (let bib of glob('test/better-bibtex/*/*.bib*')) {
@@ -234,14 +299,14 @@ for (let bib of glob('test/better-bibtex/*/*.bib*')) {
     for (const [field, value] of Object.entries(entry.fields)) {
       if (verbatim.find(m => typeof m === 'string' ? field === m : field.match(m))) continue
       if (creator.includes(field)) {
-        // convert(value, 'and')
+        convert(value, 'and')
       }
       else {
-        // convert(value)
+        convert(value)
       }
     }
     break
   }
 }
 
-convert("a\n\n\\textrm{xyz}b\\c c")
+console.log(convert("a$_1\\frac 1 2$\n\n\\textrm{xyz}b\\c c"))
