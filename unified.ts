@@ -1,3 +1,4 @@
+import { replaceNode } from '@unified-latex/unified-latex-util-replace'
 import { LatexPegParser } from '@unified-latex/unified-latex-util-pegjs'
 import { visit } from '@unified-latex/unified-latex-util-visit'
 import { printRaw } from "@unified-latex/unified-latex-util-print-raw"
@@ -158,6 +159,7 @@ function convert(s: string, split?: string) {
 
   // pass 1 -- mark & normalize
   visit(ast, (nodes, info) => { // eslint-disable-line @typescript-eslint/no-unsafe-argument
+    console.log('nodes:', nodes)
 
     if (!Array.isArray(nodes)) {
       delete nodes.position
@@ -183,7 +185,7 @@ function convert(s: string, split?: string) {
       node = nodes.shift()
       if (node.type === 'macro' && narguments[node.content]) {
         node.args = Array(narguments[node.content]).fill().map(i => argument(nodes)).filter(arg => arg !== false)
-        if (node.content.match(/^(url|href)$/) && args.length) {
+        if (node.content.match(/^(url|href)$/) && node.args.length) {
           node.args[0] = { type: 'verbatim', env: 'verbatim', content: printRaw(node.args[0].content) }
         }
       }
@@ -193,6 +195,18 @@ function convert(s: string, split?: string) {
 
     nodes.push(...compacted)
   }, { includeArrays: true })
+
+  replaceNode(ast, (node, info) => {
+    if (node.type === 'macro') {
+      if (combining.tounicode[node.content] && node.args?.length === 1 && node.args[0].type.match(/^verbatim|string$/)) {
+        return { type: 'verbatim', env: 'verbatim', content: node.args[0].content + combining.tounicode[node.content] }
+      }
+      let latex = `\\${node.content}`
+      latex += (node.args || []).map(arg => `{${printRaw(arg)}}`).join('')
+      if (latex2unicode[latex]) return { type: 'verbatim', env: 'verbatim', content: latex2unicode[latex] }
+    }
+    // return null to delete
+  })
 
   if (split) {
     const parts = []
@@ -210,6 +224,7 @@ function convert(s: string, split?: string) {
     return parts.filter(p => p.content.length)
   }
 
+  console.log(ast)
   return ast
 }
 
@@ -219,11 +234,14 @@ for (let bib of glob('test/better-bibtex/*/*.bib*')) {
     for (const [field, value] of Object.entries(entry.fields)) {
       if (verbatim.find(m => typeof m === 'string' ? field === m : field.match(m))) continue
       if (creator.includes(field)) {
-        convert(value, 'and')
+        // convert(value, 'and')
       }
       else {
         // convert(value)
       }
     }
+    break
   }
 }
+
+convert("a\n\n\\textrm{xyz}b\\c c")
