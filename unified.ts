@@ -168,6 +168,9 @@ function macro(node) {
     case 'aap':
       return ''
 
+    case 'rm':
+      return ''
+
     case 'textbf':
       return `<b>${stringify(node.args?.[0])}</b>`
 
@@ -207,6 +210,9 @@ function stringify(node) {
     case 'whitespace':
       return ' '
 
+    case 'comment':
+      return ''
+
     default:
       console.log(node)
       throw new Error(`unhandled ${node.type} ${printRaw(node)}`)
@@ -221,14 +227,14 @@ function convert(s: string, split?: string) {
     if (!Array.isArray(nodes)) {
       delete nodes.position
 
+      if (nodes.type === 'macro' && typeof nodes.escapeToken !== 'string') nodes.escapeToken = '\\'
+
       if (info.context.inMathMode || info.context.hasMathModeAncestor) return
 
       if (nodes.type === 'inlinemath' || (nodes.type === 'group' && nodes.content[0]?.type === 'macro')) {
         nodes.bibtex = nodes.bibtex || {}
         nodes.bibtex.protectCase = true
       }
-
-      if (nodes.type === 'macro' && typeof nodes.escapeToken !== 'string') nodes.escapeToken = '\\'
 
       return
     }
@@ -259,14 +265,14 @@ function convert(s: string, split?: string) {
     if (node.type !== 'macro') return
 
     if (node.escapeToken && combining.tounicode[node.content]) {
-      if (node.args?.length) {
-        if (node.args[0].type.match(/^verbatim|string$/)) {
-          return { type: 'string', content: node.args[0].content + combining.tounicode[node.content] }
-        }
+      if (node.args && node.args.length > 1) return
+      let arg = node.args?.[0]
+      if (arg?.type === 'group') {
+        if (arg.content.length > 1) return
+        arg = arg.content[0]
       }
-      else {
-        return { type: 'string', content: ' ' + combining.tounicode[node.content] }
-      }
+      if (arg && !arg.type.match(/^verbatim|string$/)) return
+      return { type: 'string', content: (arg?.content || ' ') + combining.tounicode[node.content] }
     }
 
     let latex = `${node.escapeToken}${node.content}`
