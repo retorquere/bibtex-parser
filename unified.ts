@@ -37,10 +37,6 @@ export const fieldMode = {
     'maintitle',
     'eventtitle',
   ],
-  unnest: [
-    'publisher',
-    'location',
-  ],
   verbatim: [
     'doi',
     'eprint',
@@ -64,26 +60,19 @@ export const fieldMode = {
     'notes',
     'note',
   ],
+}
+
+const fieldAction = {
+  unnest: [
+    'publisher',
+    'location',
+  ],
   unabbrev: [
     'journal',
     'journaltitle',
     'journal-full',
   ],
 }
-const creator =[
-  'author',
-  'bookauthor',
-  'collaborator',
-  'commentator',
-  'director',
-  'editor',
-  'editora',
-  'editorb',
-  'editors',
-  'holder',
-  'scriptwriter',
-  'translator',
-]
 
 const narguments = {
   ElsevierGlyph: 1,
@@ -162,25 +151,75 @@ const splitter = new class {
   }
 }
 
+const familyPrefix=new RegExp(`^(${[
+  'al',
+  'ben',
+  'bin',
+  'da',
+  'de',
+  'de',
+  'del',
+  'de la',
+  'della',
+  'der',
+  'di',
+  'du',
+  'het',
+  'ibn',
+  'la',
+  'lo',
+  'op',
+  'pietro',
+  'st.',
+  'st',
+  'te',
+  'ten',
+  'ter',
+  'v.d.',
+  'van den',
+  'van der',
+  'van de',
+  'van het',
+  "van 't",
+  'vanden',
+  'vanden',
+  'vander',
+  'vander',
+  'van',
+  'vd',
+  'ver',
+  'vere',
+  'von',
+].map(pr => pr.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})\\s+(.+)`)
 function parseCreator(ast) {
-  if (ast.content.length === 1 && ast.content[0].type === 'group') return { name: stringify(ast, { mode: 'creator' }) }
+  if (ast.content.length === 1 && ast.content[0].type === 'group') return { name: stringifier.stringify(ast, { mode: 'creator' }) }
 
   if (ast.content.find(node => node.type === 'string' && node.content === ',')) {
-    const nameparts = splitter.split(ast, ',').map(part => stringify(part, { mode: 'creator' }))
-    const extended = nodes => nodes.slice(0,2).map(node => `<${node.type}=${node.content}>`).join('').match(/^<string=[a-z]+(-i)?><string==>/)
-    if (nameparts.find(p => !p.match(/^[a-z]+(-i)?=/))) {
-      switch (nameparts.length) {
-        case 2: return { family: nameparts[0], given: nameparts[1] }
-        // remainder nameparts are invalid and are dropped
-        default: return { family: nameparts[0], suffix: nameparts[1], given: nameparts[1] }
+    const nameparts = splitter
+      .split(ast, ',')
+      .map(part => stringifier.stringify(part, { mode: 'creator' }))
+      .map(part => part.match(/^([^=]+)=(.*)/)?.slice(1, 3) || ['', part])
+    if (!nameparts.find(p => p[0])) {
+      let [family, suffix, given] = nameparts.length === 2
+        ? [nameparts[0][1], undefined, nameparts[1][1]]
+        // > 3 nameparts are invalid and are dropped
+        : nameparts.slice(0, 3).map(p => p[1])
+      let prefix
+      const m = family.match(familyPrefix)
+      if (m) {
+        prefix = m[1]
+        family = m[2]
       }
+      return { family, given, ...(typeof prefix === 'undefined' ? {} : { prefix }), ...(typeof suffix === 'undefined' ? {} : { suffix }) }
     }
 
     const name = {}
-    for (const part of nameparts) {
-      let [, attr, value ] = part.match(/^([^=]+)=(.*)/)
+    for (let [attr, value] of nameparts) {
       attr = attr.toLowerCase()
       switch (attr) {
+        case '':
+          break
+
         case 'given-i':
           name.initial = value
           break
@@ -207,7 +246,7 @@ function parseCreator(ast) {
         part++
       }
       else {
-        nameparts[part] += stringify(node)
+        nameparts[part] += stringifier.stringify(node, { mode: 'creator' })
       }
     }
     nameparts = nameparts.filter(n => n)
@@ -248,161 +287,152 @@ function argument(nodes) {
   return nodes.shift()
 }
 
-const tags = {
-  none: ['', ''],
-  nc: ['<nc>', '</nc>'],
-}
-
-function macro(node, context) {
-  let level
-
-  let nc
-
-  switch (node.content) {
-    case 'vphantom':
-    case 'noopsort':
-      return ''
-
-    case 'textsc':
-    case 'textrm':
-    case 'texttt':
-    case 'mathrm':
-    case 'mbox':
-      return node.args.map(n => stringify(n, context)).join('')
-
-    case 'href':
-      return `<a href="${stringify(node.args?.[0], context)}">${stringify(node.args?.[1], context)}</a>`
-    case 'url':
-      return `<a href="${stringify(node.args?.[0], context)}">${stringify(node.args?.[0], context)}</a>`
-
-    case 'aap':
-      return ''
-
-    case 'rm':
-    case 'sc':
-      return ''
-
-    case 'textbf':
-      return `<b>${stringify(node.args?.[0], context)}</b>`
-
-    case 'textit':
-    case 'emph':
-      return `<i>${stringify(node.args?.[0], context)}</i>`
-
-    case 'textsuperscript':
-      return `<sup>${stringify(node.args?.[0], context)}</sup>`
-
-    case 'textsubscript':
-      return `<sub>${stringify(node.args?.[0], context)}</sub>`
-
-    case 'enquote':
-      return `\u201c${stringify(node.args?.[0], context)}\u201d`
-
-    case '^':
-      return `<sup>${stringify(node.args?.[0], context)}</sup>`
-
-    case '_':
-      return `<sub>${stringify(node.args?.[0], context)}</sub>`
-
-    case '\\':
-      return '<b>'
-
-    case 'par':
-      return '<p>'
-
-    case 'item':
-      return '<li>'
-
-    case 'section':
-    case 'subsection':
-    case 'subsubsection':
-    case 'subsubsubsection':
-      level = node.content.split('sub').length
-      return `<h${level}>${stringify(node.args?.[0], context)}</h${level}>`
-
-    case 'frac':
-      return `${stringify(node.args?.[0], context)}\u2044${stringify(node.args?.[1], context)}`
-
-    // a bit cheaty to assume these to be nocased, but it's just more likely to be what people want
-    case 'chsf':
-    case 'bibstring':
-    case 'cite':
-      nc = context.mode === 'title' ? tags.nc : tags.none
-      return `${nc[0]}${stringify(node.args?.[0], context)}${nc[1]}`
-
-    default:
-      throw new Error(`unhandled macro ${printRaw(node)}`)
+const stringifier = new class {
+  private tags = {
+    enquote: { open: '\u201c', close: '\u201d' },
   }
-}
-
-function environment(node, context) {
-  switch (node.env) {
-    case 'quotation':
-      return `<blockquote>${node.content.map(n => stringify(n, context)).join('')}</blockquote>`
-
-    case 'itemize':
-      return `<ul>${node.content.map(n => stringify(n, context)).join('')}</ul>`
-
-    default:
-      throw new Error(`unhandled environment ${printRaw(node)}`)
+  wrap(text: string, tag, wrap = true) {
+    if (!text) return ''
+    if (!wrap) return text
+    if (!this.tags[tag]) this.tags[tag] = { open: `<${tag}>`, close: `</${tag}>` }
+    const { open, close } = this.tags[tag]
+    return `${open}${text}${close}`
   }
-}
 
-function stringify(node, context) {
-  if (!node) return ''
+  macro(node, context) {
+    switch (node.content) {
+      case 'vphantom':
+      case 'noopsort':
+        return ''
 
-  let nc
+      case 'textsc':
+      case 'textrm':
+      case 'texttt':
+      case 'mathrm':
+      case 'mbox':
+        return node.args.map(n => this.stringify(n, context)).join('')
 
-  let text
-  switch (node.type) {
-    case 'root':
-      return node.content.map(n => stringify(n, context)).join('')
+      case 'href':
+      case 'url':
+        return `<a href="${this.stringify(node.args?.[0], context)}">${this.stringify(node.args?.[node.content === 'url' ? 0 : 1], context)}</a>`
 
-    case 'group':
-    case 'inlinemath':
-      text = node.content.map(n => stringify(n, {...context, caseProtected: context.caseProtected || node.protectCase })).join('')
-      nc = context.mode === 'title' ? tags.nc : tags.none
-      if (!context.caseProtected && node.protectCase) text = `${nc[0]}${text}${nc[1]}`
-      return text
+      case 'aap':
+        return ''
 
-    case 'string':
-    case 'verbatim':
-      return node.content
+      case 'rm':
+      case 'sc':
+        return ''
 
-    case 'macro':
-      return macro(node, context)
+      case 'textbf':
+        return this.wrap(this.stringify(node.args?.[0], context), 'b')
 
-    case 'parbreak':
-      return '<p>'
+      case 'textit':
+      case 'emph':
+        return this.wrap(this.stringify(node.args?.[0], context), 'i')
 
-    case 'whitespace':
-      return ' '
+      case 'textsuperscript':
+      case '^':
+        return this.wrap(this.stringify(node.args?.[0], context), 'sup')
 
-    case 'comment':
-      return ''
+      case 'textsubscript':
+      case '_':
+        return this.wrap(this.stringify(node.args?.[0], context), 'sub')
 
-    case 'environment':
-      return environment(node, context)
+      case 'enquote':
+        return this.wrap(this.stringify(node.args?.[0], context), 'enquote')
 
-    default:
-      throw new Error(`unhandled ${node.type} ${printRaw(node)}`)
+      case '\\':
+        return context.mode === 'html' ? '<b>' : ' '
+
+      case 'par':
+        return context.mode === 'html' ? '<p>' : ' '
+
+      case 'item':
+        return context.mode === 'html' ? '<li>' : ' '
+
+      case 'section':
+      case 'subsection':
+      case 'subsubsection':
+      case 'subsubsubsection':
+        return this.wrap(this.stringify(node.args?.[0], context), `h${node.content.split('sub').length}`)
+
+      case 'frac':
+        return `${this.stringify(node.args?.[0], context)}\u2044${this.stringify(node.args?.[1], context)}`
+
+      // a bit cheaty to assume these to be nocased, but it's just more likely to be what people want
+      case 'chsf':
+      case 'bibstring':
+      case 'cite':
+        return this.wrap(this.stringify(node.args?.[0], context), 'nc', context.mode === 'title')
+
+      default:
+        throw new Error(`unhandled macro ${printRaw(node)}`)
+    }
+  }
+
+  environment(node, context) {
+    switch (node.env) {
+      case 'quotation':
+        return this.wrap(node.content.map(n => this.stringify(n, context)).join(''), 'blockquote', context.mode === 'html')
+
+      case 'itemize':
+        return this.wrap(node.content.map(n => this.stringify(n, context)).join(''), 'ul', context.mode === 'html')
+
+      default:
+        throw new Error(`unhandled environment ${printRaw(node)}`)
+    }
+  }
+
+  stringify(node, context) {
+    if (!node) return ''
+
+    switch (node.type) {
+      case 'root':
+        return node.content.map(n => this.stringify(n, context)).join('')
+
+      case 'group':
+      case 'inlinemath':
+        return this.wrap(
+          node.content.map(n => this.stringify(n, {...context, caseProtected: context.caseProtected || node.protectCase })).join(''),
+          'nc',
+          context.mode === 'title' && !context.caseProtected && node.protectCase
+        )
+
+      case 'string':
+      case 'verbatim':
+        return node.content
+
+      case 'macro':
+        return this.macro(node, context)
+
+      case 'parbreak':
+        return context.mode === 'html' ? '<p>' : ' '
+
+      case 'whitespace':
+        return ' '
+
+      case 'comment':
+        return ''
+
+      case 'environment':
+        return this.environment(node, context)
+
+      default:
+        throw new Error(`unhandled ${node.type} ${printRaw(node)}`)
+    }
   }
 }
 
 function convert(field: string, value: string) {
   let mode = ''
-  if (creator.includes(field)) {
-    mode = 'creator'
-  }
-  else if (fieldMode.verbatim.find(m => typeof m === 'string' ? field === m : field.match(m))) {
-    return value
-  }
-  else if (fieldMode.title.includes(field)) {
-    mode = 'title'
+  for (const [selected, fields] of Object.entries(fieldMode)) {
+    if (fields.find(match => typeof match === 'string' ? field === match : field.match(match))) mode = selected
   }
 
+  if (mode === 'verbatim') return value
+
   const ast = LatexPegParser.parse(value)
-  if (fieldMode.unnest.includes(field) && ast.content.length === 1 && ast.content[0].type === 'group') {
+  if (fieldAction.unnest.includes(field) && ast.content.length === 1 && ast.content[0].type === 'group') {
     ast.content = ast.content[0].content
   }
 
@@ -468,7 +498,7 @@ function convert(field: string, value: string) {
     return splitter.split(ast, 'and').map(parseCreator)
   }
 
-  return stringify(ast, { mode })
+  return stringifier.stringify(ast, { mode })
 }
 
 for (let bib of glob('test/better-bibtex/*/*.bib*')) {
@@ -476,7 +506,7 @@ for (let bib of glob('test/better-bibtex/*/*.bib*')) {
   bib = bibtex.entries(fs.readFileSync(bib, 'utf-8')).entries
   for (const entry of bib) {
     for (const [field, value] of Object.entries(entry.fields)) {
-      // console.log(convert(field, value))
+      console.log(convert(field, value))
     }
   }
 }
