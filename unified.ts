@@ -138,6 +138,20 @@ const splitter = new class {
   split(ast, splitter: string) {
     const parts = [ { type: 'root', content: [] } ]
     let part = 0
+
+    if (splitter === ' ') {
+      for (const node of ast.content) {
+        if (node.type === 'whitespace') {
+          parts.push({ type: 'root', content: [] })
+          part = parts.length - 1
+        }
+        else {
+          parts[part].content.push(node)
+        }
+      }
+      return parts.filter(part => part.content.length)
+    }
+
     while (ast.content.length) {
       if (this.splitter(ast.content, splitter)) {
         parts.push({ type: 'root', content: [] })
@@ -151,46 +165,6 @@ const splitter = new class {
   }
 }
 
-const familyPrefix=new RegExp(`^(${[
-  'al',
-  'ben',
-  'bin',
-  'da',
-  'de',
-  'de',
-  'del',
-  'de la',
-  'della',
-  'der',
-  'di',
-  'du',
-  'het',
-  'ibn',
-  'la',
-  'lo',
-  'op',
-  'pietro',
-  'st.',
-  'st',
-  'te',
-  'ten',
-  'ter',
-  'v.d.',
-  'van den',
-  'van der',
-  'van de',
-  'van het',
-  "van 't",
-  'vanden',
-  'vanden',
-  'vander',
-  'vander',
-  'van',
-  'vd',
-  'ver',
-  'vere',
-  'von',
-].map(pr => pr.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})\\s+(.+)`)
 function parseCreator(ast) {
   if (ast.content.length === 1 && ast.content[0].type === 'group') return { name: stringifier.stringify(ast, { mode: 'creator' }) }
 
@@ -205,12 +179,17 @@ function parseCreator(ast) {
         // > 3 nameparts are invalid and are dropped
         : nameparts.slice(0, 3).map(p => p[1])
       let prefix
-      const m = family.match(familyPrefix)
+      const m = family.match(/^([a-z'. ]+) (.+)/)
       if (m) {
         prefix = m[1]
         family = m[2]
       }
-      return { family, given, ...(typeof prefix === 'undefined' ? {} : { prefix }), ...(typeof suffix === 'undefined' ? {} : { suffix }) }
+      return {
+        family,
+        given,
+        ...(typeof prefix === 'undefined' ? {} : { prefix }),
+        ...(typeof suffix === 'undefined' ? {} : { suffix }),
+      }
     }
 
     const name = {}
@@ -235,21 +214,9 @@ function parseCreator(ast) {
       }
     }
     return name
-
   }
   else {
-    let nameparts = ['']
-    let part = 0
-    for (const node of ast.content) {
-      if (node.type === 'whitespace') {
-        nameparts.push('')
-        part++
-      }
-      else {
-        nameparts[part] += stringifier.stringify(node, { mode: 'creator' })
-      }
-    }
-    nameparts = nameparts.filter(n => n)
+    const nameparts = splitter.split(ast, ' ').map(part => stringifier.stringify(part, { mode: 'creator' })).filter(n => n)
     if (nameparts.length === 1) return { name: nameparts[0] }
     const prefix = nameparts.findIndex(n => n.match(/^[a-z]/))
     if (prefix > 0) return { given: nameparts.slice(0, prefix).join(' '), family: nameparts.slice(prefix).join(' ') }
