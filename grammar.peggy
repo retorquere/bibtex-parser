@@ -452,7 +452,16 @@ StringValue
 //---------------------- Value Kinds
 
 Text
-  = v:$[^\^_${}\\]+ {
+  = v:_ {
+    return basicTextConversions({
+      kind: 'Text',
+      loc: location(),
+      source: text(),
+      value: math.on ? '' : v,
+      mode: math.on ? 'math' : 'text',
+    })
+  }
+  / v:$[^\^_${}\\]+ {
     return basicTextConversions({
       kind: 'Text',
       loc: location(),
@@ -680,6 +689,24 @@ RegularCommand
       },
     }
   }
+  / '\\left(' __h { 
+    return {
+      kind: 'Text',
+      loc: location(),
+      source: text(),
+      value: '(',
+      mode: math.on ? 'math' : 'text',
+    }
+  }
+  / '\\right)' __h { 
+    return {
+      kind: 'Text',
+      loc: location(),
+      source: text(),
+      value: ')',
+      mode: math.on ? 'math' : 'text',
+    }
+  }
   / '\\' cmd:'url' __h &'{' url:VerbatimFieldValue {
     // https://github.com/retorquere/zotero-better-bibtex/issues/2617
     url.value = url.value.replace(/\\([\#%])/g, '$1')
@@ -891,7 +918,7 @@ __v "Optional Vertical Whitespace"
   = [\r\n]*
 
 _ "Mandatory Whitespace"
-  = [ \t\n\r]+
+  = ws:$[ \t\n\r]+ { return ws }
 
 __ "Optional Whitespace"
   = [ \t\n\r]*
