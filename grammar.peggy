@@ -452,21 +452,12 @@ StringValue
 //---------------------- Value Kinds
 
 Text
-  = v:_ {
+  = v:$[^\^_${}\\]+ {
     return basicTextConversions({
       kind: 'Text',
       loc: location(),
       source: text(),
-      value: math.on ? '' : v,
-      mode: math.on ? 'math' : 'text',
-    })
-  }
-  / v:$[^\^_${}\\]+ {
-    return basicTextConversions({
-      kind: 'Text',
-      loc: location(),
-      source: text(),
-      value: v,
+      value: math.on ? v.replace(/[ \r\n\t]/g, '') : v,
       mode: math.on ? 'math' : 'text',
     })
   }
