@@ -446,18 +446,18 @@ function convert(field: string, value: string) {
 
     if (node.escapeToken && combining.tounicode[node.content]) {
       if (node.args && node.args.length > 1) return
-      let arg = node.args?.[0]
-      if (arg?.type === 'group') {
+      let arg = node.args?.[0] || { type: 'string', content: ' ' }
+      if (arg.type === 'group') {
         if (arg.content.length > 1) return
         arg = arg.content[0]
       }
-      if (arg && !arg.type.match(/^verbatim|string$/)) return
-      return { type: 'string', content: (arg?.content || ' ') + combining.tounicode[node.content] }
+      if (!arg.type.match(/^verbatim|string$/)) return
+      return { type: 'string', content: `${arg.content}${combining.tounicode[node.content]}` }
     }
 
     let latex = `${node.escapeToken}${node.content}`
-    latex += (node.args || []).map(arg => arg.type === 'group' ? printRaw(arg) : `{${printRaw(arg)}}`).join('')
-    if (latex2unicode[latex]) return { type: 'string', content: latex2unicode[latex] }
+    latex += (node.args || []).map(arg => printRaw(arg.type === 'group' ? arg : { type: 'group', content: [ arg ] })).join('')
+    if (latex in latex2unicode) return { type: 'string', content: latex2unicode[latex] }
     // return null to delete
   })
 
