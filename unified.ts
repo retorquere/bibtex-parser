@@ -1,4 +1,4 @@
-import { Argument, Group } from '@unified-latex/unified-latex-types'
+import { GenericNode, Argument, Group } from '@unified-latex/unified-latex-types'
 import { replaceNode } from '@unified-latex/unified-latex-util-replace'
 import { LatexPegParser } from '@unified-latex/unified-latex-util-pegjs'
 import { visit } from '@unified-latex/unified-latex-util-visit'
@@ -10,8 +10,7 @@ import * as bibtex from './chunker'
 
 const unabbreviate = require('./unabbrev.json')
 
-type Creator = {
-  type: string
+interface Creator {
   name?: string
   family?: string
   given?: string
@@ -22,7 +21,34 @@ type Creator = {
   juniorcomma?: boolean
 }
 
-type Entry = Record<string, Creator[] | string[] | string>
+interface Entry {
+  type: string
+  key: string
+  fields: {
+    author?: Creator[]
+    bookauthor?: Creator[]
+    collaborator?: Creator[]
+    commentator?: Creator[]
+    director?: Creator[]
+    editor?: Creator[]
+    editora?: Creator[]
+    editorb?: Creator[]
+    editors?: Creator[]
+    holder?: Creator[]
+    scriptwriter?: Creator[]
+    translator?: Creator[]
+
+    keywords?: string[]
+    institution?: string[]
+    publisher?: string[]
+    origpublisher?: string[]
+    organization?: string[]
+    location?: string[]
+    origlocation?: string[]
+
+    [key: string]: number | string | string[] | Creator[]
+  }
+}
 
 export const fieldMode = {
   creator: [
@@ -188,8 +214,8 @@ const splitter = new class {
   }
 }
 
-function parseCreator(ast, type): Creator {
-  if (ast.content.length === 1 && ast.content[0].type === 'group') return { type, name: stringifier.stringify(ast, { mode: 'creator' }) }
+function parseCreator(ast): Creator {
+  if (ast.content.length === 1 && ast.content[0].type === 'group') return { name: stringifier.stringify(ast, { mode: 'creator' }) }
 
   if (ast.content.find(node => node.type === 'string' && node.content === ',')) {
     const nameparts = splitter
@@ -208,7 +234,6 @@ function parseCreator(ast, type): Creator {
         family = m[2]
       }
       return {
-        type,
         family,
         given,
         ...(typeof prefix === 'undefined' ? {} : { prefix }),
@@ -216,7 +241,7 @@ function parseCreator(ast, type): Creator {
       }
     }
 
-    const name: Creator = { type }
+    const name: Creator = {}
     for (let [attr, value] of nameparts) {
       attr = attr.toLowerCase()
       switch (attr) {
@@ -241,10 +266,10 @@ function parseCreator(ast, type): Creator {
   }
   else {
     const nameparts = splitter.split(ast, ' ').map(part => stringifier.stringify(part, { mode: 'creator' })).filter(n => n)
-    if (nameparts.length === 1) return { type, name: nameparts[0] }
+    if (nameparts.length === 1) return { name: nameparts[0] }
     const prefix = nameparts.findIndex(n => n.match(/^[a-z]/))
-    if (prefix > 0) return { type, given: nameparts.slice(0, prefix).join(' '), family: nameparts.slice(prefix).join(' ') }
-    return { type, family: nameparts.pop(), given: nameparts.join(' ') }
+    if (prefix > 0) return { given: nameparts.slice(0, prefix).join(' '), family: nameparts.slice(prefix).join(' ') }
+    return { family: nameparts.pop(), given: nameparts.join(' ') }
   }
 }
 
@@ -328,6 +353,9 @@ const stringifier = new class {
       case 'ud':
       case 'path':
 
+      case 'relax':
+      case 'aftergroup':
+      case 'ignorespaces':
       case 'em':
       case 'it':
       case 'tt':
@@ -451,7 +479,7 @@ function convert(entry: Entry, field: string, value: string) {
   }
 
   if (mode === 'verbatim') {
-    entry[field] = value
+    entry.fields[field] = value
     return
   }
 
@@ -503,14 +531,31 @@ function convert(entry: Entry, field: string, value: string) {
     if (node.type !== 'macro') return
 
     if (node.escapeToken && combining.tounicode[node.content]) {
-      if (!node.args || !node.args.length) node.args = [ wraparg({ type: 'string', content: ' ' }) ]
-      if (node.args.length > 1) return
-      if (node.args[0].content.length !== 1) return
-      let arg = node.args[0].content[0]
-      if (arg.type === 'group') {
-        if (arg.content.length > 1) return
-        arg = arg.content[0]
+      let arg: GenericNode
+      // no args, args of zero length, or first arg has no content
+      if (!node.args || node.args.length === 0 || node.args[0].content.length === 0) {
+        arg = { type: 'string', content: ' ' }
       }
+      else if (node.args.length !== 1 || node.args[0].content.length !== 1) {
+        return
+      }
+      else {
+        arg = node.args[0].content[0]
+      }
+
+      if (arg.type === 'group') {
+        switch (arg.content.length) {
+          case 0:
+            arg = { type: 'string', content: ' ' }
+            break
+          case 1:
+            arg = arg.content[0]
+            break
+          default:
+            return
+        }
+      }
+
       switch (arg.type) {
         case 'verbatim':
         case 'string':
@@ -528,18 +573,18 @@ function convert(entry: Entry, field: string, value: string) {
 
   switch (mode) {
     case 'creator':
-      entry.creators = [ ...(entry.creators as Creator[]), ...(splitter.split(ast, /^and$/i).map(name => parseCreator(name, field)) as Creator[]) ]
+      entry.fields[field] = splitter.split(ast, /^and$/i).map(parseCreator)
       break
     case 'commalist':
-      entry[field] = splitter.split(ast, /^[;,]$/).map(elt => stringifier.stringify(elt, {}))
+      entry.fields[field] = splitter.split(ast, /^[;,]$/).map(elt => stringifier.stringify(elt, {}))
       break
     case 'literallist':
-      entry[field] = splitter.split(ast, /^and$/i).map(elt => stringifier.stringify(elt, {}))
+      entry.fields[field] = splitter.split(ast, /^and$/i).map(elt => stringifier.stringify(elt, {}))
       break
     default:
-      entry[field] = stringifier.stringify(ast, { mode })
-      if (fieldAction.unabbrev.includes(field)) entry[field] = unabbreviate[entry[field] as string] || entry[field]
-      if (entry[field].match(/^[0-9]+$/)) entry[field] = parseInt(entry[field])
+      entry.fields[field] = stringifier.stringify(ast, { mode })
+      if (fieldAction.unabbrev.includes(field)) entry.fields[field] = unabbreviate[entry.fields[field] as string] || entry.fields[field]
+      if ((entry.fields[field] as string).match(/^[0-9]+$/)) entry.fields[field] = parseInt(entry.fields[field] as string)
       break
   }
 }
@@ -547,7 +592,7 @@ function convert(entry: Entry, field: string, value: string) {
 for (let bibfile of glob('test/better-bibtex/*/*.bib*')) {
   const bib = bibtex.entries(fs.readFileSync(bibfile, 'utf-8')).entries
   for (const verbatim of bib) {
-    const entry: Entry = { type: verbatim.type, key: verbatim.key, creators: [] }
+    const entry: Entry = { type: verbatim.type, key: verbatim.key, fields: {} }
     for (const [field, value] of Object.entries(verbatim.fields)) {
       convert(entry, field.toLowerCase(), value)
     }
