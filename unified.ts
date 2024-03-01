@@ -298,9 +298,19 @@ const stringifier = new class {
   }
 
   macro(node, context) {
+    let text = latex2unicode[printRaw(node)]
+    if (text) return text
+
     switch (node.content) {
       case 'vphantom':
       case 'noopsort':
+        return ''
+
+      case 'hspace':
+        if (node.args && node.args.length) {
+          if (printRaw(node.args).match(/^[{]?0[a-z]*$/)) return ''
+          return ' '
+        }
         return ''
 
       case 'textsc':
@@ -333,6 +343,7 @@ const stringifier = new class {
 
       case 'textit':
       case 'emph':
+      case 'mkbibemph':
         return this.wrap(this.stringify(node.args?.[0], context), 'i')
 
       case 'textsuperscript':
@@ -344,6 +355,7 @@ const stringifier = new class {
         return this.wrap(this.stringify(node.args?.[0], context), 'sub')
 
       case 'enquote':
+      case 'mkbibquote':
         return this.wrap(this.stringify(node.args?.[0], context), 'enquote')
 
       case '\\':
@@ -371,7 +383,7 @@ const stringifier = new class {
         return this.wrap(this.stringify(node.args?.[0], context), 'nc', context.mode === 'title')
 
       default:
-        throw new Error(`unhandled macro ${JSON.stringify(node)} ${printRaw(node)}`)
+        throw new Error(`unhandled macro ${node.content} ${printRaw(node)}`)
     }
   }
 
