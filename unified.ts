@@ -590,7 +590,7 @@ function convert(entry: Entry, field: string, value: string) {
 }
 
 for (let bibfile of glob('test/better-bibtex/*/*.bib*')) {
-  const bib = bibtex.entries(fs.readFileSync(bibfile, 'utf-8')).entries
+  const bib = bibtex.parse(fs.readFileSync(bibfile, 'utf-8')).entries
   for (const verbatim of bib) {
     const entry: Entry = { type: verbatim.type, key: verbatim.key, fields: {} }
     for (const [field, value] of Object.entries(verbatim.fields)) {
