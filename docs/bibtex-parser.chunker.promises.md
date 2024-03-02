@@ -8,6 +8,6 @@
 
 ```typescript
 promises: {
-    parse(input: string, options?: ParserOptions): Promise<Chunk[]>;
+    parse(input: string, options?: ParserOptions): Promise<BibTeXParser>;
 }
 ```

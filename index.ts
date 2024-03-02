@@ -622,7 +622,7 @@ class Parser {
 
   public ast(input, clean = true): Node[] {
     let parsed: Node[] = []
-    for (const chunk of chunker.parse(input)) {
+    for (const chunk of chunker.parse(input).chunks) {
       const { children } = bibtex.parse(chunk.text, {...this.options, combining: combining.macros})
       if (clean) this.clean(children)
       parsed = parsed.concat(children)
@@ -631,7 +631,7 @@ class Parser {
   }
 
   public parse(input): Bibliography {
-    for (const chunk of chunker.parse(input)) {
+    for (const chunk of chunker.parse(input).chunks) {
       this.parseChunk(chunk)
     }
     return this.parsed()
@@ -639,7 +639,7 @@ class Parser {
 
   public async parseAsync(input): Promise<Bibliography> {
     // eslint-disable-next-line @typescript-eslint/await-thenable
-    for (const chunk of await chunker.promises.parse(input)) {
+    for (const chunk of (await chunker.promises.parse(input)).chunks) {
       this.parseChunk(chunk)
     }
     return this.parsed()

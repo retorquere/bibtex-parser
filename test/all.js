@@ -108,7 +108,7 @@ for (let [option, value] of Object.entries(process.env)) {
   config[option] = value
 }
 
-if (config.snapshot || config.all) { // reset to all for snapshots
+if (config.snapshot || (config.all === 'true')) { // reset to all for snapshots
   for (const [key, value] of Object.entries(valid)) {
     if (!process.env[prefix + key]) config[key] = value
   }
