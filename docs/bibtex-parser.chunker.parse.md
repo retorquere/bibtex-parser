@@ -9,7 +9,7 @@ Reads the bibtex input and splits it into separate chunks of `string`<!-- -->s, 
 **Signature:**
 
 ```typescript
-export declare function parse(input: string, options?: ParserOptions): Chunk[];
+export declare function parse(input: string, options?: ParserOptions): BibTeXParser;
 ```
 
 ## Parameters
@@ -21,7 +21,7 @@ export declare function parse(input: string, options?: ParserOptions): Chunk[];
 
 **Returns:**
 
-[Chunk](./bibtex-parser.chunker.chunk.md)<!-- -->\[\]
+BibTeXParser
 
 array of chunks, with markers for type and errors (if any) found.
 
