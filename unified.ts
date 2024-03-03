@@ -610,17 +610,6 @@ function convert(entry: Entry, field: string, value: string) {
   }
 }
 
-for (const bibfile of glob('test/better-bibtex/*/*.bib*')) {
-  const bib = bibtex.parse(fs.readFileSync(bibfile, 'utf-8')).entries
-  for (const verbatim of bib) {
-    const entry: Entry = { type: verbatim.type, key: verbatim.key, fields: {} }
-    for (const [field, value] of Object.entries(verbatim.fields)) {
-      convert(entry, field.toLowerCase(), value)
-    }
-    console.log(JSON.stringify(entry, null, 2))
-  }
-}
-
 // ----------------------------------------------------------
 
 export interface Bibliography {
@@ -789,3 +778,9 @@ export const promises = {
 */
 
 export { bibtex }
+
+for (const bibfile of glob('test/better-bibtex/*/*.bib*')) {
+  const bib = parse(fs.readFileSync(bibfile, 'utf-8')).entries
+  console.log(JSON.stringify(bib, null, 2))
+}
+
