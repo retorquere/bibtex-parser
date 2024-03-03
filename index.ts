@@ -611,7 +611,7 @@ class Parser {
     if (typeof this.options.strings === 'string') {
       const strings = this.options.strings
       this.options.strings = {}
-      this.parseChunk({ text: strings, offset: { pos: 0, line: 0 } })
+      this.parseChunk({ text: strings, position: 0, location: { line: 0, column: 0 } })
       this.preloaded_strings = this.strings
       this.strings = {}
     }
@@ -779,7 +779,7 @@ class Parser {
         message: err.message,
         // no idea why eslint doesn't understand this type guard
         // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-        line: err.location.start.line + chunk.offset.line,
+        line: err.location.start.line + chunk.location.line,
         column: err.location.start.column,
         source: this.chunk,
       })
