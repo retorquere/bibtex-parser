@@ -101,6 +101,7 @@ class BibTeXParser {
     input: string
     location: { line: number, column: number }
   }[] = []
+  public preambles: string[] = []
 
   private default_strings: Record<string, string> = {
     jan: '01',
@@ -369,7 +370,7 @@ class BibTeXParser {
   }
 
   private preamble() {
-    this.value()
+    this.preambles.push(this.value())
   }
 
   private comment() {
