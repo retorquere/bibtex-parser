@@ -779,17 +779,13 @@ export function parse(input: string, options: ParserOptions = {}): Bibliography 
   return bib
 }
 
-export function ast(input: string, options: ParserOptions = {}, clean = true): Node[] {
-  const parser = new Parser(options)
-  return parser.ast(input, clean)
-}
-
+/*
 export const promises = {
   async parse(input: string, options: ParserOptions = {}): Promise<Bibliography> { // eslint-disable-line prefer-arrow/prefer-arrow-functions
     const parser = new Parser(options)
     return await parser.parseAsync(input)
   },
 }
+*/
 
 export { bibtex }
-export { jabref }
