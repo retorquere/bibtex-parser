@@ -5,8 +5,6 @@ import { LatexPegParser } from '@unified-latex/unified-latex-util-pegjs'
 import { visit } from '@unified-latex/unified-latex-util-visit'
 import { printRaw } from '@unified-latex/unified-latex-util-print-raw'
 import { latex2unicode, combining } from 'unicode2latex'
-import { globSync as glob } from 'glob'
-import * as fs from 'node:fs'
 import * as bibtex from './chunker'
 import { JabRefMetadata } from './jabref'
 
@@ -14,8 +12,8 @@ const unabbreviate = require('./unabbrev.json')
 
 interface Creator {
   name?: string
-  family?: string
-  given?: string
+  lastName?: string
+  firstName?: string
   prefix?: string
   suffix?: string
   initial?: string
@@ -229,20 +227,20 @@ function parseCreator(ast: Root): Creator {
       .map((part: string) => part.match(/^([^=]+)=(.*)/)?.slice(1, 3) || ['', part])
 
     if (!nameparts.find(p => p[0])) {
-      let [family, suffix, given] = nameparts.length === 2
+      let [lastName, suffix, firstName] = nameparts.length === 2
         ? [nameparts[0][1], undefined, nameparts[1][1]]
         // > 3 nameparts are invalid and are dropped
         // eslint-disable-next-line no-magic-numbers
         : nameparts.slice(0, 3).map(p => p[1])
       let prefix
-      const m = family.match(/^([a-z'. ]+) (.+)/)
+      const m = lastName.match(/^([a-z'. ]+) (.+)/)
       if (m) {
         prefix = m[1]
-        family = m[2]
+        lastName = m[2]
       }
       return {
-        family,
-        given,
+        lastName,
+        firstName,
         ...(typeof prefix === 'undefined' ? {} : { prefix }),
         ...(typeof suffix === 'undefined' ? {} : { suffix }),
       }
@@ -275,8 +273,8 @@ function parseCreator(ast: Root): Creator {
     const nameparts = Splitter.split(ast, ' ').map(part => Stringifier.stringify(part, { mode: 'creator' })).filter(n => n)
     if (nameparts.length === 1) return { name: nameparts[0] }
     const prefix = nameparts.findIndex(n => n.match(/^[a-z]/))
-    if (prefix > 0) return { given: nameparts.slice(0, prefix).join(' '), family: nameparts.slice(prefix).join(' ') }
-    return { family: nameparts.pop(), given: nameparts.join(' ') }
+    if (prefix > 0) return { firstName: nameparts.slice(0, prefix).join(' '), lastName: nameparts.slice(prefix).join(' ') }
+    return { lastName: nameparts.pop(), firstName: nameparts.join(' ') }
   }
 }
 
@@ -749,7 +747,7 @@ export interface ParserOptions {
 /**
  * parse bibtex. This will try to convert TeX commands into unicode equivalents, and apply `@string` expansion
  */
-export function parse(input: string, options: ParserOptions = {}): Bibliography {
+export function parse(input: string, _options: ParserOptions = {}): Bibliography {
   const base = bibtex.parse(input)
   const bib: Bibliography = {
     errors: base.errors,
@@ -779,8 +777,9 @@ export const promises = {
 
 export { bibtex }
 
-for (const bibfile of glob('test/better-bibtex/*/*.bib*')) {
-  const bib = parse(fs.readFileSync(bibfile, 'utf-8')).entries
-  console.log(JSON.stringify(bib, null, 2))
-}
-
+// import { globSync as glob } from 'glob'
+// import * as fs from 'node:fs'
+// for (const bibfile of glob('test/better-bibtex/*/*.bib*')) {
+//   const bib = parse(fs.readFileSync(bibfile, 'utf-8')).entries
+//   console.log(JSON.stringify(bib, null, 2))
+// }
