@@ -10,15 +10,6 @@ Object {
   "comments": Array [],
   "entries": Array [
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Michael",
-            "lastName": "von Hicks",
-            "suffix": "III",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -28,7 +19,11 @@ Object {
           "Palo Alto",
         ],
         "author": Array [
-          "von Hicks, III, Michael",
+          Object {
+            "firstName": "Michael",
+            "lastName": "von Hicks",
+            "suffix": "III",
+          },
         ],
         "edition": Array [
           "1st,",

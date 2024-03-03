@@ -10,18 +10,6 @@ Object {
   "comments": Array [],
   "entries": Array [
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Radim",
-            "lastName": "Řehůřek",
-          },
-          Object {
-            "firstName": "Petr",
-            "lastName": "Sojka",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -31,8 +19,14 @@ Object {
           "Valletta, Malta",
         ],
         "author": Array [
-          "Radim Řehůřek",
-          "Petr Sojka",
+          Object {
+            "firstName": "Radim",
+            "lastName": "Řehůřek",
+          },
+          Object {
+            "firstName": "Petr",
+            "lastName": "Sojka",
+          },
         ],
         "booktitle": Array [
           "Proceedings of the LREC 2010 workshop on new challenges for NLP frameworks",

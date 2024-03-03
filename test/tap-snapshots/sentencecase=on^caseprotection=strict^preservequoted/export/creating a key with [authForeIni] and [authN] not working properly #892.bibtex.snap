@@ -10,18 +10,6 @@ Object {
   "comments": Array [],
   "entries": Array [
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Florian",
-            "lastName": "Modler",
-          },
-          Object {
-            "firstName": "Martin",
-            "lastName": "Kreh",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -31,8 +19,14 @@ Object {
           "<span class=\\"nocase\\">Berlin [u.~a.]</span>",
         ],
         "author": Array [
-          "Modler, Florian",
-          "Kreh, Martin",
+          Object {
+            "firstName": "Florian",
+            "lastName": "Modler",
+          },
+          Object {
+            "firstName": "Martin",
+            "lastName": "Kreh",
+          },
         ],
         "edition": Array [
           "3. Aufl.",
@@ -60,21 +54,16 @@ Object {
       "type": "book",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Otto",
-            "lastName": "Forster",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "Forster, Otto",
+          Object {
+            "firstName": "Otto",
+            "lastName": "Forster",
+          },
         ],
         "publisher": Array [
           "Springer",

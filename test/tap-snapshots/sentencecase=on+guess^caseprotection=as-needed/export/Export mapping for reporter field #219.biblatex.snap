@@ -10,26 +10,16 @@ Object {
   "comments": Array [],
   "entries": Array [
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Kaetinyeri v",
-            "lastName": "Commonwealth",
-          },
-        ],
-        "translator": Array [
-          Object {
-            "lastName": "Kartinyeri",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "Kaetinyeri v Commonwealth",
+          Object {
+            "firstName": "Kaetinyeri v",
+            "lastName": "Commonwealth",
+          },
         ],
         "date": Array [
           "1998-04-01",
@@ -53,7 +43,9 @@ Object {
           "Kartinyeri v Commonwealth",
         ],
         "translator": Array [
-          "Kartinyeri",
+          Object {
+            "lastName": "Kartinyeri",
+          },
         ],
         "volume": Array [
           "195",

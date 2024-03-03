@@ -10,27 +10,16 @@ Object {
   "comments": Array [],
   "entries": Array [
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Don P.",
-            "lastName": "Mitchell",
-          },
-        ],
-        "editor": Array [
-          Object {
-            "firstName": "Holly",
-            "lastName": "Rushmeier",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "Mitchell, Don P.",
+          Object {
+            "firstName": "Don P.",
+            "lastName": "Mitchell",
+          },
         ],
         "booktitle": Array [
           "PROC_SIGGRAPH93_01",
@@ -39,7 +28,10 @@ Object {
           "1996-08",
         ],
         "editor": Array [
-          "Rushmeier, Holly",
+          Object {
+            "firstName": "Holly",
+            "lastName": "Rushmeier",
+          },
         ],
         "organization": Array [
           "ACM_SIGGRAPH",

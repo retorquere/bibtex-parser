@@ -10,14 +10,6 @@ Object {
   "comments": Array [],
   "entries": Array [
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Hazel V.",
-            "lastName": "Clark",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -27,7 +19,10 @@ Object {
           "Example from CMoS, 16e, 14.249",
         ],
         "author": Array [
-          "Clark, Hazel V.",
+          Object {
+            "firstName": "Hazel V.",
+            "lastName": "Clark",
+          },
         ],
         "date": Array [
           "1957",
@@ -47,20 +42,6 @@ Object {
       "type": "booklet",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "David",
-            "lastName": "Kamp",
-          },
-        ],
-        "editora": Array [
-          Object {
-            "firstName": "Michael",
-            "lastName": "Pollan",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -70,13 +51,19 @@ Object {
           "Example from CMoS, 16e, 14.125",
         ],
         "author": Array [
-          "Kamp, David",
+          Object {
+            "firstName": "David",
+            "lastName": "Kamp",
+          },
         ],
         "date": Array [
           "2006-04-23",
         ],
         "editora": Array [
-          "Pollan, Michael",
+          Object {
+            "firstName": "Michael",
+            "lastName": "Pollan",
+          },
         ],
         "editoratype": Array [
           "collaborator",
@@ -96,20 +83,6 @@ Object {
       "type": "review",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Wolfgang Amadeus",
-            "lastName": "Mozart",
-          },
-        ],
-        "editor": Array [
-          Object {
-            "firstName": "Nathan",
-            "lastName": "Broder",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -119,7 +92,10 @@ Object {
           "Example from CMoS, 16e, 14.269 “Prepared from the autographs and earliest printed sources by Nathan Broder”",
         ],
         "author": Array [
-          "Mozart, Wolfgang Amadeus",
+          Object {
+            "firstName": "Wolfgang Amadeus",
+            "lastName": "Mozart",
+          },
         ],
         "date": Array [
           "1960",
@@ -128,7 +104,10 @@ Object {
           "Rev. ed.",
         ],
         "editor": Array [
-          "Broder, Nathan",
+          Object {
+            "firstName": "Nathan",
+            "lastName": "Broder",
+          },
         ],
         "location": Array [
           "Bryn Mawr, PA",
@@ -145,7 +124,6 @@ Object {
       "type": "audio",
     },
     Object {
-      "creators": Object {},
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -172,20 +150,6 @@ Object {
       "type": "dataset",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Ben",
-            "lastName": "Ratliff",
-          },
-        ],
-        "editora": Array [
-          Object {
-            "firstName": "Hermano",
-            "lastName": "Vianna",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -195,13 +159,19 @@ Object {
           "Example from CMoS, 16e, 14.215 “ed. and trans. John Charles Chasteen”",
         ],
         "author": Array [
-          "Ratliff, Ben",
+          Object {
+            "firstName": "Ben",
+            "lastName": "Ratliff",
+          },
         ],
         "date": Array [
           "1999-04",
         ],
         "editora": Array [
-          "Hermano Vianna",
+          Object {
+            "firstName": "Hermano",
+            "lastName": "Vianna",
+          },
         ],
         "editoratype": Array [
           "collaborator",

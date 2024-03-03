@@ -10,18 +10,6 @@ Object {
   "comments": Array [],
   "entries": Array [
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Nagy",
-            "lastName": "Mostafa",
-          },
-          Object {
-            "firstName": "Chandra",
-            "lastName": "Krintz",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -34,8 +22,14 @@ Object {
           "New York, NY, USA",
         ],
         "author": Array [
-          "Mostafa, Nagy",
-          "Krintz, Chandra",
+          Object {
+            "firstName": "Nagy",
+            "lastName": "Mostafa",
+          },
+          Object {
+            "firstName": "Chandra",
+            "lastName": "Krintz",
+          },
         ],
         "booktitle": Array [
           "Proceedings of the 7th International Conference on Principles and Practice of Programming in Java",

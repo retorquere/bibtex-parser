@@ -10,14 +10,6 @@ Object {
   "comments": Array [],
   "entries": Array [
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Saharon",
-            "lastName": "Shelah",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -27,7 +19,10 @@ Object {
           "{biblatex{ editortype: \\"translated and edited under the supervision of\\", referencetype: mvlexicon }} {}",
         ],
         "author": Array [
-          "Shelah, Saharon",
+          Object {
+            "firstName": "Saharon",
+            "lastName": "Shelah",
+          },
         ],
         "editortype": Array [
           "translated and edited under the supervision of",

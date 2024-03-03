@@ -10,14 +10,6 @@ Object {
   "comments": Array [],
   "entries": Array [
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Tom",
-            "lastName": "Simonite",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -27,7 +19,10 @@ Object {
           "The community that built the largest encyclopedia in history is shrinking, even as more people and Internet services depend on it than ever. Can it be revived, or is this the end of the Web’s idealistic era?",
         ],
         "author": Array [
-          "Simonite, Tom",
+          Object {
+            "firstName": "Tom",
+            "lastName": "Simonite",
+          },
         ],
         "date": Array [
           "2013-10-22",

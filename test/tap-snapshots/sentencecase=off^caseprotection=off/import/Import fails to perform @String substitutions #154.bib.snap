@@ -10,14 +10,6 @@ Object {
   "comments": Array [],
   "entries": Array [
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "R. A.",
-            "lastName": "Bert",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -27,7 +19,10 @@ Object {
           "London, UK",
         ],
         "author": Array [
-          "R. A. Bert",
+          Object {
+            "firstName": "R. A.",
+            "lastName": "Bert",
+          },
         ],
         "publisher": Array [
           "Freds Publishing",

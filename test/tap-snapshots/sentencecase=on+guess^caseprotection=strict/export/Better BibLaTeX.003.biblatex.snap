@@ -10,28 +10,6 @@ Object {
   "comments": Array [],
   "entries": Array [
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "First",
-            "lastName": "Author",
-          },
-          Object {
-            "firstName": "Second",
-            "lastName": "Author",
-          },
-        ],
-        "editor": Array [
-          Object {
-            "firstName": "First",
-            "lastName": "Editor",
-          },
-          Object {
-            "firstName": "Second",
-            "lastName": "Editor",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [
@@ -40,12 +18,24 @@ Object {
       },
       "fields": Object {
         "author": Array [
-          "Author, First",
-          "Author, Second",
+          Object {
+            "firstName": "First",
+            "lastName": "Author",
+          },
+          Object {
+            "firstName": "Second",
+            "lastName": "Author",
+          },
         ],
         "editor": Array [
-          "Editor, First",
-          "Editor, Second",
+          Object {
+            "firstName": "First",
+            "lastName": "Editor",
+          },
+          Object {
+            "firstName": "Second",
+            "lastName": "Editor",
+          },
         ],
         "pages": Array [
           "330—331",
@@ -59,18 +49,6 @@ Object {
       "type": "inproceedings",
     },
     Object {
-      "creators": Object {
-        "editor": Array [
-          Object {
-            "firstName": "First",
-            "lastName": "Editor",
-          },
-          Object {
-            "firstName": "Second",
-            "lastName": "Editor",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [
           "editor",
@@ -82,8 +60,14 @@ Object {
           "2006-10",
         ],
         "editor": Array [
-          "Editor, First",
-          "Editor, Second",
+          Object {
+            "firstName": "First",
+            "lastName": "Editor",
+          },
+          Object {
+            "firstName": "Second",
+            "lastName": "Editor",
+          },
         ],
         "title": Array [
           "Proceedings of the <span class=\\"nocase\\">Xth</span> conference on <span class=\\"nocase\\">XYZ</span>",

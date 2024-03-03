@@ -10,14 +10,6 @@ Object {
   "comments": Array [],
   "entries": Array [
     Object {
-      "creators": Object {
-        "director": Array [
-          Object {
-            "firstName": "Sebastiaan",
-            "lastName": "Marka",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -30,7 +22,10 @@ Object {
           "2021-09-16 13:56:52 +0200",
         ],
         "director": Array [
-          "Sebastiaan Marka",
+          Object {
+            "firstName": "Sebastiaan",
+            "lastName": "Marka",
+          },
         ],
         "location": Array [
           "DE",
@@ -49,14 +44,6 @@ Object {
       "type": "movie",
     },
     Object {
-      "creators": Object {
-        "director": Array [
-          Object {
-            "firstName": "Sebastian",
-            "lastName": "Marka",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -69,7 +56,10 @@ Object {
           "2020-09-16 13:56:52 +0200",
         ],
         "director": Array [
-          "Sebastian Marka",
+          Object {
+            "firstName": "Sebastian",
+            "lastName": "Marka",
+          },
         ],
         "location": Array [
           "DE",
@@ -88,27 +78,16 @@ Object {
       "type": "video",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Olivier",
-            "lastName": "Roy",
-          },
-        ],
-        "translator": Array [
-          Object {
-            "firstName": "Cynthia",
-            "lastName": "Schoch",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "Roy, Olivier",
+          Object {
+            "firstName": "Olivier",
+            "lastName": "Roy",
+          },
         ],
         "location": Array [
           "New York",
@@ -135,7 +114,10 @@ Object {
           "Jihad and death",
         ],
         "translator": Array [
-          "Schoch, Cynthia",
+          Object {
+            "firstName": "Cynthia",
+            "lastName": "Schoch",
+          },
         ],
         "year": Array [
           "2017",
@@ -146,7 +128,14 @@ Object {
       "type": "book",
     },
     Object {
-      "creators": Object {
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "address": Array [
+          "US",
+        ],
         "author": Array [
           Object {
             "firstName": "Wes",
@@ -166,23 +155,6 @@ Object {
             "firstName": "T.S.",
             "lastName": "Nowlin",
           },
-        ],
-      },
-      "crossref": Object {
-        "donated": Array [],
-        "inherited": Array [],
-      },
-      "fields": Object {
-        "address": Array [
-          "US",
-        ],
-        "author": Array [
-          "Ball, Wes",
-        ],
-        "editor": Array [
-          "Noah Oppenheim",
-          "Grant Pierce Myers",
-          "T.S. Nowlin",
         ],
         "title": Array [
           "The maze runner",

@@ -10,20 +10,6 @@ Object {
   "comments": Array [],
   "entries": Array [
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Hans",
-            "lastName": "Kelsen",
-          },
-        ],
-        "translator": Array [
-          Object {
-            "firstName": "Charles",
-            "lastName": "Eisenmann",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -33,7 +19,10 @@ Object {
           "Préface de Ph. Raynaud. Trad. de : \\"Vom Wesen und Wert der Demokratie\\" - Tübingen : J.C.B. Mohr, 1929. Fac-sim. de la 2e éd., Paris : Sirey : 1932.",
         ],
         "author": Array [
-          "Kelsen, Hans",
+          Object {
+            "firstName": "Hans",
+            "lastName": "Kelsen",
+          },
         ],
         "date": Array [
           "2004",
@@ -75,28 +64,26 @@ Object {
           "La démocratie. Sa nature, sa valeur",
         ],
         "translator": Array [
-          "Eisenmann, Charles",
+          Object {
+            "firstName": "Charles",
+            "lastName": "Eisenmann",
+          },
         ],
       },
       "key": "kelsen_democratie_2004",
       "type": "book",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Bruno",
-            "lastName": "Latour",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "Latour, Bruno",
+          Object {
+            "firstName": "Bruno",
+            "lastName": "Latour",
+          },
         ],
         "date": Array [
           "2008",

@@ -10,21 +10,16 @@ Object {
   "comments": Array [],
   "entries": Array [
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "John",
-            "lastName": "Doe",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "Doe, John",
+          Object {
+            "firstName": "John",
+            "lastName": "Doe",
+          },
         ],
         "pubstate": Array [
           "forthcoming",

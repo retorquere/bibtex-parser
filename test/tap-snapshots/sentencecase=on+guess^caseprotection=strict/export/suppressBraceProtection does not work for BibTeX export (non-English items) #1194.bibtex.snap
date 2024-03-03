@@ -10,18 +10,6 @@ Object {
   "comments": Array [],
   "entries": Array [
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Л. Д.",
-            "lastName": "Ландау",
-          },
-          Object {
-            "firstName": "Е. М.",
-            "lastName": "Лифшиц",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -31,8 +19,14 @@ Object {
           "<span class=\\"nocase\\">М.</span>",
         ],
         "author": Array [
-          "Ландау, Л. Д.",
-          "Лифшиц, Е. М.",
+          Object {
+            "firstName": "Л. Д.",
+            "lastName": "Ландау",
+          },
+          Object {
+            "firstName": "Е. М.",
+            "lastName": "Лифшиц",
+          },
         ],
         "edition": Array [
           "Fifth",

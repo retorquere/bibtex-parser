@@ -10,14 +10,6 @@ Object {
   "comments": Array [],
   "entries": Array [
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Anne",
-            "lastName": "Barker",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -27,7 +19,10 @@ Object {
           "Voters in Switzerland overwhelmingly reject a proposal to introduce a guaranteed monthly income for all citizens.",
         ],
         "author": Array [
-          "Barker, Anne",
+          Object {
+            "firstName": "Anne",
+            "lastName": "Barker",
+          },
         ],
         "date": Array [
           "2016-06-06T15:26:37+1000",

@@ -10,7 +10,11 @@ Object {
   "comments": Array [],
   "entries": Array [
     Object {
-      "creators": Object {
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
         "author": Array [
           Object {
             "firstName": "Nancy K",
@@ -41,21 +45,6 @@ Object {
             "lastName": "Arbesman",
           },
         ],
-      },
-      "crossref": Object {
-        "donated": Array [],
-        "inherited": Array [],
-      },
-      "fields": Object {
-        "author": Array [
-          "Adams, Nancy K",
-          "DeSilva, Shanaka L",
-          "Self, Steven",
-          "Salas, Guido",
-          "Schubring, Steven",
-          "Permenter, Jason L",
-          "Arbesman, Kendra",
-        ],
         "journal": Array [
           "Bulletin of Volcanology",
         ],
@@ -81,21 +70,16 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Peter",
-            "lastName": "Rechenberg",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "Peter Rechenberg",
+          Object {
+            "firstName": "Peter",
+            "lastName": "Rechenberg",
+          },
         ],
         "edition": Array [
           "3., erw. und aktualisierte Aufl.",

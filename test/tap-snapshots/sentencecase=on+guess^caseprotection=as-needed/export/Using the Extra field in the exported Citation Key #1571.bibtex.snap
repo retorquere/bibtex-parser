@@ -10,18 +10,6 @@ Object {
   "comments": Array [],
   "entries": Array [
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Petra",
-            "lastName": "Heck",
-          },
-          Object {
-            "firstName": "Andy",
-            "lastName": "Zaidman",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -31,8 +19,14 @@ Object {
           "New York, NY, USA",
         ],
         "author": Array [
-          "Heck, Petra",
-          "Zaidman, Andy",
+          Object {
+            "firstName": "Petra",
+            "lastName": "Heck",
+          },
+          Object {
+            "firstName": "Andy",
+            "lastName": "Zaidman",
+          },
         ],
         "booktitle": Array [
           "Proceedings of the 2013 International Workshop on Principles of Software Evolution",

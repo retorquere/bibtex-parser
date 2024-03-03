@@ -10,14 +10,6 @@ Object {
   "comments": Array [],
   "entries": Array [
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Ludwig",
-            "lastName": "Wittgenstein",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -27,7 +19,10 @@ Object {
           "Make Zotero effective for us LaTeX holdouts. Contribute to retorquere/zotero-better-bibtex development by creating an account on GitHub.",
         ],
         "author": Array [
-          "Wittgenstein, Ludwig",
+          Object {
+            "firstName": "Ludwig",
+            "lastName": "Wittgenstein",
+          },
         ],
         "date": Array [
           "2021-04-08T00:39:34Z",
@@ -57,14 +52,6 @@ Object {
       "type": "software",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Emiliano",
-            "lastName": "Heyns",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -74,7 +61,10 @@ Object {
           "Make Zotero effective for us LaTeX holdouts. Contribute to retorquere/zotero-better-bibtex development by creating an account on GitHub.",
         ],
         "author": Array [
-          "Heyns, Emiliano",
+          Object {
+            "firstName": "Emiliano",
+            "lastName": "Heyns",
+          },
         ],
         "date": Array [
           "2021-04-08T00:39:34Z",

@@ -10,18 +10,6 @@ Object {
   "comments": Array [],
   "entries": Array [
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Milton",
-            "lastName": "Abramowitz",
-          },
-          Object {
-            "firstName": "Irene A.",
-            "lastName": "Stegun",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -31,8 +19,14 @@ Object {
           "New York",
         ],
         "author": Array [
-          "Abramowitz, Milton",
-          "Stegun, Irene A.",
+          Object {
+            "firstName": "Milton",
+            "lastName": "Abramowitz",
+          },
+          Object {
+            "firstName": "Irene A.",
+            "lastName": "Stegun",
+          },
         ],
         "edition": Array [
           "ninth Dover printing, tenth GPO printing",
@@ -51,7 +45,11 @@ Object {
       "type": "book",
     },
     Object {
-      "creators": Object {
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
         "author": Array [
           Object {
             "firstName": "Joe",
@@ -61,16 +59,6 @@ Object {
             "firstName": "Tom",
             "lastName": "Verducci",
           },
-        ],
-      },
-      "crossref": Object {
-        "donated": Array [],
-        "inherited": Array [],
-      },
-      "fields": Object {
-        "author": Array [
-          "Torre, Joe",
-          "Verducci, Tom",
         ],
         "isbn": Array [
           "0385527403",

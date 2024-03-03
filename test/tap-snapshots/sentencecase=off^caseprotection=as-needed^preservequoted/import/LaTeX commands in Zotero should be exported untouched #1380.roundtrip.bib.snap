@@ -10,7 +10,11 @@ Object {
   "comments": Array [],
   "entries": Array [
     Object {
-      "creators": Object {
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
         "author": Array [
           Object {
             "firstName": "Frank",
@@ -20,38 +24,6 @@ Object {
             "firstName": "Michel",
             "lastName": "Goossens",
           },
-        ],
-        "translator": Array [
-          Object {
-            "firstName": "Jacques",
-            "lastName": "André",
-          },
-          Object {
-            "firstName": "Benoît",
-            "lastName": "Bellet",
-          },
-          Object {
-            "firstName": "Jean-Côme",
-            "lastName": "Charpentier",
-          },
-          Object {
-            "firstName": "Jean-Michel",
-            "lastName": "Hufflen",
-          },
-          Object {
-            "firstName": "Yves",
-            "lastName": "Soulet",
-          },
-        ],
-      },
-      "crossref": Object {
-        "donated": Array [],
-        "inherited": Array [],
-      },
-      "fields": Object {
-        "author": Array [
-          "Mittelbach, Frank",
-          "Goossens, Michel",
         ],
         "date": Array [
           "2006-02",
@@ -78,11 +50,26 @@ Object {
           "LaTeX Companion",
         ],
         "translator": Array [
-          "André, Jacques",
-          "Bellet, Benoît",
-          "Charpentier, Jean-Côme",
-          "Hufflen, Jean-Michel",
-          "Soulet, Yves",
+          Object {
+            "firstName": "Jacques",
+            "lastName": "André",
+          },
+          Object {
+            "firstName": "Benoît",
+            "lastName": "Bellet",
+          },
+          Object {
+            "firstName": "Jean-Côme",
+            "lastName": "Charpentier",
+          },
+          Object {
+            "firstName": "Jean-Michel",
+            "lastName": "Hufflen",
+          },
+          Object {
+            "firstName": "Yves",
+            "lastName": "Soulet",
+          },
         ],
       },
       "key": "MittelbachLaTeXCompanion2006",

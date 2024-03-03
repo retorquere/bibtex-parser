@@ -10,33 +10,25 @@ Object {
   "comments": Array [],
   "entries": Array [
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Piroska",
-            "lastName": "Nagy",
-          },
-        ],
-        "editora": Array [
-          Object {
-            "firstName": "Damien",
-            "lastName": "Boquet",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "Nagy, Piroska",
+          Object {
+            "firstName": "Piroska",
+            "lastName": "Nagy",
+          },
         ],
         "date": Array [
           "2008-10-24",
         ],
         "editora": Array [
-          "Boquet, Damien",
+          Object {
+            "firstName": "Damien",
+            "lastName": "Boquet",
+          },
         ],
         "editoratype": Array [
           "collaborator",
@@ -65,25 +57,15 @@ Object {
       "type": "online",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "lastName": "胡適",
-          },
-        ],
-        "editor": Array [
-          Object {
-            "lastName": "歐陽哲生",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "胡適",
+          Object {
+            "lastName": "胡適",
+          },
         ],
         "booktitle": Array [
           "胡適文集",
@@ -92,7 +74,9 @@ Object {
           "1998",
         ],
         "editor": Array [
-          "歐陽哲生",
+          Object {
+            "lastName": "歐陽哲生",
+          },
         ],
         "location": Array [
           "北京",

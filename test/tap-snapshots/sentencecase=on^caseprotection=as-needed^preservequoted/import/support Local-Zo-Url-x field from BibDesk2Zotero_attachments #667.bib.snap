@@ -10,14 +10,6 @@ Object {
   "comments": Array [],
   "entries": Array [
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Roderick",
-            "lastName": "Abbott",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -27,7 +19,10 @@ Object {
           "Brussels, Belgium",
         ],
         "author": Array [
-          "Abbott, Roderick",
+          Object {
+            "firstName": "Roderick",
+            "lastName": "Abbott",
+          },
         ],
         "class": Array [
           "States & Markets 2009, Diss Tax & Democracy 2010ff",

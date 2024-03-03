@@ -45,28 +45,28 @@ const valid = {
 }
 const multi = ['test']
 
+function sortObject(obj) {
+  if (Array.isArray(obj)) return obj.map(sortObject)
+  if (obj === null || obj === undefined || typeof obj !== 'object') return obj
+  const sorted = {}
+  for (const k of Object.keys(obj).sort()) {
+    sorted[k] = sortObject(obj[k])
+  }
+  return sorted
+}
+
 function normalize(result) {
   if (!Array.isArray(result.entries)) return result
   result.entries = JSON.parse(JSON.stringify(result.entries), (key, value) => typeof value === 'string' ? value.normalize('NFC') : value)
 
   // temporary workarounds to match old return format
-
-  for (const entry of result.entries) {
-    entry.creators = {}
-    for (const creator of ['author', 'translator']) {
-      if (entry.fields[creator]) {
-        entry.creators[creator] = entry.fields[creator]
-        delete entry.fields[creator]
-      }
-    }
-  }
-
   for (const entry of result.entries) {
     for (let [field, value] of Object.entries(entry.fields)) {
       if (typeof value === 'number') value = `${value}`
       if (!Array.isArray(entry.fields[field])) entry.fields[field] = [ value ]
     }
   }
+  result.entries = sortObject(result.entries)
   return result
 }
 
@@ -119,7 +119,7 @@ if (process.env.TAP_SNAPSHOT === '1') config.snapshot = 'true'
 let testcases = []
 for (const pattern of config.test) {
   testcases = testcases.concat(glob(path.join(__dirname, '**', (pattern ? '*' : '') + pattern + '*.{json,bib,bibtex,biblatex}'), { nocase: true, matchBase: true, nonull: false, nodir: true }))
-  testcases = testcases.slice(0, 10)
+  // testcases = testcases.slice(0, 20) // limit
 }
 
 for (const bibfile of testcases) {

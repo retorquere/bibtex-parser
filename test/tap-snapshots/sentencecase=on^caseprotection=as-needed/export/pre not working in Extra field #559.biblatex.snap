@@ -10,14 +10,6 @@ Object {
   "comments": Array [],
   "entries": Array [
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Morten",
-            "lastName": "Brøns",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -27,7 +19,10 @@ Object {
           "Hello hej",
         ],
         "author": Array [
-          "Brøns, Morten",
+          Object {
+            "firstName": "Morten",
+            "lastName": "Brøns",
+          },
         ],
         "title": Array [
           "<span class=\\"nocase\\">pretest</span>",

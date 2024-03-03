@@ -10,14 +10,6 @@ Object {
   "comments": Array [],
   "entries": Array [
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Jane",
-            "lastName": "Doe",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -27,7 +19,10 @@ Object {
           "00000",
         ],
         "author": Array [
-          "Doe, Jane",
+          Object {
+            "firstName": "Jane",
+            "lastName": "Doe",
+          },
         ],
         "journal": Array [
           "Journal of Testing",
@@ -53,14 +48,6 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Jill",
-            "lastName": "Jackson",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -70,7 +57,10 @@ Object {
           "00000",
         ],
         "author": Array [
-          "Jackson, Jill",
+          Object {
+            "firstName": "Jill",
+            "lastName": "Jackson",
+          },
         ],
         "journal": Array [
           "Internet Quarterly",
@@ -95,14 +85,6 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "John",
-            "lastName": "Smith",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -112,7 +94,10 @@ Object {
           "00000",
         ],
         "author": Array [
-          "Smith, John",
+          Object {
+            "firstName": "John",
+            "lastName": "Smith",
+          },
         ],
         "journal": Array [
           "Journal of Testing",
