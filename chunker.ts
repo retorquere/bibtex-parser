@@ -35,7 +35,7 @@ const letter = new RegExp('[' + [
 
 type Entry = {
   type: string
-  key?: string
+  key: string
   fields: Record<string, string>
 }
 
