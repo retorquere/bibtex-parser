@@ -487,7 +487,7 @@ class Parser {
   private strings: Record<string, bibtex.ValueType[]>
   private in_preamble = false
   private newcommands: Record<string, bibtex.ValueType[]>
-  private unresolvedStrings: Record<string, boolean>
+  private unresolvedStrings: Set<string>
   private default_strings: Record<string, bibtex.TextValue[]>
   private preloaded_strings: Record<string, bibtex.ValueType[]>
   private comments: string[]
@@ -566,7 +566,7 @@ class Parser {
       this.options.markup[`h${i}`] = this.options.markup[`h${i}`] || { open: `<h${i}>`, close: `</h${i}>` }
     }
 
-    this.unresolvedStrings = {}
+    this.unresolvedStrings = new Set
 
     this.errors = []
     this.comments = []
@@ -715,6 +715,10 @@ class Parser {
     }
 
     const { comments, jabref } = parseJabRef(this.comments) // eslint-disable-line @typescript-eslint/no-shadow
+
+    for (const name of [...this.unresolvedStrings].sort((a, b) => a.localeCompare(b, undefined, {sensitivity: 'base'}))) {
+      this.errors.push({ message: `Unresolved @string reference ${JSON.stringify(name)}` })
+    }
 
     return {
       errors: this.errors,
@@ -991,11 +995,10 @@ class Parser {
       || this.options.strings[name]
       || this.preloaded_strings[name]
       || this.default_strings[name]
-      || (fields.unabbrev.includes(this.cleaning.name) && this.options.unabbreviate[name] && [ this.text(this.options.unabbreviate[name]) ])
+      || (fields.unabbrev.includes(this.cleaning.name) && this.options.unabbreviate[name.toLowerCase()] && [ this.text(this.options.unabbreviate[name.toLowerCase()]) ])
 
     if (!stringvalue) {
-      if (!this.unresolvedStrings[name]) this.errors.push({ message: `Unresolved @string reference ${JSON.stringify(node.name)}` })
-      this.unresolvedStrings[name] = true
+      this.unresolvedStrings.add(node.name)
     }
 
     return this.clean({
