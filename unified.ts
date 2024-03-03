@@ -8,6 +8,7 @@ import { latex2unicode, combining } from 'unicode2latex'
 import { globSync as glob } from 'glob'
 import * as fs from 'node:fs'
 import * as bibtex from './chunker'
+import { JabRefMetadata } from './jabref'
 
 const unabbreviate = require('./unabbrev.json')
 
@@ -626,7 +627,7 @@ export interface Bibliography {
   /**
    * errors found while parsing
    */
-  errors: ParseError[]
+  errors: bibtex.ParseError[]
 
   /**
    * entries in the order in which they are found, omitting those which could not be parsed.
@@ -646,7 +647,7 @@ export interface Bibliography {
   /**
    * `@preamble` declarations found in the bibtex file
    */
-  preamble: string[]
+  preamble: string
 
   /**
    * jabref metadata (such as groups information) found in the bibtex file
@@ -654,25 +655,128 @@ export interface Bibliography {
   jabref: JabRefMetadata
 }
 
+export interface ParserOptions {
+  /**
+   * BibTeX files are expected to store title-type fields in Sentence Case, where other reference managers (such as Zotero) expect them to be stored as Sentence case. When there is no language field, or the language field
+   * is one of the languages (case insensitive) passed in this option, the parser will attempt to sentence-case title-type fields as they are being parsed. This uses heuristics and does not employ any kind of natural
+   * language processing, so you should always inspect the results. Default languages to sentenceCase are:
+   *
+   * - american
+   * - british
+   * - canadian
+   * - english
+   * - australian
+   * - newzealand
+   * - usenglish
+   * - ukenglish
+   * - en
+   * - eng
+   * - en-au
+   * - en-bz
+   * - en-ca
+   * - en-cb
+   * - en-gb
+   * - en-ie
+   * - en-jm
+   * - en-nz
+   * - en-ph
+   * - en-tt
+   * - en-us
+   * - en-za
+   * - en-zw
+   *
+   * If you pass an empty array, or `false`, no sentence casing will be applied (even when there's no language field).
+   */
+  sentenceCase?: string[] | boolean
+
+  /**
+   * If you have sentence-casing on, you can independently choose whether quoted titles within a title are preserved as-is (true) or also sentence-cased(false)
+   */
+  sentenceCasePreserveQuoted?: boolean
+
+  /**
+   * Some bibtex has titles in sentence case, or all-uppercase. If this is on, and there is a field that would normally have sentence-casing applied in which more words are all-`X`case
+   * (where `X` is either lower or upper) than mixed-case, it is assumed that you want them this way, and no sentence-casing will be applied to that field
+   */
+  guessAlreadySentenceCased?: boolean
+
+  /**
+   * translate braced parts of text into a case-protected counterpart; uses the [[MarkupMapping]] table in `markup`. Default == true == as-needed.
+   * In as-needed mode the parser will assume that words that have capitals in them imply "nocase" behavior in the consuming application. If you don't want this, turn this option on, and you'll get
+   * case protection exactly as the input has it
+   */
+  caseProtection?: 'as-needed' | 'strict' | boolean
+
+  /**
+   * By default, when an unexpected parsing error is found (such as a TeX command which the parser does not know about), the parser will throw an error. You can pass a function to handle the error instead,
+   * where you can log it, display it, or even still throw an error
+   */
+  errorHandler?: false | ((err: Error) => void)
+
+  /**
+   * By default, when a TeX command is encountered which the parser does not know about, the parser will throw an error. You can pass a function here to return the appropriate text output for the command.
+   */
+  unknownMacro?: false | ((macro: Macro) => string)
+
+  /**
+   * Some fields such as `url` are parsed in what is called "verbatim mode" where pretty much everything except braces is treated as regular text, not TeX commands. You can change the default list here if you want,
+   * for example to help parse Mendeley `file` fields, which against spec are not in verbatim mode.
+   */
+  verbatimFields?: (string | RegExp)[]
+
+  /**
+   * In the past many bibtex entries would just always wrap a field in double braces, likely because whomever was writing them couldn't figure out the case meddling rules (and who could
+   * blame them). Fields listed here will either have one outer layer of braces treated as case-preserve, or have the outer braced be ignored completely, if this is detected.
+   */
+  unnestFields?: string[]
+  unnestMode?: 'preserve' | 'unwrap'
+
+  /**
+   * Some note-like fields may have more rich formatting. If listed here, more HTML conversions will be applied.
+   */
+  htmlFields?: string[]
+
+  /**
+   * If this flag is set entries will be returned without conversion of LaTeX to unicode equivalents.
+   */
+  raw?: boolean
+
+  /**
+   * You can pass in an existing @string dictionary
+   */
+  strings?: Record<string, string> | string
+
+  /**
+   * BibTeX files may have abbreviations in the journal field. If you provide a dictionary, journal names that are found in the dictionary are replaced with the attached full name
+   */
+  unabbreviate?: Record<string, string>
+
+  /**
+   * Apply crossref inheritance
+   */
+  applyCrossRef?: boolean
+}
+
 /**
  * parse bibtex. This will try to convert TeX commands into unicode equivalents, and apply `@string` expansion
  */
 export function parse(input: string, options: ParserOptions = {}): Bibliography {
-  const base = chunker.parse(input)
-  cons bib: Bibliography = {
+  const base = bibtex.parse(input)
+  const bib: Bibliography = {
     errors: base.errors,
     entries: [],
     comments: base.comments,
     strings: base.strings,
-    preambles: base.preambles,
+    preamble: base.preambles.join('\n\n'),
     jabref: null,
   }
-  for (const entry of verbatim.entries as chunker.Entry[]) {
+  for (const entry of base.entries) {
     for (const [field, value] of Object.entries(entry.fields)) {
       convert(entry, field, value)
     }
     bib.entries.push(entry as Entry)
   }
+  return bib
 }
 
 export function ast(input: string, options: ParserOptions = {}, clean = true): Node[] {
@@ -687,5 +791,5 @@ export const promises = {
   },
 }
 
-export { chunker }
+export { bibtex }
 export { jabref }
