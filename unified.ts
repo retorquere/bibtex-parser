@@ -6,7 +6,7 @@ import { visit } from '@unified-latex/unified-latex-util-visit'
 import { printRaw } from '@unified-latex/unified-latex-util-print-raw'
 import { latex2unicode, combining } from 'unicode2latex'
 import * as bibtex from './chunker'
-import { JabRefMetadata } from './jabref'
+import * as JabRef from './jabref'
 
 const unabbreviate = require('./unabbrev.json')
 
@@ -344,6 +344,9 @@ const Stringifier = new class {
     if (text) return text
 
     switch (node.content) {
+      case 'LaTeX':
+        return 'LaTeX'
+
       case 'vphantom':
       case 'noopsort':
         return ''
@@ -365,10 +368,6 @@ const Stringifier = new class {
       case 'href':
       case 'url':
         return `<a href="${this.stringify(node.args?.[0], context)}">${this.stringify(node.args?.[node.content === 'url' ? 0 : 1], context)}</a>`
-
-      case 'aap':
-      case 'ud':
-      case 'path':
 
       case 'relax':
       case 'aftergroup':
@@ -634,12 +633,12 @@ export interface Bibliography {
   /**
    * `@preamble` declarations found in the bibtex file
    */
-  preamble: string
+  preamble: string[]
 
   /**
    * jabref metadata (such as groups information) found in the bibtex file
    */
-  jabref: JabRefMetadata
+  jabref: JabRef.JabRefMetadata
 }
 
 export interface ParserOptions {
@@ -752,9 +751,9 @@ export function parse(input: string, _options: ParserOptions = {}): Bibliography
   const bib: Bibliography = {
     errors: base.errors,
     entries: [],
-    comments: base.comments,
-    strings: base.strings,
-    preamble: base.preambles.join('\n\n'),
+    comments: [],
+    strings: {},
+    preamble: base.preambles,
     jabref: null,
   }
   for (const entry of base.entries) {
@@ -763,6 +762,17 @@ export function parse(input: string, _options: ParserOptions = {}): Bibliography
     }
     bib.entries.push(entry as Entry)
   }
+
+  const s: Entry = { key: '', type: '', fields: {} }
+  for (const [k, v] of Object.entries(base.strings)) {
+    convert(s, 'string', v)
+    bib.strings[k] = s.fields.string as string
+  }
+
+  const { comments, jabref } = JabRef.parse(base.comments)
+  bib.comments = comments
+  bib.jabref = jabref
+
   return bib
 }
 
