@@ -15,6 +15,7 @@
 |  Interface | Description |
 |  --- | --- |
 |  [Chunk](./bibtex-parser.chunker.chunk.md) |  |
+|  [ParseError](./bibtex-parser.chunker.parseerror.md) |  |
 |  [ParserOptions](./bibtex-parser.chunker.parseroptions.md) |  |
 
 ## Variables
