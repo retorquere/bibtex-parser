@@ -619,3 +619,73 @@ for (const bibfile of glob('test/better-bibtex/*/*.bib*')) {
     console.log(JSON.stringify(entry, null, 2))
   }
 }
+
+// ----------------------------------------------------------
+
+export interface Bibliography {
+  /**
+   * errors found while parsing
+   */
+  errors: ParseError[]
+
+  /**
+   * entries in the order in which they are found, omitting those which could not be parsed.
+   */
+  entries: Entry[]
+
+  /**
+   * `@comment`s found in the bibtex file.
+   */
+  comments: string[]
+
+  /**
+   * `@string`s found in the bibtex file.
+   */
+  strings: Record<string, string>
+
+  /**
+   * `@preamble` declarations found in the bibtex file
+   */
+  preamble: string[]
+
+  /**
+   * jabref metadata (such as groups information) found in the bibtex file
+   */
+  jabref: JabRefMetadata
+}
+
+/**
+ * parse bibtex. This will try to convert TeX commands into unicode equivalents, and apply `@string` expansion
+ */
+export function parse(input: string, options: ParserOptions = {}): Bibliography {
+  const base = chunker.parse(input)
+  cons bib: Bibliography = {
+    errors: [],
+    entries: [],
+    comments: base.comments,
+    strings: base.strings,
+    preamble: [],
+    jabref: null,
+  }
+  for (const entry of verbatim.entries as chunker.Entry[]) {
+    for (const [field, value] of Object.entries(entry.fields)) {
+      convert(entry, field, value)
+    }
+    bib.entries.push(entry as Entry)
+  }
+}
+
+export function ast(input: string, options: ParserOptions = {}, clean = true): Node[] {
+  const parser = new Parser(options)
+  return parser.ast(input, clean)
+}
+
+export const promises = {
+  async parse(input: string, options: ParserOptions = {}): Promise<Bibliography> { // eslint-disable-line prefer-arrow/prefer-arrow-functions
+    const parser = new Parser(options)
+    return await parser.parseAsync(input)
+  },
+}
+
+export { chunker }
+export { jabref }
