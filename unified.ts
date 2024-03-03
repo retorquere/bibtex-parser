@@ -284,7 +284,7 @@ function ligature(nodes: Node[]): StringNode {
   const type = nodes.slice(0, max).map(n => n.type === 'string' ? 's' : ' ').join('')
   if (type[0] !== 's') return null
 
-  const content = nodes.slice(0, max).map((n: Node) => n.type === 'string' ? n.content as string : '')
+  const content = nodes.slice(0, max).map(n => n.type === 'string' ? n.content : '')
   let latex: string
 
   while (content.length) {
@@ -452,22 +452,22 @@ const Stringifier = new class {
     switch (node.type) {
       case 'root':
       case 'argument':
-        return node.content.map(n => this.stringify(n, context)).join('') as string
+        return node.content.map(n => this.stringify(n, context)).join('')
 
       case 'group':
       case 'inlinemath':
         return this.wrap(
-          node.content.map(n => this.stringify(n, {...context, caseProtected: (context.caseProtected || node._renderInfo.protectCase) as boolean})).join('') as string,
+          node.content.map(n => this.stringify(n, {...context, caseProtected: (context.caseProtected || node._renderInfo.protectCase) as boolean})).join(''),
           'nc',
           (context.mode === 'title') && !context.caseProtected && (node._renderInfo.protectCase as boolean)
         )
 
       case 'string':
       case 'verbatim':
-        return node.content as string
+        return node.content
 
       case 'macro':
-        return this.macro(node as Macro, context)
+        return this.macro(node, context)
 
       case 'parbreak':
         return context.mode === 'html' ? '<p>' : ' '
@@ -479,10 +479,10 @@ const Stringifier = new class {
         return ''
 
       case 'environment':
-        return this.environment(node as Environment, context)
+        return this.environment(node, context)
 
       case 'verb':
-        return node.content as string
+        return node.content
 
       default:
         throw new Error(`unhandled ${node.type} ${printRaw(node as Node)}`)
@@ -529,7 +529,7 @@ function convert(entry: Entry, field: string, value: string) {
     const compacted: Node[] = []
     while (nodes.length) {
       if (node = ligature(nodes)) {
-        compacted.push(node as StringNode)
+        compacted.push(node)
         continue
       }
 
@@ -537,7 +537,7 @@ function convert(entry: Entry, field: string, value: string) {
       if (node.type === 'macro' && narguments[node.content]) {
         node.args = Array(narguments[node.content]).fill(undefined).map(_i => argument(nodes)).filter(arg => arg)
         if (node.content.match(/^(url|href)$/) && node.args.length) {
-          node.args[0] = wraparg({ type: 'string', content: printRaw(node.args[0].content as Node[]) })
+          node.args[0] = wraparg({ type: 'string', content: printRaw(node.args[0].content) })
         }
       }
 
