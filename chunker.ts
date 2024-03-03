@@ -106,38 +106,38 @@ class BibTeXParser {
   public preambles: string[] = []
 
   private default_strings: Record<string, string> = {
-    jan: '01',
-    feb: '02',
-    mar: '03',
-    apr: '04',
-    may: '05',
-    jun: '06',
-    jul: '07',
-    aug: '08',
-    sep: '09',
-    oct: '10',
-    nov: '11',
-    dec: '12',
-    acmcs: 'ACM Computing Surveys',
-    acta: 'Acta Informatica',
-    cacm: 'Communications of the ACM',
-    ibmjrd: 'IBM Journal of Research and Development',
-    ibmsj: 'IBM Systems Journal',
-    ieeese: 'IEEE Transactions on Software Engineering',
-    ieeetc: 'IEEE Transactions on Computers',
-    ieeetcad: 'IEEE Transactions on Computer-Aided Design of Integrated Circuits',
-    ipl: 'Information Processing Letters',
-    jacm: 'Journal of the ACM',
-    jcss: 'Journal of Computer and System Sciences',
-    scp: 'Science of Computer Programming',
-    sicomp: 'SIAM Journal on Computing',
-    tocs: 'ACM Transactions on Computer Systems',
-    tods: 'ACM Transactions on Database Systems',
-    tog: 'ACM Transactions on Graphics',
-    toms: 'ACM Transactions on Mathematical Software',
-    toois: 'ACM Transactions on Office Information Systems',
-    toplas: 'ACM Transactions on Programming Languages and Systems',
-    tcs: 'Theoretical Computer Science',
+    JAN: '01',
+    FEB: '02',
+    MAR: '03',
+    APR: '04',
+    MAY: '05',
+    JUN: '06',
+    JUL: '07',
+    AUG: '08',
+    SEP: '09',
+    OCT: '10',
+    NOV: '11',
+    DEC: '12',
+    ACMCS: 'ACM Computing Surveys',
+    ACTA: 'Acta Informatica',
+    CACM: 'Communications of the ACM',
+    IBMJRD: 'IBM Journal of Research and Development',
+    IBMSJ: 'IBM Systems Journal',
+    IEEESE: 'IEEE Transactions on Software Engineering',
+    IEEETC: 'IEEE Transactions on Computers',
+    IEEETCAD: 'IEEE Transactions on Computer-Aided Design of Integrated Circuits',
+    IPL: 'Information Processing Letters',
+    JACM: 'Journal of the ACM',
+    JCSS: 'Journal of Computer and System Sciences',
+    SCP: 'Science of Computer Programming',
+    SICOMP: 'SIAM Journal on Computing',
+    TOCS: 'ACM Transactions on Computer Systems',
+    TODS: 'ACM Transactions on Database Systems',
+    TOG: 'ACM Transactions on Graphics',
+    TOMS: 'ACM Transactions on Mathematical Software',
+    TOOIS: 'ACM Transactions on Office Information Systems',
+    TOPLAS: 'ACM Transactions on Programming Languages and Systems',
+    TCS: 'Theoretical Computer Science',
   }
 
   /**
@@ -299,7 +299,16 @@ class BibTeXParser {
     }
     else {
       const bare = this.key()
-      return this.strings[bare] || this.default_strings[bare] || bare
+      const u_bare = bare.toUpperCase()
+      const resolved = this.strings[u_bare] || this.default_strings[u_bare]
+      if (typeof resolved === 'undefined') {
+        this.errors.push({
+          error: `Unresolved @string reference ${JSON.stringify(bare)}`,
+          location: this.location(this.pos),
+          input: bare,
+        })
+      }
+      return resolved || bare
     }
   }
 
@@ -330,8 +339,7 @@ class BibTeXParser {
   }
 
   private key_equals_value() {
-    let key = this.key()
-    if (this.lowercase) key = key.toLowerCase()
+    const key = this.key()
 
     if (!this.tryMatch('=')) {
       throw new ParsingError(`... = value expected, equals sign missing: ${JSON.stringify(this.input.substr(this.pos, 20))}...`, this) // eslint-disable-line no-magic-numbers
@@ -341,10 +349,10 @@ class BibTeXParser {
     const val = this.value()
 
     if (this.parsing === 'string') {
-      this.strings[key.toLowerCase()] = val
+      this.strings[key.toUpperCase()] = val
     }
     else {
-      this.entries[0].fields[key] = val
+      this.entries[0].fields[this.lowercase ? key.toLowerCase() : key] = val
     }
   }
 
