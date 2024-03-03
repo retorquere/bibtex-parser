@@ -299,7 +299,8 @@ class BibTeXParser {
     }
     else {
       const bare = this.key()
-      return this.strings[bare] || this.default_strings[bare] || bare
+      const l_bare = bare.toLowerCase()
+      return this.strings[l_bare] || this.default_strings[l_bare] || bare
     }
   }
 
@@ -330,8 +331,7 @@ class BibTeXParser {
   }
 
   private key_equals_value() {
-    let key = this.key()
-    if (this.lowercase) key = key.toLowerCase()
+    const key = this.key()
 
     if (!this.tryMatch('=')) {
       throw new ParsingError(`... = value expected, equals sign missing: ${JSON.stringify(this.input.substr(this.pos, 20))}...`, this) // eslint-disable-line no-magic-numbers
@@ -344,7 +344,7 @@ class BibTeXParser {
       this.strings[key.toLowerCase()] = val
     }
     else {
-      this.entries[0].fields[key] = val
+      this.entries[0].fields[this.lowercase ? key.toLowerCase() : key] = val
     }
   }
 
