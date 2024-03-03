@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import { Root, Macro, String as StringNode, GenericNode, Argument, Group, Environment } from '@unified-latex/unified-latex-types'
+import { Root, Macro, String as StringNode, Node, Argument, Group, Environment } from '@unified-latex/unified-latex-types'
 import { replaceNode } from '@unified-latex/unified-latex-util-replace'
 import { LatexPegParser } from '@unified-latex/unified-latex-util-pegjs'
 import { visit } from '@unified-latex/unified-latex-util-visit'
@@ -51,7 +51,7 @@ interface Entry {
   }
 }
 
-export const fieldMode = {
+export const FieldMode = {
   creator: [
     'author',
     'bookauthor',
@@ -112,7 +112,9 @@ export const fieldMode = {
   ],
 }
 
-const fieldAction = {
+type ParseMode = keyof typeof FieldMode | 'literal'
+
+const FieldAction = {
   unnest: [
     'publisher',
     'location',
@@ -177,7 +179,7 @@ for (const m of combining.macros) {
 }
 
 const Splitter = new class {
-  private splitter(nodes: GenericNode[], splitter: RegExp): boolean {
+  private splitter(nodes: Node[], splitter: RegExp): boolean {
     // eslint-disable-next-line no-magic-numbers
     const types = nodes.slice(0, 3).map(n => n.type === 'string' && n.content.match(splitter) ? 'splitter' : n.type).join(',')
     const match = /^(whitespace,?)?(splitter)(,?whitespace)?/.exec(types)
@@ -186,8 +188,8 @@ const Splitter = new class {
     return true
   }
 
-  split(ast: Group, splitter: string | RegExp) {
-    const parts = [ { type: 'root', content: [] } ]
+  split(ast: Group | Root, splitter: string | RegExp): Root[] {
+    const parts: Root[] = [ { type: 'root', content: [] } ]
     let part = 0
 
     if (splitter === ' ') {
@@ -221,7 +223,7 @@ function parseCreator(ast: Root): Creator {
 
   if (ast.content.find(node => node.type === 'string' && node.content === ',')) {
     const nameparts: string[][] = Splitter.split(ast, ',')
-      .map((part: GenericNode) => Stringifier.stringify(part, { mode: 'creator' }))
+      .map((part: Node) => Stringifier.stringify(part, { mode: 'creator' }))
       // eslint-disable-next-line no-magic-numbers
       .map((part: string) => part.match(/^([^=]+)=(.*)/)?.slice(1, 3) || ['', part])
 
@@ -277,12 +279,12 @@ function parseCreator(ast: Root): Creator {
   }
 }
 
-function ligature(nodes: GenericNode[]): StringNode | false {
+function ligature(nodes: Node[]): StringNode {
   const max = 3
   const type = nodes.slice(0, max).map(n => n.type === 'string' ? 's' : ' ').join('')
-  if (type[0] !== 's') return false
+  if (type[0] !== 's') return null
 
-  const content = nodes.slice(0, max).map((n: GenericNode) => n.type === 'string' ? n.content as string : '')
+  const content = nodes.slice(0, max).map((n: Node) => n.type === 'string' ? n.content as string : '')
   let latex: string
 
   while (content.length) {
@@ -297,7 +299,7 @@ function ligature(nodes: GenericNode[]): StringNode | false {
     content.pop()
   }
 
-  return false
+  return null
 }
 
 function wraparg(node) : Argument {
@@ -307,15 +309,21 @@ function argtogroup(node: Argument): Group {
   if (node.content.length === 1 && node.content[0].type === 'group') return node.content[0]
   return { type: 'group', content: node.content }
 }
-function argument(nodes) {
-  if (!nodes.length) return false
+function argument(nodes: Node[]): Argument {
+  if (!nodes.length) return null
   if (nodes[0].type === 'whitespace') nodes.shift()
-  if (!nodes.length) return false
+  if (!nodes.length) return null
+  if (nodes[0].type === 'string') {
+    const char = nodes[0].content[0]
+    nodes[0].content = nodes[0].content.substr(1)
+    if (!nodes[0].content) nodes.shift()
+    return wraparg({ type: 'string', content: char })
+  }
   return wraparg(nodes.shift())
 }
 
 type StringifierContext = {
-  mode?: 'creator'
+  mode: ParseMode
   caseProtected?: boolean
 }
 
@@ -438,7 +446,7 @@ const Stringifier = new class {
     }
   }
 
-  stringify(node: GenericNode, context: StringifierContext): string {
+  stringify(node: Node | Argument, context: StringifierContext): string {
     if (!node) return ''
 
     switch (node.type) {
@@ -449,7 +457,7 @@ const Stringifier = new class {
       case 'group':
       case 'inlinemath':
         return this.wrap(
-          node.content.map(n => this.stringify(n, {...context, caseProtected: context.caseProtected || node._renderInfo.protectCase })).join('') as string,
+          node.content.map(n => this.stringify(n, {...context, caseProtected: (context.caseProtected || node._renderInfo.protectCase) as boolean})).join('') as string,
           'nc',
           (context.mode === 'title') && !context.caseProtected && (node._renderInfo.protectCase as boolean)
         )
@@ -477,15 +485,15 @@ const Stringifier = new class {
         return node.content as string
 
       default:
-        throw new Error(`unhandled ${node.type} ${printRaw(node as GenericNode)}`)
+        throw new Error(`unhandled ${node.type} ${printRaw(node as Node)}`)
     }
   }
 }
 
 function convert(entry: Entry, field: string, value: string) {
-  let mode = ''
-  for (const [selected, fields] of Object.entries(fieldMode)) {
-    if (fields.find(match => typeof match === 'string' ? field === match : field.match(match))) mode = selected
+  let mode: ParseMode = 'literal'
+  for (const [selected, fields] of Object.entries(FieldMode)) {
+    if (fields.find(match => typeof match === 'string' ? field === match : field.match(match))) mode = selected as ParseMode
   }
 
   if (mode === 'verbatim') {
@@ -494,7 +502,7 @@ function convert(entry: Entry, field: string, value: string) {
   }
 
   const ast: Root = LatexPegParser.parse(value)
-  if (fieldAction.unnest.includes(field) && ast.content.length === 1 && ast.content[0].type === 'group') {
+  if (FieldAction.unnest.includes(field) && ast.content.length === 1 && ast.content[0].type === 'group') {
     ast.content = ast.content[0].content
   }
 
@@ -517,8 +525,8 @@ function convert(entry: Entry, field: string, value: string) {
       return
     }
 
-    let node: GenericNode
-    const compacted: GenericNode[] = []
+    let node: Node
+    const compacted: Node[] = []
     while (nodes.length) {
       if (node = ligature(nodes)) {
         compacted.push(node as StringNode)
@@ -527,9 +535,9 @@ function convert(entry: Entry, field: string, value: string) {
 
       node = nodes.shift()
       if (node.type === 'macro' && narguments[node.content]) {
-        node.args = Array(narguments[node.content]).fill(undefined).map(_i => argument(nodes)).filter(arg => arg !== false)
+        node.args = Array(narguments[node.content]).fill(undefined).map(_i => argument(nodes)).filter(arg => arg)
         if (node.content.match(/^(url|href)$/) && node.args.length) {
-          node.args[0] = { type: 'string', content: printRaw(node.args[0].content as GenericNode[]) }
+          node.args[0] = wraparg({ type: 'string', content: printRaw(node.args[0].content as Node[]) })
         }
       }
 
@@ -543,7 +551,7 @@ function convert(entry: Entry, field: string, value: string) {
     if (node.type !== 'macro') return
 
     if (node.escapeToken && combining.tounicode[node.content]) {
-      let arg: GenericNode
+      let arg: Node
       // no args, args of zero length, or first arg has no content
       if (!node.args || node.args.length === 0 || node.args[0].content.length === 0) {
         arg = { type: 'string', content: ' ' }
@@ -588,14 +596,14 @@ function convert(entry: Entry, field: string, value: string) {
       entry.fields[field] = Splitter.split(ast, /^and$/i).map(parseCreator)
       break
     case 'commalist':
-      entry.fields[field] = Splitter.split(ast, /^[;,]$/).map(elt => Stringifier.stringify(elt, {}))
+      entry.fields[field] = Splitter.split(ast, /^[;,]$/).map(elt => Stringifier.stringify(elt, { mode: 'literal'}))
       break
     case 'literallist':
-      entry.fields[field] = Splitter.split(ast, /^and$/i).map(elt => Stringifier.stringify(elt, {}))
+      entry.fields[field] = Splitter.split(ast, /^and$/i).map(elt => Stringifier.stringify(elt, { mode: 'literal'}))
       break
     default:
       entry.fields[field] = Stringifier.stringify(ast, { mode })
-      if (fieldAction.unabbrev.includes(field)) entry.fields[field] = unabbreviate[entry.fields[field] as string] || entry.fields[field]
+      if (FieldAction.unabbrev.includes(field)) entry.fields[field] = unabbreviate[entry.fields[field] as string] || entry.fields[field]
       if ((entry.fields[field] as string).match(/^[0-9]+$/)) entry.fields[field] = parseInt(entry.fields[field] as string)
       break
   }
