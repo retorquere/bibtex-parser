@@ -4,14 +4,14 @@
 // CommonJS port by Mikola Lysenko 2013
 //
 
-class ParseError extends Error {
+class ParsingError extends Error {
   public source: string
 
   constructor(message, parser) {
     message += ` @ ${parser.pos}`
     if (parser.parsing) message += ` in ${JSON.stringify(parser.parsing)}`
     super(message)
-    this.name = 'ParseError'
+    this.name = 'ParsingError'
   }
 }
 
@@ -77,6 +77,12 @@ export interface Chunk {
   comment?: boolean
 }
 
+export interface ParseError {
+  error: string
+  input: string
+  location: { line: number, column: number }
+}
+
 export interface ParserOptions {
   /**
    * stop parsing after `max_entries` entries have been found. Useful for quick detection if a text file is in fact a bibtex file
@@ -96,12 +102,8 @@ class BibTeXParser {
   public entries: Entry[] = []
   public strings: Record<string, string> = {}
   public comments: string[] = []
-  public errors: {
-    error: string
-    input: string
-    location: { line: number, column: number }
-  }[] = []
-  public preambles: string[] = []
+  public errors: ParseError[] = []
+  public preambles: string[]
 
   private default_strings: Record<string, string> = {
     jan: '01',
@@ -194,7 +196,7 @@ class BibTeXParser {
   private match(s) {
     this.skipWhitespace()
     if (this.input.substr(this.pos, s.length) !== s) {
-      throw new ParseError(`Token mismatch, expected ${JSON.stringify(s)}, found ${JSON.stringify(this.input.substr(this.pos, 20))}...`, this) // eslint-disable-line no-magic-numbers
+      throw new ParsingError(`Token mismatch, expected ${JSON.stringify(s)}, found ${JSON.stringify(this.input.substr(this.pos, 20))}...`, this) // eslint-disable-line no-magic-numbers
     }
 
     this.pos += s.length
@@ -235,7 +237,7 @@ class BibTeXParser {
 
         case '}':
           if (bracecount === 0) {
-            if (math) throw new ParseError('Unclosed math section', this)
+            if (math) throw new ParsingError('Unclosed math section', this)
             this.pos++
             return this.input.substring(start, this.pos - 1)
           }
@@ -250,7 +252,7 @@ class BibTeXParser {
       this.pos++
 
       if (this.pos >= this.input.length) {
-        throw new ParseError(`Unterminated brace-value ${JSON.stringify(this.input.substr(start, 20))}`, this) // eslint-disable-line no-magic-numbers
+        throw new ParsingError(`Unterminated brace-value ${JSON.stringify(this.input.substr(start, 20))}`, this) // eslint-disable-line no-magic-numbers
       }
     }
   }
@@ -283,7 +285,7 @@ class BibTeXParser {
       this.pos++
 
       if (this.pos >= this.input.length) {
-        throw new ParseError(`Unterminated quote-value ${JSON.stringify(this.input.substr(start, 20))}`, this) // eslint-disable-line no-magic-numbers
+        throw new ParsingError(`Unterminated quote-value ${JSON.stringify(this.input.substr(start, 20))}`, this) // eslint-disable-line no-magic-numbers
       }
     }
   }
@@ -315,7 +317,7 @@ class BibTeXParser {
     const start = this.pos
     while (true) { // eslint-disable-line no-constant-condition
       if (this.pos === this.input.length) {
-        throw new ParseError('Runaway key', this)
+        throw new ParsingError('Runaway key', this)
       }
 
       if (this.input[this.pos].match(/['a-zA-Z0-9&;_:\\./-]/) || this.input[this.pos].match(letter)) {
@@ -332,7 +334,7 @@ class BibTeXParser {
     if (this.lowercase) key = key.toLowerCase()
 
     if (!this.tryMatch('=')) {
-      throw new ParseError(`... = value expected, equals sign missing: ${JSON.stringify(this.input.substr(this.pos, 20))}...`, this) // eslint-disable-line no-magic-numbers
+      throw new ParsingError(`... = value expected, equals sign missing: ${JSON.stringify(this.input.substr(this.pos, 20))}...`, this) // eslint-disable-line no-magic-numbers
     }
 
     this.match('=')
@@ -370,7 +372,7 @@ class BibTeXParser {
   }
 
   private preamble() {
-    this.preambles.push(this.value())
+    this.value()
   }
 
   private comment() {
@@ -409,7 +411,7 @@ class BibTeXParser {
       }
     }
 
-    throw new ParseError(`Token mismatch, expected '{' or '(', found ${JSON.stringify(this.input.substr(this.pos, 20))}...`, this) // eslint-disable-line no-magic-numbers
+    throw new ParsingError(`Token mismatch, expected '{' or '(', found ${JSON.stringify(this.input.substr(this.pos, 20))}...`, this) // eslint-disable-line no-magic-numbers
   }
 
   private parseNext() {
@@ -455,7 +457,7 @@ class BibTeXParser {
       }
     }
     catch (err) {
-      if (err.name !== 'ParseError') throw err
+      if (err.name !== 'ParsingError') throw err
       chunk.error = err.message
       chunk.location = this.location(chunk.position)
       // skip ahead to the next @ and try again
