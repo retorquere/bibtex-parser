@@ -1,8 +1,9 @@
-import { GenericNode, Argument, Group } from '@unified-latex/unified-latex-types'
+/* eslint-disable no-underscore-dangle */
+import { Root, Macro, String as StringNode, GenericNode, Argument, Group, Environment } from '@unified-latex/unified-latex-types'
 import { replaceNode } from '@unified-latex/unified-latex-util-replace'
 import { LatexPegParser } from '@unified-latex/unified-latex-util-pegjs'
 import { visit } from '@unified-latex/unified-latex-util-visit'
-import { printRaw } from "@unified-latex/unified-latex-util-print-raw"
+import { printRaw } from '@unified-latex/unified-latex-util-print-raw'
 import { latex2unicode, combining } from 'unicode2latex'
 import { globSync as glob } from 'glob'
 import * as fs from 'node:fs'
@@ -175,8 +176,9 @@ for (const m of combining.macros) {
   narguments[m] = 1
 }
 
-const splitter = new class {
-  private splitter(nodes, splitter: RegExp) {
+const Splitter = new class {
+  private splitter(nodes: GenericNode[], splitter: RegExp): boolean {
+    // eslint-disable-next-line no-magic-numbers
     const types = nodes.slice(0, 3).map(n => n.type === 'string' && n.content.match(splitter) ? 'splitter' : n.type).join(',')
     const match = /^(whitespace,?)?(splitter)(,?whitespace)?/.exec(types)
     if (!match) return false
@@ -184,7 +186,7 @@ const splitter = new class {
     return true
   }
 
-  split(ast, splitter: string | RegExp) {
+  split(ast: Group, splitter: string | RegExp) {
     const parts = [ { type: 'root', content: [] } ]
     let part = 0
 
@@ -198,7 +200,7 @@ const splitter = new class {
           parts[part].content.push(node)
         }
       }
-      return parts.filter(part => part.content.length)
+      return parts.filter(p => p.content.length)
     }
 
     while (ast.content.length) {
@@ -214,18 +216,20 @@ const splitter = new class {
   }
 }
 
-function parseCreator(ast): Creator {
-  if (ast.content.length === 1 && ast.content[0].type === 'group') return { name: stringifier.stringify(ast, { mode: 'creator' }) }
+function parseCreator(ast: Root): Creator {
+  if (ast.content.length === 1 && ast.content[0].type === 'group') return { name: Stringifier.stringify(ast, { mode: 'creator' }) }
 
   if (ast.content.find(node => node.type === 'string' && node.content === ',')) {
-    const nameparts = splitter
-      .split(ast, ',')
-      .map(part => stringifier.stringify(part, { mode: 'creator' }))
-      .map(part => part.match(/^([^=]+)=(.*)/)?.slice(1, 3) || ['', part])
+    const nameparts: string[][] = Splitter.split(ast, ',')
+      .map((part: GenericNode) => Stringifier.stringify(part, { mode: 'creator' }))
+      // eslint-disable-next-line no-magic-numbers
+      .map((part: string) => part.match(/^([^=]+)=(.*)/)?.slice(1, 3) || ['', part])
+
     if (!nameparts.find(p => p[0])) {
       let [family, suffix, given] = nameparts.length === 2
         ? [nameparts[0][1], undefined, nameparts[1][1]]
         // > 3 nameparts are invalid and are dropped
+        // eslint-disable-next-line no-magic-numbers
         : nameparts.slice(0, 3).map(p => p[1])
       let prefix
       const m = family.match(/^([a-z'. ]+) (.+)/)
@@ -265,7 +269,7 @@ function parseCreator(ast): Creator {
     return name
   }
   else {
-    const nameparts = splitter.split(ast, ' ').map(part => stringifier.stringify(part, { mode: 'creator' })).filter(n => n)
+    const nameparts = Splitter.split(ast, ' ').map(part => Stringifier.stringify(part, { mode: 'creator' })).filter(n => n)
     if (nameparts.length === 1) return { name: nameparts[0] }
     const prefix = nameparts.findIndex(n => n.match(/^[a-z]/))
     if (prefix > 0) return { given: nameparts.slice(0, prefix).join(' '), family: nameparts.slice(prefix).join(' ') }
@@ -273,12 +277,12 @@ function parseCreator(ast): Creator {
   }
 }
 
-function ligature(nodes) {
+function ligature(nodes: GenericNode[]): StringNode | false {
   const max = 3
   const type = nodes.slice(0, max).map(n => n.type === 'string' ? 's' : ' ').join('')
   if (type[0] !== 's') return false
 
-  let content = nodes.slice(0, max).map(n => n.type === 'string' ? n.content : '')
+  const content = nodes.slice(0, max).map((n: GenericNode) => n.type === 'string' ? n.content as string : '')
   let latex: string
 
   while (content.length) {
@@ -310,11 +314,17 @@ function argument(nodes) {
   return wraparg(nodes.shift())
 }
 
-const stringifier = new class {
+type StringifierContext = {
+  mode?: 'creator'
+  caseProtected?: boolean
+}
+
+const Stringifier = new class {
   private tags = {
     enquote: { open: '\u201c', close: '\u201d' },
   }
-  wrap(text: string, tag, wrap = true) {
+
+  wrap(text: string, tag, wrap = true): string {
     if (!text) return ''
     if (!wrap) return text
     if (!this.tags[tag]) this.tags[tag] = { open: `<${tag}>`, close: `</${tag}>` }
@@ -322,8 +332,8 @@ const stringifier = new class {
     return `${open}${text}${close}`
   }
 
-  macro(node, context) {
-    let text = latex2unicode[printRaw(node)]
+  macro(node: Macro, context: StringifierContext): string {
+    const text = latex2unicode[printRaw(node)]
     if (text) return text
 
     switch (node.content) {
@@ -415,7 +425,7 @@ const stringifier = new class {
     }
   }
 
-  environment(node, context) {
+  environment(node: Environment, context: StringifierContext) {
     switch (node.env) {
       case 'quotation':
         return this.wrap(node.content.map(n => this.stringify(n, context)).join(''), 'blockquote', context.mode === 'html')
@@ -428,28 +438,28 @@ const stringifier = new class {
     }
   }
 
-  stringify(node, context) {
+  stringify(node: GenericNode, context: StringifierContext): string {
     if (!node) return ''
 
     switch (node.type) {
       case 'root':
       case 'argument':
-        return node.content.map(n => this.stringify(n, context)).join('')
+        return node.content.map(n => this.stringify(n, context)).join('') as string
 
       case 'group':
       case 'inlinemath':
         return this.wrap(
-          node.content.map(n => this.stringify(n, {...context, caseProtected: context.caseProtected || node._renderInfo.protectCase })).join(''),
+          node.content.map(n => this.stringify(n, {...context, caseProtected: context.caseProtected || node._renderInfo.protectCase })).join('') as string,
           'nc',
-          context.mode === 'title' && !context.caseProtected && node._renderInfo.protectCase
+          (context.mode === 'title') && !context.caseProtected && (node._renderInfo.protectCase as boolean)
         )
 
       case 'string':
       case 'verbatim':
-        return node.content
+        return node.content as string
 
       case 'macro':
-        return this.macro(node, context)
+        return this.macro(node as Macro, context)
 
       case 'parbreak':
         return context.mode === 'html' ? '<p>' : ' '
@@ -461,13 +471,13 @@ const stringifier = new class {
         return ''
 
       case 'environment':
-        return this.environment(node, context)
+        return this.environment(node as Environment, context)
 
       case 'verb':
-        return node.content
+        return node.content as string
 
       default:
-        throw new Error(`unhandled ${node.type} ${printRaw(node)}`)
+        throw new Error(`unhandled ${node.type} ${printRaw(node as GenericNode)}`)
     }
   }
 }
@@ -483,41 +493,43 @@ function convert(entry: Entry, field: string, value: string) {
     return
   }
 
-  const ast = LatexPegParser.parse(value)
+  const ast: Root = LatexPegParser.parse(value)
   if (fieldAction.unnest.includes(field) && ast.content.length === 1 && ast.content[0].type === 'group') {
     ast.content = ast.content[0].content
   }
 
+  for (const node of ast.content) {
+    delete node.position
+    // only root groups offer case protecten -- but it may be as an macro arg, so mark here before gobbling
+    if (node.type === 'inlinemath' || (node.type === 'group' && node.content[0]?.type !== 'macro')) {
+      node._renderInfo = { protectCase: true }
+    }
+  }
+
   // pass 1 -- mark & normalize
-  visit(ast, (nodes, info) => { // eslint-disable-line @typescript-eslint/no-unsafe-argument
+  visit(ast, (nodes, _info) => { // eslint-disable-line @typescript-eslint/no-unsafe-argument
     if (!Array.isArray(nodes)) {
-      delete nodes.position
       if (!nodes._renderInfo) nodes._renderInfo = {}
 
       if (nodes.type === 'macro' && typeof nodes.escapeToken !== 'string') nodes.escapeToken = '\\'
 
-      if (info.context.inMathMode || info.context.hasMathModeAncestor) return
-
-      if (nodes.type === 'inlinemath' || (nodes.type === 'group' && nodes.content[0]?.type !== 'macro')) {
-        nodes._renderInfo.protectCase = true
-      }
-
+      // if (info.context.inMathMode || info.context.hasMathModeAncestor) return
       return
     }
 
-    let node
-    const compacted = []
+    let node: GenericNode
+    const compacted: GenericNode[] = []
     while (nodes.length) {
       if (node = ligature(nodes)) {
-        compacted.push(node)
+        compacted.push(node as StringNode)
         continue
       }
 
       node = nodes.shift()
       if (node.type === 'macro' && narguments[node.content]) {
-        node.args = Array(narguments[node.content]).fill(undefined).map(i => argument(nodes)).filter(arg => arg !== false)
+        node.args = Array(narguments[node.content]).fill(undefined).map(_i => argument(nodes)).filter(arg => arg !== false)
         if (node.content.match(/^(url|href)$/) && node.args.length) {
-          node.args[0] = { type: 'string', content: printRaw(node.args[0].content) }
+          node.args[0] = { type: 'string', content: printRaw(node.args[0].content as GenericNode[]) }
         }
       }
 
@@ -527,7 +539,7 @@ function convert(entry: Entry, field: string, value: string) {
     nodes.push(...compacted)
   }, { includeArrays: true })
 
-  replaceNode(ast, (node, info) => {
+  replaceNode(ast, (node, _info) => {
     if (node.type !== 'macro') return
 
     if (node.escapeToken && combining.tounicode[node.content]) {
@@ -573,23 +585,23 @@ function convert(entry: Entry, field: string, value: string) {
 
   switch (mode) {
     case 'creator':
-      entry.fields[field] = splitter.split(ast, /^and$/i).map(parseCreator)
+      entry.fields[field] = Splitter.split(ast, /^and$/i).map(parseCreator)
       break
     case 'commalist':
-      entry.fields[field] = splitter.split(ast, /^[;,]$/).map(elt => stringifier.stringify(elt, {}))
+      entry.fields[field] = Splitter.split(ast, /^[;,]$/).map(elt => Stringifier.stringify(elt, {}))
       break
     case 'literallist':
-      entry.fields[field] = splitter.split(ast, /^and$/i).map(elt => stringifier.stringify(elt, {}))
+      entry.fields[field] = Splitter.split(ast, /^and$/i).map(elt => Stringifier.stringify(elt, {}))
       break
     default:
-      entry.fields[field] = stringifier.stringify(ast, { mode })
+      entry.fields[field] = Stringifier.stringify(ast, { mode })
       if (fieldAction.unabbrev.includes(field)) entry.fields[field] = unabbreviate[entry.fields[field] as string] || entry.fields[field]
       if ((entry.fields[field] as string).match(/^[0-9]+$/)) entry.fields[field] = parseInt(entry.fields[field] as string)
       break
   }
 }
 
-for (let bibfile of glob('test/better-bibtex/*/*.bib*')) {
+for (const bibfile of glob('test/better-bibtex/*/*.bib*')) {
   const bib = bibtex.parse(fs.readFileSync(bibfile, 'utf-8')).entries
   for (const verbatim of bib) {
     const entry: Entry = { type: verbatim.type, key: verbatim.key, fields: {} }
