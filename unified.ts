@@ -660,11 +660,11 @@ export interface Bibliography {
 export function parse(input: string, options: ParserOptions = {}): Bibliography {
   const base = chunker.parse(input)
   cons bib: Bibliography = {
-    errors: [],
+    errors: base.errors,
     entries: [],
     comments: base.comments,
     strings: base.strings,
-    preamble: [],
+    preambles: base.preambles,
     jabref: null,
   }
   for (const entry of verbatim.entries as chunker.Entry[]) {
