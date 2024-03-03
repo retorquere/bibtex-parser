@@ -14,5 +14,6 @@ export interface ParserOptions
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
+|  [lowerCaseFields?](./bibtex-parser.chunker.parseroptions.lowercasefields.md) |  | boolean | _(Optional)_ lowercase field names |
 |  [max\_entries?](./bibtex-parser.chunker.parseroptions.max_entries.md) |  | number | _(Optional)_ stop parsing after <code>max_entries</code> entries have been found. Useful for quick detection if a text file is in fact a bibtex file |
 

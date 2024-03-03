@@ -48,7 +48,8 @@ export interface Chunk {
   /**
    * Start location of the chunk in the bib file
    */
-  offset: { pos: number, line: number }
+  position: number
+  location: { line: number, column: number }
 
   /**
    * error found, if any.
@@ -81,63 +82,98 @@ export interface ParserOptions {
    * stop parsing after `max_entries` entries have been found. Useful for quick detection if a text file is in fact a bibtex file
    */
   max_entries?: number
+
+  /**
+    * lowercase field names
+    */
+  lowerCaseFields?: boolean
 }
 
 class BibTeXParser {
   public parsing: string
-  public chunks: Chunk[]
+  public chunks: Chunk[] = []
 
-  public strings: Record<string, string>
-  public entries: Entry[]
+  public entries: Entry[] = []
+  public strings: Record<string, string> = {}
+  public comments: string[] = []
+  public errors: {
+    error: string
+    input: string
+    location: { line: number, column: number }
+  }[] = []
 
-  private pos: number
-  // private linebreaks: { pos: number, line: number}[]
+  private default_strings: Record<string, string> = {
+    jan: '01',
+    feb: '02',
+    mar: '03',
+    apr: '04',
+    may: '05',
+    jun: '06',
+    jul: '07',
+    aug: '08',
+    sep: '09',
+    oct: '10',
+    nov: '11',
+    dec: '12',
+    acmcs: 'ACM Computing Surveys',
+    acta: 'Acta Informatica',
+    cacm: 'Communications of the ACM',
+    ibmjrd: 'IBM Journal of Research and Development',
+    ibmsj: 'IBM Systems Journal',
+    ieeese: 'IEEE Transactions on Software Engineering',
+    ieeetc: 'IEEE Transactions on Computers',
+    ieeetcad: 'IEEE Transactions on Computer-Aided Design of Integrated Circuits',
+    ipl: 'Information Processing Letters',
+    jacm: 'Journal of the ACM',
+    jcss: 'Journal of Computer and System Sciences',
+    scp: 'Science of Computer Programming',
+    sicomp: 'SIAM Journal on Computing',
+    tocs: 'ACM Transactions on Computer Systems',
+    tods: 'ACM Transactions on Database Systems',
+    tog: 'ACM Transactions on Graphics',
+    toms: 'ACM Transactions on Mathematical Software',
+    toois: 'ACM Transactions on Office Information Systems',
+    toplas: 'ACM Transactions on Programming Languages and Systems',
+    tcs: 'Theoretical Computer Science',
+  }
+
+  /**
+   * error found, if any.
+   */
+  error?: string
+
+  private pos = 0
+  private linebreaks: number[] = []
   private input: string
 
   private max_entries: number
+  private lowercase: boolean
 
-  constructor(input: string, options: ParserOptions = {}) {
+  constructor(input: string, options: ParserOptions = { lowerCaseFields: true }) {
     this.max_entries = options.max_entries || 0
+    this.lowercase = typeof options.lowerCaseFields === 'boolean' ? options.lowerCaseFields : true
     this.input = input
-    this.pos = 0
-    this.entries = []
-    this.strings = {
-      jan: '01',
-      feb: '02',
-      mar: '03',
-      apr: '04',
-      may: '05',
-      jun: '06',
-      jul: '07',
-      aug: '08',
-      sep: '09',
-      oct: '10',
-      nov: '11',
-      dec: '12',
-      acmcs: 'ACM Computing Surveys',
-      acta: 'Acta Informatica',
-      cacm: 'Communications of the ACM',
-      ibmjrd: 'IBM Journal of Research and Development',
-      ibmsj: 'IBM Systems Journal',
-      ieeese: 'IEEE Transactions on Software Engineering',
-      ieeetc: 'IEEE Transactions on Computers',
-      ieeetcad: 'IEEE Transactions on Computer-Aided Design of Integrated Circuits',
-      ipl: 'Information Processing Letters',
-      jacm: 'Journal of the ACM',
-      jcss: 'Journal of Computer and System Sciences',
-      scp: 'Science of Computer Programming',
-      sicomp: 'SIAM Journal on Computing',
-      tocs: 'ACM Transactions on Computer Systems',
-      tods: 'ACM Transactions on Database Systems',
-      tog: 'ACM Transactions on Graphics',
-      toms: 'ACM Transactions on Mathematical Software',
-      toois: 'ACM Transactions on Office Information Systems',
-      toplas: 'ACM Transactions on Programming Languages and Systems',
-      tcs: 'Theoretical Computer Science',
-    }
     this.parsing = null
-    this.chunks = []
-    // this.linebreaks = undefined
+
+    let pos = input.indexOf('\n')
+    while (pos !== -1) {
+      this.linebreaks.push(pos)
+      pos = input.indexOf('\n', pos + 1)
+    }
+  }
+
+  location(pos: number): { line: number, column: number } {
+    let line = 1
+    let column = 1
+
+    for (let i = 0; i < this.linebreaks.length; i++) {
+      if (pos < this.linebreaks.length[i]) break
+
+      line++
+      column = pos - this.linebreaks[i]
+    }
+
+    return { line, column }
   }
 
   public parse() {
@@ -260,7 +296,7 @@ class BibTeXParser {
     }
     else {
       const bare = this.key()
-      return this.strings[bare] || bare
+      return this.strings[bare] || this.default_strings[bare] || bare
     }
   }
 
@@ -274,7 +310,7 @@ class BibTeXParser {
     return values.join('')
   }
 
-  private key() {
+  private key(): string {
     const start = this.pos
     while (true) { // eslint-disable-line no-constant-condition
       if (this.pos === this.input.length) {
@@ -291,7 +327,8 @@ class BibTeXParser {
   }
 
   private key_equals_value() {
-    const key = this.key()
+    let key = this.key()
+    if (this.lowercase) key = key.toLowerCase()
 
     if (!this.tryMatch('=')) {
       throw new ParseError(`... = value expected, equals sign missing: ${JSON.stringify(this.input.substr(this.pos, 20))}...`, this) // eslint-disable-line no-magic-numbers
@@ -344,7 +381,7 @@ class BibTeXParser {
 
     const start = this.pos
     while (this.input[this.pos] !== '\n' && this.pos < this.input.length) this.pos++
-    return this.input.substring(start, this.pos)
+    this.comments.push(this.input.substring(start, this.pos))
   }
 
   private hasMore() {
@@ -376,10 +413,8 @@ class BibTeXParser {
 
   private parseNext() {
     const chunk: Chunk = {
-      offset: {
-        pos: this.pos,
-        line: this.input.substring(0, this.pos).split('\n').length - 1,
-      },
+      position: this.pos,
+      location: { line: 0, column: 0 },
       error: null,
       text: null,
     }
@@ -421,29 +456,18 @@ class BibTeXParser {
     catch (err) {
       if (err.name !== 'ParseError') throw err
       chunk.error = err.message
+      chunk.location = this.location(chunk.position)
       // skip ahead to the next @ and try again
-      this.pos = chunk.offset.pos + 1
+      this.pos = chunk.position + 1
       while (this.pos < this.input.length && this.input[this.pos] !== '@') this.pos++
-
-      /*
-      if (!this.linebreaks) {
-        this.linebreaks = []
-        for (let pos = 0; pos < this.input.length; pos++) {
-          if (this.input[pos] === '\n') this.linebreaks.push({ pos, line: this.linebreaks.length + 1 })
-        }
-      }
-      const line = this.linebreaks.find(l => l.pos >= chunk.offset.pos)
-      if (line) {
-        chunk.offset.line = line.line
-        chunk.offset.pos = chunk.offset.pos - line.pos
-      }
-      else {
-        chunk.offset.line = 1
-      }
-      */
+      this.errors.push({
+        error: err.message,
+        location: chunk.location,
+        input: this.input.substring(chunk.position, this.pos),
+      })
     }
 
-    const text = this.input.substring(chunk.offset.pos, this.pos)
+    const text = this.input.substring(chunk.position, this.pos)
     const last = this.chunks.length - 1
     if (chunk.error && this.chunks.length && this.chunks[last].error) {
       this.chunks[last].text += text
