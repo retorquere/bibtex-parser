@@ -422,7 +422,14 @@ class BibTeXParser {
       text: null,
     }
 
-    while (this.pos < this.input.length && this.input[this.pos] !== '@') this.pos++
+    while (this.pos < this.input.length && this.input[this.pos] !== '@') {
+      if (this.input[this.pos] === '%') {
+        while (this.pos < this.input.length && this.input[this.pos] !== '\n') this.pos++
+      }
+      else {
+        this.pos++
+      }
+    }
     if (this.pos >= this.input.length) return
 
     let guard = ''
