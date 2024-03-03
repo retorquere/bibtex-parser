@@ -10,14 +10,6 @@ Object {
   "comments": Array [],
   "entries": Array [
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Hazel V.",
-            "lastName": "Clark",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -30,7 +22,10 @@ Object {
           "Mesopotamia, OH",
         ],
         "author": Array [
-          "Clark, Hazel V.",
+          Object {
+            "firstName": "Hazel V.",
+            "lastName": "Clark",
+          },
         ],
         "publisher": Array [
           "Trumbull County Historical Society",
@@ -46,20 +41,6 @@ Object {
       "type": "booklet",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "David",
-            "lastName": "Kamp",
-          },
-        ],
-        "collaborator": Array [
-          Object {
-            "firstName": "Michael",
-            "lastName": "Pollan",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -69,13 +50,19 @@ Object {
           "Example from CMoS, 16e, 14.125",
         ],
         "author": Array [
-          "Kamp, David",
+          Object {
+            "firstName": "David",
+            "lastName": "Kamp",
+          },
         ],
         "chapter": Array [
           "Sunday Book Review",
         ],
         "collaborator": Array [
-          "Pollan, Michael",
+          Object {
+            "firstName": "Michael",
+            "lastName": "Pollan",
+          },
         ],
         "language": Array [
           "en-US",
@@ -94,20 +81,6 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Wolfgang Amadeus",
-            "lastName": "Mozart",
-          },
-        ],
-        "editor": Array [
-          Object {
-            "firstName": "Nathan",
-            "lastName": "Broder",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -120,13 +93,19 @@ Object {
           "Bryn Mawr, PA",
         ],
         "author": Array [
-          "Mozart, Wolfgang Amadeus",
+          Object {
+            "firstName": "Wolfgang Amadeus",
+            "lastName": "Mozart",
+          },
         ],
         "edition": Array [
           "Rev. ed.",
         ],
         "editor": Array [
-          "Broder, Nathan",
+          Object {
+            "firstName": "Nathan",
+            "lastName": "Broder",
+          },
         ],
         "publisher": Array [
           "Theodore Presser",
@@ -142,7 +121,6 @@ Object {
       "type": "misc",
     },
     Object {
-      "creators": Object {},
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -162,7 +140,14 @@ Object {
       "type": "misc",
     },
     Object {
-      "creators": Object {
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "abstract": Array [
+          "Example from CMoS, 16e, 14.215 “ed. and trans. John Charles Chasteen”",
+        ],
         "author": Array [
           Object {
             "firstName": "Ben",
@@ -173,21 +158,6 @@ Object {
           Object {
             "literal": "Hermano Vianna",
           },
-        ],
-      },
-      "crossref": Object {
-        "donated": Array [],
-        "inherited": Array [],
-      },
-      "fields": Object {
-        "abstract": Array [
-          "Example from CMoS, 16e, 14.215 “ed. and trans. John Charles Chasteen”",
-        ],
-        "author": Array [
-          "Ratliff, Ben",
-        ],
-        "collaborator": Array [
-          "Hermano Vianna",
         ],
         "journal": Array [
           "Lingua Franca",

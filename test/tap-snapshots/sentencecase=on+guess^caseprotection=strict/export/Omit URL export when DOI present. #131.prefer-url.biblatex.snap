@@ -10,7 +10,11 @@ Object {
   "comments": Array [],
   "entries": Array [
     Object {
-      "creators": Object {
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
         "author": Array [
           Object {
             "firstName": "Franck",
@@ -32,19 +36,6 @@ Object {
             "firstName": "Marc",
             "lastName": "Snir",
           },
-        ],
-      },
-      "crossref": Object {
-        "donated": Array [],
-        "inherited": Array [],
-      },
-      "fields": Object {
-        "author": Array [
-          "Cappello, Franck",
-          "Jacquelin, Mathias",
-          "Marchal, Loris",
-          "Robert, Yves",
-          "Snir, Marc",
         ],
         "booktitle": Array [
           "High <span class=\\"nocase\\">Performance Computing (HiPC</span>), 2011 18th international conference on",
@@ -83,7 +74,14 @@ Object {
       "type": "inproceedings",
     },
     Object {
-      "creators": Object {
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "abstract": Array [
+          "We study the energy used by a production-level regional climate and weather simulation code on a distributed memory system with hybrid CPU-GPU nodes. The code is optimised for both processor architectures, for which we investigate both time and energy to solution. Operational constraints for time to solution can be met with both processor types, although on different numbers of nodes. Energy to solution is a factor 3 lower with GPUs, but strong scaling can be pushed to larger node counts with CPUs to minimize time to solution. Our data shows that an affine relationship exists between energy and nodehours consumed by the simulation. We use this property to devise a simple and practical methodology for optimising for energy efficiency that can be applied to other applications, which we demonstrate with the HPCG benchmark. We conclude with a discussion about the relationship to the commonly-used GF/Watt metric.",
+        ],
         "author": Array [
           Object {
             "firstName": "Ben",
@@ -109,23 +107,6 @@ Object {
             "firstName": "Thomas C.",
             "lastName": "Schulthess",
           },
-        ],
-      },
-      "crossref": Object {
-        "donated": Array [],
-        "inherited": Array [],
-      },
-      "fields": Object {
-        "abstract": Array [
-          "We study the energy used by a production-level regional climate and weather simulation code on a distributed memory system with hybrid CPU-GPU nodes. The code is optimised for both processor architectures, for which we investigate both time and energy to solution. Operational constraints for time to solution can be met with both processor types, although on different numbers of nodes. Energy to solution is a factor 3 lower with GPUs, but strong scaling can be pushed to larger node counts with CPUs to minimize time to solution. Our data shows that an affine relationship exists between energy and nodehours consumed by the simulation. We use this property to devise a simple and practical methodology for optimising for energy efficiency that can be applied to other applications, which we demonstrate with the HPCG benchmark. We conclude with a discussion about the relationship to the commonly-used GF/Watt metric.",
-        ],
-        "author": Array [
-          "Cumming, Ben",
-          "Fourestey, Gilles",
-          "Fuhrer, Oliver",
-          "Gysi, Tobias",
-          "Fatica, Massimiliano",
-          "Schulthess, Thomas C.",
         ],
         "booktitle": Array [
           "Proceedings of the international conference for <span class=\\"nocase\\">High Performance Computing, Networking, Storage</span> and <span class=\\"nocase\\">Analysis</span>",
@@ -173,7 +154,11 @@ Object {
       "type": "inproceedings",
     },
     Object {
-      "creators": Object {
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
         "author": Array [
           Object {
             "firstName": "Karl E.",
@@ -187,17 +172,6 @@ Object {
             "firstName": "Gerald A.",
             "lastName": "Meehl",
           },
-        ],
-      },
-      "crossref": Object {
-        "donated": Array [],
-        "inherited": Array [],
-      },
-      "fields": Object {
-        "author": Array [
-          "Taylor, Karl E.",
-          "Stouffer, Ronald J.",
-          "Meehl, Gerald A.",
         ],
         "date": Array [
           "2011-10-07",

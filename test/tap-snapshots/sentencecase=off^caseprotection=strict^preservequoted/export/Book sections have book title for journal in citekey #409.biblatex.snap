@@ -10,27 +10,16 @@ Object {
   "comments": Array [],
   "entries": Array [
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Eric M.",
-            "lastName": "Orlin",
-          },
-        ],
-        "editor": Array [
-          Object {
-            "firstName": "Carl",
-            "lastName": "Deroux",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "Orlin, Eric M.",
+          Object {
+            "firstName": "Eric M.",
+            "lastName": "Orlin",
+          },
         ],
         "booktitle": Array [
           "Studies in <span class=\\"nocase\\">Latin</span> Literature and <span class=\\"nocase\\">Roman</span> History",
@@ -39,7 +28,10 @@ Object {
           "1979",
         ],
         "editor": Array [
-          "Deroux, Carl",
+          Object {
+            "firstName": "Carl",
+            "lastName": "Deroux",
+          },
         ],
         "isbn": Array [
           "978-2-87031-104-2 978-2-87031-228-5 978-2-87031-179-0 978-2-87031-184-4 978-2-87031-195-0 978-2-87031-213-1 978-2-87031-256-8 978-2-87031-264-3 978-2-87031-284-1",

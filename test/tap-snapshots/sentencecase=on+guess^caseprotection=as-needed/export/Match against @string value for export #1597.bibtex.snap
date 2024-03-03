@@ -10,18 +10,6 @@ Object {
   "comments": Array [],
   "entries": Array [
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Emil",
-            "lastName": "Björnson",
-          },
-          Object {
-            "firstName": "Luca",
-            "lastName": "Sanguinetti",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -31,8 +19,14 @@ Object {
           "arXiv",
         ],
         "author": Array [
-          "Björnson, Emil",
-          "Sanguinetti, Luca",
+          Object {
+            "firstName": "Emil",
+            "lastName": "Björnson",
+          },
+          Object {
+            "firstName": "Luca",
+            "lastName": "Sanguinetti",
+          },
         ],
         "doi": Array [
           "10.1109/TCOMM.2020.2987311",

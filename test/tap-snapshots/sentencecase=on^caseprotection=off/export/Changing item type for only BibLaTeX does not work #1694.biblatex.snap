@@ -10,21 +10,16 @@ Object {
   "comments": Array [],
   "entries": Array [
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Jane",
-            "lastName": "Doe",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "Doe, Jane",
+          Object {
+            "firstName": "Jane",
+            "lastName": "Doe",
+          },
         ],
         "date": Array [
           "2020-11-19",

@@ -10,7 +10,17 @@ Object {
   "comments": Array [],
   "entries": Array [
     Object {
-      "creators": Object {
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "abstract": Array [
+          "The development of small-scale digital and analog quantum devices raises the question of how to fairly assess and compare the computational power of classical and quantum devices, and of how to detect quantum speedup. Here we show how to define and measure quantum speedup in various scenarios, and how to avoid pitfalls that might mask or fake quantum speedup. We illustrate our discussion with data from a randomized benchmark test on a D-Wave Two device with up to 503 qubits. Comparing the performance of the device on random spin glass instances with limited precision to simulated classical and quantum annealers, we find no evidence of quantum speedup when the entire data set is considered, and obtain inconclusive results when comparing subsets of instances on an instance-by-instance basis. Our results for one particular benchmark do not rule out the possibility of speedup for other classes of problems and illustrate that quantum speedup is elusive and can depend on the question posed.",
+        ],
+        "archiveprefix": Array [
+          "arXiv",
+        ],
         "author": Array [
           Object {
             "firstName": "Troels F.",
@@ -48,29 +58,6 @@ Object {
             "firstName": "Matthias",
             "lastName": "Troyer",
           },
-        ],
-      },
-      "crossref": Object {
-        "donated": Array [],
-        "inherited": Array [],
-      },
-      "fields": Object {
-        "abstract": Array [
-          "The development of small-scale digital and analog quantum devices raises the question of how to fairly assess and compare the computational power of classical and quantum devices, and of how to detect quantum speedup. Here we show how to define and measure quantum speedup in various scenarios, and how to avoid pitfalls that might mask or fake quantum speedup. We illustrate our discussion with data from a randomized benchmark test on a D-Wave Two device with up to 503 qubits. Comparing the performance of the device on random spin glass instances with limited precision to simulated classical and quantum annealers, we find no evidence of quantum speedup when the entire data set is considered, and obtain inconclusive results when comparing subsets of instances on an instance-by-instance basis. Our results for one particular benchmark do not rule out the possibility of speedup for other classes of problems and illustrate that quantum speedup is elusive and can depend on the question posed.",
-        ],
-        "archiveprefix": Array [
-          "arXiv",
-        ],
-        "author": Array [
-          "Rønnow, Troels F.",
-          "Wang, Zhihui",
-          "Job, Joshua",
-          "Boixo, Sergio",
-          "Isakov, Sergei V.",
-          "Wecker, David",
-          "Martinis, John M.",
-          "Lidar, Daniel A.",
-          "Troyer, Matthias",
         ],
         "date": Array [
           "2014-07-25",
@@ -120,14 +107,6 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Ashoke",
-            "lastName": "Sen",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -140,7 +119,10 @@ Object {
           "arXiv",
         ],
         "author": Array [
-          "Sen, Ashoke",
+          Object {
+            "firstName": "Ashoke",
+            "lastName": "Sen",
+          },
         ],
         "date": Array [
           "2016-02",
@@ -195,18 +177,6 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "John A.",
-            "lastName": "Smolin",
-          },
-          Object {
-            "firstName": "Graeme",
-            "lastName": "Smith",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -219,8 +189,14 @@ Object {
           "arXiv",
         ],
         "author": Array [
-          "Smolin, John A.",
-          "Smith, Graeme",
+          Object {
+            "firstName": "John A.",
+            "lastName": "Smolin",
+          },
+          Object {
+            "firstName": "Graeme",
+            "lastName": "Smith",
+          },
         ],
         "date": Array [
           "2013-05-21",

@@ -10,7 +10,6 @@ Object {
   "comments": Array [],
   "entries": Array [
     Object {
-      "creators": Object {},
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -28,14 +27,6 @@ Object {
       "type": "misc",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "P. A.",
-            "lastName": "Author",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -45,7 +36,10 @@ Object {
           "This is an example The first mu should be a greek mu which will turn out italic, the second is a textmu which schould look the same as the surrounding text",
         ],
         "author": Array [
-          "Author, P. A.",
+          Object {
+            "firstName": "P. A.",
+            "lastName": "Author",
+          },
         ],
         "booktitle": Array [
           "Proceedings of the test",

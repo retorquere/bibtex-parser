@@ -10,14 +10,6 @@ Object {
   "comments": Array [],
   "entries": Array [
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Firstname",
-            "lastName": "Retorquere",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -27,7 +19,10 @@ Object {
           "zotero-better-bibtex - Make Zotero effective for us LaTeX holdouts",
         ],
         "author": Array [
-          "Firstname Retorquere",
+          Object {
+            "firstName": "Firstname",
+            "lastName": "Retorquere",
+          },
         ],
         "howpublished": Array [
           "<a href=\\"https://github.com/retorquere/zotero-better-bibtex/issues/439\\">https://github.com/retorquere/zotero-better-bibtex/issues/439</a>",
@@ -47,18 +42,6 @@ Object {
       "type": "misc",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Firstname",
-            "lastName": "Retorquere",
-          },
-          Object {
-            "firstName": "Firstname2",
-            "lastName": "Retorquere2",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -68,8 +51,14 @@ Object {
           "zotero-better-bibtex - Make Zotero effective for us LaTeX holdouts",
         ],
         "author": Array [
-          "Retorquere, Firstname",
-          "Retorquere2, Firstname2",
+          Object {
+            "firstName": "Firstname",
+            "lastName": "Retorquere",
+          },
+          Object {
+            "firstName": "Firstname2",
+            "lastName": "Retorquere2",
+          },
         ],
         "howpublished": Array [
           "<a href=\\"https://github.com/retorquere/zotero-better-bibtex/issues/439\\">https://github.com/retorquere/zotero-better-bibtex/issues/439</a>",
@@ -89,14 +78,6 @@ Object {
       "type": "misc",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "First-Double",
-            "lastName": "Retorquere-Double",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -106,7 +87,10 @@ Object {
           "zotero-better-bibtex - Make Zotero effective for us LaTeX holdouts",
         ],
         "author": Array [
-          "Retorquere-Double, First-Double",
+          Object {
+            "firstName": "First-Double",
+            "lastName": "Retorquere-Double",
+          },
         ],
         "howpublished": Array [
           "<a href=\\"https://github.com/retorquere/zotero-better-bibtex/issues/439\\">https://github.com/retorquere/zotero-better-bibtex/issues/439</a>",

@@ -10,12 +10,22 @@ Object {
   "comments": Array [],
   "entries": Array [
     Object {
-      "creators": Object {
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "annotation": Array [
+          "{:X-genre: xxx}",
+        ],
         "author": Array [
           Object {
             "firstName": "Ann",
             "lastName": "Author",
           },
+        ],
+        "date": Array [
+          "2015",
         ],
         "editor": Array [
           Object {
@@ -26,25 +36,6 @@ Object {
             "firstName": "Ed",
             "lastName": "Editor",
           },
-        ],
-      },
-      "crossref": Object {
-        "donated": Array [],
-        "inherited": Array [],
-      },
-      "fields": Object {
-        "annotation": Array [
-          "{:X-genre: xxx}",
-        ],
-        "author": Array [
-          "Author, Ann",
-        ],
-        "date": Array [
-          "2015",
-        ],
-        "editor": Array [
-          "Editrix, Emma",
-          "Editor, Ed",
         ],
         "institution": Array [
           "Institution",
@@ -67,31 +58,16 @@ Object {
       "type": "report",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "John",
-            "lastName": "Blair",
-          },
-        ],
-        "editor": Array [
-          Object {
-            "firstName": "H.C.G.",
-            "lastName": "Matthew",
-          },
-          Object {
-            "firstName": "Brian Howard",
-            "lastName": "Harrison",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "Blair, John",
+          Object {
+            "firstName": "John",
+            "lastName": "Blair",
+          },
         ],
         "booktitle": Array [
           "Oxford dictionary of national biography",
@@ -103,8 +79,14 @@ Object {
           "10.1093/ref:odnb/10183",
         ],
         "editor": Array [
-          "Matthew, H.C.G.",
-          "Harrison, Brian Howard",
+          Object {
+            "firstName": "H.C.G.",
+            "lastName": "Matthew",
+          },
+          Object {
+            "firstName": "Brian Howard",
+            "lastName": "Harrison",
+          },
         ],
         "location": Array [
           "Oxford",
@@ -127,18 +109,6 @@ Object {
       "type": "inreference",
     },
     Object {
-      "creators": Object {
-        "editor": Array [
-          Object {
-            "firstName": "John",
-            "lastName": "Doe",
-          },
-          Object {
-            "firstName": "Rob",
-            "lastName": "Roe",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -148,8 +118,14 @@ Object {
           "2015",
         ],
         "editor": Array [
-          "Doe, John",
-          "Roe, Rob",
+          Object {
+            "firstName": "John",
+            "lastName": "Doe",
+          },
+          Object {
+            "firstName": "Rob",
+            "lastName": "Roe",
+          },
         ],
         "editortype": Array [
           "director",
@@ -169,13 +145,6 @@ Object {
       "type": "movie",
     },
     Object {
-      "creators": Object {
-        "editor": Array [
-          Object {
-            "literal": "Xxx",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -185,14 +154,26 @@ Object {
           "{:X-genre: xxx}",
         ],
         "editor": Array [
-          "Xxx",
+          Object {
+            "literal": "Xxx",
+          },
         ],
       },
       "key": "emptybook",
       "type": "inreference",
     },
     Object {
-      "creators": Object {
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "booktitle": Array [
+          "Friends",
+        ],
+        "date": Array [
+          "2003",
+        ],
         "editor": Array [
           Object {
             "firstName": "Gail",
@@ -208,25 +189,6 @@ Object {
             "firstName": "Gregory S.",
             "lastName": "Malins",
           },
-        ],
-      },
-      "crossref": Object {
-        "donated": Array [],
-        "inherited": Array [],
-      },
-      "fields": Object {
-        "booktitle": Array [
-          "Friends",
-        ],
-        "date": Array [
-          "2003",
-        ],
-        "editor": Array [
-          "Mancuso, Gail",
-        ],
-        "editora": Array [
-          "Curtis, Michael",
-          "Malins, Gregory S.",
         ],
         "editoratype": Array [
           "scriptwriter",
@@ -264,7 +226,17 @@ Object {
       "type": "video",
     },
     Object {
-      "creators": Object {
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "booktitle": Array [
+          "Friends",
+        ],
+        "date": Array [
+          "1996-09-16",
+        ],
         "editor": Array [
           Object {
             "firstName": "Gail",
@@ -280,25 +252,6 @@ Object {
             "firstName": "Gregory S.",
             "lastName": "Malins",
           },
-        ],
-      },
-      "crossref": Object {
-        "donated": Array [],
-        "inherited": Array [],
-      },
-      "fields": Object {
-        "booktitle": Array [
-          "Friends",
-        ],
-        "date": Array [
-          "1996-09-16",
-        ],
-        "editor": Array [
-          "Mancuso, Gail",
-        ],
-        "editora": Array [
-          "Curtis, Michael",
-          "Malins, Gregory S.",
         ],
         "editoratype": Array [
           "scriptwriter",
@@ -330,14 +283,6 @@ Object {
       "type": "video",
     },
     Object {
-      "creators": Object {
-        "editor": Array [
-          Object {
-            "firstName": "Stanley",
-            "lastName": "Kubrick",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -347,7 +292,10 @@ Object {
           "1964",
         ],
         "editor": Array [
-          "Kubrick, Stanley",
+          Object {
+            "firstName": "Stanley",
+            "lastName": "Kubrick",
+          },
         ],
         "editortype": Array [
           "director",

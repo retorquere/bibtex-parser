@@ -10,7 +10,11 @@ Object {
   "comments": Array [],
   "entries": Array [
     Object {
-      "creators": Object {
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
         "author": Array [
           Object {
             "firstName": "Frank",
@@ -21,34 +25,6 @@ Object {
             "lastName": "Goossens",
           },
         ],
-        "translator": Array [
-          Object {
-            "firstName": "Jacques",
-            "lastName": "André",
-          },
-          Object {
-            "firstName": "Benoît",
-            "lastName": "Bellet",
-          },
-          Object {
-            "firstName": "Jean-Côme",
-            "lastName": "Charpentier",
-          },
-          Object {
-            "firstName": "Jean-Michel",
-            "lastName": "Hufflen",
-          },
-          Object {
-            "firstName": "Yves",
-            "lastName": "Soulet",
-          },
-        ],
-      },
-      "crossref": Object {
-        "donated": Array [],
-        "inherited": Array [],
-      },
-      "fields": Object {
         "date": Array [
           "2006-02",
         ],
@@ -72,6 +48,28 @@ Object {
         ],
         "title": Array [
           "LaTeX Companion",
+        ],
+        "translator": Array [
+          Object {
+            "firstName": "Jacques",
+            "lastName": "André",
+          },
+          Object {
+            "firstName": "Benoît",
+            "lastName": "Bellet",
+          },
+          Object {
+            "firstName": "Jean-Côme",
+            "lastName": "Charpentier",
+          },
+          Object {
+            "firstName": "Jean-Michel",
+            "lastName": "Hufflen",
+          },
+          Object {
+            "firstName": "Yves",
+            "lastName": "Soulet",
+          },
         ],
       },
       "key": "MittelbachLaTeXCompanion2006",

@@ -10,15 +10,6 @@ Object {
   "comments": Array [],
   "entries": Array [
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "François Hédelin",
-            "lastName": "Aubignac",
-            "suffix": "abbé d'",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -28,7 +19,11 @@ Object {
           "relies on paricleParser fallback detection",
         ],
         "author": Array [
-          "Aubignac, abbé d', François Hédelin",
+          Object {
+            "firstName": "François Hédelin",
+            "lastName": "Aubignac",
+            "suffix": "abbé d'",
+          },
         ],
         "title": Array [
           "<span class=\\"nocase\\">(Aubignac) (François Hédelin, abbé d')</span>",
@@ -38,21 +33,16 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "François Hédelin",
-            "lastName": "abbé d' Aubignac",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "abbé d' Aubignac, François Hédelin",
+          Object {
+            "firstName": "François Hédelin",
+            "lastName": "abbé d' Aubignac",
+          },
         ],
         "options": Array [
           "useprefix=true",
@@ -65,7 +55,14 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "date": Array [
+          "2013",
+        ],
         "editor": Array [
           Object {
             "firstName": "Luís",
@@ -79,20 +76,6 @@ Object {
             "firstName": "Andrea",
             "lastName": "Dolcetti",
           },
-        ],
-      },
-      "crossref": Object {
-        "donated": Array [],
-        "inherited": Array [],
-      },
-      "fields": Object {
-        "date": Array [
-          "2013",
-        ],
-        "editor": Array [
-          "d' Almeida, Luís",
-          "Edwards, James",
-          "Dolcetti, Andrea",
         ],
         "isbn": Array [
           "978-1-84946-324-9",
@@ -117,22 +100,17 @@ Object {
       "type": "book",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Frank G.",
-            "lastName": "Bennett",
-            "suffix": "Jr.",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "Bennett, Jr., Frank G.",
+          Object {
+            "firstName": "Frank G.",
+            "lastName": "Bennett",
+            "suffix": "Jr.",
+          },
         ],
         "date": Array [
           "2013",
@@ -157,21 +135,16 @@ Object {
       "type": "book",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "John",
-            "lastName": "d' Jones",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "d' Jones, John",
+          Object {
+            "firstName": "John",
+            "lastName": "d' Jones",
+          },
         ],
         "keywords": Array [
           "imported",
@@ -187,21 +160,16 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Doe",
-            "lastName": "Co.",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "Doe Co.",
+          Object {
+            "firstName": "Doe",
+            "lastName": "Co.",
+          },
         ],
         "keywords": Array [
           "imported",
@@ -214,20 +182,15 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "literal": "U.S. Bureau of the Census",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "U.S. Bureau of the Census",
+          Object {
+            "literal": "U.S. Bureau of the Census",
+          },
         ],
         "keywords": Array [
           "imported",
@@ -240,21 +203,16 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Bruce",
-            "lastName": "D'Arcus",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "D'Arcus, Bruce",
+          Object {
+            "firstName": "Bruce",
+            "lastName": "D'Arcus",
+          },
         ],
         "keywords": Array [
           "imported",
@@ -267,21 +225,16 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "N",
-            "lastName": "Family Name",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "Family Name, N",
+          Object {
+            "firstName": "N",
+            "lastName": "Family Name",
+          },
         ],
         "keywords": Array [
           "imported",
@@ -294,21 +247,16 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Κώστας",
-            "lastName": "Καρυωτάκης",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "Καρυωτάκης, Κώστας",
+          Object {
+            "firstName": "Κώστας",
+            "lastName": "Καρυωτάκης",
+          },
         ],
         "keywords": Array [
           "imported",
@@ -321,7 +269,11 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
         "author": Array [
           Object {
             "firstName": "Eduard",
@@ -331,16 +283,6 @@ Object {
             "firstName": "Gustav",
             "lastName": "von Hoppel",
           },
-        ],
-      },
-      "crossref": Object {
-        "donated": Array [],
-        "inherited": Array [],
-      },
-      "fields": Object {
-        "author": Array [
-          "van Happel, Eduard",
-          "von Hoppel, Gustav",
         ],
         "keywords": Array [
           "imported",
@@ -356,7 +298,11 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
         "author": Array [
           Object {
             "firstName": "R.",
@@ -375,18 +321,6 @@ Object {
             "lastName": "Williams-Linera",
           },
         ],
-      },
-      "crossref": Object {
-        "donated": Array [],
-        "inherited": Array [],
-      },
-      "fields": Object {
-        "author": Array [
-          "Reynoso-Santos, R.",
-          "Soto-Pinto, L.",
-          "Tejeda-Cruz, C.",
-          "Williams-Linera, G.",
-        ],
         "keywords": Array [
           "imported",
         ],
@@ -398,20 +332,15 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "literal": "Africa News",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "Africa News",
+          Object {
+            "literal": "Africa News",
+          },
         ],
         "keywords": Array [
           "imported",
@@ -424,7 +353,11 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
         "author": Array [
           Object {
             "firstName": "John",
@@ -435,16 +368,6 @@ Object {
             "firstName": "Jane",
             "lastName": "van Roe",
           },
-        ],
-      },
-      "crossref": Object {
-        "donated": Array [],
-        "inherited": Array [],
-      },
-      "fields": Object {
-        "author": Array [
-          "Doe, III, John",
-          "van Roe, Jane",
         ],
         "keywords": Array [
           "imported",
@@ -460,21 +383,16 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Doug",
-            "lastName": "von Dipheria",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "von Dipheria, Doug",
+          Object {
+            "firstName": "Doug",
+            "lastName": "von Dipheria",
+          },
         ],
         "keywords": Array [
           "imported",
@@ -490,7 +408,11 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
         "author": Array [
           Object {
             "literal": "Caritas Europa",
@@ -498,16 +420,6 @@ Object {
           Object {
             "literal": "JRS-Europe",
           },
-        ],
-      },
-      "crossref": Object {
-        "donated": Array [],
-        "inherited": Array [],
-      },
-      "fields": Object {
-        "author": Array [
-          "Caritas Europa",
-          "JRS-Europe",
         ],
         "keywords": Array [
           "imported",
@@ -520,21 +432,16 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Smith",
-            "lastName": "Co",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "Smith Co",
+          Object {
+            "firstName": "Smith",
+            "lastName": "Co",
+          },
         ],
         "keywords": Array [
           "imported",
@@ -547,22 +454,17 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Frank G.",
-            "lastName": "Bennett",
-            "suffix": "Jr.",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "Bennett, Jr., Frank G.",
+          Object {
+            "firstName": "Frank G.",
+            "lastName": "Bennett",
+            "suffix": "Jr.",
+          },
         ],
         "keywords": Array [
           "imported",
@@ -575,7 +477,11 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
         "author": Array [
           Object {
             "firstName": "Alexander",
@@ -598,19 +504,6 @@ Object {
             "firstName": "Georg Henrik Explicit",
             "lastName": "von Wright",
           },
-        ],
-      },
-      "crossref": Object {
-        "donated": Array [],
-        "inherited": Array [],
-      },
-      "fields": Object {
-        "author": Array [
-          "von Humboldt, Alexander",
-          "Gooding, Jr., Cuba",
-          "de La Fontaine, Jean",
-          "von Wright, Georg Henrik Auto",
-          "von Wright, Georg Henrik Explicit",
         ],
         "date": Array [
           "1963",
@@ -647,21 +540,16 @@ Object {
       "type": "book",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Doe",
-            "lastName": "Inc.",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "Doe Inc.",
+          Object {
+            "firstName": "Doe",
+            "lastName": "Inc.",
+          },
         ],
         "keywords": Array [
           "imported",
@@ -674,21 +562,16 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "S. P",
-            "lastName": "la Berge",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "la Berge, S. P",
+          Object {
+            "firstName": "S. P",
+            "lastName": "la Berge",
+          },
         ],
         "keywords": Array [
           "imported",
@@ -704,22 +587,17 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Martin Luther",
-            "lastName": "King",
-            "suffix": "Jr.",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "King, Jr., Martin Luther",
+          Object {
+            "firstName": "Martin Luther",
+            "lastName": "King",
+            "suffix": "Jr.",
+          },
         ],
         "date": Array [
           "1968",
@@ -742,21 +620,16 @@ Object {
       "type": "book",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Samuel",
-            "lastName": "de Simone",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "de Simone, Samuel",
+          Object {
+            "firstName": "Samuel",
+            "lastName": "de Simone",
+          },
         ],
         "keywords": Array [
           "imported",
@@ -772,21 +645,16 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "John",
-            "lastName": "von Doe",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "von Doe, John",
+          Object {
+            "firstName": "John",
+            "lastName": "von Doe",
+          },
         ],
         "keywords": Array [
           "imported",
@@ -802,20 +670,15 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "literal": "Blob",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "Blob",
+          Object {
+            "literal": "Blob",
+          },
         ],
         "keywords": Array [
           "imported",
@@ -828,22 +691,17 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "James",
-            "lastName": "Doe",
-            "suffix": "III",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "Doe, III, James",
+          Object {
+            "firstName": "James",
+            "lastName": "Doe",
+            "suffix": "III",
+          },
         ],
         "keywords": Array [
           "imported",
@@ -856,22 +714,17 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "James",
-            "lastName": "Doe",
-            "suffix": "Jr",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "Doe, Jr, James",
+          Object {
+            "firstName": "James",
+            "lastName": "Doe",
+            "suffix": "Jr",
+          },
         ],
         "keywords": Array [
           "imported",
@@ -884,22 +737,17 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Jeffrey",
-            "lastName": "Doe",
-            "suffix": "Jr.",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "Doe, Jr., Jeffrey",
+          Object {
+            "firstName": "Jeffrey",
+            "lastName": "Doe",
+            "suffix": "Jr.",
+          },
         ],
         "keywords": Array [
           "imported",
@@ -912,21 +760,16 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Noakes",
-            "lastName": "Inc.",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "Noakes Inc.",
+          Object {
+            "firstName": "Noakes",
+            "lastName": "Inc.",
+          },
         ],
         "keywords": Array [
           "imported",
@@ -939,21 +782,16 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Gerard",
-            "lastName": "van der Meer",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "van der Meer, Gerard",
+          Object {
+            "firstName": "Gerard",
+            "lastName": "van der Meer",
+          },
         ],
         "keywords": Array [
           "imported",
@@ -969,21 +807,16 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Alan",
-            "lastName": "al- One",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "al- One, Alan",
+          Object {
+            "firstName": "Alan",
+            "lastName": "al- One",
+          },
         ],
         "keywords": Array [
           "imported",
@@ -999,20 +832,15 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "literal": "Multi-National United",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "Multi-National United",
+          Object {
+            "literal": "Multi-National United",
+          },
         ],
         "keywords": Array [
           "imported",
@@ -1025,20 +853,15 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "literal": "São Paulo (Estado)",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "São Paulo (Estado)",
+          Object {
+            "literal": "São Paulo (Estado)",
+          },
         ],
         "keywords": Array [
           "imported",
@@ -1051,7 +874,11 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
         "author": Array [
           Object {
             "firstName": "Rip",
@@ -1062,16 +889,6 @@ Object {
             "lastName": "Thucydides",
             "suffix": "III",
           },
-        ],
-      },
-      "crossref": Object {
-        "donated": Array [],
-        "inherited": Array [],
-      },
-      "fields": Object {
-        "author": Array [
-          "van Winkle, Rip",
-          "Thucydides, III, Carl",
         ],
         "keywords": Array [
           "imported",
@@ -1087,7 +904,11 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
         "author": Array [
           Object {
             "literal": "Alfred Benzon Foundation",
@@ -1098,17 +919,6 @@ Object {
           Object {
             "literal": "John Candy Foundation",
           },
-        ],
-      },
-      "crossref": Object {
-        "donated": Array [],
-        "inherited": Array [],
-      },
-      "fields": Object {
-        "author": Array [
-          "Alfred Benzon Foundation",
-          "James Benson Foundation",
-          "John Candy Foundation",
         ],
         "keywords": Array [
           "imported",
@@ -1121,22 +931,17 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Jean",
-            "lastName": "de La Fontaine",
-            "suffix": "III",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "de La Fontaine, III, Jean",
+          Object {
+            "firstName": "Jean",
+            "lastName": "de La Fontaine",
+            "suffix": "III",
+          },
         ],
         "keywords": Array [
           "imported",
@@ -1152,21 +957,16 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Jean",
-            "lastName": "de La Fontaine",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "de La Fontaine, Jean",
+          Object {
+            "firstName": "Jean",
+            "lastName": "de La Fontaine",
+          },
         ],
         "keywords": Array [
           "imported",
@@ -1179,21 +979,16 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Jean",
-            "lastName": "de la Fontaine",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "de la Fontaine, Jean",
+          Object {
+            "firstName": "Jean",
+            "lastName": "de la Fontaine",
+          },
         ],
         "keywords": Array [
           "imported",
@@ -1209,22 +1004,17 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "François Hédelin",
-            "lastName": "d' Aubignac",
-            "suffix": "abbé d'",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "d' Aubignac, abbé d', François Hédelin",
+          Object {
+            "firstName": "François Hédelin",
+            "lastName": "d' Aubignac",
+            "suffix": "abbé d'",
+          },
         ],
         "keywords": Array [
           "imported",
@@ -1240,7 +1030,11 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
         "author": Array [
           Object {
             "firstName": "Eric",
@@ -1250,16 +1044,6 @@ Object {
             "firstName": "Vincent",
             "lastName": "van Gogh",
           },
-        ],
-      },
-      "crossref": Object {
-        "donated": Array [],
-        "inherited": Array [],
-      },
-      "fields": Object {
-        "author": Array [
-          "van der Vlist, Eric",
-          "van Gogh, Vincent",
         ],
         "keywords": Array [
           "imported",
@@ -1275,7 +1059,11 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
         "author": Array [
           Object {
             "firstName": "Onename",
@@ -1294,18 +1082,6 @@ Object {
             "lastName": "Van Four",
           },
         ],
-      },
-      "crossref": Object {
-        "donated": Array [],
-        "inherited": Array [],
-      },
-      "fields": Object {
-        "author": Array [
-          "van One, Onename",
-          "van Two, Twoname",
-          "van Three, Threename",
-          "Van Four, Fourname",
-        ],
         "keywords": Array [
           "imported",
         ],
@@ -1320,21 +1096,16 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Dick",
-            "lastName": "Van Dyke",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "Van Dyke, Dick",
+          Object {
+            "firstName": "Dick",
+            "lastName": "Van Dyke",
+          },
         ],
         "keywords": Array [
           "imported",
@@ -1347,21 +1118,16 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "John",
-            "lastName": "de la Doe",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "de la Doe, John",
+          Object {
+            "firstName": "John",
+            "lastName": "de la Doe",
+          },
         ],
         "keywords": Array [
           "imported",
@@ -1377,7 +1143,11 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
         "author": Array [
           Object {
             "firstName": "Givenname",
@@ -1484,40 +1254,6 @@ Object {
             "lastName": "ver Familyname",
           },
         ],
-      },
-      "crossref": Object {
-        "donated": Array [],
-        "inherited": Array [],
-      },
-      "fields": Object {
-        "author": Array [
-          "de Las Familyname, Givenname",
-          "del Familyname, Givenname",
-          "Di Familyname, Givenname",
-          "Da Familyname, Givenname",
-          "Do Familyname, Givenname",
-          "Des Familyname, Givenname",
-          "Lou Familyname, Givenname",
-          "Pietro Familyname, Givenname",
-          "de Familyname, Givenname",
-          "de La Familyname, Givenname",
-          "Le Familyname, Givenname",
-          "La Familyname, Givenname",
-          "L'Familyname, Givenname",
-          "Saint Familyname, Givenname",
-          "Sainte Familyname, Givenname",
-          "St. Familyname, Givenname",
-          "Ste. Familyname, Givenname",
-          "van Familyname, Givenname",
-          "van de Familyname, Givenname",
-          "van der Familyname, Givenname",
-          "van den Familyname, Givenname",
-          "vander Familyname, Givenname",
-          "v.d. Familyname, Givenname",
-          "vd Familyname, Givenname",
-          "van het Familyname, Givenname",
-          "ver Familyname, Givenname",
-        ],
         "keywords": Array [
           "imported",
         ],
@@ -1532,21 +1268,16 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Jacques",
-            "lastName": "van Doe",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "van Doe, Jacques",
+          Object {
+            "firstName": "Jacques",
+            "lastName": "van Doe",
+          },
         ],
         "keywords": Array [
           "imported",
@@ -1562,22 +1293,17 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Gérard",
-            "lastName": "de la Martinière",
-            "suffix": "III",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "de la Martinière, III, Gérard",
+          Object {
+            "firstName": "Gérard",
+            "lastName": "de la Martinière",
+            "suffix": "III",
+          },
         ],
         "keywords": Array [
           "imported",
@@ -1593,21 +1319,16 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Al-Khatib",
-            "lastName": "Organization",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "Al-Khatib Organization",
+          Object {
+            "firstName": "Al-Khatib",
+            "lastName": "Organization",
+          },
         ],
         "keywords": Array [
           "imported",
@@ -1620,21 +1341,16 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Alan",
-            "lastName": "De Quincey",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "De Quincey, Alan",
+          Object {
+            "firstName": "Alan",
+            "lastName": "De Quincey",
+          },
         ],
         "keywords": Array [
           "imported",
@@ -1647,7 +1363,11 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
         "author": Array [
           Object {
             "firstName": "Beijing",
@@ -1656,16 +1376,6 @@ Object {
           Object {
             "literal": "Beijing Zoo",
           },
-        ],
-      },
-      "crossref": Object {
-        "donated": Array [],
-        "inherited": Array [],
-      },
-      "fields": Object {
-        "author": Array [
-          "Beijing Zoo",
-          "Beijing Zoo",
         ],
         "keywords": Array [
           "imported",
@@ -1678,21 +1388,16 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "ANZ",
-            "lastName": "Group",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "ANZ Group",
+          Object {
+            "firstName": "ANZ",
+            "lastName": "Group",
+          },
         ],
         "keywords": Array [
           "imported",
@@ -1705,7 +1410,11 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
         "author": Array [
           Object {
             "firstName": "Peter A.C.",
@@ -1715,16 +1424,6 @@ Object {
             "firstName": "Peter A.D.",
             "lastName": "in 't Horvath",
           },
-        ],
-      },
-      "crossref": Object {
-        "donated": Array [],
-        "inherited": Array [],
-      },
-      "fields": Object {
-        "author": Array [
-          "'t Horvath, Peter A.C.",
-          "in 't Horvath, Peter A.D.",
         ],
         "keywords": Array [
           "imported",
@@ -1740,21 +1439,16 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "John",
-            "lastName": "di Noakes",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "di Noakes, John",
+          Object {
+            "firstName": "John",
+            "lastName": "di Noakes",
+          },
         ],
         "keywords": Array [
           "imported",
@@ -1770,21 +1464,16 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Jacob",
-            "lastName": "[F]linders",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "[F]linders, Jacob",
+          Object {
+            "firstName": "Jacob",
+            "lastName": "[F]linders",
+          },
         ],
         "keywords": Array [
           "imported",

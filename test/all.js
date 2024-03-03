@@ -45,33 +45,27 @@ const valid = {
 }
 const multi = ['test']
 
+function sortObject(obj) {
+  if (Array.isArray(obj)) return obj.map(sortObject)
+  if (obj === null || obj === undefined || typeof obj !== 'object') return obj
+  const sorted = {}
+  for (const k of Object.keys(obj).sort()) {
+    sorted[k] = sortObject(obj[k])
+  }
+  return sorted
+}
+
 function normalize(result) {
   if (!Array.isArray(result.entries)) return result
-
-  // multiple combining chars can appear in any order
-  const n = v => {
-    switch (typeof v) {
-      case 'number': return v
-      case 'string': return v.normalize('NFC')
-      default:
-        console.log('normalize', typeof v, v)
-        return v
-    }
-  }
+  result.entries = JSON.parse(JSON.stringify(result.entries), (key, value) => typeof value === 'string' ? value.normalize('NFC') : value)
 
   for (const entry of result.entries) {
-    for (const [field, values] of Object.entries(entry.fields)) {
-      entry.fields[field] = values.map(v => n(v))
-    }
-
     for (const [creator, names] of Object.entries(entry.creators)) {
-      for (const name of names) {
-        for (const [k, v] of Object.entries(name)) {
-          if (typeof v === 'string') name[k] = n(v)
-        }
-      }
+      entry.fields[creator] = names
     }
+    delete entry.creators
   }
+  result.entries = sortObject(result.entries)
   return result
 }
 
@@ -124,6 +118,7 @@ if (process.env.TAP_SNAPSHOT === '1') config.snapshot = 'true'
 let testcases = []
 for (const pattern of config.test) {
   testcases = testcases.concat(glob(path.join(__dirname, '**', (pattern ? '*' : '') + pattern + '*.{json,bib,bibtex,biblatex}'), { nocase: true, matchBase: true, nonull: false, nodir: true }))
+  // testcases = testcases.slice(0, 20) // limit
 }
 
 for (const bibfile of testcases) {

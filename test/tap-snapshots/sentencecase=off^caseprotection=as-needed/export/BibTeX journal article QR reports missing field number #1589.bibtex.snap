@@ -10,7 +10,17 @@ Object {
   "comments": Array [],
   "entries": Array [
     Object {
-      "creators": Object {
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "address": Array [
+          "Roma",
+        ],
+        "annotation": Array [
+          "OCLC: 1017659336",
+        ],
         "editor": Array [
           Object {
             "firstName": "Anna",
@@ -24,23 +34,6 @@ Object {
             "firstName": "Susan",
             "lastName": "Walker",
           },
-        ],
-      },
-      "crossref": Object {
-        "donated": Array [],
-        "inherited": Array [],
-      },
-      "fields": Object {
-        "address": Array [
-          "Roma",
-        ],
-        "annotation": Array [
-          "OCLC: 1017659336",
-        ],
-        "editor": Array [
-          "Leone, Anna",
-          "Palombi, Domenico",
-          "Walker, Susan",
         ],
         "language": Array [
           "Italian, English, French and German.",
@@ -62,14 +55,6 @@ Object {
       "type": "book",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Domenico",
-            "lastName": "Palombi",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -79,7 +64,10 @@ Object {
           "Recent research carried out during organisation of the Cori Museum (Latina) has resulted in a significant revision and substantial updating of all our knowledge of the ancient city of Cora (Cori), in Latium. The study presented here is an updated and critical report on all the available sources and finds related to the history and the archaeology of the city and its territory, from its origins to medieval times. The analysis considers all these elements, specifically in the context of the history of Latium as a whole and its connections with Rome. With the help of unpublished or little-known information, the following elements are analysed in detail: the city's foundation myth; the important role of the archaic and high-republican city; the urban phases (focussing principally on the earliest organisation, dated to the archaic period, and on the 2nd century B.C. monumental building programme); the local pantheon and the principal sanctuaries; the monuments and the urban buildings; the organisation of the territory; the first evidence of the Christian cult.",
         ],
         "author": Array [
-          "Palombi, Domenico",
+          Object {
+            "firstName": "Domenico",
+            "lastName": "Palombi",
+          },
         ],
         "issn": Array [
           "0391-8165",

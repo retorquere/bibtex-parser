@@ -10,7 +10,11 @@ Object {
   "comments": Array [],
   "entries": Array [
     Object {
-      "creators": Object {
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
         "author": Array [
           Object {
             "firstName": "Nancy K",
@@ -40,21 +44,6 @@ Object {
             "firstName": "Kendra",
             "lastName": "Arbesman",
           },
-        ],
-      },
-      "crossref": Object {
-        "donated": Array [],
-        "inherited": Array [],
-      },
-      "fields": Object {
-        "author": Array [
-          "Adams, Nancy K",
-          "DeSilva, Shanaka L",
-          "Self, Steven",
-          "Salas, Guido",
-          "Schubring, Steven",
-          "Permenter, Jason L",
-          "Arbesman, Kendra",
         ],
         "date": Array [
           "2015-06-22/2015-06-26",
@@ -84,7 +73,11 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
         "author": Array [
           Object {
             "firstName": "Nancy K",
@@ -115,21 +108,6 @@ Object {
             "lastName": "Arbesman",
           },
         ],
-      },
-      "crossref": Object {
-        "donated": Array [],
-        "inherited": Array [],
-      },
-      "fields": Object {
-        "author": Array [
-          "Adams, Nancy K",
-          "DeSilva, Shanaka L",
-          "Self, Steven",
-          "Salas, Guido",
-          "Schubring, Steven",
-          "Permenter, Jason L",
-          "Arbesman, Kendra",
-        ],
         "date": Array [
           "2017-06-18/2017-06-23",
         ],
@@ -158,7 +136,14 @@ Object {
       "type": "article",
     },
     Object {
-      "creators": Object {
+      "crossref": Object {
+        "donated": Array [],
+        "inherited": Array [],
+      },
+      "fields": Object {
+        "abstract": Array [
+          "Virtually all ITS applications rely on accurate traffic data. Identification of faulty detectors is thus vital for their reliability and efficiency. Most existing approaches solely use current and historical data of single or adjacent detectors and are based on empirical thresholds. We present a method for fault detection using Floating-Car Data (FCD) as independent source of information which allows to distinguish changed traffic conditions from sensor faults. Fault detection is based on residuals of a nonlinear regression model fitted to detector readings and FCD traffic speeds. Instead of applying rule-of-thumb thresholds we employ a statistical test, where thresholds result naturally from historical data, sample sizes and required fault detection accuracy. We provide a theoretical framework for fault detectability analysis and empirically evaluate the fault detection capability of our approach using data obtained from a microscopic traffic simulation.",
+        ],
         "author": Array [
           Object {
             "literal": "P. Widhalm",
@@ -169,20 +154,6 @@ Object {
           Object {
             "literal": "W. Ponweiser",
           },
-        ],
-      },
-      "crossref": Object {
-        "donated": Array [],
-        "inherited": Array [],
-      },
-      "fields": Object {
-        "abstract": Array [
-          "Virtually all ITS applications rely on accurate traffic data. Identification of faulty detectors is thus vital for their reliability and efficiency. Most existing approaches solely use current and historical data of single or adjacent detectors and are based on empirical thresholds. We present a method for fault detection using Floating-Car Data (FCD) as independent source of information which allows to distinguish changed traffic conditions from sensor faults. Fault detection is based on residuals of a nonlinear regression model fitted to detector readings and FCD traffic speeds. Instead of applying rule-of-thumb thresholds we employ a statistical test, where thresholds result naturally from historical data, sample sizes and required fault detection accuracy. We provide a theoretical framework for fault detectability analysis and empirically evaluate the fault detection capability of our approach using data obtained from a microscopic traffic simulation.",
-        ],
-        "author": Array [
-          "P. Widhalm",
-          "H. Koller",
-          "W. Ponweiser",
         ],
         "booktitle": Array [
           "2011 <span class=\\"nocase\\">IEEE Forum</span> on <span class=\\"nocase\\">Integrated</span> and <span class=\\"nocase\\">Sustainable Transportation Systems</span>",
@@ -228,21 +199,16 @@ Object {
       "type": "inproceedings",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Donn",
-            "lastName": "Seeley",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "Seeley, Donn",
+          Object {
+            "firstName": "Donn",
+            "lastName": "Seeley",
+          },
         ],
         "booktitle": Array [
           "Proceedings of the <span class=\\"nocase\\">Winter</span> 1989 <span class=\\"nocase\\">USENIX Conference</span>",
@@ -267,14 +233,6 @@ Object {
       "type": "inproceedings",
     },
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "Terry",
-            "lastName": "Winograd",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
@@ -284,7 +242,10 @@ Object {
           "In designing computer-based systems, we work within a perspective that shapes the design questions that will be asked and the kinds of solutions that are sought. This paper introduces a perspective based on language as action, and explores its consequences for practical system design. The language/action perspective is contrasted to a number of other currently prominent perspectives, and is illustrated with an extended example based on studies of nursing work in a hospital ward. We show how it leads to particular analyses of that work, which reveal potentials for creating new designs that can make the work (and the workers) more effective.",
         ],
         "author": Array [
-          "Winograd, Terry",
+          Object {
+            "firstName": "Terry",
+            "lastName": "Winograd",
+          },
         ],
         "booktitle": Array [
           "Proceedings of the 1986 <span class=\\"nocase\\">ACM Conference</span> on <span class=\\"nocase\\">Computer</span>-Supported <span class=\\"nocase\\">Cooperative Work</span> (<span class=\\"nocase\\">CSCW</span> '86)",

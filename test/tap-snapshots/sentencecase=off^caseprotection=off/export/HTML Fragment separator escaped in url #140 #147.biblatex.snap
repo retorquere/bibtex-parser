@@ -10,21 +10,16 @@ Object {
   "comments": Array [],
   "entries": Array [
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "John",
-            "lastName": "MacFarlane",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [],
       },
       "fields": Object {
         "author": Array [
-          "MacFarlane, John",
+          Object {
+            "firstName": "John",
+            "lastName": "MacFarlane",
+          },
         ],
         "title": Array [
           "Pandoc User’s Guide",

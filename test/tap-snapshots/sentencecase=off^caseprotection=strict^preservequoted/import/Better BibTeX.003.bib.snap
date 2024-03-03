@@ -10,28 +10,6 @@ Object {
   "comments": Array [],
   "entries": Array [
     Object {
-      "creators": Object {
-        "author": Array [
-          Object {
-            "firstName": "First",
-            "lastName": "Author",
-          },
-          Object {
-            "firstName": "Second",
-            "lastName": "Author",
-          },
-        ],
-        "editor": Array [
-          Object {
-            "firstName": "First",
-            "lastName": "Editor",
-          },
-          Object {
-            "firstName": "Second",
-            "lastName": "Editor",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [],
         "inherited": Array [
@@ -42,8 +20,28 @@ Object {
         ],
       },
       "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "First",
+            "lastName": "Author",
+          },
+          Object {
+            "firstName": "Second",
+            "lastName": "Author",
+          },
+        ],
         "booktitle": Array [
           "Proceedings of the Xth Conference on XYZ",
+        ],
+        "editor": Array [
+          Object {
+            "firstName": "First",
+            "lastName": "Editor",
+          },
+          Object {
+            "firstName": "Second",
+            "lastName": "Editor",
+          },
         ],
         "month": Array [
           "oct",
@@ -62,18 +60,6 @@ Object {
       "type": "inproceedings",
     },
     Object {
-      "creators": Object {
-        "editor": Array [
-          Object {
-            "firstName": "First",
-            "lastName": "Editor",
-          },
-          Object {
-            "firstName": "Second",
-            "lastName": "Editor",
-          },
-        ],
-      },
       "crossref": Object {
         "donated": Array [
           "title",
@@ -86,6 +72,16 @@ Object {
       "fields": Object {
         "booktitle": Array [
           "Proceedings of the Xth Conference on XYZ (Book)",
+        ],
+        "editor": Array [
+          Object {
+            "firstName": "First",
+            "lastName": "Editor",
+          },
+          Object {
+            "firstName": "Second",
+            "lastName": "Editor",
+          },
         ],
         "month": Array [
           "oct",
