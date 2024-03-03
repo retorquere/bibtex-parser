@@ -422,7 +422,7 @@ class BibTeXParser {
       text: null,
     }
 
-    this.skipWhitespace()
+    while (this.pos < this.input.length && this.input[this.pos] !== '@') this.pos++
     if (this.pos >= this.input.length) return
 
     let guard = ''
