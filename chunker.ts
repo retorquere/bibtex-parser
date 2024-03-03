@@ -103,7 +103,7 @@ class BibTeXParser {
   public strings: Record<string, string> = {}
   public comments: string[] = []
   public errors: ParseError[] = []
-  public preambles: string[]
+  public preambles: string[] = []
 
   private default_strings: Record<string, string> = {
     jan: '01',
@@ -372,7 +372,7 @@ class BibTeXParser {
   }
 
   private preamble() {
-    this.value()
+    this.preambles.push(this.value())
   }
 
   private comment() {
