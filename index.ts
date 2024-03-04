@@ -794,9 +794,9 @@ class Parser {
     }
   }
 
-  private show(o) {
+  private show(_o) {
     // eslint-disable-next-line prefer-template
-    let text = JSON.stringify(o)
+    let text = '' // JSON.stringify(o)
     if (this.chunk) text += `\n${this.chunk.trim()}`
     return text
   }
@@ -1442,7 +1442,7 @@ class Parser {
       return this.text()
     }
     else {
-      return this.error(new TeXError(`Unhandled command: ${node.command}${this.show(node)}`, node, this.chunk))
+      return this.error(new TeXError(`unsupported macro (\\${node.command})${this.show(node)}`, node, this.chunk))
     }
   }
 
