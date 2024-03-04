@@ -224,12 +224,12 @@ const Splitter = new class {
   }
 }
 
-function parseCreator(ast: Root): Creator {
-  if (ast.content.length === 1 && ast.content[0].type === 'group') return { name: Stringifier.stringify(ast, { mode: 'creator' }) }
+function parseCreator(ast: Root, unsupported?: unsupportedHandler): Creator {
+  if (ast.content.length === 1 && ast.content[0].type === 'group') return { name: Stringifier.stringify(ast, { unsupported, mode: 'creator' }) }
 
   if (ast.content.find(node => node.type === 'string' && node.content === ',')) {
     const nameparts: string[][] = Splitter.split(ast, ',')
-      .map((part: Node) => Stringifier.stringify(part, { mode: 'creator' }))
+      .map((part: Node) => Stringifier.stringify(part, { unsupported, mode: 'creator' }))
       // eslint-disable-next-line no-magic-numbers
       .map((part: string) => part.match(/^([^=]+)=(.*)/)?.slice(1, 3) || ['', part])
 
@@ -277,7 +277,7 @@ function parseCreator(ast: Root): Creator {
     return name
   }
   else {
-    const nameparts = Splitter.split(ast, ' ').map(part => Stringifier.stringify(part, { mode: 'creator' })).filter(n => n)
+    const nameparts = Splitter.split(ast, ' ').map(part => Stringifier.stringify(part, { unsupported, mode: 'creator' })).filter(n => n)
     if (nameparts.length === 1) return { name: nameparts[0] }
     const prefix = nameparts.findIndex(n => n.match(/^[a-z]/))
     if (prefix > 0) return { firstName: nameparts.slice(0, prefix).join(' '), lastName: nameparts.slice(prefix).join(' ') }
@@ -328,17 +328,32 @@ function argument(nodes: Node[]): Argument {
   return wraparg(nodes.shift())
 }
 
+type unsupportedHandler = (node: Node, tex: string) => string | undefined
+
 type StringifierContext = {
   mode: ParseMode
   caseProtected?: boolean
+  unsupported?: unsupportedHandler
 }
-
 const Stringifier = new class {
   private tags = {
     enquote: { open: '\u201c', close: '\u201d' },
   }
 
-  wrap(text: string, tag, wrap = true): string {
+  private unsupported(node: Node, context: StringifierContext): string {
+    if (context.unsupported) return context.unsupported(node, printRaw(node)) ?? ''
+
+    switch (node.type) {
+      case 'macro':
+        throw new Error(`unhandled ${node.type} ${node.content} (${printRaw(node)})`)
+      case 'environment':
+        throw new Error(`unhandled ${node.type} ${node.env} (${printRaw(node)})`)
+      default:
+        throw new Error(`unhandled ${node.type} (${printRaw(node)})`)
+    }
+  }
+
+  private wrap(text: string, tag, wrap = true): string {
     if (!text) return ''
     if (!wrap) return text
     if (!this.tags[tag]) this.tags[tag] = { open: `<${tag}>`, close: `</${tag}>` }
@@ -346,7 +361,7 @@ const Stringifier = new class {
     return `${open}${text}${close}`
   }
 
-  macro(node: Macro, context: StringifierContext): string {
+  private macro(node: Macro, context: StringifierContext): string {
     const text = latex2unicode[printRaw(node)]
     if (text) return text
 
@@ -438,11 +453,11 @@ const Stringifier = new class {
         return this.wrap(this.stringify(node.args?.[0], context), 'nc', context.mode === 'title')
 
       default:
-        throw new Error(`unhandled macro ${node.content} ${printRaw(node)}`)
+        return this.unsupported(node, context)
     }
   }
 
-  environment(node: Environment, context: StringifierContext) {
+  private environment(node: Environment, context: StringifierContext) {
     switch (node.env) {
       case 'quotation':
         return this.wrap(node.content.map(n => this.stringify(n, context)).join(''), 'blockquote', context.mode === 'html')
@@ -454,7 +469,7 @@ const Stringifier = new class {
         return this.wrap(node.content.map(n => this.stringify(n, context)).join(''), 'i', context.mode === 'html')
 
       default:
-        throw new Error(`unhandled environment ${printRaw(node)}`)
+        return this.unsupported(node, context)
     }
   }
 
@@ -497,12 +512,12 @@ const Stringifier = new class {
         return node.content
 
       default:
-        throw new Error(`unhandled ${node.type} ${printRaw(node as Node)}`)
+        return this.unsupported(node, context)
     }
   }
 }
 
-function convert(entry: Entry, field: string, value: string) {
+function convert(entry: Entry, field: string, value: string, unsupported: unsupportedHandler) {
   let mode: ParseMode = 'literal'
   for (const [selected, fields] of Object.entries(FieldMode)) {
     if (fields.find(match => typeof match === 'string' ? field === match : field.match(match))) mode = selected as ParseMode
@@ -605,16 +620,16 @@ function convert(entry: Entry, field: string, value: string) {
 
   switch (mode) {
     case 'creator':
-      entry.fields[field] = Splitter.split(ast, /^and$/i).map(parseCreator)
+      entry.fields[field] = Splitter.split(ast, /^and$/i).map(cr => parseCreator(cr, unsupported))
       break
     case 'commalist':
-      entry.fields[field] = Splitter.split(ast, /^[;,]$/).map(elt => Stringifier.stringify(elt, { mode: 'literal'}))
+      entry.fields[field] = Splitter.split(ast, /^[;,]$/).map(elt => Stringifier.stringify(elt, { unsupported, mode: 'literal'}))
       break
     case 'literallist':
-      entry.fields[field] = Splitter.split(ast, /^and$/i).map(elt => Stringifier.stringify(elt, { mode: 'literal'}))
+      entry.fields[field] = Splitter.split(ast, /^and$/i).map(elt => Stringifier.stringify(elt, { unsupported, mode: 'literal'}))
       break
     default:
-      entry.fields[field] = Stringifier.stringify(ast, { mode })
+      entry.fields[field] = Stringifier.stringify(ast, { unsupported, mode })
       if (FieldAction.unabbrev.includes(field)) entry.fields[field] = unabbreviate[entry.fields[field] as string] || entry.fields[field]
       if ((entry.fields[field] as string).match(/^[0-9]+$/)) entry.fields[field] = parseInt(entry.fields[field] as string)
       break
@@ -708,15 +723,9 @@ export interface ParserOptions {
   caseProtection?: 'as-needed' | 'strict' | boolean
 
   /**
-   * By default, when an unexpected parsing error is found (such as a TeX command which the parser does not know about), the parser will throw an error. You can pass a function to handle the error instead,
-   * where you can log it, display it, or even still throw an error
-   */
-  errorHandler?: false | ((err: Error) => void)
-
-  /**
    * By default, when a TeX command is encountered which the parser does not know about, the parser will throw an error. You can pass a function here to return the appropriate text output for the command.
    */
-  unknownMacro?: false | ((macro: Macro) => string)
+  unsupported?: 'ignore' | unsupportedHandler
 
   /**
    * Some fields such as `url` are parsed in what is called "verbatim mode" where pretty much everything except braces is treated as regular text, not TeX commands. You can change the default list here if you want,
@@ -800,6 +809,8 @@ function applyCrossref(entry: Entry, entries: Entry[]) {
  * parse bibtex. This will try to convert TeX commands into unicode equivalents, and apply `@string` expansion
  */
 export function parse(input: string, options: ParserOptions = {}): Bibliography {
+  const unsupported: unsupportedHandler = options.unsupported === 'ignore' ? ((_node: Node, _tex: string): string => '') : options.unsupported
+
   const base = bibtex.parse(input)
   const bib: Bibliography = {
     errors: base.errors,
@@ -811,7 +822,7 @@ export function parse(input: string, options: ParserOptions = {}): Bibliography 
   }
   for (const entry of base.entries) {
     for (const [field, value] of Object.entries(entry.fields)) {
-      convert(entry, field, value)
+      convert(entry, field, value, unsupported)
     }
     bib.entries.push(entry as Entry)
   }
@@ -824,7 +835,7 @@ export function parse(input: string, options: ParserOptions = {}): Bibliography 
 
   const s: Entry = { key: '', type: '', fields: {} }
   for (const [k, v] of Object.entries(base.strings)) {
-    convert(s, 'string', v)
+    convert(s, 'string', v, unsupported)
     bib.strings[k] = s.fields.string as string
   }
 

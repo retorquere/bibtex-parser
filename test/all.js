@@ -18,7 +18,7 @@ function tryparse({ bibfile, options }) {
 
   let result = ''
   if (options.exception) {
-    bibtex.parse(source, {...options, errorHandler: err => { result = `caught error: ${err.message}` } })
+    bibtex.parse(source, {...options, unsupported: (node, tex) => { result = `unsupported ${node.type} (${tex})` } })
   }
   else {
     result = bibtex.parse(source, options)
@@ -67,6 +67,9 @@ function normalize(result) {
     }
   }
   result.entries = sortObject(result.entries)
+
+  result.errors = result.errors.map(err => ({ message: err.error }))
+
   return result
 }
 
