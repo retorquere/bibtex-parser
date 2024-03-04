@@ -24,3 +24,10 @@
 |  --- | --- |
 |  [promises](./bibtex-parser.chunker.promises.md) |  |
 
+## Type Aliases
+
+|  Type Alias | Description |
+|  --- | --- |
+|  [Bibliography](./bibtex-parser.chunker.bibliography.md) |  |
+|  [Entry](./bibtex-parser.chunker.entry.md) |  |
+
