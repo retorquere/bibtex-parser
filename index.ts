@@ -1527,10 +1527,10 @@ class Parser {
           this.convert_href(node)
         }
         else if (node.kind === 'RegularCommand' && node.command === 'par') {
-          this.field.text += this.field.html ? '<p>\n' : ' '
+          this.field.text += this.field.html ? '<p>' : ' '
         }
         else if (node.kind === 'RegularCommand' && node.command === '\\') {
-          this.field.text += this.field.html ? '<b>\n' : ' '
+          this.field.text += this.field.html ? '<b>' : ' '
         }
         else {
           return this.error(new ParserError(`no converter for ${node.kind}: ${this.show(node)}`, node))
