@@ -9,7 +9,6 @@
     "prestart": "npm run lint && peggy grammar.peggy",
     "start": "tsc -d",
     "tsc": "tsc -d",
-    "poststart": "npm run docs",
     "pretest": "npm start",
     "test": "tap --timeout 0 --disable-coverage --allow-empty-coverage",
     "snap": "npm test --snapshot",
