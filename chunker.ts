@@ -356,8 +356,10 @@ class BibTeXParser {
     }
   }
 
-  private entry(d) {
+  private entry(d: string, guard: string) {
     this.entries.unshift({ type: d, key: '', fields: {} })
+
+    if (this.tryMatch(guard)) return // empty entry
 
     let key = this.key()
     if (this.tryMatch(',')) { // some people seem to think the key is optional...
@@ -365,11 +367,13 @@ class BibTeXParser {
       this.entries[0].key = key
       key = ''
     }
+    if (!key && this.tryMatch(guard)) return // no fields
+
     this.key_equals_value(key)
     while (this.tryMatch(',')) {
       this.match(',')
       // fixes problems with commas at the end of a list
-      if (this.tryMatch('}')) {
+      if (this.tryMatch(guard)) {
         break
       }
       this.key_equals_value()
@@ -471,7 +475,7 @@ class BibTeXParser {
 
         default:
           guard = this.matchGuard()
-          this.entry(d)
+          this.entry(d, guard)
           this.match(guard)
           chunk.entry = true
           break
