@@ -307,7 +307,7 @@ const narguments = {
   _: 1,
   '^': 1,
 }
-for (const m of combining.macros) {
+for (const m in combining.tounicode) { // eslint-disable-line guard-for-in
   narguments[m] = 1
 }
 
