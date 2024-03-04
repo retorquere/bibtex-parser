@@ -327,6 +327,8 @@ export const fields = {
     'verba',
     'verbb',
     'verbc',
+    'xref',
+    'crossref',
   ],
   html: [
     'annotation',
