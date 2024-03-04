@@ -612,7 +612,7 @@ LineBreak
   }
 
 ScriptCommand
-  = mode:[_\^] __h v:Argument {
+  = &{ return math.on } mode:[_\^] __h v:Argument {
     if (v.kind === 'Block') v = v.value
 
     return {
@@ -620,6 +620,15 @@ ScriptCommand
       loc: location(),
       source: text(),
       value: v,
+    }
+  }
+  / char:[_\^] {
+    return {
+      kind: 'Text',
+      loc: location(),
+      source: text(),
+      value: char,
+      mode: 'text',
     }
   }
 
