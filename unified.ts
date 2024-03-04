@@ -8,6 +8,9 @@ import { latex2unicode, combining } from 'unicode2latex'
 import * as bibtex from './chunker'
 import * as JabRef from './jabref'
 
+import crossref from './crossref.json'
+import allowed from './fields.json'
+
 const unabbreviate = require('./unabbrev.json')
 
 interface Creator {
@@ -47,6 +50,10 @@ interface Entry {
     origlocation?: string[]
 
     [key: string]: number | string | string[] | Creator[]
+  }
+  crossref?: {
+    donated: string[]
+    inherited: string[]
   }
 }
 
@@ -358,6 +365,7 @@ const Stringifier = new class {
         }
         return ''
 
+      case 'textup':
       case 'textsc':
       case 'textrm':
       case 'texttt':
@@ -383,6 +391,7 @@ const Stringifier = new class {
         return ''
 
       case 'textbf':
+      case 'mkbibbold':
         return this.wrap(this.stringify(node.args?.[0], context), 'b')
 
       case 'textit':
@@ -424,6 +433,8 @@ const Stringifier = new class {
       case 'chsf':
       case 'bibstring':
       case 'cite':
+      case 'textcite':
+      case 'citeauthor':
         return this.wrap(this.stringify(node.args?.[0], context), 'nc', context.mode === 'title')
 
       default:
@@ -438,6 +449,9 @@ const Stringifier = new class {
 
       case 'itemize':
         return this.wrap(node.content.map(n => this.stringify(n, context)).join(''), 'ul', context.mode === 'html')
+
+      case 'em':
+        return this.wrap(node.content.map(n => this.stringify(n, context)).join(''), 'i', context.mode === 'html')
 
       default:
         throw new Error(`unhandled environment ${printRaw(node)}`)
@@ -743,10 +757,49 @@ export interface ParserOptions {
   applyCrossRef?: boolean
 }
 
+function applyCrossrefField(parent: Entry, parentfield: string, child: Entry, childfield: string) {
+  if (child.fields[childfield] || !parent.fields[parentfield]) return false
+
+  const register = (arr: string[], elt: string) => [...(new Set([...arr, elt]))].sort()
+
+  child.fields[childfield] = parent.fields[parentfield]
+
+  child.crossref.inherited = register(child.crossref.inherited, childfield)
+  parent.crossref.donated = register(parent.crossref.donated, parentfield)
+
+  return true
+}
+
+function applyCrossref(entry: Entry, entries: Entry[]) {
+  entry.crossref = entry.crossref || { donated: [], inherited: [] }
+  if (!entry.fields.crossref) return
+
+  const parent = entries.find(p => p.key === entry.fields.crossref)
+
+  // first apply crossref on parent, because inheritance can chain
+  applyCrossref(parent, entries)
+
+  let applied = false
+  for (const mappings of [crossref[entry.type], crossref['*']].filter(m => m)) {
+    for (const mapping of [mappings[parent.type], mappings['*']].filter(m => m)) {
+      for (const [target, source] of Object.entries(mapping as Record<string, string>)) {
+        if (applyCrossrefField(parent, source, entry, target)) applied = true
+      }
+
+      for (const field of (allowed[entry.type] || []) as string[]) {
+        if (applyCrossrefField(parent, field, entry, field)) applied = true
+      }
+    }
+  }
+
+  // prevent loops
+  if (applied) delete entry.fields.crossref
+}
+
 /**
  * parse bibtex. This will try to convert TeX commands into unicode equivalents, and apply `@string` expansion
  */
-export function parse(input: string, _options: ParserOptions = {}): Bibliography {
+export function parse(input: string, options: ParserOptions = {}): Bibliography {
   const base = bibtex.parse(input)
   const bib: Bibliography = {
     errors: base.errors,
@@ -761,6 +814,12 @@ export function parse(input: string, _options: ParserOptions = {}): Bibliography
       convert(entry, field, value)
     }
     bib.entries.push(entry as Entry)
+  }
+
+  if (options.applyCrossRef ?? true) {
+    for (const entry of bib.entries) {
+      applyCrossref(entry, bib.entries)
+    }
   }
 
   const s: Entry = { key: '', type: '', fields: {} }
