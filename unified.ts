@@ -402,6 +402,12 @@ class BibTeXParser {
           case '':
             break
 
+          case 'given':
+            name.firstName = value
+            break
+          case 'family':
+            name.lastName = value
+            break
           case 'given-i':
             name.initial = value
             break
@@ -700,6 +706,9 @@ class BibTeXParser {
           if (node.content.match(/^(url|href)$/) && node.args.length) {
             node.args[0] = this.wraparg({ type: 'string', content: printRaw(node.args[0].content) })
           }
+        }
+        else if (node.type === 'macro' && node.content.match(/^[a-z]+$/) && nodes[0]?.type === 'whitespace') {
+          nodes.shift()
         }
 
         compacted.push(node)
