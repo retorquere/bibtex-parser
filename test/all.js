@@ -6,7 +6,7 @@ const os = require('os')
 const glob = require('glob').globSync
 const tap = require('tap')
 
-const bibtex = require('../unified')
+const bibtex = require('../unified').Parser
 
 function tryparse({ bibfile, options }) {
   const source = fs.readFileSync(bibfile, 'utf-8')
@@ -18,7 +18,7 @@ function tryparse({ bibfile, options }) {
 
   let result = ''
   if (options.exception) {
-    bibtex.parse(source, {...options, unsupported: (node, tex) => { result = `unsupported ${node.type} (${tex})` } })
+    bibtex.parse(source, {...options, unsupported: (node, tex, entry) => { result = `unsupported ${node.type} (${tex})\n${entry.input}` } })
   }
   else {
     result = bibtex.parse(source, options)
@@ -61,6 +61,7 @@ function normalize(result) {
 
   // temporary workarounds to match old return format
   for (const entry of result.entries) {
+    delete entry.input
     for (let [field, value] of Object.entries(entry.fields)) {
       if (typeof value === 'number') value = `${value}`
       if (!Array.isArray(entry.fields[field])) entry.fields[field] = [ value ]

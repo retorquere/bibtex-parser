@@ -8,6 +8,6 @@
 
 ```typescript
 promises: {
-    parse(input: string, options?: ParserOptions): Promise<BibTeXParser>;
+    parse(input: string, options?: ParserOptions): Promise<Parser>;
 }
 ```

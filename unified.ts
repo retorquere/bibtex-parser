@@ -10,8 +10,135 @@ import * as JabRef from './jabref'
 
 import crossref from './crossref.json'
 import allowed from './fields.json'
-
 const unabbreviate = require('./unabbrev.json')
+
+export interface Bibliography {
+  /**
+   * errors found while parsing
+   */
+  errors: bibtex.ParseError[]
+
+  /**
+   * entries in the order in which they are found, omitting those which could not be parsed.
+   */
+  entries: Entry[]
+
+  /**
+   * `@comment`s found in the bibtex file.
+   */
+  comments: string[]
+
+  /**
+   * `@string`s found in the bibtex file.
+   */
+  strings: Record<string, string>
+
+  /**
+   * `@preamble` declarations found in the bibtex file
+   */
+  preamble: string[]
+
+  /**
+   * jabref metadata (such as groups information) found in the bibtex file
+   */
+  jabref: JabRef.JabRefMetadata
+}
+
+export interface ParserOptions {
+  /**
+   * BibTeX files are expected to store title-type fields in Sentence Case, where other reference managers (such as Zotero) expect them to be stored as Sentence case. When there is no language field, or the language field
+   * is one of the languages (case insensitive) passed in this option, the parser will attempt to sentence-case title-type fields as they are being parsed. This uses heuristics and does not employ any kind of natural
+   * language processing, so you should always inspect the results. Default languages to sentenceCase are:
+   *
+   * - american
+   * - british
+   * - canadian
+   * - english
+   * - australian
+   * - newzealand
+   * - usenglish
+   * - ukenglish
+   * - en
+   * - eng
+   * - en-au
+   * - en-bz
+   * - en-ca
+   * - en-cb
+   * - en-gb
+   * - en-ie
+   * - en-jm
+   * - en-nz
+   * - en-ph
+   * - en-tt
+   * - en-us
+   * - en-za
+   * - en-zw
+   *
+   * If you pass an empty array, or `false`, no sentence casing will be applied (even when there's no language field).
+   */
+  sentenceCase?: string[] | boolean
+
+  /**
+   * If you have sentence-casing on, you can independently choose whether quoted titles within a title are preserved as-is (true) or also sentence-cased(false)
+   */
+  sentenceCasePreserveQuoted?: boolean
+
+  /**
+   * Some bibtex has titles in sentence case, or all-uppercase. If this is on, and there is a field that would normally have sentence-casing applied in which more words are all-`X`case
+   * (where `X` is either lower or upper) than mixed-case, it is assumed that you want them this way, and no sentence-casing will be applied to that field
+   */
+  guessAlreadySentenceCased?: boolean
+
+  /**
+   * translate braced parts of text into a case-protected counterpart; uses the [[MarkupMapping]] table in `markup`. Default == true == as-needed.
+   * In as-needed mode the parser will assume that words that have capitals in them imply "nocase" behavior in the consuming application. If you don't want this, turn this option on, and you'll get
+   * case protection exactly as the input has it
+   */
+  caseProtection?: 'as-needed' | 'strict' | boolean
+
+  /**
+   * By default, when a TeX command is encountered which the parser does not know about, the parser will throw an error. You can pass a function here to return the appropriate text output for the command.
+   */
+  unsupported?: 'ignore' | unsupportedHandler
+
+  /**
+   * Some fields such as `url` are parsed in what is called "verbatim mode" where pretty much everything except braces is treated as regular text, not TeX commands. You can change the default list here if you want,
+   * for example to help parse Mendeley `file` fields, which against spec are not in verbatim mode.
+   */
+  verbatimFields?: (string | RegExp)[]
+
+  /**
+   * In the past many bibtex entries would just always wrap a field in double braces, likely because whomever was writing them couldn't figure out the case meddling rules (and who could
+   * blame them). Fields listed here will either have one outer layer of braces treated as case-preserve, or have the outer braced be ignored completely, if this is detected.
+   */
+  unnestFields?: string[]
+  unnestMode?: 'preserve' | 'unwrap'
+
+  /**
+   * Some note-like fields may have more rich formatting. If listed here, more HTML conversions will be applied.
+   */
+  htmlFields?: string[]
+
+  /**
+   * If this flag is set entries will be returned without conversion of LaTeX to unicode equivalents.
+   */
+  raw?: boolean
+
+  /**
+   * You can pass in an existing @string dictionary
+   */
+  strings?: Record<string, string> | string
+
+  /**
+   * BibTeX files may have abbreviations in the journal field. If you provide a dictionary, journal names that are found in the dictionary are replaced with the attached full name
+   */
+  unabbreviate?: Record<string, string>
+
+  /**
+   * Apply crossref inheritance
+   */
+  applyCrossRef?: boolean
+}
 
 interface Creator {
   name?: string
@@ -184,7 +311,23 @@ for (const m of combining.macros) {
   narguments[m] = 1
 }
 
-const Splitter = new class {
+type unsupportedHandler = (node: Node, tex?: string, entry?: Entry) => string | undefined
+
+type Context = {
+  mode: ParseMode
+  caseProtected?: boolean
+}
+
+async function* asyncGenerator<T>(array: T[]): AsyncGenerator<T, void, unknown> {
+  for (const item of array) {
+    yield await Promise.resolve(item)
+  }
+}
+
+class BibTeXParser {
+  private fallback: unsupportedHandler
+  private current: Entry
+
   private splitter(nodes: Node[], splitter: RegExp): boolean {
     // eslint-disable-next-line no-magic-numbers
     const types = nodes.slice(0, 3).map(n => n.type === 'string' && n.content.match(splitter) ? 'splitter' : n.type).join(',')
@@ -194,7 +337,7 @@ const Splitter = new class {
     return true
   }
 
-  split(ast: Group | Root, splitter: string | RegExp): Root[] {
+  private split(ast: Group | Root, splitter: string | RegExp): Root[] {
     const parts: Root[] = [ { type: 'root', content: [] } ]
     let part = 0
 
@@ -222,126 +365,118 @@ const Splitter = new class {
     }
     return parts
   }
-}
 
-function parseCreator(ast: Root, unsupported?: unsupportedHandler): Creator {
-  if (ast.content.length === 1 && ast.content[0].type === 'group') return { name: Stringifier.stringify(ast, { unsupported, mode: 'creator' }) }
+  private parseCreator(ast: Root): Creator {
+    if (ast.content.length === 1 && ast.content[0].type === 'group') return { name: this.stringify(ast, { mode: 'creator' }) }
 
-  if (ast.content.find(node => node.type === 'string' && node.content === ',')) {
-    const nameparts: string[][] = Splitter.split(ast, ',')
-      .map((part: Node) => Stringifier.stringify(part, { unsupported, mode: 'creator' }))
-      // eslint-disable-next-line no-magic-numbers
-      .map((part: string) => part.match(/^([^=]+)=(.*)/)?.slice(1, 3) || ['', part])
-
-    if (!nameparts.find(p => p[0])) {
-      let [lastName, suffix, firstName] = nameparts.length === 2
-        ? [nameparts[0][1], undefined, nameparts[1][1]]
-        // > 3 nameparts are invalid and are dropped
+    if (ast.content.find(node => node.type === 'string' && node.content === ',')) {
+      const nameparts: string[][] = this.split(ast, ',')
+        .map((part: Node) => this.stringify(part, { mode: 'creator' }))
         // eslint-disable-next-line no-magic-numbers
-        : nameparts.slice(0, 3).map(p => p[1])
-      let prefix
-      const m = lastName.match(/^([a-z'. ]+) (.+)/)
-      if (m) {
-        prefix = m[1]
-        lastName = m[2]
+        .map((part: string) => part.match(/^([^=]+)=(.*)/)?.slice(1, 3) || ['', part])
+
+      if (!nameparts.find(p => p[0])) {
+        let [lastName, suffix, firstName] = nameparts.length === 2
+          ? [nameparts[0][1], undefined, nameparts[1][1]]
+          // > 3 nameparts are invalid and are dropped
+          // eslint-disable-next-line no-magic-numbers
+          : nameparts.slice(0, 3).map(p => p[1])
+        let prefix
+        const m = lastName.match(/^([a-z'. ]+) (.+)/)
+        if (m) {
+          prefix = m[1]
+          lastName = m[2]
+        }
+        return {
+          lastName,
+          firstName,
+          ...(typeof prefix === 'undefined' ? {} : { prefix }),
+          ...(typeof suffix === 'undefined' ? {} : { suffix }),
+        }
       }
-      return {
-        lastName,
-        firstName,
-        ...(typeof prefix === 'undefined' ? {} : { prefix }),
-        ...(typeof suffix === 'undefined' ? {} : { suffix }),
+
+      const name: Creator = {}
+      for (let [attr, value] of nameparts) {
+        attr = attr.toLowerCase()
+        switch (attr) {
+          case '':
+            break
+
+          case 'given-i':
+            name.initial = value
+            break
+
+          case 'useprefix':
+          case 'juniorcomma':
+            name[attr] = value.toLowerCase() === 'true'
+            break
+
+          default:
+            name[attr] = value
+            break
+        }
       }
+      return name
+    }
+    else {
+      const nameparts = this.split(ast, ' ').map(part => this.stringify(part, { mode: 'creator' })).filter(n => n)
+      if (nameparts.length === 1) return { name: nameparts[0] }
+      const prefix = nameparts.findIndex(n => n.match(/^[a-z]/))
+      if (prefix > 0) return { firstName: nameparts.slice(0, prefix).join(' '), lastName: nameparts.slice(prefix).join(' ') }
+      return { lastName: nameparts.pop(), firstName: nameparts.join(' ') }
+    }
+  }
+
+  private ligature(nodes: Node[]): StringNode {
+    const max = 3
+    const type = nodes.slice(0, max).map(n => n.type === 'string' ? 's' : ' ').join('')
+    if (type[0] !== 's') return null
+
+    const content = nodes.slice(0, max).map(n => n.type === 'string' ? n.content : '')
+    let latex: string
+
+    while (content.length) {
+      if (type.startsWith('s'.repeat(content.length)) && (latex = latex2unicode[content.join('')])) {
+        try {
+          return { type: 'string', content: latex }
+        }
+        finally {
+          nodes.splice(0, content.length)
+        }
+      }
+      content.pop()
     }
 
-    const name: Creator = {}
-    for (let [attr, value] of nameparts) {
-      attr = attr.toLowerCase()
-      switch (attr) {
-        case '':
-          break
+    return null
+  }
 
-        case 'given-i':
-          name.initial = value
-          break
-
-        case 'useprefix':
-        case 'juniorcomma':
-          name[attr] = value.toLowerCase() === 'true'
-          break
-
-        default:
-          name[attr] = value
-          break
-      }
+  private wraparg(node) : Argument {
+    return { type: 'argument', content: [ node ], openMark: '', closeMark: '' }
+  }
+  private argtogroup(node: Argument): Group {
+    if (node.content.length === 1 && node.content[0].type === 'group') return node.content[0]
+    return { type: 'group', content: node.content }
+  }
+  private argument(nodes: Node[]): Argument {
+    if (!nodes.length) return null
+    if (nodes[0].type === 'whitespace') nodes.shift()
+    if (!nodes.length) return null
+    if (nodes[0].type === 'string') {
+      const char = nodes[0].content[0]
+      nodes[0].content = nodes[0].content.substr(1)
+      if (!nodes[0].content) nodes.shift()
+      return this.wraparg({ type: 'string', content: char })
     }
-    return name
-  }
-  else {
-    const nameparts = Splitter.split(ast, ' ').map(part => Stringifier.stringify(part, { unsupported, mode: 'creator' })).filter(n => n)
-    if (nameparts.length === 1) return { name: nameparts[0] }
-    const prefix = nameparts.findIndex(n => n.match(/^[a-z]/))
-    if (prefix > 0) return { firstName: nameparts.slice(0, prefix).join(' '), lastName: nameparts.slice(prefix).join(' ') }
-    return { lastName: nameparts.pop(), firstName: nameparts.join(' ') }
-  }
-}
-
-function ligature(nodes: Node[]): StringNode {
-  const max = 3
-  const type = nodes.slice(0, max).map(n => n.type === 'string' ? 's' : ' ').join('')
-  if (type[0] !== 's') return null
-
-  const content = nodes.slice(0, max).map(n => n.type === 'string' ? n.content : '')
-  let latex: string
-
-  while (content.length) {
-    if (type.startsWith('s'.repeat(content.length)) && (latex = latex2unicode[content.join('')])) {
-      try {
-        return { type: 'string', content: latex }
-      }
-      finally {
-        nodes.splice(0, content.length)
-      }
-    }
-    content.pop()
+    return this.wraparg(nodes.shift())
   }
 
-  return null
-}
-
-function wraparg(node) : Argument {
-  return { type: 'argument', content: [ node ], openMark: '', closeMark: '' }
-}
-function argtogroup(node: Argument): Group {
-  if (node.content.length === 1 && node.content[0].type === 'group') return node.content[0]
-  return { type: 'group', content: node.content }
-}
-function argument(nodes: Node[]): Argument {
-  if (!nodes.length) return null
-  if (nodes[0].type === 'whitespace') nodes.shift()
-  if (!nodes.length) return null
-  if (nodes[0].type === 'string') {
-    const char = nodes[0].content[0]
-    nodes[0].content = nodes[0].content.substr(1)
-    if (!nodes[0].content) nodes.shift()
-    return wraparg({ type: 'string', content: char })
-  }
-  return wraparg(nodes.shift())
-}
-
-type unsupportedHandler = (node: Node, tex: string) => string | undefined
-
-type StringifierContext = {
-  mode: ParseMode
-  caseProtected?: boolean
-  unsupported?: unsupportedHandler
-}
-const Stringifier = new class {
+  // stringifier
   private tags = {
     enquote: { open: '\u201c', close: '\u201d' },
   }
 
-  private unsupported(node: Node, context: StringifierContext): string {
-    if (context.unsupported) return context.unsupported(node, printRaw(node)) ?? ''
+  private unsupported(node: Node): string {
+    if (this.fallback) return this.fallback(node, printRaw(node), this.current) ?? ''
 
     switch (node.type) {
       case 'macro':
@@ -361,7 +496,7 @@ const Stringifier = new class {
     return `${open}${text}${close}`
   }
 
-  private macro(node: Macro, context: StringifierContext): string {
+  private macro(node: Macro, context: Context): string {
     const text = latex2unicode[printRaw(node)]
     if (text) return text
 
@@ -453,11 +588,11 @@ const Stringifier = new class {
         return this.wrap(this.stringify(node.args?.[0], context), 'nc', context.mode === 'title')
 
       default:
-        return this.unsupported(node, context)
+        return this.unsupported(node)
     }
   }
 
-  private environment(node: Environment, context: StringifierContext) {
+  private environment(node: Environment, context: Context) {
     switch (node.env) {
       case 'quotation':
         return this.wrap(node.content.map(n => this.stringify(n, context)).join(''), 'blockquote', context.mode === 'html')
@@ -469,11 +604,11 @@ const Stringifier = new class {
         return this.wrap(node.content.map(n => this.stringify(n, context)).join(''), 'i', context.mode === 'html')
 
       default:
-        return this.unsupported(node, context)
+        return this.unsupported(node)
     }
   }
 
-  stringify(node: Node | Argument, context: StringifierContext): string {
+  stringify(node: Node | Argument, context: Context): string {
     if (!node) return ''
 
     switch (node.type) {
@@ -512,354 +647,239 @@ const Stringifier = new class {
         return node.content
 
       default:
-        return this.unsupported(node, context)
-    }
-  }
-}
-
-function convert(entry: Entry, field: string, value: string, unsupported: unsupportedHandler) {
-  let mode: ParseMode = 'literal'
-  for (const [selected, fields] of Object.entries(FieldMode)) {
-    if (fields.find(match => typeof match === 'string' ? field === match : field.match(match))) mode = selected as ParseMode
-  }
-
-  if (mode === 'verbatim') {
-    entry.fields[field] = value
-    return
-  }
-
-  const ast: Root = LatexPegParser.parse(value)
-  if (FieldAction.unnest.includes(field) && ast.content.length === 1 && ast.content[0].type === 'group') {
-    ast.content = ast.content[0].content
-  }
-
-  for (const node of ast.content) {
-    delete node.position
-    // only root groups offer case protecten -- but it may be as an macro arg, so mark here before gobbling
-    if (node.type === 'inlinemath' || (node.type === 'group' && node.content[0]?.type !== 'macro')) {
-      node._renderInfo = { protectCase: true }
+        return this.unsupported(node)
     }
   }
 
-  // pass 1 -- mark & normalize
-  visit(ast, (nodes, _info) => { // eslint-disable-line @typescript-eslint/no-unsafe-argument
-    if (!Array.isArray(nodes)) {
-      if (!nodes._renderInfo) nodes._renderInfo = {}
+  private field(entry: Entry, field: string, value: string) {
+    let mode: ParseMode = 'literal'
+    for (const [selected, fields] of Object.entries(FieldMode)) {
+      if (fields.find(match => typeof match === 'string' ? field === match : field.match(match))) mode = selected as ParseMode
+    }
 
-      if (nodes.type === 'macro' && typeof nodes.escapeToken !== 'string') nodes.escapeToken = '\\'
-
-      // if (info.context.inMathMode || info.context.hasMathModeAncestor) return
+    if (mode === 'verbatim') {
+      entry.fields[field] = value
       return
     }
 
-    let node: Node
-    const compacted: Node[] = []
-    while (nodes.length) {
-      if (node = ligature(nodes)) {
-        compacted.push(node)
-        continue
-      }
-
-      node = nodes.shift()
-      if (node.type === 'macro' && narguments[node.content]) {
-        node.args = Array(narguments[node.content]).fill(undefined).map(_i => argument(nodes)).filter(arg => arg)
-        if (node.content.match(/^(url|href)$/) && node.args.length) {
-          node.args[0] = wraparg({ type: 'string', content: printRaw(node.args[0].content) })
-        }
-      }
-
-      compacted.push(node)
+    const ast: Root = LatexPegParser.parse(value)
+    if (FieldAction.unnest.includes(field) && ast.content.length === 1 && ast.content[0].type === 'group') {
+      ast.content = ast.content[0].content
     }
 
-    nodes.push(...compacted)
-  }, { includeArrays: true })
-
-  replaceNode(ast, (node, _info) => {
-    if (node.type !== 'macro') return
-
-    if (node.escapeToken && combining.tounicode[node.content]) {
-      let arg: Node
-      // no args, args of zero length, or first arg has no content
-      if (!node.args || node.args.length === 0 || node.args[0].content.length === 0) {
-        arg = { type: 'string', content: ' ' }
+    for (const node of ast.content) {
+      delete node.position
+      // only root groups offer case protecten -- but it may be as an macro arg, so mark here before gobbling
+      if (node.type === 'inlinemath' || (node.type === 'group' && node.content[0]?.type !== 'macro')) {
+        node._renderInfo = { protectCase: true }
       }
-      else if (node.args.length !== 1 || node.args[0].content.length !== 1) {
+    }
+
+    // pass 1 -- mark & normalize
+    visit(ast, (nodes, _info) => { // eslint-disable-line @typescript-eslint/no-unsafe-argument
+      if (!Array.isArray(nodes)) {
+        if (!nodes._renderInfo) nodes._renderInfo = {}
+
+        if (nodes.type === 'macro' && typeof nodes.escapeToken !== 'string') nodes.escapeToken = '\\'
+
+        // if (info.context.inMathMode || info.context.hasMathModeAncestor) return
         return
       }
-      else {
-        arg = node.args[0].content[0]
+
+      let node: Node
+      const compacted: Node[] = []
+      while (nodes.length) {
+        if (node = this.ligature(nodes)) {
+          compacted.push(node)
+          continue
+        }
+
+        node = nodes.shift()
+        if (node.type === 'macro' && narguments[node.content]) {
+          node.args = Array(narguments[node.content]).fill(undefined).map(_i => this.argument(nodes)).filter(arg => arg)
+          if (node.content.match(/^(url|href)$/) && node.args.length) {
+            node.args[0] = this.wraparg({ type: 'string', content: printRaw(node.args[0].content) })
+          }
+        }
+
+        compacted.push(node)
       }
 
-      if (arg.type === 'group') {
-        switch (arg.content.length) {
-          case 0:
-            arg = { type: 'string', content: ' ' }
-            break
-          case 1:
-            arg = arg.content[0]
-            break
+      nodes.push(...compacted)
+    }, { includeArrays: true })
+
+    replaceNode(ast, (node, _info) => {
+      if (node.type !== 'macro') return
+
+      if (node.escapeToken && combining.tounicode[node.content]) {
+        let arg: Node
+        // no args, args of zero length, or first arg has no content
+        if (!node.args || node.args.length === 0 || node.args[0].content.length === 0) {
+          arg = { type: 'string', content: ' ' }
+        }
+        else if (node.args.length !== 1 || node.args[0].content.length !== 1) {
+          return
+        }
+        else {
+          arg = node.args[0].content[0]
+        }
+
+        if (arg.type === 'group') {
+          switch (arg.content.length) {
+            case 0:
+              arg = { type: 'string', content: ' ' }
+              break
+            case 1:
+              arg = arg.content[0]
+              break
+            default:
+              return
+          }
+        }
+
+        switch (arg.type) {
+          case 'verbatim':
+          case 'string':
+            return { type: 'string', content: `${arg.content}${combining.tounicode[node.content]}` }
           default:
             return
         }
       }
 
-      switch (arg.type) {
-        case 'verbatim':
-        case 'string':
-          return { type: 'string', content: `${arg.content}${combining.tounicode[node.content]}` }
-        default:
-          return
+      let latex = `${node.escapeToken}${node.content}`
+      latex += (node.args || []).map(arg => printRaw(this.argtogroup(arg))).join('')
+      if (latex in latex2unicode) return { type: 'string', content: latex2unicode[latex] }
+      // return null to delete
+    })
+
+    switch (mode) {
+      case 'creator':
+        entry.fields[field] = this.split(ast, /^and$/i).map(cr => this.parseCreator(cr))
+        break
+      case 'commalist':
+        entry.fields[field] = this.split(ast, /^[;,]$/).map(elt => this.stringify(elt, { mode: 'literal'}))
+        break
+      case 'literallist':
+        entry.fields[field] = this.split(ast, /^and$/i).map(elt => this.stringify(elt, { mode: 'literal'}))
+        break
+      default:
+        entry.fields[field] = this.stringify(ast, { mode })
+        if (FieldAction.unabbrev.includes(field)) entry.fields[field] = unabbreviate[entry.fields[field] as string] || entry.fields[field]
+        if ((entry.fields[field] as string).match(/^[0-9]+$/)) entry.fields[field] = parseInt(entry.fields[field] as string)
+        break
+    }
+  }
+
+  private applyCrossrefField(parent: Entry, parentfield: string, child: Entry, childfield: string) {
+    if (child.fields[childfield] || !parent.fields[parentfield]) return false
+
+    const register = (arr: string[], elt: string) => [...(new Set([...arr, elt]))].sort()
+
+    child.fields[childfield] = parent.fields[parentfield]
+
+    child.crossref.inherited = register(child.crossref.inherited, childfield)
+    parent.crossref.donated = register(parent.crossref.donated, parentfield)
+
+    return true
+  }
+
+  private applyCrossref(entry: Entry, entries: Entry[]) {
+    entry.crossref = entry.crossref || { donated: [], inherited: [] }
+    if (!entry.fields.crossref) return
+
+    const parent = entries.find(p => p.key === entry.fields.crossref)
+
+    // first apply crossref on parent, because inheritance can chain
+    this.applyCrossref(parent, entries)
+
+    let applied = false
+    for (const mappings of [crossref[entry.type], crossref['*']].filter(m => m)) {
+      for (const mapping of [mappings[parent.type], mappings['*']].filter(m => m)) {
+        for (const [target, source] of Object.entries(mapping as Record<string, string>)) {
+          if (this.applyCrossrefField(parent, source, entry, target)) applied = true
+        }
+
+        for (const field of (allowed[entry.type] || []) as string[]) {
+          if (this.applyCrossrefField(parent, field, entry, field)) applied = true
+        }
       }
     }
 
-    let latex = `${node.escapeToken}${node.content}`
-    latex += (node.args || []).map(arg => printRaw(argtogroup(arg))).join('')
-    if (latex in latex2unicode) return { type: 'string', content: latex2unicode[latex] }
-    // return null to delete
-  })
-
-  switch (mode) {
-    case 'creator':
-      entry.fields[field] = Splitter.split(ast, /^and$/i).map(cr => parseCreator(cr, unsupported))
-      break
-    case 'commalist':
-      entry.fields[field] = Splitter.split(ast, /^[;,]$/).map(elt => Stringifier.stringify(elt, { unsupported, mode: 'literal'}))
-      break
-    case 'literallist':
-      entry.fields[field] = Splitter.split(ast, /^and$/i).map(elt => Stringifier.stringify(elt, { unsupported, mode: 'literal'}))
-      break
-    default:
-      entry.fields[field] = Stringifier.stringify(ast, { unsupported, mode })
-      if (FieldAction.unabbrev.includes(field)) entry.fields[field] = unabbreviate[entry.fields[field] as string] || entry.fields[field]
-      if ((entry.fields[field] as string).match(/^[0-9]+$/)) entry.fields[field] = parseInt(entry.fields[field] as string)
-      break
+    // prevent loops
+    if (applied) delete entry.fields.crossref
   }
-}
 
-// ----------------------------------------------------------
+  private empty(options: ParserOptions = {}): Bibliography {
+    this.fallback = options.unsupported === 'ignore' ? ((_node: Node, _tex: string): string => '') : options.unsupported
 
-export interface Bibliography {
-  /**
-   * errors found while parsing
-   */
-  errors: bibtex.ParseError[]
+    return {
+      errors: [],
+      entries: [],
+      comments: [],
+      strings: {},
+      preamble: [],
+      jabref: null,
+    }
+  }
 
-  /**
-   * entries in the order in which they are found, omitting those which could not be parsed.
-   */
-  entries: Entry[]
-
-  /**
-   * `@comment`s found in the bibtex file.
-   */
-  comments: string[]
-
-  /**
-   * `@string`s found in the bibtex file.
-   */
-  strings: Record<string, string>
-
-  /**
-   * `@preamble` declarations found in the bibtex file
-   */
-  preamble: string[]
-
-  /**
-   * jabref metadata (such as groups information) found in the bibtex file
-   */
-  jabref: JabRef.JabRefMetadata
-}
-
-export interface ParserOptions {
-  /**
-   * BibTeX files are expected to store title-type fields in Sentence Case, where other reference managers (such as Zotero) expect them to be stored as Sentence case. When there is no language field, or the language field
-   * is one of the languages (case insensitive) passed in this option, the parser will attempt to sentence-case title-type fields as they are being parsed. This uses heuristics and does not employ any kind of natural
-   * language processing, so you should always inspect the results. Default languages to sentenceCase are:
-   *
-   * - american
-   * - british
-   * - canadian
-   * - english
-   * - australian
-   * - newzealand
-   * - usenglish
-   * - ukenglish
-   * - en
-   * - eng
-   * - en-au
-   * - en-bz
-   * - en-ca
-   * - en-cb
-   * - en-gb
-   * - en-ie
-   * - en-jm
-   * - en-nz
-   * - en-ph
-   * - en-tt
-   * - en-us
-   * - en-za
-   * - en-zw
-   *
-   * If you pass an empty array, or `false`, no sentence casing will be applied (even when there's no language field).
-   */
-  sentenceCase?: string[] | boolean
-
-  /**
-   * If you have sentence-casing on, you can independently choose whether quoted titles within a title are preserved as-is (true) or also sentence-cased(false)
-   */
-  sentenceCasePreserveQuoted?: boolean
-
-  /**
-   * Some bibtex has titles in sentence case, or all-uppercase. If this is on, and there is a field that would normally have sentence-casing applied in which more words are all-`X`case
-   * (where `X` is either lower or upper) than mixed-case, it is assumed that you want them this way, and no sentence-casing will be applied to that field
-   */
-  guessAlreadySentenceCased?: boolean
-
-  /**
-   * translate braced parts of text into a case-protected counterpart; uses the [[MarkupMapping]] table in `markup`. Default == true == as-needed.
-   * In as-needed mode the parser will assume that words that have capitals in them imply "nocase" behavior in the consuming application. If you don't want this, turn this option on, and you'll get
-   * case protection exactly as the input has it
-   */
-  caseProtection?: 'as-needed' | 'strict' | boolean
-
-  /**
-   * By default, when a TeX command is encountered which the parser does not know about, the parser will throw an error. You can pass a function here to return the appropriate text output for the command.
-   */
-  unsupported?: 'ignore' | unsupportedHandler
-
-  /**
-   * Some fields such as `url` are parsed in what is called "verbatim mode" where pretty much everything except braces is treated as regular text, not TeX commands. You can change the default list here if you want,
-   * for example to help parse Mendeley `file` fields, which against spec are not in verbatim mode.
-   */
-  verbatimFields?: (string | RegExp)[]
-
-  /**
-   * In the past many bibtex entries would just always wrap a field in double braces, likely because whomever was writing them couldn't figure out the case meddling rules (and who could
-   * blame them). Fields listed here will either have one outer layer of braces treated as case-preserve, or have the outer braced be ignored completely, if this is detected.
-   */
-  unnestFields?: string[]
-  unnestMode?: 'preserve' | 'unwrap'
-
-  /**
-   * Some note-like fields may have more rich formatting. If listed here, more HTML conversions will be applied.
-   */
-  htmlFields?: string[]
-
-  /**
-   * If this flag is set entries will be returned without conversion of LaTeX to unicode equivalents.
-   */
-  raw?: boolean
-
-  /**
-   * You can pass in an existing @string dictionary
-   */
-  strings?: Record<string, string> | string
-
-  /**
-   * BibTeX files may have abbreviations in the journal field. If you provide a dictionary, journal names that are found in the dictionary are replaced with the attached full name
-   */
-  unabbreviate?: Record<string, string>
-
-  /**
-   * Apply crossref inheritance
-   */
-  applyCrossRef?: boolean
-}
-
-function applyCrossrefField(parent: Entry, parentfield: string, child: Entry, childfield: string) {
-  if (child.fields[childfield] || !parent.fields[parentfield]) return false
-
-  const register = (arr: string[], elt: string) => [...(new Set([...arr, elt]))].sort()
-
-  child.fields[childfield] = parent.fields[parentfield]
-
-  child.crossref.inherited = register(child.crossref.inherited, childfield)
-  parent.crossref.donated = register(parent.crossref.donated, parentfield)
-
-  return true
-}
-
-function applyCrossref(entry: Entry, entries: Entry[]) {
-  entry.crossref = entry.crossref || { donated: [], inherited: [] }
-  if (!entry.fields.crossref) return
-
-  const parent = entries.find(p => p.key === entry.fields.crossref)
-
-  // first apply crossref on parent, because inheritance can chain
-  applyCrossref(parent, entries)
-
-  let applied = false
-  for (const mappings of [crossref[entry.type], crossref['*']].filter(m => m)) {
-    for (const mapping of [mappings[parent.type], mappings['*']].filter(m => m)) {
-      for (const [target, source] of Object.entries(mapping as Record<string, string>)) {
-        if (applyCrossrefField(parent, source, entry, target)) applied = true
+  private reparse(bib: Bibliography, entry: bibtex.Entry) {
+    this.current = entry
+    try {
+      for (const [field, value] of Object.entries(entry.fields)) {
+        this.field(entry, field, value)
       }
+      bib.entries.push(entry as Entry)
+    }
+    catch (err) {
+      bib.errors.push({ error: `${err.message}\n${entry.input}`, input: entry.input })
+    }
+  }
 
-      for (const field of (allowed[entry.type] || []) as string[]) {
-        if (applyCrossrefField(parent, field, entry, field)) applied = true
+  private finalize(bib: Bibliography, base: bibtex.Bibliography, options) {
+    if (options.applyCrossRef ?? true) {
+      for (const entry of bib.entries) {
+        this.applyCrossref(entry, bib.entries)
       }
     }
-  }
 
-  // prevent loops
-  if (applied) delete entry.fields.crossref
-}
-
-/**
- * parse bibtex. This will try to convert TeX commands into unicode equivalents, and apply `@string` expansion
- */
-export function parse(input: string, options: ParserOptions = {}): Bibliography {
-  const unsupported: unsupportedHandler = options.unsupported === 'ignore' ? ((_node: Node, _tex: string): string => '') : options.unsupported
-
-  const base = bibtex.parse(input)
-  const bib: Bibliography = {
-    errors: base.errors,
-    entries: [],
-    comments: [],
-    strings: {},
-    preamble: base.preambles,
-    jabref: null,
-  }
-  for (const entry of base.entries) {
-    for (const [field, value] of Object.entries(entry.fields)) {
-      convert(entry, field, value, unsupported)
+    const s: Entry = { key: '', type: '', fields: {} }
+    for (const [k, v] of Object.entries(base.strings)) {
+      this.field(s, 'string', v)
+      bib.strings[k] = s.fields.string as string
     }
-    bib.entries.push(entry as Entry)
+
+    const { comments, jabref } = JabRef.parse(base.comments)
+    bib.comments = comments
+    bib.jabref = jabref
+
+    bib.preamble = base.preambles
+    bib.errors = [...base.errors, ...bib.errors]
   }
 
-  if (options.applyCrossRef ?? true) {
-    for (const entry of bib.entries) {
-      applyCrossref(entry, bib.entries)
+  public parse(input: string, options: ParserOptions = {}): Bibliography {
+    const bib: Bibliography = this.empty(options)
+
+    const base = bibtex.parse(input)
+
+    for (const entry of base.entries) {
+      this.reparse(bib, entry)
     }
+
+    this.finalize(bib, base, options)
+    return bib
   }
 
-  const s: Entry = { key: '', type: '', fields: {} }
-  for (const [k, v] of Object.entries(base.strings)) {
-    convert(s, 'string', v, unsupported)
-    bib.strings[k] = s.fields.string as string
+  public async parseAsync(input: string, options: ParserOptions = {}): Promise<Bibliography> {
+    const bib: Bibliography = this.empty(options)
+
+    const base = await bibtex.promises.parse(input)
+
+    for await (const entry of asyncGenerator(base.entries)) {
+      this.reparse(bib, entry)
+    }
+
+    this.finalize(bib, base, options)
+    return bib
   }
-
-  const { comments, jabref } = JabRef.parse(base.comments)
-  bib.comments = comments
-  bib.jabref = jabref
-
-  return bib
 }
-
-/*
-export const promises = {
-  async parse(input: string, options: ParserOptions = {}): Promise<Bibliography> { // eslint-disable-line prefer-arrow/prefer-arrow-functions
-    const parser = new Parser(options)
-    return await parser.parseAsync(input)
-  },
-}
-*/
-
-export { bibtex }
-
-// import { globSync as glob } from 'glob'
-// import * as fs from 'node:fs'
-// for (const bibfile of glob('test/better-bibtex/*/*.bib*')) {
-//   const bib = parse(fs.readFileSync(bibfile, 'utf-8')).entries
-//   console.log(JSON.stringify(bib, null, 2))
-// }
+export const Parser = new BibTeXParser
