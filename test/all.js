@@ -18,7 +18,7 @@ function tryparse({ bibfile, options }) {
 
   let result = ''
   if (options.exception) {
-    bibtex.parse(source, {...options, errorHandler: err => { result = `caught error: ${err.message}` } })
+    bibtex.parse(source, {...options, errorHandler: err => { result = err.message } })
   }
   else {
     result = bibtex.parse(source, options)
