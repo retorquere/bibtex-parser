@@ -169,11 +169,11 @@ class BibTeXParser {
     let line = 1
     let column = 1
 
-    for (let i = 0; i < this.linebreaks.length; i++) {
-      if (pos < this.linebreaks.length[i]) break
+    for (const linebreak of this.linebreaks) {
+      if (pos < linebreak) break
 
       line++
-      column = pos - this.linebreaks[i]
+      column = pos - linebreak
     }
 
     return { line, column }
