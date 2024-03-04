@@ -9,7 +9,7 @@ Reads the bibtex input and splits it into separate chunks of `string`<!-- -->s, 
 **Signature:**
 
 ```typescript
-export declare function parse(input: string, options?: ParserOptions): Parser;
+export declare function parse(input: string, options?: ParserOptions): Bibliography;
 ```
 
 ## Parameters
@@ -21,7 +21,7 @@ export declare function parse(input: string, options?: ParserOptions): Parser;
 
 **Returns:**
 
-Parser
+Bibliography
 
 array of chunks, with markers for type and errors (if any) found.
 
