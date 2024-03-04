@@ -338,8 +338,8 @@ class BibTeXParser {
     }
   }
 
-  private key_equals_value() {
-    const key = this.key()
+  private key_equals_value(key?: string) {
+    key = key || this.key()
 
     if (!this.tryMatch('=')) {
       throw new ParsingError(`... = value expected, equals sign missing: ${JSON.stringify(this.input.substr(this.pos, 20))}...`, this) // eslint-disable-line no-magic-numbers
@@ -357,9 +357,15 @@ class BibTeXParser {
   }
 
   private entry(d) {
-    this.entries.unshift({ type: d, key: this.key(), fields: {} })
-    this.match(',')
-    this.key_equals_value()
+    this.entries.unshift({ type: d, key: '', fields: {} })
+
+    let key = this.key()
+    if (this.tryMatch(',')) { // some people seem to think the key is optional...
+      this.match(',')
+      this.entries[0].key = key
+      key = ''
+    }
+    this.key_equals_value(key)
     while (this.tryMatch(',')) {
       this.match(',')
       // fixes problems with commas at the end of a list
