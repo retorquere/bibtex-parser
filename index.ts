@@ -1721,6 +1721,7 @@ class Parser {
       this.field.text = this.field.text.replace(/<\/([a-z])><\1>/g, '')
       this.field.text = this.field.text.replace(/<([a-z])>(\s*)<\/\1>/g, '$1')
       this.field.text = this.field.text.replace(/<p>[ \r\n]*(<li>|<\/ol>|<\/ul>)/g, '$1')
+      // this.field.text = this.field.text.replace(/\n*(<\/?blockquote>)\n*/g, '$1')
       if (!this.field.text) continue
 
       // disable sentenceCasing if not an english
