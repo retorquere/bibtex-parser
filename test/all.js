@@ -60,6 +60,7 @@ function normalize(result) {
   result.entries = JSON.parse(JSON.stringify(result.entries), (key, value) => typeof value === 'string' ? value.normalize('NFC') : value)
 
   for (const entry of result.entries) {
+    if (entry.fields.note) entry.fields.note = entry.fields.note.map(note => note.replace(/[\r\n]/g, ''))
     for (const [creator, names] of Object.entries(entry.creators)) {
       entry.fields[creator] = names
     }
