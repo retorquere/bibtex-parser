@@ -506,6 +506,8 @@ class BibTeXParser {
     const text = latex2unicode[printRaw(node)]
     if (text) return text
 
+    let url: Argument
+    let label: Argument
     switch (node.content) {
       case 'LaTeX':
         return 'LaTeX'
@@ -531,7 +533,11 @@ class BibTeXParser {
 
       case 'href':
       case 'url':
-        return `<a href="${this.stringify(node.args?.[0], context)}">${this.stringify(node.args?.[node.content === 'url' ? 0 : 1], context)}</a>`
+        if (node.args) {
+          url = node.args[0]
+          label = node.args[node.content === 'url' ? 0 : 1]
+        }
+        return `<a href="${this.stringify(url, context)}">${this.stringify(label, context)}</a>`
 
       case 'relax':
       case 'aftergroup':
@@ -707,7 +713,9 @@ class BibTeXParser {
         if (node.type === 'macro' && narguments[node.content]) {
           node.args = Array(narguments[node.content]).fill(undefined).map(_i => this.argument(nodes)).filter(arg => arg)
           if (node.content.match(/^(url|href)$/) && node.args.length) {
-            node.args[0] = this.wraparg({ type: 'string', content: printRaw(node.args[0].content) })
+            let url: Node[] = node.args[0].content
+            if (url.length === 1 && url[0].type === 'group') url = url[0].content
+            node.args[0] = this.wraparg({ type: 'string', content: printRaw(url) })
           }
         }
         else if (node.type === 'macro' && node.content.match(/^[a-z]+$/) && nodes[0]?.type === 'whitespace') {
