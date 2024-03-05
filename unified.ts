@@ -599,6 +599,9 @@ class BibTeXParser {
   }
 
   private environment(node: Environment, context: Context) {
+    if (node.content.length && node.content[0].type === 'whitespace') node.content.shift()
+    if (node.content.length && node.content[node.content.length - 1].type === 'whitespace') node.content.pop()
+
     switch (node.env) {
       case 'quotation':
         return this.wrap(node.content.map(n => this.stringify(n, context)).join(''), 'blockquote', context.mode === 'html')
