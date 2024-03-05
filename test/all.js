@@ -61,6 +61,7 @@ function normalize(result) {
 
   // temporary workarounds to match old return format
   for (const entry of result.entries) {
+    // if (entry.fields.note) entry.fields.note = entry.fields.note.replace(/[\r\n]/g, '')
     delete entry.input
     for (let [field, value] of Object.entries(entry.fields)) {
       if (typeof value === 'number') value = `${value}`
