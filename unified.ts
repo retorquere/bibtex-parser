@@ -494,7 +494,7 @@ class BibTeXParser {
     }
   }
 
-  private wrap(text: string, tag, wrap = true): string {
+  private wrap(text: string, tag, wrap=true): string {
     if (!text) return ''
     if (!wrap) return text
     if (!this.tags[tag]) this.tags[tag] = { open: `<${tag}>`, close: `</${tag}>` }
@@ -623,7 +623,7 @@ class BibTeXParser {
     }
   }
 
-  stringify(node: Node | Argument, context: Context): string {
+  private stringify(node: Node | Argument, context: Context): string {
     if (!node) return ''
 
     switch (node.type) {
@@ -636,7 +636,7 @@ class BibTeXParser {
         return this.wrap(
           node.content.map(n => this.stringify(n, {...context, caseProtected: (context.caseProtected || node._renderInfo.protectCase) as boolean})).join(''),
           'nc',
-          (context.mode === 'title') && !context.caseProtected && (node._renderInfo.protectCase as boolean)
+          (context.mode === 'title') && !context.caseProtected && !!node._renderInfo.protectCase
         )
 
       case 'string':
@@ -666,6 +666,13 @@ class BibTeXParser {
     }
   }
 
+  private protect(node) {
+    if (node.type === 'inlinemath') return true
+    if (node.type !== 'group') return false
+    if (!node.content.length) return false
+    return (node.content[0].type !== 'macro')
+  }
+
   private field(entry: Entry, field: string, value: string) {
     let mode: ParseMode = 'literal'
     for (const [selected, fields] of Object.entries(FieldMode)) {
@@ -678,21 +685,20 @@ class BibTeXParser {
     }
 
     const ast: Root = LatexPegParser.parse(value)
+
     if (FieldAction.unnest.includes(field) && ast.content.length === 1 && ast.content[0].type === 'group') {
       ast.content = ast.content[0].content
     }
 
     for (const node of ast.content) {
-      delete node.position
       // only root groups offer case protecten -- but it may be as an macro arg, so mark here before gobbling
-      if (node.type === 'inlinemath' || (node.type === 'group' && node.content[0]?.type !== 'macro')) {
-        node._renderInfo = { protectCase: true }
-      }
+      if (this.protect(node)) node._renderInfo = { protectCase: true }
     }
 
     // pass 1 -- mark & normalize
     visit(ast, (nodes, _info) => { // eslint-disable-line @typescript-eslint/no-unsafe-argument
       if (!Array.isArray(nodes)) {
+        delete nodes.position
         if (!nodes._renderInfo) nodes._renderInfo = {}
 
         if (nodes.type === 'macro' && typeof nodes.escapeToken !== 'string') nodes.escapeToken = '\\'
