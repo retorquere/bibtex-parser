@@ -111,7 +111,7 @@ export interface Options {
    * In the past many bibtex entries would just always wrap a field in double braces, likely because whomever was writing them couldn't figure out the case meddling rules (and who could
    * blame them). Fields listed here will either have one outer layer of braces treated as case-preserve, or have the outer braced be ignored completely, if this is detected.
    */
-  unnest?: string[]
+  removeOuterBraces?: string[]
 
   /**
    * Specify parsing mode for specific fields
@@ -181,6 +181,7 @@ interface Entry {
     donated: string[]
     inherited: string[]
   }
+  sentenceCased?: boolean
 }
 
 export const FieldMode = {
@@ -246,8 +247,36 @@ export const FieldMode = {
 
 type ParseMode = keyof typeof FieldMode | 'literal'
 
+const English = [
+  '',
+  'american',
+  'british',
+  'canadian',
+  'english',
+  'australian',
+  'newzealand',
+  'usenglish',
+  'ukenglish',
+  'en',
+  'eng',
+  'en-au',
+  'en-bz',
+  'en-ca',
+  'en-cb',
+  'en-gb',
+  'en-ie',
+  'en-jm',
+  'en-nz',
+  'en-ph',
+  'en-tt',
+  'en-us',
+  'en-za',
+  'en-zw',
+  'anglais', // don't do this people
+]
+
 const FieldAction = {
-  unnest: [
+  removeOuterBraces: [
     'publisher',
     'location',
   ],
@@ -674,11 +703,15 @@ class BibTeXParser {
     return (node.content[0].type !== 'macro')
   }
 
-  private field(entry: Entry, field: string, value: string) {
+  private mode(field: string): ParseMode {
     let mode: ParseMode = 'literal'
     for (const [selected, fields] of Object.entries(this.fieldMode)) {
       if (fields.find(match => typeof match === 'string' ? field === match : field.match(match))) mode = selected as ParseMode
     }
+    return mode
+  }
+  private field(entry: Entry, field: string, value: string) {
+    const mode: ParseMode = this.mode(field)
 
     if (mode === 'verbatim') {
       entry.fields[field] = value
@@ -687,7 +720,7 @@ class BibTeXParser {
 
     const ast: Root = LatexPegParser.parse(value)
 
-    if (this.options.unnest.includes(field) && ast.content.length === 1 && ast.content[0].type === 'group') {
+    if (this.options.removeOuterBraces.includes(field) && ast.content.length === 1 && ast.content[0].type === 'group') {
       ast.content = ast.content[0].content
     }
 
@@ -839,13 +872,16 @@ class BibTeXParser {
   private empty(options: Options = {}): Bibliography {
     this.options = {
       caseProtection: 'as-needed',
-      unnest: [],
+      removeOuterBraces: [],
+      sentenceCase: English,
       guessAlreadySentenceCased: true,
       applyCrossRef: options.applyCrossRef ?? true,
       fieldMode: {},
 
       ...options,
     }
+    if (typeof this.options.sentenceCase === 'boolean') this.options.sentenceCase = this.options.sentenceCase ? English : []
+    this.options.sentenceCase = this.options.sentenceCase.map(language => language.toLowerCase())
 
     this.fieldMode = Object.entries(FieldMode).reduce((acc: typeof FieldMode, [mode, test]: [string, (RegExp | string)[]]) => {
       const strings = test.filter(fieldname_or_regex => typeof fieldname_or_regex === 'string' && !this.options.fieldMode[fieldname_or_regex])
@@ -857,9 +893,9 @@ class BibTeXParser {
       this.fieldMode[mode].unshift(field)
     }
 
-    if (!this.options.unnest) {
-      this.options.unnest = [
-        ...FieldAction.unnest,
+    if (!this.options.removeOuterBraces) {
+      this.options.removeOuterBraces = [
+        ...FieldAction.removeOuterBraces,
         ...this.fieldMode.title,
         ...this.fieldMode.verbatim,
       ].filter(field => typeof field === 'string') as string[]
@@ -901,6 +937,24 @@ class BibTeXParser {
     for (const [k, v] of Object.entries(base.strings)) {
       this.field(s, 'string', v)
       bib.strings[k] = s.fields.string as string
+    }
+
+    for (const entry of bib.entries) {
+      const languages: string[] = this.options.sentenceCase as string[]
+      const sentenceCase =
+        (entry.fields.langid && languages.includes((entry.fields.langid as string).toLowerCase()))
+        ||
+        (entry.fields.hyphenation && languages.includes((entry.fields.hyphenation as string).toLowerCase()))
+        ||
+        (entry.fields.language && (entry.fields.language as string).toLowerCase().split(/\s*,\s*/).find(language => languages.includes(language)))
+        ||
+        (!entry.fields.langid && !entry.fields.hyphenation && !entry.fields.language && languages.includes(''))
+
+      if (sentenceCase) {
+        for (const [field, value] of Object.entries(entry.fields)) {
+          if (this.mode(field) === 'title') entry.sentenceCased = !!value
+        }
+      }
     }
 
     const { comments, jabref } = JabRef.parse(base.comments)
