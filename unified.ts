@@ -44,7 +44,7 @@ export interface Bibliography {
   jabref: JabRef.JabRefMetadata
 }
 
-export interface ParserOptions {
+export interface Options {
   /**
    * BibTeX files are expected to store title-type fields in Sentence Case, where other reference managers (such as Zotero) expect them to be stored as Sentence case. When there is no language field, or the language field
    * is one of the languages (case insensitive) passed in this option, the parser will attempt to sentence-case title-type fields as they are being parsed. This uses heuristics and does not employ any kind of natural
@@ -111,13 +111,12 @@ export interface ParserOptions {
    * In the past many bibtex entries would just always wrap a field in double braces, likely because whomever was writing them couldn't figure out the case meddling rules (and who could
    * blame them). Fields listed here will either have one outer layer of braces treated as case-preserve, or have the outer braced be ignored completely, if this is detected.
    */
-  unnestFields?: string[]
-  unnestMode?: 'preserve' | 'unwrap'
+  unnest?: string[]
 
   /**
-   * Some note-like fields may have more rich formatting. If listed here, more HTML conversions will be applied.
+   * Specify parsing mode for specific fields
    */
-  htmlFields?: string[]
+  fieldMode?: Record<string, ParseMode>
 
   /**
    * If this flag is set entries will be returned without conversion of LaTeX to unicode equivalents.
@@ -224,7 +223,7 @@ export const FieldMode = {
     /^citeulike-linkout-[0-9]+$/,
     /^bdsk-url-[0-9]+$/,
   ],
-  html: [
+  richtext: [
     'annotation',
     'comment',
     'annote',
@@ -327,6 +326,8 @@ async function* asyncGenerator<T>(array: T[]): AsyncGenerator<T, void, unknown> 
 class BibTeXParser {
   private fallback: unsupportedHandler
   private current: Entry
+  private options: Options
+  private fieldMode: typeof FieldMode
 
   private splitter(nodes: Node[], splitter: RegExp): boolean {
     // eslint-disable-next-line no-magic-numbers
@@ -574,13 +575,13 @@ class BibTeXParser {
         return this.wrap(this.stringify(node.args?.[0], context), 'enquote')
 
       case '\\':
-        return context.mode === 'html' ? '<b>' : ' '
+        return context.mode === 'richtext' ? '<b>' : ' '
 
       case 'par':
-        return context.mode === 'html' ? '<p>' : ' '
+        return context.mode === 'richtext' ? '<p>' : ' '
 
       case 'item':
-        return context.mode === 'html' ? '<li>' : ' '
+        return context.mode === 'richtext' ? '<li>' : ' '
 
       case 'section':
       case 'subsection':
@@ -610,13 +611,13 @@ class BibTeXParser {
 
     switch (node.env) {
       case 'quotation':
-        return this.wrap(node.content.map(n => this.stringify(n, context)).join(''), 'blockquote', context.mode === 'html')
+        return this.wrap(node.content.map(n => this.stringify(n, context)).join(''), 'blockquote', context.mode === 'richtext')
 
       case 'itemize':
-        return this.wrap(node.content.map(n => this.stringify(n, context)).join(''), 'ul', context.mode === 'html')
+        return this.wrap(node.content.map(n => this.stringify(n, context)).join(''), 'ul', context.mode === 'richtext')
 
       case 'em':
-        return this.wrap(node.content.map(n => this.stringify(n, context)).join(''), 'i', context.mode === 'html')
+        return this.wrap(node.content.map(n => this.stringify(n, context)).join(''), 'i', context.mode === 'richtext')
 
       default:
         return this.unsupported(node)
@@ -647,7 +648,7 @@ class BibTeXParser {
         return this.macro(node, context)
 
       case 'parbreak':
-        return context.mode === 'html' ? '<p>' : ' '
+        return context.mode === 'richtext' ? '<p>' : ' '
 
       case 'whitespace':
         return ' '
@@ -675,7 +676,7 @@ class BibTeXParser {
 
   private field(entry: Entry, field: string, value: string) {
     let mode: ParseMode = 'literal'
-    for (const [selected, fields] of Object.entries(FieldMode)) {
+    for (const [selected, fields] of Object.entries(this.fieldMode)) {
       if (fields.find(match => typeof match === 'string' ? field === match : field.match(match))) mode = selected as ParseMode
     }
 
@@ -686,7 +687,7 @@ class BibTeXParser {
 
     const ast: Root = LatexPegParser.parse(value)
 
-    if (FieldAction.unnest.includes(field) && ast.content.length === 1 && ast.content[0].type === 'group') {
+    if (this.options.unnest.includes(field) && ast.content.length === 1 && ast.content[0].type === 'group') {
       ast.content = ast.content[0].content
     }
 
@@ -835,7 +836,35 @@ class BibTeXParser {
     if (applied) delete entry.fields.crossref
   }
 
-  private empty(options: ParserOptions = {}): Bibliography {
+  private empty(options: Options = {}): Bibliography {
+    this.options = {
+      caseProtection: 'as-needed',
+      unnest: [],
+      guessAlreadySentenceCased: true,
+      applyCrossRef: options.applyCrossRef ?? true,
+      fieldMode: {},
+
+      ...options,
+    }
+
+    this.fieldMode = Object.entries(FieldMode).reduce((acc: typeof FieldMode, [mode, test]: [string, (RegExp | string)[]]) => {
+      const strings = test.filter(fieldname_or_regex => typeof fieldname_or_regex === 'string' && !this.options.fieldMode[fieldname_or_regex])
+      const regexes = test.filter(fieldname_or_regex => typeof fieldname_or_regex !== 'string')
+      acc[mode] = [...strings, ...regexes]
+      return acc
+    }, {} as unknown as typeof FieldMode)
+    for (const [field, mode] of Object.entries(this.options.fieldMode)) {
+      this.fieldMode[mode].unshift(field)
+    }
+
+    if (!this.options.unnest) {
+      this.options.unnest = [
+        ...FieldAction.unnest,
+        ...this.fieldMode.title,
+        ...this.fieldMode.verbatim,
+      ].filter(field => typeof field === 'string') as string[]
+    }
+
     this.fallback = options.unsupported === 'ignore' ? ((_node: Node, _tex: string): string => '') : options.unsupported
 
     return {
@@ -861,8 +890,8 @@ class BibTeXParser {
     }
   }
 
-  private finalize(bib: Bibliography, base: bibtex.Bibliography, options) {
-    if (options.applyCrossRef ?? true) {
+  private finalize(bib: Bibliography, base: bibtex.Bibliography) {
+    if (this.options.applyCrossRef) {
       for (const entry of bib.entries) {
         this.applyCrossref(entry, bib.entries)
       }
@@ -882,7 +911,7 @@ class BibTeXParser {
     bib.errors = [...base.errors, ...bib.errors]
   }
 
-  public parse(input: string, options: ParserOptions = {}): Bibliography {
+  public parse(input: string, options: Options = {}): Bibliography {
     const bib: Bibliography = this.empty(options)
 
     const base = bibtex.parse(input)
@@ -891,11 +920,11 @@ class BibTeXParser {
       this.reparse(bib, entry)
     }
 
-    this.finalize(bib, base, options)
+    this.finalize(bib, base)
     return bib
   }
 
-  public async parseAsync(input: string, options: ParserOptions = {}): Promise<Bibliography> {
+  public async parseAsync(input: string, options: Options = {}): Promise<Bibliography> {
     const bib: Bibliography = this.empty(options)
 
     const base = await bibtex.promises.parse(input)
@@ -904,7 +933,7 @@ class BibTeXParser {
       this.reparse(bib, entry)
     }
 
-    this.finalize(bib, base, options)
+    this.finalize(bib, base)
     return bib
   }
 }
