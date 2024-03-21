@@ -4,13 +4,18 @@ import { replaceNode } from '@unified-latex/unified-latex-util-replace'
 import { LatexPegParser } from '@unified-latex/unified-latex-util-pegjs'
 import { visit } from '@unified-latex/unified-latex-util-visit'
 import { printRaw } from '@unified-latex/unified-latex-util-print-raw'
-import { latex2unicode, combining } from 'unicode2latex'
+import { latex2unicode as latex2unicodemap, combining } from 'unicode2latex'
 import * as bibtex from './chunker'
 import * as JabRef from './jabref'
 
 import crossref from './crossref.json'
 import allowed from './fields.json'
 const unabbreviate = require('./unabbrev.json')
+
+function latex2unicode(tex: string, node: Node): string {
+  let text: string
+  return (text = latex2unicodemap[tex]) && ((text as any)[node._renderInfo.mode as string] as string || text)
+}
 
 export interface Bibliography {
   /**
@@ -465,14 +470,15 @@ class BibTeXParser {
 
   private ligature(nodes: Node[]): StringNode {
     const max = 3
-    const type = nodes.slice(0, max).map(n => n.type === 'string' ? 's' : ' ').join('')
+    const slice = nodes.slice(0, max)
+    const type = slice.map(n => n.type === 'string' ? 's' : ' ').join('')
     if (type[0] !== 's') return null
 
-    const content = nodes.slice(0, max).map(n => n.type === 'string' ? n.content : '')
+    const content = slice.map(n => n.type === 'string' ? n.content : '')
     let latex: string
 
     while (content.length) {
-      if (type.startsWith('s'.repeat(content.length)) && (latex = latex2unicode[content.join('')])) {
+      if (type.startsWith('s'.repeat(content.length)) && (latex = latex2unicode(content.join(''), nodes[0]))) {
         try {
           return { type: 'string', content: latex }
         }
@@ -533,7 +539,7 @@ class BibTeXParser {
   }
 
   private macro(node: Macro, context: Context): string {
-    const text = latex2unicode[printRaw(node)]
+    const text = latex2unicode(printRaw(node), node)
     if (text) return text
 
     let url: Argument
@@ -730,10 +736,11 @@ class BibTeXParser {
     }
 
     // pass 1 -- mark & normalize
-    visit(ast, (nodes, _info) => { // eslint-disable-line @typescript-eslint/no-unsafe-argument
+    visit(ast, (nodes, info) => { // eslint-disable-line @typescript-eslint/no-unsafe-argument
       if (!Array.isArray(nodes)) {
         delete nodes.position
         if (!nodes._renderInfo) nodes._renderInfo = {}
+        nodes._renderInfo.mode = info.context.inMathMode ? 'math' : 'text'
 
         if (nodes.type === 'macro' && typeof nodes.escapeToken !== 'string') nodes.escapeToken = '\\'
 
@@ -808,7 +815,7 @@ class BibTeXParser {
 
       let latex = `${node.escapeToken}${node.content}`
       latex += (node.args || []).map(arg => printRaw(this.argtogroup(arg))).join('')
-      if (latex in latex2unicode) return { type: 'string', content: latex2unicode[latex] }
+      if (latex in latex2unicodemap) return { type: 'string', content: latex2unicode(latex, node) }
       // return null to delete
     })
 
