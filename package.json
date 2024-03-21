@@ -6,9 +6,9 @@
   "typings": "./index.d.ts",
   "scripts": {
     "lint": "eslint . --ext .ts --cache --cache-location .eslintcache/",
-    "prestart": "npm run lint && peggy grammar.peggy",
-    "start": "tsc -d",
-    "tsc": "tsc -d",
+    "prestart": "npm run lint",
+    "start": "npm run tsc",
+    "tsc": "peggy grammar.peggy && tsc -d",
     "pretest": "npm start",
     "test": "tap --timeout 0 --disable-coverage --allow-empty-coverage",
     "snap": "npm test --snapshot",
