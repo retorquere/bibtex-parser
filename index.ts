@@ -9,6 +9,12 @@ import allowed from './fields.json'
 export { toSentenceCase } from './sentence-case'
 import { toSentenceCase } from './sentence-case'
 
+function l2u(tex: string): string {
+  const t: string = latex2unicode[tex]
+  if (!t) return ''
+  return ((t as any).text as string) || ((t as any).math as string) || t
+}
+
 type TextRange = { start: number, end: number, description?: string }
 
 type Node =
@@ -1086,13 +1092,13 @@ class Parser {
   private clean_script(node: bibtex.SubscriptCommand | bibtex.SuperscriptCommand) {
     let m, value, singlechar
     // recognize combined forms like \^\circ
-    if (singlechar = latex2unicode[node.source]) return this.text(singlechar)
-    if ((m = node.source.match(/^([\^_])([^{}]+)$/)) && ((singlechar = latex2unicode[`${m[1]}${m[2]}`]) || (singlechar = latex2unicode[`${m[1]}{${m[2]}}`]))) return this.text(singlechar)
-    if ((m = node.source.match(/^([\^_])\{([^{}]+)\}$/)) && ((singlechar = latex2unicode[`${m[1]}${m[2]}`]) || (singlechar = latex2unicode[`${m[1]}{${m[2]}}`]))) return this.text(singlechar)
+    if (singlechar = l2u(node.source)) return this.text(singlechar)
+    if ((m = node.source.match(/^([\^_])([^{}]+)$/)) && ((singlechar = l2u(`${m[1]}${m[2]}`)) || (singlechar = l2u(`${m[1]}{${m[2]}}`)))) return this.text(singlechar)
+    if ((m = node.source.match(/^([\^_])\{([^{}]+)\}$/)) && ((singlechar = l2u(`${m[1]}${m[2]}`)) || (singlechar = l2u(`${m[1]}{${m[2]}}`)))) return this.text(singlechar)
 
     const cmd = node.kind === 'SuperscriptCommand' ? '^' : '_'
 
-    if (typeof node.value === 'string' && (singlechar = latex2unicode[`${cmd}${node.value}`] || latex2unicode[`${cmd}{${node.value}}`])) {
+    if (typeof node.value === 'string' && (singlechar = l2u(`${cmd}${node.value}`) || l2u(`${cmd}{${node.value}}`))) {
       return this.text(singlechar)
     }
 
@@ -1158,6 +1164,7 @@ class Parser {
       || latex2unicode[`{\\${node.mark} ${char}}`]
       || latex2unicode[`{\\${node.mark}${char}}`]
       || latex2unicode[`\\${node.mark} ${char}`]
+    unicode = unicode && ((unicode as any).text || (unicode as any).math || unicode)
 
     if (!unicode && !node.dotless && node.character.length === 1 && combining.tounicode[node.mark]) unicode = node.character + combining.tounicode[node.mark]
     if (!unicode && !this.in_preamble) return this.error(new TeXError(`Unhandled \\${node.mark}{${char}}`, node, this.chunk))
@@ -1166,7 +1173,7 @@ class Parser {
 
   private clean_symbol(node: bibtex.SymbolCommand) {
     if (node.command === '\\') return this.text('\n')
-    return this.text(latex2unicode[`\\${node.command}`] || node.command)
+    return this.text(l2u(`\\${node.command}`) || node.command)
   }
 
   private first_text_block(node: Node): bibtex.Block {
@@ -1197,7 +1204,7 @@ class Parser {
   private clean_command(node: bibtex.RegularCommand): Node {
     let arg, unicode
 
-    if (unicode = latex2unicode[node.source]) return this.text(unicode)
+    if (unicode = l2u(node.source)) return this.text(unicode)
 
     switch (node.command) {
       case 'newcommand':
@@ -1218,7 +1225,7 @@ class Parser {
 
       case 'frac':
         if (arg = this.argument(node, 2)) {
-          if (arg[0].kind === 'Text' && arg[1].kind === 'Text' && (unicode = latex2unicode[`\\frac{${arg[0].value}}{${arg[1].value}}`])) return this.text(unicode)
+          if (arg[0].kind === 'Text' && arg[1].kind === 'Text' && (unicode = l2u(`\\frac{${arg[0].value}}{${arg[1].value}}`))) return this.text(unicode)
 
           return this.clean({
             kind: 'Block',
@@ -1251,7 +1258,7 @@ class Parser {
 
       case 'ElsevierGlyph':
         if (arg = this.argument(node, 'Text')) {
-          if (unicode = latex2unicode[`\\${node.command}{${arg}}`]) return this.text(unicode)
+          if (unicode = l2u(`\\${node.command}{${arg}}`)) return this.text(unicode)
           return this.text(String.fromCharCode(parseInt(arg, 16)))
         }
         break
@@ -1281,13 +1288,13 @@ class Parser {
 
       case 'textsuperscript':
       case 'sp':
-        if ((arg = this.argument(node, 'Text')) && (unicode = latex2unicode[`^{${arg}}`])) return this.text(unicode)
+        if ((arg = this.argument(node, 'Text')) && (unicode = l2u(`^{${arg}}`))) return this.text(unicode)
         if (arg = this.argument(node, 'Block')) return this.clean(arg as Node)
         break
 
       case 'textsubscript':
       case 'sb':
-        if ((arg = this.argument(node, 'Text')) && (unicode = latex2unicode[`_{${arg}}`])) return this.text(unicode)
+        if ((arg = this.argument(node, 'Text')) && (unicode = l2u(`_{${arg}}`))) return this.text(unicode)
         if (arg = this.argument(node, 'Block')) return this.clean(arg as Node)
         break
 
@@ -1311,7 +1318,7 @@ class Parser {
       case 'mbox':
         if (arg = this.argument(node, 'text')) {
           if (node.command === 'mbox' && !arg) return this.text('\u200b')
-          unicode = latex2unicode[`\\${node.command}{${arg}}`]
+          unicode = l2u(`\\${node.command}{${arg}}`)
           return this.text(unicode || (node.command === 'hspace' ? ' ' : arg))
         }
         else if (!node.arguments.required.length) {
@@ -1427,9 +1434,9 @@ class Parser {
           }
         }
 
-        if (unicode = latex2unicode[node.source] || latex2unicode[`${node.source}{}`]) return this.text(unicode)
-        if ((unicode = latex2unicode[`\\${node.command}`] || latex2unicode[`\\${node.command}{}`]) && this.argument(node, 'none')) return this.text(unicode)
-        if ((arg = this.argument(node, 'Text')) && (unicode = latex2unicode[`\\${node.command}{${arg}}`])) return this.text(unicode)
+        if (unicode = l2u(node.source) || l2u(`${node.source}{}`)) return this.text(unicode)
+        if ((unicode = l2u(`\\${node.command}`) || l2u(`\\${node.command}{}`)) && this.argument(node, 'none')) return this.text(unicode)
+        if ((arg = this.argument(node, 'Text')) && (unicode = l2u(`\\${node.command}{${arg}}`))) return this.text(unicode)
         break
     }
 
@@ -1946,7 +1953,7 @@ class Parser {
       const cmd = mode === 'sup' ? '^' : '_'
       let script = ''
       for (const char of chars) {
-        const unicode = latex2unicode[`${cmd}${char}`] || latex2unicode[`${cmd}{${char}}`]
+        const unicode = l2u(`${cmd}${char}`) || l2u(`${cmd}{${char}}`)
         script += unicode ? unicode : `<${mode}>${char}</${mode}>`
       }
       script = script.replace(new RegExp(`</${mode}><${mode}>`, 'g'), '')
