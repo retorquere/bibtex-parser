@@ -478,7 +478,7 @@ class BibTeXParser {
     let latex: string
 
     while (content.length) {
-      if (type.startsWith('s'.repeat(content.length)) && (latex = latex2unicode(content.join(''), nodes[0]))) {
+      if (type.startsWith('s'.repeat(content.length)) && (latex = latex2unicode(content.join(''), slice[0]))) {
         try {
           return { type: 'string', content: latex }
         }
@@ -735,19 +735,18 @@ class BibTeXParser {
       if (this.protect(node)) node._renderInfo = { protectCase: true }
     }
 
-    // pass 1 -- mark & normalize
+    // pass 0 -- register parse mode
     visit(ast, (nodes, info) => { // eslint-disable-line @typescript-eslint/no-unsafe-argument
-      if (!Array.isArray(nodes)) {
-        delete nodes.position
-        if (!nodes._renderInfo) nodes._renderInfo = {}
-        nodes._renderInfo.mode = info.context.inMathMode ? 'math' : 'text'
+      delete nodes.position
+      if (!nodes._renderInfo) nodes._renderInfo = {}
+      nodes._renderInfo.mode = info.context.inMathMode ? 'math' : 'text'
 
-        if (nodes.type === 'macro' && typeof nodes.escapeToken !== 'string') nodes.escapeToken = '\\'
+      // if (info.context.inMathMode || info.context.hasMathModeAncestor) return
+      if (nodes.type === 'macro' && typeof nodes.escapeToken !== 'string') nodes.escapeToken = '\\'
+    })
 
-        // if (info.context.inMathMode || info.context.hasMathModeAncestor) return
-        return
-      }
-
+    // pass 1 -- mark & normalize
+    visit(ast, (nodes, _info) => { // eslint-disable-line @typescript-eslint/no-unsafe-argument
       let node: Node
       const compacted: Node[] = []
       while (nodes.length) {
@@ -773,7 +772,7 @@ class BibTeXParser {
       }
 
       nodes.push(...compacted)
-    }, { includeArrays: true })
+    }, { test: Array.isArray, includeArrays: true })
 
     replaceNode(ast, (node, _info) => {
       if (node.type !== 'macro') return
