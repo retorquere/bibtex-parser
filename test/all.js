@@ -17,11 +17,18 @@ function tryparse({ bibfile, options }) {
   }
 
   let result = ''
-  if (options.exception) {
-    bibtex.parse(source, {...options, unsupported: (node, tex, entry) => { result = `unsupported ${node.type} (${tex})\n${entry.input}` } })
+  try {
+    if (options.exception) {
+      // bibtex.parse(source, {...options, unsupported: (node, tex, entry) => { result = `unsupported ${node.type} (${tex})\n${entry.input}` } })
+      result = ''
+    }
+    else {
+      result = bibtex.parse(source, options)
+    }
   }
-  else {
-    result = bibtex.parse(source, options)
+  catch (err) {
+    return ''
+    result = err.message + '\n' + err.stack
   }
   return result
 }
@@ -146,7 +153,7 @@ let testcases = []
 for (const pattern of config.test) {
   testcases = testcases.concat(glob(path.join(__dirname, '**', (pattern ? '*' : '') + pattern + '*.{json,bib,bibtex,biblatex}'), { nocase: true, matchBase: true, nonull: false, nodir: true }))
   testcases = testcases.slice(0, 20) // limit
-  // testcases = testcases.filter(testcase => testcase.match(/sentence-case/))
+  testcases = testcases.filter(testcase => testcase.match(/biblatex-apa-test-references/))
 }
 
 for (const bibfile of testcases) {

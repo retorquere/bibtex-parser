@@ -15,10 +15,15 @@ import crossref from './crossref.json'
 import allowed from './fields.json'
 const unabbreviate = require('./unabbrev.json')
 
+function latexMode(node: Node | Argument): 'math' | 'text' {
+  if (node.type === 'argument') node = node.content[0]
+  return node._renderInfo.mode as 'math' | 'text'
+}
+
 function latex2unicode(tex: string, node: Node): string {
   const text: string | Record<string, string> = latex2unicodemap[tex]
   if (typeof text === 'string') return text
-  return text && text[<string>node._renderInfo.mode]
+  return text && text[latexMode(node)]
 }
 
 export interface Bibliography {
@@ -219,6 +224,7 @@ export const FieldMode = {
   ],
   title: [
     'title',
+    'subtitle',
     'series',
     'shorttitle',
     'booktitle',
@@ -486,7 +492,7 @@ class BibTeXParser {
   }
 
   private ligature(nodes: Node[]): StringNode {
-    if (nodes[0]._renderInfo.mode !== 'text') return null
+    if (latexMode(nodes[0]) !== 'text') return null
 
     const max = 3
     const slice = nodes.slice(0, max)
@@ -514,6 +520,7 @@ class BibTeXParser {
   private wraparg(node) : Argument {
     return { type: 'argument', content: [ node ], openMark: '', closeMark: '' }
   }
+
   private argtogroup(node: Argument): Group {
     if (node.content.length === 1 && node.content[0].type === 'group') return node.content[0]
     return { type: 'group', content: node.content }
@@ -645,7 +652,7 @@ class BibTeXParser {
         return this.wrap(this.stringify(node.args?.[0], context), 'sub')
 
       case '_':
-        switch (node._renderInfo.mode) {
+        switch (latexMode(node)) {
           case 'math':
             return this.wrap(this.stringify(node.args?.[0], context), 'sub')
           default:
@@ -779,6 +786,7 @@ class BibTeXParser {
 
     return s.replace(/<\/?ncx>/, '')
       .replace(/<nc>(.*?)<\/nc>/g, cancel)
+      .replace(/<\/nc>(\s*)<nc>/g, '$1')
       .replace(/<nc>/g, '<span class="nocase">').replace(/<\/nc>/g, '</span>')
   }
 
@@ -899,13 +907,13 @@ class BibTeXParser {
         break
       default:
         entry.fields[field] = this.stringify(ast, { mode })
-        if (field === 'title') console.log(1, entry.fields[field])
         if (mode === 'title' && sentenceCase && !(this.options.sentenceCase.guess && guessSentenceCased(<string>entry.fields[field]))) {
-          sentenceCased = this.noCase(toSentenceCase(<string>entry.fields[field], { preserveQuoted: this.options.sentenceCase.preserveQuoted, subSentenceCapitalization: this.options.sentenceCase.subSentence }))
-          if (field === 'title') console.log(2, sentenceCased)
+          sentenceCased = this.noCase(toSentenceCase(<string>entry.fields[field], {
+            preserveQuoted: this.options.sentenceCase.preserveQuoted,
+            subSentenceCapitalization: this.options.sentenceCase.subSentence,
+          }))
         }
         entry.fields[field] = this.noCase(<string>entry.fields[field])
-        if (field === 'title') console.log(3, entry.fields[field])
         if (sentenceCased && sentenceCased !== entry.fields[field]) {
           entry.fields[field] = sentenceCased
           entry.sentenceCased = true

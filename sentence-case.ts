@@ -4,27 +4,38 @@ import XRegExp from 'xregexp'
 import nlp from 'compromise/one'
 import { combining } from 'unicode2latex'
 
-type Token = {
+type WordToken = {
+  type: 'word'
+  text: string
+  shape: string
   start: number
   end: number
-  text: string
-  type: string
-  contraction?: boolean
-  shape: string
   sentenceStart?: boolean
   subSentenceStart?: boolean
 }
+type PunctuationToken = {
+  type: 'punctuation'
+  text: string
+  shape: string
+  start: number
+  end: number
+}
+type WhitespaceToken = {
+  type: 'whitespace'
+  text: string
+  shape: string
+}
+type Token = WordToken | PunctuationToken | WhitespaceToken
 
-function gather(tokens: Token[], type?: string): Token {
+function gather(tokens: (WordToken | PunctuationToken)[]): WordToken {
   return {
     start: tokens[0].start,
     end: tokens[tokens.length - 1].end,
     text: tokens.map(c => c.text).join(''),
-    type: type || tokens[0].type,
-    contraction: !!tokens.find(t => t.contraction) || false,
+    type: 'word',
     shape: tokens.map(c => c.shape).join(''),
-    sentenceStart: !!tokens.find(t => t.sentenceStart) || false,
-    subSentenceStart: !!tokens.find(t => t.subSentenceStart) || false,
+    sentenceStart: !!tokens.find(t => t.type === 'word' && t.sentenceStart) || false,
+    subSentenceStart: !!tokens.find(t => t.type === 'word' && t.subSentenceStart) || false,
   }
 }
 
@@ -65,32 +76,18 @@ function wordSC(token: Token, succ: Token, allCaps: boolean, subSentence: boolea
 const markup = /<\/?(?:i|b|sup|sub|ncx?)>/g
 
 function tokentype(token: Token): string {
-  if (token.contraction) return 'c'
+  if (token.type === 'word' && token.text.match(/^\u2060+$/)) return 'm'
   if (token.type === 'word') return 'w'
-  if (token.type === 'unk' && token.text.match(/^\u2060+$/)) return 'm'
   if (token.shape === '-') return '-'
   return ' '
 }
 
-const reshapeRE = new RegExp(`([a-z])(${combining.regex})`, 'ig')
-function reshape(shape: string) {
-  return shape.normalize('NFD').replace(reshapeRE, (match, char) => char.match(/^[a-z]$/i) ? 'x' : match)
-}
-
 const Lu = XRegExp('\\p{Lu}')
 const Ll = XRegExp('\\p{Ll}')
+const strayCC = new RegExp(`^(${combining.regex})`)
 function tokenize(title: string): Token[] {
-for (const term of doc.json({offset:true})[1].terms) {
-  let shape = term.text
-  shape = XRegExp.replaceEach(term.text, [
-    [Lu, 'X', 'all'],
-    [Ll, 'x', 'all'],
-    [/\d/g, 'd'],
-  ])
-  console.log({...term, shape: shape })
-}
 
-  const doc = nlp.readDoc(title.replace(markup, match => '\u2060'.repeat(match.length)))
+  const doc = nlp(title.replace(markup, match => '\u2060'.repeat(match.length)))
 
   const tokens: Token[] = []
   for (const sentence of doc.json({offset:true})) {
@@ -98,50 +95,44 @@ for (const term of doc.json({offset:true})[1].terms) {
     let sentenceStart = true
     let subSentenceStart = false
     for (const term of sentence.terms) {
-      if (
-      const spaces = token.out(nlp.its.precedingSpaces)
-      if (spaces) {
-        words.push({ start: pos, end: pos + spaces.length - 1, text: spaces, type: 'whitespace', contraction: false, shape: spaces })
-        pos += spaces.length
+      const m = term.post.match(strayCC)
+      if (m) {
+        term.text += m[0]
+        term.post = term.post.substring(m[0].length)
+        term.offset.length += m[0].length
       }
-      const text = token.out()
+      if (term.pre.match(/\s/)) words.push({ type: 'whitespace', text: term.pre.replace(/[^\s]/g, ''), shape: term.pre.replace(/[^\s]/g, '') })
 
-      const word ={
-        start: pos,
-        end: pos + text.length - 1,
-        text,
-        type: token.out(nlp.its.type),
-        contraction: token.out(nlp.its.contractionFlag) as unknown as boolean,
-        // https://github.com/winkjs/wink-nlp/issues/134
-        shape: reshape(token.out(nlp.its.shape)),
+      words.push({
+        start: term.offset.start,
+        end: term.offset.start + term.offset.length - 1,
+        text: term.text,
+        type: 'word',
+        shape: XRegExp.replaceEach(<string>term.text, [ [Lu, 'X', 'all'], [Ll, 'x', 'all'], [/\d/g, 'd'] ]),
         sentenceStart,
         subSentenceStart,
-      }
-      words.push(word)
+      })
       sentenceStart = false
-      subSentenceStart = word.type === 'punctuation' && word.shape === ':'
-      pos += text.length
-    })
+      subSentenceStart = term.post.includes(':')
+
+      if (term.post === '-') words.push({ type: 'punctuation', text: term.post, shape: term.post, start: term.offset.start + term.offset.length, end: term.offset.start + term.offset.length + term.post.length - 1 })
+      if (term.post.match(/\s/)) words.push({ type: 'whitespace', text: term.post.replace(/[^\s]/g, ''), shape: term.post.replace(/[^\s]/g, '') })
+    }
     subSentenceStart = true
-    console.log(words)
 
     while (words.length) {
       const type = words.map(tokentype).join('')
       let m: RegExpMatchArray
 
-      if (m = type.match(/^(m?cm?)+/)) {
-        tokens.push(gather(words.splice(0, m[0].length)))
-        continue
-      }
-
       if (m = type.match(/^m?[wc]m?(-m?[wc]m?)+/)) {
-        tokens.push(gather(words.splice(0, m[0].length)))
+        tokens.push(gather(<WordToken[]>words.splice(0, m[0].length)))
         continue
       }
 
-      tokens.push(words.shift())
+      const word = words.shift()
+      if (word.type !== 'whitespace') tokens.push(word)
     }
-  })
+  }
 
   return tokens
 }
@@ -165,7 +156,9 @@ export function toSentenceCase(title: string, options: Options = {}): string {
   const allCaps = title === title.toUpperCase()
 
   tokens.forEach((token, i) => {
-    sentenceCased = sentenceCased.substring(0, token.start) + wordSC(token, tokens[i+1], allCaps, options.subSentenceCapitalization) + sentenceCased.substring(token.end + 1)
+    if (token.type !== 'whitespace') {
+      sentenceCased = sentenceCased.substring(0, token.start) + wordSC(token, tokens[i+1], allCaps, options.subSentenceCapitalization) + sentenceCased.substring(token.end + 1)
+    }
   })
 
   for (const match of title.matchAll(markup)) {
