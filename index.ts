@@ -1811,7 +1811,7 @@ class Parser {
   private convertToSentenceCase(text: string): string {
     if (!this.field.preserveRanges) return text
 
-    const sentenceCased = this.restore(toSentenceCase(text, this.options.sentenceCasePreserveQuoted || false), text, this.field.preserveRanges)
+    const sentenceCased = this.restore(toSentenceCase(text, { preserveQuoted: this.options.sentenceCasePreserveQuoted || false }), text, this.field.preserveRanges)
 
     if (text !== sentenceCased) this.entry.sentenceCased = true
 

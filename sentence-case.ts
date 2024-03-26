@@ -1,102 +1,199 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-import categories = require('xregexp/tools/output/categories')
+/* eslint-disable @typescript-eslint/unbound-method */
 
-const cat = name => categories.find(c => c.name === name).bmp as string
-const L = cat('L')
-const Lu = cat('Lu')
-const Ll = cat('Ll')
-const N = cat('N')
-const No = cat('No')
-const Pc = cat('Pc')
+import XRegExp from 'xregexp'
+import nlp from 'compromise/one'
+import { combining } from 'unicode2latex'
 
-const re = {
-  acronym: new RegExp(`([${Lu}][.])+$`),
-  innerCaps: new RegExp(`.[${Lu}]`),
-  ident: new RegExp(`^[$p{L}]+[${N}${No}][${L}${N}${No}]*$`),
-  allCaps: new RegExp(`^[${Lu}${N}${No}]+$`),
-  skipWords: /^(but|or|yet|so|for|and|nor|a|an|the|at|by|from|in|into|of|on|to|with|updown|as)$/i,
-  // chemElements: /^(H|He|Li|Be|B|C|N|O|F|Ne|Na|Mg|Al|Si|P|S|Cl|Ar|K|Ca|Sc|Ti|V|Cr|Mn|Fe|Co|Ni|Cu|Zn|Ga|Ge|As|Se|Br|Kr|Rb|Sr|Y|Zr|Nb|Mo|Tc|Ru|Rh|Pb|Ag|Cd|In|Sn|Sb|Te|I|Xe|Cs|Ba|La|Hf|Ta|W|Re|Os|Ir|Pt|Au|Hg|Tl|Pb|Bi|Po|At|Rn|Fr|Ra|Ac|Rf|Db|Sg|Bh|Hs|Mt|Ds|Rg|Cn|Nh|Fl|Mc|Lv|Ts|Og|La|Ce|Pr|Nd|Pm|Sm|Eu|Gd|Tb|Dy|Ho|Er|Tm|Yb|Lu|Ac|Th|Pa|U|Np|Pu|Am|Cm|Bk|Cf|Es|Fm|Md|No|Lr)$/,
-  words: new RegExp(`([\uFFFD${L}${N}${No}]+([\uFFFD${Pc}${L}${N}${No}]*))|(\\s([\uFFFD${Lu}]+[.]){2,})?`, 'g'), // compound words and acronyms
-  titleCase: new RegExp(`^[${Lu}][${Ll}${N}${No}]+$`),
-
-  // private aint = XRegExp("^\\p{L}n't(?=$|[\\P{L}])") // isn't
-  // private word = XRegExp('^\\p{L}+([-.]\\p{L}+)*') // also match gallium-nitride as one word
-  // private and = XRegExp('^\\p{Lu}&\\p{Lu}(?=$|[\\P{L}])') // Q&A
-
-  subSentenceStart: new RegExp(`([.?!][\\s]+)(<[^>]+>)?([${Lu}])`, 'g'),
-  sentenceStart: new RegExp(`^(<[^>]+>)?([${Lu}])`, 'g'),
+type Token = {
+  start: number
+  end: number
+  text: string
+  type: string
+  contraction?: boolean
+  shape: string
+  sentenceStart?: boolean
+  subSentenceStart?: boolean
 }
 
-function lowercase(word: string, allcaps): string {
-  if (!word) return word
-
-  if (allcaps) return word.toLowerCase()
-
-  const unmasked = word.replace(/\uFFFD/g, '')
-
-  if (unmasked.match(re.skipWords)) return word.toLowerCase()
-
-  if (unmasked.match(re.titleCase)) return word.toLowerCase()
-
-
-  // if (unmasked.match(re.chemElements)) return word
-
-  if (unmasked.length === 1) return unmasked === 'A' ? word.toLowerCase() : word
-
-  if (unmasked.match(re.innerCaps)) return word
-
-  if (unmasked.match(re.ident) || unmasked.match(re.allCaps)) return word
-
-  return word.toLowerCase()
+function gather(tokens: Token[], type?: string): Token {
+  return {
+    start: tokens[0].start,
+    end: tokens[tokens.length - 1].end,
+    text: tokens.map(c => c.text).join(''),
+    type: type || tokens[0].type,
+    contraction: !!tokens.find(t => t.contraction) || false,
+    shape: tokens.map(c => c.shape).join(''),
+    sentenceStart: !!tokens.find(t => t.sentenceStart) || false,
+    subSentenceStart: !!tokens.find(t => t.subSentenceStart) || false,
+  }
 }
 
-export function toSentenceCase(sentence: string, preserveQuoted=false): string {
-  const allcaps = sentence === sentence.toUpperCase()
+const preposition = {
+  simple: /^(a|about|above|across|after|against|along|among|an|and|around|as|at|before|behind|below|beneath|beside|between|but|by|down|during|for|from|in|inside|into|like|near|nor|of|off|on|onto|or|out|over|so|the|through|to|towards|under|underneath|until|up|upon|with|within|without|yet)$/i,
+  complex: /^((according to)|(ahead of)|(apart from)|(as for)|(as of)|(as per)|(as regards)|(aside from)|(back to)|(because of)|(close to)|(due to)|(except for)|(far from)|(inside of)|(instead of)|(next to)|(outside of)|(owing to)|(prior to)|(pursuant to)|(regardless of)|(right of)|(subsequent to))$/i,
+}
 
-  const preserve: { pos: number, text: string, description?: string }[] = []
+function titleCase(s: string): string {
+  return s.replace(/^(.)(.+)/, (match, car, cdr) => `${car}${cdr.toLowerCase()}`)
+}
 
-  sentence.replace(re.subSentenceStart, (match: string, end: string, markup: string, char: string, i: number) => {
-    if (!sentence.substring(0, i + 1).match(re.acronym)) {
-      preserve.push({ pos: i + end.length + (markup?.length || 0), text: char, description: 'sub-sentence-start' })
-    }
-    return ''
-  })
+function wordSC(token: Token, succ: Token, allCaps: boolean, subSentence: boolean): string {
+  if (token.type !== 'word') return token.text
+  if (subSentence && token.subSentenceStart && token.text.match(/^a$/i)) return 'a'
+  if ((subSentence && token.subSentenceStart) || token.sentenceStart) return allCaps ? titleCase(token.text) : token.text
 
-  sentence.replace(re.sentenceStart, (match: string, markup: string, char: string) => {
-    preserve.push({ pos: (markup?.length || 0), text: char, description: 'sentence-start' })
-    return ''
-  })
+  if (token.text.match(/^[B-Z]$/)) return token.text
 
-  sentence.replace(/<span class="nocase">.*?<\/span>|<nc>.*?<\/nc>/gi, (text: string, pos: number) => {
-    preserve.push({ pos, text, description: 'nocase' })
-    return ''
-  })
+  if (token.text.match(/^I'/)) return titleCase(token.text)
 
-  let masked = sentence.replace(/<[^>]+>/g, (text: string, pos: number) => {
-    preserve.push({ pos, text, description: 'markup' })
-    return '\uFFFD'.repeat(text.length)
-  })
+  if (succ && `${token.text} ${succ.text}`.match(preposition.complex)) {
+    succ.text = succ.text.toLowerCase()
+    return token.text.toLowerCase()
+  }
+  if (token.text.match(preposition.simple)) return token.text.toLowerCase()
 
-  // last because we're potentially modifying the original
-  for (const q of [/(“)(.*?)”/g, /(‘)(.*?)’/g, /(["])(.*?)\1/g]) {
-    sentence.replace(q, (text: string, quote: string, quoted: string, pos: number) => {
-      preserve.push({
-        pos: pos + (preserveQuoted ? 0 : quote.length),
-        text: preserveQuoted ? text : toSentenceCase(quoted, preserveQuoted),
-        description: `quoted with ${q}`,
-      })
-      return ''
+  if (token.shape.match(/^X[xd]*(-X[xd]*)*$/)) return token.text.toLowerCase()
+
+  if (token.text.includes('.')) return token.text
+  if (token.shape.match(/x.*X/)) return token.text
+
+  if (token.shape.match(/^[Xd]+$/)) return allCaps ? token.text.toLowerCase() : token.text
+
+  return token.text.toLowerCase()
+}
+
+const markup = /<\/?(?:i|b|sup|sub|ncx?)>/g
+
+function tokentype(token: Token): string {
+  if (token.contraction) return 'c'
+  if (token.type === 'word') return 'w'
+  if (token.type === 'unk' && token.text.match(/^\u2060+$/)) return 'm'
+  if (token.shape === '-') return '-'
+  return ' '
+}
+
+const reshapeRE = new RegExp(`([a-z])(${combining.regex})`, 'ig')
+function reshape(shape: string) {
+  return shape.normalize('NFD').replace(reshapeRE, (match, char) => char.match(/^[a-z]$/i) ? 'x' : match)
+}
+
+const Lu = XRegExp('\\p{Lu}')
+const Ll = XRegExp('\\p{Ll}')
+function tokenize(title: string): Token[] {
+for (const term of doc.json({offset:true})[1].terms) {
+  let shape = term.text
+  shape = XRegExp.replaceEach(term.text, [
+    [Lu, 'X', 'all'],
+    [Ll, 'x', 'all'],
+    [/\d/g, 'd'],
+  ])
+  console.log({...term, shape: shape })
+}
+
+  const doc = nlp.readDoc(title.replace(markup, match => '\u2060'.repeat(match.length)))
+
+  const tokens: Token[] = []
+  for (const sentence of doc.json({offset:true})) {
+    const words: Token[] = []
+    let sentenceStart = true
+    let subSentenceStart = false
+    for (const term of sentence.terms) {
+      if (
+      const spaces = token.out(nlp.its.precedingSpaces)
+      if (spaces) {
+        words.push({ start: pos, end: pos + spaces.length - 1, text: spaces, type: 'whitespace', contraction: false, shape: spaces })
+        pos += spaces.length
+      }
+      const text = token.out()
+
+      const word ={
+        start: pos,
+        end: pos + text.length - 1,
+        text,
+        type: token.out(nlp.its.type),
+        contraction: token.out(nlp.its.contractionFlag) as unknown as boolean,
+        // https://github.com/winkjs/wink-nlp/issues/134
+        shape: reshape(token.out(nlp.its.shape)),
+        sentenceStart,
+        subSentenceStart,
+      }
+      words.push(word)
+      sentenceStart = false
+      subSentenceStart = word.type === 'punctuation' && word.shape === ':'
+      pos += text.length
     })
+    subSentenceStart = true
+    console.log(words)
+
+    while (words.length) {
+      const type = words.map(tokentype).join('')
+      let m: RegExpMatchArray
+
+      if (m = type.match(/^(m?cm?)+/)) {
+        tokens.push(gather(words.splice(0, m[0].length)))
+        continue
+      }
+
+      if (m = type.match(/^m?[wc]m?(-m?[wc]m?)+/)) {
+        tokens.push(gather(words.splice(0, m[0].length)))
+        continue
+      }
+
+      tokens.push(words.shift())
+    }
+  })
+
+  return tokens
+}
+
+export type Options = {
+  preserveQuoted?: boolean
+  subSentenceCapitalization?: boolean
+}
+
+export function toSentenceCase(title: string, options: Options = {}): string {
+  options = {
+    preserveQuoted: true,
+    subSentenceCapitalization: true,
+    ...options,
   }
 
-  masked = masked
-    .replace(/[;:]\uFFFD*\s+\uFFFD*A\s/g, match => match.toLowerCase())
-    .replace(/[–—]\uFFFD*\s*\uFFFD*A\s/g, match => match.toLowerCase())
-    .replace(re.words, word => lowercase(word, allcaps))
+  title = title.normalize('NFC') // https://github.com/winkjs/wink-nlp/issues/134
+  let sentenceCased = title
+  const tokens = tokenize(title)
 
-  sentence = masked
-  for (const { pos, text } of preserve) {
-    sentence = sentence.substring(0, pos) + text + sentence.substring(pos + text.length)
+  const allCaps = title === title.toUpperCase()
+
+  tokens.forEach((token, i) => {
+    sentenceCased = sentenceCased.substring(0, token.start) + wordSC(token, tokens[i+1], allCaps, options.subSentenceCapitalization) + sentenceCased.substring(token.end + 1)
+  })
+
+  for (const match of title.matchAll(markup)) {
+    sentenceCased = sentenceCased.substring(0, match.index) + match[0] + sentenceCased.substring(match.index + match[0].length)
   }
-  return sentence
+
+  sentenceCased = sentenceCased.replace(/<(ncx?>).*?<\/\1/g, (match: string, tag: string, offset: number) => title.substring(offset, offset + match.length))
+
+  if (options.preserveQuoted) {
+    for (const q of [/(“.*?)”/g, /(‘.*?)’/g, /(".*?)"/g]) {
+      sentenceCased = sentenceCased.replace(q, (match: string, offset: number) => title.substring(offset, offset + match.length))
+    }
+  }
+
+  return sentenceCased
+}
+
+export function isAllCaps(title: string): boolean {
+  return title === title.toUpperCase()
+}
+
+export function guessSentenceCased(title: string): boolean {
+  if (title === title.toUpperCase()) return false
+  if (title === title.toLowerCase()) return false
+
+  const words = tokenize(title).filter(token => token.type === 'word')
+  if (!words.length) return true
+
+  const titleCased = words.filter(word => word.shape.match(/^X.*x/))
+  return (titleCased.length / words.length) < 0.5 // eslint-disable-line no-magic-numbers
 }

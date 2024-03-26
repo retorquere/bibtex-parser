@@ -300,6 +300,8 @@ class Parser {
     }
     else {
       const bare = this.key()
+      if (bare.match(/^\d+$/)) return bare
+
       const u_bare = bare.toUpperCase()
       const resolved = this.strings[u_bare] || this.default_strings[u_bare]
       if (typeof resolved === 'undefined') {
@@ -330,7 +332,7 @@ class Parser {
         throw new ParsingError('Runaway key', this)
       }
 
-      if (this.input[this.pos].match(/['a-zA-Z0-9&;_:\\./-]/) || this.input[this.pos].match(letter)) {
+      if (this.input[this.pos].match(/[+'a-zA-Z0-9&;_:\\./-]/) || this.input[this.pos].match(letter)) {
         this.pos++
       }
       else {
@@ -462,9 +464,7 @@ class Parser {
           break
 
         case 'preamble':
-          guard = this.matchGuard()
           this.preamble()
-          this.match(guard)
           chunk.preamble = true
           break
 

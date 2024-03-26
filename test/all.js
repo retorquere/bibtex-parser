@@ -6,14 +6,14 @@ const os = require('os')
 const glob = require('glob').globSync
 const tap = require('tap')
 
-const bibtex = require('../unified').Parser
+const bibtex = require('../unified')
 
 function tryparse({ bibfile, options }) {
   const source = fs.readFileSync(bibfile, 'utf-8')
 
   if (bibfile.endsWith('.json')) {
     const data = JSON.parse(source)
-    return data.items.map(item => bibtex.toSentenceCase(item.title))
+    return data.items.map(item => bibtex.toSentenceCase(item.title, { subSentenceCapitalization: false }))
   }
 
   let result = ''
@@ -59,6 +59,8 @@ function normalize(result) {
   if (!Array.isArray(result.entries)) return result
   result.entries = JSON.parse(JSON.stringify(result.entries), (key, value) => typeof value === 'string' ? value.normalize('NFC') : value)
 
+  if (result.preamble) result.preamble = []
+
   // temporary workarounds to match old return format
   for (const entry of result.entries) {
     // if (entry.fields.note) entry.fields.note = entry.fields.note.replace(/[\r\n]/g, '')
@@ -66,6 +68,25 @@ function normalize(result) {
     for (let [field, value] of Object.entries(entry.fields)) {
       if (typeof value === 'number') value = `${value}`
       if (!Array.isArray(entry.fields[field])) entry.fields[field] = [ value ]
+
+      switch (field) {
+        case 'author':
+          for (const cr of value) {
+            for (const n of ['name', 'firstName', 'lastName']) {
+              if (cr[n]) cr[n] = cr[n].replace(/\u00A0/g, ' ')
+            }
+            if (cr.name) {
+              cr.literal = cr.name
+              delete cr.name
+            }
+          }
+          break
+
+        case 'location':
+        case 'publisher':
+          entry.fields[field] = [ entry.fields[field].join(' and ') ]
+          break
+      }
     }
   }
   result.entries = sortObject(result.entries)
@@ -125,7 +146,7 @@ let testcases = []
 for (const pattern of config.test) {
   testcases = testcases.concat(glob(path.join(__dirname, '**', (pattern ? '*' : '') + pattern + '*.{json,bib,bibtex,biblatex}'), { nocase: true, matchBase: true, nonull: false, nodir: true }))
   testcases = testcases.slice(0, 20) // limit
-  // testcases = testcases.filter(testcase => testcase.match(/unknown command handler/))
+  // testcases = testcases.filter(testcase => testcase.match(/sentence-case/))
 }
 
 for (const bibfile of testcases) {
@@ -169,9 +190,12 @@ for (const bibfile of testcases) {
           bibfile,
           {
             caseProtection: case_protection === 'off' ? false : case_protection,
-            sentenceCase: sentence_case.startsWith('on'),
-            preserve_quoted: preserve_quoted === 'true',
-            guessAlreadySentenceCased: sentence_case.endsWith('guess'),
+            sentenceCase: {
+              langids: sentence_case.startsWith('on'),
+              preserveQuoted: preserve_quoted === 'true',
+              guess: sentence_case.endsWith('guess'),
+              subSentence: true,
+            },
             unabbreviations: unabbreviate && config.unabbreviations,
             strings: unabbreviate && config.strings,
             exception: config.exception.includes(basename),

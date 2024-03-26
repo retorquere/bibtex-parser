@@ -7,14 +7,18 @@ import { printRaw } from '@unified-latex/unified-latex-util-print-raw'
 import { latex2unicode as latex2unicodemap, combining } from 'unicode2latex'
 import * as bibtex from './chunker'
 import * as JabRef from './jabref'
+export { toSentenceCase } from './sentence-case'
+import { toSentenceCase, guessSentenceCased } from './sentence-case'
+import XRegExp from 'xregexp'
 
 import crossref from './crossref.json'
 import allowed from './fields.json'
 const unabbreviate = require('./unabbrev.json')
 
 function latex2unicode(tex: string, node: Node): string {
-  let text: string
-  return (text = latex2unicodemap[tex]) && ((text as any)[node._renderInfo.mode as string] as string || text)
+  const text: string | Record<string, string> = latex2unicodemap[tex]
+  if (typeof text === 'string') return text
+  return text && text[<string>node._renderInfo.mode]
 }
 
 export interface Bibliography {
@@ -50,52 +54,61 @@ export interface Bibliography {
 }
 
 export interface Options {
-  /**
-   * BibTeX files are expected to store title-type fields in Sentence Case, where other reference managers (such as Zotero) expect them to be stored as Sentence case. When there is no language field, or the language field
-   * is one of the languages (case insensitive) passed in this option, the parser will attempt to sentence-case title-type fields as they are being parsed. This uses heuristics and does not employ any kind of natural
-   * language processing, so you should always inspect the results. Default languages to sentenceCase are:
-   *
-   * - american
-   * - british
-   * - canadian
-   * - english
-   * - australian
-   * - newzealand
-   * - usenglish
-   * - ukenglish
-   * - en
-   * - eng
-   * - en-au
-   * - en-bz
-   * - en-ca
-   * - en-cb
-   * - en-gb
-   * - en-ie
-   * - en-jm
-   * - en-nz
-   * - en-ph
-   * - en-tt
-   * - en-us
-   * - en-za
-   * - en-zw
-   *
-   * If you pass an empty array, or `false`, no sentence casing will be applied (even when there's no language field).
-   */
-  sentenceCase?: string[] | boolean
+  sentenceCase?: {
+    /**
+     * BibTeX files are expected to store title-type fields in Sentence Case, where other reference managers (such as Zotero) expect them to be stored as Sentence case. When there is no language field, or the language field
+     * is one of the languages (case insensitive) passed in this option, the parser will attempt to sentence-case title-type fields as they are being parsed. This uses heuristics and does not employ any kind of natural
+     * language processing, so you should always inspect the results. Default languages to sentenceCase are:
+     *
+     * - american
+     * - british
+     * - canadian
+     * - english
+     * - australian
+     * - newzealand
+     * - usenglish
+     * - ukenglish
+     * - en
+     * - eng
+     * - en-au
+     * - en-bz
+     * - en-ca
+     * - en-cb
+     * - en-gb
+     * - en-ie
+     * - en-jm
+     * - en-nz
+     * - en-ph
+     * - en-tt
+     * - en-us
+     * - en-za
+     * - en-zw
+     *
+     * If you pass an empty array, or `false`, no sentence casing will be applied (even when there's no language field).
+     */
+    langids?: string[] | boolean
+
+    /**
+     * Some bibtex files will have titles in sentence case, or all-uppercase. If this is on, and there is a field that would normally have sentence-casing applied in which more words are all-`X`case
+     * (where `X` is either lower or upper) than mixed-case, it is assumed that you want them this way, and no sentence-casing will be applied to that field
+     */
+    guess?: boolean
+
+    /**
+     * Capitalize sub-sentences after colons. Given the input title "Structured Interviewing For OCB: Construct Validity, Faking, And The Effects Of Question Type":
+     * - when `true`, sentence-cases to "Structured interviewing for OCB: Construct validity, faking, and the effects of question type"
+     * - when `false`, sentence-cases to "Structured interviewing for OCB: construct validity, faking, and the effects of question type"
+     */
+    subSentence?: boolean
+
+    /**
+     * If you have sentence-casing on, you can independently choose whether quoted titles within a title are preserved as-is (true) or also sentence-cased(false)
+     */
+    preserveQuoted?: boolean
+  }
 
   /**
-   * If you have sentence-casing on, you can independently choose whether quoted titles within a title are preserved as-is (true) or also sentence-cased(false)
-   */
-  sentenceCasePreserveQuoted?: boolean
-
-  /**
-   * Some bibtex has titles in sentence case, or all-uppercase. If this is on, and there is a field that would normally have sentence-casing applied in which more words are all-`X`case
-   * (where `X` is either lower or upper) than mixed-case, it is assumed that you want them this way, and no sentence-casing will be applied to that field
-   */
-  guessAlreadySentenceCased?: boolean
-
-  /**
-   * translate braced parts of text into a case-protected counterpart; uses the [[MarkupMapping]] table in `markup`. Default == true == as-needed.
+   * translate braced parts of text into a case-protected counterpart; Default == true == as-needed.
    * In as-needed mode the parser will assume that words that have capitals in them imply "nocase" behavior in the consuming application. If you don't want this, turn this option on, and you'll get
    * case protection exactly as the input has it
    */
@@ -282,8 +295,8 @@ const English = [
 
 const FieldAction = {
   removeOuterBraces: [
-    'publisher',
-    'location',
+    // 'publisher',
+    // 'location',
   ],
   unabbrev: [
     'journal',
@@ -337,8 +350,8 @@ const narguments = {
   em:  1,
 
   // math
-  _: 1,
-  '^': 1,
+  'math\t_': 1,
+  'math\t^': 1,
 }
 for (const m in combining.tounicode) { // eslint-disable-line guard-for-in
   narguments[m] = 1
@@ -357,11 +370,14 @@ async function* asyncGenerator<T>(array: T[]): AsyncGenerator<T, void, unknown> 
   }
 }
 
+const needsNC = XRegExp('(^|\\s)([^\\p{Lu}]+)(\\s|$)')
+
 class BibTeXParser {
   private fallback: unsupportedHandler
   private current: Entry
   private options: Options
   private fieldMode: typeof FieldMode
+  private newcommands: Record<string, Argument> = {}
 
   private splitter(nodes: Node[], splitter: RegExp): boolean {
     // eslint-disable-next-line no-magic-numbers
@@ -390,7 +406,7 @@ class BibTeXParser {
     }
 
     while (ast.content.length) {
-      if (this.splitter(ast.content, splitter as RegExp)) {
+      if (this.splitter(ast.content, <RegExp>splitter)) {
         parts.push({ type: 'root', content: [] })
         part = parts.length - 1
       }
@@ -410,8 +426,9 @@ class BibTeXParser {
         // eslint-disable-next-line no-magic-numbers
         .map((part: string) => part.match(/^([^=]+)=(.*)/)?.slice(1, 3) || ['', part])
 
+      // not in keyword mode
       if (!nameparts.find(p => p[0])) {
-        let [lastName, suffix, firstName] = nameparts.length === 2
+        let [lastName, suffix, firstName] = (nameparts.length === 2)
           ? [nameparts[0][1], undefined, nameparts[1][1]]
           // > 3 nameparts are invalid and are dropped
           // eslint-disable-next-line no-magic-numbers
@@ -422,12 +439,12 @@ class BibTeXParser {
           prefix = m[1]
           lastName = m[2]
         }
-        return {
+        return JSON.parse(JSON.stringify({
           lastName,
           firstName,
-          ...(typeof prefix === 'undefined' ? {} : { prefix }),
-          ...(typeof suffix === 'undefined' ? {} : { suffix }),
-        }
+          prefix,
+          suffix,
+        })) as Creator
       }
 
       const name: Creator = {}
@@ -459,9 +476,9 @@ class BibTeXParser {
       }
       return name
     }
-    else {
+    else { // first-last mode
       const nameparts = this.split(ast, ' ').map(part => this.stringify(part, { mode: 'creator' })).filter(n => n)
-      if (nameparts.length === 1) return { name: nameparts[0] }
+      if (nameparts.length === 1) return { lastName: nameparts[0] }
       const prefix = nameparts.findIndex(n => n.match(/^[a-z]/))
       if (prefix > 0) return { firstName: nameparts.slice(0, prefix).join(' '), lastName: nameparts.slice(prefix).join(' ') }
       return { lastName: nameparts.pop(), firstName: nameparts.join(' ') }
@@ -469,6 +486,8 @@ class BibTeXParser {
   }
 
   private ligature(nodes: Node[]): StringNode {
+    if (nodes[0]._renderInfo.mode !== 'text') return null
+
     const max = 3
     const slice = nodes.slice(0, max)
     const type = slice.map(n => n.type === 'string' ? 's' : ' ').join('')
@@ -538,6 +557,24 @@ class BibTeXParser {
     return `${open}${text}${close}`
   }
 
+  private registercommand(node: Macro): string {
+    const types = (nodes: Node[]) => nodes.map(n => n.type).join('.')
+
+    const group = (arg: Argument, kind: string): Node[] => {
+      if (!arg) throw new Error(`missing ${kind} for ${printRaw(node)} @ ${JSON.stringify(node.position)}`)
+      if (types(arg.content) !== 'group') throw new Error(`Malformed ${kind} for ${printRaw(node)} @ ${JSON.stringify(node.position)}`)
+      return (<Group>arg.content[0]).content
+    }
+
+    if (!node.args) throw new Error(`No arguments for ${printRaw(node)} @ ${JSON.stringify(node.position)}`)
+
+    const namearg = group(node.args[0], 'name')
+    if (types(namearg) !== 'macro') throw new Error(`Unexpected name for ${printRaw(node)} @ ${JSON.stringify(node.position)}`)
+
+    this.newcommands[(<Macro>namearg[0]).content] = node.args[1]
+    return ''
+  }
+
   private macro(node: Macro, context: Context): string {
     const text = latex2unicode(printRaw(node), node)
     if (text) return text
@@ -545,6 +582,9 @@ class BibTeXParser {
     let url: Argument
     let label: Argument
     switch (node.content) {
+      case 'newcommand':
+        return this.registercommand(node)
+
       case 'LaTeX':
         return 'LaTeX'
 
@@ -602,8 +642,15 @@ class BibTeXParser {
         return this.wrap(this.stringify(node.args?.[0], context), 'sup')
 
       case 'textsubscript':
-      case '_':
         return this.wrap(this.stringify(node.args?.[0], context), 'sub')
+
+      case '_':
+        switch (node._renderInfo.mode) {
+          case 'math':
+            return this.wrap(this.stringify(node.args?.[0], context), 'sub')
+          default:
+            return '_'
+        }
 
       case 'enquote':
       case 'mkbibquote':
@@ -633,9 +680,10 @@ class BibTeXParser {
       case 'cite':
       case 'textcite':
       case 'citeauthor':
-        return this.wrap(this.stringify(node.args?.[0], context), 'nc', context.mode === 'title')
+        return this.wrap(this.stringify(node.args?.[0], context), 'ncx', context.mode === 'title')
 
       default:
+        if (this.newcommands[node.content]) return this.stringify(this.newcommands[node.content], context)
         return this.unsupported(node)
     }
   }
@@ -670,8 +718,8 @@ class BibTeXParser {
       case 'group':
       case 'inlinemath':
         return this.wrap(
-          node.content.map(n => this.stringify(n, {...context, caseProtected: (context.caseProtected || node._renderInfo.protectCase) as boolean})).join(''),
-          'nc',
+          node.content.map(n => this.stringify(n, {...context, caseProtected: (context.caseProtected || <boolean>node._renderInfo.protectCase)})).join(''),
+          node.type === 'group' ? 'nc' : 'ncx',
           (context.mode === 'title') && !context.caseProtected && !!node._renderInfo.protectCase
         )
 
@@ -712,11 +760,29 @@ class BibTeXParser {
   private mode(field: string): ParseMode {
     let mode: ParseMode = 'literal'
     for (const [selected, fields] of Object.entries(this.fieldMode)) {
-      if (fields.find(match => typeof match === 'string' ? field === match : field.match(match))) mode = selected as ParseMode
+      if (fields.find(match => typeof match === 'string' ? field === match : field.match(match))) mode = <ParseMode>selected
     }
     return mode
   }
-  private field(entry: Entry, field: string, value: string) {
+
+  private noCase(s: string): string {
+    let cancel = (_match: string, stripped: string) => stripped
+
+    switch (this.options.caseProtection) {
+      case 'strict':
+        cancel = (match: string, _stripped: string) => match
+        break
+      case 'as-needed':
+        cancel = (match: string, stripped: string) => needsNC.test(stripped) ? match : stripped
+        break
+    }
+
+    return s.replace(/<\/?ncx>/, '')
+      .replace(/<nc>(.*?)<\/nc>/g, cancel)
+      .replace(/<nc>/g, '<span class="nocase">').replace(/<\/nc>/g, '</span>')
+  }
+
+  private field(entry: Entry, field: string, value: string, sentenceCase: boolean) {
     const mode: ParseMode = this.mode(field)
 
     if (mode === 'verbatim') {
@@ -736,17 +802,16 @@ class BibTeXParser {
     }
 
     // pass 0 -- register parse mode
-    visit(ast, (nodes, info) => { // eslint-disable-line @typescript-eslint/no-unsafe-argument
-      delete nodes.position
-      if (!nodes._renderInfo) nodes._renderInfo = {}
-      nodes._renderInfo.mode = info.context.inMathMode ? 'math' : 'text'
+    visit(ast, (node, info) => { // eslint-disable-line @typescript-eslint/no-unsafe-argument
+      if (!node._renderInfo) node._renderInfo = {}
+      node._renderInfo.mode = info.context.inMathMode ? 'math' : 'text'
 
       // if (info.context.inMathMode || info.context.hasMathModeAncestor) return
-      if (nodes.type === 'macro' && typeof nodes.escapeToken !== 'string') nodes.escapeToken = '\\'
+      if (!info.context.inMathMode && node.type === 'macro' && typeof node.escapeToken !== 'string') node.escapeToken = '\\'
     })
 
     // pass 1 -- mark & normalize
-    visit(ast, (nodes, _info) => { // eslint-disable-line @typescript-eslint/no-unsafe-argument
+    visit(ast, (nodes, info) => { // eslint-disable-line @typescript-eslint/no-unsafe-argument
       let node: Node
       const compacted: Node[] = []
       while (nodes.length) {
@@ -756,8 +821,11 @@ class BibTeXParser {
         }
 
         node = nodes.shift()
-        if (node.type === 'macro' && narguments[node.content]) {
-          node.args = Array(narguments[node.content]).fill(undefined).map(_i => this.argument(nodes)).filter(arg => arg)
+        const nargs = node.type === 'macro'
+          ? narguments[node.content] || narguments[`${info.context.inMathMode ? 'math' : 'text'}\t${node.content}`]
+          : 0
+        if (node.type === 'macro' && nargs) {
+          node.args = Array(nargs).fill(undefined).map(_i => this.argument(nodes)).filter(arg => arg)
           if (node.content.match(/^(url|href)$/) && node.args.length) {
             let url: Node[] = node.args[0].content
             if (url.length === 1 && url[0].type === 'group') url = url[0].content
@@ -818,20 +886,32 @@ class BibTeXParser {
       // return null to delete
     })
 
+    let sentenceCased = ''
     switch (mode) {
       case 'creator':
         entry.fields[field] = this.split(ast, /^and$/i).map(cr => this.parseCreator(cr))
         break
       case 'commalist':
-        entry.fields[field] = this.split(ast, /^[;,]$/).map(elt => this.stringify(elt, { mode: 'literal'}))
+        entry.fields[field] = this.split(ast, /^[;,]$/).map(elt => this.noCase(this.stringify(elt, { mode: 'literal'})))
         break
       case 'literallist':
-        entry.fields[field] = this.split(ast, /^and$/i).map(elt => this.stringify(elt, { mode: 'literal'}))
+        entry.fields[field] = this.split(ast, /^and$/i).map(elt => this.noCase(this.stringify(elt, { mode: 'literal'})))
         break
       default:
         entry.fields[field] = this.stringify(ast, { mode })
-        if (FieldAction.unabbrev.includes(field)) entry.fields[field] = unabbreviate[entry.fields[field] as string] || entry.fields[field]
-        if ((entry.fields[field] as string).match(/^[0-9]+$/)) entry.fields[field] = parseInt(entry.fields[field] as string)
+        if (field === 'title') console.log(1, entry.fields[field])
+        if (mode === 'title' && sentenceCase && !(this.options.sentenceCase.guess && guessSentenceCased(<string>entry.fields[field]))) {
+          sentenceCased = this.noCase(toSentenceCase(<string>entry.fields[field], { preserveQuoted: this.options.sentenceCase.preserveQuoted, subSentenceCapitalization: this.options.sentenceCase.subSentence }))
+          if (field === 'title') console.log(2, sentenceCased)
+        }
+        entry.fields[field] = this.noCase(<string>entry.fields[field])
+        if (field === 'title') console.log(3, entry.fields[field])
+        if (sentenceCased && sentenceCased !== entry.fields[field]) {
+          entry.fields[field] = sentenceCased
+          entry.sentenceCased = true
+        }
+        if (FieldAction.unabbrev.includes(field)) entry.fields[field] = unabbreviate[<string>entry.fields[field]] || entry.fields[field]
+        if (typeof entry.fields[field] === 'string' && (<string>entry.fields[field]).match(/^\d+$/)) entry.fields[field] = parseInt(<string>entry.fields[field])
         break
     }
   }
@@ -861,11 +941,11 @@ class BibTeXParser {
     let applied = false
     for (const mappings of [crossref[entry.type], crossref['*']].filter(m => m)) {
       for (const mapping of [mappings[parent.type], mappings['*']].filter(m => m)) {
-        for (const [target, source] of Object.entries(mapping as Record<string, string>)) {
+        for (const [target, source] of Object.entries(<Record<string, string>> mapping)) {
           if (this.applyCrossrefField(parent, source, entry, target)) applied = true
         }
 
-        for (const field of (allowed[entry.type] || []) as string[]) {
+        for (const field of <string[]>(allowed[entry.type] || [])) {
           if (this.applyCrossrefField(parent, field, entry, field)) applied = true
         }
       }
@@ -876,35 +956,43 @@ class BibTeXParser {
   }
 
   private empty(options: Options = {}): Bibliography {
+    const sentenceCase: Options['sentenceCase'] = {
+      langids : English,
+      guess: true,
+      preserveQuoted: true,
+      ...(options.sentenceCase || {}),
+    }
+
     this.options = {
       caseProtection: 'as-needed',
-      removeOuterBraces: [],
-      sentenceCase: English,
-      guessAlreadySentenceCased: true,
       applyCrossRef: options.applyCrossRef ?? true,
       fieldMode: {},
 
       ...options,
+
+      sentenceCase,
     }
-    if (typeof this.options.sentenceCase === 'boolean') this.options.sentenceCase = this.options.sentenceCase ? English : []
-    this.options.sentenceCase = this.options.sentenceCase.map(language => language.toLowerCase())
+    if (this.options.caseProtection === true) this.options.caseProtection = 'as-needed'
+
+    if (typeof this.options.sentenceCase.langids === 'boolean') this.options.sentenceCase.langids = this.options.sentenceCase.langids ? English : []
+    this.options.sentenceCase.langids = this.options.sentenceCase.langids.map(langid => langid.toLowerCase())
 
     this.fieldMode = Object.entries(FieldMode).reduce((acc: typeof FieldMode, [mode, test]: [string, (RegExp | string)[]]) => {
       const strings = test.filter(fieldname_or_regex => typeof fieldname_or_regex === 'string' && !this.options.fieldMode[fieldname_or_regex])
       const regexes = test.filter(fieldname_or_regex => typeof fieldname_or_regex !== 'string')
       acc[mode] = [...strings, ...regexes]
       return acc
-    }, {} as unknown as typeof FieldMode)
+    }, <typeof FieldMode>{})
     for (const [field, mode] of Object.entries(this.options.fieldMode)) {
       this.fieldMode[mode].unshift(field)
     }
 
     if (!this.options.removeOuterBraces) {
-      this.options.removeOuterBraces = [
+      this.options.removeOuterBraces = <string[]>[
         ...FieldAction.removeOuterBraces,
         ...this.fieldMode.title,
         ...this.fieldMode.verbatim,
-      ].filter(field => typeof field === 'string') as string[]
+      ].filter(field => typeof field === 'string')
     }
 
     this.fallback = options.unsupported === 'ignore' ? ((_node: Node, _tex: string): string => '') : options.unsupported
@@ -920,15 +1008,33 @@ class BibTeXParser {
   }
 
   private reparse(bib: Bibliography, entry: bibtex.Entry) {
+    const langid = (entry.fields.langid || entry.fields.hyphenation || '').toLowerCase()
+    const sentenceCase = (<string[]> this.options.sentenceCase.langids).includes(langid)
+
     this.current = entry
     try {
       for (const [field, value] of Object.entries(entry.fields)) {
-        this.field(entry, field, value)
+        this.field(entry, field, value, sentenceCase)
       }
-      bib.entries.push(entry as Entry)
+      bib.entries.push(<Entry>entry)
     }
     catch (err) {
       bib.errors.push({ error: `${err.message}\n${entry.input}`, input: entry.input })
+    }
+  }
+
+  private content(tex: string) {
+    const entry: Entry = { key: '', type: '', fields: {} }
+    this.field(entry, 'tex', tex, false)
+    return <string>entry.fields.tex
+  }
+
+  private prep(bib: Bibliography, base: bibtex.Bibliography) {
+    for (const preamble of base.preambles) {
+      this.content(preamble)
+    }
+    for (const [k, v] of Object.entries(base.strings)) {
+      bib.strings[k] = this.content(v)
     }
   }
 
@@ -936,30 +1042,6 @@ class BibTeXParser {
     if (this.options.applyCrossRef) {
       for (const entry of bib.entries) {
         this.applyCrossref(entry, bib.entries)
-      }
-    }
-
-    const s: Entry = { key: '', type: '', fields: {} }
-    for (const [k, v] of Object.entries(base.strings)) {
-      this.field(s, 'string', v)
-      bib.strings[k] = s.fields.string as string
-    }
-
-    for (const entry of bib.entries) {
-      const languages: string[] = this.options.sentenceCase as string[]
-      const sentenceCase =
-        (entry.fields.langid && languages.includes((entry.fields.langid as string).toLowerCase()))
-        ||
-        (entry.fields.hyphenation && languages.includes((entry.fields.hyphenation as string).toLowerCase()))
-        ||
-        (entry.fields.language && (entry.fields.language as string).toLowerCase().split(/\s*,\s*/).find(language => languages.includes(language)))
-        ||
-        (!entry.fields.langid && !entry.fields.hyphenation && !entry.fields.language && languages.includes(''))
-
-      if (sentenceCase) {
-        for (const [field, value] of Object.entries(entry.fields)) {
-          if (this.mode(field) === 'title') entry.sentenceCased = !!value
-        }
       }
     }
 
@@ -976,6 +1058,8 @@ class BibTeXParser {
 
     const base = bibtex.parse(input)
 
+    this.prep(bib, base)
+
     for (const entry of base.entries) {
       this.reparse(bib, entry)
     }
@@ -989,6 +1073,8 @@ class BibTeXParser {
 
     const base = await bibtex.promises.parse(input)
 
+    this.prep(bib, base)
+
     for await (const entry of asyncGenerator(base.entries)) {
       this.reparse(bib, entry)
     }
@@ -997,4 +1083,13 @@ class BibTeXParser {
     return bib
   }
 }
-export const Parser = new BibTeXParser
+
+export function parse(input: string, options: Options = {}): Bibliography {
+  const parser = new BibTeXParser
+  return parser.parse(input, options)
+}
+
+export async function parseAsync(input: string, options: Options = {}): Promise<Bibliography> {
+  const parser = new BibTeXParser
+  return await parser.parseAsync(input, options)
+}
