@@ -153,7 +153,7 @@ let testcases = []
 for (const pattern of config.test) {
   testcases = testcases.concat(glob(path.join(__dirname, '**', (pattern ? '*' : '') + pattern + '*.{json,bib,bibtex,biblatex}'), { nocase: true, matchBase: true, nonull: false, nodir: true }))
   testcases = testcases.slice(0, 20) // limit
-  testcases = testcases.filter(testcase => testcase.match(/apa/))
+  // testcases = testcases.filter(testcase => testcase.match(/apa/))
 }
 
 for (const bibfile of testcases) {
