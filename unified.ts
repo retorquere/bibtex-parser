@@ -971,7 +971,7 @@ class BibTeXParser {
         }
         if (FieldAction.unabbrev.includes(field)) entry.fields[field] = unabbreviate[<string>entry.fields[field]] || entry.fields[field]
         if (typeof entry.fields[field] === 'string') {
-          if ((<string>entry.fields[field]).match(/^-?\d+$/)) {
+          if ((<string>entry.fields[field]).trim().match(/^-?\d+$/)) {
             entry.fields[field] = parseInt(<string>entry.fields[field])
           }
           else {

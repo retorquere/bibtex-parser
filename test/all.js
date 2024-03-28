@@ -71,7 +71,6 @@ function normalize(result) {
     // if (entry.fields.note) entry.fields.note = entry.fields.note.replace(/[\r\n]/g, '')
     delete entry.input
     for (let [field, value] of Object.entries(entry.fields)) {
-      if (typeof value === 'number') value = `${value}`
       if (!Array.isArray(entry.fields[field])) entry.fields[field] = [ value ]
 
       switch (field) {
@@ -92,7 +91,7 @@ function normalize(result) {
           entry.fields[field] = [ entry.fields[field].join(' and ') ]
           break
         default:
-          // entry.fields[field] = entry.fields[field].map(v => typeof v === 'string' && v.trim().match(/^-?\d+$/) ? parseInt(v) : v)
+          entry.fields[field] = entry.fields[field].map(v => typeof v === 'number' ? `${v}` : v)
           break
       }
     }
@@ -154,7 +153,7 @@ let testcases = []
 for (const pattern of config.test) {
   testcases = testcases.concat(glob(path.join(__dirname, '**', (pattern ? '*' : '') + pattern + '*.{json,bib,bibtex,biblatex}'), { nocase: true, matchBase: true, nonull: false, nodir: true }))
   testcases = testcases.slice(0, 20) // limit
-  // testcases = testcases.filter(testcase => testcase.match(/citation-js/))
+  testcases = testcases.filter(testcase => testcase.match(/apa/))
 }
 
 for (const bibfile of testcases) {
