@@ -19,15 +19,13 @@ function tryparse({ bibfile, options }) {
   let result = ''
   try {
     if (options.exception) {
-      // bibtex.parse(source, {...options, unsupported: (node, tex, entry) => { result = `unsupported ${node.type} (${tex})\n${entry.input}` } })
-      result = ''
+      bibtex.parse(source, {...options, unsupported: (node, tex, entry) => { result = `unsupported ${node.type} (${tex})\n${entry.input}` } })
     }
     else {
       result = bibtex.parse(source, options)
     }
   }
   catch (err) {
-    return ''
     result = err.message + '\n' + err.stack
   }
   return result
@@ -93,6 +91,9 @@ function normalize(result) {
         case 'publisher':
           entry.fields[field] = [ entry.fields[field].join(' and ') ]
           break
+        default:
+          // entry.fields[field] = entry.fields[field].map(v => typeof v === 'string' && v.trim().match(/^-?\d+$/) ? parseInt(v) : v)
+          break
       }
     }
   }
@@ -153,7 +154,7 @@ let testcases = []
 for (const pattern of config.test) {
   testcases = testcases.concat(glob(path.join(__dirname, '**', (pattern ? '*' : '') + pattern + '*.{json,bib,bibtex,biblatex}'), { nocase: true, matchBase: true, nonull: false, nodir: true }))
   testcases = testcases.slice(0, 20) // limit
-  testcases = testcases.filter(testcase => testcase.match(/biblatex-apa-test-references/))
+  // testcases = testcases.filter(testcase => testcase.match(/citation-js/))
 }
 
 for (const bibfile of testcases) {

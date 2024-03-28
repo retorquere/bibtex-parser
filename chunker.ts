@@ -194,14 +194,14 @@ class Parser {
     return (s === ' ' || s === '\t' || (!horizontalOnly && (s === '\r' || s === '\n')))
   }
 
-  private match(s) {
+  private match(s, sws=true) {
     this.skipWhitespace()
     if (this.input.substr(this.pos, s.length) !== s) {
       throw new ParsingError(`Token mismatch, expected ${JSON.stringify(s)}, found ${JSON.stringify(this.input.substr(this.pos, 20))}...`, this) // eslint-disable-line no-magic-numbers
     }
 
     this.pos += s.length
-    this.skipWhitespace()
+    if (sws) this.skipWhitespace()
   }
 
   private tryMatch(s) {
@@ -222,7 +222,7 @@ class Parser {
 
   private value_braces() {
     let bracecount = 0
-    this.match('{')
+    this.match('{', false)
     const start = this.pos
     let math = false
 
@@ -259,7 +259,7 @@ class Parser {
   }
 
   private value_quotes() {
-    this.match('"')
+    this.match('"', false)
     const start = this.pos
     let bracecount = 0
     while (true) { // eslint-disable-line no-constant-condition
@@ -325,14 +325,14 @@ class Parser {
     return values.join('')
   }
 
-  private key(): string {
+  private key(allow=''): string {
     const start = this.pos
     while (true) { // eslint-disable-line no-constant-condition
       if (this.pos === this.input.length) {
         throw new ParsingError('Runaway key', this)
       }
 
-      if (this.input[this.pos].match(/[+'a-zA-Z0-9&;_:\\./-]/) || this.input[this.pos].match(letter)) {
+      if (this.input[this.pos].match(/[+'a-zA-Z0-9&;_:\\./-]/) || this.input[this.pos].match(letter) || allow.includes(this.input[this.pos])) {
         this.pos++
       }
       else {
@@ -362,7 +362,7 @@ class Parser {
   private entry(d: string, guard: string) {
     if (this.tryMatch(guard)) return // empty entry
 
-    let key = this.key()
+    let key = this.key('"')
     if (this.tryMatch(',')) { // some people seem to think the key is optional...
       this.match(',')
       this.entries[0].key = key
@@ -398,12 +398,13 @@ class Parser {
     while (this.isWhitespace(this.input[this.pos], true)) this.pos++
 
     if (this.input[this.pos] === '{') {
-      return this.value_braces()
+      this.comments.push(this.value_braces())
     }
-
-    const start = this.pos
-    while (this.input[this.pos] !== '\n' && this.pos < this.input.length) this.pos++
-    this.comments.push(this.input.substring(start, this.pos))
+    else {
+      const start = this.pos
+      while (this.input[this.pos] !== '\n' && this.pos < this.input.length) this.pos++
+      this.comments.push(this.input.substring(start, this.pos))
+    }
   }
 
   private hasMore() {

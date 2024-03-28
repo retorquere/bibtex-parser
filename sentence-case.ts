@@ -181,8 +181,9 @@ export function isAllCaps(title: string): boolean {
 }
 
 export function guessSentenceCased(title: string): boolean {
-  if (title === title.toUpperCase()) return false
-  if (title === title.toLowerCase()) return false
+  const noMarkup = title.replace(markup, '')
+  if (noMarkup === noMarkup.toUpperCase()) return false
+  if (noMarkup === noMarkup.toLowerCase()) return false
 
   const words = tokenize(title).filter(token => token.type === 'word')
   if (!words.length) return true

@@ -16,7 +16,6 @@ import allowed from './fields.json'
 const unabbreviate = require('./unabbrev.json')
 
 function latexMode(node: Node | Argument): 'math' | 'text' {
-  if (node.type === 'argument') node = node.content[0]
   return node._renderInfo.mode as 'math' | 'text'
 }
 
@@ -353,7 +352,6 @@ const narguments = {
   url: 1,
   vphantom: 1,
   vspace: 1,
-  em:  1,
 
   // math
   'math\t_': 1,
@@ -518,7 +516,7 @@ class BibTeXParser {
   }
 
   private wraparg(node) : Argument {
-    return { type: 'argument', content: [ node ], openMark: '', closeMark: '' }
+    return { type: 'argument', content: [ node ], openMark: '', closeMark: '', _renderInfo: { mode: node._renderInfo.mode } }
   }
 
   private argtogroup(node: Argument): Group {
@@ -532,8 +530,9 @@ class BibTeXParser {
     if (nodes[0].type === 'string') {
       const char = nodes[0].content[0]
       nodes[0].content = nodes[0].content.substr(1)
+      const arg = { ...nodes[0], content: char }
       if (!nodes[0].content) nodes.shift()
-      return this.wraparg({ type: 'string', content: char })
+      return this.wraparg(arg)
     }
     return this.wraparg(nodes.shift())
   }
@@ -582,12 +581,29 @@ class BibTeXParser {
     return ''
   }
 
+  private subp(text: string, macro: string) {
+    let subp = ''
+    for (let char of text) {
+      char = latex2unicodemap[`${macro}{${char}}`]
+      if (char) {
+        subp += char
+      }
+      else {
+        const tag = {_: 'sub', '^': 'sup'}[macro]
+        return `<${tag}>${text}</${tag}>`
+      }
+    }
+    return subp
+  }
+
   private macro(node: Macro, context: Context): string {
     const text = latex2unicode(printRaw(node), node)
     if (text) return text
 
     let url: Argument
     let label: Argument
+    let arg: string[]
+    let resolved: string
     switch (node.content) {
       case 'newcommand':
         return this.registercommand(node)
@@ -635,28 +651,28 @@ class BibTeXParser {
       case 'sc':
         return ''
 
+      // bold/emph is handled in the wrapper
       case 'textbf':
       case 'mkbibbold':
-        return this.wrap(this.stringify(node.args?.[0], context), 'b')
 
       case 'textit':
       case 'emph':
       case 'mkbibemph':
-        return this.wrap(this.stringify(node.args?.[0], context), 'i')
+        return this.stringify(node.args?.[0], context)
 
       case 'textsuperscript':
-      case '^':
-        return this.wrap(this.stringify(node.args?.[0], context), 'sup')
+        return this.subp(this.stringify(node.args?.[0], context), '^')
 
       case 'textsubscript':
-        return this.wrap(this.stringify(node.args?.[0], context), 'sub')
+        return this.subp(this.stringify(node.args?.[0], context), '_')
 
       case '_':
+      case '^':
         switch (latexMode(node)) {
           case 'math':
-            return this.wrap(this.stringify(node.args?.[0], context), 'sub')
+            return this.subp(this.stringify(node.args?.[0], context), node.content)
           default:
-            return '_'
+            return node.content
         }
 
       case 'enquote':
@@ -679,14 +695,16 @@ class BibTeXParser {
         return this.wrap(this.stringify(node.args?.[0], context), `h${node.content.split('sub').length}`)
 
       case 'frac':
-        return `${this.stringify(node.args?.[0], context)}\u2044${this.stringify(node.args?.[1], context)}`
+        arg = node.args.map(a => this.stringify(a, context))
+        if (arg.length === 2 && (resolved = latex2unicodemap[`\\frac${arg.map(a => `{${a}}`).join('')}`])) return resolved
+        return arg.map((part, i) => this.subp(part, i ? '_' : '^')).join('\u2044')
 
-      // a bit cheaty to assume these to be nocased, but it's just more likely to be what people want
       case 'chsf':
       case 'bibstring':
       case 'cite':
       case 'textcite':
       case 'citeauthor':
+        // ncx protects but will be stripped later
         return this.wrap(this.stringify(node.args?.[0], context), 'ncx', context.mode === 'title')
 
       default:
@@ -715,6 +733,13 @@ class BibTeXParser {
   }
 
   private stringify(node: Node | Argument, context: Context): string {
+    let content = this.stringifyContent(node, context)
+    if (node._renderInfo?.emph) content = `<i>${content}</i>`
+    if (node._renderInfo?.bold) content = `<b>${content}</b>`
+    return content
+  }
+
+  private stringifyContent(node: Node | Argument, context: Context): string {
     if (!node) return ''
 
     switch (node.type) {
@@ -784,7 +809,7 @@ class BibTeXParser {
         break
     }
 
-    return s.replace(/<\/?ncx>/, '')
+    return s.replace(/<\/?ncx>/g, '')
       .replace(/<nc>(.*?)<\/nc>/g, cancel)
       .replace(/<\/nc>(\s*)<nc>/g, '$1')
       .replace(/<nc>/g, '<span class="nocase">').replace(/<\/nc>/g, '</span>')
@@ -804,18 +829,32 @@ class BibTeXParser {
       ast.content = ast.content[0].content
     }
 
-    for (const node of ast.content) {
+    let root = [...ast.content]
+    while (root.length) {
+      const node = root.shift()
+
       // only root groups offer case protecten -- but it may be as an macro arg, so mark here before gobbling
       if (this.protect(node)) node._renderInfo = { protectCase: true }
+
+      // environments are considered root when at root
+      if (node.type === 'environment') root = [...root, ...node.content]
     }
 
     // pass 0 -- register parse mode
     visit(ast, (node, info) => { // eslint-disable-line @typescript-eslint/no-unsafe-argument
       if (!node._renderInfo) node._renderInfo = {}
+
       node._renderInfo.mode = info.context.inMathMode ? 'math' : 'text'
 
       // if (info.context.inMathMode || info.context.hasMathModeAncestor) return
-      if (!info.context.inMathMode && node.type === 'macro' && typeof node.escapeToken !== 'string') node.escapeToken = '\\'
+      if (!info.context.inMathMode) {
+        if (node.type === 'macro' && typeof node.escapeToken !== 'string') node.escapeToken = '\\'
+
+        if (node.type === 'macro' && node.content.match(/^(itshape|textit|emph|mkbibemph)$/)) node._renderInfo.emph = true
+        if (node.type === 'environment' && node.env === 'em') node._renderInfo.emph = true
+
+        if (node.type === 'macro' && node.content.match(/^(textbf|mkbibbold|bfseries)$/)) node._renderInfo.bold = true
+      }
     })
 
     // pass 1 -- mark & normalize
@@ -837,7 +876,7 @@ class BibTeXParser {
           if (node.content.match(/^(url|href)$/) && node.args.length) {
             let url: Node[] = node.args[0].content
             if (url.length === 1 && url[0].type === 'group') url = url[0].content
-            node.args[0] = this.wraparg({ type: 'string', content: printRaw(url) })
+            node.args[0] = this.wraparg({ type: 'string', content: printRaw(url), _renderInfo: { mode: url[0]._renderInfo.mode } })
           }
         }
         else if (node.type === 'macro' && node.content.match(/^[a-z]+$/) && nodes[0]?.type === 'whitespace') {
@@ -845,6 +884,18 @@ class BibTeXParser {
         }
 
         compacted.push(node)
+      }
+
+      if (!info.context.inMathMode) {
+        for (const [macro, markup] of Object.entries({ em: 'emph', it: 'emph', bf: 'bold' })) {
+          if (info.parents.find(p => p._renderInfo[markup])) continue
+
+          compacted.forEach((markup_node, i) => {
+            if (markup_node.type === 'macro' && markup_node.content === macro) {
+              compacted.slice(i + 1).forEach(n => n._renderInfo[markup]= true)
+            }
+          })
+        }
       }
 
       nodes.push(...compacted)
@@ -900,10 +951,10 @@ class BibTeXParser {
         entry.fields[field] = this.split(ast, /^and$/i).map(cr => this.parseCreator(cr))
         break
       case 'commalist':
-        entry.fields[field] = this.split(ast, /^[;,]$/).map(elt => this.noCase(this.stringify(elt, { mode: 'literal'})))
+        entry.fields[field] = this.split(ast, /^[;,]$/).map(elt => this.noCase(this.stringify(elt, { mode: 'literal'})).trim())
         break
       case 'literallist':
-        entry.fields[field] = this.split(ast, /^and$/i).map(elt => this.noCase(this.stringify(elt, { mode: 'literal'})))
+        entry.fields[field] = this.split(ast, /^and$/i).map(elt => this.noCase(this.stringify(elt, { mode: 'literal'})).trim())
         break
       default:
         entry.fields[field] = this.stringify(ast, { mode })
@@ -919,7 +970,14 @@ class BibTeXParser {
           entry.sentenceCased = true
         }
         if (FieldAction.unabbrev.includes(field)) entry.fields[field] = unabbreviate[<string>entry.fields[field]] || entry.fields[field]
-        if (typeof entry.fields[field] === 'string' && (<string>entry.fields[field]).match(/^\d+$/)) entry.fields[field] = parseInt(<string>entry.fields[field])
+        if (typeof entry.fields[field] === 'string') {
+          if ((<string>entry.fields[field]).match(/^-?\d+$/)) {
+            entry.fields[field] = parseInt(<string>entry.fields[field])
+          }
+          else {
+            entry.fields[field] = (<string>entry.fields[field]).replace(/<\/(i|b|nc|sup|sub)>(\s*)<\1>/g, '$2')
+          }
+        }
         break
     }
   }
@@ -1023,6 +1081,7 @@ class BibTeXParser {
     try {
       for (const [field, value] of Object.entries(entry.fields)) {
         this.field(entry, field, value, sentenceCase)
+        if (typeof entry.fields[field] === 'string') entry.fields[field] = entry.fields[field].trim()
       }
       bib.entries.push(<Entry>entry)
     }
@@ -1056,6 +1115,7 @@ class BibTeXParser {
     const { comments, jabref } = JabRef.parse(base.comments)
     bib.comments = comments
     bib.jabref = jabref
+    bib.comments = base.comments
 
     bib.preamble = base.preambles
     bib.errors = [...base.errors, ...bib.errors]
