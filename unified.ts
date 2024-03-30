@@ -1099,6 +1099,7 @@ class BibTeXParser {
       for (const key of order) {
         const child = entries[key]
         const parent = entries[<string>child.fields.crossref]
+        if (!parent) continue
 
         for (const mappings of [crossref[child.type], crossref['*']].filter(m => m)) {
           for (const mapping of [mappings[parent.type], mappings['*']].filter(m => m)) {
