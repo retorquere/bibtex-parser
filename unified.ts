@@ -199,10 +199,6 @@ interface Entry {
 
     [key: string]: number | string | string[] | Creator[]
   }
-  crossref?: {
-    donated: string[]
-    inherited: string[]
-  }
   sentenceCased?: boolean
 }
 
@@ -861,6 +857,7 @@ class BibTeXParser {
     visit(ast, (nodes, info) => { // eslint-disable-line @typescript-eslint/no-unsafe-argument
       let node: Node
       const compacted: Node[] = []
+      let inif = 0
       while (nodes.length) {
         if (node = this.ligature(nodes)) {
           compacted.push(node)
@@ -868,6 +865,22 @@ class BibTeXParser {
         }
 
         node = nodes.shift()
+
+        if (node.type === 'macro' && node.content === 'ifdefined') {
+          inif += 1
+          continue
+        }
+        else if (node.type === 'macro' && node.content === 'else') {
+          continue
+        }
+        else if (node.type === 'macro' && node.content === 'fi') {
+          inif = Math.max(inif - 1, 0)
+          continue
+        }
+        else if (inif) {
+          continue
+        }
+
         const nargs = node.type === 'macro'
           ? narguments[node.content] || narguments[`${info.context.inMathMode ? 'math' : 'text'}\t${node.content}`]
           : 0
@@ -971,7 +984,7 @@ class BibTeXParser {
         }
         if (FieldAction.unabbrev.includes(field)) entry.fields[field] = unabbreviate[<string>entry.fields[field]] || entry.fields[field]
         if (typeof entry.fields[field] === 'string') {
-          if ((<string>entry.fields[field]).trim().match(/^-?\d+$/)) {
+          if (field !== 'crossref' && (<string>entry.fields[field]).trim().match(/^-?\d+$/)) {
             entry.fields[field] = parseInt(<string>entry.fields[field])
           }
           else {
@@ -980,45 +993,6 @@ class BibTeXParser {
         }
         break
     }
-  }
-
-  private applyCrossrefField(parent: Entry, parentfield: string, child: Entry, childfield: string) {
-    if (child.fields[childfield] || !parent.fields[parentfield]) return false
-
-    const register = (arr: string[], elt: string) => [...(new Set([...arr, elt]))].sort()
-
-    child.fields[childfield] = parent.fields[parentfield]
-
-    child.crossref.inherited = register(child.crossref.inherited, childfield)
-    parent.crossref.donated = register(parent.crossref.donated, parentfield)
-
-    return true
-  }
-
-  private applyCrossref(entry: Entry, entries: Entry[]) {
-    entry.crossref = entry.crossref || { donated: [], inherited: [] }
-    if (!entry.fields.crossref) return
-
-    const parent = entries.find(p => p.key === entry.fields.crossref)
-
-    // first apply crossref on parent, because inheritance can chain
-    this.applyCrossref(parent, entries)
-
-    let applied = false
-    for (const mappings of [crossref[entry.type], crossref['*']].filter(m => m)) {
-      for (const mapping of [mappings[parent.type], mappings['*']].filter(m => m)) {
-        for (const [target, source] of Object.entries(<Record<string, string>> mapping)) {
-          if (this.applyCrossrefField(parent, source, entry, target)) applied = true
-        }
-
-        for (const field of <string[]>(allowed[entry.type] || [])) {
-          if (this.applyCrossrefField(parent, field, entry, field)) applied = true
-        }
-      }
-    }
-
-    // prevent loops
-    if (applied) delete entry.fields.crossref
   }
 
   private empty(options: Options = {}): Bibliography {
@@ -1107,8 +1081,31 @@ class BibTeXParser {
 
   private finalize(bib: Bibliography, base: bibtex.Bibliography) {
     if (this.options.applyCrossRef) {
+      const entries: Partial<Record<string, Entry>> = bib.entries.reduce((acc: Partial<Record<string, Entry>>, entry: Entry) => entry.key ? { ...acc, [entry.key]: entry } : acc, {})
+
+      const order: string[] = []
       for (const entry of bib.entries) {
-        this.applyCrossref(entry, bib.entries)
+        if (entry.key && typeof entry.fields.crossref === 'string' && entries[entry.fields.crossref]) {
+          if (!order.includes(entry.fields.crossref)) order.unshift(entry.fields.crossref)
+          if (!order.includes(entry.key)) order.push(entry.key)
+        }
+      }
+
+      for (const key of order) {
+        const child = entries[key]
+        const parent = entries[<string>child.fields.crossref]
+
+        for (const mappings of [crossref[child.type], crossref['*']].filter(m => m)) {
+          for (const mapping of [mappings[parent.type], mappings['*']].filter(m => m)) {
+            for (const [childfield, parentfield] of Object.entries(<Record<string, string>> mapping)) {
+              if (!child.fields[childfield] && parent.fields[parentfield]) child.fields[childfield] = parent.fields[parentfield]
+            }
+
+            for (const field of <string[]>(allowed[child.type] || [])) {
+              if (!child.fields[field] && parent.fields[field]) child.fields[field] = parent.fields[field]
+            }
+          }
+        }
       }
     }
 
