@@ -73,8 +73,6 @@ function wordSC(token: Token, succ: Token, allCaps: boolean, subSentence: boolea
   return token.text.toLowerCase()
 }
 
-const markup = /<\/?(?:i|b|sup|sub|ncx?)>/g
-
 function tokentype(token: Token): string {
   if (token.type === 'word' && token.text.match(/^\u2060+$/)) return 'm'
   if (token.type === 'word') return 'w'
@@ -85,9 +83,10 @@ function tokentype(token: Token): string {
 const Lu = XRegExp('\\p{Lu}')
 const Ll = XRegExp('\\p{Ll}')
 const strayCC = new RegExp(`^(${combining.regex})`)
-function tokenize(title: string): Token[] {
+function tokenize(title: string, markup?: RegExp): Token[] {
 
-  const doc = nlp(title.replace(markup, match => '\u2060'.repeat(match.length)))
+  if (markup) title = title.replace(markup, match => '\u2060'.repeat(match.length))
+  const doc = nlp(title)
 
   const tokens: Token[] = []
   for (const sentence of doc.json({offset:true})) {
@@ -140,6 +139,8 @@ function tokenize(title: string): Token[] {
 export type Options = {
   preserveQuoted?: boolean
   subSentenceCapitalization?: boolean
+  markup?: RegExp
+  nocase?: RegExp
 }
 
 export function toSentenceCase(title: string, options: Options = {}): string {
@@ -151,7 +152,7 @@ export function toSentenceCase(title: string, options: Options = {}): string {
 
   title = title.normalize('NFC') // https://github.com/winkjs/wink-nlp/issues/134
   let sentenceCased = title
-  const tokens = tokenize(title)
+  const tokens = tokenize(title, options.markup)
 
   const allCaps = title === title.toUpperCase()
 
@@ -161,11 +162,16 @@ export function toSentenceCase(title: string, options: Options = {}): string {
     }
   })
 
-  for (const match of title.matchAll(markup)) {
-    sentenceCased = sentenceCased.substring(0, match.index) + match[0] + sentenceCased.substring(match.index + match[0].length)
+  if (options.markup) {
+    for (const match of title.matchAll(options.markup)) {
+      sentenceCased = sentenceCased.substring(0, match.index) + match[0] + sentenceCased.substring(match.index + match[0].length)
+    }
   }
 
-  sentenceCased = sentenceCased.replace(/<(ncx?>).*?<\/\1/g, (match: string, tag: string, offset: number) => title.substring(offset, offset + match.length))
+  if (options.nocase) {
+    sentenceCased = sentenceCased
+      .replace(options.nocase, (match: string, tag: string, offset: number) => title.substring(offset, offset + match.length))
+  }
 
   if (options.preserveQuoted) {
     for (const q of [/(“.*?)”/g, /(‘.*?)’/g, /(".*?)"/g]) {
@@ -176,11 +182,7 @@ export function toSentenceCase(title: string, options: Options = {}): string {
   return sentenceCased
 }
 
-export function isAllCaps(title: string): boolean {
-  return title === title.toUpperCase()
-}
-
-export function guessSentenceCased(title: string): boolean {
+export function guessSentenceCased(title: string, markup = /<\/?(?:i|b|sup|sub|ncx?)>/g): boolean {
   const noMarkup = title.replace(markup, '')
   if (noMarkup === noMarkup.toUpperCase()) return false
   if (noMarkup === noMarkup.toLowerCase()) return false

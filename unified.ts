@@ -25,6 +25,14 @@ function latex2unicode(tex: string, node: Node): string {
   return text && text[latexMode(node)]
 }
 
+const open: Record<string, string> = {}
+const close: Record<string, string> = {}
+for (const tag of ['i', 'b', 'sc', 'nc', 'ncx', 'br', 'par', 'li']) {
+  open[tag] = `\x0E${tag}\x0F`
+  close[tag] = `\x0E/${tag}\x0F`
+}
+const collapsable = /\x0E\/([a-z]+)\x0F(\s*)\x0E\1\x0F/g
+
 export interface Bibliography {
   /**
    * errors found while parsing
@@ -439,7 +447,7 @@ class BibTeXParser {
           prefix = m[1]
           lastName = m[2]
         }
-        return JSON.parse(JSON.stringify({
+        return JSON.parse(JSON.stringify({ // removes undefineds
           lastName,
           firstName,
           prefix,
@@ -533,11 +541,6 @@ class BibTeXParser {
     return this.wraparg(nodes.shift())
   }
 
-  // stringifier
-  private tags = {
-    enquote: { open: '\u201c', close: '\u201d' },
-  }
-
   private unsupported(node: Node): string {
     if (this.fallback) return this.fallback(node, printRaw(node), this.current) ?? ''
 
@@ -552,11 +555,8 @@ class BibTeXParser {
   }
 
   private wrap(text: string, tag, wrap=true): string {
-    if (!text) return ''
-    if (!wrap) return text
-    if (!this.tags[tag]) this.tags[tag] = { open: `<${tag}>`, close: `</${tag}>` }
-    const { open, close } = this.tags[tag]
-    return `${open}${text}${close}`
+    if (!text || !wrap) return text || ''
+    return `\x0E${tag}\x0F${text}\x0E/${tag}\x0F`
   }
 
   private registercommand(node: Macro): string {
@@ -675,13 +675,13 @@ class BibTeXParser {
         return this.wrap(this.stringify(node.args?.[0], context), 'enquote')
 
       case '\\':
-        return context.mode === 'richtext' ? '<b>' : ' '
+        return context.mode === 'richtext' ? open.br : ' '
 
       case 'par':
-        return context.mode === 'richtext' ? '<p>' : ' '
+        return context.mode === 'richtext' ? open.p : ' '
 
       case 'item':
-        return context.mode === 'richtext' ? '<li>' : ' '
+        return context.mode === 'richtext' ? open.li : ' '
 
       case 'section':
       case 'subsection':
@@ -730,9 +730,9 @@ class BibTeXParser {
   private stringify(node: Node | Argument, context: Context): string {
     let content = this.stringifyContent(node, context)
     if (node._renderInfo) {
-      if (node._renderInfo.emph) content = `<i>${content}</i>`
-      if (node._renderInfo.bold) content = `<b>${content}</b>`
-      if (node._renderInfo.smallCaps) content = `<sc>${content}</sc>`
+      if (node._renderInfo.emph) content = `${open.i}${content}${close.i}`
+      if (node._renderInfo.bold) content = `${open.b}${content}${close.b}`
+      if (node._renderInfo.smallCaps) content = `${open.sc}${content}${close.sc}`
     }
     return content
   }
@@ -761,7 +761,7 @@ class BibTeXParser {
         return this.macro(node, context)
 
       case 'parbreak':
-        return context.mode === 'richtext' ? '<p>' : ' '
+        return context.mode === 'richtext' ? open.p : ' '
 
       case 'whitespace':
         return ' '
@@ -795,23 +795,17 @@ class BibTeXParser {
     return mode
   }
 
-  private noCase(s: string): string {
-    let cancel = (_match: string, stripped: string) => stripped
-
-    switch (this.options.caseProtection) {
-      case 'strict':
-        cancel = (match: string, _stripped: string) => match
-        break
-      case 'as-needed':
-        cancel = (match: string, stripped: string) => needsNC.test(stripped) ? match : stripped
-        break
+  private collapse(s: string): string {
+    let collapsed = s.replace(collapsable, '$2')
+    while (collapsed !== s) {
+      collapsed = s.replace(collapsable, '$2')
     }
 
-    return s.replace(/<\/?ncx>/g, '')
-      .replace(/<nc>(.*?)<\/nc>/g, cancel)
-      .replace(/<\/nc>(\s*)<nc>/g, '$1')
-      .replace(/<nc>/g, '<span class="nocase">').replace(/<\/nc>/g, '</span>')
-      .replace(/<sc>/g, '<span style="font-variant:small-caps;">').replace(/<\/sc>/g, '</span>')
+    return s.replace(/\x0E\/?ncx\x0F/g, '')
+      .replace(/\x0Eenquote\x0F/g, '\u201C').replace(/\x0E\/enquote\x0F/g, '\u201D')
+      .replace(/\x0Enc\x0F/g, '<span class="nocase">').replace(/\x0E\/nc\x0F/g, '</span>')
+      .replace(/\x0Esc\x0F/g, '<span style="font-variant:small-caps;">').replace(/\x0E\/sc\x0F/g, '</span>')
+      .replace(/\x0E/g, '<').replace(/\x0F/g, '>')
   }
 
   private field(entry: Entry, field: string, value: string, sentenceCase: boolean) {
@@ -969,35 +963,45 @@ class BibTeXParser {
         entry.fields[field] = this.split(ast, /^and$/i).map(cr => this.parseCreator(cr))
         break
       case 'commalist':
-        entry.fields[field] = this.split(ast, /^[;,]$/).map(elt => this.noCase(this.stringify(elt, { mode: 'literal'})).trim())
+        entry.fields[field] = this.split(ast, /^[;,]$/).map(elt => this.stringify(elt, { mode: 'literal'}).trim())
         break
       case 'literallist':
-        entry.fields[field] = this.split(ast, /^and$/i).map(elt => this.noCase(this.stringify(elt, { mode: 'literal'})).trim())
+        entry.fields[field] = this.split(ast, /^and$/i).map(elt => this.stringify(elt, { mode: 'literal'}).trim())
         break
       default:
         entry.fields[field] = this.stringify(ast, { mode })
-        if (mode === 'title' && sentenceCase && !(this.options.sentenceCase.guess && guessSentenceCased(<string>entry.fields[field]))) {
-          sentenceCased = this.noCase(toSentenceCase(<string>entry.fields[field], {
+        if (mode === 'title' && sentenceCase && !(this.options.sentenceCase.guess && guessSentenceCased(<string>entry.fields[field], /\x0E\/?([a-z]+)\x0F/g))) {
+
+          let cancel = (_match: string, stripped: string) => stripped
+          switch (this.options.caseProtection) {
+            case 'strict':
+              cancel = (match: string, _stripped: string) => match
+              break
+            case 'as-needed':
+              cancel = (match: string, stripped: string) => needsNC.test(stripped) ? match : this.wrap(stripped, 'ncx')
+              break
+          }
+
+          const title: string = (<string>entry.fields[field]).replace(/\x0Enc\x0F(.*?)\x0E\/nc\x0F/g, cancel)
+          sentenceCased = toSentenceCase(title, {
             preserveQuoted: this.options.sentenceCase.preserveQuoted,
             subSentenceCapitalization: this.options.sentenceCase.subSentence,
-          }))
-        }
-        entry.fields[field] = this.noCase(<string>entry.fields[field])
-        if (sentenceCased && sentenceCased !== entry.fields[field]) {
-          entry.fields[field] = sentenceCased
-          entry.sentenceCased = true
+            markup: /\x0E\/?([a-z]+)\x0F/g,
+            nocase: /\x0E(ncx?)\x0F.*?\x0E\/\1\x0F/g,
+          })
+          entry.fields[field] = title
+          if (sentenceCased !== title) entry.sentenceCased = true
         }
         if (FieldAction.unabbrev.includes(field)) entry.fields[field] = unabbreviate[<string>entry.fields[field]] || entry.fields[field]
         if (typeof entry.fields[field] === 'string') {
           if (field !== 'crossref' && (<string>entry.fields[field]).trim().match(/^-?\d+$/)) {
             entry.fields[field] = parseInt(<string>entry.fields[field])
           }
-          else {
-            entry.fields[field] = (<string>entry.fields[field]).replace(/<\/(i|b|nc|sup|sub)>(\s*)<\1>/g, '$2')
-          }
         }
         break
     }
+    // recursively collapses string content. <string> is just here to pacify typescript
+    entry.fields[field] = JSON.parse(JSON.stringify(entry.fields[field], (k, v) => (typeof v === 'string' ? this.collapse(v) : v) as string))
   }
 
   private empty(options: Options = {}): Bibliography {
