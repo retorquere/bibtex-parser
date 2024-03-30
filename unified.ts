@@ -797,7 +797,9 @@ class BibTeXParser {
 
   private collapse(s: string): string {
     let collapsed = s.replace(collapsable, '$2')
-    while (collapsed !== s) {
+    let last = s
+    while (collapsed !== last) {
+      last = collapsed
       collapsed = s.replace(collapsable, '$2')
     }
 
@@ -982,15 +984,17 @@ class BibTeXParser {
               break
           }
 
-          const title: string = (<string>entry.fields[field]).replace(/\x0Enc\x0F(.*?)\x0E\/nc\x0F/g, cancel)
-          sentenceCased = toSentenceCase(title, {
+          entry.fields[field] = (<string>entry.fields[field]).replace(/\x0Enc\x0F(.*?)\x0E\/nc\x0F/g, cancel)
+          sentenceCased = toSentenceCase(<string>entry.fields[field], {
             preserveQuoted: this.options.sentenceCase.preserveQuoted,
             subSentenceCapitalization: this.options.sentenceCase.subSentence,
             markup: /\x0E\/?([a-z]+)\x0F/g,
             nocase: /\x0E(ncx?)\x0F.*?\x0E\/\1\x0F/g,
           })
-          entry.fields[field] = title
-          if (sentenceCased !== title) entry.sentenceCased = true
+          if (sentenceCased !== entry.fields[field]) {
+            entry.fields[field] = sentenceCased
+            entry.sentenceCased = true
+          }
         }
         if (FieldAction.unabbrev.includes(field)) entry.fields[field] = unabbreviate[<string>entry.fields[field]] || entry.fields[field]
         if (typeof entry.fields[field] === 'string') {

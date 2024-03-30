@@ -187,7 +187,7 @@ export function guessSentenceCased(title: string, markup = /<\/?(?:i|b|sup|sub|n
   if (noMarkup === noMarkup.toUpperCase()) return false
   if (noMarkup === noMarkup.toLowerCase()) return false
 
-  const words = tokenize(title).filter(token => token.type === 'word')
+  const words = tokenize(title, markup).filter(token => token.type === 'word')
   if (!words.length) return true
 
   const titleCased = words.filter(word => word.shape.match(/^X.*x/))
