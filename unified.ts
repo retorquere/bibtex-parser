@@ -647,10 +647,9 @@ class BibTeXParser {
       case 'sc':
         return ''
 
-      // bold/emph is handled in the wrapper
+      // bold/emph/smallcaps is handled in the wrapper
       case 'textbf':
       case 'mkbibbold':
-
       case 'textit':
       case 'emph':
       case 'mkbibemph':
@@ -730,8 +729,11 @@ class BibTeXParser {
 
   private stringify(node: Node | Argument, context: Context): string {
     let content = this.stringifyContent(node, context)
-    if (node._renderInfo?.emph) content = `<i>${content}</i>`
-    if (node._renderInfo?.bold) content = `<b>${content}</b>`
+    if (node._renderInfo) {
+      if (node._renderInfo.emph) content = `<i>${content}</i>`
+      if (node._renderInfo.bold) content = `<b>${content}</b>`
+      if (node._renderInfo.smallCaps) content = `<sc>${content}</sc>`
+    }
     return content
   }
 
@@ -809,6 +811,7 @@ class BibTeXParser {
       .replace(/<nc>(.*?)<\/nc>/g, cancel)
       .replace(/<\/nc>(\s*)<nc>/g, '$1')
       .replace(/<nc>/g, '<span class="nocase">').replace(/<\/nc>/g, '</span>')
+      .replace(/<sc>/g, '<span style="font-variant:small-caps;">').replace(/<\/sc>/g, '</span>')
   }
 
   private field(entry: Entry, field: string, value: string, sentenceCase: boolean) {
@@ -850,6 +853,8 @@ class BibTeXParser {
         if (node.type === 'environment' && node.env === 'em') node._renderInfo.emph = true
 
         if (node.type === 'macro' && node.content.match(/^(textbf|mkbibbold|bfseries)$/)) node._renderInfo.bold = true
+
+        if (node.type === 'macro' && node.content.match(/^(textsc)$/)) node._renderInfo.smallCaps = true
       }
     })
 
