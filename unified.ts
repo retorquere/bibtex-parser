@@ -311,6 +311,10 @@ const FieldAction = {
     'journaltitle',
     'journal-full',
   ],
+  parseInt: [
+    'year',
+    'month',
+  ],
 }
 
 const narguments = {
@@ -999,7 +1003,7 @@ class BibTeXParser {
           }
         }
         if (typeof entry.fields[field] === 'string') {
-          if (field !== 'crossref' && (<string>entry.fields[field]).trim().match(/^-?\d+$/)) {
+          if (field !== 'crossref' && FieldAction.parseInt.includes(field) && (<string>entry.fields[field]).trim().match(/^-?\d+$/)) {
             entry.fields[field] = parseInt(<string>entry.fields[field])
           }
           else if (FieldAction.unabbrev.includes(field)) {
