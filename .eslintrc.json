@@ -1,5 +1,4 @@
 {
-  "root": true,
   "env": {
     "browser": true,
     "es6": true,
@@ -10,6 +9,12 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking"
+  ],
+  "ignorePatterns": [
+    "webpack.config.ts",
+    "util/*.ts",
+    "minitests/*.ts",
+    "content/minitests/*.ts"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -22,6 +27,7 @@
     "@typescript-eslint",
     "@typescript-eslint/eslint-plugin"
   ],
+  "root": true,
   "rules": {
     "@typescript-eslint/adjacent-overload-signatures": "error",
     "@typescript-eslint/array-type": [
@@ -36,17 +42,17 @@
       "warn",
       {
         "types": {
-          "Object": {
-            "message": "Avoid using the `Object` type. Did you mean `object`?"
+          "Boolean": {
+            "message": "Avoid using the `Boolean` type. Did you mean `boolean`?"
           },
           "Function": {
             "message": "Avoid using the `Function` type. Prefer a specific function type, like `() => void`."
           },
-          "Boolean": {
-            "message": "Avoid using the `Boolean` type. Did you mean `boolean`?"
-          },
           "Number": {
             "message": "Avoid using the `Number` type. Did you mean `number`?"
+          },
+          "Object": {
+            "message": "Avoid using the `Object` type. Did you mean `object`?"
           },
           "String": {
             "message": "Avoid using the `String` type. Did you mean `string`?"
@@ -57,7 +63,8 @@
         }
       }
     ],
-    "@typescript-eslint/consistent-type-assertions": "error",
+    "@typescript-eslint/consistent-type-assertions": "off",
+    "@typescript-eslint/consistent-type-definitions": "off",
     "@typescript-eslint/dot-notation": "error",
     "@typescript-eslint/explicit-module-boundary-types": "warn",
     "@typescript-eslint/indent": [
@@ -114,7 +121,6 @@
         "argsIgnorePattern": "^_"
       }
     ],
-    "@typescript-eslint/consistent-type-assertions": "off",
     "@typescript-eslint/no-use-before-define": "off",
     "@typescript-eslint/no-var-requires": "off",
     "@typescript-eslint/prefer-as-const": "error",
@@ -139,9 +145,9 @@
     "@typescript-eslint/triple-slash-reference": [
       "error",
       {
+        "lib": "always",
         "path": "always",
-        "types": "prefer-import",
-        "lib": "always"
+        "types": "prefer-import"
       }
     ],
     "@typescript-eslint/unbound-method": "error",
@@ -161,9 +167,9 @@
     "comma-dangle": [
       "error",
       {
-        "objects": "always-multiline",
         "arrays": "always-multiline",
-        "functions": "never"
+        "functions": "never",
+        "objects": "always-multiline"
       }
     ],
     "complexity": "off",
@@ -235,6 +241,7 @@
         ]
       }
     ],
+    "no-new-func": "off",
     "no-new-wrappers": "error",
     "no-redeclare": "error",
     "no-throw-literal": "error",
@@ -279,8 +286,8 @@
       "error",
       {
         "anonymous": "never",
-        "named": "never",
-        "asyncArrow": "always"
+        "asyncArrow": "always",
+        "named": "never"
       }
     ],
     "spaced-comment": [
@@ -294,14 +301,6 @@
     ],
     "use-isnan": "error",
     "valid-typeof": "off",
-    "yoda": "error",
-    "@typescript-eslint/consistent-type-definitions": "off",
-    "no-new-func": "off"
-  },
-  "ignorePatterns": [
-    "webpack.config.ts",
-    "util/*.ts",
-    "minitests/*.ts",
-    "content/minitests/*.ts"
-  ]
+    "yoda": "error"
+  }
 }

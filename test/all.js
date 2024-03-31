@@ -40,12 +40,12 @@ const valid = {
   ],
   case_protection: [
     'as-needed',
-    'strict',
     'off',
+    'strict',
   ],
   preserve_quoted: [
-    'false',
     'true',
+    'false',
   ],
 }
 const multi = ['test']
@@ -153,8 +153,8 @@ let testcases = []
 for (const pattern of config.test) {
   testcases = testcases.concat(glob(path.join(__dirname, '**', (pattern ? '*' : '') + pattern + '*.{json,bib,bibtex,biblatex}'), { nocase: true, matchBase: true, nonull: false, nodir: true }))
   testcases.sort()
-  testcases = testcases.slice(0, 20) // limit
-  // testcases = testcases.filter(testcase => testcase.match(/313/))
+  testcases = testcases.slice(0, 80) // limit
+  // testcases = testcases.filter(testcase => testcase.match(/566/))
 }
 
 for (const bibfile of testcases) {

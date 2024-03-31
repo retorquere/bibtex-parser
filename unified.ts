@@ -26,7 +26,7 @@ function latex2unicode(tex: string, node: Node): string {
 
 const open: Record<string, string> = {}
 const close: Record<string, string> = {}
-for (const tag of ['i', 'b', 'sc', 'nc', 'ncx', 'br', 'par', 'li']) {
+for (const tag of ['i', 'b', 'sc', 'nc', 'ncx', 'br', 'p', 'li']) {
   open[tag] = `\x0E${tag}\x0F`
   close[tag] = `\x0E/${tag}\x0F`
 }
@@ -388,9 +388,11 @@ class BibTeXParser {
   private fieldMode: typeof FieldMode
   private newcommands: Record<string, Argument> = {}
 
-  private splitter(nodes: Node[], splitter: RegExp): boolean {
+  private splitter(nodes: Node[], splitter: string | RegExp): boolean {
     // eslint-disable-next-line no-magic-numbers
-    const types = nodes.slice(0, 3).map(n => n.type === 'string' && n.content.match(splitter) ? 'splitter' : n.type).join(',')
+    const types = nodes.slice(0, 3)
+      .map(n => n.type === 'string' && (typeof splitter === 'string' ? n.content === splitter : n.content.match(splitter)) ? 'splitter' : n.type)
+      .join(',')
     const match = /^(whitespace,?)?(splitter)(,?whitespace)?/.exec(types)
     if (!match) return false
     nodes.splice(0, match.slice(1).filter(t => t).length)
@@ -415,7 +417,7 @@ class BibTeXParser {
     }
 
     while (ast.content.length) {
-      if (this.splitter(ast.content, <RegExp>splitter)) {
+      if (this.splitter(ast.content, splitter)) {
         parts.push({ type: 'root', content: [] })
         part = parts.length - 1
       }
@@ -830,7 +832,7 @@ class BibTeXParser {
       const node = root.shift()
 
       // only root groups offer case protecten -- but it may be as an macro arg, so mark here before gobbling
-      if (this.protect(node)) node._renderInfo = { protectCase: true }
+      if (this.protect(node)) node._renderInfo = { root: true }
 
       // environments are considered root when at root
       if (node.type === 'environment') root = [...root, ...node.content]
@@ -844,6 +846,7 @@ class BibTeXParser {
 
       // if (info.context.inMathMode || info.context.hasMathModeAncestor) return
       if (!info.context.inMathMode) {
+        if (node._renderInfo.root) node._renderInfo.protectCase = true
         if (node.type === 'macro' && typeof node.escapeToken !== 'string') node.escapeToken = '\\'
 
         if (node.type === 'macro' && node.content.match(/^(itshape|textit|emph|mkbibemph)$/)) node._renderInfo.emph = true
@@ -975,6 +978,19 @@ class BibTeXParser {
         entry.fields[field] = this.stringify(ast, { mode })
 
         if (mode === 'title' && sentenceCase) {
+          if (!this.options.sentenceCase.guess || !guessSentenceCased(<string>entry.fields[field], /\x0E\/?([a-z]+)\x0F/g)) {
+            sentenceCased = toSentenceCase(<string>entry.fields[field], {
+              preserveQuoted: this.options.sentenceCase.preserveQuoted,
+              subSentenceCapitalization: this.options.sentenceCase.subSentence,
+              markup: /\x0E\/?([a-z]+)\x0F/g,
+              nocase: /\x0E(ncx?)\x0F.*?\x0E\/\1\x0F/g,
+            })
+            if (sentenceCased !== entry.fields[field]) {
+              entry.fields[field] = sentenceCased
+              entry.sentenceCased = true
+            }
+          }
+
           let cancel = (_match: string, stripped: string) => stripped
           switch (this.options.caseProtection) {
             case 'strict':
@@ -988,19 +1004,6 @@ class BibTeXParser {
               break
           }
           entry.fields[field] = (<string>entry.fields[field]).replace(/\x0Enc\x0F(.*?)\x0E\/nc\x0F/g, cancel)
-
-          if (!this.options.sentenceCase.guess || !guessSentenceCased(<string>entry.fields[field], /\x0E\/?([a-z]+)\x0F/g)) {
-            sentenceCased = toSentenceCase(<string>entry.fields[field], {
-              preserveQuoted: this.options.sentenceCase.preserveQuoted,
-              subSentenceCapitalization: this.options.sentenceCase.subSentence,
-              markup: /\x0E\/?([a-z]+)\x0F/g,
-              nocase: /\x0E(ncx?)\x0F.*?\x0E\/\1\x0F/g,
-            })
-            if (sentenceCased !== entry.fields[field]) {
-              entry.fields[field] = sentenceCased
-              entry.sentenceCased = true
-            }
-          }
         }
         if (typeof entry.fields[field] === 'string') {
           if (field !== 'crossref' && FieldAction.parseInt.includes(field) && (<string>entry.fields[field]).trim().match(/^-?\d+$/)) {
@@ -1136,7 +1139,6 @@ class BibTeXParser {
     const { comments, jabref } = JabRef.parse(base.comments)
     bib.comments = comments
     bib.jabref = jabref
-    bib.comments = base.comments
 
     bib.preamble = base.preambles
     bib.errors = [...base.errors, ...bib.errors]

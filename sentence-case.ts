@@ -174,7 +174,7 @@ export function toSentenceCase(title: string, options: Options = {}): string {
   }
 
   if (options.preserveQuoted) {
-    for (const q of [/(“.*?)”/g, /(‘.*?)’/g, /(".*?)"/g]) {
+    for (const q of [/“.*?”/g, /‘.*?’/g, /".*?"/g]) {
       sentenceCased = sentenceCased.replace(q, (match: string, offset: number) => title.substring(offset, offset + match.length))
     }
   }
@@ -190,6 +190,6 @@ export function guessSentenceCased(title: string, markup = /<\/?(?:i|b|sup|sub|n
   const words = tokenize(title, markup).filter(token => token.type === 'word')
   if (!words.length) return true
 
-  const titleCased = words.filter(word => word.shape.match(/^X+$|^X.*x/))
+  const titleCased = words.filter(word => word.shape.match(/^X+$|^X.*x|[^Xx]+-X/))
   return (titleCased.length / words.length) < 0.5 // eslint-disable-line no-magic-numbers
 }
