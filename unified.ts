@@ -673,6 +673,9 @@ class BibTeXParser {
             return node.content
         }
 
+      case 'LaTeX':
+        return `L${this.subp('A', '^')}T${this.subp('E', '_')}X`
+
       case 'enquote':
       case 'mkbibquote':
         return this.wrap(this.stringify(node.args?.[0], context), 'enquote')
