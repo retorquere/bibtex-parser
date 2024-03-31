@@ -83,7 +83,7 @@ function tokentype(token: Token): string {
 const Lu = XRegExp('\\p{Lu}')
 const Ll = XRegExp('\\p{Ll}')
 const strayCC = new RegExp(`^(${combining.regex})`)
-function tokenize(title: string, markup?: RegExp): Token[] {
+export function tokenize(title: string, markup?: RegExp): Token[] {
 
   if (markup) title = title.replace(markup, match => '\u2060'.repeat(match.length))
   const doc = nlp(title)
@@ -190,6 +190,6 @@ export function guessSentenceCased(title: string, markup = /<\/?(?:i|b|sup|sub|n
   const words = tokenize(title, markup).filter(token => token.type === 'word')
   if (!words.length) return true
 
-  const titleCased = words.filter(word => word.shape.match(/^X.*x/))
+  const titleCased = words.filter(word => word.shape.match(/^X+$|^X.*x/))
   return (titleCased.length / words.length) < 0.5 // eslint-disable-line no-magic-numbers
 }

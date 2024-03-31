@@ -8,8 +8,7 @@ import { latex2unicode as latex2unicodemap, combining } from 'unicode2latex'
 import * as bibtex from './chunker'
 import * as JabRef from './jabref'
 export { toSentenceCase } from './sentence-case'
-import { toSentenceCase, guessSentenceCased } from './sentence-case'
-import XRegExp from 'xregexp'
+import { toSentenceCase, guessSentenceCased, tokenize } from './sentence-case'
 
 import crossref from './crossref.json'
 import allowed from './fields.json'
@@ -377,8 +376,6 @@ async function* asyncGenerator<T>(array: T[]): AsyncGenerator<T, void, unknown> 
     yield await Promise.resolve(item)
   }
 }
-
-const needsNC = XRegExp('(^|\\s)([^\\p{Lu}]+)(\\s|$)')
 
 class BibTeXParser {
   private fallback: unsupportedHandler
@@ -796,14 +793,14 @@ class BibTeXParser {
   }
 
   private collapse(s: string): string {
-    let collapsed = s.replace(collapsable, '$2')
-    let last = s
-    while (collapsed !== last) {
-      last = collapsed
-      collapsed = s.replace(collapsable, '$2')
+    if (!s.includes('\x0E')) return s
+
+    const collapsed: string[] = [s.replace(/\x0E\/?ncx\x0F/g, '')]
+    while (collapsed[0] !== collapsed[1]) {
+      collapsed.unshift(collapsed[0].replace(collapsable, '$2'))
     }
 
-    return s.replace(/\x0E\/?ncx\x0F/g, '')
+    return collapsed[0]
       .replace(/\x0Eenquote\x0F/g, '\u201C').replace(/\x0E\/enquote\x0F/g, '\u201D')
       .replace(/\x0Enc\x0F/g, '<span class="nocase">').replace(/\x0E\/nc\x0F/g, '</span>')
       .replace(/\x0Esc\x0F/g, '<span style="font-variant:small-caps;">').replace(/\x0E\/sc\x0F/g, '</span>')
@@ -972,38 +969,47 @@ class BibTeXParser {
         break
       default:
         entry.fields[field] = this.stringify(ast, { mode })
-        if (mode === 'title' && sentenceCase && !(this.options.sentenceCase.guess && guessSentenceCased(<string>entry.fields[field], /\x0E\/?([a-z]+)\x0F/g))) {
 
+        if (mode === 'title' && sentenceCase) {
           let cancel = (_match: string, stripped: string) => stripped
           switch (this.options.caseProtection) {
             case 'strict':
               cancel = (match: string, _stripped: string) => match
               break
             case 'as-needed':
-              cancel = (match: string, stripped: string) => needsNC.test(stripped) ? match : this.wrap(stripped, 'ncx')
+              cancel = (match: string, stripped: string) => {
+                const words = tokenize(stripped)
+                return words.find(w => w.shape.match(/^(?!.*X).*x.*$/)) ? match : this.wrap(stripped, 'ncx')
+              }
               break
           }
-
           entry.fields[field] = (<string>entry.fields[field]).replace(/\x0Enc\x0F(.*?)\x0E\/nc\x0F/g, cancel)
-          sentenceCased = toSentenceCase(<string>entry.fields[field], {
-            preserveQuoted: this.options.sentenceCase.preserveQuoted,
-            subSentenceCapitalization: this.options.sentenceCase.subSentence,
-            markup: /\x0E\/?([a-z]+)\x0F/g,
-            nocase: /\x0E(ncx?)\x0F.*?\x0E\/\1\x0F/g,
-          })
-          if (sentenceCased !== entry.fields[field]) {
-            entry.fields[field] = sentenceCased
-            entry.sentenceCased = true
+
+          if (!this.options.sentenceCase.guess || !guessSentenceCased(<string>entry.fields[field], /\x0E\/?([a-z]+)\x0F/g)) {
+            sentenceCased = toSentenceCase(<string>entry.fields[field], {
+              preserveQuoted: this.options.sentenceCase.preserveQuoted,
+              subSentenceCapitalization: this.options.sentenceCase.subSentence,
+              markup: /\x0E\/?([a-z]+)\x0F/g,
+              nocase: /\x0E(ncx?)\x0F.*?\x0E\/\1\x0F/g,
+            })
+            if (sentenceCased !== entry.fields[field]) {
+              entry.fields[field] = sentenceCased
+              entry.sentenceCased = true
+            }
           }
         }
-        if (FieldAction.unabbrev.includes(field)) entry.fields[field] = unabbreviate[<string>entry.fields[field]] || entry.fields[field]
         if (typeof entry.fields[field] === 'string') {
           if (field !== 'crossref' && (<string>entry.fields[field]).trim().match(/^-?\d+$/)) {
             entry.fields[field] = parseInt(<string>entry.fields[field])
           }
+          else if (FieldAction.unabbrev.includes(field)) {
+            entry.fields[field] = unabbreviate[(<string>entry.fields[field]).toUpperCase()] || entry.fields[field]
+          }
         }
+
         break
     }
+
     // recursively collapses string content. <string> is just here to pacify typescript
     entry.fields[field] = JSON.parse(JSON.stringify(entry.fields[field], (k, v) => (typeof v === 'string' ? this.collapse(v) : v) as string))
   }
