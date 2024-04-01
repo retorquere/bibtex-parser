@@ -523,7 +523,10 @@ class BibTeXParser {
     return null
   }
 
-  private wraparg(node) : Argument {
+  private wraparg(node: Node, macro: Macro) : Argument {
+    if (macro.content.match(/^(itshape|textit|emph|mkbibemph)$/)) node._renderInfo.emph = true
+    if (macro.content.match(/^(textbf|mkbibbold|bfseries)$/)) node._renderInfo.bold = true
+    if (macro.content.match(/^(textsc)$/)) node._renderInfo.smallCaps = true
     return { type: 'argument', content: [ node ], openMark: '', closeMark: '', _renderInfo: { mode: node._renderInfo.mode } }
   }
 
@@ -531,7 +534,8 @@ class BibTeXParser {
     if (node.content.length === 1 && node.content[0].type === 'group') return node.content[0]
     return { type: 'group', content: node.content }
   }
-  private argument(nodes: Node[]): Argument {
+
+  private argument(nodes: Node[], macro: Macro): Argument {
     if (!nodes.length) return null
     if (nodes[0].type === 'whitespace') nodes.shift()
     if (!nodes.length) return null
@@ -540,9 +544,9 @@ class BibTeXParser {
       nodes[0].content = nodes[0].content.substr(1)
       const arg = { ...nodes[0], content: char }
       if (!nodes[0].content) nodes.shift()
-      return this.wraparg(arg)
+      return this.wraparg(arg, macro)
     }
-    return this.wraparg(nodes.shift())
+    return this.wraparg(nodes.shift(), macro)
   }
 
   private unsupported(node: Node): string {
@@ -865,12 +869,7 @@ class BibTeXParser {
 
         if (node.type === 'macro' && typeof node.escapeToken !== 'string') node.escapeToken = '\\'
 
-        if (node.type === 'macro' && node.content.match(/^(itshape|textit|emph|mkbibemph)$/)) node._renderInfo.emph = true
         if (node.type === 'environment' && node.env === 'em') node._renderInfo.emph = true
-
-        if (node.type === 'macro' && node.content.match(/^(textbf|mkbibbold|bfseries)$/)) node._renderInfo.bold = true
-
-        if (node.type === 'macro' && node.content.match(/^(textsc)$/)) node._renderInfo.smallCaps = true
       }
     })
 
@@ -906,11 +905,11 @@ class BibTeXParser {
           ? narguments[node.content] || narguments[`${info.context.inMathMode ? 'math' : 'text'}\t${node.content}`]
           : 0
         if (node.type === 'macro' && nargs) {
-          node.args = Array(nargs).fill(undefined).map(_i => this.argument(nodes)).filter(arg => arg)
+          node.args = Array(nargs).fill(undefined).map(_i => this.argument(nodes, <Macro>node)).filter(arg => arg)
           if (node.content.match(/^(url|href)$/) && node.args.length) {
             let url: Node[] = node.args[0].content
             if (url.length === 1 && url[0].type === 'group') url = url[0].content
-            node.args[0] = this.wraparg({ type: 'string', content: printRaw(url), _renderInfo: { mode: url[0]._renderInfo.mode } })
+            node.args[0] = this.wraparg({ type: 'string', content: printRaw(url), _renderInfo: { mode: url[0]._renderInfo.mode } }, node)
           }
         }
         else if (node.type === 'macro' && node.content.match(/^[a-z]+$/i) && nodes[0]?.type === 'whitespace') {
