@@ -1113,7 +1113,11 @@ class BibTeXParser {
 
   private prep(bib: Bibliography, base: bibtex.Bibliography) {
     for (const preamble of base.preambles) {
-      this.content(preamble)
+      try {
+        this.content(preamble)
+      }
+      catch (err) {
+      }
     }
     for (const [k, v] of Object.entries(base.strings)) {
       bib.strings[k] = this.content(v)

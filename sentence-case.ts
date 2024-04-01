@@ -54,8 +54,9 @@ function titleCase(s: string): string {
 
 function wordSC(token: Token, succ: Token, allCaps: boolean, subSentence: boolean): string {
   if (token.type !== 'word') return token.text
+
   if (subSentence && token.subSentenceStart && token.text.match(/^a$/i)) return 'a'
-  if ((subSentence && token.subSentenceStart) || token.sentenceStart) return titleCase(token.text)
+  if ((subSentence && token.subSentenceStart) || token.sentenceStart) return (!allCaps && token.shape.match(/^[Xd]+$/)) ? token.text : titleCase(token.text)
 
   if (token.text.match(/^[B-Z]$/)) return token.text
 
@@ -67,12 +68,12 @@ function wordSC(token: Token, succ: Token, allCaps: boolean, subSentence: boolea
   }
   if (token.text.match(preposition.simple)) return token.text.toLowerCase()
 
+  if (token.shape.match(/^[Xd]+$/)) return allCaps ? token.text.toLowerCase() : token.text
+
   if (token.shape.match(/^X[xd]*(-[Xxd]*)*$/)) return token.text.toLowerCase()
 
   if (token.text.includes('.')) return token.text
   if (token.shape.match(/x.*X/)) return token.text
-
-  if (token.shape.match(/^[Xd]+$/)) return allCaps ? token.text.toLowerCase() : token.text
 
   return token.text.toLowerCase()
 }
@@ -171,6 +172,8 @@ export function toSentenceCase(title: string, options: Options = {}): string {
 
   title = title.normalize('NFC') // https://github.com/winkjs/wink-nlp/issues/134
   const allCaps = title === title.toUpperCase()
+  if (allCaps && !title.match(/\s/)) return title
+
   let sentenceCased = title
 
   const tokens = tokenize(title, options.markup)

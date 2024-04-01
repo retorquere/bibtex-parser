@@ -343,8 +343,8 @@ class Parser {
     }
   }
 
-  private key_equals_value() {
-    const key = this.key()
+  private key_equals_value(key?: string) {
+    key = key || this.key()
 
     if (!this.tryMatch('=')) {
       throw new ParsingError(`... = value expected, equals sign missing: ${JSON.stringify(this.input.substr(this.pos, 20))}...`, this) // eslint-disable-line no-magic-numbers
@@ -364,10 +364,27 @@ class Parser {
   private entry(d: string, guard: string) {
     if (this.tryMatch(guard)) return // empty entry
 
-    // mendeley can output entries without key... sure...
-    if (!this.tryMatch(',')) this.entries[0].key = this.key('"')
+    let key: string
+    // mendeley end endnote can output entries without key... sure...
+    if (this.tryMatch(',')) {
+      // mendeley absurdity which outputs keyless entries, but at least have the decency to put a comma there
+      key = ''
+    }
+    else {
+      // so maybe a real key?
+      key = this.key('"')
+    }
+
+    if (this.tryMatch('=')) {
+      // nope; endnote just skips the comma; we can infer we're in this moronic situation because we've been dumped into field-parsing
+      this.key_equals_value(key)
+    }
+    else {
+      // so we did find the real key earlier
+      this.entries[0].key = key
+    }
+    this.tryMatch(',', true)
     if (this.tryMatch(guard)) return // no fields
-    this.match(',')
 
     this.key_equals_value()
     while (this.tryMatch(',', true)) {
