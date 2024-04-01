@@ -4,6 +4,10 @@ import XRegExp from 'xregexp'
 import nlp from 'compromise/one'
 import { combining } from 'unicode2latex'
 
+
+// eslint-disable-next-line no-magic-numbers
+// const show = (obj: any): string => JSON.stringify(obj, null, 2).replace(/[\u007F-\uFFFF]/g, chr => `\\u${(`0000${chr.charCodeAt(0).toString(16)}`).substr(-4)}`)
+
 type WordToken = {
   type: 'word'
   text: string
@@ -51,7 +55,7 @@ function titleCase(s: string): string {
 function wordSC(token: Token, succ: Token, allCaps: boolean, subSentence: boolean): string {
   if (token.type !== 'word') return token.text
   if (subSentence && token.subSentenceStart && token.text.match(/^a$/i)) return 'a'
-  if ((subSentence && token.subSentenceStart) || token.sentenceStart) return allCaps ? titleCase(token.text) : token.text
+  if ((subSentence && token.subSentenceStart) || token.sentenceStart) return titleCase(token.text)
 
   if (token.text.match(/^[B-Z]$/)) return token.text
 
@@ -63,7 +67,7 @@ function wordSC(token: Token, succ: Token, allCaps: boolean, subSentence: boolea
   }
   if (token.text.match(preposition.simple)) return token.text.toLowerCase()
 
-  if (token.shape.match(/^X[xd]*(-X[xd]*)*$/)) return token.text.toLowerCase()
+  if (token.shape.match(/^X[xd]*(-[Xxd]*)*$/)) return token.text.toLowerCase()
 
   if (token.text.includes('.')) return token.text
   if (token.shape.match(/x.*X/)) return token.text
@@ -83,6 +87,21 @@ function tokentype(token: Token): string {
 const Lu = XRegExp('\\p{Lu}')
 const Ll = XRegExp('\\p{Ll}')
 const strayCC = new RegExp(`^(${combining.regex})`)
+
+function prepost(s: string, offset: number): Token[] {
+  const tokens: Token[] = []
+  for (const text of s.match(/(\s+|\S+)/g)) {
+    if (text.match(/\s/)) {
+      tokens.push({ type: 'whitespace', text, shape: text })
+    }
+    else if (text) {
+      tokens.push({ type: 'punctuation', text, shape: text, start: offset, end: offset + text.length - 1 })
+    }
+    offset += text.length
+  }
+  return tokens
+}
+
 export function tokenize(title: string, markup?: RegExp): Token[] {
 
   if (markup) title = title.replace(markup, match => '\u2060'.repeat(match.length))
@@ -100,7 +119,8 @@ export function tokenize(title: string, markup?: RegExp): Token[] {
         term.post = term.post.substring(m[0].length)
         term.offset.length += m[0].length
       }
-      if (term.pre.match(/\s/)) words.push({ type: 'whitespace', text: term.pre.replace(/[^\s]/g, ''), shape: term.pre.replace(/[^\s]/g, '') })
+
+      if (term.pre) words.push(...prepost(<string>term.pre, term.offset.start - term.pre.length))
 
       words.push({
         start: term.offset.start,
@@ -114,8 +134,7 @@ export function tokenize(title: string, markup?: RegExp): Token[] {
       sentenceStart = false
       subSentenceStart = term.post.includes(':')
 
-      if (term.post === '-') words.push({ type: 'punctuation', text: term.post, shape: term.post, start: term.offset.start + term.offset.length, end: term.offset.start + term.offset.length + term.post.length - 1 })
-      if (term.post.match(/\s/)) words.push({ type: 'whitespace', text: term.post.replace(/[^\s]/g, ''), shape: term.post.replace(/[^\s]/g, '') })
+      if (term.post) words.push(...prepost(<string>term.post, <number>term.offset.start + <number>term.offset.length))
     }
     subSentenceStart = true
 
@@ -151,10 +170,10 @@ export function toSentenceCase(title: string, options: Options = {}): string {
   }
 
   title = title.normalize('NFC') // https://github.com/winkjs/wink-nlp/issues/134
-  let sentenceCased = title
-  const tokens = tokenize(title, options.markup)
-
   const allCaps = title === title.toUpperCase()
+  let sentenceCased = title
+
+  const tokens = tokenize(title, options.markup)
 
   tokens.forEach((token, i) => {
     if (token.type !== 'whitespace') {
@@ -187,7 +206,7 @@ export function guessSentenceCased(title: string, markup = /<\/?(?:i|b|sup|sub|n
   if (noMarkup === noMarkup.toUpperCase()) return false
   if (noMarkup === noMarkup.toLowerCase()) return false
 
-  const words = tokenize(title, markup).filter(token => token.type === 'word')
+  const words = tokenize(title, markup).filter(token => token.type === 'word' && token.shape.match(/x/i))
   if (!words.length) return true
 
   const titleCased = words.filter(word => word.shape.match(/^X+$|^X.*x|[^Xx]+-X/))

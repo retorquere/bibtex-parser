@@ -204,9 +204,11 @@ class Parser {
     if (sws) this.skipWhitespace()
   }
 
-  private tryMatch(s) {
+  private tryMatch(s, consume=false) {
     this.skipWhitespace()
-    return (this.input.substr(this.pos, s.length) === s)
+    const match = (this.input.substr(this.pos, s.length) === s)
+    if (match && consume) this.pos += s.length
+    return match
     // this.skipWhitespace()
   }
 
@@ -311,7 +313,7 @@ class Parser {
           input: bare,
         })
       }
-      return resolved || bare
+      return resolved || `{{${bare}}}`
     }
   }
 
@@ -341,8 +343,8 @@ class Parser {
     }
   }
 
-  private key_equals_value(key?: string) {
-    key = key || this.key()
+  private key_equals_value() {
+    const key = this.key()
 
     if (!this.tryMatch('=')) {
       throw new ParsingError(`... = value expected, equals sign missing: ${JSON.stringify(this.input.substr(this.pos, 20))}...`, this) // eslint-disable-line no-magic-numbers
@@ -362,21 +364,16 @@ class Parser {
   private entry(d: string, guard: string) {
     if (this.tryMatch(guard)) return // empty entry
 
-    let key = this.key('"')
-    if (this.tryMatch(',')) { // some people seem to think the key is optional...
-      this.match(',')
-      this.entries[0].key = key
-      key = ''
-    }
-    if (!key && this.tryMatch(guard)) return // no fields
+    // mendeley can output entries without key... sure...
+    if (!this.tryMatch(',')) this.entries[0].key = this.key('"')
+    if (this.tryMatch(guard)) return // no fields
+    this.match(',')
 
-    this.key_equals_value(key)
-    while (this.tryMatch(',')) {
-      this.match(',')
+    this.key_equals_value()
+    while (this.tryMatch(',', true)) {
       // fixes problems with commas at the end of a list
-      if (this.tryMatch(guard)) {
-        break
-      }
+      if (this.tryMatch(guard)) return
+
       this.key_equals_value()
     }
   }

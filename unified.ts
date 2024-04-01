@@ -230,7 +230,7 @@ export const FieldMode = {
     'series',
     'shorttitle',
     'booktitle',
-    'type',
+    // 'type',
     'origtitle',
     'maintitle',
     'eventtitle',
@@ -359,6 +359,7 @@ const narguments = {
   url: 1,
   vphantom: 1,
   vspace: 1,
+  overline: 1,
 
   // math
   'math\t_': 1,
@@ -607,9 +608,6 @@ class BibTeXParser {
       case 'newcommand':
         return this.registercommand(node)
 
-      case 'LaTeX':
-        return 'LaTeX'
-
       case 'vphantom':
       case 'noopsort':
         return ''
@@ -620,6 +618,9 @@ class BibTeXParser {
           return ' '
         }
         return ''
+
+      case 'overline':
+        return node.args.map(a => this.stringify(a, context)).join('').replace(/[a-z0-9]/g, m => `${m}\u0305`)
 
       case 'textup':
       case 'textsc':
@@ -714,9 +715,18 @@ class BibTeXParser {
     }
   }
 
+  private what(node: Node) {
+    if (!node) return ''
+
+    switch (node.type) {
+      case 'macro': return `macro:${<string>node._renderInfo.mode ?? 'text'}:${node.content}`
+      case 'environment': return `env:${node.env}`
+      default: return node.type
+    }
+  }
   private environment(node: Environment, context: Context) {
-    if (node.content.length && node.content[0].type === 'whitespace') node.content.shift()
-    if (node.content.length && node.content[node.content.length - 1].type === 'whitespace') node.content.pop()
+    while (node.content.length && this.what(node.content[0]).match(/^parbreak|whitespace|macro:text:par$/)) node.content.shift()
+    while (node.content.length && this.what(node.content[node.content.length - 1]).match(/^parbreak|whitespace|macro:text:par$/)) node.content.pop()
 
     switch (node.env) {
       case 'quotation':
@@ -735,10 +745,11 @@ class BibTeXParser {
 
   private stringify(node: Node | Argument, context: Context): string {
     let content = this.stringifyContent(node, context)
-    if (node._renderInfo) {
+    if (content && node._renderInfo) {
       if (node._renderInfo.emph) content = `${open.i}${content}${close.i}`
       if (node._renderInfo.bold) content = `${open.b}${content}${close.b}`
       if (node._renderInfo.smallCaps) content = `${open.sc}${content}${close.sc}`
+      if (node._renderInfo.protectCase) content = `${open.nc}${content}${close.nc}`
     }
     return content
   }
@@ -749,15 +760,9 @@ class BibTeXParser {
     switch (node.type) {
       case 'root':
       case 'argument':
-        return node.content.map(n => this.stringify(n, context)).join('')
-
       case 'group':
       case 'inlinemath':
-        return this.wrap(
-          node.content.map(n => this.stringify(n, {...context, caseProtected: (context.caseProtected || <boolean>node._renderInfo.protectCase)})).join(''),
-          node.type === 'group' ? 'nc' : 'ncx',
-          (context.mode === 'title') && !context.caseProtected && !!node._renderInfo.protectCase
-        )
+        return node.content.map(n => this.stringify(n, context)).join('')
 
       case 'string':
       case 'verbatim':
@@ -810,9 +815,11 @@ class BibTeXParser {
     }
 
     return collapsed[0]
+      .replace(/(\x0Ep\x0F\s*){2,}/g, '\x0Ep\x0F')
+      .replace(/\s*(\x0E\/p\x0F){2,}/g, '\x0E/p\x0F')
       .replace(/\x0Eenquote\x0F/g, '\u201C').replace(/\x0E\/enquote\x0F/g, '\u201D')
-      .replace(/\x0Enc\x0F/g, '<span class="nocase">').replace(/\x0E\/nc\x0F/g, '</span>')
       .replace(/\x0Esc\x0F/g, '<span style="font-variant:small-caps;">').replace(/\x0E\/sc\x0F/g, '</span>')
+      .replace(/\x0Enc\x0F/g, '<span class="nocase">').replace(/\x0E\/nc\x0F/g, '</span>')
       .replace(/\x0E/g, '<').replace(/\x0F/g, '>')
   }
 
@@ -830,15 +837,17 @@ class BibTeXParser {
       ast.content = ast.content[0].content
     }
 
-    let root = [...ast.content]
-    while (root.length) {
-      const node = root.shift()
+    if (mode === 'title') {
+      let root = [...ast.content]
+      while (root.length) {
+        const node = root.shift()
 
-      // only root groups offer case protecten -- but it may be as an macro arg, so mark here before gobbling
-      if (this.protect(node)) node._renderInfo = { root: true }
+        // only root groups offer case protecten -- but it may be as an macro arg, so mark here before gobbling
+        if (this.protect(node)) node._renderInfo = { root: true }
 
-      // environments are considered root when at root
-      if (node.type === 'environment') root = [...root, ...node.content]
+        // environments are considered root when at root
+        if (node.type === 'environment') root = [...root, ...node.content]
+      }
     }
 
     // pass 0 -- register parse mode
@@ -848,8 +857,12 @@ class BibTeXParser {
       node._renderInfo.mode = info.context.inMathMode ? 'math' : 'text'
 
       // if (info.context.inMathMode || info.context.hasMathModeAncestor) return
+
+      if (mode === 'title' && node.type === 'inlinemath' && !info.parents.find(p => p._renderInfo.protectCase)) node._renderInfo.protectCase = true
+
       if (!info.context.inMathMode) {
-        if (node._renderInfo.root) node._renderInfo.protectCase = true
+        if (mode === 'title' && node._renderInfo.root) node._renderInfo.protectCase = true
+
         if (node.type === 'macro' && typeof node.escapeToken !== 'string') node.escapeToken = '\\'
 
         if (node.type === 'macro' && node.content.match(/^(itshape|textit|emph|mkbibemph)$/)) node._renderInfo.emph = true
@@ -900,7 +913,7 @@ class BibTeXParser {
             node.args[0] = this.wraparg({ type: 'string', content: printRaw(url), _renderInfo: { mode: url[0]._renderInfo.mode } })
           }
         }
-        else if (node.type === 'macro' && node.content.match(/^[a-z]+$/) && nodes[0]?.type === 'whitespace') {
+        else if (node.type === 'macro' && node.content.match(/^[a-z]+$/i) && nodes[0]?.type === 'whitespace') {
           nodes.shift()
         }
 

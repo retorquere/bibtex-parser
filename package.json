@@ -18,7 +18,7 @@
     "list": "tar tvf $(npm pack)",
     "prepublishOnly": "npm start",
     "abbr": "./build/abbr.py",
-    "preversion": "npm test && npm run abbr",
+    "preversion": "./console.py r && npm test && npm run abbr",
     "postversion": "git push --follow-tags",
     "update-cases": "curl -s https://raw.githubusercontent.com/retorquere/zotero-better-bibtex/master/test/loaded.json | jq -r '.[] | select(test(\"\\\\.bib((la)?tex)?$\"))' | rsync -av --delete -m --files-from=- ../better-bibtex/test/fixtures/ test/better-bibtex/",
     "x-docs": "rm -rf docs temp && typedoc --name 'BibTeX parser' index.ts && touch docs/.nojekyll",
