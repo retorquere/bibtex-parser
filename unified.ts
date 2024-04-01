@@ -206,7 +206,6 @@ interface Entry {
 
     [key: string]: number | string | string[] | Creator[]
   }
-  sentenceCased?: boolean
 }
 
 export const FieldMode = {
@@ -810,21 +809,68 @@ class BibTeXParser {
     return mode
   }
 
-  private collapse(s: string): string {
+  private restoreMarkup(s: string): string {
     if (!s.includes('\x0E')) return s
 
-    const collapsed: string[] = [s.replace(/\x0E\/?ncx\x0F/g, '')]
-    while (collapsed[0] !== collapsed[1]) {
-      collapsed.unshift(collapsed[0].replace(collapsable, '$2'))
+    const restored: string[] = [s.replace(/\x0E\/?ncx\x0F/g, '')]
+    while (restored[0] !== restored[1]) {
+      restored.unshift(restored[0].replace(collapsable, '$2'))
     }
 
-    return collapsed[0]
+    return restored[0]
       .replace(/(\x0Ep\x0F\s*){2,}/g, '\x0Ep\x0F')
       .replace(/\s*(\x0E\/p\x0F){2,}/g, '\x0E/p\x0F')
       .replace(/\x0Eenquote\x0F/g, '\u201C').replace(/\x0E\/enquote\x0F/g, '\u201D')
       .replace(/\x0Esc\x0F/g, '<span style="font-variant:small-caps;">').replace(/\x0E\/sc\x0F/g, '</span>')
       .replace(/\x0Enc\x0F/g, '<span class="nocase">').replace(/\x0E\/nc\x0F/g, '</span>')
       .replace(/\x0E/g, '<').replace(/\x0F/g, '>')
+  }
+
+  private stringField(field: string, value: string, sentenceCase: boolean, mode: string): string | number {
+    if (FieldAction.unabbrev.includes(field)) {
+      let full = unabbreviate[value.toUpperCase()] || unabbreviate[value.toUpperCase().replace(/s\S+$/, '')]
+      if (!full) {
+        const m = value.toUpperCase().match(/(.*)(\s+\S+)$/)
+        if (m) {
+          full = unabbreviate[m[1]]
+          if (full) full += m[2]
+        }
+      }
+      if (full) value = full
+      if (!sentenceCase) return value
+    }
+
+    if (field === 'crossref') return value
+
+    if (FieldAction.parseInt.includes(field) && value.trim().match(/^-?\d+$/)) return parseInt(value)
+
+    if (mode === 'title' && sentenceCase) {
+      if (this.options.sentenceCase.guess && guessSentenceCased(value, /\x0E\/?([a-z]+)\x0F/g)) return value
+
+      value = toSentenceCase(value, {
+        preserveQuoted: this.options.sentenceCase.preserveQuoted,
+        subSentenceCapitalization: this.options.sentenceCase.subSentence,
+        markup: /\x0E\/?([a-z]+)\x0F/g,
+        nocase: /\x0E(ncx?)\x0F.*?\x0E\/\1\x0F/g,
+      })
+
+      let cancel = (_match: string, stripped: string) => stripped
+      switch (this.options.caseProtection) {
+        case 'strict':
+          cancel = (match: string, _stripped: string) => match
+          break
+        case 'as-needed':
+          cancel = (match: string, stripped: string) => {
+            const words = tokenize(stripped)
+            return words.find(w => w.shape.match(/^(?!.*X).*x.*$/)) ? match : this.wrap(stripped, 'ncx')
+          }
+          break
+      }
+
+      return value.replace(/\x0Enc\x0F(.*?)\x0E\/nc\x0F/g, cancel)
+    }
+
+    return value
   }
 
   private field(entry: Entry, field: string, value: string, sentenceCase: boolean) {
@@ -978,7 +1024,6 @@ class BibTeXParser {
       // return null to delete
     })
 
-    let sentenceCased = ''
     switch (mode) {
       case 'creator':
         entry.fields[field] = this.split(ast, /^and$/i).map(cr => this.parseCreator(cr))
@@ -990,50 +1035,12 @@ class BibTeXParser {
         entry.fields[field] = this.split(ast, /^and$/i).map(elt => this.stringify(elt, { mode: 'literal'}).trim())
         break
       default:
-        entry.fields[field] = this.stringify(ast, { mode })
-
-        if (mode === 'title' && sentenceCase) {
-          if (!this.options.sentenceCase.guess || !guessSentenceCased(<string>entry.fields[field], /\x0E\/?([a-z]+)\x0F/g)) {
-            sentenceCased = toSentenceCase(<string>entry.fields[field], {
-              preserveQuoted: this.options.sentenceCase.preserveQuoted,
-              subSentenceCapitalization: this.options.sentenceCase.subSentence,
-              markup: /\x0E\/?([a-z]+)\x0F/g,
-              nocase: /\x0E(ncx?)\x0F.*?\x0E\/\1\x0F/g,
-            })
-            if (sentenceCased !== entry.fields[field]) {
-              entry.fields[field] = sentenceCased
-              entry.sentenceCased = true
-            }
-          }
-
-          let cancel = (_match: string, stripped: string) => stripped
-          switch (this.options.caseProtection) {
-            case 'strict':
-              cancel = (match: string, _stripped: string) => match
-              break
-            case 'as-needed':
-              cancel = (match: string, stripped: string) => {
-                const words = tokenize(stripped)
-                return words.find(w => w.shape.match(/^(?!.*X).*x.*$/)) ? match : this.wrap(stripped, 'ncx')
-              }
-              break
-          }
-          entry.fields[field] = (<string>entry.fields[field]).replace(/\x0Enc\x0F(.*?)\x0E\/nc\x0F/g, cancel)
-        }
-        if (typeof entry.fields[field] === 'string') {
-          if (field !== 'crossref' && FieldAction.parseInt.includes(field) && (<string>entry.fields[field]).trim().match(/^-?\d+$/)) {
-            entry.fields[field] = parseInt(<string>entry.fields[field])
-          }
-          else if (FieldAction.unabbrev.includes(field)) {
-            entry.fields[field] = unabbreviate[(<string>entry.fields[field]).toUpperCase()] || entry.fields[field]
-          }
-        }
-
+        entry.fields[field] = this.stringField(field, this.stringify(ast, { mode }), sentenceCase, mode)
         break
     }
 
-    // recursively collapses string content. <string> is just here to pacify typescript
-    entry.fields[field] = JSON.parse(JSON.stringify(entry.fields[field], (k, v) => (typeof v === 'string' ? this.collapse(v) : v) as string))
+    // recursively restores markup in string content. 'as string' is just here to pacify typescript
+    entry.fields[field] = JSON.parse(JSON.stringify(entry.fields[field], (k, v) => (typeof v === 'string' ? this.restoreMarkup(v) : v) as string))
   }
 
   private empty(options: Options = {}): Bibliography {
