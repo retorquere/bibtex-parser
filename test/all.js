@@ -150,11 +150,12 @@ if (process.env.TAP_SNAPSHOT === '1') config.snapshot = 'true'
 // if (require.main === module) console.log(config)
 
 let testcases = []
+const runtests = require('./runtests.json')
 for (const pattern of config.test) {
   testcases = testcases.concat(glob(path.join(__dirname, '**', (pattern ? '*' : '') + pattern + '*.{json,bib,bibtex,biblatex}'), { nocase: true, matchBase: true, nonull: false, nodir: true }))
   testcases.sort()
-  testcases = testcases.slice(0, 280) // limit
-  // testcases = testcases.filter(testcase => testcase.match(/Endnote/))
+  if (runtests.n) testcases = testcases.slice(0, runtests.n) // limit
+  if (runtests.only) testcases = testcases.filter(testcase => testcase.toLowerCase().includes(runtests.only.toLowerCase()))
 }
 
 for (const bibfile of testcases) {

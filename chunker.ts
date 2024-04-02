@@ -89,11 +89,6 @@ export interface ParserOptions {
    * stop parsing after `max_entries` entries have been found. Useful for quick detection if a text file is in fact a bibtex file
    */
   max_entries?: number
-
-  /**
-    * lowercase field names
-    */
-  lowerCaseFields?: boolean
 }
 
 class Parser {
@@ -108,17 +103,28 @@ class Parser {
 
   private default_strings: Record<string, string> = {
     JAN: '01',
+    JANUARY: '01',
     FEB: '02',
+    FEBRUARY: '02',
     MAR: '03',
+    MARCH: '03',
     APR: '04',
+    APRIL: '04',
     MAY: '05',
     JUN: '06',
+    JUNE: '06',
     JUL: '07',
+    JULY: '07',
     AUG: '08',
+    AUGUST: '08',
     SEP: '09',
+    SEPTEMBER: '09',
     OCT: '10',
+    OCTOBER: '10',
     NOV: '11',
+    NOVEMBER: '11',
     DEC: '12',
+    DECEMBER: '12',
     ACMCS: 'ACM Computing Surveys',
     ACTA: 'Acta Informatica',
     CACM: 'Communications of the ACM',
@@ -151,13 +157,13 @@ class Parser {
   private input: string
 
   private max_entries: number
-  private lowercase: boolean
+  private keywords: number
 
-  constructor(input: string, options: ParserOptions = { lowerCaseFields: true }) {
+  constructor(input: string, options: ParserOptions = {}) {
     this.max_entries = options.max_entries || 0
-    this.lowercase = typeof options.lowerCaseFields === 'boolean' ? options.lowerCaseFields : true
     this.input = input
     this.parsing = null
+    this.keywords = 0
 
     let pos = input.indexOf('\n')
     while (pos !== -1) {
@@ -213,14 +219,29 @@ class Parser {
   }
 
   private skipWhitespace() {
-    while (this.pos < this.input.length && this.isWhitespace(this.input[this.pos])) this.pos++
-
-    // shady
-    if (this.input[this.pos] === '%') {
-      while (this.pos < this.input.length && this.input[this.pos] !== '\n') this.pos++
-      while (this.pos < this.input.length && this.isWhitespace(this.input[this.pos])) this.pos++
+    while (this.pos < this.input.length && this.input[this.pos].match(/[ \t\r\n%]/)) {
+      // test for '%' is shady
+      if (this.input[this.pos] === '%') {
+        while (this.pos < this.input.length && this.input[this.pos] !== '\n') this.pos++
+      }
+      else {
+        this.pos++
+      }
     }
   }
+
+  /*
+  private fix_path() {
+    // workaround for https://github.com/siefkenj/unified-latex/issues/94
+    const path = '\\path|'
+    const verb = path.replace('path', 'verb')
+    if (this.input.substring(this.pos).startsWith(path)) {
+      console.log('replacing path')
+      // eslint-disable-next-line prefer-template, no-magic-numbers
+      this.input = this.input.substring(0, this.pos) + verb + this.input.substring(this.pos + path.length)
+    }
+  }
+  */
 
   private value_braces() {
     let bracecount = 0
@@ -229,6 +250,8 @@ class Parser {
     let math = false
 
     while (true) { // eslint-disable-line no-constant-condition
+      // this.fix_path()
+
       switch (this.input[this.pos]) {
         case '\\':
           this.pos += 1
@@ -265,6 +288,8 @@ class Parser {
     const start = this.pos
     let bracecount = 0
     while (true) { // eslint-disable-line no-constant-condition
+      // this.fix_path()
+
       switch (this.input[this.pos]) {
         case '\\':
           this.pos += 1
@@ -357,7 +382,13 @@ class Parser {
       this.strings[key.toUpperCase()] = val
     }
     else {
-      this.entries[0].fields[this.lowercase ? key.toLowerCase() : key] = val
+      key = key.toLowerCase()
+      if (key.toLowerCase() === 'keywords' && this.entries[0].fields.keywords) { // #873... the things people do with bibtex
+        this.keywords++
+        key = `keywords[${this.keywords}]`
+      }
+
+      this.entries[0].fields[key] = val
     }
   }
 
@@ -372,7 +403,7 @@ class Parser {
     }
     else {
       // so maybe a real key?
-      key = this.key('"')
+      key = this.key('*"')
     }
 
     if (this.tryMatch('=')) {
@@ -449,6 +480,8 @@ class Parser {
   }
 
   private parseNext() {
+    this.skipWhitespace()
+
     const chunk: Chunk = {
       position: this.pos,
       location: { line: 0, column: 0 },

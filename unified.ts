@@ -10,7 +10,7 @@ import * as JabRef from './jabref'
 export { toSentenceCase } from './sentence-case'
 import { toSentenceCase, guessSentenceCased, tokenize } from './sentence-case'
 
-import crossref from './crossref.json'
+import CrossRef from './crossref.json'
 import allowed from './fields.json'
 const unabbreviate = require('./unabbrev.json')
 
@@ -26,11 +26,11 @@ function latex2unicode(tex: string, node: Node): string {
 
 const open: Record<string, string> = {}
 const close: Record<string, string> = {}
-for (const tag of ['i', 'b', 'sc', 'nc', 'ncx', 'br', 'p', 'li']) {
+for (const tag of ['i', 'b', 'sc', 'nc', 'ncx', 'br', 'p', 'li', 'code']) {
   open[tag] = `\x0E${tag}\x0F`
   close[tag] = `\x0E/${tag}\x0F`
 }
-const collapsable = /\x0E\/([a-z]+)\x0F(\s*)\x0E\1\x0F/g
+const collapsable = /\x0E\/([a-z]+)\x0F(\s*)\x0E\1\x0F/ig
 
 export interface Bibliography {
   /**
@@ -302,6 +302,7 @@ const English = [
 
 const FieldAction = {
   removeOuterBraces: [
+    'doi',
     // 'publisher',
     // 'location',
   ],
@@ -309,6 +310,7 @@ const FieldAction = {
     'journal',
     'journaltitle',
     'journal-full',
+    'series',
   ],
   parseInt: [
     'year',
@@ -318,6 +320,7 @@ const FieldAction = {
 
 const narguments = {
   ElsevierGlyph: 1,
+  bar: 1,
   bibcyr: 1,
   bibstring: 1,
   chsf: 1,
@@ -526,6 +529,7 @@ class BibTeXParser {
     if (macro.content.match(/^(itshape|textit|emph|mkbibemph)$/)) node._renderInfo.emph = true
     if (macro.content.match(/^(textbf|mkbibbold|bfseries)$/)) node._renderInfo.bold = true
     if (macro.content.match(/^(textsc)$/)) node._renderInfo.smallCaps = true
+    if (macro.content.match(/^(texttt)$/)) node._renderInfo.code = true
     return { type: 'argument', content: [ node ], openMark: '', closeMark: '', _renderInfo: { mode: node._renderInfo.mode } }
   }
 
@@ -613,7 +617,12 @@ class BibTeXParser {
 
       case 'vphantom':
       case 'noopsort':
+      case 'left':
+      case 'right':
         return ''
+
+      case 'path':
+        return '' // until https://github.com/siefkenj/unified-latex/issues/94 is fixed
 
       case 'hspace':
         if (node.args && node.args.length) {
@@ -623,7 +632,8 @@ class BibTeXParser {
         return ''
 
       case 'overline':
-        return node.args.map(a => this.stringify(a, context)).join('').replace(/[a-z0-9]/g, m => `${m}\u0305`)
+      case 'bar':
+        return node.args.map(a => this.stringify(a, context)).join('').replace(/[a-z0-9]/ig, m => `${m}\u0305`)
 
       case 'textup':
       case 'textsc':
@@ -752,6 +762,7 @@ class BibTeXParser {
       if (node._renderInfo.emph) content = `${open.i}${content}${close.i}`
       if (node._renderInfo.bold) content = `${open.b}${content}${close.b}`
       if (node._renderInfo.smallCaps) content = `${open.sc}${content}${close.sc}`
+      if (node._renderInfo.code) content = `${open.code}${content}${close.code}`
       if (node._renderInfo.protectCase) content = `${open.nc}${content}${close.nc}`
     }
     return content
@@ -778,7 +789,7 @@ class BibTeXParser {
         return context.mode === 'richtext' ? open.p : ' '
 
       case 'whitespace':
-        return ' '
+        return node._renderInfo.mode === 'math' ? '' : ' '
 
       case 'comment':
         return ''
@@ -812,25 +823,25 @@ class BibTeXParser {
   private restoreMarkup(s: string): string {
     if (!s.includes('\x0E')) return s
 
-    const restored: string[] = [s.replace(/\x0E\/?ncx\x0F/g, '')]
+    const restored: string[] = [s.replace(/\x0E\/?ncx\x0F/ig, '')]
     while (restored[0] !== restored[1]) {
       restored.unshift(restored[0].replace(collapsable, '$2'))
     }
 
     return restored[0]
-      .replace(/(\x0Ep\x0F\s*){2,}/g, '\x0Ep\x0F')
-      .replace(/\s*(\x0E\/p\x0F){2,}/g, '\x0E/p\x0F')
-      .replace(/\x0Eenquote\x0F/g, '\u201C').replace(/\x0E\/enquote\x0F/g, '\u201D')
-      .replace(/\x0Esc\x0F/g, '<span style="font-variant:small-caps;">').replace(/\x0E\/sc\x0F/g, '</span>')
-      .replace(/\x0Enc\x0F/g, '<span class="nocase">').replace(/\x0E\/nc\x0F/g, '</span>')
-      .replace(/\x0E/g, '<').replace(/\x0F/g, '>')
+      .replace(/(\x0Ep\x0F\s*){2,}/ig, '\x0Ep\x0F')
+      .replace(/\s*(\x0E\/p\x0F){2,}/ig, '\x0E/p\x0F')
+      .replace(/\x0Eenquote\x0F/ig, '\u201C').replace(/\x0E\/enquote\x0F/ig, '\u201D')
+      .replace(/\x0Esc\x0F/ig, '<span style="font-variant:small-caps;">').replace(/\x0E\/sc\x0F/ig, '</span>')
+      .replace(/\x0Enc\x0F/ig, '<span class="nocase">').replace(/\x0E\/nc\x0F/ig, '</span>')
+      .replace(/\x0E/ig, '<').replace(/\x0F/ig, '>')
   }
 
   private stringField(field: string, value: string, sentenceCase: boolean, mode: string): string | number {
     if (FieldAction.unabbrev.includes(field)) {
       let full = unabbreviate[value.toUpperCase()] || unabbreviate[value.toUpperCase().replace(/s\S+$/, '')]
       if (!full) {
-        const m = value.toUpperCase().match(/(.*)(\s+\S+)$/)
+        const m = value.toUpperCase().match(/(.*)(\s+\S*\d\S*)$/)
         if (m) {
           full = unabbreviate[m[1]]
           if (full) full += m[2]
@@ -845,14 +856,14 @@ class BibTeXParser {
     if (FieldAction.parseInt.includes(field) && value.trim().match(/^-?\d+$/)) return parseInt(value)
 
     if (mode === 'title' && sentenceCase) {
-      if (this.options.sentenceCase.guess && guessSentenceCased(value, /\x0E\/?([a-z]+)\x0F/g)) return value
-
-      value = toSentenceCase(value, {
-        preserveQuoted: this.options.sentenceCase.preserveQuoted,
-        subSentenceCapitalization: this.options.sentenceCase.subSentence,
-        markup: /\x0E\/?([a-z]+)\x0F/g,
-        nocase: /\x0E(ncx?)\x0F.*?\x0E\/\1\x0F/g,
-      })
+      if (!this.options.sentenceCase.guess || !guessSentenceCased(value, /\x0E\/?([a-z]+)\x0F/ig)) {
+        value = toSentenceCase(value, {
+          preserveQuoted: this.options.sentenceCase.preserveQuoted,
+          subSentenceCapitalization: this.options.sentenceCase.subSentence,
+          markup: /\x0E\/?([a-z]+)\x0F/ig,
+          nocase: /\x0E(ncx?)\x0F.*?\x0E\/\1\x0F/ig,
+        })
+      }
 
       let cancel = (_match: string, stripped: string) => stripped
       switch (this.options.caseProtection) {
@@ -867,7 +878,7 @@ class BibTeXParser {
           break
       }
 
-      return value.replace(/\x0Enc\x0F(.*?)\x0E\/nc\x0F/g, cancel)
+      return value.replace(/\x0Enc\x0F(.*?)\x0E\/nc\x0F/ig, cancel)
     }
 
     return value
@@ -876,15 +887,15 @@ class BibTeXParser {
   private field(entry: Entry, field: string, value: string, sentenceCase: boolean) {
     const mode: ParseMode = this.mode(field)
 
-    if (mode === 'verbatim') {
-      entry.fields[field] = value
-      return
-    }
-
     const ast: Root = LatexPegParser.parse(value)
 
     if (this.options.removeOuterBraces.includes(field) && ast.content.length === 1 && ast.content[0].type === 'group') {
       ast.content = ast.content[0].content
+    }
+
+    if (mode === 'verbatim') { // &^%@#&^%@# idiots wrapping verbatim fields
+      entry.fields[field] = printRaw(ast)
+      return
     }
 
     if (mode === 'title') {
@@ -966,7 +977,8 @@ class BibTeXParser {
       }
 
       if (!info.context.inMathMode) {
-        for (const [macro, markup] of Object.entries({ em: 'emph', it: 'emph', bf: 'bold' })) {
+        // feed-forward inline macros
+        for (const [macro, markup] of Object.entries({ em: 'emph', it: 'emph', bf: 'bold', sc: 'smallCaps', tt: 'code' })) {
           if (info.parents.find(p => p._renderInfo[markup])) continue
 
           compacted.forEach((markup_node, i) => {
@@ -1096,15 +1108,25 @@ class BibTeXParser {
   }
 
   private reparse(bib: Bibliography, entry: bibtex.Entry) {
-    const langid = (entry.fields.langid || entry.fields.hyphenation || '').toLowerCase()
+    const langid = (entry.fields.langid || entry.fields.hyphenation || entry.fields.language || '').toLowerCase()
     const sentenceCase = (<string[]> this.options.sentenceCase.langids).includes(langid)
 
     this.current = entry
+    let keywords: string[] = [] // OMG #783
     try {
       for (const [field, value] of Object.entries(entry.fields)) {
         this.field(entry, field, value, sentenceCase)
+
+        if (field.match(/^keywords\[\d+\]$/)) {
+          keywords = [ ...keywords, entry.fields[field] ]
+          delete entry.fields[field]
+        }
+
         if (typeof entry.fields[field] === 'string') entry.fields[field] = entry.fields[field].trim()
       }
+
+      if (keywords.length) entry.fields.keywords = [ ...(new Set([ ...(entry.fields.keywords || []), ...keywords ])) ].sort() as unknown as string
+
       bib.entries.push(<Entry>entry)
     }
     catch (err) {
@@ -1133,22 +1155,29 @@ class BibTeXParser {
 
   private finalize(bib: Bibliography, base: bibtex.Bibliography) {
     if (this.options.applyCrossRef) {
-      const entries: Partial<Record<string, Entry>> = bib.entries.reduce((acc: Partial<Record<string, Entry>>, entry: Entry) => entry.key ? { ...acc, [entry.key]: entry } : acc, {})
+      const entries: Partial<Record<string, Entry>> = {}
+      for (const entry of bib.entries) {
+        if (entry.key) entries[entry.key.toUpperCase()] = entry
+      }
 
       const order: string[] = []
       for (const entry of bib.entries) {
-        if (entry.key && typeof entry.fields.crossref === 'string' && entries[entry.fields.crossref]) {
-          if (!order.includes(entry.fields.crossref)) order.unshift(entry.fields.crossref)
-          if (!order.includes(entry.key)) order.push(entry.key)
-        }
+        if (!entry.key || typeof entry.fields.crossref !== 'string') continue
+
+        const crossref = entry.fields.crossref.toUpperCase()
+        if (!entries[crossref]) continue
+
+        const key = entry.key.toUpperCase()
+        if (!order.includes(crossref)) order.unshift(crossref)
+        if (!order.includes(key)) order.push(key)
       }
 
       for (const key of order) {
-        const child = entries[key]
-        const parent = entries[<string>child.fields.crossref]
+        const child = entries[key.toUpperCase()]
+        const parent = entries[(<string>child.fields.crossref)?.toUpperCase()]
         if (!parent) continue
 
-        for (const mappings of [crossref[child.type], crossref['*']].filter(m => m)) {
+        for (const mappings of [CrossRef[child.type], CrossRef['*']].filter(m => m)) {
           for (const mapping of [mappings[parent.type], mappings['*']].filter(m => m)) {
             for (const [childfield, parentfield] of Object.entries(<Record<string, string>> mapping)) {
               if (!child.fields[childfield] && parent.fields[parentfield]) child.fields[childfield] = parent.fields[parentfield]

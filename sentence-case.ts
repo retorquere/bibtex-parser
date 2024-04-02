@@ -55,9 +55,12 @@ function titleCase(s: string): string {
 function wordSC(token: Token, succ: Token, allCaps: boolean, subSentence: boolean): string {
   if (token.type !== 'word') return token.text
 
+  if (!allCaps && token.text === token.text.toUpperCase()) return token.text
+
   if (subSentence && token.subSentenceStart && token.text.match(/^a$/i)) return 'a'
   if ((subSentence && token.subSentenceStart) || token.sentenceStart) return (!allCaps && token.shape.match(/^[Xd]+$/)) ? token.text : titleCase(token.text)
 
+  if (!allCaps && token.shape.match(/X+-/)) return token.text
   if (token.text.match(/^[B-Z]$/)) return token.text
 
   if (token.text.match(/^I'/)) return titleCase(token.text)
@@ -68,9 +71,9 @@ function wordSC(token: Token, succ: Token, allCaps: boolean, subSentence: boolea
   }
   if (token.text.match(preposition.simple)) return token.text.toLowerCase()
 
-  if (token.shape.match(/^[Xd]+$/)) return allCaps ? token.text.toLowerCase() : token.text
-
+  if (!allCaps && token.shape.match(/^[Xd-]+$/)) return token.text
   if (token.shape.match(/^X[xd]*(-[Xxd]*)*$/)) return token.text.toLowerCase()
+  if (token.shape.match(/^[Xd]+$/)) return allCaps ? token.text.toLowerCase() : token.text
 
   if (token.text.includes('.')) return token.text
   if (token.shape.match(/x.*X/)) return token.text
@@ -140,6 +143,31 @@ export function tokenize(title: string, markup?: RegExp): Token[] {
     subSentenceStart = true
 
     while (words.length) {
+      if (words[0].type === 'word' && words[0].text.includes('/')) {
+        const multiple = <WordToken>words.shift()
+        let start = multiple.start
+        words.unshift(
+          ...(multiple.text.match(/([/]|[^/]+)/g).map((w: string) => {
+            const started = start
+            start += w.length
+
+            const ss = w === '/' ? [false, false] : [multiple.sentenceStart, multiple.subSentenceStart ]
+            if (w !== '/') multiple.sentenceStart = multiple.subSentenceStart = false
+
+            return {
+              start: started,
+              end: start - 1,
+              text: w,
+              type: w === '/' ? 'punctuation' : 'word',
+              shape: XRegExp.replaceEach(w, [ [Lu, 'X', 'all'], [Ll, 'x', 'all'], [/\d/g, 'd'] ]),
+              sentenceStart: ss[0],
+              subSentenceStart: ss[1],
+            }
+          }) as Token[])
+        )
+        continue
+      }
+
       const type = words.map(tokentype).join('')
       let m: RegExpMatchArray
 
