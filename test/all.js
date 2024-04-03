@@ -31,25 +31,6 @@ function tryparse({ bibfile, options }) {
   return result
 }
 
-const prefix = 'npm_config_'
-const valid = {
-  sentence_case: [
-    'on+guess',
-    'on',
-    'off',
-  ],
-  case_protection: [
-    'as-needed',
-    'off',
-    'strict',
-  ],
-  preserve_quoted: [
-    'true',
-    'false',
-  ],
-}
-const multi = ['test']
-
 function sortObject(obj) {
   if (Array.isArray(obj)) return obj.map(sortObject)
   if (obj === null || obj === undefined || typeof obj !== 'object') return obj
@@ -103,59 +84,49 @@ function normalize(result) {
   return result
 }
 
-const config = Object.assign({
-  all: '',
-  sentence_case: valid.sentence_case.slice(0, 1),
-  case_protection: valid.case_protection.slice(0, 1),
-  preserve_quoted: valid.preserve_quoted.slice(0, 1),
-  test: [''],
-  snapshot: '',
-  unabbreviations: path.resolve(path.join(__dirname, '..', 'unabbrev.json')),
-  strings: path.resolve(path.join(__dirname, '..', 'strings.bib')),
-}, require('./tap.json'))
-if (process.env.CI === 'true') config.toobig = []
+const config = { ...(require('./runtests.json')), tests: require('./tap.json') }
+const unabbreviations = path.resolve(path.join(__dirname, '..', 'unabbrev.json'))
+const strings = path.resolve(path.join(__dirname, '..', 'strings.bib'))
 
-for (let [option, value] of Object.entries(process.env)) {
-  if (!option.startsWith(prefix)) continue
+if (process.env.CI === 'true') config.tests.toobig = []
 
-  option = option.substr(prefix.length)
+let testcases = glob(path.join(__dirname, '**', '*.{json,bib,bibtex,biblatex}'), { nocase: true, matchBase: true, nonull: false, nodir: true }).sort()
+if (config.n) testcases = testcases.slice(0, config.n)
+if (config.only) testcases = testcases.filter(testcase => testcase.toLowerCase().includes(config.only.toLowerCase()))
 
-  let err
-  if (valid[option] || multi.includes(option)) {
-    value = value.split('\n\n')
-    if (valid[option] && (err = value.find(v => !valid[option].includes(v)))) {
-      throw new Error(`Invalid value ${JSON.stringify(err)} for ${option}`)
+function parse(bibfile, name, snapshot, options) {
+  tap.test(name, async t => {
+    const source = fs.readFileSync(bibfile, 'utf-8')
+
+    let result = ''
+    try {
+      if (options.exception) {
+        bibtex.parse(source, {...options, unsupported: (node, tex, entry) => { result = `unsupported ${node.type} (${tex})\n${entry.input}` } })
+      }
+      else {
+        result = bibtex.parse(source, options)
+      }
     }
-  }
-  else if (typeof config[option] === 'undefined') {
-    continue
-  }
-  else if (option === 'big' || option === 'exception') {
-    value = []
-  }
-  config[option] = value
+    catch (err) {
+      result = err.message + '\n' + err.stack
+    }
+   
+    if (typeof result !== 'string' && result.errors.filter(err => !err.error.includes('Unresolved @string')).length && !config.error.includes(path.basename(bibfile))) {
+      throw JSON.stringify(result.errors[0], null, 2)
+    }
+    t.snapshotFile = snapshot
+    t.matchSnapshot(normalize(result))
+  })
 }
 
-if (config.snapshot || (config.all === 'true')) { // reset to all for snapshots
-  for (const [key, value] of Object.entries(valid)) {
-    if (!process.env[prefix + key]) config[key] = value
-  }
-  config.toobig = []
-}
-if (config.test.length !== 1 || config.test[0] !== '') config.toobig=[] // if you pick out a test, you want it ran
-
-if (config.snapshot) process.env.TAP_SNAPSHOT = '1'
-if (process.env.TAP_SNAPSHOT === '1') config.snapshot = 'true'
-
-// if (require.main === module) console.log(config)
-
-let testcases = []
-const runtests = require('./runtests.json')
-for (const pattern of config.test) {
-  testcases = testcases.concat(glob(path.join(__dirname, '**', (pattern ? '*' : '') + pattern + '*.{json,bib,bibtex,biblatex}'), { nocase: true, matchBase: true, nonull: false, nodir: true }))
-  testcases.sort()
-  if (runtests.n) testcases = testcases.slice(0, runtests.n) // limit
-  if (runtests.only) testcases = testcases.filter(testcase => testcase.toLowerCase().includes(runtests.only.toLowerCase()))
+function sentenceCase(input, name, snapshot) {
+  tap.test(name, async t => {
+    const source = fs.readFileSync(input, 'utf-8')
+    const data = JSON.parse(source)
+    const result = data.items.map(item => bibtex.toSentenceCase(item.title, { subSentenceCapitalization: false }))
+    t.snapshotFile = snapshot
+    t.matchSnapshot(result)
+  })
 }
 
 for (const bibfile of testcases) {
@@ -165,57 +136,28 @@ for (const bibfile of testcases) {
   if (basename === 'tap.json') continue
 
   if (bibfile.endsWith('.json')) {
-    ((bibfile, options, name, snapshot) => {
-      tap.test(name, async t => {
-        const result = tryparse({ bibfile, options })
-        t.snapshotFile = snapshot
-        t.matchSnapshot(normalize(result))
-      })
-    })(
-      bibfile,
-      {},
-      `${section}=${basename}`,
-      path.resolve(__dirname, 'tap-snapshots', section, basename + '.snap')
-    )
+    sentenceCase(bibfile, `${section}=${basename}`, path.resolve(__dirname, 'tap-snapshots', section, basename + '.snap'))
     continue
   }
 
-  for (const sentence_case of config.sentence_case) {
-    for (const case_protection of config.case_protection) {
-      for (const preserve_quoted of config.preserve_quoted) {
-        if (config.toobig.includes(basename)) continue
+  if (!config.big && config.tests.toobig.includes(basename)) continue
   
-        const unabbreviate = config.unabbreviate.includes(basename);
-        const settings = `sentencecase=${sentence_case}^caseprotection=${case_protection}${preserve_quoted === 'true' ? '^preservequoted' : ''}`;
+  const unabbreviate = config.tests.unabbreviate.includes(basename);
+  const settings = `sentencecase=${config.sentenceCase}^caseprotection=${config.caseProtection}${config.preserveQuoted ? '^preservequoted' : ''}`;
   
-        ; ((bibfile, options, name, snapshot) => {
-          tap.test(name, async t => {
-            const result = tryparse({ bibfile, options })
-            if (typeof result !== 'string' && result.errors.length && !config.error.includes(path.basename(bibfile))) throw JSON.stringify(result.errors[0], null, 2)
-            t.snapshotFile = snapshot
-            t.matchSnapshot(normalize(result))
-          })
-        })(
-          bibfile,
-          {
-            caseProtection: case_protection === 'off' ? false : case_protection,
-            sentenceCase: {
-              langids: sentence_case.startsWith('on'),
-              preserveQuoted: preserve_quoted === 'true',
-              guess: sentence_case.endsWith('guess'),
-              subSentence: true,
-            },
-            unabbreviations: unabbreviate && config.unabbreviations,
-            strings: unabbreviate && config.strings,
-            exception: config.exception.includes(basename),
-            raw: config.raw.includes(basename),
-            // Oh Mendeley....
-            verbatimFields: config.mendeley.includes(basename) ? bibtex.fields.verbatim.filter(field => !field.startsWith('file')) : undefined
-          },
-          `${section}=${basename}`,
-          path.resolve(__dirname, 'tap-snapshots', settings, section, basename + '.snap')
-        )
-      }
-    }
-  }
+  parse(bibfile, `${section}=${basename}`, path.resolve(__dirname, 'tap-snapshots', settings, section, basename + '.snap'), {
+    caseProtection: config.caseProtection === 'off' ? false : config.caseProtection,
+    sentenceCase: {
+      langids: config.sentenceCase.startsWith('on'),
+      preserveQuoted: config.preserveQuoted,
+      guess: config.sentenceCase.endsWith('guess'),
+      subSentence: true,
+    },
+    unabbreviations: unabbreviate && unabbreviations,
+    strings: unabbreviate && strings,
+    exception: config.tests.exception.includes(basename),
+    raw: config.tests.raw.includes(basename),
+    // Oh Mendeley....
+    verbatimFields: config.tests.mendeley.includes(basename) ? bibtex.fields.verbatim.filter(field => !field.startsWith('file')) : undefined,
+  })
 }
