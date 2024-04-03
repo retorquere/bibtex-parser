@@ -1,0 +1,37 @@
+@InCollection{Gat:TLAs,
+  author =	 {Erann Gat},
+  title =	 {On Three-Layer Architectures},
+  booktitle =	 {Artificial Intelligence and Mobile Robots},
+  publisher =	 AAAI-PRESS,
+  year =	 1998,
+  editor =	 {David Kortenkamp and R. Peter Bonasso and Robin
+                  Murphy},
+  address =	 AAAI-PRESS-ADDRESS,
+  annote =	 {Gives a summary of three-layer architectures for
+                  mobile robots. Gat's division into three layers is
+                  based on memory and algorithm run-time in the three
+                  layers: deliberation layer (top) allows algorithms
+                  with long latencies: several Behavior transitions
+                  can occur before one of these terminates. The middle
+                  layer is the sequencer, whose job it is to select
+                  primitive Behaviors, and supply parameters. The
+                  Sequencer is allowed to use algorithms with
+                  memory. At the bottom level is the Controller, which
+                  contains Behaviors, which should run one iteration
+                  in constant-bounded time and space, ideally being
+                  continuous in the input, and not using memory
+                  (although Gat makes exception for filters). Gat also
+                  argues that behaviors should fail cognizantly. This
+                  is interesting, because not what I would have
+                  expected because I'm either (a) a planning bigot or
+                  (b) realistic about the fact that one typically
+                  doesn't own an entire execution platform, depending
+                  on whether you're being (a) harsh or (b) kind. I
+                  tend to think that you are given the Controller (or
+                  at least a subset thereof), and that cognizant
+                  failure may be more than you can ask. Also the
+                  Sequencer is needed to provide a plan-cognizant
+                  layer above the Controller, which typically doesn't
+                  know anything about the context of its behaviors.}
+}
+

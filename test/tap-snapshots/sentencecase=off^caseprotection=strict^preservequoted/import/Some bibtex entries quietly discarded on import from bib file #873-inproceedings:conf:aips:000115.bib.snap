@@ -1,0 +1,80 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:conf:aips:000115.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "Jörg",
+            "lastName": "Hoffmann",
+          },
+        ],
+        "bibdate": Array [
+          "2015-05-26",
+        ],
+        "bibsource": Array [
+          "DBLP, http://dblp.uni-trier.de/db/conf/aips/icaps2015.html#000115",
+        ],
+        "booktitle": Array [
+          "ICAPS",
+        ],
+        "editor": Array [
+          Object {
+            "firstName": "Ronen I.",
+            "lastName": "Brafman",
+          },
+          Object {
+            "firstName": "Carmel",
+            "lastName": "Domshlak",
+          },
+          Object {
+            "firstName": "Patrik",
+            "lastName": "Haslum",
+          },
+          Object {
+            "firstName": "Shlomo",
+            "lastName": "Zilberstein",
+          },
+        ],
+        "isbn": Array [
+          "978-1-57735-731-5",
+        ],
+        "pages": Array [
+          "364–372",
+        ],
+        "publisher": Array [
+          "AAAI Press",
+        ],
+        "title": Array [
+          "Simulated Penetration Testing: From <span class=\\"nocase\\">\\"</span>Dijkstra<span class=\\"nocase\\">\\"</span> to <span class=\\"nocase\\">\\"</span>Turing Test++<span class=\\"nocase\\">\\"</span>",
+        ],
+        "url": Array [
+          "http://www.aaai.org/Library/ICAPS/icaps15contents.php",
+        ],
+        "year": Array [
+          "2015",
+        ],
+      },
+      "key": "conf/aips/000115",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

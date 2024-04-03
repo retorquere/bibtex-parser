@@ -1,0 +1,63 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inbook:huffman:71.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "address": Array [
+          "New York",
+        ],
+        "author": Array [
+          Object {
+            "firstName": "David",
+            "lastName": "Huffman",
+          },
+        ],
+        "booktitle": Array [
+          "Machine Intelligence",
+        ],
+        "editor": Array [
+          Object {
+            "firstName": "B.",
+            "lastName": "Meltzer",
+          },
+          Object {
+            "firstName": "D.",
+            "lastName": "Michie",
+          },
+        ],
+        "publisher": Array [
+          "American Elsevier",
+        ],
+        "title": Array [
+          "Impossible objects as nonsense sentences",
+        ],
+        "volume": Array [
+          "6",
+        ],
+        "year": Array [
+          "1971",
+        ],
+      },
+      "key": "Huffman:71",
+      "type": "inbook",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

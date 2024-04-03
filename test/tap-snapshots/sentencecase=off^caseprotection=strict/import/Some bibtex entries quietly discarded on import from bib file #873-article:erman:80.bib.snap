@@ -1,0 +1,65 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-article:erman:80.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "Lee D.",
+            "lastName": "Erman",
+          },
+          Object {
+            "firstName": "Frederick",
+            "lastName": "Hayes-Roth",
+          },
+          Object {
+            "firstName": "Victor R.",
+            "lastName": "Lesser",
+          },
+          Object {
+            "firstName": "D. Raj",
+            "lastName": "Reddy",
+          },
+        ],
+        "journal": Array [
+          "Computing Surveys",
+        ],
+        "number": Array [
+          "2",
+        ],
+        "pages": Array [
+          "213-253",
+        ],
+        "title": Array [
+          "The Hearsay-II speech-understanding system: integrating knowledge to resolve uncertainty",
+        ],
+        "volume": Array [
+          "12",
+        ],
+        "year": Array [
+          "1980",
+        ],
+      },
+      "key": "Erman:80",
+      "type": "article",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

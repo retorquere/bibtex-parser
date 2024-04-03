@@ -1,0 +1,58 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-article:mcdermott:99.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "annote": Array [
+          "A more in-depth version of Drew's AIPS-96 paper, that described his search heuristic for forward planners. The article discusses the problem of “attention-deficit” in McDermott's UNPOP — the problem of switching between goals too much. Also discusses preservation goals, which we have just been kludging into SA-CIRCA.",
+        ],
+        "author": Array [
+          Object {
+            "lastName": "MCDERMOTT",
+          },
+        ],
+        "journal": Array [
+          "AIJ",
+        ],
+        "month": Array [
+          "04",
+        ],
+        "number": Array [
+          "1 – 2",
+        ],
+        "pages": Array [
+          "111-159",
+        ],
+        "title": Array [
+          "Using Regression-match graphs to control search in planning",
+        ],
+        "volume": Array [
+          "109",
+        ],
+        "year": Array [
+          "1999",
+        ],
+      },
+      "key": "McDermott:99",
+      "type": "article",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

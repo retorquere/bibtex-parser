@@ -1,0 +1,66 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:conf:ijcai:nakhostm09.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "Hootan",
+            "lastName": "Nakhost",
+          },
+          Object {
+            "firstName": "Martin",
+            "lastName": "Müller",
+          },
+        ],
+        "bibdate": Array [
+          "2009-12-21",
+        ],
+        "bibsource": Array [
+          "DBLP, http://dblp.uni-trier.de/db/conf/ijcai/ijcai2009.html#NakhostM09",
+        ],
+        "booktitle": Array [
+          "IJCAI",
+        ],
+        "editor": Array [
+          Object {
+            "firstName": "Craig",
+            "lastName": "Boutilier",
+          },
+        ],
+        "pages": Array [
+          "1766–1771",
+        ],
+        "title": Array [
+          "Monte-Carlo Exploration for Deterministic Planning",
+        ],
+        "url": Array [
+          "http://ijcai.org/papers09/Papers/IJCAI09-294.pdf",
+        ],
+        "year": Array [
+          "2009",
+        ],
+      },
+      "key": "conf/ijcai/NakhostM09",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

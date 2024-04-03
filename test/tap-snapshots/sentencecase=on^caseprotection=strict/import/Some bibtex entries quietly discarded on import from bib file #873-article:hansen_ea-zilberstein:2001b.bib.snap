@@ -1,0 +1,60 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-article:hansen_ea-zilberstein:2001b.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "Eric A.",
+            "lastName": "Hansen",
+          },
+          Object {
+            "firstName": "Shlomo",
+            "lastName": "Zilberstein",
+          },
+        ],
+        "journal": Array [
+          "Artificial Intelligence",
+        ],
+        "number": Array [
+          "1–2",
+        ],
+        "pages": Array [
+          "35–62",
+        ],
+        "title": Array [
+          "<span class=\\"nocase\\">LAO*: A</span> heuristic-search algorithm that finds solutions with loops",
+        ],
+        "topic": Array [
+          "heuristics;search;dynamic-programming;Markov-decision-processes;",
+        ],
+        "volume": Array [
+          "129",
+        ],
+        "year": Array [
+          "2001",
+        ],
+      },
+      "key": "hansen_ea-zilberstein:2001b",
+      "type": "article",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

@@ -1,0 +1,67 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-book:duda:80.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "address": Array [
+          "Edinburgh",
+        ],
+        "author": Array [
+          Object {
+            "firstName": "Richard O.",
+            "lastName": "Duda",
+          },
+          Object {
+            "firstName": "John G.",
+            "lastName": "Gaschnig",
+          },
+          Object {
+            "firstName": "Peter E.",
+            "lastName": "Hart",
+          },
+        ],
+        "booktitle": Array [
+          "Expert Systems in the Microelectronic Age",
+        ],
+        "editor": Array [
+          Object {
+            "firstName": "D.",
+            "lastName": "Michie",
+          },
+        ],
+        "pages": Array [
+          "153-167",
+        ],
+        "publisher": Array [
+          "Edinburgh University Press",
+        ],
+        "title": Array [
+          "Model design in the Prospector consultant system for mineral exploration",
+        ],
+        "year": Array [
+          "1980",
+        ],
+      },
+      "key": "Duda:80",
+      "type": "book",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

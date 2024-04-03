@@ -1,0 +1,55 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:taylor07:transferlearning.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "M.",
+            "lastName": "Taylor",
+          },
+          Object {
+            "firstName": "G.",
+            "lastName": "Kuhlmann",
+          },
+          Object {
+            "firstName": "P.",
+            "lastName": "Stone",
+          },
+        ],
+        "booktitle": Array [
+          "<span class=\\"nocase\\">ICAPS</span> Workshop on <span class=\\"nocase\\">AI</span> Planning and Learning",
+        ],
+        "location": Array [
+          "Providence, RI",
+        ],
+        "title": Array [
+          "Accelerating search with transferred heuristics",
+        ],
+        "year": Array [
+          2007,
+        ],
+      },
+      "key": "taylor07:transferLearning",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

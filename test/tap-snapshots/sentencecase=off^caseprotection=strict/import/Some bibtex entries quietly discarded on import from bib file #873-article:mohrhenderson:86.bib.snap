@@ -1,0 +1,63 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-article:mohrhenderson:86.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "annote": Array [
+          "Presents the AC-4 and PC-3 algorithms; optimal algorithms for arc consistency and path consistency, respectively, for uniprocessors. Note that Han and Lee, in their 1988 paper, provide a fix for a bug in PC-3, creating an algorithm they call PC-4.",
+        ],
+        "author": Array [
+          Object {
+            "firstName": "Roger",
+            "lastName": "Mohr",
+          },
+          Object {
+            "firstName": "Thomas C.",
+            "lastName": "Henderson",
+          },
+        ],
+        "journal": Array [
+          "AIJ",
+        ],
+        "month": Array [
+          "03",
+        ],
+        "number": Array [
+          "2",
+        ],
+        "pages": Array [
+          "225–233",
+        ],
+        "title": Array [
+          "Arc and Path Consistency Revisited",
+        ],
+        "volume": Array [
+          "28",
+        ],
+        "year": Array [
+          "1986",
+        ],
+      },
+      "key": "MohrHenderson:86",
+      "type": "article",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

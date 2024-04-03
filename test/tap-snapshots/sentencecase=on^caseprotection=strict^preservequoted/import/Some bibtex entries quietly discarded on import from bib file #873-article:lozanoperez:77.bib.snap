@@ -1,0 +1,51 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-article:lozanoperez:77.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "Tomas",
+            "lastName": "Lozano-Perez",
+          },
+          Object {
+            "firstName": "Patrick H.",
+            "lastName": "Winston",
+          },
+        ],
+        "booktitle": Array [
+          "IJCAI-77",
+        ],
+        "pages": Array [
+          "710–716",
+        ],
+        "title": Array [
+          "LAMA: A language for automatic mechanical assembly",
+        ],
+        "year": Array [
+          "1977",
+        ],
+      },
+      "key": "LozanoPerez:77",
+      "type": "article",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

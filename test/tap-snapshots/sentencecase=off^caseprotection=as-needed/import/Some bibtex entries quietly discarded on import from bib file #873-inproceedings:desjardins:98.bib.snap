@@ -1,0 +1,64 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:desjardins:98.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "Marie",
+            "lastName": "desJardins",
+          },
+          Object {
+            "firstName": "Anthony",
+            "lastName": "Francis",
+          },
+          Object {
+            "firstName": "Michael",
+            "lastName": "Wolverton",
+          },
+        ],
+        "booktitle": Array [
+          "Case-Based Reasoning Integrations: Papers from the 1998 AAAI Workshop",
+        ],
+        "number": Array [
+          "WS-98-15",
+        ],
+        "organization": Array [
+          "AAAI",
+        ],
+        "publisher": Array [
+          "AAAI Press",
+        ],
+        "series": Array [
+          "AAAI Technical Report",
+        ],
+        "title": Array [
+          "Hybrid Planning: An Approach to Integrating Generative and Case-based Planning",
+        ],
+        "year": Array [
+          1998,
+        ],
+      },
+      "key": "desJardins:98",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

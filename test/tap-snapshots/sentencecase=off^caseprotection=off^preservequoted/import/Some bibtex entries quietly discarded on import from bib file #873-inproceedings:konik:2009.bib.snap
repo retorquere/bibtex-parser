@@ -1,0 +1,58 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:konik:2009.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "T.",
+            "lastName": "Könik",
+          },
+          Object {
+            "firstName": "N.",
+            "lastName": "Nejati",
+          },
+          Object {
+            "firstName": "U.",
+            "lastName": "Kuter",
+          },
+        ],
+        "booktitle": Array [
+          "ILP-09",
+        ],
+        "date-added": Array [
+          "2010-06-18 12:20:06 -0400",
+        ],
+        "date-modified": Array [
+          "2010-06-18 12:20:45 -0400",
+        ],
+        "title": Array [
+          "Inductive Generalization of Analytically Learned Goal Hierarchies",
+        ],
+        "year": Array [
+          "2009",
+        ],
+      },
+      "key": "Konik:2009",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

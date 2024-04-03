@@ -1,0 +1,48 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:frisch:kr91.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "annote": Array [
+          "Describes a general constraint-based approach to modal logic deduction. Essentially the approach is to perform a Moore-like translation of the modal logic statements into a first order representation with explicit representation of the accessibility relations and existence of entities (for modal logics with different domains in different possible worlds). This representation is then partititioned into a set of statements and an associated set of constraints on relationships between possible worlds. When variables are unified, the associated world constraints must be verified.",
+        ],
+        "author": Array [
+          Object {
+            "firstName": "Alan M.",
+            "lastName": "Frisch",
+          },
+          Object {
+            "firstName": "Richard B.",
+            "lastName": "Scherl",
+          },
+        ],
+        "crossref": Array [
+          "KR:91",
+        ],
+        "title": Array [
+          "A General Framework for Modal Deduction",
+        ],
+      },
+      "key": "Frisch:kr91",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

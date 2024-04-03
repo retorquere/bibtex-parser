@@ -1,0 +1,61 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-article:warrenetal:1977.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "D.H.D.",
+            "lastName": "Warren",
+          },
+          Object {
+            "firstName": "L.M.",
+            "lastName": "Pereira",
+          },
+          Object {
+            "firstName": "F.",
+            "lastName": "Pereira",
+          },
+        ],
+        "booktitle": Array [
+          "Proceedings of the symposium on artificial intelligence and programming languages",
+        ],
+        "journal": Array [
+          "Sigplan Notices",
+        ],
+        "number": Array [
+          "8",
+        ],
+        "title": Array [
+          "PROLOG – the language and its implementation compared with LISP",
+        ],
+        "volume": Array [
+          "12",
+        ],
+        "year": Array [
+          "1977",
+        ],
+      },
+      "key": "WarrenETAL:1977",
+      "type": "article",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

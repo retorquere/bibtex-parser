@@ -1,0 +1,67 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-book:porto:1980.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "address": Array [
+          "New York",
+        ],
+        "author": Array [
+          Object {
+            "firstName": "L.M.",
+            "lastName": "Pereira",
+          },
+          Object {
+            "firstName": "A.",
+            "lastName": "Porto",
+          },
+        ],
+        "booktitle": Array [
+          "Proceedings of the 5th conference on automated deduction",
+        ],
+        "editor": Array [
+          Object {
+            "firstName": "W.",
+            "lastName": "Bibel",
+          },
+          Object {
+            "firstName": "R.",
+            "lastName": "Kowalski",
+          },
+        ],
+        "pages": Array [
+          "306-317",
+        ],
+        "publisher": Array [
+          "Springer-Verlag",
+        ],
+        "title": Array [
+          "Selective backtracking for logic programs",
+        ],
+        "year": Array [
+          "1980",
+        ],
+      },
+      "key": "Porto:1980",
+      "type": "book",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

@@ -1,0 +1,53 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:carberry:90.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "address": Array [
+          "MITP-ADDRESS",
+        ],
+        "author": Array [
+          Object {
+            "firstName": "Sandra",
+            "lastName": "Carberry",
+          },
+        ],
+        "booktitle": Array [
+          "AAAI-90",
+        ],
+        "pages": Array [
+          "471–478",
+        ],
+        "publisher": Array [
+          "MITP",
+        ],
+        "title": Array [
+          "Incorporating Default Inferences Into Plan Recognition",
+        ],
+        "year": Array [
+          "1990",
+        ],
+      },
+      "key": "Carberry:90",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

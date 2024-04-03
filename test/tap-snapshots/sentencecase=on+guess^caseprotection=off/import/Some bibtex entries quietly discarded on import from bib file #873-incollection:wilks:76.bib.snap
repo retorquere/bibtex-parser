@@ -1,0 +1,57 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-incollection:wilks:76.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "Yorick",
+            "lastName": "Wilks",
+          },
+        ],
+        "booktitle": Array [
+          "Computational semantics: An introduction to artificial intelligence and natural language comprehension",
+        ],
+        "editor": Array [
+          Object {
+            "firstName": "E.",
+            "lastName": "Charniak",
+          },
+          Object {
+            "firstName": "Y.",
+            "lastName": "Wilks",
+          },
+        ],
+        "pages": Array [
+          "155–184",
+        ],
+        "title": Array [
+          "Parsing english II",
+        ],
+        "year": Array [
+          "1976",
+        ],
+      },
+      "key": "Wilks:76",
+      "type": "incollection",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

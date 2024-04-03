@@ -1,0 +1,67 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-incollection:jranderson:83.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "address": Array [
+          "Palo Alto, Calif.",
+        ],
+        "author": Array [
+          Object {
+            "firstName": "John R.",
+            "lastName": "Anderson",
+          },
+        ],
+        "booktitle": Array [
+          "Machine learning: An artificial intelligence approach",
+        ],
+        "editor": Array [
+          Object {
+            "firstName": "Ryszard",
+            "lastName": "Michalski",
+          },
+          Object {
+            "firstName": "Jaime G.",
+            "lastName": "Carbonell",
+          },
+          Object {
+            "firstName": "Tom M.",
+            "lastName": "Mitchell",
+          },
+        ],
+        "pages": Array [
+          "191–219",
+        ],
+        "publisher": Array [
+          "Tioga",
+        ],
+        "title": Array [
+          "Acquisition of proof skills in geometry",
+        ],
+        "year": Array [
+          "1983",
+        ],
+      },
+      "key": "JRAnderson:83",
+      "type": "incollection",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

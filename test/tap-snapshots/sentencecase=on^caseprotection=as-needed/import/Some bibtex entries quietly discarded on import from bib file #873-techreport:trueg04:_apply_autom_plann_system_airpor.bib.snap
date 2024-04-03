@@ -1,0 +1,58 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-techreport:trueg04:_apply_autom_plann_system_airpor.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "Sebastian",
+            "lastName": "Trüg",
+          },
+          Object {
+            "firstName": "Jörg",
+            "lastName": "Hoffmann",
+          },
+          Object {
+            "firstName": "Bernhard",
+            "lastName": "Nebel",
+          },
+        ],
+        "institution": Array [
+          "Insitut für Informatik, Universität Freiburg",
+        ],
+        "month": Array [
+          "04",
+        ],
+        "number": Array [
+          199,
+        ],
+        "title": Array [
+          "Applying automatic planning systems to airport ground-traffic control — A feasibility study",
+        ],
+        "year": Array [
+          2004,
+        ],
+      },
+      "key": "trueg04:_apply_autom_plann_system_airpor",
+      "type": "techreport",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

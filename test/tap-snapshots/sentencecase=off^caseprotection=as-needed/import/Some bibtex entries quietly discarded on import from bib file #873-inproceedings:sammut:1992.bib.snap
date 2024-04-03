@@ -1,0 +1,75 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:sammut:1992.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "C.",
+            "lastName": "Sammut",
+          },
+          Object {
+            "firstName": "S.",
+            "lastName": "Hurst",
+          },
+          Object {
+            "firstName": "D.",
+            "lastName": "Kedzier",
+          },
+          Object {
+            "firstName": "D.",
+            "lastName": "Michie",
+          },
+        ],
+        "booktitle": Array [
+          "Proceedings of the 9th International Conference on Machine Learning",
+        ],
+        "date-added": Array [
+          "2010-06-18 12:19:49 -0400",
+        ],
+        "date-modified": Array [
+          "2010-06-18 12:19:49 -0400",
+        ],
+        "editor": Array [
+          Object {
+            "firstName": "D.",
+            "lastName": "Sleeman",
+          },
+          Object {
+            "firstName": "P.",
+            "lastName": "Edwards",
+          },
+        ],
+        "pages": Array [
+          "385–393",
+        ],
+        "title": Array [
+          "Learning to fly",
+        ],
+        "year": Array [
+          1992,
+        ],
+      },
+      "key": "Sammut:1992",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

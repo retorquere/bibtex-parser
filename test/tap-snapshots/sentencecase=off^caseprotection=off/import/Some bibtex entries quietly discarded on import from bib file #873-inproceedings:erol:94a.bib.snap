@@ -1,0 +1,55 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:erol:94a.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "annote": Array [
+          "As the name suggests, presents a sound and complete algorithm for HTN planning. The accomplishment is less overwhelming than it might at first seem, because the HTN plan's semantics rests on STRIPS-style world updates. So an HTN planner constructed according to this method will have the same knowledge-engineering demands as a first-principles STRIPS planner.",
+        ],
+        "author": Array [
+          Object {
+            "firstName": "Kutluhan",
+            "lastName": "Erol",
+          },
+          Object {
+            "firstName": "James",
+            "lastName": "Hendler",
+          },
+          Object {
+            "firstName": "Dana S.",
+            "lastName": "Nau",
+          },
+        ],
+        "crossref": Array [
+          "AIPS94",
+        ],
+        "pages": Array [
+          "249–254",
+        ],
+        "title": Array [
+          "UMCP: A Sound and Complete Procedure for Hierarchical Task Network Planning",
+        ],
+      },
+      "key": "Erol:94a",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

@@ -1,0 +1,66 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:shop:wushnp03.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "annote": Array [
+          "This citation seems inferior to SHOP:WuPSHN03, which seems to be the longer, more thorough article, covering the same material.",
+        ],
+        "author": Array [
+          Object {
+            "firstName": "Dan",
+            "lastName": "Wu",
+          },
+          Object {
+            "firstName": "Evren",
+            "lastName": "Sirin",
+          },
+          Object {
+            "firstName": "James A.",
+            "lastName": "Hendler",
+          },
+          Object {
+            "firstName": "Dana S.",
+            "lastName": "Nau",
+          },
+          Object {
+            "firstName": "Bijan",
+            "lastName": "Parsia",
+          },
+        ],
+        "bibsource": Array [
+          "Mindswap: http://www.mindswap.org/papers/?raw#mindswap:1\\"",
+        ],
+        "booktitle": Array [
+          "Proceedings of planning for web services workshop in ICAPS 2003",
+        ],
+        "title": Array [
+          "Automatic web services composition using SHOP2",
+        ],
+        "year": Array [
+          2003,
+        ],
+      },
+      "key": "SHOP:WuSHNP03",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

@@ -1,0 +1,23 @@
+@Article{fikes72:_learn,
+  author =	 {Richard Fikes and Peter Hart and Nils Nilsson},
+  title =	 {Learning and executing generalized robot plans},
+  journal =	 AIJ,
+  year =	 1972,
+  volume =	 3,
+  pages =	 {251--288},
+  note =	 {Republished in ~\cite{PlanReadings}.},
+  annote =	 {Wow! A paper containing the germs of a vast amount
+                  of other work. Explains how \textsc{Strips} plans
+                  are to be executed, stored, and reused. The key to
+                  all of these techniques are the \emph{triangle
+                  tables}, which are a limited form of
+                  explanation-based learning. They also underly the
+                  approach to execution monitoring. For the plan
+                  monitoring, the triangle table contains a cached out
+                  representation of the preconditions necessary for
+                  execution of each plan suffix. So the executor
+                  monitors the truth of each of these preconditions,
+                  allowing it both to re-execute failed prefixes and
+                  exploit opportunities to skip steps.}
+}
+

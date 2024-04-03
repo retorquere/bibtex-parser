@@ -1,0 +1,64 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings: bai-bac-mci-ijcai07.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "address": Array [
+          "Hyderabad, India",
+        ],
+        "author": Array [
+          Object {
+            "firstName": "J.",
+            "lastName": "Baier",
+          },
+          Object {
+            "firstName": "F.",
+            "lastName": "Bacchus",
+          },
+          Object {
+            "firstName": "S.",
+            "lastName": "McIlraith",
+          },
+        ],
+        "booktitle": Array [
+          "IJCAI proceedings",
+        ],
+        "month": Array [
+          "January",
+        ],
+        "pages": Array [
+          "1808-1815",
+        ],
+        "title": Array [
+          "A heuristic search approach to planning with temporally extended preferences",
+        ],
+        "url": Array [
+          "bai-bac-mci-ijcai07.pdf",
+        ],
+        "year": Array [
+          "2007",
+        ],
+      },
+      "key": "bai-bac-mci-ijcai07",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

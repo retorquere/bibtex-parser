@@ -1,0 +1,48 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:kambhampati:aaai94.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "annote": Array [
+          "The authors review Chapman's Modal Truth Criterion (MTC) from his paper “Planning for Conjunctive Goals.” They show a bug in Chapman's arguments — in particular that the equivalence <span class=\\"nocase\\">◇p≡¬□¬p</span> doesn't hold for truth in partially-ordered plans. The reason for this is that the excluded middle does not hold in the logic of partial plans — the truth value of some <span class=\\"nocase\\">p</span> in some completion of a partial plan may not be defined, because the completion may be ill-formed.",
+        ],
+        "author": Array [
+          Object {
+            "firstName": "Subbarao",
+            "lastName": "Kambhampati",
+          },
+          Object {
+            "firstName": "Dana S.",
+            "lastName": "Nau",
+          },
+        ],
+        "pages": Array [
+          "1055–1060",
+        ],
+        "title": Array [
+          "On the nature of modal truth criteria in planning",
+        ],
+      },
+      "key": "Kambhampati:aaai94",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

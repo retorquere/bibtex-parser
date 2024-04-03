@@ -1,0 +1,48 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-article:chakravarty:79.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "Indranil",
+            "lastName": "Chakravarty",
+          },
+        ],
+        "journal": Array [
+          "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+        ],
+        "number": Array [
+          "2",
+        ],
+        "title": Array [
+          "A generalized line and junction labeling scheme with applications to scene analysis",
+        ],
+        "volume": Array [
+          "PAMI-1",
+        ],
+        "year": Array [
+          "1979",
+        ],
+      },
+      "key": "Chakravarty:79",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

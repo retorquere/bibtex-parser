@@ -1,0 +1,67 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:protege:2000.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "address": Array [
+          "Beijing",
+        ],
+        "author": Array [
+          Object {
+            "firstName": "M. A.",
+            "lastName": "Musen",
+          },
+          Object {
+            "firstName": "R. W.",
+            "lastName": "Fergerson",
+          },
+          Object {
+            "firstName": "W. E.",
+            "lastName": "Grosso",
+          },
+          Object {
+            "firstName": "N. F.",
+            "lastName": "Noy",
+          },
+          Object {
+            "firstName": "M.",
+            "lastName": "Crubezy",
+          },
+          Object {
+            "firstName": "J. H.",
+            "lastName": "Gennari",
+          },
+        ],
+        "booktitle": Array [
+          "Conference on Intelligent Information Processing (IIP 2000) of the International Federation for Information Processing World Computer Congress (WCC 2000)",
+        ],
+        "title": Array [
+          "Component-Based Support for Building Knowledge-Acquisition Systems",
+        ],
+        "year": Array [
+          2000,
+        ],
+      },
+      "key": "Protege:2000",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

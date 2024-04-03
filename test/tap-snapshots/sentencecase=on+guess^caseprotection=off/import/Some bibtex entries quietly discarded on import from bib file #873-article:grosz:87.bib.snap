@@ -1,0 +1,62 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-article:grosz:87.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "Barbara J.",
+            "lastName": "Grosz",
+          },
+          Object {
+            "firstName": "Douglas E.",
+            "lastName": "Appelt",
+          },
+          Object {
+            "firstName": "Paul A.",
+            "lastName": "Martins",
+          },
+          Object {
+            "firstName": "Fernando C.N.",
+            "lastName": "Pereira",
+          },
+        ],
+        "journal": Array [
+          "Artificial Intelligence",
+        ],
+        "pages": Array [
+          "173-243",
+        ],
+        "title": Array [
+          "TEAM: an experiment in the design of transportable natural-language interfaces",
+        ],
+        "volume": Array [
+          "32",
+        ],
+        "year": Array [
+          "1987",
+        ],
+      },
+      "key": "Grosz:87",
+      "type": "article",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

@@ -1,0 +1,58 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-article:pople:75.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "Harry",
+            "lastName": "Pople",
+          },
+          Object {
+            "firstName": "Jack",
+            "lastName": "Myers",
+          },
+          Object {
+            "firstName": "Randolph",
+            "lastName": "Miller",
+          },
+        ],
+        "journal": Array [
+          "Proc. Ijcai",
+        ],
+        "pages": Array [
+          "848-855",
+        ],
+        "title": Array [
+          "DIALOG: A model of diagnostic logic for internal medicine",
+        ],
+        "volume": Array [
+          "4",
+        ],
+        "year": Array [
+          "1975",
+        ],
+      },
+      "key": "Pople:75",
+      "type": "article",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

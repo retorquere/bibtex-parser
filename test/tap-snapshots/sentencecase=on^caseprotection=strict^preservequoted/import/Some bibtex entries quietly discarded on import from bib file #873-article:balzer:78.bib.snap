@@ -1,0 +1,61 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-article:balzer:78.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "Robert",
+            "lastName": "Balzer",
+          },
+          Object {
+            "firstName": "Neil",
+            "lastName": "Goldman",
+          },
+          Object {
+            "firstName": "David",
+            "lastName": "Wile",
+          },
+        ],
+        "journal": Array [
+          "IEEE Transactions on Software Engineering",
+        ],
+        "number": Array [
+          "2",
+        ],
+        "pages": Array [
+          "94–102",
+        ],
+        "title": Array [
+          "Informality in program specifications",
+        ],
+        "volume": Array [
+          "4",
+        ],
+        "year": Array [
+          "1978",
+        ],
+      },
+      "key": "Balzer:78",
+      "type": "article",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

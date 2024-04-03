@@ -1,0 +1,60 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:choi2005.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "address": Array [
+          "Bonn, Germany",
+        ],
+        "author": Array [
+          Object {
+            "firstName": "D.",
+            "lastName": "Choi",
+          },
+          Object {
+            "firstName": "P.",
+            "lastName": "Langley",
+          },
+        ],
+        "booktitle": Array [
+          "ILP-05",
+        ],
+        "date-added": Array [
+          "2010-06-22 21:28:06 -0400",
+        ],
+        "date-modified": Array [
+          "2010-06-22 21:28:06 -0400",
+        ],
+        "publisher": Array [
+          "Springer",
+        ],
+        "title": Array [
+          "Learning teleoreactive logic programs from problem solving",
+        ],
+        "year": Array [
+          "2005",
+        ],
+      },
+      "key": "Choi2005",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

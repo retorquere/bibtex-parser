@@ -1,0 +1,64 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-book:newell:63.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "address": Array [
+          "New York New York",
+        ],
+        "author": Array [
+          Object {
+            "firstName": "Allen",
+            "lastName": "Newell",
+          },
+          Object {
+            "firstName": "Herbert A.",
+            "lastName": "Simon",
+          },
+        ],
+        "booktitle": Array [
+          "Computers and Thought",
+        ],
+        "editor": Array [
+          Object {
+            "firstName": "Edward A.",
+            "lastName": "Feigenbaum",
+          },
+          Object {
+            "firstName": "Julian",
+            "lastName": "Feldman",
+          },
+        ],
+        "publisher": Array [
+          "McGraw-Hill",
+        ],
+        "title": Array [
+          "GPS, a program that simulates human thought",
+        ],
+        "year": Array [
+          "1963",
+        ],
+      },
+      "key": "Newell:63",
+      "type": "book",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

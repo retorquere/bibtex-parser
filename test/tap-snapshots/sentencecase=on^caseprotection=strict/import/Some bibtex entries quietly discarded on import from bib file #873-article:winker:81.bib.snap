@@ -1,0 +1,58 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-article:winker:81.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "S.",
+            "lastName": "Winker",
+          },
+          Object {
+            "firstName": "L.",
+            "lastName": "Wos",
+          },
+          Object {
+            "firstName": "E.",
+            "lastName": "Lusk",
+          },
+        ],
+        "journal": Array [
+          "Mathematics of Computation",
+        ],
+        "pages": Array [
+          "533-545",
+        ],
+        "title": Array [
+          "Semigroups, antiautomorphisms, and involutions: A computer solution to an open problem, I",
+        ],
+        "volume": Array [
+          "37",
+        ],
+        "year": Array [
+          "1981",
+        ],
+      },
+      "key": "Winker:81",
+      "type": "article",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

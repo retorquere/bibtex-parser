@@ -1,0 +1,67 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-incollection:gat:tlas.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "address": Array [
+          "AAAI-PRESS-ADDRESS",
+        ],
+        "annote": Array [
+          "Gives a summary of three-layer architectures for mobile robots. Gat's division into three layers is based on memory and algorithm run-time in the three layers: deliberation layer (top) allows algorithms with long latencies: several Behavior transitions can occur before one of these terminates. The middle layer is the sequencer, whose job it is to select primitive Behaviors, and supply parameters. The Sequencer is allowed to use algorithms with memory. At the bottom level is the Controller, which contains Behaviors, which should run one iteration in constant-bounded time and space, ideally being continuous in the input, and not using memory (although Gat makes exception for filters). Gat also argues that behaviors should fail cognizantly. This is interesting, because not what I would have expected because I'm either (a) a planning bigot or (b) realistic about the fact that one typically doesn't own an entire execution platform, depending on whether you're being (a) harsh or (b) kind. I tend to think that you are given the Controller (or at least a subset thereof), and that cognizant failure may be more than you can ask. Also the Sequencer is needed to provide a plan-cognizant layer above the Controller, which typically doesn't know anything about the context of its behaviors.",
+        ],
+        "author": Array [
+          Object {
+            "firstName": "Erann",
+            "lastName": "Gat",
+          },
+        ],
+        "booktitle": Array [
+          "Artificial Intelligence and Mobile Robots",
+        ],
+        "editor": Array [
+          Object {
+            "firstName": "David",
+            "lastName": "Kortenkamp",
+          },
+          Object {
+            "firstName": "R. Peter",
+            "lastName": "Bonasso",
+          },
+          Object {
+            "firstName": "Robin",
+            "lastName": "Murphy",
+          },
+        ],
+        "publisher": Array [
+          "AAAI-PRESS",
+        ],
+        "title": Array [
+          "On Three-Layer Architectures",
+        ],
+        "year": Array [
+          1998,
+        ],
+      },
+      "key": "Gat:TLAs",
+      "type": "incollection",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

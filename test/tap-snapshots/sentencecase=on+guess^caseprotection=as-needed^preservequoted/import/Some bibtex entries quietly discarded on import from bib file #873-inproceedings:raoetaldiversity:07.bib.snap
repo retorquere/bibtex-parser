@@ -1,0 +1,67 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:raoetaldiversity:07.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "Biplav",
+            "lastName": "Srivastava",
+          },
+          Object {
+            "firstName": "Tuan A.",
+            "lastName": "Nguyen",
+          },
+          Object {
+            "firstName": "Alfonso",
+            "lastName": "Gerevini",
+          },
+          Object {
+            "firstName": "Subbarao",
+            "lastName": "Kambhampati",
+          },
+          Object {
+            "firstName": "Minh Binh",
+            "lastName": "Do",
+          },
+          Object {
+            "firstName": "Ivan",
+            "lastName": "Serina",
+          },
+        ],
+        "booktitle": Array [
+          "IJCAI",
+        ],
+        "crossref": Array [
+          "IJCAI07",
+        ],
+        "title": Array [
+          "Domain independent approaches for finding diverse plans",
+        ],
+        "year": Array [
+          2007,
+        ],
+      },
+      "key": "RaoETALDiversity:07",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

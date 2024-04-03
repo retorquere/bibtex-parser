@@ -1,0 +1,68 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-article:deanetal:95.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "annote": Array [
+          "Full version of conference papers Dean:93 also DeanETAL:93. Describes planning and deliberation scheduling methods for robot motion planning, based on Markov Decision Processes (MDPs). The method is essentially a cleaned up version of the method of Drummond and Bresina Drummond:90. See annotation to those papers, as well.",
+        ],
+        "author": Array [
+          Object {
+            "firstName": "Thomas L.",
+            "lastName": "Dean",
+          },
+          Object {
+            "firstName": "Leslie Pack",
+            "lastName": "Kaelbling",
+          },
+          Object {
+            "firstName": "Jak",
+            "lastName": "Kirman",
+          },
+          Object {
+            "firstName": "Ann N.",
+            "lastName": "Nicholson",
+          },
+        ],
+        "journal": Array [
+          "AIJ",
+        ],
+        "number": Array [
+          "1/2",
+        ],
+        "pages": Array [
+          "35–74",
+        ],
+        "title": Array [
+          "Planning under time constraints in Stochastic Domains",
+        ],
+        "volume": Array [
+          76,
+        ],
+        "year": Array [
+          1995,
+        ],
+      },
+      "key": "DeanETAL:95",
+      "type": "article",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

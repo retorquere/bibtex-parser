@@ -1,0 +1,55 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-article:garveylesser:93.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "A.",
+            "lastName": "Garvey",
+          },
+          Object {
+            "firstName": "V.",
+            "lastName": "Lesser",
+          },
+        ],
+        "journal": Array [
+          "IEEE Transactions on Systems, Man and Cybernetics",
+        ],
+        "note": Array [
+          "Special Issue on Planning, Scheduling and Control",
+        ],
+        "number": Array [
+          "6",
+        ],
+        "title": Array [
+          "Design-to-time real-time scheduling",
+        ],
+        "volume": Array [
+          "23",
+        ],
+        "year": Array [
+          "1993",
+        ],
+      },
+      "key": "GarveyLesser:93",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

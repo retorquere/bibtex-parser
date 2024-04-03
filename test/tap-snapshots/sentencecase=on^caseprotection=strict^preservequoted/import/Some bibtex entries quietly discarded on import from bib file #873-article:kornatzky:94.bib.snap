@@ -1,0 +1,54 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-article:kornatzky:94.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "Yoram",
+            "lastName": "Kornatzky",
+          },
+          Object {
+            "firstName": "Solomon Eyal",
+            "lastName": "Shimony",
+          },
+        ],
+        "journal": Array [
+          "DKE",
+        ],
+        "pages": Array [
+          "143–166",
+        ],
+        "title": Array [
+          "A probabilistic object-oriented data model",
+        ],
+        "volume": Array [
+          "12",
+        ],
+        "year": Array [
+          "1994",
+        ],
+      },
+      "key": "Kornatzky:94",
+      "type": "article",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

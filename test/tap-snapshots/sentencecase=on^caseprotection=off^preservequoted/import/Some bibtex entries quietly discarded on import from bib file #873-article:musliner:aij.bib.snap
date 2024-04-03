@@ -1,0 +1,67 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-article:musliner:aij.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "David J.",
+            "lastName": "Musliner",
+          },
+          Object {
+            "firstName": "Edmund H.",
+            "lastName": "Durfee",
+          },
+          Object {
+            "firstName": "Kang G.",
+            "lastName": "Shin",
+          },
+        ],
+        "journal": Array [
+          "Artificial Intelligence",
+        ],
+        "month": Array [
+          "03",
+        ],
+        "number": Array [
+          1,
+        ],
+        "pages": Array [
+          "83–127",
+        ],
+        "title": Array [
+          "World modeling for the dynamic construction of real-time control plans",
+        ],
+        "url": Array [
+          "http://www.cs.umd.edu/users/musliner/papers/musliner-aij.ps",
+        ],
+        "volume": Array [
+          74,
+        ],
+        "year": Array [
+          1995,
+        ],
+      },
+      "key": "musliner:aij",
+      "type": "article",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

@@ -1,0 +1,76 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-techreport:marcus:90.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "address": Array [
+          "Cambridge, MA",
+        ],
+        "author": Array [
+          Object {
+            "firstName": "Gary F.",
+            "lastName": "Marcus",
+          },
+          Object {
+            "firstName": "Michael",
+            "lastName": "Ullman",
+          },
+          Object {
+            "firstName": "Steven",
+            "lastName": "Pinker",
+          },
+          Object {
+            "firstName": "Michelle",
+            "lastName": "Hollander",
+          },
+          Object {
+            "firstName": "T. John",
+            "lastName": "Rosen",
+          },
+          Object {
+            "firstName": "Fei",
+            "lastName": "Xu",
+          },
+        ],
+        "institution": Array [
+          "MIT Center for Cognitive Science",
+        ],
+        "month": Array [
+          "November",
+        ],
+        "number": Array [
+          "41",
+        ],
+        "title": Array [
+          "Overregularization",
+        ],
+        "type": Array [
+          "Occasional paper",
+        ],
+        "year": Array [
+          "1990",
+        ],
+      },
+      "key": "Marcus:90",
+      "type": "techreport",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

@@ -1,0 +1,53 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-article:weld99:_recen_advan_ai_plann.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "Daniel S.",
+            "lastName": "Weld",
+          },
+        ],
+        "journal": Array [
+          "AIM",
+        ],
+        "number": Array [
+          2,
+        ],
+        "pages": Array [
+          "93-123",
+        ],
+        "title": Array [
+          "Recent advances in <span class=\\"nocase\\">AI</span> planning",
+        ],
+        "volume": Array [
+          20,
+        ],
+        "year": Array [
+          1999,
+        ],
+      },
+      "key": "weld99:_recen_advan_ai_plann",
+      "type": "article",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

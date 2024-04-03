@@ -1,0 +1,65 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-article:hobbs-etal:1993a.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "Jerry",
+            "lastName": "Hobbs",
+          },
+          Object {
+            "firstName": "Mark",
+            "lastName": "Stickel",
+          },
+          Object {
+            "firstName": "Douglas",
+            "lastName": "Appelt",
+          },
+          Object {
+            "firstName": "Paul",
+            "lastName": "Martin",
+          },
+        ],
+        "journal": Array [
+          "Artificial Intelligence",
+        ],
+        "pages": Array [
+          "69–142",
+        ],
+        "title": Array [
+          "Interpretation as abduction",
+        ],
+        "topic": Array [
+          "nl-interpretation; abduction",
+        ],
+        "volume": Array [
+          "63",
+        ],
+        "year": Array [
+          "1993",
+        ],
+      },
+      "key": "hobbs-etal:1993a",
+      "type": "article",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

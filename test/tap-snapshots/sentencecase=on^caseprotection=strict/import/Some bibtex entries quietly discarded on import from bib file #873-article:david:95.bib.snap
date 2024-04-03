@@ -1,0 +1,53 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-article:david:95.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "Philippe",
+            "lastName": "David",
+          },
+        ],
+        "journal": Array [
+          "JAIR",
+        ],
+        "month": Array [
+          "May",
+        ],
+        "pages": Array [
+          "447–474",
+        ],
+        "title": Array [
+          "Using pivot consistency to decompose and solve functional <span class=\\"nocase\\">CSPs</span>",
+        ],
+        "volume": Array [
+          "2",
+        ],
+        "year": Array [
+          "1995",
+        ],
+      },
+      "key": "David:95",
+      "type": "article",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

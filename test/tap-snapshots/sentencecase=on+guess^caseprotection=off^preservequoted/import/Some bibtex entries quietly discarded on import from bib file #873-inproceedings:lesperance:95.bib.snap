@@ -1,0 +1,73 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:lesperance:95.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "address": Array [
+          "Montréal",
+        ],
+        "annote": Array [
+          "The article provides an outline of the application of Scherl and Levesque's work on knowledge-producing actions and Reiter and Lin's work on the frame problem, to agent programming. The central limitation of the work is that they have little to say about the generation of new plans/programs for agent actions — they center their discussion around the use of the logic for verification of agent programs.",
+        ],
+        "author": Array [
+          Object {
+            "firstName": "Yves",
+            "lastName": "Lespérance",
+          },
+          Object {
+            "firstName": "Hector J.",
+            "lastName": "Levesque",
+          },
+          Object {
+            "firstName": "Fangzhen",
+            "lastName": "Lin",
+          },
+          Object {
+            "firstName": "Daniel",
+            "lastName": "Marcu",
+          },
+          Object {
+            "firstName": "Raymond",
+            "lastName": "Reiter",
+          },
+          Object {
+            "firstName": "Richard B.",
+            "lastName": "Scherl",
+          },
+        ],
+        "booktitle": Array [
+          "IJCAI workshop on agent theories, archietectures and languages",
+        ],
+        "month": Array [
+          "08",
+        ],
+        "title": Array [
+          "Foundations of a logical approach to agent programming",
+        ],
+        "year": Array [
+          "1995",
+        ],
+      },
+      "key": "Lesperance:95",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

@@ -1,0 +1,47 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-book:allen:87book.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "address": Array [
+          "Menlo Park, California",
+        ],
+        "author": Array [
+          Object {
+            "firstName": "James F.",
+            "lastName": "Allen",
+          },
+        ],
+        "publisher": Array [
+          "Benjamin / Cummings Publishing Company",
+        ],
+        "title": Array [
+          "Natural Lan­guage Un­der­stand­ing",
+        ],
+        "year": Array [
+          1987,
+        ],
+      },
+      "key": "Allen:87book",
+      "type": "book",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

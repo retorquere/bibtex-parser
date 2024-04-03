@@ -1,0 +1,54 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-article:tate:oplan.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "Ken",
+            "lastName": "Currie",
+          },
+          Object {
+            "firstName": "Austin",
+            "lastName": "Tate",
+          },
+        ],
+        "journal": Array [
+          "AIJ",
+        ],
+        "pages": Array [
+          "49–86",
+        ],
+        "title": Array [
+          "O-<span class=\\"nocase\\">P</span>lan: the open planning architecture",
+        ],
+        "volume": Array [
+          "52",
+        ],
+        "year": Array [
+          "1991",
+        ],
+      },
+      "key": "Tate:OPLAN",
+      "type": "article",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

@@ -1,0 +1,45 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:bryceicaps14.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "Daniel",
+            "lastName": "Bryce",
+          },
+        ],
+        "booktitle": Array [
+          "PICAPS",
+        ],
+        "pages": Array [],
+        "title": Array [
+          "Landmark-based plan distance measures for diverse planning",
+        ],
+        "year": Array [
+          "2014",
+        ],
+      },
+      "key": "bryceICAPS14",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

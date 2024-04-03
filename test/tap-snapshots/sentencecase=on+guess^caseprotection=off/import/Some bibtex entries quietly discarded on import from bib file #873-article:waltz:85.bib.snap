@@ -1,0 +1,54 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-article:waltz:85.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "David L.",
+            "lastName": "Waltz",
+          },
+          Object {
+            "firstName": "Jordan B.",
+            "lastName": "Pollack",
+          },
+        ],
+        "journal": Array [
+          "Cognitive Science",
+        ],
+        "pages": Array [
+          "51-74",
+        ],
+        "title": Array [
+          "Massively parallel parsing: a strongly interactive model of natural language interpretation",
+        ],
+        "volume": Array [
+          "9",
+        ],
+        "year": Array [
+          "1985",
+        ],
+      },
+      "key": "Waltz:85",
+      "type": "article",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

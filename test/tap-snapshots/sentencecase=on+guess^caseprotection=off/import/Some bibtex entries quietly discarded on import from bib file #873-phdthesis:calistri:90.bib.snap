@@ -1,0 +1,50 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-phdthesis:calistri:90.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "address": Array [
+          "Providence, RI",
+        ],
+        "author": Array [
+          Object {
+            "firstName": "Randall J.",
+            "lastName": "Calistri",
+          },
+        ],
+        "month": Array [
+          "May",
+        ],
+        "school": Array [
+          "Computer Science Department, Brown University",
+        ],
+        "title": Array [
+          "Classifying and detecting plan-based misconceptions for robust plan recognition",
+        ],
+        "year": Array [
+          "1990",
+        ],
+      },
+      "key": "Calistri:90",
+      "type": "phdthesis",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

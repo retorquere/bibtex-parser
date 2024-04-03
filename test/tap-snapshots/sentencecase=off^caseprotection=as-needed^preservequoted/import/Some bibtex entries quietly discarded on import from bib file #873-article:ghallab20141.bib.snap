@@ -1,0 +1,75 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-article:ghallab20141.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "abstract": Array [
+          "Abstract Planning is motivated by acting. Most of the existing work on automated planning underestimates the reasoning and deliberation needed for acting; it is instead biased towards path-finding methods in a compactly specified state-transition system. Researchers in this {AI} field have developed many planners, but very few actors. We believe this is one of the main causes of the relatively low deployment of automated planning applications. In this paper, we advocate a change in focus to actors as the primary topic of investigation. Actors are not mere plan executors: they may use planning and other deliberation tools, before and during acting. This change in focus entails two interconnected principles: a hierarchical structure to integrate the actorʼs deliberation functions, and continual online planning and reasoning throughout the acting process. In the paper, we discuss open problems and research directions toward that objective in knowledge representations, model acquisition and verification, synthesis and refinement, monitoring, goal reasoning, and integration.",
+        ],
+        "author": Array [
+          Object {
+            "firstName": "Malik",
+            "lastName": "Ghallab",
+          },
+          Object {
+            "firstName": "Dana",
+            "lastName": "Nau",
+          },
+          Object {
+            "firstName": "Paolo",
+            "lastName": "Traverso",
+          },
+        ],
+        "doi": Array [
+          "http://dx.doi.org/10.1016/j.artint.2013.11.002",
+        ],
+        "issn": Array [
+          "0004-3702",
+        ],
+        "journal": Array [
+          "AIJ",
+        ],
+        "keywords": Array [
+          "Automated planning and acting",
+        ],
+        "note": Array [],
+        "number": Array [],
+        "pages": Array [
+          "1 – 17",
+        ],
+        "title": Array [
+          "The actorʼs view of automated planning and acting: A position paper",
+        ],
+        "url": Array [
+          "http://www.sciencedirect.com/science/article/pii/S0004370213001173",
+        ],
+        "volume": Array [
+          "208",
+        ],
+        "year": Array [
+          "2014",
+        ],
+      },
+      "key": "Ghallab20141",
+      "type": "article",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

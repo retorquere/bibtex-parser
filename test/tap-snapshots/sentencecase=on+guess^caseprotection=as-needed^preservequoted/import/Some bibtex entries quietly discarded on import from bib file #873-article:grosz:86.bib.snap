@@ -1,0 +1,51 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-article:grosz:86.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "Barbara J.",
+            "lastName": "Grosz",
+          },
+          Object {
+            "firstName": "Candace",
+            "lastName": "Sidner",
+          },
+        ],
+        "journal": Array [
+          "Corolla Londiniensis",
+        ],
+        "title": Array [
+          "Attention, intention and the structure of discourse",
+        ],
+        "volume": Array [
+          "12",
+        ],
+        "year": Array [
+          "1986",
+        ],
+      },
+      "key": "Grosz:86",
+      "type": "article",
+    },
+  ],
+  "errors": Array [
+    "Unresolved @string reference \\"CL\\"",
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

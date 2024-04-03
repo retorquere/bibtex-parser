@@ -1,0 +1,57 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:conf:aips:dok00.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "Minh Binh",
+            "lastName": "Do",
+          },
+          Object {
+            "firstName": "Subbarao",
+            "lastName": "Kambhampati",
+          },
+        ],
+        "bibdate": Array [
+          "2002-01-03",
+        ],
+        "bibsource": Array [
+          "DBLP, http://dblp.uni-trier.de/db/conf/aips/aips2000.html#DoK00",
+        ],
+        "booktitle": Array [
+          "AIPS",
+        ],
+        "pages": Array [
+          "82–91",
+        ],
+        "title": Array [
+          "Solving planning-graph by compiling it into <span class=\\"nocase\\">CSP</span>",
+        ],
+        "year": Array [
+          "2000",
+        ],
+      },
+      "key": "conf/aips/DoK00",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

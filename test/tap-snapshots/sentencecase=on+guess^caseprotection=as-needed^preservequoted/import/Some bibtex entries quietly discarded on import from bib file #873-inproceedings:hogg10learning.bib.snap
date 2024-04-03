@@ -1,0 +1,58 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:hogg10learning.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "Chad",
+            "lastName": "Hogg",
+          },
+          Object {
+            "firstName": "Ugur",
+            "lastName": "Kuter",
+          },
+          Object {
+            "firstName": "Héctor",
+            "lastName": "Muñoz-Avila",
+          },
+        ],
+        "booktitle": Array [
+          "AAAI-10",
+        ],
+        "date-added": Array [
+          "2010-06-15 14:48:55 -0400",
+        ],
+        "date-modified": Array [
+          "2010-06-15 14:49:25 -0400",
+        ],
+        "title": Array [
+          "Learning methods to generate good plans: Integrating HTN learning and reinforcement learning",
+        ],
+        "year": Array [
+          "2010",
+        ],
+      },
+      "key": "hogg10learning",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

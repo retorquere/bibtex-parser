@@ -1,0 +1,65 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-phdthesis:erol:thesis.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "abstract": Array [
+          "Planning is a central activity in many areas including robotics, manufacturing, space mission sequencing, and logistics. As the size and complexity of planning problems grow, there is great economic pressure to automate this process in order to reduce the cost of planning effort, and to improve the quality of produced plans. AI planning research has focused on general-purpose planning systems which can process the specifications of an application domain and generate solutions to planning problems in that domain. Unfortunately, there is a big gap between theoretical and application oriented work in AI planning. The theoretical work has been mostly based on state-based planning, which has limited practical applications. The application-oriented work has been based on hierarchical task network (HTN) planning, which lacks a theoretical foundation. As a result, in spite of many years of research, building planning applications remains a formidable task. The goal of this dissertation is to facilitate building reliable and effective planning applications. The methodology includes design of a mathematical framework for HTN planning, analysis of this framework, development of provably correct algorithms based on this analysis, and the implementation of these algorithms for further evaluation and exploration. The representation, analyses, and algorithms described in this thesis will make it easier to apply HTN planning techniques effectively and correctly to planning applications. The precise and mathematical nature of the descriptions will also help teaching about HTN planning, will clarify misconceptions in the literature, and will stimulate further research.",
+        ],
+        "annote": Array [
+          "University of Maryland at College Park.–Dept. of Computer Science.",
+        ],
+        "author": Array [
+          Object {
+            "firstName": "Kutluhan",
+            "lastName": "Erol",
+          },
+        ],
+        "bibsource": Array [
+          "OAI-PMH server at alcme.oclc.org",
+        ],
+        "description": Array [
+          "Thesis research directed by Dept. of Computer Science.; Thesis (Ph. D.)–University of Maryland at College Park, 1995.; Includes bibliographical references (leaves 247-256).",
+        ],
+        "note": Array [
+          "Available as UMCP technical report CS-TR-3624",
+        ],
+        "oai": Array [
+          "oai:xtcat.oclc.org:OCLCNo/ocm35003840",
+        ],
+        "school": Array [
+          "University of Maryland at College Park",
+        ],
+        "subject": Array [
+          "Planning.; Artificial intelligence.",
+        ],
+        "title": Array [
+          "Hierarchical task network planning :–formalization, analysis, and implementation",
+        ],
+        "year": Array [
+          "1995",
+        ],
+      },
+      "key": "Erol:thesis",
+      "type": "phdthesis",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

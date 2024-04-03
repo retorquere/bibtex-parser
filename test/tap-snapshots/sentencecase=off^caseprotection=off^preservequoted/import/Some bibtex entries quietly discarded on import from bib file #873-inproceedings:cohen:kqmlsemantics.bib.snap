@@ -1,0 +1,57 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:cohen:kqmlsemantics.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "annote": Array [
+          "Cohen and Levesque critique KQML on three semantic grounds: ambiguity of specifications; misidentified performatives and performatives missing. The misidentified performatives are those that operate on other performatives where Cohen and Levesque argue that they should be operating directly on content. The major missing performative they identify is a commissive — the agreement to perform an action. They then propose that their logic of intention could be used to give a superior semantics. They conclude with some weak suggestions about the implications of this. Unfortunately, their semantics seem to be too “first principles-y” to be of much use to implementors. Finally, they say that extensibility and content independence are problems. It is hard to see how this is to be remedied.",
+        ],
+        "author": Array [
+          Object {
+            "firstName": "Philip R.",
+            "lastName": "Cohen",
+          },
+          Object {
+            "firstName": "Hector J.",
+            "lastName": "Levesque",
+          },
+        ],
+        "booktitle": Array [
+          "Proceedings of the International Conference on Multi-Agent Systems",
+        ],
+        "month": Array [
+          "06",
+        ],
+        "publisher": Array [
+          "AAAI-PRESS",
+        ],
+        "title": Array [
+          "Communicative Actions for Artificial Agents",
+        ],
+        "year": Array [
+          "1995",
+        ],
+      },
+      "key": "Cohen:KQMLSemantics",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

@@ -1,0 +1,60 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:aaai:iaai99*570.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "address": Array [
+          "Menlo Park, Cal.",
+        ],
+        "author": Array [
+          Object {
+            "firstName": "Karen L.",
+            "lastName": "Myers",
+          },
+          Object {
+            "firstName": "Thomas J.",
+            "lastName": "Lee",
+          },
+        ],
+        "booktitle": Array [
+          "AAAI-99",
+        ],
+        "month": Array [
+          "07  18–22",
+        ],
+        "pages": Array [
+          "570–576",
+        ],
+        "publisher": Array [
+          "AAAI/MIT Press",
+        ],
+        "title": Array [
+          "Generating qualitatively different plans through metatheoretic biases",
+        ],
+        "year": Array [
+          "1999",
+        ],
+      },
+      "key": "AAAI/IAAI99*570",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

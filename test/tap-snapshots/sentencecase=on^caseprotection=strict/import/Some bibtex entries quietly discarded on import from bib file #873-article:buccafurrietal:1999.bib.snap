@@ -1,0 +1,65 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-article:buccafurrietal:1999.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "annote": Array [
+          "Describes a technique for adding automatic repair to model checking verification. They use abductive model revision to alter a concurrent program description in the face of a counterexample. Their concurrent programs are described in terms of jumps and (boolean) assignments. Repairs are in terms of changing assignment values and changing assignment orderings. The class of repairs considered here seem most appropriate for handling concurrency protocol errors, especially involving mutual exclusion and deadlocks. They seem less appropriate for control applications. Counterexamples are used to reduce the set of repair candidates that must be considered. (In order to handle ACTL formulas, the authors consider tree-shaped counterexamples, not just simple linear counterexamples.) In particular, their technique “identifies corrections <span class=\\"nocase\\">α</span> under which the counterexample is invariant, i.e., still apply if <span class=\\"nocase\\">α</span> is implemented.” They introduce efficiently computable conditions on counterexamples and corrections that provide this filtering.",
+        ],
+        "author": Array [
+          Object {
+            "firstName": "Francesco",
+            "lastName": "Buccafurri",
+          },
+          Object {
+            "firstName": "Thomas",
+            "lastName": "Eiter",
+          },
+          Object {
+            "firstName": "Georg",
+            "lastName": "Gottlob",
+          },
+          Object {
+            "firstName": "Nicola",
+            "lastName": "Leone",
+          },
+        ],
+        "journal": Array [
+          "AIJ",
+        ],
+        "pages": Array [
+          "57–104",
+        ],
+        "title": Array [
+          "Enhancing model checking in verification by <span class=\\"nocase\\">AI</span> techniques",
+        ],
+        "volume": Array [
+          112,
+        ],
+        "year": Array [
+          1999,
+        ],
+      },
+      "key": "buccafurriETAL:1999",
+      "type": "article",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

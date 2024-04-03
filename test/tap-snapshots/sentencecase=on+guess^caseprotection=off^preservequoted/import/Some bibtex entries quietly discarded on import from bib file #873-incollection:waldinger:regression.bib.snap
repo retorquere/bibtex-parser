@@ -1,0 +1,66 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-incollection:waldinger:regression.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "address": Array [
+          "Edinburgh, Scotland",
+        ],
+        "author": Array [
+          Object {
+            "firstName": "Richard",
+            "lastName": "Waldinger",
+          },
+        ],
+        "booktitle": Array [
+          "Machine intelligence",
+        ],
+        "editor": Array [
+          Object {
+            "firstName": "E.",
+            "lastName": "Elcock",
+          },
+          Object {
+            "firstName": "D.",
+            "lastName": "Michie",
+          },
+        ],
+        "pages": Array [
+          "94–136",
+        ],
+        "publisher": Array [
+          "Ellis Horwood",
+        ],
+        "title": Array [
+          "Achieving several goals simultaneously",
+        ],
+        "volume": Array [
+          "8",
+        ],
+        "year": Array [
+          "1977",
+        ],
+      },
+      "key": "Waldinger:Regression",
+      "type": "incollection",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

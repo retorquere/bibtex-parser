@@ -1,0 +1,53 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-article:wilkins:90.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "David E.",
+            "lastName": "Wilkins",
+          },
+        ],
+        "journal": Array [
+          "CI",
+        ],
+        "number": Array [
+          "4",
+        ],
+        "pages": Array [
+          "232–246",
+        ],
+        "title": Array [
+          "Can AI planners solve practical problems?",
+        ],
+        "volume": Array [
+          "6",
+        ],
+        "year": Array [
+          "1990",
+        ],
+      },
+      "key": "Wilkins:90",
+      "type": "article",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

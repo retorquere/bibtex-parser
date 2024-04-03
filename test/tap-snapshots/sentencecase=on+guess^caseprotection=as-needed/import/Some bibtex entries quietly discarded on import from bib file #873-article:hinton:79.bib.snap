@@ -1,0 +1,53 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-article:hinton:79.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "Geoffrey",
+            "lastName": "Hinton",
+          },
+        ],
+        "journal": Array [
+          "Cognitive Science",
+        ],
+        "number": Array [
+          "3",
+        ],
+        "pages": Array [
+          "231-251",
+        ],
+        "title": Array [
+          "Some demonstrations of the effects of structural descriptions in mental imagery",
+        ],
+        "volume": Array [
+          "3",
+        ],
+        "year": Array [
+          "1979",
+        ],
+      },
+      "key": "Hinton:79",
+      "type": "article",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

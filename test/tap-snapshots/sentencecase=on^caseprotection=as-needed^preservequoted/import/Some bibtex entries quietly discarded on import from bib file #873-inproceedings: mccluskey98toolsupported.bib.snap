@@ -1,0 +1,51 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings: mccluskey98toolsupported.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "T.",
+            "lastName": "McCluskey",
+          },
+          Object {
+            "firstName": "D.",
+            "lastName": "Kitchin",
+          },
+        ],
+        "booktitle": Array [
+          "Proceedings of the 10th IEEE international conference on tools with artificial intelligence",
+        ],
+        "title": Array [
+          "A tool-supported approach to engineering HTN planning models",
+        ],
+        "url": Array [
+          "citeseer.ist.psu.edu/mccluskey98toolsupported.html",
+        ],
+        "year": Array [
+          1998,
+        ],
+      },
+      "key": "mccluskey98toolsupported",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

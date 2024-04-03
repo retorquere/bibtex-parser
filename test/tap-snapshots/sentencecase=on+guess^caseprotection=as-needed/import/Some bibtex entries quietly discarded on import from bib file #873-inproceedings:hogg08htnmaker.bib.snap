@@ -1,0 +1,58 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:hogg08htnmaker.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "Chad",
+            "lastName": "Hogg",
+          },
+          Object {
+            "firstName": "Héctor",
+            "lastName": "Muñoz-Avila",
+          },
+          Object {
+            "firstName": "Ugur",
+            "lastName": "Kuter",
+          },
+        ],
+        "booktitle": Array [
+          "AAAI-08",
+        ],
+        "date-added": Array [
+          "2010-06-15 14:47:02 -0400",
+        ],
+        "date-modified": Array [
+          "2010-06-15 14:47:28 -0400",
+        ],
+        "title": Array [
+          "HTN-MAKER: Learning HTNs with minimal additional knowledge engineering required",
+        ],
+        "year": Array [
+          "2008",
+        ],
+      },
+      "key": "hogg08htnmaker",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

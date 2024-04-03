@@ -1,0 +1,63 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:conf:aaai:baierm06.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "Jorge A.",
+            "lastName": "Baier",
+          },
+          Object {
+            "firstName": "Sheila A.",
+            "lastName": "McIlraith",
+          },
+        ],
+        "bibdate": Array [
+          "2012-03-19",
+        ],
+        "bibsource": Array [
+          "DBLP, http://dblp.uni-trier.de/db/conf/aaai/aaai2006.html#BaierM06",
+        ],
+        "booktitle": Array [
+          "AAAI",
+        ],
+        "pages": Array [
+          "788–795",
+        ],
+        "publisher": Array [
+          "AAAI Press",
+        ],
+        "title": Array [
+          "Planning with First-Order Temporally Extended Goals using Heuristic Search",
+        ],
+        "url": Array [
+          "http://www.aaai.org/Library/AAAI/2006/aaai06-125.php",
+        ],
+        "year": Array [
+          "2006",
+        ],
+      },
+      "key": "conf/aaai/BaierM06",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

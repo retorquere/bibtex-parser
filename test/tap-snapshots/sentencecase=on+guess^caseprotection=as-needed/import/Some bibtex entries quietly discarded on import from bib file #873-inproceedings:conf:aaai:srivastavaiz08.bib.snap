@@ -1,0 +1,58 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:conf:aaai:srivastavaiz08.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "Siddharth",
+            "lastName": "Srivastava",
+          },
+          Object {
+            "firstName": "Neil",
+            "lastName": "Immerman",
+          },
+          Object {
+            "firstName": "Shlomo",
+            "lastName": "Zilberstein",
+          },
+        ],
+        "bibdate": Array [
+          "2008-08-15",
+        ],
+        "bibsource": Array [
+          "DBLP, http://dblp.uni-trier.de/db/conf/aaai/aaai2008.html#SrivastavaIZ08",
+        ],
+        "crossref": Array [
+          "AAAI05",
+        ],
+        "pages": Array [
+          "991–997",
+        ],
+        "title": Array [
+          "Learning generalized plans using abstract counting",
+        ],
+      },
+      "key": "conf/aaai/SrivastavaIZ08",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

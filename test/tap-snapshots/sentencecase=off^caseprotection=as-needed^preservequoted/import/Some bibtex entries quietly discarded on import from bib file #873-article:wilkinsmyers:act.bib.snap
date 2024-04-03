@@ -1,0 +1,57 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-article:wilkinsmyers:act.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "David E.",
+            "lastName": "Wilkins",
+          },
+          Object {
+            "firstName": "Karen L.",
+            "lastName": "Myers",
+          },
+        ],
+        "journal": Array [
+          "JLC",
+        ],
+        "number": Array [
+          "6",
+        ],
+        "pages": Array [
+          "731–761",
+        ],
+        "title": Array [
+          "A Common Knowledge Representation for Plan Generation and Reactive Execution",
+        ],
+        "volume": Array [
+          "5",
+        ],
+        "year": Array [
+          "1995",
+        ],
+      },
+      "key": "WilkinsMyers:ACT",
+      "type": "article",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

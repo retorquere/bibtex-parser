@@ -1,0 +1,47 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-book:montague:1974.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "address": Array [
+          "New Haven, Conn.",
+        ],
+        "author": Array [
+          Object {
+            "firstName": "Richard",
+            "lastName": "Montague",
+          },
+        ],
+        "publisher": Array [
+          "Yale University Press",
+        ],
+        "title": Array [
+          "Formal philosophy",
+        ],
+        "year": Array [
+          "1974",
+        ],
+      },
+      "key": "Montague:1974",
+      "type": "book",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

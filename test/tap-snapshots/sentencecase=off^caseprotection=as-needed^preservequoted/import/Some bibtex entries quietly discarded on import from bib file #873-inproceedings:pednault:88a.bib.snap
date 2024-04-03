@@ -1,0 +1,44 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:pednault:88a.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "Edwin P.D.",
+            "lastName": "Pednault",
+          },
+        ],
+        "crossref": Array [
+          "AAAI88",
+        ],
+        "pages": Array [
+          "55–59",
+        ],
+        "title": Array [
+          "Extending Conventional Planning Techniques to Handle Actions with Context-dependent effects",
+        ],
+      },
+      "key": "Pednault:88a",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

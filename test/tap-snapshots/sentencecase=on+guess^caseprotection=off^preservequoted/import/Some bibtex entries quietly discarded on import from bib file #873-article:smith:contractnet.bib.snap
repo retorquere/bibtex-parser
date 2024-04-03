@@ -1,0 +1,53 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-article:smith:contractnet.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "Reid G.",
+            "lastName": "Smith",
+          },
+        ],
+        "journal": Array [
+          "TCOMPUTERS",
+        ],
+        "number": Array [
+          "12",
+        ],
+        "pages": Array [
+          "1104–1113",
+        ],
+        "title": Array [
+          "The contract net protocol: High-level communication and control in a distributed problem solver",
+        ],
+        "volume": Array [
+          "C-29",
+        ],
+        "year": Array [
+          "1980",
+        ],
+      },
+      "key": "Smith:ContractNet",
+      "type": "article",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

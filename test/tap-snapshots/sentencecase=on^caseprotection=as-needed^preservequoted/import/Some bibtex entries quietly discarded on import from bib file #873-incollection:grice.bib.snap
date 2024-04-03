@@ -1,0 +1,69 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-incollection:grice.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "address": Array [
+          "New York",
+        ],
+        "author": Array [
+          Object {
+            "firstName": "Paul",
+            "lastName": "Grice",
+          },
+        ],
+        "booktitle": Array [
+          "Speech acts",
+        ],
+        "editor": Array [
+          Object {
+            "firstName": "P.",
+            "lastName": "Cole",
+          },
+          Object {
+            "firstName": "J.",
+            "lastName": "Morgan",
+          },
+        ],
+        "number": Array [
+          "3",
+        ],
+        "pages": Array [
+          "41-58",
+        ],
+        "publisher": Array [
+          "Academic Press",
+        ],
+        "series": Array [
+          "Syntax and semantics",
+        ],
+        "title": Array [
+          "Logic and conversation",
+        ],
+        "year": Array [
+          "1975",
+        ],
+      },
+      "key": "Grice",
+      "type": "incollection",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

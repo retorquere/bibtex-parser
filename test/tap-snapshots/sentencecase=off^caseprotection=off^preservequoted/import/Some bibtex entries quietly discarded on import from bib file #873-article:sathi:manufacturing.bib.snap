@@ -1,0 +1,64 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-article:sathi:manufacturing.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "Arvind",
+            "lastName": "Sathi",
+          },
+          Object {
+            "firstName": "Mark S.",
+            "lastName": "Fox",
+          },
+          Object {
+            "firstName": "Michael",
+            "lastName": "Greenberg",
+          },
+        ],
+        "journal": Array [
+          "PAMI",
+        ],
+        "month": Array [
+          "September",
+        ],
+        "number": Array [
+          "5",
+        ],
+        "pages": Array [
+          "531–552",
+        ],
+        "title": Array [
+          "Representation of Activity Knowledge for Project Management",
+        ],
+        "volume": Array [
+          "PAMI-7",
+        ],
+        "year": Array [
+          "1985",
+        ],
+      },
+      "key": "Sathi:Manufacturing",
+      "type": "article",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

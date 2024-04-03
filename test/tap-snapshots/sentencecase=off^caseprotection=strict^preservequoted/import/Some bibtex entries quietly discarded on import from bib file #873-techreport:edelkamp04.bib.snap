@@ -1,0 +1,60 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-techreport:edelkamp04.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "abstract": Array [
+          "This document defines the language to be used in the classical part of the 4th International Planning Competition, IPC-4. The language comprises all of PDDL2.1 levels 1, 2, and 3, as defined by Maria Fox and Derek Long in fox:long:jair-03; parts of this document have been copied from that source. On top of this language, for IPC-4 <i>derived predicates</i> are re-introduced, and <i>timed initial literals</i> are (newly) introduced into the competition language. We give the syntax and semantics of these constructs.",
+        ],
+        "author": Array [
+          Object {
+            "firstName": "Stefan",
+            "lastName": "Edelkamp",
+          },
+          Object {
+            "firstName": "Jörg",
+            "lastName": "Hoffmann",
+          },
+        ],
+        "institution": Array [
+          "Institut für Informatik, Universität Freiburg",
+        ],
+        "month": Array [
+          "01 21",
+        ],
+        "title": Array [
+          "<span class=\\"nocase\\">PDDL</span>2.2: The Language for the Classical Part of the 4th International Planning Competition",
+        ],
+        "type": Array [
+          "report00195",
+        ],
+        "url": Array [
+          "ftp://ftp.informatik.uni-freiburg.de/documents/reports/report195/report00195.ps.gz",
+        ],
+        "year": Array [
+          "2004",
+        ],
+      },
+      "key": "Edelkamp04",
+      "type": "techreport",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

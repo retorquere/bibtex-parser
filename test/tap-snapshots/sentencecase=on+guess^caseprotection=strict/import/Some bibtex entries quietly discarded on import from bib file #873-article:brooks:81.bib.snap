@@ -1,0 +1,53 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-article:brooks:81.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "Rodney A.",
+            "lastName": "Brooks",
+          },
+        ],
+        "journal": Array [
+          "Artificial Intelligence",
+        ],
+        "number": Array [
+          "1-3",
+        ],
+        "pages": Array [
+          "285-348",
+        ],
+        "title": Array [
+          "Symbolic reasoning among 3-D models and 2-D images",
+        ],
+        "volume": Array [
+          "17",
+        ],
+        "year": Array [
+          "1981",
+        ],
+      },
+      "key": "Brooks:81",
+      "type": "article",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

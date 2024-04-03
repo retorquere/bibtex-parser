@@ -1,0 +1,47 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-techreport:barstow:77.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "address": Array [
+          "Palo Alto, Calif.",
+        ],
+        "author": Array [
+          Object {
+            "firstName": "David R.",
+            "lastName": "Barstow",
+          },
+        ],
+        "institution": Array [
+          "Stanford University Artificial Intelligence Laboratory",
+        ],
+        "title": Array [
+          "Automatic Construction of Algorithms and Data Structures Using a Knowledge Base of Programming Rules",
+        ],
+        "year": Array [
+          "1977",
+        ],
+      },
+      "key": "Barstow:77",
+      "type": "techreport",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

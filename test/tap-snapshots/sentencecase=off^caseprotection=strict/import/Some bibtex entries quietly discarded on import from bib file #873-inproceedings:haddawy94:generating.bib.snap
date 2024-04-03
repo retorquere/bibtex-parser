@@ -1,0 +1,57 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:haddawy94:generating.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "address": Array [
+          "Seattle",
+        ],
+        "author": Array [
+          Object {
+            "firstName": "Peter",
+            "lastName": "Haddawy",
+          },
+        ],
+        "booktitle": Array [
+          "Proceedings of the Tenth Conference on Uncertainty in Artificial Intelligence",
+        ],
+        "key": Array [
+          "Conference",
+        ],
+        "month": Array [
+          "July",
+        ],
+        "note": Array [],
+        "pages": Array [
+          "262-269",
+        ],
+        "title": Array [
+          "Generating <span class=\\"nocase\\">Bayesian</span> Networks from Probability Logic Knowledge Bases",
+        ],
+        "year": Array [
+          "1994",
+        ],
+      },
+      "key": "Haddawy94:Generating",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

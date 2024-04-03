@@ -1,0 +1,47 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-incollection:grosz:86a.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "Barbara J.",
+            "lastName": "Grosz",
+          },
+        ],
+        "chapter": Array [
+          "21",
+        ],
+        "crossref": Array [
+          "NLPReadings",
+        ],
+        "pages": Array [
+          "353–362",
+        ],
+        "title": Array [
+          "The Representation and Use of Focus in a System for Understanding Dialogs",
+        ],
+      },
+      "key": "Grosz:86a",
+      "type": "incollection",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

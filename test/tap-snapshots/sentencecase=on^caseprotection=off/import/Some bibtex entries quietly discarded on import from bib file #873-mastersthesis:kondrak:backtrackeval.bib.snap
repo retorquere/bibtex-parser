@@ -1,0 +1,50 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-mastersthesis:kondrak:backtrackeval.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "address": Array [
+          "Edmonton, Alberta",
+        ],
+        "author": Array [
+          Object {
+            "firstName": "Grzegorz",
+            "lastName": "Kondrak",
+          },
+        ],
+        "month": Array [
+          "Fall",
+        ],
+        "school": Array [
+          "Department of Computing Science, University of Alberta",
+        ],
+        "title": Array [
+          "A theoretical evaluation of selected backtracking algorithms",
+        ],
+        "year": Array [
+          "1994",
+        ],
+      },
+      "key": "Kondrak:BacktrackEval",
+      "type": "mastersthesis",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

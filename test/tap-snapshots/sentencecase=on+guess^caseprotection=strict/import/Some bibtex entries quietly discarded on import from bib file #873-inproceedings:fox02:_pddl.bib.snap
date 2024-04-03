@@ -1,0 +1,51 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:fox02:_pddl.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "Maria",
+            "lastName": "Fox",
+          },
+          Object {
+            "firstName": "Derek",
+            "lastName": "Long",
+          },
+        ],
+        "booktitle": Array [
+          "Proceedings of the 3rd international NASA workshop on planning and scheduling for space",
+        ],
+        "note": Array [
+          "<a href=\\"http://www.dur.ac.uk/computer.science/research/stanstuff/html/dpgpublications.html\\">http://www.dur.ac.uk/computer.science/research/stanstuff/html/dpgpublications.html</a>",
+        ],
+        "title": Array [
+          "<span class=\\"nocase\\">PDDL+</span>: Modeling continuous time dependent effects",
+        ],
+        "year": Array [
+          2002,
+        ],
+      },
+      "key": "fox02:_pddl",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

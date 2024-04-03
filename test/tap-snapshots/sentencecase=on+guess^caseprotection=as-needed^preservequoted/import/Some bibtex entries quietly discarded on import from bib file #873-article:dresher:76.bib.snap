@@ -1,0 +1,52 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-article:dresher:76.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "B. Elan",
+            "lastName": "Dresher",
+          },
+          Object {
+            "firstName": "Norbert",
+            "lastName": "Hornstein",
+          },
+        ],
+        "journal": Array [
+          "Cognition",
+        ],
+        "number": Array [
+          "4",
+        ],
+        "pages": Array [
+          "321-398",
+        ],
+        "title": Array [
+          "On some supposed contributions of artificial intelligence to the scientific study of language",
+        ],
+        "year": Array [
+          "1976",
+        ],
+      },
+      "key": "Dresher:76",
+      "type": "article",
+    },
+  ],
+  "errors": Array [],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

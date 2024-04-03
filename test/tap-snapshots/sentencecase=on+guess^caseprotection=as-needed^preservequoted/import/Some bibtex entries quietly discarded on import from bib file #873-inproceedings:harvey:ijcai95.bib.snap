@@ -1,0 +1,47 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:harvey:ijcai95.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "annote": Array [
+          "LDS is a search technique that iteratively makes n decisions differently from the dictates of its heuristic, for increasing n. The intuition behind LDS is that heuristics often give recommendations that are worse at the start of the search than at the end. Accordingly, LDS makes divergent decisions initially at the beginning of the search path, working towards the end. Note that were this assumption wrong, depth-first search would work well, because it undoes decisions first at the end of the search. Harvey and Ginsberg also discuss combining LDS with bounded-backtrack search, which they show gives better behavior in large search spaces.",
+        ],
+        "author": Array [
+          Object {
+            "firstName": "William D. Harvey",
+            "lastName": "andGINSBERG",
+          },
+        ],
+        "crossref": Array [
+          "ijcai95",
+        ],
+        "pages": Array [
+          "607–613",
+        ],
+        "title": Array [
+          "Limited discrepancy search",
+        ],
+      },
+      "key": "Harvey:IJCAI95",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

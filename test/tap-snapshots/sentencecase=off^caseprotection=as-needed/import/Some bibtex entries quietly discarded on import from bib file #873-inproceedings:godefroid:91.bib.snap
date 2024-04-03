@@ -1,0 +1,57 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:godefroid:91.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "Patrice",
+            "lastName": "Godefroid",
+          },
+          Object {
+            "firstName": "Froduald",
+            "lastName": "Kabanza",
+          },
+        ],
+        "crossref": Array [
+          "AAAI91",
+        ],
+        "dbasekey": Array [
+          "godefroid:91",
+        ],
+        "month": Array [
+          "07",
+        ],
+        "pages": Array [
+          "640–645",
+        ],
+        "title": Array [
+          "An Efficient Reactive Planner for Synthesizing Reactive Plans",
+        ],
+        "year": Array [
+          1991,
+        ],
+      },
+      "key": "Godefroid:91",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

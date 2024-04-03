@@ -1,0 +1,67 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-article:etzioni-etal:1997a.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "acontentnote": Array [
+          "Abstract: Closed-world inference-an essential component of many planning algorithms-is the process of determining that a logical sentence is false based on its absence from a knowledge base, or the inability to derive it. We describe a novel method for closed-world inference and update over the first-order theories of action used by planning algorithms such as NONLIN, TWEAK, and UCPOP. We show the method to be sound and efficient, but incomplete. In our experiments, closed-world inference consistently averaged about 2 milliseconds while updates averaged approximately 1.2 milliseconds. Furthermore, we demonstrate that incompleteness is nonproblematic in practice, since our mechanism makes over 99incorporated our method into the XII planner, which supports our Internet Softbot (software robot). The technique cut the number of actions executed by the Softbot by a factor of one hundred, and resulted in a corresponding speedup to XII.",
+        ],
+        "author": Array [
+          Object {
+            "firstName": "Oren",
+            "lastName": "Etzioni",
+          },
+          Object {
+            "firstName": "Keith",
+            "lastName": "Golden",
+          },
+          Object {
+            "firstName": "Daniel S.",
+            "lastName": "Weld",
+          },
+        ],
+        "journal": Array [
+          "AIJ",
+        ],
+        "number": Array [
+          "1–2",
+        ],
+        "pages": Array [
+          "113–148",
+        ],
+        "title": Array [
+          "Sound and efficient closed-world reasoning for planning",
+        ],
+        "topic": Array [
+          "planning;circumscription;closed-world-reasoning;",
+        ],
+        "volume": Array [
+          "89",
+        ],
+        "year": Array [
+          "1997",
+        ],
+      },
+      "key": "Etzioni-etal:1997a",
+      "type": "article",
+    },
+  ],
+  "errors": Array [
+    "Unresolved @string reference \\"AIJ\\"",
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

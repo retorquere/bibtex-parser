@@ -1,0 +1,62 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-article:dix03:_impac_shop.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "annote": Array [
+          "A somewhat disappointing paper. The most difficult problem (credit where credit is due, this was identified by the authors) in having <span class=\\"nocase\\">SHOP</span> control other agents, is that in evaluating preconditions, <span class=\\"nocase\\">SHOP</span> must be able to project the effects of the actions of other agents. However, this very interesting engineering problem is just made the responsibility of the “monitoring agent” and left as an exercise for the reader.",
+        ],
+        "author": Array [
+          Object {
+            "firstName": "J.",
+            "lastName": "Dix",
+          },
+          Object {
+            "firstName": "H.",
+            "lastName": "Munoz-Avila",
+          },
+          Object {
+            "firstName": "D.",
+            "lastName": "Nau",
+          },
+          Object {
+            "firstName": "L.",
+            "lastName": "Zhang",
+          },
+        ],
+        "journal": Array [
+          "amai",
+        ],
+        "note": Array [
+          "forthcoming",
+        ],
+        "title": Array [
+          "<span class=\\"nocase\\">IMPACT</span>ing <span class=\\"nocase\\">SHOP</span>: Putting an AI planner into a multi-agent environment",
+        ],
+        "year": Array [
+          2003,
+        ],
+      },
+      "key": "dix03:_impac_shop",
+      "type": "article",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

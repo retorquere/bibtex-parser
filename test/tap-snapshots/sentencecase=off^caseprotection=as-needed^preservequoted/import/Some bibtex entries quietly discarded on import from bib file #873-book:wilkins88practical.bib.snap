@@ -1,0 +1,53 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-book:wilkins88practical.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "address": Array [
+          "San Mateo, CA",
+        ],
+        "author": Array [
+          Object {
+            "firstName": "David E.",
+            "lastName": "Wilkins",
+          },
+        ],
+        "date-added": Array [
+          "2010-06-22 21:32:51 -0400",
+        ],
+        "date-modified": Array [
+          "2010-06-22 21:32:51 -0400",
+        ],
+        "publisher": Array [
+          "Morgan Kaufmann",
+        ],
+        "title": Array [
+          "Practical Planning: Extending the Classical AI Planning Paradigm",
+        ],
+        "year": Array [
+          "1988",
+        ],
+      },
+      "key": "wilkins88practical",
+      "type": "book",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

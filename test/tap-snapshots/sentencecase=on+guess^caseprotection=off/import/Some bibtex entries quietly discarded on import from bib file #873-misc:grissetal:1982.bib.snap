@@ -1,0 +1,55 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-misc:grissetal:1982.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "Martin L.",
+            "lastName": "Griss",
+          },
+          Object {
+            "firstName": "Eric",
+            "lastName": "Benson",
+          },
+          Object {
+            "firstName": "Gerald Q.",
+            "lastName": "Maguire",
+          },
+        ],
+        "booktitle": Array [
+          "Proceedings of the ACM symposium on lisp and functional programming",
+        ],
+        "pages": Array [
+          "88-97",
+        ],
+        "title": Array [
+          "PSL: A portable LISP system",
+        ],
+        "year": Array [
+          "1982",
+        ],
+      },
+      "key": "GrissETAL:1982",
+      "type": "misc",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

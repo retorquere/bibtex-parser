@@ -1,0 +1,53 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-techreport:purdy:90a.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "address": Array [
+          "Syracuse, NY",
+        ],
+        "author": Array [
+          Object {
+            "firstName": "William C.",
+            "lastName": "Purdy",
+          },
+        ],
+        "institution": Array [
+          "School of Computer and Information Science, Syracuse University",
+        ],
+        "month": Array [
+          "09",
+        ],
+        "number": Array [
+          "SU-CIS-90-15",
+        ],
+        "title": Array [
+          "Surface reasoning",
+        ],
+        "year": Array [
+          "1990",
+        ],
+      },
+      "key": "Purdy:90a",
+      "type": "techreport",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

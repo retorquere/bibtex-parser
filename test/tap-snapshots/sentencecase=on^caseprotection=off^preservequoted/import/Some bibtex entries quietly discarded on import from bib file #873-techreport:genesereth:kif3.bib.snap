@@ -1,0 +1,57 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-techreport:genesereth:kif3.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "Micheal R.",
+            "lastName": "Genesereth",
+          },
+          Object {
+            "firstName": "Richard E.",
+            "lastName": "Fikes",
+          },
+        ],
+        "institution": Array [
+          "Computer Science Department, Stanford University",
+        ],
+        "month": Array [
+          "June",
+        ],
+        "number": Array [
+          "Logic-92-1",
+        ],
+        "title": Array [
+          "Knowledge interchange format, version 3.0 reference manual",
+        ],
+        "type": Array [
+          "Logic group report",
+        ],
+        "year": Array [
+          "1992",
+        ],
+      },
+      "key": "Genesereth:KIF3",
+      "type": "techreport",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

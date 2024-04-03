@@ -1,0 +1,69 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:laborieghallab:95.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "address": Array [
+          "San Mateo",
+        ],
+        "author": Array [
+          Object {
+            "firstName": "Philippe",
+            "lastName": "Laborie",
+          },
+          Object {
+            "firstName": "Malik",
+            "lastName": "Ghallab",
+          },
+        ],
+        "booktitle": Array [
+          "Proceedings of the Fourteenth International Joint Conference on Artificial Intelligence",
+        ],
+        "editor": Array [
+          Object {
+            "firstName": "Chris S.",
+            "lastName": "Mellish",
+          },
+        ],
+        "isbn": Array [
+          "1-55860-363-8",
+        ],
+        "month": Array [
+          "08 20–25",
+        ],
+        "pages": Array [
+          "1643–1651",
+        ],
+        "publisher": Array [
+          "Morgan Kaufmann",
+        ],
+        "title": Array [
+          "Planning with Sharable Resource Constraints",
+        ],
+        "year": Array [
+          "1995",
+        ],
+      },
+      "key": "LaborieGhallab:95",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

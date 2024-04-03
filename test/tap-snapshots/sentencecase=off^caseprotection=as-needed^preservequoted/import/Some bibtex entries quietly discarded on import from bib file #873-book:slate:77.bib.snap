@@ -1,0 +1,63 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-book:slate:77.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "address": Array [
+          "New York",
+        ],
+        "author": Array [
+          Object {
+            "firstName": "David J.",
+            "lastName": "Slate",
+          },
+          Object {
+            "firstName": "Lawrence R.",
+            "lastName": "Atkin",
+          },
+        ],
+        "booktitle": Array [
+          "Chess Skill in Man and Machine",
+        ],
+        "editor": Array [
+          Object {
+            "firstName": "P.W.",
+            "lastName": "Frey",
+          },
+        ],
+        "pages": Array [
+          "82-118",
+        ],
+        "publisher": Array [
+          "Springer-Verlag",
+        ],
+        "title": Array [
+          "CHESS 4.5 - the Northwestern University chess program",
+        ],
+        "year": Array [
+          "1977",
+        ],
+      },
+      "key": "Slate:77",
+      "type": "book",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

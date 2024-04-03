@@ -1,0 +1,71 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:dekleer:77.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "Johan",
+            "lastName": "deKleer",
+          },
+          Object {
+            "firstName": "Jon",
+            "lastName": "Doyle",
+          },
+          Object {
+            "firstName": "Guy L.",
+            "lastName": "Steele",
+          },
+          Object {
+            "firstName": "Gerald J.",
+            "lastName": "Sussman",
+          },
+        ],
+        "booktitle": Array [
+          "Proceedings of the symposium on artificial intelligence and programming languages",
+        ],
+        "journal": Array [
+          "Sigplan Notices",
+        ],
+        "month": Array [
+          "August",
+        ],
+        "number": Array [
+          "8",
+        ],
+        "pages": Array [
+          "116-125",
+        ],
+        "title": Array [
+          "AMORD: Explicit control of reasoning",
+        ],
+        "volume": Array [
+          "12",
+        ],
+        "year": Array [
+          "1977",
+        ],
+      },
+      "key": "deKleer:77",
+      "type": "inproceedings",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`

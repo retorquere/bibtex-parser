@@ -1,0 +1,49 @@
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-unpublished:barto:mss.bib > must match snapshot 1`] = `
+Object {
+  "comments": Array [
+  ],
+  "entries": Array [
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "Andrew G.",
+            "lastName": "Barto",
+          },
+          Object {
+            "firstName": "Richard S.",
+            "lastName": "Sutton",
+          },
+          Object {
+            "firstName": "C.J.C.H.",
+            "lastName": "Watkins",
+          },
+        ],
+        "note": Array [
+          "To appear in <i>Learning and Computational Neuroscience</i>, J.W. Moore and M. Gabriel, eds., MIT Press",
+        ],
+        "title": Array [
+          "Learning and sequential decision making",
+        ],
+      },
+      "key": "Barto:MSS",
+      "type": "unpublished",
+    },
+  ],
+  "errors": Array [
+  ],
+  "jabref": Object {
+    "groups": Object {},
+    "root": Array [],
+  },
+  "preamble": Array [],
+  "strings": Object {},
+}
+`
