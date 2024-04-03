@@ -1,0 +1,73 @@
+#!/usr/bin/env python3
+
+import argparse
+import json
+import subprocess, os, sys
+import math
+
+if os.path.isfile('test/runtests.json'):
+  with open('test/runtests.json') as f:
+    config = json.load(f)
+else:
+  config = {}
+
+def Limit(n):
+  if n == 'all':
+    return math.inf
+
+  if n[0] in ['-', '+']:
+    try:
+      return (int(n),)
+    except:
+      raise argparse.ArgumentTypeError(f'{n} is not a valid integer delta')
+  try:
+    return int(n)
+  except:
+    raise argparse.ArgumentTypeError(f'{n} is not a valid integer')
+
+class ArgParse(argparse.ArgumentParser):
+  def print_help(self):
+    super().print_help()  # call the original print_help method
+    print('config:', config)
+
+parser = ArgParse()
+parser.add_argument('-o', '--only')
+parser.add_argument('-s', '--sc', '--sentence-case', choices=['on+guess', 'on', 'off'], default='on+guess')
+parser.add_argument('-c', '--cp', '--case-protection', choices=['as-needed', 'off', 'strict'], default='as-needed')
+parser.add_argument('-p', '--pq', '--preserve-quoted', choices=['yes', 'no'], default='yes')
+parser.add_argument('-d', '--dry-run', action='store_true')
+parser.add_argument('-b', '--big', action='store_true')
+parser.add_argument('--snap', action='store_true')
+parser.add_argument('n', nargs='?', type=Limit)
+args = parser.parse_args()
+
+if args.only:
+  config['only'] = args.only
+else:
+  config.pop('only', None)
+
+config['sentenceCase'] = args.sc
+config['caseProtection'] = args.cp
+config['preserveQuoted'] = args.pq == 'yes'
+config['big'] = args.big or (args.only is not None) or args.snap
+
+if args.n:
+  if args.n == math.inf:
+    config.pop('n', None)
+  elif type(args.n) == tuple:
+    config['n'] = max(config.get('n', 0) + args.n[0], 0)
+  elif type(args.n) == int:
+    config['n'] = args.n
+
+with open('test/runtests.json', 'w') as f:
+  json.dump(config, f)
+
+if args.dry_run:
+  print('saved:', config)
+  sys.exit()
+
+print('running:', config)
+
+env = os.environ.copy()
+if args.snap: env['TAP_SNAPSHOT'] = '1'
+subprocess.run("npm test", shell=True, env=env)
