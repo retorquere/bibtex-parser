@@ -7,8 +7,7 @@
 'use strict'
 exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:shaken:2000.bib > must match snapshot 1`] = `
 Object {
-  "comments": Array [
-  ],
+  "comments": Array [],
   "entries": Array [
     Object {
       "fields": Object {
@@ -59,21 +58,20 @@ Object {
           },
         ],
         "booktitle": Array [
-          "Proceedings of the first international conference on knowledge capture (K-cap'01)",
+          "Proceedings of the first international conference on knowledge capture (K-Cap'01)",
         ],
         "title": Array [
           "Knowledge entry as the graphical assembly of components",
         ],
         "year": Array [
-          2001,
+          "2001",
         ],
       },
       "key": "Shaken:2000",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [
-  ],
+  "errors": Array [],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

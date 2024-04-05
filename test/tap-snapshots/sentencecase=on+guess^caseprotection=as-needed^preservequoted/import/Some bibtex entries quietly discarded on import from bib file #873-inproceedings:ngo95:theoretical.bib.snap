@@ -7,12 +7,13 @@
 'use strict'
 exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:ngo95:theoretical.bib > must match snapshot 1`] = `
 Object {
-  "comments": Array [
-  ],
+  "comments": Array [],
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [],
+        "address": Array [
+          "",
+        ],
         "author": Array [
           Object {
             "firstName": "Liem",
@@ -37,7 +38,9 @@ Object {
         "month": Array [
           "August",
         ],
-        "note": Array [],
+        "note": Array [
+          "",
+        ],
         "organization": Array [],
         "pages": Array [
           "419-426",
@@ -53,8 +56,7 @@ Object {
       "type": "inproceedings",
     },
   ],
-  "errors": Array [
-  ],
+  "errors": Array [],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

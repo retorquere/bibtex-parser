@@ -55,15 +55,14 @@ function titleCase(s: string): string {
 function wordSC(token: Token, succ: Token, allCaps: boolean, subSentence: boolean): string {
   if (token.type !== 'word') return token.text
 
-  if (!allCaps && token.text === token.text.toUpperCase()) return token.text
-
   if (subSentence && token.subSentenceStart && token.text.match(/^a$/i)) return 'a'
-  if ((subSentence && token.subSentenceStart) || token.sentenceStart) return (!allCaps && token.shape.match(/^[Xd]+$/)) ? token.text : titleCase(token.text)
+  if ((subSentence && token.subSentenceStart) || token.sentenceStart) return !allCaps && token.shape.match(/^(?=.*X)[Xxd]+$/) ? token.text : titleCase(token.text)
 
-  if (!allCaps && token.shape.match(/X+-/)) return token.text
   if (token.text.match(/^[B-Z]$/)) return token.text
 
   if (token.text.match(/^I'/)) return titleCase(token.text)
+
+  if (!allCaps && token.shape.match(/^[-X]+$/)) return token.text
 
   if (succ && `${token.text} ${succ.text}`.match(preposition.complex)) {
     succ.text = succ.text.toLowerCase()

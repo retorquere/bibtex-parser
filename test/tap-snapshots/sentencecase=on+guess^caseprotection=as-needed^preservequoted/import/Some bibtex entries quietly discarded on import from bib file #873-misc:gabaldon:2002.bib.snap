@@ -7,8 +7,7 @@
 'use strict'
 exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-misc:gabaldon:2002.bib > must match snapshot 1`] = `
 Object {
-  "comments": Array [
-  ],
+  "comments": Array [],
   "entries": Array [
     Object {
       "fields": Object {
@@ -46,10 +45,7 @@ Object {
           "Programming hierarchical task networks in the situation calculus",
         ],
         "url": Array [
-          String(
-            http://citeseer.ist.psu.edu/525546.html;
-                              http://www.cs.toronto.edu/cogrobo/Papers/htn-opw.ps
-          ),
+          "http://citeseer.ist.psu.edu/525546.html; http://www.cs.toronto.edu/cogrobo/Papers/htn-opw.ps",
         ],
         "year": Array [
           "2002",
@@ -59,8 +55,7 @@ Object {
       "type": "misc",
     },
   ],
-  "errors": Array [
-  ],
+  "errors": Array [],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

@@ -354,6 +354,7 @@ const narguments = {
   textit: 1,
   textrm: 1,
   textsc: 1,
+  textsl: 1,
   textsubscript: 1,
   textsuperscript: 1,
   texttt: 1,
@@ -390,79 +391,71 @@ class BibTeXParser {
   private options: Options
   private fieldMode: typeof FieldMode
   private newcommands: Record<string, Argument> = {}
+  private bib: Bibliography
 
-  private splitter(nodes: Node[], splitter: string | RegExp): boolean {
-    // eslint-disable-next-line no-magic-numbers
-    const types = nodes.slice(0, 3)
-      .map(n => n.type === 'string' && (typeof splitter === 'string' ? n.content === splitter : n.content.match(splitter)) ? 'splitter' : n.type)
-      .join(',')
-    const match = /^(whitespace,?)?(splitter)(,?whitespace)?/.exec(types)
-    if (!match) return false
-    nodes.splice(0, match.slice(1).filter(t => t).length)
-    return true
+  private split(ast: Group | Root, sep: RegExp, split: RegExp): Root[] {
+    const roots: Root[] = []
+
+    const nodes = [...ast.content]
+    const types = nodes.map(node => {
+      if (node.type === 'whitespace') return ' '
+      if (node.type === 'string' && node.content.match(sep)) return '&'
+      return '.'
+    }).join('')
+
+    types.split(split).forEach((match, i) => {
+      const content = match.length ? nodes.splice(0, match.length) : []
+      if ((i % 2) === 0) roots.push({ type: 'root', content })
+    })
+
+    return roots
   }
 
-  private split(ast: Group | Root, splitter: string | RegExp): Root[] {
-    const parts: Root[] = [ { type: 'root', content: [] } ]
-    let part = 0
-
-    if (splitter === ' ') {
-      for (const node of ast.content) {
-        if (node.type === 'whitespace') {
-          parts.push({ type: 'root', content: [] })
-          part = parts.length - 1
-        }
-        else {
-          parts[part].content.push(node)
-        }
-      }
-      return parts.filter(p => p.content.length)
-    }
-
-    while (ast.content.length) {
-      if (this.splitter(ast.content, splitter)) {
-        parts.push({ type: 'root', content: [] })
-        part = parts.length - 1
-      }
-      else {
-        parts[part].content.push(ast.content.shift())
-      }
-    }
-    return parts
+  private trimCreator(cr: Creator): Creator {
+    // trims strings but coincidentally removes undefined fields
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+    return JSON.parse(JSON.stringify(cr, (k, v) => typeof v === 'string' ? (v.trim() || undefined) : v)) as Creator
   }
 
   private parseCreator(ast: Root): Creator {
-    if (ast.content.length === 1 && ast.content[0].type === 'group') return { name: this.stringify(ast, { mode: 'creator' }) }
+    if (ast.content.length === 1 && ast.content[0].type === 'group') return this.trimCreator({ name: this.stringify(ast, { mode: 'creator' }) })
 
     if (ast.content.find(node => node.type === 'string' && node.content === ',')) {
-      const nameparts: string[][] = this.split(ast, ',')
-        .map((part: Node) => this.stringify(part, { mode: 'creator' }))
-        // eslint-disable-next-line no-magic-numbers
-        .map((part: string) => part.match(/^([^=]+)=(.*)/)?.slice(1, 3) || ['', part])
+      const nameparts: string[] = this.split(ast, /^,$/, /(&)/).map((part: Node) => this.stringify(part, { mode: 'creator' }).trim())
+      const extended = nameparts.every(p => p.match(/^[a-z][-a-z]+\s*=/i))
 
-      // not in keyword mode
-      if (!nameparts.find(p => p[0])) {
+      if (!extended) {
+        const valid = 3
+        if (nameparts.length > valid) {
+          const key = this.current.key ? `@${this.current.key}: ` : ''
+          this.bib.errors.push({
+            error: `${key}unexpected ${nameparts.length}-part name "${nameparts.join(', ')}", dropping "${nameparts.slice(valid).join(', ')}"`,
+            input: nameparts.join(', '),
+          })
+        }
+
         let [lastName, suffix, firstName] = (nameparts.length === 2)
-          ? [nameparts[0][1], undefined, nameparts[1][1]]
+          ? [nameparts[0], undefined, nameparts[1]]
           // > 3 nameparts are invalid and are dropped
           // eslint-disable-next-line no-magic-numbers
-          : nameparts.slice(0, 3).map(p => p[1])
+          : nameparts.slice(0, 3)
         let prefix
         const m = lastName.match(/^([a-z'. ]+) (.+)/)
         if (m) {
           prefix = m[1]
           lastName = m[2]
         }
-        return JSON.parse(JSON.stringify({ // removes undefineds
+        return this.trimCreator({
           lastName,
           firstName,
           prefix,
           suffix,
-        })) as Creator
+        })
       }
 
       const name: Creator = {}
-      for (let [attr, value] of nameparts) {
+      // eslint-disable-next-line no-magic-numbers
+      for (let [attr, value] of nameparts.map(p => p.match(/^([^=]+)=(.*)/)?.slice(1, 3))) {
         attr = attr.toLowerCase()
         switch (attr) {
           case '':
@@ -488,14 +481,24 @@ class BibTeXParser {
             break
         }
       }
-      return name
+      return this.trimCreator(name)
     }
     else { // first-last mode
-      const nameparts = this.split(ast, ' ').map(part => this.stringify(part, { mode: 'creator' })).filter(n => n)
-      if (nameparts.length === 1) return { lastName: nameparts[0] }
+      const nameparts = this.split(ast, /^$/, /( )/).map(part => this.stringify(part, { mode: 'creator' })).filter(n => n)
+      if (nameparts.length === 1) return this.trimCreator({ lastName: nameparts[0] })
+
       const prefix = nameparts.findIndex(n => n.match(/^[a-z]/))
-      if (prefix > 0) return { firstName: nameparts.slice(0, prefix).join(' '), lastName: nameparts.slice(prefix).join(' ') }
-      return { lastName: nameparts.pop(), firstName: nameparts.join(' ') }
+      const postfix = prefix <= 0 ? -1 : nameparts.findIndex((n, i) => i > prefix && !n.match(/^[a-z]/))
+      if (postfix === -1) {
+        const lastName = nameparts.pop()
+        return this.trimCreator({ lastName, firstName: nameparts.join(' ') })
+      }
+
+      return this.trimCreator({
+        firstName: nameparts.slice(0, prefix).join(' '),
+        prefix: nameparts.slice(prefix, postfix).join(' '),
+        lastName: nameparts.slice(postfix).join(' '),
+      })
     }
   }
 
@@ -513,7 +516,7 @@ class BibTeXParser {
     while (content.length) {
       if (type.startsWith('s'.repeat(content.length)) && (latex = latex2unicode(content.join(''), slice[0]))) {
         try {
-          return { type: 'string', content: latex }
+          return { type: 'string', content: latex, _renderInfo: {} }
         }
         finally {
           nodes.splice(0, content.length)
@@ -526,7 +529,7 @@ class BibTeXParser {
   }
 
   private wraparg(node: Node, macro: Macro) : Argument {
-    if (macro.content.match(/^(itshape|textit|emph|mkbibemph)$/)) node._renderInfo.emph = true
+    if (macro.content.match(/^(itshape|textsl|textit|emph|mkbibemph)$/)) node._renderInfo.emph = true
     if (macro.content.match(/^(textbf|mkbibbold|bfseries)$/)) node._renderInfo.bold = true
     if (macro.content.match(/^(textsc)$/)) node._renderInfo.smallCaps = true
     if (macro.content.match(/^(texttt)$/)) node._renderInfo.code = true
@@ -597,7 +600,7 @@ class BibTeXParser {
       }
       else {
         const tag = {_: 'sub', '^': 'sup'}[macro]
-        return `<${tag}>${text}</${tag}>`
+        return `\x0E${tag}\x0F${text}\x0E/${tag}\x0F`
       }
     }
     return subp
@@ -688,7 +691,7 @@ class BibTeXParser {
         }
 
       case 'LaTeX':
-        return `L${this.subp('A', '^')}T${this.subp('E', '_')}X`
+        return this.wrap(`L${this.subp('A', '^')}T${this.subp('E', '_')}X`, 'ncx')
 
       case 'enquote':
       case 'mkbibquote':
@@ -872,7 +875,7 @@ class BibTeXParser {
           break
         case 'as-needed':
           cancel = (match: string, stripped: string) => {
-            const words = tokenize(stripped)
+            const words = tokenize(stripped, /\x0E\/?([a-z]+)\x0F/ig)
             return words.find(w => w.shape.match(/^(?!.*X).*x.*$/)) ? match : this.wrap(stripped, 'ncx')
           }
           break
@@ -978,12 +981,12 @@ class BibTeXParser {
 
       if (!info.context.inMathMode) {
         // feed-forward inline macros
-        for (const [macro, markup] of Object.entries({ em: 'emph', it: 'emph', bf: 'bold', sc: 'smallCaps', tt: 'code' })) {
+        for (const [macro, markup] of Object.entries({ em: 'emph', it: 'emph', sl: 'emph', bf: 'bold', sc: 'smallCaps', tt: 'code' })) {
           if (info.parents.find(p => p._renderInfo[markup])) continue
 
           compacted.forEach((markup_node, i) => {
             if (markup_node.type === 'macro' && markup_node.content === macro) {
-              compacted.slice(i + 1).forEach(n => n._renderInfo[markup]= true)
+              compacted.slice(i + 1).forEach(n => n._renderInfo[markup] = true)
             }
           })
         }
@@ -999,7 +1002,7 @@ class BibTeXParser {
         let arg: Node
         // no args, args of zero length, or first arg has no content
         if (!node.args || node.args.length === 0 || node.args[0].content.length === 0) {
-          arg = { type: 'string', content: ' ' }
+          arg = { type: 'string', content: ' ', _renderInfo: {} }
         }
         else if (node.args.length !== 1 || node.args[0].content.length !== 1) {
           return
@@ -1011,7 +1014,7 @@ class BibTeXParser {
         if (arg.type === 'group') {
           switch (arg.content.length) {
             case 0:
-              arg = { type: 'string', content: ' ' }
+              arg = { type: 'string', content: ' ', _renderInfo: {} }
               break
             case 1:
               arg = arg.content[0]
@@ -1024,7 +1027,7 @@ class BibTeXParser {
         switch (arg.type) {
           case 'verbatim':
           case 'string':
-            return { type: 'string', content: `${arg.content}${combining.tounicode[node.content]}` }
+            return { type: 'string', content: `${arg.content}${combining.tounicode[node.content]}`, _renderInfo: {} }
           default:
             return
         }
@@ -1032,19 +1035,19 @@ class BibTeXParser {
 
       let latex = `${node.escapeToken}${node.content}`
       latex += (node.args || []).map(arg => printRaw(this.argtogroup(arg))).join('')
-      if (latex in latex2unicodemap) return { type: 'string', content: latex2unicode(latex, node) }
+      if (latex in latex2unicodemap) return { type: 'string', content: latex2unicode(latex, node), _renderInfo: {} }
       // return null to delete
     })
 
     switch (mode) {
       case 'creator':
-        entry.fields[field] = this.split(ast, /^and$/i).map(cr => this.parseCreator(cr))
+        entry.fields[field] = this.split(ast, /^and$/i, /(^& | & | &$)/).map(cr => this.parseCreator(cr))
         break
       case 'commalist':
-        entry.fields[field] = this.split(ast, /^[;,]$/).map(elt => this.stringify(elt, { mode: 'literal'}).trim())
+        entry.fields[field] = this.split(ast, /^[;,]$/, /(&)/).map(elt => this.stringify(elt, { mode: 'literal'}).trim())
         break
       case 'literallist':
-        entry.fields[field] = this.split(ast, /^and$/i).map(elt => this.stringify(elt, { mode: 'literal'}).trim())
+        entry.fields[field] = this.split(ast, /^and$/i, /(^& | & | &$)/).map(elt => this.stringify(elt, { mode: 'literal'}).trim())
         break
       default:
         entry.fields[field] = this.stringField(field, this.stringify(ast, { mode }), sentenceCase, mode)
@@ -1055,7 +1058,7 @@ class BibTeXParser {
     entry.fields[field] = JSON.parse(JSON.stringify(entry.fields[field], (k, v) => (typeof v === 'string' ? this.restoreMarkup(v) : v) as string))
   }
 
-  private empty(options: Options = {}): Bibliography {
+  private reset(options: Options = {}) {
     const sentenceCase: Options['sentenceCase'] = {
       langids : English,
       guess: true,
@@ -1097,7 +1100,7 @@ class BibTeXParser {
 
     this.fallback = options.unsupported === 'ignore' ? ((_node: Node, _tex: string): string => '') : options.unsupported
 
-    return {
+    this.bib = {
       errors: [],
       entries: [],
       comments: [],
@@ -1107,8 +1110,12 @@ class BibTeXParser {
     }
   }
 
-  private reparse(bib: Bibliography, entry: bibtex.Entry) {
-    const langid = (entry.fields.langid || entry.fields.hyphenation || entry.fields.language || '').toLowerCase()
+  private reparse(entry: bibtex.Entry) {
+    let langid = (entry.fields.langid || entry.fields.hyphenation || '').toLowerCase()
+    if (!langid) {
+      const langfield: string = (<string[]> this.options.sentenceCase.langids).find(l => l[0] === '+' && entry.fields[l.substring(1)])
+      if (langfield) langid = entry.fields[langfield.substring(1)] || ''
+    }
     const sentenceCase = (<string[]> this.options.sentenceCase.langids).includes(langid)
 
     this.current = entry
@@ -1127,10 +1134,10 @@ class BibTeXParser {
 
       if (keywords.length) entry.fields.keywords = [ ...(new Set([ ...(entry.fields.keywords || []), ...keywords ])) ].sort() as unknown as string
 
-      bib.entries.push(<Entry>entry)
+      this.bib.entries.push(<Entry>entry)
     }
     catch (err) {
-      bib.errors.push({ error: `${err.message}\n${entry.input}`, input: entry.input })
+      this.bib.errors.push({ error: `${err.message}\n${entry.input}`, input: entry.input })
     }
   }
 
@@ -1140,7 +1147,7 @@ class BibTeXParser {
     return <string>entry.fields.tex
   }
 
-  private prep(bib: Bibliography, base: bibtex.Bibliography) {
+  private prep(base: bibtex.Bibliography) {
     for (const preamble of base.preambles) {
       try {
         this.content(preamble)
@@ -1149,19 +1156,19 @@ class BibTeXParser {
       }
     }
     for (const [k, v] of Object.entries(base.strings)) {
-      bib.strings[k] = this.content(v)
+      this.bib.strings[k] = this.content(v)
     }
   }
 
-  private finalize(bib: Bibliography, base: bibtex.Bibliography) {
+  private finalize(base: bibtex.Bibliography) {
     if (this.options.applyCrossRef) {
       const entries: Partial<Record<string, Entry>> = {}
-      for (const entry of bib.entries) {
+      for (const entry of this.bib.entries) {
         if (entry.key) entries[entry.key.toUpperCase()] = entry
       }
 
       const order: string[] = []
-      for (const entry of bib.entries) {
+      for (const entry of this.bib.entries) {
         if (!entry.key || typeof entry.fields.crossref !== 'string') continue
 
         const crossref = entry.fields.crossref.toUpperCase()
@@ -1192,41 +1199,41 @@ class BibTeXParser {
     }
 
     const { comments, jabref } = JabRef.parse(base.comments)
-    bib.comments = comments
-    bib.jabref = jabref
+    this.bib.comments = comments
+    this.bib.jabref = jabref
 
-    bib.preamble = base.preambles
-    bib.errors = [...base.errors, ...bib.errors]
+    this.bib.preamble = base.preambles
+    this.bib.errors = [...base.errors, ...this.bib.errors]
   }
 
   public parse(input: string, options: Options = {}): Bibliography {
-    const bib: Bibliography = this.empty(options)
+    this.reset(options)
 
     const base = bibtex.parse(input)
 
-    this.prep(bib, base)
+    this.prep(base)
 
     for (const entry of base.entries) {
-      this.reparse(bib, entry)
+      this.reparse(entry)
     }
 
-    this.finalize(bib, base)
-    return bib
+    this.finalize(base)
+    return this.bib
   }
 
   public async parseAsync(input: string, options: Options = {}): Promise<Bibliography> {
-    const bib: Bibliography = this.empty(options)
+    this.reset(options)
 
     const base = await bibtex.promises.parse(input)
 
-    this.prep(bib, base)
+    this.prep(base)
 
     for await (const entry of asyncGenerator(base.entries)) {
-      this.reparse(bib, entry)
+      this.reparse(entry)
     }
 
-    this.finalize(bib, base)
-    return bib
+    this.finalize(base)
+    return this.bib
   }
 }
 

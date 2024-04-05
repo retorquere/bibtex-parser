@@ -7,8 +7,7 @@
 'use strict'
 exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:firbyaaai-87.bib > must match snapshot 1`] = `
 Object {
-  "comments": Array [
-  ],
+  "comments": Array [],
   "entries": Array [
     Object {
       "fields": Object {
@@ -28,15 +27,14 @@ Object {
           "An investigation in reactive planning in complex domains",
         ],
         "year": Array [
-          1987,
+          "1987",
         ],
       },
       "key": "FirbyAAAI-87",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [
-  ],
+  "errors": Array [],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

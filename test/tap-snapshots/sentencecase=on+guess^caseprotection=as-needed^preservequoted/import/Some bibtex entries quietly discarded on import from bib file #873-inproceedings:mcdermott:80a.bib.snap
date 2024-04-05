@@ -7,14 +7,13 @@
 'use strict'
 exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:mcdermott:80a.bib > must match snapshot 1`] = `
 Object {
-  "comments": Array [
-  ],
+  "comments": Array [],
   "entries": Array [
     Object {
       "fields": Object {
         "author": Array [
           Object {
-            "lastName": "MCDERMOTT",
+            "literal": "MCDERMOTT",
           },
         ],
         "bootitle": Array [
@@ -38,6 +37,8 @@ Object {
     },
   ],
   "errors": Array [
+    "Unresolved @string reference \\"AAAI-80\\"",
+    "Unresolved @string reference \\"MCDERMOTT\\"",
   ],
   "jabref": Object {
     "groups": Object {},

@@ -8,6 +8,7 @@
 exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-book:dean:91.bib > must match snapshot 1`] = `
 Object {
   "comments": Array [
+    "Big Brown paper ",
   ],
   "entries": Array [
     Object {
@@ -40,6 +41,8 @@ Object {
     },
   ],
   "errors": Array [
+    "Unresolved @string reference \\"KAUFMANN\\"",
+    "Unresolved @string reference \\"KAUFMANN-ADDRESS\\"",
   ],
   "jabref": Object {
     "groups": Object {},

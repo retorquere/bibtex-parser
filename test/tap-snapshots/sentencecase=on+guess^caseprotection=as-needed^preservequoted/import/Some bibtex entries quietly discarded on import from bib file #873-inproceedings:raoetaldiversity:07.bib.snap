@@ -7,8 +7,7 @@
 'use strict'
 exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:raoetaldiversity:07.bib > must match snapshot 1`] = `
 Object {
-  "comments": Array [
-  ],
+  "comments": Array [],
   "entries": Array [
     Object {
       "fields": Object {
@@ -48,7 +47,7 @@ Object {
           "Domain independent approaches for finding diverse plans",
         ],
         "year": Array [
-          2007,
+          "2007",
         ],
       },
       "key": "RaoETALDiversity:07",
@@ -56,6 +55,7 @@ Object {
     },
   ],
   "errors": Array [
+    "Unresolved @string reference \\"IJCAI\\"",
   ],
   "jabref": Object {
     "groups": Object {},

@@ -8,6 +8,7 @@
 exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:freedman00.bib > must match snapshot 1`] = `
 Object {
   "comments": Array [
+    "Mike Freed",
   ],
   "entries": Array [
     Object {
@@ -31,15 +32,14 @@ Object {
           "Using a reactive planner as the basis for a dialogue agent",
         ],
         "year": Array [
-          2000,
+          "2000",
         ],
       },
       "key": "freedman00",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [
-  ],
+  "errors": Array [],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

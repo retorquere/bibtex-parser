@@ -7,15 +7,16 @@
 'use strict'
 exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:wilkinsmyers:98.bib > must match snapshot 1`] = `
 Object {
-  "comments": Array [
-  ],
+  "comments": Array [],
   "entries": Array [
     Object {
       "fields": Object {
-        "annote": Array [],
+        "annote": Array [
+          "",
+        ],
         "author": Array [
           Object {
-            "lastName": "WILKINS",
+            "literal": "WILKINS",
           },
           Object {
             "firstName": "Karen L.",
@@ -37,6 +38,7 @@ Object {
     },
   ],
   "errors": Array [
+    "Unresolved @string reference \\"WILKINS\\"",
   ],
   "jabref": Object {
     "groups": Object {},

@@ -7,14 +7,13 @@
 'use strict'
 exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:freed05:_trust_auton_spacef_system.bib > must match snapshot 1`] = `
 Object {
-  "comments": Array [
-  ],
+  "comments": Array [],
   "entries": Array [
     Object {
       "fields": Object {
         "author": Array [
           Object {
-            "lastName": "FREED",
+            "literal": "FREED",
           },
           Object {
             "firstName": "P.",
@@ -44,7 +43,7 @@ Object {
           "Trusted autonomy for spaceflight systems",
         ],
         "year": Array [
-          2005,
+          "2005",
         ],
       },
       "key": "freed05:_trust_auton_spacef_system",
@@ -52,6 +51,7 @@ Object {
     },
   ],
   "errors": Array [
+    "Unresolved @string reference \\"FREED\\"",
   ],
   "jabref": Object {
     "groups": Object {},

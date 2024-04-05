@@ -7,8 +7,7 @@
 'use strict'
 exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-article:waldspurger:spawn.bib > must match snapshot 1`] = `
 Object {
-  "comments": Array [
-  ],
+  "comments": Array [],
   "entries": Array [
     Object {
       "fields": Object {
@@ -47,7 +46,7 @@ Object {
           "103–117",
         ],
         "title": Array [
-          "Spawn: A distributed computational economy",
+          "Spawn: a distributed computational economy",
         ],
         "volume": Array [
           "18",
@@ -61,6 +60,7 @@ Object {
     },
   ],
   "errors": Array [
+    "Unresolved @string reference \\"TSWE\\"",
   ],
   "jabref": Object {
     "groups": Object {},

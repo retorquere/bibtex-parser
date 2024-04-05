@@ -7,8 +7,7 @@
 'use strict'
 exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-techreport:georgeff:87.bib > must match snapshot 1`] = `
 Object {
-  "comments": Array [
-  ],
+  "comments": Array [],
   "entries": Array [
     Object {
       "fields": Object {
@@ -29,7 +28,7 @@ Object {
           "SRI",
         ],
         "month": Array [
-          "01",
+          "1",
         ],
         "number": Array [
           "411",
@@ -46,6 +45,8 @@ Object {
     },
   ],
   "errors": Array [
+    "Unresolved @string reference \\"SRI\\"",
+    "Unresolved @string reference \\"SRI-ADDRESS\\"",
   ],
   "jabref": Object {
     "groups": Object {},

@@ -8,6 +8,7 @@
 exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-techreport:barrett:ucpop.bib > must match snapshot 1`] = `
 Object {
   "comments": Array [
+    "Oren Etzioni gets a little list for himself...",
   ],
   "entries": Array [
     Object {
@@ -34,7 +35,8 @@ Object {
           },
         ],
         "institution": Array [
-          "Department of Computer Science and Engineering, University of Washington",
+          "Department of Computer Science",
+          "Engineering, University of Washington",
         ],
         "month": Array [
           "February",
@@ -53,8 +55,7 @@ Object {
       "type": "techreport",
     },
   ],
-  "errors": Array [
-  ],
+  "errors": Array [],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

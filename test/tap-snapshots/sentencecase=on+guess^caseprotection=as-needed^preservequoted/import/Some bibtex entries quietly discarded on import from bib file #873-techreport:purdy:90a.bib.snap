@@ -7,8 +7,7 @@
 'use strict'
 exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-techreport:purdy:90a.bib > must match snapshot 1`] = `
 Object {
-  "comments": Array [
-  ],
+  "comments": Array [],
   "entries": Array [
     Object {
       "fields": Object {
@@ -22,10 +21,11 @@ Object {
           },
         ],
         "institution": Array [
-          "School of Computer and Information Science, Syracuse University",
+          "School of Computer",
+          "Information Science, Syracuse University",
         ],
         "month": Array [
-          "09",
+          "9",
         ],
         "number": Array [
           "SU-CIS-90-15",
@@ -41,8 +41,7 @@ Object {
       "type": "techreport",
     },
   ],
-  "errors": Array [
-  ],
+  "errors": Array [],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

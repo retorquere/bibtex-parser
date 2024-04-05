@@ -7,8 +7,7 @@
 'use strict'
 exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-article:nguyenetal:diversityaij.bib > must match snapshot 1`] = `
 Object {
-  "comments": Array [
-  ],
+  "comments": Array [],
   "entries": Array [
     Object {
       "fields": Object {
@@ -38,6 +37,9 @@ Object {
             "lastName": "Kambhampati",
           },
         ],
+        "crossref": Array [
+          "journals/ai/NguyenDGSSK12",
+        ],
         "pages": Array [
           "1–31",
         ],
@@ -57,8 +59,65 @@ Object {
       "key": "NguyenETAL:DiversityAIJ",
       "type": "article",
     },
+    Object {
+      "fields": Object {
+        "author": Array [
+          Object {
+            "firstName": "Tuan Anh",
+            "lastName": "Nguyen",
+          },
+          Object {
+            "firstName": "Minh Binh",
+            "lastName": "Do",
+          },
+          Object {
+            "firstName": "Alfonso",
+            "lastName": "Gerevini",
+          },
+          Object {
+            "firstName": "Ivan",
+            "lastName": "Serina",
+          },
+          Object {
+            "firstName": "Biplav",
+            "lastName": "Srivastava",
+          },
+          Object {
+            "firstName": "Subbarao",
+            "lastName": "Kambhampati",
+          },
+        ],
+        "bibdate": Array [
+          "2012-11-12",
+        ],
+        "bibsource": Array [
+          "DBLP, http://dblp.uni-trier.de/db/journals/ai/ai190.html#NguyenDGSSK12",
+        ],
+        "journal": Array [
+          "AIJ",
+        ],
+        "pages": Array [
+          "1–31",
+        ],
+        "title": Array [
+          "Generating diverse plans to handle unknown and partially known user preferences",
+        ],
+        "url": Array [
+          "http://dx.doi.org/10.1016/j.artint.2012.05.005",
+        ],
+        "volume": Array [
+          "190",
+        ],
+        "year": Array [
+          "2012",
+        ],
+      },
+      "key": "journals/ai/NguyenDGSSK12",
+      "type": "article",
+    },
   ],
   "errors": Array [
+    "Unresolved @string reference \\"AIJ\\"",
   ],
   "jabref": Object {
     "groups": Object {},

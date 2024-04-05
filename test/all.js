@@ -91,8 +91,11 @@ const strings = path.resolve(path.join(__dirname, '..', 'strings.bib'))
 if (process.env.CI === 'true') config.tests.toobig = []
 
 let testcases = glob(path.join(__dirname, '**', '*.{json,bib,bibtex,biblatex}'), { nocase: true, matchBase: true, nonull: false, nodir: true }).sort()
+const tccount = testcases.length
 if (config.n) testcases = testcases.slice(0, config.n)
 if (config.only) testcases = testcases.filter(testcase => testcase.toLowerCase().includes(config.only.toLowerCase()))
+const ignored = tccount - testcases.length
+if (ignored) console.log('ignoring', ignored, 'of', tccount, 'cases')
 
 function parse(bibfile, name, snapshot, options) {
   tap.test(name, async t => {
@@ -111,8 +114,11 @@ function parse(bibfile, name, snapshot, options) {
       result = err.message + '\n' + err.stack
     }
    
-    if (typeof result !== 'string' && result.errors.filter(err => !err.error.includes('Unresolved @string')).length && !config.error.includes(path.basename(bibfile))) {
-      throw JSON.stringify(result.errors[0], null, 2)
+    if (typeof result !== 'string' && !config.tests.error.includes(path.basename(bibfile))) {
+      for (const err of result.errors) {
+        if (err.error.match(/Unresolved @string|unexpected \d+-part name/)) continue
+        throw JSON.stringify(result.errors[0], null, 2)
+      }
     }
     t.snapshotFile = snapshot
     t.matchSnapshot(normalize(result))

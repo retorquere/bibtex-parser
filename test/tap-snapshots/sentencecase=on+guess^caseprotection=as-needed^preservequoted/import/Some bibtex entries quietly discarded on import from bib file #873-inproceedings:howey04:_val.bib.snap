@@ -8,6 +8,9 @@
 exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:howey04:_val.bib > must match snapshot 1`] = `
 Object {
   "comments": Array [
+    "booktitle =    \\"Proceedings of the Sixteenth International Conference",
+    "on Automated Planning and Scheduling, {ICAPS} 2006,",
+    "Cumbria, {UK}, June 6-10, 2006\\",",
   ],
   "entries": Array [
     Object {
@@ -48,15 +51,14 @@ Object {
           "http://doi.ieeecomputersociety.org/10.1109/ICTAI.2004.120",
         ],
         "year": Array [
-          2004,
+          "2004",
         ],
       },
       "key": "howey04:_val",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [
-  ],
+  "errors": Array [],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

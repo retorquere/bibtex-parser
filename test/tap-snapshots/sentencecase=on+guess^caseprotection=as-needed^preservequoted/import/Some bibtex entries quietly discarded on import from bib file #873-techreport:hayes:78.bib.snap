@@ -7,8 +7,7 @@
 'use strict'
 exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-techreport:hayes:78.bib > must match snapshot 1`] = `
 Object {
-  "comments": Array [
-  ],
+  "comments": Array [],
   "entries": Array [
     Object {
       "fields": Object {
@@ -19,7 +18,8 @@ Object {
           },
         ],
         "institution": Array [
-          "Institute for Semantic and Cognitive Studies",
+          "Institute for Semantic",
+          "Cognitive Studies",
         ],
         "title": Array [
           "Naive physics I: Ontology for liquids",
@@ -32,8 +32,7 @@ Object {
       "type": "techreport",
     },
   ],
-  "errors": Array [
-  ],
+  "errors": Array [],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

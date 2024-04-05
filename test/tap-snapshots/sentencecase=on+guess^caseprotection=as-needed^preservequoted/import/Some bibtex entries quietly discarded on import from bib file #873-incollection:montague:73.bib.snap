@@ -7,8 +7,7 @@
 'use strict'
 exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-incollection:montague:73.bib > must match snapshot 1`] = `
 Object {
-  "comments": Array [
-  ],
+  "comments": Array [],
   "entries": Array [
     Object {
       "fields": Object {
@@ -26,12 +25,8 @@ Object {
         ],
         "editor": Array [
           Object {
-            "firstName": "K.J.J.",
-            "lastName": "Hintikka",
-          },
-          Object {
-            "firstName": "J.M.E.",
-            "lastName": "Moravcsik",
+            "firstName": "J.M.E. Moravcsik",
+            "lastName": "K.J.J. Hintikka",
           },
           Object {
             "firstName": "P.C.",
@@ -52,8 +47,7 @@ Object {
       "type": "incollection",
     },
   ],
-  "errors": Array [
-  ],
+  "errors": Array [],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

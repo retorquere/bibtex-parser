@@ -7,15 +7,16 @@
 'use strict'
 exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:schoppers:94.bib > must match snapshot 1`] = `
 Object {
-  "comments": Array [
-  ],
+  "comments": Array [],
   "entries": Array [
     Object {
       "fields": Object {
         "address": Array [
           "Houston, TX",
         ],
-        "annote": Array [],
+        "annote": Array [
+          "",
+        ],
         "author": Array [
           Object {
             "firstName": "Marcel",
@@ -26,7 +27,7 @@ Object {
           "Proceedings of the AIAA conference on intelligent robots in field, factory, service and space",
         ],
         "month": Array [
-          "03",
+          "3",
         ],
         "title": Array [
           "A Software Architecture for Hard Real-time execution of automatically synthesized plans or control laws",
@@ -39,8 +40,7 @@ Object {
       "type": "inproceedings",
     },
   ],
-  "errors": Array [
-  ],
+  "errors": Array [],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

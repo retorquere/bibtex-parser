@@ -8,6 +8,7 @@
 exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-techreport:kushmerick:93.bib > must match snapshot 1`] = `
 Object {
   "comments": Array [
+    "BURIDAN",
   ],
   "entries": Array [
     Object {
@@ -36,7 +37,7 @@ Object {
           "June",
         ],
         "note": Array [
-          "This citation should be replaced with Kushmerick, et. al., <i>Artificial Intelligence/</i>, 1995",
+          "This citation should be replaced with Kushmerick, et. al., <i>Artificial Intelligence</i>, 1995",
         ],
         "number": Array [
           "93-06-03",
@@ -53,6 +54,7 @@ Object {
     },
   ],
   "errors": Array [
+    "Unresolved @string reference \\"UDUB\\"",
   ],
   "jabref": Object {
     "groups": Object {},
