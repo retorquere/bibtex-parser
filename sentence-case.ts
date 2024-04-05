@@ -52,15 +52,24 @@ function titleCase(s: string): string {
   return s.replace(/^(.)(.+)/, (match, car, cdr) => `${car}${cdr.toLowerCase()}`)
 }
 
+const Lu = XRegExp('\\p{Lu}')
+const Ll = XRegExp('\\p{Ll}')
+const connectedWord = XRegExp('(^|-)\\p{Lu}\\p{Ll}*(?=-|$)', 'g')
+const connectedInnerWord = XRegExp('-\\p{Lu}\\p{Ll}*(?=-|$)', 'g')
+const strayCC = new RegExp(`^(${combining.regex})`)
+
 function wordSC(token: Token, succ: Token, allCaps: boolean, subSentence: boolean): string {
   if (token.type !== 'word') return token.text
-
+  if (token.text.match(/^I'/)) return titleCase(token.text)
   if (subSentence && token.subSentenceStart && token.text.match(/^a$/i)) return 'a'
-  if ((subSentence && token.subSentenceStart) || token.sentenceStart) return !allCaps && token.shape.match(/^(?=.*X)[Xxd]+$/) ? token.text : titleCase(token.text)
+
+  if ((subSentence && token.subSentenceStart) || token.sentenceStart) {
+    return allCaps ? titleCase(token.text) : XRegExp.replace(token.text, connectedInnerWord, match => match.toLowerCase())
+  }
+
+  if (!allCaps && token.shape.match(/^[Xxd]+(-[Xxd]+)+/)) return XRegExp.replace(token.text, connectedWord, match => match.toLowerCase())
 
   if (token.text.match(/^[B-Z]$/)) return token.text
-
-  if (token.text.match(/^I'/)) return titleCase(token.text)
 
   if (!allCaps && token.shape.match(/^[-X]+$/)) return token.text
 
@@ -70,12 +79,13 @@ function wordSC(token: Token, succ: Token, allCaps: boolean, subSentence: boolea
   }
   if (token.text.match(preposition.simple)) return token.text.toLowerCase()
 
-  if (!allCaps && token.shape.match(/^[Xd-]+$/)) return token.text
-  if (token.shape.match(/^X[xd]*(-[Xxd]*)*$/)) return token.text.toLowerCase()
-  if (token.shape.match(/^[Xd]+$/)) return allCaps ? token.text.toLowerCase() : token.text
+  const shape = token.shape.replace(/[^Xxd]/g, '')
+  if (!allCaps && shape.match(/^[Xd-]+$/)) return token.text
+  if (shape.match(/^X[xd]*(-[Xxd]*)*$/)) return token.text.toLowerCase()
+  if (shape.match(/^[Xd]+$/)) return allCaps ? token.text.toLowerCase() : token.text
 
   if (token.text.includes('.')) return token.text
-  if (token.shape.match(/x.*X/)) return token.text
+  if (shape.match(/x.*X/)) return token.text
 
   return token.text.toLowerCase()
 }
@@ -86,10 +96,6 @@ function tokentype(token: Token): string {
   if (token.shape === '-') return '-'
   return ' '
 }
-
-const Lu = XRegExp('\\p{Lu}')
-const Ll = XRegExp('\\p{Ll}')
-const strayCC = new RegExp(`^(${combining.regex})`)
 
 function prepost(s: string, offset: number): Token[] {
   const tokens: Token[] = []

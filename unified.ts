@@ -425,11 +425,15 @@ class BibTeXParser {
       const extended = nameparts.every(p => p.match(/^[a-z][-a-z]+\s*=/i))
 
       if (!extended) {
-        const valid = 3
-        if (nameparts.length > valid) {
+        // eslint-disable-next-line no-magic-numbers
+        if (nameparts.length === 3 && nameparts[2] === '') nameparts.pop()
+
+        // eslint-disable-next-line no-magic-numbers
+        if (nameparts.length > 3) {
           const key = this.current.key ? `@${this.current.key}: ` : ''
           this.bib.errors.push({
-            error: `${key}unexpected ${nameparts.length}-part name "${nameparts.join(', ')}", dropping "${nameparts.slice(valid).join(', ')}"`,
+            // eslint-disable-next-line no-magic-numbers
+            error: `${key}unexpected ${nameparts.length}-part name "${nameparts.join(', ')}", dropping "${nameparts.slice(3).join(', ')}"`,
             input: nameparts.join(', '),
           })
         }
