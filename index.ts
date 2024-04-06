@@ -858,6 +858,8 @@ class BibTeXParser {
   }
 
   private mode(field: string): ParseMode {
+    if (this.options.verbatimFields && this.options.verbatimFields.find(name => typeof name === 'string' ? (name === field) : field.match(name))) return 'verbatim'
+
     let mode: ParseMode = 'literal'
     for (const [selected, fields] of Object.entries(this.fieldMode)) {
       if (fields.find(match => typeof match === 'string' ? field === match : field.match(match))) mode = <ParseMode>selected
@@ -1121,6 +1123,8 @@ class BibTeXParser {
     }
     if (this.options.caseProtection === true) this.options.caseProtection = 'as-needed'
 
+    if (this.options.verbatimFields) this.options.verbatimFields = this.options.verbatimFields.map(f => typeof f === 'string' ? f.toLowerCase() : new RegExp(f.source, f.flags + (f.flags.includes('i') ? '' : 'i')))
+
     if (typeof this.options.sentenceCase.langids === 'boolean') this.options.sentenceCase.langids = this.options.sentenceCase.langids ? English : []
     this.options.sentenceCase.langids = this.options.sentenceCase.langids.map(langid => langid.toLowerCase())
 
@@ -1174,6 +1178,8 @@ class BibTeXParser {
           delete entry.fields[field]
           continue
         }
+
+        if (this.options.raw) continue
 
         this.field(entry, field, value, sentenceCase)
 
@@ -1262,7 +1268,7 @@ class BibTeXParser {
   public parse(input: string, options: Options = {}): Bibliography {
     this.reset(options)
 
-    const base = bibtex.parse(input)
+    const base = bibtex.parse(input, { strings: options.strings })
 
     this.prep(base)
 
@@ -1277,7 +1283,7 @@ class BibTeXParser {
   public async parseAsync(input: string, options: Options = {}): Promise<Bibliography> {
     this.reset(options)
 
-    const base = await bibtex.promises.parse(input)
+    const base = await bibtex.promises.parse(input, { strings: options.strings })
 
     this.prep(base)
 

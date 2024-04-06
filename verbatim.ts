@@ -43,7 +43,6 @@ export type Entry = {
 export interface ParseError {
   error: string
   input: string
-  location?: { line: number, column: number }
 }
 
 export interface ParserOptions {
@@ -51,6 +50,11 @@ export interface ParserOptions {
    * stop parsing after `max_entries` entries have been found. Useful for quick detection if a text file is in fact a bibtex file
    */
   max_entries?: number
+
+  /**
+    * preload these strings
+    */
+  strings?: string | Record<string, string>
 }
 
 class Parser {
@@ -126,25 +130,20 @@ class Parser {
     this.parsing = null
     this.keywords = 0
 
+    if (typeof options.strings === 'string') {
+      this.input = options.strings + '\n' + input // eslint-disable-line prefer-template
+    }
+    else if (options.strings) {
+      for (const [k, v] of Object.entries(options.strings)) {
+        this.default_strings[k.toUpperCase()] = v
+      }
+    }
+
     let pos = input.indexOf('\n')
     while (pos !== -1) {
       this.linebreaks.push(pos)
       pos = input.indexOf('\n', pos + 1)
     }
-  }
-
-  location(pos: number): { line: number, column: number } {
-    let line = 1
-    let column = 1
-
-    for (const linebreak of this.linebreaks) {
-      if (pos < linebreak) break
-
-      line++
-      column = pos - linebreak
-    }
-
-    return { line, column }
   }
 
   public parse() {
@@ -295,7 +294,6 @@ class Parser {
       if (typeof resolved === 'undefined') {
         this.errors.push({
           error: `Unresolved @string reference ${JSON.stringify(bare)}`,
-          location: this.location(this.pos),
           input: bare,
         })
       }
