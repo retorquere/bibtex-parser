@@ -40,44 +40,6 @@ export type Entry = {
   fields: Record<string, string>
 }
 
-export interface Chunk {
-  /**
-   * The text content of the chunk
-   */
-  text: string
-
-  /**
-   * Start location of the chunk in the bib file
-   */
-  position: number
-  location: { line: number, column: number }
-
-  /**
-   * error found, if any.
-   */
-  error?: string
-
-  /**
-   * set to `true` if the chunk is a `@preamble` block
-   */
-  preamble?: boolean
-
-  /**
-   * set to `true` if the chunk is a bibtex entry
-   */
-  entry?: boolean
-
-  /**
-   * set to `true` if the chunk is an `@string` declaration
-   */
-  stringDeclaration?: boolean
-
-  /**
-   * set to `true` if the chunk is an `@comment`
-   */
-  comment?: boolean
-}
-
 export interface ParseError {
   error: string
   input: string
@@ -93,7 +55,6 @@ export interface ParserOptions {
 
 class Parser {
   public parsing: string
-  public chunks: Chunk[] = []
 
   public entries: Entry[] = []
   public strings: Record<string, string> = {}
@@ -482,13 +443,6 @@ class Parser {
   private parseNext() {
     this.skipWhitespace()
 
-    const chunk: Chunk = {
-      position: this.pos,
-      location: { line: 0, column: 0 },
-      error: null,
-      text: null,
-    }
-
     while (this.pos < this.input.length && this.input[this.pos] !== '@') {
       if (this.input[this.pos] === '%') {
         while (this.pos < this.input.length && this.input[this.pos] !== '\n') this.pos++
@@ -508,17 +462,14 @@ class Parser {
           guard = this.matchGuard()
           this.string()
           this.match(guard)
-          chunk.stringDeclaration = true
           break
 
         case 'preamble':
           this.preamble()
-          chunk.preamble = true
           break
 
         case 'comment':
           this.comment()
-          chunk.comment = true
           break
 
         default:
@@ -527,32 +478,18 @@ class Parser {
           this.entry(d, guard)
           this.match(guard)
           this.entries[0].input = this.input.substring(start, this.pos).trim()
-          chunk.entry = true
           break
       }
     }
     catch (err) {
       if (err.name !== 'ParsingError') throw err
-      chunk.error = err.message
-      chunk.location = this.location(chunk.position)
       // skip ahead to the next @ and try again
-      this.pos = chunk.position + 1
+      this.pos = start + 1
       while (this.pos < this.input.length && this.input[this.pos] !== '@') this.pos++
       this.errors.push({
         error: err.message,
-        location: chunk.location,
-        input: this.input.substring(chunk.position, this.pos),
+        input: this.input.substring(start, this.pos),
       })
-    }
-
-    const text = this.input.substring(chunk.position, this.pos)
-    const last = this.chunks.length - 1
-    if (chunk.error && this.chunks.length && this.chunks[last].error) {
-      this.chunks[last].text += text
-    }
-    else {
-      chunk.text = text
-      this.chunks.push(chunk)
     }
   }
 }
@@ -560,10 +497,7 @@ class Parser {
 export type Bibliography = Parser
 
 /**
- * Reads the bibtex input and splits it into separate chunks of `string`s, `@comment`s, and bibtex entries. Useful for detecting if a file is bibtex file and for filtering out basic errors that would
- * make the more sophisticated [[bibtex.parse]] reject the whole file
- *
- * @returns array of chunks, with markers for type and errors (if any) found.
+ * Parses a bibtex source in verbatim mode. Good for detection of bibtex and for later LaTeX-reparsing.
  */
 export function parse(input: string, options: ParserOptions = {}): Bibliography {
   const parser = new Parser(input, options)

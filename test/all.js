@@ -6,7 +6,7 @@ const os = require('os')
 const glob = require('glob').globSync
 const tap = require('tap')
 
-const bibtex = require('../unified')
+const bibtex = require('../index')
 
 function tryparse({ bibfile, options }) {
   const source = fs.readFileSync(bibfile, 'utf-8')

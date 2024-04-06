@@ -1,248 +1,42 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-import * as bibtex from './grammar'
-import * as chunker from './chunker'
-import * as jabref from './jabref'
-import { JabRefMetadata, parse as parseJabRef } from './jabref'
-import { latex2unicode, combining } from 'unicode2latex'
-import crossref from './crossref.json'
-import allowed from './fields.json'
+/* eslint-disable no-underscore-dangle */
+import { Root, Macro, String as StringNode, Node, Argument, Group, Environment } from '@unified-latex/unified-latex-types'
+import { replaceNode } from '@unified-latex/unified-latex-util-replace'
+import { LatexPegParser } from '@unified-latex/unified-latex-util-pegjs'
+import { visit } from '@unified-latex/unified-latex-util-visit'
+import { printRaw } from '@unified-latex/unified-latex-util-print-raw'
+import { latex2unicode as latex2unicodemap, combining } from 'unicode2latex'
+import * as bibtex from './chunker'
+import * as JabRef from './jabref'
 export { toSentenceCase } from './sentence-case'
-import { toSentenceCase } from './sentence-case'
+import { toSentenceCase, guessSentenceCased, tokenize } from './sentence-case'
 
-function l2u(tex: string): string {
-  const t: string = latex2unicode[tex]
-  if (!t) return ''
-  return ((t as any).text as string) || ((t as any).math as string) || t
+import CrossRef from './crossref.json'
+import allowed from './fields.json'
+const unabbreviations: Record<string, string> = require('./unabbrev.json')
+
+function latexMode(node: Node | Argument): 'math' | 'text' {
+  return node._renderInfo.mode as 'math' | 'text'
 }
 
-type TextRange = { start: number, end: number, description?: string }
-
-type Node =
-  | bibtex.Bibliography
-  | bibtex.Math
-  | bibtex.Environment
-  | bibtex.Block
-  | bibtex.RegularCommand
-  | bibtex.DiacriticCommand
-  | bibtex.Entry
-  | bibtex.Field
-  | bibtex.NumberValue
-  | bibtex.StringDeclaration
-  | bibtex.StringReference
-  | bibtex.SubscriptCommand
-  | bibtex.SuperscriptCommand
-  | bibtex.SymbolCommand
-  | bibtex.TextValue
-  | bibtex.PreambleExpression
-  | bibtex.BracedComment
-  | bibtex.LineComment
-
-  | bibtex.Markup
-  | bibtex.NonEntryText
-
-class ParserError extends Error {
-  public node: any
-
-  constructor(message?: string, node?: any) {
-    super(message) // 'Error' breaks prototype chain here
-    Object.setPrototypeOf(this, new.target.prototype) // restore prototype chain
-    this.name = this.constructor.name
-    this.node = node
-  }
+function latex2unicode(tex: string, node: Node): string {
+  const text: string | Record<string, string> = latex2unicodemap[tex]
+  if (typeof text === 'string') return text
+  return text && text[latexMode(node)]
 }
 
-class TeXError extends Error {
-  public node: any
-  public text: string
-
-  constructor(message: string, node: any, text: string) {
-    super(message) // 'Error' breaks prototype chain here
-    Object.setPrototypeOf(this, new.target.prototype) // restore prototype chain
-    this.name = this.constructor.name
-    this.node = node
-    this.text = text
-  }
+const open: Record<string, string> = {}
+const close: Record<string, string> = {}
+for (const tag of ['i', 'b', 'sc', 'nc', 'ncx', 'br', 'p', 'li', 'code']) {
+  open[tag] = `\x0E${tag}\x0F`
+  close[tag] = `\x0E/${tag}\x0F`
 }
-
-type CharCategory = { alias: string, bmp: string }
-function charCat(charcats: CharCategory[], select: string[]): string {
-  return charcats.filter((cat: CharCategory) => select.includes(cat.alias)).map((cat: CharCategory) => cat.bmp).join('')
-}
-
-import charCategories = require('xregexp/tools/output/categories')
-const charClass = {
-  Lu: charCat(charCategories, ['Uppercase_Letter', 'Titlecase_Letter']),
-  Ll: charCat(charCategories, ['Lowercase_Letter']),
-  LnotLu: charCat(charCategories, ['Lowercase_Letter', 'Modifier_Letter', 'Other_Letter', 'Nonspacing_Mark', 'Spacing_Mark', 'Decimal_Number', 'Letter_Number']),
-  P: charCat(charCategories, ['Punctuation']),
-  L: charCat(charCategories, ['Letter']),
-  N: charCat(charCategories, ['Decimal_Number', 'Letter_Number']),
-  AlphaNum: charCat(charCategories, ['Letter', 'Decimal_Number', 'Letter_Number']),
-  LC: charCat(charCategories, ['Cased_Letter']),
-}
-
-const marker = {
-  and: '\u0001',
-  comma: '\u0002',
-  space: '\u0003',
-  literal: '\u0004',
-  markup: '\u0005',
-
-  re: {
-    and: /./,
-    comma: /./,
-    space: /./,
-    literal: /./,
-
-    literalName: /./,
-  },
-  clean(s: string): string { // eslint-disable-line prefer-arrow/prefer-arrow-functions
-    return s.replace(marker.re.space, ' ').replace(marker.re.comma, ', ').replace(marker.re.literal, '')
-  },
-}
-marker.re = {
-  and: new RegExp(marker.and, 'g'),
-  comma: new RegExp(marker.comma, 'g'),
-  space: new RegExp(marker.space, 'g'),
-  literal: new RegExp(marker.literal, 'g'),
-
-  literalName: new RegExp(`^${marker.literal}([^${marker.literal}]*)${marker.literal}$`),
-}
-
-const preserveCase = {
-  leadingCap: new RegExp(`^[${charClass.Lu}][${charClass.LnotLu}]+[${charClass.P}]?$`),
-  allCaps: new RegExp(`^[${charClass.Lu}${charClass.N}]{2,}$`),
-  allLower: new RegExp(`^[${charClass.Ll}${charClass.N}]{2,}$`),
-  joined: new RegExp(`^[${charClass.Lu}][${charClass.LnotLu}]*([-+][${charClass.L}${charClass.N}]+)*[${charClass.P}]*$`),
-  hasUpper: new RegExp(`[${charClass.Lu}]`),
-  hasLower: new RegExp(`[${charClass.Ll}]`),
-  isNumber: /^[0-9]+$/,
-  hasAlpha: new RegExp(`[${charClass.L}]`),
-  hasAlphaNum: new RegExp(`[${charClass.AlphaNum}]`),
-  notAlphaNum: new RegExp(`[^${charClass.AlphaNum}]`, 'g'),
-  sentenceStart: new RegExp(`(^|([\u2014:?!.]\\s+))[${charClass.Lu}]`, 'g'),
-
-  markup: /<\/?span[^>]*>/g,
-  acronym: new RegExp(`.*\\.${marker.markup}*[${charClass.Lu}]${marker.markup}*\\.$`),
-
-  notCaseSensitive: new RegExp(`[^${charClass.LC}]`),
-  isCaseSensitive: new RegExp(`[${charClass.LC}]`),
-  quoted: /("[^"]+")|(“[^“]+“)/g,
-}
-
-export interface Name {
-  /**
-   * If the name is a literal (surrounded by braces) it will be in this property, and none of the other properties will be set
-   */
-  literal?: string
-
-  /**
-   * Family name
-   */
-  lastName?: string
-
-  /**
-   * available when parsing biblatex extended name format
-   */
-  useprefix?: boolean
-
-  /**
-   * available when parsing biblatex extended name format
-   */
-  juniorcomma?: boolean
-
-  /**
-   * given name. Will include middle names and initials.
-   */
-  firstName?: string
-
-  /**
-   * Initials.
-   */
-  initial?: string
-
-  /**
-   * things like `Jr.`, `III`, etc
-   */
-  suffix?: string
-
-  /**
-   * things like `von`, `van der`, etc
-   */
-  prefix?: string
-}
-
-export interface Entry {
-  /**
-   * citation key
-   */
-  key: string
-
-  /**
-   * entry type
-   */
-  type: string
-
-  /**
-   * entry fields. The keys are always in lowercase
-   */
-  fields: { [key: string]: string[] }
-
-  /**
-   * authors, editors, by creator type. Name order within the creator-type is retained.
-   */
-  creators: { [type: string]: Name[] }
-
-  /**
-   * will be set to `true` if sentence casing was applied to the entry
-   */
-  sentenceCased?: boolean
-
-  /**
-   * list of fields that have been inherited/donated using crossref/xdata
-   */
-  crossref: {
-    donated: string[]
-    inherited: string[]
-  }
-}
-
-type FieldBuilder = {
-  name: string
-  text: string
-  level: number
-  preserveRanges: TextRange[]
-  html?: boolean
-  words: {
-    upper: number
-    lower: number
-    other: number
-  }
-}
-
-/**
- * Markup mapping. As the bibtex file is parsed, markup will be transformed according to this table
- */
-export interface MarkupMapping {
-  sub?: { open: string, close: string }
-  sup?: { open: string, close: string }
-  bold?: { open: string, close: string }
-  italics?: { open: string, close: string }
-  smallCaps?: { open: string, close: string }
-  caseProtect?: { open: string, close: string }
-  enquote?: { open: string, close: string }
-  h1?: { open: string, close: string }
-  h2?: { open: string, close: string }
-
-  roman?: { open: string, close: string }
-  fixedWidth?: { open: string, close: string }
-}
+const collapsable = /\x0E\/([a-z]+)\x0F(\s*)\x0E\1\x0F/ig
 
 export interface Bibliography {
   /**
    * errors found while parsing
    */
-  errors: ParseError[]
+  errors: bibtex.ParseError[]
 
   /**
    * entries in the order in which they are found, omitting those which could not be parsed.
@@ -267,32 +61,160 @@ export interface Bibliography {
   /**
    * jabref metadata (such as groups information) found in the bibtex file
    */
-  jabref: JabRefMetadata
+  jabref: JabRef.JabRefMetadata
 }
 
-export interface ParseError {
-  /**
-   * error message
-   */
-  message: string
+export interface Options {
+  sentenceCase?: {
+    /**
+     * BibTeX files are expected to store title-type fields in Sentence Case, where other reference managers (such as Zotero) expect them to be stored as Sentence case. When there is no language field, or the language field
+     * is one of the languages (case insensitive) passed in this option, the parser will attempt to sentence-case title-type fields as they are being parsed. This uses heuristics and does not employ any kind of natural
+     * language processing, so you should always inspect the results. Default languages to sentenceCase are:
+     *
+     * - american
+     * - british
+     * - canadian
+     * - english
+     * - australian
+     * - newzealand
+     * - usenglish
+     * - ukenglish
+     * - en
+     * - eng
+     * - en-au
+     * - en-bz
+     * - en-ca
+     * - en-cb
+     * - en-gb
+     * - en-ie
+     * - en-jm
+     * - en-nz
+     * - en-ph
+     * - en-tt
+     * - en-us
+     * - en-za
+     * - en-zw
+     *
+     * If you pass an empty array, or `false`, no sentence casing will be applied (even when there's no language field).
+     */
+    langids?: string[] | boolean
+
+    /**
+      * By default, `langid` and `hyphenation` are used to determine whether an entry should be sentence-cased, but some sources (ab)use the `language` field
+      * for this. If you turn on this option, this field will also be taken into account as a source for `langid`.
+      */
+    language?: boolean
+
+    /**
+     * Some bibtex files will have titles in sentence case, or all-uppercase. If this is on, and there is a field that would normally have sentence-casing applied in which more words are all-`X`case
+     * (where `X` is either lower or upper) than mixed-case, it is assumed that you want them this way, and no sentence-casing will be applied to that field
+     */
+    guess?: boolean
+
+    /**
+     * Capitalize sub-sentences after colons. Given the input title "Structured Interviewing For OCB: Construct Validity, Faking, And The Effects Of Question Type":
+     * - when `true`, sentence-cases to "Structured interviewing for OCB: Construct validity, faking, and the effects of question type"
+     * - when `false`, sentence-cases to "Structured interviewing for OCB: construct validity, faking, and the effects of question type"
+     */
+    subSentence?: boolean
+
+    /**
+     * If you have sentence-casing on, you can independently choose whether quoted titles within a title are preserved as-is (true) or also sentence-cased(false)
+     */
+    preserveQuoted?: boolean
+  }
 
   /**
-   * text block that was parsed where the error was found
+   * translate braced parts of text into a case-protected counterpart; Default == true == as-needed.
+   * In as-needed mode the parser will assume that words that have capitals in them imply "nocase" behavior in the consuming application. If you don't want this, turn this option on, and you'll get
+   * case protection exactly as the input has it
    */
-  source?: string
+  caseProtection?: 'as-needed' | 'strict' | boolean
 
   /**
-   * Error line number within the bibtex file
+   * By default, when a TeX command is encountered which the parser does not know about, the parser will throw an error. You can pass a function here to return the appropriate text output for the command.
    */
-  line?: number
+  unsupported?: 'ignore' | unsupportedHandler
 
   /**
-   * Error column number within the bibtex file
+   * Some fields such as `url` are parsed in what is called "verbatim mode" where pretty much everything except braces is treated as regular text, not TeX commands. You can change the default list here if you want,
+   * for example to help parse Mendeley `file` fields, which against spec are not in verbatim mode.
    */
-  column?: number
+  verbatimFields?: (string | RegExp)[]
+
+  /**
+   * In the past many bibtex entries would just always wrap a field in double braces, likely because whomever was writing them couldn't figure out the case meddling rules (and who could
+   * blame them). Fields listed here will either have one outer layer of braces treated as case-preserve, or have the outer braced be ignored completely, if this is detected.
+   */
+  removeOuterBraces?: string[]
+
+  /**
+   * Specify parsing mode for specific fields
+   */
+  fieldMode?: Record<string, ParseMode>
+
+  /**
+   * If this flag is set entries will be returned without conversion of LaTeX to unicode equivalents.
+   */
+  raw?: boolean
+
+  /**
+   * You can pass in an existing @string dictionary
+   */
+  strings?: Record<string, string> | string
+
+  /**
+   * BibTeX files may have abbreviations in the journal field. If you provide a dictionary, journal names that are found in the dictionary are replaced with the attached full name
+   */
+  unabbreviations?: boolean | Record<string, string>
+
+  /**
+   * Apply crossref inheritance
+   */
+  applyCrossRef?: boolean
 }
 
-export const fields = {
+interface Creator {
+  name?: string
+  lastName?: string
+  firstName?: string
+  prefix?: string
+  suffix?: string
+  initial?: string
+  useprefix?: boolean
+  juniorcomma?: boolean
+}
+
+interface Entry {
+  type: string
+  key: string
+  fields: {
+    author?: Creator[]
+    bookauthor?: Creator[]
+    collaborator?: Creator[]
+    commentator?: Creator[]
+    director?: Creator[]
+    editor?: Creator[]
+    editora?: Creator[]
+    editorb?: Creator[]
+    editors?: Creator[]
+    holder?: Creator[]
+    scriptwriter?: Creator[]
+    translator?: Creator[]
+
+    keywords?: string[]
+    institution?: string[]
+    publisher?: string[]
+    origpublisher?: string[]
+    organization?: string[]
+    location?: string[]
+    origlocation?: string[]
+
+    [key: string]: number | string | string[] | Creator[]
+  }
+}
+
+export const FieldMode = {
   creator: [
     'author',
     'bookauthor',
@@ -309,17 +231,14 @@ export const fields = {
   ],
   title: [
     'title',
+    'subtitle',
     'series',
     'shorttitle',
     'booktitle',
-    'type',
+    // 'type',
     'origtitle',
     'maintitle',
     'eventtitle',
-  ],
-  unnest: [
-    'publisher',
-    'location',
   ],
   verbatim: [
     'doi',
@@ -333,10 +252,10 @@ export const fields = {
     'verba',
     'verbb',
     'verbc',
-    'xref',
-    'crossref',
+    /^citeulike-linkout-[0-9]+$/,
+    /^bdsk-url-[0-9]+$/,
   ],
-  html: [
+  richtext: [
     'annotation',
     'comment',
     'annote',
@@ -344,126 +263,23 @@ export const fields = {
     'notes',
     'note',
   ],
-  unabbrev: [
-    'journal',
-    'journaltitle',
-    'journal-full',
+  commalist: [
+    'keywords',
+  ],
+  literallist: [
+    'institution',
+    'publisher',
+    'origpublisher',
+    'organization',
+    'location',
+    'origlocation',
   ],
 }
 
-export interface ParserOptions {
-  /**
-   * BibTeX files are expected to store title-type fields in Sentence Case, where other reference managers (such as Zotero) expect them to be stored as Sentence case. When there is no language field, or the language field
-   * is one of the languages (case insensitive) passed in this option, the parser will attempt to sentence-case title-type fields as they are being parsed. This uses heuristics and does not employ any kind of natural
-   * language processing, so you should always inspect the results. Default languages to sentenceCase are:
-   *
-   * - american
-   * - british
-   * - canadian
-   * - english
-   * - australian
-   * - newzealand
-   * - usenglish
-   * - ukenglish
-   * - en
-   * - eng
-   * - en-au
-   * - en-bz
-   * - en-ca
-   * - en-cb
-   * - en-gb
-   * - en-ie
-   * - en-jm
-   * - en-nz
-   * - en-ph
-   * - en-tt
-   * - en-us
-   * - en-za
-   * - en-zw
-   *
-   * If you pass an empty array, or `false`, no sentence casing will be applied (even when there's no language field).
-   */
-  sentenceCase?: string[] | boolean
+type ParseMode = keyof typeof FieldMode | 'literal'
 
-  /**
-   * If you have sentence-casing on, you can independently choose whether quoted titles within a title are preserved as-is (true) or also sentence-cased(false)
-   */
-  sentenceCasePreserveQuoted?: boolean
-
-  /**
-   * Some bibtex has titles in sentence case, or all-uppercase. If this is on, and there is a field that would normally have sentence-casing applied in which more words are all-`X`case
-   * (where `X` is either lower or upper) than mixed-case, it is assumed that you want them this way, and no sentence-casing will be applied to that field
-   */
-  guessAlreadySentenceCased?: boolean
-
-  /**
-   * translate braced parts of text into a case-protected counterpart; uses the [[MarkupMapping]] table in `markup`. Default == true == as-needed.
-   * In as-needed mode the parser will assume that words that have capitals in them imply "nocase" behavior in the consuming application. If you don't want this, turn this option on, and you'll get
-   * case protection exactly as the input has it
-   */
-  caseProtection?: 'as-needed' | 'strict' | boolean
-
-  /**
-   * The parser can change TeX markup (\\textsc, \\emph, etc) to a text equivalent. The defaults are HTML-oriented, but you can pass in your own configuration here
-   */
-  markup?: MarkupMapping
-
-  /**
-   * By default, when an unexpected parsing error is found (such as a TeX command which the parser does not know about), the parser will throw an error. You can pass a function to handle the error instead,
-   * where you can log it, display it, or even still throw an error
-   */
-  errorHandler?: false | ((err: Error) => void)
-
-  /**
-   * By default, when a TeX command is encountered which the parser does not know about, the parser will throw an error. You can pass a function here to return the appropriate AST for the command.
-   */
-  unknownCommandHandler?: false | ((node: bibtex.RegularCommand) => Node)
-
-  /**
-   * Some fields such as `url` are parsed in what is called "verbatim mode" where pretty much everything except braces is treated as regular text, not TeX commands. You can change the default list here if you want,
-   * for example to help parse Mendeley `file` fields, which against spec are not in verbatim mode.
-   */
-  verbatimFields?: (string | RegExp)[]
-
-  /**
-   * Some commands such as `url` are parsed in what is called "verbatim mode" where pretty much everything except braces is treated as regular text, not TeX commands.
-   */
-  verbatimCommands?: string[]
-
-  /**
-   * In the past many bibtex entries would just always wrap a field in double braces, likely because whomever was writing them couldn't figure out the case meddling rules (and who could
-   * blame them). Fields listed here will either have one outer layer of braces treated as case-preserve, or have the outer braced be ignored completely, if this is detected.
-   */
-  unnestFields?: string[]
-  unnestMode?: 'preserve' | 'unwrap'
-
-  /**
-   * Some note-like fields may have more rich formatting. If listed here, more HTML conversions will be applied.
-   */
-  htmlFields?: string[]
-
-  /**
-   * If this flag is set entries will be returned without conversion of LaTeX to unicode equivalents.
-   */
-  raw?: boolean
-
-  /**
-   * You can pass in an existing @string dictionary
-   */
-  strings?: Record<string, string> | string
-
-  /**
-   * BibTeX files may have abbreviations in the journal field. If you provide a dictionary, journal names that are found in the dictionary are replaced with the attached full name
-   */
-  unabbreviate?: Record<string, string>
-
-  /**
-   * Apply crossref inheritance
-   */
-  applyCrossRef?: boolean
-}
-
-const english = [
+const English = [
+  '',
   'american',
   'british',
   'canadian',
@@ -490,1499 +306,964 @@ const english = [
   'anglais', // don't do this people
 ]
 
-class Parser {
-  private errors: ParseError[]
-  private strings: Record<string, bibtex.ValueType[]>
-  private in_preamble = false
-  private newcommands: Record<string, bibtex.ValueType[]>
-  private unresolvedStrings: Set<string>
-  private default_strings: Record<string, bibtex.TextValue[]>
-  private preloaded_strings: Record<string, bibtex.ValueType[]>
-  private comments: string[]
-  private entries: Entry[]
-  private entry: Entry
-  private cleaning: {
-    type: 'title' | 'creator' | 'other'
-    name?: string
+const FieldAction = {
+  removeOuterBraces: [
+    'doi',
+    // 'publisher',
+    // 'location',
+  ],
+  unabbrev: [
+    'journal',
+    'journaltitle',
+    'journal-full',
+    'series',
+  ],
+  parseInt: [
+    'year',
+    'month',
+  ],
+}
+
+const narguments = {
+  ElsevierGlyph: 1,
+  bar: 1,
+  bibcyr: 1,
+  bibstring: 1,
+  chsf: 1,
+  cite: 1,
+  citeauthor: 1,
+  cyrchar: 1,
+  ding: 1,
+  emph: 1,
+  enquote: 1,
+  frac: 2,
+  href: 2,
+  hspace: 1,
+  mathrm: 1,
+  mbox: 1,
+  mkbibbold: 1,
+  mkbibemph: 1,
+  mkbibitalic: 1,
+  mkbibquote: 1,
+  newcommand: 2,
+  noopsort: 1,
+  ocirc: 1,
+  sb: 1,
+  section: 1,
+  sp: 1,
+  subsection: 1,
+  subsubsection: 1,
+  subsubsubsection: 1,
+  t: 1,
+  textbf: 1,
+  textcite: 1,
+  textit: 1,
+  textrm: 1,
+  textsc: 1,
+  textsl: 1,
+  textsubscript: 1,
+  textsuperscript: 1,
+  texttt: 1,
+  textup: 1,
+  url: 1,
+  vphantom: 1,
+  vspace: 1,
+  overline: 1,
+
+  // math
+  'math\t_': 1,
+  'math\t^': 1,
+}
+for (const m in combining.tounicode) { // eslint-disable-line guard-for-in
+  narguments[m] = 1
+}
+
+type unsupportedHandler = (node: Node, tex?: string, entry?: Entry) => string | undefined
+
+type Context = {
+  mode: ParseMode
+  caseProtected?: boolean
+}
+
+async function* asyncGenerator<T>(array: T[]): AsyncGenerator<T, void, unknown> {
+  for (const item of array) {
+    yield await Promise.resolve(item)
   }
-  private field: FieldBuilder
-  private chunk: string
-  private options: ParserOptions
-  private preamble: string[] = []
-
-  public log: (string) => void = function(_str) {} // eslint-disable-line prefer-arrow/prefer-arrow-functions, @typescript-eslint/no-empty-function, id-blacklist
-
-  constructor(options: ParserOptions = {}) {
-    for (const [option, value] of Object.entries(options)) {
-      if (typeof value === 'undefined') delete options[option]
-    }
-
-    if (options.errorHandler === false) {
-      // eslint-disable-next-line prefer-arrow/prefer-arrow-functions, @typescript-eslint/no-empty-function
-      options.errorHandler = function(_err) {}
-    }
-    else if (typeof options.errorHandler === 'undefined') {
-      // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
-      options.errorHandler = function(err) { throw err }
-    }
-
-    if (typeof options.sentenceCase === 'boolean') {
-      options.sentenceCase = options.sentenceCase ? english : []
-    }
-    else {
-      options.sentenceCase = options.sentenceCase || english
-    }
-
-    if (!options.strings) options.strings = {}
-    if (!options.unabbreviate) options.unabbreviate = {}
-
-    if (options.raw) {
-      options.sentenceCase = false
-      options.caseProtection = false
-    }
-
-    this.options = {
-      caseProtection: 'as-needed',
-      verbatimFields: [ /^citeulike-linkout-[0-9]+$/, /^bdsk-url-[0-9]+$/, ...fields.verbatim],
-      verbatimCommands: [ 'url' ],
-      unnestFields: [ ...fields.title, ...fields.unnest, ...fields.verbatim],
-      unnestMode: 'unwrap',
-      htmlFields: fields.html,
-      guessAlreadySentenceCased: true,
-      applyCrossRef: options.applyCrossRef || typeof options.applyCrossRef === 'undefined',
-      markup: {},
-
-      ...options,
-    }
-
-    const markup_defaults: Record<string, { open: string, close: string}> = {
-      enquote: { open: '\u201c', close: '\u201d' },
-      sub: { open: '<sub>', close: '</sub>' },
-      sup: { open: '<sup>', close: '</sup>' },
-      bold: { open: '<b>', close: '</b>' },
-      italics: { open: '<i>', close: '</i>' },
-      smallCaps: { open: '<span style="font-variant:small-caps;">', close: '</span>' },
-      caseProtect: { open: '<span class="nocase">', close: '</span>' },
-      roman: { open: '', close: '' },
-      fixedWidth: { open: '<tt>', close: '</tt>' },
-    }
-    // patch in because the options will likely not have enquote and case-protect
-    for (const [markup, {open, close}] of Object.entries(markup_defaults)) {
-      this.options.markup[markup] = this.options.markup[markup] || { open, close }
-    }
-    for (const i of [1, 2, 3, 4]) { // eslint-disable-line no-magic-numbers
-      this.options.markup[`h${i}`] = this.options.markup[`h${i}`] || { open: `<h${i}>`, close: `</h${i}>` }
-    }
-
-    this.unresolvedStrings = new Set
-
-    this.errors = []
-    this.comments = []
-    this.entries = []
-    this.strings = { }
-    this.newcommands = { }
-    this.default_strings = {
-      JAN: [ this.text('01') ],
-      FEB: [ this.text('02') ],
-      MAR: [ this.text('03') ],
-      APR: [ this.text('04') ],
-      MAY: [ this.text('05') ],
-      JUN: [ this.text('06') ],
-      JUL: [ this.text('07') ],
-      AUG: [ this.text('08') ],
-      SEP: [ this.text('09') ],
-      OCT: [ this.text('10') ],
-      NOV: [ this.text('11') ],
-      DEC: [ this.text('12') ],
-      ACMCS: [ this.text('ACM Computing Surveys') ],
-      ACTA: [ this.text('Acta Informatica') ],
-      CACM: [ this.text('Communications of the ACM') ],
-      IBMJRD: [ this.text('IBM Journal of Research and Development') ],
-      IBMSJ: [ this.text('IBM Systems Journal') ],
-      IEEESE: [ this.text('IEEE Transactions on Software Engineering') ],
-      IEEETC: [ this.text('IEEE Transactions on Computers') ],
-      IEEETCAD: [ this.text('IEEE Transactions on Computer-Aided Design of Integrated Circuits') ],
-      IPL: [ this.text('Information Processing Letters') ],
-      JACM: [ this.text('Journal of the ACM') ],
-      JCSS: [ this.text('Journal of Computer and System Sciences') ],
-      SCP: [ this.text('Science of Computer Programming') ],
-      SICOMP: [ this.text('SIAM Journal on Computing') ],
-      TOCS: [ this.text('ACM Transactions on Computer Systems') ],
-      TODS: [ this.text('ACM Transactions on Database Systems') ],
-      TOG: [ this.text('ACM Transactions on Graphics') ],
-      TOMS: [ this.text('ACM Transactions on Mathematical Software') ],
-      TOOIS: [ this.text('ACM Transactions on Office Information Systems') ],
-      TOPLAS: [ this.text('ACM Transactions on Programming Languages and Systems') ],
-      TCS: [ this.text('Theoretical Computer Science') ],
-    }
-
-    if (typeof this.options.strings === 'string') {
-      const strings = this.options.strings
-      this.options.strings = {}
-      this.parseChunk({ text: strings, position: 0, location: { line: 0, column: 0 } })
-      this.preloaded_strings = this.strings
-      this.strings = {}
-    }
-    else {
-      this.preloaded_strings = {}
-    }
-  }
-
-  public ast(input, clean = true): Node[] {
-    let parsed: Node[] = []
-    for (const chunk of chunker.parse(input).chunks) {
-      const { children } = bibtex.parse(chunk.text, {...this.options, combining: combining.macros})
-      if (clean) this.clean(children)
-      parsed = parsed.concat(children)
-    }
-    return parsed
-  }
-
-  public parse(input): Bibliography {
-    for (const chunk of chunker.parse(input).chunks) {
-      this.parseChunk(chunk)
-    }
-    return this.parsed()
-  }
-
-  public async parseAsync(input): Promise<Bibliography> {
-    // eslint-disable-next-line @typescript-eslint/await-thenable
-    for (const chunk of (await chunker.promises.parse(input)).chunks) {
-      this.parseChunk(chunk)
-    }
-    return this.parsed()
-  }
-
-  private applyCrossrefField(parent: Entry, parentfield: string, child: Entry, childfield: string) {
-    let applied = false
-    for (const field of ['fields', 'creators']) {
-      if (!child[field][childfield] && parent[field][parentfield]) {
-        child[field][childfield] = parent[field][parentfield]
-        applied = true
-        if (!child.crossref.inherited.includes(childfield)) child.crossref.inherited.push(childfield)
-        if (!parent.crossref.donated.includes(parentfield)) parent.crossref.donated.push(parentfield)
-      }
-    }
-    return applied
-  }
-
-  private applyCrossref(entry: Entry, entries: Record<string, Entry>) {
-    for (const xref of ['crossref', 'xdata']) {
-      if (!entry.fields[xref]) continue
-      for (const parents of entry.fields[xref]) {
-        let applied = false
-        for (const parent of parents.split(/\s*,\s*/).map(key => entries[key]).filter(p => p)) {
-          this.applyCrossref(parent, entries)
-
-          for (const mappings of [crossref[entry.type], crossref['*']].filter(m => m)) {
-            for (const mapping of [mappings[parent.type], mappings['*']].filter(m => m)) {
-              for (const [target, source] of Object.entries(mapping as Record<string, string>)) {
-                if (this.applyCrossrefField(parent, source, entry, target)) applied = true
-              }
-
-              for (const field of (allowed[entry.type] || [])) {
-                if (this.applyCrossrefField(parent, field, entry, field)) applied = true
-              }
-            }
-          }
-        }
-        if (applied) delete entry.fields[xref]
-      }
-    }
-  }
-
-  private parsed(): Bibliography {
-    this.field = null
-    const strings = {}
-    this.cleaning = { type: 'other' }
-    for (const [key, value] of Object.entries(this.strings)) {
-      this.field = {
-        name: '@string',
-        text: '',
-        level: 0,
-        preserveRanges: null,
-        words: {
-          upper: 0,
-          lower: 0,
-          other: 0,
-        },
-      }
-      this.convert(this.clean(value))
-      strings[key] = this.field.text
-    }
-
-    if (this.options.applyCrossRef) {
-      const entries: Record<string, Entry> = this.entries.reduce((acc, entry) => {
-        acc[entry.key] = entry
-        return acc
-      }, {})
-
-      for (const entry of this.entries) {
-        this.applyCrossref(entry, entries)
-      }
-    }
-
-    const { comments, jabref } = parseJabRef(this.comments) // eslint-disable-line @typescript-eslint/no-shadow
-
-    for (const name of [...this.unresolvedStrings].sort((a, b) => a.localeCompare(b, undefined, {sensitivity: 'base'}))) {
-      this.errors.push({ message: `Unresolved @string reference ${JSON.stringify(name)}` })
-    }
-
-    return {
-      errors: this.errors,
-      entries: this.entries,
-      comments,
-      jabref,
-      strings,
-      preamble: this.preamble,
-    }
-  }
-
-  private preserve(start: number, end?: number, reason?: string) {
-    if (!this.field.preserveRanges) return
-
-    if (!end) {
-      this.field.preserveRanges = null
-      return
-    }
-
-    /*
-    this.field.preserveRanges = this.field.preserveRanges.filter(range => range.start < start || range.end > end)
-    if (this.field.preserveRanges.find(range => range.start <= start && range.end >= end)) return
-    */
-
-    /*
-    if (this.field.preserveRanges && this.field.preserveRanges.length) {
-      const last = this.field.preserveRanges[this.field.preserveRanges.length - 1]
-      if (start < last.start) throw new Error(JSON.stringify({...last, new: { start, end, reason }, text: this.field.text}))
-    }
-    */
-    this.field.preserveRanges.push({start, end, description: reason})
-  }
-
-  private parseChunk(chunk: chunker.Chunk) {
-    this.chunk = chunk.text
-
-    try {
-      let bib = bibtex.parse(chunk.text, {...this.options, combining: combining.macros})
-      if (bib.kind !== 'Bibliography') throw new Error(this.show(bib))
-      bib = (this.clean(bib) as bibtex.Bibliography)
-
-      for (const entity of bib.children) {
-        switch (entity.kind) {
-          case 'Entry':
-          case 'BracedComment':
-          case 'LineComment':
-          case 'PreambleExpression':
-            this.convert(entity)
-            break
-
-          case 'StringDeclaration':
-          case 'NonEntryText':
-            break
-        }
-      }
-
-      return bib
-    }
-    catch (err) {
-      if (!err.location) throw err
-      this.errors.push({
-        message: err.message,
-        // no idea why eslint doesn't understand this type guard
-        // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-        line: err.location.start.line + chunk.location.line,
-        column: err.location.start.column,
-        source: this.chunk,
-      })
-
-      return null
-    }
-  }
-
-  private show(_o) {
-    // eslint-disable-next-line prefer-template
-    let text = '' // JSON.stringify(o)
-    if (this.chunk) text += `\n${this.chunk.trim()}`
-    return text
-  }
-
-  private text(value = ''): bibtex.TextValue {
-    return { kind: 'Text', value, mode: 'text' }
-  }
-
-  private error(err, returnvalue?: Node): Node {
-    if (typeof this.options.errorHandler === 'function') this.options.errorHandler(err)
-    return returnvalue || this.text()
-  }
-
-  private condense(node: bibtex.Field | bibtex.Block | bibtex.Math | bibtex.Environment) {
-    // apply cleaning to resulting children
-    node.value = this.clean(node.value) as bibtex.ValueType[]
-
-    // unpack redundant blocks
-    node.value = node.value.reduce((acc: bibtex.ValueType[], child: bibtex.ValueType) => {
-      if (child.kind === 'Block' && !child.case && Object.keys(child.markup).length === 0) {
-        acc = acc.concat(child.value)
-      }
-      else {
-        acc.push(child)
-      }
-      return acc
-    }, [])
-
-    // condense text nodes to make whole words for sentence casing
-    node.value = node.value.reduce((acc: Node[], child: Node, i: number) => {
-      if (acc.length === 0) {
-        acc.push(child)
-        return acc
-      }
-
-      const last = acc[acc.length - 1]
-      const next = node.value[i + 1]
-
-      if (this.options.caseProtection === 'strict' && this.onlyCaseProtected(last) && child.kind === 'Text' && !child.value.match(preserveCase.isCaseSensitive) && this.onlyCaseProtected(next)) {
-        (last as bibtex.Block).value.push(child)
-        delete last.source
-        return acc
-      }
-
-      if (last.kind === 'Block' && child.kind === 'Block' && Object.keys(last.markup).sort().join('/') === Object.keys(child.markup).sort().join('/')) {
-        last.value = last.value.concat(child.value)
-        delete last.source
-        return acc
-      }
-
-      if (last.kind === 'Text' && child.kind === 'Text' && last.mode === child.mode) {
-        last.value += child.value
-        delete last.source
-        return acc
-      }
-
-      acc.push(child)
-      return acc
-    }, []) as unknown as bibtex.ValueType[]
-  }
-  private onlyCaseProtected(node) {
-    return node?.kind === 'Block' && node.case === 'protect' && Object.keys(node.markup).join('/') === ''
-  }
-
-  private argument(node: bibtex.RegularCommand, kind: string | number) {
-    if (!node.arguments || !node.arguments.required.length) return (kind === 'none')
-
-    // expect 'n' text arguments
-    if (typeof kind === 'number') {
-      return node.arguments.required.length === kind ? node.arguments.required : false
-    }
-
-    // return first argument if it's the only one
-    if (node.arguments.required.length !== 1) return false
-
-    // loose checking for text
-    if (kind === 'text') {
-      const first = node.arguments.required[0]
-      if (first.kind === 'Block') {
-        switch (first.value.length) {
-          case 0:
-            return ''
-          case 1:
-            if (first.value[0].kind === 'Text') return first.value[0].value
-            break
-        }
-      }
-      // fall back to strict kind check
-      kind = 'Text'
-    }
-
-    // return first argument if it's the only one and is of the specified kind
-    if (node.arguments.required.length !== 1 || node.arguments.required[0].kind !== kind) return false
-    switch (node.arguments.required[0].kind) {
-      case 'Text':
-        // no idea why eslint insists this is a @typescript-eslint/no-unsafe-return
-        return node.arguments.required[0].value
-      case 'RegularCommand':
-        return node.arguments.required[0]
-      case 'Block':
-        return node.arguments.required[0]
-    }
-
-    return false
-  }
-
-  private isBreak(node: Node, kind: string[]) {
-    return node && node.kind === 'RegularCommand' && kind.includes(node.command)
-  }
-
-  private clean(node: Node[]): Node[]
-  private clean(node: Node): Node
-  private clean(node: Node | Node[]): Node | Node[] {
-    if (Array.isArray(node)) {
-      return node
-        .filter((child, i) => !(this.isBreak(child, ['\\']) && this.isBreak(node[i-1], ['\\', 'par']))) // condense linebreaks
-        .filter((child, i) => !this.isBreak(child, ['par']) || !this.isBreak(node[i-1], ['par'])) // condense parbreaks
-        .map(child => this.clean(child)) // eslint-disable-line @typescript-eslint/no-unsafe-return
-    }
-    delete node.loc
-
-    switch (node.kind) {
-      case 'InlineMath':
-      case 'DisplayMath':
-        return this.clean_block(node)
-
-      case 'Environment':
-        return this.clean_environment(node)
-
-      case 'Block':
-        return this.clean_block(node)
-
-      case 'Bibliography':
-        return this.clean_bib(node)
-
-      case 'RegularCommand':
-        return this.clean_command(node)
-
-      case 'DiacriticCommand':
-        return this.clean_diacritic(node)
-
-      case 'Entry':
-        return this.clean_entry(node)
-
-      case 'Field':
-        return this.options.raw ? node : this.clean_field(node)
-
-      case 'StringDeclaration':
-        return this.clean_stringdecl(node)
-
-      case 'StringReference':
-        return this.clean_stringref(node)
-
-      case 'SubscriptCommand':
-      case 'SuperscriptCommand':
-        return this.clean_script(node)
-
-      case 'SymbolCommand':
-        return this.clean_symbol(node)
-
-      case 'PreambleExpression':
-        return this.clean_preamble(node)
-
-      case 'Number':
-      case 'Text':
-      case 'BracedComment':
-      case 'LineComment':
-      case 'NonEntryText':
-        return node
-
-      default:
-        return this.error(new ParserError(`no cleanup method for ${this.show(node)}`, node), this.text())
-    }
-  }
-
-  private clean_preamble(node: bibtex.PreambleExpression): Node {
-    this.in_preamble = true
-    try {
-      return this.clean(node.value) as unknown as Node
-    }
-    finally {
-      this.in_preamble = false
-    }
-  }
-  private clean_bib(node: bibtex.Bibliography) {
-    node.children = node.children.filter(child => child.kind !== 'NonEntryText').map(child => this.clean(child as Node)) as bibtex.Node[]
-    return node
-  }
-
-  private clean_stringdecl(node: bibtex.StringDeclaration) {
-    this.strings[node.name.toUpperCase()] = node.value
-    return node
-  }
-
-  private clean_stringref(node: bibtex.StringReference) {
-    const name = node.name.toUpperCase()
-    const stringvalue = this.strings[name]
-      || this.options.strings[name]
-      || this.preloaded_strings[name]
-      || this.default_strings[name]
-      || (fields.unabbrev.includes(this.cleaning.name) && this.options.unabbreviate[name.toLowerCase()] && [ this.text(this.options.unabbreviate[name.toLowerCase()]) ])
-
-    if (!stringvalue) {
-      this.unresolvedStrings.add(node.name)
-    }
-
-    return this.clean({
-      kind: 'Block',
-      // if the string isn't found, add it as-is but exempt it from sentence casing
-      case: stringvalue ? undefined : 'preserve',
-      markup: {},
-      value: stringvalue ? (JSON.parse(JSON.stringify(stringvalue)) as bibtex.ValueType[]) : [ this.text(node.name) ],
+}
+
+class BibTeXParser {
+  private fallback: unsupportedHandler
+  private current: Entry
+  private options: Options
+  private fieldMode: typeof FieldMode
+  private newcommands: Record<string, Argument> = {}
+  private bib: Bibliography
+
+  private split(ast: Group | Root, sep: RegExp, split: RegExp): Root[] {
+    const roots: Root[] = []
+
+    const nodes = [...ast.content]
+    const types = nodes.map(node => {
+      if (node.type === 'whitespace') return ' '
+      if (node.type === 'string' && node.content.match(sep)) return '&'
+      return '.'
+    }).join('')
+
+    types.split(split).forEach((match, i) => {
+      const content = match.length ? nodes.splice(0, match.length) : []
+      if ((i % 2) === 0) roots.push({ type: 'root', content })
     })
+
+    return roots
   }
 
-  private clean_entry(node: bibtex.Entry) {
-    const shortjournals = []
-    for (const field of node.fields) {
-      if (fields.unabbrev.includes(field.name) && Array.isArray(field.value)) {
-        const abbr = field.value.map(v => v.source).join('').toUpperCase()
-        const journal = this.options.unabbreviate[abbr]
-        if (journal) {
-          shortjournals.push({ ...JSON.parse(JSON.stringify(field)), name: 'shortjournal' })
-          field.value = [ this.text(journal) ]
+  private trimCreator(cr: Creator): Creator {
+    // trims strings but coincidentally removes undefined fields
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+    return JSON.parse(JSON.stringify(cr, (k, v) => typeof v === 'string' ? (v.trim() || undefined) : v)) as Creator
+  }
+
+  private parseCreator(ast: Root): Creator {
+    if (ast.content.length === 1 && ast.content[0].type === 'group') return this.trimCreator({ name: this.stringify(ast, { mode: 'creator' }) })
+
+    if (ast.content.find(node => node.type === 'string' && node.content === ',')) {
+      const nameparts: string[] = this.split(ast, /^,$/, /(&)/).map((part: Node) => this.stringify(part, { mode: 'creator' }).trim())
+      const extended = nameparts.every(p => p.match(/^[a-z][-a-z]+\s*=/i))
+
+      if (!extended) {
+        // eslint-disable-next-line no-magic-numbers
+        if (nameparts.length === 3 && nameparts[2] === '') nameparts.pop()
+
+        // eslint-disable-next-line no-magic-numbers
+        if (nameparts.length > 3) {
+          const key = this.current.key ? `@${this.current.key}: ` : ''
+          this.bib.errors.push({
+            // eslint-disable-next-line no-magic-numbers
+            error: `${key}unexpected ${nameparts.length}-part name "${nameparts.join(', ')}", dropping "${nameparts.slice(3).join(', ')}"`,
+            input: nameparts.join(', '),
+          })
         }
+
+        let [lastName, suffix, firstName] = (nameparts.length === 2)
+          ? [nameparts[0], undefined, nameparts[1]]
+          // > 3 nameparts are invalid and are dropped
+          // eslint-disable-next-line no-magic-numbers
+          : nameparts.slice(0, 3)
+        let prefix
+        const m = lastName.match(/^([a-z'. ]+) (.+)/)
+        if (m) {
+          prefix = m[1]
+          lastName = m[2]
+        }
+        return this.trimCreator({
+          lastName,
+          firstName,
+          prefix,
+          suffix,
+        })
       }
-    }
-    node.fields = node.fields.concat(shortjournals).map(child => this.clean(child) as bibtex.Field)
 
-    return node
-  }
+      const name: Creator = {}
+      // eslint-disable-next-line no-magic-numbers
+      for (let [attr, value] of nameparts.map(p => p.match(/^([^=]+)=(.*)/)?.slice(1, 3))) {
+        attr = attr.toLowerCase()
+        switch (attr) {
+          case '':
+            break
 
-  private startCleaning(name) {
-    name = name.toLowerCase()
-    if (fields.title.includes(name)) {
-      this.cleaning = { type: 'title', name }
-    }
-    else if (fields.creator.includes(name.replace(/s$/, ''))) {
-      this.cleaning = { type: 'creator', name: name.replace(/s$/, '') }
-    }
-    else {
-      this.cleaning = { type: 'other', name }
-    }
-  }
+          case 'given':
+            name.firstName = value
+            break
+          case 'family':
+            name.lastName = value
+            break
+          case 'given-i':
+            name.initial = value
+            break
 
-  private stripNoCase(node: Node, strip, preserve) {
-    switch (node.kind) {
-      case 'RegularCommand':
-        // a bit cheaty to assume these to be nocased, but it's just more likely to be what people want
-        if (['chsf', 'bibstring', 'cite'].includes(node.command)) strip = true
-        node.arguments.required.map(arg => this.stripNoCase(arg, strip, preserve))
-        break
-
-      case 'Block':
-      case 'InlineMath':
-      case 'DisplayMath':
-        if (strip && node.case === 'protect') {
-          if (preserve) {
-            node.case = 'preserve'
-          }
-          else {
-            delete node.case
-          }
-        }
-        node.value.map(v => this.stripNoCase(v, strip || node.case === 'protect', preserve))
-        break
-
-      case 'Field':
-        if (Array.isArray(node.value)) node.value.forEach(v => this.stripNoCase(v, strip, preserve))
-        break
-    }
-  }
-
-  private isVerbatimField(name) {
-    return !!this.options.verbatimFields.find(p => (typeof p === 'string') ? name === p : name.match(p))
-  }
-  private clean_field(node: bibtex.Field) {
-    this.startCleaning(node.name)
-
-    this.stripNoCase(node, !this.options.caseProtection || this.isVerbatimField(node.name), (this.options.sentenceCase as string[]).length === 0)
-
-    if (Array.isArray(node.value)) this.condense(node)
-
-    return node
-  }
-
-  private clean_script(node: bibtex.SubscriptCommand | bibtex.SuperscriptCommand) {
-    let m, value, singlechar
-    // recognize combined forms like \^\circ
-    if (singlechar = l2u(node.source)) return this.text(singlechar)
-    if ((m = node.source.match(/^([\^_])([^{}]+)$/)) && ((singlechar = l2u(`${m[1]}${m[2]}`)) || (singlechar = l2u(`${m[1]}{${m[2]}}`)))) return this.text(singlechar)
-    if ((m = node.source.match(/^([\^_])\{([^{}]+)\}$/)) && ((singlechar = l2u(`${m[1]}${m[2]}`)) || (singlechar = l2u(`${m[1]}{${m[2]}}`)))) return this.text(singlechar)
-
-    const cmd = node.kind === 'SuperscriptCommand' ? '^' : '_'
-
-    if (typeof node.value === 'string' && (singlechar = l2u(`${cmd}${node.value}`) || l2u(`${cmd}{${node.value}}`))) {
-      return this.text(singlechar)
-    }
-
-    if (typeof node.value === 'string') {
-      value = [ this.text(node.value) ]
-    }
-    else if (!Array.isArray(node.value)) {
-      value = [ node.value ]
-    }
-    else {
-      value = node.value
-    }
-
-    const mode = node.kind === 'SuperscriptCommand' ? 'sup' : 'sub'
-    return this.clean({
-      kind: 'Block',
-      markup: { [mode]: true },
-      value,
-    })
-  }
-
-  private clean_environment(node: bibtex.Environment) {
-    this.condense(node)
-    return node
-  }
-
-  private needsProtection(word: string): boolean {
-    return !word.match(preserveCase.hasUpper) && !!word.match(preserveCase.hasLower)
-  }
-
-  private clean_block(node: bibtex.Block | bibtex.Math) {
-    this.condense(node)
-
-    if (this.options.caseProtection !== 'strict' && this.cleaning?.type === 'title' && node.case === 'protect') {
-      // test whether we can get away with skipping case protection because it contains all words that will be preserved anyway when converting back to Title Case
-      let preserve = true
-      for (const child of node.value) {
-        if (child.kind === 'Text') {
-          const value = child.value.trim()
-          preserve = !value.match(preserveCase.isCaseSensitive) || !value.split(/\s+/).find(word => this.needsProtection(word))
-        }
-        else {
-          preserve = false
-        }
-        if (!preserve) break
-      }
-      if (preserve) node.case = 'preserve'
-    }
-
-    if (node.kind === 'Block') {
-      for (const [markup, on] of Object.entries(node.markup)) {
-        if (!on) delete node.markup[markup]
-      }
-    }
-
-    return node
-  }
-
-  private clean_diacritic(node: bibtex.DiacriticCommand): Node {
-    const char = node.dotless ? `\\${node.character}` : node.character
-    let unicode = latex2unicode[`\\${node.mark}{${char}}`]
-      || latex2unicode[`\\${node.mark}${char}`]
-      || latex2unicode[`{\\${node.mark} ${char}}`]
-      || latex2unicode[`{\\${node.mark}${char}}`]
-      || latex2unicode[`\\${node.mark} ${char}`]
-    unicode = unicode && ((unicode as any).text || (unicode as any).math || unicode)
-
-    if (!unicode && !node.dotless && node.character.length === 1 && combining.tounicode[node.mark]) unicode = node.character + combining.tounicode[node.mark]
-    if (!unicode && !this.in_preamble) return this.error(new TeXError(`Unhandled \\${node.mark}{${char}}`, node, this.chunk))
-    return this.text(unicode)
-  }
-
-  private clean_symbol(node: bibtex.SymbolCommand) {
-    if (node.command === '\\') return this.text('\n')
-    return this.text(l2u(`\\${node.command}`) || node.command)
-  }
-
-  private first_text_block(node: Node): bibtex.Block {
-    if (!node) return null
-
-    if (node.kind === 'Block') {
-      for (const child of node.value) {
-        switch (child.kind) {
-          case 'Text':
-            return child.value ? node : null
-
-          case 'Block':
-            // eslint-disable-next-line no-case-declarations
-            const candidate = this.first_text_block(child)
-            if (candidate) return candidate
+          case 'useprefix':
+          case 'juniorcomma':
+            name[attr] = value.toLowerCase() === 'true'
             break
 
           default:
-            return null
+            name[attr] = value
+            break
         }
       }
+      return this.trimCreator(name)
     }
-    else {
-      return null
+    else { // first-last mode
+      const nameparts = this.split(ast, /^$/, /( )/).map(part => this.stringify(part, { mode: 'creator' })).filter(n => n)
+      if (nameparts.length === 1) return this.trimCreator({ lastName: nameparts[0] })
+
+      const prefix = nameparts.findIndex(n => n.match(/^[a-z]/))
+      const postfix = prefix <= 0 ? -1 : nameparts.findIndex((n, i) => i > prefix && !n.match(/^[a-z]/))
+      if (postfix === -1) {
+        const lastName = nameparts.pop()
+        return this.trimCreator({ lastName, firstName: nameparts.join(' ') })
+      }
+
+      return this.trimCreator({
+        firstName: nameparts.slice(0, prefix).join(' '),
+        prefix: nameparts.slice(prefix, postfix).join(' '),
+        lastName: nameparts.slice(postfix).join(' '),
+      })
     }
   }
 
-  private clean_command(node: bibtex.RegularCommand): Node {
-    let arg, unicode
+  private ligature(nodes: Node[]): StringNode {
+    if (latexMode(nodes[0]) !== 'text') return null
 
-    if (unicode = l2u(node.source)) return this.text(unicode)
+    const max = 3
+    const slice = nodes.slice(0, max)
+    const type = slice.map(n => n.type === 'string' ? 's' : ' ').join('')
+    if (type[0] !== 's') return null
 
-    switch (node.command) {
+    const content = slice.map(n => n.type === 'string' ? n.content : '')
+    let latex: string
+
+    while (content.length) {
+      if (type.startsWith('s'.repeat(content.length)) && (latex = latex2unicode(content.join(''), slice[0]))) {
+        try {
+          return { type: 'string', content: latex, _renderInfo: {} }
+        }
+        finally {
+          nodes.splice(0, content.length)
+        }
+      }
+      content.pop()
+    }
+
+    return null
+  }
+
+  private wraparg(node: Node, macro: Macro) : Argument {
+    if (macro.content.match(/^(itshape|textsl|textit|emph|mkbibemph)$/)) node._renderInfo.emph = true
+    if (macro.content.match(/^(textbf|mkbibbold|bfseries)$/)) node._renderInfo.bold = true
+    if (macro.content.match(/^(textsc)$/)) node._renderInfo.smallCaps = true
+    if (macro.content.match(/^(texttt)$/)) node._renderInfo.code = true
+    return { type: 'argument', content: [ node ], openMark: '', closeMark: '', _renderInfo: { mode: node._renderInfo.mode } }
+  }
+
+  private argtogroup(node: Argument): Group {
+    if (node.content.length === 1 && node.content[0].type === 'group') return node.content[0]
+    return { type: 'group', content: node.content }
+  }
+
+  private argument(nodes: Node[], macro: Macro): Argument {
+    if (!nodes.length) return null
+    if (nodes[0].type === 'whitespace') nodes.shift()
+    if (!nodes.length) return null
+    if (nodes[0].type === 'string') {
+      const char = nodes[0].content[0]
+      nodes[0].content = nodes[0].content.substr(1)
+      const arg = { ...nodes[0], content: char }
+      if (!nodes[0].content) nodes.shift()
+      return this.wraparg(arg, macro)
+    }
+    return this.wraparg(nodes.shift(), macro)
+  }
+
+  private unsupported(node: Node): string {
+    if (this.fallback) return this.fallback(node, printRaw(node), this.current) ?? ''
+
+    switch (node.type) {
+      case 'macro':
+        throw new Error(`unhandled ${node.type} ${node.content} (${printRaw(node)})`)
+      case 'environment':
+        throw new Error(`unhandled ${node.type} ${node.env} (${printRaw(node)})`)
+      default:
+        throw new Error(`unhandled ${node.type} (${printRaw(node)})`)
+    }
+  }
+
+  private wrap(text: string, tag, wrap=true): string {
+    if (!text || !wrap) return text || ''
+    return `\x0E${tag}\x0F${text}\x0E/${tag}\x0F`
+  }
+
+  private registercommand(node: Macro): string {
+    const types = (nodes: Node[]) => nodes.map(n => n.type).join('.')
+
+    const group = (arg: Argument, kind: string): Node[] => {
+      if (!arg) throw new Error(`missing ${kind} for ${printRaw(node)} @ ${JSON.stringify(node.position)}`)
+      if (types(arg.content) !== 'group') throw new Error(`Malformed ${kind} for ${printRaw(node)} @ ${JSON.stringify(node.position)}`)
+      return (<Group>arg.content[0]).content
+    }
+
+    if (!node.args) throw new Error(`No arguments for ${printRaw(node)} @ ${JSON.stringify(node.position)}`)
+
+    const namearg = group(node.args[0], 'name')
+    if (types(namearg) !== 'macro') throw new Error(`Unexpected name for ${printRaw(node)} @ ${JSON.stringify(node.position)}`)
+
+    this.newcommands[(<Macro>namearg[0]).content] = node.args[1]
+    return ''
+  }
+
+  private subp(text: string, macro: string) {
+    let subp = ''
+    for (let char of text) {
+      char = latex2unicodemap[`${macro}{${char}}`]
+      if (char) {
+        subp += char
+      }
+      else {
+        const tag = {_: 'sub', '^': 'sup'}[macro]
+        return `\x0E${tag}\x0F${text}\x0E/${tag}\x0F`
+      }
+    }
+    return subp
+  }
+
+  private macro(node: Macro, context: Context): string {
+    const text = latex2unicode(printRaw(node), node)
+    if (text) return text
+
+    let url: Argument
+    let label: Argument
+    let arg: string[]
+    let resolved: string
+    switch (node.content) {
       case 'newcommand':
-        if (node.arguments?.required.length === 2
-          && node.arguments.required[0].kind === 'Block'
-          && node.arguments.required[0].value.length === 1
-          && node.arguments.required[0].value[0].kind === 'RegularCommand'
-          && node.arguments.required[1].kind === 'Block'
-        ) {
-          this.newcommands[node.arguments.required[0].value[0].command] = node.arguments.required[1].value
-          return this.text()
-        }
-        // console.log('newcommand?', JSON.stringify(node, null, 2))
-        break
+        return this.registercommand(node)
 
-      case 'item':
-        return { kind: 'Markup', value: '<li>', source: node.source }
-
-      case 'frac':
-        if (arg = this.argument(node, 2)) {
-          if (arg[0].kind === 'Text' && arg[1].kind === 'Text' && (unicode = l2u(`\\frac{${arg[0].value}}{${arg[1].value}}`))) return this.text(unicode)
-
-          return this.clean({
-            kind: 'Block',
-            case: 'protect',
-            markup: {},
-            value: [
-              { kind: 'Block', markup: { sup: true }, value: [ arg[0] ] },
-              this.text('\u2044'),
-              { kind: 'Block', markup: { sub: true }, value: [ arg[1] ] },
-            ],
-          })
-        }
-        break
-
-      // ignore
-      case 'vspace':
       case 'vphantom':
+      case 'noopsort':
+      case 'left':
+      case 'right':
+        return ''
+
       case 'path':
+        return '' // until https://github.com/siefkenj/unified-latex/issues/94 is fixed
+
+      case 'hspace':
+        if (node.args && node.args.length) {
+          if (printRaw(node.args).match(/^[{]?0[a-z]*$/)) return ''
+          return ' '
+        }
+        return ''
+
+      case 'overline':
+      case 'bar':
+        return node.args.map(a => this.stringify(a, context)).join('').replace(/[a-z0-9]/ig, m => `${m}\u0305`)
+
+      case 'textup':
+      case 'textsc':
+      case 'textrm':
+      case 'texttt':
+      case 'mathrm':
+      case 'mbox':
+        return node.args.map(n => this.stringify(n, context)).join('')
+
+      case 'href':
+      case 'url':
+        if (node.args) {
+          url = node.args[0]
+          label = node.args[node.content === 'url' ? 0 : 1]
+        }
+        return `<a href="${this.stringify(url, context)}">${this.stringify(label, context)}</a>`
+
+      case 'relax':
       case 'aftergroup':
       case 'ignorespaces':
-      case 'relax':
-      case 'noopsort':
-      case 'ifdefined':
-      case 'DeclarePrefChars':
-      case 'else':
-      case 'fi':
-      case 'makeatletter':
-      case 'mathslbb':
-        return this.text()
+      case 'em':
+      case 'it':
+      case 'tt':
+      case 'sl':
+        return ''
 
-      case 'ElsevierGlyph':
-        if (arg = this.argument(node, 'Text')) {
-          if (unicode = l2u(`\\${node.command}{${arg}}`)) return this.text(unicode)
-          return this.text(String.fromCharCode(parseInt(arg, 16)))
+      case 'rm':
+      case 'sc':
+        return ''
+
+      // bold/emph/smallcaps is handled in the wrapper
+      case 'textbf':
+      case 'mkbibbold':
+      case 'textit':
+      case 'emph':
+      case 'mkbibemph':
+        return this.stringify(node.args?.[0], context)
+
+      case 'textsuperscript':
+        return this.subp(this.stringify(node.args?.[0], context), '^')
+
+      case 'textsubscript':
+        return this.subp(this.stringify(node.args?.[0], context), '_')
+
+      case '_':
+      case '^':
+        switch (latexMode(node)) {
+          case 'math':
+            return this.subp(this.stringify(node.args?.[0], context), node.content)
+          default:
+            return node.content
         }
-        break
 
-      case 'chsf':
-        if (this.argument(node, 'none')) return this.text()
-        if (arg = this.argument(node, 'Block')) return this.clean(arg as Node)
-        break
+      case 'LaTeX':
+        return this.wrap(`L${this.subp('A', '^')}T${this.subp('E', '_')}X`, 'ncx')
 
       case 'enquote':
       case 'mkbibquote':
-      case 'bibstring':
-      case 'cite':
-      case 'textcite':
-      case 'textup':
-      case 'citeauthor':
-      case 'textsc':
-      case 'textbf':
-      case 'texttt':
-      case 'mkbibbold':
+        return this.wrap(this.stringify(node.args?.[0], context), 'enquote')
+
+      case '\\':
+        return context.mode === 'richtext' ? open.br : ' '
+
+      case 'par':
+        return context.mode === 'richtext' ? open.p : ' '
+
+      case 'item':
+        return context.mode === 'richtext' ? open.li : ' '
+
       case 'section':
       case 'subsection':
       case 'subsubsection':
       case 'subsubsubsection':
-        if (arg = this.argument(node, 'Block')) return this.clean(arg as Node)
-        break
+        return this.wrap(this.stringify(node.args?.[0], context), `h${node.content.split('sub').length}`)
 
-      case 'textsuperscript':
-      case 'sp':
-        if ((arg = this.argument(node, 'Text')) && (unicode = l2u(`^{${arg}}`))) return this.text(unicode)
-        if (arg = this.argument(node, 'Block')) return this.clean(arg as Node)
-        break
+      case 'frac':
+        arg = node.args.map(a => this.stringify(a, context))
+        if (arg.length === 2 && (resolved = latex2unicodemap[`\\frac${arg.map(a => `{${a}}`).join('')}`])) return resolved
+        return arg.map((part, i) => this.subp(part, i ? '_' : '^')).join('\u2044')
 
-      case 'textsubscript':
-      case 'sb':
-        if ((arg = this.argument(node, 'Text')) && (unicode = l2u(`_{${arg}}`))) return this.text(unicode)
-        if (arg = this.argument(node, 'Block')) return this.clean(arg as Node)
-        break
-
-      case 'mkbibitalic':
-      case 'mkbibemph':
-      case 'textit':
-      case 'emph':
-        if (arg = this.argument(node, 'Block')) return this.clean(arg as Node)
-        if (arg = this.argument(node, 'Text')) return this.clean({ kind: 'Block', markup: { italics: true }, value: [ this.text(arg) ] })
-        break
-
-      case 'bibcyr':
-        if (this.argument(node, 'none')) return this.text()
-        if (arg = this.argument(node, 'Block')) return this.clean(arg as Node)
-        break
-
-      case 'hspace':
-      case 'mathrm':
-      case 'textrm':
-      case 'ocirc':
-      case 'mbox':
-        if (arg = this.argument(node, 'text')) {
-          if (node.command === 'mbox' && !arg) return this.text('\u200b')
-          unicode = l2u(`\\${node.command}{${arg}}`)
-          return this.text(unicode || (node.command === 'hspace' ? ' ' : arg))
-        }
-        else if (!node.arguments.required.length) {
-          return (node.command === 'mbox') ? this.text('\u200b') : this.text()
-        }
-        else if (arg = this.argument(node, 'Block')) {
-          return this.clean(arg as Node)
-        }
-        break
-
-      case 'href':
-      case 'url':
-        node.arguments.required = node.arguments.required.map(a => this.clean(a)) as bibtex.Argument[]
-        return node
-
-      case 'sl':
-      case 'em':
-      case 'it':
-      case 'itshape':
-      case 'bf':
-      case 'bfseries':
-      case 'sc':
-      case 'scshape':
-      case 'tt':
-      case 'rm':
-      case 'sf':
-      case 'verb':
-        // handled in the grammar
-        return this.text()
-
-      // wouldn't know what to do with these
-      case 'left':
-      case 'right':
-        return this.text()
-
-      case 'par':
-      case '\\':
-        return node
-
-      case 'cyr':
-        if (this.argument(node, 'none')) return this.text()
-        break
-
-      case 'polhk':
-        if (unicode = this.argument(node, 'text')) {
-          if (unicode.length === 1) return this.text(`${unicode}\u0328`)
-        }
-        if (this.argument(node, 'none')) return this.text('\u0328')
-        break
+      case 'chsf':
+      case 'bibstring':
+      case 'cite':
+      case 'textcite':
+      case 'citeauthor':
+        // ncx protects but will be stripped later
+        return this.wrap(this.stringify(node.args?.[0], context), 'ncx', context.mode === 'title')
 
       default:
-        if (node.kind === 'RegularCommand' && this.newcommands[node.command]) {
-          return this.clean({
-            kind: 'Block',
-            markup: {},
-            value: (JSON.parse(JSON.stringify(this.newcommands[node.command])) as bibtex.ValueType[]),
+        if (this.newcommands[node.content]) return this.stringify(this.newcommands[node.content], context)
+        return this.unsupported(node)
+    }
+  }
+
+  private what(node: Node) {
+    if (!node) return ''
+
+    switch (node.type) {
+      case 'macro': return `macro:${<string>node._renderInfo.mode ?? 'text'}:${node.content}`
+      case 'environment': return `env:${node.env}`
+      default: return node.type
+    }
+  }
+  private environment(node: Environment, context: Context) {
+    while (node.content.length && this.what(node.content[0]).match(/^parbreak|whitespace|macro:text:par$/)) node.content.shift()
+    while (node.content.length && this.what(node.content[node.content.length - 1]).match(/^parbreak|whitespace|macro:text:par$/)) node.content.pop()
+
+    switch (node.env) {
+      case 'quotation':
+        return this.wrap(node.content.map(n => this.stringify(n, context)).join(''), 'blockquote', context.mode === 'richtext')
+
+      case 'itemize':
+        return this.wrap(node.content.map(n => this.stringify(n, context)).join(''), 'ul', context.mode === 'richtext')
+
+      case 'em':
+        return this.wrap(node.content.map(n => this.stringify(n, context)).join(''), 'i', context.mode === 'richtext')
+
+      default:
+        return this.unsupported(node)
+    }
+  }
+
+  private stringify(node: Node | Argument, context: Context): string {
+    let content = this.stringifyContent(node, context)
+    if (content && node._renderInfo) {
+      if (node._renderInfo.emph) content = `${open.i}${content}${close.i}`
+      if (node._renderInfo.bold) content = `${open.b}${content}${close.b}`
+      if (node._renderInfo.smallCaps) content = `${open.sc}${content}${close.sc}`
+      if (node._renderInfo.code) content = `${open.code}${content}${close.code}`
+      if (node._renderInfo.protectCase) content = `${open.nc}${content}${close.nc}`
+    }
+    return content
+  }
+
+  private stringifyContent(node: Node | Argument, context: Context): string {
+    if (!node) return ''
+
+    switch (node.type) {
+      case 'root':
+      case 'argument':
+      case 'group':
+      case 'inlinemath':
+        return node.content.map(n => this.stringify(n, context)).join('')
+
+      case 'string':
+      case 'verbatim':
+        return node.content
+
+      case 'macro':
+        return this.macro(node, context)
+
+      case 'parbreak':
+        return context.mode === 'richtext' ? open.p : ' '
+
+      case 'whitespace':
+        return node._renderInfo.mode === 'math' ? '' : ' '
+
+      case 'comment':
+        return ''
+
+      case 'environment':
+        return this.environment(node, context)
+
+      case 'verb':
+        return node.content
+
+      default:
+        return this.unsupported(node)
+    }
+  }
+
+  private protect(node) {
+    if (node.type === 'inlinemath') return true
+    if (node.type !== 'group') return false
+    if (!node.content.length) return false
+    return (node.content[0].type !== 'macro')
+  }
+
+  private mode(field: string): ParseMode {
+    let mode: ParseMode = 'literal'
+    for (const [selected, fields] of Object.entries(this.fieldMode)) {
+      if (fields.find(match => typeof match === 'string' ? field === match : field.match(match))) mode = <ParseMode>selected
+    }
+    return mode
+  }
+
+  private restoreMarkup(s: string): string {
+    if (!s.includes('\x0E')) return s
+
+    const restored: string[] = [s.replace(/\x0E\/?ncx\x0F/ig, '')]
+    while (restored[0] !== restored[1]) {
+      restored.unshift(restored[0].replace(collapsable, '$2'))
+    }
+
+    return restored[0]
+      .replace(/(\x0Ep\x0F\s*){2,}/ig, '\x0Ep\x0F')
+      .replace(/\s*(\x0E\/p\x0F){2,}/ig, '\x0E/p\x0F')
+      .replace(/\x0Eenquote\x0F/ig, '\u201C').replace(/\x0E\/enquote\x0F/ig, '\u201D')
+      .replace(/\x0Esc\x0F/ig, '<span style="font-variant:small-caps;">').replace(/\x0E\/sc\x0F/ig, '</span>')
+      .replace(/\x0Enc\x0F/ig, '<span class="nocase">').replace(/\x0E\/nc\x0F/ig, '</span>')
+      .replace(/\x0E/ig, '<').replace(/\x0F/ig, '>')
+  }
+
+  private stringField(field: string, value: string, sentenceCase: boolean, mode: string): string | number {
+    if (FieldAction.unabbrev.includes(field)) {
+
+      let full = this.options.unabbreviations[value.toUpperCase()] || this.options.unabbreviations[value.toUpperCase().replace(/s\S+$/, '')]
+      if (!full) {
+        const m = value.toUpperCase().match(/(.*)(\s+\S*\d\S*)$/)
+        if (m) {
+          full = this.options.unabbreviations[m[1]]
+          if (full) full += m[2]
+        }
+      }
+      if (full) value = full
+      if (!sentenceCase) return value
+    }
+
+    if (field === 'crossref') return value
+
+    if (FieldAction.parseInt.includes(field) && value.trim().match(/^-?\d+$/)) return parseInt(value)
+
+    if (mode === 'title' && sentenceCase) {
+      if (!this.options.sentenceCase.guess || !guessSentenceCased(value, /\x0E\/?([a-z]+)\x0F/ig)) {
+        value = toSentenceCase(value, {
+          preserveQuoted: this.options.sentenceCase.preserveQuoted,
+          subSentenceCapitalization: this.options.sentenceCase.subSentence,
+          markup: /\x0E\/?([a-z]+)\x0F/ig,
+          nocase: /\x0E(ncx?)\x0F.*?\x0E\/\1\x0F/ig,
+        })
+      }
+
+      let cancel = (_match: string, stripped: string) => stripped
+      switch (this.options.caseProtection) {
+        case 'strict':
+          cancel = (match: string, _stripped: string) => match
+          break
+        case 'as-needed':
+          cancel = (match: string, stripped: string) => {
+            const words = tokenize(stripped, /\x0E\/?([a-z]+)\x0F/ig)
+            return words.find(w => w.shape.match(/^(?!.*X).*x.*$/)) ? match : this.wrap(stripped, 'ncx')
+          }
+          break
+      }
+
+      return value.replace(/\x0Enc\x0F(.*?)\x0E\/nc\x0F/ig, cancel)
+    }
+
+    return value
+  }
+
+  private field(entry: Entry, field: string, value: string, sentenceCase: boolean) {
+    const mode: ParseMode = this.mode(field)
+
+    const ast: Root = LatexPegParser.parse(value)
+
+    if (this.options.removeOuterBraces.includes(field) && ast.content.length === 1 && ast.content[0].type === 'group') {
+      ast.content = ast.content[0].content
+    }
+
+    if (mode === 'verbatim') { // &^%@#&^%@# idiots wrapping verbatim fields
+      entry.fields[field] = printRaw(ast)
+      return
+    }
+
+    if (mode === 'title') {
+      let root = [...ast.content]
+      while (root.length) {
+        const node = root.shift()
+
+        // only root groups offer case protecten -- but it may be as an macro arg, so mark here before gobbling
+        if (this.protect(node)) node._renderInfo = { root: true }
+
+        // environments are considered root when at root
+        if (node.type === 'environment') root = [...root, ...node.content]
+      }
+    }
+
+    // pass 0 -- register parse mode
+    visit(ast, (node, info) => { // eslint-disable-line @typescript-eslint/no-unsafe-argument
+      if (!node._renderInfo) node._renderInfo = {}
+
+      node._renderInfo.mode = info.context.inMathMode ? 'math' : 'text'
+
+      // if (info.context.inMathMode || info.context.hasMathModeAncestor) return
+
+      if (mode === 'title' && node.type === 'inlinemath' && !info.parents.find(p => p._renderInfo.protectCase)) node._renderInfo.protectCase = true
+
+      if (!info.context.inMathMode) {
+        if (mode === 'title' && node._renderInfo.root) node._renderInfo.protectCase = true
+
+        if (node.type === 'macro' && typeof node.escapeToken !== 'string') node.escapeToken = '\\'
+
+        if (node.type === 'environment' && node.env === 'em') node._renderInfo.emph = true
+      }
+    })
+
+    // pass 1 -- mark & normalize
+    visit(ast, (nodes, info) => { // eslint-disable-line @typescript-eslint/no-unsafe-argument
+      let node: Node
+      const compacted: Node[] = []
+      let inif = 0
+      while (nodes.length) {
+        if (node = this.ligature(nodes)) {
+          compacted.push(node)
+          continue
+        }
+
+        node = nodes.shift()
+
+        if (node.type === 'macro' && node.content === 'ifdefined') {
+          inif += 1
+          continue
+        }
+        else if (node.type === 'macro' && node.content === 'else') {
+          continue
+        }
+        else if (node.type === 'macro' && node.content === 'fi') {
+          inif = Math.max(inif - 1, 0)
+          continue
+        }
+        else if (inif) {
+          continue
+        }
+
+        const nargs = node.type === 'macro'
+          ? narguments[node.content] || narguments[`${info.context.inMathMode ? 'math' : 'text'}\t${node.content}`]
+          : 0
+        if (node.type === 'macro' && nargs) {
+          node.args = Array(nargs).fill(undefined).map(_i => this.argument(nodes, <Macro>node)).filter(arg => arg)
+          if (node.content.match(/^(url|href)$/) && node.args.length) {
+            let url: Node[] = node.args[0].content
+            if (url.length === 1 && url[0].type === 'group') url = url[0].content
+            node.args[0] = this.wraparg({ type: 'string', content: printRaw(url), _renderInfo: { mode: url[0]._renderInfo.mode } }, node)
+          }
+        }
+        else if (node.type === 'macro' && node.content.match(/^[a-z]+$/i) && nodes[0]?.type === 'whitespace') {
+          nodes.shift()
+        }
+
+        compacted.push(node)
+      }
+
+      if (!info.context.inMathMode) {
+        // feed-forward inline macros
+        for (const [macro, markup] of Object.entries({ em: 'emph', it: 'emph', sl: 'emph', bf: 'bold', sc: 'smallCaps', tt: 'code' })) {
+          if (info.parents.find(p => p._renderInfo[markup])) continue
+
+          compacted.forEach((markup_node, i) => {
+            if (markup_node.type === 'macro' && markup_node.content === macro) {
+              compacted.slice(i + 1).forEach(n => n._renderInfo[markup] = true)
+            }
           })
         }
-
-        if (combining.tounicode[node.command]) {
-          node.arguments.required = this.clean(node.arguments.required) as bibtex.Argument[]
-
-          let block: bibtex.Block
-          if (node.arguments.required.length === 1 && node.arguments.required[0].kind === 'Text') {
-            // no idea why I can't just straight return this but typescript just won't shut up
-            block = {
-              kind: 'Block',
-              markup: {},
-              value: [ {
-                kind: 'DiacriticCommand',
-                mark: node.command,
-                character: (node.arguments.required[0]).value,
-                dotless: false,
-                loc: node.arguments.required[0].loc,
-                source: node.arguments.required[0].source,
-              } ],
-            }
-            return this.clean(block)
-
-          }
-          else if (block = this.first_text_block(node.arguments.required[0])) {
-            let fixed = false
-            block.value = block.value.reduce((value: bibtex.ValueType[], child: bibtex.ValueType) => {
-              if (!fixed && child.kind === 'Text') {
-                fixed = true
-
-                value.push({ kind: 'DiacriticCommand', mark: node.command, character: child.value[0] })
-                value.push({ ...child, value: child.value.substring(1) })
-              }
-              else {
-                value.push(child)
-              }
-
-              return value
-            }, [])
-
-            return this.clean({
-              kind: 'Block',
-              markup: {},
-              value: node.arguments.required,
-            })
-
-          }
-          else {
-            // overline without arguments doesn't seem to render in LaTeX
-            if (node.command === 'overline') return this.text(' ')
-
-            return this.clean({
-              kind: 'Block',
-              markup: {},
-              value: ([ this.text(` ${combining.tounicode[node.command]}`) ] as bibtex.ValueType[]).concat(node.arguments.required),
-            })
-          }
-        }
-
-        if (unicode = l2u(node.source) || l2u(`${node.source}{}`)) return this.text(unicode)
-        if ((unicode = l2u(`\\${node.command}`) || l2u(`\\${node.command}{}`)) && this.argument(node, 'none')) return this.text(unicode)
-        if ((arg = this.argument(node, 'Text')) && (unicode = l2u(`\\${node.command}{${arg}}`))) return this.text(unicode)
-        break
-    }
-
-    if (this.in_preamble) return this.text(node.source)
-
-    if (this.options.unknownCommandHandler) {
-      return this.options.unknownCommandHandler.call(this, node) as Node
-    }
-    else if (this.options.unknownCommandHandler === false) {
-      return this.text()
-    }
-    else {
-      return this.error(new TeXError(`unsupported macro (\\${node.command})${this.show(node)}`, node, this.chunk))
-    }
-  }
-
-  private preserveCase(word) {
-    // word = word.replace(new RegExp(`"[${this.markup.enquote.open}${this.markup.enquote.close}:()]`, 'g'), '')
-
-    if (!word.trim()) return false
-    if (!word.match(preserveCase.hasAlphaNum)) return true
-
-    word = word.replace(/[/’'”:()]/g, '')
-
-    if (word === 'I') return true
-    if (word.length === 1) return false
-    if (word.replace(preserveCase.notCaseSensitive) === '') return false
-    // word = word.replace(preserveCase.notAlphaNum, '')
-
-    // simple cap at start of field
-    if (word.match(preserveCase.leadingCap) && this.field?.text?.length === 0) return false
-
-    if (word.match(preserveCase.allCaps)) return true
-    if (word.length > 1 && word.match(preserveCase.joined)) return false
-    if (word.match(preserveCase.hasUpper)) return true
-    if (word.match(preserveCase.isNumber)) return true
-    return false
-  }
-
-  // private convert(node: Node[]): Node[]
-  // private convert(node: Node): Node
-  private convert(node: Node | Node[]): Node | Node[] {
-    if (Array.isArray(node)) return node.map((child: Node) => this.convert(child)) as Node[]
-
-    if (this.options.raw && this.field) node = this.text(node.source)
-
-    switch (node.kind) {
-      case 'Markup':
-        if (this.field) this.field.text += node.value
-        break
-
-      case 'BracedComment':
-      case 'LineComment':
-        this.comments.push(node.value)
-        break
-
-      case 'Entry':
-        this.convert_entry(node)
-        break
-
-      case 'Number':
-        this.convert_number(node)
-        break
-
-      case 'Text':
-        this.convert_text(node)
-        break
-
-      case 'Block':
-      case 'InlineMath':
-      case 'DisplayMath':
-        // eslint-disable-next-line no-case-declarations
-        const start = this.field ? this.field.text.length : null
-        // eslint-disable-next-line no-case-declarations
-        const preserve: false | TextRange[] = typeof start === 'number' && this.field.preserveRanges
-
-        this.convert_block(node)
-
-        if (preserve && (node.case || node.kind.endsWith('Math'))) this.preserve(start, this.field.text.length) // , `convert-block: case=${node.case}, math=${node.kind.endsWith('Math')}`)
-        break
-
-      case 'Environment':
-        this.convert_environment(node)
-        break
-
-      case 'PreambleExpression':
-        this.preamble.push(node.value.map(preamble => preamble.source).join('\n\n'))
-        break
-
-      case 'StringDeclaration':
-        break
-
-      default:
-        if (node.kind === 'RegularCommand' && (node.command === 'href' || node.command === 'url')) {
-          this.convert_href(node)
-        }
-        else if (node.kind === 'RegularCommand' && node.command === 'par') {
-          this.field.text += this.field.html ? '<p>' : ' '
-        }
-        else if (node.kind === 'RegularCommand' && node.command === '\\') {
-          this.field.text += this.field.html ? '<b>' : ' '
-        }
-        else {
-          return this.error(new ParserError(`no converter for ${node.kind}: ${this.show(node)}`, node))
-        }
-    }
-  }
-
-  private splitOnce(s :string, sep: string, fromEnd = false): [string, string] {
-    const split: number = fromEnd ? s.lastIndexOf(sep) : s.indexOf(sep)
-    return (split < 0) ? [s, ''] : [ s.substr(0, split), s.substr(split + 1) ]
-  }
-  private parseName(name) {
-    let parsed: Name = null
-
-    const parts = name.split(marker.comma)
-
-    if (parts.length && !parts.find(p => !p.match(/^[a-z]+(-i)?=/i))) { // extended name format
-
-      for (const part of parts) {
-        parsed = parsed || {}
-
-        const [ attr, value ] = this.splitOnce(part.replace(marker.re.space, ''), '=').map((v: string) => v.trim())
-
-        if (!value) {
-          parsed = null
-          break
-        }
-
-        switch (attr.toLowerCase()) {
-          case 'family':
-            parsed.lastName = value
-            break
-
-          case 'given-i':
-            parsed.initial = value
-            break
-
-          case 'given':
-            parsed.firstName = value
-            break
-
-          case 'prefix':
-            parsed.prefix = value
-            break
-
-          case 'suffix':
-            parsed.suffix = value
-            break
-
-          case 'useprefix':
-            parsed.useprefix = value.toLowerCase() === 'true'
-            break
-
-          case 'juniorcomma':
-            parsed.useprefix = value.toLowerCase() === 'true'
-            break
-
-          default:
-            parsed[attr.toLowerCase()] = value
-            break
-
-        }
-      }
-    }
-
-    const prefix = /(.+?)\s+(vere|von|van den|van der|van|de|del|della|der|di|da|pietro|vanden|du|st.|st|la|lo|ter|bin|ibn|te|ten|op|ben|al)\s+(.+)/
-    let m
-    switch (parsed ? 0 : parts.length) {
-      case 0:
-        // already parsed
-        break
-
-      case 1: // name without commas
-        // literal
-        if (marker.re.literalName.test(parts[0])) {
-          parsed = { literal: parts[0] }
-        }
-        else if (m = parts[0].replace(marker.re.space, ' ').match(prefix)) { // split on prefix
-          parsed = {
-            firstName: m[1],
-            prefix: m[2],
-            lastName: m[3], // eslint-disable-line no-magic-numbers
-          }
-        }
-        else {
-          // top-level "firstname lastname"
-          const [ firstName, lastName ] = this.splitOnce(parts[0], marker.space, true)
-          if (lastName) {
-            parsed = { firstName, lastName }
-          }
-          else {
-            parsed = { lastName: firstName }
-          }
-        }
-        break
-
-      case 2: // lastname, firstname
-        parsed = {
-          lastName: parts[0],
-          firstName: parts[1],
-        }
-        break
-
-      default: // lastname, suffix, firstname
-        parsed = {
-          lastName: parts[0],
-          suffix: parts[1],
-          firstName: parts.slice(2).join(marker.comma),
-        }
-    }
-
-    for (const [k, v] of Object.entries(parsed)) {
-      if (typeof v !== 'string') continue
-      parsed[k] = marker.clean(v).trim()
-    }
-
-    return parsed
-  }
-
-  restore(text: string, orig: string, preserve: TextRange[]): string {
-    for (const { start, end } of preserve) {
-      text = text.substring(0, start) + orig.substring(start, end) + text.substring(end)
-    }
-    return text
-  }
-
-  private convert_entry(node: bibtex.Entry) {
-    this.entry = {
-      key: node.id,
-      type: node.type,
-      fields: {},
-      creators: {},
-      crossref: {
-        inherited: [],
-        donated: [],
-      },
-    }
-    this.entries.push(this.entry)
-
-    // order these first for language-dependent sentence casing
-    const order = ['langid', 'hyphenation', 'language']
-    node.fields.sort((a, b) => {
-      const ia = order.indexOf(a.name)
-      const ib = order.indexOf(b.name)
-      if (ia === -1 && ib === -1) return a.name.localeCompare(b.name) // doesn't matter really
-      if (ia === -1) return 1
-      if (ib === -1) return -1
-      return ia - ib
-    })
-
-    let sentenceCase = !!(this.options.sentenceCase as string[]).length // if sentenceCase is empty, no sentence casing
-    for (const field of node.fields) {
-      if (field.kind !== 'Field') return this.error(new ParserError(`Expected Field, got ${field.kind}`, node))
-
-      this.startCleaning(field.name)
-
-      /*
-      if (this.options.raw && this.fieldType !== 'creator') {
-        this.entry.fields[field.name] = [ field.value.map(v => v.source).join('') ]
-        continue
-      }
-      */
-
-      this.field = {
-        name: field.name,
-        text: '',
-        level: 0,
-        words: {
-          upper: 0,
-          lower: 0,
-          other: 0,
-        },
-        preserveRanges: (sentenceCase && fields.title.includes(field.name)) ? [] : null,
-        html: this.options.htmlFields.includes(field.name),
       }
 
-      this.entry.fields[this.field.name] = this.entry.fields[this.field.name] || []
+      nodes.push(...compacted)
+    }, { test: Array.isArray, includeArrays: true })
 
-      // special case for 'title = 2020'
-      if ((field.value as any).kind === 'Number') {
-        this.entry.fields[this.field.name].push((field.value as any).value as string)
-        this.field = null
-        continue
-      }
+    replaceNode(ast, (node, _info) => {
+      if (node.type !== 'macro') return
 
-      this.convert(field.value)
-      this.field.text = this.field.text.trim()
-      this.field.text = this.field.text.replace(/<\/([a-z])><\1>/g, '')
-      this.field.text = this.field.text.replace(/<([a-z])>(\s*)<\/\1>/g, '$1')
-      this.field.text = this.field.text.replace(/<p>[ \r\n]*(<li>|<\/ol>|<\/ul>)/g, '$1')
-      // this.field.text = this.field.text.replace(/\n*(<\/?blockquote>)\n*/g, '$1')
-      if (!this.field.text) continue
-
-      // disable sentenceCasing if not an english
-      switch (this.field.name) {
-        case 'langid':
-        case 'hyphenation':
-          sentenceCase = sentenceCase && (this.options.sentenceCase as string[]).includes(this.field.text.toLowerCase())
-          break
-
-        case 'language':
-          sentenceCase = sentenceCase && !!(this.field.text.toLowerCase().trim().split(/\s*,\s*/).find(lang => (this.options.sentenceCase as string[]).includes(lang)))
-          break
-      }
-
-      // "groups" is a jabref 3.8+ monstrosity
-      if (this.field.name.match(/^(keywords?|groups)$/)) {
-        for (let text of this.field.text.split(marker.comma)) {
-          text = text.trim()
-          if (text) this.entry.fields[this.field.name].push(text)
+      if (node.escapeToken && combining.tounicode[node.content]) {
+        let arg: Node
+        // no args, args of zero length, or first arg has no content
+        if (!node.args || node.args.length === 0 || node.args[0].content.length === 0) {
+          arg = { type: 'string', content: ' ', _renderInfo: {} }
         }
-      }
-      else if (this.cleaning.type === 'creator') {
-        if (!this.entry.creators[this.field.name]) this.entry.creators[this.field.name] = []
-
-        // {M. Halle, J. Bresnan, and G. Miller}
-        if (this.field.text.includes(`${marker.comma}${marker.and}`)) { //
-          this.field.text = this.field.text.replace(new RegExp(`${marker.comma}${marker.and}`, 'g'), marker.and).replace(new RegExp(marker.comma), marker.and)
-        }
-
-        for (const creator of this.field.text.split(marker.and)) {
-          this.entry.fields[this.field.name].push(marker.clean(creator))
-          this.entry.creators[this.field.name].push(this.parseName(creator))
-        }
-      }
-      else if (fields.unabbrev.includes(field.name)) { // doesn't get sentence casing anyhow TODO: booktitle does!
-        this.entry.fields[this.field.name].push(this.options.unabbreviate[this.field.text] || this.field.text)
-      }
-      else {
-        if (this.field.preserveRanges) {
-          const allCaps = this.field.text.match(/\s/) && this.field.words.upper && !this.field.words.lower && !this.field.words.other
-          const seemsSentenceCased = Math.max(this.field.words.upper, this.field.words.lower) > (this.field.words.other + Math.min(this.field.words.upper, this.field.words.lower))
-          if (!allCaps && seemsSentenceCased && this.options.guessAlreadySentenceCased) {
-            this.preserve(null, null) // , 'mostly sentence cased already')
-          }
-          else {
-            if (allCaps) this.field.preserveRanges = []
-
-            const txt = this.field.text.replace(preserveCase.markup, markup => marker.markup.repeat(markup.length))
-
-            let match
-            preserveCase.sentenceStart.lastIndex = 0
-            while ((match = preserveCase.sentenceStart.exec(txt))) {
-              // exclude stuff like "U.S. Taxes"
-              // eslint doesn't grok these are numbers
-              // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-              if (match.index > 2 && txt.substr(0, match.index + 1).match(preserveCase.acronym)) continue
-
-              // eslint doesn't grok these are numbers
-              // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-              this.preserve(match.index, match.index + match[0].length)
-            }
-
-            preserveCase.quoted.lastIndex = 0
-            while ((match = preserveCase.quoted.exec(this.field.text) as RegExpMatchArray)) {
-              // eslint doesn't grok these are numbers
-              // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-              this.preserve(match.index, match.index + match[0].length)
-            }
-          }
-        }
-
-        this.entry.fields[this.field.name].push(this.convertToSentenceCase(this.field.text))
-      }
-    }
-
-
-    this.field = null
-  }
-
-  private convertToSentenceCase(text: string): string {
-    if (!this.field.preserveRanges) return text
-
-    const sentenceCased = this.restore(toSentenceCase(text, { preserveQuoted: this.options.sentenceCasePreserveQuoted || false }), text, this.field.preserveRanges)
-
-    if (text !== sentenceCased) this.entry.sentenceCased = true
-
-    return sentenceCased
-  }
-
-  private convert_number(node: bibtex.NumberValue) {
-    this.field.text += `${node.value}`
-  }
-
-  private convert_text(node: bibtex.TextValue) {
-    if (node.mode === 'verbatim') {
-      this.field.text += node.value.trim()
-      return
-    }
-
-    // heuristic to detect pre-sentencecased text
-    for (const word of node.value.split(/\b/)) {
-      if (word.match(preserveCase.allLower)) {
-        this.field.words.lower++
-      }
-      else if (word.match(preserveCase.allCaps)) {
-        this.field.words.upper++
-      }
-      else if (word.match(preserveCase.hasAlpha)) {
-        this.field.words.other++
-      }
-    }
-
-    if (this.field.level === 0 && this.cleaning.type === 'creator') {
-      this.field.text += node.value.replace(/\s+and\s+/ig, marker.and).replace(/\s*,\s*/g, marker.comma).replace(/\s+/g, marker.space)
-      return
-    }
-
-    if (this.field.level === 0 && this.field.name.match(/^(keywords?|groups)$/)) {
-      this.field.text += node.value.replace(/\s*[;,]\s*/g, marker.comma)
-      return
-    }
-
-    if (this.field.html) {
-      this.field.text += node.value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-    }
-    else if (this.field.preserveRanges) {
-      const words = node.value.split(/(\s+)/)
-      for (const word of words) {
-        const start = this.field.text.length
-        this.field.text += word
-        if (this.preserveCase(word)) this.preserve(start, this.field.text.length) // , `word: ${JSON.stringify(word)}`)
-      }
-    }
-    else {
-      this.field.text += node.value
-    }
-  }
-
-  private convert_environment(node: bibtex.Environment) {
-    const [ open, close ] = {
-      enumerate: [ '<ol>', '</ol>' ],
-      itemize: [ '<ul>', '</ul>' ],
-      quotation: [ '<blockquote>', '</blockquote>' ],
-    }[node.env] || [ '', '' ]
-
-    if (!open) this.error(new TeXError(`Unhandled \\${node.env}{...}`, node, this.chunk))
-
-    this.field.text += open
-    this.convert_block({...node, kind: 'Block', markup: {} })
-    this.field.text += close
-  }
-
-  private convert_href(node: bibtex.RegularCommand): void {
-    this.field.text += '<a href="'
-    this.convert(node.arguments.required[0])
-    this.field.text += '">'
-    this.convert(node.arguments.required[1] || node.arguments.required[0])
-    this.field.text += '</a>'
-  }
-
-  private convert_block(node: bibtex.Block | bibtex.Math): void {
-    const start = this.field.text.length
-
-    let prefix = ''
-    let postfix = ''
-
-    if (this.options.caseProtection !== 'strict' && this.cleaning.type === 'other') delete node.case
-    if (this.cleaning.type === 'creator' && node.case === 'protect') {
-      prefix += marker.literal
-      postfix = marker.literal + postfix
-      delete node.case
-    }
-
-    if (node.case === 'protect') {
-      prefix += this.options.markup.caseProtect.open
-      postfix = this.options.markup.caseProtect.close + postfix
-    }
-
-    if (node.kind === 'Block') {
-      for (const markup of Object.keys(node.markup)) {
-        if (!this.options.markup[markup]) {
-          this.error(new ParserError(`markup: ${markup}`, node))
+        else if (node.args.length !== 1 || node.args[0].content.length !== 1) {
           return
         }
+        else {
+          arg = node.args[0].content[0]
+        }
 
-        prefix += this.options.markup[markup].open
-        postfix = `${this.options.markup[markup].close}${postfix}`
+        if (arg.type === 'group') {
+          switch (arg.content.length) {
+            case 0:
+              arg = { type: 'string', content: ' ', _renderInfo: {} }
+              break
+            case 1:
+              arg = arg.content[0]
+              break
+            default:
+              return
+          }
+        }
+
+        switch (arg.type) {
+          case 'verbatim':
+          case 'string':
+            return { type: 'string', content: `${arg.content}${combining.tounicode[node.content]}`, _renderInfo: {} }
+          default:
+            return
+        }
       }
-    }
 
-    const end = {
-      withoutPrefix: this.field.text.length,
-      withPrefix: this.field.text.length + prefix.length,
-    }
-    this.field.text += prefix
-
-    this.field.level++
-    this.convert(node.value)
-    this.field.level--
-
-    const added = this.field.text.substring(end.withPrefix)
-    const added_text = added.replace(/<\/?[^>]+>/g, '')
-    const needsProtection = added_text && (
-      (this.options.caseProtection === 'strict' && added_text.match(preserveCase.isCaseSensitive))
-      ||
-      (this.options.caseProtection === 'as-needed' && added_text.split(/\s+/).find(word => this.needsProtection(word)))
-    )
-
-    if (!added) { // nothing was added, so remove prefix
-      this.field.text = this.field.text.substring(0, end.withoutPrefix)
-    }
-    else if (this.field.preserveRanges && prefix === this.options.markup.caseProtect.open && !needsProtection) {
-      // something was added that didn't actually need case protection
-      this.field.text = this.field.text.substring(0, end.withoutPrefix) + added
-      this.field.preserveRanges = this.field.preserveRanges.filter(range => range.start < end.withoutPrefix)
-    }
-    else {
-      this.field.text += postfix
-    }
-
-    this.field.text = this.field.text.replace(/<(sup|sub)>([^<>]+)<\/\1>$/i, (m, mode, chars) => {
-      const cmd = mode === 'sup' ? '^' : '_'
-      let script = ''
-      for (const char of chars) {
-        const unicode = l2u(`${cmd}${char}`) || l2u(`${cmd}{${char}}`)
-        script += unicode ? unicode : `<${mode}>${char}</${mode}>`
-      }
-      script = script.replace(new RegExp(`</${mode}><${mode}>`, 'g'), '')
-      return script.length < m.length ? script : m
+      let latex = `${node.escapeToken}${node.content}`
+      latex += (node.args || []).map(arg => printRaw(this.argtogroup(arg))).join('')
+      if (latex in latex2unicodemap) return { type: 'string', content: latex2unicode(latex, node), _renderInfo: {} }
+      // return null to delete
     })
 
-    if (node.case && this.field.preserveRanges) this.preserve(start, this.field.text.length) // , 'in convert-block ' + node.source || '<source>')
+    switch (mode) {
+      case 'creator':
+        entry.fields[field] = this.split(ast, /^and$/i, /(^& | & | &$)/).map(cr => this.parseCreator(cr)).filter(cr => Object.keys(cr).length)
+        break
+      case 'commalist':
+        entry.fields[field] = this.split(ast, /^[;,]$/, /(&)/).map(elt => this.stringify(elt, { mode: 'literal'}).trim())
+        break
+      case 'literallist':
+        entry.fields[field] = this.split(ast, /^and$/i, /(^& | & | &$)/).map(elt => this.stringify(elt, { mode: 'literal'}).trim())
+        break
+      default:
+        entry.fields[field] = this.stringField(field, this.stringify(ast, { mode }), sentenceCase, mode)
+        break
+    }
+
+    // recursively restores markup in string content. 'as string' is just here to pacify typescript
+    entry.fields[field] = JSON.parse(JSON.stringify(entry.fields[field], (k, v) => (typeof v === 'string' ? this.restoreMarkup(v) : v) as string))
+  }
+
+  private reset(options: Options = {}) {
+    const sentenceCase: Options['sentenceCase'] = {
+      langids : English,
+      guess: true,
+      preserveQuoted: true,
+      ...(options.sentenceCase || {}),
+    }
+
+    this.options = {
+      caseProtection: 'as-needed',
+      unabbreviations: true,
+      applyCrossRef: options.applyCrossRef ?? true,
+      fieldMode: {},
+
+      ...options,
+
+      sentenceCase,
+    }
+    if (this.options.caseProtection === true) this.options.caseProtection = 'as-needed'
+
+    if (typeof this.options.sentenceCase.langids === 'boolean') this.options.sentenceCase.langids = this.options.sentenceCase.langids ? English : []
+    this.options.sentenceCase.langids = this.options.sentenceCase.langids.map(langid => langid.toLowerCase())
+
+    if (typeof this.options.unabbreviations === 'boolean') this.options.unabbreviations = this.options.unabbreviations ? unabbreviations : {}
+    const unabbr: Record<string, string> = {}
+    for (const abbr in this.options.unabbreviations) { // eslint-disable-line guard-for-in
+      unabbr[abbr.toUpperCase()] = this.options.unabbreviations[abbr]
+    }
+    this.options.unabbreviations = unabbr
+
+    this.fieldMode = Object.entries(FieldMode).reduce((acc: typeof FieldMode, [mode, test]: [string, (RegExp | string)[]]) => {
+      const strings = test.filter(fieldname_or_regex => typeof fieldname_or_regex === 'string' && !this.options.fieldMode[fieldname_or_regex])
+      const regexes = test.filter(fieldname_or_regex => typeof fieldname_or_regex !== 'string')
+      acc[mode] = [...strings, ...regexes]
+      return acc
+    }, <typeof FieldMode>{})
+    for (const [field, mode] of Object.entries(this.options.fieldMode)) {
+      this.fieldMode[mode].unshift(field)
+    }
+
+    if (!this.options.removeOuterBraces) {
+      this.options.removeOuterBraces = <string[]>[
+        ...FieldAction.removeOuterBraces,
+        ...this.fieldMode.title,
+        ...this.fieldMode.verbatim,
+      ].filter(field => typeof field === 'string')
+    }
+
+    this.fallback = options.unsupported === 'ignore' ? ((_node: Node, _tex: string): string => '') : options.unsupported
+
+    this.bib = {
+      errors: [],
+      entries: [],
+      comments: [],
+      strings: {},
+      preamble: [],
+      jabref: null,
+    }
+  }
+
+  private reparse(entry: bibtex.Entry) {
+    let langid = (entry.fields.langid || entry.fields.hyphenation || '').toLowerCase()
+    if (!langid && this.options.sentenceCase.language && entry.fields.language) langid = entry.fields.language.toLowerCase()
+    const sentenceCase = (<string[]> this.options.sentenceCase.langids).includes(langid)
+
+    this.current = entry
+    let keywords: string[] = [] // OMG #783
+    try {
+      for (const [field, value] of Object.entries(entry.fields)) {
+        if (!value.trim()) {
+          delete entry.fields[field]
+          continue
+        }
+
+        this.field(entry, field, value, sentenceCase)
+
+        if (field.match(/^keywords\[\d+\]$/)) {
+          keywords = [ ...keywords, entry.fields[field] ]
+          delete entry.fields[field]
+        }
+
+        if (typeof entry.fields[field] === 'string') entry.fields[field] = entry.fields[field].trim()
+      }
+
+      if (keywords.length) entry.fields.keywords = [ ...(new Set([ ...(entry.fields.keywords || []), ...keywords ])) ].sort() as unknown as string
+
+      this.bib.entries.push(<Entry>entry)
+    }
+    catch (err) {
+      this.bib.errors.push({ error: `${err.message}\n${entry.input}`, input: entry.input })
+    }
+  }
+
+  private content(tex: string) {
+    const entry: Entry = { key: '', type: '', fields: {} }
+    this.field(entry, 'tex', tex, false)
+    return <string>entry.fields.tex
+  }
+
+  private prep(base: bibtex.Bibliography) {
+    for (const preamble of base.preambles) {
+      try {
+        this.content(preamble)
+      }
+      catch (err) {
+      }
+    }
+    for (const [k, v] of Object.entries(base.strings)) {
+      this.bib.strings[k] = this.content(v)
+    }
+  }
+
+  private finalize(base: bibtex.Bibliography) {
+    if (this.options.applyCrossRef) {
+      const entries: Partial<Record<string, Entry>> = {}
+      for (const entry of this.bib.entries) {
+        if (entry.key) entries[entry.key.toUpperCase()] = entry
+      }
+
+      const order: string[] = []
+      for (const entry of this.bib.entries) {
+        if (!entry.key || typeof entry.fields.crossref !== 'string') continue
+
+        const crossref = entry.fields.crossref.toUpperCase()
+        if (!entries[crossref]) continue
+
+        const key = entry.key.toUpperCase()
+        if (!order.includes(crossref)) order.unshift(crossref)
+        if (!order.includes(key)) order.push(key)
+      }
+
+      for (const key of order) {
+        const child = entries[key.toUpperCase()]
+        const parent = entries[(<string>child.fields.crossref)?.toUpperCase()]
+        if (!parent) continue
+
+        for (const mappings of [CrossRef[child.type], CrossRef['*']].filter(m => m)) {
+          for (const mapping of [mappings[parent.type], mappings['*']].filter(m => m)) {
+            for (const [childfield, parentfield] of Object.entries(<Record<string, string>> mapping)) {
+              if (!child.fields[childfield] && parent.fields[parentfield]) child.fields[childfield] = parent.fields[parentfield]
+            }
+
+            for (const field of <string[]>(allowed[child.type] || [])) {
+              if (!child.fields[field] && parent.fields[field]) child.fields[field] = parent.fields[field]
+            }
+          }
+        }
+      }
+    }
+
+    const { comments, jabref } = JabRef.parse(base.comments)
+    this.bib.comments = comments
+    this.bib.jabref = jabref
+
+    this.bib.preamble = base.preambles
+    this.bib.errors = [...base.errors, ...this.bib.errors]
+  }
+
+  public parse(input: string, options: Options = {}): Bibliography {
+    this.reset(options)
+
+    const base = bibtex.parse(input)
+
+    this.prep(base)
+
+    for (const entry of base.entries) {
+      this.reparse(entry)
+    }
+
+    this.finalize(base)
+    return this.bib
+  }
+
+  public async parseAsync(input: string, options: Options = {}): Promise<Bibliography> {
+    this.reset(options)
+
+    const base = await bibtex.promises.parse(input)
+
+    this.prep(base)
+
+    for await (const entry of asyncGenerator(base.entries)) {
+      this.reparse(entry)
+    }
+
+    this.finalize(base)
+    return this.bib
   }
 }
 
-/**
- * parse bibtex. This will try to convert TeX commands into unicode equivalents, and apply `@string` expansion
- */
-export function parse(input: string, options: ParserOptions = {}): Bibliography {
-  const parser = new Parser(options)
-  return parser.parse(input)
+export function parse(input: string, options: Options = {}): Bibliography {
+  const parser = new BibTeXParser
+  return parser.parse(input, options)
 }
 
-export function ast(input: string, options: ParserOptions = {}, clean = true): Node[] {
-  const parser = new Parser(options)
-  return parser.ast(input, clean)
+export async function parseAsync(input: string, options: Options = {}): Promise<Bibliography> {
+  const parser = new BibTeXParser
+  return await parser.parseAsync(input, options)
 }
-
-export const promises = {
-  async parse(input: string, options: ParserOptions = {}): Promise<Bibliography> { // eslint-disable-line prefer-arrow/prefer-arrow-functions
-    const parser = new Parser(options)
-    return await parser.parseAsync(input)
-  },
-}
-
-export { chunker }
-export { jabref }
