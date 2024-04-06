@@ -7,6 +7,7 @@ import { printRaw } from '@unified-latex/unified-latex-util-print-raw'
 import { latex2unicode as latex2unicodemap, combining } from 'unicode2latex'
 import * as bibtex from './verbatim'
 import * as JabRef from './jabref'
+export { JabRefMetadata } from './jabref'
 export { toSentenceCase } from './sentence-case'
 import { toSentenceCase, guessSentenceCased, tokenize } from './sentence-case'
 
