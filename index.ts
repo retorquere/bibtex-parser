@@ -174,7 +174,7 @@ export interface Options {
   applyCrossRef?: boolean
 }
 
-interface Creator {
+export interface Creator {
   name?: string
   lastName?: string
   firstName?: string
@@ -185,7 +185,7 @@ interface Creator {
   juniorcomma?: boolean
 }
 
-interface Entry {
+export interface Entry {
   type: string
   key: string
   fields: {
