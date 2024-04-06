@@ -86,6 +86,7 @@ for path in Path('abbreviations').rglob('*.json'):
       unabbr[abbr] = full
 
 fixups = {
+  "PPPJ": "Principles and Practice of Programming in Java",
   "A. U. U. ST. GE.": "Acta Universitatis Upsaliensis : Studia Germanistica Upsaliensia",
   "AAPG MEMOIR.": "AAPG Memoirs",
   "ACT. ACAD. AB.": "Acta Academiae Aboensis : Ser B Math Et Phys",
@@ -197,6 +198,13 @@ fixups = {
 for abbr, full in fixups.items():
   unabbr[abbr] = full
   unabbr[abbr.replace('.', '')] = full
+
+for abbr, full in list(unabbr.items()):
+  unabbr[abbr] = full.replace('Ieee ', 'IEEE ').replace('Ieee/', 'IEEE/').replace('Ieee-', 'IEEE-').replace(' Ieee', ' IEEE')
+unabbr.pop('ELECTRONICS', None)
+unabbr.pop('ELECTRONICS.', None)
+unabbr.pop('SCIENCE', None)
+unabbr.pop('SMALL', None)
 
 with open('unabbrev.json', 'w') as f:
   json.dump(unabbr, f, indent='  ', sort_keys=True)
