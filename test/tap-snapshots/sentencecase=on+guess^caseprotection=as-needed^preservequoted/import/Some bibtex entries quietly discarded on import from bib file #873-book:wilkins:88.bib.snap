@@ -20,19 +20,30 @@ Object {
         "publisher": Array [
           "KAUFMANN",
         ],
-        "title": Array [
-          "Practical planning",
-        ],
-        "year": Array [
-          "1988",
-        ],
+        "title": "Practical planning",
+        "year": 1988,
       },
+      "input": String(
+        @book(Wilkins:88,
+        author\\t=\\t{David Wilkins},
+        title\\t=\\t"Practical Planning",
+        publisher=\\tKAUFMANN,
+        year\\t=\\t{1988} 
+        )
+      ),
       "key": "Wilkins:88",
       "type": "book",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"KAUFMANN\\"",
+    Object {
+      "error": "Unresolved @string reference \\"KAUFMANN\\"",
+      "input": "KAUFMANN",
+      "location": Object {
+        "column": 20,
+        "line": 4,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

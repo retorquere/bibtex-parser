@@ -13,28 +13,36 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "literal": "MCDERMOTT",
+            "name": "MCDERMOTT",
           },
         ],
-        "journal": Array [
-          "Cognitive Science",
-        ],
-        "pages": Array [
-          "277–282",
-        ],
-        "title": Array [
-          "Tarskian semantics, or no notation without denotation",
-        ],
-        "year": Array [
-          "1978",
-        ],
+        "journal": "Cognitive Science",
+        "pages": "277–282",
+        "title": "Tarskian semantics, or no notation without denotation",
+        "year": 1978,
       },
+      "input": String(
+        @article(McDermott:78a,
+        \\tauthor =\\tMCDERMOTT,
+        \\tyear =\\t\\t{1978},
+        \\tjournal =\\t{Cognitive Science},
+        \\tpages =\\t\\t{277--282},
+        \\ttitle =\\t\\t{Tarskian semantics, or no notation without denotation}
+        )
+      ),
       "key": "McDermott:78a",
       "type": "article",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"MCDERMOTT\\"",
+    Object {
+      "error": "Unresolved @string reference \\"MCDERMOTT\\"",
+      "input": "MCDERMOTT",
+      "location": Object {
+        "column": 20,
+        "line": 2,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

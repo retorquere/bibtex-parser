@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "545 Technology Square, Cambridge, MA",
-        ],
+        "address": "545 Technology Square, Cambridge, MA",
         "author": Array [
           Object {
             "firstName": "Tze-Yun",
@@ -23,19 +21,23 @@ Object {
         "institution": Array [
           "MIT Laboratory for Computer Science",
         ],
-        "month": Array [
-          "June",
-        ],
-        "number": Array [
-          "MIT/LCS/TR–504",
-        ],
-        "title": Array [
-          "Knowledge representation for supporting decision model formulation in medicine",
-        ],
-        "year": Array [
-          "1991",
-        ],
+        "month": "June",
+        "number": "MIT/LCS/TR–504",
+        "title": "Knowledge representation for supporting decision model formulation in medicine",
+        "year": 1991,
       },
+      "input": String(
+        @TECHREPORT{Leong:91,
+        \\tAUTHOR = {Tze-Yun Leong},
+        \\tTITLE = {Knowledge Representation for Supporting Decision Model
+        \\t\\t Formulation in Medicine},
+        \\tINSTITUTION = {MIT Laboratory for Computer Science},
+        \\tYEAR = {1991},
+        \\tNUMBER = {MIT/LCS/TR--504},
+        \\tADDRESS = {545 Technology Square, Cambridge, MA},
+        \\tMONTH = {June}
+        }
+      ),
       "key": "Leong:91",
       "type": "techreport",
     },

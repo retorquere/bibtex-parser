@@ -21,31 +21,36 @@ Object {
             "lastName": "Furst",
           },
         ],
-        "journal": Array [
-          "AIJ",
-        ],
-        "number": Array [
-          "1–2",
-        ],
-        "pages": Array [
-          "281–300",
-        ],
-        "title": Array [
-          "Fast Planning through planning graph analysis",
-        ],
-        "volume": Array [
-          "90",
-        ],
-        "year": Array [
-          "1997",
-        ],
+        "journal": "AIJ",
+        "number": "1–2",
+        "pages": "281–300",
+        "title": "Fast Planning through planning graph analysis",
+        "volume": "90",
+        "year": 1997,
       },
+      "input": String(
+        @article{blum97,
+            Author = {Blum, A. and Furst, M.},
+            Journal = AIJ,
+            Number = {1--2},
+            Pages = {281--300},
+            Title = {Fast Planning through planning graph analysis},
+            Volume = {90},
+            Year = {1997}}
+      ),
       "key": "blum97",
       "type": "article",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"AIJ\\"",
+    Object {
+      "error": "Unresolved @string reference \\"AIJ\\"",
+      "input": "AIJ",
+      "location": Object {
+        "column": 18,
+        "line": 3,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

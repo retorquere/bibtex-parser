@@ -29,22 +29,24 @@ Object {
             "lastName": "Pereira",
           },
         ],
-        "journal": Array [
-          "Artificial Intelligence",
-        ],
-        "pages": Array [
-          "173-243",
-        ],
-        "title": Array [
-          "TEAM: an experiment in the design of transportable natural-language interfaces",
-        ],
-        "volume": Array [
-          "32",
-        ],
-        "year": Array [
-          "1987",
-        ],
+        "journal": "Artificial Intelligence",
+        "pages": "173-243",
+        "title": "TEAM: an experiment in the design of transportable natural-language interfaces",
+        "volume": "32",
+        "year": 1987,
       },
+      "input": String(
+        @article(Grosz:87,
+        \\tauthor =\\t{Barbara J. Grosz and Douglas E. Appelt and 
+        \\t\\t\\t Paul A. Martins and Fernando C.N. Pereira},
+        \\tyear =\\t\\t{1987},
+        \\tjournal =\\t{Artificial Intelligence},
+        \\tpages =\\t\\t{173-243},
+        \\ttitle =\\t\\t{TEAM: an experiment in the design of 
+        \\t\\t\\t transportable natural-language interfaces},
+        \\tvolume =\\t{32}
+        )
+      ),
       "key": "Grosz:87",
       "type": "article",
     },

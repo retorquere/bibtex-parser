@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "acontentnote": Array [
-          "Abstract: Closed-world inference-an essential component of many planning algorithms-is the process of determining that a logical sentence is false based on its absence from a knowledge base, or the inability to derive it. We describe a novel method for closed-world inference and update over the first-order theories of action used by planning algorithms such as NONLIN, TWEAK, and UCPOP. We show the method to be sound and efficient, but incomplete. In our experiments, closed-world inference consistently averaged about 2 milliseconds while updates averaged approximately 1.2 milliseconds. Furthermore, we demonstrate that incompleteness is nonproblematic in practice, since our mechanism makes over 99incorporated our method into the XII planner, which supports our Internet Softbot (software robot). The technique cut the number of actions executed by the Softbot by a factor of one hundred, and resulted in a corresponding speedup to XII.",
-        ],
+        "acontentnote": "Abstract: Closed-world inference-an essential component of many planning algorithms-is the process of determining that a logical sentence is false based on its absence from a knowledge base, or the inability to derive it. We describe a novel method for closed-world inference and update over the first-order theories of action used by planning algorithms such as NONLIN, TWEAK, and UCPOP. We show the method to be sound and efficient, but incomplete. In our experiments, closed-world inference consistently averaged about 2 milliseconds while updates averaged approximately 1.2 milliseconds. Furthermore, we demonstrate that incompleteness is nonproblematic in practice, since our mechanism makes over 99incorporated our method into the XII planner, which supports our Internet Softbot (software robot). The technique cut the number of actions executed by the Softbot by a factor of one hundred, and resulted in a corresponding speedup to XII.",
         "author": Array [
           Object {
             "firstName": "Oren",
@@ -28,34 +26,59 @@ Object {
             "lastName": "Weld",
           },
         ],
-        "journal": Array [
-          "AIJ",
-        ],
-        "number": Array [
-          "1–2",
-        ],
-        "pages": Array [
-          "113–148",
-        ],
-        "title": Array [
-          "Sound and efficient closed-world reasoning for planning",
-        ],
-        "topic": Array [
-          "planning;circumscription;closed-world-reasoning;",
-        ],
-        "volume": Array [
-          "89",
-        ],
-        "year": Array [
-          "1997",
-        ],
+        "journal": "AIJ",
+        "number": "1–2",
+        "pages": "113–148",
+        "title": "Sound and efficient closed-world reasoning for planning",
+        "topic": "planning;circumscription;closed-world-reasoning;",
+        "volume": "89",
+        "year": 1997,
       },
+      "input": String(
+        @Article{Etzioni-etal:1997a,
+          author =\\t"Oren Etzioni and Keith Golden and Daniel S. Weld",
+          title =\\t"Sound and Efficient Closed-World Reasoning for
+        \\t\\t Planning",
+          journal =\\tAIJ,
+          year = \\t"1997",
+          volume =\\t"89",
+          number =\\t"1--2",
+          pages =\\t"113--148",
+          acontentnote = "Abstract: Closed-world inference-an essential
+        \\t\\t component of many planning algorithms-is the process of
+        \\t\\t determining that a logical sentence is false based on
+        \\t\\t its absence from a knowledge base, or the inability to
+        \\t\\t derive it. We describe a novel method for closed-world
+        \\t\\t inference and update over the first-order theories of
+        \\t\\t action used by planning algorithms such as NONLIN,
+        \\t\\t TWEAK, and UCPOP. We show the method to be sound and
+        \\t\\t efficient, but incomplete. In our experiments,
+        \\t\\t closed-world inference consistently averaged about 2
+        \\t\\t milliseconds while updates averaged approximately 1.2
+        \\t\\t milliseconds. Furthermore, we demonstrate that
+        \\t\\t incompleteness is nonproblematic in practice, since our
+        \\t\\t mechanism makes over 99% of the desired inferences. We
+        \\t\\t incorporated our method into the XII planner, which
+        \\t\\t supports our Internet Softbot (software robot). The
+        \\t\\t technique cut the number of actions executed by the
+        \\t\\t Softbot by a factor of one hundred, and resulted in a
+        \\t\\t corresponding speedup to XII.",
+          topic =\\t"planning;circumscription;closed-world-reasoning;",
+        }
+      ),
       "key": "Etzioni-etal:1997a",
       "type": "article",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"AIJ\\"",
+    Object {
+      "error": "Unresolved @string reference \\"AIJ\\"",
+      "input": "AIJ",
+      "location": Object {
+        "column": 16,
+        "line": 5,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

@@ -25,13 +25,17 @@ Object {
             "lastName": "Drummond",
           },
         ],
-        "crossref": Array [
-          "ijcai91",
-        ],
-        "title": Array [
-          "Commitment strategies in planning: a comparative analysis",
-        ],
+        "crossref": "ijcai91",
+        "title": "Commitment strategies in planning: a comparative analysis",
       },
+      "input": String(
+        @INPROCEEDINGS(Minton:91,
+        \\tAUTHOR = {Steven Minton and John L. Bresina and Mark Drummond},
+        \\tTITLE = {Commitment Strategies in Planning:
+        \\t\\t A Comparative Analysis},
+        \\tCROSSREF = {ijcai91}
+        )
+      ),
       "key": "Minton:91",
       "type": "inproceedings",
     },

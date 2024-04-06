@@ -27,28 +27,33 @@ Object {
             "lastName": "Wolverton",
           },
         ],
-        "booktitle": Array [
-          "Case-based reasoning integrations: Papers from the 1998 AAAI workshop",
-        ],
-        "number": Array [
-          "WS-98-15",
-        ],
+        "booktitle": "Case-based reasoning integrations: Papers from the 1998 AAAI workshop",
+        "number": "WS-98-15",
         "organization": Array [
           "AAAI",
         ],
         "publisher": Array [
           "AAAI Press",
         ],
-        "series": Array [
-          "AAAI technical report",
-        ],
-        "title": Array [
-          "Hybrid planning: An approach to integrating generative and case-based planning",
-        ],
-        "year": Array [
-          "1998",
-        ],
+        "series": "AAAI technical report",
+        "title": "Hybrid planning: An approach to integrating generative and case-based planning",
+        "year": 1998,
       },
+      "input": String(
+        @InProceedings{desJardins:98,
+          author =\\t {Marie desJardins and Anthony Francis and Michael
+                          Wolverton},
+          title =\\t {Hybrid Planning: An Approach to Integrating
+                          Generative and Case-based Planning},
+          booktitle =\\t {Case-Based Reasoning Integrations: Papers from the
+                          1998 AAAI Workshop},
+          year =\\t 1998,
+          number =\\t {WS-98-15},
+          series =\\t {AAAI Technical Report},
+          organization = {AAAI},
+          publisher =\\t {AAAI Press}
+        }
+      ),
       "key": "desJardins:98",
       "type": "inproceedings",
     },

@@ -25,19 +25,20 @@ Object {
             "lastName": "Maguire",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the ACM symposium on lisp and functional programming",
-        ],
-        "pages": Array [
-          "88-97",
-        ],
-        "title": Array [
-          "PSL: a portable LISP system",
-        ],
-        "year": Array [
-          "1982",
-        ],
+        "booktitle": "Proceedings of the ACM symposium on lisp and functional programming",
+        "pages": "88-97",
+        "title": "PSL: a portable LISP system",
+        "year": 1982,
       },
+      "input": String(
+        @misc(GrissETAL:1982,
+        \\tauthor =\\t{Martin L. Griss and Eric Benson and Gerald Q. Maguire},
+        \\tbooktitle =\\t{Proceedings of the ACM Symposium on Lisp and Functional Programming},
+        \\tyear =\\t\\t{1982},
+        \\tpages =\\t\\t{88-97},
+        \\ttitle =\\t\\t{PSL: A portable LISP system}
+        )
+      ),
       "key": "GrissETAL:1982",
       "type": "misc",
     },

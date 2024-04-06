@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "annote": Array [
-          "Relevant to the issue of creating new entities when planning.",
-        ],
+        "annote": "Relevant to the issue of creating new entities when planning.",
         "author": Array [
           Object {
             "firstName": "R.",
@@ -24,19 +22,23 @@ Object {
             "lastName": "Yoshikawa",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the 16th conference on very large databases, morgan kaufman pubs. (Los altos CA), brisbane",
-        ],
-        "month": Array [
-          "8",
-        ],
-        "title": Array [
-          "ILOG: Declarative creation and manipulation of object-identifiers",
-        ],
-        "year": Array [
-          "1990",
-        ],
+        "booktitle": "Proceedings of the 16th conference on very large databases, morgan kaufman pubs. (Los altos CA), brisbane",
+        "month": 8,
+        "title": "ILOG: Declarative creation and manipulation of object-identifiers",
+        "year": 1990,
       },
+      "input": String(
+        @InProceedings{HulYos90,
+          author =       "R. Hull and M. Yoshikawa",
+          title =        "{ILOG}: Declarative Creation and Manipulation of
+                          Object-Identifiers",
+          booktitle =    "Proceedings of the 16th Conference on Very Large Databases,
+                          Morgan Kaufman pubs. (Los Altos CA), Brisbane",
+          year =         1990,
+          month =        aug,
+          annote =       {Relevant to the issue of creating new entities when planning.},
+        }
+      ),
       "key": "HulYos90",
       "type": "inproceedings",
     },

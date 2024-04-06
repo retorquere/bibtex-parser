@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "annote": Array [
-          "Compares the performance of best-first search with depth-first branch-and-bound, iterative-deepening and recursive best-first search.",
-        ],
+        "annote": "Compares the performance of best-first search with depth-first branch-and-bound, iterative-deepening and recursive best-first search.",
         "author": Array [
           Object {
             "firstName": "Weixiong",
@@ -24,31 +22,40 @@ Object {
             "lastName": "Korf",
           },
         ],
-        "journal": Array [
-          "AIJ",
-        ],
-        "number": Array [
-          "2",
-        ],
-        "pages": Array [
-          "241–292",
-        ],
-        "title": Array [
-          "Performance of linear-space search algorithms",
-        ],
-        "volume": Array [
-          "79",
-        ],
-        "year": Array [
-          "1995",
-        ],
+        "journal": "AIJ",
+        "number": "2",
+        "pages": "241–292",
+        "title": "Performance of linear-space search algorithms",
+        "volume": "79",
+        "year": 1995,
       },
+      "input": String(
+        @ARTICLE{Zhang:LinearSpace,
+        \\tAUTHOR = {Weixiong Zhang and Richard Korf},
+        \\tTITLE = "Performance of linear-space search algorithms",
+        \\tJOURNAL = AIJ,
+        \\tYEAR = {1995},
+        \\tVOLUME = {79},
+        \\tNUMBER = {2},
+        \\tPAGES = {241--292},
+        \\tANNOTE = {Compares the performance of best-first search with 
+        \\t\\t  depth-first branch-and-bound, iterative-deepening and 
+        \\t\\t  recursive best-first search.}
+        }
+      ),
       "key": "Zhang:LinearSpace",
       "type": "article",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"AIJ\\"",
+    Object {
+      "error": "Unresolved @string reference \\"AIJ\\"",
+      "input": "AIJ",
+      "location": Object {
+        "column": 15,
+        "line": 4,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

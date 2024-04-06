@@ -21,22 +21,27 @@ Object {
             "lastName": "Dearden",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the thirteenth international conference on machine learning",
-        ],
+        "booktitle": "Proceedings of the thirteenth international conference on machine learning",
         "editor": Array [
           Object {
             "firstName": "Lorenza",
             "lastName": "Saitta",
           },
         ],
-        "title": Array [
-          "Approximating value trees in structured dynamic programming",
-        ],
-        "year": Array [
-          "1996",
-        ],
+        "title": "Approximating value trees in structured dynamic programming",
+        "year": 1996,
       },
+      "input": String(
+        @inproceedings{Boutilier96,
+        \\tAUTHOR ={Craig Boutilier and Richard Dearden},
+        \\tTITLE = {Approximating Value Trees in Structured Dynamic
+                          Programming},
+        \\tbooktitle= {Proceedings of the Thirteenth International
+        \\t\\tConference on Machine Learning},  
+        \\tYEAR = {1996},
+        \\teditor = {Lorenza Saitta}
+        }
+      ),
       "key": "Boutilier96",
       "type": "inproceedings",
     },

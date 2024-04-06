@@ -17,22 +17,22 @@ Object {
             "lastName": "Carbonell",
           },
         ],
-        "journal": Array [
-          "Proc. AAAI",
-        ],
-        "pages": Array [
-          "168-171",
-        ],
-        "title": Array [
-          "Experiential learning in analogical problem solving",
-        ],
-        "volume": Array [
-          "2",
-        ],
-        "year": Array [
-          "1982",
-        ],
+        "journal": "Proc. AAAI",
+        "pages": "168-171",
+        "title": "Experiential learning in analogical problem solving",
+        "volume": "2",
+        "year": 1982,
       },
+      "input": String(
+        @article(Carbonell:1982,
+        \\tauthor =\\t{Jaime Carbonell},
+        \\tyear =\\t\\t{1982},
+        \\tjournal =\\t{Proc. AAAI},
+        \\tpages =\\t\\t{168-171},
+        \\ttitle =\\t\\t"Experiential learning in analogical problem solving",
+        \\tvolume =\\t{2}
+        )
+      ),
       "key": "Carbonell:1982",
       "type": "article",
     },

@@ -13,28 +13,33 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "annote": Array [
-          "A paper about how to use a RAPS or PRS-style language to code up a dialogue agent.",
-        ],
+        "annote": "A paper about how to use a RAPS or PRS-style language to code up a dialogue agent.",
         "author": Array [
           Object {
             "firstName": "Reva",
             "lastName": "Freedman",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the thirteenth florida artificial intelligence research symposium (FLAIRS00)",
-        ],
+        "booktitle": "Proceedings of the thirteenth florida artificial intelligence research symposium (FLAIRS00)",
         "location": Array [
           "Orlando, FL",
         ],
-        "title": Array [
-          "Using a reactive planner as the basis for a dialogue agent",
-        ],
-        "year": Array [
-          "2000",
-        ],
+        "title": "Using a reactive planner as the basis for a dialogue agent",
+        "year": 2000,
       },
+      "input": String(
+        @InProceedings{freedman00,
+          author =\\t {Reva Freedman},
+          title =\\t {Using a Reactive Planner as the Basis for a Dialogue
+                          Agent},
+          booktitle =\\t {Proceedings of the Thirteenth Florida Artificial
+                          Intelligence Research Symposium (FLAIRS00)},
+          year =\\t 2000,
+          location =\\t {Orlando, FL},
+          annote =\\t {A paper about how to use a RAPS or PRS-style
+                          language to code up a dialogue agent.}
+        }
+      ),
       "key": "freedman00",
       "type": "inproceedings",
     },

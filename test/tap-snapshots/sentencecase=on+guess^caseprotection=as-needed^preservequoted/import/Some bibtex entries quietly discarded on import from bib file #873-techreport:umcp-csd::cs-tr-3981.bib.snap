@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "abstract": Array [
-          "SHOP (Simple Hierarchical Ordered Planner) is a domain-independent HTN Planning system with the following characteristics. * SHOP plans for tasks in the same order that they will later be executed. This avoids some of the goal-interaction issues that arise in other HTN planners, thus making the planning algorithm relatively simple. * The planning algorithm is sound and complete over a large class of problems. * Since SHOP knows the complete world-state at each step of the planning process, it can use highly expressive domain representations. For example, it can do planning problems that require complex numeric computations. * In our tests, SHOP solved problems several orders of magnitude faster than Blackbox and TLplan. This occured even though SHOP is written in Lisp and the other planners are written in C. (Also cross-referenced as UMIACS-TR 99-04)",
-        ],
+        "abstract": "SHOP (Simple Hierarchical Ordered Planner) is a domain-independent HTN Planning system with the following characteristics. * SHOP plans for tasks in the same order that they will later be executed. This avoids some of the goal-interaction issues that arise in other HTN planners, thus making the planning algorithm relatively simple. * The planning algorithm is sound and complete over a large class of problems. * Since SHOP knows the complete world-state at each step of the planning process, it can use highly expressive domain representations. For example, it can do planning problems that require complex numeric computations. * In our tests, SHOP solved problems several orders of magnitude faster than Blackbox and TLplan. This occured even though SHOP is written in Lisp and the other planners are written in C. (Also cross-referenced as UMIACS-TR 99-04)",
         "author": Array [
           Object {
             "firstName": "Dana",
@@ -32,28 +30,46 @@ Object {
             "lastName": "Munoz-Avia",
           },
         ],
-        "bibdate": Array [
-          "March 17, 1999",
-        ],
+        "bibdate": "March 17, 1999",
         "institution": Array [
           "University of Maryland, College Park",
         ],
-        "month": Array [
-          "1",
-        ],
-        "number": Array [
-          "CS-TR-3981",
-        ],
-        "title": Array [
-          "SHOP: Simple hierarchical ordered planner",
-        ],
-        "type": Array [
-          "Technical Report",
-        ],
-        "year": Array [
-          "1999",
-        ],
+        "month": 1,
+        "number": "CS-TR-3981",
+        "title": "SHOP: Simple hierarchical ordered planner",
+        "type": "Technical Report",
+        "year": 1999,
       },
+      "input": String(
+        @TechReport{UMCP-CSD//CS-TR-3981,
+          year =         "1999",
+          type =         "Technical Report",
+          number =       "CS-TR-3981",
+          institution =  "University of Maryland, College Park",
+          title =        "{SHOP}: Simple Hierarchical Ordered Planner",
+          bibdate =      "March 17, 1999",
+          author =       "Dana Nau and Yue Cao and Amnon Lotem and Hector
+                         Munoz-Avia",
+          abstract =     "SHOP (Simple Hierarchical Ordered Planner) is a
+                         domain-independent HTN Planning system with the
+                         following characteristics. * SHOP plans for tasks in
+                         the same order that they will later be executed. This
+                         avoids some of the goal-interaction issues that arise
+                         in other HTN planners, thus making the planning
+                         algorithm relatively simple. * The planning algorithm
+                         is sound and complete over a large class of problems. *
+                         Since SHOP knows the complete world-state at each step
+                         of the planning process, it can use highly expressive
+                         domain representations. For example, it can do planning
+                         problems that require complex numeric computations. *
+                         In our tests, SHOP solved problems several orders of
+                         magnitude faster than Blackbox and TLplan. This occured
+                         even though SHOP is written in Lisp and the other
+                         planners are written in C. (Also cross-referenced as
+                         UMIACS-TR 99-04)",
+          month =        jan,
+        }
+      ),
       "key": "UMCP-CSD//CS-TR-3981",
       "type": "techreport",
     },

@@ -20,13 +20,17 @@ Object {
         "institution": Array [
           "University of British Columbia Department of Computer Science",
         ],
-        "title": Array [
-          "Anaphora in natural language understanding: a survey",
-        ],
-        "year": Array [
-          "May 1979",
-        ],
+        "title": "Anaphora in natural language understanding: a survey",
+        "year": "May 1979",
       },
+      "input": String(
+        @techreport(Hirst:79,
+        \\tauthor =\\t{Graeme Hirst},
+        \\tyear =\\t\\t{May 1979},
+        \\tinstitution =\\t{University of British Columbia Department of Computer Science},
+        \\ttitle =\\t\\t{Anaphora in Natural Language Understanding: A Survey}
+        )
+      ),
       "key": "Hirst:79",
       "type": "techreport",
     },

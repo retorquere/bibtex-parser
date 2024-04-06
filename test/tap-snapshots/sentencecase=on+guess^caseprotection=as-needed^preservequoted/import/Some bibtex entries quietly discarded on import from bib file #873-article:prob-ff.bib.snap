@@ -17,38 +17,45 @@ Object {
             "lastName": "Domshlak",
           },
           Object {
-            "firstName": "Jörg",
+            "firstName": "Jörg",
             "lastName": "Hoffmann",
           },
         ],
-        "journal": Array [
-          "JAIR",
-        ],
-        "number": Array [
-          "1",
-        ],
-        "pages": Array [
-          "565–620",
-        ],
+        "journal": "JAIR",
+        "number": "1",
+        "pages": "565–620",
         "publisher": Array [
           "AI Access Foundation",
         ],
-        "title": Array [
-          "Probabilistic planning via heuristic forward search and weighted model counting",
-        ],
-        "volume": Array [
-          "30",
-        ],
-        "year": Array [
-          "2007",
-        ],
+        "title": "Probabilistic planning via heuristic forward search and weighted model counting",
+        "volume": "30",
+        "year": 2007,
       },
+      "input": String(
+        @article{prob-ff,
+          title={{Probabilistic planning via heuristic forward search and weighted model counting}},
+          author={Carmel Domshlak and J\\\\"{o}rg Hoffmann},
+          journal=JAIR,
+          volume={30},
+          number={1},
+          pages={565--620},
+          year={2007},
+          publisher={AI Access Foundation}
+        }
+      ),
       "key": "prob-ff",
       "type": "article",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"JAIR\\"",
+    Object {
+      "error": "Unresolved @string reference \\"JAIR\\"",
+      "input": "JAIR",
+      "location": Object {
+        "column": 15,
+        "line": 4,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

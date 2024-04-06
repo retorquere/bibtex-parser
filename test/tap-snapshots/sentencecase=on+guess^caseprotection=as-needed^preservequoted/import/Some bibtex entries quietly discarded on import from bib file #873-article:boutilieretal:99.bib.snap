@@ -25,31 +25,38 @@ Object {
             "lastName": "Hanks",
           },
         ],
-        "journal": Array [
-          "JAIR",
-        ],
-        "month": Array [
-          "7",
-        ],
-        "pages": Array [
-          "1–94",
-        ],
-        "title": Array [
-          "Decision-theoretic planning: Structural assumptions and computational leverage",
-        ],
-        "volume": Array [
-          "11",
-        ],
-        "year": Array [
-          "1999",
-        ],
+        "journal": "JAIR",
+        "month": 7,
+        "pages": "1–94",
+        "title": "Decision-theoretic planning: Structural assumptions and computational leverage",
+        "volume": "11",
+        "year": 1999,
       },
+      "input": String(
+        @ARTICLE(BoutilierETAL:99,
+        \\tAUTHOR = {Craig Boutilier and Thomas Dean and Steve Hanks},
+        \\tTITLE = {Decision-Theoretic Planning: Structural Assumptions
+        \\t\\t and Computational Leverage},
+        \\tJOURNAL = JAIR,
+        \\tYEAR = {1999},
+        \\tVOLUME = {11},
+        \\tPAGES = {1--94},
+        \\tMONTH = jul
+        )
+      ),
       "key": "BoutilierETAL:99",
       "type": "article",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"JAIR\\"",
+    Object {
+      "error": "Unresolved @string reference \\"JAIR\\"",
+      "input": "JAIR",
+      "location": Object {
+        "column": 16,
+        "line": 5,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

@@ -13,25 +13,36 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "literal": "MCDERMOTT",
+            "name": "MCDERMOTT",
           },
         ],
         "institution": Array [
           "Yale University Department of Computer Science",
         ],
-        "title": Array [
-          "Duck reference manual",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "title": "Duck reference manual",
+        "year": 1983,
       },
+      "input": String(
+        @techreport(McDermott:83Duck,
+        \\tauthor =\\tMCDERMOTT,
+        \\tyear =\\t\\t{1983},
+        \\tinstitution =\\t{Yale University Department of Computer Science},
+        \\ttitle =\\t\\t{Duck Reference Manual}
+        )
+      ),
       "key": "McDermott:83Duck",
       "type": "techreport",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"MCDERMOTT\\"",
+    Object {
+      "error": "Unresolved @string reference \\"MCDERMOTT\\"",
+      "input": "MCDERMOTT",
+      "location": Object {
+        "column": 20,
+        "line": 2,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

@@ -11,18 +11,14 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Dordrecht",
-        ],
+        "address": "Dordrecht",
         "author": Array [
           Object {
             "firstName": "Richard",
             "lastName": "Montague",
           },
         ],
-        "booktitle": Array [
-          "Approaches to natural language",
-        ],
+        "booktitle": "Approaches to natural language",
         "editor": Array [
           Object {
             "firstName": "J.M.E. Moravcsik",
@@ -36,13 +32,20 @@ Object {
         "publisher": Array [
           "Reidel",
         ],
-        "title": Array [
-          "The proper treatment of quantification in ordinary English",
-        ],
-        "year": Array [
-          "1973",
-        ],
+        "title": "The proper treatment of quantification in ordinary English",
+        "year": 1973,
       },
+      "input": String(
+        @incollection(Montague:73,
+        \\tauthor =\\t{Richard Montague},
+        \\tbooktitle =\\t{Approaches to Natural Language},
+        \\taddress =\\t{Dordrecht},
+        \\tyear =\\t\\t{1973},
+        \\teditor =\\t{K.J.J. Hintikka, J.M.E. Moravcsik, and P.C. Suppes},
+        \\tpublisher =\\t{Reidel},
+        \\ttitle =\\t\\t{The proper treatment of quantification in ordinary English}
+        )
+      ),
       "key": "Montague:73",
       "type": "incollection",
     },

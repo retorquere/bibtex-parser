@@ -22,16 +22,18 @@ Object {
             "prefix": "van der",
           },
         ],
-        "crossref": Array [
-          "KR:92",
-        ],
-        "pages": Array [
-          "59–70",
-        ],
-        "title": Array [
-          "Reasoning about indefinite actions",
-        ],
+        "crossref": "KR:92",
+        "pages": "59–70",
+        "title": "Reasoning about indefinite actions",
       },
+      "input": String(
+        @INPROCEEDINGS(McCarty:92,
+        \\tAUTHOR = {L. Thorne McCarty and Ron van der Meyden},
+        \\tTITLE = "Reasoning about Indefinite Actions",
+        \\tCROSSREF = {KR:92},
+        \\tPAGES = {59--70}
+        )
+      ),
       "key": "McCarty:92",
       "type": "inproceedings",
     },

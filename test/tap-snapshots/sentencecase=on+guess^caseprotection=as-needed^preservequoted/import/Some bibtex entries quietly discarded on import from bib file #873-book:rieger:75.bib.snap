@@ -11,18 +11,14 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Amsterdam",
-        ],
+        "address": "Amsterdam",
         "author": Array [
           Object {
             "firstName": "Chuck",
             "lastName": "Rieger",
           },
         ],
-        "booktitle": Array [
-          "Conceptual information processing",
-        ],
+        "booktitle": "Conceptual information processing",
         "editor": Array [
           Object {
             "firstName": "R.C.",
@@ -32,13 +28,20 @@ Object {
         "publisher": Array [
           "North-Holland",
         ],
-        "title": Array [
-          "Conceptual memory",
-        ],
-        "year": Array [
-          "1975",
-        ],
+        "title": "Conceptual memory",
+        "year": 1975,
       },
+      "input": String(
+        @book(Rieger:75,
+        \\tauthor =\\t{Chuck Rieger},
+        \\tbooktitle =\\t{Conceptual Information Processing},
+        \\taddress =\\t{Amsterdam},
+        \\tyear =\\t\\t{1975},
+        \\teditor =\\t{R.C. Schank},
+        \\tpublisher =\\t{North-Holland},
+        \\ttitle =\\t\\t{Conceptual memory}
+        )
+      ),
       "key": "Rieger:75",
       "type": "book",
     },

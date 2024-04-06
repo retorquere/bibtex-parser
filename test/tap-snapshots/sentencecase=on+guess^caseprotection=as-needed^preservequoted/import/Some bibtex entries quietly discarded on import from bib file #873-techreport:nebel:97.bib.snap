@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Freiburg, Germany",
-        ],
+        "address": "Freiburg, Germany",
         "author": Array [
           Object {
             "firstName": "Bernhard",
@@ -29,21 +27,27 @@ Object {
           },
         ],
         "institution": Array [
-          "Albert-Ludwigs-Universität, Institut für Informatik",
+          "Albert-Ludwigs-Universität, Institut für Informatik",
         ],
-        "month": Array [
-          "4",
-        ],
-        "number": Array [
-          "89",
-        ],
-        "title": Array [
-          "Ignoring Irrelevant Facts and operators in plan generation",
-        ],
-        "year": Array [
-          "1997",
-        ],
+        "month": 4,
+        "number": "89",
+        "title": "Ignoring Irrelevant Facts and operators in plan generation",
+        "year": 1997,
       },
+      "input": String(
+        @TECHREPORT{Nebel:97,
+        \\tAUTHOR = {Bernhard Nebel and Yannis Dimopoulos and
+        \\t\\t  Jana Koehler},
+        \\tTITLE = {Ignoring Irrelevant Facts and operators in plan
+        \\t\\t generation},
+        \\tINSTITUTION = {Albert-Ludwigs-Universit\\\\"{a}t,
+        \\t\\t       Institut f\\\\"{u}r Informatik},
+        \\tYEAR = {1997},
+        \\tNUMBER = {89},
+        \\tADDRESS = {Freiburg, Germany},
+        \\tMONTH = apr
+        }
+      ),
       "key": "Nebel:97",
       "type": "techreport",
     },

@@ -22,13 +22,19 @@ Object {
         "institution": Array [
           "Artificial Intelligence Center,SRI International",
         ],
-        "title": Array [
-          "A prolog-like inference system for computing minimum-cost abductive explanations in natural-language interpretation",
-        ],
-        "year": Array [
-          "1988",
-        ],
+        "title": "A prolog-like inference system for computing minimum-cost abductive explanations in natural-language interpretation",
+        "year": 1988,
       },
+      "input": String(
+        @techreport(Stickel:88,
+        \\tauthor =\\t{Mark E. Stickel},
+        \\tyear =\\t\\t{1988},
+        \\tinstitution =\\t{Artificial Intelligence Center,SRI International},
+        \\ttitle =\\t\\t{A Prolog-like Inference System for Computing 
+        \\t\\t\\t  Minimum-cost Abductive Explanations in
+        \\t\\t\\t  Natural-language Interpretation}
+        )
+      ),
       "key": "Stickel:88",
       "type": "techreport",
     },

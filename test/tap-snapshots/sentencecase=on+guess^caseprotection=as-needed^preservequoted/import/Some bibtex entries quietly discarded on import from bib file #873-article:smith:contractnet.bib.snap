@@ -17,31 +17,38 @@ Object {
             "lastName": "Smith",
           },
         ],
-        "journal": Array [
-          "TCOMPUTERS",
-        ],
-        "number": Array [
-          "12",
-        ],
-        "pages": Array [
-          "1104–1113",
-        ],
-        "title": Array [
-          "The contract net protocol: High-level communication and control in a distributed problem solver",
-        ],
-        "volume": Array [
-          "C-29",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "journal": "TCOMPUTERS",
+        "number": "12",
+        "pages": "1104–1113",
+        "title": "The contract net protocol: High-level communication and control in a distributed problem solver",
+        "volume": "C-29",
+        "year": 1980,
       },
+      "input": String(
+        @ARTICLE(Smith:ContractNet,
+        \\tAUTHOR = {Reid G. Smith},
+        \\tTITLE = {The Contract Net Protocol:  High-level Communication
+        \\t\\t and Control in a Distributed Problem Solver},
+        \\tJOURNAL = TCOMPUTERS,
+        \\tYEAR = {1980},
+        \\tVOLUME = {C-29},
+        \\tNUMBER = {12},
+        \\tPAGES = {1104--1113}
+        )
+      ),
       "key": "Smith:ContractNet",
       "type": "article",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"TCOMPUTERS\\"",
+    Object {
+      "error": "Unresolved @string reference \\"TCOMPUTERS\\"",
+      "input": "TCOMPUTERS",
+      "location": Object {
+        "column": 22,
+        "line": 5,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

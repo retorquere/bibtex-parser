@@ -18,36 +18,38 @@ Object {
             "prefix": "v",
           },
         ],
-        "date": Array [
-          "1998-04-01",
-        ],
+        "date": "1998-04-01",
         "institution": Array [
           "HCA",
         ],
-        "journaltitle": Array [
-          "Classical review",
-        ],
+        "journaltitle": "Classical review",
         "keywords": Array [
           "au",
         ],
-        "pages": Array [
-          "337",
-        ],
-        "shorttitle": Array [
-          "Kartinyeri",
-        ],
-        "title": Array [
-          "Kartinyeri v Commonwealth",
-        ],
+        "pages": "337",
+        "shorttitle": "Kartinyeri",
+        "title": "Kartinyeri v Commonwealth",
         "translator": Array [
           Object {
             "lastName": "Kartinyeri",
           },
         ],
-        "volume": Array [
-          "195",
-        ],
+        "volume": "195",
       },
+      "input": String(
+        @jurisdiction{kartinyeri,
+          title = {Kartinyeri v {{Commonwealth}}},
+          shorttitle = {Kartinyeri},
+          author = {Kaetinyeri v Commonwealth},
+          date = {1998-04-01},
+          journaltitle = {CLR},
+          volume = {195},
+          pages = {337},
+          institution = {{HCA}},
+          keywords = {au},
+          translator = {Kartinyeri}
+        }
+      ),
       "key": "kartinyeri",
       "type": "jurisdiction",
     },

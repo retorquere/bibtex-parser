@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Menlo Park, Cal.",
-        ],
+        "address": "Menlo Park, Cal.",
         "author": Array [
           Object {
             "firstName": "Karen L.",
@@ -24,31 +22,41 @@ Object {
             "lastName": "Lee",
           },
         ],
-        "booktitle": Array [
-          "AAAI-99",
-        ],
-        "month": Array [
-          "07  18–22",
-        ],
-        "pages": Array [
-          "570–576",
-        ],
+        "booktitle": "AAAI-99",
+        "month": "07  18–22",
+        "pages": "570–576",
         "publisher": Array [
           "AAAI/MIT Press",
         ],
-        "title": Array [
-          "Generating qualitatively different plans through metatheoretic biases",
-        ],
-        "year": Array [
-          "1999",
-        ],
+        "title": "Generating qualitatively different plans through metatheoretic biases",
+        "year": 1999,
       },
+      "input": String(
+        @InProceedings{AAAI/IAAI99*570,
+          author =\\t"Karen L. Myers and Thomas J. Lee",
+          title =\\t"Generating Qualitatively Different Plans through
+        \\t\\t Metatheoretic Biases",
+          pages =\\t"570--576",
+          booktitle =\\tAAAI-99,
+          month =\\tjul # " ~18--22",
+          publisher =\\t"AAAI/MIT Press",
+          address =\\t"Menlo Park, Cal.",
+          year = \\t"1999",
+        }
+      ),
       "key": "AAAI/IAAI99*570",
       "type": "inproceedings",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"AAAI-99\\"",
+    Object {
+      "error": "Unresolved @string reference \\"AAAI-99\\"",
+      "input": "AAAI-99",
+      "location": Object {
+        "column": 22,
+        "line": 6,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

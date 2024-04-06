@@ -27,22 +27,23 @@ Object {
             "lastName": "Nash-Webber",
           },
         ],
-        "journal": Array [
-          "Theoretical Issues in Natural Language Processing",
-        ],
-        "pages": Array [
-          "11-15",
-        ],
-        "title": Array [
-          "Computational understanding",
-        ],
-        "volume": Array [
-          "1",
-        ],
-        "year": Array [
-          "1975",
-        ],
+        "journal": "Theoretical Issues in Natural Language Processing",
+        "pages": "11-15",
+        "title": "Computational understanding",
+        "volume": "1",
+        "year": 1975,
       },
+      "input": String(
+        @article(Riesbeck:75,
+        \\tauthor =\\t{Christopher K. Riesbeck},
+        \\tyear =\\t\\t{1975},
+        \\teditor =\\t{R. Schank and B.L. Nash-Webber},
+        \\tjournal =\\t{Theoretical Issues in Natural Language Processing},
+        \\tpages =\\t\\t{11-15},
+        \\ttitle =\\t\\t"Computational understanding",
+        \\tvolume =\\t{1}
+        )
+      ),
       "key": "Riesbeck:75",
       "type": "article",
     },

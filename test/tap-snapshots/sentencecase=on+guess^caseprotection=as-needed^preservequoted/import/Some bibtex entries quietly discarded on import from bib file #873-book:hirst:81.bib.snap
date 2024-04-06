@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Berlin",
-        ],
+        "address": "Berlin",
         "author": Array [
           Object {
             "firstName": "Graeme",
@@ -23,13 +21,18 @@ Object {
         "publisher": Array [
           "Springer-Verlag",
         ],
-        "title": Array [
-          "Anaphora in natural language understanding: a survey",
-        ],
-        "year": Array [
-          "1981",
-        ],
+        "title": "Anaphora in natural language understanding: a survey",
+        "year": 1981,
       },
+      "input": String(
+        @book(Hirst:81,
+        \\tauthor =\\t{Graeme Hirst},
+        \\taddress =\\t{Berlin},
+        \\tyear =\\t\\t{1981},
+        \\tpublisher =\\t{Springer-Verlag},
+        \\ttitle =\\t\\t{Anaphora in Natural Language Understanding: A Survey}
+        )
+      ),
       "key": "Hirst:81",
       "type": "book",
     },

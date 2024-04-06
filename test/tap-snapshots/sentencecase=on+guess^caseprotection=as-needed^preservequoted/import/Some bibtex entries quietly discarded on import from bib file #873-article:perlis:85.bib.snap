@@ -17,28 +17,35 @@ Object {
             "lastName": "Perlis",
           },
         ],
-        "journal": Array [
-          "AIJ",
-        ],
-        "pages": Array [
-          "301–322",
-        ],
-        "title": Array [
-          "Languages with self-reference I: Foundations",
-        ],
-        "volume": Array [
-          "25",
-        ],
-        "year": Array [
-          "1985",
-        ],
+        "journal": "AIJ",
+        "pages": "301–322",
+        "title": "Languages with self-reference I: Foundations",
+        "volume": "25",
+        "year": 1985,
       },
+      "input": String(
+        @ARTICLE{Perlis:85,
+        \\tAUTHOR = {Donald Perlis},
+        \\tTITLE = "Languages with Self-reference I: Foundations",
+        \\tJOURNAL = AIJ,
+        \\tYEAR = {1985},
+        \\tVOLUME = {25},
+        \\tPAGES = {301--322}
+        }
+      ),
       "key": "Perlis:85",
       "type": "article",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"AIJ\\"",
+    Object {
+      "error": "Unresolved @string reference \\"AIJ\\"",
+      "input": "AIJ",
+      "location": Object {
+        "column": 15,
+        "line": 4,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

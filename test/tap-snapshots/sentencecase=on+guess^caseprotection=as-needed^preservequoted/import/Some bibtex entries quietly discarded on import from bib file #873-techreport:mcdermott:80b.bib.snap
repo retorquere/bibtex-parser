@@ -13,25 +13,37 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "literal": "MCDERMOTT",
+            "name": "MCDERMOTT",
           },
         ],
         "institution": Array [
           "Yale University Computer Science Department",
         ],
-        "title": Array [
-          "Spatial inferences with ground, metric formulas on simple objects",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "title": "Spatial inferences with ground, metric formulas on simple objects",
+        "year": 1980,
       },
+      "input": String(
+        @techreport(McDermott:80b,
+        \\tauthor =\\tMCDERMOTT,
+        \\tyear =\\t\\t{1980},
+        \\tinstitution =\\t{Yale University Computer Science Department},
+        \\ttitle =\\t\\t{Spatial inferences with ground, 
+        \\t\\t\\t metric formulas on simple objects}
+        )
+      ),
       "key": "McDermott:80b",
       "type": "techreport",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"MCDERMOTT\\"",
+    Object {
+      "error": "Unresolved @string reference \\"MCDERMOTT\\"",
+      "input": "MCDERMOTT",
+      "location": Object {
+        "column": 20,
+        "line": 2,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

@@ -11,43 +11,62 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "annote": Array [
-          "A more in-depth version of Drew's AIPS-96 paper, that described his search heuristic for forward planners. The article discusses the problem of “attention-deficit” in McDermott's UNPOP — the problem of switching between goals too much. Also discusses preservation goals, which we have just been kludging into SA-CIRCA.",
-        ],
+        "annote": "A more in-depth version of Drew's AIPS-96 paper, that described his search heuristic for forward planners. The article discusses the problem of “attention-deficit” in McDermott's UNPOP — the problem of switching between goals too much. Also discusses preservation goals, which we have just been kludging into SA-CIRCA.",
         "author": Array [
           Object {
-            "literal": "MCDERMOTT",
+            "name": "MCDERMOTT",
           },
         ],
-        "journal": Array [
-          "AIJ",
-        ],
-        "month": Array [
-          "4",
-        ],
-        "number": Array [
-          "1 – 2",
-        ],
-        "pages": Array [
-          "111-159",
-        ],
-        "title": Array [
-          "Using Regression-match graphs to control search in planning",
-        ],
-        "volume": Array [
-          "109",
-        ],
-        "year": Array [
-          "1999",
-        ],
+        "journal": "AIJ",
+        "month": 4,
+        "number": "1 – 2",
+        "pages": "111-159",
+        "title": "Using Regression-match graphs to control search in planning",
+        "volume": "109",
+        "year": 1999,
       },
+      "input": String(
+        @ARTICLE{McDermott:99,
+        \\tAUTHOR = MCDERMOTT,
+        \\tTITLE = {Using Regression-match graphs to control search
+        \\t\\t in planning},
+        \\tJOURNAL = AIJ,
+        \\tYEAR = {1999},
+        \\tVOLUME = {109},
+        \\tNUMBER = {1 -- 2},
+        \\tPAGES = {111-159},
+        \\tMONTH = apr,
+        \\tANNOTE = {A more in-depth version of Drew's AIPS-96 paper, 
+        \\t\\t  that described his search heuristic for forward
+        \\t\\t  planners.
+        \\t\\t  The article discusses the problem of \`\`attention-deficit'' 
+        \\t\\t  in McDermott's UNPOP --- the problem of switching 
+        \\t\\t  between goals too much.
+        \\t\\t  Also discusses preservation goals, which we have
+        \\t\\t  just been kludging into SA-CIRCA.}
+        }
+      ),
       "key": "McDermott:99",
       "type": "article",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"AIJ\\"",
-    "Unresolved @string reference \\"MCDERMOTT\\"",
+    Object {
+      "error": "Unresolved @string reference \\"MCDERMOTT\\"",
+      "input": "MCDERMOTT",
+      "location": Object {
+        "column": 20,
+        "line": 2,
+      },
+    },
+    Object {
+      "error": "Unresolved @string reference \\"AIJ\\"",
+      "input": "AIJ",
+      "location": Object {
+        "column": 15,
+        "line": 5,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

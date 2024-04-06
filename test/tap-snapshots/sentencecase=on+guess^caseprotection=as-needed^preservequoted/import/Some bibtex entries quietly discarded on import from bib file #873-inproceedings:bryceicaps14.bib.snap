@@ -17,22 +17,32 @@ Object {
             "lastName": "Bryce",
           },
         ],
-        "booktitle": Array [
-          "PICAPS",
-        ],
-        "title": Array [
-          "Landmark-based plan distance measures for diverse planning",
-        ],
-        "year": Array [
-          "2014",
-        ],
+        "booktitle": "PICAPS",
+        "title": "Landmark-based plan distance measures for diverse planning",
+        "year": 2014,
       },
+      "input": String(
+        @inproceedings{bryceICAPS14,
+          title =        {Landmark-Based Plan Distance Measures for Diverse Planning},
+          author =       {Bryce, Daniel},
+          booktitle =    PICAPS,
+          pages =        {},
+          year =         {2014}
+        }
+      ),
       "key": "bryceICAPS14",
       "type": "inproceedings",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"PICAPS\\"",
+    Object {
+      "error": "Unresolved @string reference \\"PICAPS\\"",
+      "input": "PICAPS",
+      "location": Object {
+        "column": 24,
+        "line": 4,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

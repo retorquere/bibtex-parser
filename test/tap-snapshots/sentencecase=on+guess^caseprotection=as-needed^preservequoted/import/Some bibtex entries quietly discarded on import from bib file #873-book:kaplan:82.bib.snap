@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Cambridge Mass.",
-        ],
+        "address": "Cambridge Mass.",
         "author": Array [
           Object {
             "firstName": "Ronald M.",
@@ -24,19 +22,23 @@ Object {
             "lastName": "Bresnan",
           },
         ],
-        "booktitle": Array [
-          "The mental representation of grammatical relations",
-        ],
+        "booktitle": "The mental representation of grammatical relations",
         "publisher": Array [
           "MIT Press",
         ],
-        "title": Array [
-          "Lexical-functional grammar: a formal system for grammatical representation",
-        ],
-        "year": Array [
-          "1982",
-        ],
+        "title": "Lexical-functional grammar: a formal system for grammatical representation",
+        "year": 1982,
       },
+      "input": String(
+        @book(Kaplan:82,
+        \\tauthor =\\t{Ronald M. Kaplan and Joan W. Bresnan},
+        \\tbooktitle =\\t{The Mental Representation of Grammatical Relations},
+        \\taddress =\\t{Cambridge Mass.},
+        \\tyear =\\t\\t{1982},
+        \\tpublisher =\\t{MIT Press},
+        \\ttitle =\\t\\t{Lexical-functional grammar:\\ta formal system for grammatical representation}
+        )
+      ),
       "key": "Kaplan:82",
       "type": "book",
     },

@@ -21,28 +21,35 @@ Object {
             "lastName": "Collins",
           },
         ],
-        "journal": Array [
-          "JAIR",
-        ],
-        "pages": Array [
-          "287–339",
-        ],
-        "title": Array [
-          "Planning for contingencies: a decision-based approach",
-        ],
-        "volume": Array [
-          "4",
-        ],
-        "year": Array [
-          "1996",
-        ],
+        "journal": "JAIR",
+        "pages": "287–339",
+        "title": "Planning for contingencies: a decision-based approach",
+        "volume": "4",
+        "year": 1996,
       },
+      "input": String(
+        @ARTICLE{Pryor:Cassandra,
+        \\tAUTHOR = {Louise Pryor and Gregg Collins},
+        \\tTITLE = "Planning for Contingencies: A Decision-based Approach",
+        \\tJOURNAL = JAIR,
+        \\tYEAR = {1996},
+        \\tVOLUME = {4},
+        \\tPAGES = {287--339}
+        }
+      ),
       "key": "Pryor:Cassandra",
       "type": "article",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"JAIR\\"",
+    Object {
+      "error": "Unresolved @string reference \\"JAIR\\"",
+      "input": "JAIR",
+      "location": Object {
+        "column": 16,
+        "line": 4,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

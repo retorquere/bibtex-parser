@@ -13,7 +13,7 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "firstName": "Jörg",
+            "firstName": "Jörg",
             "lastName": "Hoffmann",
           },
           Object {
@@ -31,26 +31,30 @@ Object {
           },
           Object {
             "firstName": "Sylvie",
-            "lastName": "Thiébaux",
+            "lastName": "Thiébaux",
           },
           Object {
             "firstName": "Sebastian",
-            "lastName": "Trüg",
+            "lastName": "Trüg",
           },
         ],
-        "month": Array [
-          "7",
-        ],
-        "note": Array [
-          "Unpublished draft",
-        ],
-        "title": Array [
-          "Towards realistic benchmarks for planning: the domains used in the classical part of IPC-4",
-        ],
-        "year": Array [
-          "2005",
-        ],
+        "month": 7,
+        "note": "Unpublished draft",
+        "title": "Towards realistic benchmarks for planning: the domains used in the classical part of IPC-4",
+        "year": 2005,
       },
+      "input": String(
+        @Unpublished{hoffmann05:_towar_realis_bench_plann,
+          author =\\t {J{\\\\"o}rg Hoffmann and Stefan Edelkamp and Roman
+                          Englert and Frederico dos Santos Liporace and Sylvie
+                          Thi{\\\\'e}baux and Sebastian Tr{\\\\"u}g},
+          title =\\t {Towards Realistic Benchmarks for Planning: the
+                          Domains Used in the Classical Part of {IPC}-4},
+          note =\\t {Unpublished draft},
+          month =\\t jul,
+          year =\\t 2005
+        }
+      ),
       "key": "hoffmann05:_towar_realis_bench_plann",
       "type": "unpublished",
     },

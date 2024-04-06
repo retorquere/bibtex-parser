@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Pathumthani, Thailand",
-        ],
+        "address": "Pathumthani, Thailand",
         "author": Array [
           Object {
             "firstName": "Liem",
@@ -24,9 +22,7 @@ Object {
             "lastName": "Haddawy",
           },
         ],
-        "booktitle": Array [
-          "Algorithms, concurrency and knowledge (proceedings ACSC95)",
-        ],
+        "booktitle": "Algorithms, concurrency and knowledge (proceedings ACSC95)",
         "editor": Array [
           Object {
             "firstName": "K.",
@@ -37,31 +33,37 @@ Object {
             "lastName": "Levy",
           },
         ],
-        "key": Array [
-          "Conference",
-        ],
-        "month": Array [
-          "December",
-        ],
-        "pages": Array [
-          "286-300",
-        ],
+        "key": "Conference",
+        "month": "December",
+        "pages": "286-300",
         "publisher": Array [
           "Springer-Verlag",
         ],
-        "series": Array [
-          "Lecture notes in computer science",
-        ],
-        "title": Array [
-          "Probabilistic logic programming and Bayesian networks",
-        ],
-        "volume": Array [
-          "1023",
-        ],
-        "year": Array [
-          "1995",
-        ],
+        "series": "Lecture notes in computer science",
+        "title": "Probabilistic logic programming and Bayesian networks",
+        "volume": "1023",
+        "year": 1995,
       },
+      "input": String(
+        @InProceedings(Ngo95:Probabilistic,
+         Author = "Liem Ngo and Peter Haddawy",
+         Key = "Conference",
+         Title = "Probabilistic Logic Programming and {B}ayesian
+            Networks",
+         Publisher = "Springer-Verlag",
+                Series = "Lecture Notes in Computer Science",
+                Volume = "1023",
+         Organization = "",
+         BookTitle = "Algorithms, Concurrency and Knowledge
+            (Proceedings ACSC95)",
+         Editor = "K. Kanchanasut and J. Levy",
+         Address = "Pathumthani, Thailand",
+         Pages = "286-300",
+         Month = "December",
+         Note = "",
+         Year = "1995"
+         )
+      ),
       "key": "Ngo95:Probabilistic",
       "type": "inproceedings",
     },

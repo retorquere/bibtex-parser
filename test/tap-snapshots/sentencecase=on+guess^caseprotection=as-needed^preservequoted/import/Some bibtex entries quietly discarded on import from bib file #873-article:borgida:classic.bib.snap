@@ -21,28 +21,36 @@ Object {
             "lastName": "Patel-Schneider",
           },
         ],
-        "journal": Array [
-          "JAIR",
-        ],
-        "pages": Array [
-          "277–308",
-        ],
-        "title": Array [
-          "A semantics and complete algorithm for subsumption in the CLASSIC description logic",
-        ],
-        "volume": Array [
-          "1",
-        ],
-        "year": Array [
-          "1994",
-        ],
+        "journal": "JAIR",
+        "pages": "277–308",
+        "title": "A semantics and complete algorithm for subsumption in the CLASSIC description logic",
+        "volume": "1",
+        "year": 1994,
       },
+      "input": String(
+        @ARTICLE(Borgida:CLASSIC,
+        \\tAUTHOR = {Alexander Borgida and Peter F. Patel-Schneider},
+        \\tTITLE = {A Semantics and Complete Algorithm for
+        \\t\\t Subsumption in the {CLASSIC} Description Logic},
+        \\tJOURNAL = JAIR,
+        \\tYEAR = {1994},
+        \\tVOLUME = {1},
+        \\tPAGES = {277--308}
+        )
+      ),
       "key": "Borgida:CLASSIC",
       "type": "article",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"JAIR\\"",
+    Object {
+      "error": "Unresolved @string reference \\"JAIR\\"",
+      "input": "JAIR",
+      "location": Object {
+        "column": 16,
+        "line": 5,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

@@ -17,37 +17,48 @@ Object {
             "lastName": "Gat",
           },
         ],
-        "booktitle": Array [
-          "AAAI technical report SSS-96-04: Planning with incomplete information for robot problems",
-        ],
+        "booktitle": "AAAI technical report SSS-96-04: Planning with incomplete information for robot problems",
         "editor": Array [
           Object {
             "firstName": "Illah",
             "lastName": "Nourbakhsh",
           },
         ],
-        "month": Array [
-          "3",
-        ],
+        "month": 3,
         "organization": Array [
           "AAAI",
         ],
-        "title": Array [
-          "News from the trenches: An overview of unmanned spacecraft for AI",
-        ],
-        "url": Array [
-          "http://www-aig.jpl.nasa.gov/home/gat/gp.html",
-        ],
-        "year": Array [
-          "1996",
-        ],
+        "title": "News from the trenches: An overview of unmanned spacecraft for AI",
+        "url": "http://www-aig.jpl.nasa.gov/home/gat/gp.html",
+        "year": 1996,
       },
+      "input": String(
+        @INPROCEEDINGS{Gat:Trenches,
+          AUTHOR =\\t {Erann Gat},
+          TITLE =\\t {News From the Trenches: An Overview of Unmanned
+                          Spacecraft for {AI}},
+          BOOKTITLE =\\t {AAAI Technical Report SSS-96-04: Planning with
+                          Incomplete Information for Robot Problems},
+          YEAR =\\t {1996},
+          EDITOR =\\t {Illah Nourbakhsh},
+          ORGANIZATION = AAAI,
+          MONTH =\\t mar,
+          URL =\\t\\t {http://www-aig.jpl.nasa.gov/home/gat/gp.html}
+        }
+      ),
       "key": "Gat:Trenches",
       "type": "inproceedings",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"AAAI\\"",
+    Object {
+      "error": "Unresolved @string reference \\"AAAI\\"",
+      "input": "AAAI",
+      "location": Object {
+        "column": 22,
+        "line": 9,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

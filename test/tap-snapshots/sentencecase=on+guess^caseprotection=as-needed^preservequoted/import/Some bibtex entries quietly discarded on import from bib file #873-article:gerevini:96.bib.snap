@@ -21,28 +21,36 @@ Object {
             "lastName": "Schubert",
           },
         ],
-        "journal": Array [
-          "JAIR",
-        ],
-        "pages": Array [
-          "95–137",
-        ],
-        "title": Array [
-          "Accelerating partial-order planners: Some techniques for effective search control and pruning",
-        ],
-        "volume": Array [
-          "5",
-        ],
-        "year": Array [
-          "1996",
-        ],
+        "journal": "JAIR",
+        "pages": "95–137",
+        "title": "Accelerating partial-order planners: Some techniques for effective search control and pruning",
+        "volume": "5",
+        "year": 1996,
       },
+      "input": String(
+        @ARTICLE{Gerevini:96,
+        \\tAUTHOR = {Alfonso Gerevini and Lenhart Schubert},
+        \\tTITLE = {Accelerating Partial-order Planners: Some techniques
+        \\t\\t for Effective Search Control and Pruning},
+        \\tJOURNAL = JAIR,
+        \\tYEAR = {1996},
+        \\tVOLUME = {5},
+        \\tPAGES = {95--137}
+        }
+      ),
       "key": "Gerevini:96",
       "type": "article",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"JAIR\\"",
+    Object {
+      "error": "Unresolved @string reference \\"JAIR\\"",
+      "input": "JAIR",
+      "location": Object {
+        "column": 16,
+        "line": 5,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

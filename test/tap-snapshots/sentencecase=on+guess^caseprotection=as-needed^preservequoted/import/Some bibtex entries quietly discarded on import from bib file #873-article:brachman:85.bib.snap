@@ -23,25 +23,25 @@ Object {
             "lastName": "Schmolze",
           },
         ],
-        "journal": Array [
-          "Cognitive Science",
-        ],
-        "number": Array [
-          "2",
-        ],
-        "pages": Array [
-          "171-217",
-        ],
-        "title": Array [
-          "An overview of the KL-One knowledge representation system",
-        ],
-        "volume": Array [
-          "9",
-        ],
-        "year": Array [
-          "1985",
-        ],
+        "journal": "Cognitive Science",
+        "number": "2",
+        "pages": "171-217",
+        "title": "An overview of the KL-One knowledge representation system",
+        "volume": "9",
+        "year": 1985,
       },
+      "input": String(
+        @article(Brachman:85,
+        \\tauthor =\\t{Ronald J. Brachman and James G. Schmolze},
+        \\tyear =\\t\\t{1985},
+        \\tjournal =\\t{Cognitive Science},
+        \\tnumber =\\t{2},
+        \\tpages =\\t\\t{171-217},
+        \\ttitle =\\t\\t{An overview of the {KL-One} knowledge 
+        \\t\\t\\t representation system},
+        \\tvolume =\\t{9}
+        )
+      ),
       "key": "Brachman:85",
       "type": "article",
     },

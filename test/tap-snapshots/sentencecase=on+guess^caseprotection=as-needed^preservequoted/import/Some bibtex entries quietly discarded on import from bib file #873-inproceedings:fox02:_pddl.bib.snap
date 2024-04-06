@@ -21,19 +21,20 @@ Object {
             "lastName": "Long",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the 3rd international NASA workshop on planning and scheduling for space",
-        ],
-        "note": Array [
-          "<a href=\\"http://www.dur.ac.uk/computer.science/research/stanstuff/html/dpgpublications.html\\">http://www.dur.ac.uk/computer.science/research/stanstuff/html/dpgpublications.html</a>",
-        ],
-        "title": Array [
-          "PDDL+: Modeling continuous time dependent effects",
-        ],
-        "year": Array [
-          "2002",
-        ],
+        "booktitle": "Proceedings of the 3rd international NASA workshop on planning and scheduling for space",
+        "note": "<a href=\\"http://www.dur.ac.uk/computer.science/research/stanstuff/html/dpgpublications.html\\">http://www.dur.ac.uk/computer.science/research/stanstuff/html/dpgpublications.html</a>",
+        "title": "PDDL+: Modeling continuous time dependent effects",
+        "year": 2002,
       },
+      "input": String(
+        @InProceedings{fox02:_pddl,
+          author = \\t {Maria Fox and Derek Long},
+          title = \\t {{PDDL+}: Modeling continuous time dependent effects},
+          booktitle = \\t {Proceedings of the 3rd International NASA Workshop on Planning and Scheduling for Space},
+          year =\\t 2002,
+          note =\\t {\\\\url{http://www.dur.ac.uk/computer.science/research/stanstuff/html/dpgpublications.html}}
+        }
+      ),
       "key": "fox02:_pddl",
       "type": "inproceedings",
     },

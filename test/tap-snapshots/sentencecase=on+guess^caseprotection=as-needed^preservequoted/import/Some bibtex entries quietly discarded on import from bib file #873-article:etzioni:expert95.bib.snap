@@ -23,34 +23,40 @@ Object {
             "lastName": "Weld",
           },
         ],
-        "journal": Array [
-          "EXPERT",
-        ],
-        "month": Array [
-          "8",
-        ],
-        "number": Array [
-          "4",
-        ],
-        "pages": Array [
-          "44–49",
-        ],
-        "title": Array [
-          "Intelligent agents on the internet: Fact, fiction, and forecast",
-        ],
-        "volume": Array [
-          "10",
-        ],
-        "year": Array [
-          "1995",
-        ],
+        "journal": "EXPERT",
+        "month": 8,
+        "number": "4",
+        "pages": "44–49",
+        "title": "Intelligent agents on the internet: Fact, fiction, and forecast",
+        "volume": "10",
+        "year": 1995,
       },
+      "input": String(
+        @ARTICLE{Etzioni:Expert95,
+        \\tAUTHOR = {Oren Etzioni and Daniel S. Weld},
+        \\tTITLE = {Intelligent Agents on the Internet:
+        \\t\\t Fact, Fiction, and Forecast},
+        \\tJOURNAL = EXPERT,
+        \\tYEAR = {1995},
+        \\tVOLUME = {10},
+        \\tNUMBER = {4},
+        \\tPAGES = {44--49},
+        \\tMONTH = aug
+        }
+      ),
       "key": "Etzioni:Expert95",
       "type": "article",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"EXPERT\\"",
+    Object {
+      "error": "Unresolved @string reference \\"EXPERT\\"",
+      "input": "EXPERT",
+      "location": Object {
+        "column": 18,
+        "line": 5,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

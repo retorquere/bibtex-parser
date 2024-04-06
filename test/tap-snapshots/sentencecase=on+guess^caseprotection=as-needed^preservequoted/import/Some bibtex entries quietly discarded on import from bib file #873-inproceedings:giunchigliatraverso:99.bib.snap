@@ -21,28 +21,40 @@ Object {
             "lastName": "Traverso",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of ECP-99",
-        ],
-        "note": Array [
-          "Paper accompanying invited talk to be presented at the 1999 European Conference on Planning (ECP-99). Available through <a href=\\"http://afrodite.itc.it:1024/~leaf/\\">http://afrodite.itc.it:1024/~leaf/</a>",
-        ],
+        "booktitle": "Proceedings of ECP-99",
+        "note": "Paper accompanying invited talk to be presented at the 1999 European Conference on Planning (ECP-99). Available through <a href=\\"http://afrodite.itc.it:1024/~leaf/\\">http://afrodite.itc.it:1024/~leaf/</a>",
         "publisher": Array [
           "SPRINGER",
         ],
-        "title": Array [
-          "Planning as model-checking",
-        ],
-        "year": Array [
-          "1999",
-        ],
+        "title": "Planning as model-checking",
+        "year": 1999,
       },
+      "input": String(
+        @INPROCEEDINGS{GiunchigliaTraverso:99,
+        \\tAUTHOR = {Fausto Giunchiglia and Paolo Traverso},
+        \\tTITLE = "Planning as Model-checking",
+        \\tBOOKTITLE = {Proceedings of {ECP-99}},
+        \\tYEAR = {1999},
+        \\tPUBLISHER = SPRINGER,
+        \\tNOTE = {Paper accompanying invited talk 
+        \\t\\tto be presented at the 1999 European 
+        \\t\\tConference on Planning (ECP-99).
+        \\t\\tAvailable through \\\\url{http://afrodite.itc.it:1024/~leaf/}}
+        }
+      ),
       "key": "GiunchigliaTraverso:99",
       "type": "inproceedings",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"SPRINGER\\"",
+    Object {
+      "error": "Unresolved @string reference \\"SPRINGER\\"",
+      "input": "SPRINGER",
+      "location": Object {
+        "column": 22,
+        "line": 6,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

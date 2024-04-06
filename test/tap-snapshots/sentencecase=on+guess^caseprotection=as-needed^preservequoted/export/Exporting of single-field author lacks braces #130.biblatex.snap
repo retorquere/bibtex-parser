@@ -21,15 +21,11 @@ Object {
             "lastName": "Huizinga",
           },
           Object {
-            "literal": "Wiley InterScience (Online service)",
+            "name": "Wiley InterScience (Online service)",
           },
         ],
-        "date": Array [
-          "2007",
-        ],
-        "isbn": Array [
-          "978-0-470-16516-4",
-        ],
+        "date": "2007",
+        "isbn": "978-0-470-16516-4",
         "keywords": Array [
           "Computer programs – Correctness.",
           "Computer programs – Testing – Data processing.",
@@ -43,19 +39,25 @@ Object {
         "publisher": Array [
           "IEEE Computer Society Press",
         ],
-        "shorttitle": Array [
-          "Automated Defect Prevention",
-        ],
-        "title": Array [
-          "Automated Defect Prevention : Best Practices in Software Management",
-        ],
-        "url": Array [
-          "http://site.ebrary.com/lib/alltitles/docDetail.action?docID=10296302",
-        ],
-        "urldate": Array [
-          "2015-01-09",
-        ],
+        "shorttitle": "Automated Defect Prevention",
+        "title": "Automated Defect Prevention : Best Practices in Software Management",
+        "url": "http://site.ebrary.com/lib/alltitles/docDetail.action?docID=10296302",
+        "urldate": "2015-01-09",
       },
+      "input": String(
+        @book{Kolawa2007,
+          title = {Automated {{Defect Prevention}} : {{Best Practices}} in {{Software Management}}},
+          shorttitle = {Automated {{Defect Prevention}}},
+          author = {Kolawa, Adam and Huizinga, Dorota and {Wiley InterScience (Online service)}},
+          date = {2007},
+          publisher = {{IEEE Computer Society Press}},
+          location = {{Hoboken, NJ, USA}},
+          url = {http://site.ebrary.com/lib/alltitles/docDetail.action?docID=10296302},
+          urldate = {2015-01-09},
+          isbn = {978-0-470-16516-4},
+          keywords = {Computer programs -- Correctness.,Computer programs -- Testing -- Data processing.,Debugging in computer science -- Automatic control.,Software failures -- Prevention -- Data processing.,Software maintenance -- Data processing.}
+        }
+      ),
       "key": "Kolawa2007",
       "type": "book",
     },

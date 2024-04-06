@@ -17,16 +17,19 @@ Object {
             "lastName": "Dean",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the third international ACM conference on office information systems",
-        ],
-        "title": Array [
-          "Decision support for coordinated multi-agent planning",
-        ],
-        "year": Array [
-          "1986",
-        ],
+        "booktitle": "Proceedings of the third international ACM conference on office information systems",
+        "title": "Decision support for coordinated multi-agent planning",
+        "year": 1986,
       },
+      "input": String(
+        @inproceedings(Dean86b,
+            author = {Thomas Dean},
+            title = "Decision Support for Coordinated Multi-Agent Planning",
+            booktitle = {Proceedings of the Third International ACM Conference
+                on Office Information Systems},
+            year = 1986
+        )
+      ),
       "key": "Dean86b",
       "type": "inproceedings",
     },

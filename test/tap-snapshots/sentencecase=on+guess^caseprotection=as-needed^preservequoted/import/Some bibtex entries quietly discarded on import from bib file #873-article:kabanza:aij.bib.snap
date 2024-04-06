@@ -25,34 +25,39 @@ Object {
             "lastName": "St.-Denis",
           },
         ],
-        "journal": Array [
-          "AIJ",
-        ],
-        "month": Array [
-          "8",
-        ],
-        "number": Array [
-          "1",
-        ],
-        "pages": Array [
-          "67–113",
-        ],
-        "title": Array [
-          "Planning control rules for reactive agents",
-        ],
-        "volume": Array [
-          "95",
-        ],
-        "year": Array [
-          "1997",
-        ],
+        "journal": "AIJ",
+        "month": 8,
+        "number": "1",
+        "pages": "67–113",
+        "title": "Planning control rules for reactive agents",
+        "volume": "95",
+        "year": 1997,
       },
+      "input": String(
+        @ARTICLE{Kabanza:AIJ,
+        \\tAUTHOR = {Froduald Kabanza and M. Barbeau and R. St.-Denis},
+        \\tTITLE = "Planning Control Rules for Reactive Agents",
+        \\tJOURNAL = AIJ,
+        \\tYEAR = {1997},
+        \\tVOLUME = {95},
+        \\tNUMBER = {1},
+        \\tPAGES = {67--113},
+        \\tMONTH = aug
+        }
+      ),
       "key": "Kabanza:AIJ",
       "type": "article",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"AIJ\\"",
+    Object {
+      "error": "Unresolved @string reference \\"AIJ\\"",
+      "input": "AIJ",
+      "location": Object {
+        "column": 15,
+        "line": 4,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

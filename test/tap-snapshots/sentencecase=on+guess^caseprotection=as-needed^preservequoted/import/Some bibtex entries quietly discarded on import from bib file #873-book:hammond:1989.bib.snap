@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Boston",
-        ],
+        "address": "Boston",
         "author": Array [
           Object {
             "firstName": "K. J.",
@@ -23,16 +21,20 @@ Object {
         "publisher": Array [
           "Academic press",
         ],
-        "series": Array [
-          "perspectives in AI",
-        ],
-        "title": Array [
-          "Case-Based Planning: viewing planning as a memory task",
-        ],
-        "year": Array [
-          "1989",
-        ],
+        "series": "perspectives in AI",
+        "title": "Case-Based Planning: viewing planning as a memory task",
+        "year": 1989,
       },
+      "input": String(
+        @Book{Hammond:1989,
+          author =       "K. J. Hammond",
+          title =        "Case-Based Planning: viewing planning as a memory task",
+          publisher =    "Academic press",
+          year =         1989,
+          series =       "perspectives in AI",
+          address =      "Boston",
+        }
+      ),
       "key": "Hammond:1989",
       "type": "book",
     },

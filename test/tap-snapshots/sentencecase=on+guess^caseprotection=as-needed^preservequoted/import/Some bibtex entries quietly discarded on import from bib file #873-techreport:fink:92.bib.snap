@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "CMU-ADDRESS",
-        ],
+        "address": "CMU-ADDRESS",
         "author": Array [
           Object {
             "firstName": "Eugene",
@@ -27,26 +25,43 @@ Object {
         "institution": Array [
           "CMUSCS",
         ],
-        "month": Array [
-          "3",
-        ],
-        "number": Array [
-          "CMU-CS-94-123",
-        ],
-        "title": Array [
-          "Prodigy planning algorithm",
-        ],
-        "year": Array [
-          "1992",
-        ],
+        "month": 3,
+        "number": "CMU-CS-94-123",
+        "title": "Prodigy planning algorithm",
+        "year": 1992,
       },
+      "input": String(
+        @TECHREPORT{Fink:92,
+        \\tAUTHOR = {Eugene Fink and Manuela Veloso},
+        \\tTITLE = "Prodigy Planning Algorithm",
+        \\tINSTITUTION = CMUSCS,
+        \\tYEAR = {1992},
+        \\tNUMBER = {CMU-CS-94-123},
+        \\tADDRESS = CMU-ADDRESS,
+        \\tMONTH = mar
+        }
+      ),
       "key": "Fink:92",
       "type": "techreport",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"CMU-ADDRESS\\"",
-    "Unresolved @string reference \\"CMUSCS\\"",
+    Object {
+      "error": "Unresolved @string reference \\"CMUSCS\\"",
+      "input": "CMUSCS",
+      "location": Object {
+        "column": 22,
+        "line": 4,
+      },
+    },
+    Object {
+      "error": "Unresolved @string reference \\"CMU-ADDRESS\\"",
+      "input": "CMU-ADDRESS",
+      "location": Object {
+        "column": 23,
+        "line": 7,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

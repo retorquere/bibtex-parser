@@ -17,22 +17,26 @@ Object {
             "lastName": "Burstein",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the international machine learning workshop",
-        ],
-        "pages": Array [
-          "19–25",
-        ],
+        "booktitle": "Proceedings of the international machine learning workshop",
+        "pages": "19–25",
         "publisher": Array [
           "University of Illinois",
         ],
-        "title": Array [
-          "Concept formation by incremental analogical reasoning and debugging",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "title": "Concept formation by incremental analogical reasoning and debugging",
+        "year": 1983,
       },
+      "input": String(
+        @inproceedings(Burstein:83,
+        \\tauthor =\\t{Mark Burstein},
+        \\tbooktitle =\\t{Proceedings of the International Machine Learning 
+        \\t\\t\\t Workshop},
+        \\tyear =\\t\\t{1983},
+        \\tpublisher =\\t{University of Illinois},
+        \\tpages =\\t\\t{19--25},
+        \\ttitle =\\t\\t{Concept formation by incremental analogical reasoning 
+        \\t\\t\\t and debugging}
+        )
+      ),
       "key": "Burstein:83",
       "type": "inproceedings",
     },

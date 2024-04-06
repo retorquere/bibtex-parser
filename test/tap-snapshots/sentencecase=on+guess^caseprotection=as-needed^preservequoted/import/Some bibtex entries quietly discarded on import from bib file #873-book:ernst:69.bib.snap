@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "G.",
@@ -27,13 +25,18 @@ Object {
         "publisher": Array [
           "Academic Press",
         ],
-        "title": Array [
-          "GPS: a case study in generality and problem solving",
-        ],
-        "year": Array [
-          "1969",
-        ],
+        "title": "GPS: a case study in generality and problem solving",
+        "year": 1969,
       },
+      "input": String(
+        @book(Ernst:69,
+        \\tauthor =\\t{G. Ernst and Allen Newell},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1969},
+        \\tpublisher =\\t{Academic Press},
+        \\ttitle =\\t\\t{GPS: A Case Study in Generality and Problem Solving}
+        )
+      ),
       "key": "Ernst:69",
       "type": "book",
     },

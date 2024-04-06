@@ -21,31 +21,37 @@ Object {
             "lastName": "Stone",
           },
         ],
-        "journal": Array [
-          "JAIR",
-        ],
-        "month": Array [
-          "6",
-        ],
-        "pages": Array [
-          "25–52",
-        ],
-        "title": Array [
-          "FLECS: Planning with a flexible commitment strategy",
-        ],
-        "volume": Array [
-          "3",
-        ],
-        "year": Array [
-          "1995",
-        ],
+        "journal": "JAIR",
+        "month": 6,
+        "pages": "25–52",
+        "title": "FLECS: Planning with a flexible commitment strategy",
+        "volume": "3",
+        "year": 1995,
       },
+      "input": String(
+        @ARTICLE{Veloso:95,
+        \\tAUTHOR = {Manuela Veloso and Peter Stone},
+        \\tTITLE = "{FLECS}: Planning with a flexible commitment strategy",
+        \\tJOURNAL = JAIR,
+        \\tYEAR = {1995},
+        \\tVOLUME = {3},
+        \\tPAGES = {25--52},
+        \\tMONTH = jun
+        }
+      ),
       "key": "Veloso:95",
       "type": "article",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"JAIR\\"",
+    Object {
+      "error": "Unresolved @string reference \\"JAIR\\"",
+      "input": "JAIR",
+      "location": Object {
+        "column": 16,
+        "line": 4,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

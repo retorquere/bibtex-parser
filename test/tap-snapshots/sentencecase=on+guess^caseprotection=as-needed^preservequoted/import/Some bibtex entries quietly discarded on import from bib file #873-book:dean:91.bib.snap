@@ -13,9 +13,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "KAUFMANN-ADDRESS",
-        ],
+        "address": "KAUFMANN-ADDRESS",
         "author": Array [
           Object {
             "firstName": "Thomas L.",
@@ -29,20 +27,39 @@ Object {
         "publisher": Array [
           "KAUFMANN",
         ],
-        "title": Array [
-          "Planning and control",
-        ],
-        "year": Array [
-          "1991",
-        ],
+        "title": "Planning and control",
+        "year": 1991,
       },
+      "input": String(
+        @BOOK{Dean:91,
+        \\tAUTHOR = {Thomas L. Dean and Michael P. Wellman},
+        \\tTITLE = "Planning and Control",
+        \\tPUBLISHER = KAUFMANN,
+        \\tYEAR = {1991},
+        \\tADDRESS = KAUFMANN-ADDRESS
+        }
+      ),
       "key": "Dean:91",
       "type": "book",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"KAUFMANN\\"",
-    "Unresolved @string reference \\"KAUFMANN-ADDRESS\\"",
+    Object {
+      "error": "Unresolved @string reference \\"KAUFMANN\\"",
+      "input": "KAUFMANN",
+      "location": Object {
+        "column": 22,
+        "line": 4,
+      },
+    },
+    Object {
+      "error": "Unresolved @string reference \\"KAUFMANN-ADDRESS\\"",
+      "input": "KAUFMANN-ADDRESS",
+      "location": Object {
+        "column": 0,
+        "line": 7,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

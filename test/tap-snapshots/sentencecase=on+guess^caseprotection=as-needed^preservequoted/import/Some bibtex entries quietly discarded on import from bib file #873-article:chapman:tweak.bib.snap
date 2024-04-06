@@ -17,25 +17,25 @@ Object {
             "lastName": "Chapman",
           },
         ],
-        "journal": Array [
-          "Artificial Intelligence",
-        ],
-        "number": Array [
-          "3",
-        ],
-        "pages": Array [
-          "333–378",
-        ],
-        "title": Array [
-          "Planning for conjunctive goals",
-        ],
-        "volume": Array [
-          "32",
-        ],
-        "year": Array [
-          "1987",
-        ],
+        "journal": "Artificial Intelligence",
+        "number": "3",
+        "pages": "333–378",
+        "title": "Planning for conjunctive goals",
+        "volume": "32",
+        "year": 1987,
       },
+      "input": String(
+        @article(Chapman:TWEAK,
+            author = {David Chapman},
+            title = "Planning for Conjunctive Goals",
+            journal = {Artificial Intelligence},
+            volume = {32},
+        \\tnumber = {3},
+            year = 1987,
+            pages = {333--378}
+        
+        )
+      ),
       "key": "Chapman:TWEAK",
       "type": "article",
     },

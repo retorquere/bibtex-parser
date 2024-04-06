@@ -17,25 +17,34 @@ Object {
             "lastName": "Brooks",
           },
         ],
-        "booktitle": Array [
-          "AAAI-82",
-        ],
-        "title": Array [
-          "Solving the find-path problem by good representation of space",
-        ],
-        "volume": Array [
-          "2",
-        ],
-        "year": Array [
-          "1982",
-        ],
+        "booktitle": "AAAI-82",
+        "title": "Solving the find-path problem by good representation of space",
+        "volume": "2",
+        "year": 1982,
       },
+      "input": String(
+        @inproceedings(Brooks:82,
+        \\tauthor =\\t{Rodney Brooks},
+        \\tyear =\\t\\t{1982},
+        \\tbooktitle =\\tAAAI-82,
+        \\ttitle =\\t\\t{Solving the find-path problem by good 
+        \\t\\t\\t representation of space},
+        \\tvolume =\\t{2}
+        )
+      ),
       "key": "Brooks:82",
       "type": "inproceedings",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"AAAI-82\\"",
+    Object {
+      "error": "Unresolved @string reference \\"AAAI-82\\"",
+      "input": "AAAI-82",
+      "location": Object {
+        "column": 21,
+        "line": 4,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

@@ -13,18 +13,14 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Hillsdale, NJ",
-        ],
+        "address": "Hillsdale, NJ",
         "author": Array [
           Object {
             "firstName": "Bertram C.",
             "lastName": "Bruce",
           },
         ],
-        "booktitle": Array [
-          "Theoretical issues in reading comprehension: Perspectives from cognitive science, linguistics, artificial intelligence and education",
-        ],
+        "booktitle": "Theoretical issues in reading comprehension: Perspectives from cognitive science, linguistics, artificial intelligence and education",
         "editor": Array [
           Object {
             "firstName": "R.J.",
@@ -39,19 +35,27 @@ Object {
             "lastName": "Brewer",
           },
         ],
-        "pages": Array [
-          "367–384",
-        ],
+        "pages": "367–384",
         "publisher": Array [
           "Lawrence Erlbaum",
         ],
-        "title": Array [
-          "Plans and social actions",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "title": "Plans and social actions",
+        "year": 1980,
       },
+      "input": String(
+        @book(Bruce:80,
+        \\tauthor =\\t{Bertram C. Bruce},
+        \\tbooktitle =\\t{Theoretical Issues in Reading Comprehension: 
+        \\t\\t\\t Perspectives from Cognitive Science, Linguistics, 
+        \\t\\t\\t Artificial Intelligence and Education},
+        \\taddress =\\t{Hillsdale, NJ},
+        \\tyear =\\t\\t{1980},
+        \\teditor =\\t{R.J. Spiro and B.C. Bruce and W.F. Brewer},
+        \\tpublisher =\\t{Lawrence Erlbaum},
+        \\tpages =\\t\\t{367--384},
+        \\ttitle =\\t\\t{Plans and Social Actions}
+        )
+      ),
       "key": "Bruce:80",
       "type": "book",
     },

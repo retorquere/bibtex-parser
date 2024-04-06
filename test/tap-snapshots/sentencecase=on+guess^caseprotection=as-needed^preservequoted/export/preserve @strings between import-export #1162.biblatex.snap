@@ -17,12 +17,8 @@ Object {
             "lastName": "Mitchell",
           },
         ],
-        "booktitle": Array [
-          "PROC_SIGGRAPH93_01",
-        ],
-        "date": Array [
-          "1996-08",
-        ],
+        "booktitle": "PROC_SIGGRAPH93_01",
+        "date": "1996-08",
         "editor": Array [
           Object {
             "firstName": "Holly",
@@ -32,28 +28,63 @@ Object {
         "organization": Array [
           "ACM_SIGGRAPH",
         ],
-        "pages": Array [
-          "277–280",
-        ],
+        "pages": "277–280",
         "publisher": Array [
           "AW",
         ],
-        "series": Array [
-          "ACS",
-        ],
-        "title": Array [
-          "Consequences of Stratified Sampling in Graphics",
-        ],
+        "series": "ACS",
+        "title": "Consequences of Stratified Sampling in Graphics",
       },
+      "input": String(
+        @inproceedings{Mitchell96,
+          title = {Consequences of {{Stratified Sampling}} in {{Graphics}}},
+          booktitle = PROC_SIGGRAPH93_01,
+          author = {Mitchell, Don P.},
+          editor = {Rushmeier, Holly},
+          date = {1996-08},
+          pages = {277--280},
+          publisher = AW,
+          organization = ACM_SIGGRAPH,
+          series = ACS
+        }
+      ),
       "key": "Mitchell96",
       "type": "inproceedings",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"ACM_SIGGRAPH\\"",
-    "Unresolved @string reference \\"ACS\\"",
-    "Unresolved @string reference \\"AW\\"",
-    "Unresolved @string reference \\"PROC_SIGGRAPH93_01\\"",
+    Object {
+      "error": "Unresolved @string reference \\"PROC_SIGGRAPH93_01\\"",
+      "input": "PROC_SIGGRAPH93_01",
+      "location": Object {
+        "column": 33,
+        "line": 4,
+      },
+    },
+    Object {
+      "error": "Unresolved @string reference \\"AW\\"",
+      "input": "AW",
+      "location": Object {
+        "column": 17,
+        "line": 9,
+      },
+    },
+    Object {
+      "error": "Unresolved @string reference \\"ACM_SIGGRAPH\\"",
+      "input": "ACM_SIGGRAPH",
+      "location": Object {
+        "column": 30,
+        "line": 10,
+      },
+    },
+    Object {
+      "error": "Unresolved @string reference \\"ACS\\"",
+      "input": "ACS",
+      "location": Object {
+        "column": 0,
+        "line": 12,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

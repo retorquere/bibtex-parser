@@ -13,9 +13,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Menlo Park, California",
-        ],
+        "address": "Menlo Park, California",
         "author": Array [
           Object {
             "firstName": "James F.",
@@ -25,13 +23,17 @@ Object {
         "publisher": Array [
           "Benjamin / Cummings Publishing Company",
         ],
-        "title": Array [
-          "Natural lan­guage un­der­stand­ing",
-        ],
-        "year": Array [
-          "1987",
-        ],
+        "title": "Natural lan­guage un­der­stand­ing",
+        "year": 1987,
       },
+      "input": String(
+        @book{Allen:87book,
+        \\tauthor = \\t{James F. Allen},
+        \\ttitle =\\t\\t"Natural Lan\\\\-guage Un\\\\-der\\\\-stand\\\\-ing",
+        \\tyear = \\t\\t1987,
+        \\tpublisher =\\t{Benjamin  / Cummings Publishing Company},
+        \\taddress = {Menlo Park, California}}
+      ),
       "key": "Allen:87book",
       "type": "book",
     },

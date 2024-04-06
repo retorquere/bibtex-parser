@@ -17,31 +17,37 @@ Object {
             "lastName": "Weld",
           },
         ],
-        "journal": Array [
-          "AIM",
-        ],
-        "number": Array [
-          "2",
-        ],
-        "pages": Array [
-          "93-123",
-        ],
-        "title": Array [
-          "Recent advances in AI planning",
-        ],
-        "volume": Array [
-          "20",
-        ],
-        "year": Array [
-          "1999",
-        ],
+        "journal": "AIM",
+        "number": "2",
+        "pages": "93-123",
+        "title": "Recent advances in AI planning",
+        "volume": "20",
+        "year": 1999,
       },
+      "input": String(
+        @ARTICLE{weld99:_recen_advan_ai_plann,
+        \\tAUTHOR = {Daniel S. Weld},
+        \\tTITLE = {Recent Advances in {AI} Planning},
+        \\tJOURNAL = AIM,
+        \\tYEAR = 1999,
+        \\tVOLUME = 20,
+        \\tNUMBER = 2,
+        \\tPAGES = {93-123}
+        }
+      ),
       "key": "weld99:_recen_advan_ai_plann",
       "type": "article",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"AIM\\"",
+    Object {
+      "error": "Unresolved @string reference \\"AIM\\"",
+      "input": "AIM",
+      "location": Object {
+        "column": 15,
+        "line": 4,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

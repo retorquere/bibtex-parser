@@ -11,40 +11,45 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "annote": Array [
-          "Have not yet read this article, but should.",
-        ],
+        "annote": "Have not yet read this article, but should.",
         "author": Array [
           Object {
             "firstName": "Jussi",
             "lastName": "Rintanen",
           },
         ],
-        "journal": Array [
-          "JAIR",
-        ],
-        "month": Array [
-          "5",
-        ],
-        "pages": Array [
-          "323–352",
-        ],
-        "title": Array [
-          "Constructing conditional plans by a theorem-prover",
-        ],
-        "volume": Array [
-          "10",
-        ],
-        "year": Array [
-          "1999",
-        ],
+        "journal": "JAIR",
+        "month": 5,
+        "pages": "323–352",
+        "title": "Constructing conditional plans by a theorem-prover",
+        "volume": "10",
+        "year": 1999,
       },
+      "input": String(
+        @ARTICLE{Rintanen:99,
+        \\tAUTHOR = {Jussi Rintanen},
+        \\tTITLE = "Constructing Conditional Plans by a Theorem-prover",
+        \\tJOURNAL = JAIR,
+        \\tYEAR = {1999},
+        \\tVOLUME = {10},
+        \\tPAGES = {323--352},
+        \\tMONTH = may,
+        \\tANNOTE = {Have not yet read this article, but should.}
+        }
+      ),
       "key": "Rintanen:99",
       "type": "article",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"JAIR\\"",
+    Object {
+      "error": "Unresolved @string reference \\"JAIR\\"",
+      "input": "JAIR",
+      "location": Object {
+        "column": 16,
+        "line": 4,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

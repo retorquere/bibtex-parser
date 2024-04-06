@@ -331,9 +331,10 @@ class Parser {
 
   private key_equals_value(key?: string) {
     key = key || this.key()
+    if (!key) return // no key found, stray comma
 
     if (!this.tryMatch('=')) {
-      throw new ParsingError(`... = value expected, equals sign missing: ${JSON.stringify(this.input.substr(this.pos, 20))}...`, this) // eslint-disable-line no-magic-numbers
+      throw new ParsingError(`${key} = value expected, equals sign missing: ${JSON.stringify(this.input.substr(this.pos, 20))}...`, this) // eslint-disable-line no-magic-numbers
     }
 
     this.match('=')

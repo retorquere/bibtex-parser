@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "annote": Array [
-          "Describes a variant of Alpha-beta pruning that works when you have a model of your opponent. Possibly relevant for JFACC.",
-        ],
+        "annote": "Describes a variant of Alpha-beta pruning that works when you have a model of your opponent. Possibly relevant for JFACC.",
         "author": Array [
           Object {
             "firstName": "David",
@@ -24,31 +22,40 @@ Object {
             "lastName": "Markovitch",
           },
         ],
-        "journal": Array [
-          "AIJ",
-        ],
-        "number": Array [
-          "2",
-        ],
-        "pages": Array [
-          "325–355",
-        ],
-        "title": Array [
-          "Pruning Algorithms for multi-model adversary search",
-        ],
-        "volume": Array [
-          "99",
-        ],
-        "year": Array [
-          "1998",
-        ],
+        "journal": "AIJ",
+        "number": "2",
+        "pages": "325–355",
+        "title": "Pruning Algorithms for multi-model adversary search",
+        "volume": "99",
+        "year": 1998,
       },
+      "input": String(
+        @ARTICLE{CarmelMarkovitch:98,
+        \\tAUTHOR = {David Carmel and Shaul Markovitch},
+        \\tTITLE = "Pruning Algorithms for multi-model adversary search",
+        \\tJOURNAL = AIJ,
+        \\tYEAR = {1998},
+        \\tVOLUME = {99},
+        \\tNUMBER = {2},
+        \\tPAGES = {325--355},
+        \\tANNOTE = {Describes a variant of Alpha-beta pruning that works 
+        \\t\\t  when you have a model of your opponent.  Possibly 
+        \\t\\t  relevant for JFACC.}
+        }
+      ),
       "key": "CarmelMarkovitch:98",
       "type": "article",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"AIJ\\"",
+    Object {
+      "error": "Unresolved @string reference \\"AIJ\\"",
+      "input": "AIJ",
+      "location": Object {
+        "column": 15,
+        "line": 4,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

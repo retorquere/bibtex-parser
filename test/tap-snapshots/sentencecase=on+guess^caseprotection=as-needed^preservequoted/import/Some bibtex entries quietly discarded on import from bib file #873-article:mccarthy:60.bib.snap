@@ -17,22 +17,23 @@ Object {
             "lastName": "McCarthy",
           },
         ],
-        "journal": Array [
-          "Communications of the ACM",
-        ],
-        "pages": Array [
-          "184-195",
-        ],
-        "title": Array [
-          "Recursive functions of symbolic expressions and their computation by machine",
-        ],
-        "volume": Array [
-          "7",
-        ],
-        "year": Array [
-          "1960",
-        ],
+        "journal": "Communications of the ACM",
+        "pages": "184-195",
+        "title": "Recursive functions of symbolic expressions and their computation by machine",
+        "volume": "7",
+        "year": 1960,
       },
+      "input": String(
+        @article(McCarthy:60,
+        \\tauthor =\\t{John McCarthy},
+        \\tyear =\\t\\t{1960},
+        \\tjournal =\\t{Communications of the ACM},
+        \\tpages =\\t\\t{184-195},
+        \\ttitle =\\t\\t{Recursive functions of symbolic expressions and 
+        \\t\\t\\t their computation by machine},
+        \\tvolume =\\t{7}
+        )
+      ),
       "key": "McCarthy:60",
       "type": "article",
     },

@@ -13,29 +13,44 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "literal": "MCDERMOTT",
+            "name": "MCDERMOTT",
           },
         ],
-        "booktitle": Array [
-          "AAAI-83",
-        ],
-        "pages": Array [
-          "266–269",
-        ],
-        "title": Array [
-          "Data dependencies on inequalities",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "booktitle": "AAAI-83",
+        "pages": "266–269",
+        "title": "Data dependencies on inequalities",
+        "year": 1983,
       },
+      "input": String(
+        @inproceedings(McDermott:83a,
+        \\tauthor =\\tMCDERMOTT,
+        \\tyear =\\t\\t{1983},
+        \\tbooktitle =\\tAAAI-83,
+        \\tpages =\\t\\t{266--269},
+        \\ttitle =\\t\\t{Data dependencies on inequalities}
+        )
+      ),
       "key": "McDermott:83a",
       "type": "inproceedings",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"AAAI-83\\"",
-    "Unresolved @string reference \\"MCDERMOTT\\"",
+    Object {
+      "error": "Unresolved @string reference \\"MCDERMOTT\\"",
+      "input": "MCDERMOTT",
+      "location": Object {
+        "column": 20,
+        "line": 2,
+      },
+    },
+    Object {
+      "error": "Unresolved @string reference \\"AAAI-83\\"",
+      "input": "AAAI-83",
+      "location": Object {
+        "column": 21,
+        "line": 4,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

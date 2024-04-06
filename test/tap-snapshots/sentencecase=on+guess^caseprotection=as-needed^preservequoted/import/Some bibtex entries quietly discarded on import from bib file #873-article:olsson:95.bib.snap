@@ -11,43 +11,54 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "annote": Array [
-          "Describes the algorithm used by the ADATE system for learning Standard ML (subset) programs. The system is novel in concentrating on learning recursive programs and in being able to learn new imbedded functions. The paper was quite difficult to follow, since I didn't thoroughly understand the ML code...",
-        ],
+        "annote": "Describes the algorithm used by the ADATE system for learning Standard ML (subset) programs. The system is novel in concentrating on learning recursive programs and in being able to learn new imbedded functions. The paper was quite difficult to follow, since I didn't thoroughly understand the ML code...",
         "author": Array [
           Object {
             "firstName": "Roland",
             "lastName": "Olsson",
           },
         ],
-        "journal": Array [
-          "AIJ",
-        ],
-        "month": Array [
-          "3",
-        ],
-        "number": Array [
-          "1",
-        ],
-        "pages": Array [
-          "55-81",
-        ],
-        "title": Array [
-          "Inductive Functional Programming using incremental program transformation",
-        ],
-        "volume": Array [
-          "74",
-        ],
-        "year": Array [
-          "1995",
-        ],
+        "journal": "AIJ",
+        "month": 3,
+        "number": "1",
+        "pages": "55-81",
+        "title": "Inductive Functional Programming using incremental program transformation",
+        "volume": "74",
+        "year": 1995,
       },
+      "input": String(
+        @ARTICLE{Olsson:95,
+        \\tAUTHOR = {Roland Olsson},
+        \\tTITLE = {Inductive Functional Programming using 
+        \\t\\t incremental program transformation},
+        \\tJOURNAL = AIJ,
+        \\tYEAR = {1995},
+        \\tVOLUME = {74},
+        \\tNUMBER = {1},
+        \\tPAGES = {55-81},
+        \\tMONTH = mar,
+        \\tANNOTE = {Describes the algorithm used by the ADATE system
+        \\t\\t  for learning Standard ML (subset) programs.
+        \\t\\t  The system is novel in concentrating on learning
+        \\t\\t  recursive programs and in being able to learn new
+        \\t\\t  imbedded functions.  The paper was quite difficult to 
+        \\t\\t  follow, since I didn't thoroughly understand the ML
+        \\t\\t  code...}
+        }
+      ),
       "key": "Olsson:95",
       "type": "article",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"AIJ\\"",
+    Object {
+      "error": "Unresolved @string reference \\"AIJ\\"",
+      "input": "AIJ",
+      "location": Object {
+        "column": 15,
+        "line": 5,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

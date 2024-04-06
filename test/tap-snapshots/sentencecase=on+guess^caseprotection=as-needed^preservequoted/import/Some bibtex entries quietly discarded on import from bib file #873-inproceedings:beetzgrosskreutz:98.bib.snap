@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "annote": Array [
-          "Describes a method for projecting reactive robot plans, using probabilistic simulation.",
-        ],
+        "annote": "Describes a method for projecting reactive robot plans, using probabilistic simulation.",
         "author": Array [
           Object {
             "firstName": "Michael",
@@ -24,16 +22,20 @@ Object {
             "lastName": "Grosskreutz",
           },
         ],
-        "crossref": Array [
-          "AIPS98",
-        ],
-        "pages": Array [
-          "163–170",
-        ],
-        "title": Array [
-          "Causal models of mobile service robot behavior",
-        ],
+        "crossref": "AIPS98",
+        "pages": "163–170",
+        "title": "Causal models of mobile service robot behavior",
       },
+      "input": String(
+        @INPROCEEDINGS{BeetzGrosskreutz:98,
+        \\tAUTHOR = {Michael Beetz and Henrik Grosskreutz},
+        \\tTITLE = "Causal Models of Mobile Service Robot Behavior",
+        \\tPAGES = {163--170},
+        \\tCROSSREF = {AIPS98},
+        \\tANNOTE = {Describes a method for projecting reactive robot 
+        \\t\\t  plans, using probabilistic simulation.}
+        }
+      ),
       "key": "BeetzGrosskreutz:98",
       "type": "inproceedings",
     },

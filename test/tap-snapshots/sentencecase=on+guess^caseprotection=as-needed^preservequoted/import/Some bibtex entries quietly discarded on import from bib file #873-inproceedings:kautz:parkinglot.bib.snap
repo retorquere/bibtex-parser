@@ -17,16 +17,18 @@ Object {
             "lastName": "Kautz",
           },
         ],
-        "crossref": Array [
-          "aaai86",
-        ],
-        "pages": Array [
-          "401–405",
-        ],
-        "title": Array [
-          "The logic of persistence",
-        ],
+        "crossref": "aaai86",
+        "pages": "401–405",
+        "title": "The logic of persistence",
       },
+      "input": String(
+        @INPROCEEDINGS(Kautz:ParkingLot,
+        \\tAUTHOR = {Henry A. Kautz},
+        \\tTITLE = "The Logic of Persistence",
+        \\tPAGES = {401--405},
+        \\tCROSSREF = {aaai86}
+        )
+      ),
       "key": "Kautz:ParkingLot",
       "type": "inproceedings",
     },

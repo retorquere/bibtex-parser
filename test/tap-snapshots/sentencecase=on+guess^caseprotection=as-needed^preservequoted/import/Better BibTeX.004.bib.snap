@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Palo Alto",
-        ],
+        "address": "Palo Alto",
         "author": Array [
           Object {
             "firstName": "Michael",
@@ -22,22 +20,25 @@ Object {
             "suffix": "III",
           },
         ],
-        "edition": Array [
-          "1st,",
-        ],
-        "isbn": Array [
-          "0-69-697269-4",
-        ],
+        "edition": "1st,",
+        "isbn": "0-69-697269-4",
         "publisher": Array [
           "Stanford Press",
         ],
-        "title": Array [
-          "Design of a carbon fiber composite grid structure for the GLAST spacecraft using a novel manufacturing technique",
-        ],
-        "year": Array [
-          "2001",
-        ],
+        "title": "Design of a carbon fiber composite grid structure for the GLAST spacecraft using a novel manufacturing technique",
+        "year": 2001,
       },
+      "input": String(
+        @book{hicks2001,
+          author = {von Hicks, III, Michael},
+          title = {Design of a Carbon Fiber Composite Grid Structure for the GLAST Spacecraft Using a Novel Manufacturing Technique},
+          publisher = {Stanford Press},
+          year = {2001},
+          address = {Palo Alto},
+          edition = {1st,},
+          isbn = {0-69-697269-4}
+        }
+      ),
       "key": "hicks2001",
       "type": "book",
     },

@@ -17,16 +17,19 @@ Object {
             "lastName": "Wilkins",
           },
         ],
-        "journal": Array [
-          "Artificial Intelligence",
-        ],
-        "title": Array [
-          "Domain independent planning: Representation and plan generation",
-        ],
-        "year": Array [
-          "1984",
-        ],
+        "journal": "Artificial Intelligence",
+        "title": "Domain independent planning: Representation and plan generation",
+        "year": 1984,
       },
+      "input": String(
+        @article(Wilkins:84,
+        \\tauthor =\\t{David Wilkins},
+        \\tyear =\\t\\t{1984},
+        \\tjournal =\\t{Artificial Intelligence},
+        \\ttitle =\\t\\t{Domain independent planning: 
+        \\t\\t\\t Representation and plan generation}
+        )
+      ),
       "key": "Wilkins:84",
       "type": "article",
     },

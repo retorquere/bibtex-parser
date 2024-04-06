@@ -17,16 +17,19 @@ Object {
             "lastName": "Vilain",
           },
         ],
-        "crossref": Array [
-          "AAAI90",
-        ],
-        "pages": Array [
-          "190–197",
-        ],
-        "title": Array [
-          "Getting serious about parsing plans: a grammatical analysis of plan recognition",
-        ],
+        "crossref": "AAAI90",
+        "pages": "190–197",
+        "title": "Getting serious about parsing plans: a grammatical analysis of plan recognition",
       },
+      "input": String(
+        @INPROCEEDINGS(Vilain:90,
+        \\tAUTHOR = {Marc Vilain},
+        \\tTITLE = {Getting Serious about Parsing Plans:
+        \\t\\t A Grammatical Analysis of Plan Recognition},
+        \\tPAGES = {190--197},
+        \\tCROSSREF = {AAAI90}
+        )
+      ),
       "key": "Vilain:90",
       "type": "inproceedings",
     },

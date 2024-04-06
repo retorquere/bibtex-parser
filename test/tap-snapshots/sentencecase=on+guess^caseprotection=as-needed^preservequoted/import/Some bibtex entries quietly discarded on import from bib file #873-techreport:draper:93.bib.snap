@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Seattle, WA",
-        ],
+        "address": "Seattle, WA",
         "author": Array [
           Object {
             "firstName": "Denise",
@@ -31,25 +29,36 @@ Object {
         "institution": Array [
           "UDUB",
         ],
-        "month": Array [
-          "December",
-        ],
-        "number": Array [
-          "93-12-04",
-        ],
-        "title": Array [
-          "Probabilistic planning with information gathering and contingent execution",
-        ],
-        "year": Array [
-          "1993",
-        ],
+        "month": "December",
+        "number": "93-12-04",
+        "title": "Probabilistic planning with information gathering and contingent execution",
+        "year": 1993,
       },
+      "input": String(
+        @TECHREPORT(Draper:93,
+        \\tAUTHOR = {Denise Draper and Steve Hanks and Daniel Weld},
+        \\tTITLE = {Probabilistic Planning with Information Gathering
+        \\t\\t and Contingent Execution},
+        \\tINSTITUTION = UDUB,
+        \\tYEAR = {1993},
+        \\tNUMBER = {93-12-04},
+        \\tADDRESS = {Seattle, WA},
+        \\tMONTH = {December}
+        )
+      ),
       "key": "Draper:93",
       "type": "techreport",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"UDUB\\"",
+    Object {
+      "error": "Unresolved @string reference \\"UDUB\\"",
+      "input": "UDUB",
+      "location": Object {
+        "column": 20,
+        "line": 5,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

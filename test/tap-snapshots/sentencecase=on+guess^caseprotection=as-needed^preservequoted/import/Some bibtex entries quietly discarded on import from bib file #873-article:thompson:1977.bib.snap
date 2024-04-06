@@ -17,22 +17,22 @@ Object {
             "lastName": "Thompson",
           },
         ],
-        "journal": Array [
-          "Proc. Ijcai",
-        ],
-        "pages": Array [
-          "749-758",
-        ],
-        "title": Array [
-          "The navigation system of the JPL robot",
-        ],
-        "volume": Array [
-          "5",
-        ],
-        "year": Array [
-          "1977",
-        ],
+        "journal": "Proc. Ijcai",
+        "pages": "749-758",
+        "title": "The navigation system of the JPL robot",
+        "volume": "5",
+        "year": 1977,
       },
+      "input": String(
+        @article(Thompson:1977,
+        \\tauthor =\\t{Alan M. Thompson},
+        \\tyear =\\t\\t{1977},
+        \\tjournal =\\t{Proc. Ijcai},
+        \\tpages =\\t\\t{749-758},
+        \\ttitle =\\t\\t"The navigation system of the JPL robot",
+        \\tvolume =\\t{5}
+        )
+      ),
       "key": "Thompson:1977",
       "type": "article",
     },

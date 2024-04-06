@@ -17,28 +17,36 @@ Object {
             "lastName": "Hewitt",
           },
         ],
-        "journal": Array [
-          "AIJ",
-        ],
-        "pages": Array [
-          "79–106",
-        ],
-        "title": Array [
-          "Open information system semantics for distributed artificial intelligence",
-        ],
-        "volume": Array [
-          "47",
-        ],
-        "year": Array [
-          "1991",
-        ],
+        "journal": "AIJ",
+        "pages": "79–106",
+        "title": "Open information system semantics for distributed artificial intelligence",
+        "volume": "47",
+        "year": 1991,
       },
+      "input": String(
+        @ARTICLE(Hewitt:91,
+        \\tAUTHOR = {Carl Hewitt},
+        \\tTITLE = {Open Information System Semantics for Distributed
+        \\t\\t Artificial Intelligence},
+        \\tJOURNAL = AIJ,
+        \\tYEAR = {1991},
+        \\tVOLUME = {47},
+        \\tPAGES = {79--106}
+        )
+      ),
       "key": "Hewitt:91",
       "type": "article",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"AIJ\\"",
+    Object {
+      "error": "Unresolved @string reference \\"AIJ\\"",
+      "input": "AIJ",
+      "location": Object {
+        "column": 15,
+        "line": 5,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

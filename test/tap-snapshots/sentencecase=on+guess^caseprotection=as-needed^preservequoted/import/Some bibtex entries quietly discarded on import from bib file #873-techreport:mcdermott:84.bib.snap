@@ -13,25 +13,36 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "literal": "MCDERMOTT",
+            "name": "MCDERMOTT",
           },
         ],
         "publisher": Array [
           "Yale University Computer Science Department",
         ],
-        "title": Array [
-          "Metric time maps",
-        ],
-        "year": Array [
-          "1984",
-        ],
+        "title": "Metric time maps",
+        "year": 1984,
       },
+      "input": String(
+        @techreport(McDermott:84,
+        \\tauthor =\\tMCDERMOTT,
+        \\tyear =\\t\\t{1984},
+        \\tpublisher =\\t{Yale University Computer Science Department},
+        \\ttitle =\\t\\t{Metric Time Maps}
+        )
+      ),
       "key": "McDermott:84",
       "type": "techreport",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"MCDERMOTT\\"",
+    Object {
+      "error": "Unresolved @string reference \\"MCDERMOTT\\"",
+      "input": "MCDERMOTT",
+      "location": Object {
+        "column": 20,
+        "line": 2,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

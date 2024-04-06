@@ -13,34 +13,35 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Seattle",
-        ],
+        "address": "Seattle",
         "author": Array [
           Object {
             "firstName": "Peter",
             "lastName": "Haddawy",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the tenth conference on uncertainty in artificial intelligence",
-        ],
-        "key": Array [
-          "Conference",
-        ],
-        "month": Array [
-          "July",
-        ],
-        "pages": Array [
-          "262-269",
-        ],
-        "title": Array [
-          "Generating Bayesian networks from probability logic knowledge bases",
-        ],
-        "year": Array [
-          "1994",
-        ],
+        "booktitle": "Proceedings of the tenth conference on uncertainty in artificial intelligence",
+        "key": "Conference",
+        "month": "July",
+        "pages": "262-269",
+        "title": "Generating Bayesian networks from probability logic knowledge bases",
+        "year": 1994,
       },
+      "input": String(
+        @InProceedings(Haddawy94:Generating,
+         Author = "Peter Haddawy",
+         Key = "Conference",
+         Title = "Generating {Bayesian} Networks from Probability Logic
+            Knowledge Bases",
+         BookTitle = "Proceedings of the Tenth Conference on
+            Uncertainty in Artificial Intelligence",
+         Address = "Seattle",
+         Pages = "262-269",
+         Month = "July",
+         Note = "",
+         Year = "1994"
+         )
+      ),
       "key": "Haddawy94:Generating",
       "type": "inproceedings",
     },

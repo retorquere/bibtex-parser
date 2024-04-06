@@ -21,16 +21,19 @@ Object {
             "lastName": "Hwang",
           },
         ],
-        "crossref": Array [
-          "KR:89",
-        ],
-        "pages": Array [
-          "444–458",
-        ],
-        "title": Array [
-          "An episodic knowledge representation for narrative texts",
-        ],
+        "crossref": "KR:89",
+        "pages": "444–458",
+        "title": "An episodic knowledge representation for narrative texts",
       },
+      "input": String(
+        @inproceedings(Schubert:89,
+        \\tauthor =\\t{Lenhart K. Schubert and Chung Hee Hwang},
+        \\tcrossref =\\t{KR:89},
+        \\ttitle =\\t\\t{An Episodic Knowledge Representation for
+        \\t\\t\\t Narrative Texts},
+        \\tpages =\\t\\t{444--458}
+        )
+      ),
       "key": "Schubert:89",
       "type": "inproceedings",
     },

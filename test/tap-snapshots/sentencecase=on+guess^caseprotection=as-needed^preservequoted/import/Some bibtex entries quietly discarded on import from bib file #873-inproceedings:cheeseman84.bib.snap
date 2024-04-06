@@ -19,19 +19,21 @@ Object {
             "lastName": "Cheeseman",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of IEEE international conference on robotics",
-        ],
+        "booktitle": "Proceedings of IEEE international conference on robotics",
         "organization": Array [
           "IEEE",
         ],
-        "title": Array [
-          "A representation of time for automatic planning",
-        ],
-        "year": Array [
-          "1984",
-        ],
+        "title": "A representation of time for automatic planning",
+        "year": 1984,
       },
+      "input": String(
+        @InProceedings{cheeseman84,
+        author = "Cheeseman, P.",
+        title = "A Representation of Time for Automatic Planning",
+        booktitle = "Proceedings of IEEE International Conference on Robotics",
+        organization = "IEEE",
+        year = "1984"}
+      ),
       "key": "cheeseman84",
       "type": "inproceedings",
     },

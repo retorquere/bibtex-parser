@@ -21,34 +21,39 @@ Object {
             "lastName": "Levesque",
           },
         ],
-        "journal": Array [
-          "AIJ",
-        ],
-        "month": Array [
-          "3",
-        ],
-        "number": Array [
-          "2–3",
-        ],
-        "pages": Array [
-          "213–261",
-        ],
-        "title": Array [
-          "Intention is choice with commitment",
-        ],
-        "volume": Array [
-          "42",
-        ],
-        "year": Array [
-          "1990",
-        ],
+        "journal": "AIJ",
+        "month": 3,
+        "number": "2–3",
+        "pages": "213–261",
+        "title": "Intention is choice with commitment",
+        "volume": "42",
+        "year": 1990,
       },
+      "input": String(
+        @ARTICLE{Cohen:90a,
+        \\tAUTHOR = {Philip R. Cohen and Hector J. Levesque},
+        \\tTITLE = "Intention is Choice with Commitment",
+        \\tJOURNAL = AIJ,
+        \\tYEAR = {1990},
+        \\tVOLUME = {42},
+        \\tNUMBER = {2--3},
+        \\tPAGES = {213--261},
+        \\tMONTH = March
+        }
+      ),
       "key": "Cohen:90a",
       "type": "article",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"AIJ\\"",
+    Object {
+      "error": "Unresolved @string reference \\"AIJ\\"",
+      "input": "AIJ",
+      "location": Object {
+        "column": 15,
+        "line": 4,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

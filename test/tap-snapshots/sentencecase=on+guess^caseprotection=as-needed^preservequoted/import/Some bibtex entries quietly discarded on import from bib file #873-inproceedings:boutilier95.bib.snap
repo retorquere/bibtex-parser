@@ -25,19 +25,22 @@ Object {
             "lastName": "Goldszmidt",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the fourteenth international joint conference on artificial intelligence",
-        ],
-        "pages": Array [
-          "1104–1113",
-        ],
-        "title": Array [
-          "Exploiting structure in policy construction",
-        ],
-        "year": Array [
-          "1995",
-        ],
+        "booktitle": "Proceedings of the fourteenth international joint conference on artificial intelligence",
+        "pages": "1104–1113",
+        "title": "Exploiting structure in policy construction",
+        "year": 1995,
       },
+      "input": String(
+        @inproceedings{Boutilier95,
+        \\ttitle = "Exploiting Structure in Policy Construction",
+        \\tauthor = {Boutilier, Craig and Dearden, Richard and 
+        \\t\\t  Goldszmidt, Moises},
+        \\tbooktitle = {Proceedings of the Fourteenth International
+        \\t\\tJoint Conference on Artificial Intelligence},
+        \\tpages = "1104--1113",
+        \\tyear = 1995
+        }
+      ),
       "key": "Boutilier95",
       "type": "inproceedings",
     },

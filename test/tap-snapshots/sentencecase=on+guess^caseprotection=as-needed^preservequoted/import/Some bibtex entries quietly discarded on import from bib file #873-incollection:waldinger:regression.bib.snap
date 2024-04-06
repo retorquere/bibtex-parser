@@ -11,18 +11,14 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Edinburgh, Scotland",
-        ],
+        "address": "Edinburgh, Scotland",
         "author": Array [
           Object {
             "firstName": "Richard",
             "lastName": "Waldinger",
           },
         ],
-        "booktitle": Array [
-          "Machine intelligence",
-        ],
+        "booktitle": "Machine intelligence",
         "editor": Array [
           Object {
             "firstName": "E.",
@@ -33,22 +29,27 @@ Object {
             "lastName": "Michie",
           },
         ],
-        "pages": Array [
-          "94–136",
-        ],
+        "pages": "94–136",
         "publisher": Array [
           "Ellis Horwood",
         ],
-        "title": Array [
-          "Achieving several goals simultaneously",
-        ],
-        "volume": Array [
-          "8",
-        ],
-        "year": Array [
-          "1977",
-        ],
+        "title": "Achieving several goals simultaneously",
+        "volume": "8",
+        "year": 1977,
       },
+      "input": String(
+        @incollection(Waldinger:Regression,
+        \\tAUTHOR = {Richard Waldinger},
+        \\tTITLE = "Achieving Several goals Simultaneously",
+        \\tBooktitle = {Machine Intelligence},
+        \\tEDITOR = {E. Elcock and D. Michie},
+        \\tYEAR = {1977},
+        \\tPUBLISHER = {Ellis Horwood},
+        \\tADDRESS = {Edinburgh, Scotland},
+        \\tVOLUME = {8},
+        \\tPAGES = {94--136},
+        )
+      ),
       "key": "Waldinger:Regression",
       "type": "incollection",
     },

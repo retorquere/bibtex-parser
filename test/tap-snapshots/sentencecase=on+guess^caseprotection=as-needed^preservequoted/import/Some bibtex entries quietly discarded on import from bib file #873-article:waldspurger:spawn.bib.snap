@@ -33,34 +33,40 @@ Object {
             "lastName": "Stornetta",
           },
         ],
-        "journal": Array [
-          "TSWE",
-        ],
-        "month": Array [
-          "February",
-        ],
-        "number": Array [
-          "2",
-        ],
-        "pages": Array [
-          "103–117",
-        ],
-        "title": Array [
-          "Spawn: a distributed computational economy",
-        ],
-        "volume": Array [
-          "18",
-        ],
-        "year": Array [
-          "1992",
-        ],
+        "journal": "TSWE",
+        "month": "February",
+        "number": "2",
+        "pages": "103–117",
+        "title": "Spawn: a distributed computational economy",
+        "volume": "18",
+        "year": 1992,
       },
+      "input": String(
+        @ARTICLE(Waldspurger:Spawn,
+        \\tAUTHOR = {Carl A. Waldspurger and Tad Hogg and Bernardo A.
+        \\t\\t  Huberman and Jeffrey O. Kephart and W. Scott Stornetta},
+        \\tTITLE = "Spawn: A distributed Computational Economy",
+        \\tJOURNAL = TSWE,
+        \\tYEAR = {1992},
+        \\tVOLUME = {18},
+        \\tNUMBER = {2},
+        \\tPAGES = {103--117},
+        \\tMONTH = {February}
+        )
+      ),
       "key": "Waldspurger:Spawn",
       "type": "article",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"TSWE\\"",
+    Object {
+      "error": "Unresolved @string reference \\"TSWE\\"",
+      "input": "TSWE",
+      "location": Object {
+        "column": 16,
+        "line": 5,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

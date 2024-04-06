@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "MITP-ADDRESS",
-        ],
+        "address": "MITP-ADDRESS",
         "author": Array [
           Object {
             "firstName": "Jr.",
@@ -31,20 +29,40 @@ Object {
         "publisher": Array [
           "MITP",
         ],
-        "title": Array [
-          "Computational complexity and natural language",
-        ],
-        "year": Array [
-          "1987",
-        ],
+        "title": "Computational complexity and natural language",
+        "year": 1987,
       },
+      "input": String(
+        @BOOK(Barton:87,
+        \\tAUTHOR = {G. Edward Barton, Jr. and Robert C. Berwick and
+        \\t\\t  Eric Sven Ristad},
+        \\tTITLE = "Computational Complexity and Natural Language",
+        \\tPUBLISHER = MITP,
+        \\tYEAR = {1987},
+        \\tADDRESS = MITP-ADDRESS
+        )
+      ),
       "key": "Barton:87",
       "type": "book",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"MITP\\"",
-    "Unresolved @string reference \\"MITP-ADDRESS\\"",
+    Object {
+      "error": "Unresolved @string reference \\"MITP\\"",
+      "input": "MITP",
+      "location": Object {
+        "column": 18,
+        "line": 5,
+      },
+    },
+    Object {
+      "error": "Unresolved @string reference \\"MITP-ADDRESS\\"",
+      "input": "MITP-ADDRESS",
+      "location": Object {
+        "column": 0,
+        "line": 8,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

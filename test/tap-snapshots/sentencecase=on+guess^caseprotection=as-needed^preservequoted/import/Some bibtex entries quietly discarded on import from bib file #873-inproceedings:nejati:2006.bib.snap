@@ -22,31 +22,37 @@ Object {
           },
           Object {
             "firstName": "T.",
-            "lastName": "Könik",
+            "lastName": "Könik",
           },
         ],
-        "booktitle": Array [
-          "ICML-06",
-        ],
-        "date-added": Array [
-          "2010-06-18 12:19:13 -0400",
-        ],
-        "date-modified": Array [
-          "2010-06-18 12:19:13 -0400",
-        ],
-        "title": Array [
-          "Learning hierarchical task networks by observation",
-        ],
-        "year": Array [
-          "2006",
-        ],
+        "booktitle": "ICML-06",
+        "date-added": "2010-06-18 12:19:13 -0400",
+        "date-modified": "2010-06-18 12:19:13 -0400",
+        "title": "Learning hierarchical task networks by observation",
+        "year": 2006,
       },
+      "input": String(
+        @inproceedings{Nejati:2006,
+        \\tAuthor = {N. Nejati and P. Langley and T. K\\\\"{o}nik},
+        \\tBooktitle = ICML-06,
+        \\tDate-Added = {2010-06-18 12:19:13 -0400},
+        \\tDate-Modified = {2010-06-18 12:19:13 -0400},
+        \\tTitle = {{Learning Hierarchical Task Networks by Observation}},
+        \\tYear = 2006}
+      ),
       "key": "Nejati:2006",
       "type": "inproceedings",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"ICML-06\\"",
+    Object {
+      "error": "Unresolved @string reference \\"ICML-06\\"",
+      "input": "ICML-06",
+      "location": Object {
+        "column": 21,
+        "line": 3,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

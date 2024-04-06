@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Philadelphia, PA",
-        ],
+        "address": "Philadelphia, PA",
         "author": Array [
           Object {
             "firstName": "Jeffrey Mark",
@@ -27,16 +25,22 @@ Object {
         "institution": Array [
           "University of Pennsylvania Institute for Research in Cognitive Science",
         ],
-        "number": Array [
-          "IRCS–93–03",
-        ],
-        "title": Array [
-          "Screamer: a portable efficient implementation of nondeterministic common lisp",
-        ],
-        "year": Array [
-          "1993",
-        ],
+        "number": "IRCS–93–03",
+        "title": "Screamer: a portable efficient implementation of nondeterministic common lisp",
+        "year": 1993,
       },
+      "input": String(
+        @TECHREPORT(Siskind:93a,
+        \\tAUTHOR = {Jeffrey Mark Siskind and David Allen McAllester},
+        \\tTITLE = {Screamer: A Portable Efficient Implementation of
+        \\t\\t Nondeterministic Common Lisp},
+        \\tINSTITUTION = {University of Pennsylvania
+        \\t\\t       Institute for Research in Cognitive Science},
+        \\tYEAR = {1993},
+        \\tNUMBER = {IRCS--93--03},
+        \\tADDRESS = {Philadelphia, PA}
+        )
+      ),
       "key": "Siskind:93a",
       "type": "techreport",
     },

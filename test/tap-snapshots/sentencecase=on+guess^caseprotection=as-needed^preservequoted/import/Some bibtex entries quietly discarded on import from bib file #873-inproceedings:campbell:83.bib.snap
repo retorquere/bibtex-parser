@@ -21,25 +21,33 @@ Object {
             "lastName": "Berliner",
           },
         ],
-        "booktitle": Array [
-          "AAAI-83",
-        ],
-        "pages": Array [
-          "49–53",
-        ],
-        "title": Array [
-          "A chess program that chunks",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "booktitle": "AAAI-83",
+        "pages": "49–53",
+        "title": "A chess program that chunks",
+        "year": 1983,
       },
+      "input": String(
+        @inproceedings(Campbell:83,
+        \\tauthor =\\t{Murray Campbell and Hans Berliner},
+        \\tyear =\\t\\t{1983},
+        \\tbooktitle = \\tAAAI-83,
+        \\tpages =\\t\\t{49--53},
+        \\ttitle =\\t\\t{A chess program that chunks}
+        )
+      ),
       "key": "Campbell:83",
       "type": "inproceedings",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"AAAI-83\\"",
+    Object {
+      "error": "Unresolved @string reference \\"AAAI-83\\"",
+      "input": "AAAI-83",
+      "location": Object {
+        "column": 22,
+        "line": 4,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

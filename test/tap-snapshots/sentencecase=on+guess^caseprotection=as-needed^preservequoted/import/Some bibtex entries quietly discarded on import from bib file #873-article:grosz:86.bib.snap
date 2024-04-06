@@ -21,25 +21,33 @@ Object {
             "lastName": "Sidner",
           },
         ],
-        "journal": Array [
-          "Corolla Londiniensis",
-        ],
-        "title": Array [
-          "Attention, intention and the structure of discourse",
-        ],
-        "volume": Array [
-          "12",
-        ],
-        "year": Array [
-          "1986",
-        ],
+        "journal": "Corolla Londiniensis",
+        "title": "Attention, intention and the structure of discourse",
+        "volume": "12",
+        "year": 1986,
       },
+      "input": String(
+        @article(Grosz:86,
+        \\tauthor =\\t{Barbara J. Grosz and Candace Sidner},
+        \\tyear =\\t\\t{1986},
+        \\tjournal =\\tCL,
+        \\ttitle =\\t\\t"Attention, Intention and the Structure of Discourse",
+        \\tvolume =\\t{12}
+        )
+      ),
       "key": "Grosz:86",
       "type": "article",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"CL\\"",
+    Object {
+      "error": "Unresolved @string reference \\"CL\\"",
+      "input": "CL",
+      "location": Object {
+        "column": 14,
+        "line": 4,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

@@ -17,31 +17,38 @@ Object {
             "lastName": "Pednault",
           },
         ],
-        "journal": Array [
-          "CI",
-        ],
-        "number": Array [
-          "4",
-        ],
-        "pages": Array [
-          "356–372",
-        ],
-        "title": Array [
-          "Synthesizing Plans that contain actions with context-dependent effects",
-        ],
-        "volume": Array [
-          "4",
-        ],
-        "year": Array [
-          "1988",
-        ],
+        "journal": "CI",
+        "number": "4",
+        "pages": "356–372",
+        "title": "Synthesizing Plans that contain actions with context-dependent effects",
+        "volume": "4",
+        "year": 1988,
       },
+      "input": String(
+        @ARTICLE(Pednault:88,
+        \\tAUTHOR = {E.P.D. Pednault},
+        \\tTITLE = {Synthesizing Plans that contain actions with 
+        \\t\\t context-dependent effects},
+        \\tJOURNAL = CI,
+        \\tYEAR = {1988},
+        \\tVOLUME = {4},
+        \\tNUMBER = {4},
+        \\tPAGES = {356--372}
+        )
+      ),
       "key": "Pednault:88",
       "type": "article",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"CI\\"",
+    Object {
+      "error": "Unresolved @string reference \\"CI\\"",
+      "input": "CI",
+      "location": Object {
+        "column": 14,
+        "line": 5,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

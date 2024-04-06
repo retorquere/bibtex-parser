@@ -13,25 +13,36 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "literal": "MCDERMOTT",
+            "name": "MCDERMOTT",
           },
         ],
         "institution": Array [
           "Yale University Department of Computer Science",
         ],
-        "title": Array [
-          "The nisp manual",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "title": "The nisp manual",
+        "year": 1983,
       },
+      "input": String(
+        @techreport(McDermott:83b,
+        \\tauthor =\\tMCDERMOTT,
+        \\tyear =\\t\\t{1983},
+        \\tinstitution =\\t{Yale University Department of Computer Science},
+        \\ttitle =\\t\\t{The Nisp manual}
+        )
+      ),
       "key": "McDermott:83b",
       "type": "techreport",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"MCDERMOTT\\"",
+    Object {
+      "error": "Unresolved @string reference \\"MCDERMOTT\\"",
+      "input": "MCDERMOTT",
+      "location": Object {
+        "column": 20,
+        "line": 2,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

@@ -13,29 +13,39 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "literal": "WILKINS",
+            "name": "WILKINS",
           },
           Object {
             "firstName": "Karen L.",
             "lastName": "Myers",
           },
         ],
-        "crossref": Array [
-          "AIPS98",
-        ],
-        "pages": Array [
-          "154–162",
-        ],
-        "title": Array [
-          "A multiagent planning architecture",
-        ],
+        "crossref": "AIPS98",
+        "pages": "154–162",
+        "title": "A multiagent planning architecture",
       },
+      "input": String(
+        @INPROCEEDINGS{WilkinsMyers:98,
+        \\tAUTHOR = WILKINS # { and Karen L. Myers},
+        \\tTITLE = "A Multiagent planning architecture",
+        \\tPAGES = {154--162},
+        \\tCROSSREF = {AIPS98},
+        \\tANNOTE = {}
+        }
+      ),
       "key": "WilkinsMyers:98",
       "type": "inproceedings",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"WILKINS\\"",
+    Object {
+      "error": "Unresolved @string reference \\"WILKINS\\"",
+      "input": "WILKINS",
+      "location": Object {
+        "column": 18,
+        "line": 2,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

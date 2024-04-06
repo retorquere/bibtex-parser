@@ -17,31 +17,37 @@ Object {
             "lastName": "Grosz",
           },
         ],
-        "journal": Array [
-          "AIM",
-        ],
-        "number": Array [
-          "2",
-        ],
-        "pages": Array [
-          "67–85",
-        ],
-        "title": Array [
-          "Collaborative systems",
-        ],
-        "volume": Array [
-          "17",
-        ],
-        "year": Array [
-          "1996",
-        ],
+        "journal": "AIM",
+        "number": "2",
+        "pages": "67–85",
+        "title": "Collaborative systems",
+        "volume": "17",
+        "year": 1996,
       },
+      "input": String(
+        @ARTICLE{Grosz:96,
+        \\tAUTHOR = {Barbara J. Grosz},
+        \\tTITLE = "Collaborative Systems",
+        \\tJOURNAL = AIM,
+        \\tYEAR = {1996},
+        \\tVOLUME = {17},
+        \\tNUMBER = {2},
+        \\tPAGES = {67--85}
+        }
+      ),
       "key": "Grosz:96",
       "type": "article",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"AIM\\"",
+    Object {
+      "error": "Unresolved @string reference \\"AIM\\"",
+      "input": "AIM",
+      "location": Object {
+        "column": 15,
+        "line": 4,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

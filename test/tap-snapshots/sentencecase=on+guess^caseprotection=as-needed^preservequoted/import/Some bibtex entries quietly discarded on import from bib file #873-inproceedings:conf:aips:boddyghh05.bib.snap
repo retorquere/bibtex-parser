@@ -29,15 +29,9 @@ Object {
             "lastName": "Harp",
           },
         ],
-        "bibdate": Array [
-          "2006-04-27",
-        ],
-        "bibsource": Array [
-          "DBLP, http://dblp.uni-trier.de/db/conf/aips/icaps2005.html#BoddyGHH05",
-        ],
-        "booktitle": Array [
-          "ICAPS",
-        ],
+        "bibdate": "2006-04-27",
+        "bibsource": "DBLP, http://dblp.uni-trier.de/db/conf/aips/icaps2005.html#BoddyGHH05",
+        "booktitle": "ICAPS",
         "editor": Array [
           Object {
             "firstName": "Susanne",
@@ -52,28 +46,44 @@ Object {
             "lastName": "Rajan",
           },
         ],
-        "isbn": Array [
-          "1-57735-220-3",
-        ],
-        "pages": Array [
-          "12–21",
-        ],
+        "isbn": "1-57735-220-3",
+        "pages": "12–21",
         "publisher": Array [
           "AAAI",
         ],
-        "title": Array [
-          "Course of action generation for cyber security using classical planning",
-        ],
-        "year": Array [
-          "2005",
-        ],
+        "title": "Course of action generation for cyber security using classical planning",
+        "year": 2005,
       },
+      "input": String(
+        @InProceedings{conf/aips/BoddyGHH05,
+          title =\\t"Course of Action Generation for Cyber Security Using
+        \\t\\t Classical Planning",
+          author =\\t"Mark S. Boddy and Johnathan Gohde and Thomas Haigh and
+        \\t\\t Steven A. Harp",
+          bibdate =\\t"2006-04-27",
+          bibsource =\\t"DBLP,
+        \\t\\t http://dblp.uni-trier.de/db/conf/aips/icaps2005.html#BoddyGHH05",
+          booktitle =\\tICAPS,
+          publisher =\\t"AAAI",
+          year = \\t"2005",
+          editor =\\t"Susanne Biundo and Karen L. Myers and Kanna Rajan",
+          ISBN = \\t"1-57735-220-3",
+          pages =\\t"12--21",
+        }
+      ),
       "key": "conf/aips/BoddyGHH05",
       "type": "inproceedings",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"ICAPS\\"",
+    Object {
+      "error": "Unresolved @string reference \\"ICAPS\\"",
+      "input": "ICAPS",
+      "location": Object {
+        "column": 20,
+        "line": 9,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

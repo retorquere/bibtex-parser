@@ -21,16 +21,19 @@ Object {
             "lastName": "Reichgelt",
           },
         ],
-        "note": Array [
-          "manuscript",
-        ],
-        "title": Array [
-          "A general proof method for modal predicate logic without the Barcan formula or its converse",
-        ],
-        "year": Array [
-          "1988",
-        ],
+        "note": "manuscript",
+        "title": "A general proof method for modal predicate logic without the Barcan formula or its converse",
+        "year": 1988,
       },
+      "input": String(
+        @UNPUBLISHED{Jackson:ModalProof,
+        \\tAUTHOR = {Peter Jackson and Han Reichgelt},
+        \\tTITLE = {A general proof method for modal predicate logic without 
+        \\t\\t the {Barcan} formula or its converse},
+        \\tNOTE = {manuscript},
+        \\tYEAR = {1988}
+        }
+      ),
       "key": "Jackson:ModalProof",
       "type": "unpublished",
     },

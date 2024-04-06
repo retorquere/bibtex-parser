@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "annote": Array [
-          "Presents the AC-4 and PC-3 algorithms; optimal algorithms for arc consistency and path consistency, respectively, for uniprocessors. Note that Han and Lee, in their 1988 paper, provide a fix for a bug in PC-3, creating an algorithm they call PC-4.",
-        ],
+        "annote": "Presents the AC-4 and PC-3 algorithms; optimal algorithms for arc consistency and path consistency, respectively, for uniprocessors. Note that Han and Lee, in their 1988 paper, provide a fix for a bug in PC-3, creating an algorithm they call PC-4.",
         "author": Array [
           Object {
             "firstName": "Roger",
@@ -24,34 +22,44 @@ Object {
             "lastName": "Henderson",
           },
         ],
-        "journal": Array [
-          "AIJ",
-        ],
-        "month": Array [
-          "3",
-        ],
-        "number": Array [
-          "2",
-        ],
-        "pages": Array [
-          "225–233",
-        ],
-        "title": Array [
-          "Arc and path consistency revisited",
-        ],
-        "volume": Array [
-          "28",
-        ],
-        "year": Array [
-          "1986",
-        ],
+        "journal": "AIJ",
+        "month": 3,
+        "number": "2",
+        "pages": "225–233",
+        "title": "Arc and path consistency revisited",
+        "volume": "28",
+        "year": 1986,
       },
+      "input": String(
+        @ARTICLE{MohrHenderson:86,
+        \\tAUTHOR = {Roger Mohr and Thomas C. Henderson},
+        \\tTITLE = "Arc and Path Consistency Revisited",
+        \\tJOURNAL = AIJ,
+        \\tYEAR = {1986},
+        \\tVOLUME = {28},
+        \\tNUMBER = {2},
+        \\tPAGES = {225--233},
+        \\tMONTH = mar,
+        \\tANNOTE = {Presents the AC-4 and PC-3 algorithms; optimal
+        \\t\\t  algorithms for arc consistency and path consistency,
+        \\t\\t  respectively, for uniprocessors.  Note that Han and Lee, 
+        \\t\\t  in their 1988 paper, provide a fix for a bug in 
+        \\t\\t  PC-3, creating an algorithm they call PC-4.}
+        }
+      ),
       "key": "MohrHenderson:86",
       "type": "article",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"AIJ\\"",
+    Object {
+      "error": "Unresolved @string reference \\"AIJ\\"",
+      "input": "AIJ",
+      "location": Object {
+        "column": 15,
+        "line": 4,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

@@ -13,28 +13,38 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "literal": "MCDERMOTT",
+            "name": "MCDERMOTT",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the ACM symposium on lisp and functional programming",
-        ],
-        "pages": Array [
-          "154–162",
-        ],
-        "title": Array [
-          "An efficient environment allocation scheme in an interpreter for a lexically-scoped LISP",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "booktitle": "Proceedings of the ACM symposium on lisp and functional programming",
+        "pages": "154–162",
+        "title": "An efficient environment allocation scheme in an interpreter for a lexically-scoped LISP",
+        "year": 1980,
       },
+      "input": String(
+        @inproceedings(McDermott:80,
+        \\tauthor =\\tMCDERMOTT,
+        \\tbooktitle =\\t{Proceedings of the ACM Symposium on 
+        \\t\\t\\t Lisp and Functional Programming},
+        \\tyear =\\t\\t{1980},
+        \\tpages =\\t\\t{154--162},
+        \\ttitle =\\t\\t{An efficient environment allocation scheme in an 
+        \\t\\t\\t interpreter for a lexically-scoped LISP}
+        )
+      ),
       "key": "McDermott:80",
       "type": "inproceedings",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"MCDERMOTT\\"",
+    Object {
+      "error": "Unresolved @string reference \\"MCDERMOTT\\"",
+      "input": "MCDERMOTT",
+      "location": Object {
+        "column": 20,
+        "line": 2,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

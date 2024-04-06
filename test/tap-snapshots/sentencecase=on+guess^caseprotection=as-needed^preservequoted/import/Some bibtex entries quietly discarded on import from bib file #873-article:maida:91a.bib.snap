@@ -17,28 +17,36 @@ Object {
             "lastName": "Maida",
           },
         ],
-        "journal": Array [
-          "AIJ",
-        ],
-        "pages": Array [
-          "331–383",
-        ],
-        "title": Array [
-          "Maintaining mental models of agents who have existential misconceptions",
-        ],
-        "volume": Array [
-          "50",
-        ],
-        "year": Array [
-          "1991",
-        ],
+        "journal": "AIJ",
+        "pages": "331–383",
+        "title": "Maintaining mental models of agents who have existential misconceptions",
+        "volume": "50",
+        "year": 1991,
       },
+      "input": String(
+        @ARTICLE{Maida:91a,
+        \\tAUTHOR = {Anthony S. Maida},
+        \\tTITLE = {Maintaining mental models of agents who have existential
+        \\t\\t misconceptions},
+        \\tJOURNAL = AIJ,
+        \\tYEAR = {1991},
+        \\tVOLUME = {50},
+        \\tPAGES = {331--383}
+        }
+      ),
       "key": "Maida:91a",
       "type": "article",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"AIJ\\"",
+    Object {
+      "error": "Unresolved @string reference \\"AIJ\\"",
+      "input": "AIJ",
+      "location": Object {
+        "column": 15,
+        "line": 5,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

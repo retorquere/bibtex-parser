@@ -17,22 +17,22 @@ Object {
             "lastName": "Landin",
           },
         ],
-        "journal": Array [
-          "Computer Journal",
-        ],
-        "pages": Array [
-          "308-320",
-        ],
-        "title": Array [
-          "The mechanical evaluation of expressions",
-        ],
-        "volume": Array [
-          "6",
-        ],
-        "year": Array [
-          "1964",
-        ],
+        "journal": "Computer Journal",
+        "pages": "308-320",
+        "title": "The mechanical evaluation of expressions",
+        "volume": "6",
+        "year": 1964,
       },
+      "input": String(
+        @article(Landin:1964,
+        \\tauthor =\\t{Peter Landin},
+        \\tyear =\\t\\t{1964},
+        \\tjournal =\\t{Computer Journal},
+        \\tpages =\\t\\t{308-320},
+        \\ttitle =\\t\\t"The mechanical evaluation of expressions",
+        \\tvolume =\\t{6}
+        )
+      ),
       "key": "Landin:1964",
       "type": "article",
     },

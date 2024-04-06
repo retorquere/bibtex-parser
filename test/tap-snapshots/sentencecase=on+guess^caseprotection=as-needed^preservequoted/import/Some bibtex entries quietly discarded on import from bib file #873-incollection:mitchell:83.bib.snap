@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Palo Alto, Calif.",
-        ],
+        "address": "Palo Alto, Calif.",
         "author": Array [
           Object {
             "firstName": "Tom M.",
@@ -28,9 +26,7 @@ Object {
             "lastName": "Banerji",
           },
         ],
-        "booktitle": Array [
-          "Machine learning: An artificial intelligence approach",
-        ],
+        "booktitle": "Machine learning: An artificial intelligence approach",
         "editor": Array [
           Object {
             "firstName": "Jaime G. Carbonell",
@@ -41,19 +37,25 @@ Object {
             "lastName": "Mitchell",
           },
         ],
-        "pages": Array [
-          "163-190",
-        ],
+        "pages": "163-190",
         "publisher": Array [
           "Tioga",
         ],
-        "title": Array [
-          "Learning by experimentation: Acquiring and refining problem-solving heuristics",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "title": "Learning by experimentation: Acquiring and refining problem-solving heuristics",
+        "year": 1983,
       },
+      "input": String(
+        @incollection(Mitchell:83,
+        \\tauthor =\\t{Tom M. Mitchell and Paul E. Utgoff and Ranan Banerji},
+        \\tbooktitle =\\t{Machine Learning: An Artificial Intelligence Approach},
+        \\taddress =\\t{Palo Alto, Calif.},
+        \\tyear =\\t\\t{1983},
+        \\teditor =\\t{Ryszard Michalski, Jaime G. Carbonell, and Tom M. Mitchell},
+        \\tpublisher =\\t{Tioga},
+        \\tpages =\\t\\t{163-190},
+        \\ttitle =\\t\\t{Learning by experimentation: Acquiring and refining problem-solving heuristics}
+        )
+      ),
       "key": "Mitchell:83",
       "type": "incollection",
     },

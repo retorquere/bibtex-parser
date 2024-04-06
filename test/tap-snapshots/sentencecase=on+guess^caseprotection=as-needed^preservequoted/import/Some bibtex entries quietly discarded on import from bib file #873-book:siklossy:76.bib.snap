@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Englewood Cliffs, NJ",
-        ],
+        "address": "Englewood Cliffs, NJ",
         "author": Array [
           Object {
             "firstName": "Laurent",
@@ -23,13 +21,18 @@ Object {
         "publisher": Array [
           "Prentice-Hall",
         ],
-        "title": Array [
-          "Let's talk LISP",
-        ],
-        "year": Array [
-          "1976",
-        ],
+        "title": "Let's talk LISP",
+        "year": 1976,
       },
+      "input": String(
+        @book(Siklossy:76,
+        \\tauthor =\\t{Laurent Siklossy},
+        \\taddress =\\t{Englewood Cliffs, NJ},
+        \\tyear =\\t\\t{1976},
+        \\tpublisher =\\t{Prentice-Hall},
+        \\ttitle =\\t\\t{Let's Talk LISP}
+        )
+      ),
       "key": "Siklossy:76",
       "type": "book",
     },

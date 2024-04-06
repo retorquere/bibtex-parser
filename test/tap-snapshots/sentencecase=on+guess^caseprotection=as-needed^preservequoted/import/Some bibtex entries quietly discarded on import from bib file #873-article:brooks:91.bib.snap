@@ -17,31 +17,37 @@ Object {
             "lastName": "Brooks",
           },
         ],
-        "journal": Array [
-          "AIJ",
-        ],
-        "month": Array [
-          "1",
-        ],
-        "pages": Array [
-          "139–159",
-        ],
-        "title": Array [
-          "Intelligence without representation",
-        ],
-        "volume": Array [
-          "47",
-        ],
-        "year": Array [
-          "1991",
-        ],
+        "journal": "AIJ",
+        "month": 1,
+        "pages": "139–159",
+        "title": "Intelligence without representation",
+        "volume": "47",
+        "year": 1991,
       },
+      "input": String(
+        @ARTICLE{Brooks:91,
+        \\tAUTHOR = {Rodney Brooks},
+        \\tTITLE = "Intelligence without Representation",
+        \\tJOURNAL = AIJ,
+        \\tYEAR = {1991},
+        \\tVOLUME = {47},
+        \\tPAGES = {139--159},
+        \\tMONTH = January
+        }
+      ),
       "key": "Brooks:91",
       "type": "article",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"AIJ\\"",
+    Object {
+      "error": "Unresolved @string reference \\"AIJ\\"",
+      "input": "AIJ",
+      "location": Object {
+        "column": 15,
+        "line": 4,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

@@ -8,29 +8,6 @@ const tap = require('tap')
 
 const bibtex = require('../index')
 
-function tryparse({ bibfile, options }) {
-  const source = fs.readFileSync(bibfile, 'utf-8')
-
-  if (bibfile.endsWith('.json')) {
-    const data = JSON.parse(source)
-    return data.items.map(item => bibtex.toSentenceCase(item.title, { subSentenceCapitalization: false }))
-  }
-
-  let result = ''
-  try {
-    if (options.exception) {
-      bibtex.parse(source, {...options, unsupported: (node, tex, entry) => { result = `unsupported ${node.type} (${tex})\n${entry.input}` } })
-    }
-    else {
-      result = bibtex.parse(source, options)
-    }
-  }
-  catch (err) {
-    result = err.message + '\n' + err.stack
-  }
-  return result
-}
-
 function sortObject(obj) {
   if (Array.isArray(obj)) return obj.map(sortObject)
   if (obj === null || obj === undefined || typeof obj !== 'object') return obj
@@ -39,49 +16,6 @@ function sortObject(obj) {
     sorted[k] = sortObject(obj[k])
   }
   return sorted
-}
-
-function normalize(result) {
-  if (!Array.isArray(result.entries)) return result
-  result.entries = JSON.parse(JSON.stringify(result.entries), (key, value) => typeof value === 'string' ? value.normalize('NFC') : value)
-
-  if (result.preamble) result.preamble = []
-
-  // temporary workarounds to match old return format
-  for (const entry of result.entries) {
-    // if (entry.fields.note) entry.fields.note = entry.fields.note.replace(/[\r\n]/g, '')
-    delete entry.input
-    for (let [field, value] of Object.entries(entry.fields)) {
-      if (!Array.isArray(entry.fields[field])) entry.fields[field] = [ value ]
-
-      switch (field) {
-        case 'author':
-          for (const cr of value) {
-            for (const n of ['name', 'firstName', 'lastName']) {
-              if (cr[n]) cr[n] = cr[n].replace(/\u00A0/g, ' ')
-            }
-            if (cr.name) {
-              cr.literal = cr.name
-              delete cr.name
-            }
-          }
-          break
-
-        case 'location':
-        case 'publisher':
-          entry.fields[field] = [ entry.fields[field].join(' and ') ]
-          break
-        default:
-          entry.fields[field] = entry.fields[field].map(v => typeof v === 'number' ? `${v}` : v)
-          break
-      }
-    }
-  }
-  result.entries = sortObject(result.entries)
-
-  result.errors = [...new Set(result.errors.map(err => err.error ))].sort()
-
-  return result
 }
 
 const config = { ...(require('./runtests.json')), tests: require('./tap.json') }
@@ -114,21 +48,17 @@ function parse(bibfile, name, snapshot, options) {
       result = err.message + '\n' + err.stack
     }
    
-    if (typeof result !== 'string' && !config.tests.error.includes(path.basename(bibfile))) {
-      for (const err of result.errors) {
-        if (err.error.match(/Unresolved @string|unexpected \d+-part name/)) continue
-        throw JSON.stringify(result.errors[0], null, 2)
-      }
-    }
     t.snapshotFile = snapshot
-    t.matchSnapshot(normalize(result))
+    t.matchSnapshot(result)
   })
 }
 
 function sentenceCase(input, name, snapshot) {
+  const source = fs.readFileSync(input, 'utf-8')
+  const data = JSON.parse(source)
+  if (!data.items) return
+
   tap.test(name, async t => {
-    const source = fs.readFileSync(input, 'utf-8')
-    const data = JSON.parse(source)
     const result = data.items.map(item => bibtex.toSentenceCase(item.title, { subSentenceCapitalization: false }))
     t.snapshotFile = snapshot
     t.matchSnapshot(result)

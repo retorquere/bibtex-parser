@@ -13,9 +13,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Boston, Massachusetts",
-        ],
+        "address": "Boston, Massachusetts",
         "author": Array [
           Object {
             "firstName": "J. Van",
@@ -25,13 +23,18 @@ Object {
         "publisher": Array [
           "Kluwer Academic Publishers",
         ],
-        "title": Array [
-          "The logic of time",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "title": "The logic of time",
+        "year": 1983,
       },
+      "input": String(
+        @book(VanBenthemTL,
+        \\tauthor = {J. Van Benthem},
+        \\ttitle = "The Logic of Time",
+        \\tpublisher = {Kluwer Academic Publishers},
+        \\taddress = {Boston, Massachusetts},
+        \\tyear = 1983
+        )
+      ),
       "key": "VanBenthemTL",
       "type": "book",
     },

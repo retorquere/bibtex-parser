@@ -21,28 +21,35 @@ Object {
             "lastName": "Wellman",
           },
         ],
-        "journal": Array [
-          "AIJ",
-        ],
-        "pages": Array [
-          "97–128",
-        ],
-        "title": Array [
-          "Impediments to universal preference-based default theories",
-        ],
-        "volume": Array [
-          "49",
-        ],
-        "year": Array [
-          "1991",
-        ],
+        "journal": "AIJ",
+        "pages": "97–128",
+        "title": "Impediments to universal preference-based default theories",
+        "volume": "49",
+        "year": 1991,
       },
+      "input": String(
+        @ARTICLE{DoyleWellman:91,
+        \\tAUTHOR = {Jon Doyle and Michael P. Wellman},
+        \\tTITLE = "Impediments to universal preference-based default theories",
+        \\tJOURNAL = AIJ,
+        \\tYEAR = {1991},
+        \\tVOLUME = {49},
+        \\tPAGES = {97--128}
+        }
+      ),
       "key": "DoyleWellman:91",
       "type": "article",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"AIJ\\"",
+    Object {
+      "error": "Unresolved @string reference \\"AIJ\\"",
+      "input": "AIJ",
+      "location": Object {
+        "column": 15,
+        "line": 4,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

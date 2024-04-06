@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "ERLBAUM-ADDRESS",
-        ],
+        "address": "ERLBAUM-ADDRESS",
         "author": Array [
           Object {
             "firstName": "Roger C.",
@@ -27,20 +25,39 @@ Object {
         "publisher": Array [
           "ERLBAUM",
         ],
-        "title": Array [
-          "Scripts, plans, goals, and understanding",
-        ],
-        "year": Array [
-          "1977",
-        ],
+        "title": "Scripts, plans, goals, and understanding",
+        "year": 1977,
       },
+      "input": String(
+        @book(Scripts,
+        \\tauthor =\\t{Roger C. Schank and Robert P. Abelson},
+        \\taddress =\\tERLBAUM-ADDRESS,
+        \\tyear =\\t\\t{1977},
+        \\tpublisher =\\tERLBAUM,
+        \\ttitle =\\t\\t{Scripts, Plans, Goals, and Understanding}
+        )
+      ),
       "key": "Scripts",
       "type": "book",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"ERLBAUM\\"",
-    "Unresolved @string reference \\"ERLBAUM-ADDRESS\\"",
+    Object {
+      "error": "Unresolved @string reference \\"ERLBAUM-ADDRESS\\"",
+      "input": "ERLBAUM-ADDRESS",
+      "location": Object {
+        "column": 27,
+        "line": 3,
+      },
+    },
+    Object {
+      "error": "Unresolved @string reference \\"ERLBAUM\\"",
+      "input": "ERLBAUM",
+      "location": Object {
+        "column": 21,
+        "line": 5,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

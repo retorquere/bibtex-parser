@@ -11,18 +11,14 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "San Francisco",
-        ],
+        "address": "San Francisco",
         "author": Array [
           Object {
             "firstName": "Roger C.",
             "lastName": "Schank",
           },
         ],
-        "booktitle": Array [
-          "Computer models of thought and language",
-        ],
+        "booktitle": "Computer models of thought and language",
         "editor": Array [
           Object {
             "firstName": "R.C.",
@@ -33,19 +29,25 @@ Object {
             "lastName": "Colby",
           },
         ],
-        "pages": Array [
-          "187-248",
-        ],
+        "pages": "187-248",
         "publisher": Array [
           "Freeman",
         ],
-        "title": Array [
-          "Identification of conceptualizations underlying natural language",
-        ],
-        "year": Array [
-          "1973",
-        ],
+        "title": "Identification of conceptualizations underlying natural language",
+        "year": 1973,
       },
+      "input": String(
+        @inbook(Schank:73,
+        \\tauthor =\\t{Roger C. Schank},
+        \\tbooktitle =\\t{Computer Models of Thought and Language},
+        \\taddress =\\t{San Francisco},
+        \\tyear =\\t\\t{1973},
+        \\teditor =\\t{R.C. Schank and K.M. Colby},
+        \\tpublisher =\\t{Freeman},
+        \\tpages =\\t\\t{187-248},
+        \\ttitle =\\t\\t{Identification of conceptualizations underlying natural language}
+        )
+      ),
       "key": "Schank:73",
       "type": "inbook",
     },

@@ -17,19 +17,20 @@ Object {
             "lastName": "Lifschitz",
           },
         ],
-        "crossref": Array [
-          "PlanReadings",
-        ],
-        "note": Array [
-          "Reprinted from <i>Reasoning about Actions and Plans</i>",
-        ],
-        "pages": Array [
-          "523–530",
-        ],
-        "title": Array [
-          "On the semantics of STRIPS",
-        ],
+        "crossref": "PlanReadings",
+        "note": "Reprinted from <i>Reasoning about Actions and Plans</i>",
+        "pages": "523–530",
+        "title": "On the semantics of STRIPS",
       },
+      "input": String(
+        @INCOLLECTION(Lifschitz:STRIPS,
+        \\tAUTHOR = {Vladimir Lifschitz},
+        \\tTITLE = "On the Semantics of {STRIPS}",
+        \\tCROSSREF = {PlanReadings},
+        \\tPAGES = {523--530},
+        \\tNOTE = {Reprinted from {\\\\em Reasoning about Actions and Plans\\\\/}}
+        )
+      ),
       "key": "Lifschitz:STRIPS",
       "type": "incollection",
     },

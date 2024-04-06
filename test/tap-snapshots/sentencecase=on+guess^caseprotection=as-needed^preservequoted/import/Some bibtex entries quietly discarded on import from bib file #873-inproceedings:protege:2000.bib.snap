@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Beijing",
-        ],
+        "address": "Beijing",
         "author": Array [
           Object {
             "firstName": "M. A.",
@@ -40,16 +38,24 @@ Object {
             "lastName": "Gennari",
           },
         ],
-        "booktitle": Array [
-          "Conference on intelligent information processing (IIP 2000) of the international federation for information processing world computer congress (WCC 2000)",
-        ],
-        "title": Array [
-          "Component-based support for building knowledge-acquisition systems",
-        ],
-        "year": Array [
-          "2000",
-        ],
+        "booktitle": "Conference on intelligent information processing (IIP 2000) of the international federation for information processing world computer congress (WCC 2000)",
+        "title": "Component-based support for building knowledge-acquisition systems",
+        "year": 2000,
       },
+      "input": String(
+        @InProceedings{Protege:2000,
+          author =\\t {M. A. Musen and R. W. Fergerson and W. E. Grosso and
+                          N. F. Noy and M. Crubezy and J. H. Gennari},
+          title =\\t {Component-Based Support for Building
+                          Knowledge-Acquisition Systems},
+          booktitle =\\t {Conference on Intelligent Information Processing
+                          (IIP 2000) of the International Federation for
+                          Information Processing World Computer Congress (WCC
+                          2000)},
+          year =\\t 2000,
+          address =\\t {Beijing}
+        }
+      ),
       "key": "Protege:2000",
       "type": "inproceedings",
     },

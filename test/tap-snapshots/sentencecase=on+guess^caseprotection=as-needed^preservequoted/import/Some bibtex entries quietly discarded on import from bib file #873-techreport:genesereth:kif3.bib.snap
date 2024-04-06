@@ -24,22 +24,25 @@ Object {
         "institution": Array [
           "Computer Science Department, Stanford University",
         ],
-        "month": Array [
-          "June",
-        ],
-        "number": Array [
-          "Logic-92-1",
-        ],
-        "title": Array [
-          "Knowledge interchange format, version 3.0 reference manual",
-        ],
-        "type": Array [
-          "Logic Group Report",
-        ],
-        "year": Array [
-          "1992",
-        ],
+        "month": "June",
+        "number": "Logic-92-1",
+        "title": "Knowledge interchange format, version 3.0 reference manual",
+        "type": "Logic Group Report",
+        "year": 1992,
       },
+      "input": String(
+        @TECHREPORT(Genesereth:KIF3,
+        \\tAUTHOR = {Micheal R. Genesereth and Richard E. Fikes},
+        \\tTITLE = {Knowledge Interchange Format, Version 3.0
+        \\t\\t Reference Manual},
+        \\tINSTITUTION = {Computer Science Department,
+        \\t\\t       Stanford University},
+        \\tYEAR = {1992},
+        \\tTYPE = {Logic Group Report},
+        \\tNUMBER = {Logic-92-1},
+        \\tMONTH = {June}
+        )
+      ),
       "key": "Genesereth:KIF3",
       "type": "techreport",
     },

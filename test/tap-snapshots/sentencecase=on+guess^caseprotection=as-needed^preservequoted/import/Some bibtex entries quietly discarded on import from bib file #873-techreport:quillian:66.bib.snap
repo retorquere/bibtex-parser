@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Cambridge, Mass.",
-        ],
+        "address": "Cambridge, Mass.",
         "author": Array [
           Object {
             "firstName": "M. Ross",
@@ -24,13 +22,18 @@ Object {
           "Bolt Beranek",
           "Newman",
         ],
-        "title": Array [
-          "Semantic memory",
-        ],
-        "year": Array [
-          "1966",
-        ],
+        "title": "Semantic memory",
+        "year": 1966,
       },
+      "input": String(
+        @techreport(Quillian:66,
+        \\tauthor =\\t{M. Ross Quillian},
+        \\taddress =\\t{Cambridge, Mass.},
+        \\tyear =\\t\\t{1966},
+        \\tinstitution =\\t{Bolt Beranek and Newman},
+        \\ttitle =\\t\\t{Semantic Memory}
+        )
+      ),
       "key": "Quillian:66",
       "type": "techreport",
     },

@@ -36,22 +36,27 @@ Object {
         "institution": Array [
           "Cognitive Science Laboratory, Princeton University",
         ],
-        "month": Array [
-          "7",
-        ],
-        "number": Array [
-          "43",
-        ],
-        "title": Array [
-          "Five papers on WordNet",
-        ],
-        "type": Array [
-          "CSL Report",
-        ],
-        "year": Array [
-          "1990",
-        ],
+        "month": 7,
+        "number": "43",
+        "title": "Five papers on WordNet",
+        "type": "CSL Report",
+        "year": 1990,
       },
+      "input": String(
+        @TECHREPORT{MillerETAL:90,
+        \\t    
+        \\tAUTHOR = {George A. Miller and Richard Beckwith and 
+        \\t\\t  Christiane Fellbaum and Derek Gross and
+        \\t\\t  Katherine Miller},
+        \\tTITLE = "Five Papers on {WordNet}",
+        \\tINSTITUTION = {Cognitive Science Laboratory,
+        \\t\\t       Princeton University},
+        \\tYEAR = {1990},
+        \\tTYPE = {CSL Report},
+        \\tNUMBER = {43},
+        \\tMONTH = jul
+        }
+      ),
       "key": "MillerETAL:90",
       "type": "techreport",
     },

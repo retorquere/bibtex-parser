@@ -25,22 +25,22 @@ Object {
             "lastName": "Poole",
           },
         ],
-        "journal": Array [
-          "Artificial Intelligence Review",
-        ],
-        "pages": Array [
-          "447–468",
-        ],
-        "title": Array [
-          "AI meets authoring: User models for intelligent multimedia",
-        ],
-        "volume": Array [
-          "8",
-        ],
-        "year": Array [
-          "1995",
-        ],
+        "journal": "Artificial Intelligence Review",
+        "pages": "447–468",
+        "title": "AI meets authoring: User models for intelligent multimedia",
+        "volume": "8",
+        "year": 1995,
       },
+      "input": String(
+        @ARTICLE(CsingerETAL:95,
+        \\tAUTHOR = {Andrew Csinger and Kellogg S. Booth and David Poole},
+        \\tTITLE = "AI Meets Authoring: User Models for Intelligent Multimedia",
+        \\tJOURNAL = {Artificial Intelligence Review},
+        \\tYEAR = {1995},
+        \\tVOLUME = {8},
+        \\tPAGES = {447--468}
+        )
+      ),
       "key": "CsingerETAL:95",
       "type": "article",
     },

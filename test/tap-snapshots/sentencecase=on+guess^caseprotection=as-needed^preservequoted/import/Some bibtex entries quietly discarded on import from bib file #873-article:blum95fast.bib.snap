@@ -21,25 +21,32 @@ Object {
             "lastName": "Furst",
           },
         ],
-        "journal": Array [
-          "ijcai",
-        ],
-        "pages": Array [
-          "1636–1642",
-        ],
-        "title": Array [
-          "Fast planning through planning graph analysis",
-        ],
-        "year": Array [
-          "1995",
-        ],
+        "journal": "ijcai",
+        "pages": "1636–1642",
+        "title": "Fast planning through planning graph analysis",
+        "year": 1995,
       },
+      "input": String(
+        @article{blum95fast,
+            Author = {A. L. Blum and M. L. Furst},
+            Journal = ijcai,
+            Pages = {1636--1642},
+            Title = {Fast Planning Through Planning Graph Analysis},
+            Year = 1995}
+      ),
       "key": "blum95fast",
       "type": "article",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"ijcai\\"",
+    Object {
+      "error": "Unresolved @string reference \\"ijcai\\"",
+      "input": "ijcai",
+      "location": Object {
+        "column": 20,
+        "line": 3,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

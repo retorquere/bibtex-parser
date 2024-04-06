@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "annotation": Array [
-          "svm liniowe najlepsze",
-        ],
+        "annotation": "svm liniowe najlepsze",
         "author": Array [
           Object {
             "firstName": "Myungsook",
@@ -28,34 +26,31 @@ Object {
             "lastName": "Liu",
           },
         ],
-        "bibsource": Array [
-          "DBLP, http://dblp.uni-trier.de",
-        ],
-        "booktitle": Array [
-          "CATA",
-        ],
-        "crossref": Array [
-          "DBLP:conf/cata/2010",
-        ],
-        "date": Array [
-          "2010",
-        ],
-        "file": Array [
-          "files/Klassen2010/Klassen2010.pdf",
-        ],
-        "groups": Array [
-          "klasyfikacja",
-        ],
-        "owner": Array [
-          "sstudent",
-        ],
-        "pages": Array [
-          "25–30",
-        ],
-        "title": Array [
-          "Empirical Study of Support Vector Machine Kernels with Applications to Microarray Data",
-        ],
+        "bibsource": "DBLP, http://dblp.uni-trier.de",
+        "booktitle": "CATA",
+        "crossref": "DBLP:conf/cata/2010",
+        "date": "2010",
+        "file": "files/Klassen2010/Klassen2010.pdf",
+        "groups": "klasyfikacja",
+        "owner": "sstudent",
+        "pages": "25–30",
+        "title": "Empirical Study of Support Vector Machine Kernels with Applications to Microarray Data",
       },
+      "input": String(
+        @inproceedings{Klassen2010,
+          title = {Empirical {{Study}} of {{Support Vector Machine Kernels}} with {{Applications}} to {{Microarray Data}}},
+          booktitle = {{{CATA}}},
+          author = {Klassen, Myungsook and Kim, Nyunsu and Liu, Wei Ming},
+          date = {2010},
+          pages = {25--30},
+          annotation = {svm liniowe najlepsze},
+          bibsource = {DBLP, http://dblp.uni-trier.de},
+          crossref = {DBLP:conf/cata/2010},
+          file = {files/Klassen2010/Klassen2010.pdf},
+          groups = {klasyfikacja},
+          owner = {sstudent}
+        }
+      ),
       "key": "Klassen2010",
       "type": "inproceedings",
     },

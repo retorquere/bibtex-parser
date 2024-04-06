@@ -25,13 +25,17 @@ Object {
           "University of Texas at Austin Department of Mathematics",
           "Computer Sciences",
         ],
-        "title": Array [
-          "Unskolemizing",
-        ],
-        "year": Array [
-          "1978",
-        ],
+        "title": "Unskolemizing",
+        "year": 1978,
       },
+      "input": String(
+        @techreport(Bledsoe:78,
+        \\tauthor =\\t{W.W. Bledsoe and A.M. Ballantyne},
+        \\tyear =\\t\\t{1978},
+        \\tinstitution =\\t{University of Texas at Austin Department of Mathematics and Computer Sciences},
+        \\ttitle =\\t\\t{Unskolemizing}
+        )
+      ),
       "key": "Bledsoe:78",
       "type": "techreport",
     },

@@ -11,39 +11,61 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "KAUFMANN-ADDRESS",
-        ],
+        "address": "KAUFMANN-ADDRESS",
         "author": Array [
           Object {
             "firstName": "Dana H.",
             "lastName": "Ballard",
           },
         ],
-        "booktitle": Array [
-          "IJCAI-89",
-        ],
-        "pages": Array [
-          "1635–1641",
-        ],
+        "booktitle": "IJCAI-89",
+        "pages": "1635–1641",
         "publisher": Array [
           "KAUFMANN",
         ],
-        "title": Array [
-          "Reference frames for animate vision",
-        ],
-        "year": Array [
-          "1989",
-        ],
+        "title": "Reference frames for animate vision",
+        "year": 1989,
       },
+      "input": String(
+        @INPROCEEDINGS{Ballard:89,
+        \\tAUTHOR = {Dana H. Ballard},
+        \\tTITLE = "Reference Frames for Animate Vision",
+        \\tBOOKTITLE = IJCAI-89,
+        \\tYEAR = {1989},
+        \\tPAGES = {1635--1641},
+        \\tPUBLISHER = KAUFMANN,
+        \\tADDRESS = KAUFMANN-ADDRESS
+        }
+      ),
       "key": "Ballard:89",
       "type": "inproceedings",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"IJCAI-89\\"",
-    "Unresolved @string reference \\"KAUFMANN\\"",
-    "Unresolved @string reference \\"KAUFMANN-ADDRESS\\"",
+    Object {
+      "error": "Unresolved @string reference \\"IJCAI-89\\"",
+      "input": "IJCAI-89",
+      "location": Object {
+        "column": 22,
+        "line": 4,
+      },
+    },
+    Object {
+      "error": "Unresolved @string reference \\"KAUFMANN\\"",
+      "input": "KAUFMANN",
+      "location": Object {
+        "column": 22,
+        "line": 7,
+      },
+    },
+    Object {
+      "error": "Unresolved @string reference \\"KAUFMANN-ADDRESS\\"",
+      "input": "KAUFMANN-ADDRESS",
+      "location": Object {
+        "column": 0,
+        "line": 9,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

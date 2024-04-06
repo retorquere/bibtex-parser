@@ -13,7 +13,7 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "firstName": "Jörg",
+            "firstName": "Jörg",
             "lastName": "Hoffmann",
           },
           Object {
@@ -29,28 +29,37 @@ Object {
             "lastName": "Pistore",
           },
         ],
-        "journal": Array [
-          "JAIR",
-        ],
-        "pages": Array [
-          "49-117",
-        ],
-        "title": Array [
-          "Message-based web service composition, integrity constraints, and planning under uncertainty: a new connection",
-        ],
-        "volume": Array [
-          "35",
-        ],
-        "year": Array [
-          "2009",
-        ],
+        "journal": "JAIR",
+        "pages": "49-117",
+        "title": "Message-based web service composition, integrity constraints, and planning under uncertainty: a new connection",
+        "volume": "35",
+        "year": 2009,
       },
+      "input": String(
+        @Article{hoffmann:etal:jair-09,
+          author =       {J{\\\\"o}rg Hoffmann and Piergiorgio Bertoli and Malte Helmert
+                          and Marco Pistore},
+          title =        {Message-Based Web Service Composition, Integrity Constraints,
+                          and Planning under Uncertainty: A New Connection},
+          journal =      JAIR,
+          year =         {2009},
+          volume =       {35},
+          pages =        {49-117}
+        }
+      ),
       "key": "hoffmann:etal:jair-09",
       "type": "article",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"JAIR\\"",
+    Object {
+      "error": "Unresolved @string reference \\"JAIR\\"",
+      "input": "JAIR",
+      "location": Object {
+        "column": 22,
+        "line": 6,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

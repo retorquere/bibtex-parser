@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "abstract": Array [
-          "Software for Numerical Computation freely distributed.",
-        ],
+        "abstract": "Software for Numerical Computation freely distributed.",
         "author": Array [
           Object {
             "firstName": "François",
@@ -40,43 +38,39 @@ Object {
             "lastName": "Chancelier",
           },
         ],
-        "date": Array [
-          "1994-01",
-        ],
-        "file": Array [
-          "https://hal.inria.fr/hal-02090402/file/scilab-1.1.tar.gz",
-        ],
-        "hal_id": Array [
-          "hal-02090402",
-        ],
-        "hal_version": Array [
-          "v1",
-        ],
+        "date": "1994-01",
+        "file": "https://hal.inria.fr/hal-02090402/file/scilab-1.1.tar.gz",
+        "hal_id": "hal-02090402",
+        "hal_version": "v1",
         "institution": Array [
           "Inria",
         ],
-        "license": Array [
-          "Scilab license",
-        ],
-        "note": Array [
-          "First Scilab version. It was distributed by anonymous ftp.",
-        ],
-        "repository": Array [
-          "https://github.com/scilab/scilab",
-        ],
-        "swhid": Array [
-          "swh:1:dir:1ba0b67b5d0c8f10961d878d91ae9d6e499d746a; origin=https://hal.archives-ouvertes.fr/hal-02090402",
-        ],
-        "title": Array [
-          "Scilab",
-        ],
-        "url": Array [
-          "https://www.scilab.org/",
-        ],
-        "version": Array [
-          "1.1",
-        ],
+        "license": "Scilab license",
+        "note": "First Scilab version. It was distributed by anonymous ftp.",
+        "repository": "https://github.com/scilab/scilab",
+        "swhid": "swh:1:dir:1ba0b67b5d0c8f10961d878d91ae9d6e499d746a; origin=https://hal.archives-ouvertes.fr/hal-02090402",
+        "title": "Scilab",
+        "url": "https://www.scilab.org/",
+        "version": "1.1",
       },
+      "input": String(
+        @SOFTWAREVERSION{delebecque:hal-02090402v1,
+          ABSTRACT = {Software for Numerical Computation freely distributed.},
+          AUTHOR = {Delebecque, Fran{ç}ois and Gomez, Claude and Goursat, Maurice and Nikoukhah, Ramine and Steer, Serge and Chancelier, Jean-Philippe},
+          INSTITUTION = {Inria},
+          LICENSE = {Scilab license},
+          URL = {https://www.scilab.org/},
+          DATE = {1994-01},
+          FILE = {https://hal.inria.fr/hal-02090402/file/scilab-1.1.tar.gz},
+          HAL_ID = {hal-02090402},
+          HAL_VERSION = {v1},
+          NOTE = {First Scilab version. It was distributed by anonymous ftp.},
+          REPOSITORY = {https://github.com/scilab/scilab},
+          SWHID = {swh:1:dir:1ba0b67b5d0c8f10961d878d91ae9d6e499d746a; origin=https://hal.archives-ouvertes.fr/hal-02090402},
+          TITLE = {Scilab},
+          VERSION = {1.1},
+        }
+      ),
       "key": "delebecque:hal-02090402v1",
       "type": "softwareversion",
     },

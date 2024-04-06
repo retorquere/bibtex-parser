@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Edinburgh",
-        ],
+        "address": "Edinburgh",
         "author": Array [
           Object {
             "firstName": "John",
@@ -24,9 +22,7 @@ Object {
             "lastName": "Hayes",
           },
         ],
-        "booktitle": Array [
-          "Machine intelligence",
-        ],
+        "booktitle": "Machine intelligence",
         "editor": Array [
           Object {
             "firstName": "B.",
@@ -40,16 +36,23 @@ Object {
         "publisher": Array [
           "Edinburgh University Press",
         ],
-        "title": Array [
-          "Some philosophical problems from the standpoint of artificial intelligence",
-        ],
-        "volume": Array [
-          "4",
-        ],
-        "year": Array [
-          "1969",
-        ],
+        "title": "Some philosophical problems from the standpoint of artificial intelligence",
+        "volume": "4",
+        "year": 1969,
       },
+      "input": String(
+        @incollection{McCarthy:69, 
+        \\tauthor =\\t{John McCarthy and Patrick J. Hayes},
+        \\tbooktitle =\\t{Machine Intelligence},
+        \\tvolume = \\t4,
+        \\taddress =\\t{Edinburgh},
+        \\tyear =\\t\\t{1969},
+        \\teditor =\\t{B. Meltzer and D. Michie},
+        \\tpublisher =\\t{Edinburgh University Press},
+        \\ttitle =\\t\\t{Some philosophical problems 
+        \\t\\t\\t from the standpoint of artificial intelligence}
+        }
+      ),
       "key": "McCarthy:69",
       "type": "incollection",
     },

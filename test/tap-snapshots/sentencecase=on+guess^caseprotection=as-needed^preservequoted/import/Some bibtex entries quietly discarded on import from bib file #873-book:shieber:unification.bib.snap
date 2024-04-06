@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "CSLI-ADDRESS",
-        ],
+        "address": "CSLI-ADDRESS",
         "author": Array [
           Object {
             "firstName": "Stuart M.",
@@ -23,20 +21,39 @@ Object {
         "publisher": Array [
           "CSLI",
         ],
-        "title": Array [
-          "An introduction to unification-based approaches to grammar",
-        ],
-        "year": Array [
-          "1986",
-        ],
+        "title": "An introduction to unification-based approaches to grammar",
+        "year": 1986,
       },
+      "input": String(
+        @book{Shieber:Unification,
+        \\tauthor = \\t{Stuart M. Shieber},
+        \\ttitle =\\t\\t{An Introduction to Unification-based Approaches to 
+        \\t\\t\\t\\tGrammar},
+        \\tyear = \\t\\t1986,
+        \\tpublisher =\\tCSLI,
+        \\taddress = CSLI-ADDRESS}
+      ),
       "key": "Shieber:Unification",
       "type": "book",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"CSLI\\"",
-    "Unresolved @string reference \\"CSLI-ADDRESS\\"",
+    Object {
+      "error": "Unresolved @string reference \\"CSLI\\"",
+      "input": "CSLI",
+      "location": Object {
+        "column": 18,
+        "line": 6,
+      },
+    },
+    Object {
+      "error": "Unresolved @string reference \\"CSLI-ADDRESS\\"",
+      "input": "CSLI-ADDRESS",
+      "location": Object {
+        "column": 24,
+        "line": 7,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

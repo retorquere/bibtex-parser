@@ -25,34 +25,40 @@ Object {
             "lastName": "Greenberg",
           },
         ],
-        "journal": Array [
-          "PAMI",
-        ],
-        "month": Array [
-          "September",
-        ],
-        "number": Array [
-          "5",
-        ],
-        "pages": Array [
-          "531–552",
-        ],
-        "title": Array [
-          "Representation of activity knowledge for project management",
-        ],
-        "volume": Array [
-          "PAMI-7",
-        ],
-        "year": Array [
-          "1985",
-        ],
+        "journal": "PAMI",
+        "month": "September",
+        "number": "5",
+        "pages": "531–552",
+        "title": "Representation of activity knowledge for project management",
+        "volume": "PAMI-7",
+        "year": 1985,
       },
+      "input": String(
+        @ARTICLE(Sathi:Manufacturing,
+        \\tAUTHOR = {Arvind Sathi and Mark S. Fox and Michael Greenberg},
+        \\tTITLE = {Representation of Activity Knowledge for Project
+        \\t\\t Management},
+        \\tJOURNAL = PAMI,
+        \\tYEAR = {1985},
+        \\tVOLUME = {PAMI-7},
+        \\tNUMBER = {5},
+        \\tPAGES = {531--552},
+        \\tMONTH = {September}
+        )
+      ),
       "key": "Sathi:Manufacturing",
       "type": "article",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"PAMI\\"",
+    Object {
+      "error": "Unresolved @string reference \\"PAMI\\"",
+      "input": "PAMI",
+      "location": Object {
+        "column": 16,
+        "line": 5,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

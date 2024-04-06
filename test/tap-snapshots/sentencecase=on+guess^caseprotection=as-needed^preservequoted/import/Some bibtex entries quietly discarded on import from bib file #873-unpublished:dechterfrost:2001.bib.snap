@@ -21,19 +21,21 @@ Object {
             "lastName": "Frost",
           },
         ],
-        "month": Array [
-          "12",
-        ],
-        "note": Array [
-          "Unpublished preprint",
-        ],
-        "title": Array [
-          "Backjump-based backtracking for constraint satisfaction",
-        ],
-        "year": Array [
-          "2001",
-        ],
+        "month": 12,
+        "note": "Unpublished preprint",
+        "title": "Backjump-based backtracking for constraint satisfaction",
+        "year": 2001,
       },
+      "input": String(
+        @Unpublished{DechterFrost:2001,
+          author =\\t {Rina Dechter and Daniel Frost},
+          title =\\t {Backjump-based backtracking for constraint
+                          satisfaction},
+          note =\\t {Unpublished preprint},
+          month =\\t dec,
+          year =\\t 2001
+        }
+      ),
       "key": "DechterFrost:2001",
       "type": "unpublished",
     },

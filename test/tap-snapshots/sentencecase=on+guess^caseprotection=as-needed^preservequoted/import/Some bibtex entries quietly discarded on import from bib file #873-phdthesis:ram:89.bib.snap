@@ -17,19 +17,24 @@ Object {
             "lastName": "Ram",
           },
         ],
-        "month": Array [
-          "5",
-        ],
-        "school": Array [
-          "Department of Computer Science, Yale University",
-        ],
-        "title": Array [
-          "Question-driven Understanding: An integrated theory of story understanding, memory and learning",
-        ],
-        "year": Array [
-          "1989",
-        ],
+        "month": 5,
+        "school": "Department of Computer Science, Yale University",
+        "title": "Question-driven Understanding: An integrated theory of story understanding, memory and learning",
+        "year": 1989,
       },
+      "input": String(
+        @PHDTHESIS{Ram:89,
+        \\t    
+        \\tAUTHOR = {Ashwin Ram},
+        \\tTITLE = {Question-driven Understanding:
+        \\t\\t An integrated theory of story understanding,
+        \\t\\t memory and learning},
+        \\tSCHOOL = {Department of Computer Science,
+        \\t\\t  Yale University},
+        \\tYEAR = {1989},
+        \\tMONTH = may\\t\\t
+        }
+      ),
       "key": "Ram:89",
       "type": "phdthesis",
     },

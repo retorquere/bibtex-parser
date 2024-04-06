@@ -21,28 +21,36 @@ Object {
             "lastName": "Havens",
           },
         ],
-        "journal": Array [
-          "CIJ",
-        ],
-        "number": Array [
-          "4",
-        ],
-        "title": Array [
-          "Hierarchical arc consistency for disjoint real intervals in constraint logic programming",
-        ],
-        "volume": Array [
-          "8",
-        ],
-        "year": Array [
-          "1992",
-        ],
+        "journal": "CIJ",
+        "number": "4",
+        "title": "Hierarchical arc consistency for disjoint real intervals in constraint logic programming",
+        "volume": "8",
+        "year": 1992,
       },
+      "input": String(
+        @ARTICLE(Sidebottom:92,
+        \\tAUTHOR = {Greg Sidebottom and William S. Havens},
+        \\tTITLE = {Hierarchical Arc Consistency for Disjoint
+        \\t\\t Real Intervals in Constraint Logic Programming},
+        \\tJOURNAL = CIJ,
+        \\tYEAR = {1992},
+        \\tVOLUME = {8},
+        \\tNUMBER = {4}
+        )
+      ),
       "key": "Sidebottom:92",
       "type": "article",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"CIJ\\"",
+    Object {
+      "error": "Unresolved @string reference \\"CIJ\\"",
+      "input": "CIJ",
+      "location": Object {
+        "column": 15,
+        "line": 5,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

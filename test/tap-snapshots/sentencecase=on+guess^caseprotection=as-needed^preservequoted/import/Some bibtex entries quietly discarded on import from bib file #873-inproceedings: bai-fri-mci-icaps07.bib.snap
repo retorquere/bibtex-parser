@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Providence, Rhode Island",
-        ],
+        "address": "Providence, Rhode Island",
         "author": Array [
           Object {
             "firstName": "Jorge A.",
@@ -28,25 +26,25 @@ Object {
             "lastName": "McIlraith",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the seventeenth international conference on automated planning and scheduling (ICAPS-07)",
-        ],
-        "month": Array [
-          "September 22 - 26",
-        ],
-        "pages": Array [
-          "144–151",
-        ],
-        "title": Array [
-          "Exploiting procedural domain control knowledge in state-of-the-art planners",
-        ],
-        "url": Array [
-          "bai-fri-mci-icaps07.pdf",
-        ],
-        "year": Array [
-          "2007",
-        ],
+        "booktitle": "Proceedings of the seventeenth international conference on automated planning and scheduling (ICAPS-07)",
+        "month": "September 22 - 26",
+        "pages": "144–151",
+        "title": "Exploiting procedural domain control knowledge in state-of-the-art planners",
+        "url": "bai-fri-mci-icaps07.pdf",
+        "year": 2007,
       },
+      "input": String(
+        @inproceedings{ bai-fri-mci-icaps07,
+          author = {Jorge A. Baier and Christian Fritz and Sheila A. McIlraith},
+          title = {Exploiting Procedural Domain Control Knowledge in State-of-the-Art Planners},
+          url = {bai-fri-mci-icaps07.pdf},
+          booktitle = {Proceedings of the Seventeenth International Conference on Automated Planning and Scheduling (ICAPS-07)},
+          address = {Providence, Rhode Island},
+          month = {September 22 - 26},
+          year = {2007},
+          pages = {144--151}
+        }
+      ),
       "key": "bai-fri-mci-icaps07",
       "type": "inproceedings",
     },

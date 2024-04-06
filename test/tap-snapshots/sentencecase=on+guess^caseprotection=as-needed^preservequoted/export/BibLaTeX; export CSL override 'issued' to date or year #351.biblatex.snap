@@ -17,13 +17,16 @@ Object {
             "lastName": "Doe",
           },
         ],
-        "date": Array [
-          "2014-12-31/2015-01-01",
-        ],
-        "title": Array [
-          "Test",
-        ],
+        "date": "2014-12-31/2015-01-01",
+        "title": "Test",
       },
+      "input": String(
+        @online{doe_test,
+          title = {Test},
+          author = {Doe, John},
+          date = {2014-12-31/2015-01-01}
+        }
+      ),
       "key": "doe_test",
       "type": "online",
     },

@@ -17,22 +17,22 @@ Object {
             "lastName": "Pentland",
           },
         ],
-        "journal": Array [
-          "Proc. Ijcai",
-        ],
-        "pages": Array [
-          "973-981",
-        ],
-        "title": Array [
-          "Fractal-based description",
-        ],
-        "volume": Array [
-          "8",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "journal": "Proc. Ijcai",
+        "pages": "973-981",
+        "title": "Fractal-based description",
+        "volume": "8",
+        "year": 1983,
       },
+      "input": String(
+        @article(Pentland:1983,
+        \\tauthor =\\t{Alex P. Pentland},
+        \\tyear =\\t\\t{1983},
+        \\tjournal =\\t{Proc. Ijcai},
+        \\tpages =\\t\\t{973-981},
+        \\ttitle =\\t\\t"Fractal-Based Description",
+        \\tvolume =\\t{8}
+        )
+      ),
       "key": "Pentland:1983",
       "type": "article",
     },

@@ -13,29 +13,38 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "firstName": "Jörg",
+            "firstName": "Jörg",
             "lastName": "Hoffmann",
           },
         ],
-        "journal": Array [
-          "JAIR",
-        ],
-        "pages": Array [
-          "685–758",
-        ],
-        "title": Array [
-          "Where \\"ignoring delete lists\\" works: local search topology in planning benchmarks",
-        ],
-        "year": Array [
-          "2005",
-        ],
+        "journal": "JAIR",
+        "pages": "685–758",
+        "title": "Where \\"ignoring delete lists\\" works: local search topology in planning benchmarks",
+        "year": 2005,
       },
+      "input": String(
+        @article{hoffmann2005ignoring,
+          title =        {Where "ignoring delete lists" works: local search topology in
+                          planning benchmarks},
+          author =       {Hoffmann, J{\\\\"o}rg},
+          journal =      JAIR,
+          pages =        {685--758},
+          year =         {2005}
+        }
+      ),
       "key": "hoffmann2005ignoring",
       "type": "article",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"JAIR\\"",
+    Object {
+      "error": "Unresolved @string reference \\"JAIR\\"",
+      "input": "JAIR",
+      "location": Object {
+        "column": 22,
+        "line": 5,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

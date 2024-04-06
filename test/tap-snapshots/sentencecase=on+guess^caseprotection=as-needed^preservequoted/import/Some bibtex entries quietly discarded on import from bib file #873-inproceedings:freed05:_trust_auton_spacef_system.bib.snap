@@ -13,7 +13,7 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "literal": "FREED",
+            "name": "FREED",
           },
           Object {
             "firstName": "P.",
@@ -33,25 +33,37 @@ Object {
             "lastName": "Penix",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the 1st space exploration conference: Continuing the voyage of discovery",
-        ],
+        "booktitle": "Proceedings of the 1st space exploration conference: Continuing the voyage of discovery",
         "location": Array [
           "Orlando, FL",
         ],
-        "title": Array [
-          "Trusted autonomy for spaceflight systems",
-        ],
-        "year": Array [
-          "2005",
-        ],
+        "title": "Trusted autonomy for spaceflight systems",
+        "year": 2005,
       },
+      "input": String(
+        @InProceedings{freed05:_trust_auton_spacef_system,
+          author =\\t FREED # { and Bonasso, P. and Ingham, M.and Kortenkamp,
+                          D. and Pell, B. and Penix, J.},
+          title =\\t {Trusted Autonomy for Spaceflight Systems},
+          booktitle =\\t {Proceedings of the 1st Space Exploration Conference:
+                          Continuing the Voyage of Discovery},
+          location =\\t {Orlando, FL},
+          year =\\t 2005
+        }
+      ),
       "key": "freed05:_trust_auton_spacef_system",
       "type": "inproceedings",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"FREED\\"",
+    Object {
+      "error": "Unresolved @string reference \\"FREED\\"",
+      "input": "FREED",
+      "location": Object {
+        "column": 18,
+        "line": 2,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

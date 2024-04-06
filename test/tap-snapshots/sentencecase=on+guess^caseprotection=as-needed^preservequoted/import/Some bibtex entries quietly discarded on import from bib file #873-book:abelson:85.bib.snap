@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "MIT-ADDRESS",
-        ],
+        "address": "MIT-ADDRESS",
         "author": Array [
           Object {
             "firstName": "Harold",
@@ -27,20 +25,39 @@ Object {
         "publisher": Array [
           "MITP",
         ],
-        "title": Array [
-          "Structure and interpretation of computer programs",
-        ],
-        "year": Array [
-          "1985",
-        ],
+        "title": "Structure and interpretation of computer programs",
+        "year": 1985,
       },
+      "input": String(
+        @BOOK{Abelson:85,
+        \\tAUTHOR = {Harold Abelson and Gerald Jay Sussman},
+        \\tTITLE = "Structure and Interpretation of Computer Programs",
+        \\tPUBLISHER = MITP,
+        \\tYEAR = {1985},
+        \\tADDRESS = MIT-ADDRESS
+        }
+      ),
       "key": "Abelson:85",
       "type": "book",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"MIT-ADDRESS\\"",
-    "Unresolved @string reference \\"MITP\\"",
+    Object {
+      "error": "Unresolved @string reference \\"MITP\\"",
+      "input": "MITP",
+      "location": Object {
+        "column": 18,
+        "line": 4,
+      },
+    },
+    Object {
+      "error": "Unresolved @string reference \\"MIT-ADDRESS\\"",
+      "input": "MIT-ADDRESS",
+      "location": Object {
+        "column": 0,
+        "line": 7,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

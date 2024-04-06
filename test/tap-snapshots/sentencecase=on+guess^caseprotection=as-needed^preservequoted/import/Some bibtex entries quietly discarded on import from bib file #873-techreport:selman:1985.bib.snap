@@ -22,13 +22,17 @@ Object {
         "institution": Array [
           "Computer Systems Research Institute, University of Toronto",
         ],
-        "title": Array [
-          "Rule-based processing in a connectionist system for natural language understanding",
-        ],
-        "year": Array [
-          "1985",
-        ],
+        "title": "Rule-based processing in a connectionist system for natural language understanding",
+        "year": 1985,
       },
+      "input": String(
+        @techreport(Selman:1985,
+        \\tauthor =\\t{Bart Selman},
+        \\tyear =\\t\\t{1985},
+        \\tinstitution =\\t{Computer Systems Research Institute, University of Toronto},
+        \\ttitle =\\t\\t{Rule-based processing in a connectionist system for natural language understanding}
+        )
+      ),
       "key": "Selman:1985",
       "type": "techreport",
     },

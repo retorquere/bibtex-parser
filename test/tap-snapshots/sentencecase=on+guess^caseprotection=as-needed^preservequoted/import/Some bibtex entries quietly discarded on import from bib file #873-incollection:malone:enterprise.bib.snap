@@ -29,13 +29,18 @@ Object {
             "lastName": "Howard",
           },
         ],
-        "crossref": Array [
-          "EcologyOfComp",
-        ],
-        "title": Array [
-          "Enterprise: a market-like task scheduler for distributed computing environments",
-        ],
+        "crossref": "EcologyOfComp",
+        "title": "Enterprise: a market-like task scheduler for distributed computing environments",
       },
+      "input": String(
+        @INCOLLECTION(Malone:Enterprise,
+        \\tAUTHOR = {Thomas W. Malone and Richard E. Fikes and 
+        \\t\\t  Kenneth R. Grant and Michael T. Howard},
+        \\tTITLE = {Enterprise: A Market-like Task Scheduler for 
+        \\t\\t Distributed Computing Environments},
+        \\tCROSSREF = {EcologyOfComp}
+        )
+      ),
       "key": "Malone:Enterprise",
       "type": "incollection",
     },

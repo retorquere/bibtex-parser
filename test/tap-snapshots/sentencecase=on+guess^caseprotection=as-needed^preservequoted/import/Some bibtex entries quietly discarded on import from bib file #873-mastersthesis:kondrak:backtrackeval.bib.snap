@@ -11,28 +11,30 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Edmonton, Alberta",
-        ],
+        "address": "Edmonton, Alberta",
         "author": Array [
           Object {
             "firstName": "Grzegorz",
             "lastName": "Kondrak",
           },
         ],
-        "month": Array [
-          "Fall",
-        ],
-        "school": Array [
-          "Department of Computing Science, University of Alberta",
-        ],
-        "title": Array [
-          "A theoretical evaluation of selected backtracking algorithms",
-        ],
-        "year": Array [
-          "1994",
-        ],
+        "month": "Fall",
+        "school": "Department of Computing Science, University of Alberta",
+        "title": "A theoretical evaluation of selected backtracking algorithms",
+        "year": 1994,
       },
+      "input": String(
+        @MASTERSTHESIS{Kondrak:BacktrackEval,
+        \\tAUTHOR = {Grzegorz Kondrak},
+        \\tTITLE = {A Theoretical Evaluation of Selected Backtracking
+        \\t\\t Algorithms},
+        \\tSCHOOL = {Department of Computing Science,
+        \\t\\t  University of Alberta},
+        \\tYEAR = {1994},
+        \\tADDRESS = {Edmonton, Alberta},
+        \\tMONTH = {Fall}
+        }
+      ),
       "key": "Kondrak:BacktrackEval",
       "type": "mastersthesis",
     },

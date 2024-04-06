@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Carlton, AUSTRALIA",
-        ],
+        "address": "Carlton, AUSTRALIA",
         "author": Array [
           Object {
             "firstName": "Elizabeth",
@@ -43,31 +41,40 @@ Object {
         "institution": Array [
           "AAII",
         ],
-        "month": Array [
-          "6",
-        ],
-        "note": Array [
-          "Revised version of 1993, original July, 1992",
-        ],
-        "number": Array [
-          "26",
-        ],
-        "title": Array [
-          "Planned team activity",
-        ],
-        "type": Array [
-          "Technical Note",
-        ],
-        "year": Array [
-          "1993",
-        ],
+        "month": 6,
+        "note": "Revised version of 1993, original July, 1992",
+        "number": "26",
+        "title": "Planned team activity",
+        "type": "Technical Note",
+        "year": 1993,
       },
+      "input": String(
+        @TECHREPORT(SonnenbergETAL:93,
+        \\tAUTHOR = {Elizabeth Sonnenberg and Gil Tidhar and Eric Werner
+        \\t\\t  and David Kinny and Magnus Ljungberg and Anand Rao},
+        \\tTITLE = "Planned Team Activity",
+        \\tINSTITUTION = AAII,
+        \\tYEAR = {1993},
+        \\tTYPE = {Technical Note},
+        \\tNUMBER = {26},
+        \\tADDRESS = {Carlton, AUSTRALIA},
+        \\tMONTH = jun,
+        \\tNOTE = {Revised version of 1993, original July, 1992}
+        )
+      ),
       "key": "SonnenbergETAL:93",
       "type": "techreport",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"AAII\\"",
+    Object {
+      "error": "Unresolved @string reference \\"AAII\\"",
+      "input": "AAII",
+      "location": Object {
+        "column": 20,
+        "line": 5,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

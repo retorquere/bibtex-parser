@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "ERLBAUM-ADDRESS",
-        ],
+        "address": "ERLBAUM-ADDRESS",
         "author": Array [
           Object {
             "firstName": "Wendy",
@@ -23,19 +21,31 @@ Object {
         "publisher": Array [
           "Lawrence Erlbaum",
         ],
-        "title": Array [
-          "The process of question answering",
-        ],
-        "year": Array [
-          "1978",
-        ],
+        "title": "The process of question answering",
+        "year": 1978,
       },
+      "input": String(
+        @book(Lehnert:78,
+        \\tauthor =\\t{Wendy Lehnert},
+        \\taddress =\\tERLBAUM-ADDRESS,
+        \\tyear =\\t\\t{1978},
+        \\tpublisher =\\t{Lawrence Erlbaum},
+        \\ttitle =\\t\\t{The Process of Question Answering}
+        )
+      ),
       "key": "Lehnert:78",
       "type": "book",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"ERLBAUM-ADDRESS\\"",
+    Object {
+      "error": "Unresolved @string reference \\"ERLBAUM-ADDRESS\\"",
+      "input": "ERLBAUM-ADDRESS",
+      "location": Object {
+        "column": 27,
+        "line": 3,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

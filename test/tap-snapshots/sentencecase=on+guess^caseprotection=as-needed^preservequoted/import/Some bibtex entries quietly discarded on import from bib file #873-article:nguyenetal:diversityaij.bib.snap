@@ -37,25 +37,18 @@ Object {
             "lastName": "Kambhampati",
           },
         ],
-        "crossref": Array [
-          "journals/ai/NguyenDGSSK12",
-        ],
-        "pages": Array [
-          "1–31",
-        ],
-        "title": Array [
-          "Generating diverse plans to handle unknown and partially known user preferences",
-        ],
-        "url": Array [
-          "http://dx.doi.org/10.1016/j.artint.2012.05.005",
-        ],
-        "volume": Array [
-          "190",
-        ],
-        "year": Array [
-          "2012",
-        ],
+        "crossref": "journals/ai/NguyenDGSSK12",
+        "pages": "1–31",
+        "title": "Generating diverse plans to handle unknown and partially known user preferences",
+        "url": "http://dx.doi.org/10.1016/j.artint.2012.05.005",
+        "volume": "190",
+        "year": 2012,
       },
+      "input": String(
+        @Article{NguyenETAL:DiversityAIJ,
+          crossref =     {journals/ai/NguyenDGSSK12}
+        }
+      ),
       "key": "NguyenETAL:DiversityAIJ",
       "type": "article",
     },
@@ -87,37 +80,45 @@ Object {
             "lastName": "Kambhampati",
           },
         ],
-        "bibdate": Array [
-          "2012-11-12",
-        ],
-        "bibsource": Array [
-          "DBLP, http://dblp.uni-trier.de/db/journals/ai/ai190.html#NguyenDGSSK12",
-        ],
-        "journal": Array [
-          "AIJ",
-        ],
-        "pages": Array [
-          "1–31",
-        ],
-        "title": Array [
-          "Generating diverse plans to handle unknown and partially known user preferences",
-        ],
-        "url": Array [
-          "http://dx.doi.org/10.1016/j.artint.2012.05.005",
-        ],
-        "volume": Array [
-          "190",
-        ],
-        "year": Array [
-          "2012",
-        ],
+        "bibdate": "2012-11-12",
+        "bibsource": "DBLP, http://dblp.uni-trier.de/db/journals/ai/ai190.html#NguyenDGSSK12",
+        "journal": "AIJ",
+        "pages": "1–31",
+        "title": "Generating diverse plans to handle unknown and partially known user preferences",
+        "url": "http://dx.doi.org/10.1016/j.artint.2012.05.005",
+        "volume": "190",
+        "year": 2012,
       },
+      "input": String(
+        @Article{journals/ai/NguyenDGSSK12,
+          title =\\t"Generating diverse plans to handle unknown and
+        \\t\\t partially known user preferences",
+          author =\\t"Tuan Anh Nguyen and Minh Binh Do and Alfonso Gerevini
+        \\t\\t and Ivan Serina and Biplav Srivastava and Subbarao
+        \\t\\t Kambhampati",
+          journal =\\tAIJ,
+          year = \\t"2012",
+          volume =\\t"190",
+          bibdate =\\t"2012-11-12",
+          bibsource =\\t"DBLP,
+        \\t\\t http://dblp.uni-trier.de/db/journals/ai/ai190.html#NguyenDGSSK12",
+          pages =\\t"1--31",
+          URL =  \\t"http://dx.doi.org/10.1016/j.artint.2012.05.005",
+        }
+      ),
       "key": "journals/ai/NguyenDGSSK12",
       "type": "article",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"AIJ\\"",
+    Object {
+      "error": "Unresolved @string reference \\"AIJ\\"",
+      "input": "AIJ",
+      "location": Object {
+        "column": 16,
+        "line": 12,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

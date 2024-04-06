@@ -25,22 +25,22 @@ Object {
             "lastName": "Marshall",
           },
         ],
-        "journal": Array [
-          "Monthly Weather Review",
-        ],
-        "pages": Array [
-          "2293–2315",
-        ],
-        "title": Array [
-          "Representation of topography by shaved cells in a height coordinate ocean model",
-        ],
-        "volume": Array [
-          "125",
-        ],
-        "year": Array [
-          "1997",
-        ],
+        "journal": "Monthly Weather Review",
+        "pages": "2293–2315",
+        "title": "Representation of topography by shaved cells in a height coordinate ocean model",
+        "volume": "125",
+        "year": 1997,
       },
+      "input": String(
+        @article{AdcroftETAL:1997,
+          title = {Representation of Topography by Shaved Cells in a Height Coordinate Ocean Model},
+          author = {Adcroft, Alistair and Hill, Chris and Marshall, John},
+          year = {1997},
+          volume = {125},
+          pages = {2293--2315},
+          journal = {Monthly Weather Review}
+        }
+      ),
       "key": "AdcroftETAL:1997",
       "type": "article",
     },
@@ -57,31 +57,29 @@ Object {
           },
           Object {
             "firstName": "M.",
-            "lastName": "Päckert",
+            "lastName": "Päckert",
           },
         ],
-        "doi": Array [
-          "10.1007/s13127-011-0069-8",
-        ],
-        "journal": Array [
-          "Actes du 4<sup>ème</sup> Congrès Français d'Acoustique",
-        ],
-        "pages": Array [
-          "71–80",
-        ],
-        "timestamp": Array [
-          "2015-02-24 12:14:36 +0100",
-        ],
-        "title": Array [
-          "Test of markupconversion: Italics, bold, superscript, subscript, and small caps: Mitochondrial DNA₂ sequences suggest unexpected phylogenetic position of Corso-Sardinian grass snakes (<span class=\\"nocase\\"><i>Natrix cetti</i></span>) and <span class=\\"nocase\\"><b>do not</b></span> support their <span class=\\"nocase\\"><span style=\\"font-variant:small-caps;\\">species status</span></span>, with notes on phylogeography and subspecies delineation of grass snakes.",
-        ],
-        "volume": Array [
-          "12",
-        ],
-        "year": Array [
-          "2012",
-        ],
+        "doi": "10.1007/s13127-011-0069-8",
+        "journal": "Actes du 4<sup>ème</sup> Congrès Français d'Acoustique",
+        "pages": "71–80",
+        "timestamp": "2015-02-24 12:14:36 +0100",
+        "title": "Test of markupconversion: Italics, bold, superscript, subscript, and small caps: Mitochondrial DNA₂ sequences suggest unexpected phylogenetic position of Corso-Sardinian grass snakes (<span class=\\"nocase\\"><i>Natrix cetti</i></span>) and <span class=\\"nocase\\"><b>do not</b></span> support their <span class=\\"nocase\\"><span style=\\"font-variant:small-caps;\\">species status</span></span>, with notes on phylogeography and subspecies delineation of grass snakes.",
+        "volume": "12",
+        "year": 2012,
       },
+      "input": String(
+        @article{Frit2,
+          title = {Test of Markupconversion: {{Italics}}, Bold, Superscript, Subscript, and Small Caps: {{Mitochondrial DNA}}{$_2$} Sequences Suggest Unexpected Phylogenetic Position of {{Corso}}-{{Sardinian}} Grass Snakes ({{{\\\\emph{Natrix cetti}}}}) and {{{\\\\textbf{do not}}}} Support Their {{{\\\\textsc{species status}}}}, with Notes on Phylogeography and Subspecies Delineation of Grass Snakes.},
+          author = {Fritz, U. and Corti, C. and P{\\\\"a}ckert, M.},
+          year = {2012},
+          volume = {12},
+          pages = {71--80},
+          doi = {10.1007/s13127-011-0069-8},
+          journal = {Actes du 4\\\\textsuperscript{\\\\\`eme} Congr\\\\\`es Fran\\\\c{c}ais d'Acoustique},
+          timestamp = {2015-02-24 12:14:36 +0100}
+        }
+      ),
       "key": "Frit2",
       "type": "article",
     },

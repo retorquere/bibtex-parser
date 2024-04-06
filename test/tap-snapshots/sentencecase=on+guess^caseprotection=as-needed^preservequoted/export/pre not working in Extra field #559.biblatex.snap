@@ -11,19 +11,22 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "annotation": Array [
-          "Hello hej",
-        ],
+        "annotation": "Hello hej",
         "author": Array [
           Object {
             "firstName": "Morten",
             "lastName": "Brøns",
           },
         ],
-        "title": Array [
-          "<span class=\\"nocase\\">pretest</span>",
-        ],
+        "title": "<span class=\\"nocase\\">pretest</span>",
       },
+      "input": String(
+        @article{Brons:pretest,
+          title = {$pretest$},
+          author = {Brøns, Morten},
+          annotation = {Hello  hej}
+        }
+      ),
       "key": "Brons:pretest",
       "type": "article",
     },

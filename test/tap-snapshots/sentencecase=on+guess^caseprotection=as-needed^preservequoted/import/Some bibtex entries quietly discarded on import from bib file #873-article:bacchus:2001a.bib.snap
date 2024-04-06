@@ -17,34 +17,39 @@ Object {
             "lastName": "Bacchus",
           },
         ],
-        "journal": Array [
-          "AIM",
-        ],
-        "number": Array [
-          "1",
-        ],
-        "pages": Array [
-          "47–56",
-        ],
-        "title": Array [
-          "AIPS'00 planning competition",
-        ],
-        "topic": Array [
-          "planning;planning-algorithms;planning-systems;",
-        ],
-        "volume": Array [
-          "22",
-        ],
-        "year": Array [
-          "2001",
-        ],
+        "journal": "AIM",
+        "number": "1",
+        "pages": "47–56",
+        "title": "AIPS'00 planning competition",
+        "topic": "planning;planning-algorithms;planning-systems;",
+        "volume": "22",
+        "year": 2001,
       },
+      "input": String(
+        @Article{bacchus:2001a,
+          author =       "Fahiem Bacchus",
+          title =        "{AIPS}'00 Planning Competition",
+          journal =      AIM,
+          year =         "2001",
+          volume =       "22",
+          number =       "1",
+          pages =        "47--56",
+          topic =        "planning;planning-algorithms;planning-systems;",
+        }
+      ),
       "key": "bacchus:2001a",
       "type": "article",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"AIM\\"",
+    Object {
+      "error": "Unresolved @string reference \\"AIM\\"",
+      "input": "AIM",
+      "location": Object {
+        "column": 21,
+        "line": 4,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},

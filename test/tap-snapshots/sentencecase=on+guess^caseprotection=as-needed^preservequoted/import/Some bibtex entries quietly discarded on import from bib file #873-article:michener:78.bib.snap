@@ -17,25 +17,24 @@ Object {
             "lastName": "Michener",
           },
         ],
-        "journal": Array [
-          "Cognitive Science",
-        ],
-        "number": Array [
-          "4",
-        ],
-        "pages": Array [
-          "361–383",
-        ],
-        "title": Array [
-          "Understanding understanding mathematics",
-        ],
-        "volume": Array [
-          "2",
-        ],
-        "year": Array [
-          "1978",
-        ],
+        "journal": "Cognitive Science",
+        "number": "4",
+        "pages": "361–383",
+        "title": "Understanding understanding mathematics",
+        "volume": "2",
+        "year": 1978,
       },
+      "input": String(
+        @article(Michener:78,
+        \\tauthor =\\t{Edwina R. Michener},
+        \\tyear =\\t\\t{1978},
+        \\tjournal =\\t{Cognitive Science},
+        \\tnumber =\\t{4},
+        \\tpages =\\t\\t{361--383},
+        \\ttitle =\\t\\t"Understanding understanding mathematics",
+        \\tvolume =\\t{2}
+        )
+      ),
       "key": "Michener:78",
       "type": "article",
     },

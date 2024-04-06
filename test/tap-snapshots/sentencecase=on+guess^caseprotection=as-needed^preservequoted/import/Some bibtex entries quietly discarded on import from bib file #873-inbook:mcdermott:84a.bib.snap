@@ -11,17 +11,13 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Hillsdale, NJ",
-        ],
+        "address": "Hillsdale, NJ",
         "author": Array [
           Object {
-            "literal": "MCDERMOTT",
+            "name": "MCDERMOTT",
           },
         ],
-        "booktitle": Array [
-          "Formal theories of the commonsense world",
-        ],
+        "booktitle": "Formal theories of the commonsense world",
         "editor": Array [
           Object {
             "firstName": "J.",
@@ -31,19 +27,33 @@ Object {
         "publisher": Array [
           "Ablex",
         ],
-        "title": Array [
-          "Reasoning about plans",
-        ],
-        "year": Array [
-          "1984",
-        ],
+        "title": "Reasoning about plans",
+        "year": 1984,
       },
+      "input": String(
+        @inbook(McDermott:84a,
+        \\tauthor =\\tMCDERMOTT,
+        \\tbooktitle =\\t{Formal Theories of the Commonsense World},
+        \\taddress =\\t{Hillsdale, NJ},
+        \\tyear =\\t\\t{1984},
+        \\teditor =\\t{Hobbs, J.},
+        \\tpublisher =\\t{Ablex},
+        \\ttitle =\\t\\t{Reasoning about plans}
+        )
+      ),
       "key": "McDermott:84a",
       "type": "inbook",
     },
   ],
   "errors": Array [
-    "Unresolved @string reference \\"MCDERMOTT\\"",
+    Object {
+      "error": "Unresolved @string reference \\"MCDERMOTT\\"",
+      "input": "MCDERMOTT",
+      "location": Object {
+        "column": 20,
+        "line": 2,
+      },
+    },
   ],
   "jabref": Object {
     "groups": Object {},
