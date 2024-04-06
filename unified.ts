@@ -12,7 +12,7 @@ import { toSentenceCase, guessSentenceCased, tokenize } from './sentence-case'
 
 import CrossRef from './crossref.json'
 import allowed from './fields.json'
-const unabbreviate = require('./unabbrev.json')
+const unabbreviations: Record<string, string> = require('./unabbrev.json')
 
 function latexMode(node: Node | Argument): 'math' | 'text' {
   return node._renderInfo.mode as 'math' | 'text'
@@ -100,6 +100,12 @@ export interface Options {
     langids?: string[] | boolean
 
     /**
+      * By default, `langid` and `hyphenation` are used to determine whether an entry should be sentence-cased, but some sources (ab)use the `language` field
+      * for this. If you turn on this option, this field will also be taken into account as a source for `langid`.
+      */
+    language?: boolean
+
+    /**
      * Some bibtex files will have titles in sentence case, or all-uppercase. If this is on, and there is a field that would normally have sentence-casing applied in which more words are all-`X`case
      * (where `X` is either lower or upper) than mixed-case, it is assumed that you want them this way, and no sentence-casing will be applied to that field
      */
@@ -160,7 +166,7 @@ export interface Options {
   /**
    * BibTeX files may have abbreviations in the journal field. If you provide a dictionary, journal names that are found in the dictionary are replaced with the attached full name
    */
-  unabbreviate?: Record<string, string>
+  unabbreviations?: boolean | Record<string, string>
 
   /**
    * Apply crossref inheritance
@@ -846,11 +852,12 @@ class BibTeXParser {
 
   private stringField(field: string, value: string, sentenceCase: boolean, mode: string): string | number {
     if (FieldAction.unabbrev.includes(field)) {
-      let full = unabbreviate[value.toUpperCase()] || unabbreviate[value.toUpperCase().replace(/s\S+$/, '')]
+
+      let full = this.options.unabbreviations[value.toUpperCase()] || this.options.unabbreviations[value.toUpperCase().replace(/s\S+$/, '')]
       if (!full) {
         const m = value.toUpperCase().match(/(.*)(\s+\S*\d\S*)$/)
         if (m) {
-          full = unabbreviate[m[1]]
+          full = this.options.unabbreviations[m[1]]
           if (full) full += m[2]
         }
       }
@@ -1045,7 +1052,7 @@ class BibTeXParser {
 
     switch (mode) {
       case 'creator':
-        entry.fields[field] = this.split(ast, /^and$/i, /(^& | & | &$)/).map(cr => this.parseCreator(cr))
+        entry.fields[field] = this.split(ast, /^and$/i, /(^& | & | &$)/).map(cr => this.parseCreator(cr)).filter(cr => Object.keys(cr).length)
         break
       case 'commalist':
         entry.fields[field] = this.split(ast, /^[;,]$/, /(&)/).map(elt => this.stringify(elt, { mode: 'literal'}).trim())
@@ -1072,6 +1079,7 @@ class BibTeXParser {
 
     this.options = {
       caseProtection: 'as-needed',
+      unabbreviations: true,
       applyCrossRef: options.applyCrossRef ?? true,
       fieldMode: {},
 
@@ -1083,6 +1091,13 @@ class BibTeXParser {
 
     if (typeof this.options.sentenceCase.langids === 'boolean') this.options.sentenceCase.langids = this.options.sentenceCase.langids ? English : []
     this.options.sentenceCase.langids = this.options.sentenceCase.langids.map(langid => langid.toLowerCase())
+
+    if (typeof this.options.unabbreviations === 'boolean') this.options.unabbreviations = this.options.unabbreviations ? unabbreviations : {}
+    const unabbr: Record<string, string> = {}
+    for (const abbr in this.options.unabbreviations) { // eslint-disable-line guard-for-in
+      unabbr[abbr.toUpperCase()] = this.options.unabbreviations[abbr]
+    }
+    this.options.unabbreviations = unabbr
 
     this.fieldMode = Object.entries(FieldMode).reduce((acc: typeof FieldMode, [mode, test]: [string, (RegExp | string)[]]) => {
       const strings = test.filter(fieldname_or_regex => typeof fieldname_or_regex === 'string' && !this.options.fieldMode[fieldname_or_regex])
@@ -1116,16 +1131,18 @@ class BibTeXParser {
 
   private reparse(entry: bibtex.Entry) {
     let langid = (entry.fields.langid || entry.fields.hyphenation || '').toLowerCase()
-    if (!langid) {
-      const langfield: string = (<string[]> this.options.sentenceCase.langids).find(l => l[0] === '+' && entry.fields[l.substring(1)])
-      if (langfield) langid = entry.fields[langfield.substring(1)] || ''
-    }
+    if (!langid && this.options.sentenceCase.language && entry.fields.language) langid = entry.fields.language.toLowerCase()
     const sentenceCase = (<string[]> this.options.sentenceCase.langids).includes(langid)
 
     this.current = entry
     let keywords: string[] = [] // OMG #783
     try {
       for (const [field, value] of Object.entries(entry.fields)) {
+        if (!value.trim()) {
+          delete entry.fields[field]
+          continue
+        }
+
         this.field(entry, field, value, sentenceCase)
 
         if (field.match(/^keywords\[\d+\]$/)) {

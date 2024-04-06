@@ -85,7 +85,7 @@ function normalize(result) {
 }
 
 const config = { ...(require('./runtests.json')), tests: require('./tap.json') }
-const unabbreviations = path.resolve(path.join(__dirname, '..', 'unabbrev.json'))
+const unabbreviations = require('../unabbrev.json')
 const strings = path.resolve(path.join(__dirname, '..', 'strings.bib'))
 
 if (process.env.CI === 'true') config.tests.toobig = []
@@ -155,6 +155,7 @@ for (const bibfile of testcases) {
     caseProtection: config.caseProtection === 'off' ? false : config.caseProtection,
     sentenceCase: {
       langids: config.sentenceCase.startsWith('on'),
+      language: config.tests.language.includes(basename),
       preserveQuoted: config.preserveQuoted,
       guess: config.sentenceCase.endsWith('guess'),
       subSentence: true,
