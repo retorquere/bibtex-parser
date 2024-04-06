@@ -17,19 +17,20 @@ Object {
             "lastName": "Doe",
           },
         ],
-        "title": Array [
-          "Test title of test book",
-        ],
-        "weirdfield": Array [
-          "Blam",
-        ],
-        "wonderfield": Array [
-          "Bla",
-        ],
-        "year": Array [
-          "2020",
-        ],
+        "title": "Test title of test book",
+        "weirdfield": "Blam",
+        "wonderfield": "Bla",
+        "year": 2020,
       },
+      "input": String(
+        @misc{Doe2020,
+          title = {Test title of test book},
+          author = {Doe, Jane},
+          year = {2020},
+          weirdfield = {Blam},
+          wonderfield = {Bla}
+        }
+      ),
       "key": "Doe2020",
       "type": "misc",
     },

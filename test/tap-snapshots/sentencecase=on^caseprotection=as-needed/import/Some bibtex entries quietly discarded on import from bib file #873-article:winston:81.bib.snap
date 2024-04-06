@@ -17,22 +17,22 @@ Object {
             "lastName": "Winston",
           },
         ],
-        "journal": Array [
-          "Artificial Intelligence",
-        ],
-        "pages": Array [
-          "321–350",
-        ],
-        "title": Array [
-          "Learning new principles from precedents and exercises",
-        ],
-        "volume": Array [
-          "19",
-        ],
-        "year": Array [
-          "1981",
-        ],
+        "journal": "Artificial Intelligence",
+        "pages": "321–350",
+        "title": "Learning new principles from precedents and exercises",
+        "volume": "19",
+        "year": 1981,
       },
+      "input": String(
+        @article(Winston:81,
+        \\tauthor =\\t{Patrick H. Winston},
+        \\tyear =\\t\\t{1981},
+        \\tjournal =\\t{Artificial Intelligence},
+        \\tpages =\\t\\t{321--350},
+        \\ttitle =\\t\\t"Learning new principles from precedents and exercises",
+        \\tvolume =\\t{19}
+        )
+      ),
       "key": "Winston:81",
       "type": "article",
     },

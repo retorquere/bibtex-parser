@@ -13,24 +13,28 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "firstName": "Jon a",
+            "firstName": "Jon",
             "lastName": "Pastor",
+            "prefix": "a",
           },
           Object {
             "firstName": "Donald P.",
             "lastName": "McKay",
           },
         ],
-        "crossref": Array [
-          "PlanInit1",
-        ],
-        "pages": Array [
-          "375–384",
-        ],
-        "title": Array [
-          "View-concepts: Persistent storage for planning and scheduling",
-        ],
+        "crossref": "PlanInit1",
+        "pages": "375–384",
+        "title": "View-concepts: Persistent storage for planning and scheduling",
       },
+      "input": String(
+        @INPROCEEDINGS{Pastor:PI,
+        \\tAUTHOR = {Jon a Pastor and Donald P. McKay},
+        \\tTITLE = {View-concepts: Persistent Storage for planning and
+        \\t\\t scheduling},
+        \\tPAGES = {375--384},
+        \\tCROSSREF = {PlanInit1}
+        }
+      ),
       "key": "Pastor:PI",
       "type": "inproceedings",
     },

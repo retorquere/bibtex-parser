@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "annote": Array [
-          "Reference for backjumping, cited in Ginsberg's texbook.",
-        ],
+        "annote": "Reference for backjumping, cited in Ginsberg's texbook.",
         "author": Array [
           Object {
             "firstName": "John",
@@ -23,16 +21,21 @@ Object {
         "institution": Array [
           "Carnegie-Mellon University",
         ],
-        "number": Array [
-          "CMU-CS-79-124",
-        ],
-        "title": Array [
-          "Performance measurement and analysis of certain search algorithms",
-        ],
-        "year": Array [
-          "1979",
-        ],
+        "number": "CMU-CS-79-124",
+        "title": "Performance measurement and analysis of certain search algorithms",
+        "year": 1979,
       },
+      "input": String(
+        @TECHREPORT(Gaschnig:79,
+        \\tAUTHOR = {John Gaschnig},
+        \\tTITLE = {Performance measurement and analysis of certain search
+        \\t\\t algorithms},
+        \\tINSTITUTION = {Carnegie-Mellon University},
+        \\tYEAR = {1979},
+        \\tNUMBER = {CMU-CS-79-124},
+        \\tANNOTE = {Reference for backjumping, cited in Ginsberg's texbook.}
+        )
+      ),
       "key": "Gaschnig:79",
       "type": "techreport",
     },

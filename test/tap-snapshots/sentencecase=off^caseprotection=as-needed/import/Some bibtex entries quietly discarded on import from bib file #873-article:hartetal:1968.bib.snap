@@ -25,22 +25,22 @@ Object {
             "lastName": "Raphael",
           },
         ],
-        "journal": Array [
-          "IEEE Transactions on Systems Science and Cybernetics",
-        ],
-        "pages": Array [
-          "100-107",
-        ],
-        "title": Array [
-          "A formal basis for the heuristic determination of minimum cost paths",
-        ],
-        "volume": Array [
-          "SSC-4(2)",
-        ],
-        "year": Array [
-          "1968",
-        ],
+        "journal": "IEEE Transactions on Systems Science and Cybernetics",
+        "pages": "100-107",
+        "title": "A formal basis for the heuristic determination of minimum cost paths",
+        "volume": "SSC-4(2)",
+        "year": 1968,
       },
+      "input": String(
+        @article(HartETAL:1968,
+        \\tauthor =\\t{P.E. Hart and Nils J. Nilsson and B. Raphael},
+        \\tyear =\\t\\t{1968},
+        \\tjournal =\\t{IEEE Transactions on Systems Science and Cybernetics},
+        \\tpages =\\t\\t{100-107},
+        \\ttitle =\\t\\t"A formal basis for the heuristic determination of minimum cost paths",
+        \\tvolume =\\t{SSC-4(2)}
+        )
+      ),
       "key": "HartETAL:1968",
       "type": "article",
     },

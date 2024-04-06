@@ -17,19 +17,21 @@ Object {
             "lastName": "Sandewall",
           },
         ],
-        "month": Array [
-          "November",
-        ],
-        "note": Array [
-          "Unpublished manuscript",
-        ],
-        "title": Array [
-          "The range of applicability of nonmonotonic logics for the inertia problem",
-        ],
-        "year": Array [
-          "1992",
-        ],
+        "month": "November",
+        "note": "Unpublished manuscript",
+        "title": "The range of applicability of nonmonotonic logics for the inertia problem",
+        "year": 1992,
       },
+      "input": String(
+        @UNPUBLISHED{Sandewall:92,
+        \\tAUTHOR = {Erik Sandewall},
+        \\tTITLE = {The range of applicability of nonmonotonic logics for the 
+        \\t\\t inertia problem},
+        \\tNOTE = {Unpublished manuscript},
+        \\tMONTH = {November},
+        \\tYEAR = {1992}
+        }
+      ),
       "key": "Sandewall:92",
       "type": "unpublished",
     },

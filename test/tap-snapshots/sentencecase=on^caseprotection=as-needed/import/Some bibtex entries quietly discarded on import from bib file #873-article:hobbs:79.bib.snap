@@ -17,30 +17,38 @@ Object {
             "lastName": "Hobbs",
           },
         ],
-        "journal": Array [
-          "COGSCI",
-        ],
-        "number": Array [
-          "1",
-        ],
-        "pages": Array [
-          "67–82",
-        ],
-        "title": Array [
-          "Coherence and co-references",
-        ],
-        "volume": Array [
-          "3",
-        ],
-        "year": Array [
-          "1979",
-        ],
+        "journal": "COGSCI",
+        "number": "1",
+        "pages": "67–82",
+        "title": "Coherence and co-references",
+        "volume": "3",
+        "year": 1979,
       },
+      "input": String(
+        @ARTICLE{Hobbs:79,
+        \\tAUTHOR = {Jerry R. Hobbs},
+        \\tTITLE = "Coherence and co-references",
+        \\tJOURNAL = COGSCI,
+        \\tYEAR = {1979},
+        \\tVOLUME = {3},
+        \\tNUMBER = {1},
+        \\tPAGES = {67--82}
+        }
+      ),
       "key": "Hobbs:79",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"COGSCI\\"",
+      "input": "COGSCI",
+      "location": Object {
+        "column": 18,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

@@ -17,22 +17,22 @@ Object {
             "lastName": "Korf",
           },
         ],
-        "journal": Array [
-          "Proc. AAAI",
-        ],
-        "pages": Array [
-          "164-167",
-        ],
-        "title": Array [
-          "A program that learns to solve rubik's cube",
-        ],
-        "volume": Array [
-          "2",
-        ],
-        "year": Array [
-          "1982",
-        ],
+        "journal": "Proc. AAAI",
+        "pages": "164-167",
+        "title": "A program that learns to solve rubik's cube",
+        "volume": "2",
+        "year": 1982,
       },
+      "input": String(
+        @article(Korf:82,
+        \\tauthor =\\t{Richard Korf},
+        \\tyear =\\t\\t{1982},
+        \\tjournal =\\t{Proc. AAAI},
+        \\tpages =\\t\\t{164-167},
+        \\ttitle =\\t\\t"A program that learns to solve Rubik's Cube",
+        \\tvolume =\\t{2}
+        )
+      ),
       "key": "Korf:82",
       "type": "article",
     },

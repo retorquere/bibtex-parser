@@ -17,22 +17,22 @@ Object {
             "lastName": "Mostow",
           },
         ],
-        "journal": Array [
-          "Proc. AAAI",
-        ],
-        "pages": Array [
-          "279-283",
-        ],
-        "title": Array [
-          "A problem-solver for making advice operational",
-        ],
-        "volume": Array [
-          "3",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "journal": "Proc. AAAI",
+        "pages": "279-283",
+        "title": "A problem-solver for making advice operational",
+        "volume": "3",
+        "year": 1983,
       },
+      "input": String(
+        @article(Mostow:1983,
+        \\tauthor =\\t{D. Jack Mostow},
+        \\tyear =\\t\\t{1983},
+        \\tjournal =\\t{Proc. AAAI},
+        \\tpages =\\t\\t{279-283},
+        \\ttitle =\\t\\t"A problem-solver for making advice operational",
+        \\tvolume =\\t{3}
+        )
+      ),
       "key": "Mostow:1983",
       "type": "article",
     },

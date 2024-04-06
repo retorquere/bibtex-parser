@@ -11,22 +11,24 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Cambridge, Mass.",
-        ],
+        "address": "Cambridge, Mass.",
         "author": Array [
           Object {
             "firstName": "D.A.",
             "lastName": "Moon",
           },
         ],
-        "title": Array [
-          "MACLISP Reference Manual",
-        ],
-        "year": Array [
-          "1974",
-        ],
+        "title": "MACLISP Reference Manual",
+        "year": 1974,
       },
+      "input": String(
+        @techreport(Moon:74,
+        \\tauthor =\\t{D.A. Moon},
+        \\taddress =\\t{Cambridge, Mass.},
+        \\tyear =\\t\\t{1974},
+        \\ttitle =\\t\\t{MACLISP Reference Manual}
+        )
+      ),
       "key": "Moon:74",
       "type": "techreport",
     },

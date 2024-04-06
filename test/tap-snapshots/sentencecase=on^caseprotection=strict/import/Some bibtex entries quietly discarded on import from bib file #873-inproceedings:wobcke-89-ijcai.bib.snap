@@ -7,7 +7,9 @@
 'use strict'
 exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:wobcke-89-ijcai.bib > must match snapshot 1`] = `
 Object {
-  "comments": Array [],
+  "comments": Array [
+    "Leora",
+  ],
   "entries": Array [
     Object {
       "fields": Object {
@@ -17,27 +19,47 @@ Object {
             "lastName": "Wobcke",
           },
         ],
-        "booktitle": Array [
-          "IJCAI-89",
-        ],
-        "pages": Array [
-          "1461–1466",
-        ],
+        "booktitle": "<span class=\\"nocase\\">IJCAI-89</span>",
+        "pages": "1461–1466",
         "publisher": Array [
           "KAUFMANN",
         ],
-        "title": Array [
-          "A schema-based approach to understanding subjunctive conditionals",
-        ],
-        "year": Array [
-          "1989",
-        ],
+        "title": "A schema-based approach to understanding subjunctive conditionals",
+        "year": 1989,
       },
+      "input": String(
+        @INPROCEEDINGS{Wobcke-89-IJCAI,
+        \\tAUTHOR = {Wayne Wobcke},
+        \\tTITLE = {A Schema-based Approach to Understanding 
+        \\t\\t\\tSubjunctive Conditionals},
+        \\tBOOKTITLE = IJCAI-89,
+        \\tPUBLISHER = KAUFMANN,
+        \\tYEAR = {1989},
+        \\tPAGES = {1461--1466}
+        }
+      ),
       "key": "Wobcke-89-IJCAI",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"IJCAI-89\\"",
+      "input": "IJCAI-89",
+      "location": Object {
+        "column": 22,
+        "line": 5,
+      },
+    },
+    Object {
+      "error": "Unresolved @string reference \\"KAUFMANN\\"",
+      "input": "KAUFMANN",
+      "location": Object {
+        "column": 22,
+        "line": 6,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

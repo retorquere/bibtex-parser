@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "Terry",
@@ -23,13 +21,18 @@ Object {
         "publisher": Array [
           "Academic Press",
         ],
-        "title": Array [
-          "Understanding Natural Language",
-        ],
-        "year": Array [
-          "1972",
-        ],
+        "title": "Understanding Natural Language",
+        "year": 1972,
       },
+      "input": String(
+        @book(Winograd:72,
+        \\tauthor =\\t{Terry Winograd},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1972},
+        \\tpublisher =\\t{Academic Press},
+        \\ttitle =\\t\\t{Understanding Natural Language}
+        )
+      ),
       "key": "Winograd:72",
       "type": "book",
     },

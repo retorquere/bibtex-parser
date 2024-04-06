@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Reading, Mass.",
-        ],
+        "address": "Reading, Mass.",
         "author": Array [
           Object {
             "firstName": "Robert",
@@ -23,13 +21,18 @@ Object {
         "publisher": Array [
           "Addison-Wesley",
         ],
-        "title": Array [
-          "Algorithms",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "title": "Algorithms",
+        "year": 1983,
       },
+      "input": String(
+        @book(Algorithms,
+        \\tauthor =\\t{Robert Sedgewick},
+        \\taddress =\\t{Reading, Mass.},
+        \\tyear =\\t\\t{1983},
+        \\tpublisher =\\t{Addison-Wesley},
+        \\ttitle =\\t\\t{Algorithms}
+        )
+      ),
       "key": "Algorithms",
       "type": "book",
     },

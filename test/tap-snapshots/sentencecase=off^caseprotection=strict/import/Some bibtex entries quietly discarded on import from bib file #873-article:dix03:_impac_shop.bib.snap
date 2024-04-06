@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "annote": Array [
-          "A somewhat disappointing paper. The most difficult problem (credit where credit is due, this was identified by the authors) in having <span class=\\"nocase\\">SHOP</span> control other agents, is that in evaluating preconditions, <span class=\\"nocase\\">SHOP</span> must be able to project the effects of the actions of other agents. However, this very interesting engineering problem is just made the responsibility of the “monitoring agent” and left as an exercise for the reader.",
-        ],
+        "annote": "A somewhat disappointing paper. The most difficult problem (credit where credit is due, this was identified by the authors) in having SHOP control other agents, is that in evaluating preconditions, SHOP must be able to project the effects of the actions of other agents. However, this very interesting engineering problem is just made the responsibility of the “monitoring agent” and left as an exercise for the reader.",
         "author": Array [
           Object {
             "firstName": "J.",
@@ -32,24 +30,44 @@ Object {
             "lastName": "Zhang",
           },
         ],
-        "journal": Array [
-          "amai",
-        ],
-        "note": Array [
-          "forthcoming",
-        ],
-        "title": Array [
-          "<span class=\\"nocase\\">IMPACT</span>ing <span class=\\"nocase\\">SHOP</span>: Putting an AI Planner into a Multi-Agent Environment",
-        ],
-        "year": Array [
-          2003,
-        ],
+        "journal": "amai",
+        "note": "forthcoming",
+        "title": "<span class=\\"nocase\\">IMPACT</span>ing <span class=\\"nocase\\">SHOP</span>: Putting an AI Planner into a Multi-Agent Environment",
+        "year": 2003,
       },
+      "input": String(
+        @Article{dix03:_impac_shop,
+          author =\\t {J. Dix and H. Munoz-Avila and D. Nau and L. Zhang},
+          title =\\t {{IMPACT}ing {SHOP}: Putting an AI Planner into a
+                          Multi-Agent Environment},
+          journal =\\t amai,
+          year =\\t 2003,
+          note =\\t {forthcoming},
+          annote =\\t {A somewhat disappointing paper. The most difficult
+                          problem (credit where credit is due, this was
+                          identified by the authors) in having {SHOP} control
+                          other agents, is that in evaluating preconditions,
+                          {SHOP} must be able to project the effects of the
+                          actions of other agents. However, this very
+                          interesting engineering problem is just made the
+                          responsibility of the \`\`monitoring agent'' and left
+                          as an exercise for the reader.}
+        }
+      ),
       "key": "dix03:_impac_shop",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"amai\\"",
+      "input": "amai",
+      "location": Object {
+        "column": 18,
+        "line": 5,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

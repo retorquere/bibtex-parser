@@ -11,18 +11,10 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "abstract": Array [
-          "Description Logics are a family of knowledge representation languages that have been studied extensively in Artificial Intelligence over the last two decades. They are embodied in several knowledge-based systems and are used to develop various real-life applications. The Description Logic Handbook provides a thorough account of the subject, covering all aspects of research in this field, namely: theory, implementation, and applications. Its appeal will be broad, ranging from more theoretically-oriented readers, to those with more practically-oriented interests who need a sound and modern understanding of knowledge representation systems based on Description Logics. The chapters are written by some of the most prominent researchers in the field, introducing the basic technical material before taking the reader to the current state of the subject, and including comprehensive guides to the literature. In sum, the book will serve as a unique reference for the subject, and can also be used for self-study or in conjunction with Knowledge Representation and Artificial Intelligence courses.",
-        ],
-        "added-at": Array [
-          "Thu Feb 5 17:23:38 2004",
-        ],
-        "added-by": Array [
-          "msteiner",
-        ],
-        "annote": Array [
-          "Contents: 1. An introduction to description logics D. Nardi and R. J. Brachman; Part I. Theory: 2. Basic description logics F. Baader and W. Nutt; 3. Complexity of reasoning F. M. Donini; 4. Relationships with other formalisms U. Sattler, D. Calvanese and R. Molitor; 5. Expressive description logics D. Calvanese and G. De Giacomo; 6. Extensions to description logics F. Baader, R. Küsters and F. Wolter; Part II. Implementation: 7. From description logic provers to knowledge representation systems D. L. McGuinness and P. F. Patel-Schneider; 8. Description logics systems R. Möller and V. Haarslev; 9. Implementation and optimisation techniques I. Horrocks; Part III. Applications: 10. Conceptual modeling with description logics A. Borgida and R. J. Brachman; 11. Software engineering C. Welty; 12. Configuration D. L. McGuinness; 13. Medical informatics A. Rector; 14. Digital libraries and web-based information systems I. Horrocks, D. L. McGuinness and C. Welty; 15. Natural language processing E. Franconi; 16. Description logics for data bases A. Borgida, M. Lenzerini and R. Rosati; Appendix. Description logic terminology F. Baader; Bibliography. See also http://www.inf.unibz.it/%7efranconi/dl/course/",
-        ],
+        "abstract": "Description Logics are a family of knowledge representation languages that have been studied extensively in Artificial Intelligence over the last two decades. They are embodied in several knowledge-based systems and are used to develop various real-life applications. The Description Logic Handbook provides a thorough account of the subject, covering all aspects of research in this field, namely: theory, implementation, and applications. Its appeal will be broad, ranging from more theoretically-oriented readers, to those with more practically-oriented interests who need a sound and modern understanding of knowledge representation systems based on Description Logics. The chapters are written by some of the most prominent researchers in the field, introducing the basic technical material before taking the reader to the current state of the subject, and including comprehensive guides to the literature. In sum, the book will serve as a unique reference for the subject, and can also be used for self-study or in conjunction with Knowledge Representation and Artificial Intelligence courses.",
+        "added-at": "Thu Feb 5 17:23:38 2004",
+        "added-by": "msteiner",
+        "annote": "Contents: 1. An introduction to description logics D. Nardi and R. J. Brachman; Part I. Theory: 2. Basic description logics F. Baader and W. Nutt; 3. Complexity of reasoning F. M. Donini; 4. Relationships with other formalisms U. Sattler, D. Calvanese and R. Molitor; 5. Expressive description logics D. Calvanese and G. De Giacomo; 6. Extensions to description logics F. Baader, R. Küsters and F. Wolter; Part II. Implementation: 7. From description logic provers to knowledge representation systems D. L. McGuinness and P. F. Patel-Schneider; 8. Description logics systems R. Möller and V. Haarslev; 9. Implementation and optimisation techniques I. Horrocks; Part III. Applications: 10. Conceptual modeling with description logics A. Borgida and R. J. Brachman; 11. Software engineering C. Welty; 12. Configuration D. L. McGuinness; 13. Medical informatics A. Rector; 14. Digital libraries and web-based information systems I. Horrocks, D. L. McGuinness and C. Welty; 15. Natural language processing E. Franconi; 16. Description logics for data bases A. Borgida, M. Lenzerini and R. Rosati; Appendix. Description logic terminology F. Baader; Bibliography. See also http://www.inf.unibz.it/",
         "editor": Array [
           Object {
             "firstName": "Franz",
@@ -45,22 +37,75 @@ Object {
             "lastName": "Patel-Schneider",
           },
         ],
-        "offline": Array [
-          "ISBN: 0521781760",
-        ],
+        "offline": "ISBN: 0521781760",
         "publisher": Array [
           "Cambridge University Press",
         ],
-        "title": Array [
-          "The description logic handbook — Theory, implementation and applications",
-        ],
-        "url": Array [
-          "http://titles.cambridge.org/catalogue.asp?ISBN=0521781760",
-        ],
-        "year": Array [
-          "2003",
-        ],
+        "title": "The description logic handbook — theory, implementation and applications",
+        "url": "http://titles.cambridge.org/catalogue.asp?ISBN=0521781760",
+        "year": 2003,
       },
+      "input": String(
+        @Book{BCMNS2003,
+          title =\\t"The Description Logic Handbook --- Theory,
+        \\t\\t Implementation and Applications",
+          URL =  \\t"http://titles.cambridge.org/catalogue.asp?ISBN=0521781760",
+          added-by =\\t"msteiner",
+          added-at =\\t"Thu Feb 5 17:23:38 2004",
+          editor =\\t"Franz Baader and Diego Calvanese and Deborah
+        \\t\\t McGuinness and Daniele Nardi and Peter
+        \\t\\t Patel-Schneider",
+          offline =\\t"ISBN: 0521781760",
+          abstract =\\t"Description Logics are a family of knowledge
+        \\t\\t representation languages that have been studied
+        \\t\\t extensively in Artificial Intelligence over the last
+        \\t\\t two decades. They are embodied in several
+        \\t\\t knowledge-based systems and are used to develop various
+        \\t\\t real-life applications. The Description Logic Handbook
+        \\t\\t provides a thorough account of the subject, covering
+        \\t\\t all aspects of research in this field, namely: theory,
+        \\t\\t implementation, and applications. Its appeal will be
+        \\t\\t broad, ranging from more theoretically-oriented
+        \\t\\t readers, to those with more practically-oriented
+        \\t\\t interests who need a sound and modern understanding of
+        \\t\\t knowledge representation systems based on Description
+        \\t\\t Logics. The chapters are written by some of the most
+        \\t\\t prominent researchers in the field, introducing the
+        \\t\\t basic technical material before taking the reader to
+        \\t\\t the current state of the subject, and including
+        \\t\\t comprehensive guides to the literature. In sum, the
+        \\t\\t book will serve as a unique reference for the subject,
+        \\t\\t and can also be used for self-study or in conjunction
+        \\t\\t with Knowledge Representation and Artificial
+        \\t\\t Intelligence courses.",
+          publisher =\\t"Cambridge University Press",
+          year = \\t"2003",
+          annote =\\t"Contents: 1. An introduction to description logics D.
+        \\t\\t Nardi and R. J. Brachman; Part I. Theory: 2. Basic
+        \\t\\t description logics F. Baader and W. Nutt; 3. Complexity
+        \\t\\t of reasoning F. M. Donini; 4. Relationships with other
+        \\t\\t formalisms U. Sattler, D. Calvanese and R. Molitor; 5.
+        \\t\\t Expressive description logics D. Calvanese and G. De
+        \\t\\t Giacomo; 6. Extensions to description logics F. Baader,
+        \\t\\t R. K{\\\\"u}sters and F. Wolter; Part II. Implementation:
+        \\t\\t 7. From description logic provers to knowledge
+        \\t\\t representation systems D. L. McGuinness and P. F.
+        \\t\\t Patel-Schneider; 8. Description logics systems R.
+        \\t\\t M{\\\\"o}ller and V. Haarslev; 9. Implementation and
+        \\t\\t optimisation techniques I. Horrocks; Part III.
+        \\t\\t Applications: 10. Conceptual modeling with description
+        \\t\\t logics A. Borgida and R. J. Brachman; 11. Software
+        \\t\\t engineering C. Welty; 12. Configuration D. L.
+        \\t\\t McGuinness; 13. Medical informatics A. Rector; 14.
+        \\t\\t Digital libraries and web-based information systems I.
+        \\t\\t Horrocks, D. L. McGuinness and C. Welty; 15. Natural
+        \\t\\t language processing E. Franconi; 16. Description logics
+        \\t\\t for data bases A. Borgida, M. Lenzerini and R. Rosati;
+        \\t\\t Appendix. Description logic terminology F. Baader;
+        \\t\\t Bibliography. See also
+        \\t\\t http://www.inf.unibz.it/%7efranconi/dl/course/",
+        }
+      ),
       "key": "BCMNS2003",
       "type": "book",
     },

@@ -17,22 +17,22 @@ Object {
             "lastName": "Genesereth",
           },
         ],
-        "journal": Array [
-          "Artificial Intelligence",
-        ],
-        "pages": Array [
-          "411-436",
-        ],
-        "title": Array [
-          "The use of design descriptions in automated diagnosis",
-        ],
-        "volume": Array [
-          "24",
-        ],
-        "year": Array [
-          "1984",
-        ],
+        "journal": "Artificial Intelligence",
+        "pages": "411-436",
+        "title": "The use of design descriptions in automated diagnosis",
+        "volume": "24",
+        "year": 1984,
       },
+      "input": String(
+        @article(Genesereth:1984,
+        \\tauthor =\\t{Michael R. Genesereth},
+        \\tyear =\\t\\t{1984},
+        \\tjournal =\\t{Artificial Intelligence},
+        \\tpages =\\t\\t{411-436},
+        \\ttitle =\\t\\t"The use of design descriptions in automated diagnosis",
+        \\tvolume =\\t{24}
+        )
+      ),
       "key": "Genesereth:1984",
       "type": "article",
     },

@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York New York",
-        ],
+        "address": "New York New York",
         "author": Array [
           Object {
             "firstName": "Allen",
@@ -24,9 +22,7 @@ Object {
             "lastName": "Simon",
           },
         ],
-        "booktitle": Array [
-          "Computers and Thought",
-        ],
+        "booktitle": "Computers and Thought",
         "editor": Array [
           Object {
             "firstName": "Edward A.",
@@ -40,13 +36,20 @@ Object {
         "publisher": Array [
           "McGraw-Hill",
         ],
-        "title": Array [
-          "GPS, a program that simulates human thought",
-        ],
-        "year": Array [
-          "1963",
-        ],
+        "title": "GPS, a program that simulates human thought",
+        "year": 1963,
       },
+      "input": String(
+        @book(Newell:63,
+        \\tauthor =\\t{Allen Newell and Herbert A. Simon},
+        \\tbooktitle =\\t{Computers and Thought},
+        \\taddress =\\t{New York New York},
+        \\tyear =\\t\\t{1963},
+        \\teditor =\\t{Edward A. Feigenbaum and Julian Feldman},
+        \\tpublisher =\\t{McGraw-Hill},
+        \\ttitle =\\t\\t{GPS, a program that simulates human thought}
+        )
+      ),
       "key": "Newell:63",
       "type": "book",
     },

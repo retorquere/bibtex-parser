@@ -21,25 +21,24 @@ Object {
             "lastName": "Loftus",
           },
         ],
-        "journal": Array [
-          "Psychological Review",
-        ],
-        "number": Array [
-          "6",
-        ],
-        "pages": Array [
-          "407-428",
-        ],
-        "title": Array [
-          "A spreading-activation theory of semantic processing",
-        ],
-        "volume": Array [
-          "82",
-        ],
-        "year": Array [
-          "1975",
-        ],
+        "journal": "Psychological Review",
+        "number": "6",
+        "pages": "407-428",
+        "title": "A spreading-activation theory of semantic processing",
+        "volume": "82",
+        "year": 1975,
       },
+      "input": String(
+        @article(Collins:75,
+        \\tauthor =\\t{Alan Collins and Elizabeth F. Loftus},
+        \\tyear =\\t\\t{1975},
+        \\tjournal =\\t{Psychological Review},
+        \\tnumber =\\t{6},
+        \\tpages =\\t\\t{407-428},
+        \\ttitle =\\t\\t"A spreading-activation theory of semantic processing",
+        \\tvolume =\\t{82}
+        )
+      ),
       "key": "Collins:75",
       "type": "article",
     },

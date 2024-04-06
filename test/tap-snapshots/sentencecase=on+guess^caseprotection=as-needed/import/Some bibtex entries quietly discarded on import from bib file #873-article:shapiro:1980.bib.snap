@@ -21,22 +21,22 @@ Object {
             "lastName": "McKay",
           },
         ],
-        "journal": Array [
-          "Proc. AAAI",
-        ],
-        "pages": Array [
-          "151-153",
-        ],
-        "title": Array [
-          "Inference with recursive rules",
-        ],
-        "volume": Array [
-          "1",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "journal": "Proc. AAAI",
+        "pages": "151-153",
+        "title": "Inference with recursive rules",
+        "volume": "1",
+        "year": 1980,
       },
+      "input": String(
+        @article(Shapiro:1980,
+        \\tauthor =\\t{S.C. Shapiro and D.P. McKay},
+        \\tyear =\\t\\t{1980},
+        \\tjournal =\\t{Proc. AAAI},
+        \\tpages =\\t\\t{151-153},
+        \\ttitle =\\t\\t"Inference with recursive rules",
+        \\tvolume =\\t{1}
+        )
+      ),
       "key": "Shapiro:1980",
       "type": "article",
     },

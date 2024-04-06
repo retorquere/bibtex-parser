@@ -20,19 +20,21 @@ Object {
         "institution": Array [
           "Yale University Department of Computer Science",
         ],
-        "month": Array [
-          "December",
-        ],
-        "number": Array [
-          "489",
-        ],
-        "title": Array [
-          "Integrated Processing in Planning and Understanding",
-        ],
-        "year": Array [
-          "1986",
-        ],
+        "month": "December",
+        "number": "489",
+        "title": "Integrated Processing in Planning and Understanding",
+        "year": 1986,
       },
+      "input": String(
+        @techreport(Birnbaum:86,
+        \\tauthor =\\t{Lawrence Birnbaum},
+        \\tyear =\\t\\t{1986},
+        \\tinstitution =\\t{Yale University Department of Computer Science},
+        \\ttitle =\\t\\t"Integrated Processing in Planning and Understanding",
+        \\tnumber = \\t{489},
+        \\tmonth =\\t\\t{December}
+        )
+      ),
       "key": "Birnbaum:86",
       "type": "techreport",
     },

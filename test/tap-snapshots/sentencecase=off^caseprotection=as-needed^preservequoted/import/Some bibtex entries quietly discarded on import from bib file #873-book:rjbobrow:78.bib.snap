@@ -11,28 +11,30 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Cambridge, Mass.",
-        ],
+        "address": "Cambridge, Mass.",
         "author": Array [
           Object {
             "firstName": "Robert J.",
             "lastName": "Bobrow",
           },
         ],
-        "booktitle": Array [
-          "Bolt Beranek and Newman",
-        ],
+        "booktitle": "Bolt Beranek and Newman",
         "publisher": Array [
           "Quarterly Progress Report 3878",
         ],
-        "title": Array [
-          "The RUS System",
-        ],
-        "year": Array [
-          "1978",
-        ],
+        "title": "The RUS System",
+        "year": 1978,
       },
+      "input": String(
+        @book(RJBobrow:78,
+        \\tauthor =\\t{Robert J. Bobrow},
+        \\tbooktitle =\\t{Bolt Beranek and Newman},
+        \\taddress =\\t{Cambridge, Mass.},
+        \\tyear =\\t\\t{1978},
+        \\tpublisher =\\t{Quarterly Progress Report 3878},
+        \\ttitle =\\t\\t{The RUS System}
+        )
+      ),
       "key": "RJBobrow:78",
       "type": "book",
     },

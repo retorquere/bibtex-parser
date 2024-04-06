@@ -21,33 +21,42 @@ Object {
             "lastName": "Long",
           },
         ],
-        "bibsource": Array [
-          "DBLP, http://dblp.uni-trier.de",
-        ],
-        "ee": Array [
-          "http://www.cs.washington.edu/research/jair/abstracts/fox03a.html",
-        ],
-        "journal": Array [
-          "JAIR",
-        ],
-        "pages": Array [
-          "61-124",
-        ],
-        "title": Array [
-          "<span class=\\"nocase\\">PDDL2.1</span>: An Extension to <span class=\\"nocase\\">PDDL</span> for Expressing Temporal Planning Domains.",
-        ],
-        "volume": Array [
-          20,
-        ],
-        "year": Array [
-          2003,
-        ],
+        "bibsource": "DBLP, http://dblp.uni-trier.de",
+        "ee": "http://www.cs.washington.edu/research/jair/abstracts/fox03a.html",
+        "journal": "JAIR",
+        "pages": "61-124",
+        "title": "<span class=\\"nocase\\">PDDL2.1</span>: An Extension to <span class=\\"nocase\\">PDDL</span> for Expressing Temporal Planning Domains.",
+        "volume": "20",
+        "year": 2003,
       },
+      "input": String(
+        @article{fox03:_pddl2,
+          author    = {Maria Fox and
+                       Derek Long},
+          title     = {{PDDL2.1}: An Extension to {PDDL} for Expressing Temporal Planning
+                       Domains.},
+          journal   = JAIR,
+          volume    = 20,
+          year      = 2003,
+          pages     = {61-124},
+          ee        = {http://www.cs.washington.edu/research/jair/abstracts/fox03a.html},
+          bibsource = {DBLP, http://dblp.uni-trier.de}
+        }
+      ),
       "key": "fox03:_pddl2",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"JAIR\\"",
+      "input": "JAIR",
+      "location": Object {
+        "column": 19,
+        "line": 6,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

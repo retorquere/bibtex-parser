@@ -17,27 +17,36 @@ Object {
             "lastName": "Davis",
           },
         ],
-        "booktitle": Array [
-          "IJCAI-83",
-        ],
-        "pages": Array [
-          "295–301",
-        ],
-        "title": Array [
-          "The MERCATOR representation of spatial knowledge",
-        ],
-        "volume": Array [
-          "8",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "booktitle": "IJCAI-83",
+        "pages": "295–301",
+        "title": "The MERCATOR representation of spatial knowledge",
+        "volume": "8",
+        "year": 1983,
       },
+      "input": String(
+        @inproceedings(Davis:83,
+        \\tauthor =\\t{Ernest Davis},
+        \\tyear =\\t\\t{1983},
+        \\tbooktitle =\\tIJCAI-83,
+        \\tpages =\\t\\t{295--301},
+        \\ttitle =\\t\\t"The MERCATOR representation of spatial knowledge",
+        \\tvolume =\\t{8}
+        )
+      ),
       "key": "Davis:83",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"IJCAI-83\\"",
+      "input": "IJCAI-83",
+      "location": Object {
+        "column": 22,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

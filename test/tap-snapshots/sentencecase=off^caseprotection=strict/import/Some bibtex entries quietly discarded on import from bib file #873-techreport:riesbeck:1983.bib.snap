@@ -20,13 +20,17 @@ Object {
         "institution": Array [
           "Yale University Computer Science Department",
         ],
-        "title": Array [
-          "Knowledge Reorganization and Reasoning Style",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "title": "Knowledge Reorganization and Reasoning Style",
+        "year": 1983,
       },
+      "input": String(
+        @techreport(Riesbeck:1983,
+        \\tauthor =\\t{Christopher K. Riesbeck},
+        \\tyear =\\t\\t{1983},
+        \\tinstitution =\\t{Yale University Computer Science Department},
+        \\ttitle =\\t\\t{Knowledge Reorganization and Reasoning Style}
+        )
+      ),
       "key": "Riesbeck:1983",
       "type": "techreport",
     },

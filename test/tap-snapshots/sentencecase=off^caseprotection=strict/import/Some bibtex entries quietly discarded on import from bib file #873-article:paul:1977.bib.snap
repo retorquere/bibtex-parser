@@ -17,25 +17,24 @@ Object {
             "lastName": "Paul",
           },
         ],
-        "journal": Array [
-          "The Industrial Robot",
-        ],
-        "number": Array [
-          "1",
-        ],
-        "pages": Array [
-          "10-17",
-        ],
-        "title": Array [
-          "WAVE: A model-based language for manipulator control",
-        ],
-        "volume": Array [
-          "4",
-        ],
-        "year": Array [
-          "1977",
-        ],
+        "journal": "The Industrial Robot",
+        "number": "1",
+        "pages": "10-17",
+        "title": "WAVE: A model-based language for manipulator control",
+        "volume": "4",
+        "year": 1977,
       },
+      "input": String(
+        @article(Paul:1977,
+        \\tauthor =\\t{Richard P. Paul},
+        \\tyear =\\t\\t{1977},
+        \\tjournal =\\t{The Industrial Robot},
+        \\tnumber =\\t{1},
+        \\tpages =\\t\\t{10-17},
+        \\ttitle =\\t\\t"WAVE: A model-based language for manipulator control",
+        \\tvolume =\\t{4}
+        )
+      ),
       "key": "Paul:1977",
       "type": "article",
     },

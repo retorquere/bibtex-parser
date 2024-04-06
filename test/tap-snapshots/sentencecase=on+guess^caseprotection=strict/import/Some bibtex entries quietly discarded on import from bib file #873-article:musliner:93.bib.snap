@@ -25,30 +25,38 @@ Object {
             "lastName": "Shin",
           },
         ],
-        "journal": Array [
-          "SMC",
-        ],
-        "number": Array [
-          6,
-        ],
-        "pages": Array [
-          "1561–1574",
-        ],
-        "title": Array [
-          "<span class=\\"nocase\\">CIRCA:</span> a cooperative intelligent real-time control architecture",
-        ],
-        "volume": Array [
-          23,
-        ],
-        "year": Array [
-          1993,
-        ],
+        "journal": "SMC",
+        "number": "6",
+        "pages": "1561–1574",
+        "title": "<span class=\\"nocase\\">CIRCA:</span> a cooperative intelligent real-time control architecture",
+        "volume": "23",
+        "year": 1993,
       },
+      "input": String(
+        @article{Musliner:93,
+        \\t author = "David J. Musliner and Edmund H. Durfee and Kang G. Shin",
+        \\t title = "{CIRCA:} A Cooperative Intelligent Real-Time Control Architecture",
+        \\t volume = 23,
+        \\t number = 6,
+        \\t pages = "1561--1574",
+        \\t journal = SMC,
+        \\t year = 1993
+        \\t}
+      ),
       "key": "Musliner:93",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"SMC\\"",
+      "input": "SMC",
+      "location": Object {
+        "column": 16,
+        "line": 7,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

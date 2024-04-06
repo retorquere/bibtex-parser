@@ -17,22 +17,23 @@ Object {
             "lastName": "Hendrix",
           },
         ],
-        "journal": Array [
-          "Artificial Intelligence",
-        ],
-        "pages": Array [
-          "145–180",
-        ],
-        "title": Array [
-          "Modeling simultaneous actions and continuous processes",
-        ],
-        "volume": Array [
-          "4",
-        ],
-        "year": Array [
-          "1973",
-        ],
+        "journal": "Artificial Intelligence",
+        "pages": "145–180",
+        "title": "Modeling simultaneous actions and continuous processes",
+        "volume": "4",
+        "year": 1973,
       },
+      "input": String(
+        @article(Hendrix:73,
+        \\tauthor =\\t{Gary Hendrix},
+        \\tyear =\\t\\t{1973},
+        \\tjournal =\\t{Artificial Intelligence},
+        \\tpages =\\t\\t{145--180},
+        \\ttitle =\\t\\t{Modeling simultaneous actions and 
+        \\t\\t\\t continuous processes},
+        \\tvolume =\\t{4}
+        )
+      ),
       "key": "Hendrix:73",
       "type": "article",
     },

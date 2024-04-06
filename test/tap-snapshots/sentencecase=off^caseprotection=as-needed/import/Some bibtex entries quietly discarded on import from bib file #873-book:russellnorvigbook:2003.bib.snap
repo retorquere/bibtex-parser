@@ -21,22 +21,23 @@ Object {
             "lastName": "Norvig",
           },
         ],
-        "edition": Array [
-          "Second",
-        ],
-        "isbn": Array [
-          "0-13-790395-2",
-        ],
+        "edition": "Second",
+        "isbn": "0-13-790395-2",
         "publisher": Array [
           "Prentice-Hall",
         ],
-        "title": Array [
-          "Artificial Intelligence : A Modern Approach",
-        ],
-        "year": Array [
-          "2003",
-        ],
+        "title": "Artificial Intelligence : <span class=\\"nocase\\">A</span> Modern Approach",
+        "year": 2003,
       },
+      "input": String(
+        @book{RussellNorvigBook:2003,
+        \\tAuthor = {Stuart Russell and Peter Norvig},
+        \\tEdition = {Second},
+        \\tIsbn = {0-13-790395-2},
+        \\tPublisher = {Prentice-Hall},
+        \\tTitle = {Artificial Intelligence : {A} Modern Approach},
+        \\tYear = {2003}}
+      ),
       "key": "RussellNorvigBook:2003",
       "type": "book",
     },

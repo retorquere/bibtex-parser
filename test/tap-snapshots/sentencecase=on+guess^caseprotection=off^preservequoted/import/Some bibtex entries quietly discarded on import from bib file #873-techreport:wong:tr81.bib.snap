@@ -20,13 +20,17 @@ Object {
         "institution": Array [
           "Brown University Department of Computer Science",
         ],
-        "title": Array [
-          "On the unification of language comprehension with problem solving",
-        ],
-        "year": Array [
-          "1981",
-        ],
+        "title": "On the unification of language comprehension with problem solving",
+        "year": 1981,
       },
+      "input": String(
+        @techreport(Wong:tr81,
+        \\tauthor =\\t{Douglas Wong},
+        \\tyear =\\t\\t{1981},
+        \\tinstitution =\\t{Brown University Department of Computer Science},
+        \\ttitle =\\t\\t{On the Unification of Language Comprehension with Problem Solving}
+        )
+      ),
       "key": "Wong:tr81",
       "type": "techreport",
     },

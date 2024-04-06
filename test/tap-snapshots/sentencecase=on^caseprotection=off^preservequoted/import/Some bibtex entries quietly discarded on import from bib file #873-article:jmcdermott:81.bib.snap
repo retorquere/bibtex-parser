@@ -17,25 +17,24 @@ Object {
             "lastName": "McDermott",
           },
         ],
-        "journal": Array [
-          "AI Magazine",
-        ],
-        "number": Array [
-          "2",
-        ],
-        "pages": Array [
-          "21–29",
-        ],
-        "title": Array [
-          "R1: The formative years",
-        ],
-        "volume": Array [
-          "2",
-        ],
-        "year": Array [
-          "1981",
-        ],
+        "journal": "AI Magazine",
+        "number": "2",
+        "pages": "21–29",
+        "title": "R1: The formative years",
+        "volume": "2",
+        "year": 1981,
       },
+      "input": String(
+        @article(JMcDermott:81,
+        \\tauthor =\\t{John McDermott},
+        \\tyear =\\t\\t{1981},
+        \\tjournal =\\t{AI Magazine},
+        \\tnumber =\\t{2},
+        \\tpages =\\t\\t{21--29},
+        \\ttitle =\\t\\t"R1: The formative years",
+        \\tvolume =\\t{2}
+        )
+      ),
       "key": "JMcDermott:81",
       "type": "article",
     },

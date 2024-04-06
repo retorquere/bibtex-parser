@@ -17,22 +17,22 @@ Object {
             "lastName": "Waterman",
           },
         ],
-        "journal": Array [
-          "Artificial Intelligence",
-        ],
-        "number": Array [
-          "12",
-        ],
-        "title": Array [
-          "Generalization learning techniques for automating the learning of heuristics",
-        ],
-        "volume": Array [
-          "1",
-        ],
-        "year": Array [
-          "1970",
-        ],
+        "journal": "Artificial Intelligence",
+        "number": "12",
+        "title": "Generalization learning techniques for automating the learning of heuristics",
+        "volume": "1",
+        "year": 1970,
       },
+      "input": String(
+        @article(Waterman:1970,
+        \\tauthor =\\t{D.A. Waterman},
+        \\tyear =\\t\\t{1970},
+        \\tjournal =\\t{Artificial Intelligence},
+        \\tnumber =\\t{12},
+        \\ttitle =\\t\\t"Generalization learning techniques for automating the learning of heuristics",
+        \\tvolume =\\t{1}
+        )
+      ),
       "key": "Waterman:1970",
       "type": "article",
     },

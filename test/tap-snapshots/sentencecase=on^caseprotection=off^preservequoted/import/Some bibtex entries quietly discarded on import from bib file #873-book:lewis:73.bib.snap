@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Oxford",
-        ],
+        "address": "Oxford",
         "author": Array [
           Object {
             "firstName": "David K.",
@@ -23,13 +21,18 @@ Object {
         "publisher": Array [
           "Basil Blackwell",
         ],
-        "title": Array [
-          "Counterfactuals",
-        ],
-        "year": Array [
-          "1973",
-        ],
+        "title": "Counterfactuals",
+        "year": 1973,
       },
+      "input": String(
+        @book(Lewis:73,
+        \\tauthor =\\t{David K. Lewis},
+        \\taddress =\\t{Oxford},
+        \\tyear =\\t\\t{1973},
+        \\tpublisher =\\t{Basil Blackwell},
+        \\ttitle =\\t\\t{Counterfactuals}
+        )
+      ),
       "key": "Lewis:73",
       "type": "book",
     },

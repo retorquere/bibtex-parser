@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Oxford",
-        ],
+        "address": "Oxford",
         "author": Array [
           Object {
             "firstName": "Ludwig",
@@ -23,13 +21,18 @@ Object {
         "publisher": Array [
           "Basil Blackwell",
         ],
-        "title": Array [
-          "Philosophical Investigations",
-        ],
-        "year": Array [
-          "1953",
-        ],
+        "title": "Philosophical Investigations",
+        "year": 1953,
       },
+      "input": String(
+        @book(Wittgenstein:PI,
+        \\tauthor =\\t{Ludwig Wittgenstein},
+        \\taddress =\\t{Oxford},
+        \\tyear =\\t\\t{1953},
+        \\tpublisher =\\t{Basil Blackwell},
+        \\ttitle =\\t\\t{Philosophical Investigations}
+        )
+      ),
       "key": "Wittgenstein:PI",
       "type": "book",
     },

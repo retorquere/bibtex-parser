@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Rochester, NY",
-        ],
+        "address": "Rochester, NY",
         "author": Array [
           Object {
             "firstName": "Henry",
@@ -23,16 +21,21 @@ Object {
         "institution": Array [
           "Department of Computer Science, University of Rochester",
         ],
-        "number": Array [
-          "TR 215",
-        ],
-        "title": Array [
-          "A formal theory of plan recognition",
-        ],
-        "year": Array [
-          "May 1987",
-        ],
+        "number": "TR 215",
+        "title": "A formal theory of plan recognition",
+        "year": "May 1987",
       },
+      "input": String(
+        @techreport(Kautz:thesis,
+        \\tauthor =\\t{Henry Kautz},
+        \\taddress =\\t{Rochester, NY},
+        \\tyear =\\t\\t{May 1987},
+        \\tinstitution =\\t{Department of Computer Science,
+        \\t\\t\\t University of Rochester},
+        \\ttitle =\\t\\t"A Formal Theory of Plan Recognition",
+        \\tNUMBER = {TR 215}
+        )
+      ),
       "key": "Kautz:thesis",
       "type": "techreport",
     },

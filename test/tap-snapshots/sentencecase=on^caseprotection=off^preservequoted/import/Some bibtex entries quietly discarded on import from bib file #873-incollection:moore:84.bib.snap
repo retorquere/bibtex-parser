@@ -17,16 +17,18 @@ Object {
             "lastName": "Moore",
           },
         ],
-        "crossref": Array [
-          "FTCW",
-        ],
-        "note": Array [
-          "Reprinted in PlanReadings.",
-        ],
-        "title": Array [
-          "A formal thoery of knowledge and action",
-        ],
+        "crossref": "FTCW",
+        "note": "Reprinted in PlanReadings.",
+        "title": "A formal thoery of knowledge and action",
       },
+      "input": String(
+        @INCOLLECTION(Moore:84,
+        \\tAUTHOR = {Robert Moore},
+        \\tTITLE = "A Formal Thoery of Knowledge and Action",
+        \\tCROSSREF = {FTCW},
+        \\tNOTE = {Reprinted in \\\\cite{PlanReadings}.}
+        )
+      ),
       "key": "Moore:84",
       "type": "incollection",
     },

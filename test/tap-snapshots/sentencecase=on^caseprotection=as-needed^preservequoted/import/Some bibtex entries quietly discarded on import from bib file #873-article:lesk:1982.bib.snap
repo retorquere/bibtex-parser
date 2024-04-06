@@ -21,22 +21,22 @@ Object {
             "lastName": "Lesk",
           },
         ],
-        "journal": Array [
-          "Proc. AAAI",
-        ],
-        "pages": Array [
-          "258-261",
-        ],
-        "title": Array [
-          "Route finding in street maps by computers and people",
-        ],
-        "volume": Array [
-          "2",
-        ],
-        "year": Array [
-          "1982",
-        ],
+        "journal": "Proc. AAAI",
+        "pages": "258-261",
+        "title": "Route finding in street maps by computers and people",
+        "volume": "2",
+        "year": 1982,
       },
+      "input": String(
+        @article(Lesk:1982,
+        \\tauthor =\\t{R.J. Elliot and M.E. Lesk},
+        \\tyear =\\t\\t{1982},
+        \\tjournal =\\t{Proc. AAAI},
+        \\tpages =\\t\\t{258-261},
+        \\ttitle =\\t\\t"Route finding in street maps by computers and people",
+        \\tvolume =\\t{2}
+        )
+      ),
       "key": "Lesk:1982",
       "type": "article",
     },

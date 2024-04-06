@@ -11,12 +11,8 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "acmid": Array [
-          "1596682",
-        ],
-        "address": Array [
-          "New York, NY, USA",
-        ],
+        "acmid": "1596682",
+        "address": "New York, NY, USA",
         "author": Array [
           Object {
             "firstName": "Nagy",
@@ -27,15 +23,9 @@ Object {
             "lastName": "Krintz",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the 7th International Conference on Principles and Practice of Programming in Java",
-        ],
-        "doi": Array [
-          "10.1145/1596655.1596682",
-        ],
-        "isbn": Array [
-          "978-1-60558-598-7",
-        ],
+        "booktitle": "Proceedings of the 7th International Conference on Principles and Practice of Programming in Java",
+        "doi": "10.1145/1596655.1596682",
+        "isbn": "978-1-60558-598-7",
         "keywords": Array [
           "calling context tree",
           "performance-aware revision control",
@@ -44,28 +34,35 @@ Object {
         "location": Array [
           "Calgary, Alberta, Canada",
         ],
-        "numpages": Array [
-          "10",
-        ],
-        "pages": Array [
-          "162–171",
-        ],
+        "numpages": "10",
+        "pages": "162–171",
         "publisher": Array [
           "ACM",
         ],
-        "series": Array [
-          "PPPJ '09",
-        ],
-        "title": Array [
-          "Tracking Performance Across Software Revisions",
-        ],
-        "url": Array [
-          "http://doi.acm.org/10.1145/1596655.1596682",
-        ],
-        "year": Array [
-          "2009",
-        ],
+        "series": "Principles and Practice of Programming in Java '09",
+        "title": "Tracking Performance Across Software Revisions",
+        "url": "http://doi.acm.org/10.1145/1596655.1596682",
+        "year": 2009,
       },
+      "input": String(
+        @inproceedings{Mostafa:2009:TPA:1596655.1596682,
+         author = {Mostafa, Nagy and Krintz, Chandra},
+         title = {Tracking Performance Across Software Revisions},
+         booktitle = {Proceedings of the 7th International Conference on Principles and Practice of Programming in Java},
+         series = {PPPJ '09},
+         year = {2009},
+         isbn = {978-1-60558-598-7},
+         location = {Calgary, Alberta, Canada},
+         pages = {162--171},
+         numpages = {10},
+         url = {http://doi.acm.org/10.1145/1596655.1596682},
+         doi = {10.1145/1596655.1596682},
+         acmid = {1596682},
+         publisher = {ACM},
+         address = {New York, NY, USA},
+         keywords = {calling context tree, performance-aware revision control, profiling},
+        }
+      ),
       "key": "Mostafa:2009:TPA:1596655.1596682",
       "type": "inproceedings",
     },

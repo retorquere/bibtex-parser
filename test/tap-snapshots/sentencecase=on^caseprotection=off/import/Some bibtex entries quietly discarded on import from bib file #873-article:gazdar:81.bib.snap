@@ -17,22 +17,22 @@ Object {
             "lastName": "Gazdar",
           },
         ],
-        "journal": Array [
-          "Transactions of the Royal Society",
-        ],
-        "pages": Array [
-          "267–283",
-        ],
-        "title": Array [
-          "On syntactic categories",
-        ],
-        "volume": Array [
-          "B-295",
-        ],
-        "year": Array [
-          "1981",
-        ],
+        "journal": "Transactions of the Royal Society",
+        "pages": "267–283",
+        "title": "On syntactic categories",
+        "volume": "B-295",
+        "year": 1981,
       },
+      "input": String(
+        @article(Gazdar:81,
+        \\tauthor =\\t{Gerald Gazdar},
+        \\tyear =\\t\\t{1981},
+        \\tjournal =\\t{Transactions of the Royal Society},
+        \\tpages =\\t\\t{267--283},
+        \\ttitle =\\t\\t"On syntactic categories",
+        \\tvolume =\\t{B-295}
+        )
+      ),
       "key": "Gazdar:81",
       "type": "article",
     },

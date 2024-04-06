@@ -17,19 +17,20 @@ Object {
             "lastName": "McCarthy",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the IFIP Congress",
-        ],
-        "pages": Array [
-          "21-28",
-        ],
-        "title": Array [
-          "Towards a Mathematical Theory of Computation",
-        ],
-        "year": Array [
-          "1962",
-        ],
+        "booktitle": "Proceedings of the IFIP Congress",
+        "pages": "21-28",
+        "title": "Towards a Mathematical Theory of Computation",
+        "year": 1962,
       },
+      "input": String(
+        @misc(McCarthy:62,
+        \\tauthor =\\t{John McCarthy},
+        \\tbooktitle =\\t{Proceedings of the IFIP Congress},
+        \\tyear =\\t\\t{1962},
+        \\tpages =\\t\\t{21-28},
+        \\ttitle =\\t\\t{Towards a Mathematical Theory of Computation}
+        )
+      ),
       "key": "McCarthy:62",
       "type": "misc",
     },

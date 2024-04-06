@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "annotation": Array [
-          "relies on paricleParser fallback detection",
-        ],
+        "annotation": "relies on paricleParser fallback detection",
         "author": Array [
           Object {
             "firstName": "François Hédelin",
@@ -21,10 +19,15 @@ Object {
             "suffix": "abbé d'",
           },
         ],
-        "title": Array [
-          "<span class=\\"nocase\\">(Aubignac) (François Hédelin, abbé d')</span>",
-        ],
+        "title": "<span class=\\"nocase\\">(Aubignac) (François Hédelin, abbé d')</span>",
       },
+      "input": String(
+        @article{abbot1,
+          title = {{{(Aubignac) (François Hédelin, abbé d')}}},
+          author = {Aubignac, abbé d', François Hédelin},
+          annotation = {relies on paricleParser fallback detection}
+        }
+      ),
       "key": "abbot1",
       "type": "article",
     },
@@ -36,21 +39,22 @@ Object {
             "lastName": "abbé d' Aubignac",
           },
         ],
-        "options": Array [
-          "useprefix=true",
-        ],
-        "title": Array [
-          "<span class=\\"nocase\\">(abbé d' Aubignac) (François Hédelin)</span>",
-        ],
+        "options": "useprefix=true",
+        "title": "<span class=\\"nocase\\">(abbé d' Aubignac) (François Hédelin)</span>",
       },
+      "input": String(
+        @article{abbot3,
+          title = {{{(abbé d' Aubignac) (François Hédelin)}}},
+          author = {abbé d' Aubignac, François Hédelin},
+          options = {useprefix=true}
+        }
+      ),
       "key": "abbot3",
       "type": "article",
     },
     Object {
       "fields": Object {
-        "date": Array [
-          "2013",
-        ],
+        "date": "2013",
         "editor": Array [
           Object {
             "firstName": "Luís",
@@ -66,25 +70,29 @@ Object {
             "lastName": "Dolcetti",
           },
         ],
-        "isbn": Array [
-          "978-1-84946-324-9",
-        ],
-        "langid": Array [
-          "english",
-        ],
+        "isbn": "978-1-84946-324-9",
+        "langid": "english",
         "location": Array [
           "Oxford",
         ],
-        "pagetotal": Array [
-          "vi+309",
-        ],
+        "pagetotal": "vi+309",
         "publisher": Array [
           "Hart Publishing",
         ],
-        "title": Array [
-          "Reading <span class=\\"nocase\\">HLA Hart</span>'s: <span class=\\"nocase\\"><i>The Concept</i></span><i> of </i><span class=\\"nocase\\"><i>Law</i></span>",
-        ],
+        "title": "Reading <span class=\\"nocase\\">HLA Hart</span>'s: <span class=\\"nocase\\"><i>The Concept</i></span><i> of </i><span class=\\"nocase\\"><i>Law</i></span>",
       },
+      "input": String(
+        @book{almeida_reading_2013,
+          title = {Reading {{HLA Hart}}'s: {{{\\\\emph{The Concept}}}}{\\\\emph{ of }}{{{\\\\emph{Law}}}}},
+          editor = {d' Almeida, Luís and Edwards, James and Dolcetti, Andrea},
+          date = {2013},
+          publisher = {{Hart Publishing}},
+          location = {{Oxford}},
+          isbn = {978-1-84946-324-9},
+          langid = {english},
+          pagetotal = {vi+309}
+        }
+      ),
       "key": "almeida_reading_2013",
       "type": "book",
     },
@@ -97,25 +105,28 @@ Object {
             "suffix": "Jr.",
           },
         ],
-        "date": Array [
-          "2013",
-        ],
-        "isbn": Array [
-          "978-1-4793-4771-1",
-        ],
+        "date": "2013",
+        "isbn": "978-1-4793-4771-1",
         "location": Array [
           "Lexington Kentucky",
         ],
-        "pagetotal": Array [
-          "137",
-        ],
+        "pagetotal": "137",
         "publisher": Array [
           "CreateSpace Independent Publishing Platform",
         ],
-        "title": Array [
-          "Citations, <span class=\\"nocase\\">Out</span> of the <span class=\\"nocase\\">Box</span>",
-        ],
+        "title": "Citations, <span class=\\"nocase\\">Out</span> of the <span class=\\"nocase\\">Box</span>",
       },
+      "input": String(
+        @book{bennett_citations_2013,
+          title = {Citations, {{Out}} of the {{Box}}},
+          author = {Bennett, Jr., Frank G.},
+          date = {2013},
+          publisher = {{CreateSpace Independent Publishing Platform}},
+          location = {{Lexington Kentucky}},
+          isbn = {978-1-4793-4771-1},
+          pagetotal = {137}
+        }
+      ),
       "key": "bennett_citations_2013",
       "type": "book",
     },
@@ -131,13 +142,17 @@ Object {
         "keywords": Array [
           "imported",
         ],
-        "options": Array [
-          "useprefix=true",
-        ],
-        "title": Array [
-          "Bugreports_<span class=\\"nocase\\">ApostropheOnParticle</span>",
-        ],
+        "options": "useprefix=true",
+        "title": "Bugreports_<span class=\\"nocase\\">ApostropheOnParticle</span>",
       },
+      "input": String(
+        @article{bugreports_ApostropheOnParticle,
+          title = {Bugreports\\\\_{{ApostropheOnParticle}}},
+          author = {d' Jones, John},
+          keywords = {imported},
+          options = {useprefix=true}
+        }
+      ),
       "key": "bugreports_ApostropheOnParticle",
       "type": "article",
     },
@@ -152,10 +167,15 @@ Object {
         "keywords": Array [
           "imported",
         ],
-        "title": Array [
-          "Bugreports_<span class=\\"nocase\\">AsmJournals</span>",
-        ],
+        "title": "Bugreports_<span class=\\"nocase\\">AsmJournals</span>",
       },
+      "input": String(
+        @article{bugreports_AsmJournals,
+          title = {Bugreports\\\\_{{AsmJournals}}},
+          author = {Doe Co.},
+          keywords = {imported}
+        }
+      ),
       "key": "bugreports_AsmJournals",
       "type": "article",
     },
@@ -163,16 +183,21 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "literal": "U.S. Bureau of the Census",
+            "name": "U.S. Bureau of the Census",
           },
         ],
         "keywords": Array [
           "imported",
         ],
-        "title": Array [
-          "Bugreports_<span class=\\"nocase\\">DemoPageFullCiteCruftOnSubsequent</span>",
-        ],
+        "title": "Bugreports_<span class=\\"nocase\\">DemoPageFullCiteCruftOnSubsequent</span>",
       },
+      "input": String(
+        @article{bugreports_DemoPageFullCiteCruftOnSubsequent,
+          title = {Bugreports\\\\_{{DemoPageFullCiteCruftOnSubsequent}}},
+          author = {{U.S. Bureau of the Census}},
+          keywords = {imported}
+        }
+      ),
       "key": "bugreports_DemoPageFullCiteCruftOnSubsequent",
       "type": "article",
     },
@@ -187,10 +212,15 @@ Object {
         "keywords": Array [
           "imported",
         ],
-        "title": Array [
-          "Bugreports_<span class=\\"nocase\\">DuplicateSpaces</span>",
-        ],
+        "title": "Bugreports_<span class=\\"nocase\\">DuplicateSpaces</span>",
       },
+      "input": String(
+        @article{bugreports_DuplicateSpaces,
+          title = {Bugreports\\\\_{{DuplicateSpaces}}},
+          author = {D'Arcus, Bruce},
+          keywords = {imported}
+        }
+      ),
       "key": "bugreports_DuplicateSpaces",
       "type": "article",
     },
@@ -205,10 +235,15 @@ Object {
         "keywords": Array [
           "imported",
         ],
-        "title": Array [
-          "Bugreports_<span class=\\"nocase\\">DuplicateSpaces3</span>",
-        ],
+        "title": "Bugreports_<span class=\\"nocase\\">DuplicateSpaces3</span>",
       },
+      "input": String(
+        @article{bugreports_DuplicateSpaces3,
+          title = {Bugreports\\\\_{{DuplicateSpaces3}}},
+          author = {Family Name, N},
+          keywords = {imported}
+        }
+      ),
       "key": "bugreports_DuplicateSpaces3",
       "type": "article",
     },
@@ -223,10 +258,15 @@ Object {
         "keywords": Array [
           "imported",
         ],
-        "title": Array [
-          "Bugreports_<span class=\\"nocase\\">GreekStyleProblems</span>",
-        ],
+        "title": "Bugreports_<span class=\\"nocase\\">GreekStyleProblems</span>",
       },
+      "input": String(
+        @article{bugreports_GreekStyleProblems,
+          title = {Bugreports\\\\_{{GreekStyleProblems}}},
+          author = {Καρυωτάκης, Κώστας},
+          keywords = {imported}
+        }
+      ),
       "key": "bugreports_GreekStyleProblems",
       "type": "article",
     },
@@ -247,13 +287,17 @@ Object {
         "keywords": Array [
           "imported",
         ],
-        "options": Array [
-          "useprefix=true",
-        ],
-        "title": Array [
-          "Bugreports_<span class=\\"nocase\\">parseName</span>",
-        ],
+        "options": "useprefix=true",
+        "title": "Bugreports_<span class=\\"nocase\\">parseName</span>",
       },
+      "input": String(
+        @article{bugreports_parseName,
+          title = {Bugreports\\\\_{{parseName}}},
+          author = {van Happel, Eduard and von Hoppel, Gustav},
+          keywords = {imported},
+          options = {useprefix=true}
+        }
+      ),
       "key": "bugreports_parseName",
       "type": "article",
     },
@@ -280,10 +324,15 @@ Object {
         "keywords": Array [
           "imported",
         ],
-        "title": Array [
-          "Bugreports_<span class=\\"nocase\\">ProcessorHang1</span>",
-        ],
+        "title": "Bugreports_<span class=\\"nocase\\">ProcessorHang1</span>",
       },
+      "input": String(
+        @article{bugreports_ProcessorHang1,
+          title = {Bugreports\\\\_{{ProcessorHang1}}},
+          author = {Reynoso-Santos, R. and Soto-Pinto, L. and Tejeda-Cruz, C. and Williams-Linera, G.},
+          keywords = {imported}
+        }
+      ),
       "key": "bugreports_ProcessorHang1",
       "type": "article",
     },
@@ -291,16 +340,21 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "literal": "Africa News",
+            "name": "Africa News",
           },
         ],
         "keywords": Array [
           "imported",
         ],
-        "title": Array [
-          "Bugreports_<span class=\\"nocase\\">YearSuffixInHarvard1</span>",
-        ],
+        "title": "Bugreports_<span class=\\"nocase\\">YearSuffixInHarvard1</span>",
       },
+      "input": String(
+        @article{bugreports_YearSuffixInHarvard1,
+          title = {Bugreports\\\\_{{YearSuffixInHarvard1}}},
+          author = {{Africa News}},
+          keywords = {imported}
+        }
+      ),
       "key": "bugreports_YearSuffixInHarvard1",
       "type": "article",
     },
@@ -321,13 +375,17 @@ Object {
         "keywords": Array [
           "imported",
         ],
-        "options": Array [
-          "useprefix=true",
-        ],
-        "title": Array [
-          "Decorations_<span class=\\"nocase\\">AndTermUnaffectedByNameDecorations</span>",
-        ],
+        "options": "useprefix=true",
+        "title": "Decorations_<span class=\\"nocase\\">AndTermUnaffectedByNameDecorations</span>",
       },
+      "input": String(
+        @article{decorations_AndTermUnaffectedByNameDecorations,
+          title = {Decorations\\\\_{{AndTermUnaffectedByNameDecorations}}},
+          author = {Doe, III, John and van Roe, Jane},
+          keywords = {imported},
+          options = {useprefix=true}
+        }
+      ),
       "key": "decorations_AndTermUnaffectedByNameDecorations",
       "type": "article",
     },
@@ -343,13 +401,17 @@ Object {
         "keywords": Array [
           "imported",
         ],
-        "options": Array [
-          "useprefix=true",
-        ],
-        "title": Array [
-          "Disambiguate_<span class=\\"nocase\\">CitationLabelInData</span>",
-        ],
+        "options": "useprefix=true",
+        "title": "Disambiguate_<span class=\\"nocase\\">CitationLabelInData</span>",
       },
+      "input": String(
+        @article{disambiguate_CitationLabelInData,
+          title = {Disambiguate\\\\_{{CitationLabelInData}}},
+          author = {von Dipheria, Doug},
+          keywords = {imported},
+          options = {useprefix=true}
+        }
+      ),
       "key": "disambiguate_CitationLabelInData",
       "type": "article",
     },
@@ -357,19 +419,24 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "literal": "Caritas Europa",
+            "name": "Caritas Europa",
           },
           Object {
-            "literal": "JRS-Europe",
+            "name": "JRS-Europe",
           },
         ],
         "keywords": Array [
           "imported",
         ],
-        "title": Array [
-          "Disambiguate_<span class=\\"nocase\\">FailWithYearSuffix</span>",
-        ],
+        "title": "Disambiguate_<span class=\\"nocase\\">FailWithYearSuffix</span>",
       },
+      "input": String(
+        @article{disambiguate_FailWithYearSuffix,
+          title = {Disambiguate\\\\_{{FailWithYearSuffix}}},
+          author = {{Caritas Europa} and {JRS-Europe}},
+          keywords = {imported}
+        }
+      ),
       "key": "disambiguate_FailWithYearSuffix",
       "type": "article",
     },
@@ -384,10 +451,15 @@ Object {
         "keywords": Array [
           "imported",
         ],
-        "title": Array [
-          "Disambiguate_<span class=\\"nocase\\">YearCollapseWithInstitution</span>",
-        ],
+        "title": "Disambiguate_<span class=\\"nocase\\">YearCollapseWithInstitution</span>",
       },
+      "input": String(
+        @article{disambiguate_YearCollapseWithInstitution,
+          title = {Disambiguate\\\\_{{YearCollapseWithInstitution}}},
+          author = {Smith Co},
+          keywords = {imported}
+        }
+      ),
       "key": "disambiguate_YearCollapseWithInstitution",
       "type": "article",
     },
@@ -403,10 +475,15 @@ Object {
         "keywords": Array [
           "imported",
         ],
-        "title": Array [
-          "Display_<span class=\\"nocase\\">SecondFieldAlignMigratePunctuation</span>",
-        ],
+        "title": "Display_<span class=\\"nocase\\">SecondFieldAlignMigratePunctuation</span>",
       },
+      "input": String(
+        @article{display_SecondFieldAlignMigratePunctuation,
+          title = {Display\\\\_{{SecondFieldAlignMigratePunctuation}}},
+          author = {Bennett, Jr., Frank G.},
+          keywords = {imported}
+        }
+      ),
       "key": "display_SecondFieldAlignMigratePunctuation",
       "type": "article",
     },
@@ -439,37 +516,36 @@ Object {
             "prefix": "von",
           },
         ],
-        "date": Array [
-          "1963",
-        ],
-        "isbn": Array [
-          "0-7100-3616-7",
-        ],
-        "langid": Array [
-          "anglais",
-        ],
+        "date": "1963",
+        "isbn": "0-7100-3616-7",
+        "langid": "anglais",
         "location": Array [
           "Londres",
         ],
-        "options": Array [
-          "useprefix=true",
-        ],
-        "pagetotal": Array [
-          "xviii+214",
-        ],
+        "options": "useprefix=true",
+        "pagetotal": "xviii+214",
         "publisher": Array [
           "Routledge & Kegan Paul",
         ],
-        "series": Array [
-          "International <span class=\\"nocase\\">Library</span> of <span class=\\"nocase\\">Philosophy</span> and <span class=\\"nocase\\">Scientific Method</span>",
-        ],
-        "shorttitle": Array [
-          "Norm and <span class=\\"nocase\\">Action</span>",
-        ],
-        "title": Array [
-          "Norm and <span class=\\"nocase\\">Action</span>. <span class=\\"nocase\\">A Logical Enquiry</span>",
-        ],
+        "series": "International <span class=\\"nocase\\">Library</span> of <span class=\\"nocase\\">Philosophy</span> and <span class=\\"nocase\\">Scientific Method</span>",
+        "shorttitle": "Norm and <span class=\\"nocase\\">Action</span>",
+        "title": "Norm and <span class=\\"nocase\\">Action</span>. <span class=\\"nocase\\">A Logical Enquiry</span>",
       },
+      "input": String(
+        @book{fixedkey,
+          title = {Norm and {{Action}}. {{A Logical Enquiry}}},
+          shorttitle = {Norm and {{Action}}},
+          author = {von Humboldt, Alexander and Gooding, Jr., Cuba and de La Fontaine, Jean and von Wright, Georg Henrik Auto and {von Wright}, Georg Henrik Explicit},
+          date = {1963},
+          publisher = {{Routledge \\\\& Kegan Paul}},
+          location = {{Londres}},
+          isbn = {0-7100-3616-7},
+          langid = {anglais},
+          options = {useprefix=true},
+          pagetotal = {xviii+214},
+          series = {International {{Library}} of {{Philosophy}} and {{Scientific Method}}}
+        }
+      ),
       "key": "fixedkey",
       "type": "book",
     },
@@ -484,10 +560,15 @@ Object {
         "keywords": Array [
           "imported",
         ],
-        "title": Array [
-          "Group_<span class=\\"nocase\\">ComplexNesting</span>",
-        ],
+        "title": "Group_<span class=\\"nocase\\">ComplexNesting</span>",
       },
+      "input": String(
+        @article{group_ComplexNesting,
+          title = {Group\\\\_{{ComplexNesting}}},
+          author = {Doe Inc.},
+          keywords = {imported}
+        }
+      ),
       "key": "group_ComplexNesting",
       "type": "article",
     },
@@ -503,13 +584,17 @@ Object {
         "keywords": Array [
           "imported",
         ],
-        "options": Array [
-          "useprefix=true",
-        ],
-        "title": Array [
-          "Integration_<span class=\\"nocase\\">DuplicateItem</span>",
-        ],
+        "options": "useprefix=true",
+        "title": "Integration_<span class=\\"nocase\\">DuplicateItem</span>",
       },
+      "input": String(
+        @article{integration_DuplicateItem,
+          title = {Integration\\\\_{{DuplicateItem}}},
+          author = {la Berge, S. P},
+          keywords = {imported},
+          options = {useprefix=true}
+        }
+      ),
       "key": "integration_DuplicateItem",
       "type": "article",
     },
@@ -522,22 +607,26 @@ Object {
             "suffix": "Jr.",
           },
         ],
-        "date": Array [
-          "1968",
-        ],
+        "date": "1968",
         "location": Array [
           "New York",
         ],
-        "pagetotal": Array [
-          "154",
-        ],
+        "pagetotal": "154",
         "publisher": Array [
           "Grosset & Dunlap",
         ],
-        "title": Array [
-          "\\"<span class=\\"nocase\\">I</span> Have a Dream\\" : The quotations of <span class=\\"nocase\\">Martin Luther King JR</span>",
-        ],
+        "title": "\\"<span class=\\"nocase\\">I</span> Have a Dream\\" : The quotations of <span class=\\"nocase\\">Martin Luther King JR</span>",
       },
+      "input": String(
+        @book{king_have_1968,
+          title = {"{{I}} Have a Dream" : The Quotations of {{Martin Luther King JR}}},
+          author = {King, Jr., Martin Luther},
+          date = {1968},
+          publisher = {{Grosset \\\\& Dunlap}},
+          location = {{New York}},
+          pagetotal = {154}
+        }
+      ),
       "key": "king_have_1968",
       "type": "book",
     },
@@ -553,13 +642,17 @@ Object {
         "keywords": Array [
           "imported",
         ],
-        "options": Array [
-          "useprefix=true",
-        ],
-        "title": Array [
-          "Magic_<span class=\\"nocase\\">CapitalizeFirstOccurringNameParticle</span>",
-        ],
+        "options": "useprefix=true",
+        "title": "Magic_<span class=\\"nocase\\">CapitalizeFirstOccurringNameParticle</span>",
       },
+      "input": String(
+        @article{magic_CapitalizeFirstOccurringNameParticle,
+          title = {Magic\\\\_{{CapitalizeFirstOccurringNameParticle}}},
+          author = {de Simone, Samuel},
+          keywords = {imported},
+          options = {useprefix=true}
+        }
+      ),
       "key": "magic_CapitalizeFirstOccurringNameParticle",
       "type": "article",
     },
@@ -575,13 +668,17 @@ Object {
         "keywords": Array [
           "imported",
         ],
-        "options": Array [
-          "useprefix=true",
-        ],
-        "title": Array [
-          "Magic_<span class=\\"nocase\\">NameParticle</span>",
-        ],
+        "options": "useprefix=true",
+        "title": "Magic_<span class=\\"nocase\\">NameParticle</span>",
       },
+      "input": String(
+        @article{magic_NameParticle,
+          title = {Magic\\\\_{{NameParticle}}},
+          author = {von Doe, John},
+          keywords = {imported},
+          options = {useprefix=true}
+        }
+      ),
       "key": "magic_NameParticle",
       "type": "article",
     },
@@ -589,16 +686,21 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "literal": "Blob",
+            "name": "Blob",
           },
         ],
         "keywords": Array [
           "imported",
         ],
-        "title": Array [
-          "Magic_<span class=\\"nocase\\">SuppressDuplicateVariableRendering</span>",
-        ],
+        "title": "Magic_<span class=\\"nocase\\">SuppressDuplicateVariableRendering</span>",
       },
+      "input": String(
+        @article{magic_SuppressDuplicateVariableRendering,
+          title = {Magic\\\\_{{SuppressDuplicateVariableRendering}}},
+          author = {{Blob}},
+          keywords = {imported}
+        }
+      ),
       "key": "magic_SuppressDuplicateVariableRendering",
       "type": "article",
     },
@@ -614,10 +716,15 @@ Object {
         "keywords": Array [
           "imported",
         ],
-        "title": Array [
-          "Name_<span class=\\"nocase\\">ArticularNameAsSortOrder</span>",
-        ],
+        "title": "Name_<span class=\\"nocase\\">ArticularNameAsSortOrder</span>",
       },
+      "input": String(
+        @article{name_ArticularNameAsSortOrder,
+          title = {Name\\\\_{{ArticularNameAsSortOrder}}},
+          author = {Doe, III, James},
+          keywords = {imported}
+        }
+      ),
       "key": "name_ArticularNameAsSortOrder",
       "type": "article",
     },
@@ -633,10 +740,15 @@ Object {
         "keywords": Array [
           "imported",
         ],
-        "title": Array [
-          "Name_<span class=\\"nocase\\">ArticularShortFormCommaSuffix</span>",
-        ],
+        "title": "Name_<span class=\\"nocase\\">ArticularShortFormCommaSuffix</span>",
       },
+      "input": String(
+        @article{name_ArticularShortFormCommaSuffix,
+          title = {Name\\\\_{{ArticularShortFormCommaSuffix}}},
+          author = {Doe, Jr, James},
+          keywords = {imported}
+        }
+      ),
       "key": "name_ArticularShortFormCommaSuffix",
       "type": "article",
     },
@@ -652,10 +764,15 @@ Object {
         "keywords": Array [
           "imported",
         ],
-        "title": Array [
-          "Name_<span class=\\"nocase\\">ArticularWithComma</span>",
-        ],
+        "title": "Name_<span class=\\"nocase\\">ArticularWithComma</span>",
       },
+      "input": String(
+        @article{name_ArticularWithComma,
+          title = {Name\\\\_{{ArticularWithComma}}},
+          author = {Doe, Jr., Jeffrey},
+          keywords = {imported}
+        }
+      ),
       "key": "name_ArticularWithComma",
       "type": "article",
     },
@@ -670,10 +787,15 @@ Object {
         "keywords": Array [
           "imported",
         ],
-        "title": Array [
-          "Name_<span class=\\"nocase\\">Delimiter</span>",
-        ],
+        "title": "Name_<span class=\\"nocase\\">Delimiter</span>",
       },
+      "input": String(
+        @article{name_Delimiter,
+          title = {Name\\\\_{{Delimiter}}},
+          author = {Noakes Inc.},
+          keywords = {imported}
+        }
+      ),
       "key": "name_Delimiter",
       "type": "article",
     },
@@ -689,13 +811,17 @@ Object {
         "keywords": Array [
           "imported",
         ],
-        "options": Array [
-          "useprefix=true",
-        ],
-        "title": Array [
-          "Name_<span class=\\"nocase\\">FormattingOfParticles</span>",
-        ],
+        "options": "useprefix=true",
+        "title": "Name_<span class=\\"nocase\\">FormattingOfParticles</span>",
       },
+      "input": String(
+        @article{name_FormattingOfParticles,
+          title = {Name\\\\_{{FormattingOfParticles}}},
+          author = {van der Meer, Gerard},
+          keywords = {imported},
+          options = {useprefix=true}
+        }
+      ),
       "key": "name_FormattingOfParticles",
       "type": "article",
     },
@@ -710,13 +836,17 @@ Object {
         "keywords": Array [
           "imported",
         ],
-        "options": Array [
-          "useprefix=true",
-        ],
-        "title": Array [
-          "Name_<span class=\\"nocase\\">HyphenatedNonDroppingParticle1</span>",
-        ],
+        "options": "useprefix=true",
+        "title": "Name_<span class=\\"nocase\\">HyphenatedNonDroppingParticle1</span>",
       },
+      "input": String(
+        @article{name_HyphenatedNonDroppingParticle1,
+          title = {Name\\\\_{{HyphenatedNonDroppingParticle1}}},
+          author = {al- One, Alan},
+          keywords = {imported},
+          options = {useprefix=true}
+        }
+      ),
       "key": "name_HyphenatedNonDroppingParticle1",
       "type": "article",
     },
@@ -724,16 +854,21 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "literal": "Multi-National United",
+            "name": "Multi-National United",
           },
         ],
         "keywords": Array [
           "imported",
         ],
-        "title": Array [
-          "Name_<span class=\\"nocase\\">Institution</span>",
-        ],
+        "title": "Name_<span class=\\"nocase\\">Institution</span>",
       },
+      "input": String(
+        @article{name_Institution,
+          title = {Name\\\\_{{Institution}}},
+          author = {{Multi-National United}},
+          keywords = {imported}
+        }
+      ),
       "key": "name_Institution",
       "type": "article",
     },
@@ -741,16 +876,21 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "literal": "São Paulo (Estado)",
+            "name": "São Paulo (Estado)",
           },
         ],
         "keywords": Array [
           "imported",
         ],
-        "title": Array [
-          "Name_<span class=\\"nocase\\">InstitutionDecoration</span>",
-        ],
+        "title": "Name_<span class=\\"nocase\\">InstitutionDecoration</span>",
       },
+      "input": String(
+        @article{name_InstitutionDecoration,
+          title = {Name\\\\_{{InstitutionDecoration}}},
+          author = {{São Paulo (Estado)}},
+          keywords = {imported}
+        }
+      ),
       "key": "name_InstitutionDecoration",
       "type": "article",
     },
@@ -771,13 +911,17 @@ Object {
         "keywords": Array [
           "imported",
         ],
-        "options": Array [
-          "useprefix=true",
-        ],
-        "title": Array [
-          "Name_<span class=\\"nocase\\">MixedFormatsInitialSortOrderAllWithDecorationsEtAl</span>",
-        ],
+        "options": "useprefix=true",
+        "title": "Name_<span class=\\"nocase\\">MixedFormatsInitialSortOrderAllWithDecorationsEtAl</span>",
       },
+      "input": String(
+        @article{name_MixedFormatsInitialSortOrderAllWithDecorationsEtAl,
+          title = {Name\\\\_{{MixedFormatsInitialSortOrderAllWithDecorationsEtAl}}},
+          author = {van Winkle, Rip and Thucydides, III, Carl},
+          keywords = {imported},
+          options = {useprefix=true}
+        }
+      ),
       "key": "name_MixedFormatsInitialSortOrderAllWithDecorationsEtAl",
       "type": "article",
     },
@@ -785,22 +929,27 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "literal": "Alfred Benzon Foundation",
+            "name": "Alfred Benzon Foundation",
           },
           Object {
-            "literal": "James Benson Foundation",
+            "name": "James Benson Foundation",
           },
           Object {
-            "literal": "John Candy Foundation",
+            "name": "John Candy Foundation",
           },
         ],
         "keywords": Array [
           "imported",
         ],
-        "title": Array [
-          "Name_<span class=\\"nocase\\">MultipleLiteral</span>",
-        ],
+        "title": "Name_<span class=\\"nocase\\">MultipleLiteral</span>",
       },
+      "input": String(
+        @article{name_MultipleLiteral,
+          title = {Name\\\\_{{MultipleLiteral}}},
+          author = {{Alfred Benzon Foundation} and {James Benson Foundation} and {John Candy Foundation}},
+          keywords = {imported}
+        }
+      ),
       "key": "name_MultipleLiteral",
       "type": "article",
     },
@@ -817,13 +966,17 @@ Object {
         "keywords": Array [
           "imported",
         ],
-        "options": Array [
-          "useprefix=true",
-        ],
-        "title": Array [
-          "Name_<span class=\\"nocase\\">namepartAffixes</span>",
-        ],
+        "options": "useprefix=true",
+        "title": "Name_<span class=\\"nocase\\">namepartAffixes</span>",
       },
+      "input": String(
+        @article{name_namepartAffixes,
+          title = {Name\\\\_{{namepartAffixes}}},
+          author = {de La Fontaine, III, Jean},
+          keywords = {imported},
+          options = {useprefix=true}
+        }
+      ),
       "key": "name_namepartAffixes",
       "type": "article",
     },
@@ -839,10 +992,15 @@ Object {
         "keywords": Array [
           "imported",
         ],
-        "title": Array [
-          "Name_<span class=\\"nocase\\">ParsedDroppingParticleWithAffixes</span>",
-        ],
+        "title": "Name_<span class=\\"nocase\\">ParsedDroppingParticleWithAffixes</span>",
       },
+      "input": String(
+        @article{name_ParsedDroppingParticleWithAffixes,
+          title = {Name\\\\_{{ParsedDroppingParticleWithAffixes}}},
+          author = {de La Fontaine, Jean},
+          keywords = {imported}
+        }
+      ),
       "key": "name_ParsedDroppingParticleWithAffixes",
       "type": "article",
     },
@@ -858,13 +1016,17 @@ Object {
         "keywords": Array [
           "imported",
         ],
-        "options": Array [
-          "useprefix=true",
-        ],
-        "title": Array [
-          "Name_<span class=\\"nocase\\">ParsedNonDroppingParticleWithAffixes</span>",
-        ],
+        "options": "useprefix=true",
+        "title": "Name_<span class=\\"nocase\\">ParsedNonDroppingParticleWithAffixes</span>",
       },
+      "input": String(
+        @article{name_ParsedNonDroppingParticleWithAffixes,
+          title = {Name\\\\_{{ParsedNonDroppingParticleWithAffixes}}},
+          author = {de la Fontaine, Jean},
+          keywords = {imported},
+          options = {useprefix=true}
+        }
+      ),
       "key": "name_ParsedNonDroppingParticleWithAffixes",
       "type": "article",
     },
@@ -881,13 +1043,17 @@ Object {
         "keywords": Array [
           "imported",
         ],
-        "options": Array [
-          "useprefix=true",
-        ],
-        "title": Array [
-          "Name_<span class=\\"nocase\\">ParsedNonDroppingParticleWithApostrophe</span>",
-        ],
+        "options": "useprefix=true",
+        "title": "Name_<span class=\\"nocase\\">ParsedNonDroppingParticleWithApostrophe</span>",
       },
+      "input": String(
+        @article{name_ParsedNonDroppingParticleWithApostrophe,
+          title = {Name\\\\_{{ParsedNonDroppingParticleWithApostrophe}}},
+          author = {d' Aubignac, abbé d', François Hédelin},
+          keywords = {imported},
+          options = {useprefix=true}
+        }
+      ),
       "key": "name_ParsedNonDroppingParticleWithApostrophe",
       "type": "article",
     },
@@ -908,13 +1074,17 @@ Object {
         "keywords": Array [
           "imported",
         ],
-        "options": Array [
-          "useprefix=true",
-        ],
-        "title": Array [
-          "Name_<span class=\\"nocase\\">ParseNames</span>",
-        ],
+        "options": "useprefix=true",
+        "title": "Name_<span class=\\"nocase\\">ParseNames</span>",
       },
+      "input": String(
+        @article{name_ParseNames,
+          title = {Name\\\\_{{ParseNames}}},
+          author = {van der Vlist, Eric and van Gogh, Vincent},
+          keywords = {imported},
+          options = {useprefix=true}
+        }
+      ),
       "key": "name_ParseNames",
       "type": "article",
     },
@@ -944,13 +1114,17 @@ Object {
         "keywords": Array [
           "imported",
         ],
-        "options": Array [
-          "useprefix=true",
-        ],
-        "title": Array [
-          "Name_<span class=\\"nocase\\">ParticleCaps1</span>",
-        ],
+        "options": "useprefix=true",
+        "title": "Name_<span class=\\"nocase\\">ParticleCaps1</span>",
       },
+      "input": String(
+        @article{name_ParticleCaps1,
+          title = {Name\\\\_{{ParticleCaps1}}},
+          author = {van One, Onename and van Two, Twoname and van Three, Threename and Van Four, Fourname},
+          keywords = {imported},
+          options = {useprefix=true}
+        }
+      ),
       "key": "name_ParticleCaps1",
       "type": "article",
     },
@@ -965,10 +1139,15 @@ Object {
         "keywords": Array [
           "imported",
         ],
-        "title": Array [
-          "Name_<span class=\\"nocase\\">ParticleCaps3</span>",
-        ],
+        "title": "Name_<span class=\\"nocase\\">ParticleCaps3</span>",
       },
+      "input": String(
+        @article{name_ParticleCaps3,
+          title = {Name\\\\_{{ParticleCaps3}}},
+          author = {{Van Dyke}, Dick},
+          keywords = {imported}
+        }
+      ),
       "key": "name_ParticleCaps3",
       "type": "article",
     },
@@ -984,13 +1163,17 @@ Object {
         "keywords": Array [
           "imported",
         ],
-        "options": Array [
-          "useprefix=true",
-        ],
-        "title": Array [
-          "Name_<span class=\\"nocase\\">ParticleFormatting</span>",
-        ],
+        "options": "useprefix=true",
+        "title": "Name_<span class=\\"nocase\\">ParticleFormatting</span>",
       },
+      "input": String(
+        @article{name_ParticleFormatting,
+          title = {Name\\\\_{{ParticleFormatting}}},
+          author = {de la Doe, John},
+          keywords = {imported},
+          options = {useprefix=true}
+        }
+      ),
       "key": "name_ParticleFormatting",
       "type": "article",
     },
@@ -1118,13 +1301,17 @@ Object {
         "keywords": Array [
           "imported",
         ],
-        "options": Array [
-          "useprefix=true",
-        ],
-        "title": Array [
-          "Name_<span class=\\"nocase\\">ParticlesDemoteNonDroppingNever</span>",
-        ],
+        "options": "useprefix=true",
+        "title": "Name_<span class=\\"nocase\\">ParticlesDemoteNonDroppingNever</span>",
       },
+      "input": String(
+        @article{name_ParticlesDemoteNonDroppingNever,
+          title = {Name\\\\_{{ParticlesDemoteNonDroppingNever}}},
+          author = {de Las Familyname, Givenname and del Familyname, Givenname and Di Familyname, Givenname and Da Familyname, Givenname and Do Familyname, Givenname and Des Familyname, Givenname and Lou Familyname, Givenname and Pietro Familyname, Givenname and de Familyname, Givenname and de La Familyname, Givenname and Le Familyname, Givenname and La Familyname, Givenname and L'Familyname, Givenname and Saint Familyname, Givenname and Sainte Familyname, Givenname and St. Familyname, Givenname and Ste. Familyname, Givenname and van Familyname, Givenname and van de Familyname, Givenname and van der Familyname, Givenname and van den Familyname, Givenname and vander Familyname, Givenname and v.d. Familyname, Givenname and vd Familyname, Givenname and van het Familyname, Givenname and ver Familyname, Givenname},
+          keywords = {imported},
+          options = {useprefix=true}
+        }
+      ),
       "key": "name_ParticlesDemoteNonDroppingNever",
       "type": "article",
     },
@@ -1140,13 +1327,17 @@ Object {
         "keywords": Array [
           "imported",
         ],
-        "options": Array [
-          "useprefix=true",
-        ],
-        "title": Array [
-          "Name_<span class=\\"nocase\\">WesternArticularLowercase</span>",
-        ],
+        "options": "useprefix=true",
+        "title": "Name_<span class=\\"nocase\\">WesternArticularLowercase</span>",
       },
+      "input": String(
+        @article{name_WesternArticularLowercase,
+          title = {Name\\\\_{{WesternArticularLowercase}}},
+          author = {van Doe, Jacques},
+          keywords = {imported},
+          options = {useprefix=true}
+        }
+      ),
       "key": "name_WesternArticularLowercase",
       "type": "article",
     },
@@ -1163,13 +1354,17 @@ Object {
         "keywords": Array [
           "imported",
         ],
-        "options": Array [
-          "useprefix=true",
-        ],
-        "title": Array [
-          "Nameorder_<span class=\\"nocase\\">Long</span>",
-        ],
+        "options": "useprefix=true",
+        "title": "Nameorder_<span class=\\"nocase\\">Long</span>",
       },
+      "input": String(
+        @article{nameorder_Long,
+          title = {Nameorder\\\\_{{Long}}},
+          author = {de la Martinière, III, Gérard},
+          keywords = {imported},
+          options = {useprefix=true}
+        }
+      ),
       "key": "nameorder_Long",
       "type": "article",
     },
@@ -1184,10 +1379,15 @@ Object {
         "keywords": Array [
           "imported",
         ],
-        "title": Array [
-          "Position_<span class=\\"nocase\\">IbidWithSuffix</span>",
-        ],
+        "title": "Position_<span class=\\"nocase\\">IbidWithSuffix</span>",
       },
+      "input": String(
+        @article{position_IbidWithSuffix,
+          title = {Position\\\\_{{IbidWithSuffix}}},
+          author = {Al-Khatib Organization},
+          keywords = {imported}
+        }
+      ),
       "key": "position_IbidWithSuffix",
       "type": "article",
     },
@@ -1202,10 +1402,15 @@ Object {
         "keywords": Array [
           "imported",
         ],
-        "title": Array [
-          "Sort_<span class=\\"nocase\\">ChangeInNameSort</span>",
-        ],
+        "title": "Sort_<span class=\\"nocase\\">ChangeInNameSort</span>",
       },
+      "input": String(
+        @article{sort_ChangeInNameSort,
+          title = {Sort\\\\_{{ChangeInNameSort}}},
+          author = {{De Quincey}, Alan},
+          keywords = {imported}
+        }
+      ),
       "key": "sort_ChangeInNameSort",
       "type": "article",
     },
@@ -1217,16 +1422,21 @@ Object {
             "lastName": "Zoo",
           },
           Object {
-            "literal": "Beijing Zoo",
+            "name": "Beijing Zoo",
           },
         ],
         "keywords": Array [
           "imported",
         ],
-        "title": Array [
-          "Sort_<span class=\\"nocase\\">ChicagoYearSuffix1</span>",
-        ],
+        "title": "Sort_<span class=\\"nocase\\">ChicagoYearSuffix1</span>",
       },
+      "input": String(
+        @article{sort_ChicagoYearSuffix1,
+          title = {Sort\\\\_{{ChicagoYearSuffix1}}},
+          author = {Beijing Zoo and {Beijing Zoo}},
+          keywords = {imported}
+        }
+      ),
       "key": "sort_ChicagoYearSuffix1",
       "type": "article",
     },
@@ -1241,10 +1451,15 @@ Object {
         "keywords": Array [
           "imported",
         ],
-        "title": Array [
-          "Sort_<span class=\\"nocase\\">FamilyOnly</span>",
-        ],
+        "title": "Sort_<span class=\\"nocase\\">FamilyOnly</span>",
       },
+      "input": String(
+        @article{sort_FamilyOnly,
+          title = {Sort\\\\_{{FamilyOnly}}},
+          author = {ANZ Group},
+          keywords = {imported}
+        }
+      ),
       "key": "sort_FamilyOnly",
       "type": "article",
     },
@@ -1265,13 +1480,17 @@ Object {
         "keywords": Array [
           "imported",
         ],
-        "options": Array [
-          "useprefix=true",
-        ],
-        "title": Array [
-          "Sort_<span class=\\"nocase\\">LeadingApostropheOnNameParticle</span>",
-        ],
+        "options": "useprefix=true",
+        "title": "Sort_<span class=\\"nocase\\">LeadingApostropheOnNameParticle</span>",
       },
+      "input": String(
+        @article{sort_LeadingApostropheOnNameParticle,
+          title = {Sort\\\\_{{LeadingApostropheOnNameParticle}}},
+          author = {'t Horvath, Peter A.C. and in 't Horvath, Peter A.D.},
+          keywords = {imported},
+          options = {useprefix=true}
+        }
+      ),
       "key": "sort_LeadingApostropheOnNameParticle",
       "type": "article",
     },
@@ -1287,13 +1506,17 @@ Object {
         "keywords": Array [
           "imported",
         ],
-        "options": Array [
-          "useprefix=true",
-        ],
-        "title": Array [
-          "Sort_<span class=\\"nocase\\">NameParticleInNameSortFalse</span>",
-        ],
+        "options": "useprefix=true",
+        "title": "Sort_<span class=\\"nocase\\">NameParticleInNameSortFalse</span>",
       },
+      "input": String(
+        @article{sort_NameParticleInNameSortFalse,
+          title = {Sort\\\\_{{NameParticleInNameSortFalse}}},
+          author = {di Noakes, John},
+          keywords = {imported},
+          options = {useprefix=true}
+        }
+      ),
       "key": "sort_NameParticleInNameSortFalse",
       "type": "article",
     },
@@ -1308,10 +1531,15 @@ Object {
         "keywords": Array [
           "imported",
         ],
-        "title": Array [
-          "Sort_<span class=\\"nocase\\">NameVariable</span>",
-        ],
+        "title": "Sort_<span class=\\"nocase\\">NameVariable</span>",
       },
+      "input": String(
+        @article{sort_NameVariable,
+          title = {Sort\\\\_{{NameVariable}}},
+          author = {[F]linders, Jacob},
+          keywords = {imported}
+        }
+      ),
       "key": "sort_NameVariable",
       "type": "article",
     },
@@ -1321,7 +1549,9 @@ Object {
     "groups": Object {},
     "root": Array [],
   },
-  "preamble": Array [],
+  "preamble": Array [
+    " \\"\\\\ifdefined\\\\DeclarePrefChars\\\\DeclarePrefChars{'’-}\\\\else\\\\fi \\" ",
+  ],
   "strings": Object {},
 }
 `

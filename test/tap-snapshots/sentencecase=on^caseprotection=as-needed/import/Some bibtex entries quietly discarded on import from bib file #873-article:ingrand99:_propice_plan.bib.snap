@@ -11,57 +11,69 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "abstract": Array [
-          "In this paper, we investigate the links between planning and plans execution. We propose a new approach (Propice-Plan) which integrates both activities. It implements supervision and execution capabilities, combined with different planning techniques: – plan synthesis to complement existing operational plans; and – anticipation planning to advise the execution for the best option to take when facing choices (by anticipating plans execution), and to forecast problems that may arise due to unforeseen situations.",
-        ],
-        "annote": Array [
-          "The Pennsylvania State University CiteSeer Archives",
-        ],
+        "abstract": "In this paper, we investigate the links between planning and plans execution. We propose a new approach (Propice-Plan) which integrates both activities. It implements supervision and execution capabilities, combined with different planning techniques: – plan synthesis to complement existing operational plans; and – anticipation planning to advise the execution for the best option to take when facing choices (by anticipating plans execution), and to forecast problems that may arise due to unforeseen situations.",
+        "annote": "The Pennsylvania State University CiteSeer Archives",
         "author": Array [
           Object {
-            "lastName": "INGRAND",
+            "name": "INGRAND",
           },
           Object {
             "firstName": "Olivier",
             "lastName": "Despouys",
           },
         ],
-        "citeseer-isreferncedby": Array [
-          "oai:CiteSeerPSU:80136",
-        ],
-        "language": Array [
-          "en",
-        ],
-        "month": Array [
-          "08 13",
-        ],
-        "oai": Array [
-          "oai:CiteSeerPSU:507370",
-        ],
-        "rights": Array [
-          "unrestricted",
-        ],
-        "subject": Array [
-          "Francois F'elix Ingr,Olivier Despouys Propice-Plan: Toward a Unified Framework for Planning and Execution",
-        ],
-        "title": Array [
-          "Propice-plan: Toward a unified framework for planning and execution",
-        ],
-        "url": Array [
-          String(
-            http://citeseer.ist.psu.edu/507370.html;
-                             http://www.informatik.uni-ulm.de/ki/biundo/ECP-Papers/61-despouys.ps.gz
-          ),
-        ],
-        "year": Array [
-          1999,
-        ],
+        "citeseer-isreferncedby": "oai:CiteSeerPSU:80136",
+        "language": "en",
+        "month": "08 13",
+        "oai": "oai:CiteSeerPSU:507370",
+        "rights": "unrestricted",
+        "subject": "Francois F'elix Ingr,Olivier Despouys Propice-Plan: Toward a Unified Framework for Planning and Execution",
+        "title": "Propice-plan: Toward a unified framework for planning and execution",
+        "url": "http://citeseer.ist.psu.edu/507370.html; http://www.informatik.uni-ulm.de/ki/biundo/ECP-Papers/61-despouys.ps.gz",
+        "year": 1999,
       },
+      "input": String(
+        @Article{ingrand99:_propice_plan,
+          title =        "Propice-Plan: Toward a Unified Framework for Planning
+                         and Execution",
+          author =       INGRAND # " and Olivier Despouys",
+          year =         1999,
+          month =        aug # "~13",
+          abstract =     "In this paper, we investigate the links between
+                         planning and plans execution. We propose a new approach
+                         (Propice-Plan) which integrates both activities. It
+                         implements supervision and execution capabilities,
+                         combined with different planning techniques: -- plan
+                         synthesis to complement existing operational plans; and
+                         -- anticipation planning to advise the execution for
+                         the best option to take when facing choices (by
+                         anticipating plans execution), and to forecast problems
+                         that may arise due to unforeseen situations.",
+          citeseer-isreferncedby = "oai:CiteSeerPSU:80136",
+          annote =       "The Pennsylvania State University CiteSeer Archives",
+          language =     "en",
+          oai =          "oai:CiteSeerPSU:507370",
+          rights =       "unrestricted",
+          subject =      "Francois F'elix Ingr,Olivier Despouys Propice-Plan:
+                         Toward a Unified Framework for Planning and Execution",
+          URL =          "http://citeseer.ist.psu.edu/507370.html;
+                         http://www.informatik.uni-ulm.de/ki/biundo/ECP-Papers/61-despouys.ps.gz",
+        }
+      ),
       "key": "ingrand99:_propice_plan",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"INGRAND\\"",
+      "input": "INGRAND",
+      "location": Object {
+        "column": 25,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

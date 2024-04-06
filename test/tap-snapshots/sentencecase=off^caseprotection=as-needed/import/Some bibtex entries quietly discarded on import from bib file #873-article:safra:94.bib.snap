@@ -21,27 +21,36 @@ Object {
             "lastName": "Tennenholtz",
           },
         ],
-        "journal": Array [
-          "JAIR",
-        ],
-        "pages": Array [
-          "111–129",
-        ],
-        "title": Array [
-          "On Planning While Learning",
-        ],
-        "volume": Array [
-          "2",
-        ],
-        "year": Array [
-          "1994",
-        ],
+        "journal": "JAIR",
+        "pages": "111–129",
+        "title": "On Planning While Learning",
+        "volume": "2",
+        "year": 1994,
       },
+      "input": String(
+        @ARTICLE{Safra:94,
+        \\tAUTHOR = {Shmuel Safra and Moshe Tennenholtz},
+        \\tTITLE = "On Planning While Learning",
+        \\tJOURNAL = JAIR,
+        \\tYEAR = {1994},
+        \\tVOLUME = {2},
+        \\tPAGES = {111--129}
+        }
+      ),
       "key": "Safra:94",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"JAIR\\"",
+      "input": "JAIR",
+      "location": Object {
+        "column": 16,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Edinburgh",
-        ],
+        "address": "Edinburgh",
         "author": Array [
           Object {
             "firstName": "Daniel P.",
@@ -24,9 +22,7 @@ Object {
             "lastName": "Wise",
           },
         ],
-        "booktitle": Array [
-          "Automata, Languages, and Programming",
-        ],
+        "booktitle": "Automata, Languages, and Programming",
         "editor": Array [
           Object {
             "firstName": "S.",
@@ -37,19 +33,25 @@ Object {
             "lastName": "Milner",
           },
         ],
-        "pages": Array [
-          "257-284",
-        ],
+        "pages": "257-284",
         "publisher": Array [
           "Edinburgh University Press",
         ],
-        "title": Array [
-          "CONS should not evaluate its arguments",
-        ],
-        "year": Array [
-          "1976",
-        ],
+        "title": "CONS should not evaluate its arguments",
+        "year": 1976,
       },
+      "input": String(
+        @book(Wise:1976,
+        \\tauthor =\\t{Daniel P. Friedman and David S. Wise},
+        \\tbooktitle =\\t{Automata, Languages, and Programming},
+        \\taddress =\\t{Edinburgh},
+        \\tyear =\\t\\t{1976},
+        \\teditor =\\t{S. Michaelson and R. Milner},
+        \\tpublisher =\\t{Edinburgh University Press},
+        \\tpages =\\t\\t{257-284},
+        \\ttitle =\\t\\t{CONS should not evaluate its arguments}
+        )
+      ),
       "key": "Wise:1976",
       "type": "book",
     },

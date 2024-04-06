@@ -17,22 +17,22 @@ Object {
             "lastName": "Pople",
           },
         ],
-        "journal": Array [
-          "Proc. Ijcai",
-        ],
-        "pages": Array [
-          "1030-1037",
-        ],
-        "title": Array [
-          "The formation of composite hypotheses in diagnostic problem solving: An exercise in synthetic reasoning",
-        ],
-        "volume": Array [
-          "5",
-        ],
-        "year": Array [
-          "1977",
-        ],
+        "journal": "Proc. Ijcai",
+        "pages": "1030-1037",
+        "title": "The formation of composite hypotheses in diagnostic problem solving: An exercise in synthetic reasoning",
+        "volume": "5",
+        "year": 1977,
       },
+      "input": String(
+        @article(Pople:77,
+        \\tauthor =\\t{Harry Pople},
+        \\tyear =\\t\\t{1977},
+        \\tjournal =\\t{Proc. Ijcai},
+        \\tpages =\\t\\t{1030-1037},
+        \\ttitle =\\t\\t"The formation of composite hypotheses in diagnostic problem solving: An exercise in synthetic reasoning",
+        \\tvolume =\\t{5}
+        )
+      ),
       "key": "Pople:77",
       "type": "article",
     },

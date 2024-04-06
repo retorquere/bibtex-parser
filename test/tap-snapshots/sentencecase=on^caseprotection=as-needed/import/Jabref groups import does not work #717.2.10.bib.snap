@@ -17,19 +17,21 @@ Object {
             "lastName": "Doe",
           },
         ],
-        "owner": Array [
-          "klein",
-        ],
-        "timestamp": Array [
-          "2017.09.11",
-        ],
-        "title": Array [
-          "The paper in my-subgroup-2",
-        ],
-        "year": Array [
-          "2017",
-        ],
+        "owner": "klein",
+        "timestamp": "2017.09.11",
+        "title": "The paper in my-subgroup-2",
+        "year": 2017,
       },
+      "input": String(
+        @Article{Doe-2017,
+          Title                    = {The paper in my-subgroup-2},
+          Author                   = {John Doe},
+          Year                     = {2017},
+        
+          Owner                    = {klein},
+          Timestamp                = {2017.09.11}
+        }
+      ),
       "key": "Doe-2017",
       "type": "article",
     },
@@ -41,16 +43,19 @@ Object {
             "lastName": "Other",
           },
         ],
-        "owner": Array [
-          "klein",
-        ],
-        "timestamp": Array [
-          "2017.09.11",
-        ],
-        "title": Array [
-          "The article in my-other-subgroup-2",
-        ],
+        "owner": "klein",
+        "timestamp": "2017.09.11",
+        "title": "The article in my-other-subgroup-2",
       },
+      "input": String(
+        @Article{Other-,
+          Title                    = {The article in my-other-subgroup-2},
+          Author                   = {I. Other},
+        
+          Owner                    = {klein},
+          Timestamp                = {2017.09.11}
+        }
+      ),
       "key": "Other-",
       "type": "article",
     },
@@ -62,16 +67,19 @@ Object {
             "lastName": "Unkonw",
           },
         ],
-        "owner": Array [
-          "klein",
-        ],
-        "timestamp": Array [
-          "2017.09.11",
-        ],
-        "title": Array [
-          "JR2: paper not in a group",
-        ],
+        "owner": "klein",
+        "timestamp": "2017.09.11",
+        "title": "JR2: paper not in a group",
       },
+      "input": String(
+        @Article{Unkonw-,
+          Title                    = {JR2: paper not in a group},
+          Author                   = {I Unkonw},
+        
+          Owner                    = {klein},
+          Timestamp                = {2017.09.11}
+        }
+      ),
       "key": "Unkonw-",
       "type": "article",
     },

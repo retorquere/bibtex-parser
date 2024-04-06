@@ -7,22 +7,20 @@
 'use strict'
 exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-book:turing:63.bib > must match snapshot 1`] = `
 Object {
-  "comments": Array [],
+  "comments": Array [
+    "Len Schubert",
+  ],
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "Alan M.",
             "lastName": "Turing",
           },
         ],
-        "booktitle": Array [
-          "Computers and thought",
-        ],
+        "booktitle": "Computers and thought",
         "editor": Array [
           Object {
             "firstName": "E.",
@@ -33,19 +31,25 @@ Object {
             "lastName": "Feldman",
           },
         ],
-        "pages": Array [
-          "1-35",
-        ],
+        "pages": "1-35",
         "publisher": Array [
           "McGraw-Hill",
         ],
-        "title": Array [
-          "Computing machinery and intelligence",
-        ],
-        "year": Array [
-          "1963",
-        ],
+        "title": "Computing machinery and intelligence",
+        "year": 1963,
       },
+      "input": String(
+        @book(Turing:63,
+        \\tauthor =\\t{Alan M. Turing},
+        \\tbooktitle =\\t{Computers and Thought},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1963},
+        \\teditor =\\t{E. Feigenbaum and J. Feldman},
+        \\tpublisher =\\t{McGraw-Hill},
+        \\tpages =\\t\\t{1-35},
+        \\ttitle =\\t\\t{Computing machinery and intelligence}
+        )
+      ),
       "key": "Turing:63",
       "type": "book",
     },

@@ -17,19 +17,20 @@ Object {
             "lastName": "Hewitt",
           },
         ],
-        "journal": Array [
-          "Proc. Ijcai",
-        ],
-        "title": Array [
-          "PLANNER: A language for proving theorems in robots",
-        ],
-        "volume": Array [
-          "2",
-        ],
-        "year": Array [
-          "1971",
-        ],
+        "journal": "Proc. Ijcai",
+        "title": "PLANNER: A language for proving theorems in robots",
+        "volume": "2",
+        "year": 1971,
       },
+      "input": String(
+        @article(Hewitt:71,
+        \\tauthor =\\t{Carl Hewitt},
+        \\tyear =\\t\\t{1971},
+        \\tjournal =\\t{Proc. Ijcai},
+        \\ttitle =\\t\\t"PLANNER: A language for proving theorems in robots",
+        \\tvolume =\\t{2}
+        )
+      ),
       "key": "Hewitt:71",
       "type": "article",
     },

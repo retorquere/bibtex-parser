@@ -13,30 +13,39 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "lastName": "MCDERMOTT",
+            "name": "MCDERMOTT",
           },
         ],
-        "journal": Array [
-          "Cognitive Science",
-        ],
-        "pages": Array [
-          "71–109",
-        ],
-        "title": Array [
-          "Planning and acting",
-        ],
-        "volume": Array [
-          "2",
-        ],
-        "year": Array [
-          "1978",
-        ],
+        "journal": "Cognitive Science",
+        "pages": "71–109",
+        "title": "Planning and acting",
+        "volume": "2",
+        "year": 1978,
       },
+      "input": String(
+        @article(McDermott:78,
+        \\tauthor =\\tMCDERMOTT,
+        \\tyear =\\t\\t{1978},
+        \\tjournal =\\t{Cognitive Science},
+        \\tpages =\\t\\t{71--109},
+        \\ttitle =\\t\\t"Planning and acting",
+        \\tvolume =\\t{2}
+        )
+      ),
       "key": "McDermott:78",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"MCDERMOTT\\"",
+      "input": "MCDERMOTT",
+      "location": Object {
+        "column": 20,
+        "line": 2,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

@@ -21,22 +21,23 @@ Object {
             "lastName": "Nishihara",
           },
         ],
-        "journal": Array [
-          "Proceedings of the Royal Society",
-        ],
-        "pages": Array [
-          "269–294",
-        ],
-        "title": Array [
-          "Representation and recognition of the spatial organization of three-dimensional shapes",
-        ],
-        "volume": Array [
-          "B-200",
-        ],
-        "year": Array [
-          "1978",
-        ],
+        "journal": "Proceedings of the Royal Society",
+        "pages": "269–294",
+        "title": "Representation and recognition of the spatial organization of three-dimensional shapes",
+        "volume": "B-200",
+        "year": 1978,
       },
+      "input": String(
+        @article(Marr:78,
+        \\tauthor =\\t{David Marr and H. Keith Nishihara},
+        \\tyear =\\t\\t{1978},
+        \\tjournal =\\t{Proceedings of the Royal Society},
+        \\tpages =\\t\\t{269--294},
+        \\ttitle =\\t\\t{Representation and recognition of the 
+        \\t\\t\\t spatial organization of three-dimensional shapes},
+        \\tvolume =\\t{B-200}
+        )
+      ),
       "key": "Marr:78",
       "type": "article",
     },

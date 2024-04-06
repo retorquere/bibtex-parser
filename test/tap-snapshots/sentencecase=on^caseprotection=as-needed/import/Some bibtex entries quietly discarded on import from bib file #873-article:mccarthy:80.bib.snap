@@ -17,30 +17,38 @@ Object {
             "lastName": "McCarthy",
           },
         ],
-        "journal": Array [
-          "AIJ",
-        ],
-        "note": Array [
-          "Reprinted in NONMON.",
-        ],
-        "pages": Array [
-          "27–39,171–172",
-        ],
-        "title": Array [
-          "Circumscription — A form of non-monotonic reasoning",
-        ],
-        "volume": Array [
-          "13",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "journal": "AIJ",
+        "note": "Reprinted in NONMON.",
+        "pages": "27–39,171–172",
+        "title": "Circumscription — A form of non-monotonic reasoning",
+        "volume": "13",
+        "year": 1980,
       },
+      "input": String(
+        @ARTICLE{McCarthy:80,
+        \\tAUTHOR = {John McCarthy},
+        \\tTITLE = "Circumscription --- A form of non-monotonic reasoning",
+        \\tJOURNAL = AIJ,
+        \\tYEAR = {1980},
+        \\tVOLUME = {13},
+        \\tPAGES = {27--39,171--172},
+        \\tNOTE = {Reprinted in \\\\cite{NONMON}.}
+        }
+      ),
       "key": "McCarthy:80",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"AIJ\\"",
+      "input": "AIJ",
+      "location": Object {
+        "column": 15,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

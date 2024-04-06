@@ -28,13 +28,18 @@ Object {
         "institution": Array [
           "MIT Artificial Intelligence Laboratory",
         ],
-        "title": Array [
-          "Micro-planner reference manual",
-        ],
-        "year": Array [
-          "1971",
-        ],
+        "title": "Micro-planner reference manual",
+        "year": 1971,
       },
+      "input": String(
+        @techreport(Sussman:71,
+        \\tauthor =\\t{Gerald J. Sussman and Terry Winograd 
+        \\t\\t\\t and Eugene Charniak},
+        \\tyear =\\t\\t{1971},
+        \\tinstitution =\\t{MIT Artificial Intelligence Laboratory},
+        \\ttitle =\\t\\t{Micro-Planner Reference Manual}
+        )
+      ),
       "key": "Sussman:71",
       "type": "techreport",
     },

@@ -20,13 +20,17 @@ Object {
         "publisher": Array [
           "Xerox Corporation",
         ],
-        "title": Array [
-          "Interlisp Reference Manual",
-        ],
-        "year": Array [
-          "1978",
-        ],
+        "title": "Interlisp Reference Manual",
+        "year": 1978,
       },
+      "input": String(
+        @book(Teitelman:1978,
+        \\tauthor =\\t{Warren Teitelman},
+        \\tyear =\\t\\t{1978},
+        \\tpublisher =\\t{Xerox Corporation},
+        \\ttitle =\\t\\t{Interlisp Reference Manual}
+        )
+      ),
       "key": "Teitelman:1978",
       "type": "book",
     },

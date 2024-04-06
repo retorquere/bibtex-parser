@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "annote": Array [
-          "Fixes a bug in the Path Consistency algorithm (PC-3) presented by Mohr and Henderson in 1986. They present a revised algorithm, PC-4.",
-        ],
+        "annote": "Fixes a bug in the Path Consistency algorithm (PC-3) presented by Mohr and Henderson in 1986. They present a revised algorithm, PC-4.",
         "author": Array [
           Object {
             "firstName": "Ching-Chih",
@@ -24,33 +22,44 @@ Object {
             "lastName": "Lee",
           },
         ],
-        "journal": Array [
-          "AIJ",
-        ],
-        "month": Array [
-          "08",
-        ],
-        "number": Array [
-          "1",
-        ],
-        "pages": Array [
-          "125–130",
-        ],
-        "title": Array [
-          "Comments on mohr and henderson's path consistency algorithm",
-        ],
-        "volume": Array [
-          "36",
-        ],
-        "year": Array [
-          "1988",
-        ],
+        "journal": "AIJ",
+        "month": 8,
+        "number": "1",
+        "pages": "125–130",
+        "title": "Comments on mohr and henderson's path consistency algorithm",
+        "volume": "36",
+        "year": 1988,
       },
+      "input": String(
+        @ARTICLE{HanLee:88,
+        \\tAUTHOR = {Ching-Chih Han and Chia-Hoang Lee},
+        \\tTITLE = {Comments on Mohr and Henderson's Path Consistency
+        \\t\\t Algorithm},
+        \\tJOURNAL = AIJ,
+        \\tYEAR = {1988},
+        \\tVOLUME = {36},
+        \\tNUMBER = {1},
+        \\tPAGES = {125--130},
+        \\tMONTH = aug,
+        \\tANNOTE = {Fixes a bug in the Path Consistency algorithm (PC-3)
+        \\t\\t  presented by Mohr and Henderson in 1986.  They
+        \\t\\t  present a revised algorithm, PC-4.}
+        }
+      ),
       "key": "HanLee:88",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"AIJ\\"",
+      "input": "AIJ",
+      "location": Object {
+        "column": 15,
+        "line": 5,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

@@ -20,13 +20,17 @@ Object {
         "institution": Array [
           "University of Rochester Department of Computer Science",
         ],
-        "title": Array [
-          "Mapping input onto schemas",
-        ],
-        "year": Array [
-          "1978",
-        ],
+        "title": "Mapping input onto schemas",
+        "year": 1978,
       },
+      "input": String(
+        @techreport(PhilHayes:78,
+        \\tauthor =\\t{Philip J. Hayes},
+        \\tyear =\\t\\t{1978},
+        \\tinstitution =\\t{University of Rochester Department of Computer Science},
+        \\ttitle =\\t\\t{Mapping Input onto Schemas}
+        )
+      ),
       "key": "PhilHayes:78",
       "type": "techreport",
     },

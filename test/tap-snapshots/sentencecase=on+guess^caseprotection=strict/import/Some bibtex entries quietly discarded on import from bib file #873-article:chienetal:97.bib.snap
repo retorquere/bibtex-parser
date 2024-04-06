@@ -29,30 +29,40 @@ Object {
             "lastName": "Stolorz",
           },
         ],
-        "journal": Array [
-          "AIM",
-        ],
-        "number": Array [
-          "1",
-        ],
-        "pages": Array [
-          "103–122",
-        ],
-        "title": Array [
-          "Making an impact: Artificial intelligence at the jet propulsion laboratory",
-        ],
-        "volume": Array [
-          "17",
-        ],
-        "year": Array [
-          "1997",
-        ],
+        "journal": "AIM",
+        "number": "1",
+        "pages": "103–122",
+        "title": "Making an impact: Artificial intelligence at the jet propulsion laboratory",
+        "volume": "17",
+        "year": 1997,
       },
+      "input": String(
+        @ARTICLE{ChienETAL:97,
+        \\tAUTHOR = {Steve Chien and Dennis DeCoste and Richard Doyle
+        \\t\\t  and Paul Stolorz},
+        \\tTITLE = {Making an Impact:  Artificial Intelligence at the
+        \\t\\t Jet Propulsion Laboratory},
+        \\tJOURNAL = AIM,
+        \\tYEAR = {1997},
+        \\tVOLUME = {17},
+        \\tNUMBER = {1},
+        \\tPAGES = {103--122}
+        }
+      ),
       "key": "ChienETAL:97",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"AIM\\"",
+      "input": "AIM",
+      "location": Object {
+        "column": 15,
+        "line": 6,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

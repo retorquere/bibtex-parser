@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Reading, Mass.",
-        ],
+        "address": "Reading, Mass.",
         "author": Array [
           Object {
             "firstName": "David G.",
@@ -23,13 +21,18 @@ Object {
         "publisher": Array [
           "Addison-Wesley",
         ],
-        "title": Array [
-          "Introduction to linear and nonlinear programming",
-        ],
-        "year": Array [
-          "1973",
-        ],
+        "title": "Introduction to linear and nonlinear programming",
+        "year": 1973,
       },
+      "input": String(
+        @book(Luenberger:1973,
+        \\tauthor =\\t{David G. Luenberger},
+        \\taddress =\\t{Reading, Mass.},
+        \\tyear =\\t\\t{1973},
+        \\tpublisher =\\t{Addison-Wesley},
+        \\ttitle =\\t\\t{Introduction to Linear and Nonlinear Programming}
+        )
+      ),
       "key": "Luenberger:1973",
       "type": "book",
     },

@@ -19,19 +19,22 @@ Object {
         ],
         "holder": Array [
           Object {
-            "literal": "My Employer",
+            "name": "My Employer",
           },
         ],
-        "number": Array [
-          "456456456",
-        ],
-        "title": Array [
-          "This Is a Patent Application. It Has the Application Number EP456456456",
-        ],
-        "type": Array [
-          "patreqeu",
-        ],
+        "number": "456456456",
+        "title": "This Is a Patent Application. It Has the Application Number EP456456456",
+        "type": "patreqeu",
       },
+      "input": String(
+        @patent{wernerThisPatentApplication,
+          title = {This Is a Patent Application. It Has the Application Number EP456456456},
+          author = {Werner, Nils},
+          holder = {{My Employer}},
+          number = {456456456},
+          type = {patreqeu}
+        }
+      ),
       "key": "wernerThisPatentApplication",
       "type": "patent",
     },
@@ -45,19 +48,22 @@ Object {
         ],
         "holder": Array [
           Object {
-            "literal": "My Employer",
+            "name": "My Employer",
           },
         ],
-        "number": Array [
-          "123123123",
-        ],
-        "title": Array [
-          "This Is a Patent. It Has the Patent Number EP123123123. It Had the Application Number EP789789789 When It Was First Submitted.",
-        ],
-        "type": Array [
-          "patenteu",
-        ],
+        "number": "123123123",
+        "title": "This Is a Patent. It Has the Patent Number EP123123123. It Had the Application Number EP789789789 When It Was First Submitted.",
+        "type": "patenteu",
       },
+      "input": String(
+        @patent{wernerThisPatentIt,
+          title = {This Is a Patent. It Has the Patent Number EP123123123. It Had the Application Number EP789789789 When It Was First Submitted.},
+          author = {Werner, Nils},
+          holder = {{My Employer}},
+          number = {123123123},
+          type = {patenteu}
+        }
+      ),
       "key": "wernerThisPatentIt",
       "type": "patent",
     },

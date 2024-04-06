@@ -21,25 +21,24 @@ Object {
             "lastName": "Zucker",
           },
         ],
-        "journal": Array [
-          "IEEE Transactions on Pattern Analysis and Machine Intelligence",
-        ],
-        "number": Array [
-          "3",
-        ],
-        "pages": Array [
-          "267-287",
-        ],
-        "title": Array [
-          "On the foundations of relaxation labeling processes",
-        ],
-        "volume": Array [
-          "PAMI-5",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "journal": "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+        "number": "3",
+        "pages": "267-287",
+        "title": "On the foundations of relaxation labeling processes",
+        "volume": "PAMI-5",
+        "year": 1983,
       },
+      "input": String(
+        @article(Zucker:1983,
+        \\tauthor =\\t{Robert A. Hummel and Steven W. Zucker},
+        \\tyear =\\t\\t{1983},
+        \\tjournal =\\t{IEEE Transactions on Pattern Analysis and Machine Intelligence},
+        \\tnumber =\\t{3},
+        \\tpages =\\t\\t{267-287},
+        \\ttitle =\\t\\t"On the foundations of relaxation labeling processes",
+        \\tvolume =\\t{PAMI-5}
+        )
+      ),
       "key": "Zucker:1983",
       "type": "article",
     },

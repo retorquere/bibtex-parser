@@ -7,7 +7,9 @@
 'use strict'
 exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:rees:t .bib > must match snapshot 1`] = `
 Object {
-  "comments": Array [],
+  "comments": Array [
+    "Ray Reiter",
+  ],
   "entries": Array [
     Object {
       "fields": Object {
@@ -21,19 +23,20 @@ Object {
             "lastName": "Adams",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the ACM symposium on lisp and functional programming",
-        ],
-        "pages": Array [
-          "114-122",
-        ],
-        "title": Array [
-          "<span class=\\"nocase\\">T</span>: A dialect of <span class=\\"nocase\\">LISP</span> or, <span class=\\"nocase\\">LAMBDA</span>: The ultimate software tool",
-        ],
-        "year": Array [
-          "1982",
-        ],
+        "booktitle": "Proceedings of the ACM symposium on lisp and functional programming",
+        "pages": "114-122",
+        "title": "<span class=\\"nocase\\">T</span>: a dialect of <span class=\\"nocase\\">LISP</span> or, <span class=\\"nocase\\">LAMBDA</span>: The ultimate software tool",
+        "year": 1982,
       },
+      "input": String(
+        @inproceedings(Rees:T, 
+        \\tauthor =\\t{Jonathan Rees and Norman Adams},
+        \\tbooktitle =\\t{Proceedings of the ACM Symposium on Lisp and Functional Programming},
+        \\tyear =\\t\\t{1982},
+        \\tpages =\\t\\t{114-122},
+        \\ttitle =\\t\\t{{T}: A dialect of {LISP} or, {LAMBDA}: The ultimate software tool}
+        )
+      ),
       "key": "Rees:T",
       "type": "inproceedings",
     },

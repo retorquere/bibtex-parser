@@ -41,33 +41,32 @@ Object {
             "lastName": "Arbesman",
           },
         ],
-        "file": Array [
-          "files/Adams2015/Adams_Huaynaputina.pdf",
-        ],
-        "journal": Array [
-          "Bulletin of Volcanology",
-        ],
+        "file": "files/Adams2015/Adams_Huaynaputina.pdf",
+        "journal": "Bulletin of Volcanology",
         "keywords": Array [
           "breadcrust",
           "plinian",
           "Vulcanian eruptions",
         ],
-        "month": Array [
-          "06",
-        ],
-        "pages": Array [
-          "493–518",
-        ],
-        "title": Array [
-          "746: <span class=\\"nocase\\">The</span> Physical Volcanology of the 1600 Eruption of <span class=\\"nocase\\">Huaynaputina</span>, Southern <span class=\\"nocase\\">Peru</span>",
-        ],
-        "volume": Array [
-          "62",
-        ],
-        "year": Array [
-          "2015",
-        ],
+        "month": 6,
+        "pages": "493–518",
+        "title": "746: <span class=\\"nocase\\">The</span> Physical Volcanology of the 1600 Eruption of <span class=\\"nocase\\">Huaynaputina</span>, Southern <span class=\\"nocase\\">Peru</span>",
+        "volume": "62",
+        "year": 2015,
       },
+      "input": String(
+        @article{Adams2015,
+          title = {746: {{The}} Physical Volcanology of the 1600 Eruption of {{Huaynaputina}}, Southern {{Peru}}},
+          author = {Adams, Nancy K and DeSilva, Shanaka L and Self, Steven and Salas, Guido and Schubring, Steven and Permenter, Jason L and Arbesman, Kendra},
+          year = {2015},
+          month = jun,
+          volume = {62},
+          pages = {493--518},
+          file = {files/Adams2015/Adams_Huaynaputina.pdf},
+          journal = {Bulletin of Volcanology},
+          keywords = {breadcrust,plinian,Vulcanian eruptions}
+        }
+      ),
       "key": "Adams2015",
       "type": "article",
     },
@@ -103,58 +102,51 @@ Object {
             "lastName": "Arbesman",
           },
         ],
-        "file": Array [
-          "files/Adams2017/Adams_Huaynaputina.pdf",
-        ],
-        "journal": Array [
-          "Bulletin of Volcanology",
-        ],
+        "file": "files/Adams2017/Adams_Huaynaputina.pdf",
+        "journal": "Bulletin of Volcanology",
         "keywords": Array [
           "breadcrust",
           "plinian",
           "Vulcanian eruptions",
         ],
-        "month": Array [
-          "06",
-        ],
-        "pages": Array [
-          "493–518",
-        ],
-        "title": Array [
-          "747: <span class=\\"nocase\\">The</span> Physical Volcanology of the 1600 Eruption of <span class=\\"nocase\\">Huaynaputina</span>, Southern <span class=\\"nocase\\">Peru</span>",
-        ],
-        "volume": Array [
-          "62",
-        ],
-        "year": Array [
-          "2017",
-        ],
+        "month": 6,
+        "pages": "493–518",
+        "title": "747: <span class=\\"nocase\\">The</span> Physical Volcanology of the 1600 Eruption of <span class=\\"nocase\\">Huaynaputina</span>, Southern <span class=\\"nocase\\">Peru</span>",
+        "volume": "62",
+        "year": 2017,
       },
+      "input": String(
+        @article{Adams2017,
+          title = {747: {{The}} Physical Volcanology of the 1600 Eruption of {{Huaynaputina}}, Southern {{Peru}}},
+          author = {Adams, Nancy K and DeSilva, Shanaka L and Self, Steven and Salas, Guido and Schubring, Steven and Permenter, Jason L and Arbesman, Kendra},
+          year = {2017},
+          month = jun,
+          volume = {62},
+          pages = {493--518},
+          file = {files/Adams2017/Adams_Huaynaputina.pdf},
+          journal = {Bulletin of Volcanology},
+          keywords = {breadcrust,plinian,Vulcanian eruptions}
+        }
+      ),
       "key": "Adams2017",
       "type": "article",
     },
     Object {
       "fields": Object {
-        "abstract": Array [
-          "Virtually all ITS applications rely on accurate traffic data. Identification of faulty detectors is thus vital for their reliability and efficiency. Most existing approaches solely use current and historical data of single or adjacent detectors and are based on empirical thresholds. We present a method for fault detection using Floating-Car Data (FCD) as independent source of information which allows to distinguish changed traffic conditions from sensor faults. Fault detection is based on residuals of a nonlinear regression model fitted to detector readings and FCD traffic speeds. Instead of applying rule-of-thumb thresholds we employ a statistical test, where thresholds result naturally from historical data, sample sizes and required fault detection accuracy. We provide a theoretical framework for fault detectability analysis and empirically evaluate the fault detection capability of our approach using data obtained from a microscopic traffic simulation.",
-        ],
+        "abstract": "Virtually all ITS applications rely on accurate traffic data. Identification of faulty detectors is thus vital for their reliability and efficiency. Most existing approaches solely use current and historical data of single or adjacent detectors and are based on empirical thresholds. We present a method for fault detection using Floating-Car Data (FCD) as independent source of information which allows to distinguish changed traffic conditions from sensor faults. Fault detection is based on residuals of a nonlinear regression model fitted to detector readings and FCD traffic speeds. Instead of applying rule-of-thumb thresholds we employ a statistical test, where thresholds result naturally from historical data, sample sizes and required fault detection accuracy. We provide a theoretical framework for fault detectability analysis and empirically evaluate the fault detection capability of our approach using data obtained from a microscopic traffic simulation.",
         "author": Array [
           Object {
-            "literal": "P. Widhalm",
+            "name": "P. Widhalm",
           },
           Object {
-            "literal": "H. Koller",
+            "name": "H. Koller",
           },
           Object {
-            "literal": "W. Ponweiser",
+            "name": "W. Ponweiser",
           },
         ],
-        "booktitle": Array [
-          "2011 <span class=\\"nocase\\">IEEE Forum</span> on <span class=\\"nocase\\">Integrated</span> and <span class=\\"nocase\\">Sustainable Transportation Systems</span>",
-        ],
-        "doi": Array [
-          "10.1109/FISTS.2011.5973643",
-        ],
+        "booktitle": "2011 <span class=\\"nocase\\">IEEE Forum</span> on <span class=\\"nocase\\">Integrated</span> and <span class=\\"nocase\\">Sustainable Transportation Systems</span>",
+        "doi": "10.1109/FISTS.2011.5973643",
         "keywords": Array [
           "Data models",
           "Detectors",
@@ -176,94 +168,96 @@ Object {
           "Training data",
           "Vehicles",
         ],
-        "month": Array [
-          "06",
-        ],
-        "pages": Array [
-          "103–108",
-        ],
-        "title": Array [
-          "Identifying Faulty Traffic Detectors with <span class=\\"nocase\\">Floating Car Data</span>",
-        ],
-        "year": Array [
-          "2011",
-        ],
+        "month": 6,
+        "pages": "103–108",
+        "title": "Identifying Faulty Traffic Detectors with <span class=\\"nocase\\">Floating Car Data</span>",
+        "year": 2011,
       },
+      "input": String(
+        @inproceedings{P.Widhalm2011,
+          title = {Identifying Faulty Traffic Detectors with {{Floating Car Data}}},
+          booktitle = {2011 {{IEEE Forum}} on {{Integrated}} and {{Sustainable Transportation Systems}}},
+          author = {{P. Widhalm} and {H. Koller} and {W. Ponweiser}},
+          year = {2011},
+          month = jun,
+          pages = {103--108},
+          doi = {10.1109/FISTS.2011.5973643},
+          abstract = {Virtually all ITS applications rely on accurate traffic data. Identification of faulty detectors is thus vital for their reliability and efficiency. Most existing approaches solely use current and historical data of single or adjacent detectors and are based on empirical thresholds. We present a method for fault detection using Floating-Car Data (FCD) as independent source of information which allows to distinguish changed traffic conditions from sensor faults. Fault detection is based on residuals of a nonlinear regression model fitted to detector readings and FCD traffic speeds. Instead of applying rule-of-thumb thresholds we employ a statistical test, where thresholds result naturally from historical data, sample sizes and required fault detection accuracy. We provide a theoretical framework for fault detectability analysis and empirically evaluate the fault detection capability of our approach using data obtained from a microscopic traffic simulation.},
+          keywords = {Data models,Detectors,Error analysis,fault detection,Fault detection,fault diagnosis,faulty traffic detector,FCD traffic speed,floating car data,ITS,loop-quality,microscopic traffic simulation,nonlinear regression model,regression analysis,road traffic,statistical test,traffic engineering computing,Training data,Vehicles}
+        }
+      ),
       "key": "P.Widhalm2011",
       "type": "inproceedings",
     },
     Object {
       "fields": Object {
-        "address": Array [
-          "<span class=\\"nocase\\">San Diego, California, USA</span>",
-        ],
+        "address": "San Diego, California, USA",
         "author": Array [
           Object {
             "firstName": "Donn",
             "lastName": "Seeley",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the <span class=\\"nocase\\">Winter 1989 USENIX Conference</span>",
-        ],
-        "month": Array [
-          "01",
-        ],
-        "pages": Array [
-          "287–304",
-        ],
+        "booktitle": "Proceedings of the <span class=\\"nocase\\">Winter</span> 1989 <span class=\\"nocase\\">USENIX Conference</span>",
+        "month": 1,
+        "pages": "287–304",
         "publisher": Array [
           "USENIX",
         ],
-        "title": Array [
-          "A Tour of the Worm",
-        ],
-        "year": Array [
-          "1989",
-        ],
+        "title": "A Tour of the Worm",
+        "year": 1989,
       },
+      "input": String(
+        @inproceedings{Seeley1989,
+          title = {A Tour of the Worm},
+          booktitle = {Proceedings of the {{Winter}} 1989 {{USENIX Conference}}},
+          author = {Seeley, Donn},
+          year = {1989},
+          month = jan,
+          pages = {287--304},
+          publisher = {{USENIX}},
+          address = {{San Diego, California, USA}}
+        }
+      ),
       "key": "Seeley1989",
       "type": "inproceedings",
     },
     Object {
       "fields": Object {
-        "abstract": Array [
-          "In designing computer-based systems, we work within a perspective that shapes the design questions that will be asked and the kinds of solutions that are sought. This paper introduces a perspective based on language as action, and explores its consequences for practical system design. The language/action perspective is contrasted to a number of other currently prominent perspectives, and is illustrated with an extended example based on studies of nursing work in a hospital ward. We show how it leads to particular analyses of that work, which reveal potentials for creating new designs that can make the work (and the workers) more effective.",
-        ],
-        "address": Array [
-          "<span class=\\"nocase\\">Austin, TX</span>",
-        ],
+        "abstract": "In designing computer-based systems, we work within a perspective that shapes the design questions that will be asked and the kinds of solutions that are sought. This paper introduces a perspective based on language as action, and explores its consequences for practical system design. The language/action perspective is contrasted to a number of other currently prominent perspectives, and is illustrated with an extended example based on studies of nursing work in a hospital ward. We show how it leads to particular analyses of that work, which reveal potentials for creating new designs that can make the work (and the workers) more effective.",
+        "address": "Austin, TX",
         "author": Array [
           Object {
             "firstName": "Terry",
             "lastName": "Winograd",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the 1986 <span class=\\"nocase\\">ACM Conference</span> on <span class=\\"nocase\\">Computer</span>-Supported <span class=\\"nocase\\">Cooperative Work (CSCW</span> '86)",
-        ],
-        "doi": Array [
-          "10.1145/637069.637096",
-        ],
-        "month": Array [
-          "12",
-        ],
-        "note": Array [
-          "<a href=\\"http://doi.acm.org/10.1145/637069.637096\\">http://doi.acm.org/10.1145/637069.637096</a>",
-        ],
-        "pages": Array [
-          "203–220",
-        ],
+        "booktitle": "Proceedings of the 1986 <span class=\\"nocase\\">ACM Conference</span> on <span class=\\"nocase\\">Computer</span>-Supported <span class=\\"nocase\\">Cooperative Work</span> (<span class=\\"nocase\\">CSCW</span> '86)",
+        "doi": "10.1145/637069.637096",
+        "month": 12,
+        "note": "<a href=\\"http://doi.acm.org/10.1145/637069.637096\\">http://doi.acm.org/10.1145/637069.637096</a>",
+        "pages": "203–220",
         "publisher": Array [
           "ACM",
         ],
-        "title": Array [
-          "A Language/Action Perspective on the Design of Cooperative Work",
-        ],
-        "year": Array [
-          "1986",
-        ],
+        "title": "A Language/Action Perspective on the Design of Cooperative Work",
+        "year": 1986,
       },
+      "input": String(
+        @inproceedings{Winograd1986,
+          title = {A Language/Action Perspective on the Design of Cooperative Work},
+          booktitle = {Proceedings of the 1986 {{ACM Conference}} on {{Computer}}-Supported {{Cooperative Work}} ({{CSCW}} '86)},
+          author = {Winograd, Terry},
+          year = {1986},
+          month = dec,
+          pages = {203--220},
+          publisher = {{ACM}},
+          address = {{Austin, TX}},
+          doi = {10.1145/637069.637096},
+          abstract = {In designing computer-based systems, we work within a perspective that shapes the design questions that will be asked and the kinds of solutions that are sought. This paper introduces a perspective based on language as action, and explores its consequences for practical system design. The language/action perspective is contrasted to a number of other currently prominent perspectives, and is illustrated with an extended example based on studies of nursing work in a hospital ward. We show how it leads to particular analyses of that work, which reveal potentials for creating new designs that can make the work (and the workers) more effective.},
+          note = {\\\\url{http://doi.acm.org/10.1145/637069.637096}}
+        }
+      ),
       "key": "Winograd1986",
       "type": "inproceedings",
     },

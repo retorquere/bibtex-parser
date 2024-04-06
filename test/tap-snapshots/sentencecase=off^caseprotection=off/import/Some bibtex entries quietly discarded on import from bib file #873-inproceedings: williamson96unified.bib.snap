@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Menlo Park, California",
-        ],
+        "address": "Menlo Park, California",
         "author": Array [
           Object {
             "firstName": "M.",
@@ -28,28 +26,33 @@ Object {
             "lastName": "Sycara",
           },
         ],
-        "booktitle": Array [
-          "Theories of Action, Planning, and Robot Control: Bridging the Gap: Proceedings of the 1996 AAAI Workshop",
-        ],
-        "isbn": Array [
-          "1-57735-021-9",
-        ],
-        "pages": Array [
-          "142–150",
-        ],
+        "booktitle": "Theories of Action, Planning, and Robot Control: Bridging the Gap: Proceedings of the 1996 <span class=\\"nocase\\">AAAI</span> Workshop",
+        "isbn": "1-57735-021-9",
+        "pages": "142–150",
         "publisher": Array [
           "AAAI Press",
         ],
-        "title": Array [
-          "Unified Information and Control Flow in Hierarchical Task Networks",
-        ],
-        "url": Array [
-          "citeseer.nj.nec.com/article/williamson96unified.html",
-        ],
-        "year": Array [
-          "1996",
-        ],
+        "title": "Unified Information and Control Flow in Hierarchical Task Networks",
+        "url": "citeseer.nj.nec.com/article/williamson96unified.html",
+        "year": 1996,
       },
+      "input": String(
+        @inproceedings{ williamson96unified,
+          author =\\t "M. Williamson and K. Decker and K. Sycara",
+          title =\\t "Unified Information and Control Flow in Hierarchical
+                          Task Networks",
+          booktitle =\\t "Theories of Action, Planning, and Robot Control:
+                          Bridging the Gap: Proceedings of the 1996 {AAAI}
+                          Workshop",
+          publisher =\\t "AAAI Press",
+          address =\\t "Menlo Park, California",
+          isbn =\\t "1-57735-021-9",
+          pages =\\t "142--150",
+          year =\\t "1996",
+          url =
+                          "citeseer.nj.nec.com/article/williamson96unified.html"
+        }
+      ),
       "key": "williamson96unified",
       "type": "inproceedings",
     },

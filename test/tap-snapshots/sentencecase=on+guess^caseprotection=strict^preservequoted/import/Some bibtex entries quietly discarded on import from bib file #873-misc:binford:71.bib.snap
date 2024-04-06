@@ -17,16 +17,18 @@ Object {
             "lastName": "Binford",
           },
         ],
-        "booktitle": Array [
-          "IEEE conference on systems and control",
-        ],
-        "title": Array [
-          "Visual perception by computer",
-        ],
-        "year": Array [
-          "1971",
-        ],
+        "booktitle": "IEEE conference on systems and control",
+        "title": "Visual perception by computer",
+        "year": 1971,
       },
+      "input": String(
+        @misc(Binford:71,
+        \\tauthor =\\t{Thomas O. Binford},
+        \\tbooktitle =\\t{IEEE Conference on Systems and Control},
+        \\tyear =\\t\\t{1971},
+        \\ttitle =\\t\\t{Visual perception by computer}
+        )
+      ),
       "key": "Binford:71",
       "type": "misc",
     },

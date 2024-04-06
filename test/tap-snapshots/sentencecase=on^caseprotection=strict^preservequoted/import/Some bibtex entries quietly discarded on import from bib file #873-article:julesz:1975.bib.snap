@@ -17,22 +17,22 @@ Object {
             "lastName": "Julesz",
           },
         ],
-        "journal": Array [
-          "Scientific American",
-        ],
-        "pages": Array [
-          "34-43",
-        ],
-        "title": Array [
-          "Experiments in the visual perception of texture",
-        ],
-        "volume": Array [
-          "232",
-        ],
-        "year": Array [
-          "1975",
-        ],
+        "journal": "Scientific American",
+        "pages": "34-43",
+        "title": "Experiments in the visual perception of texture",
+        "volume": "232",
+        "year": 1975,
       },
+      "input": String(
+        @article(Julesz:1975,
+        \\tauthor =\\t{Bela Julesz},
+        \\tyear =\\t\\t{1975},
+        \\tjournal =\\t{Scientific American},
+        \\tpages =\\t\\t{34-43},
+        \\ttitle =\\t\\t"Experiments in the visual perception of texture",
+        \\tvolume =\\t{232}
+        )
+      ),
       "key": "Julesz:1975",
       "type": "article",
     },

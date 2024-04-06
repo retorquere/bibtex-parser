@@ -11,28 +11,32 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "annotation": Array [
-          "a \\"monumental\\" work on the mosaics of San Marco",
-        ],
+        "annotation": "a \\"monumental\\" work on the mosaics of San Marco",
         "author": Array [
           Object {
             "firstName": "Otto",
             "lastName": "Demus",
           },
         ],
-        "date": Array [
-          "1984",
-        ],
+        "date": "1984",
         "location": Array [
           "Chicago",
         ],
         "publisher": Array [
           "University of Chicago Press",
         ],
-        "title": Array [
-          "The Mosaics of San Marco in Venice",
-        ],
+        "title": "The Mosaics of San Marco in Venice",
       },
+      "input": String(
+        @Book{Demus1984,
+        Title = {The Mosaics of San Marco in Venice},
+        Author = {Demus, Otto},
+        Date = {1984},
+        Location = {Chicago},
+        Publisher = {University of Chicago Press},
+        Annotation = {a "monumental" work on the mosaics of San Marco},
+        }
+      ),
       "key": "Demus1984",
       "type": "book",
     },

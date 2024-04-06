@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Denver",
-        ],
+        "address": "Denver",
         "author": Array [
           Object {
             "firstName": "Robert",
@@ -28,19 +26,21 @@ Object {
             "lastName": "Boutilier",
           },
         ],
-        "booktitle": Array [
-          "NIPS-2000",
-        ],
-        "pages": Array [
-          "1089–1095",
-        ],
-        "title": Array [
-          "APRICODD: Approximate Policy Construction using Decision Diagrams",
-        ],
-        "year": Array [
-          "2000",
-        ],
+        "booktitle": "NIPS-2000",
+        "pages": "1089–1095",
+        "title": "<span class=\\"nocase\\">APRICODD</span>: Approximate Policy Construction using Decision Diagrams",
+        "year": 2000,
       },
+      "input": String(
+        @INPROCEEDINGS{apricodd,
+          author = {Robert St-Aubin and Jesse Hoey and Craig Boutilier},
+          title = {{APRICODD}: Approximate Policy Construction using Decision Diagrams},
+          booktitle = {{NIPS-2000}},
+          year = {2000},
+          pages = {1089--1095},
+          address = {Denver}
+        }
+      ),
       "key": "apricodd",
       "type": "inproceedings",
     },

@@ -17,25 +17,24 @@ Object {
             "lastName": "Gilchrist",
           },
         ],
-        "journal": Array [
-          "Scientific American",
-        ],
-        "number": Array [
-          "3",
-        ],
-        "pages": Array [
-          "118",
-        ],
-        "title": Array [
-          "Serious research doesn't use colored illustrations",
-        ],
-        "volume": Array [
-          "240",
-        ],
-        "year": Array [
-          "1979",
-        ],
+        "journal": "Scientific American",
+        "number": "3",
+        "pages": "118",
+        "title": "Serious research doesn't use colored illustrations",
+        "volume": "240",
+        "year": 1979,
       },
+      "input": String(
+        @article(Gilchrist:79,
+        \\tauthor =\\t{A.L. Gilchrist},
+        \\tyear =\\t\\t{1979},
+        \\tjournal =\\t{Scientific American},
+        \\tnumber =\\t{3},
+        \\tpages =\\t\\t{118},
+        \\ttitle =\\t\\t"Serious research doesn't use colored illustrations",
+        \\tvolume =\\t{240}
+        )
+      ),
       "key": "Gilchrist:79",
       "type": "article",
     },

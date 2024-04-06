@@ -21,27 +21,36 @@ Object {
             "lastName": "Nayak",
           },
         ],
-        "journal": Array [
-          "AIM",
-        ],
-        "number": Array [
-          "3",
-        ],
-        "title": Array [
-          "Immobile Robots: <span class=\\"nocase\\">AI</span> in the New Millennium",
-        ],
-        "volume": Array [
-          "17",
-        ],
-        "year": Array [
-          "1996",
-        ],
+        "journal": "AIM",
+        "number": "3",
+        "title": "Immobile Robots: <span class=\\"nocase\\">AI</span> in the New Millennium",
+        "volume": "17",
+        "year": 1996,
       },
+      "input": String(
+        @ARTICLE{WilliamsNayak:Immobot,
+        \\tAUTHOR = {Brian C. Williams and P. Pandurang Nayak},
+        \\tTITLE = "Immobile Robots: {AI} in the New Millennium",
+        \\tJOURNAL = AIM,
+        \\tYEAR = {1996},
+        \\tVOLUME = {17},
+        \\tNUMBER = {3}
+        }
+      ),
       "key": "WilliamsNayak:Immobot",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"AIM\\"",
+      "input": "AIM",
+      "location": Object {
+        "column": 15,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

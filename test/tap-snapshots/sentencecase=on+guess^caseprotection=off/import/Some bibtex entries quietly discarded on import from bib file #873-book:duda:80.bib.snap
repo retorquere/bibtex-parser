@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Edinburgh",
-        ],
+        "address": "Edinburgh",
         "author": Array [
           Object {
             "firstName": "Richard O.",
@@ -28,28 +26,34 @@ Object {
             "lastName": "Hart",
           },
         ],
-        "booktitle": Array [
-          "Expert systems in the microelectronic age",
-        ],
+        "booktitle": "Expert systems in the microelectronic age",
         "editor": Array [
           Object {
             "firstName": "D.",
             "lastName": "Michie",
           },
         ],
-        "pages": Array [
-          "153-167",
-        ],
+        "pages": "153-167",
         "publisher": Array [
           "Edinburgh University Press",
         ],
-        "title": Array [
-          "Model design in the Prospector consultant system for mineral exploration",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "title": "Model design in the Prospector consultant system for mineral exploration",
+        "year": 1980,
       },
+      "input": String(
+        @book(Duda:80,
+        \\tauthor =\\t{Richard O. Duda and John G. Gaschnig and
+        \\t\\t\\t  Peter E. Hart},
+        \\tbooktitle =\\t{Expert Systems in the Microelectronic Age},
+        \\taddress =\\t{Edinburgh},
+        \\tyear =\\t\\t{1980},
+        \\teditor =\\t{D. Michie},
+        \\tpublisher =\\t{Edinburgh University Press},
+        \\tpages =\\t\\t{153-167},
+        \\ttitle =\\t\\t{Model design in the Prospector consultant system 
+        \\t\\t\\t for mineral exploration}
+        )
+      ),
       "key": "Duda:80",
       "type": "book",
     },

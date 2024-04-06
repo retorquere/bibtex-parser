@@ -23,36 +23,39 @@ Object {
             "lastName": "Cavaillès",
           },
         ],
-        "booktitle": Array [
-          "Œuvres complètes de philosophie des sciences",
-        ],
-        "date": Array [
-          "1994",
-        ],
-        "isbn": Array [
-          "2-7056-6221-9",
-        ],
+        "booktitle": "Œuvres complètes de philosophie des sciences",
+        "date": "1994",
+        "isbn": "2-7056-6221-9",
         "keywords": Array [
           "Mathematics",
           "Philosophy",
           "Science",
         ],
-        "langid": Array [
-          "french",
-        ],
+        "langid": "french",
         "location": Array [
           "Paris",
         ],
-        "pages": Array [
-          "665–86",
-        ],
+        "pages": "665–86",
         "publisher": Array [
           "Hermann",
         ],
-        "title": Array [
-          "In memoriam",
-        ],
+        "title": "In memoriam",
       },
+      "input": String(
+        @inbook{Canguilhem1994,
+          title = {In memoriam},
+          booktitle = {Œuvres complètes de philosophie des sciences},
+          author = {Canguilhem, Georges},
+          date = {1994},
+          pages = {665--86},
+          publisher = {{Hermann}},
+          location = {{Paris}},
+          bookauthor = {Cavaillès, Jean},
+          isbn = {2-7056-6221-9},
+          keywords = {Mathematics,Philosophy,Science},
+          langid = {french}
+        }
+      ),
       "key": "Canguilhem1994",
       "type": "inbook",
     },

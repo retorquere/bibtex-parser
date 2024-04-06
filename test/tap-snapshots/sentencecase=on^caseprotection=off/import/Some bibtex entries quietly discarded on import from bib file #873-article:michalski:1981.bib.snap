@@ -21,19 +21,20 @@ Object {
             "lastName": "Michalski",
           },
         ],
-        "journal": Array [
-          "Artificial Intelligence",
-        ],
-        "title": Array [
-          "Inductive learning of structural descriptions",
-        ],
-        "volume": Array [
-          "16",
-        ],
-        "year": Array [
-          "1981",
-        ],
+        "journal": "Artificial Intelligence",
+        "title": "Inductive learning of structural descriptions",
+        "volume": "16",
+        "year": 1981,
       },
+      "input": String(
+        @article(Michalski:1981,
+        \\tauthor =\\t{T.G. Dietterich and Ryszard Michalski},
+        \\tyear =\\t\\t{1981},
+        \\tjournal =\\t{Artificial Intelligence},
+        \\ttitle =\\t\\t"Inductive learning of structural descriptions",
+        \\tvolume =\\t{16}
+        )
+      ),
       "key": "Michalski:1981",
       "type": "article",
     },

@@ -17,25 +17,24 @@ Object {
             "lastName": "Lebowitz",
           },
         ],
-        "journal": Array [
-          "Cognitive Science",
-        ],
-        "number": Array [
-          "1",
-        ],
-        "pages": Array [
-          "1-40",
-        ],
-        "title": Array [
-          "Generalization from natural-language text",
-        ],
-        "volume": Array [
-          "7",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "journal": "Cognitive Science",
+        "number": "1",
+        "pages": "1-40",
+        "title": "Generalization from natural-language text",
+        "volume": "7",
+        "year": 1983,
       },
+      "input": String(
+        @article(Lebowitz:1983,
+        \\tauthor =\\t{Michael Lebowitz},
+        \\tyear =\\t\\t{1983},
+        \\tjournal =\\t{Cognitive Science},
+        \\tnumber =\\t{1},
+        \\tpages =\\t\\t{1-40},
+        \\ttitle =\\t\\t"Generalization from natural-language text",
+        \\tvolume =\\t{7}
+        )
+      ),
       "key": "Lebowitz:1983",
       "type": "article",
     },

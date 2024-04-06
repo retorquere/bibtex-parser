@@ -21,22 +21,24 @@ Object {
             "lastName": "Pollack",
           },
         ],
-        "journal": Array [
-          "Cognitive Science",
-        ],
-        "pages": Array [
-          "51-74",
-        ],
-        "title": Array [
-          "Massively parallel parsing: a strongly interactive model of natural language interpretation",
-        ],
-        "volume": Array [
-          "9",
-        ],
-        "year": Array [
-          "1985",
-        ],
+        "journal": "Cognitive Science",
+        "pages": "51-74",
+        "title": "Massively parallel parsing: a strongly interactive model of natural language interpretation",
+        "volume": "9",
+        "year": 1985,
       },
+      "input": String(
+        @article(Waltz:85,
+        \\tauthor =\\t{David L. Waltz and Jordan B. Pollack},
+        \\tyear =\\t\\t{1985},
+        \\tjournal =\\t{Cognitive Science},
+        \\tpages =\\t\\t{51-74},
+        \\ttitle =\\t\\t{Massively parallel parsing:\\t
+        \\t\\t\\t a strongly interactive model of natural language 
+        \\t\\t\\t interpretation},
+        \\tvolume =\\t{9}
+        )
+      ),
       "key": "Waltz:85",
       "type": "article",
     },

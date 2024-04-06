@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "J.D.",
@@ -24,9 +22,7 @@ Object {
             "lastName": "Johnson",
           },
         ],
-        "booktitle": Array [
-          "Visual Information Processing",
-        ],
+        "booktitle": "Visual Information Processing",
         "editor": Array [
           Object {
             "firstName": "W.G.",
@@ -36,13 +32,20 @@ Object {
         "publisher": Array [
           "Academic Press",
         ],
-        "title": Array [
-          "Considerations of some problems of comprehension",
-        ],
-        "year": Array [
-          "1973",
-        ],
+        "title": "Considerations of some problems of comprehension",
+        "year": 1973,
       },
+      "input": String(
+        @book(Bransford:73,
+        \\tauthor =\\t{J.D. Bransford and M.K. Johnson},
+        \\tbooktitle =\\t{Visual Information Processing},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1973},
+        \\teditor =\\t{W.G. Chase},
+        \\tpublisher =\\t{Academic Press},
+        \\ttitle =\\t\\t{Considerations of some problems of comprehension}
+        )
+      ),
       "key": "Bransford:73",
       "type": "book",
     },

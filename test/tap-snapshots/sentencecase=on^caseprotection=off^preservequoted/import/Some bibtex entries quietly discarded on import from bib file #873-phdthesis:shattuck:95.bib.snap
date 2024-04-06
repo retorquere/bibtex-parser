@@ -17,16 +17,20 @@ Object {
             "lastName": "Shattuck",
           },
         ],
-        "school": Array [
-          "Ohio State University",
-        ],
-        "title": Array [
-          "Communication of intent in distributed supervisory control systems",
-        ],
-        "year": Array [
-          "1995",
-        ],
+        "school": "Ohio State University",
+        "title": "Communication of intent in distributed supervisory control systems",
+        "year": 1995,
       },
+      "input": String(
+        @PHDTHESIS{Shattuck:95,
+        \\t    
+        \\tAUTHOR = {Lawrence George Shattuck},
+        \\tTITLE = {Communication of Intent in Distributed Supervisory
+        \\t\\t Control Systems},
+        \\tSCHOOL = {Ohio State University},
+        \\tYEAR = {1995}
+        }
+      ),
       "key": "Shattuck:95",
       "type": "phdthesis",
     },

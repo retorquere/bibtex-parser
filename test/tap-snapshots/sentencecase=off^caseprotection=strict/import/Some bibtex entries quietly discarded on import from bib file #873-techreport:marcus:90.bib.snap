@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Cambridge, MA",
-        ],
+        "address": "Cambridge, MA",
         "author": Array [
           Object {
             "firstName": "Gary F.",
@@ -43,22 +41,26 @@ Object {
         "institution": Array [
           "MIT Center for Cognitive Science",
         ],
-        "month": Array [
-          "November",
-        ],
-        "number": Array [
-          "41",
-        ],
-        "title": Array [
-          "Overregularization",
-        ],
-        "type": Array [
-          "Occasional Paper",
-        ],
-        "year": Array [
-          "1990",
-        ],
+        "month": 11,
+        "number": "41",
+        "title": "Overregularization",
+        "type": "Occasional Paper",
+        "year": 1990,
       },
+      "input": String(
+        @TECHREPORT{Marcus:90,
+        \\tAUTHOR = {Gary F. Marcus and Michael Ullman and Steven Pinker
+        \\t\\t  and Michelle Hollander and T. John Rosen and
+        \\t\\t  Fei Xu},
+        \\tTITLE = "Overregularization",
+        \\tINSTITUTION = {MIT Center for Cognitive Science},
+        \\tYEAR = {1990},
+        \\tTYPE = {Occasional Paper},
+        \\tNUMBER = {41},
+        \\tADDRESS = {Cambridge, MA},
+        \\tMONTH = November
+        }
+      ),
       "key": "Marcus:90",
       "type": "techreport",
     },

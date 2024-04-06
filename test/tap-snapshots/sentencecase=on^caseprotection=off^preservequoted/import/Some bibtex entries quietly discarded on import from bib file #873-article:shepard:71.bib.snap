@@ -21,22 +21,22 @@ Object {
             "lastName": "Metzler",
           },
         ],
-        "journal": Array [
-          "Science",
-        ],
-        "pages": Array [
-          "701-703",
-        ],
-        "title": Array [
-          "Mental rotation of three-dimensional objects",
-        ],
-        "volume": Array [
-          "171",
-        ],
-        "year": Array [
-          "1971",
-        ],
+        "journal": "Science",
+        "pages": "701-703",
+        "title": "Mental rotation of three-dimensional objects",
+        "volume": "171",
+        "year": 1971,
       },
+      "input": String(
+        @article(Shepard:71,
+        \\tauthor =\\t{Roger N. Shepard and Jacqueline Metzler},
+        \\tyear =\\t\\t{1971},
+        \\tjournal =\\t{Science},
+        \\tpages =\\t\\t{701-703},
+        \\ttitle =\\t\\t"Mental rotation of three-dimensional objects",
+        \\tvolume =\\t{171}
+        )
+      ),
       "key": "Shepard:71",
       "type": "article",
     },

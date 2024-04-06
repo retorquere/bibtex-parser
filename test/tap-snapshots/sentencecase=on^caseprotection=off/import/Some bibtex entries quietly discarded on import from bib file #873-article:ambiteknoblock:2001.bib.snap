@@ -7,13 +7,15 @@
 'use strict'
 exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-article:ambiteknoblock:2001.bib > must match snapshot 1`] = `
 Object {
-  "comments": Array [],
+  "comments": Array [
+    "Protege papers",
+  ],
   "entries": Array [
     Object {
       "fields": Object {
         "author": Array [
           Object {
-            "firstName": "José Luis",
+            "firstName": "José Luis",
             "lastName": "Ambite",
           },
           Object {
@@ -21,30 +23,38 @@ Object {
             "lastName": "Knoblock",
           },
         ],
-        "journal": Array [
-          "JAIR",
-        ],
-        "month": Array [
-          "09",
-        ],
-        "pages": Array [
-          "207–261",
-        ],
-        "title": Array [
-          "Planning by rewriting",
-        ],
-        "volume": Array [
-          15,
-        ],
-        "year": Array [
-          2001,
-        ],
+        "journal": "JAIR",
+        "month": 9,
+        "pages": "207–261",
+        "title": "Planning by rewriting",
+        "volume": "15",
+        "year": 2001,
       },
+      "input": String(
+        @Article{AmbiteKnoblock:2001,
+          author = \\t {Jos\\\\'e Luis Ambite and Craig A. Knoblock},
+          title = \\t {Planning by Rewriting},
+          journal = \\t JAIR,
+          year = \\t 2001,
+          volume =\\t 15,
+          pages =\\t {207--261},
+          month =\\t sep
+        }
+      ),
       "key": "AmbiteKnoblock:2001",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"JAIR\\"",
+      "input": "JAIR",
+      "location": Object {
+        "column": 19,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

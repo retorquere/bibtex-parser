@@ -18,15 +18,20 @@ Object {
           },
         ],
         "institution": Array [
-          "Institute for Semantic and Cognitive Studies",
+          "Institute for Semantic",
+          "Cognitive Studies",
         ],
-        "title": Array [
-          "Naive Physics I: Ontology for Liquids",
-        ],
-        "year": Array [
-          "1978",
-        ],
+        "title": "Naive Physics I: Ontology for Liquids",
+        "year": 1978,
       },
+      "input": String(
+        @techreport(Hayes:78,
+        \\tauthor =\\t{Patrick J. Hayes},
+        \\tyear =\\t\\t{1978},
+        \\tinstitution =\\t{Institute for Semantic and Cognitive Studies},
+        \\ttitle =\\t\\t{Naive Physics I: Ontology for Liquids}
+        )
+      ),
       "key": "Hayes:78",
       "type": "techreport",
     },

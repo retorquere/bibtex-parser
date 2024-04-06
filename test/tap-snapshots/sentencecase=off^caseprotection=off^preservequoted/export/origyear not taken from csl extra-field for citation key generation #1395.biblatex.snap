@@ -17,28 +17,30 @@ Object {
             "lastName": "Brennan",
           },
         ],
-        "date": Array [
-          "1982",
-        ],
-        "isbn": Array [
-          "84-7166-852-1",
-        ],
-        "langid": Array [
-          "spanish",
-        ],
+        "date": "1982",
+        "isbn": "84-7166-852-1",
+        "langid": "spanish",
         "location": Array [
           "Madrid",
         ],
-        "origdate": Array [
-          "1976",
-        ],
+        "origdate": "1976",
         "publisher": Array [
           "Edaf",
         ],
-        "title": Array [
-          "Magia experimental",
-        ],
+        "title": "Magia experimental",
       },
+      "input": String(
+        @book{Brennan.1976.MagiaExperimental.,
+          title = {Magia experimental},
+          author = {Brennan, J. H},
+          date = {1982},
+          origdate = {1976},
+          publisher = {{Edaf}},
+          location = {{Madrid}},
+          isbn = {84-7166-852-1},
+          langid = {spanish}
+        }
+      ),
       "key": "Brennan.1976.MagiaExperimental.",
       "type": "book",
     },
@@ -50,37 +52,39 @@ Object {
             "lastName": "Vieira",
           },
         ],
-        "booktitle": Array [
-          "700 Experimentos da Conscienciologia",
-        ],
-        "date": Array [
-          "2002",
-        ],
-        "edition": Array [
-          "1. ed.",
-        ],
-        "isbn": Array [
-          "978-85-86019-05-0",
-        ],
-        "langid": Array [
-          "portuguese",
-        ],
+        "booktitle": "700 Experimentos da Conscienciologia",
+        "date": "2002",
+        "edition": "1. ed.",
+        "isbn": "978-85-86019-05-0",
+        "langid": "portuguese",
         "location": Array [
           "Rio de Janeiro",
         ],
-        "origdate": Array [
-          "1994",
-        ],
-        "pages": Array [
-          "p.22",
-        ],
+        "origdate": "1994",
+        "pages": "p.22",
         "publisher": Array [
           "Instituto Internacional de Projeciologia",
         ],
-        "title": Array [
-          "Capítulo 5",
-        ],
+        "title": "Capítulo 5",
       },
+      "input": String(
+        @incollection{Vieira.1994.700ExperimentosdaConscienciologia.Capitulo.p.22,
+          title = {Capítulo 5},
+          booktitle = {700 Experimentos da Conscienciologia},
+          author = {Vieira, Waldo},
+          date = {2002},
+          origdate = {1994},
+          edition = {1. ed.},
+          pages = {p.22},
+          publisher = {{Instituto Internacional de Projeciologia}},
+          location = {{Rio de Janeiro}},
+          isbn = {978-85-86019-05-0},
+          langid = {portuguese}
+        }
+        % == BibLateX quality report for Vieira.1994.700ExperimentosdaConscienciologia.Capitulo.p.22:
+        % Missing required field 'editor'
+        % ? Title looks like it was stored in title-case in Zotero
+      ),
       "key": "Vieira.1994.700ExperimentosdaConscienciologia.Capitulo.p.22",
       "type": "incollection",
     },

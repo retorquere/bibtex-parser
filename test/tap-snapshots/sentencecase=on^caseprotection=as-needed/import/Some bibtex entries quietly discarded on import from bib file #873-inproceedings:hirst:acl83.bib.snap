@@ -17,16 +17,18 @@ Object {
             "lastName": "Hirst",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the 21st annual meeting of the association for computational linguistics",
-        ],
-        "title": Array [
-          "A foundation for semantic interpretation",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "booktitle": "Proceedings of the 21st annual meeting of the association for computational linguistics",
+        "title": "A foundation for semantic interpretation",
+        "year": 1983,
       },
+      "input": String(
+        @inproceedings(Hirst:acl83,
+        \\tauthor =\\t{Graeme Hirst},
+        \\tbooktitle =\\t{Proceedings of the 21st Annual Meeting of the Association for Computational Linguistics},
+        \\tyear =\\t\\t{1983},
+        \\ttitle =\\t\\t{A foundation for semantic interpretation}
+        )
+      ),
       "key": "Hirst:acl83",
       "type": "inproceedings",
     },

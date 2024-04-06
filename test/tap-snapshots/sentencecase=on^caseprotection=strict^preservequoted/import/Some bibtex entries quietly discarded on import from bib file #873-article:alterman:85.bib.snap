@@ -17,25 +17,24 @@ Object {
             "lastName": "Alterman",
           },
         ],
-        "journal": Array [
-          "Artificial Intelligence",
-        ],
-        "number": Array [
-          "2",
-        ],
-        "pages": Array [
-          "153-186",
-        ],
-        "title": Array [
-          "A dictionary based on concept coherence",
-        ],
-        "volume": Array [
-          "25",
-        ],
-        "year": Array [
-          "1985",
-        ],
+        "journal": "Artificial Intelligence",
+        "number": "2",
+        "pages": "153-186",
+        "title": "A dictionary based on concept coherence",
+        "volume": "25",
+        "year": 1985,
       },
+      "input": String(
+        @article(Alterman:85,
+        \\tauthor =\\t{Richard Alterman},
+        \\tyear =\\t\\t{1985},
+        \\tjournal =\\t{Artificial Intelligence},
+        \\tnumber =\\t{2},
+        \\tpages =\\t\\t{153-186},
+        \\ttitle =\\t\\t"A dictionary based on concept coherence",
+        \\tvolume =\\t{25}
+        )
+      ),
       "key": "Alterman:85",
       "type": "article",
     },

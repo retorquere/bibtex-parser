@@ -35,7 +35,13 @@ jobs:
     - name: install node dependencies
       run: npm install
 
-    - run: npm test --sentence-case=${{ matrix.sentencecase }} --case-protection=${{ matrix.caseprotection }} --preserve-quoted=${{ matrix.preservequoted }} --big
+    - uses: jsdaniell/create-json@v1
+      with:
+        name: "runtests.json"
+        json: '{"sentenceCase": "${{ matrix.sentencecase }}", "caseProtection": "${{ matrix.caseprotection }}", "preserveQuoted": ${{ matrix.preservequoted }}, "big": true}'
+        dir: 'test/'
+
+    - run: npm test
 
   release:
     runs-on: ubuntu-latest

@@ -11,36 +11,62 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "MITP-ADDRESS",
-        ],
+        "address": "MITP-ADDRESS",
         "author": Array [
           Object {
             "firstName": "Sandra",
             "lastName": "Carberry",
           },
         ],
-        "booktitle": Array [
-          "AAAI-90",
-        ],
-        "pages": Array [
-          "471–478",
-        ],
+        "booktitle": "<span class=\\"nocase\\">AAAI-90</span>",
+        "pages": "471–478",
         "publisher": Array [
           "MITP",
         ],
-        "title": Array [
-          "Incorporating Default Inferences Into Plan Recognition",
-        ],
-        "year": Array [
-          "1990",
-        ],
+        "title": "Incorporating Default Inferences Into Plan Recognition",
+        "year": 1990,
       },
+      "input": String(
+        @INPROCEEDINGS{Carberry:90,
+        \\tAUTHOR = {Sandra Carberry},
+        \\tTITLE = "Incorporating Default Inferences Into Plan Recognition",
+        \\tBOOKTITLE = AAAI-90,
+        \\tYEAR = {1990},
+        \\tPAGES = {471--478},
+        \\tPUBLISHER = MITP,
+        \\tADDRESS = MITP-ADDRESS
+        }
+      ),
       "key": "Carberry:90",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"AAAI-90\\"",
+      "input": "AAAI-90",
+      "location": Object {
+        "column": 21,
+        "line": 4,
+      },
+    },
+    Object {
+      "error": "Unresolved @string reference \\"MITP\\"",
+      "input": "MITP",
+      "location": Object {
+        "column": 18,
+        "line": 7,
+      },
+    },
+    Object {
+      "error": "Unresolved @string reference \\"MITP-ADDRESS\\"",
+      "input": "MITP-ADDRESS",
+      "location": Object {
+        "column": 0,
+        "line": 9,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

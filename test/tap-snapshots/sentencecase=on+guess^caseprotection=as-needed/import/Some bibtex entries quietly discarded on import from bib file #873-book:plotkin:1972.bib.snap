@@ -17,9 +17,7 @@ Object {
             "lastName": "Plotkin",
           },
         ],
-        "booktitle": Array [
-          "Machine intelligence 7",
-        ],
+        "booktitle": "Machine intelligence 7",
         "editor": Array [
           Object {
             "firstName": "B.",
@@ -30,19 +28,24 @@ Object {
             "lastName": "Michie",
           },
         ],
-        "pages": Array [
-          "73-90",
-        ],
+        "pages": "73-90",
         "publisher": Array [
           "Halsted Press",
         ],
-        "title": Array [
-          "Building-in equational theories",
-        ],
-        "year": Array [
-          "1972",
-        ],
+        "title": "Building-in equational theories",
+        "year": 1972,
       },
+      "input": String(
+        @book(Plotkin:1972,
+        \\tauthor =\\t{G.D. Plotkin},
+        \\tbooktitle =\\t{Machine Intelligence 7},
+        \\tyear =\\t\\t{1972},
+        \\teditor =\\t{B. Meltzer and D. Michie},
+        \\tpublisher =\\t{Halsted Press},
+        \\tpages =\\t\\t{73-90},
+        \\ttitle =\\t\\t{Building-in equational theories}
+        )
+      ),
       "key": "Plotkin:1972",
       "type": "book",
     },

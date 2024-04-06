@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Cambridge, Mass.",
-        ],
+        "address": "Cambridge, Mass.",
         "author": Array [
           Object {
             "firstName": "Marvin",
@@ -23,13 +21,18 @@ Object {
         "publisher": Array [
           "MIT Press",
         ],
-        "title": Array [
-          "Semantic information processing",
-        ],
-        "year": Array [
-          "1968",
-        ],
+        "title": "Semantic information processing",
+        "year": 1968,
       },
+      "input": String(
+        @book(Minsky:68,
+        \\tauthor =\\t{Marvin Minsky},
+        \\taddress =\\t{Cambridge, Mass.},
+        \\tyear =\\t\\t{1968},
+        \\tpublisher =\\t{MIT Press},
+        \\ttitle =\\t\\t{Semantic Information Processing}
+        )
+      ),
       "key": "Minsky:68",
       "type": "book",
     },

@@ -17,25 +17,24 @@ Object {
             "lastName": "Wilensky",
           },
         ],
-        "journal": Array [
-          "Cognitive Science",
-        ],
-        "number": Array [
-          "3",
-        ],
-        "pages": Array [
-          "235-266",
-        ],
-        "title": Array [
-          "Why john married mary: Understanding stories involving recurring goals",
-        ],
-        "volume": Array [
-          "2",
-        ],
-        "year": Array [
-          "1978",
-        ],
+        "journal": "Cognitive Science",
+        "number": "3",
+        "pages": "235-266",
+        "title": "Why john married mary: Understanding stories involving recurring goals",
+        "volume": "2",
+        "year": 1978,
       },
+      "input": String(
+        @article(Wilensky:78,
+        \\tauthor =\\t{Robert Wilensky},
+        \\tyear =\\t\\t{1978},
+        \\tjournal =\\t{Cognitive Science},
+        \\tnumber =\\t{3},
+        \\ttitle =\\t\\t"Why John married Mary: Understanding stories involving recurring goals",
+        \\tvolume =\\t{2},
+        \\tpages = {235-266}
+        )
+      ),
       "key": "Wilensky:78",
       "type": "article",
     },

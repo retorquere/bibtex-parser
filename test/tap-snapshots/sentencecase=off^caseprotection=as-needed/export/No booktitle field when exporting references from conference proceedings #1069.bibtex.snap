@@ -25,19 +25,20 @@ Object {
             "lastName": "Cipolla",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the <span class=\\"nocase\\">IEEE International Conference</span> on <span class=\\"nocase\\">Computer Vision</span>",
-        ],
-        "pages": Array [
-          "2938–2946",
-        ],
-        "title": Array [
-          "<span class=\\"nocase\\">PoseNet</span>: <span class=\\"nocase\\">A Convolutional Network</span> for <span class=\\"nocase\\">Real</span>-<span class=\\"nocase\\">Time</span> 6-<span class=\\"nocase\\">DOF Camera Relocalization</span>",
-        ],
-        "year": Array [
-          "2015",
-        ],
+        "booktitle": "Proceedings of the <span class=\\"nocase\\">IEEE International Conference</span> on <span class=\\"nocase\\">Computer Vision</span>",
+        "pages": "2938–2946",
+        "title": "<span class=\\"nocase\\">PoseNet</span>: <span class=\\"nocase\\">A Convolutional Network</span> for <span class=\\"nocase\\">Real</span>-<span class=\\"nocase\\">Time</span> 6-<span class=\\"nocase\\">DOF Camera Relocalization</span>",
+        "year": 2015,
       },
+      "input": String(
+        @inproceedings{kendall2015,
+          title = {{{PoseNet}}: {{A Convolutional Network}} for {{Real}}-{{Time}} 6-{{DOF Camera Relocalization}}},
+          booktitle = {Proceedings of the {{IEEE International Conference}} on {{Computer Vision}}},
+          author = {Kendall, Alex and Grimes, Matthew and Cipolla, Roberto},
+          year = {2015},
+          pages = {2938--2946}
+        }
+      ),
       "key": "kendall2015",
       "type": "inproceedings",
     },

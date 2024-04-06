@@ -22,18 +22,23 @@ Object {
           },
         ],
         "institution": Array [
-          "Bilkent University, Department of Computer Engineering and Information Science",
+          "Bilkent University, Department of Computer Engineering",
+          "Information Science",
         ],
-        "number": Array [
-          "BU-CEIS-94-30",
-        ],
-        "title": Array [
-          "Situated Modeling of Epistemic Puzzles",
-        ],
-        "year": Array [
-          "1994",
-        ],
+        "number": "BU-CEIS-94-30",
+        "title": "Situated Modeling of Epistemic Puzzles",
+        "year": 1994,
       },
+      "input": String(
+        @TECHREPORT{Ersan:94,
+        \\tAUTHOR = {Murat Ersan and Varol Akman},
+        \\tTITLE = "Situated Modeling of Epistemic Puzzles",
+        \\tINSTITUTION = {Bilkent University, Department of Computer
+        \\t\\t       Engineering and Information Science},
+        \\tYEAR = {1994},
+        \\tNUMBER = {BU-CEIS-94-30}
+        }
+      ),
       "key": "Ersan:94",
       "type": "techreport",
     },

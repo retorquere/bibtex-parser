@@ -21,27 +21,36 @@ Object {
             "lastName": "Tenenholtz",
           },
         ],
-        "journal": Array [
-          "JAIR",
-        ],
-        "pages": Array [
-          "477-507",
-        ],
-        "title": Array [
-          "On partially-controlled multi-agent systems",
-        ],
-        "volume": Array [
-          "4",
-        ],
-        "year": Array [
-          "1996",
-        ],
+        "journal": "JAIR",
+        "pages": "477-507",
+        "title": "On partially-controlled multi-agent systems",
+        "volume": "4",
+        "year": 1996,
       },
+      "input": String(
+        @ARTICLE{Brafman:96,
+        \\tAUTHOR = {Ronen I. Brafman and Moshe Tenenholtz},
+        \\tTITLE = "On Partially-controlled Multi-agent Systems",
+        \\tJOURNAL = JAIR,
+        \\tYEAR = {1996},
+        \\tVOLUME = {4},
+        \\tPAGES = {477-507}
+        }
+      ),
       "key": "Brafman:96",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"JAIR\\"",
+      "input": "JAIR",
+      "location": Object {
+        "column": 16,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

@@ -17,22 +17,24 @@ Object {
             "lastName": "Quinlan",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the International Machine Learning Workshop",
-        ],
-        "pages": Array [
-          "58–64",
-        ],
+        "booktitle": "Proceedings of the International Machine Learning Workshop",
+        "pages": "58–64",
         "publisher": Array [
           "University of Illinois",
         ],
-        "title": Array [
-          "Learning from noisy data",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "title": "Learning from noisy data",
+        "year": 1983,
       },
+      "input": String(
+        @inproceedings(Quinlan:83,
+        \\tauthor =\\t{J. Ross Quinlan},
+        \\tbooktitle =\\t{Proceedings of the International Machine Learning Workshop},
+        \\tyear =\\t\\t{1983},
+        \\tpublisher =\\t{University of Illinois},
+        \\tpages =\\t\\t{58--64},
+        \\ttitle =\\t\\t{Learning from noisy data}
+        )
+      ),
       "key": "Quinlan:83",
       "type": "inproceedings",
     },

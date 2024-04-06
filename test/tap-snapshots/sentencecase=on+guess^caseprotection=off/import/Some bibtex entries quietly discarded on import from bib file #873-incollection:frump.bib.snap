@@ -17,16 +17,18 @@ Object {
             "lastName": "DeJong",
           },
         ],
-        "crossref": Array [
-          "Strategies4NLP",
-        ],
-        "pages": Array [
-          "149–176",
-        ],
-        "title": Array [
-          "An overview of the FRUMP system",
-        ],
+        "crossref": "Strategies4NLP",
+        "pages": "149–176",
+        "title": "An Overview of the FRUMP system",
       },
+      "input": String(
+        @incollection(FRUMP,
+        \\tauthor =\\t{Gerald DeJong},
+        \\ttitle =\\t\\t"An {O}verview of the {FRUMP} system",
+        \\tcrossref = "Strategies4NLP",
+        \\tpages = \\t{149--176}\\t\\t\\t 
+        )
+      ),
       "key": "FRUMP",
       "type": "incollection",
     },

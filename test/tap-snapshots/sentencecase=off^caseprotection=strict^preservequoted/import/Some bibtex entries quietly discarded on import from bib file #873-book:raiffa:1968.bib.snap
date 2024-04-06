@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Reading, Mass.",
-        ],
+        "address": "Reading, Mass.",
         "author": Array [
           Object {
             "firstName": "Howard",
@@ -23,13 +21,18 @@ Object {
         "publisher": Array [
           "Addison-Wesley",
         ],
-        "title": Array [
-          "Decision Analysis: Introductory Lectures on Choices under Uncertainty",
-        ],
-        "year": Array [
-          "1968",
-        ],
+        "title": "Decision Analysis: Introductory Lectures on Choices under Uncertainty",
+        "year": 1968,
       },
+      "input": String(
+        @book(Raiffa:1968,
+        \\tauthor =\\t{Howard Raiffa},
+        \\taddress =\\t{Reading, Mass.},
+        \\tyear =\\t\\t{1968},
+        \\tpublisher =\\t{Addison-Wesley},
+        \\ttitle =\\t\\t{Decision Analysis: Introductory Lectures on Choices under Uncertainty}
+        )
+      ),
       "key": "Raiffa:1968",
       "type": "book",
     },

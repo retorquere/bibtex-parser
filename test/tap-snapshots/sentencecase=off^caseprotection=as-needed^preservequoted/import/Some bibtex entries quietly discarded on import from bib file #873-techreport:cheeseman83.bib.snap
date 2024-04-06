@@ -20,13 +20,16 @@ Object {
         "institution": Array [
           "SRI Artificial Intelligence Center",
         ],
-        "title": Array [
-          "A Representation of Time for Planning, Technical Note 278",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "title": "A Representation of Time for Planning, Technical Note 278",
+        "year": 1983,
       },
+      "input": String(
+        @TechReport{cheeseman83,
+        author = "Cheeseman, P.",
+        title = "A Representation of Time for Planning, Technical Note 278",
+        institution = "SRI Artificial Intelligence Center",
+        year = "1983"}
+      ),
       "key": "cheeseman83",
       "type": "techreport",
     },

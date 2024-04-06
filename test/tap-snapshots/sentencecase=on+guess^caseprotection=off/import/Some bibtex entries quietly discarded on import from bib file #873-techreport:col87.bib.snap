@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New Haven, CT",
-        ],
+        "address": "New Haven, CT",
         "author": Array [
           Object {
             "firstName": "Gregg",
@@ -23,19 +21,23 @@ Object {
         "institution": Array [
           "Department of Computer Science, Yale University",
         ],
-        "number": Array [
-          "599",
-        ],
-        "title": Array [
-          "Plan creation: Using strategies as blueprints",
-        ],
-        "type": Array [
-          "YALEU/CSD/RR",
-        ],
-        "year": Array [
-          "1987",
-        ],
+        "number": "599",
+        "title": "Plan creation: Using strategies as blueprints",
+        "type": "YALEU/CSD/RR",
+        "year": 1987,
       },
+      "input": String(
+        @TECHREPORT(Col87,
+        \\tAUTHOR = {Gregg Collins},
+        \\tTITLE = "Plan creation: Using strategies as blueprints",
+        \\tINSTITUTION = {Department of Computer Science, Yale
+          University},
+        \\tYEAR = {1987},
+        \\tTYPE = {{YALEU/CSD/RR}},
+        \\tNUMBER = {599},
+        \\tADDRESS = {New Haven, CT}
+        )
+      ),
       "key": "Col87",
       "type": "techreport",
     },

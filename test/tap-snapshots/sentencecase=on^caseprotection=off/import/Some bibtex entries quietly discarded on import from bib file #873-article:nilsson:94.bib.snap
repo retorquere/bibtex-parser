@@ -17,27 +17,36 @@ Object {
             "lastName": "Nilsson",
           },
         ],
-        "journal": Array [
-          "JAIR",
-        ],
-        "pages": Array [
-          "139–158",
-        ],
-        "title": Array [
-          "Teleo-reactive programs for agent control",
-        ],
-        "volume": Array [
-          "1",
-        ],
-        "year": Array [
-          "1994",
-        ],
+        "journal": "JAIR",
+        "pages": "139–158",
+        "title": "Teleo-reactive programs for agent control",
+        "volume": "1",
+        "year": 1994,
       },
+      "input": String(
+        @ARTICLE(Nilsson:94,
+        \\tAUTHOR = {Nils J. Nilsson},
+        \\tTITLE = "Teleo-reactive programs for Agent Control",
+        \\tJOURNAL = JAIR,
+        \\tYEAR = {1994},
+        \\tVOLUME = {1},
+        \\tPAGES = {139--158}
+        )
+      ),
       "key": "Nilsson:94",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"JAIR\\"",
+      "input": "JAIR",
+      "location": Object {
+        "column": 16,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

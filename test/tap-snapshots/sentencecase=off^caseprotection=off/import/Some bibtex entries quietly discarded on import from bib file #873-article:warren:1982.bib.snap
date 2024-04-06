@@ -21,22 +21,22 @@ Object {
             "lastName": "Warren",
           },
         ],
-        "journal": Array [
-          "Proc. AAAI",
-        ],
-        "pages": Array [
-          "79-83",
-        ],
-        "title": Array [
-          "Conceptual dependency and montague grammar: A step toward conciliation",
-        ],
-        "volume": Array [
-          "2",
-        ],
-        "year": Array [
-          "1982",
-        ],
+        "journal": "Proc. AAAI",
+        "pages": "79-83",
+        "title": "Conceptual dependency and montague grammar: A step toward conciliation",
+        "volume": "2",
+        "year": 1982,
       },
+      "input": String(
+        @article(Warren:1982,
+        \\tauthor =\\t{Mark Jones and David S. Warren},
+        \\tyear =\\t\\t{1982},
+        \\tjournal =\\t{Proc. AAAI},
+        \\tpages =\\t\\t{79-83},
+        \\ttitle =\\t\\t"Conceptual dependency and montague grammar: A step toward conciliation",
+        \\tvolume =\\t{2}
+        )
+      ),
       "key": "Warren:1982",
       "type": "article",
     },

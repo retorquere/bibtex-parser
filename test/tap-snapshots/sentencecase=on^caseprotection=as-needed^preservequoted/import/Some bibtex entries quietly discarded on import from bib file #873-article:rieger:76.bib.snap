@@ -17,22 +17,22 @@ Object {
             "lastName": "Rieger",
           },
         ],
-        "journal": Array [
-          "Artificial Intelligence",
-        ],
-        "pages": Array [
-          "89-127",
-        ],
-        "title": Array [
-          "An organization of knowledge for problem solving and language comprehension",
-        ],
-        "volume": Array [
-          "7",
-        ],
-        "year": Array [
-          "1976",
-        ],
+        "journal": "Artificial Intelligence",
+        "pages": "89-127",
+        "title": "An organization of knowledge for problem solving and language comprehension",
+        "volume": "7",
+        "year": 1976,
       },
+      "input": String(
+        @article(Rieger:76,
+        \\tauthor =\\t{Chuck Rieger},
+        \\tyear =\\t\\t{1976},
+        \\tjournal =\\t{Artificial Intelligence},
+        \\tpages =\\t\\t{89-127},
+        \\ttitle =\\t\\t"An organization of knowledge for problem solving and language comprehension",
+        \\tvolume =\\t{7}
+        )
+      ),
       "key": "Rieger:76",
       "type": "article",
     },

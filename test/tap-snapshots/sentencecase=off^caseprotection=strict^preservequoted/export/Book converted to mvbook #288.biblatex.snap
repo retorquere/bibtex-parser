@@ -17,40 +17,38 @@ Object {
             "lastName": "Russ",
           },
         ],
-        "date": Array [
-          "1990",
-        ],
-        "isbn": Array [
-          "2-218-05069-2",
-        ],
-        "langid": Array [
-          "french",
-        ],
+        "date": "1990",
+        "isbn": "2-218-05069-2",
+        "langid": "french",
         "location": Array [
           "Paris",
         ],
-        "note": Array [
-          "Comprend : t. 1, La puissance du désordre ; t. 2, La fin des dogmes",
-        ],
-        "number": Array [
-          "746",
-        ],
-        "pagetotal": Array [
-          "79",
-        ],
+        "note": "Comprend : t. 1, La puissance du désordre ; t. 2, La fin des dogmes",
+        "number": "746",
+        "pagetotal": "79",
         "publisher": Array [
           "Hatier",
         ],
-        "series": Array [
-          "Profil",
-        ],
-        "title": Array [
-          "Savoir et pouvoir",
-        ],
-        "volumes": Array [
-          "2",
-        ],
+        "series": "Profil",
+        "title": "Savoir et pouvoir",
+        "volumes": "2",
       },
+      "input": String(
+        @mvbook{russ_savoir_1990,
+          title = {Savoir et pouvoir},
+          author = {Russ, Jacqueline},
+          date = {1990},
+          publisher = {{Hatier}},
+          location = {{Paris}},
+          isbn = {2-218-05069-2},
+          langid = {french},
+          note = {Comprend : t. 1, La puissance du désordre ; t. 2, La fin des dogmes},
+          number = {746},
+          pagetotal = {79},
+          series = {Profil},
+          volumes = {2}
+        }
+      ),
       "key": "russ_savoir_1990",
       "type": "mvbook",
     },

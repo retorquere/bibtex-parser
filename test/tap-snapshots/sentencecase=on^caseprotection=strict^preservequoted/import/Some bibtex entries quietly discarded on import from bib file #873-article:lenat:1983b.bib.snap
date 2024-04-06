@@ -17,25 +17,24 @@ Object {
             "lastName": "Lenat",
           },
         ],
-        "journal": Array [
-          "Artificial Intelligence",
-        ],
-        "number": Array [
-          "1,2",
-        ],
-        "pages": Array [
-          "61-98",
-        ],
-        "title": Array [
-          "EURISKO: A program that learns new heuristics and domain concepts",
-        ],
-        "volume": Array [
-          "21",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "journal": "Artificial Intelligence",
+        "number": "1,2",
+        "pages": "61-98",
+        "title": "EURISKO: a program that learns new heuristics and domain concepts",
+        "volume": "21",
+        "year": 1983,
       },
+      "input": String(
+        @article(Lenat:1983b,
+        \\tauthor =\\t{Douglas B. Lenat},
+        \\tyear =\\t\\t{1983},
+        \\tjournal =\\t{Artificial Intelligence},
+        \\tnumber =\\t{1,2},
+        \\tpages =\\t\\t{61-98},
+        \\ttitle =\\t\\t"EURISKO: A program that learns new heuristics and domain concepts",
+        \\tvolume =\\t{21}
+        )
+      ),
       "key": "Lenat:1983b",
       "type": "article",
     },

@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Hillsdale, NJ",
-        ],
+        "address": "Hillsdale, NJ",
         "author": Array [
           Object {
             "firstName": "E.",
@@ -32,9 +30,7 @@ Object {
             "lastName": "Greenspan",
           },
         ],
-        "booktitle": Array [
-          "Directions in Human-Computer Interactions",
-        ],
+        "booktitle": "Directions in Human-Computer Interactions",
         "editor": Array [
           Object {
             "firstName": "B.",
@@ -48,13 +44,21 @@ Object {
         "publisher": Array [
           "Ablex",
         ],
-        "title": Array [
-          "What do novices know about programming?",
-        ],
-        "year": Array [
-          "1982",
-        ],
+        "title": "What do novices know about programming?",
+        "year": 1982,
       },
+      "input": String(
+        @book(Soloway:82,
+        \\tauthor =\\t{E. Soloway and K. Ehrlich and J. Bonar and J. 
+        \\t\\t\\t Greenspan},
+        \\tbooktitle =\\t{Directions in Human-Computer Interactions},
+        \\taddress =\\t{Hillsdale, NJ},
+        \\tyear =\\t\\t{1982},
+        \\teditor =\\t{B. Shneiderman and A. Badre},
+        \\tpublisher =\\t{Ablex},
+        \\ttitle =\\t\\t{What do novices know about programming?}
+        )
+      ),
       "key": "Soloway:82",
       "type": "book",
     },

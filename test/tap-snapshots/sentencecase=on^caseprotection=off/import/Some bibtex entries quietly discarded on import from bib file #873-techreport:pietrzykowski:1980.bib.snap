@@ -24,13 +24,17 @@ Object {
         "institution": Array [
           "University of Waterloo Department of Computer Science",
         ],
-        "title": Array [
-          "On reverse skolemization",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "title": "On reverse skolemization",
+        "year": 1980,
       },
+      "input": String(
+        @techreport(Pietrzykowski:1980,
+        \\tauthor =\\t{P.T. Cox and T. Pietrzykowski},
+        \\tyear =\\t\\t{1980},
+        \\tinstitution =\\t{University of Waterloo Department of Computer Science},
+        \\ttitle =\\t\\t{On Reverse Skolemization}
+        )
+      ),
       "key": "Pietrzykowski:1980",
       "type": "techreport",
     },

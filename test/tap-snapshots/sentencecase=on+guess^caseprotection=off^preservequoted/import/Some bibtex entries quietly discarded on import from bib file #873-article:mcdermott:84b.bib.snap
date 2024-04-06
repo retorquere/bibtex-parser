@@ -21,22 +21,22 @@ Object {
             "lastName": "Davis",
           },
         ],
-        "journal": Array [
-          "Artificial Intelligence",
-        ],
-        "pages": Array [
-          "107–156",
-        ],
-        "title": Array [
-          "Planning routes through uncertain territory",
-        ],
-        "volume": Array [
-          "22",
-        ],
-        "year": Array [
-          "1984",
-        ],
+        "journal": "Artificial Intelligence",
+        "pages": "107–156",
+        "title": "Planning routes through uncertain territory",
+        "volume": "22",
+        "year": 1984,
       },
+      "input": String(
+        @article(McDermott:84b,
+        \\tauthor =\\t{Drew V. McDermott and Ernest Davis},
+        \\tyear =\\t\\t{1984},
+        \\tjournal =\\t{Artificial Intelligence},
+        \\tpages =\\t\\t{107--156},
+        \\ttitle =\\t\\t"Planning routes through uncertain territory",
+        \\tvolume =\\t{22}
+        )
+      ),
       "key": "McDermott:84b",
       "type": "article",
     },

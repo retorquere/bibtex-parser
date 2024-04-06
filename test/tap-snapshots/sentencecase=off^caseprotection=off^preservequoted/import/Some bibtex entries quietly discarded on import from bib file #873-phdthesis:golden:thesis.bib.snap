@@ -17,28 +17,28 @@ Object {
             "lastName": "Golden",
           },
         ],
-        "bibsource": Array [
-          "OAI-PMH server at alcme.oclc.org",
-        ],
-        "description": Array [
-          "Vita.; Thesis (Ph. D.)–University of Washington, 1997.; Includes bibliographical references (p. [166]-173).",
-        ],
-        "oai": Array [
-          "oai:xtcat.oclc.org:OCLCNo/ocm40149549",
-        ],
-        "school": Array [
-          "University of Washington",
-        ],
-        "subject": Array [
-          "Intelligent agents (Computer software)",
-        ],
-        "title": Array [
-          "Planning and knowledge representation for softbots",
-        ],
-        "year": Array [
-          "1997",
-        ],
+        "bibsource": "OAI-PMH server at alcme.oclc.org",
+        "description": "Vita.; Thesis (Ph. D.)–University of Washington, 1997.; Includes bibliographical references (p. [166]-173).",
+        "oai": "oai:xtcat.oclc.org:OCLCNo/ocm40149549",
+        "school": "University of Washington",
+        "subject": "Intelligent agents (Computer software)",
+        "title": "Planning and knowledge representation for softbots",
+        "year": 1997,
       },
+      "input": String(
+        @PhdThesis{golden:thesis,
+          title =\\t"Planning and knowledge representation for softbots",
+          author =\\t"Keith Golden",
+          year = \\t"1997",
+          bibsource =\\t"OAI-PMH server at alcme.oclc.org",
+          description =  "Vita.; Thesis (Ph. D.)--University of Washington,
+        \\t\\t 1997.; Includes bibliographical references (p.
+        \\t\\t [166]-173).",
+          oai =  \\t"oai:xtcat.oclc.org:OCLCNo/ocm40149549",
+          school =\\t"University of Washington",
+          subject =\\t"Intelligent agents (Computer software)",
+        }
+      ),
       "key": "golden:thesis",
       "type": "phdthesis",
     },

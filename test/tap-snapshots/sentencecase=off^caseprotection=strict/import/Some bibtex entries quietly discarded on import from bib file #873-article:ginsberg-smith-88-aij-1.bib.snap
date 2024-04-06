@@ -21,27 +21,36 @@ Object {
             "lastName": "Smith",
           },
         ],
-        "journal": Array [
-          "AIJ",
-        ],
-        "pages": Array [
-          "165–195",
-        ],
-        "title": Array [
-          "Reasoning about Action <span class=\\"nocase\\">I</span>: A Possible Worlds Approach",
-        ],
-        "volume": Array [
-          "35",
-        ],
-        "year": Array [
-          "1988",
-        ],
+        "journal": "AIJ",
+        "pages": "165–195",
+        "title": "Reasoning about Action <span class=\\"nocase\\">I</span>: A Possible Worlds Approach",
+        "volume": "35",
+        "year": 1988,
       },
+      "input": String(
+        @ARTICLE{Ginsberg-Smith-88-AIJ-1,
+        \\tAUTHOR = {Matthew L. Ginsberg and David E. Smith},
+        \\tTITLE = "Reasoning about Action {I}:  A Possible Worlds Approach",
+        \\tJOURNAL = AIJ,
+        \\tYEAR = {1988},
+        \\tVOLUME = {35},
+        \\tPAGES = {165--195}
+        }
+      ),
       "key": "Ginsberg-Smith-88-AIJ-1",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"AIJ\\"",
+      "input": "AIJ",
+      "location": Object {
+        "column": 15,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

@@ -17,16 +17,19 @@ Object {
             "lastName": "Hendler",
           },
         ],
-        "crossref": Array [
-          "PlanInit1",
-        ],
-        "pages": Array [
-          "498–503",
-        ],
-        "title": Array [
-          "Mixed-initiative planning: An open information systems approach",
-        ],
+        "crossref": "PlanInit1",
+        "pages": "498–503",
+        "title": "Mixed-initiative planning: An open information systems approach",
       },
+      "input": String(
+        @INPROCEEDINGS{Hendler:PI,
+        \\tAUTHOR = {Jim Hendler},
+        \\tTITLE = {Mixed-initiative planning:
+        \\t\\t An Open Information Systems Approach},
+        \\tPAGES = {498--503},
+        \\tCROSSREF = {PlanInit1}
+        }
+      ),
       "key": "Hendler:PI",
       "type": "inproceedings",
     },

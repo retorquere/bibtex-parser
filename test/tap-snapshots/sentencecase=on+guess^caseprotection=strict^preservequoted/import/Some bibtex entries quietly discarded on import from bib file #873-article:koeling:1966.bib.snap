@@ -21,22 +21,22 @@ Object {
             "lastName": "Koeling",
           },
         ],
-        "journal": Array [
-          "Psychonomic Science",
-        ],
-        "pages": Array [
-          "123-124",
-        ],
-        "title": Array [
-          "Relation of cue to consequence in avoidance learning",
-        ],
-        "volume": Array [
-          "4",
-        ],
-        "year": Array [
-          "1966",
-        ],
+        "journal": "Psychonomic Science",
+        "pages": "123-124",
+        "title": "Relation of cue to consequence in avoidance learning",
+        "volume": "4",
+        "year": 1966,
       },
+      "input": String(
+        @article(Koeling:1966,
+        \\tauthor =\\t{J. Garcia and R.A. Koeling},
+        \\tyear =\\t\\t{1966},
+        \\tjournal =\\t{Psychonomic Science},
+        \\tpages =\\t\\t{123-124},
+        \\ttitle =\\t\\t"Relation of cue to consequence in avoidance learning",
+        \\tvolume =\\t{4}
+        )
+      ),
       "key": "Koeling:1966",
       "type": "article",
     },

@@ -20,13 +20,17 @@ Object {
         "institution": Array [
           "MIT Artificial Intelligence Laboratory",
         ],
-        "title": Array [
-          "A Study of Qualitative and Geometric Knowledge in Reasoning about Motion",
-        ],
-        "year": Array [
-          "1981",
-        ],
+        "title": "A Study of Qualitative and Geometric Knowledge in Reasoning about Motion",
+        "year": 1981,
       },
+      "input": String(
+        @techreport(Forbus:1981,
+        \\tauthor =\\t{Kenneth Forbus},
+        \\tyear =\\t\\t{1981},
+        \\tinstitution =\\t{MIT Artificial Intelligence Laboratory},
+        \\ttitle =\\t\\t{A Study of Qualitative and Geometric Knowledge in Reasoning about Motion}
+        )
+      ),
       "key": "Forbus:1981",
       "type": "techreport",
     },

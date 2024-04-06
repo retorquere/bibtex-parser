@@ -11,37 +11,51 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "annote": Array [
-          "Suggests that plans be monitored based on the plan rationale. Focuses on planning, rather than execution, so thinks about changes that happen during planning.",
-        ],
+        "annote": "Suggests that plans be monitored based on the plan rationale. Focuses on planning, rather than execution, so thinks about changes that happen during planning.",
         "author": Array [
           Object {
             "firstName": "Manuela M.",
             "lastName": "Veloso",
           },
           Object {
-            "lastName": "MPOLLACK",
+            "name": "MPOLLACK",
           },
           Object {
             "firstName": "Michael T.",
             "lastName": "Cox",
           },
         ],
-        "crossref": Array [
-          "AIPS98",
-        ],
-        "pages": Array [
-          "171–179",
-        ],
-        "title": Array [
-          "Rationale-based monitoring for planning in dynamic environments",
-        ],
+        "crossref": "AIPS98",
+        "pages": "171–179",
+        "title": "Rationale-based monitoring for planning in dynamic environments",
       },
+      "input": String(
+        @INPROCEEDINGS{VelosoPollackCox:98,
+        \\tAUTHOR = {Manuela M. Veloso and } # MPOLLACK # { and Michael T. Cox},
+        \\tTITLE = {Rationale-based monitoring for planning in dynamic
+        \\t\\t environments},
+        \\tPAGES = {171--179},
+        \\tCROSSREF = {AIPS98},
+        \\tANNOTE = {Suggests that plans be monitored based on the plan
+        \\t\\t  rationale.  
+        \\t\\t  Focuses on planning, rather than execution, so thinks
+        \\t\\t  about changes that happen during planning.}
+        }
+      ),
       "key": "VelosoPollackCox:98",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"MPOLLACK\\"",
+      "input": "MPOLLACK",
+      "location": Object {
+        "column": 46,
+        "line": 2,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

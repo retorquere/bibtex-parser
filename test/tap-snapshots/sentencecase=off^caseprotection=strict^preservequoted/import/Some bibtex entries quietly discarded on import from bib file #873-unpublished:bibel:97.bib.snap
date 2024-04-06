@@ -17,19 +17,22 @@ Object {
             "lastName": "Bibel",
           },
         ],
-        "month": Array [
-          "03",
-        ],
-        "note": Array [
-          "Unpublished manuscript based on invited address to IJCAI-97 <tt>http://aida.intellektik.informatik.th-darmstadt.de/ bibel/</tt>",
-        ],
-        "title": Array [
-          "Let's Plan It Deductively!",
-        ],
-        "year": Array [
-          "1997",
-        ],
+        "month": 3,
+        "note": "Unpublished manuscript based on invited address to IJCAI-97 <code>http://aida.intellektik.informatik.th-darmstadt.de/ bibel/</code>",
+        "title": "Let's Plan It Deductively!",
+        "year": 1997,
       },
+      "input": String(
+        @UNPUBLISHED{Bibel:97,
+        \\tAUTHOR = {Wolfgang Bibel},
+        \\tTITLE = "Let's Plan It Deductively!",
+        \\tNOTE = {Unpublished manuscript based on invited address
+        \\t\\tto IJCAI-97
+        \\t\\t{\\\\tt http://aida.intellektik.informatik.th-darmstadt.de/~bibel/}},
+        \\tMONTH = mar,
+        \\tYEAR = {1997}
+        }
+      ),
       "key": "Bibel:97",
       "type": "unpublished",
     },

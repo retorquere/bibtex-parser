@@ -20,13 +20,17 @@ Object {
         "institution": Array [
           "Yale University Computer Science Department",
         ],
-        "title": Array [
-          "Time Map Maintenance",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "title": "Time Map Maintenance",
+        "year": 1983,
       },
+      "input": String(
+        @techreport(Dean:83,
+        \\tauthor =\\t{Thomas Dean},
+        \\tyear =\\t\\t{1983},
+        \\tinstitution =\\t{Yale University Computer Science Department},
+        \\ttitle =\\t\\t{Time Map Maintenance}
+        )
+      ),
       "key": "Dean:83",
       "type": "techreport",
     },

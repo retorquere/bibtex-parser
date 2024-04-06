@@ -17,36 +17,43 @@ Object {
             "lastName": "Helmert",
           },
         ],
-        "bibdate": Array [
-          "2010-06-11",
-        ],
-        "bibsource": Array [
-          "DBLP, http://dblp.uni-trier.de/db/journals/jair/jair26.html#Helmert06",
-        ],
-        "journal": Array [
-          "JAIR",
-        ],
-        "pages": Array [
-          "191–246",
-        ],
-        "title": Array [
-          "The fast downward planning system",
-        ],
-        "url": Array [
-          "http://dx.doi.org/10.1613/jair.1705",
-        ],
-        "volume": Array [
-          "26",
-        ],
-        "year": Array [
-          "2006",
-        ],
+        "bibdate": "2010-06-11",
+        "bibsource": "DBLP, http://dblp.uni-trier.de/db/journals/jair/jair26.html#Helmert06",
+        "journal": "JAIR",
+        "pages": "191–246",
+        "title": "The fast downward planning system",
+        "url": "http://dx.doi.org/10.1613/jair.1705",
+        "volume": "26",
+        "year": 2006,
       },
+      "input": String(
+        @Article{journals/jair/Helmert06,
+          title =\\t"The Fast Downward Planning System",
+          author =\\t"Malte Helmert",
+          journal =\\tJAIR,
+          year = \\t"2006",
+          volume =\\t"26",
+          bibdate =\\t"2010-06-11",
+          bibsource =\\t"DBLP,
+        \\t\\t http://dblp.uni-trier.de/db/journals/jair/jair26.html#Helmert06",
+          pages =\\t"191--246",
+          URL =  \\t"http://dx.doi.org/10.1613/jair.1705"
+        }
+      ),
       "key": "journals/jair/Helmert06",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"JAIR\\"",
+      "input": "JAIR",
+      "location": Object {
+        "column": 17,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

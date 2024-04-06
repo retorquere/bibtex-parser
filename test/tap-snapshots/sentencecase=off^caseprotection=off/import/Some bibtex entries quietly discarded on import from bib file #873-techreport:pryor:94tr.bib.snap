@@ -20,16 +20,21 @@ Object {
         "institution": Array [
           "The Institute for the Learning Sciences, Northwestern University",
         ],
-        "number": Array [
-          "53",
-        ],
-        "title": Array [
-          "Opportunities and Planning in an Unpredictable World",
-        ],
-        "year": Array [
-          "1994",
-        ],
+        "number": "53",
+        "title": "Opportunities and Planning in an Unpredictable World",
+        "year": 1994,
       },
+      "input": String(
+        @TECHREPORT(Pryor:94TR,
+        \\tAUTHOR = {Louise Pryor},
+        \\tTITLE = {Opportunities and Planning in
+            an Unpredictable World},
+        \\tINSTITUTION = {The Institute for the Learning
+          Sciences, Northwestern University},
+        \\tYEAR = {1994},
+        \\tNUMBER = {53}
+        )
+      ),
       "key": "Pryor:94TR",
       "type": "techreport",
     },

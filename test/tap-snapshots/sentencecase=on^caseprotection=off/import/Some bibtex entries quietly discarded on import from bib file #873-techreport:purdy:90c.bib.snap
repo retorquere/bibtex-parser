@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Syracuse, NY",
-        ],
+        "address": "Syracuse, NY",
         "author": Array [
           Object {
             "firstName": "William C.",
@@ -21,21 +19,27 @@ Object {
           },
         ],
         "institution": Array [
-          "School of Computer and Information Science, Syracuse University",
+          "School of Computer",
+          "Information Science, Syracuse University",
         ],
-        "month": Array [
-          "05",
-        ],
-        "number": Array [
-          "SU-CIS-90-07",
-        ],
-        "title": Array [
-          "A lexical extension of montague semantics",
-        ],
-        "year": Array [
-          "1990",
-        ],
+        "month": 5,
+        "number": "SU-CIS-90-07",
+        "title": "A lexical extension of montague semantics",
+        "year": 1990,
       },
+      "input": String(
+        @TECHREPORT{Purdy:90c,
+        \\t    
+        \\tAUTHOR = {William C. Purdy},
+        \\tTITLE = "A Lexical Extension of Montague Semantics",
+        \\tINSTITUTION = {School of Computer and Information Science,
+        \\t\\t       Syracuse University},
+        \\tYEAR = {1990},
+        \\tNUMBER = {SU-CIS-90-07},
+        \\tADDRESS = {Syracuse, NY},
+        \\tMONTH = may
+        }
+      ),
       "key": "Purdy:90c",
       "type": "techreport",
     },

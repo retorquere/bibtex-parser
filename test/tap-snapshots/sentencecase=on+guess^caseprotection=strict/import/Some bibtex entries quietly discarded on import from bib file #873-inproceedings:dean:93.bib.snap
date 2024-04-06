@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "annote": Array [
-          "Full version is DeanETAL:95.",
-        ],
+        "annote": "Full version is DeanETAL:95.",
         "author": Array [
           Object {
             "firstName": "Thomas L.",
@@ -32,19 +30,22 @@ Object {
             "lastName": "Nicholson",
           },
         ],
-        "crossref": Array [
-          "aaai93",
-        ],
-        "pages": Array [
-          "574–579",
-        ],
-        "title": Array [
-          "Planning with deadlines in stochastic domains",
-        ],
-        "year": Array [
-          "1993",
-        ],
+        "crossref": "aaai93",
+        "pages": "574–579",
+        "title": "Planning with deadlines in stochastic domains",
+        "year": 1993,
       },
+      "input": String(
+        @INPROCEEDINGS(Dean:93,
+          AUTHOR =\\t {Thomas L. Dean and Leslie Pack Kaelbling and Jak
+                          Kirman and Ann N. Nicholson},
+          TITLE =\\t "Planning with Deadlines in Stochastic Domains",
+          CROSSREF =\\t {aaai93},
+          YEAR =\\t {1993},
+          PAGES =\\t {574--579},
+          annote =\\t {Full version is \\\\cite{DeanETAL:95}.}
+        )
+      ),
       "key": "Dean:93",
       "type": "inproceedings",
     },

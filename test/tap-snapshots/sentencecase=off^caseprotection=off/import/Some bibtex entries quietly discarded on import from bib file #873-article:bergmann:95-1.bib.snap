@@ -21,27 +21,37 @@ Object {
             "lastName": "Wilke",
           },
         ],
-        "journal": Array [
-          "JAIR",
-        ],
-        "pages": Array [
-          "53–118",
-        ],
-        "title": Array [
-          "Building and Refining Abstract Planning Cases by Change of Representation Language",
-        ],
-        "volume": Array [
-          "3",
-        ],
-        "year": Array [
-          "1995",
-        ],
+        "journal": "JAIR",
+        "pages": "53–118",
+        "title": "Building and Refining Abstract Planning Cases by Change of Representation Language",
+        "volume": "3",
+        "year": 1995,
       },
+      "input": String(
+        @ARTICLE{Bergmann:95,
+        \\tAUTHOR = {Ralph Bergmann and Wolfgang Wilke},
+        \\tTITLE = {Building and Refining Abstract Planning Cases
+        \\t\\t by Change of Representation Language},
+        \\tJOURNAL = JAIR,
+        \\tYEAR = {1995},
+        \\tVOLUME = {3},
+        \\tPAGES = {53--118}
+        }
+      ),
       "key": "Bergmann:95",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"JAIR\\"",
+      "input": "JAIR",
+      "location": Object {
+        "column": 16,
+        "line": 5,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

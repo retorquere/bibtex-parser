@@ -21,19 +21,21 @@ Object {
             "lastName": "McDermott",
           },
         ],
-        "crossref": Array [
-          "aaai86",
-        ],
-        "note": Array [
-          "Reprinted in NONMON.",
-        ],
-        "pages": Array [
-          "328–333",
-        ],
-        "title": Array [
-          "Default reasoning, nonmonotonic logics, and the frame problem",
-        ],
+        "crossref": "aaai86",
+        "note": "Reprinted in NONMON.",
+        "pages": "328–333",
+        "title": "Default reasoning, nonmonotonic logics, and the frame problem",
       },
+      "input": String(
+        @INPROCEEDINGS{hanks:YSP,
+        \\tAUTHOR = {Steve Hanks and Drew McDermott},
+        \\tTITLE = {Default reasoning, nonmonotonic logics,
+        \\t\\t and the frame problem},
+        \\tCROSSREF = {aaai86},
+        \\tpages = {328--333},
+        \\tnote = {Reprinted in \\\\cite{NONMON}.}
+        }
+      ),
       "key": "hanks:YSP",
       "type": "inproceedings",
     },

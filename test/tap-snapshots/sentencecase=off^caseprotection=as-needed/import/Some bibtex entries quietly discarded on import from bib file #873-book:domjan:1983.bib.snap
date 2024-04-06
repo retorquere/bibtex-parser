@@ -11,18 +11,14 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "Michael",
             "lastName": "Domjan",
           },
         ],
-        "booktitle": Array [
-          "Psychology of Learning and Motivation",
-        ],
+        "booktitle": "Psychology of Learning and Motivation",
         "editor": Array [
           Object {
             "firstName": "G.",
@@ -32,16 +28,22 @@ Object {
         "publisher": Array [
           "Academic Press",
         ],
-        "title": Array [
-          "Biological constraints on instrumental and classical conditioning: Implications for general process theory",
-        ],
-        "volume": Array [
-          "17",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "title": "Biological constraints on instrumental and classical conditioning: Implications for general process theory",
+        "volume": "17",
+        "year": 1983,
       },
+      "input": String(
+        @book(Domjan:1983,
+        \\tauthor =\\t{Michael Domjan},
+        \\tbooktitle =\\t{Psychology of Learning and Motivation},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1983},
+        \\teditor =\\t{Bower, G.},
+        \\tpublisher =\\t{Academic Press},
+        \\ttitle =\\t\\t"Biological constraints on instrumental and classical conditioning: Implications for general process theory",
+        \\tvolume =\\t{17}
+        )
+      ),
       "key": "Domjan:1983",
       "type": "book",
     },

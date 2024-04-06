@@ -18,196 +18,186 @@ Object {
             "lastName": "Author",
           },
         ],
-        "journal": Array [
-          "a space between this and this",
-        ],
-        "title": Array [
-          "åı and íTitle string a string b string c",
-        ],
-        "year": Array [
-          "1990",
-        ],
+        "journal": "a space between this and this",
+        "title": "åı and íTitle string a string b string c",
+        "year": 1990,
       },
+      "input": String(
+        @article{key,
+            author  = {Author},
+            title   = {{\\\\r a}{\\\\i} and {\\\\'i}Title} # a # b # c,
+            year    = 1990,
+            journal = j # {and this}
+        }
+      ),
       "key": "key",
       "type": "article",
     },
     Object {
       "fields": Object {
-        "title": Array [
-          "ı",
-        ],
+        "title": "ı",
       },
+      "input": "@book{label, title = i }",
       "key": "label",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "title": Array [
-          "foo",
-        ],
+        "title": "foo",
       },
+      "input": "@book{a, title = \\"foo\\"}",
       "key": "a",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "title": Array [
-          "foo",
-        ],
+        "title": "foo",
       },
+      "input": "@BoOk{a, title = \\"foo\\"}",
       "key": "a",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "title": Array [
-          "foo",
-        ],
+        "title": "foo",
       },
+      "input": "@BOOK{a, title = \\"foo\\"}",
       "key": "a",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "title": Array [
-          "foo",
-        ],
+        "title": "foo",
       },
+      "input": "@book(a, title = \\"foo\\")",
       "key": "a",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "title": Array [
-          "foo",
-        ],
+        "title": "foo",
       },
+      "input": String(
+        @
+              book
+            {
+              a
+            ,
+              title = "foo"
+            }
+      ),
       "key": "a",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "title": Array [
-          "foo",
-        ],
+        "title": "foo",
       },
+      "input": "@book{a, title = \\"f\\" # a:a # b:b}",
       "key": "a",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "a:a": Array [
-          "foo",
-        ],
+        "a:a": "foo",
       },
+      "input": "@book{a, a:a = \\"foo\\" }",
       "key": "a",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "title": Array [
-          "foo",
-        ],
+        "title": "foo",
       },
+      "input": "@book{a1, title = \\"foo\\"}",
       "key": "a1",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "title": Array [
-          "foo",
-        ],
+        "title": "foo",
       },
+      "input": "@book{b:b, title = \\"foo\\"}",
       "key": "b:b",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "title": Array [
-          "foo",
-        ],
+        "title": "foo",
       },
+      "input": "@book{\\"a\\", title = \\"foo\\"}",
       "key": "\\"a\\"",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "title": Array [
-          "foo",
-        ],
+        "title": "foo",
       },
+      "input": "@book{a, title = \\"foo\\"}",
       "key": "a",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "title": Array [
-          "foo",
-        ],
+        "title": "foo",
       },
+      "input": "@book{a, title = {foo}}",
       "key": "a",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "title": Array [
-          "foo",
-        ],
+        "title": "foo",
       },
+      "input": "@book{a, title = foo}",
       "key": "a",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "title": Array [
-          "foo",
-        ],
+        "title": "foo",
       },
+      "input": "@book{a, title = foo}",
       "key": "a",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "title": Array [
-          "foo",
-        ],
+        "title": "foo",
       },
+      "input": "@book{a, title = foo}",
       "key": "a",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "title": Array [
-          "foo",
-        ],
+        "title": "foo",
       },
+      "input": "@book{a, title = foo}",
       "key": "a",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "title": Array [
-          "foo",
-        ],
+        "title": "foo",
       },
+      "input": "@book{a, title = foo}",
       "key": "a",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "title": Array [
-          "foo",
-        ],
+        "title": "foo",
       },
+      "input": "@book{b, title = FOO}",
       "key": "b",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "title": Array [
-          "foo",
-        ],
+        "title": "foo",
       },
+      "input": "@book{a, title = fo # o}",
       "key": "a",
       "type": "book",
     },
@@ -221,13 +211,17 @@ Object {
             "lastName": "Lomb",
           },
           Object {
-            "literal": "Bausch and Lomb",
+            "name": "Bausch and Lomb",
           },
         ],
-        "title": Array [
-          "Stability <span class=\\"nocase\\">Analysis</span> and <i>optimization</i>",
-        ],
+        "title": "Stability <span class=\\"nocase\\">Analysis</span> and <i>optimization</i>",
       },
+      "input": String(
+        @article{test,
+              author = {Bausch and Lomb and {Bausch and Lomb}},
+              title = {Stability {Analysis} and {\\\\emph{Optimization}}}
+            }
+      ),
       "key": "test",
       "type": "article",
     },
@@ -241,42 +235,57 @@ Object {
           },
         ],
       },
+      "input": String(
+        @article{test,
+              author = {family=Duchamp, given=Philippe, given-i={Ph}}
+            }
+      ),
       "key": "test",
       "type": "article",
     },
     Object {
       "fields": Object {
-        "file": Array [
-          "files/Zuniga:2016jt/A4FA1025_A4E7{}422A-9368-1E1F1B9B0166.pdf",
-        ],
+        "file": "files/Zuniga:2016jt/A4FA1025_A4E7{}422A-9368-1E1F1B9B0166.pdf",
       },
+      "input": String(
+        @article{test,
+              file = {files/Zuniga:2016jt/A4FA1025_A4E7{}422A-9368-1E1F1B9B0166.pdf}
+            }
+      ),
       "key": "test",
       "type": "article",
     },
     Object {
       "fields": Object {
         "publisher": Array [
-          "Dŏ}ëad Poₑₑₑt Society",
+          "Dŏ}ëad Poₑₑₑt Society",
         ],
       },
+      "input": String(
+        @article{test,
+              publisher =  { D{\\\\u{o}}\\\\}\\\\"ead Po$_{eee}$t Society},
+            }
+      ),
       "key": "test",
       "type": "article",
     },
     Object {
       "fields": Object {
-        "title": Array [
-          "½ and ⁿ⁄₂",
-        ],
+        "title": "<span class=\\"nocase\\">½</span> and <span class=\\"nocase\\">ⁿ⁄₂</span>",
       },
+      "input": String(
+        @article{test,
+              title = {$\\\\frac 1 2$ and $\\\\frac{n}{2}$}
+            }
+      ),
       "key": "test",
       "type": "article",
     },
     Object {
       "fields": Object {
-        "title": Array [
-          "A <i>a a <span class=\\"nocase\\">A</span></i> <span class=\\"nocase\\">A <i>A</i></span>",
-        ],
+        "title": "A <i>A A <span class=\\"nocase\\">A</span></i> <span class=\\"nocase\\">A <i>A</i></span>",
       },
+      "input": "@article{test, title = \\"A {\\\\em A} \\\\begin{em}A\\\\end{em} \\\\begin{em}{A}\\\\end{em} {A \\\\em A}\\"}",
       "key": "test",
       "type": "article",
     },
@@ -286,7 +295,11 @@ Object {
     "groups": Object {},
     "root": Array [],
   },
-  "preamble": Array [],
+  "preamble": Array [
+    " \\"test\\" ",
+    " include ",
+    " include # include ",
+  ],
   "strings": Object {
     "A": " string a",
     "A:A": "o",

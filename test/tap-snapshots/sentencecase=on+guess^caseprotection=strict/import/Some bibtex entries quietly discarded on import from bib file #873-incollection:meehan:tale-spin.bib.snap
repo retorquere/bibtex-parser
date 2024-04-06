@@ -17,19 +17,20 @@ Object {
             "lastName": "Meehan",
           },
         ],
-        "chapter": Array [
-          "9",
-        ],
-        "crossref": Array [
-          "ICU",
-        ],
-        "pages": Array [
-          "197–209",
-        ],
-        "title": Array [
-          "TALE-SPIN",
-        ],
+        "chapter": "9",
+        "crossref": "ICU",
+        "pages": "197–209",
+        "title": "TALE-SPIN",
       },
+      "input": String(
+        @incollection(Meehan:TALE-SPIN,
+        \\tauthor =\\t{James Meehan},
+        \\ttitle =\\t\\t"TALE-SPIN",
+        \\tchapter = \\t{9},
+        \\tcrossref = \\t"ICU",
+        \\tpages = \\t{197--209}
+        )
+      ),
       "key": "Meehan:TALE-SPIN",
       "type": "incollection",
     },

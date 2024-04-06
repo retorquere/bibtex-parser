@@ -11,41 +11,52 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Montgomery, Vermont",
-        ],
+        "address": "Montgomery, Vermont",
         "author": Array [
           Object {
-            "lastName": "MCDERMOTT",
+            "name": "MCDERMOTT",
           },
         ],
-        "booktitle": Array [
-          "Mind design",
-        ],
+        "booktitle": "Mind design",
         "editor": Array [
           Object {
             "firstName": "John",
             "lastName": "Haugeland",
           },
         ],
-        "pages": Array [
-          "143-160",
-        ],
+        "pages": "143-160",
         "publisher": Array [
           "Bradford Books",
         ],
-        "title": Array [
-          "Artificial intelligence meets natural stupidity",
-        ],
-        "year": Array [
-          "1981",
-        ],
+        "title": "Artificial intelligence meets natural stupidity",
+        "year": 1981,
       },
+      "input": String(
+        @inbook(McDermott:81,
+        \\tauthor =\\tMCDERMOTT,
+        \\tbooktitle =\\t{Mind design},
+        \\taddress =\\t{Montgomery, Vermont},
+        \\tyear =\\t\\t{1981},
+        \\teditor =\\t{John Haugeland},
+        \\tpublisher =\\t{Bradford Books},
+        \\tpages =\\t\\t{143-160},
+        \\ttitle =\\t\\t{Artificial intelligence meets natural stupidity}
+        )
+      ),
       "key": "McDermott:81",
       "type": "inbook",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"MCDERMOTT\\"",
+      "input": "MCDERMOTT",
+      "location": Object {
+        "column": 20,
+        "line": 2,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

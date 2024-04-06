@@ -17,13 +17,16 @@ Object {
             "lastName": "Doe",
           },
         ],
-        "date": Array [
-          "2021",
-        ],
-        "title": Array [
-          "Faulty Dataset Export",
-        ],
+        "date": "2021",
+        "title": "Faulty Dataset Export",
       },
+      "input": String(
+        @dataset{Doe2021,
+          title = {Faulty Dataset Export},
+          author = {Doe, John},
+          date = {2021}
+        }
+      ),
       "key": "Doe2021",
       "type": "dataset",
     },

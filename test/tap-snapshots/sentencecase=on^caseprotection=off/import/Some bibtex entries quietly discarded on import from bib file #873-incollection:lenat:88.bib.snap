@@ -21,13 +21,16 @@ Object {
             "lastName": "Brown",
           },
         ],
-        "crossref": Array [
-          "EcologyOfComp",
-        ],
-        "title": Array [
-          "Why <span style=\\"font-variant:small-caps;\\">am</span> and <span style=\\"font-variant:small-caps;\\">eurisko</span> appear to work",
-        ],
+        "crossref": "EcologyOfComp",
+        "title": "Why <span style=\\"font-variant:small-caps;\\">am</span> and <span style=\\"font-variant:small-caps;\\">eurisko</span> appear to work",
       },
+      "input": String(
+        @INCOLLECTION(Lenat:88,
+        \\tAUTHOR = {Douglas B. Lenat and John Seely Brown},
+        \\tTITLE = "Why {\\\\sc am} and {\\\\sc Eurisko} appear to work",
+        \\tCROSSREF = {EcologyOfComp}
+        )
+      ),
       "key": "Lenat:88",
       "type": "incollection",
     },

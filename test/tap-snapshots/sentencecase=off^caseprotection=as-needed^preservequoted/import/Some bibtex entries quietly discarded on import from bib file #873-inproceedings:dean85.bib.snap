@@ -17,30 +17,39 @@ Object {
             "lastName": "Dean",
           },
         ],
-        "booktitle": Array [
-          "IJCAI-85",
-        ],
-        "month": Array [
-          "August",
-        ],
+        "booktitle": "<span class=\\"nocase\\">IJCAI-85</span>",
+        "month": "August",
         "organization": Array [
           "IJCAI",
         ],
-        "pages": Array [
-          "1060-1062",
-        ],
-        "title": Array [
-          "Temporal Reasoning Involving Counterfactuals and Disjunctions",
-        ],
-        "year": Array [
-          "1985",
-        ],
+        "pages": "1060-1062",
+        "title": "Temporal Reasoning Involving Counterfactuals and Disjunctions",
+        "year": 1985,
       },
+      "input": String(
+        @InProceedings{dean85,
+        author = "Thomas Dean",
+        title = "Temporal Reasoning Involving Counterfactuals and Disjunctions",
+        booktitle = IJCAI-85,
+        organization = "IJCAI",
+        pages = "1060-1062",
+        month = "August",
+        year = "1985"}
+      ),
       "key": "dean85",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"IJCAI-85\\"",
+      "input": "IJCAI-85",
+      "location": Object {
+        "column": 21,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

@@ -7,7 +7,11 @@
 'use strict'
 exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:howey04:_val.bib > must match snapshot 1`] = `
 Object {
-  "comments": Array [],
+  "comments": Array [
+    "booktitle =    \\"Proceedings of the Sixteenth International Conference",
+    "on Automated Planning and Scheduling, {ICAPS} 2006,",
+    "Cumbria, {UK}, June 6-10, 2006\\",",
+  ],
   "entries": Array [
     Object {
       "fields": Object {
@@ -25,31 +29,30 @@ Object {
             "lastName": "Fox",
           },
         ],
-        "bibdate": Array [
-          "2005-01-05",
-        ],
-        "bibsource": Array [
-          "DBLP, http://dblp.uni-trier.de/db/conf/ictai/ictai2004.html#HoweyLF04",
-        ],
-        "booktitle": Array [
-          "Proceedings ICTAI",
-        ],
-        "crossref": Array [
-          "DBLP:conf/ictai/2004",
-        ],
-        "pages": Array [
-          "294–301",
-        ],
-        "title": Array [
-          "VAL: Automatic Plan Validation, Continuous Effects and Mixed Initiative Planning Using PDDL",
-        ],
-        "url": Array [
-          "http://doi.ieeecomputersociety.org/10.1109/ICTAI.2004.120",
-        ],
-        "year": Array [
-          2004,
-        ],
+        "bibdate": "2005-01-05",
+        "bibsource": "DBLP, http://dblp.uni-trier.de/db/conf/ictai/ictai2004.html#HoweyLF04",
+        "booktitle": "Proceedings <span class=\\"nocase\\">ICTAI</span>",
+        "crossref": "DBLP:conf/ictai/2004",
+        "pages": "294–301",
+        "title": "<span class=\\"nocase\\">VAL</span>: Automatic Plan Validation, Continuous Effects and Mixed Initiative Planning Using <span class=\\"nocase\\">PDDL</span>",
+        "url": "http://doi.ieeecomputersociety.org/10.1109/ICTAI.2004.120",
+        "year": 2004,
       },
+      "input": String(
+        @InProceedings{howey04:_val,
+          title =\\t"{VAL}: Automatic Plan Validation, Continuous Effects
+        \\t\\t and Mixed Initiative Planning Using {PDDL}",
+          author =\\t"Richard Howey and Derek Long and Maria Fox",
+          year = \\t2004,
+          bibdate =\\t"2005-01-05",
+          bibsource =\\t"DBLP,
+        \\t\\t http://dblp.uni-trier.de/db/conf/ictai/ictai2004.html#HoweyLF04",
+          booktitle =\\t{Proceedings {ICTAI}},
+          crossref =\\t"DBLP:conf/ictai/2004",
+          pages =\\t"294--301",
+          URL =  \\t"http://doi.ieeecomputersociety.org/10.1109/ICTAI.2004.120",
+        }
+      ),
       "key": "howey04:_val",
       "type": "inproceedings",
     },

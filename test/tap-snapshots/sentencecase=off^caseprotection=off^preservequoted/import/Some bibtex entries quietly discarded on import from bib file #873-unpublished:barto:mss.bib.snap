@@ -25,13 +25,18 @@ Object {
             "lastName": "Watkins",
           },
         ],
-        "note": Array [
-          "To appear in <i>Learning and Computational Neuroscience</i>, J.W. Moore and M. Gabriel, eds., MIT Press",
-        ],
-        "title": Array [
-          "Learning and Sequential Decision Making",
-        ],
+        "note": "To appear in <i>Learning and Computational Neuroscience</i>, J.W. Moore and M. Gabriel, eds., MIT Press",
+        "title": "Learning and Sequential Decision Making",
       },
+      "input": String(
+        @UNPUBLISHED{Barto:MSS,
+        \\tAUTHOR = {Andrew G. Barto and Richard S. Sutton and
+        \\t\\t  C.J.C.H. Watkins},
+        \\tTITLE = "Learning and Sequential Decision Making",
+        \\tNOTE = {To appear in {\\\\em Learning and Computational
+        \\t\\tNeuroscience}, J.W. Moore and M. Gabriel, eds., MIT Press}
+        }
+      ),
       "key": "Barto:MSS",
       "type": "unpublished",
     },

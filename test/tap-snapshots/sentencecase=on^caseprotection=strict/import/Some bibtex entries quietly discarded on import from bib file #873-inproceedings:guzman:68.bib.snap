@@ -17,19 +17,21 @@ Object {
             "lastName": "Guzman",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the fall joint computer conference",
-        ],
-        "pages": Array [
-          "291–304",
-        ],
-        "title": Array [
-          "The decomposition of a visual scene into three dimensional bodies",
-        ],
-        "year": Array [
-          "1968",
-        ],
+        "booktitle": "Proceedings of the fall joint computer conference",
+        "pages": "291–304",
+        "title": "The decomposition of a visual scene into three dimensional bodies",
+        "year": 1968,
       },
+      "input": String(
+        @inproceedings(Guzman:68,
+        \\tauthor =\\t{Adolfo Guzman},
+        \\tyear =\\t\\t{1968},
+        \\tbooktitle =\\t{Proceedings of the Fall Joint Computer Conference},
+        \\tpages =\\t\\t{291--304},
+        \\ttitle =\\t\\t{The decomposition of a visual scene 
+        \\t\\t\\t into three dimensional bodies}
+        )
+      ),
       "key": "Guzman:68",
       "type": "inproceedings",
     },

@@ -11,18 +11,14 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "Steven",
             "lastName": "Vere",
           },
         ],
-        "booktitle": Array [
-          "Pattern-Directed Inference Systems",
-        ],
+        "booktitle": "Pattern-Directed Inference Systems",
         "editor": Array [
           Object {
             "firstName": "D.A.",
@@ -33,19 +29,25 @@ Object {
             "lastName": "Hayes-Roth",
           },
         ],
-        "pages": Array [
-          "281-295",
-        ],
+        "pages": "281-295",
         "publisher": Array [
           "Academic Press",
         ],
-        "title": Array [
-          "Inductive learning of relational productions",
-        ],
-        "year": Array [
-          "1978",
-        ],
+        "title": "Inductive learning of relational productions",
+        "year": 1978,
       },
+      "input": String(
+        @book(Vere:78,
+        \\tauthor =\\t{Steven Vere},
+        \\tbooktitle =\\t{Pattern-Directed Inference Systems},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1978},
+        \\teditor =\\t{D.A. Waterman and F. Hayes-Roth},
+        \\tpublisher =\\t{Academic Press},
+        \\tpages =\\t\\t{281-295},
+        \\ttitle =\\t\\t{Inductive learning of relational productions}
+        )
+      ),
       "key": "Vere:78",
       "type": "book",
     },

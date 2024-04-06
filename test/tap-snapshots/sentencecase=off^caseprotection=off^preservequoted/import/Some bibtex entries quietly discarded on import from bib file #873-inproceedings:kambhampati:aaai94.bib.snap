@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "annote": Array [
-          "The authors review Chapman's Modal Truth Criterion (MTC) from his paper “Planning for Conjunctive Goals.” They show a bug in Chapman's arguments — in particular that the equivalence ◇p≡¬□¬p doesn't hold for truth in partially-ordered plans. The reason for this is that the excluded middle does not hold in the logic of partial plans — the truth value of some p in some completion of a partial plan may not be defined, because the completion may be ill-formed.",
-        ],
+        "annote": "The authors review Chapman's Modal Truth Criterion (MTC) from his paper “Planning for Conjunctive Goals.” They show a bug in Chapman's arguments — in particular that the equivalence ◇p≡¬□¬p doesn't hold for truth in partially-ordered plans. The reason for this is that the excluded middle does not hold in the logic of partial plans — the truth value of some p in some completion of a partial plan may not be defined, because the completion may be ill-formed.",
         "author": Array [
           Object {
             "firstName": "Subbarao",
@@ -24,13 +22,25 @@ Object {
             "lastName": "Nau",
           },
         ],
-        "pages": Array [
-          "1055–1060",
-        ],
-        "title": Array [
-          "On the nature of modal truth criteria in planning",
-        ],
+        "pages": "1055–1060",
+        "title": "On the nature of modal truth criteria in planning",
       },
+      "input": String(
+        @INPROCEEDINGS{Kambhampati:aaai94,
+        \\tAUTHOR = {Subbarao Kambhampati and Dana S. Nau},
+        \\tTITLE = "On the nature of modal truth criteria in planning",
+        \\tPAGES = {1055--1060},
+        \\tANNOTE = {The authors review Chapman's Modal Truth Criterion (MTC)
+        \\t\\t  from his paper \`\`Planning for Conjunctive Goals.''
+        \\t\\t  They show a bug in Chapman's arguments --- in particular
+        \\t\\t  that the equivalence $\\\\Diamond p \\\\equiv \\\\neg \\\\Box \\\\neg p$
+        \\t\\t  doesn't hold for truth in partially-ordered plans.
+        \\t\\t  The reason for this is that the excluded middle does not 
+        \\t\\t  hold in the logic of partial plans --- the truth value of
+        \\t\\t  some $p$ in some completion of a partial plan may not be
+        \\t\\t  defined, because the completion may be ill-formed.}
+        }
+      ),
       "key": "Kambhampati:aaai94",
       "type": "inproceedings",
     },

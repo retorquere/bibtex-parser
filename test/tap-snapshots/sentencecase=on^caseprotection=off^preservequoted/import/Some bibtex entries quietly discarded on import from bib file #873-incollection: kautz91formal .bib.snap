@@ -11,21 +11,15 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Los Altos, CA",
-        ],
+        "address": "Los Altos, CA",
         "author": Array [
           Object {
             "firstName": "Henry A.",
             "lastName": "Kautz",
           },
         ],
-        "booktitle": Array [
-          "Reasoning about plans",
-        ],
-        "chapter": Array [
-          "2",
-        ],
+        "booktitle": "Reasoning about plans",
+        "chapter": "2",
         "editor": Array [
           Object {
             "firstName": "James F.",
@@ -47,13 +41,25 @@ Object {
         "publisher": Array [
           "Morgan Kaufmann",
         ],
-        "title": Array [
-          "A formal theory of plan recognition and its implementation",
-        ],
-        "year": Array [
-          1991,
-        ],
+        "title": "A Formal theory of plan recognition and its implementation",
+        "year": 1991,
       },
+      "input": String(
+        @incollection( Kautz91Formal, 
+          author =\\t{Henry A. Kautz}, 
+          title =\\t{A {F}ormal Theory of Plan Recognition and 
+        \\t\\t its Implementation}, 
+          chapter =\\t{2},\\t\\t 
+          year =\\t1991, 
+          booktitle =\\t{Reasoning About Plans}, 
+          editor =\\t{James F. Allen
+        \\t\\tand Henry A. Kautz
+        \\t\\tand Richard N. Pelavin
+        \\t\\tand Josh D. Tenenberg}, 
+          publisher =\\t{Morgan Kaufmann}, 
+          address =\\t{Los Altos, CA} 
+        \\t)
+      ),
       "key": "Kautz91Formal",
       "type": "incollection",
     },

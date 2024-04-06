@@ -24,19 +24,22 @@ Object {
         "institution": Array [
           "The Institute for the Learning Sciences, Northwestern University",
         ],
-        "month": Array [
-          "June",
-        ],
-        "number": Array [
-          "41",
-        ],
-        "title": Array [
-          "Cassandra: Planning for contingencies",
-        ],
-        "year": Array [
-          "1993",
-        ],
+        "month": "June",
+        "number": "41",
+        "title": "Cassandra: Planning for contingencies",
+        "year": 1993,
       },
+      "input": String(
+        @TECHREPORT(Pryor:CassandraORIG,
+        \\tAUTHOR = {Louise Pryor and Gregg Collins},
+        \\tTITLE = "Cassandra:  Planning for Contingencies",
+        \\tINSTITUTION = {The Institute for the Learning Sciences,
+        \\t\\t       Northwestern University},
+        \\tYEAR = {1993},
+        \\tNUMBER = {41},
+        \\tMONTH = {June}
+        )
+      ),
       "key": "Pryor:CassandraORIG",
       "type": "techreport",
     },

@@ -13,21 +13,33 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "lastName": "FREED",
+            "name": "FREED",
           },
         ],
-        "crossref": Array [
-          "AAAI98",
-        ],
-        "title": Array [
-          "Managing multiple tasks in complex, dynamic environments",
-        ],
+        "crossref": "AAAI98",
+        "title": "Managing multiple tasks in complex, dynamic environments",
       },
+      "input": String(
+        @InProceedings{freed98:apex,
+          author = \\t FREED,
+          title = \\t {Managing multiple tasks in complex, dynamic environments},
+          crossref =\\t {AAAI98}
+        }
+      ),
       "key": "freed98:apex",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"FREED\\"",
+      "input": "FREED",
+      "location": Object {
+        "column": 19,
+        "line": 2,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

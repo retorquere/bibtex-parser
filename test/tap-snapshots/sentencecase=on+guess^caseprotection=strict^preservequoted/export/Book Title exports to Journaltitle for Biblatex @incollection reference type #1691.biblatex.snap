@@ -17,37 +17,42 @@ Object {
             "lastName": "Nagy",
           },
         ],
-        "date": Array [
-          "2008-10-24",
-        ],
+        "date": "2008-10-24",
         "editora": Array [
           Object {
             "firstName": "Damien",
             "lastName": "Boquet",
           },
         ],
-        "editoratype": Array [
-          "collaborator",
-        ],
+        "editoratype": "collaborator",
         "organization": Array [
-          "<span class=\\"nocase\\">Les émotions au Moyen Âge, carnet d'EMMA</span>",
+          "Les émotions au Moyen Âge, carnet d'EMMA",
         ],
-        "shorttitle": Array [
-          "Historians and <span class=\\"nocase\\">Emotions</span>",
-        ],
-        "title": Array [
-          "Historians and <span class=\\"nocase\\">Emotions: New Theories, New Questions</span>",
-        ],
-        "type": Array [
-          "Billet",
-        ],
-        "url": Array [
-          "http://emma.hypotheses.org/147",
-        ],
-        "urldate": Array [
-          "2017-12-12",
-        ],
+        "shorttitle": "Historians and <span class=\\"nocase\\">Emotions</span>",
+        "title": "Historians and <span class=\\"nocase\\">Emotions</span>: <span class=\\"nocase\\">New Theories</span>, <span class=\\"nocase\\">New Questions</span>",
+        "type": "Billet",
+        "url": "http://emma.hypotheses.org/147",
+        "urldate": "2017-12-12",
       },
+      "input": String(
+        @online{NagyHistorians2008,
+          title = {Historians and {{Emotions}}: {{New Theories}}, {{New Questions}}},
+          shorttitle = {Historians and {{Emotions}}},
+          author = {Nagy, Piroska},
+          date = {2008-10-24},
+          url = {http://emma.hypotheses.org/147},
+          urldate = {2017-12-12},
+          editora = {Boquet, Damien},
+          editoratype = {collaborator},
+          organization = {{Les émotions au Moyen Âge, carnet d'EMMA}},
+          type = {Billet}
+        }
+        % == BibLateX quality report for NagyHistorians2008:
+        % Unexpected field 'editora'
+        % Unexpected field 'editoratype'
+        % Unexpected field 'type'
+        % ? Title looks like it was stored in title-case in Zotero
+      ),
       "key": "NagyHistorians2008",
       "type": "online",
     },
@@ -55,45 +60,47 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "literal": "胡適",
+            "name": "胡適",
           },
         ],
-        "booktitle": Array [
-          "胡適文集",
-        ],
-        "date": Array [
-          "1998",
-        ],
+        "booktitle": "胡適文集",
+        "date": "1998",
         "editor": Array [
           Object {
-            "literal": "歐陽哲生",
+            "name": "歐陽哲生",
           },
         ],
         "location": Array [
           "北京",
         ],
-        "origdate": Array [
-          "1930",
-        ],
+        "origdate": "1930",
         "origpublisher": Array [
-          "<span class=\\"nocase\\">萬有文庫</span>",
+          "萬有文庫",
         ],
-        "origtitle": Array [
-          "中國哲學史大綱卷上[1919]，商務",
-        ],
-        "pages": Array [
-          "155–422",
-        ],
+        "origtitle": "中國哲學史大綱卷上[1919]，商務",
+        "pages": "155–422",
         "publisher": Array [
           "北京大學",
         ],
-        "title": Array [
-          "中國古代哲學史",
-        ],
-        "volume": Array [
-          "冊6",
-        ],
+        "title": "中國古代哲學史",
+        "volume": "冊6",
       },
+      "input": String(
+        @incollection{胡適哲學史1917,
+          title = {中國古代哲學史},
+          booktitle = {胡適文集},
+          author = {{胡適}},
+          editor = {{歐陽哲生}},
+          date = {1998},
+          origdate = {1930},
+          volume = {冊6},
+          pages = {155--422},
+          publisher = {{北京大學}},
+          location = {{北京}},
+          origpublisher = {{萬有文庫}},
+          origtitle = {中國哲學史大綱卷上[1919]，商務}
+        }
+      ),
       "key": "胡適哲學史1917",
       "type": "incollection",
     },

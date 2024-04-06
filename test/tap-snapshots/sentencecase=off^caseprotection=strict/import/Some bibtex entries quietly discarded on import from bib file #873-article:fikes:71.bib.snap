@@ -21,22 +21,22 @@ Object {
             "lastName": "Nilsson",
           },
         ],
-        "journal": Array [
-          "Artificial Intelligence",
-        ],
-        "pages": Array [
-          "189-208",
-        ],
-        "title": Array [
-          "STRIPS: A new approach to the application of theorem proving to problem solving",
-        ],
-        "volume": Array [
-          "2",
-        ],
-        "year": Array [
-          "1971",
-        ],
+        "journal": "Artificial Intelligence",
+        "pages": "189-208",
+        "title": "STRIPS: A new approach to the application of theorem proving to problem solving",
+        "volume": "2",
+        "year": 1971,
       },
+      "input": String(
+        @article(Fikes:71,
+        \\tauthor =\\t{Richard E. Fikes and Nils J. Nilsson},
+        \\tyear =\\t\\t{1971},
+        \\tjournal =\\t{Artificial Intelligence},
+        \\tpages =\\t\\t{189-208},
+        \\ttitle =\\t\\t"STRIPS: A new approach to the application of theorem proving to problem solving",
+        \\tvolume =\\t{2}
+        )
+      ),
       "key": "Fikes:71",
       "type": "article",
     },

@@ -17,13 +17,16 @@ Object {
             "lastName": "Carbonell",
           },
         ],
-        "crossref": Array [
-          "Strategies4NLP",
-        ],
-        "title": Array [
-          "Metaphor: an inescapable phenomenon in natural-language comprehension",
-        ],
+        "crossref": "Strategies4NLP",
+        "title": "Metaphor: an inescapable phenomenon in natural-language comprehension",
       },
+      "input": String(
+        @inbook(Carbonell,
+        \\tauthor =\\t{Jaime G. Carbonell},
+        \\ttitle =\\t\\t"Metaphor:  an inescapable phenomenon in natural-language comprehension",
+        \\tcrossref = "Strategies4NLP"
+        )
+      ),
       "key": "Carbonell",
       "type": "inbook",
     },

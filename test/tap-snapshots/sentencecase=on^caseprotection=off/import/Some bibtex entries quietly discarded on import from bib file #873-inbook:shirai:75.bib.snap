@@ -11,18 +11,14 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "Yoshiaki",
             "lastName": "Shirai",
           },
         ],
-        "booktitle": Array [
-          "The psychology of computer vision",
-        ],
+        "booktitle": "The psychology of computer vision",
         "editor": Array [
           Object {
             "firstName": "P.H.",
@@ -32,13 +28,21 @@ Object {
         "publisher": Array [
           "McGraw-Hill",
         ],
-        "title": Array [
-          "Analysing intensity arrays using knowledge about scenes",
-        ],
-        "year": Array [
-          "1975",
-        ],
+        "title": "Analysing intensity arrays using knowledge about scenes",
+        "year": 1975,
       },
+      "input": String(
+        @inbook(Shirai:75,
+        \\tauthor =\\t{Yoshiaki Shirai},
+        \\tbooktitle =\\t{The Psychology of Computer Vision},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1975},
+        \\teditor =\\t{P.H. Winston},
+        \\tpublisher =\\t{McGraw-Hill},
+        \\ttitle =\\t\\t{Analysing intensity arrays using knowledge 
+        \\t\\t\\t about scenes}
+        )
+      ),
       "key": "Shirai:75",
       "type": "inbook",
     },

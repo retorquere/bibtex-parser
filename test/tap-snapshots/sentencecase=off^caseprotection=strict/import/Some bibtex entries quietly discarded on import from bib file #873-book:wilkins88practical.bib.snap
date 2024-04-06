@@ -11,31 +11,31 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "San Mateo, CA",
-        ],
+        "address": "San Mateo, CA",
         "author": Array [
           Object {
             "firstName": "David E.",
             "lastName": "Wilkins",
           },
         ],
-        "date-added": Array [
-          "2010-06-22 21:32:51 -0400",
-        ],
-        "date-modified": Array [
-          "2010-06-22 21:32:51 -0400",
-        ],
+        "date-added": "2010-06-22 21:32:51 -0400",
+        "date-modified": "2010-06-22 21:32:51 -0400",
         "publisher": Array [
           "Morgan Kaufmann",
         ],
-        "title": Array [
-          "Practical Planning: Extending the Classical <span class=\\"nocase\\">AI</span> Planning Paradigm",
-        ],
-        "year": Array [
-          "1988",
-        ],
+        "title": "Practical Planning: Extending the Classical <span class=\\"nocase\\">AI</span> Planning Paradigm",
+        "year": 1988,
       },
+      "input": String(
+        @book{wilkins88practical,
+        \\tAddress = {San Mateo, CA},
+        \\tAuthor = {Wilkins, David E.},
+        \\tDate-Added = {2010-06-22 21:32:51 -0400},
+        \\tDate-Modified = {2010-06-22 21:32:51 -0400},
+        \\tPublisher = {Morgan Kaufmann},
+        \\tTitle = {Practical Planning: Extending the Classical {AI} Planning Paradigm},
+        \\tYear = {1988}}
+      ),
       "key": "wilkins88practical",
       "type": "book",
     },

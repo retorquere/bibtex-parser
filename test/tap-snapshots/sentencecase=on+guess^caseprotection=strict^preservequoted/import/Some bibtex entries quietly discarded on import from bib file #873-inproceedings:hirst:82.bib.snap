@@ -21,24 +21,34 @@ Object {
             "lastName": "Charniak",
           },
         ],
-        "crossref": Array [
-          "AAAI-82",
-        ],
-        "title": Array [
-          "Word sense and case slot disambiguation",
-        ],
-        "volume": Array [
-          "2",
-        ],
-        "year": Array [
-          "1982",
-        ],
+        "crossref": "AAAI-82",
+        "title": "Word sense and case slot disambiguation",
+        "volume": "2",
+        "year": 1982,
       },
+      "input": String(
+        @inproceedings(Hirst:82,
+        \\tauthor =\\t{Graeme Hirst and Eugene Charniak},
+        \\tyear =\\t\\t{1982},
+        \\tcrossref =\\tAAAI-82,
+        \\ttitle =\\t\\t"Word sense and case slot disambiguation",
+        \\tvolume =\\t{2}
+        )
+      ),
       "key": "Hirst:82",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"AAAI-82\\"",
+      "input": "AAAI-82",
+      "location": Object {
+        "column": 20,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

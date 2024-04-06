@@ -21,16 +21,19 @@ Object {
             "lastName": "Wilkins",
           },
         ],
-        "note": Array [
-          "unpublished manuscript",
-        ],
-        "title": Array [
-          "Reasoning about locations in theory and practice",
-        ],
-        "year": Array [
-          "1994",
-        ],
+        "note": "unpublished manuscript",
+        "title": "Reasoning about locations in theory and practice",
+        "year": 1994,
       },
+      "input": String(
+        @UNPUBLISHED{Myers:Locations,
+        \\tAUTHOR = {Karen L. Myers and David E. Wilkins},
+        \\tTITLE = {Reasoning about Locations in Theory and 
+        \\t\\t Practice},
+        \\tNOTE = {unpublished manuscript},
+        \\tYEAR = {1994}
+        }
+      ),
       "key": "Myers:Locations",
       "type": "unpublished",
     },

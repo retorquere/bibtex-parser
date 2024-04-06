@@ -21,21 +21,32 @@ Object {
             "lastName": "Boddy",
           },
         ],
-        "booktitle": Array [
-          "AAAI-87",
-        ],
-        "title": Array [
-          "Incremental causal reasoning",
-        ],
-        "year": Array [
-          "1987",
-        ],
+        "booktitle": "<span class=\\"nocase\\">AAAI-87</span>",
+        "title": "Incremental causal reasoning",
+        "year": 1987,
       },
+      "input": String(
+        @inproceedings(Dean:87b,
+        \\tauthor =\\t{Thomas Dean and Mark Boddy},
+        \\tyear =\\t\\t{1987},
+        \\tbooktitle =\\tAAAI-87,
+        \\ttitle =\\t\\t{Incremental causal reasoning}
+        )
+      ),
       "key": "Dean:87b",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"AAAI-87\\"",
+      "input": "AAAI-87",
+      "location": Object {
+        "column": 21,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

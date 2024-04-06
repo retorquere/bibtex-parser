@@ -13,36 +13,51 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "lastName": "MCDERMOTT",
+            "name": "MCDERMOTT",
           },
         ],
-        "journal": Array [
-          "AIM",
-        ],
-        "month": Array [
-          "Summer",
-        ],
-        "number": Array [
-          2,
-        ],
-        "pages": Array [
-          "35–55",
-        ],
-        "title": Array [
-          "The 1998 <span class=\\"nocase\\">AI</span> Planning Systems Competition",
-        ],
-        "volume": Array [
-          21,
-        ],
-        "year": Array [
-          2000,
-        ],
+        "journal": "AIM",
+        "month": "Summer",
+        "number": "2",
+        "pages": "35–55",
+        "title": "The 1998 <span class=\\"nocase\\">AI</span> Planning Systems Competition",
+        "volume": "21",
+        "year": 2000,
       },
+      "input": String(
+        @Article{McDermott:2000,
+          author = \\t MCDERMOTT,
+          title = \\t "The 1998 {AI} Planning Systems Competition",
+          journal = \\t AIM,
+          year = \\t 2000,
+          volume =\\t 21,
+          number =\\t 2,
+          pages =\\t {35--55},
+          month =\\t {Summer}
+        }
+      ),
       "key": "McDermott:2000",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"MCDERMOTT\\"",
+      "input": "MCDERMOTT",
+      "location": Object {
+        "column": 23,
+        "line": 2,
+      },
+    },
+    Object {
+      "error": "Unresolved @string reference \\"AIM\\"",
+      "input": "AIM",
+      "location": Object {
+        "column": 18,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

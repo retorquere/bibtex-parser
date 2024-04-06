@@ -17,30 +17,39 @@ Object {
             "lastName": "Sidner",
           },
         ],
-        "journal": Array [
-          "CI",
-        ],
-        "number": Array [
-          "1",
-        ],
-        "pages": Array [
-          "1–10",
-        ],
-        "title": Array [
-          "Plan parsing for intended response recognition in discourse",
-        ],
-        "volume": Array [
-          "1",
-        ],
-        "year": Array [
-          "1985",
-        ],
+        "journal": "CI",
+        "number": "1",
+        "pages": "1–10",
+        "title": "Plan parsing for intended response recognition in discourse",
+        "volume": "1",
+        "year": 1985,
       },
+      "input": String(
+        @ARTICLE(Sidner:85,
+        \\tAUTHOR = {Candace L. Sidner},
+        \\tTITLE = {Plan parsing for intended response recognition
+        \\t\\t in discourse},
+        \\tJOURNAL = CI,
+        \\tYEAR = {1985},
+        \\tVOLUME = {1},
+        \\tNUMBER = {1},
+        \\tPAGES = {1--10}
+        )
+      ),
       "key": "Sidner:85",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"CI\\"",
+      "input": "CI",
+      "location": Object {
+        "column": 14,
+        "line": 5,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

@@ -17,24 +17,34 @@ Object {
             "lastName": "Norvig",
           },
         ],
-        "booktitle": Array [
-          "AAAI-87",
-        ],
-        "pages": Array [
-          "561-565",
-        ],
-        "title": Array [
-          "Inference in text understanding",
-        ],
-        "year": Array [
-          "1987",
-        ],
+        "booktitle": "AAAI-87",
+        "pages": "561-565",
+        "title": "Inference in text understanding",
+        "year": 1987,
       },
+      "input": String(
+        @inproceedings(Norvig:aaai87,
+        \\tauthor =\\t{Peter Norvig},
+        \\tyear =\\t\\t{1987},
+        \\tbooktitle =\\tAAAI-87,
+        \\tpages =\\t\\t{561-565},
+        \\ttitle =\\t\\t{Inference in Text Understanding}
+        )
+      ),
       "key": "Norvig:aaai87",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"AAAI-87\\"",
+      "input": "AAAI-87",
+      "location": Object {
+        "column": 21,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

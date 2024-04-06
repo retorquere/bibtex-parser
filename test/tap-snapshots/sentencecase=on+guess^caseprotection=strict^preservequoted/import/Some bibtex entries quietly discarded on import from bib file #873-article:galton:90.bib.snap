@@ -17,27 +17,37 @@ Object {
             "lastName": "Galton",
           },
         ],
-        "journal": Array [
-          "AIJ",
-        ],
-        "pages": Array [
-          "159–188",
-        ],
-        "title": Array [
-          "A critical examination of allen's theory of action and time",
-        ],
-        "volume": Array [
-          "42",
-        ],
-        "year": Array [
-          "1990",
-        ],
+        "journal": "AIJ",
+        "pages": "159–188",
+        "title": "A critical examination of allen's theory of action and time",
+        "volume": "42",
+        "year": 1990,
       },
+      "input": String(
+        @ARTICLE{Galton:90,
+        \\tAUTHOR = {Antony Galton},
+        \\tTITLE = {A Critical Examination of Allen's Theory of Action and
+        \\t\\t Time},
+        \\tJOURNAL = AIJ,
+        \\tYEAR = {1990},
+        \\tVOLUME = {42},
+        \\tPAGES = {159--188}
+        }
+      ),
       "key": "Galton:90",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"AIJ\\"",
+      "input": "AIJ",
+      "location": Object {
+        "column": 15,
+        "line": 5,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

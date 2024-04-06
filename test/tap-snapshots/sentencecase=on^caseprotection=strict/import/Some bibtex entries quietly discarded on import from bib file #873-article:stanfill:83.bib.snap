@@ -17,22 +17,22 @@ Object {
             "lastName": "Stanfill",
           },
         ],
-        "journal": Array [
-          "Proc. AAAI",
-        ],
-        "pages": Array [
-          "387-390",
-        ],
-        "title": Array [
-          "The decomposition of a large domain: Reasoning about machines",
-        ],
-        "volume": Array [
-          "3",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "journal": "Proc. AAAI",
+        "pages": "387-390",
+        "title": "The decomposition of a large domain: Reasoning about machines",
+        "volume": "3",
+        "year": 1983,
       },
+      "input": String(
+        @article(Stanfill:83,
+        \\tauthor =\\t{Craig Stanfill},
+        \\tyear =\\t\\t{1983},
+        \\tjournal =\\t{Proc. AAAI},
+        \\tpages =\\t\\t{387-390},
+        \\ttitle =\\t\\t"The Decomposition of a Large Domain: Reasoning about Machines",
+        \\tvolume =\\t{3}
+        )
+      ),
       "key": "Stanfill:83",
       "type": "article",
     },

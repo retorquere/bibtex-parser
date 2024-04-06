@@ -11,18 +11,14 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Cambridge, Mass.",
-        ],
+        "address": "Cambridge, Mass.",
         "author": Array [
           Object {
             "firstName": "Kent",
             "lastName": "Stevens",
           },
         ],
-        "booktitle": Array [
-          "Artificial Intelligence: An MIT Perspective",
-        ],
+        "booktitle": "Artificial Intelligence: An MIT Perspective",
         "editor": Array [
           Object {
             "firstName": "P.H.",
@@ -33,22 +29,27 @@ Object {
             "lastName": "Brown",
           },
         ],
-        "pages": Array [
-          "103-125",
-        ],
+        "pages": "103-125",
         "publisher": Array [
           "MIT Press",
         ],
-        "title": Array [
-          "Representing and analyzing surface orientation",
-        ],
-        "volume": Array [
-          "2",
-        ],
-        "year": Array [
-          "1979",
-        ],
+        "title": "Representing and analyzing surface orientation",
+        "volume": "2",
+        "year": 1979,
       },
+      "input": String(
+        @book(Stevens:1979,
+        \\tauthor =\\t{Kent Stevens},
+        \\tbooktitle =\\t{Artificial Intelligence: An MIT Perspective},
+        \\taddress =\\t{Cambridge, Mass.},
+        \\tyear =\\t\\t{1979},
+        \\teditor =\\t{P.H. Winston and R.H. Brown},
+        \\tpublisher =\\t{MIT Press},
+        \\tpages =\\t\\t{103-125},
+        \\ttitle =\\t\\t"Representing and analyzing surface orientation",
+        \\tvolume =\\t{2}
+        )
+      ),
       "key": "Stevens:1979",
       "type": "book",
     },

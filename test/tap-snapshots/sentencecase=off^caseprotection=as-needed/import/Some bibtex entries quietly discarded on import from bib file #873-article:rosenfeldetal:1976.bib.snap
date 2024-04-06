@@ -25,22 +25,22 @@ Object {
             "lastName": "Zucker",
           },
         ],
-        "journal": Array [
-          "IEEE Transactions on Systems, Man, and Cybernetics",
-        ],
-        "pages": Array [
-          "420",
-        ],
-        "title": Array [
-          "Scene labeling by relaxation operations",
-        ],
-        "volume": Array [
-          "SMC-6",
-        ],
-        "year": Array [
-          "1976",
-        ],
+        "journal": "IEEE Transactions on Systems, Man, and Cybernetics",
+        "pages": "420",
+        "title": "Scene labeling by relaxation operations",
+        "volume": "SMC-6",
+        "year": 1976,
       },
+      "input": String(
+        @article(RosenfeldETAL:1976,
+        \\tauthor =\\t{Azriel Rosenfeld and Robert Hummel and Steven Zucker},
+        \\tyear =\\t\\t{1976},
+        \\tjournal =\\t{IEEE Transactions on Systems, Man, and Cybernetics},
+        \\tpages =\\t\\t{420},
+        \\ttitle =\\t\\t"Scene labeling by relaxation operations",
+        \\tvolume =\\t{SMC-6}
+        )
+      ),
       "key": "RosenfeldETAL:1976",
       "type": "article",
     },

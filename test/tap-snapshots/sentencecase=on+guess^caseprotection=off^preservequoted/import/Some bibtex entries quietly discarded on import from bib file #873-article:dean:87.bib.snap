@@ -21,16 +21,18 @@ Object {
             "lastName": "McDermott",
           },
         ],
-        "journal": Array [
-          "Artificial Intelligence",
-        ],
-        "title": Array [
-          "Temporal data base management",
-        ],
-        "year": Array [
-          "1987",
-        ],
+        "journal": "Artificial Intelligence",
+        "title": "Temporal data base management",
+        "year": 1987,
       },
+      "input": String(
+        @article(Dean:87,
+        \\tauthor =\\t{Thomas Dean and Drew V. McDermott},
+        \\tyear =\\t\\t{1987},
+        \\tjournal =\\t{Artificial Intelligence},
+        \\ttitle =\\t\\t{Temporal data base management}
+        )
+      ),
       "key": "Dean:87",
       "type": "article",
     },

@@ -21,19 +21,21 @@ Object {
             "lastName": "Weld",
           },
         ],
-        "crossref": Array [
-          "KR:92",
-        ],
-        "pages": Array [
-          "103–114",
-        ],
-        "title": Array [
-          "UCPOP: A Sound, Complete, Partial Order Planner for ADL",
-        ],
-        "year": Array [
-          "1992",
-        ],
+        "crossref": "KR:92",
+        "pages": "103–114",
+        "title": "<span class=\\"nocase\\">UCPOP:</span> A Sound, Complete, Partial Order Planner for <span class=\\"nocase\\">ADL</span>",
+        "year": 1992,
       },
+      "input": String(
+        @INPROCEEDINGS(Penberthy:92,
+        \\tAUTHOR = {J. Scott Penberthy and Daniel S. Weld},
+        \\tTITLE = {{UCPOP:} A Sound, Complete, Partial Order Planner
+        \\t\\t for {ADL}},
+        \\tCROSSREF = {KR:92},
+        \\tYEAR = {1992},
+        \\tPAGES = {103--114}
+        )
+      ),
       "key": "Penberthy:92",
       "type": "inproceedings",
     },

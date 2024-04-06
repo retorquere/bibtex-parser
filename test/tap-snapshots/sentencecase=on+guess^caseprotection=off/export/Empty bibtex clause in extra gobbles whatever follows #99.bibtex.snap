@@ -11,22 +11,23 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "note": Array [
-          "<a href=\\"http://ptolemy.org/books/Systems\\">http://ptolemy.org/books/Systems</a>",
-        ],
-        "ptolemaeus-14-systemdesigneditor": Array [
-          "Claudius Ptolemaeus",
-        ],
+        "note": "<a href=\\"http://ptolemy.org/books/Systems\\">http://ptolemy.org/books/Systems</a>",
+        "ptolemaeus-14-systemdesigneditor": "Claudius Ptolemaeus",
         "publisher": Array [
           "Ptolemy.org",
         ],
-        "title": Array [
-          "System design, modeling, and simulation using ptolemy II",
-        ],
-        "year": Array [
-          "2014",
-        ],
+        "title": "System design, modeling, and simulation using Ptolemy II",
+        "year": 2014,
       },
+      "input": String(
+        @book{2014,
+          title = {System Design, Modeling, and Simulation Using {{Ptolemy II}}},
+          year = {2014},
+          publisher = {{Ptolemy.org}},
+          note = {\\\\url{http://ptolemy.org/books/Systems}},
+          ptolemaeus-14-systemdesigneditor = {Claudius Ptolemaeus}
+        }
+      ),
       "key": "2014",
       "type": "book",
     },

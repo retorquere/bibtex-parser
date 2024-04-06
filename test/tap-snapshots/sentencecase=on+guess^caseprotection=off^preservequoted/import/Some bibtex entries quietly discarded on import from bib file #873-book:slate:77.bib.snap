@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "David J.",
@@ -24,28 +22,32 @@ Object {
             "lastName": "Atkin",
           },
         ],
-        "booktitle": Array [
-          "Chess skill in man and machine",
-        ],
+        "booktitle": "Chess skill in man and machine",
         "editor": Array [
           Object {
             "firstName": "P.W.",
             "lastName": "Frey",
           },
         ],
-        "pages": Array [
-          "82-118",
-        ],
+        "pages": "82-118",
         "publisher": Array [
           "Springer-Verlag",
         ],
-        "title": Array [
-          "CHESS 4.5 - the northwestern university chess program",
-        ],
-        "year": Array [
-          "1977",
-        ],
+        "title": "CHESS 4.5 - the northwestern university chess program",
+        "year": 1977,
       },
+      "input": String(
+        @book(Slate:77,
+        \\tauthor =\\t{David J. Slate and Lawrence R. Atkin},
+        \\tbooktitle =\\t{Chess Skill in Man and Machine},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1977},
+        \\teditor =\\t{P.W. Frey},
+        \\tpublisher =\\t{Springer-Verlag},
+        \\tpages =\\t\\t{82-118},
+        \\ttitle =\\t\\t{CHESS 4.5 - the Northwestern University chess program}
+        )
+      ),
       "key": "Slate:77",
       "type": "book",
     },

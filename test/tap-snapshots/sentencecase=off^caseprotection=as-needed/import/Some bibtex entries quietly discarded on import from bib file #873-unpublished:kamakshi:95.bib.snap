@@ -11,28 +11,30 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "annote": Array [
-          "Describes a model of human learning in curricula, based on a markov model.",
-        ],
+        "annote": "Describes a model of human learning in curricula, based on a markov model.",
         "author": Array [
           Object {
             "firstName": "Kamakshi",
             "lastName": "Lasksminarayan",
           },
         ],
-        "month": Array [
-          "10",
-        ],
-        "note": Array [
-          "Manuscript related to thesis work.",
-        ],
-        "title": Array [
-          "Stochastic Learning Paths in Knowledge structures — with exponential learning times",
-        ],
-        "year": Array [
-          "1995",
-        ],
+        "month": 10,
+        "note": "Manuscript related to thesis work.",
+        "title": "Stochastic Learning Paths in Knowledge structures — with exponential learning times",
+        "year": 1995,
       },
+      "input": String(
+        @UNPUBLISHED{Kamakshi:95,
+        \\tAUTHOR = {Kamakshi Lasksminarayan},
+        \\tTITLE = {Stochastic Learning Paths in Knowledge structures ---
+        \\t\\t with exponential learning times},
+        \\tNOTE = {Manuscript related to thesis work.},
+        \\tMONTH = oct,
+        \\tYEAR = {1995},
+        \\tANNOTE = {Describes a model of human learning in curricula, based on
+        \\t\\t  a markov model.}
+        }
+      ),
       "key": "Kamakshi:95",
       "type": "unpublished",
     },

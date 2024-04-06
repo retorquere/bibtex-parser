@@ -17,27 +17,28 @@ Object {
             "lastName": "Arbesman von Secondname",
           },
         ],
-        "date": Array [
-          "2001",
-        ],
-        "doi": Array [
-          "10.1175/1520-0493(1987)115<1606:GARSPP>2.0.CO;2",
-        ],
-        "journaltitle": Array [
-          "Title, with comma",
-        ],
+        "date": "2001",
+        "doi": "10.1175/1520-0493(1987)115<1606:GARSPP>2.0.CO;2",
+        "journaltitle": "Title, with comma",
         "keywords": Array [
           "breadcrust",
           "plinian",
           "Vulcanian eruptions",
         ],
-        "title": Array [
-          "The Physical: Violent Volcanology of the 1600 Eruption of <span class=\\"nocase\\">Huaynaputina</span>, Southern <span class=\\"nocase\\">Peru</span>",
-        ],
-        "volume": Array [
-          "62",
-        ],
+        "title": "The Physical: Violent Volcanology of the 1600 Eruption of <span class=\\"nocase\\">Huaynaputina</span>, Southern <span class=\\"nocase\\">Peru</span>",
+        "volume": "62",
       },
+      "input": String(
+        @article{arbesmanvonsecondname2001,
+          title = {The Physical: Violent Volcanology of the 1600 Eruption of {{Huaynaputina}}, Southern {{Peru}}},
+          author = {Arbesman von Secondname, Kendra},
+          date = {2001},
+          journaltitle = {Title, with comma},
+          volume = {62},
+          doi = {10.1175/1520-0493(1987)115<1606:GARSPP>2.0.CO;2},
+          keywords = {breadcrust,plinian,Vulcanian eruptions}
+        }
+      ),
       "key": "arbesmanvonsecondname2001",
       "type": "article",
     },

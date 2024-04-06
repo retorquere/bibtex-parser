@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "KAUFMANN-ADDRESS",
-        ],
+        "address": "KAUFMANN-ADDRESS",
         "author": Array [
           Object {
             "firstName": "Peter",
@@ -23,18 +21,41 @@ Object {
         "publisher": Array [
           "KAUFMANN",
         ],
-        "title": Array [
-          "Paradigms of Artificial Intelligence Programming: Case Studies in Common Lisp",
-        ],
-        "year": Array [
-          "1991",
-        ],
+        "title": "Paradigms of Artificial Intelligence Programming: Case Studies in Common Lisp",
+        "year": 1991,
       },
+      "input": String(
+        @BOOK{Norvig:91,
+        \\tAUTHOR = {Peter Norvig},
+        \\tTITLE = {Paradigms of Artificial Intelligence Programming:
+        \\t\\t Case Studies in Common Lisp},
+        \\tPUBLISHER = KAUFMANN,
+        \\tYEAR = {1991},
+        \\tADDRESS = KAUFMANN-ADDRESS
+        }
+      ),
       "key": "Norvig:91",
       "type": "book",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"KAUFMANN\\"",
+      "input": "KAUFMANN",
+      "location": Object {
+        "column": 22,
+        "line": 5,
+      },
+    },
+    Object {
+      "error": "Unresolved @string reference \\"KAUFMANN-ADDRESS\\"",
+      "input": "KAUFMANN-ADDRESS",
+      "location": Object {
+        "column": 0,
+        "line": 8,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

@@ -17,25 +17,26 @@ Object {
             "lastName": "Vere",
           },
         ],
-        "journal": Array [
-          "IEEE Transactions on Pattern Analysis and Machine Intelligence",
-        ],
-        "number": Array [
-          "3",
-        ],
-        "pages": Array [
-          "246–267",
-        ],
-        "title": Array [
-          "Planning in time: Windows and durations for activities and goals",
-        ],
-        "volume": Array [
-          "PAMI-5",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "journal": "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+        "number": "3",
+        "pages": "246–267",
+        "title": "Planning in time: Windows and durations for activities and goals",
+        "volume": "PAMI-5",
+        "year": 1983,
       },
+      "input": String(
+        @article(Vere:83,
+        \\tauthor =\\t{Steven A. Vere},
+        \\tyear =\\t\\t{1983},
+        \\tjournal =\\t{IEEE Transactions on 
+        \\t\\t\\t Pattern Analysis and Machine Intelligence},
+        \\tnumber =\\t{3},
+        \\tpages =\\t\\t{246--267},
+        \\ttitle =\\t\\t{Planning in time:  
+        \\t\\t\\t Windows and durations for activities and goals},
+        \\tvolume =\\t{PAMI-5}
+        )
+      ),
       "key": "Vere:83",
       "type": "article",
     },

@@ -17,25 +17,24 @@ Object {
             "lastName": "Reichman",
           },
         ],
-        "journal": Array [
-          "Cognitive Science",
-        ],
-        "number": Array [
-          "4",
-        ],
-        "pages": Array [
-          "283-327",
-        ],
-        "title": Array [
-          "Conversational coherency",
-        ],
-        "volume": Array [
-          "2",
-        ],
-        "year": Array [
-          "1978",
-        ],
+        "journal": "Cognitive Science",
+        "number": "4",
+        "pages": "283-327",
+        "title": "Conversational coherency",
+        "volume": "2",
+        "year": 1978,
       },
+      "input": String(
+        @article(Reichman:78,
+        \\tauthor =\\t{Rachel Reichman},
+        \\tyear =\\t\\t{1978},
+        \\tjournal =\\t{Cognitive Science},
+        \\tnumber =\\t{4},
+        \\tpages =\\t\\t{283-327},
+        \\ttitle =\\t\\t"Conversational coherency",
+        \\tvolume =\\t{2}
+        )
+      ),
       "key": "Reichman:78",
       "type": "article",
     },

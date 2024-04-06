@@ -25,27 +25,36 @@ Object {
             "lastName": "Segre",
           },
         ],
-        "journal": Array [
-          "JAIR",
-        ],
-        "pages": Array [
-          "159–208",
-        ],
-        "title": Array [
-          "Bias-driven Revision of Logical Domain theories",
-        ],
-        "volume": Array [
-          "1",
-        ],
-        "year": Array [
-          "1994",
-        ],
+        "journal": "JAIR",
+        "pages": "159–208",
+        "title": "Bias-driven Revision of Logical Domain theories",
+        "volume": "1",
+        "year": 1994,
       },
+      "input": String(
+        @ARTICLE(Koppel:94,
+        \\tAUTHOR = {Moshe Koppel and Ronen Feldman and Alberto Maria Segre},
+        \\tTITLE = "Bias-driven Revision of Logical Domain theories",
+        \\tJOURNAL = JAIR,
+        \\tYEAR = {1994},
+        \\tVOLUME = {1},
+        \\tPAGES = {159--208}
+        )
+      ),
       "key": "Koppel:94",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"JAIR\\"",
+      "input": "JAIR",
+      "location": Object {
+        "column": 16,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

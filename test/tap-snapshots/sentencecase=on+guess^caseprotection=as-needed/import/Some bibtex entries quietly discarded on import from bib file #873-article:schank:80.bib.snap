@@ -17,22 +17,22 @@ Object {
             "lastName": "Schank",
           },
         ],
-        "journal": Array [
-          "Cognitive Science",
-        ],
-        "pages": Array [
-          "243-284",
-        ],
-        "title": Array [
-          "Language and memory",
-        ],
-        "volume": Array [
-          "4",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "journal": "Cognitive Science",
+        "pages": "243-284",
+        "title": "Language and memory",
+        "volume": "4",
+        "year": 1980,
       },
+      "input": String(
+        @article(Schank:80,
+        \\tauthor =\\t{Roger C. Schank},
+        \\tyear =\\t\\t{1980},
+        \\tjournal =\\t{Cognitive Science},
+        \\tpages =\\t\\t{243-284},
+        \\ttitle =\\t\\t"Language and Memory",
+        \\tvolume =\\t{4}
+        )
+      ),
       "key": "Schank:80",
       "type": "article",
     },

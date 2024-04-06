@@ -20,13 +20,19 @@ Object {
         "institution": Array [
           "University of Edinburgh Department of Artificial Intelligence",
         ],
-        "title": Array [
-          "Analysing mathematical proofs (or reading between the lines)",
-        ],
-        "year": Array [
-          "1975",
-        ],
+        "title": "Analysing mathematical proofs (or reading between the lines)",
+        "year": 1975,
       },
+      "input": String(
+        @techreport(Bundy:75,
+        \\tauthor =\\t{Alan Bundy},
+        \\tyear =\\t\\t{1975},
+        \\tinstitution =\\t{University of Edinburgh 
+        \\t\\t\\t Department of Artificial Intelligence},
+        \\ttitle =\\t\\t{Analysing Mathematical Proofs 
+        \\t\\t\\t (Or Reading between the Lines)}
+        )
+      ),
       "key": "Bundy:75",
       "type": "techreport",
     },

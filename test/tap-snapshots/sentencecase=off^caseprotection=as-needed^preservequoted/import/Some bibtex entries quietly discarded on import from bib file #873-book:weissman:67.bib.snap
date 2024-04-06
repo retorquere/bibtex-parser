@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Belmont, Calif.",
-        ],
+        "address": "Belmont, Calif.",
         "author": Array [
           Object {
             "firstName": "Clark",
@@ -23,13 +21,18 @@ Object {
         "publisher": Array [
           "Dickenson",
         ],
-        "title": Array [
-          "LISP 1.5 Primer",
-        ],
-        "year": Array [
-          "1967",
-        ],
+        "title": "LISP 1.5 Primer",
+        "year": 1967,
       },
+      "input": String(
+        @book(Weissman:67,
+        \\tauthor =\\t{Clark Weissman},
+        \\taddress =\\t{Belmont, Calif.},
+        \\tyear =\\t\\t{1967},
+        \\tpublisher =\\t{Dickenson},
+        \\ttitle =\\t\\t{LISP 1.5 Primer}
+        )
+      ),
       "key": "Weissman:67",
       "type": "book",
     },

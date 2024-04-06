@@ -13,36 +13,51 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "lastName": "MCDERMOTT",
+            "name": "MCDERMOTT",
           },
         ],
-        "journal": Array [
-          "IJIS",
-        ],
-        "month": Array [
-          "July",
-        ],
-        "number": Array [
-          "4",
-        ],
-        "pages": Array [
-          "357–416",
-        ],
-        "title": Array [
-          "Regression Planning",
-        ],
-        "volume": Array [
-          "6",
-        ],
-        "year": Array [
-          "1991",
-        ],
+        "journal": "IJIS",
+        "month": "July",
+        "number": "4",
+        "pages": "357–416",
+        "title": "Regression Planning",
+        "volume": "6",
+        "year": 1991,
       },
+      "input": String(
+        @ARTICLE(McDermott:Pedestal,
+        \\tAUTHOR = MCDERMOTT,
+        \\tTITLE = "Regression Planning",
+        \\tJOURNAL = IJIS,
+        \\tYEAR = {1991},
+        \\tVOLUME = {6},
+        \\tNUMBER = {4},
+        \\tPAGES = {357--416},
+        \\tMONTH = {July}
+        )
+      ),
       "key": "McDermott:Pedestal",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"MCDERMOTT\\"",
+      "input": "MCDERMOTT",
+      "location": Object {
+        "column": 20,
+        "line": 2,
+      },
+    },
+    Object {
+      "error": "Unresolved @string reference \\"IJIS\\"",
+      "input": "IJIS",
+      "location": Object {
+        "column": 16,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

@@ -21,27 +21,35 @@ Object {
             "lastName": "Tadepalli",
           },
         ],
-        "booktitle": Array [
-          "ICML-97",
-        ],
-        "date-added": Array [
-          "2010-06-22 21:27:20 -0400",
-        ],
-        "date-modified": Array [
-          "2010-06-22 21:27:20 -0400",
-        ],
-        "title": Array [
-          "Learning goal-decomposition rules using exercises",
-        ],
-        "year": Array [
-          "1997",
-        ],
+        "booktitle": "ICML-97",
+        "date-added": "2010-06-22 21:27:20 -0400",
+        "date-modified": "2010-06-22 21:27:20 -0400",
+        "title": "Learning goal-decomposition rules using exercises",
+        "year": 1997,
       },
+      "input": String(
+        @inproceedings{Reddy1997,
+        \\tAuthor = {Reddy, C. and Tadepalli, P.},
+        \\tBooktitle = ICML-97,
+        \\tDate-Added = {2010-06-22 21:27:20 -0400},
+        \\tDate-Modified = {2010-06-22 21:27:20 -0400},
+        \\tTitle = {Learning Goal-Decomposition Rules using Exercises},
+        \\tYear = {1997}}
+      ),
       "key": "Reddy1997",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"ICML-97\\"",
+      "input": "ICML-97",
+      "location": Object {
+        "column": 21,
+        "line": 3,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

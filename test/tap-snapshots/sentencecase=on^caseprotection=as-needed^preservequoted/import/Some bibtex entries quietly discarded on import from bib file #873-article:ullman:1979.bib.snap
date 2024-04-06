@@ -17,22 +17,22 @@ Object {
             "lastName": "Ullman",
           },
         ],
-        "journal": Array [
-          "Proceedings of the Royal Society",
-        ],
-        "pages": Array [
-          "405-426",
-        ],
-        "title": Array [
-          "The interpretation of structure from motion",
-        ],
-        "volume": Array [
-          "B-203",
-        ],
-        "year": Array [
-          "1979",
-        ],
+        "journal": "Proceedings of the Royal Society",
+        "pages": "405-426",
+        "title": "The interpretation of structure from motion",
+        "volume": "B-203",
+        "year": 1979,
       },
+      "input": String(
+        @article(Ullman:1979,
+        \\tauthor =\\t{Shimon Ullman},
+        \\tyear =\\t\\t{1979},
+        \\tjournal =\\t{Proceedings of the Royal Society},
+        \\tpages =\\t\\t{405-426},
+        \\ttitle =\\t\\t"The interpretation of structure from motion",
+        \\tvolume =\\t{B-203}
+        )
+      ),
       "key": "Ullman:1979",
       "type": "article",
     },

@@ -11,54 +11,42 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "adsnote": Array [
-          "Provided by the SAO/NASA Astrophysics Data System",
-        ],
-        "adsurl": Array [
-          "https://ui.adsabs.harvard.edu/abs/2019MNRAS.489..962H",
-        ],
-        "archiveprefix": Array [
-          "arXiv",
-        ],
+        "adsnote": "Provided by the SAO/NASA Astrophysics Data System",
+        "adsurl": "https://ui.adsabs.harvard.edu/abs/2019MNRAS.489..962H",
+        "archiveprefix": "arXiv",
         "author": Array [
           Object {
-            "firstName": "A. D. P.",
+            "firstName": "A. D. P.",
             "lastName": "Howard",
           },
           Object {
-            "firstName": "A. P.",
+            "firstName": "A. P.",
             "lastName": "Whitworth",
           },
           Object {
-            "firstName": "K. A.",
+            "firstName": "K. A.",
             "lastName": "Marsh",
           },
           Object {
-            "firstName": "S. D.",
+            "firstName": "S. D.",
             "lastName": "Clarke",
           },
           Object {
-            "firstName": "M. J.",
+            "firstName": "M. J.",
             "lastName": "Griffin",
           },
           Object {
-            "firstName": "M. W. L.",
+            "firstName": "M. W. L.",
             "lastName": "Smith",
           },
           Object {
-            "firstName": "O. D.",
+            "firstName": "O. D.",
             "lastName": "Lomax",
           },
         ],
-        "doi": Array [
-          "10.1093/mnras/stz2234",
-        ],
-        "eprint": Array [
-          "1908.02295",
-        ],
-        "journal": Array [
-          "Monthly Notices of the Royal Astronomical Society",
-        ],
+        "doi": "10.1093/mnras/stz2234",
+        "eprint": "1908.02295",
+        "journal": "Monthly Notices of the Royal Astronomical Society",
         "keywords": Array [
           "stars: formation",
           "dust",
@@ -67,28 +55,33 @@ Object {
           "submillimetre: ISM",
           "Astrophysics - Astrophysics of Galaxies",
         ],
-        "month": Array [
-          "10",
-        ],
-        "number": Array [
-          "1",
-        ],
-        "pages": Array [
-          "962-976",
-        ],
-        "primaryclass": Array [
-          "astro-ph.GA",
-        ],
-        "title": Array [
-          "L1495 revisited: a PPMAP view of a star-forming filament",
-        ],
-        "volume": Array [
-          "489",
-        ],
-        "year": Array [
-          "2019",
-        ],
+        "month": 10,
+        "number": "1",
+        "pages": "962-976",
+        "primaryclass": "astro-ph.GA",
+        "title": "L1495 revisited: a PPMAP view of a star-forming filament",
+        "volume": "489",
+        "year": 2019,
       },
+      "input": String(
+        @ARTICLE{2019MNRAS.489..962H,
+        author = {{Howard}, A.~D.~P. and {Whitworth}, A.~P. and {Marsh}, K.~A. and {Clarke}, S.~D. and {Griffin}, M.~J. and {Smith}, M.~W.~L. and {Lomax}, O.~D.},
+        title = "{L1495 revisited: a PPMAP view of a star-forming filament}",
+        journal = {\\\\mnras},
+        keywords = {stars: formation, dust, extinction, ISM: structure, submillimetre: ISM, Astrophysics - Astrophysics of Galaxies},
+        year = 2019,
+        month = oct,
+        volume = {489},
+        number = {1},
+        pages = {962-976},
+        doi = {10.1093/mnras/stz2234},
+        archivePrefix = {arXiv},
+        eprint = {1908.02295},
+        primaryClass = {astro-ph.GA},
+        adsurl = {https://ui.adsabs.harvard.edu/abs/2019MNRAS.489..962H},
+        adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+        }
+      ),
       "key": "2019MNRAS.489..962H",
       "type": "article",
     },
@@ -98,7 +91,13 @@ Object {
     "groups": Object {},
     "root": Array [],
   },
-  "preamble": Array [],
+  "preamble": Array [
+    String(
+      
+      \\\\newcommand{\\\\mnras}{Monthly Notices of the Royal Astronomical Society}
+      
+    ),
+  ],
   "strings": Object {},
 }
 `

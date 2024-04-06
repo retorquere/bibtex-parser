@@ -20,13 +20,17 @@ Object {
         "institution": Array [
           "Stanford University Artificial Intelligence Laboratory",
         ],
-        "title": Array [
-          "Representation and Description of Curved Objects",
-        ],
-        "year": Array [
-          "1972",
-        ],
+        "title": "Representation and Description of Curved Objects",
+        "year": 1972,
       },
+      "input": String(
+        @techreport(Agin:72,
+        \\tauthor =\\t{G.J. Agin},
+        \\tyear =\\t\\t{1972},
+        \\tinstitution =\\t{Stanford University Artificial Intelligence Laboratory},
+        \\ttitle =\\t\\t{Representation and Description of Curved Objects}
+        )
+      ),
       "key": "Agin:72",
       "type": "techreport",
     },

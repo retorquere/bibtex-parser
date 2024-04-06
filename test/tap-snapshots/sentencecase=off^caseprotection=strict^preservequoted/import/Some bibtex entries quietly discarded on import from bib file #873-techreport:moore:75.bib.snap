@@ -20,13 +20,18 @@ Object {
         "institution": Array [
           "MIT Artificial Intelligence Laboratory",
         ],
-        "title": Array [
-          "Reasoning from Incomplete Knowledge in a Procedural Deduction System",
-        ],
-        "year": Array [
-          "1975",
-        ],
+        "title": "Reasoning from Incomplete Knowledge in a Procedural Deduction System",
+        "year": 1975,
       },
+      "input": String(
+        @techreport(Moore:75,
+        \\tauthor =\\t{Robert C. Moore},
+        \\tyear =\\t\\t{1975},
+        \\tinstitution =\\t{MIT Artificial Intelligence Laboratory},
+        \\ttitle =\\t\\t{Reasoning from Incomplete Knowledge in a 
+        \\t\\t\\t Procedural Deduction System}
+        )
+      ),
       "key": "Moore:75",
       "type": "techreport",
     },

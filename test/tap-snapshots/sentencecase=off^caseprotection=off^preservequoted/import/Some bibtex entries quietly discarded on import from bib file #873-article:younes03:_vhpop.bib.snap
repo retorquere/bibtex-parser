@@ -13,7 +13,7 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "firstName": "Håkan L. S.",
+            "firstName": "Håkan L. S.",
             "lastName": "Younes",
           },
           Object {
@@ -21,33 +21,41 @@ Object {
             "lastName": "Simmons",
           },
         ],
-        "bibsource": Array [
-          "DBLP, http://dblp.uni-trier.de",
-        ],
-        "journal": Array [
-          "JAIR",
-        ],
-        "pages": Array [
-          "405-430",
-        ],
-        "title": Array [
-          "VHPOP: Versatile Heuristic Partial Order Planner.",
-        ],
-        "url": Array [
-          "http://www.cs.washington.edu/research/jair/abstracts/younes03a.html",
-        ],
-        "volume": Array [
-          20,
-        ],
-        "year": Array [
-          2003,
-        ],
+        "bibsource": "DBLP, http://dblp.uni-trier.de",
+        "journal": "JAIR",
+        "pages": "405-430",
+        "title": "<span class=\\"nocase\\">VHPOP</span>: Versatile Heuristic Partial Order Planner.",
+        "url": "http://www.cs.washington.edu/research/jair/abstracts/younes03a.html",
+        "volume": "20",
+        "year": 2003,
       },
+      "input": String(
+        @article{younes03:_vhpop,
+          author    = {H{\\\\aa}kan L. S. Younes and
+                       Reid G. Simmons},
+          title     = {{VHPOP}: Versatile Heuristic Partial Order Planner.},
+          journal   = JAIR,
+          volume    = 20,
+          year      = 2003,
+          pages     = {405-430},
+          url       = {http://www.cs.washington.edu/research/jair/abstracts/younes03a.html},
+          bibsource = {DBLP, http://dblp.uni-trier.de}
+        }
+      ),
       "key": "younes03:_vhpop",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"JAIR\\"",
+      "input": "JAIR",
+      "location": Object {
+        "column": 19,
+        "line": 5,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

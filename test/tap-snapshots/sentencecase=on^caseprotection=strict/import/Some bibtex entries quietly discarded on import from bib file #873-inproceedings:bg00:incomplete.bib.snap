@@ -17,20 +17,23 @@ Object {
             "lastName": "Bonet",
           },
           Object {
-            "firstName": "Héctor",
+            "firstName": "Héctor",
             "lastName": "Geffner",
           },
         ],
-        "crossref": Array [
-          "AIPS00",
-        ],
-        "pages": Array [
-          "52–61",
-        ],
-        "title": Array [
-          "Planning with incomplete information as heuristic search in belief space",
-        ],
+        "crossref": "AIPS00",
+        "pages": "52–61",
+        "title": "Planning with incomplete information as heuristic search in belief space",
       },
+      "input": String(
+        @InProceedings{BG00:incomplete,
+          author =\\t {Blai Bonet and H\\\\'{e}ctor Geffner},
+          title =\\t {Planning with Incomplete Information as Heuristic
+                          Search in Belief Space},
+          crossref =\\t {AIPS00},
+          pages =\\t {52--61}
+        }
+      ),
       "key": "BG00:incomplete",
       "type": "inproceedings",
     },

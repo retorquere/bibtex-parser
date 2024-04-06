@@ -21,16 +21,18 @@ Object {
             "lastName": "McDermott",
           },
         ],
-        "crossref": Array [
-          "PlanInit1",
-        ],
-        "pages": Array [
-          "467–483",
-        ],
-        "title": Array [
-          "Mixed-initiative Military Planning",
-        ],
+        "crossref": "PlanInit1",
+        "pages": "467–483",
+        "title": "Mixed-initiative Military Planning",
       },
+      "input": String(
+        @INPROCEEDINGS{Burstein:PI,
+        \\tAUTHOR = {Mark Burstein and Drew McDermott},
+        \\tTITLE = "Mixed-initiative Military Planning",
+        \\tPAGES = {467--483},
+        \\tCROSSREF = {PlanInit1}
+        }
+      ),
       "key": "Burstein:PI",
       "type": "inproceedings",
     },

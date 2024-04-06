@@ -37,24 +37,35 @@ Object {
             "lastName": "Serina",
           },
         ],
-        "booktitle": Array [
-          "IJCAI",
-        ],
-        "crossref": Array [
-          "IJCAI07",
-        ],
-        "title": Array [
-          "Domain independent approaches for finding diverse plans",
-        ],
-        "year": Array [
-          2007,
-        ],
+        "booktitle": "<span class=\\"nocase\\">IJCAI</span>",
+        "crossref": "IJCAI07",
+        "title": "Domain independent approaches for finding diverse plans",
+        "year": 2007,
       },
+      "input": String(
+        @InProceedings{RaoETALDiversity:07,
+          author =       {Biplav Srivastava and Tuan A. Nguyen and Alfonso Gerevini and
+                          Subbarao Kambhampati and Minh Binh Do and Ivan Serina},
+          title =        {Domain Independent Approaches for Finding Diverse Plans},
+          booktitle =    IJCAI,
+          year =         2007,
+          crossref =     {IJCAI07}
+        }
+      ),
       "key": "RaoETALDiversity:07",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"IJCAI\\"",
+      "input": "IJCAI",
+      "location": Object {
+        "column": 23,
+        "line": 5,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

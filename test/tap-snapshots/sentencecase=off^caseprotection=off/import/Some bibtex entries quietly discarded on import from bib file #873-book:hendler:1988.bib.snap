@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Hillsdale, NJ",
-        ],
+        "address": "Hillsdale, NJ",
         "author": Array [
           Object {
             "firstName": "James A.",
@@ -23,18 +21,32 @@ Object {
         "publisher": Array [
           "LEA",
         ],
-        "title": Array [
-          "Integrated Marker-Passing and Problem-Solving: A Spreading-Activation Approach to Improved Choice in Planning",
-        ],
-        "year": Array [
-          "1988",
-        ],
+        "title": "Integrated Marker-Passing and Problem-Solving: A Spreading-Activation Approach to Improved Choice in Planning",
+        "year": 1988,
       },
+      "input": String(
+        @book(Hendler:1988,
+        \\tauthor =\\t{James A. Hendler},
+        \\tpublisher =\\tLEA,
+        \\taddress =\\t{Hillsdale, NJ},
+        \\tyear =\\t\\t{1988},
+        \\ttitle =\\t\\t{Integrated Marker-Passing and Problem-Solving:  A Spreading-Activation Approach to Improved Choice in Planning}
+        )
+      ),
       "key": "Hendler:1988",
       "type": "book",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"LEA\\"",
+      "input": "LEA",
+      "location": Object {
+        "column": 17,
+        "line": 3,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

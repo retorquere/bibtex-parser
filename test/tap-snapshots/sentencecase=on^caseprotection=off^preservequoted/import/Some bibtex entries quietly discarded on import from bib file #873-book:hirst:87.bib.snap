@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Cambridge, England",
-        ],
+        "address": "Cambridge, England",
         "author": Array [
           Object {
             "firstName": "Graeme",
@@ -23,16 +21,20 @@ Object {
         "publisher": Array [
           "Cambridge University Press",
         ],
-        "series": Array [
-          "Studies in natural language processing",
-        ],
-        "title": Array [
-          "Semantic interpretation and the resolution of ambiguity",
-        ],
-        "year": Array [
-          "1987",
-        ],
+        "series": "Studies in natural language processing",
+        "title": "Semantic interpretation and the resolution of ambiguity",
+        "year": 1987,
       },
+      "input": String(
+        @book(Hirst:87,
+        \\tauthor =\\t{Graeme Hirst},
+        \\tpublisher =\\t{Cambridge University Press},
+        \\tseries =\\t {Studies in Natural Language Processing},
+        \\tyear =\\t\\t{1987},
+        \\taddress =\\t{Cambridge, England},
+        \\ttitle =\\t\\t{Semantic Interpretation and the Resolution of Ambiguity}
+        )
+      ),
       "key": "Hirst:87",
       "type": "book",
     },

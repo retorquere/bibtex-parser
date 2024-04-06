@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "E.V.",
@@ -27,13 +25,18 @@ Object {
         "publisher": Array [
           "Harcourt Brace Jovanovich",
         ],
-        "title": Array [
-          "Psychology and Language",
-        ],
-        "year": Array [
-          "1978",
-        ],
+        "title": "Psychology and Language",
+        "year": 1978,
       },
+      "input": String(
+        @book(Clark:78,
+        \\tauthor =\\t{E.V. Clark and H.H. Clark},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1978},
+        \\tpublisher =\\t{Harcourt Brace Jovanovich},
+        \\ttitle =\\t\\t{Psychology and Language}
+        )
+      ),
       "key": "Clark:78",
       "type": "book",
     },

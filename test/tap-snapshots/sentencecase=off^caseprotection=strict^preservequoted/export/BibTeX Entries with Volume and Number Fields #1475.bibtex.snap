@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "<span class=\\"nocase\\">United States of America</span>",
-        ],
+        "address": "United States of America",
         "author": Array [
           Object {
             "firstName": "Xintian",
@@ -28,15 +26,9 @@ Object {
             "lastName": "Sadayappan",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the <span class=\\"nocase\\">VLDB Endowment</span>",
-        ],
-        "copyright": Array [
-          "Copyright 2011 VLDB Endowment",
-        ],
-        "doi": Array [
-          "10.14778/1938545.1938548",
-        ],
+        "booktitle": "Proceedings of the <span class=\\"nocase\\">VLDB Endowment</span>",
+        "copyright": "Copyright 2011 VLDB Endowment",
+        "doi": "10.14778/1938545.1938548",
         "editor": Array [
           Object {
             "firstName": "H. V.",
@@ -67,37 +59,41 @@ Object {
             "lastName": "Röhm",
           },
         ],
-        "issn": Array [
-          "2150-8097",
-        ],
-        "language": Array [
-          "en-US",
-        ],
+        "issn": "2150-8097",
+        "language": "en-US",
         "organization": Array [
-          "<span class=\\"nocase\\">Google</span>",
+          "Google",
         ],
-        "pages": Array [
-          "231–242",
-        ],
+        "pages": "231–242",
         "publisher": Array [
           "VLDB Endowment",
         ],
-        "shorttitle": Array [
-          "Fast Sparse Matrix-Vector Multiplication on <span class=\\"nocase\\">GPUs</span>",
-        ],
-        "title": Array [
-          "Fast Sparse Matrix-Vector Multiplication on <span class=\\"nocase\\">GPUs</span>: Implications for Graph Mining",
-        ],
-        "url": Array [
-          "https://dl.acm.org/doi/10.14778/1938545.1938548",
-        ],
-        "volume": Array [
-          "4",
-        ],
-        "year": Array [
-          "2011",
-        ],
+        "shorttitle": "Fast Sparse Matrix-Vector Multiplication on <span class=\\"nocase\\">GPUs</span>",
+        "title": "Fast Sparse Matrix-Vector Multiplication on <span class=\\"nocase\\">GPUs</span>: Implications for Graph Mining",
+        "url": "https://dl.acm.org/doi/10.14778/1938545.1938548",
+        "volume": "4",
+        "year": 2011,
       },
+      "input": String(
+        @inproceedings{yang2011,
+          title = {Fast Sparse Matrix-Vector Multiplication on {{GPUs}}: Implications for Graph Mining},
+          shorttitle = {Fast Sparse Matrix-Vector Multiplication on {{GPUs}}},
+          booktitle = {Proceedings of the {{VLDB Endowment}}},
+          author = {Yang, Xintian and Parthasarathy, Srinivasan and Sadayappan, P.},
+          editor = {Jagadish, H. V. and Blakeley, José and Hellerstein, Joseph M. and Koudas, Nick and Lehner, Wolfgang and Sarawagi, Sunita and Röhm, Uwe},
+          year = {2011},
+          volume = {4},
+          pages = {231--242},
+          publisher = {{VLDB Endowment}},
+          address = {{United States of America}},
+          issn = {2150-8097},
+          doi = {10.14778/1938545.1938548},
+          url = {https://dl.acm.org/doi/10.14778/1938545.1938548},
+          copyright = {Copyright 2011 VLDB Endowment},
+          language = {en-US},
+          organization = {{Google}}
+        }
+      ),
       "key": "yang2011",
       "type": "inproceedings",
     },

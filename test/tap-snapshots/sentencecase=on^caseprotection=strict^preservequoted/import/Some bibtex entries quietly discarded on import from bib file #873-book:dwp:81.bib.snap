@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Dordrecht",
-        ],
+        "address": "Dordrecht",
         "author": Array [
           Object {
             "firstName": "David R.",
@@ -31,13 +29,18 @@ Object {
         "publisher": Array [
           "Reidel",
         ],
-        "title": Array [
-          "Introduction to montague semantics",
-        ],
-        "year": Array [
-          "1981",
-        ],
+        "title": "Introduction to montague semantics",
+        "year": 1981,
       },
+      "input": String(
+        @book(DWP:81,
+        \\tauthor =\\t{David R. Dowty and Robert E. Wall and Stanley Peters},
+        \\taddress =\\t{Dordrecht},
+        \\tyear =\\t\\t{1981},
+        \\tpublisher =\\t{Reidel},
+        \\ttitle =\\t\\t{Introduction to Montague Semantics}
+        )
+      ),
       "key": "DWP:81",
       "type": "book",
     },

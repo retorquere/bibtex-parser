@@ -20,19 +20,23 @@ Object {
         "institution": Array [
           "Intelligent Systems Program, University of Pittsburgh",
         ],
-        "month": Array [
-          "08",
-        ],
-        "note": Array [
-          "Version 1.0 alpha 12",
-        ],
-        "title": Array [
-          "A developer's guide to the longbow discourse planning system",
-        ],
-        "year": Array [
-          "1996",
-        ],
+        "month": 8,
+        "note": "Version 1.0 alpha 12",
+        "title": "A developer's guide to the longbow discourse planning system",
+        "year": 1996,
       },
+      "input": String(
+        @TECHREPORT{Young:96,
+        \\tAUTHOR = {R. Michael Young},
+        \\tTITLE = {A Developer's Guide to the Longbow Discourse
+        \\t\\t Planning System},
+        \\tINSTITUTION = {Intelligent Systems Program,
+        \\t\\t       University of Pittsburgh},
+        \\tYEAR = {1996},
+        \\tMONTH = aug,
+        \\tNOTE = {Version 1.0 alpha 12}
+        }
+      ),
       "key": "Young:96",
       "type": "techreport",
     },

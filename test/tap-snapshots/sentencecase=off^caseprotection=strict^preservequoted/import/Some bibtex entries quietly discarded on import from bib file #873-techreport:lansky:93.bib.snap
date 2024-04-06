@@ -20,19 +20,22 @@ Object {
         "institution": Array [
           "NASA Ames Research Center",
         ],
-        "month": Array [
-          "06",
-        ],
-        "number": Array [
-          "FIA-93-17",
-        ],
-        "title": Array [
-          "Localized Planning with Diversified Plan Construction Methods",
-        ],
-        "year": Array [
-          "1993",
-        ],
+        "month": 6,
+        "number": "FIA-93-17",
+        "title": "Localized Planning with Diversified Plan Construction Methods",
+        "year": 1993,
       },
+      "input": String(
+        @TECHREPORT(Lansky:93,
+        \\tAUTHOR = {Amy L. Lansky},
+        \\tTITLE = {Localized Planning with Diversified Plan Construction
+        \\t\\t Methods},
+        \\tINSTITUTION = {NASA Ames Research Center},
+        \\tYEAR = {1993},
+        \\tNUMBER = {FIA-93-17},
+        \\tMONTH = jun
+        )
+      ),
       "key": "Lansky:93",
       "type": "techreport",
     },

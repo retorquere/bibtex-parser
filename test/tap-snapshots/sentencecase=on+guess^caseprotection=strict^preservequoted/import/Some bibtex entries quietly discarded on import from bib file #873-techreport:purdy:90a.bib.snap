@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Syracuse, NY",
-        ],
+        "address": "Syracuse, NY",
         "author": Array [
           Object {
             "firstName": "William C.",
@@ -21,21 +19,27 @@ Object {
           },
         ],
         "institution": Array [
-          "School of Computer and Information Science, Syracuse University",
+          "School of Computer",
+          "Information Science, Syracuse University",
         ],
-        "month": Array [
-          "09",
-        ],
-        "number": Array [
-          "SU-CIS-90-15",
-        ],
-        "title": Array [
-          "Surface reasoning",
-        ],
-        "year": Array [
-          "1990",
-        ],
+        "month": 9,
+        "number": "SU-CIS-90-15",
+        "title": "Surface reasoning",
+        "year": 1990,
       },
+      "input": String(
+        @TECHREPORT{Purdy:90a,
+        \\t    
+        \\tAUTHOR = {William C. Purdy},
+        \\tTITLE = "Surface Reasoning",
+        \\tINSTITUTION = {School of Computer and Information Science,
+        \\t\\t       Syracuse University},
+        \\tYEAR = {1990},
+        \\tNUMBER = {SU-CIS-90-15},
+        \\tADDRESS = {Syracuse, NY},
+        \\tMONTH = sep
+        }
+      ),
       "key": "Purdy:90a",
       "type": "techreport",
     },

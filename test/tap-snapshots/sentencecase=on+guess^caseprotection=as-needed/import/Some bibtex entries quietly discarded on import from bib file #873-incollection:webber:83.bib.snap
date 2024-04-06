@@ -17,16 +17,18 @@ Object {
             "lastName": "Webber",
           },
         ],
-        "crossref": Array [
-          "BradyandBerwick",
-        ],
-        "pages": Array [
-          "331–371",
-        ],
-        "title": Array [
-          "So what can we talk about now?",
-        ],
+        "crossref": "BradyandBerwick",
+        "pages": "331–371",
+        "title": "So what can we talk about now?",
       },
+      "input": String(
+        @INCOLLECTION{Webber:83,
+        \\tAUTHOR = {Bonnie Lynn Webber},
+        \\tTITLE = "So what can we talk about now?",
+        \\tCROSSREF = {BradyandBerwick},
+        \\tPAGES = {331--371}
+        }
+      ),
       "key": "Webber:83",
       "type": "incollection",
     },

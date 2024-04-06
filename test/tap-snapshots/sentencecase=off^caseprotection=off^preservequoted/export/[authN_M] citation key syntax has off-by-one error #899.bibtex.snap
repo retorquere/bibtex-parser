@@ -13,37 +13,36 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "lastName": "One, Author",
+            "name": "One, Author",
           },
           Object {
-            "lastName": "Two, Author",
+            "name": "Two, Author",
           },
           Object {
-            "lastName": "Three, Author",
+            "name": "Three, Author",
           },
           Object {
-            "lastName": "Four, Author",
+            "name": "Four, Author",
           },
         ],
-        "journal": Array [
-          "A Fancy Journal",
-        ],
-        "number": Array [
-          "1",
-        ],
-        "pages": Array [
-          "1–2",
-        ],
-        "title": Array [
-          "My Article",
-        ],
-        "volume": Array [
-          "1",
-        ],
-        "year": Array [
-          "2018",
-        ],
+        "journal": "A Fancy Journal",
+        "number": "1",
+        "pages": "1–2",
+        "title": "My <span class=\\"nocase\\">Article</span>",
+        "volume": "1",
+        "year": 2018,
       },
+      "input": String(
+        @article{OnTwTh2018,
+          title = {My {{Article}}},
+          author = {{One, Author} and {Two, Author} and {Three, Author} and {Four, Author}},
+          year = {2018},
+          volume = {1},
+          pages = {1--2},
+          journal = {A Fancy Journal},
+          number = {1}
+        }
+      ),
       "key": "OnTwTh2018",
       "type": "article",
     },

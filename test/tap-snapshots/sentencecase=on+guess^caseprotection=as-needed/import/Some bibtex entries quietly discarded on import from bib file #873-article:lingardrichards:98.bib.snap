@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "annote": Array [
-          "Describes a number of strategies for planning with temporally-extended actions. Possibly useful for the AMP for SEC?",
-        ],
+        "annote": "Describes a number of strategies for planning with temporally-extended actions. Possibly useful for the AMP for SEC?",
         "author": Array [
           Object {
             "firstName": "A. R.",
@@ -24,30 +22,41 @@ Object {
             "lastName": "Richards",
           },
         ],
-        "journal": Array [
-          "AIJ",
-        ],
-        "number": Array [
-          "2",
-        ],
-        "pages": Array [
-          "261–324",
-        ],
-        "title": Array [
-          "Planning parallel actions",
-        ],
-        "volume": Array [
-          "99",
-        ],
-        "year": Array [
-          "1998",
-        ],
+        "journal": "AIJ",
+        "number": "2",
+        "pages": "261–324",
+        "title": "Planning parallel actions",
+        "volume": "99",
+        "year": 1998,
       },
+      "input": String(
+        @ARTICLE{LingardRichards:98,
+        \\tAUTHOR = {A. R. Lingard and E. B. Richards},
+        \\tTITLE = "Planning Parallel Actions",
+        \\tJOURNAL = AIJ,
+        \\tYEAR = {1998},
+        \\tVOLUME = {99},
+        \\tNUMBER = {2},
+        \\tPAGES = {261--324},
+        \\tANNOTE = {Describes a number of strategies for planning with
+        \\t\\t  temporally-extended actions.  Possibly useful for
+        \\t\\t  the AMP for SEC?}
+        }
+      ),
       "key": "LingardRichards:98",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"AIJ\\"",
+      "input": "AIJ",
+      "location": Object {
+        "column": 15,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Chicago",
-        ],
+        "address": "Chicago",
         "author": Array [
           Object {
             "firstName": "George",
@@ -27,13 +25,18 @@ Object {
         "publisher": Array [
           "University of Chicago Press",
         ],
-        "title": Array [
-          "Metaphors We Live By",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "title": "Metaphors We Live By",
+        "year": 1980,
       },
+      "input": String(
+        @book(Lakoff:80,
+        \\tauthor =\\t{George Lakoff and M. Johnson},
+        \\taddress =\\t{Chicago},
+        \\tyear =\\t\\t{1980},
+        \\tpublisher =\\t{University of Chicago Press},
+        \\ttitle =\\t\\t{Metaphors We Live By}
+        )
+      ),
       "key": "Lakoff:80",
       "type": "book",
     },

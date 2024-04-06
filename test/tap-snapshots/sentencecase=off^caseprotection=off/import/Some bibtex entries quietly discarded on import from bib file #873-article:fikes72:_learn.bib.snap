@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "annote": Array [
-          "Wow! A paper containing the germs of a vast amount of other work. Explains how <span style=\\"font-variant:small-caps;\\">Strips</span> plans are to be executed, stored, and reused. The key to all of these techniques are the <i>triangle tables</i>, which are a limited form of explanation-based learning. They also underly the approach to execution monitoring. For the plan monitoring, the triangle table contains a cached out representation of the preconditions necessary for execution of each plan suffix. So the executor monitors the truth of each of these preconditions, allowing it both to re-execute failed prefixes and exploit opportunities to skip steps.",
-        ],
+        "annote": "Wow! A paper containing the germs of a vast amount of other work. Explains how <span style=\\"font-variant:small-caps;\\">Strips</span> plans are to be executed, stored, and reused. The key to all of these techniques are the <i>triangle tables</i>, which are a limited form of explanation-based learning. They also underly the approach to execution monitoring. For the plan monitoring, the triangle table contains a cached out representation of the preconditions necessary for execution of each plan suffix. So the executor monitors the truth of each of these preconditions, allowing it both to re-execute failed prefixes and exploit opportunities to skip steps.",
         "author": Array [
           Object {
             "firstName": "Richard",
@@ -28,30 +26,51 @@ Object {
             "lastName": "Nilsson",
           },
         ],
-        "journal": Array [
-          "AIJ",
-        ],
-        "note": Array [
-          "Republished in  PlanReadings.",
-        ],
-        "pages": Array [
-          "251–288",
-        ],
-        "title": Array [
-          "Learning and executing generalized robot plans",
-        ],
-        "volume": Array [
-          3,
-        ],
-        "year": Array [
-          1972,
-        ],
+        "journal": "AIJ",
+        "note": "Republished in  PlanReadings.",
+        "pages": "251–288",
+        "title": "Learning and executing generalized robot plans",
+        "volume": "3",
+        "year": 1972,
       },
+      "input": String(
+        @Article{fikes72:_learn,
+          author =\\t {Richard Fikes and Peter Hart and Nils Nilsson},
+          title =\\t {Learning and executing generalized robot plans},
+          journal =\\t AIJ,
+          year =\\t 1972,
+          volume =\\t 3,
+          pages =\\t {251--288},
+          note =\\t {Republished in ~\\\\cite{PlanReadings}.},
+          annote =\\t {Wow! A paper containing the germs of a vast amount
+                          of other work. Explains how \\\\textsc{Strips} plans
+                          are to be executed, stored, and reused. The key to
+                          all of these techniques are the \\\\emph{triangle
+                          tables}, which are a limited form of
+                          explanation-based learning. They also underly the
+                          approach to execution monitoring. For the plan
+                          monitoring, the triangle table contains a cached out
+                          representation of the preconditions necessary for
+                          execution of each plan suffix. So the executor
+                          monitors the truth of each of these preconditions,
+                          allowing it both to re-execute failed prefixes and
+                          exploit opportunities to skip steps.}
+        }
+      ),
       "key": "fikes72:_learn",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"AIJ\\"",
+      "input": "AIJ",
+      "location": Object {
+        "column": 17,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

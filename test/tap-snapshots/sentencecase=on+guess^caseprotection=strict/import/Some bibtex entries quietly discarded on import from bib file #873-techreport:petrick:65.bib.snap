@@ -20,13 +20,17 @@ Object {
         "institution": Array [
           "MIT",
         ],
-        "title": Array [
-          "A recognition procedure for transformational grammars",
-        ],
-        "year": Array [
-          "1965",
-        ],
+        "title": "A recognition procedure for transformational grammars",
+        "year": 1965,
       },
+      "input": String(
+        @techreport(Petrick:65,
+        \\tauthor =\\t{Stanley R. Petrick},
+        \\tyear =\\t\\t{1965},
+        \\tinstitution =\\t{MIT},
+        \\ttitle =\\t\\t{A Recognition Procedure for Transformational Grammars}
+        )
+      ),
       "key": "Petrick:65",
       "type": "techreport",
     },

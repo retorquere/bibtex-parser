@@ -13,7 +13,7 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "lastName": "FREED",
+            "name": "FREED",
           },
           Object {
             "firstName": "R.",
@@ -24,24 +24,39 @@ Object {
             "lastName": "Shafto",
           },
         ],
-        "booktitle": Array [
-          "Working notes of the <span class=\\"nocase\\">AAAI</span> spring symposium on human interaction with autonomous system over extended operations",
-        ],
+        "booktitle": "Working notes of the <span class=\\"nocase\\">AAAI</span> spring symposium on human interaction with autonomous system over extended operations",
         "location": Array [
           "Falmouth, MA",
         ],
-        "title": Array [
-          "Human-interaction challenges in UAV-based autonomous surveillance",
-        ],
-        "year": Array [
-          2004,
-        ],
+        "title": "Human-interaction challenges in UAV-based autonomous surveillance",
+        "year": 2004,
       },
+      "input": String(
+        @InProceedings{freed04:human_uav_auton_surveil,
+          author =\\t FREED # { and R. Harris and M.G. Shafto},
+          title =\\t {Human-interaction challenges in UAV-based Autonomous
+                          Surveillance},
+          booktitle =\\t {Working Notes of the {AAAI} Spring Symposium on
+                          Human Interaction with Autonomous System Over
+                          Extended Operations},
+          location = \\t {Falmouth, MA},
+          year =\\t 2004
+        }
+      ),
       "key": "freed04:human_uav_auton_surveil",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"FREED\\"",
+      "input": "FREED",
+      "location": Object {
+        "column": 18,
+        "line": 2,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

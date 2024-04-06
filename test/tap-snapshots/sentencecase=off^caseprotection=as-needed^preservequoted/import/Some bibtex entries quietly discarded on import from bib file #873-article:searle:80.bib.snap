@@ -17,27 +17,36 @@ Object {
             "lastName": "Searle",
           },
         ],
-        "journal": Array [
-          "COGSCI",
-        ],
-        "pages": Array [
-          "47–70",
-        ],
-        "title": Array [
-          "The Intentionality of Intention and Action",
-        ],
-        "volume": Array [
-          "4",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "journal": "COGSCI",
+        "pages": "47–70",
+        "title": "The Intentionality of Intention and Action",
+        "volume": "4",
+        "year": 1980,
       },
+      "input": String(
+        @ARTICLE{Searle:80,
+        \\tAUTHOR = {John R. Searle},
+        \\tTITLE = "The Intentionality of Intention and Action",
+        \\tJOURNAL = COGSCI,
+        \\tYEAR = {1980},
+        \\tVOLUME = {4},
+        \\tPAGES = {47--70}
+        }
+      ),
       "key": "Searle:80",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"COGSCI\\"",
+      "input": "COGSCI",
+      "location": Object {
+        "column": 18,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

@@ -33,16 +33,21 @@ Object {
             "lastName": "Smith",
           },
         ],
-        "booktitle": Array [
-          "Fifteenth International Joint Conference on Artificial Intelligence",
-        ],
-        "title": Array [
-          "Robust Periodic Planning and Execution for Autonomous Spacecraft",
-        ],
-        "year": Array [
-          "1997",
-        ],
+        "booktitle": "Fifteenth International Joint Conference on Artificial Intelligence",
+        "title": "Robust Periodic Planning and Execution for Autonomous Spacecraft",
+        "year": 1997,
       },
+      "input": String(
+        @INPROCEEDINGS{PellETAL:97,
+        \\tAUTHOR = {Barney Pell and Erann Gat and Ron Keesing and 
+        \\t\\t  Nicola Muscettola and Ben Smith},
+        \\tTITLE = {Robust Periodic Planning and Execution for
+        \\t\\t Autonomous Spacecraft},
+        \\tBOOKTITLE = {Fifteenth International Joint Conference on 
+        \\t\\t     Artificial Intelligence},
+        \\tYEAR = {1997}
+        }
+      ),
       "key": "PellETAL:97",
       "type": "inproceedings",
     },

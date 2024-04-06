@@ -17,19 +17,20 @@ Object {
             "lastName": "Biermann",
           },
         ],
-        "journal": Array [
-          "Advances in Computers",
-        ],
-        "title": Array [
-          "Approaches to automatic programming",
-        ],
-        "volume": Array [
-          "15",
-        ],
-        "year": Array [
-          "1975",
-        ],
+        "journal": "Advances in Computers",
+        "title": "Approaches to automatic programming",
+        "volume": "15",
+        "year": 1975,
       },
+      "input": String(
+        @article(Biermann:75,
+        \\tauthor =\\t{Alan W. Biermann},
+        \\tyear =\\t\\t{1975},
+        \\tjournal =\\t{Advances in Computers},
+        \\ttitle =\\t\\t"Approaches to automatic programming",
+        \\tvolume =\\t{15}
+        )
+      ),
       "key": "Biermann:75",
       "type": "article",
     },

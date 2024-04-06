@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "College Park, MD",
-        ],
+        "address": "College Park, MD",
         "author": Array [
           Object {
             "firstName": "Kutluhan",
@@ -31,16 +29,20 @@ Object {
         "institution": Array [
           "Computer Science Department, University of Maryland",
         ],
-        "number": Array [
-          "CS-TR-3239 and UMIACS-TR-94-31",
-        ],
-        "title": Array [
-          "Semantics for hierarchical task-network planning",
-        ],
-        "year": Array [
-          "1994",
-        ],
+        "number": "CS-TR-3239 and UMIACS-TR-94-31",
+        "title": "Semantics for hierarchical task-network planning",
+        "year": 1994,
       },
+      "input": String(
+        @TECHREPORT{Erol:HTNSemantics,
+        \\tAUTHOR = {Kutluhan Erol and James Hendler and Dana S. Nau},
+        \\tTITLE = "Semantics for Hierarchical Task-Network Planning",
+        \\tINSTITUTION = {Computer Science Department, University of Maryland},
+        \\tYEAR = {1994},
+        \\tNUMBER = {CS-TR-3239 and UMIACS-TR-94-31},
+        \\tADDRESS = {College Park, MD}
+        }
+      ),
       "key": "Erol:HTNSemantics",
       "type": "techreport",
     },

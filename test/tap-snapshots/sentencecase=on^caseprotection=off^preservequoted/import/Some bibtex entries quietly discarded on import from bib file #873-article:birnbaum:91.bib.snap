@@ -17,27 +17,37 @@ Object {
             "lastName": "Birnbaum",
           },
         ],
-        "journal": Array [
-          "AIJ",
-        ],
-        "pages": Array [
-          "57–77",
-        ],
-        "title": Array [
-          "Rigor mortis: a response to nilsson's “Logic and artificial intelligence”",
-        ],
-        "volume": Array [
-          "47",
-        ],
-        "year": Array [
-          "1991",
-        ],
+        "journal": "AIJ",
+        "pages": "57–77",
+        "title": "Rigor mortis: a response to Nilsson's “Logic and Artificial Intelligence”",
+        "volume": "47",
+        "year": 1991,
       },
+      "input": String(
+        @ARTICLE{Birnbaum:91,
+        \\tAUTHOR = {Lawrence Birnbaum},
+        \\tTITLE = {Rigor Mortis:  a response to {N}ilsson's 
+        \\t\\t \`\`Logic and Artificial Intelligence''},
+        \\tJOURNAL = AIJ,
+        \\tYEAR = {1991},
+        \\tVOLUME = {47},
+        \\tPAGES = {57--77}
+        }
+      ),
       "key": "Birnbaum:91",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"AIJ\\"",
+      "input": "AIJ",
+      "location": Object {
+        "column": 15,
+        "line": 5,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

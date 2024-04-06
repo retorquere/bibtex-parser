@@ -17,22 +17,22 @@ Object {
             "lastName": "Freuder",
           },
         ],
-        "journal": Array [
-          "Proc. AAAI",
-        ],
-        "pages": Array [
-          "18-20",
-        ],
-        "title": Array [
-          "Information needed to label a scene",
-        ],
-        "volume": Array [
-          "1",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "journal": "Proc. AAAI",
+        "pages": "18-20",
+        "title": "Information needed to label a scene",
+        "volume": "1",
+        "year": 1980,
       },
+      "input": String(
+        @article(Freuder:80,
+        \\tauthor =\\t{Eugene C. Freuder},
+        \\tyear =\\t\\t{1980},
+        \\tjournal =\\t{Proc. AAAI},
+        \\tpages =\\t\\t{18-20},
+        \\ttitle =\\t\\t"Information needed to label a scene",
+        \\tvolume =\\t{1}
+        )
+      ),
       "key": "Freuder:80",
       "type": "article",
     },

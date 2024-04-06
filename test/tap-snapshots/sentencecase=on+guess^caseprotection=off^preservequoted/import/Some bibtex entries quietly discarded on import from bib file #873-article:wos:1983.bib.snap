@@ -17,19 +17,20 @@ Object {
             "lastName": "Wos",
           },
         ],
-        "journal": Array [
-          "Proc. Ijcai",
-        ],
-        "title": Array [
-          "Automated reasoning: real uses and potential uses",
-        ],
-        "volume": Array [
-          "8",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "journal": "Proc. Ijcai",
+        "title": "Automated reasoning: real uses and potential uses",
+        "volume": "8",
+        "year": 1983,
       },
+      "input": String(
+        @article(Wos:1983,
+        \\tauthor =\\t{L. Wos},
+        \\tyear =\\t\\t{1983},
+        \\tjournal =\\t{Proc. Ijcai},
+        \\ttitle =\\t\\t"Automated reasoning: real uses and potential uses",
+        \\tvolume =\\t{8}
+        )
+      ),
       "key": "Wos:1983",
       "type": "article",
     },

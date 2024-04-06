@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Krakow",
-        ],
+        "address": "Krakow",
         "author": Array [
           Object {
             "firstName": "Thomas",
@@ -32,25 +30,27 @@ Object {
             "lastName": "Polifke",
           },
         ],
-        "booktitle": Array [
-          "7th Forum Acusticum",
-        ],
+        "booktitle": "7th Forum Acusticum",
         "keywords": Array [
           "NonPerRev",
         ],
-        "month": Array [
-          "09",
-        ],
-        "note": Array [
-          "<a href=\\"http://www.fa2014.agh.edu.pl/fa2014_cd/\\">http://www.fa2014.agh.edu.pl/fa2014_cd/</a>",
-        ],
-        "title": Array [
-          "taX - a Flexible Tool for Low-Order Duct Acoustic Simulation in Time and Frequency Domain",
-        ],
-        "year": Array [
-          "2014",
-        ],
+        "month": 9,
+        "note": "<a href=\\"http://www.fa2014.agh.edu.pl/fa2014_cd/\\">http://www.fa2014.agh.edu.pl/fa2014_cd/</a>",
+        "title": "taX - a Flexible Tool for Low-Order Duct Acoustic Simulation in Time and Frequency Domain",
+        "year": 2014,
       },
+      "input": String(
+        @inproceedings{EmmerJaens14a,
+          title = {{{taX}} - a {{Flexible Tool}} for {{Low}}-{{Order Duct Acoustic Simulation}} in {{Time}} and {{Frequency Domain}}},
+          booktitle = {7th {{Forum Acusticum}}},
+          author = {Emmert, Thomas and Jaensch, Stefan and Sovardi, Carlo and Polifke, Wolfgang},
+          year = {2014},
+          month = sep,
+          address = {{Krakow}},
+          keywords = {NonPerRev},
+          note = {\\\\url{http://www.fa2014.agh.edu.pl/fa2014_cd/}}
+        }
+      ),
       "key": "EmmerJaens14a",
       "type": "inproceedings",
     },

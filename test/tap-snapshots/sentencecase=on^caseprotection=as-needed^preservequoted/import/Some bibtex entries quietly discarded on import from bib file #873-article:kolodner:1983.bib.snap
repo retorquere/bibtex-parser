@@ -17,22 +17,22 @@ Object {
             "lastName": "Kolodner",
           },
         ],
-        "journal": Array [
-          "Cognitive Science",
-        ],
-        "pages": Array [
-          "243-280",
-        ],
-        "title": Array [
-          "Maintaining organization in a dynamic long-term memory",
-        ],
-        "volume": Array [
-          "7",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "journal": "Cognitive Science",
+        "pages": "243-280",
+        "title": "Maintaining organization in a dynamic long-term memory",
+        "volume": "7",
+        "year": 1983,
       },
+      "input": String(
+        @article(Kolodner:1983,
+        \\tauthor =\\t{Janet Kolodner},
+        \\tyear =\\t\\t{1983},
+        \\tjournal =\\t{Cognitive Science},
+        \\tpages =\\t\\t{243-280},
+        \\ttitle =\\t\\t"Maintaining organization in a dynamic long-term memory",
+        \\tvolume =\\t{7}
+        )
+      ),
       "key": "Kolodner:1983",
       "type": "article",
     },

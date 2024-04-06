@@ -18,24 +18,25 @@ Object {
           },
         ],
         "institution": Array [
-          "Linköping University",
+          "Linköping University",
         ],
-        "month": Array [
-          "09",
-        ],
-        "note": Array [
-          "Preliminary version of Chapters 1-9 of a book",
-        ],
-        "number": Array [
-          "LiTH-IDA-R-92-30",
-        ],
-        "title": Array [
-          "Features and fluents",
-        ],
-        "year": Array [
-          "1992",
-        ],
+        "month": 9,
+        "note": "Preliminary version of Chapters 1-9 of a book",
+        "number": "LiTH-IDA-R-92-30",
+        "title": "Features and fluents",
+        "year": 1992,
       },
+      "input": String(
+        @TECHREPORT(Sandewall:92,
+        \\tAUTHOR = {Erik Sandewall},
+        \\tTITLE = "Features and Fluents",
+        \\tINSTITUTION = {Link\\\\"oping University},
+        \\tNUMBER = {LiTH-IDA-R-92-30},\\t\\t       
+        \\tYEAR = {1992},
+        \\tMONTH = sep,
+        \\tNOTE = {Preliminary version of Chapters 1-9 of a book}
+        )
+      ),
       "key": "Sandewall:92",
       "type": "techreport",
     },

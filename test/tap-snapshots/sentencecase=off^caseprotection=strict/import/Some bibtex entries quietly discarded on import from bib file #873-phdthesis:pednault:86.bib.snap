@@ -11,28 +11,28 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Stanford, CA",
-        ],
+        "address": "Stanford, CA",
         "author": Array [
           Object {
             "firstName": "E.P.D.",
             "lastName": "Pednault",
           },
         ],
-        "month": Array [
-          "December",
-        ],
-        "school": Array [
-          "Stanford University",
-        ],
-        "title": Array [
-          "Toward a Mathematical Theory of Plan Synthesis",
-        ],
-        "year": Array [
-          "1986",
-        ],
+        "month": "December",
+        "school": "Stanford University",
+        "title": "Toward a Mathematical Theory of Plan Synthesis",
+        "year": 1986,
       },
+      "input": String(
+        @PHDTHESIS(Pednault:86,
+        \\tAUTHOR = {E.P.D. Pednault},
+        \\tTITLE = "Toward a Mathematical Theory of Plan Synthesis",
+        \\tSCHOOL = {Stanford University},
+        \\tYEAR = {1986},
+        \\tADDRESS = {Stanford, CA},
+        \\tMONTH = {December}
+        )
+      ),
       "key": "Pednault:86",
       "type": "phdthesis",
     },

@@ -17,19 +17,20 @@ Object {
             "lastName": "Steele",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the ACM Symposium on Lisp and Functional Programming",
-        ],
-        "pages": Array [
-          "98-107",
-        ],
-        "title": Array [
-          "An overview of Common LISP",
-        ],
-        "year": Array [
-          "1982",
-        ],
+        "booktitle": "Proceedings of the ACM Symposium on Lisp and Functional Programming",
+        "pages": "98-107",
+        "title": "An overview of Common LISP",
+        "year": 1982,
       },
+      "input": String(
+        @misc(Steele:1982,
+        \\tauthor =\\t{Guy L. Steele},
+        \\tbooktitle =\\t{Proceedings of the ACM Symposium on Lisp and Functional Programming},
+        \\tyear =\\t\\t{1982},
+        \\tpages =\\t\\t{98-107},
+        \\ttitle =\\t\\t{An overview of Common LISP}
+        )
+      ),
       "key": "Steele:1982",
       "type": "misc",
     },

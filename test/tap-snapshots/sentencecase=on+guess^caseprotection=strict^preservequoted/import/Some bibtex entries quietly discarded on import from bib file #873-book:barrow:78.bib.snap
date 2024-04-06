@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "H.",
@@ -24,9 +22,7 @@ Object {
             "lastName": "Tenenbaum",
           },
         ],
-        "booktitle": Array [
-          "Computer vision systems",
-        ],
+        "booktitle": "Computer vision systems",
         "editor": Array [
           Object {
             "firstName": "A.",
@@ -40,13 +36,20 @@ Object {
         "publisher": Array [
           "Academic Press",
         ],
-        "title": Array [
-          "Recovering intrinsic scene characteristics from images",
-        ],
-        "year": Array [
-          "1978",
-        ],
+        "title": "Recovering intrinsic scene characteristics from images",
+        "year": 1978,
       },
+      "input": String(
+        @book(Barrow:78,
+        \\tauthor =\\t{H. Barrow and J.M. Tenenbaum},
+        \\tbooktitle =\\t{Computer Vision Systems},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1978},
+        \\teditor =\\t{A. Hanson and E. Riseman},
+        \\tpublisher =\\t{Academic Press},
+        \\ttitle =\\t\\t{Recovering intrinsic scene characteristics from images}
+        )
+      ),
       "key": "Barrow:78",
       "type": "book",
     },

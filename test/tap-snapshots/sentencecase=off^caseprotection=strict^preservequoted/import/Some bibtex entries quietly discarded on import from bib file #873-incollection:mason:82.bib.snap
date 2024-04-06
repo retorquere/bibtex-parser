@@ -11,21 +11,15 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "MITP-ADDRESS",
-        ],
+        "address": "MITP-ADDRESS",
         "author": Array [
           Object {
             "firstName": "Matthew T.",
             "lastName": "Mason",
           },
         ],
-        "booktitle": Array [
-          "Robot Motion: Planning and Control",
-        ],
-        "chapter": Array [
-          "5",
-        ],
+        "booktitle": "Robot Motion: Planning and Control",
+        "chapter": "5",
         "editor": Array [
           Object {
             "firstName": "Michael",
@@ -48,24 +42,49 @@ Object {
             "lastName": "Mason",
           },
         ],
-        "pages": Array [
-          "305–322",
-        ],
+        "pages": "305–322",
         "publisher": Array [
           "MITP",
         ],
-        "title": Array [
-          "Compliant Motion",
-        ],
-        "year": Array [
-          "1982",
-        ],
+        "title": "Compliant Motion",
+        "year": 1982,
       },
+      "input": String(
+        @INCOLLECTION(Mason:82,
+        \\tAUTHOR = {Matthew T. Mason},
+        \\tTITLE = "Compliant Motion",
+        \\tBOOKTITLE = {Robot Motion: Planning and Control},
+        \\tPUBLISHER = MITP,
+        \\tYEAR = {1982},
+        \\tEDITOR = {Michael Brady and John M. Hollerbach and Timothy L.
+        \\t\\t  Johnson and Tomas Lozano-Perez and Matthew T. Mason},
+        \\tCHAPTER = {5},
+        \\tPAGES = {305--322},
+        \\tADDRESS = MITP-ADDRESS
+        )
+      ),
       "key": "Mason:82",
       "type": "incollection",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"MITP\\"",
+      "input": "MITP",
+      "location": Object {
+        "column": 18,
+        "line": 5,
+      },
+    },
+    Object {
+      "error": "Unresolved @string reference \\"MITP-ADDRESS\\"",
+      "input": "MITP-ADDRESS",
+      "location": Object {
+        "column": 0,
+        "line": 12,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

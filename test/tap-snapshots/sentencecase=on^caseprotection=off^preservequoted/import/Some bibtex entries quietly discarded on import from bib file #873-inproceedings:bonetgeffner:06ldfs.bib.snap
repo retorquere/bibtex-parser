@@ -17,20 +17,23 @@ Object {
             "lastName": "Bonet",
           },
           Object {
-            "firstName": "Héctor",
+            "firstName": "Héctor",
             "lastName": "Geffner",
           },
         ],
-        "crossref": Array [
-          "ICAPS-06",
-        ],
-        "pages": Array [
-          "142–151",
-        ],
-        "title": Array [
-          "Learning depth-first search: A unified approach to heuristic search in deterministic and non-deterministic settings, and its application to MDPs",
-        ],
+        "crossref": "ICAPS-06",
+        "pages": "142–151",
+        "title": "Learning depth-first search: a unified approach to heuristic search in deterministic and non-deterministic settings, and its application to MDPs",
       },
+      "input": String(
+        @InProceedings{bonetGeffner:06LDFS,
+          author =\\t {Blai Bonet and H\\\\'{e}ctor Geffner},
+          title =\\t {Learning Depth-First Search: A Unified Approach to Heuristic Search in
+        Deterministic and Non-Deterministic Settings, and its application to {MDP}s},
+          crossref = \\t {ICAPS-06},
+          pages =\\t {142--151}
+        }
+      ),
       "key": "bonetGeffner:06LDFS",
       "type": "inproceedings",
     },

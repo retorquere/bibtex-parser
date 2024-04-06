@@ -20,13 +20,17 @@ Object {
         "publisher": Array [
           "Carnegie-Mellon University Department of Computer Science",
         ],
-        "title": Array [
-          "On the efficient implementation of production systems",
-        ],
-        "year": Array [
-          "1979",
-        ],
+        "title": "On the efficient implementation of production systems",
+        "year": 1979,
       },
+      "input": String(
+        @book(Forgy:1979,
+        \\tauthor =\\t{C.L. Forgy},
+        \\tyear =\\t\\t{1979},
+        \\tpublisher =\\t{Carnegie-Mellon University Department of Computer Science},
+        \\ttitle =\\t\\t{On the efficient implementation of production systems}
+        )
+      ),
       "key": "Forgy:1979",
       "type": "book",
     },

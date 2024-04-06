@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "L.M.",
@@ -24,9 +22,7 @@ Object {
             "lastName": "Porto",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the 5th conference on automated deduction",
-        ],
+        "booktitle": "Proceedings of the 5th conference on automated deduction",
         "editor": Array [
           Object {
             "firstName": "W.",
@@ -37,19 +33,25 @@ Object {
             "lastName": "Kowalski",
           },
         ],
-        "pages": Array [
-          "306-317",
-        ],
+        "pages": "306-317",
         "publisher": Array [
           "Springer-Verlag",
         ],
-        "title": Array [
-          "Selective backtracking for logic programs",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "title": "Selective backtracking for logic programs",
+        "year": 1980,
       },
+      "input": String(
+        @book(Porto:1980,
+        \\tauthor =\\t{L.M. Pereira and A. Porto},
+        \\tbooktitle =\\t{Proceedings of the 5th Conference on Automated Deduction},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1980},
+        \\teditor =\\t{W. Bibel and R. Kowalski},
+        \\tpublisher =\\t{Springer-Verlag},
+        \\tpages =\\t\\t{306-317},
+        \\ttitle =\\t\\t{Selective backtracking for logic programs}
+        )
+      ),
       "key": "Porto:1980",
       "type": "book",
     },

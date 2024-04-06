@@ -11,10 +11,13 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "title": Array [
-          "\\\\\\\\{}:",
-        ],
+        "title": "\\\\\\\\{}:",
       },
+      "input": String(
+        @article{BibTeXEscapeTest1,
+          title = {\\\\textbackslash\\\\textbackslash\\\\{\\\\}: \\\\\\\\{}}
+        }
+      ),
       "key": "BibTeXEscapeTest1",
       "type": "article",
     },

@@ -17,19 +17,22 @@ Object {
             "lastName": "Gelernter",
           },
         ],
-        "booktitle": Array [
-          "Information Processing: Proceedings of the International Conference on Information Processing",
-        ],
+        "booktitle": "Information Processing: Proceedings of the International Conference on Information Processing",
         "publisher": Array [
           "UNESCO",
         ],
-        "title": Array [
-          "Realization of a geometry theorem-proving machine",
-        ],
-        "year": Array [
-          "1959",
-        ],
+        "title": "Realization of a geometry theorem-proving machine",
+        "year": 1959,
       },
+      "input": String(
+        @book(Gelernter:1959,
+        \\tauthor =\\t{H. Gelernter},
+        \\tbooktitle =\\t{Information Processing: Proceedings of the International Conference on Information Processing},
+        \\tyear =\\t\\t{1959},
+        \\tpublisher =\\t{UNESCO},
+        \\ttitle =\\t\\t{Realization of a geometry theorem-proving machine}
+        )
+      ),
       "key": "Gelernter:1959",
       "type": "book",
     },

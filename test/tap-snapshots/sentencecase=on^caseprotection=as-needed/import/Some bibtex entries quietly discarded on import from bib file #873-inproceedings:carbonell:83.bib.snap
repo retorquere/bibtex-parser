@@ -17,22 +17,26 @@ Object {
             "lastName": "Carbonell",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the international machine learning workshop",
-        ],
-        "pages": Array [
-          "12–18",
-        ],
+        "booktitle": "Proceedings of the international machine learning workshop",
+        "pages": "12–18",
         "publisher": Array [
           "University of Illinois",
         ],
-        "title": Array [
-          "Derivational analogy in problem solving and knowledge acquisition",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "title": "Derivational analogy in problem solving and knowledge acquisition",
+        "year": 1983,
       },
+      "input": String(
+        @inproceedings(Carbonell:83,
+        \\tauthor =\\t{Jaime Carbonell},
+        \\tbooktitle =\\t{Proceedings of the International Machine Learning 
+        \\t\\t\\t Workshop},
+        \\tyear =\\t\\t{1983},
+        \\tpublisher =\\t{University of Illinois},
+        \\tpages =\\t\\t{12--18},
+        \\ttitle =\\t\\t{Derivational analogy in problem solving and 
+        \\t\\t\\t knowledge acquisition}
+        )
+      ),
       "key": "Carbonell:83",
       "type": "inproceedings",
     },

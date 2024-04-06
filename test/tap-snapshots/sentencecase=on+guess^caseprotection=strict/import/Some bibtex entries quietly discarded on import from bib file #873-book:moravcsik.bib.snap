@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "Edith A.",
@@ -27,13 +25,19 @@ Object {
         "publisher": Array [
           "Academic Press",
         ],
-        "title": Array [
-          "Syntax and semantics 13: Current approaches to syntax",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "title": "Syntax and semantics 13: Current approaches to syntax",
+        "year": 1980,
       },
+      "input": String(
+        @book(Moravcsik,
+        \\tauthor =\\t{Edith A. Moravcsik and Jessica A. Wirth},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1980},
+        \\tpublisher =\\t{Academic Press},
+        \\ttitle =\\t\\t{Syntax and Semantics 13:  
+        \\t\\t\\t Current Approaches to Syntax}
+        )
+      ),
       "key": "Moravcsik",
       "type": "book",
     },

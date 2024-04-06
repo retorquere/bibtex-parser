@@ -21,28 +21,27 @@ Object {
             "lastName": "Hertzberg",
           },
         ],
-        "journal": Array [
-          "AI Communications",
-        ],
-        "month": Array [
-          "March",
-        ],
-        "number": Array [
-          "1",
-        ],
-        "pages": Array [
-          "18–26",
-        ],
-        "title": Array [
-          "Temporal planner = nonlinear planner + time map manager",
-        ],
-        "volume": Array [
-          "6",
-        ],
-        "year": Array [
-          "1993",
-        ],
+        "journal": "AI Communications",
+        "month": "March",
+        "number": "1",
+        "pages": "18–26",
+        "title": "Temporal planner = nonlinear planner + time map manager",
+        "volume": "6",
+        "year": 1993,
       },
+      "input": String(
+        @ARTICLE(Rutten:93,
+        \\tAUTHOR = {Eric Rutten and Joachim Hertzberg},
+        \\tTITLE = {Temporal Planner = Nonlinear Planner + 
+        \\t\\t Time Map Manager},
+        \\tJOURNAL = {AI Communications},
+        \\tYEAR = {1993},
+        \\tVOLUME = {6},
+        \\tNUMBER = {1},
+        \\tPAGES = {18--26},
+        \\tMONTH = {March}
+        )
+      ),
       "key": "Rutten:93",
       "type": "article",
     },

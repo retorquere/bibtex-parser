@@ -17,22 +17,22 @@ Object {
             "lastName": "Finkel",
           },
         ],
-        "journal": Array [
-          "Proc. Ijcai",
-        ],
-        "pages": Array [
-          "758-765",
-        ],
-        "title": Array [
-          "An overview of AL, a programming language for automation",
-        ],
-        "volume": Array [
-          "4",
-        ],
-        "year": Array [
-          "1975",
-        ],
+        "journal": "Proc. Ijcai",
+        "pages": "758-765",
+        "title": "An overview of AL, a programming language for automation",
+        "volume": "4",
+        "year": 1975,
       },
+      "input": String(
+        @article(Finkel:1975,
+        \\tauthor =\\t{R. Finkel},
+        \\tyear =\\t\\t{1975},
+        \\tjournal =\\t{Proc. Ijcai},
+        \\tpages =\\t\\t{758-765},
+        \\ttitle =\\t\\t"An overview of AL, a programming language for  automation",
+        \\tvolume =\\t{4}
+        )
+      ),
       "key": "Finkel:1975",
       "type": "article",
     },

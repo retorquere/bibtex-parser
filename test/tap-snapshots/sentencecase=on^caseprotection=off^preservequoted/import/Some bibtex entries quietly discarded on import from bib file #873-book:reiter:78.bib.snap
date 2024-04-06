@@ -17,9 +17,7 @@ Object {
             "lastName": "Reiter",
           },
         ],
-        "booktitle": Array [
-          "Logic and databases",
-        ],
+        "booktitle": "Logic and databases",
         "editor": Array [
           Object {
             "firstName": "H.",
@@ -30,19 +28,24 @@ Object {
             "lastName": "Minker",
           },
         ],
-        "pages": Array [
-          "55-76",
-        ],
+        "pages": "55-76",
         "publisher": Array [
           "Plenum Press",
         ],
-        "title": Array [
-          "On closed world data bases",
-        ],
-        "year": Array [
-          "1978",
-        ],
+        "title": "On closed world data bases",
+        "year": 1978,
       },
+      "input": String(
+        @book(Reiter:78,
+        \\tauthor =\\t{Raymond Reiter},
+        \\tbooktitle =\\t{Logic and Databases},
+        \\tyear =\\t\\t{1978},
+        \\teditor =\\t{H. Gallaire and J. Minker},
+        \\tpublisher =\\t{Plenum Press},
+        \\tpages =\\t\\t{55-76},
+        \\ttitle =\\t\\t{On closed world data bases}
+        )
+      ),
       "key": "Reiter:78",
       "type": "book",
     },

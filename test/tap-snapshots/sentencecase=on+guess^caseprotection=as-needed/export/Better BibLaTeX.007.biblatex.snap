@@ -25,31 +25,28 @@ Object {
             "lastName": "Päckert",
           },
         ],
-        "date": Array [
-          "2012",
-        ],
-        "doi": Array [
-          "10.1007/s13127-011-0069-8",
-        ],
-        "journaltitle": Array [
-          "Actes du 4<sup>ème</sup> Congrès Français d'Acoustique",
-        ],
-        "langid": Array [
-          "french",
-        ],
-        "pages": Array [
-          "71–80",
-        ],
-        "shortjournal": Array [
-          "Actes 4ème Congrès Fr. Acoust.",
-        ],
-        "title": Array [
-          "Test of markupconversion: Italics, bold, superscript, subscript, and small caps: Mitochondrial DNA₂ sequences suggest unexpected phylogenetic position of Corso-Sardinian grass snakes (<i><span class=\\"nocase\\">Natrix cetti</span></i>) and <b><span class=\\"nocase\\">do not</span></b> support their <span style=\\"font-variant:small-caps;\\"><span class=\\"nocase\\">species status</span></span>, with notes on phylogeography and subspecies delineation of grass snakes.",
-        ],
-        "volume": Array [
-          "12",
-        ],
+        "date": "2012",
+        "doi": "10.1007/s13127-011-0069-8",
+        "journaltitle": "Actes du 4<sup>ème</sup> Congrès Français d'Acoustique",
+        "langid": "french",
+        "pages": "71–80",
+        "shortjournal": "Actes 4ème Congrès Fr. Acoust.",
+        "title": "Test of markupconversion: Italics, bold, superscript, subscript, and small caps: Mitochondrial DNA₂ sequences suggest unexpected phylogenetic position of Corso-Sardinian grass snakes (<span class=\\"nocase\\"><i>Natrix cetti</i></span>) and <span class=\\"nocase\\"><b>do not</b></span> support their <span class=\\"nocase\\"><span style=\\"font-variant:small-caps;\\">species status</span></span>, with notes on phylogeography and subspecies delineation of grass snakes.",
+        "volume": "12",
       },
+      "input": String(
+        @article{Frit2,
+          title = {Test of markupconversion: Italics, bold, superscript, subscript, and small caps: Mitochondrial DNA\\\\textsubscript{2} sequences suggest unexpected phylogenetic position of Corso-Sardinian grass snakes (\\\\emph{Natrix cetti}) and \\\\textbf{do not} support their \\\\textsc{species status}, with notes on phylogeography and subspecies delineation of grass snakes.},
+          author = {Fritz, U. and Corti, C. and Päckert, M.},
+          date = {2012},
+          journaltitle = {Actes du 4\\\\textsuperscript{ème} Congrès Français d'Acoustique},
+          shortjournal = {Actes 4ème Congrès Fr. Acoust.},
+          volume = {12},
+          pages = {71--80},
+          doi = {10.1007/s13127-011-0069-8},
+          langid = {french}
+        }
+      ),
       "key": "Frit2",
       "type": "article",
     },

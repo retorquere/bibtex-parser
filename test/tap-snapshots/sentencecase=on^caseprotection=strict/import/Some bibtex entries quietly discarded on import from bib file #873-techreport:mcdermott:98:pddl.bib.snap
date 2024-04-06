@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New Haven, CT",
-        ],
+        "address": "New Haven, CT",
         "author": Array [
           Object {
             "firstName": "Malik",
@@ -49,21 +47,26 @@ Object {
           },
         ],
         "institution": Array [
-          "Yale Center for Computational Vision and Control",
+          "Yale Center for Computational Vision",
+          "Control",
         ],
-        "month": Array [
-          "10",
-        ],
-        "number": Array [
-          "CVC TR-98-003",
-        ],
-        "title": Array [
-          "<span class=\\"nocase\\">PDDL</span> – the planning domain definition language",
-        ],
-        "year": Array [
-          1998,
-        ],
+        "month": 10,
+        "number": "CVC TR-98-003",
+        "title": "<span class=\\"nocase\\">PDDL</span> – the planning domain definition language",
+        "year": 1998,
       },
+      "input": String(
+        @TechReport{McDermott:98:pddl,
+          author =       {Malik Ghallab and Adele Howe and Craig Knoblock and Drew
+                          {McDermott} and Ashwin Ram and Manuela Veloso and Dan Weld and
+                          David Wilkins},
+          title =        {{PDDL} -- The Planning Domain Definition Language},
+          institution =  {Yale Center for Computational Vision and Control},
+          year =         1998,
+          number =    {CVC TR-98-003},
+          address =   {New Haven, CT},
+          month =     oct}
+      ),
       "key": "McDermott:98:pddl",
       "type": "techreport",
     },

@@ -17,16 +17,19 @@ Object {
             "lastName": "Kaelbling",
           },
         ],
-        "crossref": Array [
-          "PlanInit1",
-        ],
-        "pages": Array [
-          "504–508",
-        ],
-        "title": Array [
-          "Notes on mixed initiative planning and execution: A multi-agent view",
-        ],
+        "crossref": "PlanInit1",
+        "pages": "504–508",
+        "title": "Notes on mixed initiative planning and execution: a multi-agent view",
       },
+      "input": String(
+        @INPROCEEDINGS{Kaelbling:PI,
+        \\tAUTHOR = {Leslie Pack Kaelbling},
+        \\tTITLE = {Notes on mixed initiative planning and execution:
+        \\t\\t A multi-agent view},
+        \\tPAGES = {504--508},
+        \\tCROSSREF = {PlanInit1}
+        }
+      ),
       "key": "Kaelbling:PI",
       "type": "inproceedings",
     },

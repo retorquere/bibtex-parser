@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Urbana Illinois",
-        ],
+        "address": "Urbana Illinois",
         "author": Array [
           Object {
             "firstName": "Timothy W.",
@@ -23,13 +21,18 @@ Object {
         "institution": Array [
           "Department of Computer Science University of Illinois at",
         ],
-        "title": Array [
-          "The Semantic Interpretation of Nominal Compounds",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "title": "The Semantic Interpretation of Nominal Compounds",
+        "year": 1980,
       },
+      "input": String(
+        @techreport(Finin:1980,
+        \\tauthor =\\t{Timothy W. Finin},
+        \\taddress =\\t{Urbana Illinois},
+        \\tyear =\\t\\t{1980},
+        \\tinstitution =\\t{Department of Computer Science University of Illinois at},
+        \\ttitle =\\t\\t{The Semantic Interpretation of Nominal Compounds}
+        )
+      ),
       "key": "Finin:1980",
       "type": "techreport",
     },

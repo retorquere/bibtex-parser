@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Palo Alto, Calif.",
-        ],
+        "address": "Palo Alto, Calif.",
         "author": Array [
           Object {
             "firstName": "Nils J.",
@@ -23,13 +21,18 @@ Object {
         "publisher": Array [
           "Tioga",
         ],
-        "title": Array [
-          "Principles of artificial intelligence",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "title": "Principles of artificial intelligence",
+        "year": 1980,
       },
+      "input": String(
+        @book(Nilsson:80,
+        \\tauthor =\\t{Nils J. Nilsson},
+        \\taddress =\\t{Palo Alto, Calif.},
+        \\tyear =\\t\\t{1980},
+        \\tpublisher =\\t{Tioga},
+        \\ttitle =\\t\\t{Principles of Artificial Intelligence}
+        )
+      ),
       "key": "Nilsson:80",
       "type": "book",
     },

@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Brescia, Italy",
-        ],
+        "address": "Brescia, Italy",
         "author": Array [
           Object {
             "firstName": "A.",
@@ -27,19 +25,23 @@ Object {
         "institution": Array [
           "Dept. of Electronics for Automation, University of Brescia",
         ],
-        "number": Array [
-          "RT 2005-08-47",
-        ],
-        "title": Array [
-          "Plan constraints and preferences in PDDL3",
-        ],
-        "type": Array [
-          "Technical report",
-        ],
-        "year": Array [
-          2005,
-        ],
+        "number": "RT 2005-08-47",
+        "title": "Plan constraints and preferences in PDDL3",
+        "type": "Technical Report",
+        "year": 2005,
       },
+      "input": String(
+        @TechReport{GereviniLong05:PDDL3,
+          author =\\t {A. Gerevini and D. Long},
+          title =\\t {Plan Constraints and Preferences in {PDDL3}},
+          institution =\\t {Dept. of Electronics for Automation, University of
+                          Brescia},
+          year =\\t 2005,
+          type =\\t {Technical Report},
+          number =\\t {RT 2005-08-47},
+          address =\\t {Brescia, Italy}
+        }
+      ),
       "key": "GereviniLong05:PDDL3",
       "type": "techreport",
     },

@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "J.S.",
@@ -31,13 +29,18 @@ Object {
         "publisher": Array [
           "Wiley",
         ],
-        "title": Array [
-          "A study of thinking",
-        ],
-        "year": Array [
-          "1956",
-        ],
+        "title": "A study of thinking",
+        "year": 1956,
       },
+      "input": String(
+        @book(BrunerETAL:1956,
+        \\tauthor =\\t{J.S. Bruner and J.J. Goodnow and G.A. Austin},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1956},
+        \\tpublisher =\\t{Wiley},
+        \\ttitle =\\t\\t{A Study of Thinking}
+        )
+      ),
       "key": "BrunerETAL:1956",
       "type": "book",
     },

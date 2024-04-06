@@ -11,37 +11,39 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "London",
-        ],
+        "address": "London",
         "author": Array [
           Object {
             "firstName": "Alan",
             "lastName": "Turing",
           },
         ],
-        "booktitle": Array [
-          "Faster than thought",
-        ],
+        "booktitle": "Faster than thought",
         "editor": Array [
           Object {
             "firstName": "B.V.",
             "lastName": "Bowden",
           },
         ],
-        "pages": Array [
-          "288-295",
-        ],
+        "pages": "288-295",
         "publisher": Array [
           "Pitman",
         ],
-        "title": Array [
-          "Part of chapter 25",
-        ],
-        "year": Array [
-          "1953",
-        ],
+        "title": "Part of chapter 25",
+        "year": 1953,
       },
+      "input": String(
+        @book(Turing:53,
+        \\tauthor =\\t{Alan Turing},
+        \\tbooktitle =\\t{Faster Than Thought},
+        \\taddress =\\t{London},
+        \\tyear =\\t\\t{1953},
+        \\teditor =\\t{B.V. Bowden},
+        \\tpublisher =\\t{Pitman},
+        \\tpages =\\t\\t{288-295},
+        \\ttitle =\\t\\t{Part of Chapter 25}
+        )
+      ),
       "key": "Turing:53",
       "type": "book",
     },

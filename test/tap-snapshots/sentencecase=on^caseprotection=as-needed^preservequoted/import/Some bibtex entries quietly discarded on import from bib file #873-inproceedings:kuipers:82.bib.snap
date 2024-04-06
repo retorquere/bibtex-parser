@@ -17,27 +17,36 @@ Object {
             "lastName": "Kuipers",
           },
         ],
-        "booktitle": Array [
-          "AAAI-82",
-        ],
-        "pages": Array [
-          "209–212",
-        ],
-        "title": Array [
-          "Getting the envisionment right",
-        ],
-        "volume": Array [
-          "2",
-        ],
-        "year": Array [
-          "1982",
-        ],
+        "booktitle": "AAAI-82",
+        "pages": "209–212",
+        "title": "Getting the envisionment right",
+        "volume": "2",
+        "year": 1982,
       },
+      "input": String(
+        @inproceedings(Kuipers:82,
+        \\tauthor =\\t{Benjamin Kuipers},
+        \\tyear =\\t\\t{1982},
+        \\tbooktitle =\\tAAAI-82,
+        \\tpages =\\t\\t{209--212},
+        \\ttitle =\\t\\t"Getting the envisionment right",
+        \\tvolume =\\t{2}
+        )
+      ),
       "key": "Kuipers:82",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"AAAI-82\\"",
+      "input": "AAAI-82",
+      "location": Object {
+        "column": 21,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

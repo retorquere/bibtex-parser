@@ -11,18 +11,14 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "Randall",
             "lastName": "Davis",
           },
         ],
-        "booktitle": Array [
-          "Knowledge-based systems in artificial intelligence",
-        ],
+        "booktitle": "Knowledge-based systems in artificial intelligence",
         "editor": Array [
           Object {
             "firstName": "Randall",
@@ -33,19 +29,25 @@ Object {
             "lastName": "Lenat",
           },
         ],
-        "pages": Array [
-          "227-490",
-        ],
+        "pages": "227-490",
         "publisher": Array [
           "McGraw-Hill",
         ],
-        "title": Array [
-          "Teiresias: Applications of meta-level knowledge",
-        ],
-        "year": Array [
-          "1982",
-        ],
+        "title": "Teiresias: Applications of meta-level knowledge",
+        "year": 1982,
       },
+      "input": String(
+        @book(Davis:1982,
+        \\tauthor =\\t{Randall Davis},
+        \\tbooktitle =\\t{Knowledge-Based Systems in Artificial Intelligence},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1982},
+        \\teditor =\\t{Randall Davis and Douglas B. Lenat},
+        \\tpublisher =\\t{McGraw-Hill},
+        \\tpages =\\t\\t{227-490},
+        \\ttitle =\\t\\t{Teiresias: Applications of meta-level knowledge}
+        )
+      ),
       "key": "Davis:1982",
       "type": "book",
     },

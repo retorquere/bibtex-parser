@@ -21,12 +21,8 @@ Object {
             "lastName": "Kraus",
           },
         ],
-        "booktitle": Array [
-          "Logics in artificial intelligence",
-        ],
-        "doi": Array [
-          "10.1007/3-540-45757-7_52",
-        ],
+        "booktitle": "Logics in artificial intelligence",
+        "doi": "10.1007/3-540-45757-7_52",
         "editor": Array [
           Object {
             "firstName": "Sergio",
@@ -45,34 +41,36 @@ Object {
             "lastName": "Leone",
           },
         ],
-        "isbn": Array [
-          "978-3-540-44190-8",
-        ],
-        "language": Array [
-          "English",
-        ],
-        "pages": Array [
-          "545-548",
-        ],
+        "isbn": "978-3-540-44190-8",
+        "language": "English",
+        "pages": "545-548",
         "publisher": Array [
           "Springer Berlin Heidelberg",
         ],
-        "series": Array [
-          "Lecture notes in computer science",
-        ],
-        "title": Array [
-          "Z-log: Applying system-Z",
-        ],
-        "url": Array [
-          "http://dx.doi.org/10.1007/3-540-45757-7_52",
-        ],
-        "volume": Array [
-          "2424",
-        ],
-        "year": Array [
-          "2002",
-        ],
+        "series": "Lecture notes in computer science",
+        "title": "Z-log: Applying system-z",
+        "url": "http://dx.doi.org/10.1007/3-540-45757-7_52",
+        "volume": "2424",
+        "year": 2002,
       },
+      "input": String(
+        @incollection{minock-kraus-LIAI02,
+          year =         {2002},
+          isbn =         {978-3-540-44190-8},
+          booktitle =    {Logics in Artificial Intelligence},
+          volume =       {2424},
+          series =       {Lecture Notes in Computer Science},
+          editor =       {Sergio Flesca and Sergio Greco and Giovambattista
+                          Ianni and Nicola Leone},
+          doi =          {10.1007/3-540-45757-7_52},
+          title =        {Z-log: Applying System-Z},
+          url =          {http://dx.doi.org/10.1007/3-540-45757-7_52},
+          publisher =    {Springer Berlin Heidelberg},
+          author =       {Michael Minock and Hansi Kraus},
+          pages =        {545-548},
+          language =     {English}
+        }
+      ),
       "key": "minock-kraus-LIAI02",
       "type": "incollection",
     },

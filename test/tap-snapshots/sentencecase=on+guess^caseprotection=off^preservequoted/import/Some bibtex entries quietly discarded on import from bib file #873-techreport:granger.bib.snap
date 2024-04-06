@@ -20,16 +20,20 @@ Object {
         "institution": Array [
           "Yale University Department of Computer Science",
         ],
-        "number": Array [
-          "Research Report 171",
-        ],
-        "title": Array [
-          "Adaptive understanding: Correcting erroneous inferences",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "number": "Research Report 171",
+        "title": "Adaptive understanding: Correcting erroneous inferences",
+        "year": 1980,
       },
+      "input": String(
+        @techreport(Granger,
+        \\tauthor =\\t{Richard H. Granger, Jr},
+        \\tyear =\\t\\t{1980},
+        \\tinstitution =\\t{Yale University Department of Computer Science},
+        \\ttitle =\\t\\t{Adaptive Understanding:  
+        \\t\\t\\t\\tCorrecting Erroneous Inferences},
+        \\tnumber\\t=\\t"Research Report 171"
+        )
+      ),
       "key": "Granger",
       "type": "techreport",
     },

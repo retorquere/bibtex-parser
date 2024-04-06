@@ -21,9 +21,7 @@ Object {
             "lastName": "Lakoff",
           },
         ],
-        "booktitle": Array [
-          "Syntax and Semantics 3: Speech acts",
-        ],
+        "booktitle": "Syntax and Semantics 3: Speech acts",
         "editor": Array [
           Object {
             "firstName": "P.",
@@ -34,13 +32,18 @@ Object {
             "lastName": "Morgan",
           },
         ],
-        "title": Array [
-          "Conversational postulates",
-        ],
-        "year": Array [
-          "1975",
-        ],
+        "title": "Conversational postulates",
+        "year": 1975,
       },
+      "input": String(
+        @incollection(Gordon:75,
+        \\tauthor =\\t{D. Gordon and George Lakoff},
+        \\tbooktitle =\\t{Syntax and Semantics 3: Speech acts},
+        \\tyear =\\t\\t{1975},
+        \\teditor =\\t{P. Cole and J.L. Morgan},
+        \\ttitle =\\t\\t{Conversational postulates}
+        )
+      ),
       "key": "Gordon:75",
       "type": "incollection",
     },

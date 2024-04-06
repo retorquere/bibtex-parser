@@ -29,16 +29,19 @@ Object {
             "lastName": "Shoham",
           },
         ],
-        "month": Array [
-          "03",
-        ],
-        "title": Array [
-          "Working notes, AAAI spring symposium on software agents",
-        ],
-        "year": Array [
-          "1994",
-        ],
+        "month": 3,
+        "title": "Working notes, AAAI spring symposium on software agents",
+        "year": 1994,
       },
+      "input": String(
+        @PROCEEDINGS{Etzioni:SWAgents,
+        \\tEDITOR = {Oren Etzioni and Pattie Maes and Tom Mitchell
+        \\t\\t  and Yoav Shoham},
+        \\tTITLE = "Working Notes, AAAI Spring Symposium on Software Agents",
+        \\tMONTH = mar,
+        \\tYEAR = {1994}
+        }
+      ),
       "key": "Etzioni:SWAgents",
       "type": "proceedings",
     },

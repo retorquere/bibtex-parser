@@ -11,18 +11,14 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "Charles J.",
             "lastName": "Fillmore",
           },
         ],
-        "booktitle": Array [
-          "Universals in Linguistic Theory",
-        ],
+        "booktitle": "Universals in Linguistic Theory",
         "editor": Array [
           Object {
             "firstName": "E.",
@@ -33,19 +29,26 @@ Object {
             "lastName": "Harms",
           },
         ],
-        "pages": Array [
-          "1-88",
-        ],
+        "pages": "1-88",
         "publisher": Array [
-          "Holt, Rinehart, and Winston",
+          "Holt, Rinehart,",
+          "Winston",
         ],
-        "title": Array [
-          "The case for case",
-        ],
-        "year": Array [
-          "1968",
-        ],
+        "title": "The case for case",
+        "year": 1968,
       },
+      "input": String(
+        @book(Fillmore:68,
+        \\tauthor =\\t{Charles J. Fillmore},
+        \\tbooktitle =\\t{Universals in Linguistic Theory},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1968},
+        \\teditor =\\t{E. Bach and R.T. Harms},
+        \\tpublisher =\\t{Holt, Rinehart, and Winston},
+        \\tpages =\\t\\t{1-88},
+        \\ttitle =\\t\\t{The case for case}
+        )
+      ),
       "key": "Fillmore:68",
       "type": "book",
     },

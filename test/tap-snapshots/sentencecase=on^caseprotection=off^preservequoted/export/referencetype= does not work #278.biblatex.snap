@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "date": Array [
-          "2009",
-        ],
+        "date": "2009",
         "editor": Array [
           Object {
             "firstName": "Kees",
@@ -23,22 +21,26 @@ Object {
         "location": Array [
           "Leiden",
         ],
-        "note": Array [
-          "https://katalog.ub.uni-leipzig.de/Record/0002828121",
-        ],
+        "note": "https://katalog.ub.uni-leipzig.de/Record/0002828121",
         "publisher": Array [
           "Brill",
         ],
-        "title": Array [
-          "Encyclopedia of arabic language and linguistics",
-        ],
-        "url": Array [
-          "https://katalog.ub.uni-leipzig.de/Record/0002828121/Multipart",
-        ],
-        "volume": Array [
-          "1-5",
-        ],
+        "title": "Encyclopedia of arabic language and linguistics",
+        "url": "https://katalog.ub.uni-leipzig.de/Record/0002828121/Multipart",
+        "volume": "1-5",
       },
+      "input": String(
+        @mvreference{ea,
+          title = {Encyclopedia of Arabic Language and Linguistics},
+          editor = {Versteegh, Kees},
+          date = {2009},
+          volume = {1-5},
+          publisher = {Brill},
+          location = {Leiden},
+          url = {https://katalog.ub.uni-leipzig.de/Record/0002828121/Multipart},
+          note = {https://katalog.ub.uni-leipzig.de/Record/0002828121}
+        }
+      ),
       "key": "ea",
       "type": "mvreference",
     },

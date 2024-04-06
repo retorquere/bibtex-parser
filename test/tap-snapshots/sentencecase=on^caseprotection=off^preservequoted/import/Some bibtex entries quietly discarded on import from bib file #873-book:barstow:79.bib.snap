@@ -17,22 +17,24 @@ Object {
             "lastName": "Barstow",
           },
         ],
-        "pages": Array [
-          "37-43",
-        ],
+        "pages": "37-43",
         "publisher": Array [
           "Proc. Ijcai",
         ],
-        "title": Array [
-          "The roles of knowledge and deduction in program synthesis",
-        ],
-        "volume": Array [
-          "6",
-        ],
-        "year": Array [
-          "1979",
-        ],
+        "title": "The roles of knowledge and deduction in program synthesis",
+        "volume": "6",
+        "year": 1979,
       },
+      "input": String(
+        @book(Barstow:79,
+        \\tauthor =\\t{David R. Barstow},
+        \\tyear =\\t\\t{1979},
+        \\tpublisher =\\t{Proc. Ijcai},
+        \\tpages =\\t\\t{37-43},
+        \\ttitle =\\t\\t"The roles of knowledge and deduction in program synthesis",
+        \\tvolume =\\t{6}
+        )
+      ),
       "key": "Barstow:79",
       "type": "book",
     },

@@ -13,22 +13,25 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "literal": "李文辉",
+            "name": "李文辉",
           },
         ],
-        "date": Array [
-          "2014",
-        ],
+        "date": "2014",
         "institution": Array [
           "西安: 西安电子科技大学",
         ],
-        "title": Array [
-          "航拍视频中运动目标的检测与跟踪算法研究",
-        ],
-        "type": Array [
-          "PhD thesis",
-        ],
+        "title": "航拍视频中运动目标的检测与跟踪算法研究",
+        "type": "PhD Thesis",
       },
+      "input": String(
+        @thesis{ribunHui_2014_kohakuShi,
+          author = {{李文辉}},
+          date = {2014},
+          title = {航拍视频中运动目标的检测与跟踪算法研究},
+          institution = {{西安: 西安电子科技大学}},
+          type = {PhD Thesis}
+        }
+      ),
       "key": "ribunHui_2014_kohakuShi",
       "type": "thesis",
     },

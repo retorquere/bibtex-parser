@@ -11,18 +11,14 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "Edward A.",
             "lastName": "Feigenbaum",
           },
         ],
-        "booktitle": Array [
-          "Computers and Thought",
-        ],
+        "booktitle": "Computers and Thought",
         "editor": Array [
           Object {
             "firstName": "Edward A.",
@@ -36,13 +32,20 @@ Object {
         "publisher": Array [
           "McGraw-Hill",
         ],
-        "title": Array [
-          "The simulation of verbal learning behavior",
-        ],
-        "year": Array [
-          "1963",
-        ],
+        "title": "The simulation of verbal learning behavior",
+        "year": 1963,
       },
+      "input": String(
+        @book(Feigenbaum:1963,
+        \\tauthor =\\t{Edward A. Feigenbaum},
+        \\tbooktitle =\\t{Computers and Thought},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1963},
+        \\teditor =\\t{Edward A. Feigenbaum and Julian Feldman},
+        \\tpublisher =\\t{McGraw-Hill},
+        \\ttitle =\\t\\t{The simulation of verbal learning behavior}
+        )
+      ),
       "key": "Feigenbaum:1963",
       "type": "book",
     },

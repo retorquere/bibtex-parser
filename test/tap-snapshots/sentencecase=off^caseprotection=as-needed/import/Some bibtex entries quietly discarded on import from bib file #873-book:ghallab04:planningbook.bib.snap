@@ -28,18 +28,31 @@ Object {
         "publisher": Array [
           "KAUFMANN",
         ],
-        "title": Array [
-          "Automated Planning: Theory and Practice",
-        ],
-        "year": Array [
-          2004,
-        ],
+        "title": "Automated Planning: Theory and Practice",
+        "year": 2004,
       },
+      "input": String(
+        @Book{ghallab04:planningBook,
+          author =\\t {Malik Ghallab and Dana Nau and Paolo Traverso},
+          title = \\t {Automated Planning: Theory and Practice},
+          publisher = \\t KAUFMANN,
+          year = \\t 2004
+        }
+      ),
       "key": "ghallab04:planningBook",
       "type": "book",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"KAUFMANN\\"",
+      "input": "KAUFMANN",
+      "location": Object {
+        "column": 25,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

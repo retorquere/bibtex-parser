@@ -17,22 +17,22 @@ Object {
             "lastName": "Moore",
           },
         ],
-        "journal": Array [
-          "Sigart Newsletter",
-        ],
-        "number": Array [
-          "53",
-        ],
-        "pages": Array [
-          "8-9",
-        ],
-        "title": Array [
-          "A serial scheme for the inheritance of properties",
-        ],
-        "year": Array [
-          "1975",
-        ],
+        "journal": "Sigart Newsletter",
+        "number": "53",
+        "pages": "8-9",
+        "title": "A serial scheme for the inheritance of properties",
+        "year": 1975,
       },
+      "input": String(
+        @article(Moore:75a,
+        \\tauthor =\\t{Robert Moore},
+        \\tyear =\\t\\t{1975},
+        \\tjournal =\\t{Sigart Newsletter},
+        \\tnumber =\\t{53},
+        \\tpages =\\t\\t{8-9},
+        \\ttitle =\\t\\t{A serial scheme for the inheritance of properties}
+        )
+      ),
       "key": "Moore:75a",
       "type": "article",
     },

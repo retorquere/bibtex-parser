@@ -17,22 +17,22 @@ Object {
             "lastName": "Blum",
           },
         ],
-        "journal": Array [
-          "Journal of Theoretical Biology",
-        ],
-        "pages": Array [
-          "205-287",
-        ],
-        "title": Array [
-          "Biological shape and visual science (part I)",
-        ],
-        "volume": Array [
-          "38",
-        ],
-        "year": Array [
-          "1973",
-        ],
+        "journal": "Journal of Theoretical Biology",
+        "pages": "205-287",
+        "title": "Biological shape and visual science (part I)",
+        "volume": "38",
+        "year": 1973,
       },
+      "input": String(
+        @article(Blum:73,
+        \\tauthor =\\t{Harry Blum},
+        \\tyear =\\t\\t{1973},
+        \\tjournal =\\t{Journal of Theoretical Biology},
+        \\tpages =\\t\\t{205-287},
+        \\ttitle =\\t\\t"Biological shape and visual science (Part I)",
+        \\tvolume =\\t{38}
+        )
+      ),
       "key": "Blum:73",
       "type": "article",
     },

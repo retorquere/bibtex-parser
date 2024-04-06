@@ -20,13 +20,17 @@ Object {
         "publisher": Array [
           "Hart Publishing Company",
         ],
-        "title": Array [
-          "Control systems for technicians",
-        ],
-        "year": Array [
-          "1967",
-        ],
+        "title": "Control systems for technicians",
+        "year": 1967,
       },
+      "input": String(
+        @book(Bryan:1967,
+        \\tauthor =\\t{G.T. Bryan},
+        \\tyear =\\t\\t{1967},
+        \\tpublisher =\\t{Hart Publishing Company},
+        \\ttitle =\\t\\t{Control Systems for Technicians}
+        )
+      ),
       "key": "Bryan:1967",
       "type": "book",
     },

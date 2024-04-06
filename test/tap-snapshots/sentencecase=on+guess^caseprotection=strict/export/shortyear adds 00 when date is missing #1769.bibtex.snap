@@ -11,10 +11,13 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "title": Array [
-          "Test",
-        ],
+        "title": "Test",
       },
+      "input": String(
+        @article{Test,
+          title = {Test}
+        }
+      ),
       "key": "Test",
       "type": "article",
     },

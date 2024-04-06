@@ -17,25 +17,24 @@ Object {
             "lastName": "Woods",
           },
         ],
-        "journal": Array [
-          "Communications of the ACM",
-        ],
-        "number": Array [
-          "10",
-        ],
-        "pages": Array [
-          "591-606",
-        ],
-        "title": Array [
-          "Transition network grammars for natural language analysis",
-        ],
-        "volume": Array [
-          "13",
-        ],
-        "year": Array [
-          "1970",
-        ],
+        "journal": "Communications of the ACM",
+        "number": "10",
+        "pages": "591-606",
+        "title": "Transition network grammars for natural language analysis",
+        "volume": "13",
+        "year": 1970,
       },
+      "input": String(
+        @article(Woods:70,
+        \\tauthor =\\t{William A. Woods},
+        \\tyear =\\t\\t{1970},
+        \\tjournal =\\t{Communications of the ACM},
+        \\tnumber =\\t{10},
+        \\tpages =\\t\\t{591-606},
+        \\ttitle =\\t\\t"Transition network grammars for natural language analysis",
+        \\tvolume =\\t{13}
+        )
+      ),
       "key": "Woods:70",
       "type": "article",
     },

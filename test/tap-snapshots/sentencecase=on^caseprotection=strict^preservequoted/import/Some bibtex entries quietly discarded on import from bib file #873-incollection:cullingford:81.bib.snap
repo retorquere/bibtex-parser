@@ -17,19 +17,20 @@ Object {
             "lastName": "Cullingford",
           },
         ],
-        "crossref": Array [
-          "ICU",
-        ],
-        "pages": Array [
-          "75–89",
-        ],
-        "title": Array [
-          "SAM",
-        ],
-        "year": Array [
-          "1981",
-        ],
+        "crossref": "ICU",
+        "pages": "75–89",
+        "title": "SAM",
+        "year": 1981,
       },
+      "input": String(
+        @incollection(Cullingford:81,
+        \\tauthor =\\t{Richard E. Cullingford},
+        \\tyear =\\t\\t{1981},
+        \\ttitle =\\t\\t"SAM",
+        \\tcrossref = \\t"ICU",
+        \\tpages = \\t{75--89}
+        )
+      ),
       "key": "Cullingford:81",
       "type": "incollection",
     },

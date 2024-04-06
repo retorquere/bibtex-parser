@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Amherst, MA",
-        ],
+        "address": "Amherst, MA",
         "author": Array [
           Object {
             "firstName": "Andrew G.",
@@ -21,24 +19,28 @@ Object {
           },
         ],
         "institution": Array [
-          "Department of Computer and Information Science, University of Massachusetts, Amherst",
+          "Department of Computer",
+          "Information Science, University of Massachusetts, Amherst",
         ],
-        "month": Array [
-          "September",
-        ],
-        "number": Array [
-          "89–89",
-        ],
-        "title": Array [
-          "Connectionist Learning for Control: An Overview",
-        ],
-        "type": Array [
-          "<span style=\\"font-variant:small-caps;\\">COINS</span> Technical Report",
-        ],
-        "year": Array [
-          "1989",
-        ],
+        "month": "September",
+        "number": "89–89",
+        "title": "Connectionist Learning for Control: An Overview",
+        "type": "<span style=\\"font-variant:small-caps;\\">COINS</span> Technical Report",
+        "year": 1989,
       },
+      "input": String(
+        @TECHREPORT{Barto:89,
+        \\tAUTHOR = {Andrew G. Barto},
+        \\tTITLE = "Connectionist Learning for Control: An Overview",
+        \\tINSTITUTION = {Department of Computer and Information Science,
+        \\t\\t       University of Massachusetts, Amherst},
+        \\tYEAR = {1989},
+        \\tTYPE = {{\\\\sc COINS} Technical Report},
+        \\tNUMBER = {89--89},
+        \\tADDRESS = {Amherst, MA},
+        \\tMONTH = {September}
+        }
+      ),
       "key": "Barto:89",
       "type": "techreport",
     },

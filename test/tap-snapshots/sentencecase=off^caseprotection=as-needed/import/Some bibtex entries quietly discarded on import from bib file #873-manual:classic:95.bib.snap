@@ -41,19 +41,21 @@ Object {
             "lastName": "Zalondek",
           },
         ],
-        "edition": Array [
-          "Version 2.3",
-        ],
-        "month": Array [
-          "dec",
-        ],
-        "title": Array [
-          "<span style=\\"font-variant:small-caps;\\">Classic</span> description and reference model for the Common Lisp version",
-        ],
-        "year": Array [
-          1995,
-        ],
+        "edition": "Version 2.3",
+        "month": "dec",
+        "title": "<span style=\\"font-variant:small-caps;\\">Classic</span> description and reference model for the Common Lisp version",
+        "year": 1995,
       },
+      "input": String(
+        @Manual{CLASSIC:95,
+          title = \\t "{\\\\sc Classic} description and reference model for the Common Lisp version",
+          author =\\t {Lori Alperin Resnick and Alexander Borgida and
+        Ronald J. Brachman and Charles L. Isbell and Deborah L. McGuinness and Peter F. Patel-Schneider and Kevin C. Zalondek},
+          edition =\\t {Version 2.3},
+          month =\\t {dec},
+          year =\\t 1995
+        }
+      ),
       "key": "CLASSIC:95",
       "type": "manual",
     },

@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "Christopher K.",
@@ -24,9 +22,7 @@ Object {
             "lastName": "Schank",
           },
         ],
-        "booktitle": Array [
-          "Studies in the Perception of Language",
-        ],
+        "booktitle": "Studies in the Perception of Language",
         "editor": Array [
           Object {
             "firstName": "W.J.M",
@@ -40,13 +36,20 @@ Object {
         "institution": Array [
           "Wiley",
         ],
-        "title": Array [
-          "Comprehension by computer: Expectation-based analysis of sentences in context",
-        ],
-        "year": Array [
-          "1978",
-        ],
+        "title": "Comprehension by computer: Expectation-based analysis of sentences in context",
+        "year": 1978,
       },
+      "input": String(
+        @book(Riesbeck:78,
+        \\tauthor =\\t{Christopher K. Riesbeck and Roger C. Schank},
+        \\tbooktitle =\\t{Studies in the Perception of Language},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1978},
+        \\teditor =\\t{W.J.M Levelt and G.B. Flores d'Arcais},
+        \\tinstitution =\\t{Wiley},
+        \\ttitle =\\t\\t{Comprehension by computer:  Expectation-based analysis of sentences in context}
+        )
+      ),
       "key": "Riesbeck:78",
       "type": "book",
     },

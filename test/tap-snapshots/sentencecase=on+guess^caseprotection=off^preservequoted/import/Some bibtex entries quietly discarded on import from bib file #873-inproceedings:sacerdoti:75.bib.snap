@@ -17,27 +17,36 @@ Object {
             "lastName": "Sacerdoti",
           },
         ],
-        "booktitle": Array [
-          "IJCAI-75",
-        ],
-        "pages": Array [
-          "206–214",
-        ],
-        "title": Array [
-          "The nonlinear nature of plans",
-        ],
-        "volume": Array [
-          "4",
-        ],
-        "year": Array [
-          "1975",
-        ],
+        "booktitle": "IJCAI-75",
+        "pages": "206–214",
+        "title": "The nonlinear nature of plans",
+        "volume": "4",
+        "year": 1975,
       },
+      "input": String(
+        @inproceedings(Sacerdoti:75,
+        \\tauthor =\\t{Earl Sacerdoti},
+        \\tyear =\\t\\t{1975},
+        \\tbooktitle =\\tIJCAI-75,
+        \\tpages =\\t\\t{206--214},
+        \\ttitle =\\t\\t"The nonlinear nature of plans",
+        \\tvolume =\\t{4}
+        )
+      ),
       "key": "Sacerdoti:75",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"IJCAI-75\\"",
+      "input": "IJCAI-75",
+      "location": Object {
+        "column": 22,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

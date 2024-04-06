@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "annote": Array [
-          "Similar to Drummond and Bresina paper Drummond:90, indeed an attempt to put it on more secure theoretical footing. Project is trying to find a path through a state-space automaton. Deliberation scheduling in this framework is the allocation of resources between <i>policy generation</i> for a subgraph of the overall automaton and <i>envelope expansion</i> to consider a larger subset of the state space. Compares <i>precursor-deliberation</i>, where you develop the whole policy before any execution, and <i>recurrent-deliberation</i>, where the agent repeatedly replans.",
-        ],
+        "annote": "Similar to Drummond and Bresina paper Drummond:90, indeed an attempt to put it on more secure theoretical footing. Project is trying to find a path through a state-space automaton. Deliberation scheduling in this framework is the allocation of resources between <i>policy generation</i> for a subgraph of the overall automaton and <i>envelope expansion</i> to consider a larger subset of the state space. Compares <i>precursor-deliberation</i>, where you develop the whole policy before any execution, and <i>recurrent-deliberation</i>, where the agent repeatedly replans.",
         "author": Array [
           Object {
             "firstName": "Thomas L.",
@@ -32,22 +30,35 @@ Object {
             "lastName": "Nicholson",
           },
         ],
-        "crossref": Array [
-          "UAI93",
-        ],
+        "crossref": "UAI93",
         "keywords": Array [
           "deliberation scheduling",
         ],
-        "pages": Array [
-          "309–316",
-        ],
-        "title": Array [
-          "Deliberation scheduling for time-critical sequential decision making",
-        ],
-        "year": Array [
-          "1993",
-        ],
+        "pages": "309–316",
+        "title": "Deliberation scheduling for time-critical sequential decision making",
+        "year": 1993,
       },
+      "input": String(
+        @inproceedings{ DeanETAL:93,
+            author = "Thomas L. Dean and Leslie Pack Kaelbling and Jak Kirman 
+        and Ann N. Nicholson",
+            title = "Deliberation scheduling for time-critical sequential decision making",
+            crossref = {UAI93},
+            pages = {309--316},
+            year = "1993",
+            keywords = {deliberation scheduling},
+            annote = {Similar to Drummond and Bresina paper~\\\\cite{Drummond:90},
+            indeed an attempt to put it on more secure theoretical footing.
+            Project is trying to find a path through a state-space automaton.
+            Deliberation scheduling in this framework is the allocation of
+            resources between \\\\emph{policy generation} for a subgraph of the
+            overall automaton and \\\\emph{envelope expansion} to consider a
+            larger subset of the state space.  Compares
+            \\\\emph{precursor-deliberation}, where you develop the whole policy
+            before any execution, and \\\\emph{recurrent-deliberation}, where the
+            agent repeatedly replans.}
+        }
+      ),
       "key": "DeanETAL:93",
       "type": "inproceedings",
     },

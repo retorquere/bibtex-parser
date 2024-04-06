@@ -24,13 +24,17 @@ Object {
         "publisher": Array [
           "Brown University Department of Computer Science",
         ],
-        "title": Array [
-          "FRANZ LISP ... The Manual",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "title": "FRANZ LISP ... The Manual",
+        "year": 1980,
       },
+      "input": String(
+        @book(Foderaro:80,
+        \\tauthor =\\t{John K. Foderaro and Graeme Hirst},
+        \\tyear =\\t\\t{1980},
+        \\tpublisher =\\t{Brown University Department of Computer Science},
+        \\ttitle =\\t\\t{FRANZ LISP ... The Manual}
+        )
+      ),
       "key": "Foderaro:80",
       "type": "book",
     },

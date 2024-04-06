@@ -17,25 +17,24 @@ Object {
             "lastName": "Riesbeck",
           },
         ],
-        "journal": Array [
-          "Cognitive Science",
-        ],
-        "number": Array [
-          "3",
-        ],
-        "pages": Array [
-          "285-303",
-        ],
-        "title": Array [
-          "You can't miss it: Judging the clarity of directions",
-        ],
-        "volume": Array [
-          "4",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "journal": "Cognitive Science",
+        "number": "3",
+        "pages": "285-303",
+        "title": "You can't miss it: Judging the clarity of directions",
+        "volume": "4",
+        "year": 1980,
       },
+      "input": String(
+        @article(Riesbeck:1980,
+        \\tauthor =\\t{Christopher K. Riesbeck},
+        \\tyear =\\t\\t{1980},
+        \\tjournal =\\t{Cognitive Science},
+        \\tnumber =\\t{3},
+        \\tpages =\\t\\t{285-303},
+        \\ttitle =\\t\\t"You can't miss it: Judging the clarity of directions",
+        \\tvolume =\\t{4}
+        )
+      ),
       "key": "Riesbeck:1980",
       "type": "article",
     },

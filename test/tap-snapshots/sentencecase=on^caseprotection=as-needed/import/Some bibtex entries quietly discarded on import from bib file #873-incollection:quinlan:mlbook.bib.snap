@@ -11,45 +11,44 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Palo Alto, Calif.",
-        ],
+        "address": "Palo Alto, Calif.",
         "author": Array [
           Object {
             "firstName": "J. Ross",
             "lastName": "Quinlan",
           },
         ],
-        "booktitle": Array [
-          "Machine learning: An artificial intelligence approach",
-        ],
+        "booktitle": "Machine learning: An artificial intelligence approach",
         "editor": Array [
           Object {
-            "firstName": "Ryszard",
-            "lastName": "Michalski",
-          },
-          Object {
-            "firstName": "Jaime G.",
-            "lastName": "Carbonell",
+            "firstName": "Jaime G. Carbonell",
+            "lastName": "Ryszard Michalski",
           },
           Object {
             "firstName": "Tom M.",
             "lastName": "Mitchell",
           },
         ],
-        "pages": Array [
-          "463–482",
-        ],
+        "pages": "463–482",
         "publisher": Array [
           "Tioga",
         ],
-        "title": Array [
-          "Learning efficient classification procedures and their application to chess end games",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "title": "Learning efficient classification procedures and their application to chess end games",
+        "year": 1983,
       },
+      "input": String(
+        @incollection(Quinlan:MLbook,
+        \\tauthor =\\t{J. Ross Quinlan},
+        \\tbooktitle =\\t{Machine Learning: An Artificial Intelligence Approach},
+        \\taddress =\\t{Palo Alto, Calif.},
+        \\tyear =\\t\\t{1983},
+        \\teditor =\\t{Ryszard Michalski, Jaime G. Carbonell, and Tom M. Mitchell},
+        \\tpublisher =\\t{Tioga},
+        \\tpages =\\t\\t{463--482},
+        \\ttitle =\\t\\t{Learning efficient classification procedures and their 
+        \\t\\t\\t application to chess end games}
+        )
+      ),
       "key": "Quinlan:MLbook",
       "type": "incollection",
     },

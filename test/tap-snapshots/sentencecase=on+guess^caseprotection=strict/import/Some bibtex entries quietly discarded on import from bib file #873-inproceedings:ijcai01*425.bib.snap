@@ -17,8 +17,8 @@ Object {
             "lastName": "Nau",
           },
           Object {
-            "firstName": "Héctor",
-            "lastName": "Muñoz-Avila",
+            "firstName": "Héctor",
+            "lastName": "Muñoz-Avila",
           },
           Object {
             "firstName": "Yue",
@@ -33,16 +33,20 @@ Object {
             "lastName": "Mitchell",
           },
         ],
-        "crossref": Array [
-          "IJCAI01",
-        ],
-        "pages": Array [
-          "425–430",
-        ],
-        "title": Array [
-          "<span class=\\"nocase\\">Total-Order</span> planning with partially ordered subtasks",
-        ],
+        "crossref": "IJCAI01",
+        "pages": "425–430",
+        "title": "<span class=\\"nocase\\">Total-Order</span> planning with partially ordered subtasks",
       },
+      "input": String(
+        @InProceedings{IJCAI01*425,
+          author =       "Dana Nau and H{\\\\'e}ctor {Mu{\\\\~n}oz-Avila} and Yue Cao
+                         and Amnon Lotem and Steven Mitchell",
+          title =        "{Total-Order} Planning with Partially Ordered
+                         Subtasks",
+          pages =        "425--430",
+          crossref = \\t {IJCAI01}
+        }
+      ),
       "key": "IJCAI01*425",
       "type": "inproceedings",
     },

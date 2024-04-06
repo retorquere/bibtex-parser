@@ -21,22 +21,23 @@ Object {
             "lastName": "Reggia",
           },
         ],
-        "journal": Array [
-          "Artificial Intelligence in Medicine",
-        ],
-        "pages": Array [
-          "49–60",
-        ],
-        "title": Array [
-          "Parsimonious covering as a method for natural language interfaces to expert systems",
-        ],
-        "volume": Array [
-          "1",
-        ],
-        "year": Array [
-          "1989",
-        ],
+        "journal": "Artificial Intelligence in Medicine",
+        "pages": "49–60",
+        "title": "Parsimonious covering as a method for natural language interfaces to expert systems",
+        "volume": "1",
+        "year": 1989,
       },
+      "input": String(
+        @article(Dasigi:89,
+        \\tauthor =\\t{Venugopala R. Dasigi and James A. Reggia},
+        \\tyear =\\t\\t{1989},
+        \\tjournal =\\t{Artificial Intelligence in Medicine},
+        \\ttitle =\\t\\t{Parsimonious covering as a method for natural language
+        \\t\\t\\t\\tinterfaces to expert systems},
+        \\tvolume =\\t{1},
+        \\tpages =\\t\\t{49--60}
+        )
+      ),
       "key": "Dasigi:89",
       "type": "article",
     },

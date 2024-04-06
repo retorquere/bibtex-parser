@@ -21,27 +21,37 @@ Object {
             "lastName": "Chien",
           },
         ],
-        "journal": Array [
-          "JAIR",
-        ],
-        "pages": Array [
-          "365–396",
-        ],
-        "title": Array [
-          "Adaptive Problem-solving for Large-Scale Scheduling Problems: A Case Study",
-        ],
-        "volume": Array [
-          "4",
-        ],
-        "year": Array [
-          "1996",
-        ],
+        "journal": "JAIR",
+        "pages": "365–396",
+        "title": "Adaptive Problem-solving for Large-Scale Scheduling Problems: A Case Study",
+        "volume": "4",
+        "year": 1996,
       },
+      "input": String(
+        @ARTICLE{Gratch:96,
+        \\tAUTHOR = {Jonathan Gratch and Steve Chien},
+        \\tTITLE = {Adaptive Problem-solving for Large-Scale
+        \\t\\t Scheduling Problems: A Case Study},
+        \\tJOURNAL = JAIR,
+        \\tYEAR = {1996},
+        \\tVOLUME = {4},
+        \\tPAGES = {365--396}
+        }
+      ),
       "key": "Gratch:96",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"JAIR\\"",
+      "input": "JAIR",
+      "location": Object {
+        "column": 16,
+        "line": 5,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

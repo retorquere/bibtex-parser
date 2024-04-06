@@ -21,19 +21,20 @@ Object {
             "lastName": "Levesque",
           },
         ],
-        "chapter": Array [
-          "3",
-        ],
-        "crossref": Array [
-          "Intentions",
-        ],
-        "pages": Array [
-          "33–69",
-        ],
-        "title": Array [
-          "Persistence, intention, and commitment",
-        ],
+        "chapter": "3",
+        "crossref": "Intentions",
+        "pages": "33–69",
+        "title": "Persistence, intention, and commitment",
       },
+      "input": String(
+        @INCOLLECTION{Cohen:90,
+        \\tAUTHOR = {Philip R. Cohen and Hector J. Levesque},
+        \\tTITLE = "Persistence, Intention, and Commitment",
+        \\tCROSSREF = {Intentions},
+        \\tCHAPTER = {3},
+        \\tPAGES = {33--69}
+        }
+      ),
       "key": "Cohen:90",
       "type": "incollection",
     },

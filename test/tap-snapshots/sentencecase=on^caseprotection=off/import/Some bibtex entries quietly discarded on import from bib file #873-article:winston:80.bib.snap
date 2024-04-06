@@ -17,25 +17,24 @@ Object {
             "lastName": "Winston",
           },
         ],
-        "journal": Array [
-          "Communications of the ACM",
-        ],
-        "number": Array [
-          "12",
-        ],
-        "pages": Array [
-          "689–703",
-        ],
-        "title": Array [
-          "Learning and reasoning by analogy",
-        ],
-        "volume": Array [
-          "23",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "journal": "Communications of the ACM",
+        "number": "12",
+        "pages": "689–703",
+        "title": "Learning and reasoning by analogy",
+        "volume": "23",
+        "year": 1980,
       },
+      "input": String(
+        @article(Winston:80,
+        \\tauthor =\\t{Patrick H. Winston},
+        \\tyear =\\t\\t{1980},
+        \\tjournal =\\t{Communications of the ACM},
+        \\tnumber =\\t{12},
+        \\tpages =\\t\\t{689--703},
+        \\ttitle =\\t\\t"Learning and reasoning by analogy",
+        \\tvolume =\\t{23}
+        )
+      ),
       "key": "Winston:80",
       "type": "article",
     },

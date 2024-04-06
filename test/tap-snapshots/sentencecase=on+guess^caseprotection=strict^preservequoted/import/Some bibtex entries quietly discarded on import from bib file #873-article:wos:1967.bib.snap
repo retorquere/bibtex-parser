@@ -17,22 +17,22 @@ Object {
             "lastName": "Wos",
           },
         ],
-        "journal": Array [
-          "Journal of the ACM",
-        ],
-        "pages": Array [
-          "698-709",
-        ],
-        "title": Array [
-          "The concept of demodulation in theorem proving",
-        ],
-        "volume": Array [
-          "14",
-        ],
-        "year": Array [
-          "1967",
-        ],
+        "journal": "Journal of the ACM",
+        "pages": "698-709",
+        "title": "The concept of demodulation in theorem proving",
+        "volume": "14",
+        "year": 1967,
       },
+      "input": String(
+        @article(Wos:1967,
+        \\tauthor =\\t{L. Wos},
+        \\tyear =\\t\\t{1967},
+        \\tjournal =\\t{Journal of the ACM},
+        \\tpages =\\t\\t{698-709},
+        \\ttitle =\\t\\t"The concept of demodulation in theorem proving",
+        \\tvolume =\\t{14}
+        )
+      ),
       "key": "Wos:1967",
       "type": "article",
     },

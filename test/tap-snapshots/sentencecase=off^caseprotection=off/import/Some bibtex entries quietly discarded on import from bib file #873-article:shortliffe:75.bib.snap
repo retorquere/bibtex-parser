@@ -21,22 +21,22 @@ Object {
             "lastName": "Buchanan",
           },
         ],
-        "journal": Array [
-          "Mathematical Biosciences",
-        ],
-        "pages": Array [
-          "351-379",
-        ],
-        "title": Array [
-          "A model of inexact reasoning in medicine",
-        ],
-        "volume": Array [
-          "23",
-        ],
-        "year": Array [
-          "1975",
-        ],
+        "journal": "Mathematical Biosciences",
+        "pages": "351-379",
+        "title": "A model of inexact reasoning in medicine",
+        "volume": "23",
+        "year": 1975,
       },
+      "input": String(
+        @article(Shortliffe:75,
+        \\tauthor =\\t{Edward H Shortliffe and Bruce G. Buchanan},
+        \\tyear =\\t\\t{1975},
+        \\tjournal =\\t{Mathematical Biosciences},
+        \\tpages =\\t\\t{351-379},
+        \\ttitle =\\t\\t"A model of inexact reasoning in medicine",
+        \\tvolume =\\t{23}
+        )
+      ),
       "key": "Shortliffe:75",
       "type": "article",
     },

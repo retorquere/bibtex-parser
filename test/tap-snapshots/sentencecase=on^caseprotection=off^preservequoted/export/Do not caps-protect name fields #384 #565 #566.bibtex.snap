@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "annotation": Array [
-          "[al-Hakim][Tawfiq]",
-        ],
+        "annotation": "[al-Hakim][Tawfiq]",
         "author": Array [
           Object {
             "firstName": "Tawfiq",
@@ -21,59 +19,78 @@ Object {
           },
         ],
       },
+      "input": String(
+        @book{al-hakim,
+          author = {{al-Hakim}, Tawfiq},
+          annotation = {[al-Hakim][Tawfiq]}
+        }
+      ),
       "key": "al-hakim",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "annotation": Array [
-          "[Beauvoir][Simone de]",
-        ],
+        "annotation": "[Beauvoir][Simone de]",
         "author": Array [
           Object {
             "firstName": "Simone",
-            "lastName": "de Beauvoir",
+            "lastName": "Beauvoir",
+            "prefix": "de",
           },
         ],
       },
+      "input": String(
+        @book{beauvoir,
+          author = {de Beauvoir, Simone},
+          annotation = {[Beauvoir][Simone de]}
+        }
+      ),
       "key": "beauvoir",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "annotation": Array [
-          "[boven d'Eert][Christianus]",
-        ],
+        "annotation": "[boven d'Eert][Christianus]",
         "author": Array [
           Object {
             "firstName": "Christianus",
-            "lastName": "boven d'Eert",
+            "lastName": "d'Eert",
+            "prefix": "boven",
           },
         ],
       },
+      "input": String(
+        @book{bovendeert,
+          author = {{boven d'Eert}, Christianus},
+          annotation = {[boven d'Eert][Christianus]}
+        }
+      ),
       "key": "bovendeert",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "annotation": Array [
-          "[\\"da Gama\\"][Vasco]",
-        ],
+        "annotation": "[\\"da Gama\\"][Vasco]",
         "author": Array [
           Object {
             "firstName": "Vasco",
-            "lastName": "da Gama",
+            "lastName": "Gama",
+            "prefix": "da",
           },
         ],
       },
+      "input": String(
+        @book{dagama,
+          author = {{da Gama}, Vasco},
+          annotation = {["da Gama"][Vasco]}
+        }
+      ),
       "key": "dagama",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "annotation": Array [
-          "[d'Alembert][Jean le Rond]",
-        ],
+        "annotation": "[d'Alembert][Jean le Rond]",
         "author": Array [
           Object {
             "firstName": "Jean le Rond",
@@ -81,14 +98,18 @@ Object {
           },
         ],
       },
+      "input": String(
+        @book{dalembert,
+          author = {{d'Alembert}, Jean le Rond},
+          annotation = {[d'Alembert][Jean le Rond]}
+        }
+      ),
       "key": "dalembert",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "annotation": Array [
-          "[D'Amato][Alfonse]",
-        ],
+        "annotation": "[D'Amato][Alfonse]",
         "author": Array [
           Object {
             "firstName": "Alfonse",
@@ -96,14 +117,18 @@ Object {
           },
         ],
       },
+      "input": String(
+        @book{damato,
+          author = {D'Amato, Alfonse},
+          annotation = {[D'Amato][Alfonse]}
+        }
+      ),
       "key": "damato",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "annotation": Array [
-          "[D'Annunzio][Gabriele]",
-        ],
+        "annotation": "[D'Annunzio][Gabriele]",
         "author": Array [
           Object {
             "firstName": "Gabriele",
@@ -111,14 +136,18 @@ Object {
           },
         ],
       },
+      "input": String(
+        @book{dannunzio,
+          author = {D'Annunzio, Gabriele},
+          annotation = {[D'Annunzio][Gabriele]}
+        }
+      ),
       "key": "dannunzio",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "annotation": Array [
-          "[Da Ponte][Lorenzo]",
-        ],
+        "annotation": "[Da Ponte][Lorenzo]",
         "author": Array [
           Object {
             "firstName": "Lorenzo",
@@ -126,29 +155,38 @@ Object {
           },
         ],
       },
+      "input": String(
+        @book{daponte,
+          author = {Da Ponte, Lorenzo},
+          annotation = {[Da Ponte][Lorenzo]}
+        }
+      ),
       "key": "daponte",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "annotation": Array [
-          "[\\"de Gaulle\\"][Charles]",
-        ],
+        "annotation": "[\\"de Gaulle\\"][Charles]",
         "author": Array [
           Object {
             "firstName": "Charles",
-            "lastName": "de Gaulle",
+            "lastName": "Gaulle",
+            "prefix": "de",
           },
         ],
       },
+      "input": String(
+        @book{degaulle,
+          author = {{de Gaulle}, Charles},
+          annotation = {["de Gaulle"][Charles]}
+        }
+      ),
       "key": "degaulle",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "annotation": Array [
-          "[DeGette][Diana]",
-        ],
+        "annotation": "[DeGette][Diana]",
         "author": Array [
           Object {
             "firstName": "Diana",
@@ -156,29 +194,38 @@ Object {
           },
         ],
       },
+      "input": String(
+        @book{degette,
+          author = {DeGette, Diana},
+          annotation = {[DeGette][Diana]}
+        }
+      ),
       "key": "degette",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "annotation": Array [
-          "[\\"de la Mare\\"][Walter]",
-        ],
+        "annotation": "[\\"de la Mare\\"][Walter]",
         "author": Array [
           Object {
             "firstName": "Walter",
-            "lastName": "de la Mare",
+            "lastName": "Mare",
+            "prefix": "de la",
           },
         ],
       },
+      "input": String(
+        @book{delamare,
+          author = {{de la Mare}, Walter},
+          annotation = {["de la Mare"][Walter]}
+        }
+      ),
       "key": "delamare",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "annotation": Array [
-          "[Della Robbia][Luca]",
-        ],
+        "annotation": "[Della Robbia][Luca]",
         "author": Array [
           Object {
             "firstName": "Luca",
@@ -186,14 +233,18 @@ Object {
           },
         ],
       },
+      "input": String(
+        @book{dellarobbia,
+          author = {Della Robbia, Luca},
+          annotation = {[Della Robbia][Luca]}
+        }
+      ),
       "key": "dellarobbia",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "annotation": Array [
-          "[De Quincey][Thomas]",
-        ],
+        "annotation": "[De Quincey][Thomas]",
         "author": Array [
           Object {
             "firstName": "Thomas",
@@ -201,75 +252,98 @@ Object {
           },
         ],
       },
+      "input": String(
+        @book{dequincey,
+          author = {De Quincey, Thomas},
+          annotation = {[De Quincey][Thomas]}
+        }
+      ),
       "key": "dequincey",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "annotation": Array [
-          "[Dumas][Alexandre, père]",
-        ],
+        "annotation": "[Dumas][Alexandre, père]",
         "author": Array [
           Object {
             "firstName": "Alexandre",
             "lastName": "Dumas",
-            "suffix": "père",
+            "suffix": "père",
           },
         ],
       },
+      "input": String(
+        @book{dumas,
+          author = {Dumas, p{\\\\\`e}re, Alexandre},
+          annotation = {[Dumas][Alexandre, p\\\\\`ere]}
+        }
+      ),
       "key": "dumas",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "annotation": Array [
-          "[du Puy de Clinchamps][PhU+0097ilippe]",
-        ],
+        "annotation": "[du Puy de Clinchamps][PhU+0097ilippe]",
         "author": Array [
           Object {
             "firstName": "Philippe",
-            "lastName": "du Puy de Clinchamps",
+            "lastName": "Puy de Clinchamps",
+            "prefix": "du",
           },
         ],
       },
+      "input": String(
+        @book{dupuydeclinchamps,
+          author = {{du Puy de Clinchamps}, {\\\\relax Ph}ilippe},
+          annotation = {[du Puy de Clinchamps][PhU+0097ilippe]}
+        }
+      ),
       "key": "dupuydeclinchamps",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "annotation": Array [
-          "[Este][Beatrice d']",
-        ],
+        "annotation": "[Este][Beatrice d']",
         "author": Array [
           Object {
             "firstName": "Beatrice",
-            "lastName": "d' Este",
+            "lastName": "Este",
+            "prefix": "d'",
           },
         ],
       },
+      "input": String(
+        @book{este,
+          author = {d'{\\\\aftergroup\\\\ignorespaces} Este, Beatrice},
+          annotation = {[Este][Beatrice d']}
+        }
+      ),
       "key": "este",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "annotation": Array [
-          "[Humboldt][Alexander von]",
-        ],
+        "annotation": "[Humboldt][Alexander von]",
         "author": Array [
           Object {
             "firstName": "Alexander",
-            "lastName": "von Humboldt",
+            "lastName": "Humboldt",
+            "prefix": "von",
           },
         ],
       },
+      "input": String(
+        @book{humboldt,
+          author = {von Humboldt, Alexander},
+          annotation = {[Humboldt][Alexander von]}
+        }
+      ),
       "key": "humboldt",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "annotation": Array [
-          "[King][Martin Luther, Jr.]",
-        ],
+        "annotation": "[King][Martin Luther, Jr.]",
         "author": Array [
           Object {
             "firstName": "Martin Luther",
@@ -278,14 +352,18 @@ Object {
           },
         ],
       },
+      "input": String(
+        @book{king,
+          author = {King, Jr., Martin Luther},
+          annotation = {[King][Martin Luther, Jr.]}
+        }
+      ),
       "key": "king",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "annotation": Array [
-          "[La Follette][Robert M., Sr.]",
-        ],
+        "annotation": "[La Follette][Robert M., Sr.]",
         "author": Array [
           Object {
             "firstName": "Robert M.",
@@ -294,44 +372,58 @@ Object {
           },
         ],
       },
+      "input": String(
+        @book{lafollette,
+          author = {La Follette, Sr., Robert M.},
+          annotation = {[La Follette][Robert M., Sr.]}
+        }
+      ),
       "key": "lafollette",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "annotation": Array [
-          "[La Fontaine][Jean de]",
-        ],
+        "annotation": "[La Fontaine][Jean de]",
         "author": Array [
           Object {
             "firstName": "Jean",
-            "lastName": "de La Fontaine",
+            "lastName": "La Fontaine",
+            "prefix": "de",
           },
         ],
       },
+      "input": String(
+        @book{lafontaine,
+          author = {de La Fontaine, Jean},
+          annotation = {[La Fontaine][Jean de]}
+        }
+      ),
       "key": "lafontaine",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "annotation": Array [
-          "[La Salle][René-Robert Cavelier de]",
-        ],
+        "annotation": "[La Salle][René-Robert Cavelier de]",
         "author": Array [
           Object {
-            "firstName": "René-Robert Cavelier",
-            "lastName": "de La Salle",
+            "firstName": "René-Robert Cavelier",
+            "lastName": "La Salle",
+            "prefix": "de",
           },
         ],
       },
+      "input": String(
+        @book{lasalle,
+          author = {de La Salle, Ren{\\\\'e}-Robert Cavelier},
+          annotation = {[La Salle][Ren\\\\'e-Robert Cavelier de]}
+        }
+      ),
       "key": "lasalle",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "annotation": Array [
-          "[L'Enfant][Pierre-Charles]",
-        ],
+        "annotation": "[L'Enfant][Pierre-Charles]",
         "author": Array [
           Object {
             "firstName": "Pierre-Charles",
@@ -339,59 +431,75 @@ Object {
           },
         ],
       },
+      "input": String(
+        @book{lenfant,
+          author = {L'Enfant, Pierre-Charles},
+          annotation = {[L'Enfant][Pierre-Charles]}
+        }
+      ),
       "key": "lenfant",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "annotation": Array [
-          "[Le Vayer][François de La Mothe]",
-        ],
+        "annotation": "[Le Vayer][François de La Mothe]",
         "author": Array [
           Object {
-            "firstName": "François de La Mothe",
+            "firstName": "François de La Mothe",
             "lastName": "Le Vayer",
           },
         ],
       },
+      "input": String(
+        @book{levayer,
+          author = {Le Vayer, Fran{\\\\c c}ois de La Mothe},
+          annotation = {[Le Vayer][Fran\\\\c{c}ois de La Mothe]}
+        }
+      ),
       "key": "levayer",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "annotation": Array [
-          "[[Marcus Aurelius]]",
-        ],
+        "annotation": "[[Marcus Aurelius]]",
         "author": Array [
           Object {
-            "firstName": "Marcus",
-            "lastName": "Aurelius",
+            "name": "Marcus Aurelius",
           },
         ],
       },
+      "input": String(
+        @book{marcusaurelius,
+          author = {{Marcus Aurelius}},
+          annotation = {[[Marcus Aurelius]]}
+        }
+      ),
       "key": "marcusaurelius",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "annotation": Array [
-          "[Medici][Lorenzo de'U+200B]",
-        ],
+        "annotation": "[Medici][Lorenzo de'U+200B]",
         "author": Array [
           Object {
             "firstName": "Lorenzo",
-            "lastName": "de'​ Medici",
+            "lastName": "Medici",
+            "prefix": "de'",
           },
         ],
       },
+      "input": String(
+        @book{medici,
+          author = {de'{\\\\mbox} Medici, Lorenzo},
+          annotation = {[Medici][Lorenzo de'U+200B]}
+        }
+      ),
       "key": "medici",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "annotation": Array [
-          "[Mies van der Rohe][Ludwig]",
-        ],
+        "annotation": "[Mies van der Rohe][Ludwig]",
         "author": Array [
           Object {
             "firstName": "Ludwig",
@@ -399,48 +507,55 @@ Object {
           },
         ],
       },
+      "input": String(
+        @book{miesvanderrohe,
+          author = {{Mies van der Rohe}, Ludwig},
+          annotation = {[Mies van der Rohe][Ludwig]}
+        }
+      ),
       "key": "miesvanderrohe",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "annotation": Array [
-          "[[National Aeronautics and Space Administration]]",
-        ],
+        "annotation": "[[National Aeronautics and Space Administration]]",
         "author": Array [
           Object {
-            "firstName": "National",
-            "lastName": "Aeronautics",
-          },
-          Object {
-            "firstName": "Space",
-            "lastName": "Administration",
+            "name": "National Aeronautics and Space Administration",
           },
         ],
       },
+      "input": String(
+        @book{nationalaeronauticsandspaceadministration,
+          author = {{National Aeronautics and Space Administration}},
+          annotation = {[[National Aeronautics and Space Administration]]}
+        }
+      ),
       "key": "nationalaeronauticsandspaceadministration",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "annotation": Array [
-          "[Ortega y Gasset][José]",
-        ],
+        "annotation": "[Ortega y Gasset][José]",
         "author": Array [
           Object {
-            "firstName": "José",
+            "firstName": "José",
             "lastName": "Ortega y Gasset",
           },
         ],
       },
+      "input": String(
+        @book{ortegaygasset,
+          author = {{Ortega y Gasset}, Jos{\\\\'e}},
+          annotation = {[Ortega y Gasset][Jos\\\\'e]}
+        }
+      ),
       "key": "ortegaygasset",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "annotation": Array [
-          "['s-Gravesande][Goverdus]",
-        ],
+        "annotation": "['s-Gravesande][Goverdus]",
         "author": Array [
           Object {
             "firstName": "Goverdus",
@@ -448,14 +563,18 @@ Object {
           },
         ],
       },
+      "input": String(
+        @book{s-gravesande,
+          author = {{'s-Gravesande}, Goverdus},
+          annotation = {['s-Gravesande][Goverdus]}
+        }
+      ),
       "key": "s-gravesande",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "annotation": Array [
-          "[Sackville-West][Victoria]",
-        ],
+        "annotation": "[Sackville-West][Victoria]",
         "author": Array [
           Object {
             "firstName": "Victoria",
@@ -463,14 +582,18 @@ Object {
           },
         ],
       },
+      "input": String(
+        @book{sackville-west,
+          author = {{Sackville-West}, Victoria},
+          annotation = {[Sackville-West][Victoria]}
+        }
+      ),
       "key": "sackville-west",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "annotation": Array [
-          "[Sadat][Anwar el-]",
-        ],
+        "annotation": "[Sadat][Anwar el-]",
         "author": Array [
           Object {
             "firstName": "Anwar",
@@ -478,14 +601,18 @@ Object {
           },
         ],
       },
+      "input": String(
+        @book{sadat,
+          author = {el-{\\\\aftergroup\\\\ignorespaces} Sadat, Anwar},
+          annotation = {[Sadat][Anwar el-]}
+        }
+      ),
       "key": "sadat",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "annotation": Array [
-          "[Saunders][John Bertrand de Cusance Morant]",
-        ],
+        "annotation": "[Saunders][John Bertrand de Cusance Morant]",
         "author": Array [
           Object {
             "firstName": "John Bertrand de Cusance Morant",
@@ -493,44 +620,58 @@ Object {
           },
         ],
       },
+      "input": String(
+        @book{saunders,
+          author = {Saunders, John Bertrand de Cusance Morant},
+          annotation = {[Saunders][John Bertrand de Cusance Morant]}
+        }
+      ),
       "key": "saunders",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "annotation": Array [
-          "[Silva][Agostinho da]",
-        ],
+        "annotation": "[Silva][Agostinho da]",
         "author": Array [
           Object {
             "firstName": "Agostinho",
-            "lastName": "da Silva",
+            "lastName": "Silva",
+            "prefix": "da",
           },
         ],
       },
+      "input": String(
+        @book{silva,
+          author = {da Silva, Agostinho},
+          annotation = {[Silva][Agostinho da]}
+        }
+      ),
       "key": "silva",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "annotation": Array [
-          "[Stein][Heinrich Friedrich Karl vom und zum]",
-        ],
+        "annotation": "[Stein][Heinrich Friedrich Karl vom und zum]",
         "author": Array [
           Object {
             "firstName": "Heinrich Friedrich Karl",
-            "lastName": "vom und zum Stein",
+            "lastName": "Stein",
+            "prefix": "vom und zum",
           },
         ],
       },
+      "input": String(
+        @book{stein,
+          author = {vom und zum Stein, Heinrich Friedrich Karl},
+          annotation = {[Stein][Heinrich Friedrich Karl vom und zum]}
+        }
+      ),
       "key": "stein",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "annotation": Array [
-          "[Stevenson][Adlai E.,! III]",
-        ],
+        "annotation": "[Stevenson][Adlai E.,! III]",
         "author": Array [
           Object {
             "firstName": "Adlai E.",
@@ -539,59 +680,78 @@ Object {
           },
         ],
       },
+      "input": String(
+        @book{stevenson,
+          author = {Stevenson, III, Adlai E.},
+          annotation = {[Stevenson][Adlai E.,! III]}
+        }
+      ),
       "key": "stevenson",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "annotation": Array [
-          "[Tocqueville][Alexis de]",
-        ],
+        "annotation": "[Tocqueville][Alexis de]",
         "author": Array [
           Object {
             "firstName": "Alexis",
-            "lastName": "de Tocqueville",
+            "lastName": "Tocqueville",
+            "prefix": "de",
           },
         ],
       },
+      "input": String(
+        @book{tocqueville,
+          author = {de Tocqueville, Alexis},
+          annotation = {[Tocqueville][Alexis de]}
+        }
+      ),
       "key": "tocqueville",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "annotation": Array [
-          "[van Gogh][Vincent]",
-        ],
+        "annotation": "[van Gogh][Vincent]",
         "author": Array [
           Object {
             "firstName": "Vincent",
-            "lastName": "van Gogh",
+            "lastName": "Gogh",
+            "prefix": "van",
           },
         ],
       },
+      "input": String(
+        @book{vangogh,
+          author = {{van Gogh}, Vincent},
+          annotation = {[van Gogh][Vincent]}
+        }
+      ),
       "key": "vangogh",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "annotation": Array [
-          "[\\"van Gulik\\"][Robert]",
-        ],
+        "annotation": "[\\"van Gulik\\"][Robert]",
         "author": Array [
           Object {
             "firstName": "Robert",
-            "lastName": "van Gulik",
+            "lastName": "Gulik",
+            "prefix": "van",
           },
         ],
       },
+      "input": String(
+        @book{vangulik,
+          author = {{van Gulik}, Robert},
+          annotation = {["van Gulik"][Robert]}
+        }
+      ),
       "key": "vangulik",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "annotation": Array [
-          "[Van Rensselaer][Stephen]",
-        ],
+        "annotation": "[Van Rensselaer][Stephen]",
         "author": Array [
           Object {
             "firstName": "Stephen",
@@ -599,14 +759,18 @@ Object {
           },
         ],
       },
+      "input": String(
+        @book{vanrensselaer,
+          author = {Van Rensselaer, Stephen},
+          annotation = {[Van Rensselaer][Stephen]}
+        }
+      ),
       "key": "vanrensselaer",
       "type": "book",
     },
     Object {
       "fields": Object {
-        "annotation": Array [
-          "[Vaughan Williams][Ralph]",
-        ],
+        "annotation": "[Vaughan Williams][Ralph]",
         "author": Array [
           Object {
             "firstName": "Ralph",
@@ -614,6 +778,12 @@ Object {
           },
         ],
       },
+      "input": String(
+        @book{vaughanwilliams,
+          author = {Vaughan Williams, Ralph},
+          annotation = {[Vaughan Williams][Ralph]}
+        }
+      ),
       "key": "vaughanwilliams",
       "type": "book",
     },

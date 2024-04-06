@@ -29,15 +29,9 @@ Object {
             "lastName": "Michie",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the 9th international conference on machine learning",
-        ],
-        "date-added": Array [
-          "2010-06-18 12:19:49 -0400",
-        ],
-        "date-modified": Array [
-          "2010-06-18 12:19:49 -0400",
-        ],
+        "booktitle": "Proceedings of the 9th international conference on machine learning",
+        "date-added": "2010-06-18 12:19:49 -0400",
+        "date-modified": "2010-06-18 12:19:49 -0400",
         "editor": Array [
           Object {
             "firstName": "D.",
@@ -48,16 +42,21 @@ Object {
             "lastName": "Edwards",
           },
         ],
-        "pages": Array [
-          "385–393",
-        ],
-        "title": Array [
-          "Learning to fly",
-        ],
-        "year": Array [
-          1992,
-        ],
+        "pages": "385–393",
+        "title": "Learning to fly",
+        "year": 1992,
       },
+      "input": String(
+        @inproceedings{Sammut:1992,
+        \\tAuthor = {C. Sammut and S. Hurst and D. Kedzier and D. Michie},
+        \\tBooktitle = {{Proceedings of the 9th International Conference on Machine Learning}},
+        \\tDate-Added = {2010-06-18 12:19:49 -0400},
+        \\tDate-Modified = {2010-06-18 12:19:49 -0400},
+        \\tEditor = {D. Sleeman and P. Edwards},
+        \\tPages = {385--393},
+        \\tTitle = {{Learning to fly}},
+        \\tYear = 1992}
+      ),
       "key": "Sammut:1992",
       "type": "inproceedings",
     },

@@ -25,19 +25,21 @@ Object {
             "lastName": "Schwartz",
           },
         ],
-        "booktitle": Array [
-          "AAAI-82",
-        ],
-        "pages": Array [
-          "345–348",
-        ],
-        "title": Array [
-          "Information acquisition in diagnosis",
-        ],
-        "year": Array [
-          "1982",
-        ],
+        "booktitle": "AAAI-82",
+        "pages": "345–348",
+        "title": "Information acquisition in diagnosis",
+        "year": 1982,
       },
+      "input": String(
+        @inproceedings(Patil:82,
+        \\tauthor =\\t{Ramesh S Patil and Peter Szolovits and 
+        \\t\\t\\t William B Schwartz},
+        \\tyear =\\t\\t{1982},
+        \\tbooktitle =\\t{AAAI-82},
+        \\tpages =\\t\\t{345--348},
+        \\ttitle =\\t\\t{Information acquisition in diagnosis}
+        )
+      ),
       "key": "Patil:82",
       "type": "inproceedings",
     },

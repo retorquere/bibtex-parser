@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Reading, Mass.",
-        ],
+        "address": "Reading, Mass.",
         "author": Array [
           Object {
             "firstName": "Patrick",
@@ -27,13 +25,18 @@ Object {
         "publisher": Array [
           "Addison-Wesley",
         ],
-        "title": Array [
-          "LISP",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "title": "LISP",
+        "year": 1980,
       },
+      "input": String(
+        @book(Winston:80a,
+        \\tauthor =\\t{Patrick Winston and Berthold Horn},
+        \\taddress =\\t{Reading, Mass.},
+        \\tyear =\\t\\t{1980},
+        \\tpublisher =\\t{Addison-Wesley},
+        \\ttitle =\\t\\t{LISP}
+        )
+      ),
       "key": "Winston:80a",
       "type": "book",
     },

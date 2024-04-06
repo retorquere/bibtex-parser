@@ -29,22 +29,22 @@ Object {
             "lastName": "Pitts",
           },
         ],
-        "journal": Array [
-          "Proceedings of the IRE",
-        ],
-        "pages": Array [
-          "1940-1951",
-        ],
-        "title": Array [
-          "What the frog's eye tells the frog's brain",
-        ],
-        "volume": Array [
-          "47",
-        ],
-        "year": Array [
-          "1959",
-        ],
+        "journal": "Proceedings of the IRE",
+        "pages": "1940-1951",
+        "title": "What the frog's eye tells the frog's brain",
+        "volume": "47",
+        "year": 1959,
       },
+      "input": String(
+        @article(MaturanaETAL:1959,
+        \\tauthor =\\t{J.Y. Lettvin and R.R. Maturana and W.S. McCulloch and W.H. Pitts},
+        \\tyear =\\t\\t{1959},
+        \\tjournal =\\t{Proceedings of the IRE},
+        \\tpages =\\t\\t{1940-1951},
+        \\ttitle =\\t\\t"What the frog's eye tells the frog's brain",
+        \\tvolume =\\t{47}
+        )
+      ),
       "key": "MaturanaETAL:1959",
       "type": "article",
     },

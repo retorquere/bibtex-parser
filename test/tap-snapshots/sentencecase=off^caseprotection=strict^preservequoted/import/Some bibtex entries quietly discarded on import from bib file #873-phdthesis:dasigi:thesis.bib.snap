@@ -17,16 +17,18 @@ Object {
             "lastName": "Dasigi",
           },
         ],
-        "school": Array [
-          "Department of Computer Science, University of Maryland at College Park",
-        ],
-        "title": Array [
-          "Word Sense Disambiguation in Descriptive text interpretation",
-        ],
-        "year": Array [
-          "1988",
-        ],
+        "school": "Department of Computer Science, University of Maryland at College Park",
+        "title": "Word Sense Disambiguation in Descriptive text interpretation",
+        "year": 1988,
       },
+      "input": String(
+        @phdthesis{Dasigi:thesis,
+        \\tauthor =\\t{Venugopala R. Dasigi},
+        \\ttitle =\\t\\t{Word Sense Disambiguation in Descriptive text 
+        \\t\\t\\t\\tinterpretation},
+        \\tschool = \\t{Department of Computer Science, University of Maryland at College Park},
+        \\tyear\\t=\\t{1988}}
+      ),
       "key": "Dasigi:thesis",
       "type": "phdthesis",
     },

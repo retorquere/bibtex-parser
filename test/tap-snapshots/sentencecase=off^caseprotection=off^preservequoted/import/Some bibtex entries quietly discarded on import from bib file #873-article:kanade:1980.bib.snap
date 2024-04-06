@@ -21,22 +21,22 @@ Object {
             "lastName": "Kanade",
           },
         ],
-        "journal": Array [
-          "Proc. AAAI",
-        ],
-        "pages": Array [
-          "4-6",
-        ],
-        "title": Array [
-          "Mapping image properties into shape constraints: skewed symmetry, affine-transformable patterns, and the shape-from-texture paradigm",
-        ],
-        "volume": Array [
-          "1",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "journal": "Proc. AAAI",
+        "pages": "4-6",
+        "title": "Mapping image properties into shape constraints: skewed symmetry, affine-transformable patterns, and the shape-from-texture paradigm",
+        "volume": "1",
+        "year": 1980,
       },
+      "input": String(
+        @article(Kanade:1980,
+        \\tauthor =\\t{John R. Kender and Takeo Kanade},
+        \\tyear =\\t\\t{1980},
+        \\tjournal =\\t{Proc. AAAI},
+        \\tpages =\\t\\t{4-6},
+        \\ttitle =\\t\\t"Mapping image properties into shape constraints: skewed symmetry, affine-transformable patterns, and the shape-from-texture paradigm",
+        \\tvolume =\\t{1}
+        )
+      ),
       "key": "Kanade:1980",
       "type": "article",
     },

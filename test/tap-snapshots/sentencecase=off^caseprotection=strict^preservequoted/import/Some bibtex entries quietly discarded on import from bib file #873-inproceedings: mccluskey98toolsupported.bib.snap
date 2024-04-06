@@ -21,19 +21,22 @@ Object {
             "lastName": "Kitchin",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the 10th IEEE International Conference on Tools with Artificial Intelligence",
-        ],
-        "title": Array [
-          "A Tool-Supported Approach to Engineering <span class=\\"nocase\\">HTN</span> Planning Models",
-        ],
-        "url": Array [
-          "citeseer.ist.psu.edu/mccluskey98toolsupported.html",
-        ],
-        "year": Array [
-          1998,
-        ],
+        "booktitle": "Proceedings of the 10th IEEE International Conference on Tools with Artificial Intelligence",
+        "title": "A Tool-Supported Approach to Engineering <span class=\\"nocase\\">HTN</span> Planning Models",
+        "url": "citeseer.ist.psu.edu/mccluskey98toolsupported.html",
+        "year": 1998,
       },
+      "input": String(
+        @inproceedings{ mccluskey98toolsupported,
+          author =\\t "T. McCluskey and D. Kitchin",
+          title =\\t "A Tool-Supported Approach to Engineering {HTN}
+                          Planning Models",
+          booktitle =\\t {Proceedings of the 10th IEEE International
+                          Conference on Tools with Artificial Intelligence},
+          year =\\t 1998,
+          url =\\t\\t "citeseer.ist.psu.edu/mccluskey98toolsupported.html"
+        }
+      ),
       "key": "mccluskey98toolsupported",
       "type": "inproceedings",
     },

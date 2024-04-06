@@ -17,27 +17,36 @@ Object {
             "lastName": "Allen",
           },
         ],
-        "journal": Array [
-          "AIJ",
-        ],
-        "pages": Array [
-          "123–154",
-        ],
-        "title": Array [
-          "Towards a General Theory of Action and Time",
-        ],
-        "volume": Array [
-          23,
-        ],
-        "year": Array [
-          1984,
-        ],
+        "journal": "AIJ",
+        "pages": "123–154",
+        "title": "Towards a General Theory of Action and Time",
+        "volume": "23",
+        "year": 1984,
       },
+      "input": String(
+        @Article{Allen:84,
+          author = \\t {James F. Allen},
+          title = \\t "Towards a General Theory of Action and Time",
+          journal = \\t AIJ,
+          year = \\t 1984,
+          volume =\\t 23,
+          pages =\\t {123--154}
+        }
+      ),
       "key": "Allen:84",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"AIJ\\"",
+      "input": "AIJ",
+      "location": Object {
+        "column": 18,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

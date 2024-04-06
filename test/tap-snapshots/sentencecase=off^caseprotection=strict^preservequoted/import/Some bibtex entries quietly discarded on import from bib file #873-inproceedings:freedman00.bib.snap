@@ -7,32 +7,39 @@
 'use strict'
 exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:freedman00.bib > must match snapshot 1`] = `
 Object {
-  "comments": Array [],
+  "comments": Array [
+    "Mike Freed",
+  ],
   "entries": Array [
     Object {
       "fields": Object {
-        "annote": Array [
-          "A paper about how to use a RAPS or PRS-style language to code up a dialogue agent.",
-        ],
+        "annote": "A paper about how to use a RAPS or PRS-style language to code up a dialogue agent.",
         "author": Array [
           Object {
             "firstName": "Reva",
             "lastName": "Freedman",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the Thirteenth Florida Artificial Intelligence Research Symposium (FLAIRS00)",
-        ],
+        "booktitle": "Proceedings of the Thirteenth Florida Artificial Intelligence Research Symposium (FLAIRS00)",
         "location": Array [
           "Orlando, FL",
         ],
-        "title": Array [
-          "Using a Reactive Planner as the Basis for a Dialogue Agent",
-        ],
-        "year": Array [
-          2000,
-        ],
+        "title": "Using a Reactive Planner as the Basis for a Dialogue Agent",
+        "year": 2000,
       },
+      "input": String(
+        @InProceedings{freedman00,
+          author =\\t {Reva Freedman},
+          title =\\t {Using a Reactive Planner as the Basis for a Dialogue
+                          Agent},
+          booktitle =\\t {Proceedings of the Thirteenth Florida Artificial
+                          Intelligence Research Symposium (FLAIRS00)},
+          year =\\t 2000,
+          location =\\t {Orlando, FL},
+          annote =\\t {A paper about how to use a RAPS or PRS-style
+                          language to code up a dialogue agent.}
+        }
+      ),
       "key": "freedman00",
       "type": "inproceedings",
     },

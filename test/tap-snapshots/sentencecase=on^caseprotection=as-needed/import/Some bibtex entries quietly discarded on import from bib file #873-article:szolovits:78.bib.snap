@@ -21,22 +21,22 @@ Object {
             "lastName": "Pauker",
           },
         ],
-        "journal": Array [
-          "Artificial Intelligence",
-        ],
-        "pages": Array [
-          "115-144",
-        ],
-        "title": Array [
-          "Categorical and probabilistic reasoning in medical diagnosis",
-        ],
-        "volume": Array [
-          "11",
-        ],
-        "year": Array [
-          "1978",
-        ],
+        "journal": "Artificial Intelligence",
+        "pages": "115-144",
+        "title": "Categorical and probabilistic reasoning in medical diagnosis",
+        "volume": "11",
+        "year": 1978,
       },
+      "input": String(
+        @article(Szolovits:78,
+        \\tauthor =\\t{Peter Szolovits and S.G. Pauker},
+        \\tyear =\\t\\t{1978},
+        \\tjournal =\\t{Artificial Intelligence},
+        \\tpages =\\t\\t{115-144},
+        \\ttitle =\\t\\t"Categorical and probabilistic reasoning in medical diagnosis",
+        \\tvolume =\\t{11}
+        )
+      ),
       "key": "Szolovits:78",
       "type": "article",
     },

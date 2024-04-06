@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "Nils J.",
@@ -23,13 +21,18 @@ Object {
         "publisher": Array [
           "McGraw-Hill",
         ],
-        "title": Array [
-          "Problem Solving Methods in Artificial Intelligence",
-        ],
-        "year": Array [
-          "1971",
-        ],
+        "title": "Problem Solving Methods in Artificial Intelligence",
+        "year": 1971,
       },
+      "input": String(
+        @book(Nilsson:71,
+        \\tauthor =\\t{Nils J. Nilsson},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1971},
+        \\tpublisher =\\t{McGraw-Hill},
+        \\ttitle =\\t\\t{Problem Solving Methods in Artificial Intelligence}
+        )
+      ),
       "key": "Nilsson:71",
       "type": "book",
     },

@@ -41,25 +41,24 @@ Object {
             "lastName": "Bernstein",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the American Control Conference (ACC)",
-        ],
-        "month": Array [
-          "06",
-        ],
-        "pages": Array [
-          "689–693",
-        ],
-        "title": Array [
-          "Solus: An Autonomous Aircraft for Flight Control and Trajectory Planning Research",
-        ],
-        "volume": Array [
-          "2",
-        ],
-        "year": Array [
-          "1998",
-        ],
+        "booktitle": "Proceedings of the American Control Conference (ACC)",
+        "month": 6,
+        "pages": "689–693",
+        "title": "Solus: An Autonomous Aircraft for Flight Control and Trajectory Planning Research",
+        "volume": "2",
+        "year": 1998,
       },
+      "input": String(
+        @INPROCEEDINGS(AtkinsETAL:98,
+        \\tAUTHOR = {E. M. Atkins and R. H. Miller and T. VanPelt and K. D. Shaw and W. B. Ribbens and P. D. Washabaugh and D. S. Bernstein},
+        \\tTITLE = "Solus: An Autonomous Aircraft for Flight Control and Trajectory Planning Research",
+        \\tBOOKTITLE = {Proceedings of the American Control Conference (ACC)},
+        \\tVOLUME = {2},
+        \\tPAGES = {689--693},\\t\\t     
+        \\tYEAR = {1998},
+        \\tMONTH = jun
+        )
+      ),
       "key": "AtkinsETAL:98",
       "type": "inproceedings",
     },

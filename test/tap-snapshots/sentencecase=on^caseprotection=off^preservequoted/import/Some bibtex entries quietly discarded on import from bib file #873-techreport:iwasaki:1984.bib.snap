@@ -21,13 +21,16 @@ Object {
             "lastName": "Iwasaki",
           },
         ],
-        "title": Array [
-          "The concept and implementation of skeletal plans",
-        ],
-        "year": Array [
-          "1984",
-        ],
+        "title": "The concept and implementation of skeletal plans",
+        "year": 1984,
       },
+      "input": String(
+        @techreport(Iwasaki:1984,
+        \\tauthor =\\t{Peter Friedland and Y. Iwasaki},
+        \\tyear =\\t\\t{1984},
+        \\ttitle =\\t\\t{The concept and implementation of skeletal plans}
+        )
+      ),
       "key": "Iwasaki:1984",
       "type": "techreport",
     },

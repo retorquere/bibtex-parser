@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "Edward H.",
@@ -23,13 +21,18 @@ Object {
         "publisher": Array [
           "American Elsevier",
         ],
-        "title": Array [
-          "Computer-based medical consultations: MYCIN",
-        ],
-        "year": Array [
-          "1976",
-        ],
+        "title": "Computer-based medical consultations: MYCIN",
+        "year": 1976,
       },
+      "input": String(
+        @book(Shortliffe:76,
+        \\tauthor =\\t{Edward H. Shortliffe},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1976},
+        \\tpublisher =\\t{American Elsevier},
+        \\ttitle =\\t\\t{Computer-Based Medical Consultations: MYCIN}
+        )
+      ),
       "key": "Shortliffe:76",
       "type": "book",
     },

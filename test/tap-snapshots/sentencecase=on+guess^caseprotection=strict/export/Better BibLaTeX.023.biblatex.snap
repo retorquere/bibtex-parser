@@ -25,25 +25,28 @@ Object {
             "lastName": "Schütze",
           },
         ],
-        "date": Array [
-          "2008-07-07",
-        ],
-        "isbn": Array [
-          "978-0-521-86571-5",
-        ],
+        "date": "2008-07-07",
+        "isbn": "978-0-521-86571-5",
         "location": Array [
           "New York",
         ],
-        "pagetotal": Array [
-          "496",
-        ],
+        "pagetotal": "496",
         "publisher": Array [
           "Cambridge University Press",
         ],
-        "title": Array [
-          "Introduction to <span class=\\"nocase\\">Information Retrieval</span>",
-        ],
+        "title": "Introduction to <span class=\\"nocase\\">Information Retrieval</span>",
       },
+      "input": String(
+        @book{Manning2008,
+          title = {Introduction to {{Information Retrieval}}},
+          author = {Manning, Christopher D. and Raghavan, Prabhakar and Schütze, Hinrich},
+          date = {2008-07-07},
+          publisher = {{Cambridge University Press}},
+          location = {{New York}},
+          isbn = {978-0-521-86571-5},
+          pagetotal = {496}
+        }
+      ),
       "key": "Manning2008",
       "type": "book",
     },

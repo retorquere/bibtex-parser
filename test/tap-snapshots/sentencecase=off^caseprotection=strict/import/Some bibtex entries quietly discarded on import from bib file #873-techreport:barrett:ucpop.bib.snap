@@ -7,13 +7,13 @@
 'use strict'
 exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-techreport:barrett:ucpop.bib > must match snapshot 1`] = `
 Object {
-  "comments": Array [],
+  "comments": Array [
+    "Oren Etzioni gets a little list for himself...",
+  ],
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Seattle, WA",
-        ],
+        "address": "Seattle, WA",
         "author": Array [
           Object {
             "firstName": "Anthony",
@@ -33,21 +33,27 @@ Object {
           },
         ],
         "institution": Array [
-          "Department of Computer Science and Engineering, University of Washington",
+          "Department of Computer Science",
+          "Engineering, University of Washington",
         ],
-        "month": Array [
-          "February",
-        ],
-        "number": Array [
-          "93–09–06",
-        ],
-        "title": Array [
-          "<span class=\\"nocase\\">UCPOP</span> User's Manual (Version 2.0)",
-        ],
-        "year": Array [
-          "1994",
-        ],
+        "month": "February",
+        "number": "93–09–06",
+        "title": "<span class=\\"nocase\\">UCPOP</span> User's Manual (Version 2.0)",
+        "year": 1994,
       },
+      "input": String(
+        @TECHREPORT{Barrett:UCPOP,
+        \\tAUTHOR = {Anthony Barrett and Keith Golden and 
+        \\t\\t  Scott Penberthy and Daniel Weld},
+        \\tTITLE = "{UCPOP} User's Manual (Version 2.0)",
+        \\tINSTITUTION = {Department of Computer Science and Engineering,
+        \\t\\t       University of Washington},
+        \\tYEAR = {1994},
+        \\tNUMBER = {93--09--06},
+        \\tADDRESS = {Seattle, WA},
+        \\tMONTH = {February}
+        }
+      ),
       "key": "Barrett:UCPOP",
       "type": "techreport",
     },

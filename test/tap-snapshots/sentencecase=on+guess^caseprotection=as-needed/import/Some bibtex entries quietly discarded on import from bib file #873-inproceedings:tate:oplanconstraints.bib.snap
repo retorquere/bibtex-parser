@@ -25,16 +25,18 @@ Object {
             "lastName": "Dalton",
           },
         ],
-        "crossref": Array [
-          "PlanInit1",
-        ],
-        "pages": Array [
-          "99-109",
-        ],
-        "title": Array [
-          "Reasoning with constraints within O-Plan2",
-        ],
+        "crossref": "PlanInit1",
+        "pages": "99-109",
+        "title": "Reasoning with constraints within O-Plan2",
       },
+      "input": String(
+        @INPROCEEDINGS{Tate:OPlanConstraints,
+        \\tAUTHOR = {Austin Tate and Brian Drabble and Jeff Dalton},
+        \\tTITLE = "Reasoning with Constraints within {O}-{P}lan2",
+        \\tPAGES = {99-109},
+        \\tCROSSREF = {PlanInit1}
+        }
+      ),
       "key": "Tate:OPlanConstraints",
       "type": "inproceedings",
     },

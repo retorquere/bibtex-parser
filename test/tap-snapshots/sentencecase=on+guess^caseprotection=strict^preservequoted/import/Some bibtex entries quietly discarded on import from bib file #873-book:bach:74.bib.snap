@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "Emmon",
@@ -23,13 +21,18 @@ Object {
         "publisher": Array [
           "Holt, Rinehart & Winston",
         ],
-        "title": Array [
-          "Syntactic theory",
-        ],
-        "year": Array [
-          "1974",
-        ],
+        "title": "Syntactic theory",
+        "year": 1974,
       },
+      "input": String(
+        @book(Bach:74,
+        \\tauthor =\\t{Emmon Bach},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1974},
+        \\tpublisher =\\t{Holt, Rinehart & Winston},
+        \\ttitle =\\t\\t{Syntactic Theory}
+        )
+      ),
       "key": "Bach:74",
       "type": "book",
     },

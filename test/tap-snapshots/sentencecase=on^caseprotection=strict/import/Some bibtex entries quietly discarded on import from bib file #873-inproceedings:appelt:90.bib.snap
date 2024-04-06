@@ -17,16 +17,18 @@ Object {
             "lastName": "Appelt",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the AAAI symposium on abduction",
-        ],
-        "title": Array [
-          "A theory of abduction based on model preference",
-        ],
-        "year": Array [
-          "1990",
-        ],
+        "booktitle": "Proceedings of the AAAI symposium on abduction",
+        "title": "A theory of abduction based on model preference",
+        "year": 1990,
       },
+      "input": String(
+        @INPROCEEDINGS{Appelt:90,
+        \\tAUTHOR = {Douglas E. Appelt},
+        \\tTITLE = "A Theory of Abduction based on model preference",
+        \\tBOOKTITLE = {Proceedings of the AAAI Symposium on Abduction},
+        \\tYEAR = {1990}
+        }
+      ),
       "key": "Appelt:90",
       "type": "inproceedings",
     },

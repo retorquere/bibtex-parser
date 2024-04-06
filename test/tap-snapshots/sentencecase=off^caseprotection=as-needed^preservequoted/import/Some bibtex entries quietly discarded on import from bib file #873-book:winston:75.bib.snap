@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "Patrick H.",
@@ -23,13 +21,18 @@ Object {
         "publisher": Array [
           "McGraw-Hill",
         ],
-        "title": Array [
-          "The Psychology of Computer Vision",
-        ],
-        "year": Array [
-          "1975",
-        ],
+        "title": "The Psychology of Computer Vision",
+        "year": 1975,
       },
+      "input": String(
+        @book{Winston:75,
+        \\tauthor =\\t{Patrick H. Winston},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1975},
+        \\tpublisher =\\t{McGraw-Hill},
+        \\ttitle =\\t\\t{The Psychology of Computer Vision}
+        }
+      ),
       "key": "Winston:75",
       "type": "book",
     },

@@ -21,9 +21,7 @@ Object {
             "lastName": "Szolovits",
           },
         ],
-        "booktitle": Array [
-          "Computational Linguistics in Medicine",
-        ],
+        "booktitle": "Computational Linguistics in Medicine",
         "editor": Array [
           Object {
             "firstName": "W.",
@@ -34,16 +32,21 @@ Object {
             "lastName": "Hein",
           },
         ],
-        "pages": Array [
-          "109–118",
-        ],
-        "title": Array [
-          "Analyzing and simulating taking the history of the present illness: context formation",
-        ],
-        "year": Array [
-          "1977",
-        ],
+        "pages": "109–118",
+        "title": "Analyzing and simulating taking the history of the present illness: context formation",
+        "year": 1977,
       },
+      "input": String(
+        @InCollection(Pauker:77,
+        \\tauthor =\\t{Stephen G. Pauker and Peter Szolovits},
+        \\tbooktitle =\\t{Computational Linguistics in Medicine},
+        \\tyear =\\t\\t{1977},
+        \\teditor =\\t{W. Schneider and A.L. Sagvall Hein},
+        \\tpages =\\t\\t{109--118},
+        \\ttitle =\\t\\t{Analyzing and simulating taking the history of 
+        \\t\\t\\t the present illness: context formation}
+        )
+      ),
       "key": "Pauker:77",
       "type": "incollection",
     },

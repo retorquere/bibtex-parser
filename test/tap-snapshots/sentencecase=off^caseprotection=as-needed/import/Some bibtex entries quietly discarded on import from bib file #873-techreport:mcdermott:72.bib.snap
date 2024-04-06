@@ -13,7 +13,7 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "lastName": "MCDERMOTT",
+            "name": "MCDERMOTT",
           },
           Object {
             "firstName": "Gerald J.",
@@ -23,21 +23,33 @@ Object {
         "institution": Array [
           "MIT Artificial Intelligence Laboratory",
         ],
-        "month": Array [
-          "05",
-        ],
-        "title": Array [
-          "The <span style=\\"font-variant:small-caps;\\">CONNIVER</span> Reference Manual",
-        ],
-        "year": Array [
-          "1972",
-        ],
+        "month": 5,
+        "title": "The <span style=\\"font-variant:small-caps;\\">CONNIVER</span> Reference Manual",
+        "year": 1972,
       },
+      "input": String(
+        @techreport(McDermott:72,
+        \\tauthor =\\tMCDERMOTT # { and Gerald J. Sussman},
+        \\tyear =\\t\\t{1972},
+        \\tmonth = \\tMay,
+        \\tinstitution =\\t{MIT Artificial Intelligence\\tLaboratory},
+        \\ttitle =\\t\\t{The {\\\\sc CONNIVER} Reference Manual}
+        )
+      ),
       "key": "McDermott:72",
       "type": "techreport",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"MCDERMOTT\\"",
+      "input": "MCDERMOTT",
+      "location": Object {
+        "column": 20,
+        "line": 2,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

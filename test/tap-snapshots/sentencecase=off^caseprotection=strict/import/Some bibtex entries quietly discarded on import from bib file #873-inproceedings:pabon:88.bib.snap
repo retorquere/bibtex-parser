@@ -21,24 +21,35 @@ Object {
             "lastName": "Gossard",
           },
         ],
-        "booktitle": Array [
-          "AAAI-88",
-        ],
-        "pages": Array [
-          "791–795",
-        ],
-        "title": Array [
-          "Connectionist Networks for Learning Coordinated Motion in Autonomous Systems",
-        ],
-        "year": Array [
-          "1988",
-        ],
+        "booktitle": "<span class=\\"nocase\\">AAAI-88</span>",
+        "pages": "791–795",
+        "title": "Connectionist Networks for Learning Coordinated Motion in Autonomous Systems",
+        "year": 1988,
       },
+      "input": String(
+        @INPROCEEDINGS{Pabon:88,
+        \\tAUTHOR = {Jahir Pabon and David Gossard},
+        \\tTITLE = {Connectionist Networks for Learning Coordinated
+        \\t\\t Motion in Autonomous Systems},
+        \\tBOOKTITLE = AAAI-88,
+        \\tYEAR = {1988},
+        \\tPAGES = {791--795}
+        }
+      ),
       "key": "Pabon:88",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"AAAI-88\\"",
+      "input": "AAAI-88",
+      "location": Object {
+        "column": 21,
+        "line": 5,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

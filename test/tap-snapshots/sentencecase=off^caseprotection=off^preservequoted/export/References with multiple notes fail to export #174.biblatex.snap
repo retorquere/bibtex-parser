@@ -21,19 +21,24 @@ Object {
             "lastName": "Verducci",
           },
         ],
-        "date": Array [
-          "2008",
-        ],
-        "note": Array [
-          "note 1 <p>note 2",
-        ],
+        "date": "2008",
+        "note": "note 1 <p>note 2",
         "publisher": Array [
           "Doubleday",
         ],
-        "title": Array [
-          "XYZZY",
-        ],
+        "title": "<span class=\\"nocase\\">XYZZY</span>",
       },
+      "input": String(
+        @misc{Torre2008,
+          title = {{{XYZZY}}},
+          author = {Torre, Joe and Verducci, Tom},
+          date = {2008},
+          publisher = {{Doubleday}},
+          note = {note 1
+        \\\\par
+        note 2}
+        }
+      ),
       "key": "Torre2008",
       "type": "misc",
     },

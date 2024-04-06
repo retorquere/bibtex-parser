@@ -17,22 +17,22 @@ Object {
             "lastName": "Stevens",
           },
         ],
-        "journal": Array [
-          "Biological Cybernetics",
-        ],
-        "pages": Array [
-          "19-28",
-        ],
-        "title": Array [
-          "Computation of locally parallel structure",
-        ],
-        "volume": Array [
-          "29",
-        ],
-        "year": Array [
-          "1978",
-        ],
+        "journal": "Biological Cybernetics",
+        "pages": "19-28",
+        "title": "Computation of locally parallel structure",
+        "volume": "29",
+        "year": 1978,
       },
+      "input": String(
+        @article(Stevens:1978,
+        \\tauthor =\\t{Kent Stevens},
+        \\tyear =\\t\\t{1978},
+        \\tjournal =\\t{Biological Cybernetics},
+        \\tpages =\\t\\t{19-28},
+        \\ttitle =\\t\\t"Computation of locally parallel structure",
+        \\tvolume =\\t{29}
+        )
+      ),
       "key": "Stevens:1978",
       "type": "article",
     },

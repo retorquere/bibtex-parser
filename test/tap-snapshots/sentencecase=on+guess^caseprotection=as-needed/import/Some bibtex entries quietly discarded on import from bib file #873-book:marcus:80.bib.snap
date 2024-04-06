@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Cambridge, Mass.",
-        ],
+        "address": "Cambridge, Mass.",
         "author": Array [
           Object {
             "firstName": "Mitchell P.",
@@ -23,13 +21,19 @@ Object {
         "publisher": Array [
           "MIT Press",
         ],
-        "title": Array [
-          "A theory of syntactic recognition for natural language",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "title": "A theory of syntactic recognition for natural language",
+        "year": 1980,
       },
+      "input": String(
+        @book(Marcus:80,
+        \\tauthor =\\t{Mitchell P. Marcus},
+        \\taddress =\\t{Cambridge, Mass.},
+        \\tyear =\\t\\t{1980},
+        \\tpublisher =\\t{MIT Press},
+        \\ttitle =\\t\\t{A Theory of Syntactic Recognition 
+        \\t\\t\\t for Natural Language}
+        )
+      ),
       "key": "Marcus:80",
       "type": "book",
     },

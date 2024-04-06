@@ -21,24 +21,35 @@ Object {
             "lastName": "Makhoul",
           },
         ],
-        "booktitle": Array [
-          "IJCAI-73",
-        ],
-        "pages": Array [
-          "200–207",
-        ],
-        "title": Array [
-          "Mechanical inference problems in continuous speech understanding",
-        ],
-        "year": Array [
-          "1973",
-        ],
+        "booktitle": "IJCAI-73",
+        "pages": "200–207",
+        "title": "Mechanical inference problems in continuous speech understanding",
+        "year": 1973,
       },
+      "input": String(
+        @inproceedings(Woods:73,
+        \\tauthor =\\t{William A. Woods and J Makhoul},
+        \\tyear =\\t\\t{1973},
+        \\tbooktitle =\\tIJCAI-73,
+        \\tpages =\\t\\t{200--207},
+        \\ttitle =\\t\\t{Mechanical inference problems in 
+        \\t\\t\\t continuous speech understanding}
+        )
+      ),
       "key": "Woods:73",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"IJCAI-73\\"",
+      "input": "IJCAI-73",
+      "location": Object {
+        "column": 22,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

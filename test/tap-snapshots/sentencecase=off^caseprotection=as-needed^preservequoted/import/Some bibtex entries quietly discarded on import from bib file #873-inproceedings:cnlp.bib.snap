@@ -21,19 +21,20 @@ Object {
             "lastName": "Smith",
           },
         ],
-        "crossref": Array [
-          "aips92",
-        ],
-        "pages": Array [
-          "189–197",
-        ],
-        "title": Array [
-          "Conditional Nonlinear Planning",
-        ],
-        "year": Array [
-          "1992",
-        ],
+        "crossref": "aips92",
+        "pages": "189–197",
+        "title": "Conditional Nonlinear Planning",
+        "year": 1992,
       },
+      "input": String(
+        @INPROCEEDINGS(CNLP,
+        \\tAUTHOR = {Mark A. Peot and David E. Smith},
+        \\tTITLE = "Conditional Nonlinear Planning",
+        \\tCROSSREF = {aips92},
+        \\tYEAR = {1992},
+        \\tPAGES = {189--197}
+        )
+      ),
       "key": "CNLP",
       "type": "inproceedings",
     },

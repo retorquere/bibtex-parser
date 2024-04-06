@@ -11,18 +11,14 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "Patrick H.",
             "lastName": "Winston",
           },
         ],
-        "booktitle": Array [
-          "The Psychology of Computer Vision",
-        ],
+        "booktitle": "The Psychology of Computer Vision",
         "editor": Array [
           Object {
             "firstName": "P.H.",
@@ -32,13 +28,20 @@ Object {
         "publisher": Array [
           "McGraw-Hill",
         ],
-        "title": Array [
-          "Learning structural descriptions from examples",
-        ],
-        "year": Array [
-          "1975",
-        ],
+        "title": "Learning structural descriptions from examples",
+        "year": 1975,
       },
+      "input": String(
+        @book(Winston:1975,
+        \\tauthor =\\t{Patrick H. Winston},
+        \\tbooktitle =\\t{The Psychology of Computer Vision},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1975},
+        \\teditor =\\t{P.H. Winston},
+        \\tpublisher =\\t{McGraw-Hill},
+        \\ttitle =\\t\\t{Learning structural descriptions from examples}
+        )
+      ),
       "key": "Winston:1975",
       "type": "book",
     },

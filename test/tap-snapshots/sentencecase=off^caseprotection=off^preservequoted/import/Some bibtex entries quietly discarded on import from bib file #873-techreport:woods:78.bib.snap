@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Cambridge, Mass.",
-        ],
+        "address": "Cambridge, Mass.",
         "author": Array [
           Object {
             "firstName": "William A.",
@@ -21,15 +19,22 @@ Object {
           },
         ],
         "institution": Array [
-          "Bolt Beranek and Newman",
+          "Bolt Beranek",
+          "Newman",
         ],
-        "title": Array [
-          "Research in Natural Language Understanding: Quarterly Technical Progress Report No. 1,1",
-        ],
-        "year": Array [
-          "January 1978",
-        ],
+        "title": "Research in Natural Language Understanding: Quarterly Technical Progress Report No. 1,1",
+        "year": "January 1978",
       },
+      "input": String(
+        @techreport(Woods:78,
+        \\tauthor =\\t{William A. Woods},
+        \\taddress =\\t{Cambridge, Mass.},
+        \\tyear =\\t\\t{January 1978},
+        \\tinstitution =\\t{Bolt Beranek and Newman},
+        \\ttitle =\\t\\t{Research in Natural Language Understanding: 
+        \\t\\t\\t Quarterly Technical Progress Report No. 1,1}
+        )
+      ),
       "key": "Woods:78",
       "type": "techreport",
     },

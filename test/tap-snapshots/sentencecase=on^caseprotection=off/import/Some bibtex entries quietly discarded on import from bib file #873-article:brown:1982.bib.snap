@@ -21,19 +21,20 @@ Object {
             "lastName": "Brown",
           },
         ],
-        "journal": Array [
-          "Proc. AAAI",
-        ],
-        "title": Array [
-          "Foundations of envisioning",
-        ],
-        "volume": Array [
-          "2",
-        ],
-        "year": Array [
-          "1982",
-        ],
+        "journal": "Proc. AAAI",
+        "title": "Foundations of envisioning",
+        "volume": "2",
+        "year": 1982,
       },
+      "input": String(
+        @article(Brown:1982,
+        \\tauthor =\\t{Johan deKleer and J.S. Brown},
+        \\tyear =\\t\\t{1982},
+        \\tjournal =\\t{Proc. AAAI},
+        \\ttitle =\\t\\t"Foundations of envisioning",
+        \\tvolume =\\t{2}
+        )
+      ),
       "key": "Brown:1982",
       "type": "article",
     },

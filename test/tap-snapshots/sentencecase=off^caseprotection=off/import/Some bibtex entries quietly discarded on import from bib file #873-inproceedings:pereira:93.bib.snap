@@ -25,16 +25,18 @@ Object {
             "lastName": "Lee",
           },
         ],
-        "crossref": Array [
-          "ACL-93",
-        ],
-        "title": Array [
-          "Distributional Clustering of English Words",
-        ],
-        "year": Array [
-          "1993",
-        ],
+        "crossref": "ACL-93",
+        "title": "Distributional Clustering of English Words",
+        "year": 1993,
       },
+      "input": String(
+        @INPROCEEDINGS(Pereira:93,
+        \\tAUTHOR = {Fernando Pereira and Naftali Tishby and Lillian Lee},
+        \\tTITLE = "Distributional Clustering of English Words",
+        \\tYEAR = {1993},
+        \\tCROSSREF = {ACL-93}
+        )
+      ),
       "key": "Pereira:93",
       "type": "inproceedings",
     },

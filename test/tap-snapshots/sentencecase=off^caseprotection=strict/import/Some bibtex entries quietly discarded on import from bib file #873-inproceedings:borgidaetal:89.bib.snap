@@ -29,19 +29,20 @@ Object {
             "lastName": "Resnick",
           },
         ],
-        "booktitle": Array [
-          "<span class=\\"nocase\\">ACM SIGMOD</span> International Conference on the Management of Data",
-        ],
-        "pages": Array [
-          "58–67",
-        ],
-        "title": Array [
-          "<span class=\\"nocase\\">CLASSIC</span>: A Structural Data Model for Objects",
-        ],
-        "year": Array [
-          1989,
-        ],
+        "booktitle": "<span class=\\"nocase\\">ACM SIGMOD</span> International Conference on the Management of Data",
+        "pages": "58–67",
+        "title": "<span class=\\"nocase\\">CLASSIC</span>: A Structural Data Model for Objects",
+        "year": 1989,
       },
+      "input": String(
+        @InProceedings{BorgidaETAL:89,
+          author = \\t {Alexander Borgida and Ronald J. Brachman and Deborah L. McGuinness and Lori Alperin Resnick},
+          title = \\t "{CLASSIC}: A Structural Data Model for Objects",
+          booktitle = \\t {{ACM} {SIGMOD} International Conference on the Management of Data},
+          pages =\\t {58--67},
+          year =\\t 1989
+        }
+      ),
       "key": "BorgidaETAL:89",
       "type": "inproceedings",
     },

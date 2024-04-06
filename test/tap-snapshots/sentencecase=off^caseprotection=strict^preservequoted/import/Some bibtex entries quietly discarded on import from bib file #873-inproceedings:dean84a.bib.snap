@@ -17,25 +17,26 @@ Object {
             "lastName": "Dean",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of IEEE Workshop on Principles of Knowledge-Based Systems",
-        ],
-        "key": Array [
-          "dean84a",
-        ],
-        "month": Array [
-          "December",
-        ],
+        "booktitle": "Proceedings of IEEE Workshop on Principles of Knowledge-Based Systems",
+        "key": "dean84a",
+        "month": "December",
         "organization": Array [
           "IEEE",
         ],
-        "title": Array [
-          "Planning and Temporal Reasoning Under Uncertainty",
-        ],
-        "year": Array [
-          "1984",
-        ],
+        "title": "Planning and Temporal Reasoning Under Uncertainty",
+        "year": 1984,
       },
+      "input": String(
+        @InProceedings{dean84a,
+        key = "dean84a",
+        author = "Thomas Dean",
+        title = "Planning and Temporal Reasoning Under Uncertainty",
+        booktitle = "Proceedings of IEEE Workshop on Principles of 
+                   Knowledge-Based Systems",
+        organization = "IEEE",
+        month = "December",
+        year = "1984"}
+      ),
       "key": "dean84a",
       "type": "inproceedings",
     },

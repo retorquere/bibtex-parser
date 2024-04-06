@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "SRI-ADDRESS",
-        ],
+        "address": "SRI-ADDRESS",
         "author": Array [
           Object {
             "firstName": "Michael",
@@ -27,24 +25,44 @@ Object {
         "institution": Array [
           "SRI",
         ],
-        "month": Array [
-          "01",
-        ],
-        "number": Array [
-          "411",
-        ],
-        "title": Array [
-          "Procedural Knowledge",
-        ],
-        "year": Array [
-          "1987",
-        ],
+        "month": 1,
+        "number": "411",
+        "title": "Procedural Knowledge",
+        "year": 1987,
       },
+      "input": String(
+        @Techreport(Georgeff:87,
+                AUTHOR = {Michael Georgeff and Amy Lansky},
+                TITLE = "Procedural Knowledge",
+        \\tINSTITUTION = SRI,
+                YEAR = {1987},
+        \\tADDRESS = SRI-ADDRESS,\\t\\t
+        \\tNUMBER = {411},
+                MONTH = jan
+        )
+      ),
       "key": "Georgeff:87",
       "type": "techreport",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"SRI\\"",
+      "input": "SRI",
+      "location": Object {
+        "column": 19,
+        "line": 4,
+      },
+    },
+    Object {
+      "error": "Unresolved @string reference \\"SRI-ADDRESS\\"",
+      "input": "SRI-ADDRESS",
+      "location": Object {
+        "column": 23,
+        "line": 6,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

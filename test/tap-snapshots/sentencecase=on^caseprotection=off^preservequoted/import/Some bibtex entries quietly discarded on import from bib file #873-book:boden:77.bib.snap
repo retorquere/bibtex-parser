@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "Margaret",
@@ -23,13 +21,18 @@ Object {
         "publisher": Array [
           "Basic Books",
         ],
-        "title": Array [
-          "Artificial intelligence and natural man",
-        ],
-        "year": Array [
-          "1977",
-        ],
+        "title": "Artificial intelligence and natural man",
+        "year": 1977,
       },
+      "input": String(
+        @book(Boden:77,
+        \\tauthor =\\t{Margaret Boden},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1977},
+        \\tpublisher =\\t{Basic Books},
+        \\ttitle =\\t\\t{Artificial Intelligence and Natural Man}
+        )
+      ),
       "key": "Boden:77",
       "type": "book",
     },

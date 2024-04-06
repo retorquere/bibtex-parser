@@ -17,19 +17,20 @@ Object {
             "lastName": "Warren",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the <span class=\\"nocase\\">AISB</span> Summer Conference",
-        ],
-        "pages": Array [
-          "344–354",
-        ],
-        "title": Array [
-          "Generating Conditional Plans and Programs",
-        ],
-        "year": Array [
-          "1976",
-        ],
+        "booktitle": "Proceedings of the <span class=\\"nocase\\">AISB</span> Summer Conference",
+        "pages": "344–354",
+        "title": "Generating Conditional Plans and Programs",
+        "year": 1976,
       },
+      "input": String(
+        @INPROCEEDINGS(WARPLAN-C,
+        \\tAUTHOR = {David H.D. Warren},
+        \\tTITLE = "Generating Conditional Plans and Programs",
+        \\tBOOKTITLE = {Proceedings of the {AISB} Summer Conference},
+        \\tYEAR = {1976},
+        \\tPAGES = {344--354}
+        )
+      ),
       "key": "WARPLAN-C",
       "type": "inproceedings",
     },

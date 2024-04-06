@@ -13,19 +13,13 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "firstName": "Jörg",
+            "firstName": "Jörg",
             "lastName": "Hoffmann",
           },
         ],
-        "bibdate": Array [
-          "2015-05-26",
-        ],
-        "bibsource": Array [
-          "DBLP, http://dblp.uni-trier.de/db/conf/aips/icaps2015.html#000115",
-        ],
-        "booktitle": Array [
-          "ICAPS",
-        ],
+        "bibdate": "2015-05-26",
+        "bibsource": "DBLP, http://dblp.uni-trier.de/db/conf/aips/icaps2015.html#000115",
+        "booktitle": "ICAPS",
         "editor": Array [
           Object {
             "firstName": "Ronen I.",
@@ -44,25 +38,33 @@ Object {
             "lastName": "Zilberstein",
           },
         ],
-        "isbn": Array [
-          "978-1-57735-731-5",
-        ],
-        "pages": Array [
-          "364–372",
-        ],
+        "isbn": "978-1-57735-731-5",
+        "pages": "364–372",
         "publisher": Array [
           "AAAI Press",
         ],
-        "title": Array [
-          "Simulated penetration testing: From \\"Dijkstra\\" to \\"Turing Test++\\"",
-        ],
-        "url": Array [
-          "http://www.aaai.org/Library/ICAPS/icaps15contents.php",
-        ],
-        "year": Array [
-          "2015",
-        ],
+        "title": "Simulated penetration testing: From <span class=\\"nocase\\">\\"</span>dijkstra<span class=\\"nocase\\">\\"</span> to <span class=\\"nocase\\">\\"</span>turing test++<span class=\\"nocase\\">\\"</span>",
+        "url": "http://www.aaai.org/Library/ICAPS/icaps15contents.php",
+        "year": 2015,
       },
+      "input": String(
+        @InProceedings{conf/aips/000115,
+          title =\\t"Simulated Penetration Testing: From {"}Dijkstra{"} to
+        \\t\\t {"}Turing Test++{"}",
+          author =\\t"J{\\\\"o}rg Hoffmann",
+          bibdate =\\t"2015-05-26",
+          bibsource =\\t"DBLP,
+        \\t\\t http://dblp.uni-trier.de/db/conf/aips/icaps2015.html#000115",
+          booktitle =\\t"ICAPS",
+          publisher =\\t"AAAI Press",
+          year = \\t"2015",
+          Editor =\\t"Ronen I. Brafman and Carmel Domshlak and Patrik Haslum
+        \\t\\t and Shlomo Zilberstein",
+          ISBN = \\t"978-1-57735-731-5",
+          pages =\\t"364--372",
+          URL =  \\t"http://www.aaai.org/Library/ICAPS/icaps15contents.php",
+        }
+      ),
       "key": "conf/aips/000115",
       "type": "inproceedings",
     },

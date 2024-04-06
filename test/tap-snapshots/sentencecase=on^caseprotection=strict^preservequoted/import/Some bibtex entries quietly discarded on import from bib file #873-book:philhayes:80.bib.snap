@@ -21,19 +21,22 @@ Object {
             "lastName": "Mouradian",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the 18th conference of the association for computational linguistics",
-        ],
+        "booktitle": "Proceedings of the 18th conference of the association for computational linguistics",
         "publisher": Array [
           "Association for Computational Linguistics",
         ],
-        "title": Array [
-          "Flexible parsing",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "title": "Flexible parsing",
+        "year": 1980,
       },
+      "input": String(
+        @book(PhilHayes:80,
+        \\tauthor =\\t{Phil Hayes and George Mouradian},
+        \\tbooktitle =\\t{Proceedings of the 18th Conference of the Association for Computational Linguistics},
+        \\tyear =\\t\\t{1980},
+        \\tpublisher =\\t{Association for Computational Linguistics},
+        \\ttitle =\\t\\t{Flexible parsing}
+        )
+      ),
       "key": "PhilHayes:80",
       "type": "book",
     },

@@ -11,28 +11,29 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Providence, RI",
-        ],
+        "address": "Providence, RI",
         "author": Array [
           Object {
             "firstName": "Randall J.",
             "lastName": "Calistri",
           },
         ],
-        "month": Array [
-          "May",
-        ],
-        "school": Array [
-          "Computer Science Department, Brown University",
-        ],
-        "title": Array [
-          "Classifying and detecting plan-based misconceptions for robust plan recognition",
-        ],
-        "year": Array [
-          "1990",
-        ],
+        "month": "May",
+        "school": "Computer Science Department, Brown University",
+        "title": "Classifying and detecting plan-based misconceptions for robust plan recognition",
+        "year": 1990,
       },
+      "input": String(
+        @PHDTHESIS{Calistri:90,
+        \\tAUTHOR = {Randall J. Calistri},
+        \\tTITLE = {Classifying and Detecting Plan-based Misconceptions
+        \\t\\t for Robust Plan Recognition},
+        \\tSCHOOL = {Computer Science Department, Brown University},
+        \\tYEAR = {1990},
+        \\tADDRESS = {Providence, RI},
+        \\tMONTH = {May}
+        }
+      ),
       "key": "Calistri:90",
       "type": "phdthesis",
     },

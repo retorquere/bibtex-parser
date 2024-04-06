@@ -17,22 +17,22 @@ Object {
             "lastName": "Witkin",
           },
         ],
-        "journal": Array [
-          "Artificial Intelligence",
-        ],
-        "pages": Array [
-          "17–45",
-        ],
-        "title": Array [
-          "Recovering Surface Shape and Orientation from Texture",
-        ],
-        "volume": Array [
-          "17",
-        ],
-        "year": Array [
-          "1981",
-        ],
+        "journal": "Artificial Intelligence",
+        "pages": "17–45",
+        "title": "Recovering Surface Shape and Orientation from Texture",
+        "volume": "17",
+        "year": 1981,
       },
+      "input": String(
+        @article(Witkin:81,
+        \\tauthor =\\t{Andrew P. Witkin},
+        \\tyear =\\t\\t{1981},
+        \\tjournal =\\t{Artificial Intelligence},
+        \\tpages =\\t\\t{17--45},
+        \\ttitle =\\t\\t"Recovering Surface Shape and Orientation from Texture",
+        \\tvolume =\\t{17}
+        )
+      ),
       "key": "Witkin:81",
       "type": "article",
     },

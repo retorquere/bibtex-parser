@@ -11,26 +11,18 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Cambridge, Mass.",
-        ],
+        "address": "Cambridge, Mass.",
         "author": Array [
           Object {
             "firstName": "Joan",
             "lastName": "Bresnan",
           },
         ],
-        "booktitle": Array [
-          "Linguistic theory and psychological reality",
-        ],
+        "booktitle": "Linguistic theory and psychological reality",
         "editor": Array [
           Object {
-            "firstName": "M.",
-            "lastName": "Halle",
-          },
-          Object {
-            "firstName": "J.",
-            "lastName": "Bresnan",
+            "firstName": "J. Bresnan",
+            "lastName": "M. Halle",
           },
           Object {
             "firstName": "G.",
@@ -40,13 +32,20 @@ Object {
         "publisher": Array [
           "MIT Press",
         ],
-        "title": Array [
-          "A realistic transformational grammar",
-        ],
-        "year": Array [
-          "1978",
-        ],
+        "title": "A realistic transformational grammar",
+        "year": 1978,
       },
+      "input": String(
+        @book(Bresnan:78,
+        \\tauthor =\\t{Joan Bresnan},
+        \\tbooktitle =\\t{Linguistic Theory and Psychological Reality},
+        \\taddress =\\t{Cambridge, Mass.},
+        \\tyear =\\t\\t{1978},
+        \\teditor =\\t{M. Halle, J. Bresnan, and G. Miller},
+        \\tpublisher =\\t{MIT Press},
+        \\ttitle =\\t\\t{A realistic transformational grammar}
+        )
+      ),
       "key": "Bresnan:78",
       "type": "book",
     },

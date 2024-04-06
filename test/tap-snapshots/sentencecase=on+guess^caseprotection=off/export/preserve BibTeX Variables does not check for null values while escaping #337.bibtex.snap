@@ -13,38 +13,33 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "firstName": "Geophysics Study",
-            "lastName": "Committee",
+            "name": "Geophysics Study Committee",
           },
           Object {
-            "firstName": "Geophysics Research",
-            "lastName": "Board",
+            "name": "Geophysics Research Board",
           },
           Object {
-            "firstName": "Assembly of",
-            "lastName": "Mathematical",
-          },
-          Object {
-            "firstName": "National Research Council",
-            "lastName": "Physical Sciences",
+            "name": "Assembly of Mathematical and Physical Sciences, National Research Council",
           },
         ],
-        "isbn": Array [
-          "978-0-309-02928-5",
-        ],
-        "note": Array [
-          "<a href=\\"http://www.nap.edu/openbook.php?record_id=203\\">http://www.nap.edu/openbook.php?record_id=203</a>",
-        ],
+        "isbn": "978-0-309-02928-5",
+        "note": "<a href=\\"http://www.nap.edu/openbook.php?record_id=203\\">http://www.nap.edu/openbook.php?record_id=203</a>",
         "publisher": Array [
           "The National Academies Press",
         ],
-        "title": Array [
-          "Continental tectonics",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "title": "Continental Tectonics",
+        "year": 1980,
       },
+      "input": String(
+        @book{geophysicsstudycommittee_continental_1980,
+          title = {Continental {{Tectonics}}},
+          author = {{Geophysics Study Committee} and {Geophysics Research Board} and {Assembly of Mathematical and Physical Sciences, National Research Council}},
+          year = {1980},
+          publisher = {{The National Academies Press}},
+          isbn = {978-0-309-02928-5},
+          note = {\\\\url{http://www.nap.edu/openbook.php?record_id=203}}
+        }
+      ),
       "key": "geophysicsstudycommittee_continental_1980",
       "type": "book",
     },

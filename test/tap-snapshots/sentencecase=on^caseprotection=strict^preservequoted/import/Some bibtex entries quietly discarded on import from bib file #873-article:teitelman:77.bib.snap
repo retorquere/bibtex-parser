@@ -17,22 +17,22 @@ Object {
             "lastName": "Teitelman",
           },
         ],
-        "journal": Array [
-          "Proc. Ijcai",
-        ],
-        "pages": Array [
-          "905-915",
-        ],
-        "title": Array [
-          "A display oriented programmer's assistant",
-        ],
-        "volume": Array [
-          "5",
-        ],
-        "year": Array [
-          "1977",
-        ],
+        "journal": "Proc. Ijcai",
+        "pages": "905-915",
+        "title": "A display oriented programmer's assistant",
+        "volume": "5",
+        "year": 1977,
       },
+      "input": String(
+        @article(Teitelman:77,
+        \\tauthor =\\t{Warren Teitelman},
+        \\tyear =\\t\\t{1977},
+        \\tjournal =\\t{Proc. Ijcai},
+        \\tpages =\\t\\t{905-915},
+        \\ttitle =\\t\\t"A display oriented programmer's assistant",
+        \\tvolume =\\t{5}
+        )
+      ),
       "key": "Teitelman:77",
       "type": "article",
     },

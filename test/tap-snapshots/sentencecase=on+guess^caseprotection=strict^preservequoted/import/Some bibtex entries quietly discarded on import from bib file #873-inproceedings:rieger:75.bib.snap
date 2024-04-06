@@ -17,9 +17,7 @@ Object {
             "lastName": "Rieger",
           },
         ],
-        "booktitle": Array [
-          "Theoretical issues in natural language processing",
-        ],
+        "booktitle": "Theoretical issues in natural language processing",
         "editor": Array [
           Object {
             "firstName": "R.",
@@ -30,19 +28,24 @@ Object {
             "lastName": "Nash-Webber",
           },
         ],
-        "pages": Array [
-          "180–195",
-        ],
-        "title": Array [
-          "The commonsense algorithm as a basis for computer models of human memory, inference, belief and contextual language comprehension",
-        ],
-        "volume": Array [
-          "1",
-        ],
-        "year": Array [
-          "1975",
-        ],
+        "pages": "180–195",
+        "title": "The commonsense algorithm as a basis for computer models of human memory, inference, belief and contextual language comprehension",
+        "volume": "1",
+        "year": 1975,
       },
+      "input": String(
+        @inproceedings(Rieger:75,
+        \\tauthor =\\t{Chuck Rieger},
+        \\tyear =\\t\\t{1975},
+        \\teditor =\\t{R. Schank and B.L. Nash-Webber},
+        \\tbooktitle =\\t{Theoretical Issues in Natural Language Processing},
+        \\tpages =\\t\\t{180--195},
+        \\ttitle =\\t\\t{The commonsense algorithm as a basis for 
+        \\t\\t\\t computer models of human memory, inference, 
+        \\t\\t\\t belief and contextual language comprehension},
+        \\tvolume =\\t{1}
+        )
+      ),
       "key": "Rieger:75",
       "type": "inproceedings",
     },

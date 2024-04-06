@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Chicago",
-        ],
+        "address": "Chicago",
         "author": Array [
           Object {
             "firstName": "Richard",
@@ -23,13 +21,18 @@ Object {
         "publisher": Array [
           "University of Chicago Press",
         ],
-        "title": Array [
-          "The Linguistic Turn: Recent Essays in Philosophical Method",
-        ],
-        "year": Array [
-          "1967",
-        ],
+        "title": "The Linguistic Turn: Recent Essays in Philosophical Method",
+        "year": 1967,
       },
+      "input": String(
+        @book(Rorty:67,
+        \\tauthor =\\t{Richard Rorty},
+        \\taddress =\\t{Chicago},
+        \\tyear =\\t\\t{1967},
+        \\tpublisher =\\t{University of Chicago Press},
+        \\ttitle =\\t\\t{The Linguistic Turn:  Recent Essays in Philosophical Method}
+        )
+      ),
       "key": "Rorty:67",
       "type": "book",
     },

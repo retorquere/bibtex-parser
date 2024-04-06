@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Cambridge, Mass.",
-        ],
+        "address": "Cambridge, Mass.",
         "author": Array [
           Object {
             "firstName": "Robert C.",
@@ -23,10 +21,16 @@ Object {
         "publisher": Array [
           "MIT Press",
         ],
-        "title": Array [
-          "Computation and Language Acquisition",
-        ],
+        "title": "Computation and Language Acquisition",
       },
+      "input": String(
+        @book(Berwick:Computation,
+        \\tauthor =\\t{Robert C. Berwick},
+        \\taddress =\\t{Cambridge, Mass.},
+        \\tpublisher =\\t{MIT Press},
+        \\ttitle =\\t\\t{Computation and Language Acquisition}
+        )
+      ),
       "key": "Berwick:Computation",
       "type": "book",
     },

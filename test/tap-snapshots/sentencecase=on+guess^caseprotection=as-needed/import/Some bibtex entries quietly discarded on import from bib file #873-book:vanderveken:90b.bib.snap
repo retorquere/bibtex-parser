@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Cambridge",
-        ],
+        "address": "Cambridge",
         "author": Array [
           Object {
             "firstName": "Daniel",
@@ -23,19 +21,22 @@ Object {
         "publisher": Array [
           "Cambridge University Press",
         ],
-        "series": Array [
-          "Meaning and speech acts",
-        ],
-        "title": Array [
-          "Formal semantics of success and satisfaction",
-        ],
-        "volume": Array [
-          "II",
-        ],
-        "year": Array [
-          "1990",
-        ],
+        "series": "Meaning and speech acts",
+        "title": "Formal semantics of success and satisfaction",
+        "volume": "II",
+        "year": 1990,
       },
+      "input": String(
+        @BOOK{Vanderveken:90b,
+        \\tAUTHOR = {Daniel Vanderveken},
+        \\tTITLE = "Formal semantics of success and satisfaction",
+        \\tPUBLISHER = {Cambridge University Press},
+        \\tYEAR = {1990},
+        \\tVOLUME = {II},
+        \\tSERIES = {Meaning and Speech Acts},
+        \\tADDRESS = {Cambridge}
+        }
+      ),
       "key": "Vanderveken:90b",
       "type": "book",
     },

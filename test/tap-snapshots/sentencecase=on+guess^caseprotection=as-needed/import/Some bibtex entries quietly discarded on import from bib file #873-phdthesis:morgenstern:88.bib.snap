@@ -17,16 +17,19 @@ Object {
             "lastName": "Morgenstern",
           },
         ],
-        "school": Array [
-          "New York University",
-        ],
-        "title": Array [
-          "Foundations of a logic of knowledge, action, and communication",
-        ],
-        "year": Array [
-          "1988",
-        ],
+        "school": "New York University",
+        "title": "Foundations of a logic of knowledge, action, and communication",
+        "year": 1988,
       },
+      "input": String(
+        @PHDTHESIS{Morgenstern:88,
+        \\tAUTHOR = {Leora Morgenstern},
+        \\tTITLE = {Foundations of a Logic of Knowledge, Action,
+        \\t\\t and Communication},
+        \\tSCHOOL = {New York University},
+        \\tYEAR = {1988}
+        }
+      ),
       "key": "Morgenstern:88",
       "type": "phdthesis",
     },

@@ -11,42 +11,54 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "annote": Array [
-          "Martha Pollack's rant, based on Bratman, somewhat, that plans are useful. Contra the then-popular push for reactive \`planners.' Also argues for a kind of qualitative decision theory. A la Bratman, argues that committing to intentions provides a useful control of reasoning. Discusses experiments with the IRMA planning architecture.",
-        ],
+        "annote": "Martha Pollack's rant, based on Bratman, somewhat, that plans are useful. Contra the then-popular push for reactive \`planners.' Also argues for a kind of qualitative decision theory. A la Bratman, argues that committing to intentions provides a useful control of reasoning. Discusses experiments with the IRMA planning architecture.",
         "author": Array [
           Object {
             "firstName": "Martha E.",
             "lastName": "Pollack",
           },
         ],
-        "journal": Array [
-          "AIJ",
-        ],
-        "month": Array [
-          "09",
-        ],
-        "number": Array [
-          "1",
-        ],
-        "pages": Array [
-          "43–68",
-        ],
-        "title": Array [
-          "The Uses of Plans",
-        ],
-        "volume": Array [
-          "57",
-        ],
-        "year": Array [
-          "1992",
-        ],
+        "journal": "AIJ",
+        "month": 9,
+        "number": "1",
+        "pages": "43–68",
+        "title": "The Uses of Plans",
+        "volume": "57",
+        "year": 1992,
       },
+      "input": String(
+        @ARTICLE{MPollack:92,
+        \\tAUTHOR = {Martha E. Pollack},
+        \\tTITLE = "The Uses of Plans",
+        \\tJOURNAL = AIJ,
+        \\tYEAR = {1992},
+        \\tVOLUME = {57},
+        \\tNUMBER = {1},
+        \\tPAGES = {43--68},
+        \\tMONTH = sep,
+        \\tANNOTE = {Martha Pollack's rant, based on Bratman, somewhat,
+        \\t\\t  that plans are useful.  Contra the then-popular push
+        \\t\\t  for reactive \`planners.'  Also argues for a kind of
+        \\t\\t  qualitative decision theory.  A la Bratman, argues that 
+        \\t\\t  committing to intentions provides a useful control
+        \\t\\t  of reasoning.  Discusses experiments with the IRMA
+        \\t\\t  planning architecture.}
+        }
+      ),
       "key": "MPollack:92",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"AIJ\\"",
+      "input": "AIJ",
+      "location": Object {
+        "column": 15,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

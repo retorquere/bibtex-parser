@@ -20,16 +20,19 @@ Object {
         "publisher": Array [
           "Harcourt, Brace & World",
         ],
-        "title": Array [
-          "Principles of gestalt psychology",
-        ],
-        "volume": Array [
-          "New York",
-        ],
-        "year": Array [
-          "1935",
-        ],
+        "title": "Principles of gestalt psychology",
+        "volume": "New York",
+        "year": 1935,
       },
+      "input": String(
+        @book(Koffka:1935,
+        \\tauthor =\\t{K. Koffka},
+        \\tyear =\\t\\t{1935},
+        \\tpublisher =\\t{Harcourt, Brace & World},
+        \\ttitle =\\t\\t"Principles of Gestalt Psychology",
+        \\tvolume =\\t{New York}
+        )
+      ),
       "key": "Koffka:1935",
       "type": "book",
     },

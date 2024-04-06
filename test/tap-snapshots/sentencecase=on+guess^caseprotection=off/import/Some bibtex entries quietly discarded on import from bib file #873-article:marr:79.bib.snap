@@ -21,22 +21,22 @@ Object {
             "lastName": "Poggio",
           },
         ],
-        "journal": Array [
-          "Proceedings of the Royal Society",
-        ],
-        "pages": Array [
-          "301–328",
-        ],
-        "title": Array [
-          "A computational theory of human stereo vision",
-        ],
-        "volume": Array [
-          "B-204",
-        ],
-        "year": Array [
-          "1979",
-        ],
+        "journal": "Proceedings of the Royal Society",
+        "pages": "301–328",
+        "title": "A computational theory of human stereo vision",
+        "volume": "B-204",
+        "year": 1979,
       },
+      "input": String(
+        @article(Marr:79,
+        \\tauthor =\\t{David Marr and Tomaso Poggio},
+        \\tyear =\\t\\t{1979},
+        \\tjournal =\\t{Proceedings of the Royal Society},
+        \\tpages =\\t\\t{301--328},
+        \\ttitle =\\t\\t"A computational theory of human stereo vision",
+        \\tvolume =\\t{B-204}
+        )
+      ),
       "key": "Marr:79",
       "type": "article",
     },

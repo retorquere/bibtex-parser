@@ -11,36 +11,48 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "annote": Array [
-          "Describes a method for computing stable models, that correspond to TMS labelings and default logic extensions. An algorithm based on imposing a dependency graph on the rules. Didn't read it carefully.",
-        ],
+        "annote": "Describes a method for computing stable models, that correspond to TMS labelings and default logic extensions. An algorithm based on imposing a dependency graph on the rules. Didn't read it carefully.",
         "author": Array [
           Object {
             "firstName": "Rachel",
             "lastName": "Ben-Eliyahu",
           },
         ],
-        "journal": Array [
-          "JAIR",
-        ],
-        "pages": Array [
-          "27–52",
-        ],
-        "title": Array [
-          "A hierarchy of tractable subsets for computing stable models",
-        ],
-        "volume": Array [
-          "5",
-        ],
-        "year": Array [
-          "1996",
-        ],
+        "journal": "JAIR",
+        "pages": "27–52",
+        "title": "A hierarchy of tractable subsets for computing stable models",
+        "volume": "5",
+        "year": 1996,
       },
+      "input": String(
+        @ARTICLE{Ben-Eliyahu:96,
+        \\tAUTHOR = {Rachel Ben-Eliyahu},
+        \\tTITLE = {A Hierarchy of Tractable Subsets for Computing
+        \\t\\t Stable Models},
+        \\tJOURNAL = JAIR,
+        \\tYEAR = {1996},
+        \\tVOLUME = {5},
+        \\tPAGES = {27--52},
+        \\tANNOTE = {Describes a method for computing stable models, 
+        \\t\\t  that correspond to TMS labelings and default logic
+        \\t\\t  extensions.  An algorithm based on imposing a 
+        \\t\\t  dependency graph on the rules.  Didn't read it carefully.}
+        }
+      ),
       "key": "Ben-Eliyahu:96",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"JAIR\\"",
+      "input": "JAIR",
+      "location": Object {
+        "column": 16,
+        "line": 5,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

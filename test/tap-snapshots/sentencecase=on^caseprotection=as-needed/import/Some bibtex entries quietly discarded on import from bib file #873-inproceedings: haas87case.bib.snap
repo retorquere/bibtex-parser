@@ -17,19 +17,23 @@ Object {
             "lastName": "Haas",
           },
         ],
-        "booktitle": Array [
-          "The frame problem in artificial intelligence: Proceedings of the 1987 workshop",
-        ],
+        "booktitle": "The frame problem in artificial intelligence: Proceedings of the 1987 workshop",
         "publisher": Array [
           "Morgan Kaufmann",
         ],
-        "title": Array [
-          "The case for domain-specific frame axioms",
-        ],
-        "year": Array [
-          "1987",
-        ],
+        "title": "The case for domain-specific frame axioms",
+        "year": 1987,
       },
+      "input": String(
+        @inproceedings{ haas87case,
+          author =\\t "Andrew R. Haas",
+          title =\\t "The case for domain-specific frame axioms",
+          booktitle =\\t "The Frame Problem in Artificial Intelligence:
+                          Proceedings of the 1987 Workshop",
+          publisher =\\t "Morgan Kaufmann",
+          year =\\t "1987"
+        }
+      ),
       "key": "haas87case",
       "type": "inproceedings",
     },

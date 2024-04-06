@@ -11,45 +11,44 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Palo Alto, Calif.",
-        ],
+        "address": "Palo Alto, Calif.",
         "author": Array [
           Object {
             "firstName": "D. Jack",
             "lastName": "Mostow",
           },
         ],
-        "booktitle": Array [
-          "Machine Learning: An Artificial Intelligence Approach",
-        ],
+        "booktitle": "Machine Learning: An Artificial Intelligence Approach",
         "editor": Array [
           Object {
-            "firstName": "Ryszard",
-            "lastName": "Michalski",
-          },
-          Object {
-            "firstName": "Jaime G.",
-            "lastName": "Carbonell",
+            "firstName": "Jaime G. Carbonell",
+            "lastName": "Ryszard Michalski",
           },
           Object {
             "firstName": "Tom M.",
             "lastName": "Mitchell",
           },
         ],
-        "pages": Array [
-          "367–403",
-        ],
+        "pages": "367–403",
         "publisher": Array [
           "Tioga",
         ],
-        "title": Array [
-          "Machine transformation of advice into a heuristic search procedure",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "title": "Machine transformation of advice into a heuristic search procedure",
+        "year": 1983,
       },
+      "input": String(
+        @incollection(Mostow:83,
+        \\tauthor =\\t{D. Jack Mostow},
+        \\tbooktitle =\\t{Machine Learning: An Artificial Intelligence Approach},
+        \\taddress =\\t{Palo Alto, Calif.},
+        \\tyear =\\t\\t{1983},
+        \\teditor =\\t{Ryszard Michalski, Jaime G. Carbonell, and Tom M. Mitchell},
+        \\tpublisher =\\t{Tioga},
+        \\tpages =\\t\\t{367--403},
+        \\ttitle =\\t\\t{Machine transformation of advice into a 
+        \\t\\t\\t heuristic search procedure}
+        )
+      ),
       "key": "Mostow:83",
       "type": "incollection",
     },

@@ -20,19 +20,21 @@ Object {
         "publisher": Array [
           "Acta Universitatis Gothoburgen",
         ],
-        "series": Array [
-          "Gothenburg Studies in English",
-        ],
-        "title": Array [
-          "Semantic Patterns of Noun-Noun Compound",
-        ],
-        "volume": Array [
-          41,
-        ],
-        "year": Array [
-          "1978",
-        ],
+        "series": "Gothenburg Studies in English",
+        "title": "Semantic Patterns of Noun-Noun Compound",
+        "volume": "41",
+        "year": 1978,
       },
+      "input": String(
+        @book(Warren:78,
+        \\tauthor =\\t{Beatrice Warren},
+        \\tyear =\\t\\t{1978},
+        \\tpublisher =\\t{Acta Universitatis Gothoburgen},
+        \\ttitle =\\t\\t"Semantic Patterns of Noun-Noun Compound",
+        \\tseries =\\t{Gothenburg Studies in English},
+        \\tvolume =\\t41\\t
+        )
+      ),
       "key": "Warren:78",
       "type": "book",
     },

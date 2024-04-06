@@ -17,16 +17,18 @@ Object {
             "lastName": "McAllester",
           },
         ],
-        "note": Array [
-          "Unpublished",
-        ],
-        "title": Array [
-          "Partial order backtracking",
-        ],
-        "year": Array [
-          "1993",
-        ],
+        "note": "Unpublished",
+        "title": "Partial order backtracking",
+        "year": 1993,
       },
+      "input": String(
+        @UNPUBLISHED{McAllester:POBacktrack,
+        \\tAUTHOR = {David A. McAllester},
+        \\tTITLE = "Partial Order Backtracking",
+        \\tNOTE = {Unpublished},
+        \\tYEAR = {1993}
+        }
+      ),
       "key": "McAllester:POBacktrack",
       "type": "unpublished",
     },

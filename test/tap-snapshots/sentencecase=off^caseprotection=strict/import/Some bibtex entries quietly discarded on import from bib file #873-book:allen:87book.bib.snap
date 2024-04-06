@@ -7,13 +7,13 @@
 'use strict'
 exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-book:allen:87book.bib > must match snapshot 1`] = `
 Object {
-  "comments": Array [],
+  "comments": Array [
+    "B.C. Bruce",
+  ],
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Menlo Park, California",
-        ],
+        "address": "Menlo Park, California",
         "author": Array [
           Object {
             "firstName": "James F.",
@@ -23,13 +23,17 @@ Object {
         "publisher": Array [
           "Benjamin / Cummings Publishing Company",
         ],
-        "title": Array [
-          "Natural Lan­guage Un­der­stand­ing",
-        ],
-        "year": Array [
-          1987,
-        ],
+        "title": "Natural Lan­guage Un­der­stand­ing",
+        "year": 1987,
       },
+      "input": String(
+        @book{Allen:87book,
+        \\tauthor = \\t{James F. Allen},
+        \\ttitle =\\t\\t"Natural Lan\\\\-guage Un\\\\-der\\\\-stand\\\\-ing",
+        \\tyear = \\t\\t1987,
+        \\tpublisher =\\t{Benjamin  / Cummings Publishing Company},
+        \\taddress = {Menlo Park, California}}
+      ),
       "key": "Allen:87book",
       "type": "book",
     },

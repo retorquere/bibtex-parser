@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "ERLBAUM-ADDRESS",
-        ],
+        "address": "ERLBAUM-ADDRESS",
         "author": Array [
           Object {
             "firstName": "John R.",
@@ -23,18 +21,32 @@ Object {
         "publisher": Array [
           "Lawrence Erlbaum",
         ],
-        "title": Array [
-          "Language, Memory, and Thought",
-        ],
-        "year": Array [
-          "1976",
-        ],
+        "title": "Language, Memory, and Thought",
+        "year": 1976,
       },
+      "input": String(
+        @book(JRAnderson:76,
+        \\tauthor =\\t{John R. Anderson},
+        \\taddress =\\tERLBAUM-ADDRESS,
+        \\tyear =\\t\\t{1976},
+        \\tpublisher =\\t{Lawrence Erlbaum},
+        \\ttitle =\\t\\t{Language, Memory, and Thought}
+        )
+      ),
       "key": "JRAnderson:76",
       "type": "book",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"ERLBAUM-ADDRESS\\"",
+      "input": "ERLBAUM-ADDRESS",
+      "location": Object {
+        "column": 27,
+        "line": 3,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

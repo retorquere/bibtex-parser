@@ -11,18 +11,14 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Cambridge",
-        ],
+        "address": "Cambridge",
         "author": Array [
           Object {
             "firstName": "Imre",
             "lastName": "Lakatos",
           },
         ],
-        "booktitle": Array [
-          "Criticism and the Growth of Knowledge",
-        ],
+        "booktitle": "Criticism and the Growth of Knowledge",
         "editor": Array [
           Object {
             "firstName": "I.",
@@ -33,19 +29,25 @@ Object {
             "lastName": "Musgrave",
           },
         ],
-        "pages": Array [
-          "91-196",
-        ],
+        "pages": "91-196",
         "publisher": Array [
           "Cambridge University Press",
         ],
-        "title": Array [
-          "Falsification and the methodology of scientific research programmes",
-        ],
-        "year": Array [
-          "1970",
-        ],
+        "title": "Falsification and the methodology of scientific research programmes",
+        "year": 1970,
       },
+      "input": String(
+        @book(Lakatos:1970,
+        \\tauthor =\\t{Imre Lakatos},
+        \\tbooktitle =\\t{Criticism and the Growth of Knowledge},
+        \\taddress =\\t{Cambridge},
+        \\tyear =\\t\\t{1970},
+        \\teditor =\\t{I. Lakatos and A. Musgrave},
+        \\tpublisher =\\t{Cambridge University Press},
+        \\tpages =\\t\\t{91-196},
+        \\ttitle =\\t\\t{Falsification and the methodology of scientific research programmes}
+        )
+      ),
       "key": "Lakatos:1970",
       "type": "book",
     },

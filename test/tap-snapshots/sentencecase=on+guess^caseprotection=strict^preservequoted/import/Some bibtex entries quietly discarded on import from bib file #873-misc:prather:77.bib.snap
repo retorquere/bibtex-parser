@@ -21,13 +21,16 @@ Object {
             "lastName": "Swinney",
           },
         ],
-        "title": Array [
-          "Some effects of syntactic context upon lexical access",
-        ],
-        "year": Array [
-          "1977",
-        ],
+        "title": "Some effects of syntactic context upon lexical access",
+        "year": 1977,
       },
+      "input": String(
+        @misc(Prather:77,
+        \\tauthor =\\t{Penny Prather and David Swinney},
+        \\tyear =\\t\\t{1977},
+        \\ttitle =\\t\\t{Some effects of syntactic context upon lexical access}
+        )
+      ),
       "key": "Prather:77",
       "type": "misc",
     },

@@ -13,28 +13,32 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "firstName": "R. M.",
+            "firstName": "R. M.",
             "lastName": "Jensen",
           },
           Object {
-            "firstName": "M. M.",
+            "firstName": "M. M.",
             "lastName": "Veloso",
           },
           Object {
-            "firstName": "R. E.",
+            "firstName": "R. E.",
             "lastName": "Bryant",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the 14th International Conference on Automated Planning and Scheduling ICAPS-04",
-        ],
-        "title": Array [
-          "Fault Tolerant Planning: Toward Probabilistic Uncertainty Models in Symbolic Non-Deterministic Planning",
-        ],
-        "year": Array [
-          2004,
-        ],
+        "booktitle": "Proceedings of the 14th International Conference on Automated Planning and Scheduling <span class=\\"nocase\\">ICAPS</span>-04",
+        "title": "Fault Tolerant Planning: Toward Probabilistic Uncertainty Models in Symbolic Non-Deterministic Planning",
+        "year": 2004,
       },
+      "input": String(
+        @InProceedings{JensenETAL:04,
+          author = \\t {Jensen, R.~M. and Veloso, M.~M. and Bryant, R.~E.},
+          title = \\t {Fault Tolerant Planning: Toward Probabilistic Uncertainty 
+                          Models in Symbolic Non-Deterministic Planning},
+          booktitle = \\t {Proceedings of the 14th International Conference on Automated
+                          Planning and Scheduling {ICAPS}-04},
+          year =\\t 2004
+        }
+      ),
       "key": "JensenETAL:04",
       "type": "inproceedings",
     },

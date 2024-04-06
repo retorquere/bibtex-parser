@@ -21,24 +21,35 @@ Object {
             "lastName": "Byun",
           },
         ],
-        "booktitle": Array [
-          "AAAI-88",
-        ],
-        "pages": Array [
-          "774–779",
-        ],
-        "title": Array [
-          "A robust, qualitative method for robot spatial reasoning",
-        ],
-        "year": Array [
-          "1988",
-        ],
+        "booktitle": "AAAI-88",
+        "pages": "774–779",
+        "title": "A robust, qualitative method for robot spatial reasoning",
+        "year": 1988,
       },
+      "input": String(
+        @inproceedings(Kuipers:88,
+        \\tauthor =\\t{Benjamin Kuipers and Yung-Tai Byun},
+        \\tyear =\\t\\t{1988},
+        \\tbooktitle =\\tAAAI-88,
+        \\tpages =\\t\\t{774--779},
+        \\ttitle =\\t\\t{A robust, qualitative method for robot 
+        \\t\\t\\t spatial reasoning}
+        )
+      ),
       "key": "Kuipers:88",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"AAAI-88\\"",
+      "input": "AAAI-88",
+      "location": Object {
+        "column": 21,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

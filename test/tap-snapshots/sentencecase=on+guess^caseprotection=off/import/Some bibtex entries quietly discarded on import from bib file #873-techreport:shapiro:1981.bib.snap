@@ -20,13 +20,17 @@ Object {
         "institution": Array [
           "Yale University Computer Science Department",
         ],
-        "title": Array [
-          "Inductive inference of theories from facts",
-        ],
-        "year": Array [
-          "1981",
-        ],
+        "title": "Inductive inference of theories from facts",
+        "year": 1981,
       },
+      "input": String(
+        @techreport(Shapiro:1981,
+        \\tauthor =\\t{Ehud Shapiro},
+        \\tyear =\\t\\t{1981},
+        \\tinstitution =\\t{Yale University Computer Science Department},
+        \\ttitle =\\t\\t{Inductive Inference of Theories from Facts}
+        )
+      ),
       "key": "Shapiro:1981",
       "type": "techreport",
     },

@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "Richard O.",
@@ -28,9 +26,7 @@ Object {
             "lastName": "Sutherland",
           },
         ],
-        "booktitle": Array [
-          "Pattern Directed Inference Systems",
-        ],
+        "booktitle": "Pattern Directed Inference Systems",
         "editor": Array [
           Object {
             "firstName": "D.A.",
@@ -41,19 +37,27 @@ Object {
             "lastName": "Hayes-Roth",
           },
         ],
-        "pages": Array [
-          "203-221",
-        ],
+        "pages": "203-221",
         "publisher": Array [
           "Academic Press",
         ],
-        "title": Array [
-          "Semantic network representations in rule-based inference systems",
-        ],
-        "year": Array [
-          "1978",
-        ],
+        "title": "Semantic network representations in rule-based inference systems",
+        "year": 1978,
       },
+      "input": String(
+        @book(Duda:78,
+        \\tauthor =\\t{Richard O. Duda and Peter E. Hart and 
+        \\t\\t\\t G.L. Sutherland},
+        \\tbooktitle =\\t{Pattern Directed Inference Systems},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1978},
+        \\teditor =\\t{D.A. Waterman and F. Hayes-Roth},
+        \\tpublisher =\\t{Academic Press},
+        \\tpages =\\t\\t{203-221},
+        \\ttitle =\\t\\t{Semantic network representations in 
+        \\t\\t\\t rule-based inference systems}
+        )
+      ),
       "key": "Duda:78",
       "type": "book",
     },

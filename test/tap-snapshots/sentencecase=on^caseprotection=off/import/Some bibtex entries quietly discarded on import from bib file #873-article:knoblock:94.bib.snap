@@ -17,27 +17,36 @@ Object {
             "lastName": "Knoblock",
           },
         ],
-        "journal": Array [
-          "AIJ",
-        ],
-        "pages": Array [
-          "243–302",
-        ],
-        "title": Array [
-          "Automatically generating abstractions for planning",
-        ],
-        "volume": Array [
-          "68",
-        ],
-        "year": Array [
-          "1994",
-        ],
+        "journal": "AIJ",
+        "pages": "243–302",
+        "title": "Automatically generating abstractions for planning",
+        "volume": "68",
+        "year": 1994,
       },
+      "input": String(
+        @ARTICLE{Knoblock:94,
+        \\tAUTHOR = {Craig A. Knoblock},
+        \\tTITLE = "Automatically Generating abstractions for planning",
+        \\tJOURNAL = AIJ,
+        \\tYEAR = {1994},
+        \\tVOLUME = {68},
+        \\tPAGES = {243--302}
+        }
+      ),
       "key": "Knoblock:94",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"AIJ\\"",
+      "input": "AIJ",
+      "location": Object {
+        "column": 15,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

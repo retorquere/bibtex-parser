@@ -17,13 +17,16 @@ Object {
             "lastName": "Name",
           },
         ],
-        "date": Array [
-          "2018",
-        ],
-        "title": Array [
-          "1 <span class=\\"nocase\\">O</span><sub>abcde</sub>",
-        ],
+        "date": "2018",
+        "title": "1 <span class=\\"nocase\\">O</span><sub>abcde</sub>",
       },
+      "input": String(
+        @article{ref1,
+          title = {1 {{O}}{\\\\textsubscript{abcde}}},
+          author = {Name, Name},
+          date = {2018}
+        }
+      ),
       "key": "ref1",
       "type": "article",
     },
@@ -35,13 +38,16 @@ Object {
             "lastName": "Name",
           },
         ],
-        "date": Array [
-          "2018",
-        ],
-        "title": Array [
-          "2 <span class=\\"nocase\\">O</span><sub>abcde</sub> Test",
-        ],
+        "date": "2018",
+        "title": "2 <span class=\\"nocase\\">O</span><sub>abcde</sub> Test",
       },
+      "input": String(
+        @article{ref2,
+          title = {2 {{O}}{\\\\textsubscript{abcde}} Test},
+          author = {Name, Name},
+          date = {2018}
+        }
+      ),
       "key": "ref2",
       "type": "article",
     },
@@ -53,13 +59,16 @@ Object {
             "lastName": "Name",
           },
         ],
-        "date": Array [
-          "2018",
-        ],
-        "title": Array [
-          "<span class=\\"nocase\\">O<sub>abcde</sub></span>",
-        ],
+        "date": "2018",
+        "title": "<span class=\\"nocase\\">O<sub>abcde</sub></span>",
       },
+      "input": String(
+        @article{ref3,
+          title = {{{O{\\\\textsubscript{abcde}}}}},
+          author = {Name, Name},
+          date = {2018}
+        }
+      ),
       "key": "ref3",
       "type": "article",
     },
@@ -71,13 +80,16 @@ Object {
             "lastName": "Name",
           },
         ],
-        "date": Array [
-          "2018",
-        ],
-        "title": Array [
-          "Oₓ",
-        ],
+        "date": "2018",
+        "title": "Oₓ",
       },
+      "input": String(
+        @article{ref4,
+          title = {O{\\\\textsubscript{x}}},
+          author = {Name, Name},
+          date = {2018}
+        }
+      ),
       "key": "ref4",
       "type": "article",
     },
@@ -89,13 +101,16 @@ Object {
             "lastName": "Name",
           },
         ],
-        "date": Array [
-          "2018",
-        ],
-        "title": Array [
-          "Oₓ Test",
-        ],
+        "date": "2018",
+        "title": "Oₓ Test",
       },
+      "input": String(
+        @article{ref5,
+          title = {O{\\\\textsubscript{x}} Test},
+          author = {Name, Name},
+          date = {2018}
+        }
+      ),
       "key": "ref5",
       "type": "article",
     },
@@ -107,13 +122,16 @@ Object {
             "lastName": "Name",
           },
         ],
-        "date": Array [
-          "2018",
-        ],
-        "title": Array [
-          "<span class=\\"nocase\\">Oₓ</span>",
-        ],
+        "date": "2018",
+        "title": "<span class=\\"nocase\\">Oₓ</span>",
       },
+      "input": String(
+        @article{ref6,
+          title = {{{O{\\\\textsubscript{x}}}}},
+          author = {Name, Name},
+          date = {2018}
+        }
+      ),
       "key": "ref6",
       "type": "article",
     },
@@ -125,13 +143,16 @@ Object {
             "lastName": "Name",
           },
         ],
-        "date": Array [
-          "2018",
-        ],
-        "title": Array [
-          "O₇₋ₓ",
-        ],
+        "date": "2018",
+        "title": "O₇₋ₓ",
       },
+      "input": String(
+        @article{ref7,
+          title = {O{\\\\textsubscript{7-x}}},
+          author = {Name, Name},
+          date = {2018}
+        }
+      ),
       "key": "ref7",
       "type": "article",
     },
@@ -143,13 +164,16 @@ Object {
             "lastName": "Name",
           },
         ],
-        "date": Array [
-          "2018",
-        ],
-        "title": Array [
-          "O₇₋ₓ Test",
-        ],
+        "date": "2018",
+        "title": "O₇₋ₓ Test",
       },
+      "input": String(
+        @article{ref8,
+          title = {O{\\\\textsubscript{7-x}} Test},
+          author = {Name, Name},
+          date = {2018}
+        }
+      ),
       "key": "ref8",
       "type": "article",
     },

@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "CSLI-ADDRESS",
-        ],
+        "address": "CSLI-ADDRESS",
         "author": Array [
           Object {
             "firstName": "Mark",
@@ -27,24 +25,36 @@ Object {
         "institution": Array [
           "CSLI",
         ],
-        "month": Array [
-          "October",
-        ],
-        "number": Array [
-          "CSLI-86-63",
-        ],
-        "title": Array [
-          "Discourse, anaphora and parsing",
-        ],
-        "year": Array [
-          "1986",
-        ],
+        "month": 10,
+        "number": "CSLI-86-63",
+        "title": "Discourse, anaphora and parsing",
+        "year": 1986,
       },
+      "input": String(
+        @TECHREPORT{Johnson:86,
+        \\tAUTHOR = {Mark Johnson and Ewan Klein},
+        \\tTITLE = "Discourse, Anaphora and Parsing",
+        \\tINSTITUTION = {CSLI},
+        \\tYEAR = {1986},
+        \\tNUMBER = {CSLI-86-63},
+        \\tADDRESS = CSLI-ADDRESS,
+        \\tMONTH = October
+        }
+      ),
       "key": "Johnson:86",
       "type": "techreport",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"CSLI-ADDRESS\\"",
+      "input": "CSLI-ADDRESS",
+      "location": Object {
+        "column": 24,
+        "line": 7,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

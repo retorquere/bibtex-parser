@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Berkeley",
-        ],
+        "address": "Berkeley",
         "author": Array [
           Object {
             "firstName": "David M.",
@@ -27,13 +25,18 @@ Object {
         "publisher": Array [
           "University of California Press",
         ],
-        "title": Array [
-          "Syntactic Argumentation and the Structure of English",
-        ],
-        "year": Array [
-          "1979",
-        ],
+        "title": "Syntactic Argumentation and the Structure of English",
+        "year": 1979,
       },
+      "input": String(
+        @book(Perlmutter:79,
+        \\tauthor =\\t{David M. Perlmutter and Scott Soames},
+        \\taddress =\\t{Berkeley},
+        \\tyear =\\t\\t{1979},
+        \\tpublisher =\\t{University of California Press},
+        \\ttitle =\\t\\t{Syntactic Argumentation and the Structure of English}
+        )
+      ),
       "key": "Perlmutter:79",
       "type": "book",
     },

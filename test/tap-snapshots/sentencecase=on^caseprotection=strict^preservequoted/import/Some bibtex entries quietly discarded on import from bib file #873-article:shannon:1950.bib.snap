@@ -17,19 +17,20 @@ Object {
             "lastName": "Shannon",
           },
         ],
-        "journal": Array [
-          "Philosophical Magazine (Series 7)",
-        ],
-        "title": Array [
-          "Programming a computer for playing chess",
-        ],
-        "volume": Array [
-          "41",
-        ],
-        "year": Array [
-          "1950",
-        ],
+        "journal": "Philosophical Magazine (Series 7)",
+        "title": "Programming a computer for playing chess",
+        "volume": "41",
+        "year": 1950,
       },
+      "input": String(
+        @article(Shannon:1950,
+        \\tauthor =\\t{Claude Shannon},
+        \\tyear =\\t\\t{1950},
+        \\tjournal =\\t{Philosophical Magazine (Series 7)},
+        \\ttitle =\\t\\t"Programming a Computer for Playing Chess",
+        \\tvolume =\\t{41}
+        )
+      ),
       "key": "Shannon:1950",
       "type": "article",
     },

@@ -17,19 +17,20 @@ Object {
             "lastName": "Marcus",
           },
         ],
-        "journal": Array [
-          "Proceedings of the 1981 ACL Conference",
-        ],
-        "pages": Array [
-          "129-136",
-        ],
-        "title": Array [
-          "D-theory: talking about talking about trees",
-        ],
-        "year": Array [
-          "1981",
-        ],
+        "journal": "Proceedings of the 1981 ACL Conference",
+        "pages": "129-136",
+        "title": "D-theory: talking about talking about trees",
+        "year": 1981,
       },
+      "input": String(
+        @article(Marcus:1981,
+        \\tauthor =\\t{Mitchell P. Marcus},
+        \\tyear =\\t\\t{1981},
+        \\tjournal =\\t{Proceedings of the 1981 ACL Conference},
+        \\tpages =\\t\\t{129-136},
+        \\ttitle =\\t\\t{D-theory: talking about talking about trees}
+        )
+      ),
       "key": "Marcus:1981",
       "type": "article",
     },

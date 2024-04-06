@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "Roger C.",
@@ -24,28 +22,32 @@ Object {
             "lastName": "Carbonell",
           },
         ],
-        "booktitle": Array [
-          "Associative Networks: Representation and Use of Knowledge by Computer",
-        ],
+        "booktitle": "Associative Networks: Representation and Use of Knowledge by Computer",
         "editor": Array [
           Object {
             "firstName": "N.V.",
             "lastName": "Findler",
           },
         ],
-        "pages": Array [
-          "327-362",
-        ],
+        "pages": "327-362",
         "publisher": Array [
           "Academic Press",
         ],
-        "title": Array [
-          "Re: The Gettysburg Address: Representing social and political acts",
-        ],
-        "year": Array [
-          "1979",
-        ],
+        "title": "Re: The Gettysburg Address: Representing social and political acts",
+        "year": 1979,
       },
+      "input": String(
+        @inbook(SchankCarbonell:1979,
+        \\tauthor =\\t{Roger C. Schank and J.G. Carbonell},
+        \\tbooktitle =\\t{Associative Networks: Representation and Use of Knowledge by Computer},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1979},
+        \\teditor =\\t{N.V. Findler},
+        \\tpublisher =\\t{Academic Press},
+        \\tpages =\\t\\t{327-362},
+        \\ttitle =\\t\\t{Re: The Gettysburg Address: Representing social and political acts}
+        )
+      ),
       "key": "SchankCarbonell:1979",
       "type": "inbook",
     },

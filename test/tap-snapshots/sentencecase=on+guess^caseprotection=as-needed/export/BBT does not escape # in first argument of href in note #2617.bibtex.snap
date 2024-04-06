@@ -13,16 +13,19 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "literal": "TheAuthor",
+            "name": "TheAuthor",
           },
         ],
-        "title": Array [
-          "TheTitle",
-        ],
-        "year": Array [
-          "2023",
-        ],
+        "title": "TheTitle",
+        "year": 2023,
       },
+      "input": String(
+        @misc{theauthorTheTitle2023,
+          title = {{{TheTitle}}},
+          author = {{TheAuthor}},
+          year = {2023}
+        }
+      ),
       "key": "theauthorTheTitle2023",
       "type": "misc",
     },
@@ -30,19 +33,21 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "literal": "TheAuthor",
+            "name": "TheAuthor",
           },
         ],
-        "howpublished": Array [
-          "<a href=\\"https://www.example.com/#foo\\">https://www.example.com/#foo</a>",
-        ],
-        "title": Array [
-          "TheTitle",
-        ],
-        "year": Array [
-          "2023",
-        ],
+        "howpublished": "<a href=\\"https://www.example.com/#foo\\">https://www.example.com/#foo</a>",
+        "title": "TheTitle",
+        "year": 2023,
       },
+      "input": String(
+        @misc{TheKey,
+          title = {{{TheTitle}}},
+          author = {{TheAuthor}},
+          year = {2023},
+          howpublished = {\\\\url{https://www.example.com/#foo}}
+        }
+      ),
       "key": "TheKey",
       "type": "misc",
     },
@@ -50,19 +55,21 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "literal": "TheAuthor",
+            "name": "TheAuthor",
           },
         ],
-        "note": Array [
-          "<a href=\\"https://www.example.com/#foo\\">https://www.example.com/#foo</a>",
-        ],
-        "title": Array [
-          "TheTitle",
-        ],
-        "year": Array [
-          "2023",
-        ],
+        "note": "<a href=\\"https://www.example.com/#foo\\">https://www.example.com/#foo</a>",
+        "title": "TheTitle",
+        "year": 2023,
       },
+      "input": String(
+        @misc{theauthorTheTitle2023,
+          title = {{{TheTitle}}},
+          author = {{TheAuthor}},
+          year = {2023},
+          note = {\\\\href{https://www.example.com/#foo}{https://www.example.com/\\\\#foo}}
+        }
+      ),
       "key": "theauthorTheTitle2023",
       "type": "misc",
     },
@@ -70,16 +77,19 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "literal": "TheAuthor",
+            "name": "TheAuthor",
           },
         ],
-        "title": Array [
-          "TheTitle",
-        ],
-        "year": Array [
-          "2023",
-        ],
+        "title": "TheTitle",
+        "year": 2023,
       },
+      "input": String(
+        @misc{TheKey,
+          title = {{{TheTitle}}},
+          author = {{TheAuthor}},
+          year = {2023}
+        }
+      ),
       "key": "TheKey",
       "type": "misc",
     },

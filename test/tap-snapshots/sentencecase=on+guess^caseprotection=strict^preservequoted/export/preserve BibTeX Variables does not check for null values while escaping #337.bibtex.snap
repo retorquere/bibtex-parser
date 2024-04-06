@@ -13,31 +13,33 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "literal": "Geophysics Study Committee",
+            "name": "Geophysics Study Committee",
           },
           Object {
-            "literal": "Geophysics Research Board",
+            "name": "Geophysics Research Board",
           },
           Object {
-            "literal": "Assembly of Mathematical and Physical Sciences, National Research Council",
+            "name": "Assembly of Mathematical and Physical Sciences, National Research Council",
           },
         ],
-        "isbn": Array [
-          "978-0-309-02928-5",
-        ],
-        "note": Array [
-          "<a href=\\"http://www.nap.edu/openbook.php?record_id=203\\">http://www.nap.edu/openbook.php?record_id=203</a>",
-        ],
+        "isbn": "978-0-309-02928-5",
+        "note": "<a href=\\"http://www.nap.edu/openbook.php?record_id=203\\">http://www.nap.edu/openbook.php?record_id=203</a>",
         "publisher": Array [
           "The National Academies Press",
         ],
-        "title": Array [
-          "Continental <span class=\\"nocase\\">Tectonics</span>",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "title": "Continental <span class=\\"nocase\\">Tectonics</span>",
+        "year": 1980,
       },
+      "input": String(
+        @book{geophysicsstudycommittee_continental_1980,
+          title = {Continental {{Tectonics}}},
+          author = {{Geophysics Study Committee} and {Geophysics Research Board} and {Assembly of Mathematical and Physical Sciences, National Research Council}},
+          year = {1980},
+          publisher = {{The National Academies Press}},
+          isbn = {978-0-309-02928-5},
+          note = {\\\\url{http://www.nap.edu/openbook.php?record_id=203}}
+        }
+      ),
       "key": "geophysicsstudycommittee_continental_1980",
       "type": "book",
     },

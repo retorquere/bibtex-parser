@@ -21,22 +21,22 @@ Object {
             "lastName": "Winograd",
           },
         ],
-        "journal": Array [
-          "Cognitive Science",
-        ],
-        "pages": Array [
-          "3-46",
-        ],
-        "title": Array [
-          "An overview of KRL, a knowledge representation language",
-        ],
-        "volume": Array [
-          "1",
-        ],
-        "year": Array [
-          "1977",
-        ],
+        "journal": "Cognitive Science",
+        "pages": "3-46",
+        "title": "An overview of KRL, a knowledge representation language",
+        "volume": "1",
+        "year": 1977,
       },
+      "input": String(
+        @article(bobrow:77,
+        \\tauthor =\\t{Daniel G. Bobrow and Terry Winograd},
+        \\tyear =\\t\\t{1977},
+        \\tjournal =\\t{Cognitive Science},
+        \\tpages =\\t\\t{3-46},
+        \\ttitle =\\t\\t"An overview of KRL, a knowledge representation language",
+        \\tvolume =\\t{1}
+        )
+      ),
       "key": "bobrow:77",
       "type": "article",
     },

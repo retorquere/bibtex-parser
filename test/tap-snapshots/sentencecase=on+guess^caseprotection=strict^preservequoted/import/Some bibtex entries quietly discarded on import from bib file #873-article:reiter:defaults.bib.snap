@@ -17,25 +17,24 @@ Object {
             "lastName": "Reiter",
           },
         ],
-        "journal": Array [
-          "Artificial Intelligence",
-        ],
-        "note": Array [
-          "Reprinted in NONMON.",
-        ],
-        "pages": Array [
-          "81–132",
-        ],
-        "title": Array [
-          "A logic for default reasoning",
-        ],
-        "volume": Array [
-          "13",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "journal": "Artificial Intelligence",
+        "note": "Reprinted in NONMON.",
+        "pages": "81–132",
+        "title": "A logic for default reasoning",
+        "volume": "13",
+        "year": 1980,
       },
+      "input": String(
+        @article(Reiter:defaults,
+        \\tauthor =\\t{Ray Reiter},
+        \\tyear =\\t\\t{1980},
+        \\tjournal =\\t{Artificial Intelligence},
+        \\ttitle =\\t\\t"A logic for default reasoning",
+        \\tvolume =\\t{13},
+        \\tnote = \\t\\t{Reprinted in \\\\cite{NONMON}.},
+        \\tpages =\\t\\t{81--132}
+        )
+      ),
       "key": "Reiter:defaults",
       "type": "article",
     },

@@ -17,22 +17,22 @@ Object {
             "lastName": "Smith",
           },
         ],
-        "journal": Array [
-          "Proc. AAAI",
-        ],
-        "pages": Array [
-          "373-377",
-        ],
-        "title": Array [
-          "Finding all of the solutions to a problem",
-        ],
-        "volume": Array [
-          "3",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "journal": "Proc. AAAI",
+        "pages": "373-377",
+        "title": "Finding all of the solutions to a problem",
+        "volume": "3",
+        "year": 1983,
       },
+      "input": String(
+        @article(DSmith:83,
+        \\tauthor =\\t{David E. Smith},
+        \\tyear =\\t\\t{1983},
+        \\tjournal =\\t{Proc. AAAI},
+        \\tpages =\\t\\t{373-377},
+        \\ttitle =\\t\\t"Finding all of the solutions to a problem",
+        \\tvolume =\\t{3}
+        )
+      ),
       "key": "DSmith:83",
       "type": "article",
     },

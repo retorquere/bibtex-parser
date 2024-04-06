@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Chicago, IL",
-        ],
+        "address": "Chicago, IL",
         "author": Array [
           Object {
             "firstName": "N. F.",
@@ -28,16 +26,21 @@ Object {
             "lastName": "Musen",
           },
         ],
-        "booktitle": Array [
-          "Twelfth international conference on software engineering and knowledge engineering (SEKE2000)",
-        ],
-        "title": Array [
-          "Knowledge-acquisition interfaces for domain experts: An empirical evaluation of <span class=\\"nocase\\">Protege-2000</span>",
-        ],
-        "year": Array [
-          2000,
-        ],
+        "booktitle": "Twelfth international conference on software engineering and knowledge engineering (SEKE2000)",
+        "title": "Knowledge-acquisition interfaces for domain experts: An empirical evaluation of <span class=\\"nocase\\">Protege-2000</span>",
+        "year": 2000,
       },
+      "input": String(
+        @InProceedings{Protege:2000b,
+          author =\\t {N. F. Noy and W. Grosso and M. A. Musen},
+          title =\\t {Knowledge-Acquisition Interfaces for Domain Experts:
+                          An Empirical Evaluation of {Protege-2000}},
+          booktitle =\\t {Twelfth International Conference on Software
+                          Engineering and Knowledge Engineering (SEKE2000)},
+          year =\\t 2000,
+          address =\\t {Chicago, IL}
+        }
+      ),
       "key": "Protege:2000b",
       "type": "inproceedings",
     },

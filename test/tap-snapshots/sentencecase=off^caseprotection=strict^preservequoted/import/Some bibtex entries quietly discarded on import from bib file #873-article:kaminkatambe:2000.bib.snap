@@ -7,13 +7,14 @@
 'use strict'
 exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-article:kaminkatambe:2000.bib > must match snapshot 1`] = `
 Object {
-  "comments": Array [],
+  "comments": Array [
+    "Classic papers --- these may be filed in the CLASSIC folder instead of",
+    "in the folder for their authors\\t\\t  ",
+  ],
   "entries": Array [
     Object {
       "fields": Object {
-        "annote": Array [
-          "This article describes work on using keyhole plan recognition to monitor other team members to verify that the team are working together succesfully. The method is particularly of use in cases where agent-to-communications are not reliable. An extra bonus of the article is that it provides a useful hook into the literature on team action and shared plans.",
-        ],
+        "annote": "This article describes work on using keyhole plan recognition to monitor other team members to verify that the team are working together succesfully. The method is particularly of use in cases where agent-to-communications are not reliable. An extra bonus of the article is that it provides a useful hook into the literature on team action and shared plans.",
         "author": Array [
           Object {
             "firstName": "Gal A.",
@@ -24,30 +25,45 @@ Object {
             "lastName": "Tambe",
           },
         ],
-        "journal": Array [
-          "JAIR",
-        ],
-        "month": Array [
-          "03",
-        ],
-        "pages": Array [
-          "105–147",
-        ],
-        "title": Array [
-          "Robust Agent Teams via Socially-Attentive monitoring",
-        ],
-        "volume": Array [
-          "12",
-        ],
-        "year": Array [
-          "2000",
-        ],
+        "journal": "JAIR",
+        "month": 3,
+        "pages": "105–147",
+        "title": "Robust Agent Teams via Socially-Attentive monitoring",
+        "volume": "12",
+        "year": 2000,
       },
+      "input": String(
+        @ARTICLE{KaminkaTambe:2000,
+        \\tAUTHOR = {Gal A. Kaminka and Milind Tambe},
+        \\tTITLE = "Robust Agent Teams via Socially-Attentive monitoring",
+        \\tJOURNAL = JAIR,
+        \\tYEAR = {2000},
+        \\tVOLUME = {12},
+        \\tPAGES = {105--147},
+        \\tMONTH = mar,
+        \\tANNOTE = {This article describes work on using keyhole plan
+        \\t\\t  recognition to monitor other team members to verify
+        \\t\\t  that the team are working together succesfully.  The
+        \\t\\t  method is particularly of use in cases where 
+        \\t\\t  agent-to-communications are not reliable.  An extra
+        \\t\\t  bonus of the article is that it provides a useful hook
+        \\t\\t  into the literature on team action and shared plans. }
+        }
+      ),
       "key": "KaminkaTambe:2000",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"JAIR\\"",
+      "input": "JAIR",
+      "location": Object {
+        "column": 16,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

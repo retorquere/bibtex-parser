@@ -17,16 +17,18 @@ Object {
             "lastName": "Norvig",
           },
         ],
-        "school": Array [
-          "Computer Science Division (EECS), % University of California at Berkeley",
-        ],
-        "title": Array [
-          "Unified Theory of Inference for Text Understanding",
-        ],
-        "year": Array [
-          "1987",
-        ],
+        "school": "Computer Science Division (EECS),University of California at Berkeley",
+        "title": "Unified Theory of Inference for Text Understanding",
+        "year": 1987,
       },
+      "input": String(
+        @phdthesis{Norvig:thesis,
+        \\tauthor =\\t{Peter Norvig},
+        \\ttitle =\\t\\t"Unified Theory of Inference for Text Understanding",
+        \\tschool = \\t{Computer Science Division (EECS), %
+        \\t\\t\\t\\tUniversity of California at Berkeley},
+        \\tyear\\t=\\t{1987}}
+      ),
       "key": "Norvig:thesis",
       "type": "phdthesis",
     },

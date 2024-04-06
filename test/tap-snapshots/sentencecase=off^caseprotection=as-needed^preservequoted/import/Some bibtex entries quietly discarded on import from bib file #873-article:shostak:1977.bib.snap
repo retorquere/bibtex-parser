@@ -17,22 +17,22 @@ Object {
             "lastName": "Shostak",
           },
         ],
-        "journal": Array [
-          "Journal of the ACM",
-        ],
-        "pages": Array [
-          "529-543",
-        ],
-        "title": Array [
-          "On the SUP-INF method for proving Presburger formulas",
-        ],
-        "volume": Array [
-          "24",
-        ],
-        "year": Array [
-          "1977",
-        ],
+        "journal": "Journal of the ACM",
+        "pages": "529-543",
+        "title": "On the SUP-INF method for proving Presburger formulas",
+        "volume": "24",
+        "year": 1977,
       },
+      "input": String(
+        @article(Shostak:1977,
+        \\tauthor =\\t{R.E. Shostak},
+        \\tyear =\\t\\t{1977},
+        \\tjournal =\\t{Journal of the ACM},
+        \\tpages =\\t\\t{529-543},
+        \\ttitle =\\t\\t"On the SUP-INF method for proving Presburger formulas",
+        \\tvolume =\\t{24}
+        )
+      ),
       "key": "Shostak:1977",
       "type": "article",
     },

@@ -25,22 +25,22 @@ Object {
             "lastName": "Miller",
           },
         ],
-        "journal": Array [
-          "Proc. Ijcai",
-        ],
-        "pages": Array [
-          "848-855",
-        ],
-        "title": Array [
-          "DIALOG: A model of diagnostic logic for internal medicine",
-        ],
-        "volume": Array [
-          "4",
-        ],
-        "year": Array [
-          "1975",
-        ],
+        "journal": "Proc. Ijcai",
+        "pages": "848-855",
+        "title": "DIALOG: A model of diagnostic logic for internal medicine",
+        "volume": "4",
+        "year": 1975,
       },
+      "input": String(
+        @article(Pople:75,
+        \\tauthor =\\t{Harry Pople and Jack Myers and Randolph Miller},
+        \\tyear =\\t\\t{1975},
+        \\tjournal =\\t{Proc. Ijcai},
+        \\tpages =\\t\\t{848-855},
+        \\ttitle =\\t\\t"DIALOG: A model of diagnostic logic for internal medicine",
+        \\tvolume =\\t{4}
+        )
+      ),
       "key": "Pople:75",
       "type": "article",
     },

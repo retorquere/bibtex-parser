@@ -20,13 +20,17 @@ Object {
         "institution": Array [
           "National Academy of Sciences/National Research Council",
         ],
-        "title": Array [
-          "Language and Machines: Computers in Translation and Linguistics",
-        ],
-        "year": Array [
-          "1966",
-        ],
+        "title": "Language and Machines: Computers in Translation and Linguistics",
+        "year": 1966,
       },
+      "input": String(
+        @techreport(Pierce:66,
+        \\tauthor =\\t{John R. Pierce},
+        \\tyear =\\t\\t{1966},
+        \\tinstitution =\\t{National Academy of Sciences/National Research Council},
+        \\ttitle =\\t\\t{Language and Machines: Computers in Translation and Linguistics}
+        )
+      ),
       "key": "Pierce:66",
       "type": "techreport",
     },

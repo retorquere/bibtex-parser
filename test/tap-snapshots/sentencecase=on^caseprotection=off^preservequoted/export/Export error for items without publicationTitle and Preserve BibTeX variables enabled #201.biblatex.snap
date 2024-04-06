@@ -21,16 +21,20 @@ Object {
             "lastName": "Thorne",
           },
         ],
-        "date": Array [
-          "2006",
-        ],
+        "date": "2006",
         "publisher": Array [
           "Caltech",
         ],
-        "title": Array [
-          "Applications of classical physics",
-        ],
+        "title": "Applications of Classical Physics",
       },
+      "input": String(
+        @book{Blandford2006,
+          title = {Applications of {{Classical Physics}}},
+          author = {Blandford, Roger D. and Thorne, Kip S.},
+          date = {2006},
+          publisher = {{Caltech}}
+        }
+      ),
       "key": "Blandford2006",
       "type": "book",
     },

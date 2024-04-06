@@ -21,25 +21,24 @@ Object {
             "lastName": "Allen",
           },
         ],
-        "journal": Array [
-          "American Journal of Computational Linguistics",
-        ],
-        "number": Array [
-          "3–4",
-        ],
-        "pages": Array [
-          "167-182",
-        ],
-        "title": Array [
-          "A plan-based analysis of indirect speech acts",
-        ],
-        "volume": Array [
-          "6",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "journal": "American Journal of Computational Linguistics",
+        "number": "3–4",
+        "pages": "167-182",
+        "title": "A plan-based analysis of indirect speech acts",
+        "volume": "6",
+        "year": 1980,
       },
+      "input": String(
+        @article(Perrault:80,
+        \\tauthor =\\t{C. Raymond Perrault and James F. Allen},
+        \\tyear =\\t\\t{1980},
+        \\tjournal =\\t{American Journal of Computational Linguistics},
+        \\tnumber =\\t{3--4},
+        \\tpages =\\t\\t{167-182},
+        \\ttitle =\\t\\t"A plan-based analysis of indirect speech acts",
+        \\tvolume =\\t{6}
+        )
+      ),
       "key": "Perrault:80",
       "type": "article",
     },

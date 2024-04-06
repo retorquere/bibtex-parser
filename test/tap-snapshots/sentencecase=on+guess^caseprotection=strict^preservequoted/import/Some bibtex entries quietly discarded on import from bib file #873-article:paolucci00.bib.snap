@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "annote": Array [
-          "Describes the HITaP Hierarchical (HTN/decomposition) planner for RETSINA.",
-        ],
+        "annote": "Describes the HITaP Hierarchical (HTN/decomposition) planner for RETSINA.",
         "author": Array [
           Object {
             "firstName": "M.",
@@ -28,33 +26,41 @@ Object {
             "lastName": "Sycara",
           },
         ],
-        "journal": Array [
-          "ETAI",
-        ],
-        "note": Array [
-          "<a href=\\"http://www.ida.liu.se/ext/epa/ej/etai/2000/003/epapage.html\\">http://www.ida.liu.se/ext/epa/ej/etai/2000/003/epapage.html</a>",
-        ],
-        "number": Array [
-          "A",
-        ],
-        "pages": Array [
-          "23–43",
-        ],
-        "title": Array [
-          "Interleaving planning and execution in a multiagent team planning environment",
-        ],
-        "volume": Array [
-          4,
-        ],
-        "year": Array [
-          2000,
-        ],
+        "journal": "ETAI",
+        "note": "<a href=\\"http://www.ida.liu.se/ext/epa/ej/etai/2000/003/epapage.html\\">http://www.ida.liu.se/ext/epa/ej/etai/2000/003/epapage.html</a>",
+        "number": "A",
+        "pages": "23–43",
+        "title": "Interleaving planning and execution in a multiagent team planning environment",
+        "volume": "4",
+        "year": 2000,
       },
+      "input": String(
+        @Article{paolucci00,
+          author = \\t {M. Paolucci and O. Shehory and K. Sycara},
+          title = \\t {Interleaving Planning and Execution in a Multiagent Team Planning Environment},
+          journal = \\t ETAI,
+          year = \\t 2000,
+          volume =\\t 4,
+          number =\\t {A},
+          pages =\\t {23--43},
+          note =\\t {\\\\url{http://www.ida.liu.se/ext/epa/ej/etai/2000/003/epapage.html}},
+          annote =\\t {Describes the HITaP Hierarchical (HTN/decomposition) planner for RETSINA.}
+        }
+      ),
       "key": "paolucci00",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"ETAI\\"",
+      "input": "ETAI",
+      "location": Object {
+        "column": 19,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

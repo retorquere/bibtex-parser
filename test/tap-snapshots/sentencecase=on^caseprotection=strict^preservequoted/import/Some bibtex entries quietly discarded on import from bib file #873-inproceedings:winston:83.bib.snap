@@ -17,27 +17,37 @@ Object {
             "lastName": "Winston",
           },
         ],
-        "booktitle": Array [
-          "AAAI-83",
-        ],
-        "pages": Array [
-          "433–439",
-        ],
-        "title": Array [
-          "Learning physical descriptions from functional definitions, examples, and precedents",
-        ],
-        "volume": Array [
-          "3",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "booktitle": "<span class=\\"nocase\\">AAAI-83</span>",
+        "pages": "433–439",
+        "title": "Learning physical descriptions from functional definitions, examples, and precedents",
+        "volume": "3",
+        "year": 1983,
       },
+      "input": String(
+        @inproceedings(Winston:83,
+        \\tauthor =\\t{Patrick H. Winston},
+        \\tyear =\\t\\t{1983},
+        \\tbooktitle =\\tAAAI-83,
+        \\tpages =\\t\\t{433--439},
+        \\ttitle =\\t\\t{Learning physical descriptions from 
+        \\t\\t\\t functional definitions, examples, and precedents},
+        \\tvolume =\\t{3}
+        )
+      ),
       "key": "Winston:83",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"AAAI-83\\"",
+      "input": "AAAI-83",
+      "location": Object {
+        "column": 21,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

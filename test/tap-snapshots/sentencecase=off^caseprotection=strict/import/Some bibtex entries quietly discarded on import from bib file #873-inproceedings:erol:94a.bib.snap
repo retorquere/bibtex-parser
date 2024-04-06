@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "annote": Array [
-          "As the name suggests, presents a sound and complete algorithm for HTN planning. The accomplishment is less overwhelming than it might at first seem, because the HTN plan's semantics rests on STRIPS-style world updates. So an HTN planner constructed according to this method will have the same knowledge-engineering demands as a first-principles STRIPS planner.",
-        ],
+        "annote": "As the name suggests, presents a sound and complete algorithm for HTN planning. The accomplishment is less overwhelming than it might at first seem, because the HTN plan's semantics rests on STRIPS-style world updates. So an HTN planner constructed according to this method will have the same knowledge-engineering demands as a first-principles STRIPS planner.",
         "author": Array [
           Object {
             "firstName": "Kutluhan",
@@ -28,16 +26,26 @@ Object {
             "lastName": "Nau",
           },
         ],
-        "crossref": Array [
-          "AIPS94",
-        ],
-        "pages": Array [
-          "249–254",
-        ],
-        "title": Array [
-          "<span class=\\"nocase\\">UMCP</span>: A Sound and Complete Procedure for Hierarchical Task Network Planning",
-        ],
+        "crossref": "AIPS94",
+        "pages": "249–254",
+        "title": "<span class=\\"nocase\\">UMCP</span>: A Sound and Complete Procedure for Hierarchical Task Network Planning",
       },
+      "input": String(
+        @INPROCEEDINGS{Erol:94a,
+        \\tAUTHOR = {Kutluhan Erol and James Hendler and Dana S. Nau},
+        \\tTITLE = {{UMCP}: A Sound and Complete Procedure for 
+        \\t\\t Hierarchical Task Network Planning},
+        \\tPAGES = {249--254},
+        \\tCROSSREF = {AIPS94},
+        \\tANNOTE = {As the name suggests, presents a sound and complete 
+        \\t\\t  algorithm for HTN planning.  The accomplishment is less
+        \\t\\t  overwhelming than it might at first seem, because the
+        \\t\\t  HTN plan's semantics rests on STRIPS-style world updates.
+        \\t\\t  So an HTN planner constructed according to this method
+        \\t\\t  will have the same knowledge-engineering demands
+        \\t\\t  as a first-principles STRIPS planner.}
+        }
+      ),
       "key": "Erol:94a",
       "type": "inproceedings",
     },

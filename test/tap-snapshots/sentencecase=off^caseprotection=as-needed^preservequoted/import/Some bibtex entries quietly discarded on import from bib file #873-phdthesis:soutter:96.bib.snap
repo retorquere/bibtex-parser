@@ -17,19 +17,22 @@ Object {
             "lastName": "Soutter",
           },
         ],
-        "month": Array [
-          "11",
-        ],
-        "school": Array [
-          "Loughborough University",
-        ],
-        "title": Array [
-          "An Integrated Architecture for Operating Procedure Synthesis",
-        ],
-        "year": Array [
-          "1996",
-        ],
+        "month": 11,
+        "school": "Loughborough University",
+        "title": "An Integrated Architecture for Operating Procedure Synthesis",
+        "year": 1996,
       },
+      "input": String(
+        @PHDTHESIS{Soutter:96,
+        \\t    
+        \\tAUTHOR = {James Soutter},
+        \\tTITLE = {An Integrated Architecture for Operating Procedure
+        \\t\\t Synthesis},
+        \\tSCHOOL = {Loughborough University},
+        \\tYEAR = {1996},
+        \\tMONTH = nov
+        }
+      ),
       "key": "Soutter:96",
       "type": "phdthesis",
     },

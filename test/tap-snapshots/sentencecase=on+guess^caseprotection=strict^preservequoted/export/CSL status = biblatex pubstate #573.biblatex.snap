@@ -17,13 +17,16 @@ Object {
             "lastName": "Doe",
           },
         ],
-        "pubstate": Array [
-          "forthcoming",
-        ],
-        "title": Array [
-          "Title",
-        ],
+        "pubstate": "forthcoming",
+        "title": "Title",
       },
+      "input": String(
+        @book{doe_title_nodate,
+          title = {Title},
+          author = {Doe, John},
+          pubstate = {forthcoming}
+        }
+      ),
       "key": "doe_title_nodate",
       "type": "book",
     },

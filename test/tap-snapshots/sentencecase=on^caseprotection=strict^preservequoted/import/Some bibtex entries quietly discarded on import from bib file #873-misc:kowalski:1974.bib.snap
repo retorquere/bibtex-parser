@@ -17,16 +17,18 @@ Object {
             "lastName": "Kowalski",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the IFIP congress",
-        ],
-        "title": Array [
-          "Predicate logic as programming language",
-        ],
-        "year": Array [
-          "1974",
-        ],
+        "booktitle": "Proceedings of the IFIP congress",
+        "title": "Predicate logic as programming language",
+        "year": 1974,
       },
+      "input": String(
+        @misc(Kowalski:1974,
+        \\tauthor =\\t{Robert A. Kowalski},
+        \\tbooktitle =\\t{Proceedings of the IFIP Congress},
+        \\tyear =\\t\\t{1974},
+        \\ttitle =\\t\\t{Predicate logic as programming language}
+        )
+      ),
       "key": "Kowalski:1974",
       "type": "misc",
     },

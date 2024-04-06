@@ -20,13 +20,17 @@ Object {
         "institution": Array [
           "Yale University Computer Science Department",
         ],
-        "title": Array [
-          "Temporal imagery: an approach to reasoning about time for planning and problem solving",
-        ],
-        "year": Array [
-          "1985",
-        ],
+        "title": "Temporal imagery: an approach to reasoning about time for planning and problem solving",
+        "year": 1985,
       },
+      "input": String(
+        @TechReport{dean85,
+        author = "Thomas Dean",
+        title = "Temporal imagery:  an approach to reasoning about time for planning
+        \\tand problem solving",
+        institution = "Yale University Computer Science Department",
+        year = "1985"}
+      ),
       "key": "dean85",
       "type": "techreport",
     },

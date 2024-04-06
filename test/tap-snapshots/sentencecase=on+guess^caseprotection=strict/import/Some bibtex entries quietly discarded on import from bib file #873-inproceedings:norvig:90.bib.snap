@@ -21,16 +21,19 @@ Object {
             "lastName": "Wilensky",
           },
         ],
-        "booktitle": Array [
-          "COLING-90",
-        ],
-        "title": Array [
-          "A critical evaluation of commensurable abductive models for semantic interpretation",
-        ],
-        "year": Array [
-          "1990",
-        ],
+        "booktitle": "COLING-90",
+        "title": "A critical evaluation of commensurable abductive models for semantic interpretation",
+        "year": 1990,
       },
+      "input": String(
+        @inproceedings{Norvig:90,
+        \\tAUTHOR = {Peter Norvig and Robert Wilensky},
+        \\tTITLE = {A Critical Evaluation of Commensurable Abductive Models
+        \\t\\t for Semantic Interpretation},
+        \\tbooktitle = {COLING-90},
+        \\tYEAR = {1990}
+        }
+      ),
       "key": "Norvig:90",
       "type": "inproceedings",
     },

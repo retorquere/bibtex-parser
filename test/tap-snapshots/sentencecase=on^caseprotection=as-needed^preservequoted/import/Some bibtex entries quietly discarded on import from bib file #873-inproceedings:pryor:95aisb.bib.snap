@@ -17,28 +17,33 @@ Object {
             "lastName": "Pryor",
           },
         ],
-        "booktitle": Array [
-          "Hybrid problems, hybrid solutions (proceedings of AISB-95)",
-        ],
+        "booktitle": "Hybrid problems, hybrid solutions (proceedings of AISB-95)",
         "editor": Array [
           Object {
             "firstName": "J.",
             "lastName": "Hallam",
           },
         ],
-        "pages": Array [
-          "181–192",
-        ],
+        "pages": "181–192",
         "publisher": Array [
           "IOS Press",
         ],
-        "title": Array [
-          "Decisions, decisions: Knowledge goals in planning",
-        ],
-        "year": Array [
-          "1995",
-        ],
+        "title": "Decisions, decisions: Knowledge goals in planning",
+        "year": 1995,
       },
+      "input": String(
+        @INPROCEEDINGS(Pryor:95AISB,
+        \\tAUTHOR = {Louise Pryor},
+        \\tTITLE = {Decisions, decisions: Knowledge
+          goals in planning},
+        \\tBOOKTITLE = {Hybrid Problems, Hybrid Solutions
+            (Proceedings of AISB-95)},
+        \\tYEAR = {1995},
+        \\tEDITOR = {J. Hallam},
+        \\tPAGES = {181--192},
+        \\tPUBLISHER = {IOS Press}
+        )
+      ),
       "key": "Pryor:95AISB",
       "type": "inproceedings",
     },

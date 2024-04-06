@@ -11,12 +11,8 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "abstract": Array [
-          "In a quantum computer, creating superpositions of quantum bits (qubits) in different states can lead to a speed-up over classical computers [1], but quantum mechanics also allows for the superposition of quantum circuits [2]. In fact, it has recently been theoretically predicted that superimposing quantum circuits, each with a different gate order, could provide quantum computers with an even further computational advantage [3-5]. Here, we experimentally demonstrate this enhancement by applying two quantum gates in a superposition of both possible orders to determine whether the two gates commute or anti-commute. We are able to make this determination with only a single use (or query) of each gate, while all quantum circuits with a fixed order of gates would require at least two uses of one of the gates [3]. Remarkably, when the problem is scaled to N gates, creating a superposition of quantum circuits is likely to provide an exponential advantage over classical algorithms, and a linear advantage over quantum algorithms with fixed gate order [4]. The new resource that we exploit in our experiment can be interpreted as a \\"superposition of causal orders\\". We demonstrate such a superposition could allow some quantum algorithms to be implemented with an efficiency that is unlikely to be achieved on a quantum computer with a fixed gate order.",
-        ],
-        "archiveprefix": Array [
-          "arXiv",
-        ],
+        "abstract": "In a quantum computer, creating superpositions of quantum bits (qubits) in different states can lead to a speed-up over classical computers [1], but quantum mechanics also allows for the superposition of quantum circuits [2]. In fact, it has recently been theoretically predicted that superimposing quantum circuits, each with a different gate order, could provide quantum computers with an even further computational advantage [3-5]. Here, we experimentally demonstrate this enhancement by applying two quantum gates in a superposition of both possible orders to determine whether the two gates commute or anti-commute. We are able to make this determination with only a single use (or query) of each gate, while all quantum circuits with a fixed order of gates would require at least two uses of one of the gates [3]. Remarkably, when the problem is scaled to N gates, creating a superposition of quantum circuits is likely to provide an exponential advantage over classical algorithms, and a linear advantage over quantum algorithms with fixed gate order [4]. The new resource that we exploit in our experiment can be interpreted as a \\"superposition of causal orders\\". We demonstrate such a superposition could allow some quantum algorithms to be implemented with an efficiency that is unlikely to be achieved on a quantum computer with a fixed gate order.",
+        "archiveprefix": "arXiv",
         "author": Array [
           Object {
             "firstName": "Lorenzo M.",
@@ -28,7 +24,7 @@ Object {
           },
           Object {
             "firstName": "Mateus",
-            "lastName": "Araújo",
+            "lastName": "Araújo",
           },
           Object {
             "firstName": "Fabio",
@@ -51,7 +47,7 @@ Object {
             "lastName": "Rozema",
           },
           Object {
-            "firstName": "Časlav",
+            "firstName": "Časlav",
             "lastName": "Brukner",
           },
           Object {
@@ -59,31 +55,32 @@ Object {
             "lastName": "Walther",
           },
         ],
-        "eprint": Array [
-          "1412.4006",
-        ],
-        "eprinttype": Array [
-          "arxiv",
-        ],
-        "journal": Array [
-          "arXiv:1412.4006 [quant-ph]",
-        ],
+        "eprint": "1412.4006",
+        "eprinttype": "arxiv",
+        "journal": "arXiv:1412.4006 [quant-ph]",
         "keywords": Array [
           "Quantum Physics",
         ],
-        "month": Array [
-          "12",
-        ],
-        "primaryclass": Array [
-          "quant-ph",
-        ],
-        "title": Array [
-          "Experimental Superposition of Orders of Quantum Gates",
-        ],
-        "year": Array [
-          "2014",
-        ],
+        "month": 12,
+        "primaryclass": "quant-ph",
+        "title": "Experimental <span class=\\"nocase\\">Superposition</span> of <span class=\\"nocase\\">Orders</span> of <span class=\\"nocase\\">Quantum Gates</span>",
+        "year": 2014,
       },
+      "input": String(
+        @article{Procopio2014,
+          title = {Experimental {{Superposition}} of {{Orders}} of {{Quantum Gates}}},
+          author = {Procopio, Lorenzo M. and Moqanaki, Amir and Ara{\\\\'u}jo, Mateus and Costa, Fabio and Calafell, Irati A. and Dowd, Emma G. and Hamel, Deny R. and Rozema, Lee A. and Brukner, {\\\\v C}aslav and Walther, Philip},
+          year = {2014},
+          month = dec,
+          abstract = {In a quantum computer, creating superpositions of quantum bits (qubits) in different states can lead to a speed-up over classical computers [1], but quantum mechanics also allows for the superposition of quantum circuits [2]. In fact, it has recently been theoretically predicted that superimposing quantum circuits, each with a different gate order, could provide quantum computers with an even further computational advantage [3-5]. Here, we experimentally demonstrate this enhancement by applying two quantum gates in a superposition of both possible orders to determine whether the two gates commute or anti-commute. We are able to make this determination with only a single use (or query) of each gate, while all quantum circuits with a fixed order of gates would require at least two uses of one of the gates [3]. Remarkably, when the problem is scaled to N gates, creating a superposition of quantum circuits is likely to provide an exponential advantage over classical algorithms, and a linear advantage over quantum algorithms with fixed gate order [4]. The new resource that we exploit in our experiment can be interpreted as a "superposition of causal orders". We demonstrate such a superposition could allow some quantum algorithms to be implemented with an efficiency that is unlikely to be achieved on a quantum computer with a fixed gate order.},
+          archiveprefix = {arXiv},
+          eprint = {1412.4006},
+          eprinttype = {arxiv},
+          journal = {arXiv:1412.4006 [quant-ph]},
+          keywords = {Quantum Physics},
+          primaryclass = {quant-ph}
+        }
+      ),
       "key": "Procopio2014",
       "type": "article",
     },

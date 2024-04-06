@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Cambridge, Massachusetts",
-        ],
+        "address": "Cambridge, Massachusetts",
         "author": Array [
           Object {
             "firstName": "Kenneth D.",
@@ -27,13 +25,18 @@ Object {
         "publisher": Array [
           "MIT Press",
         ],
-        "title": Array [
-          "Building problem solvers",
-        ],
-        "year": Array [
-          "1993",
-        ],
+        "title": "Building problem solvers",
+        "year": 1993,
       },
+      "input": String(
+        @Book{Forbus+DeKleer:1993,
+          author =       "Kenneth D. Forbus and Johan {deKleer}",
+          year =         "1993",
+          title =        "Building Problem Solvers",
+          publisher =    "MIT~Press",
+          address =      "Cambridge, Massachusetts"
+        }
+      ),
       "key": "Forbus+DeKleer:1993",
       "type": "book",
     },

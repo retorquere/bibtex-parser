@@ -24,13 +24,17 @@ Object {
         "institution": Array [
           "University of Rochester Department of Computer Science",
         ],
-        "title": Array [
-          "Decision theory and artificial intelligence II: The hungry monkey",
-        ],
-        "year": Array [
-          "1977",
-        ],
+        "title": "Decision theory and artificial intelligence II: The hungry monkey",
+        "year": 1977,
       },
+      "input": String(
+        @techreport(Sproull:1977,
+        \\tauthor =\\t{Jerome Feldman and Robert F. Sproull},
+        \\tyear =\\t\\t{1977},
+        \\tinstitution =\\t{University of Rochester Department of Computer Science},
+        \\ttitle =\\t\\t{Decision theory and artificial intelligence II: The hungry monkey}
+        )
+      ),
       "key": "Sproull:1977",
       "type": "techreport",
     },

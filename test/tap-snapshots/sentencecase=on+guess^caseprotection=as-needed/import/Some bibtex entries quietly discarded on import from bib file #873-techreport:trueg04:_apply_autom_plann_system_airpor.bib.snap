@@ -14,10 +14,10 @@ Object {
         "author": Array [
           Object {
             "firstName": "Sebastian",
-            "lastName": "Trüg",
+            "lastName": "Trüg",
           },
           Object {
-            "firstName": "Jörg",
+            "firstName": "Jörg",
             "lastName": "Hoffmann",
           },
           Object {
@@ -26,21 +26,25 @@ Object {
           },
         ],
         "institution": Array [
-          "Insitut für Informatik, Universität Freiburg",
+          "Insitut für Informatik, Universität Freiburg",
         ],
-        "month": Array [
-          "04",
-        ],
-        "number": Array [
-          199,
-        ],
-        "title": Array [
-          "Applying automatic planning systems to airport ground-traffic control — A feasibility study",
-        ],
-        "year": Array [
-          2004,
-        ],
+        "month": 4,
+        "number": "199",
+        "title": "Applying automatic planning systems to airport ground-traffic control — A feasibility study",
+        "year": 2004,
       },
+      "input": String(
+        @TechReport{trueg04:_apply_autom_plann_system_airpor,
+          author =\\t {Sebastian Tr\\\\"ug and J\\\\"org Hoffmann and Bernhard
+                          Nebel},
+          title =\\t {Applying Automatic Planning Systems to Airport
+                          Ground-Traffic Control --- A Feasibility Study},
+          institution =\\t {Insitut f\\\\"ur Informatik, Universit\\\\"at Freiburg},
+          year =\\t 2004,
+          number =\\t 199,
+          month =\\t apr
+        }
+      ),
       "key": "trueg04:_apply_autom_plann_system_airpor",
       "type": "techreport",
     },

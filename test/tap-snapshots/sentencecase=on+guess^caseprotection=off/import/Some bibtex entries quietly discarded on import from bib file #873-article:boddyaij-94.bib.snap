@@ -21,21 +21,33 @@ Object {
             "lastName": "Dean",
           },
         ],
-        "journal": Array [
-          "AIJ",
-        ],
-        "title": Array [
-          "Decision-theoretic deliberation scheduling for problem solving in time-constrained environments",
-        ],
-        "year": Array [
-          "1994",
-        ],
+        "journal": "AIJ",
+        "title": "Decision-theoretic deliberation scheduling for problem solving in time-constrained environments",
+        "year": 1994,
       },
+      "input": String(
+        @ARTICLE(BoddyAIJ-94,
+        \\tAUTHOR = {Boddy, Mark and Thomas Dean},
+        \\tTITLE = {Decision-Theoretic Deliberation
+        Scheduling for Problem Solving in Time-Constrained Environments},
+        \\tJOURNAL = AIJ,
+        \\tYEAR = {1994}
+        )
+      ),
       "key": "BoddyAIJ-94",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"AIJ\\"",
+      "input": "AIJ",
+      "location": Object {
+        "column": 15,
+        "line": 5,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

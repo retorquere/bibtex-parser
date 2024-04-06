@@ -7,13 +7,13 @@
 'use strict'
 exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-techreport:kushmerick:93.bib > must match snapshot 1`] = `
 Object {
-  "comments": Array [],
+  "comments": Array [
+    "BURIDAN",
+  ],
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Seattle, WA",
-        ],
+        "address": "Seattle, WA",
         "author": Array [
           Object {
             "firstName": "Nicholas",
@@ -31,27 +31,40 @@ Object {
         "institution": Array [
           "UDUB",
         ],
-        "month": Array [
-          "June",
-        ],
-        "note": Array [
-          "This citation should be replaced with Kushmerick, et. al., <i>Artificial Intelligence/</i>, 1995",
-        ],
-        "number": Array [
-          "93-06-03",
-        ],
-        "title": Array [
-          "An algorithm for probabilistic planning",
-        ],
-        "year": Array [
-          "1993",
-        ],
+        "month": "June",
+        "note": "This citation should be replaced with Kushmerick, et. al., <i>Artificial Intelligence</i>, 1995",
+        "number": "93-06-03",
+        "title": "An algorithm for probabilistic planning",
+        "year": 1993,
       },
+      "input": String(
+        @TECHREPORT(Kushmerick:93,
+        \\tAUTHOR = {Nicholas Kushmerick and Steve Hanks
+        \\t\\t  and Daniel Weld},
+        \\tTITLE = "An Algorithm for Probabilistic Planning",
+        \\tINSTITUTION = UDUB,
+        \\tYEAR = {1993},
+        \\tNUMBER = {93-06-03},
+        \\tADDRESS = {Seattle, WA},
+        \\tNOTE = {This citation should be replaced with Kushmerick, et. al.,
+        \\t\\t{\\\\it Artificial Intelligence\\\\/}, 1995},\\t\\t  
+        \\tMONTH = {June}
+        )
+      ),
       "key": "Kushmerick:93",
       "type": "techreport",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"UDUB\\"",
+      "input": "UDUB",
+      "location": Object {
+        "column": 20,
+        "line": 5,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

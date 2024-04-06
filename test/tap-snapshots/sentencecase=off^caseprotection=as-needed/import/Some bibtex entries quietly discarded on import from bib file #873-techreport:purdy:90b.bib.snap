@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Syracuse, NY",
-        ],
+        "address": "Syracuse, NY",
         "author": Array [
           Object {
             "firstName": "William C.",
@@ -21,21 +19,27 @@ Object {
           },
         ],
         "institution": Array [
-          "School of Computer and Information Science, Syracuse University",
+          "School of Computer",
+          "Information Science, Syracuse University",
         ],
-        "month": Array [
-          "07",
-        ],
-        "number": Array [
-          "SU-CIS-90-02",
-        ],
-        "title": Array [
-          "A Logic for Natural Language",
-        ],
-        "year": Array [
-          "1990",
-        ],
+        "month": 7,
+        "number": "SU-CIS-90-02",
+        "title": "A Logic for Natural Language",
+        "year": 1990,
       },
+      "input": String(
+        @TECHREPORT{Purdy:90b,
+        \\t    
+        \\tAUTHOR = {William C. Purdy},
+        \\tTITLE = "A Logic for Natural Language",
+        \\tINSTITUTION = {School of Computer and Information Science,
+        \\t\\t       Syracuse University},
+        \\tYEAR = {1990},
+        \\tNUMBER = {SU-CIS-90-02},
+        \\tADDRESS = {Syracuse, NY},
+        \\tMONTH = jul
+        }
+      ),
       "key": "Purdy:90b",
       "type": "techreport",
     },

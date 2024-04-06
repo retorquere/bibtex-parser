@@ -21,24 +21,34 @@ Object {
             "lastName": "Allen",
           },
         ],
-        "booktitle": Array [
-          "AAAI-86",
-        ],
-        "pages": Array [
-          "32–38",
-        ],
-        "title": Array [
-          "Generalized plan recognition",
-        ],
-        "year": Array [
-          "1986",
-        ],
+        "booktitle": "AAAI-86",
+        "pages": "32–38",
+        "title": "Generalized plan recognition",
+        "year": 1986,
       },
+      "input": String(
+        @inproceedings(Kautz:86,
+        \\tauthor =\\t{Henry Kautz and James F. Allen},
+        \\tyear =\\t\\t{1986},
+        \\tbooktitle =\\tAAAI-86,
+        \\tpages =\\t\\t{32--38},
+        \\ttitle =\\t\\t{Generalized plan recognition}
+        )
+      ),
       "key": "Kautz:86",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"AAAI-86\\"",
+      "input": "AAAI-86",
+      "location": Object {
+        "column": 21,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

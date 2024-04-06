@@ -21,28 +21,31 @@ Object {
             "lastName": "Bendix",
           },
         ],
-        "booktitle": Array [
-          "Computational Problems in Abstract Algebra",
-        ],
+        "booktitle": "Computational Problems in Abstract Algebra",
         "editor": Array [
           Object {
             "firstName": "J.",
             "lastName": "Leech",
           },
         ],
-        "pages": Array [
-          "263-297",
-        ],
+        "pages": "263-297",
         "publisher": Array [
           "Pergamon Press",
         ],
-        "title": Array [
-          "Simple word problems in universal algebras",
-        ],
-        "year": Array [
-          "1970",
-        ],
+        "title": "Simple word problems in universal algebras",
+        "year": 1970,
       },
+      "input": String(
+        @book(Bendix:1970,
+        \\tauthor =\\t{D.E. Knuth and P.B. Bendix},
+        \\tbooktitle =\\t{Computational Problems in Abstract Algebra},
+        \\tyear =\\t\\t{1970},
+        \\teditor =\\t{J. Leech},
+        \\tpublisher =\\t{Pergamon Press},
+        \\tpages =\\t\\t{263-297},
+        \\ttitle =\\t\\t{Simple word problems in universal algebras}
+        )
+      ),
       "key": "Bendix:1970",
       "type": "book",
     },

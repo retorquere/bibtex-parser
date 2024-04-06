@@ -21,30 +21,38 @@ Object {
             "lastName": "Subramanian",
           },
         ],
-        "journal": Array [
-          "JAIR",
-        ],
-        "month": Array [
-          "May",
-        ],
-        "pages": Array [
-          "575–609",
-        ],
-        "title": Array [
-          "Provably Bounded-Optimal Agents",
-        ],
-        "volume": Array [
-          "2",
-        ],
-        "year": Array [
-          "1995",
-        ],
+        "journal": "JAIR",
+        "month": "May",
+        "pages": "575–609",
+        "title": "Provably Bounded-Optimal Agents",
+        "volume": "2",
+        "year": 1995,
       },
+      "input": String(
+        @ARTICLE(Russell:95,
+        \\tAUTHOR = {Stuart J. Russell and Devika Subramanian},
+        \\tTITLE = "Provably Bounded-Optimal Agents",
+        \\tJOURNAL = JAIR,
+        \\tYEAR = {1995},
+        \\tVOLUME = {2},
+        \\tPAGES = {575--609},
+        \\tMONTH = {May}
+        )
+      ),
       "key": "Russell:95",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"JAIR\\"",
+      "input": "JAIR",
+      "location": Object {
+        "column": 16,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

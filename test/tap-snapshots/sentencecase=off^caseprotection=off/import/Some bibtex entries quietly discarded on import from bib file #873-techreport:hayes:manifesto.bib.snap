@@ -20,13 +20,17 @@ Object {
         "institution": Array [
           "University of Essex Computer Science Department",
         ],
-        "title": Array [
-          "The Naive Physics Manifesto",
-        ],
-        "year": Array [
-          "1978",
-        ],
+        "title": "The Naive Physics Manifesto",
+        "year": 1978,
       },
+      "input": String(
+        @techreport(Hayes:Manifesto,
+        \\tauthor =\\t{Patrick Hayes},
+        \\tyear =\\t\\t{1978},
+        \\tinstitution =\\t{University of Essex Computer Science Department},
+        \\ttitle =\\t\\t{The Naive Physics Manifesto}
+        )
+      ),
       "key": "Hayes:Manifesto",
       "type": "techreport",
     },

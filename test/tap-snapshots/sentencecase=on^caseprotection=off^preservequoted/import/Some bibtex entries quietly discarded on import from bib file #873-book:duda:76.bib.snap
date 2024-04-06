@@ -25,19 +25,22 @@ Object {
             "lastName": "Nilsson",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the 1976 national computer conference",
-        ],
+        "booktitle": "Proceedings of the 1976 national computer conference",
         "publisher": Array [
           "AFIPS Press",
         ],
-        "title": Array [
-          "Subjective bayesian methods for rule-based inference systems",
-        ],
-        "year": Array [
-          "1976",
-        ],
+        "title": "Subjective bayesian methods for rule-based inference systems",
+        "year": 1976,
       },
+      "input": String(
+        @book(Duda:76,
+        \\tauthor =\\t{R.O. Duda and P.E. Hart and N.J. Nilsson},
+        \\tbooktitle =\\t{Proceedings of the 1976 National Computer Conference},
+        \\tyear =\\t\\t{1976},
+        \\tpublisher =\\t{AFIPS Press},
+        \\ttitle =\\t\\t{Subjective Bayesian methods for rule-based inference systems}
+        )
+      ),
       "key": "Duda:76",
       "type": "book",
     },

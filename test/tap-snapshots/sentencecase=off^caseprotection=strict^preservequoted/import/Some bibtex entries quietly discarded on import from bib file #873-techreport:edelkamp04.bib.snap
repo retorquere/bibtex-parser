@@ -11,38 +11,49 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "abstract": Array [
-          "This document defines the language to be used in the classical part of the 4th International Planning Competition, IPC-4. The language comprises all of PDDL2.1 levels 1, 2, and 3, as defined by Maria Fox and Derek Long in fox:long:jair-03; parts of this document have been copied from that source. On top of this language, for IPC-4 <i>derived predicates</i> are re-introduced, and <i>timed initial literals</i> are (newly) introduced into the competition language. We give the syntax and semantics of these constructs.",
-        ],
+        "abstract": "This document defines the language to be used in the classical part of the 4th International Planning Competition, IPC-4. The language comprises all of PDDL2.1 levels 1, 2, and 3, as defined by Maria Fox and Derek Long in fox:long:jair-03; parts of this document have been copied from that source. On top of this language, for IPC-4 <i>derived predicates</i> are re-introduced, and <i>timed initial literals</i> are (newly) introduced into the competition language. We give the syntax and semantics of these constructs.",
         "author": Array [
           Object {
             "firstName": "Stefan",
             "lastName": "Edelkamp",
           },
           Object {
-            "firstName": "Jörg",
+            "firstName": "Jörg",
             "lastName": "Hoffmann",
           },
         ],
         "institution": Array [
-          "Institut für Informatik, Universität Freiburg",
+          "Institut für Informatik, Universität Freiburg",
         ],
-        "month": Array [
-          "01 21",
-        ],
-        "title": Array [
-          "<span class=\\"nocase\\">PDDL</span>2.2: The Language for the Classical Part of the 4th International Planning Competition",
-        ],
-        "type": Array [
-          "report00195",
-        ],
-        "url": Array [
-          "ftp://ftp.informatik.uni-freiburg.de/documents/reports/report195/report00195.ps.gz",
-        ],
-        "year": Array [
-          "2004",
-        ],
+        "month": "01 21",
+        "title": "<span class=\\"nocase\\">PDDL</span>2.2: The Language for the Classical Part of the 4th International Planning Competition",
+        "type": "report00195",
+        "url": "ftp://ftp.informatik.uni-freiburg.de/documents/reports/report195/report00195.ps.gz",
+        "year": 2004,
       },
+      "input": String(
+        @TechReport{Edelkamp04,
+          author =\\t"Stefan Edelkamp and J{\\\\"o}rg Hoffmann",
+          title =\\t"{PDDL}2.2: The Language for the Classical Part of the
+        \\t\\t 4th International Planning Competition",
+          institution =  "Institut f{\\\\"u}r Informatik, Universit{\\\\"a}t
+        \\t\\t Freiburg",
+          type = \\t"report00195",
+          month =\\tjan # " 21",
+          year = \\t"2004",
+          URL =  \\t"ftp://ftp.informatik.uni-freiburg.de/documents/reports/report195/report00195.ps.gz",
+          abstract =\\t"This document defines the language to be used in the
+        \\t\\t classical part of the 4th International Planning
+        \\t\\t Competition, IPC-4. The language comprises all of
+        \\t\\t PDDL2.1 levels 1, 2, and 3, as defined by Maria Fox and
+        \\t\\t Derek Long in \\\\cite{fox:long:jair-03}; parts of this
+        \\t\\t document have been copied from that source. On top of
+        \\t\\t this language, for IPC-4 {\\\\em derived predicates} are
+        \\t\\t re-introduced, and {\\\\em timed initial literals} are
+        \\t\\t (newly) introduced into the competition language. We
+        \\t\\t give the syntax and semantics of these constructs."
+        }
+      ),
       "key": "Edelkamp04",
       "type": "techreport",
     },

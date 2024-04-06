@@ -21,24 +21,35 @@ Object {
             "lastName": "Shapiro",
           },
         ],
-        "booktitle": Array [
-          "IJCAI-81",
-        ],
-        "pages": Array [
-          "368–374",
-        ],
-        "title": Array [
-          "Using Active Connection Graphs for Reasoning with Recursive Rules",
-        ],
-        "year": Array [
-          "1981",
-        ],
+        "booktitle": "<span class=\\"nocase\\">IJCAI-81</span>",
+        "pages": "368–374",
+        "title": "Using Active Connection Graphs for Reasoning with Recursive Rules",
+        "year": 1981,
       },
+      "input": String(
+        @inproceedings(McKay:81,
+        \\tauthor =\\t{D.P. McKay and S.C. Shapiro},
+        \\tyear =\\t\\t{1981},
+        \\tbooktitle =\\tIJCAI-81,
+        \\tpages =\\t\\t{368--374},
+        \\ttitle =\\t\\t{Using Active Connection Graphs
+        \\t\\t\\t  for Reasoning with Recursive Rules}
+        )
+      ),
       "key": "McKay:81",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"IJCAI-81\\"",
+      "input": "IJCAI-81",
+      "location": Object {
+        "column": 22,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

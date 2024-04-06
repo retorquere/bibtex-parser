@@ -17,25 +17,24 @@ Object {
             "lastName": "McCarthy",
           },
         ],
-        "journal": Array [
-          "Sigplan Notices",
-        ],
-        "number": Array [
-          "8",
-        ],
-        "pages": Array [
-          "217-223",
-        ],
-        "title": Array [
-          "History of LISP",
-        ],
-        "volume": Array [
-          "13",
-        ],
-        "year": Array [
-          "1978",
-        ],
+        "journal": "Sigplan Notices",
+        "number": "8",
+        "pages": "217-223",
+        "title": "History of LISP",
+        "volume": "13",
+        "year": 1978,
       },
+      "input": String(
+        @article(McCarthy:78,
+        \\tauthor =\\t{John McCarthy},
+        \\tyear =\\t\\t{1978},
+        \\tjournal =\\t{Sigplan Notices},
+        \\tnumber =\\t{8},
+        \\tpages =\\t\\t{217-223},
+        \\ttitle =\\t\\t"History of LISP",
+        \\tvolume =\\t{13}
+        )
+      ),
       "key": "McCarthy:78",
       "type": "article",
     },

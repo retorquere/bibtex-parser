@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "ERLBAUM-ADDRESS",
-        ],
+        "address": "ERLBAUM-ADDRESS",
         "author": Array [
           Object {
             "firstName": "J.",
@@ -24,24 +22,37 @@ Object {
             "lastName": "Newell",
           },
         ],
-        "booktitle": Array [
-          "Knowledge and Cognition",
-        ],
+        "booktitle": "Knowledge and Cognition",
         "publisher": Array [
           "Lawrence Erlbaum",
         ],
-        "title": Array [
-          "How can Merlin understand?",
-        ],
-        "year": Array [
-          "1974",
-        ],
+        "title": "How can Merlin understand?",
+        "year": 1974,
       },
+      "input": String(
+        @book(JMoore:74,
+        \\tauthor =\\t{J. Moore and A. Newell},
+        \\tbooktitle =\\t{Knowledge and Cognition},
+        \\taddress =\\tERLBAUM-ADDRESS,
+        \\tyear =\\t\\t{1974},
+        \\tpublisher =\\t{Lawrence Erlbaum},
+        \\ttitle =\\t\\t{How can Merlin understand?}
+        )
+      ),
       "key": "JMoore:74",
       "type": "book",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"ERLBAUM-ADDRESS\\"",
+      "input": "ERLBAUM-ADDRESS",
+      "location": Object {
+        "column": 27,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

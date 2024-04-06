@@ -17,13 +17,17 @@ Object {
             "lastName": "Sherman",
           },
         ],
-        "title": Array [
-          "A Comparative Study of Computer-Aided Clinical Diagnosis of Birth Defects",
-        ],
-        "year": Array [
-          "1981",
-        ],
+        "title": "A Comparative Study of Computer-Aided Clinical Diagnosis of Birth Defects",
+        "year": 1981,
       },
+      "input": String(
+        @techreport(Sherman:81,
+        \\tauthor =\\t{H. Sherman},
+        \\tyear =\\t\\t{1981},
+        \\ttitle =\\t\\t{A Comparative Study of Computer-Aided Clinical 
+        \\t\\t\\t Diagnosis of Birth Defects}
+        )
+      ),
       "key": "Sherman:81",
       "type": "techreport",
     },

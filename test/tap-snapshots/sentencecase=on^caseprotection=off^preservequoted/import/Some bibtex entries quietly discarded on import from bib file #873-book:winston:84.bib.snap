@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Reading, Mass.",
-        ],
+        "address": "Reading, Mass.",
         "author": Array [
           Object {
             "firstName": "Patrick H.",
@@ -23,13 +21,18 @@ Object {
         "publisher": Array [
           "Addison-Wesley",
         ],
-        "title": Array [
-          "Artificial intelligence 2nd ed.",
-        ],
-        "year": Array [
-          "1984",
-        ],
+        "title": "Artificial intelligence 2nd ed.",
+        "year": 1984,
       },
+      "input": String(
+        @book(Winston:84,
+        \\tauthor =\\t{Patrick H. Winston},
+        \\taddress =\\t{Reading, Mass.},
+        \\tyear =\\t\\t{1984},
+        \\tpublisher =\\t{Addison-Wesley},
+        \\ttitle =\\t\\t{Artificial Intelligence {\\\\rm 2nd ed.}}
+        )
+      ),
       "key": "Winston:84",
       "type": "book",
     },

@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "S.J.",
@@ -27,13 +25,18 @@ Object {
         "publisher": Array [
           "Harper & Row",
         ],
-        "title": Array [
-          "Beginning english grammar",
-        ],
-        "year": Array [
-          "1976",
-        ],
+        "title": "Beginning english grammar",
+        "year": 1976,
       },
+      "input": String(
+        @book(Keyser:76,
+        \\tauthor =\\t{S.J. Keyser and P.M. Postal},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1976},
+        \\tpublisher =\\t{Harper & Row},
+        \\ttitle =\\t\\t{Beginning English Grammar}
+        )
+      ),
       "key": "Keyser:76",
       "type": "book",
     },

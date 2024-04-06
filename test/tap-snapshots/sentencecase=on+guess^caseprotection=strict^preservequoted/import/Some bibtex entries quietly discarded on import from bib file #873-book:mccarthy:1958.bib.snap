@@ -11,28 +11,30 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Teddington, England",
-        ],
+        "address": "Teddington, England",
         "author": Array [
           Object {
             "firstName": "John",
             "lastName": "McCarthy",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the symposium on the mechanization of thought processes",
-        ],
+        "booktitle": "Proceedings of the symposium on the mechanization of thought processes",
         "publisher": Array [
           "National Physical Laboratory",
         ],
-        "title": Array [
-          "Programs with common sense",
-        ],
-        "year": Array [
-          "1958",
-        ],
+        "title": "Programs with common sense",
+        "year": 1958,
       },
+      "input": String(
+        @book(McCarthy:1958,
+        \\tauthor =\\t{John McCarthy},
+        \\tbooktitle =\\t{Proceedings of the Symposium on the Mechanization of Thought Processes},
+        \\taddress =\\t{Teddington, England},
+        \\tyear =\\t\\t{1958},
+        \\tpublisher =\\t{National Physical Laboratory},
+        \\ttitle =\\t\\t{Programs with common sense}
+        )
+      ),
       "key": "McCarthy:1958",
       "type": "book",
     },

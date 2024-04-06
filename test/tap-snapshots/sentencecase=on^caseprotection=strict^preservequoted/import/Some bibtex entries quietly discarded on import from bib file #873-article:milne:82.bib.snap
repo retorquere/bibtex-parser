@@ -17,25 +17,24 @@ Object {
             "lastName": "Milne",
           },
         ],
-        "journal": Array [
-          "Cognitive Science",
-        ],
-        "number": Array [
-          "4",
-        ],
-        "pages": Array [
-          "349-375",
-        ],
-        "title": Array [
-          "Predicting garden path sentences",
-        ],
-        "volume": Array [
-          "6",
-        ],
-        "year": Array [
-          "1982",
-        ],
+        "journal": "Cognitive Science",
+        "number": "4",
+        "pages": "349-375",
+        "title": "Predicting garden path sentences",
+        "volume": "6",
+        "year": 1982,
       },
+      "input": String(
+        @article(Milne:82,
+        \\tauthor =\\t{Robert W. Milne},
+        \\tyear =\\t\\t{1982},
+        \\tjournal =\\t{Cognitive Science},
+        \\tnumber =\\t{4},
+        \\tpages =\\t\\t{349-375},
+        \\ttitle =\\t\\t"Predicting garden path sentences",
+        \\tvolume =\\t{6}
+        )
+      ),
       "key": "Milne:82",
       "type": "article",
     },

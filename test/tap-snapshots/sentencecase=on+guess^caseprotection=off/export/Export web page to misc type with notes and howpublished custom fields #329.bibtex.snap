@@ -13,22 +13,23 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "lastName": "NTP.org",
+            "name": "NTP.org",
           },
         ],
-        "howpublished": Array [
-          "<a href=\\"http://www.ntp.org/ntpfaq/NTP-s-sw-clocks-quality.htm\\">http://www.ntp.org/ntpfaq/NTP-s-sw-clocks-quality.htm</a>",
-        ],
-        "note": Array [
-          "(accessed 2015-02-13)",
-        ],
-        "title": Array [
-          "Clock quality",
-        ],
-        "year": Array [
-          "2015",
-        ],
+        "howpublished": "<a href=\\"http://www.ntp.org/ntpfaq/NTP-s-sw-clocks-quality.htm\\">http://www.ntp.org/ntpfaq/NTP-s-sw-clocks-quality.htm</a>",
+        "note": "(accessed 2015-02-13)",
+        "title": "Clock Quality",
+        "year": 2015,
       },
+      "input": String(
+        @misc{ntp.org_clock_2015,
+          title = {Clock {{Quality}}},
+          author = {{NTP.org}},
+          year = {2015},
+          howpublished = {\\\\url{http://www.ntp.org/ntpfaq/NTP-s-sw-clocks-quality.htm}},
+          note = {(accessed 2015-02-13)}
+        }
+      ),
       "key": "ntp.org_clock_2015",
       "type": "misc",
     },
@@ -36,19 +37,21 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "lastName": "NTP.org",
+            "name": "NTP.org",
           },
         ],
-        "howpublished": Array [
-          "<a href=\\"http://www.ntp.org/ntpfaq/NTP-s-sw-clocks-quality.htm\\">http://www.ntp.org/ntpfaq/NTP-s-sw-clocks-quality.htm</a>",
-        ],
-        "title": Array [
-          "Clock quality",
-        ],
-        "year": Array [
-          "2015",
-        ],
+        "howpublished": "<a href=\\"http://www.ntp.org/ntpfaq/NTP-s-sw-clocks-quality.htm\\">http://www.ntp.org/ntpfaq/NTP-s-sw-clocks-quality.htm</a>",
+        "title": "Clock Quality",
+        "year": 2015,
       },
+      "input": String(
+        @misc{ntp.org_clock_2015-1,
+          title = {Clock {{Quality}}},
+          author = {{NTP.org}},
+          year = {2015},
+          howpublished = {\\\\url{http://www.ntp.org/ntpfaq/NTP-s-sw-clocks-quality.htm}}
+        }
+      ),
       "key": "ntp.org_clock_2015-1",
       "type": "misc",
     },
@@ -56,19 +59,21 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "lastName": "NTP.org",
+            "name": "NTP.org",
           },
         ],
-        "howpublished": Array [
-          "<a href=\\"http://www.ntp.org/ntpfaq/NTP-s-sw-clocks-quality.htm\\">http://www.ntp.org/ntpfaq/NTP-s-sw-clocks-quality.htm</a>",
-        ],
-        "title": Array [
-          "Clock quality",
-        ],
-        "year": Array [
-          "2015",
-        ],
+        "howpublished": "<a href=\\"http://www.ntp.org/ntpfaq/NTP-s-sw-clocks-quality.htm\\">http://www.ntp.org/ntpfaq/NTP-s-sw-clocks-quality.htm</a>",
+        "title": "Clock Quality",
+        "year": 2015,
       },
+      "input": String(
+        @misc{ntp.org_clock_2015-2,
+          title = {Clock {{Quality}}},
+          author = {{NTP.org}},
+          year = {2015},
+          howpublished = {\\\\url{http://www.ntp.org/ntpfaq/NTP-s-sw-clocks-quality.htm}}
+        }
+      ),
       "key": "ntp.org_clock_2015-2",
       "type": "misc",
     },

@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Chicago",
-        ],
+        "address": "Chicago",
         "author": Array [
           Object {
             "firstName": "Thomas S.",
@@ -23,13 +21,18 @@ Object {
         "publisher": Array [
           "University of Chicago Press",
         ],
-        "title": Array [
-          "The Structure of Scientific Revolutions",
-        ],
-        "year": Array [
-          "1962",
-        ],
+        "title": "The Structure of Scientific Revolutions",
+        "year": 1962,
       },
+      "input": String(
+        @book(Kuhn:1962,
+        \\tauthor =\\t{Thomas S. Kuhn},
+        \\taddress =\\t{Chicago},
+        \\tyear =\\t\\t{1962},
+        \\tpublisher =\\t{University of Chicago Press},
+        \\ttitle =\\t\\t{The Structure of Scientific Revolutions}
+        )
+      ),
       "key": "Kuhn:1962",
       "type": "book",
     },

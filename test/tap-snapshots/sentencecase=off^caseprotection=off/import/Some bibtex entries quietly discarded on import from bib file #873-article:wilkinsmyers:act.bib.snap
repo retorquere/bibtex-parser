@@ -21,30 +21,39 @@ Object {
             "lastName": "Myers",
           },
         ],
-        "journal": Array [
-          "JLC",
-        ],
-        "number": Array [
-          "6",
-        ],
-        "pages": Array [
-          "731–761",
-        ],
-        "title": Array [
-          "A Common Knowledge Representation for Plan Generation and Reactive Execution",
-        ],
-        "volume": Array [
-          "5",
-        ],
-        "year": Array [
-          "1995",
-        ],
+        "journal": "JLC",
+        "number": "6",
+        "pages": "731–761",
+        "title": "A Common Knowledge Representation for Plan Generation and Reactive Execution",
+        "volume": "5",
+        "year": 1995,
       },
+      "input": String(
+        @ARTICLE{WilkinsMyers:ACT,
+        \\tAUTHOR = {David E. Wilkins and Karen L. Myers},
+        \\tTITLE = {A Common Knowledge Representation for Plan Generation
+        \\t\\t and Reactive Execution},
+        \\tJOURNAL = JLC,
+        \\tYEAR = {1995},
+        \\tVOLUME = {5},
+        \\tNUMBER = {6},
+        \\tPAGES = {731--761}
+        }
+      ),
       "key": "WilkinsMyers:ACT",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"JLC\\"",
+      "input": "JLC",
+      "location": Object {
+        "column": 15,
+        "line": 5,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

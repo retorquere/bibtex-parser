@@ -17,19 +17,24 @@ Object {
             "lastName": "Doe",
           },
         ],
-        "date": Array [
-          "2020-11-19",
-        ],
-        "title": Array [
-          "Test title of test book",
-        ],
-        "weirdfield": Array [
-          "Blam",
-        ],
-        "wonderfield": Array [
-          "Blub",
-        ],
+        "date": "2020-11-19",
+        "title": "Test title of test book",
+        "weirdfield": "Blam",
+        "wonderfield": "Blub",
       },
+      "input": String(
+        @inproceedings{Doe2020,
+          title = {Test title of test book},
+          author = {Doe, Jane},
+          date = {2020-11-19},
+          weirdfield = {Blam},
+          wonderfield = {Blub}
+        }
+        % == BibLateX quality report for Doe2020:
+        % Unexpected field 'weirdfield'
+        % Unexpected field 'wonderfield'
+        % Missing required field 'booktitle'
+      ),
       "key": "Doe2020",
       "type": "inproceedings",
     },

@@ -17,22 +17,22 @@ Object {
             "lastName": "Horn",
           },
         ],
-        "journal": Array [
-          "Artificial Intelligence",
-        ],
-        "pages": Array [
-          "201-231",
-        ],
-        "title": Array [
-          "Understanding image intensities",
-        ],
-        "volume": Array [
-          "8",
-        ],
-        "year": Array [
-          "1977",
-        ],
+        "journal": "Artificial Intelligence",
+        "pages": "201-231",
+        "title": "Understanding image intensities",
+        "volume": "8",
+        "year": 1977,
       },
+      "input": String(
+        @article(Horn:1977,
+        \\tauthor =\\t{B.K.P. Horn},
+        \\tyear =\\t\\t{1977},
+        \\tjournal =\\t{Artificial Intelligence},
+        \\tpages =\\t\\t{201-231},
+        \\ttitle =\\t\\t"Understanding image intensities",
+        \\tvolume =\\t{8}
+        )
+      ),
       "key": "Horn:1977",
       "type": "article",
     },

@@ -17,22 +17,22 @@ Object {
             "lastName": "Barrow",
           },
         ],
-        "journal": Array [
-          "Proc. AAAI",
-        ],
-        "pages": Array [
-          "17-21",
-        ],
-        "title": Array [
-          "Proving the correctness of digital hardware designs",
-        ],
-        "volume": Array [
-          "3",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "journal": "Proc. AAAI",
+        "pages": "17-21",
+        "title": "Proving the correctness of digital hardware designs",
+        "volume": "3",
+        "year": 1983,
       },
+      "input": String(
+        @article(Barrow:83,
+        \\tauthor =\\t{Harry G. Barrow},
+        \\tyear =\\t\\t{1983},
+        \\tjournal =\\t{Proc. AAAI},
+        \\tpages =\\t\\t{17-21},
+        \\ttitle =\\t\\t"Proving the correctness of digital hardware designs",
+        \\tvolume =\\t{3}
+        )
+      ),
       "key": "Barrow:83",
       "type": "article",
     },

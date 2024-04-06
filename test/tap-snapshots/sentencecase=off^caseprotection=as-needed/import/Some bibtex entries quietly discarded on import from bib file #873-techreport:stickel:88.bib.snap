@@ -7,7 +7,9 @@
 'use strict'
 exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-techreport:stickel:88.bib > must match snapshot 1`] = `
 Object {
-  "comments": Array [],
+  "comments": Array [
+    "%%GRAEME HIRST",
+  ],
   "entries": Array [
     Object {
       "fields": Object {
@@ -20,13 +22,19 @@ Object {
         "institution": Array [
           "Artificial Intelligence Center,SRI International",
         ],
-        "title": Array [
-          "A Prolog-like Inference System for Computing Minimum-cost Abductive Explanations in Natural-language Interpretation",
-        ],
-        "year": Array [
-          "1988",
-        ],
+        "title": "A Prolog-like Inference System for Computing Minimum-cost Abductive Explanations in Natural-language Interpretation",
+        "year": 1988,
       },
+      "input": String(
+        @techreport(Stickel:88,
+        \\tauthor =\\t{Mark E. Stickel},
+        \\tyear =\\t\\t{1988},
+        \\tinstitution =\\t{Artificial Intelligence Center,SRI International},
+        \\ttitle =\\t\\t{A Prolog-like Inference System for Computing 
+        \\t\\t\\t  Minimum-cost Abductive Explanations in
+        \\t\\t\\t  Natural-language Interpretation}
+        )
+      ),
       "key": "Stickel:88",
       "type": "techreport",
     },

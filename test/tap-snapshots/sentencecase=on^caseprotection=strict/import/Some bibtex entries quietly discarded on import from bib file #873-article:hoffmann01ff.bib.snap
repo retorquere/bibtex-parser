@@ -13,7 +13,7 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "firstName": "Jörg",
+            "firstName": "Jörg",
             "lastName": "Hoffmann",
           },
           Object {
@@ -21,27 +21,35 @@ Object {
             "lastName": "Nebel",
           },
         ],
-        "journal": Array [
-          "jair",
-        ],
-        "pages": Array [
-          "253–302",
-        ],
-        "title": Array [
-          "The <span class=\\"nocase\\">FF</span> planning system: Fast plan generation through heuristic search",
-        ],
-        "volume": Array [
-          14,
-        ],
-        "year": Array [
-          2001,
-        ],
+        "journal": "jair",
+        "pages": "253–302",
+        "title": "The <span class=\\"nocase\\">FF</span> planning system: Fast plan generation through heuristic search",
+        "volume": "14",
+        "year": 2001,
       },
+      "input": String(
+        @article{hoffmann01ff,
+            Author = {J\\\\"{o}rg Hoffmann and Bernhard Nebel},
+            Journal = jair,
+            Pages = {253--302},
+            Title = {The {FF} Planning System: Fast Plan Generation Through Heuristic Search},
+            Volume = 14,
+            Year = 2001}
+      ),
       "key": "hoffmann01ff",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"jair\\"",
+      "input": "jair",
+      "location": Object {
+        "column": 19,
+        "line": 3,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

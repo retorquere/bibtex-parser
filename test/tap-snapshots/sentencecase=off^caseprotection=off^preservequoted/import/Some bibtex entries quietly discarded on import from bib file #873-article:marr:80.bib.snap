@@ -21,22 +21,22 @@ Object {
             "lastName": "Hildreth",
           },
         ],
-        "journal": Array [
-          "Procedings of the Royal Society",
-        ],
-        "pages": Array [
-          "187–217",
-        ],
-        "title": Array [
-          "Theory of edge detection",
-        ],
-        "volume": Array [
-          "B-207",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "journal": "Procedings of the Royal Society",
+        "pages": "187–217",
+        "title": "Theory of edge detection",
+        "volume": "B-207",
+        "year": 1980,
       },
+      "input": String(
+        @article(Marr:80,
+        \\tauthor =\\t{David Marr and Ellen Hildreth},
+        \\tyear =\\t\\t{1980},
+        \\tjournal =\\t{Procedings of the Royal Society},
+        \\tpages =\\t\\t{187--217},
+        \\ttitle =\\t\\t"Theory of edge detection",
+        \\tvolume =\\t{B-207}
+        )
+      ),
       "key": "Marr:80",
       "type": "article",
     },

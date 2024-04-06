@@ -20,13 +20,17 @@ Object {
         "institution": Array [
           "Stanford University Artificial Intelligence Laboratory",
         ],
-        "title": Array [
-          "Monte Carlo Simulation of Tolerancing in Discrete Parts Manufacturing and Assembly",
-        ],
-        "year": Array [
-          "1976",
-        ],
+        "title": "Monte Carlo Simulation of Tolerancing in Discrete Parts Manufacturing and Assembly",
+        "year": 1976,
       },
+      "input": String(
+        @techreport(Grossman:1976,
+        \\tauthor =\\t{D.D. Grossman},
+        \\tyear =\\t\\t{1976},
+        \\tinstitution =\\t{Stanford University Artificial Intelligence Laboratory},
+        \\ttitle =\\t\\t{Monte Carlo Simulation of Tolerancing in Discrete Parts Manufacturing and Assembly}
+        )
+      ),
       "key": "Grossman:1976",
       "type": "techreport",
     },

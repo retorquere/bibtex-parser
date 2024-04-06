@@ -14,19 +14,20 @@ Object {
         "institution": Array [
           "NASA Ames Research Center",
         ],
-        "key": Array [
-          "NASA",
-        ],
-        "title": Array [
-          "NDDL reference",
-        ],
-        "url": Array [
-          "http://code.google.com/p/europa-pso/wiki/NDDLReference",
-        ],
-        "year": Array [
-          2011,
-        ],
+        "key": "NASA",
+        "title": "NDDL reference",
+        "url": "http://code.google.com/p/europa-pso/wiki/NDDLReference",
+        "year": 2011,
       },
+      "input": String(
+        @misc{NDDL,
+          title =        {{NDDL Reference}},
+          url =          {http://code.google.com/p/europa-pso/wiki/NDDLReference},
+          key =          {NASA},
+          year =         2011,
+          institution =  {NASA Ames Research Center}
+        }
+      ),
       "key": "NDDL",
       "type": "misc",
     },

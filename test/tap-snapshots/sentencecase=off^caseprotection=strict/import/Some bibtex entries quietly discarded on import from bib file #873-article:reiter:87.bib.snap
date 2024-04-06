@@ -17,30 +17,38 @@ Object {
             "lastName": "Reiter",
           },
         ],
-        "journal": Array [
-          "AIJ",
-        ],
-        "number": Array [
-          "1",
-        ],
-        "pages": Array [
-          "57–96",
-        ],
-        "title": Array [
-          "A Theory of Diagnosis from First Principles",
-        ],
-        "volume": Array [
-          "32",
-        ],
-        "year": Array [
-          "1987",
-        ],
+        "journal": "AIJ",
+        "number": "1",
+        "pages": "57–96",
+        "title": "A Theory of Diagnosis from First Principles",
+        "volume": "32",
+        "year": 1987,
       },
+      "input": String(
+        @ARTICLE{Reiter:87,
+        \\tAUTHOR = {Raymond Reiter},
+        \\tTITLE = "A Theory of Diagnosis from First Principles",
+        \\tJOURNAL = AIJ,
+        \\tYEAR = {1987},
+        \\tVOLUME = {32},
+        \\tNUMBER = {1},
+        \\tPAGES = {57--96}
+        }
+      ),
       "key": "Reiter:87",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"AIJ\\"",
+      "input": "AIJ",
+      "location": Object {
+        "column": 15,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

@@ -17,19 +17,21 @@ Object {
             "lastName": "Walker",
           },
         ],
-        "month": Array [
-          "11",
-        ],
-        "note": Array [
-          "Prepublication draft; to appear in <i>Artificial Intelligence/</i>",
-        ],
-        "title": Array [
-          "The effect of resource limits and task complexity on collaborative planning in dialogue",
-        ],
-        "year": Array [
-          "1995",
-        ],
+        "month": 11,
+        "note": "Prepublication draft; to appear in <i>Artificial Intelligence</i>",
+        "title": "The effect of resource limits and task complexity on collaborative planning in dialogue",
+        "year": 1995,
       },
+      "input": String(
+        @UNPUBLISHED{MWalker:95,
+        \\tAUTHOR = {Marilyn A. Walker},
+        \\tTITLE = {The Effect of resource limits and task complexity
+        \\t\\t on collaborative planning in dialogue},
+        \\tNOTE = {Prepublication draft; to appear in {\\\\em Artificial Intelligence\\\\/}},
+        \\tMONTH = nov,
+        \\tYEAR = {1995}
+        }
+      ),
       "key": "MWalker:95",
       "type": "unpublished",
     },

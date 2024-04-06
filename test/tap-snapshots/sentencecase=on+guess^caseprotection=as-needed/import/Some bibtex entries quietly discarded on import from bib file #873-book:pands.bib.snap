@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Stanford, CA",
-        ],
+        "address": "Stanford, CA",
         "author": Array [
           Object {
             "firstName": "Fernando C.N.",
@@ -27,21 +25,35 @@ Object {
         "publisher": Array [
           "CSLI",
         ],
-        "series": Array [
-          "CSLI lecture notes",
-        ],
-        "title": Array [
-          "Prolog and natural-language analysis",
-        ],
-        "year": Array [
-          "1987",
-        ],
+        "series": "CSLI lecture notes",
+        "title": "Prolog and natural-language analysis",
+        "year": 1987,
       },
+      "input": String(
+        @BOOK{PandS,
+        \\tAUTHOR = {Fernando C.N. Pereira and
+        \\t\\t  Stuart M. Shieber},
+        \\tTITLE = "Prolog and Natural-Language Analysis",
+        \\tPUBLISHER = CSLI,
+        \\tYEAR = {1987},
+        \\tSERIES = {CSLI Lecture Notes},
+        \\tADDRESS = {Stanford, CA}
+        }
+      ),
       "key": "PandS",
       "type": "book",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"CSLI\\"",
+      "input": "CSLI",
+      "location": Object {
+        "column": 18,
+        "line": 5,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

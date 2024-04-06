@@ -20,13 +20,17 @@ Object {
         "institution": Array [
           "MIT Artificial Intelligence Laboratory",
         ],
-        "title": Array [
-          "A model for deliberation, action, and introspection",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "title": "A model for deliberation, action, and introspection",
+        "year": 1980,
       },
+      "input": String(
+        @techreport(Doyle:1980,
+        \\tauthor =\\t{Jon Doyle},
+        \\tyear =\\t\\t{1980},
+        \\tinstitution =\\t{MIT Artificial Intelligence Laboratory},
+        \\ttitle =\\t\\t{A model for deliberation, action, and introspection}
+        )
+      ),
       "key": "Doyle:1980",
       "type": "techreport",
     },

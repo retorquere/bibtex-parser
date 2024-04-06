@@ -17,25 +17,24 @@ Object {
             "lastName": "Lenat",
           },
         ],
-        "journal": Array [
-          "Artificial Intelligence",
-        ],
-        "number": Array [
-          "1,2",
-        ],
-        "pages": Array [
-          "31-59",
-        ],
-        "title": Array [
-          "Theory formation by heuristic search",
-        ],
-        "volume": Array [
-          "21",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "journal": "Artificial Intelligence",
+        "number": "1,2",
+        "pages": "31-59",
+        "title": "Theory formation by heuristic search",
+        "volume": "21",
+        "year": 1983,
       },
+      "input": String(
+        @article(Lenat:1983,
+        \\tauthor =\\t{Douglas B. Lenat},
+        \\tyear =\\t\\t{1983},
+        \\tjournal =\\t{Artificial Intelligence},
+        \\tnumber =\\t{1,2},
+        \\tpages =\\t\\t{31-59},
+        \\ttitle =\\t\\t"Theory formation by heuristic search",
+        \\tvolume =\\t{21}
+        )
+      ),
       "key": "Lenat:1983",
       "type": "article",
     },

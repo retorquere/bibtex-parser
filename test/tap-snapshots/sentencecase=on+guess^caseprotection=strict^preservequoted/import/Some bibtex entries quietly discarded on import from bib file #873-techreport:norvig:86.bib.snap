@@ -20,13 +20,17 @@ Object {
         "institution": Array [
           "Department of Computer Science, University of California at Berkeley",
         ],
-        "title": Array [
-          "Inference processes and knowledge representation for text understanding",
-        ],
-        "year": Array [
-          "1986",
-        ],
+        "title": "Inference processes and knowledge representation for text understanding",
+        "year": 1986,
       },
+      "input": String(
+        @techreport(Norvig:86,
+        \\tauthor =\\t{Peter Norvig},
+        \\tyear =\\t\\t{1986},
+        \\tinstitution =\\t{Department of Computer Science, University of California at Berkeley},
+        \\ttitle =\\t\\t{Inference processes and knowledge representation for text understanding}
+        )
+      ),
       "key": "Norvig:86",
       "type": "techreport",
     },

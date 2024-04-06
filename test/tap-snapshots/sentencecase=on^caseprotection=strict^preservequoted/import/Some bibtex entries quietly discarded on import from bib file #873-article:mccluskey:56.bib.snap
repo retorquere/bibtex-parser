@@ -17,33 +17,40 @@ Object {
             "lastName": "E.G. McCluskey",
           },
         ],
-        "journal": Array [
-          "BSTJ",
-        ],
-        "month": Array [
-          "November",
-        ],
-        "number": Array [
-          "6",
-        ],
-        "pages": Array [
-          "1417–44",
-        ],
-        "title": Array [
-          "Minimization of boolean functions",
-        ],
-        "volume": Array [
-          "35",
-        ],
-        "year": Array [
-          "1956",
-        ],
+        "journal": "BSTJ",
+        "month": 11,
+        "number": "6",
+        "pages": "1417–44",
+        "title": "Minimization of boolean functions",
+        "volume": "35",
+        "year": 1956,
       },
+      "input": String(
+        @ARTICLE{McCluskey:56,
+        \\tAUTHOR = {E.G. McCluskey, Jr.},
+        \\tTITLE = "Minimization of Boolean Functions",
+        \\tJOURNAL = BSTJ,
+        \\tYEAR = {1956},
+        \\tVOLUME = {35},
+        \\tNUMBER = {6},
+        \\tPAGES = {1417--44},
+        \\tMONTH = November
+        }
+      ),
       "key": "McCluskey:56",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"BSTJ\\"",
+      "input": "BSTJ",
+      "location": Object {
+        "column": 16,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

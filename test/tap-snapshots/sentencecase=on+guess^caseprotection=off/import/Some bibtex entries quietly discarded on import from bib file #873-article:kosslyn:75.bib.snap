@@ -17,22 +17,22 @@ Object {
             "lastName": "Kosslyn",
           },
         ],
-        "journal": Array [
-          "Cognitive Psychology",
-        ],
-        "pages": Array [
-          "341-370",
-        ],
-        "title": Array [
-          "Information representation in visual images",
-        ],
-        "volume": Array [
-          "7",
-        ],
-        "year": Array [
-          "1975",
-        ],
+        "journal": "Cognitive Psychology",
+        "pages": "341-370",
+        "title": "Information representation in visual images",
+        "volume": "7",
+        "year": 1975,
       },
+      "input": String(
+        @article(Kosslyn:75,
+        \\tauthor =\\t{Steven M. Kosslyn},
+        \\tyear =\\t\\t{1975},
+        \\tjournal =\\t{Cognitive Psychology},
+        \\tpages =\\t\\t{341-370},
+        \\ttitle =\\t\\t"Information representation in visual images",
+        \\tvolume =\\t{7}
+        )
+      ),
       "key": "Kosslyn:75",
       "type": "article",
     },

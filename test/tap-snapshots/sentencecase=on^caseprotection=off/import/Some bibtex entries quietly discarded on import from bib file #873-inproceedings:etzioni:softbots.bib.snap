@@ -21,16 +21,19 @@ Object {
             "lastName": "Segal",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the 1992 AAAI spring symposium on knowledge assimilation",
-        ],
-        "title": Array [
-          "Softbots as testbeds for machine learning",
-        ],
-        "year": Array [
-          "1992",
-        ],
+        "booktitle": "Proceedings of the 1992 AAAI spring symposium on knowledge assimilation",
+        "title": "Softbots as testbeds for machine learning",
+        "year": 1992,
       },
+      "input": String(
+        @INPROCEEDINGS(Etzioni:Softbots,
+        \\tAUTHOR = {Oren Etzioni and Richard Segal},
+        \\tTITLE = "Softbots as Testbeds for Machine Learning",
+        \\tBOOKTITLE = {Proceedings of the 1992 AAAI Spring Symposium on
+        \\t\\t     knowledge assimilation},
+        \\tYEAR = {1992}
+        )
+      ),
       "key": "Etzioni:Softbots",
       "type": "inproceedings",
     },

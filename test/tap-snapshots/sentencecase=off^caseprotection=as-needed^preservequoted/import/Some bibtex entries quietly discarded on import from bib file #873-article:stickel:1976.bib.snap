@@ -21,25 +21,24 @@ Object {
             "lastName": "Stickel",
           },
         ],
-        "journal": Array [
-          "IEEE Transactions on Computers",
-        ],
-        "number": Array [
-          "4",
-        ],
-        "pages": Array [
-          "335-341",
-        ],
-        "title": Array [
-          "A hole in goal trees",
-        ],
-        "volume": Array [
-          "C-25",
-        ],
-        "year": Array [
-          "1976",
-        ],
+        "journal": "IEEE Transactions on Computers",
+        "number": "4",
+        "pages": "335-341",
+        "title": "A hole in goal trees",
+        "volume": "C-25",
+        "year": 1976,
       },
+      "input": String(
+        @article(Stickel:1976,
+        \\tauthor =\\t{D.W. Loveland and M.E. Stickel},
+        \\tyear =\\t\\t{1976},
+        \\tjournal =\\t{IEEE Transactions on Computers},
+        \\tnumber =\\t{4},
+        \\tpages =\\t\\t{335-341},
+        \\ttitle =\\t\\t"A hole in goal trees",
+        \\tvolume =\\t{C-25}
+        )
+      ),
       "key": "Stickel:1976",
       "type": "article",
     },

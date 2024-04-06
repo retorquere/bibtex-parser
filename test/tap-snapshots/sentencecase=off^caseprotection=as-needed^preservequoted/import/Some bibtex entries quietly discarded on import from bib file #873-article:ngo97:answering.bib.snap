@@ -21,30 +21,29 @@ Object {
             "lastName": "Haddawy",
           },
         ],
-        "journal": Array [
-          "Theoretical Computer Science",
-        ],
-        "key": Array [
-          "Article",
-        ],
-        "month": Array [],
-        "note": Array [],
-        "number": Array [
-          "1-2",
-        ],
-        "pages": Array [
-          "147-177",
-        ],
-        "title": Array [
-          "Answering Queries from Context-Sensitive Probabilistic Knowledge Bases",
-        ],
-        "volume": Array [
-          "171",
-        ],
-        "year": Array [
-          "1997",
-        ],
+        "journal": "Theoretical Computer Science",
+        "key": "Article",
+        "number": "1-2",
+        "pages": "147-177",
+        "title": "Answering Queries from Context-Sensitive Probabilistic Knowledge Bases",
+        "volume": "171",
+        "year": 1997,
       },
+      "input": String(
+        @Article(Ngo97:Answering,
+         Author = "Liem Ngo and Peter Haddawy",
+         Key = "Article",
+         Title = "Answering Queries from Context-Sensitive Probabilistic
+                         Knowledge Bases",
+         Journal = "Theoretical Computer Science",
+         Volume = "171",
+         Number = "1-2",
+         Pages = "147-177",
+         Month = "",
+         Note = "",
+         Year = "1997"
+         )
+      ),
       "key": "Ngo97:Answering",
       "type": "article",
     },

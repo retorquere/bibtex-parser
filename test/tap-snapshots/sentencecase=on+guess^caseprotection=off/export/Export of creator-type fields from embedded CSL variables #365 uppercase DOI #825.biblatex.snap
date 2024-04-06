@@ -11,18 +11,14 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "annotation": Array [
-          "{:X-genre: xxx}",
-        ],
+        "annotation": "{:X-genre: xxx}",
         "author": Array [
           Object {
             "firstName": "Ann",
             "lastName": "Author",
           },
         ],
-        "date": Array [
-          "2015",
-        ],
+        "date": "2015",
         "editor": Array [
           Object {
             "firstName": "Emma",
@@ -39,16 +35,23 @@ Object {
         "location": Array [
           "Place",
         ],
-        "number": Array [
-          "77",
-        ],
-        "title": Array [
-          "A report",
-        ],
-        "type": Array [
-          "working paper",
-        ],
+        "number": "77",
+        "title": "A report",
+        "type": "working paper",
       },
+      "input": String(
+        @report{Author2015,
+          title = {A Report},
+          author = {Author, Ann},
+          editor = {Editrix, Emma and Editor, Ed},
+          date = {2015},
+          institution = {{Institution}},
+          location = {{Place}},
+          annotation = {\\\\{:X-genre: xxx\\\\}},
+          number = {77},
+          type = {working paper}
+        }
+      ),
       "key": "Author2015",
       "type": "report",
     },
@@ -60,15 +63,9 @@ Object {
             "lastName": "Blair",
           },
         ],
-        "booktitle": Array [
-          "Oxford dictionary of national biography",
-        ],
-        "date": Array [
-          "2004",
-        ],
-        "doi": Array [
-          "10.1093/ref:odnb/10183",
-        ],
+        "booktitle": "Oxford dictionary of national biography",
+        "date": "2004",
+        "doi": "10.1093/ref:odnb/10183",
         "editor": Array [
           Object {
             "firstName": "H.C.G.",
@@ -85,24 +82,30 @@ Object {
         "publisher": Array [
           "Oxford University Press",
         ],
-        "title": Array [
-          "Frithuswith (<i>d.</i> 727)",
-        ],
-        "url": Array [
-          "http://www.oxforddnb.com/view/article/10183",
-        ],
-        "urldate": Array [
-          "2014-06-13",
-        ],
+        "title": "Frithuswith (<i>d.</i> 727)",
+        "url": "http://www.oxforddnb.com/view/article/10183",
+        "urldate": "2014-06-13",
       },
+      "input": String(
+        @inreference{Blair2004,
+          title = {Frithuswith ({\\\\emph{d.}} 727)},
+          booktitle = {Oxford Dictionary of National Biography},
+          author = {Blair, John},
+          editor = {Matthew, H.C.G. and Harrison, Brian Howard},
+          date = {2004},
+          publisher = {{Oxford University Press}},
+          location = {{Oxford}},
+          doi = {10.1093/ref:odnb/10183},
+          url = {http://www.oxforddnb.com/view/article/10183},
+          urldate = {2014-06-13}
+        }
+      ),
       "key": "Blair2004",
       "type": "inreference",
     },
     Object {
       "fields": Object {
-        "date": Array [
-          "2015",
-        ],
+        "date": "2015",
         "editor": Array [
           Object {
             "firstName": "John",
@@ -113,44 +116,50 @@ Object {
             "lastName": "Roe",
           },
         ],
-        "editortype": Array [
-          "director",
-        ],
+        "editortype": "director",
         "location": Array [
           "US/GB",
         ],
         "publisher": Array [
           "The Distributor",
         ],
-        "title": Array [
-          "A film",
-        ],
+        "title": "A film",
       },
+      "input": String(
+        @movie{Doe2015,
+          title = {A Film},
+          editor = {Doe, John and Roe, Rob},
+          date = {2015},
+          publisher = {{The Distributor}},
+          location = {{US/GB}},
+          editortype = {director}
+        }
+      ),
       "key": "Doe2015",
       "type": "movie",
     },
     Object {
       "fields": Object {
-        "annotation": Array [
-          "{:X-genre: xxx}",
-        ],
+        "annotation": "{:X-genre: xxx}",
         "editor": Array [
           Object {
-            "lastName": "Xxx",
+            "name": "Xxx",
           },
         ],
       },
+      "input": String(
+        @inreference{emptybook,
+          editor = {{Xxx}},
+          annotation = {\\\\{:X-genre: xxx\\\\}}
+        }
+      ),
       "key": "emptybook",
       "type": "inreference",
     },
     Object {
       "fields": Object {
-        "booktitle": Array [
-          "Friends",
-        ],
-        "date": Array [
-          "2003",
-        ],
+        "booktitle": "Friends",
+        "date": "2003",
         "editor": Array [
           Object {
             "firstName": "Gail",
@@ -167,48 +176,48 @@ Object {
             "lastName": "Malins",
           },
         ],
-        "editoratype": Array [
-          "scriptwriter",
-        ],
-        "editortype": Array [
-          "director",
-        ],
-        "langid": Array [
-          "american",
-        ],
+        "editoratype": "scriptwriter",
+        "editortype": "director",
+        "langid": "american",
         "location": Array [
           "US",
         ],
-        "number": Array [
-          "1",
-        ],
-        "origdate": Array [
-          "1996-09-16",
-        ],
+        "number": "1",
+        "origdate": "1996-09-16",
         "origpublisher": Array [
           "NBC",
         ],
         "publisher": Array [
           "Warner Home Video",
         ],
-        "title": Array [
-          "The one with the princess leia fantasy",
-        ],
-        "volume": Array [
-          "3",
-        ],
+        "title": "The one with the Princess Leia fantasy",
+        "volume": "3",
       },
+      "input": String(
+        @video{friends:leia:dvd,
+          title = {The One with the {{Princess Leia}} Fantasy},
+          booktitle = {Friends},
+          editor = {Mancuso, Gail},
+          date = {2003},
+          origdate = {1996-09-16},
+          volume = {3},
+          publisher = {{Warner Home Video}},
+          location = {{US}},
+          editora = {Curtis, Michael and Malins, Gregory S.},
+          editoratype = {scriptwriter},
+          editortype = {director},
+          langid = {american},
+          number = {1},
+          origpublisher = {{NBC}}
+        }
+      ),
       "key": "friends:leia:dvd",
       "type": "video",
     },
     Object {
       "fields": Object {
-        "booktitle": Array [
-          "Friends",
-        ],
-        "date": Array [
-          "1996-09-16",
-        ],
+        "booktitle": "Friends",
+        "date": "1996-09-16",
         "editor": Array [
           Object {
             "firstName": "Gail",
@@ -225,55 +234,60 @@ Object {
             "lastName": "Malins",
           },
         ],
-        "editoratype": Array [
-          "scriptwriter",
-        ],
-        "editortype": Array [
-          "director",
-        ],
-        "langid": Array [
-          "american",
-        ],
+        "editoratype": "scriptwriter",
+        "editortype": "director",
+        "langid": "american",
         "location": Array [
           "US",
         ],
-        "number": Array [
-          "1",
-        ],
+        "number": "1",
         "publisher": Array [
           "NBC",
         ],
-        "title": Array [
-          "The one with the princess leia fantasy",
-        ],
-        "volume": Array [
-          "3",
-        ],
+        "title": "The one with the Princess Leia fantasy",
+        "volume": "3",
       },
+      "input": String(
+        @video{friends:leia:tv,
+          title = {The One with the {{Princess Leia}} Fantasy},
+          booktitle = {Friends},
+          editor = {Mancuso, Gail},
+          date = {1996-09-16},
+          volume = {3},
+          publisher = {{NBC}},
+          location = {{US}},
+          editora = {Curtis, Michael and Malins, Gregory S.},
+          editoratype = {scriptwriter},
+          editortype = {director},
+          langid = {american},
+          number = {1}
+        }
+      ),
       "key": "friends:leia:tv",
       "type": "video",
     },
     Object {
       "fields": Object {
-        "date": Array [
-          "1964",
-        ],
+        "date": "1964",
         "editor": Array [
           Object {
             "firstName": "Stanley",
             "lastName": "Kubrick",
           },
         ],
-        "editortype": Array [
-          "director",
-        ],
-        "shorttitle": Array [
-          "Dr. Strangelove",
-        ],
-        "title": Array [
-          "Dr. Strangelove or: How I learned to stop worrying and love the bomb",
-        ],
+        "editortype": "director",
+        "shorttitle": "Dr. Strangelove",
+        "title": "Dr. Strangelove or: How I learned to stop worrying and love the bomb",
       },
+      "input": String(
+        @video{Kubrick1964,
+          title = {Dr. {{Strangelove}} or: How {{I}} Learned to Stop Worrying and Love the Bomb},
+          shorttitle = {Dr. {{Strangelove}}},
+          editor = {Kubrick, Stanley},
+          date = {1964},
+          editortype = {director}
+        }
+      ),
       "key": "Kubrick1964",
       "type": "video",
     },

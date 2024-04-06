@@ -17,22 +17,22 @@ Object {
             "lastName": "Kolodner",
           },
         ],
-        "journal": Array [
-          "Cognitive Science",
-        ],
-        "pages": Array [
-          "281–328",
-        ],
-        "title": Array [
-          "Reconstructive memory: A computer model",
-        ],
-        "volume": Array [
-          "7",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "journal": "Cognitive Science",
+        "pages": "281–328",
+        "title": "Reconstructive memory: a computer model",
+        "volume": "7",
+        "year": 1983,
       },
+      "input": String(
+        @article(Kolodner:83,
+        \\tauthor =\\t{Janet Kolodner},
+        \\tyear =\\t\\t{1983},
+        \\tjournal =\\t{Cognitive Science},
+        \\tpages =\\t\\t{281--328},
+        \\ttitle =\\t\\t"Reconstructive memory: A computer model",
+        \\tvolume =\\t{7}
+        )
+      ),
       "key": "Kolodner:83",
       "type": "article",
     },

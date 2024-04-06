@@ -17,22 +17,22 @@ Object {
             "lastName": "Nevins",
           },
         ],
-        "journal": Array [
-          "Journal of the ACM",
-        ],
-        "pages": Array [
-          "606-621",
-        ],
-        "title": Array [
-          "A human-oriented logic for automatic theorem proving",
-        ],
-        "volume": Array [
-          "21",
-        ],
-        "year": Array [
-          "1974",
-        ],
+        "journal": "Journal of the ACM",
+        "pages": "606-621",
+        "title": "A human-oriented logic for automatic theorem proving",
+        "volume": "21",
+        "year": 1974,
       },
+      "input": String(
+        @article(Nevins:1974,
+        \\tauthor =\\t{A.J. Nevins},
+        \\tyear =\\t\\t{1974},
+        \\tjournal =\\t{Journal of the ACM},
+        \\tpages =\\t\\t{606-621},
+        \\ttitle =\\t\\t"A human-oriented logic for automatic theorem proving",
+        \\tvolume =\\t{21}
+        )
+      ),
       "key": "Nevins:1974",
       "type": "article",
     },

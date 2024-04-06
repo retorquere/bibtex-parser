@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Cambridge, Mass.",
-        ],
+        "address": "Cambridge, Mass.",
         "author": Array [
           Object {
             "firstName": "David Allen",
@@ -23,19 +21,24 @@ Object {
         "institution": Array [
           "Massachusetts Institute of Technology, Artificial Intelligence Laboratory",
         ],
-        "month": Array [
-          "January",
-        ],
-        "number": Array [
-          "AI-TR-550",
-        ],
-        "title": Array [
-          "The Use of Equality in Deduction and Knowledge Representation",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "month": "January",
+        "number": "AI-TR-550",
+        "title": "The Use of Equality in Deduction and Knowledge Representation",
+        "year": 1980,
       },
+      "input": String(
+        @techreport(McAllester:80,
+        \\tauthor =\\t{David Allen McAllester},
+        \\taddress =\\t{Cambridge, Mass.},
+        \\tyear =\\t\\t{1980},
+        \\tmonth =\\t\\t{January},
+        \\tinstitution =\\t{Massachusetts Institute of Technology, 
+        \\t\\t\\t Artificial Intelligence Laboratory},
+        \\tnumber =\\t{AI-TR-550},
+        \\ttitle =\\t\\t{The Use of Equality in Deduction
+        \\t\\t\\t and Knowledge Representation}
+        )
+      ),
       "key": "McAllester:80",
       "type": "techreport",
     },

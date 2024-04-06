@@ -17,13 +17,16 @@ Object {
             "lastName": "O'hara",
           },
         ],
-        "date": Array [
-          "2015",
-        ],
-        "title": Array [
-          "A Testbook",
-        ],
+        "date": "2015",
+        "title": "A Testbook",
       },
+      "input": String(
+        @book{Ohara2015,
+          title = {A Testbook},
+          author = {O'hara, james},
+          date = {2015}
+        }
+      ),
       "key": "Ohara2015",
       "type": "book",
     },

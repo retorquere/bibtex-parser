@@ -20,16 +20,19 @@ Object {
         "institution": Array [
           "Yale University Department of Computer Science",
         ],
-        "number": Array [
-          "140",
-        ],
-        "title": Array [
-          "Understanding goal-based stories",
-        ],
-        "year": Array [
-          "1978",
-        ],
+        "number": "140",
+        "title": "Understanding goal-based stories",
+        "year": 1978,
       },
+      "input": String(
+        @techreport(Wilensky:thesis,
+        \\tauthor =\\t{Robert Wilensky},
+        \\tyear =\\t\\t{1978},
+        \\tinstitution =\\t{Yale University Department of Computer Science},
+        \\ttitle =\\t\\t"Understanding Goal-based Stories",
+        \\tnumber = \\t{140}
+        )
+      ),
       "key": "Wilensky:thesis",
       "type": "techreport",
     },

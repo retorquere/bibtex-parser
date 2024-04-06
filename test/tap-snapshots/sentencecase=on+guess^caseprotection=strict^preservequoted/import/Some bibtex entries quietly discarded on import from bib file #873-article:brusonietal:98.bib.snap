@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "annote": Array [
-          "Many definitions are presented, but no algorithms and the definitions don't appear to be especially helpful.",
-        ],
+        "annote": "Many definitions are presented, but no algorithms and the definitions don't appear to be especially helpful.",
         "author": Array [
           Object {
             "firstName": "Vittorio",
@@ -29,36 +27,47 @@ Object {
           },
           Object {
             "firstName": "Daniele Theseider",
-            "lastName": "Dupré",
+            "lastName": "Dupré",
           },
         ],
-        "journal": Array [
-          "AIJ",
-        ],
-        "month": Array [
-          "06",
-        ],
-        "number": Array [
-          "1",
-        ],
-        "pages": Array [
-          "39–79",
-        ],
-        "title": Array [
-          "A spectrum of Definitions for temporal model-based diagnosis",
-        ],
-        "volume": Array [
-          "102",
-        ],
-        "year": Array [
-          "1998",
-        ],
+        "journal": "AIJ",
+        "month": 6,
+        "number": "1",
+        "pages": "39–79",
+        "title": "A spectrum of Definitions for temporal model-based diagnosis",
+        "volume": "102",
+        "year": 1998,
       },
+      "input": String(
+        @ARTICLE(BrusoniETAL:98,
+        \\tAUTHOR = {Vittorio Brusoni and Luca Console and Paolo Terenziani
+        \\t\\t  and Daniele Theseider Dupr\\\\'{e}},
+        \\tTITLE = {A spectrum of Definitions for temporal model-based
+        \\t\\t diagnosis},
+        \\tJOURNAL = AIJ,
+        \\tYEAR = {1998},
+        \\tVOLUME = {102},
+        \\tNUMBER = {1},
+        \\tPAGES = {39--79},
+        \\tMONTH = jun,
+        \\tANNOTE = {Many definitions are presented, but no algorithms and
+        \\t\\t  the definitions don't appear to be especially helpful.}
+        )
+      ),
       "key": "BrusoniETAL:98",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"AIJ\\"",
+      "input": "AIJ",
+      "location": Object {
+        "column": 15,
+        "line": 6,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

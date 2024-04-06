@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "D.",
@@ -31,16 +29,20 @@ Object {
         "publisher": Array [
           "Oxford University Press",
         ],
-        "serial": Array [
-          "poo97a",
-        ],
-        "title": Array [
-          "Computational intelligence: A logical approach",
-        ],
-        "year": Array [
-          1997,
-        ],
+        "serial": "poo97a",
+        "title": "Computational intelligence: a logical approach",
+        "year": 1997,
       },
+      "input": String(
+        @book{PooMacGoe97a,
+                author = {D. Poole and A.K. Mackworth and R.G. Goebel},
+                year = 1997,
+                title = "Computational Intelligence: A Logical Approach",
+                publisher = {Oxford University Press},
+                serial = {poo97a},
+                address = {New York}
+        }
+      ),
       "key": "PooMacGoe97a",
       "type": "book",
     },

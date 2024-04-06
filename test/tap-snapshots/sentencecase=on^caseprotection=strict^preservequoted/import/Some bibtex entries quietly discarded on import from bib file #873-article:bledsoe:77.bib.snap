@@ -17,25 +17,24 @@ Object {
             "lastName": "Bledsoe",
           },
         ],
-        "journal": Array [
-          "Artificial Intelligence",
-        ],
-        "number": Array [
-          "1",
-        ],
-        "pages": Array [
-          "1-35",
-        ],
-        "title": Array [
-          "Non-resolution theorem proving",
-        ],
-        "volume": Array [
-          "9",
-        ],
-        "year": Array [
-          "1977",
-        ],
+        "journal": "Artificial Intelligence",
+        "number": "1",
+        "pages": "1-35",
+        "title": "Non-resolution theorem proving",
+        "volume": "9",
+        "year": 1977,
       },
+      "input": String(
+        @article(Bledsoe:77,
+        \\tauthor =\\t{W.W. Bledsoe},
+        \\tyear =\\t\\t{1977},
+        \\tjournal =\\t{Artificial Intelligence},
+        \\tnumber =\\t{1},
+        \\tpages =\\t\\t{1-35},
+        \\ttitle =\\t\\t"Non-resolution theorem proving",
+        \\tvolume =\\t{9}
+        )
+      ),
       "key": "Bledsoe:77",
       "type": "article",
     },

@@ -21,27 +21,36 @@ Object {
             "lastName": "Tate",
           },
         ],
-        "journal": Array [
-          "AIJ",
-        ],
-        "pages": Array [
-          "49–86",
-        ],
-        "title": Array [
-          "O-plan: the open planning architecture",
-        ],
-        "volume": Array [
-          "52",
-        ],
-        "year": Array [
-          "1991",
-        ],
+        "journal": "AIJ",
+        "pages": "49–86",
+        "title": "O-Plan: the open planning architecture",
+        "volume": "52",
+        "year": 1991,
       },
+      "input": String(
+        @ARTICLE(Tate:OPLAN,
+        \\tAUTHOR = {Ken Currie and Austin Tate},
+        \\tTITLE = "O-{P}lan:  the open planning architecture",
+        \\tJOURNAL = AIJ,
+        \\tYEAR = {1991},
+        \\tVOLUME = {52},
+        \\tPAGES = {49--86}
+        )
+      ),
       "key": "Tate:OPLAN",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"AIJ\\"",
+      "input": "AIJ",
+      "location": Object {
+        "column": 15,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

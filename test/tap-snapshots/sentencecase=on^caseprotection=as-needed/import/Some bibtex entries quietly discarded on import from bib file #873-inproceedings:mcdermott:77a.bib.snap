@@ -13,27 +13,45 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "lastName": "MCDERMOTT",
+            "name": "MCDERMOTT",
           },
         ],
-        "booktitle": Array [
-          "IJCAI-77",
-        ],
-        "pages": Array [
-          "229–234",
-        ],
-        "title": Array [
-          "Vocabularies for problem-solver state descriptions",
-        ],
-        "year": Array [
-          "1977",
-        ],
+        "booktitle": "IJCAI-77",
+        "pages": "229–234",
+        "title": "Vocabularies for problem-solver state descriptions",
+        "year": 1977,
       },
+      "input": String(
+        @inproceedings(McDermott:77a,
+        \\tauthor =\\tMCDERMOTT,
+        \\tyear =\\t\\t{1977},
+        \\tbooktitle =\\tIJCAI-77,
+        \\tpages =\\t\\t{229--234},
+        \\ttitle =\\t\\t{Vocabularies for problem-solver state descriptions}
+        )
+      ),
       "key": "McDermott:77a",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"MCDERMOTT\\"",
+      "input": "MCDERMOTT",
+      "location": Object {
+        "column": 20,
+        "line": 2,
+      },
+    },
+    Object {
+      "error": "Unresolved @string reference \\"IJCAI-77\\"",
+      "input": "IJCAI-77",
+      "location": Object {
+        "column": 22,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

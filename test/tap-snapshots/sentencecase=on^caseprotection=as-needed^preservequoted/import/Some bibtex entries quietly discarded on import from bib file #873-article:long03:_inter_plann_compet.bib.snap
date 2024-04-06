@@ -21,33 +21,42 @@ Object {
             "lastName": "Fox",
           },
         ],
-        "bibsource": Array [
-          "DBLP, http://dblp.uni-trier.de",
-        ],
-        "ee": Array [
-          "http://www.cs.washington.edu/research/jair/abstracts/long03a.html",
-        ],
-        "journal": Array [
-          "JAIR",
-        ],
-        "pages": Array [
-          "1-59",
-        ],
-        "title": Array [
-          "The 3rd international planning competition: Results and analysis.",
-        ],
-        "volume": Array [
-          20,
-        ],
-        "year": Array [
-          2003,
-        ],
+        "bibsource": "DBLP, http://dblp.uni-trier.de",
+        "ee": "http://www.cs.washington.edu/research/jair/abstracts/long03a.html",
+        "journal": "JAIR",
+        "pages": "1-59",
+        "title": "The 3rd international planning competition: Results and analysis.",
+        "volume": "20",
+        "year": 2003,
       },
+      "input": String(
+        @article{long03:_inter_plann_compet,
+          author    = {Derek Long and
+                       Maria Fox},
+          title     = {The 3rd International Planning Competition: Results and
+                       Analysis.},
+          journal   = JAIR,
+          volume    = 20,
+          year      = 2003,
+          pages     = {1-59},
+          ee        = {http://www.cs.washington.edu/research/jair/abstracts/long03a.html},
+          bibsource = {DBLP, http://dblp.uni-trier.de}
+        }
+      ),
       "key": "long03:_inter_plann_compet",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"JAIR\\"",
+      "input": "JAIR",
+      "location": Object {
+        "column": 19,
+        "line": 6,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

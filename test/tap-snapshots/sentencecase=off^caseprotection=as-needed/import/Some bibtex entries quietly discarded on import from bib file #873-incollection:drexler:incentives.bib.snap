@@ -21,13 +21,17 @@ Object {
             "lastName": "Miller",
           },
         ],
-        "crossref": Array [
-          "EcologyOfComp",
-        ],
-        "title": Array [
-          "Incentive Engineering for Computational Resource Management",
-        ],
+        "crossref": "EcologyOfComp",
+        "title": "Incentive Engineering for Computational Resource Management",
       },
+      "input": String(
+        @INCOLLECTION(Drexler:Incentives,
+        \\tAUTHOR = {K. Eric Drexler and Mark S. Miller},
+        \\tTITLE = {Incentive Engineering for Computational
+        \\t\\t Resource Management},
+        \\tCROSSREF = {EcologyOfComp}
+        )
+      ),
       "key": "Drexler:Incentives",
       "type": "incollection",
     },

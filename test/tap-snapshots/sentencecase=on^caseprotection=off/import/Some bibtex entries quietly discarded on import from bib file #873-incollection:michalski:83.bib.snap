@@ -17,19 +17,20 @@ Object {
             "lastName": "Michalski",
           },
         ],
-        "crossref": Array [
-          "Michalski:Learning",
-        ],
-        "pages": Array [
-          "83–134",
-        ],
-        "title": Array [
-          "A theory and methodology of inductive learning",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "crossref": "Michalski:Learning",
+        "pages": "83–134",
+        "title": "A theory and methodology of inductive learning",
+        "year": 1983,
       },
+      "input": String(
+        @incollection(Michalski:83,
+        \\tauthor =\\t{Ryszard Michalski},
+        \\tcrossref =      {Michalski:Learning},
+        \\tyear =\\t\\t{1983},
+        \\tpages =\\t\\t{83--134},
+        \\ttitle =\\t\\t{A theory and methodology of inductive learning}
+        )
+      ),
       "key": "Michalski:83",
       "type": "incollection",
     },

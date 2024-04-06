@@ -17,19 +17,22 @@ Object {
             "lastName": "Kay",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the Symposium on Text Processing",
-        ],
+        "booktitle": "Proceedings of the Symposium on Text Processing",
         "publisher": Array [
           "Nobel Academy",
         ],
-        "title": Array [
-          "Algorithm schemata and data structures in syntactic processing",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "title": "Algorithm schemata and data structures in syntactic processing",
+        "year": 1980,
       },
+      "input": String(
+        @book(Kay:80,
+        \\tauthor =\\t{Martin Kay},
+        \\tbooktitle =\\t{Proceedings of the Symposium on Text Processing},
+        \\tyear =\\t\\t{1980},
+        \\tpublisher =\\t{Nobel Academy},
+        \\ttitle =\\t\\t{Algorithm schemata and data structures in syntactic processing}
+        )
+      ),
       "key": "Kay:80",
       "type": "book",
     },

@@ -17,24 +17,34 @@ Object {
             "lastName": "Wong",
           },
         ],
-        "booktitle": Array [
-          "IJCAI-81",
-        ],
-        "pages": Array [
-          "7-12",
-        ],
-        "title": Array [
-          "Language comprehension in a problem solver",
-        ],
-        "year": Array [
-          "1981",
-        ],
+        "booktitle": "IJCAI-81",
+        "pages": "7-12",
+        "title": "Language comprehension in a problem solver",
+        "year": 1981,
       },
+      "input": String(
+        @inproceedings(Wong:81,
+        \\tauthor =\\t{Douglas Wong},
+        \\tyear =\\t\\t{1981},
+        \\tbooktitle =\\tIJCAI-81,
+        \\ttitle =\\t\\t"Language comprehension in a problem solver",
+        \\tpages =\\t\\t{7-12}
+        )
+      ),
       "key": "Wong:81",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"IJCAI-81\\"",
+      "input": "IJCAI-81",
+      "location": Object {
+        "column": 22,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

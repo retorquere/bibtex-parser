@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "San Francisco",
-        ],
+        "address": "San Francisco",
         "author": Array [
           Object {
             "firstName": "Pamela",
@@ -23,13 +21,18 @@ Object {
         "publisher": Array [
           "Freeman",
         ],
-        "title": Array [
-          "Machines who think",
-        ],
-        "year": Array [
-          "1979",
-        ],
+        "title": "Machines who think",
+        "year": 1979,
       },
+      "input": String(
+        @book(McCorduck:79,
+        \\tauthor =\\t{Pamela McCorduck},
+        \\taddress =\\t{San Francisco},
+        \\tyear =\\t\\t{1979},
+        \\tpublisher =\\t{Freeman},
+        \\ttitle =\\t\\t{Machines Who Think}
+        )
+      ),
       "key": "McCorduck:79",
       "type": "book",
     },

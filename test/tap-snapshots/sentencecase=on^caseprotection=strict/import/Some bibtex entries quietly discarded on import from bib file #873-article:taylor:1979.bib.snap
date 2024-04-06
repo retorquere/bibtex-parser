@@ -17,25 +17,24 @@ Object {
             "lastName": "Taylor",
           },
         ],
-        "journal": Array [
-          "IBM Journal of Research and Development",
-        ],
-        "number": Array [
-          "4",
-        ],
-        "pages": Array [
-          "424-436",
-        ],
-        "title": Array [
-          "Planning and execution of straight-line manipulator trajectories",
-        ],
-        "volume": Array [
-          "23",
-        ],
-        "year": Array [
-          "1979",
-        ],
+        "journal": "IBM Journal of Research and Development",
+        "number": "4",
+        "pages": "424-436",
+        "title": "Planning and execution of straight-line manipulator trajectories",
+        "volume": "23",
+        "year": 1979,
       },
+      "input": String(
+        @article(Taylor:1979,
+        \\tauthor =\\t{Russell H. Taylor},
+        \\tyear =\\t\\t{1979},
+        \\tjournal =\\t{IBM Journal of Research and Development},
+        \\tnumber =\\t{4},
+        \\tpages =\\t\\t{424-436},
+        \\ttitle =\\t\\t"Planning and execution of straight-line manipulator trajectories",
+        \\tvolume =\\t{23}
+        )
+      ),
       "key": "Taylor:1979",
       "type": "article",
     },

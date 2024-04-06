@@ -21,27 +21,36 @@ Object {
             "lastName": "Brachman",
           },
         ],
-        "journal": Array [
-          "CI",
-        ],
-        "pages": Array [
-          "78–93",
-        ],
-        "title": Array [
-          "Expressiveness and tractability in knowledge representation",
-        ],
-        "volume": Array [
-          "3",
-        ],
-        "year": Array [
-          "1987",
-        ],
+        "journal": "CI",
+        "pages": "78–93",
+        "title": "Expressiveness and tractability in knowledge representation",
+        "volume": "3",
+        "year": 1987,
       },
+      "input": String(
+        @ARTICLE{Levesque:87,
+        \\tAUTHOR = {Hector J. Levesque and R.J. Brachman},
+        \\tTITLE = "Expressiveness and tractability in knowledge representation",
+        \\tJOURNAL = CI,
+        \\tYEAR = {1987},
+        \\tVOLUME = {3},
+        \\tPAGES = {78--93}
+        }
+      ),
       "key": "Levesque:87",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"CI\\"",
+      "input": "CI",
+      "location": Object {
+        "column": 14,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

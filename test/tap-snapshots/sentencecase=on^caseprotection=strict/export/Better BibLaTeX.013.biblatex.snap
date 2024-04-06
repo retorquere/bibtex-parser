@@ -41,27 +41,28 @@ Object {
             "lastName": "Arbesman",
           },
         ],
-        "date": Array [
-          "2001",
-        ],
-        "journaltitle": Array [
-          "Title, with comma",
-        ],
+        "date": "2001",
+        "journaltitle": "Title, with comma",
         "keywords": Array [
           "breadcrust",
           "plinian",
           "Vulcanian eruptions",
         ],
-        "pages": Array [
-          "493–518",
-        ],
-        "title": Array [
-          "The physical, violent volcanology of the 1600 eruption of <span class=\\"nocase\\">Huaynaputina</span>, southern <span class=\\"nocase\\">Peru</span>",
-        ],
-        "volume": Array [
-          "62",
-        ],
+        "pages": "493–518",
+        "title": "The physical, violent volcanology of the 1600 eruption of <span class=\\"nocase\\">Huaynaputina</span>, southern <span class=\\"nocase\\">Peru</span>",
+        "volume": "62",
       },
+      "input": String(
+        @article{physicalviolentvolcanology,
+          title = {The Physical, Violent Volcanology of the 1600 Eruption of {{Huaynaputina}}, Southern {{Peru}}},
+          author = {Adams, Nancy K and DeSilva, Shanaka L and Self, Steven and Salas, Guido and Schubring, Steven and Permenter, Jason L and Arbesman, Kendra},
+          date = {2001},
+          journaltitle = {Title, with comma},
+          volume = {62},
+          pages = {493--518},
+          keywords = {breadcrust,plinian,Vulcanian eruptions}
+        }
+      ),
       "key": "physicalviolentvolcanology",
       "type": "article",
     },

@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "annote": Array [
-          "Contains a description of the typed, object-oriented, language for HTN planners. The work is interesting and offers checking to make sure that transitions are well-founded, in terms of the objects that make up the domain. Somewhat limited, however, in terms of the richness of the object hierarchy, and the sorts of things that an HTN method is allowed to do. There's a discussion of how OCL<span class=\\"nocase\\">ₕ</span> could be used to formalize O-Plan operators.",
-        ],
+        "annote": "Contains a description of the typed, object-oriented, language for HTN planners. The work is interesting and offers checking to make sure that transitions are well-founded, in terms of the objects that make up the domain. Somewhat limited, however, in terms of the richness of the object hierarchy, and the sorts of things that an HTN method is allowed to do. There's a discussion of how OCLₕ could be used to formalize O-Plan operators.",
         "author": Array [
           Object {
             "firstName": "T. L.",
@@ -31,13 +29,29 @@ Object {
         "institution": Array [
           "Department of Computer Science, The University of Huddersfield",
         ],
-        "title": Array [
-          "OCLₕ: a sound and supportive planning domain modelling language",
-        ],
-        "year": Array [
-          1999,
-        ],
+        "title": "OCL<span class=\\"nocase\\">ₕ</span>: a sound and supportive planning domain modelling language",
+        "year": 1999,
       },
+      "input": String(
+        @TechReport{mccluskey99:_ocl,
+          author =\\t {T. L. McCluskey and P. Jarvis and D. E. Kitchin},
+          title =\\t {OCL$_h$: a sound and supportive planning domain
+                          modelling language},
+          institution =\\t {Department of Computer Science, The University of
+                          Huddersfield},
+          annote =\\t {Contains a description of the typed,
+                          object-oriented, language for HTN planners. The work
+                          is interesting and offers checking to make sure that
+                          transitions are well-founded, in terms of the
+                          objects that make up the domain. Somewhat limited,
+                          however, in terms of the richness of the object
+                          hierarchy, and the sorts of things that an HTN
+                          method is allowed to do. There's a discussion of how
+                          OCL$_h$ could be used to formalize O-Plan
+                          operators.},
+          year =\\t 1999
+        }
+      ),
       "key": "mccluskey99:_ocl",
       "type": "techreport",
     },

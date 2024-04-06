@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "STANFORD-ADDRESS",
-        ],
+        "address": "STANFORD-ADDRESS",
         "author": Array [
           Object {
             "firstName": "Thomas R.",
@@ -23,27 +21,47 @@ Object {
         "institution": Array [
           "KSL",
         ],
-        "month": Array [
-          "08",
-        ],
-        "note": Array [
-          "revised version",
-        ],
-        "number": Array [
-          "KSL 93-04",
-        ],
-        "title": Array [
-          "Toward principles for the design of ontologies used for knowledge sharing",
-        ],
-        "year": Array [
-          "1993",
-        ],
+        "month": 8,
+        "note": "revised version",
+        "number": "KSL 93-04",
+        "title": "Toward principles for the design of ontologies used for knowledge sharing",
+        "year": 1993,
       },
+      "input": String(
+        @TECHREPORT{Gruber:93b,
+        \\tAUTHOR = {Thomas R. Gruber},
+        \\tTITLE = {Toward Principles for the Design of Ontologies 
+        \\t\\t Used for Knowledge Sharing},
+        \\tINSTITUTION = KSL,
+        \\tYEAR = {1993},
+        \\tNUMBER = {KSL 93-04},
+        \\tADDRESS = STANFORD-ADDRESS,
+        \\tMONTH = aug,
+        \\tNOTE = {revised version}
+        }
+      ),
       "key": "Gruber:93b",
       "type": "techreport",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"KSL\\"",
+      "input": "KSL",
+      "location": Object {
+        "column": 19,
+        "line": 5,
+      },
+    },
+    Object {
+      "error": "Unresolved @string reference \\"STANFORD-ADDRESS\\"",
+      "input": "STANFORD-ADDRESS",
+      "location": Object {
+        "column": 28,
+        "line": 8,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

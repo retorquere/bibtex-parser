@@ -21,33 +21,41 @@ Object {
             "lastName": "Simha",
           },
         ],
-        "journal": Array [
-          "TCOMPUTERS",
-        ],
-        "month": Array [
-          "May",
-        ],
-        "number": Array [
-          "5",
-        ],
-        "pages": Array [
-          "705–717",
-        ],
-        "title": Array [
-          "A Microeconomic Approach to Optimal Resource Allocation in Distributed Computer Systems",
-        ],
-        "volume": Array [
-          "38",
-        ],
-        "year": Array [
-          "1989",
-        ],
+        "journal": "TCOMPUTERS",
+        "month": "May",
+        "number": "5",
+        "pages": "705–717",
+        "title": "A Microeconomic Approach to Optimal Resource Allocation in Distributed Computer Systems",
+        "volume": "38",
+        "year": 1989,
       },
+      "input": String(
+        @ARTICLE(Kurose:89,
+        \\tAUTHOR = {James F. Kurose and Rahul Simha},
+        \\tTITLE = {A Microeconomic Approach to Optimal Resource
+        \\t\\t Allocation in Distributed Computer Systems},
+        \\tJOURNAL = TCOMPUTERS,
+        \\tYEAR = {1989},
+        \\tVOLUME = {38},
+        \\tNUMBER = {5},
+        \\tPAGES = {705--717},
+        \\tMONTH = {May}
+        )
+      ),
       "key": "Kurose:89",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"TCOMPUTERS\\"",
+      "input": "TCOMPUTERS",
+      "location": Object {
+        "column": 22,
+        "line": 5,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

@@ -17,25 +17,24 @@ Object {
             "lastName": "Family Name",
           },
         ],
-        "journal": Array [
-          "Journal",
-        ],
-        "number": Array [
-          "2",
-        ],
-        "pages": Array [
-          "3",
-        ],
-        "title": Array [
-          "Title",
-        ],
-        "volume": Array [
-          "1",
-        ],
-        "year": Array [
-          "2020",
-        ],
+        "journal": "Journal",
+        "number": "2",
+        "pages": "3",
+        "title": "Title",
+        "volume": "1",
+        "year": 2020,
       },
+      "input": String(
+        @Article{id1,
+          author  = {Family Name, First Name},
+          title   = {Title},
+          journal = {Journal},
+          year    = {2020},
+          volume  = {1},
+          number  = {2},
+          pages   = {3},
+        }
+      ),
       "key": "id1",
       "type": "article",
     },

@@ -11,37 +11,39 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "Barbara J.",
             "lastName": "Grosz",
           },
         ],
-        "booktitle": Array [
-          "Understanding spoken language",
-        ],
+        "booktitle": "Understanding spoken language",
         "editor": Array [
           Object {
             "firstName": "D.",
             "lastName": "Walker",
           },
         ],
-        "pages": Array [
-          "229-347",
-        ],
+        "pages": "229-347",
         "publisher": Array [
           "North-Holland",
         ],
-        "title": Array [
-          "Discourse knowledge",
-        ],
-        "year": Array [
-          "1978",
-        ],
+        "title": "Discourse knowledge",
+        "year": 1978,
       },
+      "input": String(
+        @incollection(Grosz:78,
+        \\tauthor =\\t{Barbara J. Grosz},
+        \\tbooktitle =\\t{Understanding Spoken language},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1978},
+        \\teditor =\\t{D. Walker},
+        \\tpublisher =\\t{North-Holland},
+        \\tpages =\\t\\t{229-347},
+        \\ttitle =\\t\\t{Discourse knowledge}
+        )
+      ),
       "key": "Grosz:78",
       "type": "incollection",
     },

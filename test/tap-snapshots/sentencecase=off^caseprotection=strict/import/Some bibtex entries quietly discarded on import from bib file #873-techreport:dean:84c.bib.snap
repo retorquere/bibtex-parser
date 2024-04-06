@@ -20,13 +20,16 @@ Object {
         "institution": Array [
           "Yale University Computer Science Department",
         ],
-        "title": Array [
-          "A TNMS User's Manual",
-        ],
-        "year": Array [
-          "1984",
-        ],
+        "title": "A TNMS User's Manual",
+        "year": 1984,
       },
+      "input": String(
+        @TechReport{Dean:84c,
+        author = "Thomas Dean",
+        title = "A TNMS User's Manual",
+        institution = "Yale University Computer Science Department",
+        year = "1984"}
+      ),
       "key": "Dean:84c",
       "type": "techreport",
     },

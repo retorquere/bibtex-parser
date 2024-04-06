@@ -17,25 +17,24 @@ Object {
             "lastName": "Wilks",
           },
         ],
-        "journal": Array [
-          "Communications of the ACM",
-        ],
-        "number": Array [
-          "5",
-        ],
-        "pages": Array [
-          "264-274",
-        ],
-        "title": Array [
-          "An intelligent analyzer and understander of english",
-        ],
-        "volume": Array [
-          "18",
-        ],
-        "year": Array [
-          "1975",
-        ],
+        "journal": "Communications of the ACM",
+        "number": "5",
+        "pages": "264-274",
+        "title": "An intelligent analyzer and understander of english",
+        "volume": "18",
+        "year": 1975,
       },
+      "input": String(
+        @article(Wilks:75,
+        \\tauthor =\\t{Yorick Wilks},
+        \\tyear =\\t\\t{1975},
+        \\tjournal =\\t{Communications of the ACM},
+        \\tnumber =\\t{5},
+        \\tpages =\\t\\t{264-274},
+        \\ttitle =\\t\\t"An intelligent analyzer and understander of English",
+        \\tvolume =\\t{18}
+        )
+      ),
       "key": "Wilks:75",
       "type": "article",
     },

@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Reading, Mass.",
-        ],
+        "address": "Reading, Mass.",
         "author": Array [
           Object {
             "firstName": "Terry",
@@ -23,13 +21,18 @@ Object {
         "publisher": Array [
           "Addison-Wesley",
         ],
-        "title": Array [
-          "Language as a Cognitive Process, Volume I: Syntax",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "title": "Language as a Cognitive Process, Volume I: Syntax",
+        "year": 1983,
       },
+      "input": String(
+        @book(Winograd:83,
+        \\tauthor =\\t{Terry Winograd},
+        \\taddress =\\t{Reading, Mass.},
+        \\tyear =\\t\\t{1983},
+        \\tpublisher =\\t{Addison-Wesley},
+        \\ttitle =\\t\\t{Language as a Cognitive Process, Volume I:  Syntax}
+        )
+      ),
       "key": "Winograd:83",
       "type": "book",
     },

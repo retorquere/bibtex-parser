@@ -13,24 +13,35 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "lastName": "MCDERMOTT",
+            "name": "MCDERMOTT",
           },
         ],
-        "crossref": Array [
-          "AIPS96",
-        ],
-        "pages": Array [
-          "142–149",
-        ],
-        "title": Array [
-          "A heuristic estimator for means-ends analysis in planning",
-        ],
+        "crossref": "AIPS96",
+        "pages": "142–149",
+        "title": "A heuristic estimator for means-ends analysis in planning",
       },
+      "input": String(
+        @INPROCEEDINGS{McDermott:96,
+        \\tAUTHOR = MCDERMOTT,
+        \\tTITLE = "A Heuristic Estimator for Means-Ends Analysis in Planning",
+        \\tPAGES = {142--149},
+        \\tCROSSREF = {AIPS96}
+        }
+      ),
       "key": "McDermott:96",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"MCDERMOTT\\"",
+      "input": "MCDERMOTT",
+      "location": Object {
+        "column": 20,
+        "line": 2,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

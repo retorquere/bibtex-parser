@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "J.",
@@ -28,9 +26,7 @@ Object {
             "lastName": "Dewar",
           },
         ],
-        "booktitle": Array [
-          "Machine intelligence 3",
-        ],
+        "booktitle": "Machine intelligence 3",
         "editor": Array [
           Object {
             "firstName": "D.",
@@ -40,13 +36,20 @@ Object {
         "publisher": Array [
           "American Elsevier",
         ],
-        "title": Array [
-          "The syntactic analysis of English by machine",
-        ],
-        "year": Array [
-          "1968",
-        ],
+        "title": "The syntactic analysis of English by machine",
+        "year": 1968,
       },
+      "input": String(
+        @book(Thorne:68,
+        \\tauthor =\\t{J. Thorne and P. Bratley and H. Dewar},
+        \\tbooktitle =\\t{Machine Intelligence 3},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1968},
+        \\teditor =\\t{D. Michie},
+        \\tpublisher =\\t{American Elsevier},
+        \\ttitle =\\t\\t{The syntactic analysis of English by machine}
+        )
+      ),
       "key": "Thorne:68",
       "type": "book",
     },

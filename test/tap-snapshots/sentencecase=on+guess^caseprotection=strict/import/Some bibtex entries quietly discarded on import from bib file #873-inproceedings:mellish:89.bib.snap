@@ -17,16 +17,19 @@ Object {
             "lastName": "Mellish",
           },
         ],
-        "crossref": Array [
-          "ACL-89",
-        ],
-        "pages": Array [
-          "102-109",
-        ],
-        "title": Array [
-          "Some chart-based techniques for parsing ill-formed input",
-        ],
+        "crossref": "ACL-89",
+        "pages": "102-109",
+        "title": "Some chart-based techniques for parsing ill-formed input",
       },
+      "input": String(
+        @INPROCEEDINGS{Mellish:89,
+        \\tAUTHOR = {Chris Mellish},
+        \\tTITLE = {Some Chart-based Techniques for Parsing Ill-formed
+        \\t\\t Input},
+        \\tPAGES = {102-109},
+        \\tCROSSREF = "ACL-89"
+        }
+      ),
       "key": "Mellish:89",
       "type": "inproceedings",
     },

@@ -21,22 +21,22 @@ Object {
             "lastName": "Hornstein",
           },
         ],
-        "journal": Array [
-          "Cognition",
-        ],
-        "number": Array [
-          "4",
-        ],
-        "pages": Array [
-          "321-398",
-        ],
-        "title": Array [
-          "On some supposed contributions of artificial intelligence to the scientific study of language",
-        ],
-        "year": Array [
-          "1976",
-        ],
+        "journal": "Cognition",
+        "number": "4",
+        "pages": "321-398",
+        "title": "On some supposed contributions of artificial intelligence to the scientific study of language",
+        "year": 1976,
       },
+      "input": String(
+        @article(Dresher:76,
+        \\tauthor =\\t{B. Elan Dresher and Norbert Hornstein},
+        \\tyear =\\t\\t{1976},
+        \\tjournal =\\t{Cognition},
+        \\tnumber =\\t{4},
+        \\tpages =\\t\\t{321-398},
+        \\ttitle =\\t\\t{On some supposed contributions of artificial intelligence to the scientific study of language}
+        )
+      ),
       "key": "Dresher:76",
       "type": "article",
     },

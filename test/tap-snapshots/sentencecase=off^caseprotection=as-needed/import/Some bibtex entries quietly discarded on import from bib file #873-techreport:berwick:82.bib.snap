@@ -18,15 +18,20 @@ Object {
           },
         ],
         "institution": Array [
-          "MIT Department of Electrical Engineering and Computer Science",
+          "MIT Department of Electrical Engineering",
+          "Computer Science",
         ],
-        "title": Array [
-          "Locality Principles and the Acquisition of Syntactic Knowledge",
-        ],
-        "year": Array [
-          "1982",
-        ],
+        "title": "Locality Principles and the Acquisition of Syntactic Knowledge",
+        "year": 1982,
       },
+      "input": String(
+        @techreport(Berwick:82,
+        \\tauthor =\\t{Robert C. Berwick},
+        \\tyear =\\t\\t{1982},
+        \\tinstitution =\\t{MIT Department of Electrical Engineering and Computer Science},
+        \\ttitle =\\t\\t{Locality Principles and the Acquisition of Syntactic Knowledge}
+        )
+      ),
       "key": "Berwick:82",
       "type": "techreport",
     },

@@ -21,25 +21,24 @@ Object {
             "lastName": "Sondheimer",
           },
         ],
-        "journal": Array [
-          "American Journal of Computational Linguistics",
-        ],
-        "number": Array [
-          "2",
-        ],
-        "pages": Array [
-          "99-108",
-        ],
-        "title": Array [
-          "Relaxation techniques for parsing grammatically ill-formed input in natural language understanding systems",
-        ],
-        "volume": Array [
-          "7",
-        ],
-        "year": Array [
-          "1981",
-        ],
+        "journal": "American Journal of Computational Linguistics",
+        "number": "2",
+        "pages": "99-108",
+        "title": "Relaxation techniques for parsing grammatically ill-formed input in natural language understanding systems",
+        "volume": "7",
+        "year": 1981,
       },
+      "input": String(
+        @article(Kwasny:81,
+        \\tauthor =\\t{Stan C. Kwasny and Norman K. Sondheimer},
+        \\tyear =\\t\\t{1981},
+        \\tjournal =\\t{American Journal of Computational Linguistics},
+        \\tnumber =\\t{2},
+        \\tpages =\\t\\t{99-108},
+        \\ttitle =\\t\\t"Relaxation techniques for parsing grammatically ill-formed input in natural language understanding systems",
+        \\tvolume =\\t{7}
+        )
+      ),
       "key": "Kwasny:81",
       "type": "article",
     },

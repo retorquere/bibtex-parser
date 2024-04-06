@@ -21,22 +21,22 @@ Object {
             "lastName": "Riseman",
           },
         ],
-        "journal": Array [
-          "Proc. Ijcai",
-        ],
-        "pages": Array [
-          "801-811",
-        ],
-        "title": Array [
-          "Levels of pattern description in learning",
-        ],
-        "volume": Array [
-          "5",
-        ],
-        "year": Array [
-          "1977",
-        ],
+        "journal": "Proc. Ijcai",
+        "pages": "801-811",
+        "title": "Levels of pattern description in learning",
+        "volume": "5",
+        "year": 1977,
       },
+      "input": String(
+        @article(Riseman:1977,
+        \\tauthor =\\t{Elliot Soloway and Edward M. Riseman},
+        \\tyear =\\t\\t{1977},
+        \\tjournal =\\t{Proc. Ijcai},
+        \\tpages =\\t\\t{801-811},
+        \\ttitle =\\t\\t"Levels of pattern description in learning",
+        \\tvolume =\\t{5}
+        )
+      ),
       "key": "Riseman:1977",
       "type": "article",
     },

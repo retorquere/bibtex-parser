@@ -21,22 +21,22 @@ Object {
             "lastName": "Small",
           },
         ],
-        "journal": Array [
-          "Proc. Ijcai",
-        ],
-        "pages": Array [
-          "723-728",
-        ],
-        "title": Array [
-          "Word expert parsing",
-        ],
-        "volume": Array [
-          "6",
-        ],
-        "year": Array [
-          "1979",
-        ],
+        "journal": "Proc. Ijcai",
+        "pages": "723-728",
+        "title": "Word expert parsing",
+        "volume": "6",
+        "year": 1979,
       },
+      "input": String(
+        @article(Rieger:79,
+        \\tauthor =\\t{Chuck Rieger and Steve Small},
+        \\tyear =\\t\\t{1979},
+        \\tjournal =\\t{Proc. Ijcai},
+        \\tpages =\\t\\t{723-728},
+        \\ttitle =\\t\\t"Word expert parsing",
+        \\tvolume =\\t{6}
+        )
+      ),
       "key": "Rieger:79",
       "type": "article",
     },

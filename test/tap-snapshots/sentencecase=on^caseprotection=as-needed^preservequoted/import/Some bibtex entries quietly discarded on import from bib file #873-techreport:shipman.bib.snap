@@ -20,13 +20,17 @@ Object {
         "institution": Array [
           "MIT Artificial Intelligence Laboratory",
         ],
-        "title": Array [
-          "Phrase structure rules for parsifal",
-        ],
-        "year": Array [
-          "1979",
-        ],
+        "title": "Phrase structure rules for parsifal",
+        "year": 1979,
       },
+      "input": String(
+        @techreport(Shipman,
+        \\tauthor =\\t{D.W. Shipman},
+        \\tyear =\\t\\t{1979},
+        \\tinstitution =\\t{MIT Artificial Intelligence Laboratory},
+        \\ttitle =\\t\\t{Phrase Structure Rules for Parsifal}
+        )
+      ),
       "key": "Shipman",
       "type": "techreport",
     },

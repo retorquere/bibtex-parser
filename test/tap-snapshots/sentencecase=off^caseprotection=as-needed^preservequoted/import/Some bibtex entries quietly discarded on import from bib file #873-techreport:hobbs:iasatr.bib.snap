@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "SRI-ADDRESS",
-        ],
+        "address": "SRI-ADDRESS",
         "author": Array [
           Object {
             "firstName": "Jerry R.",
@@ -35,24 +33,37 @@ Object {
         "institution": Array [
           "Artificial Intelligence Center, SRI International",
         ],
-        "month": Array [
-          "December",
-        ],
-        "number": Array [
-          "499",
-        ],
-        "title": Array [
-          "Interpretation as Abduction",
-        ],
-        "year": Array [
-          "1990",
-        ],
+        "month": 12,
+        "number": "499",
+        "title": "Interpretation as Abduction",
+        "year": 1990,
       },
+      "input": String(
+        @TECHREPORT{Hobbs:IasATR,
+        \\tAUTHOR = {Jerry R. Hobbs and Mark Stickel and 
+        \\t\\t\\t Douglas Edwards and Paul Martin},
+        \\tTITLE = "Interpretation as Abduction",
+        \\tINSTITUTION = {Artificial Intelligence Center, SRI International},
+        \\tYEAR = {1990},
+        \\tNUMBER = {499},
+        \\tADDRESS = SRI-ADDRESS,
+        \\tMONTH = December
+        }
+      ),
       "key": "Hobbs:IasATR",
       "type": "techreport",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"SRI-ADDRESS\\"",
+      "input": "SRI-ADDRESS",
+      "location": Object {
+        "column": 23,
+        "line": 8,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

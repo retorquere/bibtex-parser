@@ -24,13 +24,17 @@ Object {
         "institution": Array [
           "Yale University Department of Computer Science",
         ],
-        "title": Array [
-          "Memory, meaning, and syntax",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "title": "Memory, meaning, and syntax",
+        "year": 1980,
       },
+      "input": String(
+        @techreport(Schank:80,
+        \\tauthor =\\t{Roger Schank and Lawrence Birnbaum},
+        \\tyear =\\t\\t{1980},
+        \\tinstitution =\\t{Yale University Department of Computer Science},
+        \\ttitle =\\t\\t{Memory, Meaning, and Syntax}
+        )
+      ),
       "key": "Schank:80",
       "type": "techreport",
     },

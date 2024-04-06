@@ -17,16 +17,18 @@ Object {
             "lastName": "Sadek",
           },
         ],
-        "crossref": Array [
-          "KR:92",
-        ],
-        "pages": Array [
-          "462–473",
-        ],
-        "title": Array [
-          "A Study in the Logic of Intention",
-        ],
+        "crossref": "KR:92",
+        "pages": "462–473",
+        "title": "A Study in the Logic of Intention",
       },
+      "input": String(
+        @INPROCEEDINGS(Sadek:92,
+        \\tAUTHOR = {M.D. Sadek},
+        \\tTITLE = "A Study in the Logic of Intention",
+        \\tCROSSREF = {KR:92},
+        \\tPAGES = {462--473}
+        )
+      ),
       "key": "Sadek:92",
       "type": "inproceedings",
     },

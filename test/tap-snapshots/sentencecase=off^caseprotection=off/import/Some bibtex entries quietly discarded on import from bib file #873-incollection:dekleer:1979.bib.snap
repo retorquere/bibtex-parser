@@ -11,18 +11,14 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Cambridge, Mass.",
-        ],
+        "address": "Cambridge, Mass.",
         "author": Array [
           Object {
             "firstName": "Johan",
             "lastName": "deKleer",
           },
         ],
-        "booktitle": Array [
-          "Artificial Intelligence: An MIT Perspective",
-        ],
+        "booktitle": "Artificial Intelligence: An MIT Perspective",
         "editor": Array [
           Object {
             "firstName": "P.H.",
@@ -33,22 +29,27 @@ Object {
             "lastName": "Brown",
           },
         ],
-        "pages": Array [
-          "11-30",
-        ],
+        "pages": "11-30",
         "publisher": Array [
           "MIT Press",
         ],
-        "title": Array [
-          "Qualitative and quantitative reasoning in classical mechanics",
-        ],
-        "volume": Array [
-          "1",
-        ],
-        "year": Array [
-          "1979",
-        ],
+        "title": "Qualitative and quantitative reasoning in classical mechanics",
+        "volume": "1",
+        "year": 1979,
       },
+      "input": String(
+        @incollection(deKleer:1979,
+        \\tauthor =\\t{Johan deKleer},
+        \\tbooktitle =\\t{Artificial Intelligence: An MIT Perspective},
+        \\taddress =\\t{Cambridge, Mass.},
+        \\tyear =\\t\\t{1979},
+        \\teditor =\\t{P.H. Winston and R.H. Brown},
+        \\tpublisher =\\t{MIT Press},
+        \\tpages =\\t\\t{11-30},
+        \\ttitle =\\t\\t"Qualitative and quantitative reasoning in classical mechanics",
+        \\tvolume =\\t{1}
+        )
+      ),
       "key": "deKleer:1979",
       "type": "incollection",
     },

@@ -17,19 +17,20 @@ Object {
             "lastName": "Musliner",
           },
         ],
-        "note": Array [
-          "Available as University of Maryland Computer Science Technical Report CS-TR-3157",
-        ],
-        "school": Array [
-          "University of Michigan, Ann Arbor",
-        ],
-        "title": Array [
-          "<span class=\\"nocase\\">CIRCA</span>: The cooperative intelligent real-time control architecture",
-        ],
-        "year": Array [
-          "1993",
-        ],
+        "note": "Available as University of Maryland Computer Science Technical Report CS-TR-3157",
+        "school": "University of Michigan, Ann Arbor",
+        "title": "<span class=\\"nocase\\">CIRCA</span>: The cooperative intelligent real-time control architecture",
+        "year": 1993,
       },
+      "input": String(
+        @phdthesis{musliner:93thesis,
+                 author = "David J. Musliner",
+                 title = "{CIRCA}: The Cooperative Intelligent Real-Time Control Architecture",
+                 school = "University of Michigan, Ann Arbor",
+        \\tnote = "Available as University of Maryland Computer Science Technical Report CS-TR-3157",
+                 year = "1993"
+                }
+      ),
       "key": "musliner:93thesis",
       "type": "phdthesis",
     },

@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "Joseph E.",
@@ -23,13 +21,18 @@ Object {
         "publisher": Array [
           "Academic Press",
         ],
-        "title": Array [
-          "A transformational approach to english syntax: Root, structure-preserving, and local transformations",
-        ],
-        "year": Array [
-          "1976",
-        ],
+        "title": "A transformational approach to english syntax: Root, structure-preserving, and local transformations",
+        "year": 1976,
       },
+      "input": String(
+        @book(Emonds:76,
+        \\tauthor =\\t{Joseph E. Emonds},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1976},
+        \\tpublisher =\\t{Academic Press},
+        \\ttitle =\\t\\t{A Transformational Approach to English Syntax: Root, Structure-preserving, and Local Transformations}
+        )
+      ),
       "key": "Emonds:76",
       "type": "book",
     },

@@ -13,46 +13,46 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "literal": "Plato",
+            "name": "Plato",
           },
         ],
-        "booktitle": Array [
-          "Clitophon, <span class=\\"nocase\\">Republic, Timaeus, Critias</span>",
-        ],
-        "date": Array [
-          "1901",
-        ],
+        "booktitle": "Clitophon, <span class=\\"nocase\\">Republic</span>, <span class=\\"nocase\\">Timaeus</span>, <span class=\\"nocase\\">Critias</span>",
+        "date": "1901",
         "editor": Array [
           Object {
             "firstName": "John",
             "lastName": "Burnet",
           },
         ],
-        "langid": Array [
-          "british",
-        ],
+        "langid": "british",
         "location": Array [
           "Oxford",
         ],
-        "maintitle": Array [
-          "Opera",
-        ],
-        "pages": Array [
-          "327–621",
-        ],
+        "maintitle": "Opera",
+        "pages": "327–621",
         "publisher": Array [
           "Clarendon Press",
         ],
-        "series": Array [
-          "Oxford classical texts",
-        ],
-        "title": Array [
-          "Republic",
-        ],
-        "volume": Array [
-          "4",
-        ],
+        "series": "Oxford classical texts",
+        "title": "Republic",
+        "volume": "4",
       },
+      "input": String(
+        @incollection{Plato1901,
+          title = {Republic},
+          booktitle = {Clitophon, {{Republic}}, {{Timaeus}}, {{Critias}}},
+          author = {{Plato}},
+          editor = {Burnet, John},
+          date = {1901},
+          volume = {4},
+          pages = {327--621},
+          publisher = {{Clarendon Press}},
+          location = {{Oxford}},
+          langid = {british},
+          maintitle = {Opera},
+          series = {Oxford Classical Texts}
+        }
+      ),
       "key": "Plato1901",
       "type": "incollection",
     },
@@ -60,40 +60,42 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "literal": "Plato",
+            "name": "Plato",
           },
         ],
-        "date": Array [
-          "1902",
-        ],
+        "date": "1902",
         "editor": Array [
           Object {
             "firstName": "John",
             "lastName": "Burnet",
           },
         ],
-        "langid": Array [
-          "british",
-        ],
+        "langid": "british",
         "location": Array [
           "Oxford",
         ],
-        "maintitle": Array [
-          "Opera",
-        ],
+        "maintitle": "Opera",
         "publisher": Array [
           "Clarendon Press",
         ],
-        "series": Array [
-          "Oxford classical texts <span class=\\"nocase\\">CSL-VAR</span>",
-        ],
-        "title": Array [
-          "Clitophon, <span class=\\"nocase\\">Republic, Timaeus, Critias</span>",
-        ],
-        "volume": Array [
-          "4",
-        ],
+        "series": "Oxford classical texts <span class=\\"nocase\\">CSL</span>-<span class=\\"nocase\\">VAR</span>",
+        "title": "Clitophon, <span class=\\"nocase\\">Republic</span>, <span class=\\"nocase\\">Timaeus</span>, <span class=\\"nocase\\">Critias</span>",
+        "volume": "4",
       },
+      "input": String(
+        @book{Plato1902,
+          title = {Clitophon, {{Republic}}, {{Timaeus}}, {{Critias}}},
+          author = {{Plato}},
+          editor = {Burnet, John},
+          date = {1902},
+          volume = {4},
+          publisher = {{Clarendon Press}},
+          location = {{Oxford}},
+          langid = {british},
+          maintitle = {Opera},
+          series = {Oxford Classical Texts {{CSL}}-{{VAR}}}
+        }
+      ),
       "key": "Plato1902",
       "type": "book",
     },

@@ -17,13 +17,16 @@ Object {
             "lastName": "Author",
           },
         ],
-        "author+an:username": Array [
-          "1=\\"@ausername\\"",
-        ],
-        "date": Array [
-          "2014",
-        ],
+        "author+an:username": "1=\\"@ausername\\"",
+        "date": "2014",
       },
+      "input": String(
+        @BOOK{9.8:11,
+          AUTHOR             = {U. Author},
+          AUTHOR+an:username = {1="@ausername"},
+          DATE               = {2014}
+        }
+      ),
       "key": "9.8:11",
       "type": "book",
     },

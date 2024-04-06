@@ -7,7 +7,9 @@
 'use strict'
 exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-article:protege:2001.bib > must match snapshot 1`] = `
 Object {
-  "comments": Array [],
+  "comments": Array [
+    "Shaken system description",
+  ],
   "entries": Array [
     Object {
       "fields": Object {
@@ -37,25 +39,24 @@ Object {
             "lastName": "Musen",
           },
         ],
-        "journal": Array [
-          "IEEE Intelligent Systems",
-        ],
-        "number": Array [
-          2,
-        ],
-        "pages": Array [
-          "60–71",
-        ],
-        "title": Array [
-          "Creating semantic web contents with protege-2000",
-        ],
-        "volume": Array [
-          16,
-        ],
-        "year": Array [
-          2001,
-        ],
+        "journal": "IEEE Intelligent Systems",
+        "number": "2",
+        "pages": "60–71",
+        "title": "Creating semantic web contents with protege-2000",
+        "volume": "16",
+        "year": 2001,
       },
+      "input": String(
+        @Article{Protege:2001,
+          author = \\t { N. F. Noy and M. Sintek and S. Decker and M. Crubezy and R. W. Fergerson and M. A. Musen},
+          title = \\t {Creating Semantic Web Contents with Protege-2000},
+          journal = \\t {IEEE Intelligent Systems},
+          year = \\t 2001,
+          volume =\\t 16,
+          number =\\t 2,
+          pages =\\t {60--71}
+        }
+      ),
       "key": "Protege:2001",
       "type": "article",
     },

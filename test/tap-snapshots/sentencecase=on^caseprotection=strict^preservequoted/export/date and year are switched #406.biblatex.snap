@@ -37,25 +37,28 @@ Object {
             "lastName": "Weihs",
           },
         ],
-        "date": Array [
-          "2014-02-11",
-        ],
+        "date": "2014-02-11",
         "institution": Array [
-          "<span class=\\"nocase\\">Technische Universität Dortmund</span>",
+          "Technische Universität Dortmund",
         ],
         "location": Array [
           "Eldorado",
         ],
-        "number": Array [
-          "2003/32864",
-        ],
-        "title": Array [
-          "Stability <span class=\\"nocase\\">Analysis</span> and <span class=\\"nocase\\">Clustering</span> of <span class=\\"nocase\\">Electrical Transmission Systems</span>",
-        ],
-        "url": Array [
-          "http://dx.doi.org/10.17877/DE290R-13190",
-        ],
+        "number": "2003/32864",
+        "title": "Stability <span class=\\"nocase\\">Analysis</span> and <span class=\\"nocase\\">Clustering</span> of <span class=\\"nocase\\">Electrical Transmission Systems</span>",
+        "url": "http://dx.doi.org/10.17877/DE290R-13190",
       },
+      "input": String(
+        @report{brato_stability_2014,
+          title = {Stability {{Analysis}} and {{Clustering}} of {{Electrical Transmission Systems}}},
+          author = {Brato, Sebastian and Surmann, Dirk and Krey, Sebastian and Götze, Jürgen and Ligges, Uwe and Weihs, Claus},
+          date = {2014-02-11},
+          institution = {{Technische Universität Dortmund}},
+          location = {{Eldorado}},
+          url = {http://dx.doi.org/10.17877/DE290R-13190},
+          number = {2003/32864}
+        }
+      ),
       "key": "brato_stability_2014",
       "type": "report",
     },
@@ -67,28 +70,26 @@ Object {
             "lastName": "Michigami",
           },
         ],
-        "date": Array [
-          "1995-12",
-        ],
-        "doi": Array [
-          "10.1002/eej.4391150705",
-        ],
-        "journaltitle": Array [
-          "Electrical Engineering in Japan",
-        ],
-        "number": Array [
-          "7",
-        ],
-        "pages": Array [
-          "49–68",
-        ],
-        "title": Array [
-          "Development of a new two-input <span class=\\"nocase\\">PSS</span> to control low-frequency oscillation in interconnecting power systems and the study of a low-frequency oscillation model",
-        ],
-        "volume": Array [
-          "115",
-        ],
+        "date": "1995-12",
+        "doi": "10.1002/eej.4391150705",
+        "journaltitle": "Electrical Engineering in Japan",
+        "number": "7",
+        "pages": "49–68",
+        "title": "Development of a new two-input <span class=\\"nocase\\">PSS</span> to control low-frequency oscillation in interconnecting power systems and the study of a low-frequency oscillation model",
+        "volume": "115",
       },
+      "input": String(
+        @article{michigami_development_1995,
+          title = {Development of a New Two-Input {{PSS}} to Control Low-Frequency Oscillation in Interconnecting Power Systems and the Study of a Low-Frequency Oscillation Model},
+          author = {Michigami, Tsutomu},
+          date = {1995-12},
+          journaltitle = {Electrical Engineering in Japan},
+          volume = {115},
+          pages = {49--68},
+          doi = {10.1002/eej.4391150705},
+          number = {7}
+        }
+      ),
       "key": "michigami_development_1995",
       "type": "article",
     },
@@ -100,19 +101,24 @@ Object {
             "lastName": "Skubala",
           },
         ],
-        "date": Array [
-          "2012-09-27",
-        ],
+        "date": "2012-09-27",
         "location": Array [
           "Masterthesis, Fakultät Statistik",
         ],
         "publisher": Array [
           "TU Dortmund",
         ],
-        "title": Array [
-          "Modellierung niederfrequenter <span class=\\"nocase\\">Schwingungen</span> in einem elektrischen <span class=\\"nocase\\">Energienetz</span>",
-        ],
+        "title": "Modellierung niederfrequenter <span class=\\"nocase\\">Schwingungen</span> in einem elektrischen <span class=\\"nocase\\">Energienetz</span>",
       },
+      "input": String(
+        @book{skubala_modellierung_2012,
+          title = {Modellierung Niederfrequenter {{Schwingungen}} in Einem Elektrischen {{Energienetz}}},
+          author = {Skubala, Adam},
+          date = {2012-09-27},
+          publisher = {{TU Dortmund}},
+          location = {{Masterthesis, Fakultät Statistik}}
+        }
+      ),
       "key": "skubala_modellierung_2012",
       "type": "book",
     },
@@ -124,25 +130,26 @@ Object {
             "lastName": "West",
           },
         ],
-        "date": Array [
-          "2000-08-22",
-        ],
-        "edition": Array [
-          "2",
-        ],
-        "isbn": Array [
-          "978-0-13-014400-3",
-        ],
-        "pagetotal": Array [
-          "470",
-        ],
+        "date": "2000-08-22",
+        "edition": "2",
+        "isbn": "978-0-13-014400-3",
+        "pagetotal": "470",
         "publisher": Array [
           "Prentice Hall",
         ],
-        "title": Array [
-          "Introduction to <span class=\\"nocase\\">Graph Theory</span>",
-        ],
+        "title": "Introduction to <span class=\\"nocase\\">Graph Theory</span>",
       },
+      "input": String(
+        @book{west_introduction_2000,
+          title = {Introduction to {{Graph Theory}}},
+          author = {West, Douglas Brent},
+          date = {2000-08-22},
+          edition = {2},
+          publisher = {{Prentice Hall}},
+          isbn = {978-0-13-014400-3},
+          pagetotal = {470}
+        }
+      ),
       "key": "west_introduction_2000",
       "type": "book",
     },

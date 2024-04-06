@@ -21,25 +21,24 @@ Object {
             "lastName": "Steele",
           },
         ],
-        "journal": Array [
-          "Artificial Intelligence",
-        ],
-        "number": Array [
-          "1",
-        ],
-        "pages": Array [
-          "1-39",
-        ],
-        "title": Array [
-          "CONSTRAINTS – A language for expressing almost-hierarchical descriptions",
-        ],
-        "volume": Array [
-          "14",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "journal": "Artificial Intelligence",
+        "number": "1",
+        "pages": "1-39",
+        "title": "CONSTRAINTS – A language for expressing almost-hierarchical descriptions",
+        "volume": "14",
+        "year": 1980,
       },
+      "input": String(
+        @article(Steele:1980,
+        \\tauthor =\\t{G.J. Sussman and G.L. Steele},
+        \\tyear =\\t\\t{1980},
+        \\tjournal =\\t{Artificial Intelligence},
+        \\tnumber =\\t{1},
+        \\tpages =\\t\\t{1-39},
+        \\ttitle =\\t\\t"CONSTRAINTS -- A language for expressing almost-hierarchical descriptions",
+        \\tvolume =\\t{14}
+        )
+      ),
       "key": "Steele:1980",
       "type": "article",
     },

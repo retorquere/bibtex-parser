@@ -17,25 +17,24 @@ Object {
             "lastName": "Lebowitz",
           },
         ],
-        "journal": Array [
-          "Artificial Intelligence",
-        ],
-        "number": Array [
-          "4",
-        ],
-        "pages": Array [
-          "363-404",
-        ],
-        "title": Array [
-          "Memory-Based Parsing",
-        ],
-        "volume": Array [
-          "21",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "journal": "Artificial Intelligence",
+        "number": "4",
+        "pages": "363-404",
+        "title": "Memory-Based Parsing",
+        "volume": "21",
+        "year": 1983,
       },
+      "input": String(
+        @article(Lebowitz:1983,
+        \\tauthor =\\t{Michael Lebowitz},
+        \\tyear =\\t\\t{1983},
+        \\tjournal =\\t{Artificial Intelligence},
+        \\tnumber =\\t{4},
+        \\tpages =\\t\\t{363-404},
+        \\ttitle =\\t\\t"Memory-Based Parsing",
+        \\tvolume =\\t{21}
+        )
+      ),
       "key": "Lebowitz:1983",
       "type": "article",
     },

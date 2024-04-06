@@ -17,22 +17,22 @@ Object {
             "lastName": "Gelernter",
           },
         ],
-        "journal": Array [
-          "Science",
-        ],
-        "pages": Array [
-          "1041-1049",
-        ],
-        "title": Array [
-          "Empirical explorations of SYNCHEM",
-        ],
-        "volume": Array [
-          "197",
-        ],
-        "year": Array [
-          "1977",
-        ],
+        "journal": "Science",
+        "pages": "1041-1049",
+        "title": "Empirical explorations of SYNCHEM",
+        "volume": "197",
+        "year": 1977,
       },
+      "input": String(
+        @article(Gelernter:1977,
+        \\tauthor =\\t{H. Gelernter},
+        \\tyear =\\t\\t{1977},
+        \\tjournal =\\t{Science},
+        \\tpages =\\t\\t{1041-1049},
+        \\ttitle =\\t\\t"Empirical explorations of SYNCHEM",
+        \\tvolume =\\t{197}
+        )
+      ),
       "key": "Gelernter:1977",
       "type": "article",
     },

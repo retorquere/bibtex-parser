@@ -17,9 +17,7 @@ Object {
             "lastName": "Wilks",
           },
         ],
-        "booktitle": Array [
-          "Computational Semantics: An Introduction to Artificial Intelligence and Natural Language Comprehension",
-        ],
+        "booktitle": "Computational Semantics: An Introduction to Artificial Intelligence and Natural Language Comprehension",
         "editor": Array [
           Object {
             "firstName": "E.",
@@ -30,19 +28,22 @@ Object {
             "lastName": "Wilks",
           },
         ],
-        "pages": Array [
-          "205-233",
-        ],
-        "series": Array [
-          "Philosophy of language",
-        ],
-        "title": Array [
-          "Computational Semantics: An Introduction to Artificial Intelligence and Natural Language Comprehension",
-        ],
-        "year": Array [
-          "1976",
-        ],
+        "pages": "205-233",
+        "series": "Philosophy of language",
+        "title": "Computational Semantics: An Introduction to Artificial Intelligence and Natural Language Comprehension",
+        "year": 1976,
       },
+      "input": String(
+        @book(Wilks:76,
+        \\tauthor =\\t{Yorick Wilks},
+        \\ttitle =\\t{Computational Semantics:  An Introduction to Artificial Intelligence and Natural Language Comprehension},
+        \\tbooktitle =\\t{Computational Semantics:  An Introduction to Artificial Intelligence and Natural Language Comprehension},
+        \\tyear =\\t\\t{1976},
+        \\teditor =\\t{E. Charniak and Y. Wilks},
+        \\tpages =\\t\\t{205-233},
+        \\tseries =\\t{Philosophy of language}
+        )
+      ),
       "key": "Wilks:76",
       "type": "book",
     },

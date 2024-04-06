@@ -25,25 +25,24 @@ Object {
             "lastName": "Meyer",
           },
         ],
-        "journal": Array [
-          "International Journal of Robotics Research",
-        ],
-        "number": Array [
-          "3",
-        ],
-        "pages": Array [
-          "19-41",
-        ],
-        "title": Array [
-          "AML: A manufacturing language",
-        ],
-        "volume": Array [
-          "1",
-        ],
-        "year": Array [
-          "1982",
-        ],
+        "journal": "International Journal of Robotics Research",
+        "number": "3",
+        "pages": "19-41",
+        "title": "AML: a manufacturing language",
+        "volume": "1",
+        "year": 1982,
       },
+      "input": String(
+        @article(SummersETAL:1982,
+        \\tauthor =\\t{R.H. Summers and P.D. Taylor and J.M. Meyer},
+        \\tyear =\\t\\t{1982},
+        \\tjournal =\\t{International Journal of Robotics Research},
+        \\tnumber =\\t{3},
+        \\tpages =\\t\\t{19-41},
+        \\ttitle =\\t\\t"AML: A manufacturing language",
+        \\tvolume =\\t{1}
+        )
+      ),
       "key": "SummersETAL:1982",
       "type": "article",
     },

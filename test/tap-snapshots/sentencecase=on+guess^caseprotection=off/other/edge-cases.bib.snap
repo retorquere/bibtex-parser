@@ -11,22 +11,27 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {},
+      "input": "@foo{}",
       "key": "",
       "type": "foo",
     },
     Object {
       "fields": Object {
-        "foo": Array [
-          "bar",
-        ],
+        "foo": "bar",
       },
+      "input": "@article(foo=bar)",
       "key": "",
       "type": "article",
     },
   ],
   "errors": Array [
     Object {
-      "message": "Unresolved @string reference \\"bar\\"",
+      "error": "Unresolved @string reference \\"bar\\"",
+      "input": "bar",
+      "location": Object {
+        "column": 17,
+        "line": 3,
+      },
     },
   ],
   "jabref": Object {

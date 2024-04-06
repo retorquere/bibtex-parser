@@ -21,24 +21,34 @@ Object {
             "lastName": "Brooks",
           },
         ],
-        "booktitle": Array [
-          "AAAI-88",
-        ],
-        "pages": Array [
-          "796–800",
-        ],
-        "title": Array [
-          "Situated vision in a dynamic world: Chasing objects",
-        ],
-        "year": Array [
-          "1988",
-        ],
+        "booktitle": "<span class=\\"nocase\\">AAAI-88</span>",
+        "pages": "796–800",
+        "title": "Situated vision in a dynamic world: Chasing objects",
+        "year": 1988,
       },
+      "input": String(
+        @INPROCEEDINGS{Brooks:88,
+        \\tAUTHOR = {Ian Douglas Horswill and Rodney Brooks},
+        \\tTITLE = "Situated Vision in a Dynamic World: Chasing Objects",
+        \\tBOOKTITLE = AAAI-88,
+        \\tYEAR = {1988},
+        \\tPAGES = {796--800}
+        }
+      ),
       "key": "Brooks:88",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"AAAI-88\\"",
+      "input": "AAAI-88",
+      "location": Object {
+        "column": 21,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

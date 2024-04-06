@@ -11,18 +11,14 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Edinburgh",
-        ],
+        "address": "Edinburgh",
         "author": Array [
           Object {
             "firstName": "Patrick",
             "lastName": "Hayes",
           },
         ],
-        "booktitle": Array [
-          "Expert Systems in the Microelectronic Age",
-        ],
+        "booktitle": "Expert Systems in the Microelectronic Age",
         "editor": Array [
           Object {
             "firstName": "Donald",
@@ -32,13 +28,20 @@ Object {
         "publisher": Array [
           "Edinburgh University Press",
         ],
-        "title": Array [
-          "The naive physics manifesto",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "title": "The naive physics manifesto",
+        "year": 1980,
       },
+      "input": String(
+        @book(Hayes:1980,
+        \\tauthor =\\t{Patrick Hayes},
+        \\tbooktitle =\\t{Expert Systems in the Microelectronic Age},
+        \\taddress =\\t{Edinburgh},
+        \\tyear =\\t\\t{1980},
+        \\teditor =\\t{Donald Michie},
+        \\tpublisher =\\t{Edinburgh University Press},
+        \\ttitle =\\t\\t{The naive physics manifesto}
+        )
+      ),
       "key": "Hayes:1980",
       "type": "book",
     },

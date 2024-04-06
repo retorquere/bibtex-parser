@@ -17,25 +17,24 @@ Object {
             "lastName": "Steedman",
           },
         ],
-        "journal": Array [
-          "Cognitive Science",
-        ],
-        "number": Array [
-          "2",
-        ],
-        "pages": Array [
-          "216-234",
-        ],
-        "title": Array [
-          "Verbs, time, and modality",
-        ],
-        "volume": Array [
-          "1",
-        ],
-        "year": Array [
-          "1977",
-        ],
+        "journal": "Cognitive Science",
+        "number": "2",
+        "pages": "216-234",
+        "title": "Verbs, time, and modality",
+        "volume": "1",
+        "year": 1977,
       },
+      "input": String(
+        @article(Steedman:77,
+        \\tauthor =\\t{Mark J. Steedman},
+        \\tyear =\\t\\t{1977},
+        \\tjournal =\\t{Cognitive Science},
+        \\tnumber =\\t{2},
+        \\tpages =\\t\\t{216-234},
+        \\ttitle =\\t\\t"Verbs, time, and modality",
+        \\tvolume =\\t{1}
+        )
+      ),
       "key": "Steedman:77",
       "type": "article",
     },

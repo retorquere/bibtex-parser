@@ -25,25 +25,24 @@ Object {
             "lastName": "Pereira",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the Symposium on Artificial Intelligence and Programming Languages",
-        ],
-        "journal": Array [
-          "Sigplan Notices",
-        ],
-        "number": Array [
-          "8",
-        ],
-        "title": Array [
-          "PROLOG – The language and its implementation compared with LISP",
-        ],
-        "volume": Array [
-          "12",
-        ],
-        "year": Array [
-          "1977",
-        ],
+        "booktitle": "Proceedings of the Symposium on Artificial Intelligence and Programming Languages",
+        "journal": "Sigplan Notices",
+        "number": "8",
+        "title": "PROLOG – The language and its implementation compared with LISP",
+        "volume": "12",
+        "year": 1977,
       },
+      "input": String(
+        @article(WarrenETAL:1977,
+        \\tauthor =\\t{D.H.D. Warren and L.M. Pereira and F. Pereira},
+        \\tbooktitle =\\t{Proceedings of the Symposium on Artificial Intelligence and Programming Languages},
+        \\tyear =\\t\\t{1977},
+        \\tjournal =\\t{Sigplan Notices},
+        \\tnumber =\\t{8},
+        \\ttitle =\\t\\t"PROLOG -- The language and its implementation compared with LISP",
+        \\tvolume =\\t{12}
+        )
+      ),
       "key": "WarrenETAL:1977",
       "type": "article",
     },

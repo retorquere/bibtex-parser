@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "W.",
@@ -24,9 +22,7 @@ Object {
             "lastName": "Wilcox",
           },
         ],
-        "booktitle": Array [
-          "Pattern-Directed Inference Systems",
-        ],
+        "booktitle": "Pattern-Directed Inference Systems",
         "editor": Array [
           Object {
             "firstName": "D.A.",
@@ -40,13 +36,20 @@ Object {
         "publisher": Array [
           "Academic Press",
         ],
-        "title": Array [
-          "Pattern recognition and pattern-directed inference in a program for playing go",
-        ],
-        "year": Array [
-          "1978",
-        ],
+        "title": "Pattern recognition and pattern-directed inference in a program for playing go",
+        "year": 1978,
       },
+      "input": String(
+        @book(Wilcox:1978,
+        \\tauthor =\\t{W. Reitman and B. Wilcox},
+        \\tbooktitle =\\t{Pattern-Directed Inference Systems},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1978},
+        \\teditor =\\t{D.A. Waterman and F. Hayes-Roth},
+        \\tpublisher =\\t{Academic Press},
+        \\ttitle =\\t\\t{Pattern recognition and pattern-directed inference in a program for playing go}
+        )
+      ),
       "key": "Wilcox:1978",
       "type": "book",
     },

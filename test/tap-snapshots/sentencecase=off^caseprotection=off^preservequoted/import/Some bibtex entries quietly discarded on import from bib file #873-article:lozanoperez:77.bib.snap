@@ -21,24 +21,34 @@ Object {
             "lastName": "Winston",
           },
         ],
-        "booktitle": Array [
-          "IJCAI-77",
-        ],
-        "pages": Array [
-          "710–716",
-        ],
-        "title": Array [
-          "LAMA: A language for automatic mechanical assembly",
-        ],
-        "year": Array [
-          "1977",
-        ],
+        "booktitle": "<span class=\\"nocase\\">IJCAI-77</span>",
+        "pages": "710–716",
+        "title": "LAMA: A language for automatic mechanical assembly",
+        "year": 1977,
       },
+      "input": String(
+        @article(LozanoPerez:77,
+        \\tauthor =\\t{Tomas Lozano-Perez and Patrick H. Winston},
+        \\tyear =\\t\\t{1977},
+        \\tbooktitle =\\tIJCAI-77,
+        \\tpages =\\t\\t{710--716},
+        \\ttitle =\\t\\t{LAMA: A language for automatic mechanical assembly}
+        )
+      ),
       "key": "LozanoPerez:77",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"IJCAI-77\\"",
+      "input": "IJCAI-77",
+      "location": Object {
+        "column": 22,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

@@ -17,24 +17,35 @@ Object {
             "lastName": "Tambe",
           },
         ],
-        "month": Array [
-          "ar",
-        ],
-        "note": Array [
-          "Draft of article to appear in <i>Applied Artificial Intelligence</i>",
-        ],
-        "title": Array [
-          "Implementing agent teams in dynamic multi-agent environments",
-        ],
-        "year": Array [
-          "1997",
-        ],
+        "month": "ar",
+        "note": "Draft of article to appear in <i>Applied Artificial Intelligence</i>",
+        "title": "Implementing agent teams in dynamic multi-agent environments",
+        "year": 1997,
       },
+      "input": String(
+        @UNPUBLISHED(Tambe:97,
+        \\tAUTHOR = {Milind Tambe},
+        \\tTITLE = {Implementing Agent Teams in Dynamic Multi-agent 
+        \\t\\t Environments},
+        \\tNOTE = {Draft of article to appear in {\\\\it Applied Artificial Intelligence}},
+        \\tMONTH = ar,
+        \\tYEAR = {1997}
+        )
+      ),
       "key": "Tambe:97",
       "type": "unpublished",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"ar\\"",
+      "input": "ar",
+      "location": Object {
+        "column": 12,
+        "line": 6,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

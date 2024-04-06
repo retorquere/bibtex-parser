@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "annote": Array [
-          "Provides a representation of knowledge-producing actions in the situation calculus. Extends Reiter's explanation-closure solution to the frame problem to this extended situation calculus (in which successor state axioms are automatically generated from General Positive Effect and General Negative Effect axioms). The authors show that knowledge-producing actions can be handled using Reiter's explanation-closure approach. Further, they extend Reiter's regression operators to knowledge-producing actions. This permits one to check properties of a plan (e.g., does it achieve a particular goal proposition) by regressing those properties to the initial situation and then doing theorem-proving exclusively in that initial situation.",
-        ],
+        "annote": "Provides a representation of knowledge-producing actions in the situation calculus. Extends Reiter's explanation-closure solution to the frame problem to this extended situation calculus (in which successor state axioms are automatically generated from General Positive Effect and General Negative Effect axioms). The authors show that knowledge-producing actions can be handled using Reiter's explanation-closure approach. Further, they extend Reiter's regression operators to knowledge-producing actions. This permits one to check properties of a plan (e.g., does it achieve a particular goal proposition) by regressing those properties to the initial situation and then doing theorem-proving exclusively in that initial situation.",
         "author": Array [
           Object {
             "firstName": "Richard B.",
@@ -24,24 +22,51 @@ Object {
             "lastName": "Levesque",
           },
         ],
-        "crossref": Array [
-          "AAAI93",
-        ],
-        "pages": Array [
-          "689–695",
-        ],
+        "crossref": "AAAI93",
+        "pages": "689–695",
         "publisher": Array [
           "NEW-AAAI-PUB",
         ],
-        "title": Array [
-          "The frame problem and knowledge-producing actions",
-        ],
+        "title": "The frame problem and knowledge-producing actions",
       },
+      "input": String(
+        @INPROCEEDINGS(Scherl:93,
+        \\tAUTHOR = {Richard B. Scherl and Hector J. Levesque},
+        \\tTITLE = "The Frame Problem and Knowledge-producing Actions",
+        \\tCROSSREF = {AAAI93},
+        \\tPAGES = {689--695},
+        \\tPUBLISHER = NEW-AAAI-PUB,
+        \\tANNOTE = {Provides a representation of 
+        \\t\\t  knowledge-producing actions in the situation calculus.
+        \\t\\t  Extends Reiter's explanation-closure solution to the
+        \\t\\t  frame problem to this extended situation calculus
+        \\t\\t  (in which successor state axioms are automatically
+        \\t\\t  generated from General Positive Effect and General 
+        \\t\\t  Negative Effect axioms).
+        \\t\\t  The authors show that knowledge-producing actions can be
+        \\t\\t  handled using Reiter's explanation-closure approach.
+        \\t\\t  Further, they extend Reiter's regression operators to 
+        \\t\\t  knowledge-producing actions.  This permits one to check
+        \\t\\t  properties of a plan (e.g., does it achieve a particular
+        \\t\\t  goal proposition) by regressing those properties to the
+        \\t\\t  initial situation and then doing theorem-proving
+        \\t\\t  exclusively in that initial situation.}
+        )
+      ),
       "key": "Scherl:93",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"NEW-AAAI-PUB\\"",
+      "input": "NEW-AAAI-PUB",
+      "location": Object {
+        "column": 26,
+        "line": 6,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

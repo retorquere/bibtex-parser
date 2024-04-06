@@ -17,25 +17,24 @@ Object {
             "lastName": "Plath",
           },
         ],
-        "journal": Array [
-          "IBM Journal of Research and Development",
-        ],
-        "number": Array [
-          "4",
-        ],
-        "pages": Array [
-          "326-335",
-        ],
-        "title": Array [
-          "REQUEST: A natural language question-answering system",
-        ],
-        "volume": Array [
-          "20",
-        ],
-        "year": Array [
-          "1976",
-        ],
+        "journal": "IBM Journal of Research and Development",
+        "number": "4",
+        "pages": "326-335",
+        "title": "REQUEST: A natural language question-answering system",
+        "volume": "20",
+        "year": 1976,
       },
+      "input": String(
+        @article(Plath:76,
+        \\tauthor =\\t{W.J. Plath},
+        \\tyear =\\t\\t{1976},
+        \\tjournal =\\t{IBM Journal of Research and Development},
+        \\tnumber =\\t{4},
+        \\tpages =\\t\\t{326-335},
+        \\ttitle =\\t\\t"REQUEST: A natural language question-answering system",
+        \\tvolume =\\t{20}
+        )
+      ),
       "key": "Plath:76",
       "type": "article",
     },

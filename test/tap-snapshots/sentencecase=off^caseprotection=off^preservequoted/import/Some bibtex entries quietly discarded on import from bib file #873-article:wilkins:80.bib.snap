@@ -17,25 +17,24 @@ Object {
             "lastName": "Wilkins",
           },
         ],
-        "journal": Array [
-          "Artificial Intelligence",
-        ],
-        "number": Array [
-          "2",
-        ],
-        "pages": Array [
-          "165–203",
-        ],
-        "title": Array [
-          "Using patterns and plans in chess",
-        ],
-        "volume": Array [
-          "14",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "journal": "Artificial Intelligence",
+        "number": "2",
+        "pages": "165–203",
+        "title": "Using patterns and plans in chess",
+        "volume": "14",
+        "year": 1980,
       },
+      "input": String(
+        @article(Wilkins:80,
+        \\tauthor =\\t{David Wilkins},
+        \\tyear =\\t\\t{1980},
+        \\tjournal =\\t{Artificial Intelligence},
+        \\tnumber =\\t{2},
+        \\tpages =\\t\\t{165--203},
+        \\ttitle =\\t\\t"Using patterns and plans in chess",
+        \\tvolume =\\t{14}
+        )
+      ),
       "key": "Wilkins:80",
       "type": "article",
     },

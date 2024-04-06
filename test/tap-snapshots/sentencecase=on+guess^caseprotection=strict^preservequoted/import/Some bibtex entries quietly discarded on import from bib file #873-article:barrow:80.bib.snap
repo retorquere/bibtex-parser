@@ -21,22 +21,22 @@ Object {
             "lastName": "Tenenbaum",
           },
         ],
-        "journal": Array [
-          "Proc. AAAI",
-        ],
-        "pages": Array [
-          "11-14",
-        ],
-        "title": Array [
-          "Interpreting line drawings as three-dimensional surfaces",
-        ],
-        "volume": Array [
-          "1",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "journal": "Proc. AAAI",
+        "pages": "11-14",
+        "title": "Interpreting line drawings as three-dimensional surfaces",
+        "volume": "1",
+        "year": 1980,
       },
+      "input": String(
+        @article(Barrow:80,
+        \\tauthor =\\t{H. Barrow and J.M. Tenenbaum},
+        \\tyear =\\t\\t{1980},
+        \\tjournal =\\t{Proc. AAAI},
+        \\tpages =\\t\\t{11-14},
+        \\ttitle =\\t\\t"Interpreting line drawings as three-dimensional surfaces",
+        \\tvolume =\\t{1}
+        )
+      ),
       "key": "Barrow:80",
       "type": "article",
     },

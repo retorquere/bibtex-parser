@@ -17,27 +17,36 @@ Object {
             "lastName": "Ginsberg",
           },
         ],
-        "journal": Array [
-          "JAIR",
-        ],
-        "pages": Array [
-          "25–46",
-        ],
-        "title": Array [
-          "Dynamic backtracking",
-        ],
-        "volume": Array [
-          "1",
-        ],
-        "year": Array [
-          "1993",
-        ],
+        "journal": "JAIR",
+        "pages": "25–46",
+        "title": "Dynamic backtracking",
+        "volume": "1",
+        "year": 1993,
       },
+      "input": String(
+        @ARTICLE(Ginsberg:DB,
+        \\tAUTHOR = {Matthew L. Ginsberg},
+        \\tTITLE = "Dynamic Backtracking",
+        \\tJOURNAL = JAIR,
+        \\tYEAR = {1993},
+        \\tVOLUME = {1},
+        \\tPAGES = {25--46}
+        )
+      ),
       "key": "Ginsberg:DB",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"JAIR\\"",
+      "input": "JAIR",
+      "location": Object {
+        "column": 16,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "Milton",
@@ -24,19 +22,23 @@ Object {
             "lastName": "Stegun",
           },
         ],
-        "edition": Array [
-          "ninth Dover printing, tenth GPO printing",
-        ],
+        "edition": "ninth Dover printing, tenth GPO printing",
         "publisher": Array [
           "Dover",
         ],
-        "title": Array [
-          "Handbook of mathematical functions with formulas, graphs, and mathematical tables",
-        ],
-        "year": Array [
-          "1964",
-        ],
+        "title": "Handbook of mathematical functions with formulas, graphs, and mathematical tables",
+        "year": 1964,
       },
+      "input": String(
+        @book{abramowitz+stegun,
+          author = {{Abramowitz}, Milton and {Stegun}, Irene A.},
+          title = {Handbook of Mathematical Functions with Formulas, Graphs, and Mathematical Tables},
+          publisher = {Dover},
+          year = {1964},
+          address = {New York},
+          edition = {ninth Dover printing, tenth GPO printing}
+        }
+      ),
       "key": "abramowitz+stegun",
       "type": "book",
     },
@@ -52,19 +54,22 @@ Object {
             "lastName": "Verducci",
           },
         ],
-        "isbn": Array [
-          "0385527403",
-        ],
+        "isbn": "0385527403",
         "publisher": Array [
           "Doubleday",
         ],
-        "title": Array [
-          "The yankee years",
-        ],
-        "year": Array [
-          "2008",
-        ],
+        "title": "The yankee years",
+        "year": 2008,
       },
+      "input": String(
+        @book{Torre2008,
+          author = {Torre, Joe and Verducci, Tom},
+          publisher = {Doubleday},
+          title = {The Yankee Years},
+          year = {2008},
+          isbn = {0385527403}
+        }
+      ),
       "key": "Torre2008",
       "type": "book",
     },

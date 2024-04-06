@@ -17,25 +17,24 @@ Object {
             "lastName": "Kowalski",
           },
         ],
-        "journal": Array [
-          "Journal of the Association for Computing Machinery",
-        ],
-        "number": Array [
-          "4",
-        ],
-        "pages": Array [
-          "572-595",
-        ],
-        "title": Array [
-          "A proof procedure using connection graphs",
-        ],
-        "volume": Array [
-          "22",
-        ],
-        "year": Array [
-          "1975",
-        ],
+        "journal": "Journal of the Association for Computing Machinery",
+        "number": "4",
+        "pages": "572-595",
+        "title": "A proof procedure using connection graphs",
+        "volume": "22",
+        "year": 1975,
       },
+      "input": String(
+        @article(Kowalski:1975,
+        \\tauthor =\\t{Robert Kowalski},
+        \\tyear =\\t\\t{1975},
+        \\tjournal =\\t{Journal of the Association for Computing Machinery},
+        \\tnumber =\\t{4},
+        \\tpages =\\t\\t{572-595},
+        \\ttitle =\\t\\t"A proof procedure using connection graphs",
+        \\tvolume =\\t{22}
+        )
+      ),
       "key": "Kowalski:1975",
       "type": "article",
     },

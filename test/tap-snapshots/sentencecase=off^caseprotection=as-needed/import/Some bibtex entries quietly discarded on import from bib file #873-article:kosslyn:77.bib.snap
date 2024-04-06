@@ -21,25 +21,24 @@ Object {
             "lastName": "Shwartz",
           },
         ],
-        "journal": Array [
-          "Cognitive Science",
-        ],
-        "number": Array [
-          "3",
-        ],
-        "pages": Array [
-          "265-295",
-        ],
-        "title": Array [
-          "A simulation of visual imagery",
-        ],
-        "volume": Array [
-          "1",
-        ],
-        "year": Array [
-          "1977",
-        ],
+        "journal": "Cognitive Science",
+        "number": "3",
+        "pages": "265-295",
+        "title": "A simulation of visual imagery",
+        "volume": "1",
+        "year": 1977,
       },
+      "input": String(
+        @article(Kosslyn:77,
+        \\tauthor =\\t{Steven M. Kosslyn and Steven P. Shwartz},
+        \\tyear =\\t\\t{1977},
+        \\tjournal =\\t{Cognitive Science},
+        \\tnumber =\\t{3},
+        \\tpages =\\t\\t{265-295},
+        \\ttitle =\\t\\t"A simulation of visual imagery",
+        \\tvolume =\\t{1}
+        )
+      ),
       "key": "Kosslyn:77",
       "type": "article",
     },

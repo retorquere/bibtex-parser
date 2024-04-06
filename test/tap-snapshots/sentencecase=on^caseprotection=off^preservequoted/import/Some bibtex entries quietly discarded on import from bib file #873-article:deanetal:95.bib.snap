@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "annote": Array [
-          "Full version of conference papers Dean:93 also DeanETAL:93. Describes planning and deliberation scheduling methods for robot motion planning, based on Markov Decision Processes (MDPs). The method is essentially a cleaned up version of the method of Drummond and Bresina Drummond:90. See annotation to those papers, as well.",
-        ],
+        "annote": "Full version of conference papers Dean:93 also DeanETAL:93. Describes planning and deliberation scheduling methods for robot motion planning, based on Markov Decision Processes (MDPs). The method is essentially a cleaned up version of the method of Drummond and Bresina Drummond:90. See annotation to those papers, as well.",
         "author": Array [
           Object {
             "firstName": "Thomas L.",
@@ -32,30 +30,48 @@ Object {
             "lastName": "Nicholson",
           },
         ],
-        "journal": Array [
-          "AIJ",
-        ],
-        "number": Array [
-          "1/2",
-        ],
-        "pages": Array [
-          "35–74",
-        ],
-        "title": Array [
-          "Planning under time constraints in stochastic domains",
-        ],
-        "volume": Array [
-          76,
-        ],
-        "year": Array [
-          1995,
-        ],
+        "journal": "AIJ",
+        "number": "1/2",
+        "pages": "35–74",
+        "title": "Planning under time constraints in stochastic domains",
+        "volume": "76",
+        "year": 1995,
       },
+      "input": String(
+        @article(DeanETAL:95,
+          AUTHOR =\\t {Thomas L. Dean and Leslie Pack Kaelbling and Jak
+                          Kirman and Ann N. Nicholson},
+          TITLE =\\t "Planning under time constraints in Stochastic
+                          Domains",
+          journal =\\t AIJ,
+          YEAR =\\t 1995,
+          volume =\\t 76,
+          number =\\t {1/2},
+          PAGES =\\t {35--74},
+          annote =\\t {Full version of conference papers \\\\cite{Dean:93}
+                          also \\\\cite{DeanETAL:93}. Describes planning and
+                          deliberation scheduling methods for robot motion
+                          planning, based on Markov Decision Processes
+                          (MDPs). The method is essentially a cleaned up
+                          version of the method of Drummond and
+                          Bresina~\\\\cite{Drummond:90}. See annotation to those
+                          papers, as well.}
+        )
+      ),
       "key": "DeanETAL:95",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"AIJ\\"",
+      "input": "AIJ",
+      "location": Object {
+        "column": 17,
+        "line": 6,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

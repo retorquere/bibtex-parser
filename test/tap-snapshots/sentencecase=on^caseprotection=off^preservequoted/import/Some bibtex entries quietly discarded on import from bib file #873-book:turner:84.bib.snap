@@ -20,13 +20,17 @@ Object {
         "publisher": Array [
           "Ellis Horwood, Ltd.",
         ],
-        "title": Array [
-          "Logics for artificial intelligence",
-        ],
-        "year": Array [
-          "1984",
-        ],
+        "title": "Logics for artificial intelligence",
+        "year": 1984,
       },
+      "input": String(
+        @BOOK(Turner:84,
+        \\tAUTHOR = {Raymond Turner},
+        \\tTITLE = "Logics for Artificial Intelligence",
+        \\tPUBLISHER = {Ellis Horwood, Ltd.},
+        \\tYEAR = {1984}
+        )
+      ),
       "key": "Turner:84",
       "type": "book",
     },

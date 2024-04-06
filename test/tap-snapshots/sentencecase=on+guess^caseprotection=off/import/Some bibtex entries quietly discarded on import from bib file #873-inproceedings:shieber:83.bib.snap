@@ -17,24 +17,35 @@ Object {
             "lastName": "Shieber",
           },
         ],
-        "booktitle": Array [
-          "IJCAI-83",
-        ],
-        "pages": Array [
-          "699–704",
-        ],
-        "title": Array [
-          "Sentence disambiguation by a shift-reduce parsing technique",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "booktitle": "IJCAI-83",
+        "pages": "699–704",
+        "title": "Sentence disambiguation by a shift-reduce parsing technique",
+        "year": 1983,
       },
+      "input": String(
+        @inproceedings(Shieber:83,
+        \\tauthor =\\t{Stuart M. Shieber},
+        \\tyear =\\t\\t{1983},
+        \\tbooktitle =\\tIJCAI-83,
+        \\tpages =\\t\\t{699--704},
+        \\ttitle =\\t\\t{Sentence disambiguation by a shift-reduce 
+        \\t\\t\\t parsing technique}
+        )
+      ),
       "key": "Shieber:83",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"IJCAI-83\\"",
+      "input": "IJCAI-83",
+      "location": Object {
+        "column": 22,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

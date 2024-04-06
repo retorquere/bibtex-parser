@@ -21,27 +21,36 @@ Object {
             "lastName": "Shimony",
           },
         ],
-        "journal": Array [
-          "DKE",
-        ],
-        "pages": Array [
-          "143–166",
-        ],
-        "title": Array [
-          "A Probabilistic Object-oriented Data Model",
-        ],
-        "volume": Array [
-          "12",
-        ],
-        "year": Array [
-          "1994",
-        ],
+        "journal": "DKE",
+        "pages": "143–166",
+        "title": "A Probabilistic Object-oriented Data Model",
+        "volume": "12",
+        "year": 1994,
       },
+      "input": String(
+        @ARTICLE{Kornatzky:94,
+        \\tAUTHOR = {Yoram Kornatzky and Solomon Eyal Shimony},
+        \\tTITLE = "A Probabilistic Object-oriented Data Model",
+        \\tJOURNAL = DKE,
+        \\tYEAR = {1994},
+        \\tVOLUME = {12},
+        \\tPAGES = {143--166}
+        }
+      ),
       "key": "Kornatzky:94",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"DKE\\"",
+      "input": "DKE",
+      "location": Object {
+        "column": 15,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

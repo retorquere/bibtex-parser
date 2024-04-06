@@ -17,22 +17,22 @@ Object {
             "lastName": "Lozano-Perez",
           },
         ],
-        "journal": Array [
-          "IEEE Transactions on Computers",
-        ],
-        "number": Array [
-          "2",
-        ],
-        "title": Array [
-          "Spatial planning: A configuration space approach",
-        ],
-        "volume": Array [
-          "C-32",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "journal": "IEEE Transactions on Computers",
+        "number": "2",
+        "title": "Spatial planning: a configuration space approach",
+        "volume": "C-32",
+        "year": 1983,
       },
+      "input": String(
+        @article(LozanoPerez:83,
+        \\tauthor =\\t{Tomas Lozano-Perez},
+        \\tyear =\\t\\t{1983},
+        \\tjournal =\\t{IEEE Transactions on Computers},
+        \\tnumber =\\t{2},
+        \\ttitle =\\t\\t"Spatial Planning: A configuration space approach",
+        \\tvolume =\\t{C-32}
+        )
+      ),
       "key": "LozanoPerez:83",
       "type": "article",
     },

@@ -17,22 +17,22 @@ Object {
             "lastName": "Haslum",
           },
         ],
-        "howpublished": Array [
-          "From IPC 2008 website",
-        ],
-        "month": Array [
-          "09",
-        ],
-        "title": Array [
-          "Changes in PDDL 3.1",
-        ],
-        "url": Array [
-          "http://ipc.informatik.uni-freiburg.de/PddlExtension",
-        ],
-        "year": Array [
-          2011,
-        ],
+        "howpublished": "From IPC 2008 website",
+        "month": 9,
+        "title": "Changes in PDDL 3.1",
+        "url": "http://ipc.informatik.uni-freiburg.de/PddlExtension",
+        "year": 2011,
       },
+      "input": String(
+        @Misc{haslum11:pddl3.1,
+          author =    {Patrik Haslum},
+          title =     {Changes in {PDDL} 3.1},
+          howpublished ={From {IPC} 2008 website},
+          month =     sep,
+          year =      2011,
+          url =          {http://ipc.informatik.uni-freiburg.de/PddlExtension}
+        }
+      ),
       "key": "haslum11:pddl3.1",
       "type": "misc",
     },

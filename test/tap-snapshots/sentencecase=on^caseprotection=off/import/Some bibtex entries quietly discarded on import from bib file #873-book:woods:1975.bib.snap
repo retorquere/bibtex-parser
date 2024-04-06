@@ -11,18 +11,14 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "William A.",
             "lastName": "Woods",
           },
         ],
-        "booktitle": Array [
-          "Representation and understanding",
-        ],
+        "booktitle": "Representation and understanding",
         "editor": Array [
           Object {
             "firstName": "D.G.",
@@ -36,13 +32,20 @@ Object {
         "publisher": Array [
           "Academic Press",
         ],
-        "title": Array [
-          "What's in a link? Foundations for semantic networks",
-        ],
-        "year": Array [
-          "1975",
-        ],
+        "title": "What's in a link? Foundations for semantic networks",
+        "year": 1975,
       },
+      "input": String(
+        @book(Woods:1975,
+        \\tauthor =\\t{William A. Woods},
+        \\tbooktitle =\\t{Representation and Understanding},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1975},
+        \\teditor =\\t{D.G. Bobrow and A. Collins},
+        \\tpublisher =\\t{Academic Press},
+        \\ttitle =\\t\\t{What's in a link? Foundations for semantic networks}
+        )
+      ),
       "key": "Woods:1975",
       "type": "book",
     },

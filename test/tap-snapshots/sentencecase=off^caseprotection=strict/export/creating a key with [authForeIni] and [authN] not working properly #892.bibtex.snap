@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "<span class=\\"nocase\\">Berlin [u.~a.]</span>",
-        ],
+        "address": "Berlin [u.~a.]",
         "author": Array [
           Object {
             "firstName": "Florian",
@@ -24,28 +22,29 @@ Object {
             "lastName": "Kreh",
           },
         ],
-        "edition": Array [
-          "3. Aufl.",
-        ],
-        "isbn": Array [
-          "978-3-642-37365-7",
-        ],
-        "language": Array [
-          "ger",
-        ],
+        "edition": "3. Aufl.",
+        "isbn": "978-3-642-37365-7",
+        "language": "ger",
         "publisher": Array [
           "Springer",
         ],
-        "shorttitle": Array [
-          "Tutorium",
-        ],
-        "title": Array [
-          "Tutorium Analysis 1 und Lineare Algebra 1. Mathematik von Studenten für Studenten erklärt und kommenteiert",
-        ],
-        "year": Array [
-          "2014",
-        ],
+        "shorttitle": "Tutorium",
+        "title": "Tutorium Analysis 1 und Lineare Algebra 1. Mathematik von Studenten für Studenten erklärt und kommenteiert",
+        "year": 2014,
       },
+      "input": String(
+        @book{FMO14,
+          title = {{Tutorium Analysis 1 und Lineare Algebra 1. Mathematik von Studenten f\\\\"ur Studenten erkl\\\\"art und kommenteiert}},
+          shorttitle = {{Tutorium}},
+          author = {Modler, Florian and Kreh, Martin},
+          year = {2014},
+          edition = {3. Aufl.},
+          publisher = {{Springer}},
+          address = {{Berlin [u.\\\\textasciitilde a.]}},
+          isbn = {978-3-642-37365-7},
+          language = {ger}
+        }
+      ),
       "key": "FMO14",
       "type": "book",
     },
@@ -60,16 +59,19 @@ Object {
         "publisher": Array [
           "Springer",
         ],
-        "title": Array [
-          "Analysis 1",
-        ],
-        "volume": Array [
-          "12",
-        ],
-        "year": Array [
-          "2013",
-        ],
+        "title": "Analysis 1",
+        "volume": "12",
+        "year": 2013,
       },
+      "input": String(
+        @book{OFO13,
+          title = {Analysis 1},
+          author = {Forster, Otto},
+          year = {2013},
+          volume = {12},
+          publisher = {{Springer}}
+        }
+      ),
       "key": "OFO13",
       "type": "book",
     },

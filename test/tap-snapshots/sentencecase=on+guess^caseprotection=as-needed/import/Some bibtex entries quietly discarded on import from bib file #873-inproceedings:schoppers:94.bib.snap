@@ -11,29 +11,31 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Houston, TX",
-        ],
-        "annote": Array [],
+        "address": "Houston, TX",
         "author": Array [
           Object {
             "firstName": "Marcel",
             "lastName": "Schoppers",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the AIAA conference on intelligent robots in field, factory, service and space",
-        ],
-        "month": Array [
-          "03",
-        ],
-        "title": Array [
-          "A Software Architecture for Hard Real-time execution of automatically synthesized plans or control laws",
-        ],
-        "year": Array [
-          "1994",
-        ],
+        "booktitle": "Proceedings of the AIAA conference on intelligent robots in field, factory, service and space",
+        "month": 3,
+        "title": "A Software Architecture for Hard Real-time execution of automatically synthesized plans or control laws",
+        "year": 1994,
       },
+      "input": String(
+        @INPROCEEDINGS{Schoppers:94,
+        \\tAUTHOR = {Marcel Schoppers},
+        \\tTITLE = {A Software Architecture for Hard Real-time execution
+        \\t\\t of automatically synthesized plans or control laws},
+        \\tBOOKTITLE = {Proceedings of the AIAA Conference on Intelligent
+        \\t\\t     Robots in Field, Factory, Service and Space},
+        \\tYEAR = {1994},
+        \\tADDRESS = {Houston, TX},
+        \\tMONTH = mar,
+           \\tANNOTE = {}\\t\\t
+        }
+      ),
       "key": "Schoppers:94",
       "type": "inproceedings",
     },

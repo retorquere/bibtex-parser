@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Princeton, NJ",
-        ],
+        "address": "Princeton, NJ",
         "author": Array [
           Object {
             "firstName": "Elliott",
@@ -23,13 +21,18 @@ Object {
         "publisher": Array [
           "Van Nostrand",
         ],
-        "title": Array [
-          "Introduction to Mathematical Logic",
-        ],
-        "year": Array [
-          "1964",
-        ],
+        "title": "Introduction to Mathematical Logic",
+        "year": 1964,
       },
+      "input": String(
+        @book(Mendelson:64,
+        \\tauthor =\\t{Elliott Mendelson},
+        \\taddress =\\t{Princeton, NJ},
+        \\tyear =\\t\\t{1964},
+        \\tpublisher =\\t{Van Nostrand},
+        \\ttitle =\\t\\t{Introduction to Mathematical Logic}
+        )
+      ),
       "key": "Mendelson:64",
       "type": "book",
     },

@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Cambridge",
-        ],
+        "address": "Cambridge",
         "author": Array [
           Object {
             "firstName": "Daniel",
@@ -23,19 +21,22 @@ Object {
         "publisher": Array [
           "Cambridge University Press",
         ],
-        "series": Array [
-          "Meaning and Speech Acts",
-        ],
-        "title": Array [
-          "Principles of language use",
-        ],
-        "volume": Array [
-          "I",
-        ],
-        "year": Array [
-          "1990",
-        ],
+        "series": "Meaning and Speech Acts",
+        "title": "Principles of language use",
+        "volume": "I",
+        "year": 1990,
       },
+      "input": String(
+        @BOOK{Vanderveken:90a,
+        \\tAUTHOR = {Daniel Vanderveken},
+        \\tTITLE = "Principles of language use",
+        \\tPUBLISHER = {Cambridge University Press},
+        \\tYEAR = {1990},
+        \\tVOLUME = {I},
+        \\tSERIES = {Meaning and Speech Acts},
+        \\tADDRESS = {Cambridge}
+        }
+      ),
       "key": "Vanderveken:90a",
       "type": "book",
     },

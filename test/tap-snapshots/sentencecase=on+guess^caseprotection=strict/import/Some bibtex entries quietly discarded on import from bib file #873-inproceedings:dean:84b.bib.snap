@@ -17,19 +17,22 @@ Object {
             "lastName": "Dean",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of CSCSI 84. Canadian society for computational studies of intelligence",
-        ],
+        "booktitle": "Proceedings of CSCSI 84. Canadian society for computational studies of intelligence",
         "organization": Array [
           "CSCSI",
         ],
-        "title": Array [
-          "Managing time maps",
-        ],
-        "year": Array [
-          "1984",
-        ],
+        "title": "Managing time maps",
+        "year": 1984,
       },
+      "input": String(
+        @InProceedings{Dean:84b,
+        author = "Thomas Dean",
+        title = "Managing Time Maps",
+        booktitle = "Proceedings of CSCSI 84.
+                   Canadian Society for Computational Studies of Intelligence",
+        organization = "CSCSI",
+        year = "1984"}
+      ),
       "key": "Dean:84b",
       "type": "inproceedings",
     },

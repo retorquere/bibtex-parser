@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "William M.",
@@ -27,13 +25,18 @@ Object {
         "publisher": Array [
           "McGraw-Hill",
         ],
-        "title": Array [
-          "Principles of Interactive Computer Graphics",
-        ],
-        "year": Array [
-          "1979",
-        ],
+        "title": "Principles of Interactive Computer Graphics",
+        "year": 1979,
       },
+      "input": String(
+        @book(Sproull:1979,
+        \\tauthor =\\t{William M. Newman and Robert F. Sproull},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1979},
+        \\tpublisher =\\t{McGraw-Hill},
+        \\ttitle =\\t\\t{Principles of Interactive Computer Graphics}
+        )
+      ),
       "key": "Sproull:1979",
       "type": "book",
     },

@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Chicago",
-        ],
+        "address": "Chicago",
         "author": Array [
           Object {
             "firstName": "Bela",
@@ -23,13 +21,18 @@ Object {
         "publisher": Array [
           "University of Chicago Press",
         ],
-        "title": Array [
-          "Foundations of cyclopean perception",
-        ],
-        "year": Array [
-          "1971",
-        ],
+        "title": "Foundations of cyclopean perception",
+        "year": 1971,
       },
+      "input": String(
+        @book(Julesz:1971,
+        \\tauthor =\\t{Bela Julesz},
+        \\taddress =\\t{Chicago},
+        \\tyear =\\t\\t{1971},
+        \\tpublisher =\\t{University of Chicago Press},
+        \\ttitle =\\t\\t{Foundations of Cyclopean Perception}
+        )
+      ),
       "key": "Julesz:1971",
       "type": "book",
     },

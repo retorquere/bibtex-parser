@@ -17,27 +17,36 @@ Object {
             "lastName": "Quinlan",
           },
         ],
-        "journal": Array [
-          "JAIR",
-        ],
-        "pages": Array [
-          "139–161",
-        ],
-        "title": Array [
-          "Learning first-order definitions of functions",
-        ],
-        "volume": Array [
-          "5",
-        ],
-        "year": Array [
-          "1996",
-        ],
+        "journal": "JAIR",
+        "pages": "139–161",
+        "title": "Learning first-order definitions of functions",
+        "volume": "5",
+        "year": 1996,
       },
+      "input": String(
+        @ARTICLE{Quinlan:96,
+        \\tAUTHOR = {J. Ross Quinlan},
+        \\tTITLE = "Learning First-order definitions of functions",
+        \\tJOURNAL = JAIR,
+        \\tYEAR = {1996},
+        \\tVOLUME = {5},
+        \\tPAGES = {139--161}
+        }
+      ),
       "key": "Quinlan:96",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"JAIR\\"",
+      "input": "JAIR",
+      "location": Object {
+        "column": 16,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

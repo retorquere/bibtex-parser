@@ -33,16 +33,20 @@ Object {
             "lastName": "Hoebel",
           },
         ],
-        "crossref": Array [
-          "PlanInit1",
-        ],
-        "pages": Array [
-          "519–536",
-        ],
-        "title": Array [
-          "Handbook of evaluation for the <span class=\\"nocase\\">ARPA/R</span>ome lab planning initiative",
-        ],
+        "crossref": "PlanInit1",
+        "pages": "519–536",
+        "title": "Handbook of evaluation for the <span class=\\"nocase\\">ARPA</span>/<span class=\\"nocase\\">R</span>ome lab planning initiative",
       },
+      "input": String(
+        @INPROCEEDINGS{PIEvaluation,
+        \\tAUTHOR = {Paul Cohen and Tom Dean and Yolanda Gil and 
+        \\t\\t  Matt Ginsberg and Lou Hoebel},
+        \\tTITLE = {Handbook of Evaluation for the {ARPA}/{R}ome Lab
+        \\t\\t Planning Initiative},
+        \\tPAGES = {519--536},
+        \\tCROSSREF = {PlanInit1}
+        }
+      ),
       "key": "PIEvaluation",
       "type": "inproceedings",
     },

@@ -21,9 +21,7 @@ Object {
             "lastName": "Author",
           },
         ],
-        "crossref": Array [
-          "conference:06",
-        ],
+        "crossref": "conference:06",
         "editor": Array [
           Object {
             "firstName": "First",
@@ -34,21 +32,23 @@ Object {
             "lastName": "Editor",
           },
         ],
-        "pages": Array [
-          "330—331",
-        ],
-        "title": Array [
-          "Some publication title",
-        ],
+        "pages": "330—331",
+        "title": "Some publication title",
       },
+      "input": String(
+        @inproceedings{author:06,
+          title = {Some Publication Title},
+          author = {Author, First and Author, Second},
+          pages = {330---331},
+          crossref = {conference:06}
+        }
+      ),
       "key": "author:06",
       "type": "inproceedings",
     },
     Object {
       "fields": Object {
-        "date": Array [
-          "2006-10",
-        ],
+        "date": "2006-10",
         "editor": Array [
           Object {
             "firstName": "First",
@@ -59,10 +59,15 @@ Object {
             "lastName": "Editor",
           },
         ],
-        "title": Array [
-          "Proceedings of the <span class=\\"nocase\\">Xth</span> conference on <span class=\\"nocase\\">XYZ</span>",
-        ],
+        "title": "Proceedings of the <span class=\\"nocase\\">Xth</span> conference on <span class=\\"nocase\\">XYZ</span>",
       },
+      "input": String(
+        @book{conference:06,
+          title = {Proceedings of the {{Xth}} Conference on {{XYZ}}},
+          editor = {Editor, First and Editor, Second},
+          date = {2006-10}
+        }
+      ),
       "key": "conference:06",
       "type": "book",
     },

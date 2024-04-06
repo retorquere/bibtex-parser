@@ -7,13 +7,13 @@
 'use strict'
 exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-book:vanbenthemtl.bib > must match snapshot 1`] = `
 Object {
-  "comments": Array [],
+  "comments": Array [
+    "filed under Modal Logic",
+  ],
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Boston, Massachusetts",
-        ],
+        "address": "Boston, Massachusetts",
         "author": Array [
           Object {
             "firstName": "J. Van",
@@ -23,13 +23,18 @@ Object {
         "publisher": Array [
           "Kluwer Academic Publishers",
         ],
-        "title": Array [
-          "The Logic of Time",
-        ],
-        "year": Array [
-          1983,
-        ],
+        "title": "The Logic of Time",
+        "year": 1983,
       },
+      "input": String(
+        @book(VanBenthemTL,
+        \\tauthor = {J. Van Benthem},
+        \\ttitle = "The Logic of Time",
+        \\tpublisher = {Kluwer Academic Publishers},
+        \\taddress = {Boston, Massachusetts},
+        \\tyear = 1983
+        )
+      ),
       "key": "VanBenthemTL",
       "type": "book",
     },

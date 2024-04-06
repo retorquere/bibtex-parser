@@ -11,18 +11,14 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "David",
             "lastName": "Waltz",
           },
         ],
-        "booktitle": Array [
-          "The psychology of computer vision",
-        ],
+        "booktitle": "The psychology of computer vision",
         "editor": Array [
           Object {
             "firstName": "P.H.",
@@ -32,13 +28,20 @@ Object {
         "publisher": Array [
           "McGraw-Hill",
         ],
-        "title": Array [
-          "Understanding line drawings of scenes with shadows",
-        ],
-        "year": Array [
-          "1975",
-        ],
+        "title": "Understanding line drawings of scenes with shadows",
+        "year": 1975,
       },
+      "input": String(
+        @book(Waltz:75,
+        \\tauthor =\\t{David Waltz},
+        \\tbooktitle =\\t{The Psychology of Computer Vision},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1975},
+        \\teditor =\\t{P.H. Winston},
+        \\tpublisher =\\t{McGraw-Hill},
+        \\ttitle =\\t\\t{Understanding line drawings of scenes with shadows}
+        )
+      ),
       "key": "Waltz:75",
       "type": "book",
     },

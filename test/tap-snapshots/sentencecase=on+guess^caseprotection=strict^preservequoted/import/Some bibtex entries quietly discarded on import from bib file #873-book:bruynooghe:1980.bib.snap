@@ -11,18 +11,14 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "M.",
             "lastName": "Bruynooghe",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the 5th conference on automated deduction",
-        ],
+        "booktitle": "Proceedings of the 5th conference on automated deduction",
         "editor": Array [
           Object {
             "firstName": "W.",
@@ -33,19 +29,26 @@ Object {
             "lastName": "Kowalski",
           },
         ],
-        "pages": Array [
-          "293-305",
-        ],
+        "pages": "293-305",
         "publisher": Array [
           "Springer-Verlag",
         ],
-        "title": Array [
-          "Analysis of dependencies to improve the behavior of logic programs",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "title": "Analysis of dependencies to improve the behavior of logic programs",
+        "year": 1980,
       },
+      "input": String(
+        @book(Bruynooghe:1980,
+        \\tauthor =\\t{M. Bruynooghe},
+        \\tbooktitle =\\t{Proceedings of the 5th 
+        \\t\\t\\t Conference on Automated Deduction},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1980},
+        \\teditor =\\t{W. Bibel and R. Kowalski},
+        \\tpublisher =\\t{Springer-Verlag},
+        \\tpages =\\t\\t{293-305},
+        \\ttitle =\\t\\t{Analysis of dependencies to improve the behavior of logic programs}
+        )
+      ),
       "key": "Bruynooghe:1980",
       "type": "book",
     },

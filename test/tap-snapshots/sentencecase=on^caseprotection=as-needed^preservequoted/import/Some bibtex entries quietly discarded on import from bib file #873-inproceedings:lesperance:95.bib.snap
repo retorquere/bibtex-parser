@@ -11,16 +11,12 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Montréal",
-        ],
-        "annote": Array [
-          "The article provides an outline of the application of Scherl and Levesque's work on knowledge-producing actions and Reiter and Lin's work on the frame problem, to agent programming. The central limitation of the work is that they have little to say about the generation of new plans/programs for agent actions — they center their discussion around the use of the logic for verification of agent programs.",
-        ],
+        "address": "Montréal",
+        "annote": "The article provides an outline of the application of Scherl and Levesque's work on knowledge-producing actions and Reiter and Lin's work on the frame problem, to agent programming. The central limitation of the work is that they have little to say about the generation of new plans/programs for agent actions — they center their discussion around the use of the logic for verification of agent programs.",
         "author": Array [
           Object {
             "firstName": "Yves",
-            "lastName": "Lespérance",
+            "lastName": "Lespérance",
           },
           Object {
             "firstName": "Hector J.",
@@ -43,19 +39,32 @@ Object {
             "lastName": "Scherl",
           },
         ],
-        "booktitle": Array [
-          "IJCAI workshop on agent theories, archietectures and languages",
-        ],
-        "month": Array [
-          "08",
-        ],
-        "title": Array [
-          "Foundations of a logical approach to agent programming",
-        ],
-        "year": Array [
-          "1995",
-        ],
+        "booktitle": "IJCAI workshop on agent theories, archietectures and languages",
+        "month": 8,
+        "title": "Foundations of a logical approach to agent programming",
+        "year": 1995,
       },
+      "input": String(
+        @INPROCEEDINGS{Lesperance:95,
+        \\tAUTHOR = {Yves Lesp\\\\'erance and Hector J. Levesque and 
+        \\t\\t  Fangzhen Lin and Daniel Marcu and Raymond Reiter and
+        \\t\\t  Richard B. Scherl},
+        \\tTITLE = "Foundations of a Logical Approach to Agent Programming",
+        \\tBOOKTITLE = {{IJCAI} Workshop on Agent Theories, Archietectures
+        \\t\\t     and Languages},
+        \\tYEAR = {1995},
+        \\tADDRESS = {Montr\\\\'eal},
+        \\tMONTH = aug,
+        \\tANNOTE = {The article provides an outline of the application of
+        \\t\\t  Scherl and Levesque's work on knowledge-producing actions 
+        \\t\\t  and Reiter and Lin's work on the frame problem, to agent
+        \\t\\t  programming.  The central limitation of the work is that
+        \\t\\t  they have little to say about the generation of new 
+        \\t\\t  plans/programs for agent actions --- they center their 
+        \\t\\t  discussion around the use of the logic for verification
+        \\t\\t  of agent programs.}
+        }
+      ),
       "key": "Lesperance:95",
       "type": "inproceedings",
     },

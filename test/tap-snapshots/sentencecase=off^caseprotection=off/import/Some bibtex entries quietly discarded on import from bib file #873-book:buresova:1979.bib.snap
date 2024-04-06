@@ -21,9 +21,7 @@ Object {
             "lastName": "Buresova",
           },
         ],
-        "booktitle": Array [
-          "Brain Mechanisms in Memory and Learning: From the Single Neuron to Man",
-        ],
+        "booktitle": "Brain Mechanisms in Memory and Learning: From the Single Neuron to Man",
         "editor": Array [
           Object {
             "firstName": "M.A.B.",
@@ -33,13 +31,19 @@ Object {
         "publisher": Array [
           "Raven Press",
         ],
-        "title": Array [
-          "Neurophysiological analysis of conditioned taste aversion",
-        ],
-        "year": Array [
-          "1979",
-        ],
+        "title": "Neurophysiological analysis of conditioned taste aversion",
+        "year": 1979,
       },
+      "input": String(
+        @book(Buresova:1979,
+        \\tauthor =\\t{J. Bures and O. Buresova},
+        \\tbooktitle =\\t{Brain Mechanisms in Memory and Learning: From the Single Neuron to Man},
+        \\tyear =\\t\\t{1979},
+        \\teditor =\\t{M.A.B. Brazier},
+        \\tpublisher =\\t{Raven Press},
+        \\ttitle =\\t\\t{Neurophysiological analysis of conditioned taste aversion}
+        )
+      ),
       "key": "Buresova:1979",
       "type": "book",
     },

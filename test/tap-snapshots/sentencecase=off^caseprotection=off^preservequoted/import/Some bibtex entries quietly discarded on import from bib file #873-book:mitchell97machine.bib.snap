@@ -11,31 +11,31 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "Tom M.",
             "lastName": "Mitchell",
           },
         ],
-        "date-added": Array [
-          "2010-06-24 17:45:39 -0400",
-        ],
-        "date-modified": Array [
-          "2010-06-24 17:45:55 -0400",
-        ],
+        "date-added": "2010-06-24 17:45:39 -0400",
+        "date-modified": "2010-06-24 17:45:55 -0400",
         "publisher": Array [
           "McGraw-Hill",
         ],
-        "title": Array [
-          "Machine Learning",
-        ],
-        "year": Array [
-          "1997",
-        ],
+        "title": "Machine Learning",
+        "year": 1997,
       },
+      "input": String(
+        @book{mitchell97machine,
+        \\tAddress = {New York},
+        \\tAuthor = {Tom M. Mitchell},
+        \\tDate-Added = {2010-06-24 17:45:39 -0400},
+        \\tDate-Modified = {2010-06-24 17:45:55 -0400},
+        \\tPublisher = {McGraw-Hill},
+        \\tTitle = {Machine Learning},
+        \\tYear = {1997}}
+      ),
       "key": "mitchell97machine",
       "type": "book",
     },

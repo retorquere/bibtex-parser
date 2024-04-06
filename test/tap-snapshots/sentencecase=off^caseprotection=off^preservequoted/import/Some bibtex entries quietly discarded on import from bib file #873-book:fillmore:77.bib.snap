@@ -11,18 +11,14 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "Charles J.",
             "lastName": "Fillmore",
           },
         ],
-        "booktitle": Array [
-          "Syntax and Semantics 8: Grammatical Relations",
-        ],
+        "booktitle": "Syntax and Semantics 8: Grammatical Relations",
         "editor": Array [
           Object {
             "firstName": "P.",
@@ -33,19 +29,25 @@ Object {
             "lastName": "Sadock",
           },
         ],
-        "pages": Array [
-          "59-81",
-        ],
+        "pages": "59-81",
         "publisher": Array [
           "Academic Press",
         ],
-        "title": Array [
-          "The case for case reopened",
-        ],
-        "year": Array [
-          "1977",
-        ],
+        "title": "The case for case reopened",
+        "year": 1977,
       },
+      "input": String(
+        @book(Fillmore:77,
+        \\tauthor =\\t{Charles J. Fillmore},
+        \\tbooktitle =\\t{Syntax and Semantics 8: Grammatical Relations},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1977},
+        \\teditor =\\t{P. Cole and J.M. Sadock},
+        \\tpublisher =\\t{Academic Press},
+        \\tpages =\\t\\t{59-81},
+        \\ttitle =\\t\\t{The case for case reopened}
+        )
+      ),
       "key": "Fillmore:77",
       "type": "book",
     },

@@ -13,7 +13,7 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "firstName": "Héctor",
+            "firstName": "Héctor",
             "lastName": "Palacios",
           },
           Object {
@@ -21,15 +21,9 @@ Object {
             "lastName": "Geffner",
           },
         ],
-        "bibdate": Array [
-          "2008-08-15",
-        ],
-        "bibsource": Array [
-          "DBLP, http://dblp.uni-trier.de/db/conf/aips/icaps2007.html#PalaciosG07",
-        ],
-        "booktitle": Array [
-          "ICAPS",
-        ],
+        "bibdate": "2008-08-15",
+        "bibsource": "DBLP, http://dblp.uni-trier.de/db/conf/aips/icaps2007.html#PalaciosG07",
+        "booktitle": "ICAPS",
         "editor": Array [
           Object {
             "firstName": "Mark S.",
@@ -41,25 +35,33 @@ Object {
           },
           Object {
             "firstName": "Sylvie",
-            "lastName": "Thiébaux",
+            "lastName": "Thiébaux",
           },
         ],
-        "isbn": Array [
-          "978-1-57735-344-7",
-        ],
-        "pages": Array [
-          "264–271",
-        ],
+        "isbn": "978-1-57735-344-7",
+        "pages": "264–271",
         "publisher": Array [
           "AAAI",
         ],
-        "title": Array [
-          "From Conformant into Classical Planning: Efficient Translations that May Be Complete Too",
-        ],
-        "year": Array [
-          "2007",
-        ],
+        "title": "From Conformant into Classical Planning: Efficient Translations that May Be Complete Too",
+        "year": 2007,
       },
+      "input": String(
+        @InProceedings{conf/aips/PalaciosG07,
+          title =\\t"From Conformant into Classical Planning: Efficient
+        \\t\\t Translations that May Be Complete Too",
+          author =\\t"H{\\\\'e}ctor Palacios and Hector Geffner",
+          bibdate =\\t"2008-08-15",
+          bibsource =\\t"DBLP,
+        \\t\\t http://dblp.uni-trier.de/db/conf/aips/icaps2007.html#PalaciosG07",
+          booktitle =\\t"ICAPS",
+          publisher =\\t"AAAI",
+          year = \\t"2007",
+          editor =\\t"Mark S. Boddy and Maria Fox and Sylvie Thi{\\\\'e}baux",
+          ISBN = \\t"978-1-57735-344-7",
+          pages =\\t"264--271",
+        }
+      ),
       "key": "conf/aips/PalaciosG07",
       "type": "inproceedings",
     },

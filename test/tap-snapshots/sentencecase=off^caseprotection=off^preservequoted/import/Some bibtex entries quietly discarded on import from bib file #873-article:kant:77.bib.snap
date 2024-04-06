@@ -17,25 +17,26 @@ Object {
             "lastName": "Kant",
           },
         ],
-        "booktitle": Array [
-          "Proceeding of the Symposium on Artificial Intelligence and Programming Languages",
-        ],
-        "journal": Array [
-          "Sigart Newsletter",
-        ],
-        "month": Array [
-          "August",
-        ],
-        "number": Array [
-          "64",
-        ],
-        "title": Array [
-          "The selection of efficient implementations for a high-level language",
-        ],
-        "year": Array [
-          "1977",
-        ],
+        "booktitle": "Proceeding of the Symposium on Artificial Intelligence and Programming Languages",
+        "journal": "Sigart Newsletter",
+        "month": "August",
+        "number": "64",
+        "title": "The selection of efficient implementations for a high-level language",
+        "year": 1977,
       },
+      "input": String(
+        @article(Kant:77,
+        \\tauthor =\\t{Elaine Kant},
+        \\tbooktitle =\\t{Proceeding of the Symposium on Artificial 
+        \\t\\t\\t Intelligence and Programming Languages},
+        \\tyear =\\t\\t{1977},
+        \\tmonth = \\t{August},
+        \\tjournal =\\t{Sigart Newsletter},
+        \\tnumber =\\t{64},
+        \\ttitle =\\t\\t{The selection of efficient implementations for a 
+        \\t\\t\\t high-level language}
+        )
+      ),
       "key": "Kant:77",
       "type": "article",
     },

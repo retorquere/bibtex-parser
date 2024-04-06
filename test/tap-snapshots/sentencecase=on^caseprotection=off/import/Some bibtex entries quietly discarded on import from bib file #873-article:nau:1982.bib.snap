@@ -17,22 +17,22 @@ Object {
             "lastName": "Nau",
           },
         ],
-        "journal": Array [
-          "Artificial Intelligence",
-        ],
-        "pages": Array [
-          "257-258",
-        ],
-        "title": Array [
-          "An investigation of the causes of pathology in games",
-        ],
-        "volume": Array [
-          "19",
-        ],
-        "year": Array [
-          "1982",
-        ],
+        "journal": "Artificial Intelligence",
+        "pages": "257-258",
+        "title": "An investigation of the causes of pathology in games",
+        "volume": "19",
+        "year": 1982,
       },
+      "input": String(
+        @article(Nau:1982,
+        \\tauthor =\\t{Dana Nau},
+        \\tyear =\\t\\t{1982},
+        \\tjournal =\\t{Artificial Intelligence},
+        \\tpages =\\t\\t{257-258},
+        \\ttitle =\\t\\t"An investigation of the causes of pathology in games",
+        \\tvolume =\\t{19}
+        )
+      ),
       "key": "Nau:1982",
       "type": "article",
     },

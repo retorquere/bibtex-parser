@@ -13,19 +13,20 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "literal": "Intel",
+            "name": "Intel",
           },
         ],
-        "title": Array [
-          "Intel Atom E3826 specifications",
-        ],
-        "url": Array [
-          "https://ark.intel.com/content/www/us/en/ark/products/78477/intel-atom-processor-e3826-1m-cache-1-46-ghz.html",
-        ],
-        "year": Array [
-          "2019",
-        ],
+        "title": "Intel Atom E3826 specifications",
+        "url": "https://ark.intel.com/content/www/us/en/ark/products/78477/intel-atom-processor-e3826-1m-cache-1-46-ghz.html",
+        "year": 2019,
       },
+      "input": String(
+        @online{WEB:intel-ark-atom,
+                Author = {{Intel}},
+                Title = {{Intel Atom E3826 specifications}},
+                Url = {https://ark.intel.com/content/www/us/en/ark/products/78477/intel-atom-processor-e3826-1m-cache-1-46-ghz.html},
+                Year = {2019}}
+      ),
       "key": "WEB:intel-ark-atom",
       "type": "online",
     },

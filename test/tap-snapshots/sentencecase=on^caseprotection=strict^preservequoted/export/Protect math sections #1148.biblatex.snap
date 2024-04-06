@@ -11,16 +11,17 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "title": Array [
-          "<\\\\input <span class=\\"nocase\\">Wiki .:. goLaTeX - Mein LaTeX-Forum</span>",
-        ],
-        "url": Array [
-          "https://golatex.de/wiki/%5Cinput",
-        ],
-        "urldate": Array [
-          "2019-03-11",
-        ],
+        "title": "<span class=\\"nocase\\"><\\\\</span>input <span class=\\"nocase\\">Wiki</span> .:. <span class=\\"nocase\\">goLaTeX</span> - <span class=\\"nocase\\">Mein LaTeX</span>-<span class=\\"nocase\\">Forum</span>",
+        "url": "https://golatex.de/wiki/%5Cinput",
+        "urldate": "2019-03-11",
       },
+      "input": String(
+        @online{InputWikiGoLaTeX,
+          title = {{$<\\\\backslash$}input {{Wiki}} .:. {{goLaTeX}} - {{Mein LaTeX}}-{{Forum}}},
+          url = {https://golatex.de/wiki/%5Cinput},
+          urldate = {2019-03-11}
+        }
+      ),
       "key": "InputWikiGoLaTeX",
       "type": "online",
     },

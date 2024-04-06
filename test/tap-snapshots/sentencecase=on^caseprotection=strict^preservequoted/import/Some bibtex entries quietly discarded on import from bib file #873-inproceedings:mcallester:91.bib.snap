@@ -21,27 +21,36 @@ Object {
             "lastName": "Rosenblitt",
           },
         ],
-        "booktitle": Array [
-          "AAAI-91",
-        ],
-        "crossref": Array [
-          "AAAI91",
-        ],
-        "pages": Array [
-          "634–639",
-        ],
-        "title": Array [
-          "Systematic nonlinear planning",
-        ],
-        "year": Array [
-          "1991",
-        ],
+        "booktitle": "<span class=\\"nocase\\">AAAI-91</span>",
+        "crossref": "AAAI91",
+        "pages": "634–639",
+        "title": "Systematic nonlinear planning",
+        "year": 1991,
       },
+      "input": String(
+        @INPROCEEDINGS(McAllester:91,
+        \\tAUTHOR = {David McAllester and David Rosenblitt},
+        \\tTITLE = "Systematic Nonlinear Planning",
+        \\tBOOKTITLE = AAAI-91,
+        \\tYEAR = {1991},
+        \\tCROSSREF = {AAAI91},
+        \\tPAGES = {634--639}
+        )
+      ),
       "key": "McAllester:91",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"AAAI-91\\"",
+      "input": "AAAI-91",
+      "location": Object {
+        "column": 21,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

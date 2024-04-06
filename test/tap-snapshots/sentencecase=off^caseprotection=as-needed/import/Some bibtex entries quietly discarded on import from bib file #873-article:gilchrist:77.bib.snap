@@ -17,22 +17,23 @@ Object {
             "lastName": "Gilchrist",
           },
         ],
-        "journal": Array [
-          "Science",
-        ],
-        "pages": Array [
-          "185-187",
-        ],
-        "title": Array [
-          "Perceived lightness depends on perceived spatial arrangement",
-        ],
-        "volume": Array [
-          "195",
-        ],
-        "year": Array [
-          "1977",
-        ],
+        "journal": "Science",
+        "pages": "185-187",
+        "title": "Perceived lightness depends on perceived spatial arrangement",
+        "volume": "195",
+        "year": 1977,
       },
+      "input": String(
+        @article(Gilchrist:77,
+        \\tauthor =\\t{A.L. Gilchrist},
+        \\tyear =\\t\\t{1977},
+        \\tjournal =\\t{Science},
+        \\tpages =\\t\\t{185-187},
+        \\ttitle =\\t\\t{Perceived lightness depends on perceived spatial 
+        \\t\\t\\t arrangement},
+        \\tvolume =\\t{195}
+        )
+      ),
       "key": "Gilchrist:77",
       "type": "article",
     },

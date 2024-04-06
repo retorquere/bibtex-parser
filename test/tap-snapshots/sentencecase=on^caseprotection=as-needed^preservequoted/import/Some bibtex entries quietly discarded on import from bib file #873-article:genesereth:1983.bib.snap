@@ -17,22 +17,22 @@ Object {
             "lastName": "Genesereth",
           },
         ],
-        "journal": Array [
-          "Proc. AAAI",
-        ],
-        "pages": Array [
-          "119-124",
-        ],
-        "title": Array [
-          "An overview of meta-level architecture",
-        ],
-        "volume": Array [
-          "3",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "journal": "Proc. AAAI",
+        "pages": "119-124",
+        "title": "An overview of meta-level architecture",
+        "volume": "3",
+        "year": 1983,
       },
+      "input": String(
+        @article(Genesereth:1983,
+        \\tauthor =\\t{Michael R. Genesereth},
+        \\tyear =\\t\\t{1983},
+        \\tjournal =\\t{Proc. AAAI},
+        \\tpages =\\t\\t{119-124},
+        \\ttitle =\\t\\t"An overview of meta-level architecture",
+        \\tvolume =\\t{3}
+        )
+      ),
       "key": "Genesereth:1983",
       "type": "article",
     },

@@ -17,25 +17,24 @@ Object {
             "lastName": "Lozano-Perez",
           },
         ],
-        "journal": Array [
-          "IEEE Transactions on Systems, Man, and Cybernetics",
-        ],
-        "number": Array [
-          "6",
-        ],
-        "pages": Array [
-          "681–698",
-        ],
-        "title": Array [
-          "Automatic planning of manipulator transfer movements",
-        ],
-        "volume": Array [
-          "SMC-11",
-        ],
-        "year": Array [
-          "1981",
-        ],
+        "journal": "IEEE Transactions on Systems, Man, and Cybernetics",
+        "number": "6",
+        "pages": "681–698",
+        "title": "Automatic planning of manipulator transfer movements",
+        "volume": "SMC-11",
+        "year": 1981,
       },
+      "input": String(
+        @article(LozanoPerez:81,
+        \\tauthor =\\t{Tomas Lozano-Perez},
+        \\tyear =\\t\\t{1981},
+        \\tjournal =\\t{IEEE Transactions on Systems, Man, and Cybernetics},
+        \\tnumber =\\t{6},
+        \\tpages =\\t\\t{681--698},
+        \\ttitle =\\t\\t"Automatic planning of manipulator transfer movements",
+        \\tvolume =\\t{SMC-11}
+        )
+      ),
       "key": "LozanoPerez:81",
       "type": "article",
     },

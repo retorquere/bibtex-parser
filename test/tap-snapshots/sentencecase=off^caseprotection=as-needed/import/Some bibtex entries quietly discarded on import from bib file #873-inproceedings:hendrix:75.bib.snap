@@ -17,24 +17,35 @@ Object {
             "lastName": "Hendrix",
           },
         ],
-        "journal": Array [
-          "IJCAI-75",
-        ],
-        "pages": Array [
-          "115–121",
-        ],
-        "title": Array [
-          "Expanding the utility of semantic networks through partitioning",
-        ],
-        "year": Array [
-          "1975",
-        ],
+        "journal": "IJCAI-75",
+        "pages": "115–121",
+        "title": "Expanding the utility of semantic networks through partitioning",
+        "year": 1975,
       },
+      "input": String(
+        @InProceedings(Hendrix:75,
+        \\tauthor =\\t{Gary G. Hendrix},
+        \\tyear =\\t\\t{1975},
+        \\tjournal =\\tIJCAI-75,
+        \\tpages =\\t\\t{115--121},
+        \\ttitle =\\t\\t{Expanding the utility of semantic networks 
+        \\t\\t\\t through partitioning}
+        )
+      ),
       "key": "Hendrix:75",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"IJCAI-75\\"",
+      "input": "IJCAI-75",
+      "location": Object {
+        "column": 20,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

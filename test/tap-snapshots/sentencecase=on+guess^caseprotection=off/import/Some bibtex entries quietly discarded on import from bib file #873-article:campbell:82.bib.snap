@@ -29,25 +29,26 @@ Object {
             "lastName": "Hart",
           },
         ],
-        "journal": Array [
-          "Science",
-        ],
-        "number": Array [
-          "3",
-        ],
-        "pages": Array [
-          "927-929",
-        ],
-        "title": Array [
-          "Recognition of a hidden mineral deposit by an artificial intelligence program",
-        ],
-        "volume": Array [
-          "217",
-        ],
-        "year": Array [
-          "1982",
-        ],
+        "journal": "Science",
+        "number": "3",
+        "pages": "927-929",
+        "title": "Recognition of a hidden mineral deposit by an artificial intelligence program",
+        "volume": "217",
+        "year": 1982,
       },
+      "input": String(
+        @article(Campbell:82,
+        \\tauthor =\\t{A.N. Campbell and V.F. Hollister and 
+        \\t\\t\\t R.O. Duda and P.E. Hart},
+        \\tyear =\\t\\t{1982},
+        \\tjournal =\\t{Science},
+        \\tnumber =\\t{3},
+        \\tpages =\\t\\t{927-929},
+        \\ttitle =\\t\\t{Recognition of a hidden mineral deposit by an 
+        \\t\\t\\t artificial intelligence program},
+        \\tvolume =\\t{217}
+        )
+      ),
       "key": "Campbell:82",
       "type": "article",
     },

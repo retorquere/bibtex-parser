@@ -19,37 +19,39 @@ Object {
             "useprefix": false,
           },
         ],
-        "date": Array [
-          "1789",
-        ],
+        "date": "1789",
         "keywords": Array [
           "anonym",
           "Knoblauch",
           "Monographie",
           "Quelle",
         ],
-        "langid": Array [
-          "german",
-        ],
+        "langid": "german",
         "location": Array [
           "[Marburg]",
         ],
-        "options": Array [
-          "pseudoauthor=true",
-        ],
-        "pagetotal": Array [
-          "72",
-        ],
+        "options": "pseudoauthor=true",
+        "pagetotal": "72",
         "publisher": Array [
           "Krieger",
         ],
-        "shorttitle": Array [
-          "Dialogen",
-        ],
-        "title": Array [
-          "Dialogen über einige Gegenstände der politischen Oekonomie und Philosophie",
-        ],
+        "shorttitle": "Dialogen",
+        "title": "Dialogen über einige Gegenstände der politischen Oekonomie und Philosophie",
       },
+      "input": String(
+        @book{knoblauch_dialogen_1789-1,
+          title = {Dialogen \\\\"uber einige Gegenst\\\\"ande der politischen Oekonomie und Philosophie},
+          shorttitle = {Dialogen},
+          author = {family=Knoblauch, given=Karl, prefix=von, useprefix=false},
+          date = {1789},
+          publisher = {{Krieger}},
+          location = {{[Marburg]}},
+          keywords = {anonym,Knoblauch,Monographie,Quelle},
+          langid = {german},
+          options = {pseudoauthor=true},
+          pagetotal = {72}
+        }
+      ),
       "key": "knoblauch_dialogen_1789-1",
       "type": "book",
     },

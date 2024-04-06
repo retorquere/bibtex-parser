@@ -21,19 +21,20 @@ Object {
             "lastName": "Morris",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the 3rd ACM symposium on principles of programming languages",
-        ],
-        "pages": Array [
-          "95-103",
-        ],
-        "title": Array [
-          "A lazy evaluator",
-        ],
-        "year": Array [
-          "1976",
-        ],
+        "booktitle": "Proceedings of the 3rd ACM symposium on principles of programming languages",
+        "pages": "95-103",
+        "title": "A lazy evaluator",
+        "year": 1976,
       },
+      "input": String(
+        @misc(Morris:1976,
+        \\tauthor =\\t{P. Henderson and J.H. Morris},
+        \\tbooktitle =\\t{Proceedings of the 3rd ACM Symposium on Principles of Programming Languages},
+        \\tyear =\\t\\t{1976},
+        \\tpages =\\t\\t{95-103},
+        \\ttitle =\\t\\t{A lazy evaluator}
+        )
+      ),
       "key": "Morris:1976",
       "type": "misc",
     },

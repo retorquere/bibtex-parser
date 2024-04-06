@@ -11,12 +11,8 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "abstract": Array [
-          "The Act formalism provides a medium in which to express knowledge about actions for both the SIPE-2 plan generation system and the PRS plan execution system. This document describes the Act-Editor, which provides a graphical user interface for creating and manipulating Acts. The document is designed for individuals who are already familiar with the Act formalism. The Act-Editor runs on Sun workstations with either Allegro Common Lisp 4.2/4.3 with CLIM 2.0/2.1, or Lucid Lisp 4.1 with CLIM 1.1., as well as Symbolics Lisp Machines.",
-        ],
-        "address": Array [
-          "Menlo Park, CA",
-        ],
+        "abstract": "The Act formalism provides a medium in which to express knowledge about actions for both the SIPE-2 plan generation system and the PRS plan execution system. This document describes the Act-Editor, which provides a graphical user interface for creating and manipulating Acts. The document is designed for individuals who are already familiar with the Act formalism. The Act-Editor runs on Sun workstations with either Allegro Common Lisp 4.2/4.3 with CLIM 2.0/2.1, or Lucid Lisp 4.1 with CLIM 1.1., as well as Symbolics Lisp Machines.",
+        "address": "Menlo Park, CA",
         "author": Array [
           Object {
             "firstName": "Karen L.",
@@ -27,19 +23,35 @@ Object {
             "lastName": "Wilkins",
           },
         ],
-        "month": Array [
-          "September",
-        ],
+        "month": "September",
         "organization": Array [
           "Artificial Intelligence Center, SRI International",
         ],
-        "title": Array [
-          "The act-editor user's guide: A manual for version 2.2",
-        ],
-        "year": Array [
-          "1997",
-        ],
+        "title": "The act-editor user's guide: a manual for version 2.2",
+        "year": 1997,
       },
+      "input": String(
+        @MANUAL{AICPub215:1997,
+          AUTHOR =\\t {Karen L. Myers and David E. Wilkins},
+          TITLE =\\t {The Act-Editor User's Guide: A Manual for Version
+                          2.2},
+          ADDRESS =\\t {Menlo Park, CA},
+          ORGANIZATION = {Artificial Intelligence Center, SRI International},
+          MONTH =\\t {September},
+          YEAR =\\t {1997},
+          ABSTRACT =\\t {The Act formalism provides a medium in which to
+                          express knowledge about actions for both the SIPE-2
+                          plan generation system and the PRS plan execution
+                          system. This document describes the Act-Editor,
+                          which provides a graphical user interface for
+                          creating and manipulating Acts. The document is
+                          designed for individuals who are already familiar
+                          with the Act formalism. The Act-Editor runs on Sun
+                          workstations with either Allegro Common Lisp 4.2/4.3
+                          with CLIM 2.0/2.1, or Lucid Lisp 4.1 with CLIM 1.1.,
+                          as well as Symbolics Lisp Machines.}
+        }
+      ),
       "key": "AICPub215:1997",
       "type": "manual",
     },

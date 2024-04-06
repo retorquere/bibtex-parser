@@ -17,25 +17,25 @@ Object {
             "lastName": "Mason",
           },
         ],
-        "journal": Array [
-          "IEEE Transactions on Systems, Man, Cybernetics",
-        ],
-        "number": Array [
-          "6",
-        ],
-        "pages": Array [
-          "418-432",
-        ],
-        "title": Array [
-          "Compliance and force control for computer controlled manipulators",
-        ],
-        "volume": Array [
-          "SMC-11",
-        ],
-        "year": Array [
-          "1981",
-        ],
+        "journal": "IEEE Transactions on Systems, Man, Cybernetics",
+        "number": "6",
+        "pages": "418-432",
+        "title": "Compliance and force control for computer controlled manipulators",
+        "volume": "SMC-11",
+        "year": 1981,
       },
+      "input": String(
+        @article(Mason:1981,
+        \\tauthor =\\t{Matthew T. Mason},
+        \\tyear =\\t\\t{1981},
+        \\tjournal =\\t{IEEE Transactions on Systems, Man, Cybernetics},
+        \\tnumber =\\t{6},
+        \\tpages =\\t\\t{418-432},
+        \\ttitle =\\t\\t{Compliance and force control for computer 
+        \\t\\t\\t controlled manipulators},
+        \\tvolume =\\t{SMC-11}
+        )
+      ),
       "key": "Mason:1981",
       "type": "article",
     },

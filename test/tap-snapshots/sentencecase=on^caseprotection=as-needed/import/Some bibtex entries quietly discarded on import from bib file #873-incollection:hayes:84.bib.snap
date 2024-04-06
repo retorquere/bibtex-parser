@@ -17,18 +17,30 @@ Object {
             "lastName": "Hayes",
           },
         ],
-        "crossref": Array [
-          "FTCW",
-        ],
-        "title": Array [
-          "Liquids",
-        ],
+        "crossref": "FTCW",
+        "title": "Liquids",
       },
+      "input": String(
+        @incollection(Hayes:84,
+        \\tauthor =\\t{Patrick Hayes},
+        \\tcrossref = \\tFTCW,
+        \\ttitle =\\t\\t{Liquids}
+        )
+      ),
       "key": "Hayes:84",
       "type": "incollection",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"FTCW\\"",
+      "input": "FTCW",
+      "location": Object {
+        "column": 18,
+        "line": 3,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

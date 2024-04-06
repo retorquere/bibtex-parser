@@ -20,24 +20,36 @@ Object {
         "institution": Array [
           "MITAI",
         ],
-        "month": Array [
-          "September",
-        ],
-        "number": Array [
-          "Working Paper 303",
-        ],
-        "title": Array [
-          "Planning is just a way of avoiding figuring out what to do next",
-        ],
-        "year": Array [
-          "1987",
-        ],
+        "month": 9,
+        "number": "Working Paper 303",
+        "title": "Planning is just a way of avoiding figuring out what to do next",
+        "year": 1987,
       },
+      "input": String(
+        @TECHREPORT{Brooks:87,
+        \\tAUTHOR = {Rodney Brooks},
+        \\tTITLE = {Planning is just a way of avoiding figuring out what
+        \\t\\t to do next},
+        \\tINSTITUTION = MITAI,
+        \\tYEAR = {1987},
+        \\tNUMBER = {Working Paper 303},
+        \\tMONTH = September
+        }
+      ),
       "key": "Brooks:87",
       "type": "techreport",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"MITAI\\"",
+      "input": "MITAI",
+      "location": Object {
+        "column": 21,
+        "line": 5,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

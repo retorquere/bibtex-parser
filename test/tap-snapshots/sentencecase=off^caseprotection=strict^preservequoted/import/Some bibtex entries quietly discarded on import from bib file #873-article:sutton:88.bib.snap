@@ -17,27 +17,37 @@ Object {
             "lastName": "Sutton",
           },
         ],
-        "journal": Array [
-          "ML",
-        ],
-        "pages": Array [
-          "9–44",
-        ],
-        "title": Array [
-          "Learning to predict by the methods of temporal differences",
-        ],
-        "volume": Array [
-          "3",
-        ],
-        "year": Array [
-          "1988",
-        ],
+        "journal": "ML",
+        "pages": "9–44",
+        "title": "Learning to predict by the methods of temporal differences",
+        "volume": "3",
+        "year": 1988,
       },
+      "input": String(
+        @ARTICLE{Sutton:88,
+        \\tAUTHOR = {Richard S. Sutton},
+        \\tTITLE = {Learning to predict by the methods of temporal 
+        \\t\\t differences},
+        \\tJOURNAL = ML,
+        \\tYEAR = {1988},
+        \\tVOLUME = {3},
+        \\tPAGES = {9--44}
+        }
+      ),
       "key": "Sutton:88",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"ML\\"",
+      "input": "ML",
+      "location": Object {
+        "column": 14,
+        "line": 5,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

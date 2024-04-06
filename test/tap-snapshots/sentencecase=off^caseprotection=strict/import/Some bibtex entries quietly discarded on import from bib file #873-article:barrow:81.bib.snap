@@ -21,22 +21,22 @@ Object {
             "lastName": "Tenenbaum",
           },
         ],
-        "journal": Array [
-          "Artificial Intelligence",
-        ],
-        "pages": Array [
-          "75-116",
-        ],
-        "title": Array [
-          "Interpreting line drawings as three-dimensional surfaces",
-        ],
-        "volume": Array [
-          "17",
-        ],
-        "year": Array [
-          "1981",
-        ],
+        "journal": "Artificial Intelligence",
+        "pages": "75-116",
+        "title": "Interpreting line drawings as three-dimensional surfaces",
+        "volume": "17",
+        "year": 1981,
       },
+      "input": String(
+        @article(Barrow:81,
+        \\tauthor =\\t{H.G. Barrow and J.M. Tenenbaum},
+        \\tyear =\\t\\t{1981},
+        \\tjournal =\\t{Artificial Intelligence},
+        \\tpages =\\t\\t{75-116},
+        \\ttitle =\\t\\t"Interpreting line drawings as three-dimensional surfaces",
+        \\tvolume =\\t{17}
+        )
+      ),
       "key": "Barrow:81",
       "type": "article",
     },

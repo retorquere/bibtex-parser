@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "annote": Array [
-          "This paper describes the Cassandra approach to Michie's “keys and boxes”problem, which is similar to Moore's “bomb in the toilet” problem, in requiring both information-gathering actions and also action with only partial information (“fail-safe” planning).",
-        ],
+        "annote": "This paper describes the Cassandra approach to Michie's “keys and boxes”problem, which is similar to Moore's “bomb in the toilet” problem, in requiring both information-gathering actions and also action with only partial information (“fail-safe” planning).",
         "author": Array [
           Object {
             "firstName": "Gregg",
@@ -24,16 +22,23 @@ Object {
             "lastName": "Pryor",
           },
         ],
-        "crossref": Array [
-          "ijcai95",
-        ],
-        "pages": Array [
-          "1567–1573",
-        ],
-        "title": Array [
-          "Planning under uncertainty: Some Key Issues",
-        ],
+        "crossref": "ijcai95",
+        "pages": "1567–1573",
+        "title": "Planning under uncertainty: Some Key Issues",
       },
+      "input": String(
+        @INPROCEEDINGS(Pryor:CassandraIjcai,
+        \\tAUTHOR = {Gregg Collins and Louise Pryor},
+        \\tTITLE = "Planning under uncertainty: Some Key Issues",
+        \\tPAGES = {1567--1573},
+        \\tCROSSREF = {ijcai95},
+        \\tANNOTE = {This paper describes the Cassandra approach to Michie's
+        \\t\\t  \`\`keys and boxes''problem, which is similar to Moore's
+        \\t\\t  \`\`bomb in the toilet'' problem, in requiring both 
+        \\t\\t  information-gathering actions and also action with only
+        \\t\\t  partial information (\`\`fail-safe'' planning).}
+        )
+      ),
       "key": "Pryor:CassandraIjcai",
       "type": "inproceedings",
     },

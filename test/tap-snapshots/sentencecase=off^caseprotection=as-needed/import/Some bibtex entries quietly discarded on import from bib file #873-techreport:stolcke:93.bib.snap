@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Berkeley, CA",
-        ],
+        "address": "Berkeley, CA",
         "author": Array [
           Object {
             "firstName": "Andreas",
@@ -23,24 +21,37 @@ Object {
         "institution": Array [
           "ICSI",
         ],
-        "month": Array [
-          "November",
-        ],
-        "number": Array [
-          "TR-93-065",
-        ],
-        "title": Array [
-          "An Efficient Probabilistic Context-free Parsing Algorithm that Computes Prefix Probabilities",
-        ],
-        "year": Array [
-          "1993",
-        ],
+        "month": "November",
+        "number": "TR-93-065",
+        "title": "An Efficient Probabilistic Context-free Parsing Algorithm that Computes Prefix Probabilities",
+        "year": 1993,
       },
+      "input": String(
+        @TECHREPORT(Stolcke:93,
+        \\tAUTHOR = {Andreas Stolcke},
+        \\tTITLE = {An Efficient Probabilistic Context-free Parsing
+        \\t\\t Algorithm that Computes Prefix Probabilities},
+        \\tINSTITUTION = ICSI,
+        \\tYEAR = {1993},
+        \\tNUMBER = {TR-93-065},
+        \\tADDRESS = {Berkeley, CA},
+        \\tMONTH = {November}
+        )
+      ),
       "key": "Stolcke:93",
       "type": "techreport",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"ICSI\\"",
+      "input": "ICSI",
+      "location": Object {
+        "column": 20,
+        "line": 5,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

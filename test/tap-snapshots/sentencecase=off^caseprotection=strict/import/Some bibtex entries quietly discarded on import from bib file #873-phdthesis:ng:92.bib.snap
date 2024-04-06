@@ -17,19 +17,23 @@ Object {
             "lastName": "Ng",
           },
         ],
-        "month": Array [
-          "06",
-        ],
-        "school": Array [
-          "Artificial Intelligence Laboratory, University of Texas at Austin",
-        ],
-        "title": Array [
-          "A General Abductive System with Application to Plan Recognition and Diagnosis",
-        ],
-        "year": Array [
-          "1992",
-        ],
+        "month": 6,
+        "school": "Artificial Intelligence Laboratory, University of Texas at Austin",
+        "title": "A General Abductive System with Application to Plan Recognition and Diagnosis",
+        "year": 1992,
       },
+      "input": String(
+        @PHDTHESIS{Ng:92,
+        \\t    
+        \\tAUTHOR = {Hwee Tou Ng},
+        \\tTITLE = {A General Abductive System with Application
+        \\t\\t to Plan Recognition and Diagnosis},
+        \\tSCHOOL = {Artificial Intelligence Laboratory,
+        \\t\\t  University of Texas at Austin},
+        \\tYEAR = {1992},
+        \\tMONTH = jun
+        }
+      ),
       "key": "Ng:92",
       "type": "phdthesis",
     },

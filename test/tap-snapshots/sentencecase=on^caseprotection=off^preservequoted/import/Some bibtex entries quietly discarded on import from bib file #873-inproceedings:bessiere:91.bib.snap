@@ -14,19 +14,22 @@ Object {
         "author": Array [
           Object {
             "firstName": "Christian",
-            "lastName": "Bessière",
+            "lastName": "Bessière",
           },
         ],
-        "crossref": Array [
-          "AAAI91",
-        ],
-        "pages": Array [
-          "221–226",
-        ],
-        "title": Array [
-          "Arc-consistency in dynamic constraint satisfaction problems",
-        ],
+        "crossref": "AAAI91",
+        "pages": "221–226",
+        "title": "Arc-consistency in dynamic constraint satisfaction problems",
       },
+      "input": String(
+        @INPROCEEDINGS(Bessiere:91,
+        \\tAUTHOR = {Christian Bessi\\\\\`{e}re},
+        \\tTITLE = {Arc-consistency in dynamic constraint satisfaction
+        \\t\\t problems},
+        \\tPAGES = {221--226},
+        \\tCROSSREF = {AAAI91}
+        )
+      ),
       "key": "Bessiere:91",
       "type": "inproceedings",
     },

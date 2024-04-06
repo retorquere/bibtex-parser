@@ -17,25 +17,24 @@ Object {
             "lastName": "Anderson",
           },
         ],
-        "journal": Array [
-          "Cognitive Science",
-        ],
-        "number": Array [
-          "2",
-        ],
-        "pages": Array [
-          "125-157",
-        ],
-        "title": Array [
-          "Induction of augmented transition networks",
-        ],
-        "volume": Array [
-          "1",
-        ],
-        "year": Array [
-          "1977",
-        ],
+        "journal": "Cognitive Science",
+        "number": "2",
+        "pages": "125-157",
+        "title": "Induction of augmented transition networks",
+        "volume": "1",
+        "year": 1977,
       },
+      "input": String(
+        @article(JRAnderson:77,
+        \\tauthor =\\t{John R. Anderson},
+        \\tyear =\\t\\t{1977},
+        \\tjournal =\\t{Cognitive Science},
+        \\tnumber =\\t{2},
+        \\tpages =\\t\\t{125-157},
+        \\ttitle =\\t\\t"Induction of augmented transition networks",
+        \\tvolume =\\t{1}
+        )
+      ),
       "key": "JRAnderson:77",
       "type": "article",
     },

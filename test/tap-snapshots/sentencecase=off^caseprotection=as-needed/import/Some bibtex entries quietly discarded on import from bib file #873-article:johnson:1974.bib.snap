@@ -21,25 +21,24 @@ Object {
             "lastName": "Johnson",
           },
         ],
-        "journal": Array [
-          "Computing Surveys",
-        ],
-        "number": Array [
-          "2",
-        ],
-        "pages": Array [
-          "99-124",
-        ],
-        "title": Array [
-          "LR parsing",
-        ],
-        "volume": Array [
-          "6",
-        ],
-        "year": Array [
-          "1974",
-        ],
+        "journal": "Computing Surveys",
+        "number": "2",
+        "pages": "99-124",
+        "title": "LR parsing",
+        "volume": "6",
+        "year": 1974,
       },
+      "input": String(
+        @article(Johnson:1974,
+        \\tauthor =\\t{A. V. Aho and S. C. Johnson},
+        \\tyear =\\t\\t{1974},
+        \\tjournal =\\t{Computing Surveys},
+        \\tnumber =\\t{2},
+        \\tpages =\\t\\t{99-124},
+        \\ttitle =\\t\\t"LR parsing",
+        \\tvolume =\\t{6}
+        )
+      ),
       "key": "Johnson:1974",
       "type": "article",
     },

@@ -14,22 +14,25 @@ Object {
         "author": Array [
           Object {
             "firstName": "Niklas",
-            "lastName": "Möller",
+            "lastName": "Möller",
           },
         ],
-        "booktitle": Array [
-          "Handbook of Risk Theory: Epistemology, Decision Theory, Ethics, and Social Implications of Risk",
-        ],
+        "booktitle": "Handbook of Risk Theory: Epistemology, Decision Theory, Ethics, and Social Implications of Risk",
         "publisher": Array [
           "Springer",
         ],
-        "title": Array [
-          "The Concepts of Risk and Safety",
-        ],
-        "year": Array [
-          "2012",
-        ],
+        "title": "The Concepts of Risk and Safety",
+        "year": 2012,
       },
+      "input": String(
+        @incollection{moller2012conceptsrisksafety,
+          title = {{The Concepts of Risk and Safety}},
+          booktitle = {{Handbook of Risk Theory: Epistemology, Decision Theory, Ethics, and Social Implications of Risk}},
+          publisher = {{Springer}},
+          author = {M\\\\"{o}ller, Niklas},
+          year = {2012}
+        }
+      ),
       "key": "moller2012conceptsrisksafety",
       "type": "incollection",
     },

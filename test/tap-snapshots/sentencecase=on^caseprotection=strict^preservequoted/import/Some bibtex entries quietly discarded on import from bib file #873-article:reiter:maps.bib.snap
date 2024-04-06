@@ -21,27 +21,37 @@ Object {
             "lastName": "Mackworth",
           },
         ],
-        "journal": Array [
-          "AIJ",
-        ],
-        "pages": Array [
-          "125–155",
-        ],
-        "title": Array [
-          "A logical framework for depiction and image interpretation",
-        ],
-        "volume": Array [
-          "41",
-        ],
-        "year": Array [
-          "1989",
-        ],
+        "journal": "AIJ",
+        "pages": "125–155",
+        "title": "A logical framework for depiction and image interpretation",
+        "volume": "41",
+        "year": 1989,
       },
+      "input": String(
+        @ARTICLE{Reiter:maps,
+        \\tAUTHOR = {Raymond Reiter and Alan K. Mackworth},
+        \\tTITLE = {A Logical Framework for Depiction and Image 
+        \\t\\t Interpretation},
+        \\tJOURNAL = AIJ,
+        \\tYEAR = {1989},
+        \\tVOLUME = {41},
+        \\tPAGES = {125--155}
+        }
+      ),
       "key": "Reiter:maps",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"AIJ\\"",
+      "input": "AIJ",
+      "location": Object {
+        "column": 15,
+        "line": 5,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

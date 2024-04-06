@@ -11,37 +11,39 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "Marvin",
             "lastName": "Minsky",
           },
         ],
-        "booktitle": Array [
-          "The psychology of computer vision",
-        ],
+        "booktitle": "The psychology of computer vision",
         "editor": Array [
           Object {
             "firstName": "P.H.",
             "lastName": "Winston",
           },
         ],
-        "note": Array [
-          "Republished in KR",
-        ],
+        "note": "Republished in KR",
         "publisher": Array [
           "McGraw-Hill",
         ],
-        "title": Array [
-          "A framework for representing knowledge",
-        ],
-        "year": Array [
-          "1975",
-        ],
+        "title": "A framework for representing knowledge",
+        "year": 1975,
       },
+      "input": String(
+        @incollection(Minsky:Frames,
+        \\tauthor =\\t{Marvin Minsky},
+        \\tbooktitle =\\t{The Psychology of Computer Vision},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1975},
+        \\teditor =\\t{P.H. Winston},
+        \\tpublisher =\\t{McGraw-Hill},
+        \\ttitle =\\t\\t"A framework for representing knowledge",
+        \\tNOTE = {Republished in \\\\cite{KR}}
+        )
+      ),
       "key": "Minsky:Frames",
       "type": "incollection",
     },

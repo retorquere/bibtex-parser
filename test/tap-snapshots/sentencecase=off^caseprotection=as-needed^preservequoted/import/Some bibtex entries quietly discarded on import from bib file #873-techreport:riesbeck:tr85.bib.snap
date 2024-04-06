@@ -24,13 +24,17 @@ Object {
         "institution": Array [
           "Department of Computer Science Yale University",
         ],
-        "title": Array [
-          "Direct memory access parsing",
-        ],
-        "year": Array [
-          "1985",
-        ],
+        "title": "Direct memory access parsing",
+        "year": 1985,
       },
+      "input": String(
+        @techreport(Riesbeck:tr85,
+        \\tauthor =\\t{Christopher K. Riesbeck and Charles E. Martin},
+        \\tyear =\\t\\t{1985},
+        \\tinstitution =\\t{Department of Computer Science Yale University},
+        \\ttitle =\\t\\t{Direct memory access parsing}
+        )
+      ),
       "key": "Riesbeck:tr85",
       "type": "techreport",
     },

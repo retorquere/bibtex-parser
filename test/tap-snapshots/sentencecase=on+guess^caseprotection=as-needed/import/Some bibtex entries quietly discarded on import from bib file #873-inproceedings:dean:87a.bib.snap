@@ -17,21 +17,32 @@ Object {
             "lastName": "Dean",
           },
         ],
-        "booktitle": Array [
-          "IJCAI-87",
-        ],
-        "title": Array [
-          "Large temporal data bases",
-        ],
-        "year": Array [
-          "1987",
-        ],
+        "booktitle": "IJCAI-87",
+        "title": "Large temporal data bases",
+        "year": 1987,
       },
+      "input": String(
+        @inproceedings(Dean:87a,
+        \\tauthor =\\t{Thomas Dean},
+        \\tyear =\\t\\t{1987},
+        \\tbooktitle =     IJCAI-87,
+        \\ttitle =\\t\\t{Large temporal data bases}
+        )
+      ),
       "key": "Dean:87a",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"IJCAI-87\\"",
+      "input": "IJCAI-87",
+      "location": Object {
+        "column": 26,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

@@ -21,22 +21,22 @@ Object {
             "lastName": "Perrault",
           },
         ],
-        "journal": Array [
-          "Cognitive Science",
-        ],
-        "pages": Array [
-          "177–212",
-        ],
-        "title": Array [
-          "Elements of a plan-based theory of speech acts",
-        ],
-        "volume": Array [
-          "3",
-        ],
-        "year": Array [
-          "1979",
-        ],
+        "journal": "Cognitive Science",
+        "pages": "177–212",
+        "title": "Elements of a plan-based theory of speech acts",
+        "volume": "3",
+        "year": 1979,
       },
+      "input": String(
+        @article(Cohen:79,
+        \\tauthor =\\t{Philip R. Cohen and C. Raymond Perrault},
+        \\tyear =\\t\\t{1979},
+        \\tjournal =\\t{Cognitive Science},
+        \\tpages =\\t\\t{177--212},
+        \\ttitle =\\t\\t"Elements of a plan-based theory of speech acts",
+        \\tvolume =\\t{3}
+        )
+      ),
       "key": "Cohen:79",
       "type": "article",
     },

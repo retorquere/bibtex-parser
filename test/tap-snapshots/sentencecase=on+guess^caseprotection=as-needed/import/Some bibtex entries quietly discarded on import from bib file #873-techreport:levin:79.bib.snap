@@ -20,13 +20,18 @@ Object {
         "institution": Array [
           "MIT Artificial Intelligence Laboratory",
         ],
-        "title": Array [
-          "Instrumental <i>with/</i> and the control relation in english",
-        ],
-        "year": Array [
-          "1979",
-        ],
+        "title": "Instrumental <i>with</i> and the control relation in english",
+        "year": 1979,
       },
+      "input": String(
+        @techreport(Levin:79,
+        \\tauthor =\\t{Beth C. Levin},
+        \\tyear =\\t\\t{1979},
+        \\tinstitution =\\t{MIT Artificial Intelligence Laboratory},
+        \\ttitle =\\t\\t{Instrumental {\\\\em With\\\\/} 
+        \\t\\t\\t and the Control Relation in English}
+        )
+      ),
       "key": "Levin:79",
       "type": "techreport",
     },

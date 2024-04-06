@@ -13,30 +13,47 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "lastName": "MCDERMOTT",
+            "name": "MCDERMOTT",
           },
         ],
-        "bootitle": Array [
-          "AAAI-80",
-        ],
-        "pages": Array [
-          "246–248",
-        ],
-        "title": Array [
-          "A theory of metric spatial inference",
-        ],
-        "volume": Array [
-          "1",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "bootitle": "AAAI-80",
+        "pages": "246–248",
+        "title": "A theory of metric spatial inference",
+        "volume": "1",
+        "year": 1980,
       },
+      "input": String(
+        @inproceedings(McDermott:80a,
+        \\tauthor =\\tMCDERMOTT,
+        \\tyear =\\t\\t{1980},
+        \\tbootitle =\\tAAAI-80,
+        \\tpages =\\t\\t{246--248},
+        \\ttitle =\\t\\t"A theory of metric spatial inference",
+        \\tvolume =\\t{1}
+        )
+      ),
       "key": "McDermott:80a",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"MCDERMOTT\\"",
+      "input": "MCDERMOTT",
+      "location": Object {
+        "column": 20,
+        "line": 2,
+      },
+    },
+    Object {
+      "error": "Unresolved @string reference \\"AAAI-80\\"",
+      "input": "AAAI-80",
+      "location": Object {
+        "column": 20,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

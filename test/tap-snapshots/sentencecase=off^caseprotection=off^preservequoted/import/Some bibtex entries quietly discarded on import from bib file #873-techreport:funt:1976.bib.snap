@@ -20,13 +20,17 @@ Object {
         "institution": Array [
           "University of British Columbia Department of Computer Science",
         ],
-        "title": Array [
-          "WHISPER: A Computer Implementation Using Analogues in Reasoning",
-        ],
-        "year": Array [
-          "1976",
-        ],
+        "title": "WHISPER: A Computer Implementation Using Analogues in Reasoning",
+        "year": 1976,
       },
+      "input": String(
+        @techreport(Funt:1976,
+        \\tauthor =\\t{Brian V. Funt},
+        \\tyear =\\t\\t{1976},
+        \\tinstitution =\\t{University of British Columbia Department of Computer Science},
+        \\ttitle =\\t\\t{WHISPER: A Computer Implementation Using Analogues in Reasoning}
+        )
+      ),
       "key": "Funt:1976",
       "type": "techreport",
     },

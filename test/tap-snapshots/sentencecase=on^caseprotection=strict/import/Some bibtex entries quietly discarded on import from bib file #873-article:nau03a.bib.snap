@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "abstract": Array [
-          "The SHOP2 planning system received one of the awards for distinguished performance in the 2002 International Planning Competition. This paper describes the features of SHOP2 which enabled it to excel in the competition, especially those aspects of SHOP2 that deal with temporal and metric planning domains.",
-        ],
+        "abstract": "The SHOP2 planning system received one of the awards for distinguished performance in the 2002 International Planning Competition. This paper describes the features of SHOP2 which enabled it to excel in the competition, especially those aspects of SHOP2 that deal with temporal and metric planning domains.",
         "author": Array [
           Object {
             "firstName": "Dana",
@@ -44,28 +42,33 @@ Object {
             "lastName": "Yaman",
           },
         ],
-        "issn": Array [
-          "1076-9757",
-        ],
-        "journal": Array [
-          "Journal of Artificial Intelligence Research",
-        ],
-        "pages": Array [
-          "379–404",
-        ],
-        "title": Array [
-          "<span class=\\"nocase\\">SHOP2</span>: An <span class=\\"nocase\\">HTN</span> planning system",
-        ],
-        "url": Array [
-          "http://www.cs.cmu.edu/afs/cs/project/jair/pub/volume20/nau03a.pdf",
-        ],
-        "volume": Array [
-          "20",
-        ],
-        "year": Array [
-          "2003",
-        ],
+        "issn": "1076-9757",
+        "journal": "Journal of Artificial Intelligence Research",
+        "pages": "379–404",
+        "title": "<span class=\\"nocase\\">SHOP2</span>: An <span class=\\"nocase\\">HTN</span> planning system",
+        "url": "http://www.cs.cmu.edu/afs/cs/project/jair/pub/volume20/nau03a.pdf",
+        "volume": "20",
+        "year": 2003,
       },
+      "input": String(
+        @Article{nau03a,
+          author =       "Dana Nau and T. C. Au and O. Ilghami and U. Kuter and
+                         J. W. Murdock and D. Wu and F. Yaman",
+          title =        "{SHOP2}: An {HTN} Planning System",
+          journal =      "Journal of Artificial Intelligence Research",
+          ISSN =         "1076-9757",
+          pages =        "379--404",
+          volume =       "20",
+          year =         "2003",
+          URL =          "http://www.cs.cmu.edu/afs/cs/project/jair/pub/volume20/nau03a.pdf",
+          abstract =     "The SHOP2 planning system received one of the awards
+                         for distinguished performance in the 2002 International
+                         Planning Competition. This paper describes the features
+                         of SHOP2 which enabled it to excel in the competition,
+                         especially those aspects of SHOP2 that deal with
+                         temporal and metric planning domains.",
+        }
+      ),
       "key": "nau03a",
       "type": "article",
     },

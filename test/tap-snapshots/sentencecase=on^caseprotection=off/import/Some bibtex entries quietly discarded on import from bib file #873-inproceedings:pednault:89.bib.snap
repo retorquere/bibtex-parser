@@ -17,16 +17,19 @@ Object {
             "lastName": "Pednault",
           },
         ],
-        "crossref": Array [
-          "KR:89",
-        ],
-        "title": Array [
-          "<span style=\\"font-variant:small-caps;\\">Adl</span>: Exploring the middle ground between <span style=\\"font-variant:small-caps;\\">strips</span> and the situation calculus",
-        ],
-        "year": Array [
-          "1989",
-        ],
+        "crossref": "KR:89",
+        "title": "<span style=\\"font-variant:small-caps;\\">Adl</span>: Exploring the middle ground between <span style=\\"font-variant:small-caps;\\">strips</span> and the situation calculus",
+        "year": 1989,
       },
+      "input": String(
+        @inproceedings(Pednault:89,
+        \\tAUTHOR = {E.P.D. Pednault},
+        \\tTITLE = {{\\\\sc Adl}: Exploring the middle ground between
+        \\t\\t {\\\\sc Strips} and the situation calculus},
+        \\tCROSSREF = {KR:89},
+        \\tYEAR = {1989}
+        )
+      ),
       "key": "Pednault:89",
       "type": "inproceedings",
     },

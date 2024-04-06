@@ -17,9 +17,7 @@ Object {
             "lastName": "Clark",
           },
         ],
-        "booktitle": Array [
-          "Logic and databases",
-        ],
+        "booktitle": "Logic and databases",
         "editor": Array [
           Object {
             "firstName": "H.",
@@ -30,19 +28,24 @@ Object {
             "lastName": "Minker",
           },
         ],
-        "pages": Array [
-          "293-322",
-        ],
+        "pages": "293-322",
         "publisher": Array [
           "Plenum Press",
         ],
-        "title": Array [
-          "Negation as failure",
-        ],
-        "year": Array [
-          "1978",
-        ],
+        "title": "Negation as failure",
+        "year": 1978,
       },
+      "input": String(
+        @book(Clark:1978,
+        \\tauthor =\\t{Keith L. Clark},
+        \\tbooktitle =\\t{Logic and Databases},
+        \\tyear =\\t\\t{1978},
+        \\teditor =\\t{H. Gallaire and J. Minker},
+        \\tpublisher =\\t{Plenum Press},
+        \\tpages =\\t\\t{293-322},
+        \\ttitle =\\t\\t{Negation as failure}
+        )
+      ),
       "key": "Clark:1978",
       "type": "book",
     },

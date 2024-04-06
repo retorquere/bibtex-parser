@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Amsterdam",
-        ],
+        "address": "Amsterdam",
         "author": Array [
           Object {
             "firstName": "Roger C.",
@@ -23,13 +21,18 @@ Object {
         "publisher": Array [
           "North-Holland",
         ],
-        "title": Array [
-          "Conceptual Information Processing",
-        ],
-        "year": Array [
-          "1975",
-        ],
+        "title": "Conceptual Information Processing",
+        "year": 1975,
       },
+      "input": String(
+        @book(Schank:1975,
+        \\tauthor =\\t{Roger C. Schank},
+        \\taddress =\\t{Amsterdam},
+        \\tyear =\\t\\t{1975},
+        \\tpublisher =\\t{North-Holland},
+        \\ttitle =\\t\\t{Conceptual Information Processing}
+        )
+      ),
       "key": "Schank:1975",
       "type": "book",
     },

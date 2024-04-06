@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Stanford University, Stanford, CA",
-        ],
+        "address": "Stanford University, Stanford, CA",
         "author": Array [
           Object {
             "firstName": "Gerald",
@@ -23,27 +21,39 @@ Object {
         "institution": Array [
           "CSLI",
         ],
-        "month": Array [
-          "September",
-        ],
-        "note": Array [
-          "Review of <i>Two-level Morphology</i>",
-        ],
-        "number": Array [
-          "CSLI-85-32",
-        ],
-        "title": Array [
-          "Finite state morphology: A review of koskenniemi (1983)",
-        ],
-        "year": Array [
-          "1985",
-        ],
+        "month": "September",
+        "note": "Review of <i>Two-level Morphology</i>",
+        "number": "CSLI-85-32",
+        "title": "Finite state morphology: a review of Koskenniemi (1983)",
+        "year": 1985,
       },
+      "input": String(
+        @TECHREPORT{Gazdar:85,
+        \\tAUTHOR = {Gerald Gazdar},
+        \\tTITLE = {Finite State Morphology:  
+        \\t\\t A review of {K}oskenniemi (1983)},
+        \\tINSTITUTION = CSLI,
+        \\tYEAR = {1985},
+        \\tNUMBER = {CSLI-85-32},
+        \\tADDRESS = {Stanford University, Stanford, CA},
+        \\tMONTH = {September},
+        \\tNOTE = {Review of {\\\\em Two-level Morphology}}
+        }
+      ),
       "key": "Gazdar:85",
       "type": "techreport",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"CSLI\\"",
+      "input": "CSLI",
+      "location": Object {
+        "column": 20,
+        "line": 5,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

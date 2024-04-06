@@ -24,13 +24,17 @@ Object {
         "institution": Array [
           "MIT Artificial Intelligence Laboratory",
         ],
-        "title": Array [
-          "The FRL Manual",
-        ],
-        "year": Array [
-          "1977",
-        ],
+        "title": "The FRL Manual",
+        "year": 1977,
       },
+      "input": String(
+        @techreport(Roberts:77,
+        \\tauthor =\\t{Bruce R. Roberts and Ira P Goldstein},
+        \\tyear =\\t\\t{1977},
+        \\tinstitution =\\t{MIT Artificial Intelligence Laboratory},
+        \\ttitle =\\t\\t{The FRL Manual}
+        )
+      ),
       "key": "Roberts:77",
       "type": "techreport",
     },

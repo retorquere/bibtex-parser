@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "Stuart",
@@ -23,13 +21,18 @@ Object {
         "publisher": Array [
           "Van Nostrand",
         ],
-        "title": Array [
-          "Techniques of Artificial Intelligence",
-        ],
-        "year": Array [
-          "1979",
-        ],
+        "title": "Techniques of Artificial Intelligence",
+        "year": 1979,
       },
+      "input": String(
+        @book(Shapiro:79,
+        \\tauthor =\\t{Stuart Shapiro},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1979},
+        \\tpublisher =\\t{Van Nostrand},
+        \\ttitle =\\t\\t{Techniques of Artificial Intelligence}
+        )
+      ),
       "key": "Shapiro:79",
       "type": "book",
     },

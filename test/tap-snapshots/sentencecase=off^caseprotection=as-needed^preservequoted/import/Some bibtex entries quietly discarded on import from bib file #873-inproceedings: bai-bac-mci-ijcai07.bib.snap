@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Hyderabad, India",
-        ],
+        "address": "Hyderabad, India",
         "author": Array [
           Object {
             "firstName": "J.",
@@ -28,25 +26,25 @@ Object {
             "lastName": "McIlraith",
           },
         ],
-        "booktitle": Array [
-          "IJCAI Proceedings",
-        ],
-        "month": Array [
-          "January",
-        ],
-        "pages": Array [
-          "1808-1815",
-        ],
-        "title": Array [
-          "A Heuristic Search Approach to Planning with Temporally Extended Preferences",
-        ],
-        "url": Array [
-          "bai-bac-mci-ijcai07.pdf",
-        ],
-        "year": Array [
-          "2007",
-        ],
+        "booktitle": "IJCAI Proceedings",
+        "month": "January",
+        "pages": "1808-1815",
+        "title": "A Heuristic Search Approach to Planning with Temporally Extended Preferences",
+        "url": "bai-bac-mci-ijcai07.pdf",
+        "year": 2007,
       },
+      "input": String(
+        @inproceedings{ bai-bac-mci-ijcai07,
+          author = {Baier, J. and Bacchus, F. and McIlraith, S.},
+          title = {A Heuristic Search Approach to Planning with Temporally Extended Preferences},
+          url = {bai-bac-mci-ijcai07.pdf},
+          booktitle = {IJCAI Proceedings},
+          address = {Hyderabad, India},
+          month = {January},
+          year = {2007},
+          pages = {1808-1815}
+        }
+      ),
       "key": "bai-bac-mci-ijcai07",
       "type": "inproceedings",
     },

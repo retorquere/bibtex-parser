@@ -14,30 +14,31 @@ Object {
         "author": Array [
           Object {
             "firstName": "Klaus",
-            "lastName": "Däßler",
+            "lastName": "Däßler",
           },
         ],
-        "doi": Array [
-          "10.1175/1520-0493(1987)115<1606:GARSPP>2.0.CO;2",
-        ],
-        "journal": Array [
-          "Title, with comma",
-        ],
+        "doi": "10.1175/1520-0493(1987)115<1606:GARSPP>2.0.CO;2",
+        "journal": "Title, with comma",
         "keywords": Array [
           "breadcrust",
           "plinian",
           "Vulcanian eruptions",
         ],
-        "title": Array [
-          "The physical: Violent volcanology of the 1600 eruption of <span class=\\"nocase\\">Huaynaputina</span>, southern <span class=\\"nocase\\">Peru</span>",
-        ],
-        "volume": Array [
-          "62",
-        ],
-        "year": Array [
-          "2001",
-        ],
+        "title": "The physical: Violent volcanology of the 1600 eruption of <span class=\\"nocase\\">Huaynaputina</span>, southern <span class=\\"nocase\\">Peru</span>",
+        "volume": "62",
+        "year": 2001,
       },
+      "input": String(
+        @article{Dassler2001,
+          title = {The Physical: Violent Volcanology of the 1600 Eruption of {{Huaynaputina}}, Southern {{Peru}}},
+          author = {D{\\\\"a}{\\\\ss}ler, Klaus},
+          year = {2001},
+          volume = {62},
+          doi = {10.1175/1520-0493(1987)115<1606:GARSPP>2.0.CO;2},
+          journal = {Title, with comma},
+          keywords = {breadcrust,plinian,Vulcanian eruptions}
+        }
+      ),
       "key": "Dassler2001",
       "type": "article",
     },

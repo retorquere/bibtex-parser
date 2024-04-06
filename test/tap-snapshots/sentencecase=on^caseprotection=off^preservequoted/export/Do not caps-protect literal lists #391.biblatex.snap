@@ -14,10 +14,14 @@ Object {
         "institution": Array [
           "Office of Information Management and Communications",
         ],
-        "title": Array [
-          "Institution",
-        ],
+        "title": "Institution",
       },
+      "input": String(
+        @report{institution,
+          title = {Institution},
+          institution = {{Office of Information Management and Communications}}
+        }
+      ),
       "key": "institution",
       "type": "report",
     },
@@ -35,10 +39,17 @@ Object {
         "publisher": Array [
           "Miller, Smith and Jones",
         ],
-        "title": Array [
-          "Publisher",
-        ],
+        "title": "Publisher",
       },
+      "input": String(
+        @book{publisher,
+          title = {Publisher},
+          publisher = {{Miller, Smith and Jones}},
+          location = {{Trinidad and Tobago}},
+          origlocation = {{Saint Kitts and Nevis}},
+          origpublisher = {{Doe and Company}}
+        }
+      ),
       "key": "publisher",
       "type": "book",
     },
@@ -47,10 +58,14 @@ Object {
         "institution": Array [
           "University of Saint Kitts and Nevis",
         ],
-        "title": Array [
-          "University",
-        ],
+        "title": "University",
       },
+      "input": String(
+        @thesis{university,
+          title = {University},
+          institution = {{University of Saint Kitts and Nevis}}
+        }
+      ),
       "key": "university",
       "type": "thesis",
     },

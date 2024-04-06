@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Seattle, WA",
-        ],
+        "address": "Seattle, WA",
         "author": Array [
           Object {
             "firstName": "Peter",
@@ -27,24 +25,37 @@ Object {
         "institution": Array [
           "UDUB",
         ],
-        "month": Array [
-          "June",
-        ],
-        "number": Array [
-          "93-06-04",
-        ],
-        "title": Array [
-          "Utility models for goal-directed decision-theoretic planners",
-        ],
-        "year": Array [
-          "1993",
-        ],
+        "month": "June",
+        "number": "93-06-04",
+        "title": "Utility models for goal-directed decision-theoretic planners",
+        "year": 1993,
       },
+      "input": String(
+        @TECHREPORT(Haddawy:93,
+        \\tAUTHOR = {Peter Haddawy and Steve Hanks},
+        \\tTITLE = {Utility Models for Goal-directed
+        \\t\\t Decision-theoretic Planners},
+        \\tINSTITUTION = UDUB,
+        \\tYEAR = {1993},
+        \\tNUMBER = {93-06-04},
+        \\tADDRESS = {Seattle, WA},
+        \\tMONTH = {June}
+        )
+      ),
       "key": "Haddawy:93",
       "type": "techreport",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"UDUB\\"",
+      "input": "UDUB",
+      "location": Object {
+        "column": 20,
+        "line": 5,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

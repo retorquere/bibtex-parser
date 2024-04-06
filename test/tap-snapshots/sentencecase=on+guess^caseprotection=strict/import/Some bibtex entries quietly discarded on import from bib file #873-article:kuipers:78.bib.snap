@@ -17,25 +17,24 @@ Object {
             "lastName": "Kuipers",
           },
         ],
-        "journal": Array [
-          "Cognitive Science",
-        ],
-        "number": Array [
-          "2",
-        ],
-        "pages": Array [
-          "129–154",
-        ],
-        "title": Array [
-          "Modeling spatial knowledge",
-        ],
-        "volume": Array [
-          "2",
-        ],
-        "year": Array [
-          "1978",
-        ],
+        "journal": "Cognitive Science",
+        "number": "2",
+        "pages": "129–154",
+        "title": "Modeling spatial knowledge",
+        "volume": "2",
+        "year": 1978,
       },
+      "input": String(
+        @article(Kuipers:78,
+        \\tauthor =\\t{Benjamin Kuipers},
+        \\tyear =\\t\\t{1978},
+        \\tjournal =\\t{Cognitive Science},
+        \\tnumber =\\t{2},
+        \\tpages =\\t\\t{129--154},
+        \\ttitle =\\t\\t"Modeling spatial knowledge",
+        \\tvolume =\\t{2}
+        )
+      ),
       "key": "Kuipers:78",
       "type": "article",
     },

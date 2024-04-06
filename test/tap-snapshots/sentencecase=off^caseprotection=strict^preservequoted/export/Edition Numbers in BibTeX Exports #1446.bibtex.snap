@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "<span class=\\"nocase\\">Philadelphia, PA</span>",
-        ],
+        "address": "Philadelphia, PA",
         "author": Array [
           Object {
             "firstName": "Richard",
@@ -53,34 +51,35 @@ Object {
           },
           Object {
             "firstName": "Henk",
-            "lastName": "van der Vorst",
+            "lastName": "Vorst",
+            "prefix": "van der",
           },
         ],
-        "edition": Array [
-          "Second",
-        ],
-        "language": Array [
-          "en-US",
-        ],
+        "edition": "Second",
+        "language": "en-US",
         "publisher": Array [
           "Society for Industrial and Applied Mathematics",
         ],
-        "shorttitle": Array [
-          "Templates for the Solution of Linear Systems",
-        ],
-        "title": Array [
-          "Templates for the Solution of Linear Systems: Building Blocks for Iterative Methods",
-        ],
-        "url": Array [
-          "https://www.netlib.org/linalg/html_templates/Templates.html",
-        ],
-        "urldate": Array [
-          "2020-01-31",
-        ],
-        "year": Array [
-          "1994",
-        ],
+        "shorttitle": "Templates for the Solution of Linear Systems",
+        "title": "Templates for the Solution of Linear Systems: Building Blocks for Iterative Methods",
+        "url": "https://www.netlib.org/linalg/html_templates/Templates.html",
+        "urldate": "2020-01-31",
+        "year": 1994,
       },
+      "input": String(
+        @book{barrett1994,
+          title = {Templates for the Solution of Linear Systems: Building Blocks for Iterative Methods},
+          shorttitle = {Templates for the Solution of Linear Systems},
+          author = {Barrett, Richard and Berry, Michael and Chan, Tony F. and Demmel, James and Donato, June M. and Dongarra, Jack and Eijkhout, Victor and Pozo, Roldan and Romine, Charles and {van der Vorst}, Henk},
+          year = {1994},
+          edition = {Second},
+          publisher = {{Society for Industrial and Applied Mathematics}},
+          address = {{Philadelphia, PA}},
+          url = {https://www.netlib.org/linalg/html_templates/Templates.html},
+          urldate = {2020-01-31},
+          language = {en-US}
+        }
+      ),
       "key": "barrett1994",
       "type": "book",
     },

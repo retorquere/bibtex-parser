@@ -11,39 +11,47 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "annote": Array [
-          "Korf presents a space-limited algorithm for best-first search.",
-        ],
+        "annote": "Korf presents a space-limited algorithm for best-first search.",
         "author": Array [
           Object {
             "firstName": "Richard",
             "lastName": "Korf",
           },
         ],
-        "journal": Array [
-          "AIJ",
-        ],
-        "number": Array [
-          "1",
-        ],
-        "pages": Array [
-          "41–78",
-        ],
-        "title": Array [
-          "Linear-space best-first search",
-        ],
-        "volume": Array [
-          "62",
-        ],
-        "year": Array [
-          "1993",
-        ],
+        "journal": "AIJ",
+        "number": "1",
+        "pages": "41–78",
+        "title": "Linear-space best-first search",
+        "volume": "62",
+        "year": 1993,
       },
+      "input": String(
+        @ARTICLE{Korf:RBFS,
+        \\tAUTHOR = {Richard Korf},
+        \\tTITLE = "Linear-space best-first search",
+        \\tJOURNAL = AIJ,
+        \\tYEAR = {1993},
+        \\tVOLUME = {62},
+        \\tNUMBER = {1},
+        \\tPAGES = {41--78},
+        \\tANNOTE = {Korf presents a space-limited algorithm for best-first
+        \\t\\t  search.}
+        }
+      ),
       "key": "Korf:RBFS",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"AIJ\\"",
+      "input": "AIJ",
+      "location": Object {
+        "column": 15,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

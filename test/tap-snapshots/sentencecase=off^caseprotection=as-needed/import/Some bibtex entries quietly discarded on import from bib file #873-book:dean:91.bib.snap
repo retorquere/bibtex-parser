@@ -7,13 +7,13 @@
 'use strict'
 exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-book:dean:91.bib > must match snapshot 1`] = `
 Object {
-  "comments": Array [],
+  "comments": Array [
+    "Big Brown paper ",
+  ],
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "KAUFMANN-ADDRESS",
-        ],
+        "address": "KAUFMANN-ADDRESS",
         "author": Array [
           Object {
             "firstName": "Thomas L.",
@@ -27,18 +27,40 @@ Object {
         "publisher": Array [
           "KAUFMANN",
         ],
-        "title": Array [
-          "Planning and Control",
-        ],
-        "year": Array [
-          "1991",
-        ],
+        "title": "Planning and Control",
+        "year": 1991,
       },
+      "input": String(
+        @BOOK{Dean:91,
+        \\tAUTHOR = {Thomas L. Dean and Michael P. Wellman},
+        \\tTITLE = "Planning and Control",
+        \\tPUBLISHER = KAUFMANN,
+        \\tYEAR = {1991},
+        \\tADDRESS = KAUFMANN-ADDRESS
+        }
+      ),
       "key": "Dean:91",
       "type": "book",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"KAUFMANN\\"",
+      "input": "KAUFMANN",
+      "location": Object {
+        "column": 22,
+        "line": 4,
+      },
+    },
+    Object {
+      "error": "Unresolved @string reference \\"KAUFMANN-ADDRESS\\"",
+      "input": "KAUFMANN-ADDRESS",
+      "location": Object {
+        "column": 0,
+        "line": 7,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

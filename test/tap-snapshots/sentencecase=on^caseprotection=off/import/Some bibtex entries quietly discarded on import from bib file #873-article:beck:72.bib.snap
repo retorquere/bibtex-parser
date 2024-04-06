@@ -17,22 +17,22 @@ Object {
             "lastName": "Beck",
           },
         ],
-        "journal": Array [
-          "American Journal of Psychology",
-        ],
-        "pages": Array [
-          "1-19",
-        ],
-        "title": Array [
-          "Similarity grouping and peripheral discriminability under uncertainty",
-        ],
-        "volume": Array [
-          "85",
-        ],
-        "year": Array [
-          "1972",
-        ],
+        "journal": "American Journal of Psychology",
+        "pages": "1-19",
+        "title": "Similarity grouping and peripheral discriminability under uncertainty",
+        "volume": "85",
+        "year": 1972,
       },
+      "input": String(
+        @article(Beck:72,
+        \\tauthor =\\t{Jacob Beck},
+        \\tyear =\\t\\t{1972},
+        \\tjournal =\\t{American Journal of Psychology},
+        \\tpages =\\t\\t{1-19},
+        \\ttitle =\\t\\t"Similarity grouping and peripheral discriminability under uncertainty",
+        \\tvolume =\\t{85}
+        )
+      ),
       "key": "Beck:72",
       "type": "article",
     },

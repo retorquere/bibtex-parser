@@ -20,16 +20,20 @@ Object {
         "institution": Array [
           "Department of Computer Science, Brown University",
         ],
-        "number": Array [
-          "CS-90-37",
-        ],
-        "title": Array [
-          "CI2 – a logic for plural representation",
-        ],
-        "year": Array [
-          "1990",
-        ],
+        "number": "CS-90-37",
+        "title": "CI2 – A logic for plural representation",
+        "year": 1990,
       },
+      "input": String(
+        @TECHREPORT{Yen:90,
+        \\tAUTHOR = {Felix Yen},
+        \\tTITLE = "{CI2} -- A Logic for Plural representation",
+        \\tINSTITUTION = {Department of Computer Science,
+        \\t\\t       Brown University},
+        \\tYEAR = {1990},
+        \\tNUMBER = {CS-90-37}
+        }
+      ),
       "key": "Yen:90",
       "type": "techreport",
     },

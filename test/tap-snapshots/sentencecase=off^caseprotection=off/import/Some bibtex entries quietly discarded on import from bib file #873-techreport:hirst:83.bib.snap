@@ -20,13 +20,17 @@ Object {
         "institution": Array [
           "Brown University Department of Computer Science",
         ],
-        "title": Array [
-          "Semantic Interpretation against Ambiguity",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "title": "Semantic Interpretation against Ambiguity",
+        "year": 1983,
       },
+      "input": String(
+        @techreport(Hirst:83,
+        \\tauthor =\\t{Graeme Hirst},
+        \\tyear =\\t\\t{1983},
+        \\tinstitution =\\t{Brown University Department of Computer Science},
+        \\ttitle =\\t\\t{Semantic Interpretation against Ambiguity}
+        )
+      ),
       "key": "Hirst:83",
       "type": "techreport",
     },

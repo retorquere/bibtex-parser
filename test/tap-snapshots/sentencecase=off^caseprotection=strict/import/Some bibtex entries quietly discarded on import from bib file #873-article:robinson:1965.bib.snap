@@ -17,25 +17,24 @@ Object {
             "lastName": "Robinson",
           },
         ],
-        "journal": Array [
-          "Journal of the ACM",
-        ],
-        "number": Array [
-          "1",
-        ],
-        "pages": Array [
-          "23",
-        ],
-        "title": Array [
-          "A machine-oriented logic based on the resolution principle",
-        ],
-        "volume": Array [
-          "12",
-        ],
-        "year": Array [
-          "1965",
-        ],
+        "journal": "Journal of the ACM",
+        "number": "1",
+        "pages": "23",
+        "title": "A machine-oriented logic based on the resolution principle",
+        "volume": "12",
+        "year": 1965,
       },
+      "input": String(
+        @article(Robinson:1965,
+        \\tauthor =\\t{J.A. Robinson},
+        \\tyear =\\t\\t{1965},
+        \\tjournal =\\t{Journal of the ACM},
+        \\tnumber =\\t{1},
+        \\tpages =\\t\\t{23},
+        \\ttitle =\\t\\t"A machine-oriented logic based on the resolution principle",
+        \\tvolume =\\t{12}
+        )
+      ),
       "key": "Robinson:1965",
       "type": "article",
     },

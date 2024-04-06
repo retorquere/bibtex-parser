@@ -17,22 +17,22 @@ Object {
             "lastName": "Woods",
           },
         ],
-        "journal": Array [
-          "AFIPS Conference Proceedings (Fall Joint Computer Conference)",
-        ],
-        "pages": Array [
-          "457-471",
-        ],
-        "title": Array [
-          "Procedural semantics for a question-answering machine",
-        ],
-        "volume": Array [
-          "33",
-        ],
-        "year": Array [
-          "1968",
-        ],
+        "journal": "AFIPS Conference Proceedings (Fall Joint Computer Conference)",
+        "pages": "457-471",
+        "title": "Procedural semantics for a question-answering machine",
+        "volume": "33",
+        "year": 1968,
       },
+      "input": String(
+        @article(Woods:68,
+        \\tauthor =\\t{William A. Woods},
+        \\tyear =\\t\\t{1968},
+        \\tjournal =\\t{AFIPS Conference Proceedings (Fall Joint Computer Conference)},
+        \\tpages =\\t\\t{457-471},
+        \\ttitle =\\t\\t"Procedural semantics for a question-answering machine",
+        \\tvolume =\\t{33}
+        )
+      ),
       "key": "Woods:68",
       "type": "article",
     },

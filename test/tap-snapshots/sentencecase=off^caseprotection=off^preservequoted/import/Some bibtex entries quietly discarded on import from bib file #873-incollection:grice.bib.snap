@@ -11,18 +11,14 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "Paul",
             "lastName": "Grice",
           },
         ],
-        "booktitle": Array [
-          "Speech Acts",
-        ],
+        "booktitle": "Speech Acts",
         "editor": Array [
           Object {
             "firstName": "P.",
@@ -33,25 +29,29 @@ Object {
             "lastName": "Morgan",
           },
         ],
-        "number": Array [
-          "3",
-        ],
-        "pages": Array [
-          "41-58",
-        ],
+        "number": "3",
+        "pages": "41-58",
         "publisher": Array [
           "Academic Press",
         ],
-        "series": Array [
-          "Syntax and Semantics",
-        ],
-        "title": Array [
-          "Logic and conversation",
-        ],
-        "year": Array [
-          "1975",
-        ],
+        "series": "Syntax and Semantics",
+        "title": "Logic and conversation",
+        "year": 1975,
       },
+      "input": String(
+        @incollection(Grice,
+        \\tauthor =\\t{Paul Grice},
+        \\tbooktitle =\\t{Speech Acts},
+        \\tseries = \\t{Syntax and Semantics},
+        \\tnumber = \\t{3},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1975},
+        \\teditor =\\t{P. Cole and J. Morgan},
+        \\tpublisher =\\t{Academic Press},
+        \\tpages =\\t\\t{41-58},
+        \\ttitle =\\t\\t{Logic and conversation}
+        )
+      ),
       "key": "Grice",
       "type": "incollection",
     },

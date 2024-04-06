@@ -11,37 +11,39 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "Christopher K.",
             "lastName": "Riesbeck",
           },
         ],
-        "booktitle": Array [
-          "Associative networks: Representation and use of knowledge by computer",
-        ],
+        "booktitle": "Associative networks: Representation and use of knowledge by computer",
         "editor": Array [
           Object {
             "firstName": "N.V.",
             "lastName": "Findler",
           },
         ],
-        "pages": Array [
-          "409-424",
-        ],
+        "pages": "409-424",
         "publisher": Array [
           "Academic Press",
         ],
-        "title": Array [
-          "Representations to aid distributed understanding in a multiprogram system",
-        ],
-        "year": Array [
-          "1979",
-        ],
+        "title": "Representations to aid distributed understanding in a multiprogram system",
+        "year": 1979,
       },
+      "input": String(
+        @book(Riesbeck:1979,
+        \\tauthor =\\t{Christopher K. Riesbeck},
+        \\tbooktitle =\\t{Associative Networks: Representation and Use of Knowledge by Computer},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1979},
+        \\teditor =\\t{N.V. Findler},
+        \\tpublisher =\\t{Academic Press},
+        \\tpages =\\t\\t{409-424},
+        \\ttitle =\\t\\t{Representations to aid distributed understanding in a multiprogram system}
+        )
+      ),
       "key": "Riesbeck:1979",
       "type": "book",
     },

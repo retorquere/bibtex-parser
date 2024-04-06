@@ -17,24 +17,34 @@ Object {
             "lastName": "Hobbs",
           },
         ],
-        "booktitle": Array [
-          "ACL-85",
-        ],
-        "pages": Array [
-          "61–69",
-        ],
-        "title": Array [
-          "Ontological promiscuity",
-        ],
-        "year": Array [
-          "1985",
-        ],
+        "booktitle": "<span class=\\"nocase\\">ACL-85</span>",
+        "pages": "61–69",
+        "title": "Ontological promiscuity",
+        "year": 1985,
       },
+      "input": String(
+        @inproceedings(Hobbs:85,
+        \\tauthor =\\t{Jerry R. Hobbs},
+        \\tyear =\\t\\t{1985},
+        \\tbooktitle =\\tACL-85,
+        \\ttitle =\\t\\t"Ontological Promiscuity",
+        \\tpages =\\t\\t{61--69}
+        )
+      ),
       "key": "Hobbs:85",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"ACL-85\\"",
+      "input": "ACL-85",
+      "location": Object {
+        "column": 20,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

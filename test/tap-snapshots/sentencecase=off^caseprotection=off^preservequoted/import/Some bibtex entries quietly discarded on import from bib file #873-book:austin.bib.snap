@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "London",
-        ],
+        "address": "London",
         "author": Array [
           Object {
             "firstName": "J.L.",
@@ -23,13 +21,18 @@ Object {
         "publisher": Array [
           "Oxford University Press",
         ],
-        "title": Array [
-          "How to Do Things with Words",
-        ],
-        "year": Array [
-          "1962",
-        ],
+        "title": "How to Do Things with Words",
+        "year": 1962,
       },
+      "input": String(
+        @book(Austin,
+        \\tauthor =\\t{J.L. Austin},
+        \\taddress =\\t{London},
+        \\tyear =\\t\\t{1962},
+        \\tpublisher =\\t{Oxford University Press},
+        \\ttitle =\\t\\t{How to Do Things with Words}
+        )
+      ),
       "key": "Austin",
       "type": "book",
     },

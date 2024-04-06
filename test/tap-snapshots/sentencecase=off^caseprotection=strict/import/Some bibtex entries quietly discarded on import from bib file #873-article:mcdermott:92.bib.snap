@@ -13,36 +13,43 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "lastName": "MCDERMOTT",
+            "name": "MCDERMOTT",
           },
         ],
-        "journal": Array [
-          "AI Magazine",
-        ],
-        "month": Array [
-          "Summer",
-        ],
-        "number": Array [
-          "2",
-        ],
-        "pages": Array [
-          "55–79",
-        ],
-        "title": Array [
-          "Robot Planning",
-        ],
-        "volume": Array [
-          "13",
-        ],
-        "year": Array [
-          "1992",
-        ],
+        "journal": "AI Magazine",
+        "month": "Summer",
+        "number": "2",
+        "pages": "55–79",
+        "title": "Robot Planning",
+        "volume": "13",
+        "year": 1992,
       },
+      "input": String(
+        @ARTICLE{McDermott:92,
+        \\tAUTHOR = MCDERMOTT,
+        \\tTITLE = "Robot Planning",
+        \\tJOURNAL = {AI Magazine},
+        \\tYEAR = {1992},
+        \\tVOLUME = {13},
+        \\tNUMBER = {2},
+        \\tPAGES = {55--79},
+        \\tMONTH = {Summer}
+        }
+      ),
       "key": "McDermott:92",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"MCDERMOTT\\"",
+      "input": "MCDERMOTT",
+      "location": Object {
+        "column": 20,
+        "line": 2,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

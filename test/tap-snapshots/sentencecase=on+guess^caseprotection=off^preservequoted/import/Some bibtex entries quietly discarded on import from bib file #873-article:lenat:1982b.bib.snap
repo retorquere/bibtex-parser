@@ -17,25 +17,24 @@ Object {
             "lastName": "Lenat",
           },
         ],
-        "journal": Array [
-          "Artificial Intelligence",
-        ],
-        "number": Array [
-          "2",
-        ],
-        "pages": Array [
-          "189-249",
-        ],
-        "title": Array [
-          "The nature of heuristics",
-        ],
-        "volume": Array [
-          "19",
-        ],
-        "year": Array [
-          "1982",
-        ],
+        "journal": "Artificial Intelligence",
+        "number": "2",
+        "pages": "189-249",
+        "title": "The nature of heuristics",
+        "volume": "19",
+        "year": 1982,
       },
+      "input": String(
+        @article(Lenat:1982b,
+        \\tauthor =\\t{Douglas B. Lenat},
+        \\tyear =\\t\\t{1982},
+        \\tjournal =\\t{Artificial Intelligence},
+        \\tnumber =\\t{2},
+        \\tpages =\\t\\t{189-249},
+        \\ttitle =\\t\\t"The Nature of Heuristics",
+        \\tvolume =\\t{19}
+        )
+      ),
       "key": "Lenat:1982b",
       "type": "article",
     },

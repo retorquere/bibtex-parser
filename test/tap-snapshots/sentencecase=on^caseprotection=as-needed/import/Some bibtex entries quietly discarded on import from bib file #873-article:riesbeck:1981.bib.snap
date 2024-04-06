@@ -17,22 +17,22 @@ Object {
             "lastName": "Riesbeck",
           },
         ],
-        "journal": Array [
-          "Proc. Ijcai",
-        ],
-        "pages": Array [
-          "115-120",
-        ],
-        "title": Array [
-          "Failure-driven reminding for incremental learning",
-        ],
-        "volume": Array [
-          "7",
-        ],
-        "year": Array [
-          "1981",
-        ],
+        "journal": "Proc. Ijcai",
+        "pages": "115-120",
+        "title": "Failure-driven reminding for incremental learning",
+        "volume": "7",
+        "year": 1981,
       },
+      "input": String(
+        @article(Riesbeck:1981,
+        \\tauthor =\\t{Christopher K. Riesbeck},
+        \\tyear =\\t\\t{1981},
+        \\tjournal =\\t{Proc. Ijcai},
+        \\tpages =\\t\\t{115-120},
+        \\ttitle =\\t\\t"Failure-driven reminding for incremental learning",
+        \\tvolume =\\t{7}
+        )
+      ),
       "key": "Riesbeck:1981",
       "type": "article",
     },

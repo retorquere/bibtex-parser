@@ -14,25 +14,26 @@ Object {
         "author": Array [
           Object {
             "firstName": "American Rights",
-            "lastName": "at Work",
+            "lastName": "Work",
+            "prefix": "at",
           },
         ],
-        "howpublished": Array [
-          "http://www.americanrightsatwork.org/blogcategory-275/",
-        ],
-        "title": Array [
-          "Public Service Research Foundation",
-        ],
-        "url": Array [
-          "http://www.americanrightsatwork.org/blogcategory-275/",
-        ],
-        "urldate": Array [
-          "2012-07-27",
-        ],
-        "year": Array [
-          "2012",
-        ],
+        "howpublished": "http://www.americanrightsatwork.org/blogcategory-275/",
+        "title": "Public Service Research Foundation",
+        "url": "http://www.americanrightsatwork.org/blogcategory-275/",
+        "urldate": "2012-07-27",
+        "year": 2012,
       },
+      "input": String(
+        @misc{american_rights_at_work_public_2012,
+          title = {Public Service Research Foundation},
+          url = {http://www.americanrightsatwork.org/blogcategory-275/},
+          urldate = {2012-07-27},
+          author = {at Work, American Rights},
+          year = {2012},
+          howpublished = {http://www.americanrightsatwork.org/blogcategory-275/}
+        }
+      ),
       "key": "american_rights_at_work_public_2012",
       "type": "misc",
     },

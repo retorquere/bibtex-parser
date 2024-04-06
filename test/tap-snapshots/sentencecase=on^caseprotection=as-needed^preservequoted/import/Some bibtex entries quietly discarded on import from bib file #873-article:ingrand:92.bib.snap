@@ -25,25 +25,24 @@ Object {
             "lastName": "Rao",
           },
         ],
-        "journal": Array [
-          "IEEE Expert",
-        ],
-        "month": Array [
-          "dec",
-        ],
-        "pages": Array [
-          "34–44",
-        ],
-        "title": Array [
-          "An architecture for real-time reasoning and system control",
-        ],
-        "volume": Array [
-          "7:6",
-        ],
-        "year": Array [
-          "1992",
-        ],
+        "journal": "IEEE Expert-intelligent Systems & Their Applications",
+        "month": "dec",
+        "pages": "34–44",
+        "title": "An architecture for real-time reasoning and system control",
+        "volume": "7:6",
+        "year": 1992,
       },
+      "input": String(
+        @ARTICLE(Ingrand:92,
+                AUTHOR = {Francois Ingrand and Michael Georgeff and Anand Rao},
+                TITLE = "An Architecture for Real-Time Reasoning and System Control",
+                JOURNAL = {IEEE Expert},
+                YEAR = {1992},
+                VOLUME = {7:6},
+                MONTH = {dec},
+                PAGES = {34--44}
+        )
+      ),
       "key": "Ingrand:92",
       "type": "article",
     },

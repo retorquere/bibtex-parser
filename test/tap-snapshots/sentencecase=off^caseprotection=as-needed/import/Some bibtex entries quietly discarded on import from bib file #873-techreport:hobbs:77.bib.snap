@@ -24,13 +24,18 @@ Object {
         "institution": Array [
           "New York University",
         ],
-        "title": Array [
-          "Making Computational Sense of Montague's Intensional Logic",
-        ],
-        "year": Array [
-          "1977",
-        ],
+        "title": "Making Computational Sense of Montague's Intensional Logic",
+        "year": 1977,
       },
+      "input": String(
+        @techreport(Hobbs:77,
+        \\tauthor =\\t{Jerry R. Hobbs and Stanley J. Rosenschein},
+        \\tyear =\\t\\t{1977},
+        \\tinstitution =\\t{New York University},
+        \\ttitle =\\t\\t{Making Computational Sense of Montague's 
+        \\t\\t\\t Intensional Logic}
+        )
+      ),
       "key": "Hobbs:77",
       "type": "techreport",
     },

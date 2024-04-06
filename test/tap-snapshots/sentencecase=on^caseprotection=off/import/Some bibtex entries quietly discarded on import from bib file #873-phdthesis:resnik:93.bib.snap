@@ -17,16 +17,21 @@ Object {
             "lastName": "Resnick",
           },
         ],
-        "school": Array [
-          "Computer and Information Science, Penn University",
-        ],
-        "title": Array [
-          "Selection and information: A class-based approach to lexical relationships",
-        ],
-        "year": Array [
-          "1993",
-        ],
+        "school": "Computer and Information Science, Penn University",
+        "title": "Selection and information: a class-based approach to lexical relationships",
+        "year": 1993,
       },
+      "input": String(
+        @PHDTHESIS{Resnik:93,
+        \\t    
+        \\tAUTHOR = {Philip Stuart Resnick},
+        \\tTITLE = {Selection and Information:
+        \\t\\t A Class-based Approach to Lexical Relationships},
+        \\tSCHOOL = {Computer and Information Science,
+        \\t\\t  Penn University},
+        \\tYEAR = {1993}
+        }
+      ),
       "key": "Resnik:93",
       "type": "phdthesis",
     },

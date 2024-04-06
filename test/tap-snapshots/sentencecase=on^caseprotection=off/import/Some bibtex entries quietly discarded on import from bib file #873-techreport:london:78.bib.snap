@@ -20,13 +20,18 @@ Object {
         "institution": Array [
           "University of Maryland Department of Computer Science",
         ],
-        "title": Array [
-          "Dependency networks as a representation for modeling in general problem solvers",
-        ],
-        "year": Array [
-          "1978",
-        ],
+        "title": "Dependency networks as a representation for modeling in general problem solvers",
+        "year": 1978,
       },
+      "input": String(
+        @techreport(London:78,
+        \\tauthor =\\t{Philip E. London},
+        \\tyear =\\t\\t{1978},
+        \\tinstitution =\\t{University of Maryland Department of Computer Science},
+        \\ttitle =\\t\\t{Dependency Networks as a Representation for 
+        \\t\\t\\t Modeling in General Problem Solvers}
+        )
+      ),
       "key": "London:78",
       "type": "techreport",
     },

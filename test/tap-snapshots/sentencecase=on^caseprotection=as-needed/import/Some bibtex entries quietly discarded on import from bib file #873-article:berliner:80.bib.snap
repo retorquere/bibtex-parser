@@ -17,16 +17,18 @@ Object {
             "lastName": "Berliner",
           },
         ],
-        "journal": Array [
-          "Scientific American",
-        ],
-        "title": Array [
-          "Computer backgammon",
-        ],
-        "year": Array [
-          "June 1980",
-        ],
+        "journal": "Scientific American",
+        "title": "Computer backgammon",
+        "year": "June 1980",
       },
+      "input": String(
+        @article(Berliner:80,
+        \\tauthor =\\t{Hans Berliner},
+        \\tyear =\\t\\t{June 1980},
+        \\tjournal =\\t{Scientific American},
+        \\ttitle =\\t\\t{Computer backgammon}
+        )
+      ),
       "key": "Berliner:80",
       "type": "article",
     },

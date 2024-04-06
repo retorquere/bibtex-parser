@@ -21,33 +21,41 @@ Object {
             "lastName": "Boutilier",
           },
         ],
-        "journal": Array [
-          "AIJ",
-        ],
-        "month": Array [
-          "01",
-        ],
-        "number": Array [
-          "1–2",
-        ],
-        "pages": Array [
-          "219–283",
-        ],
-        "title": Array [
-          "Abstraction and approximate decision-theoretic planning",
-        ],
-        "volume": Array [
-          "89",
-        ],
-        "year": Array [
-          "1997",
-        ],
+        "journal": "AIJ",
+        "month": 1,
+        "number": "1–2",
+        "pages": "219–283",
+        "title": "Abstraction and approximate decision-theoretic planning",
+        "volume": "89",
+        "year": 1997,
       },
+      "input": String(
+        @ARTICLE{DeardenBoutilier:97,
+        \\tAUTHOR = {Richard Dearden and Craig Boutilier},
+        \\tTITLE = {Abstraction and Approximate Decision-theoretic
+        \\t\\t planning},
+        \\tJOURNAL = AIJ,
+        \\tYEAR = {1997},
+        \\tVOLUME = {89},
+        \\tNUMBER = {1--2},
+        \\tPAGES = {219--283},
+        \\tMONTH = jan
+        }
+      ),
       "key": "DeardenBoutilier:97",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"AIJ\\"",
+      "input": "AIJ",
+      "location": Object {
+        "column": 15,
+        "line": 5,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

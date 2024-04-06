@@ -21,25 +21,24 @@ Object {
             "lastName": "Pearl",
           },
         ],
-        "journal": Array [
-          "Artificial Intelligence",
-        ],
-        "number": Array [
-          "1,2",
-        ],
-        "pages": Array [
-          "99-116",
-        ],
-        "title": Array [
-          "Searching for an optimal path in a tree with random costs",
-        ],
-        "volume": Array [
-          "21",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "journal": "Artificial Intelligence",
+        "number": "1,2",
+        "pages": "99-116",
+        "title": "Searching for an optimal path in a tree with random costs",
+        "volume": "21",
+        "year": 1983,
       },
+      "input": String(
+        @article(Pearl:1983,
+        \\tauthor =\\t{Richard M. Karp and Judea Pearl},
+        \\tyear =\\t\\t{1983},
+        \\tjournal =\\t{Artificial Intelligence},
+        \\tnumber =\\t{1,2},
+        \\tpages =\\t\\t{99-116},
+        \\ttitle =\\t\\t"Searching for an optimal path in a tree with random costs",
+        \\tvolume =\\t{21}
+        )
+      ),
       "key": "Pearl:1983",
       "type": "article",
     },

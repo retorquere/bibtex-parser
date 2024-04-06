@@ -21,25 +21,24 @@ Object {
             "lastName": "Hayes-Roth",
           },
         ],
-        "journal": Array [
-          "Cognitive Science",
-        ],
-        "number": Array [
-          "4",
-        ],
-        "pages": Array [
-          "275-310",
-        ],
-        "title": Array [
-          "A cognitive model of planning",
-        ],
-        "volume": Array [
-          "3",
-        ],
-        "year": Array [
-          "1979",
-        ],
+        "journal": "Cognitive Science",
+        "number": "4",
+        "pages": "275-310",
+        "title": "A cognitive model of planning",
+        "volume": "3",
+        "year": 1979,
       },
+      "input": String(
+        @article(Roth:1979,
+        \\tauthor =\\t{B. Hayes-Roth and F. Hayes-Roth},
+        \\tyear =\\t\\t{1979},
+        \\tjournal =\\t{Cognitive Science},
+        \\tnumber =\\t{4},
+        \\tpages =\\t\\t{275-310},
+        \\ttitle =\\t\\t"A cognitive model of planning",
+        \\tvolume =\\t{3}
+        )
+      ),
       "key": "Roth:1979",
       "type": "article",
     },

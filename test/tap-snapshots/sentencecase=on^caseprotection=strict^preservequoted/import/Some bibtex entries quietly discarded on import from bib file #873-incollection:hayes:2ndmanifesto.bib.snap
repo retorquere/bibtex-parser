@@ -17,13 +17,16 @@ Object {
             "lastName": "Hayes",
           },
         ],
-        "crossref": Array [
-          "FTCW",
-        ],
-        "title": Array [
-          "The second naive physics manifesto",
-        ],
+        "crossref": "FTCW",
+        "title": "The second naive physics manifesto",
       },
+      "input": String(
+        @incollection(Hayes:2ndManifesto,
+        \\tauthor =\\t{Patrick Hayes},
+        \\tcrossref =\\t"FTCW",
+        \\ttitle =\\t\\t{The second naive physics manifesto}
+        )
+      ),
       "key": "Hayes:2ndManifesto",
       "type": "incollection",
     },

@@ -21,30 +21,39 @@ Object {
             "lastName": "Sutton",
           },
         ],
-        "journal": Array [
-          "SMC",
-        ],
-        "month": Array [
-          "September/October",
-        ],
-        "number": Array [
-          "5",
-        ],
-        "title": Array [
-          "Neuronlike Adaptive Elements That Can Solve Difficult Learning Problems",
-        ],
-        "volume": Array [
-          "<span style=\\"font-variant:small-caps;\\">SMC</span>–13",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "journal": "SMC",
+        "month": "September/October",
+        "number": "5",
+        "title": "Neuronlike Adaptive Elements That Can Solve Difficult Learning Problems",
+        "volume": "<span style=\\"font-variant:small-caps;\\">SMC</span>–13",
+        "year": 1983,
       },
+      "input": String(
+        @ARTICLE{Barto:83,
+        \\tAUTHOR = {Andrew G. Barto and Richard S. Sutton},
+        \\tTITLE = {Neuronlike Adaptive Elements That Can Solve Difficult
+        \\t\\t Learning Problems},
+        \\tJOURNAL = SMC,
+        \\tYEAR = {1983},
+        \\tVOLUME = {{\\\\sc SMC}--13},
+        \\tNUMBER = {5},
+        \\tMONTH = {September/October}
+        }
+      ),
       "key": "Barto:83",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"SMC\\"",
+      "input": "SMC",
+      "location": Object {
+        "column": 15,
+        "line": 5,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

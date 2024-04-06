@@ -29,16 +29,20 @@ Object {
             "lastName": "Philips",
           },
         ],
-        "crossref": Array [
-          "KR:92",
-        ],
-        "pages": Array [
-          "83–92",
-        ],
-        "title": Array [
-          "Total Order <i>vs./</i> Partial Order Planning: Factors Influencing Performance",
-        ],
+        "crossref": "KR:92",
+        "pages": "83–92",
+        "title": "Total Order <i>vs.</i> Partial Order Planning: Factors Influencing Performance",
       },
+      "input": String(
+        @INPROCEEDINGS(Minton:92,
+        \\tAUTHOR = {Steven Minton and Mark Drummond and John L. Bresina
+        \\t\\t  and Andrew B. Philips},
+        \\tTITLE = {Total Order {\\\\em vs.\\\\/} Partial Order Planning:
+        \\t\\t Factors Influencing Performance},
+        \\tCROSSREF = {KR:92},
+        \\tPAGES = {83--92}
+        )
+      ),
       "key": "Minton:92",
       "type": "inproceedings",
     },

@@ -11,45 +11,43 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Palo Alto, Calif.",
-        ],
+        "address": "Palo Alto, Calif.",
         "author": Array [
           Object {
             "firstName": "Douglas B.",
             "lastName": "Lenat",
           },
         ],
-        "booktitle": Array [
-          "Machine learning: An artificial intelligence approach",
-        ],
+        "booktitle": "Machine learning: An artificial intelligence approach",
         "editor": Array [
           Object {
-            "firstName": "Ryszard",
-            "lastName": "Michalski",
-          },
-          Object {
-            "firstName": "Jaime G.",
-            "lastName": "Carbonell",
+            "firstName": "Jaime G. Carbonell",
+            "lastName": "Ryszard Michalski",
           },
           Object {
             "firstName": "Tom M.",
             "lastName": "Mitchell",
           },
         ],
-        "pages": Array [
-          "243-306",
-        ],
+        "pages": "243-306",
         "publisher": Array [
           "Tioga",
         ],
-        "title": Array [
-          "The role of heuristics in learning by discovery: Three case studies",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "title": "The role of heuristics in learning by discovery: Three case studies",
+        "year": 1983,
       },
+      "input": String(
+        @book(Lenat:1983c,
+        \\tauthor =\\t{Douglas B. Lenat},
+        \\tbooktitle =\\t{Machine Learning: An Artificial Intelligence Approach},
+        \\taddress =\\t{Palo Alto, Calif.},
+        \\tyear =\\t\\t{1983},
+        \\teditor =\\t{Ryszard Michalski, Jaime G. Carbonell, and Tom M. Mitchell},
+        \\tpublisher =\\t{Tioga},
+        \\tpages =\\t\\t{243-306},
+        \\ttitle =\\t\\t{The role of heuristics in learning by discovery: Three case studies}
+        )
+      ),
       "key": "Lenat:1983c",
       "type": "book",
     },

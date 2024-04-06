@@ -17,22 +17,22 @@ Object {
             "lastName": "Kripke",
           },
         ],
-        "journal": Array [
-          "Acta Philosophica Fennica",
-        ],
-        "pages": Array [
-          "83–94",
-        ],
-        "title": Array [
-          "Semantical considerations on modal logic",
-        ],
-        "volume": Array [
-          "16",
-        ],
-        "year": Array [
-          "1963",
-        ],
+        "journal": "Acta Philosophica Fennica",
+        "pages": "83–94",
+        "title": "Semantical considerations on modal logic",
+        "volume": "16",
+        "year": 1963,
       },
+      "input": String(
+        @article(Kripke:63,
+        \\tauthor =\\t{Saul Kripke},
+        \\tyear =\\t\\t{1963},
+        \\tjournal =\\t{Acta Philosophica Fennica},
+        \\tpages =\\t\\t{83--94},
+        \\ttitle =\\t\\t"Semantical considerations on modal logic",
+        \\tvolume =\\t{16}
+        )
+      ),
       "key": "Kripke:63",
       "type": "article",
     },

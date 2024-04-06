@@ -16,16 +16,18 @@ Object {
             "lastName": "Author",
           },
         ],
-        "journal": Array [
-          "a space between this and this",
-        ],
-        "title": Array [
-          "Title",
-        ],
-        "year": Array [
-          1990,
-        ],
+        "journal": "a space between this and this",
+        "title": "Title",
+        "year": 1990,
       },
+      "input": String(
+        @article{key,
+            author  = "Author",
+            title   = "Title",
+            year    = 1990,
+            journal = j # "and this"
+        }
+      ),
       "key": "key",
       "type": "article",
     },

@@ -13,24 +13,37 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "lastName": "MCDERMOTT",
+            "name": "MCDERMOTT",
           },
         ],
         "institution": Array [
           "Yale University Computer Science Department",
         ],
-        "title": Array [
-          "Finding objects with given spatial properties",
-        ],
-        "year": Array [
-          "1981",
-        ],
+        "title": "Finding objects with given spatial properties",
+        "year": 1981,
       },
+      "input": String(
+        @techreport(McDermott:81a,
+        \\tauthor =\\tMCDERMOTT,
+        \\tyear =\\t\\t{1981},
+        \\tinstitution =\\t{Yale University Computer Science Department},
+        \\ttitle =\\t\\t{Finding objects with given spatial properties}
+        )
+      ),
       "key": "McDermott:81a",
       "type": "techreport",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"MCDERMOTT\\"",
+      "input": "MCDERMOTT",
+      "location": Object {
+        "column": 20,
+        "line": 2,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

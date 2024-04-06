@@ -17,13 +17,16 @@ Object {
             "lastName": "Lebowitz",
           },
         ],
-        "title": Array [
-          "Generalization and Memory in an Integrated Understanding System",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "title": "Generalization and Memory in an Integrated Understanding System",
+        "year": 1980,
       },
+      "input": String(
+        @techreport(Lebowitz:80,
+        \\tauthor =\\t{Michael Lebowitz},
+        \\tyear =\\t\\t{1980},
+        \\ttitle =\\t\\t{Generalization and Memory in an Integrated Understanding System}
+        )
+      ),
       "key": "Lebowitz:80",
       "type": "techreport",
     },

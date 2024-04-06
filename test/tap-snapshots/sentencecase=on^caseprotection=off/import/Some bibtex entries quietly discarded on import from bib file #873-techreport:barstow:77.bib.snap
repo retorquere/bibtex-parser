@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Palo Alto, Calif.",
-        ],
+        "address": "Palo Alto, Calif.",
         "author": Array [
           Object {
             "firstName": "David R.",
@@ -23,13 +21,21 @@ Object {
         "institution": Array [
           "Stanford University Artificial Intelligence Laboratory",
         ],
-        "title": Array [
-          "Automatic construction of algorithms and data structures using a knowledge base of programming rules",
-        ],
-        "year": Array [
-          "1977",
-        ],
+        "title": "Automatic construction of algorithms and data structures using a knowledge base of programming rules",
+        "year": 1977,
       },
+      "input": String(
+        @techreport(Barstow:77,
+        \\tauthor =\\t{David R. Barstow},
+        \\taddress =\\t{Palo Alto, Calif.},
+        \\tyear =\\t\\t{1977},
+        \\tinstitution =\\t{Stanford University Artificial 
+        \\t\\t\\t Intelligence Laboratory},
+        \\ttitle =\\t\\t{Automatic Construction of Algorithms and Data 
+        \\t\\t\\t Structures Using a Knowledge Base of 
+        \\t\\t\\t Programming Rules}
+        )
+      ),
       "key": "Barstow:77",
       "type": "techreport",
     },

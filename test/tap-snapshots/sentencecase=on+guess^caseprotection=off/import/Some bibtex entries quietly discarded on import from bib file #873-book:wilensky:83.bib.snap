@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "AW-ADDRESS",
-        ],
+        "address": "AW-ADDRESS",
         "author": Array [
           Object {
             "firstName": "Robert",
@@ -23,18 +21,32 @@ Object {
         "publisher": Array [
           "Addison-Wesley",
         ],
-        "title": Array [
-          "Planning and understanding",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "title": "Planning and understanding",
+        "year": 1983,
       },
+      "input": String(
+        @book(Wilensky:83,
+        \\tauthor =\\t{Robert Wilensky},
+        \\taddress =\\tAW-ADDRESS,
+        \\tyear =\\t\\t{1983},
+        \\tpublisher =\\t{Addison-Wesley},
+        \\ttitle =\\t\\t{Planning and Understanding}
+        )
+      ),
       "key": "Wilensky:83",
       "type": "book",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"AW-ADDRESS\\"",
+      "input": "AW-ADDRESS",
+      "location": Object {
+        "column": 22,
+        "line": 3,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

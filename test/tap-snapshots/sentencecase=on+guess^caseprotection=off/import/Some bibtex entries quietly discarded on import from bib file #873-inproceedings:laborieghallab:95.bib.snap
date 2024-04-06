@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "San Mateo",
-        ],
+        "address": "San Mateo",
         "author": Array [
           Object {
             "firstName": "Philippe",
@@ -24,34 +22,37 @@ Object {
             "lastName": "Ghallab",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the fourteenth international joint conference on artificial intelligence",
-        ],
+        "booktitle": "Proceedings of the fourteenth international joint conference on artificial intelligence",
         "editor": Array [
           Object {
             "firstName": "Chris S.",
             "lastName": "Mellish",
           },
         ],
-        "isbn": Array [
-          "1-55860-363-8",
-        ],
-        "month": Array [
-          "08 20–25",
-        ],
-        "pages": Array [
-          "1643–1651",
-        ],
+        "isbn": "1-55860-363-8",
+        "month": "08 20–25",
+        "pages": "1643–1651",
         "publisher": Array [
           "Morgan Kaufmann",
         ],
-        "title": Array [
-          "Planning with sharable resource constraints",
-        ],
-        "year": Array [
-          "1995",
-        ],
+        "title": "Planning with sharable resource constraints",
+        "year": 1995,
       },
+      "input": String(
+        @InProceedings{LaborieGhallab:95,
+          author =\\t"Philippe Laborie and Malik Ghallab",
+          title =\\t"Planning with Sharable Resource Constraints",
+          pages =\\t"1643--1651",
+          ISBN = \\t"1-55860-363-8",
+          editor =\\t"Chris S. Mellish",
+          booktitle =\\t"Proceedings of the Fourteenth International Joint
+        \\t\\t Conference on Artificial Intelligence",
+          month =\\taug # "~20--25",
+          publisher =\\t"Morgan Kaufmann",
+          address =\\t"San Mateo",
+          year = \\t"1995",
+        }
+      ),
       "key": "LaborieGhallab:95",
       "type": "inproceedings",
     },

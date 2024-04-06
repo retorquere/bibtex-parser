@@ -11,21 +11,15 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "Kurt",
             "lastName": "Konolige",
           },
         ],
-        "booktitle": Array [
-          "Machine Intelligence 10",
-        ],
-        "chapter": Array [
-          "2",
-        ],
+        "booktitle": "Machine Intelligence 10",
+        "chapter": "2",
         "editor": Array [
           Object {
             "firstName": "J.E.",
@@ -36,19 +30,27 @@ Object {
             "lastName": "Michie",
           },
         ],
-        "pages": Array [
-          "41–72",
-        ],
+        "pages": "41–72",
         "publisher": Array [
           "Halstead",
         ],
-        "title": Array [
-          "A first-order formalisation of knowledge and action for a multi-agent planning system",
-        ],
-        "year": Array [
-          "1982",
-        ],
+        "title": "A first-order formalisation of knowledge and action for a multi-agent planning system",
+        "year": 1982,
       },
+      "input": String(
+        @INCOLLECTION{Konolige:82,
+        \\tAUTHOR = {Kurt Konolige},
+        \\tTITLE = {A first-order formalisation of knowledge and action
+        \\t\\t for a multi-agent planning system},
+        \\tBOOKTITLE = {Machine Intelligence 10},
+        \\tPUBLISHER = {Halstead},
+        \\tYEAR = {1982},
+        \\tEDITOR = {J.E. Hayes and D. Michie},
+        \\tCHAPTER = {2},
+        \\tPAGES = {41--72},
+        \\tADDRESS = {New York}
+        }
+      ),
       "key": "Konolige:82",
       "type": "incollection",
     },

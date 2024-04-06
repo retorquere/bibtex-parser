@@ -21,45 +21,49 @@ Object {
             "lastName": "Domshlak",
           },
         ],
-        "bibsource": Array [
-          "dblp computer science bibliography, http://dblp.org",
-        ],
-        "biburl": Array [
-          "http://dblp.uni-trier.de/rec/bib/journals/ai/KatzD10",
-        ],
-        "doi": Array [
-          "10.1016/j.artint.2010.04.021",
-        ],
-        "journal": Array [
-          "AIJ",
-        ],
-        "number": Array [
-          "12-13",
-        ],
-        "pages": Array [
-          "767–798",
-        ],
-        "timestamp": Array [
-          "Fri, 02 Jan 2015 18:27:54 +0100",
-        ],
-        "title": Array [
-          "Optimal admissible composition of abstraction heuristics",
-        ],
-        "url": Array [
-          "http://dx.doi.org/10.1016/j.artint.2010.04.021",
-        ],
-        "volume": Array [
-          "174",
-        ],
-        "year": Array [
-          "2010",
-        ],
+        "bibsource": "dblp computer science bibliography, http://dblp.org",
+        "biburl": "http://dblp.uni-trier.de/rec/bib/journals/ai/KatzD10",
+        "doi": "10.1016/j.artint.2010.04.021",
+        "journal": "AIJ",
+        "number": "12-13",
+        "pages": "767–798",
+        "timestamp": "Fri, 02 Jan 2015 18:27:54 +0100",
+        "title": "Optimal admissible composition of abstraction heuristics",
+        "url": "http://dx.doi.org/10.1016/j.artint.2010.04.021",
+        "volume": "174",
+        "year": 2010,
       },
+      "input": String(
+        @article{DBLP:journals/ai/KatzD10,
+          author    = {Michael Katz and
+                       Carmel Domshlak},
+          title     = {Optimal admissible composition of abstraction heuristics},
+          journal   = AIJ,
+          volume    = {174},
+          number    = {12-13},
+          pages     = {767--798},
+          year      = {2010},
+          url       = {http://dx.doi.org/10.1016/j.artint.2010.04.021},
+          doi       = {10.1016/j.artint.2010.04.021},
+          timestamp = {Fri, 02 Jan 2015 18:27:54 +0100},
+          biburl    = {http://dblp.uni-trier.de/rec/bib/journals/ai/KatzD10},
+          bibsource = {dblp computer science bibliography, http://dblp.org}
+        }
+      ),
       "key": "DBLP:journals/ai/KatzD10",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"AIJ\\"",
+      "input": "AIJ",
+      "location": Object {
+        "column": 18,
+        "line": 5,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

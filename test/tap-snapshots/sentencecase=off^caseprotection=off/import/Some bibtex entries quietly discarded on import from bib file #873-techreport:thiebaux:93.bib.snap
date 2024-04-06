@@ -32,19 +32,23 @@ Object {
         "institution": Array [
           "ICSI",
         ],
-        "month": Array [
-          "May",
-        ],
-        "number": Array [
-          "TR–93–027",
-        ],
-        "title": Array [
-          "A Stochastic Model of Actions and Plans for Anytime Planning Under Uncertainty",
-        ],
-        "year": Array [
-          "1993",
-        ],
+        "month": "May",
+        "number": "TR–93–027",
+        "title": "A Stochastic Model of Actions and Plans for Anytime Planning Under Uncertainty",
+        "year": 1993,
       },
+      "input": String(
+        @TECHREPORT(Thiebaux:93,
+        \\tAUTHOR = {Sylvie Thi\\\\{'ebaux and Joachim Hertzberg
+        \\t\\t  and William Shoaff and Moti Schneider},
+        \\tTITLE = {A Stochastic Model of Actions and Plans
+        \\t\\t for Anytime Planning Under Uncertainty},
+        \\tINSTITUTION = {ICSI},
+        \\tYEAR = {1993},
+        \\tNUMBER = {TR--93--027},
+        \\tMONTH = {May},
+        )
+      ),
       "key": "Thiebaux:93",
       "type": "techreport",
     },

@@ -37,19 +37,22 @@ Object {
             "lastName": "Williamson",
           },
         ],
-        "crossref": Array [
-          "KR:92",
-        ],
-        "pages": Array [
-          "115–125",
-        ],
-        "title": Array [
-          "An Approach to Planning with Incomplete Information",
-        ],
-        "year": Array [
-          "1992",
-        ],
+        "crossref": "KR:92",
+        "pages": "115–125",
+        "title": "An Approach to Planning with Incomplete Information",
+        "year": 1992,
       },
+      "input": String(
+        @INPROCEEDINGS(Etzioni:92,
+        \\tAUTHOR = {Oren Etzioni and Steve Hanks and Daniel S. Weld
+        \\t\\t  and Denise Draper and Neal Lesh and 
+        \\t\\t  Mike Williamson},
+        \\tTITLE = "An Approach to Planning with Incomplete Information",
+        \\tCROSSREF = {KR:92},
+        \\tYEAR = {1992},
+        \\tPAGES = {115--125}
+        )
+      ),
       "key": "Etzioni:92",
       "type": "inproceedings",
     },

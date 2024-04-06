@@ -29,24 +29,35 @@ Object {
             "lastName": "Edwards",
           },
         ],
-        "booktitle": Array [
-          "ACL-88",
-        ],
-        "pages": Array [
-          "95-103",
-        ],
-        "title": Array [
-          "Interpretation as abduction",
-        ],
-        "year": Array [
-          "1988",
-        ],
+        "booktitle": "<span class=\\"nocase\\">ACL-88</span>",
+        "pages": "95-103",
+        "title": "Interpretation as abduction",
+        "year": 1988,
       },
+      "input": String(
+        @inproceedings(Hobbs:88,
+        \\tauthor =\\t{Jerry R. Hobbs and Mark Stickel and 
+        \\t\\t\\t Paul Martin and Douglas Edwards},
+        \\tyear =\\t\\t{1988},
+        \\tbooktitle =\\tACL-88,
+        \\ttitle =\\t\\t"Interpretation as Abduction",
+        \\tpages =\\t\\t{95-103}
+        )
+      ),
       "key": "Hobbs:88",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"ACL-88\\"",
+      "input": "ACL-88",
+      "location": Object {
+        "column": 20,
+        "line": 5,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

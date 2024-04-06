@@ -17,24 +17,34 @@ Object {
             "lastName": "Webber",
           },
         ],
-        "booktitle": Array [
-          "ACL-87",
-        ],
-        "pages": Array [
-          "147–154",
-        ],
-        "title": Array [
-          "The interpretation of tense in discourse",
-        ],
-        "year": Array [
-          "1987",
-        ],
+        "booktitle": "ACL-87",
+        "pages": "147–154",
+        "title": "The interpretation of tense in discourse",
+        "year": 1987,
       },
+      "input": String(
+        @inproceedings(Webber:87,
+        \\tauthor =\\t{Bonnie Lynn Webber},
+        \\tyear =\\t\\t{1987},
+        \\tbooktitle =\\tACL-87,
+        \\tpages =\\t\\t{147--154},
+        \\ttitle =\\t\\t{The interpretation of tense in discourse}
+        )
+      ),
       "key": "Webber:87",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"ACL-87\\"",
+      "input": "ACL-87",
+      "location": Object {
+        "column": 20,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

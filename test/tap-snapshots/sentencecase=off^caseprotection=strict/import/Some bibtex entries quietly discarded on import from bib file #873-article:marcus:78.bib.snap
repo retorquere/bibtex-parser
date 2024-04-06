@@ -17,22 +17,22 @@ Object {
             "lastName": "Marcus",
           },
         ],
-        "journal": Array [
-          "Theoretical Issues in Natural Language Processing",
-        ],
-        "pages": Array [
-          "236-246",
-        ],
-        "title": Array [
-          "A computational account of some constraints on language",
-        ],
-        "volume": Array [
-          "2",
-        ],
-        "year": Array [
-          "1978",
-        ],
+        "journal": "Theoretical Issues in Natural Language Processing",
+        "pages": "236-246",
+        "title": "A computational account of some constraints on language",
+        "volume": "2",
+        "year": 1978,
       },
+      "input": String(
+        @article(Marcus:78,
+        \\tauthor =\\t{Mitchell P. Marcus},
+        \\tyear =\\t\\t{1978},
+        \\tjournal =\\t{Theoretical Issues in Natural Language Processing},
+        \\tpages =\\t\\t{236-246},
+        \\ttitle =\\t\\t"A computational account of some constraints on language",
+        \\tvolume =\\t{2}
+        )
+      ),
       "key": "Marcus:78",
       "type": "article",
     },

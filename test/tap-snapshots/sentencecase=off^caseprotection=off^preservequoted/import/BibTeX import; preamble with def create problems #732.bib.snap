@@ -14,17 +14,22 @@ Object {
         "author": Array [
           Object {
             "firstName": "Jan",
-            "lastName": "Franců",
+            "lastName": "Franců",
           },
           Object {
             "firstName": "Pavel",
-            "lastName": "Krejčí",
+            "lastName": "Krejčı́",
           },
         ],
-        "title": Array [
-          "Homogenization of scalar wave equation with hysteresis operator",
-        ],
+        "title": "Homogenization of scalar wave equation with hysteresis operator",
       },
+      "input": String(
+        @incollection {MR1870153,
+        \\t       AUTHOR = {Franc{\\\\ocirc{u}}, Jan and Krej{\\\\v{c}}{\\\\'{\\\\i}}, Pavel},
+        \\t            TITLE = {Homogenization of scalar wave equation with hysteresis
+        \\t\\t\\t              operator},
+               }
+      ),
       "key": "MR1870153",
       "type": "incollection",
     },
@@ -34,7 +39,16 @@ Object {
     "groups": Object {},
     "root": Array [],
   },
-  "preamble": Array [],
+  "preamble": Array [
+    String(
+      
+             "\\\\def\\\\ocirc#1{\\\\ifmmode\\\\setbox0=\\\\hbox{$#1$}\\\\dimen0=\\\\ht0
+      \\t       \\\\advance\\\\dimen0 by1pt\\\\rlap{\\\\hbox to\\\\wd0{\\\\hss\\\\raise\\\\dimen0
+      \\t\\t       \\\\hbox{\\\\hskip.2em$\\\\scriptscriptstyle\\\\circ$}\\\\hss}}#1\\\\else
+      \\t\\t           {\\\\accent"17 #1}\\\\fi} "
+      \\t\\t\\t   
+    ),
+  ],
   "strings": Object {},
 }
 `

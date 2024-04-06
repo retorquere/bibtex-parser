@@ -33,27 +33,37 @@ Object {
             "lastName": "Grinstead",
           },
         ],
-        "journal": Array [
-          "AIJ",
-        ],
-        "pages": Array [
-          "245–269",
-        ],
-        "title": Array [
-          "Efficient graph automorphism by vertex partitioning",
-        ],
-        "volume": Array [
-          "21",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "journal": "AIJ",
+        "pages": "245–269",
+        "title": "Efficient graph automorphism by vertex partitioning",
+        "volume": "21",
+        "year": 1983,
       },
+      "input": String(
+        @ARTICLE(FowlerETAL:83,
+        \\tAUTHOR = {Glenn Fowler and Robert Haralick and F. Gail Gray
+        \\t\\t  and Charles Feustel and Charles Grinstead},
+        \\tTITLE = "Efficient Graph Automorphism by Vertex Partitioning",
+        \\tJOURNAL = AIJ,
+        \\tYEAR = {1983},
+        \\tVOLUME = {21},
+        \\tPAGES = {245--269}
+        )
+      ),
       "key": "FowlerETAL:83",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"AIJ\\"",
+      "input": "AIJ",
+      "location": Object {
+        "column": 15,
+        "line": 5,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

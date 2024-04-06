@@ -20,13 +20,17 @@ Object {
         "institution": Array [
           "Yale University Department of Computer Science",
         ],
-        "title": Array [
-          "Representing and Acquiring Geographic Knowledge",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "title": "Representing and Acquiring Geographic Knowledge",
+        "year": 1983,
       },
+      "input": String(
+        @techreport(Davis:84,
+        \\tauthor =\\t{Ernest Davis},
+        \\tyear =\\t\\t{1983},
+        \\tinstitution =\\t{Yale University Department of Computer Science},
+        \\ttitle =\\t\\t{Representing and Acquiring Geographic Knowledge}
+        )
+      ),
       "key": "Davis:84",
       "type": "techreport",
     },

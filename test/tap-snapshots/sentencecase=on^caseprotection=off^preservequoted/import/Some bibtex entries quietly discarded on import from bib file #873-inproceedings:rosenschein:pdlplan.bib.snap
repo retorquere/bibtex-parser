@@ -17,19 +17,20 @@ Object {
             "lastName": "Rosenschein",
           },
         ],
-        "crossref": Array [
-          "ijcai81",
-        ],
-        "pages": Array [
-          "331–337",
-        ],
-        "title": Array [
-          "Plan synthesis: A logical perspective",
-        ],
-        "year": Array [
-          "1981",
-        ],
+        "crossref": "ijcai81",
+        "pages": "331–337",
+        "title": "Plan synthesis: a logical perspective",
+        "year": 1981,
       },
+      "input": String(
+        @InProceedings(Rosenschein:PDLPlan,
+        \\tauthor =\\t{Stanley J. Rosenschein},
+        \\tyear =\\t\\t{1981},
+        \\tcrossref =\\t{ijcai81},
+        \\tpages =\\t\\t{331--337},
+        \\ttitle =\\t\\t{Plan synthesis: A logical perspective}
+        )
+      ),
       "key": "Rosenschein:PDLPlan",
       "type": "inproceedings",
     },

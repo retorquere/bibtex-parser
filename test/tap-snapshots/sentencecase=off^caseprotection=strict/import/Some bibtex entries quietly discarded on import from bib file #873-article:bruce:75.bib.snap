@@ -17,22 +17,22 @@ Object {
             "lastName": "Bruce",
           },
         ],
-        "journal": Array [
-          "Artificial Intelligence",
-        ],
-        "pages": Array [
-          "327–360",
-        ],
-        "title": Array [
-          "Case systems for natural language",
-        ],
-        "volume": Array [
-          "6",
-        ],
-        "year": Array [
-          "1975",
-        ],
+        "journal": "Artificial Intelligence",
+        "pages": "327–360",
+        "title": "Case systems for natural language",
+        "volume": "6",
+        "year": 1975,
       },
+      "input": String(
+        @article(Bruce:75,
+        \\tauthor =\\t{Bertram Bruce},
+        \\tyear =\\t\\t{1975},
+        \\tjournal =\\t{Artificial Intelligence},
+        \\tpages =\\t\\t{327--360},
+        \\ttitle =\\t\\t"Case systems for natural language",
+        \\tvolume =\\t{6}
+        )
+      ),
       "key": "Bruce:75",
       "type": "article",
     },

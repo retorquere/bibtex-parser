@@ -17,22 +17,22 @@ Object {
             "lastName": "Stockman",
           },
         ],
-        "journal": Array [
-          "Artificial Intelligence",
-        ],
-        "pages": Array [
-          "179-196",
-        ],
-        "title": Array [
-          "A minimax algorithm better than alpha-beta?",
-        ],
-        "volume": Array [
-          "12",
-        ],
-        "year": Array [
-          "1979",
-        ],
+        "journal": "Artificial Intelligence",
+        "pages": "179-196",
+        "title": "A minimax algorithm better than alpha-beta?",
+        "volume": "12",
+        "year": 1979,
       },
+      "input": String(
+        @article(Stockman:1979,
+        \\tauthor =\\t{G.C. Stockman},
+        \\tyear =\\t\\t{1979},
+        \\tjournal =\\t{Artificial Intelligence},
+        \\tpages =\\t\\t{179-196},
+        \\ttitle =\\t\\t"A minimax algorithm better than alpha-beta?",
+        \\tvolume =\\t{12}
+        )
+      ),
       "key": "Stockman:1979",
       "type": "article",
     },

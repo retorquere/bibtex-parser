@@ -17,27 +17,46 @@ Object {
             "lastName": "Winslett",
           },
         ],
-        "booktitle": Array [
-          "AAAI-88",
-        ],
-        "pages": Array [
-          "89–93",
-        ],
+        "booktitle": "<span class=\\"nocase\\">AAAI-88</span>",
+        "pages": "89–93",
         "publisher": Array [
           "KAUFMANN",
         ],
-        "title": Array [
-          "Reasoning about actions using a possible models approach",
-        ],
-        "year": Array [
-          "1988",
-        ],
+        "title": "Reasoning about actions using a possible models approach",
+        "year": 1988,
       },
+      "input": String(
+        @INPROCEEDINGS{Winslett-88-AAAI,
+        \\tAUTHOR = {Marianne Winslett},
+        \\tTITLE = "Reasoning about Actions using a Possible Models Approach",
+        \\tBOOKTITLE = AAAI-88,
+        \\tPUBLISHER = KAUFMANN,
+        \\tYEAR = {1988},
+        \\tPAGES = {89--93}
+        }
+      ),
       "key": "Winslett-88-AAAI",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"AAAI-88\\"",
+      "input": "AAAI-88",
+      "location": Object {
+        "column": 21,
+        "line": 4,
+      },
+    },
+    Object {
+      "error": "Unresolved @string reference \\"KAUFMANN\\"",
+      "input": "KAUFMANN",
+      "location": Object {
+        "column": 22,
+        "line": 5,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

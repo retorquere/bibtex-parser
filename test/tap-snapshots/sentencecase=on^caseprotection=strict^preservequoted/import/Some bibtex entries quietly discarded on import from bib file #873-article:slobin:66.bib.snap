@@ -17,22 +17,22 @@ Object {
             "lastName": "Slobin",
           },
         ],
-        "journal": Array [
-          "Journal of Verbal Learning and Verbal Behavior",
-        ],
-        "pages": Array [
-          "219-227",
-        ],
-        "title": Array [
-          "Grammatical transformations and sentence comprehension in childhood and adulthood",
-        ],
-        "volume": Array [
-          "5",
-        ],
-        "year": Array [
-          "1966",
-        ],
+        "journal": "Journal of Verbal Learning and Verbal Behavior",
+        "pages": "219-227",
+        "title": "Grammatical transformations and sentence comprehension in childhood and adulthood",
+        "volume": "5",
+        "year": 1966,
       },
+      "input": String(
+        @article(Slobin:66,
+        \\tauthor =\\t{Dan I. Slobin},
+        \\tyear =\\t\\t{1966},
+        \\tjournal =\\t{Journal of Verbal Learning and Verbal Behavior},
+        \\tpages =\\t\\t{219-227},
+        \\ttitle =\\t\\t"Grammatical transformations and sentence comprehension in childhood and adulthood",
+        \\tvolume =\\t{5}
+        )
+      ),
       "key": "Slobin:66",
       "type": "article",
     },

@@ -17,13 +17,17 @@ Object {
             "lastName": "Sundheim",
           },
         ],
-        "note": Array [
-          "Data set from Naval Ocean Systems Center.",
-        ],
-        "title": Array [
-          "Working Papers:Navy Tactical Narrative Paragraphs and Glosses",
-        ],
+        "note": "Data set from Naval Ocean Systems Center.",
+        "title": "Working Papers:Navy Tactical Narrative Paragraphs and Glosses",
       },
+      "input": String(
+        @UNPUBLISHED{MUC,
+        \\tAUTHOR = {Beth M. Sundheim},
+        \\tTITLE = {Working Papers:Navy Tactical Narrative Paragraphs
+        \\t\\t and Glosses},
+        \\tNOTE = {Data set from Naval Ocean Systems Center.}
+        }
+      ),
       "key": "MUC",
       "type": "unpublished",
     },

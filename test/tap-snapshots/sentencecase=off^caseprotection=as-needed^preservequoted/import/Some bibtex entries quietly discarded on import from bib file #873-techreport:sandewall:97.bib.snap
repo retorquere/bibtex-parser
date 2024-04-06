@@ -18,21 +18,24 @@ Object {
           },
         ],
         "institution": Array [
-          "Linköping University",
+          "Linköping University",
         ],
-        "note": Array [
-          "http://www.ep.liu.se/ea/cis/1997/019/",
-        ],
-        "title": Array [
-          "Logic Based Modelling of Goal-directed Behavior",
-        ],
-        "type": Array [
-          "Linköping Electronic Articles in Computer and Information Science",
-        ],
-        "year": Array [
-          "1997",
-        ],
+        "note": "http://www.ep.liu.se/ea/cis/1997/019/",
+        "title": "Logic Based Modelling of Goal-directed Behavior",
+        "type": "Linköping Electronic Articles in Computer and Information Science",
+        "year": 1997,
       },
+      "input": String(
+        @TECHREPORT(Sandewall:97,
+        \\tAUTHOR = {Erik Sandewall},
+        \\tTITLE = "Logic Based Modelling of Goal-directed Behavior",
+        \\tINSTITUTION = {Link\\\\"oping University},
+        \\tYEAR = {1997},
+        \\tTYPE = {Link\\\\"oping Electronic Articles in Computer and 
+        \\t\\tInformation Science},
+        \\tNOTE = {\\\\verb+http://www.ep.liu.se/ea/cis/1997/019/+}
+        )
+      ),
       "key": "Sandewall:97",
       "type": "techreport",
     },

@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "Gerald J.",
@@ -23,13 +21,18 @@ Object {
         "publisher": Array [
           "American Elsevier",
         ],
-        "title": Array [
-          "A Computer Model of Skill Acquisition",
-        ],
-        "year": Array [
-          "1975",
-        ],
+        "title": "A Computer Model of Skill Acquisition",
+        "year": 1975,
       },
+      "input": String(
+        @book(Sussman:1975,
+        \\tauthor =\\t{Gerald J. Sussman},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1975},
+        \\tpublisher =\\t{American Elsevier},
+        \\ttitle =\\t\\t{A Computer Model of Skill Acquisition}
+        )
+      ),
       "key": "Sussman:1975",
       "type": "book",
     },

@@ -25,19 +25,21 @@ Object {
             "lastName": "Stone",
           },
         ],
-        "booktitle": Array [
-          "<span class=\\"nocase\\">ICAPS</span> Workshop on <span class=\\"nocase\\">AI</span> Planning and Learning",
-        ],
+        "booktitle": "<span class=\\"nocase\\">ICAPS</span> Workshop on <span class=\\"nocase\\">AI</span> Planning and Learning",
         "location": Array [
           "Providence, RI",
         ],
-        "title": Array [
-          "Accelerating search with transferred heuristics",
-        ],
-        "year": Array [
-          2007,
-        ],
+        "title": "Accelerating search with transferred heuristics",
+        "year": 2007,
       },
+      "input": String(
+        @InProceedings{taylor07:transferLearning,
+          author =       {M. Taylor and G. Kuhlmann and P. Stone},
+          title =        {Accelerating search with transferred heuristics},
+          booktitle = {{ICAPS} Workshop on {AI} Planning and Learning},
+          year =      2007,
+          location =     {Providence, RI}}
+      ),
       "key": "taylor07:transferLearning",
       "type": "inproceedings",
     },

@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Reading, Mass.",
-        ],
+        "address": "Reading, Mass.",
         "author": Array [
           Object {
             "firstName": "D.E.",
@@ -23,13 +21,18 @@ Object {
         "publisher": Array [
           "Addison-Wesley",
         ],
-        "title": Array [
-          "Sorting and searching",
-        ],
-        "year": Array [
-          "1973",
-        ],
+        "title": "Sorting and searching",
+        "year": 1973,
       },
+      "input": String(
+        @book(Knuth:1973,
+        \\tauthor =\\t{D.E. Knuth},
+        \\taddress =\\t{Reading, Mass.},
+        \\tyear =\\t\\t{1973},
+        \\tpublisher =\\t{Addison-Wesley},
+        \\ttitle =\\t\\t{Sorting and Searching}
+        )
+      ),
       "key": "Knuth:1973",
       "type": "book",
     },

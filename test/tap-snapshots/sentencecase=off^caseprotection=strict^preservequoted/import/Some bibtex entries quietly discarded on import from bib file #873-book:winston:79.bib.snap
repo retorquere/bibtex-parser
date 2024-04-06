@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Cambridge, Mass.",
-        ],
+        "address": "Cambridge, Mass.",
         "author": Array [
           Object {
             "firstName": "Patrick H.",
@@ -27,13 +25,18 @@ Object {
         "publisher": Array [
           "MIT Press",
         ],
-        "title": Array [
-          "Artificial Intelligence: An MIT Perspective, Vol. 2",
-        ],
-        "year": Array [
-          "1979",
-        ],
+        "title": "Artificial Intelligence: An MIT Perspective, Vol. 2",
+        "year": 1979,
       },
+      "input": String(
+        @book(Winston:79,
+        \\tauthor =\\t{Patrick H. Winston and Richard H. Brown},
+        \\taddress =\\t{Cambridge, Mass.},
+        \\tyear =\\t\\t{1979},
+        \\tpublisher =\\t{MIT Press},
+        \\ttitle =\\t\\t{Artificial Intelligence: An MIT Perspective, Vol. 2}
+        )
+      ),
       "key": "Winston:79",
       "type": "book",
     },

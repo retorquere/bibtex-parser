@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "London, UK",
-        ],
+        "address": "London, UK",
         "author": Array [
           Object {
             "firstName": "R. A.",
@@ -23,10 +21,16 @@ Object {
         "publisher": Array [
           "Freds Publishing",
         ],
-        "title": Array [
-          "SQL is great",
-        ],
+        "title": "SQL is great",
       },
+      "input": String(
+        @Book{Bert:2001:SQL,
+          author = "R. A. Bert",
+          title = "SQL is great",
+          publisher = pub-FRED,
+          address = pub-FRED:adr,
+        }
+      ),
       "key": "Bert:2001:SQL",
       "type": "book",
     },

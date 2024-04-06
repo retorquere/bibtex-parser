@@ -17,28 +17,26 @@ Object {
             "lastName": "Ginsberg",
           },
         ],
-        "journal": Array [
-          "AI Magazine",
-        ],
-        "note": Array [
-          "continued on pp. 61–62",
-        ],
-        "number": Array [
-          "4",
-        ],
-        "pages": Array [
-          "40–44",
-        ],
-        "title": Array [
-          "Universal Planning: An (Almost) Universally Bad Idea",
-        ],
-        "volume": Array [
-          "10",
-        ],
-        "year": Array [
-          "1989",
-        ],
+        "journal": "AI Magazine",
+        "note": "continued on pp. 61–62",
+        "number": "4",
+        "pages": "40–44",
+        "title": "Universal Planning: An (Almost) Universally Bad Idea",
+        "volume": "10",
+        "year": 1989,
       },
+      "input": String(
+        @ARTICLE(Ginsberg:89,
+        \\tAUTHOR = {Matthew L. Ginsberg},
+        \\tTITLE = "Universal Planning:  An (Almost) Universally Bad Idea",
+        \\tJOURNAL = {AI Magazine},
+        \\tYEAR = {1989},
+        \\tVOLUME = {10},
+        \\tNUMBER = {4},
+        \\tPAGES = {40--44},
+        \\tNOTE = {continued on pp. 61--62}
+        )
+      ),
       "key": "Ginsberg:89",
       "type": "article",
     },

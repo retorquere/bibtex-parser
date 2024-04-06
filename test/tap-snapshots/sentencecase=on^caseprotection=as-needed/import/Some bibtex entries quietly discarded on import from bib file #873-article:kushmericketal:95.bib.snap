@@ -25,33 +25,41 @@ Object {
             "lastName": "Weld",
           },
         ],
-        "journal": Array [
-          "AIJ",
-        ],
-        "month": Array [
-          "07",
-        ],
-        "number": Array [
-          "1–2",
-        ],
-        "pages": Array [
-          "239–286",
-        ],
-        "title": Array [
-          "An algorithm for probabilistic planning",
-        ],
-        "volume": Array [
-          "76",
-        ],
-        "year": Array [
-          "1995",
-        ],
+        "journal": "AIJ",
+        "month": 7,
+        "number": "1–2",
+        "pages": "239–286",
+        "title": "An algorithm for probabilistic planning",
+        "volume": "76",
+        "year": 1995,
       },
+      "input": String(
+        @ARTICLE{KushmerickETAL:95,
+        \\tAUTHOR = {Nicholas Kushmerick and Steve Hanks
+        \\t\\t  and Daniel Weld},
+        \\tTITLE = "An Algorithm for Probabilistic Planning",
+        \\tJOURNAL = AIJ,
+        \\tYEAR = {1995},
+        \\tVOLUME = {76},
+        \\tNUMBER = {1--2},
+        \\tPAGES = {239--286},
+        \\tMONTH = jul
+        }
+      ),
       "key": "KushmerickETAL:95",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"AIJ\\"",
+      "input": "AIJ",
+      "location": Object {
+        "column": 15,
+        "line": 5,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

@@ -17,30 +17,38 @@ Object {
             "lastName": "Wilkins",
           },
         ],
-        "journal": Array [
-          "CI",
-        ],
-        "number": Array [
-          "4",
-        ],
-        "pages": Array [
-          "232–246",
-        ],
-        "title": Array [
-          "Can AI planners solve practical problems?",
-        ],
-        "volume": Array [
-          "6",
-        ],
-        "year": Array [
-          "1990",
-        ],
+        "journal": "CI",
+        "number": "4",
+        "pages": "232–246",
+        "title": "Can AI planners solve practical problems?",
+        "volume": "6",
+        "year": 1990,
       },
+      "input": String(
+        @ARTICLE{Wilkins:90,
+        \\tAUTHOR = {David E. Wilkins},
+        \\tTITLE = "Can {AI} planners solve practical problems?",
+        \\tJOURNAL = CI,
+        \\tYEAR = {1990},
+        \\tVOLUME = {6},
+        \\tNUMBER = {4},
+        \\tPAGES = {232--246}
+        }
+      ),
       "key": "Wilkins:90",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"CI\\"",
+      "input": "CI",
+      "location": Object {
+        "column": 14,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Hillsdale, NJ",
-        ],
+        "address": "Hillsdale, NJ",
         "author": Array [
           Object {
             "firstName": "Allan",
@@ -28,9 +26,7 @@ Object {
             "lastName": "Larkin",
           },
         ],
-        "booktitle": Array [
-          "Theoretical issues in reading comprehension: Perspectives from cognitive science, linguistics, artificial intelligence and education",
-        ],
+        "booktitle": "Theoretical issues in reading comprehension: Perspectives from cognitive science, linguistics, artificial intelligence and education",
         "editor": Array [
           Object {
             "firstName": "R.J.",
@@ -45,19 +41,27 @@ Object {
             "lastName": "Brewer",
           },
         ],
-        "pages": Array [
-          "385–408",
-        ],
+        "pages": "385–408",
         "publisher": Array [
           "Lawrence Erlbaum",
         ],
-        "title": Array [
-          "Inference in text understanding",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "title": "Inference in text understanding",
+        "year": 1980,
       },
+      "input": String(
+        @book(Collins:80,
+        \\tauthor =\\t{Allan Collins and John S. Brown and Kathy M. Larkin},
+        \\tbooktitle =\\t{Theoretical Issues in Reading Comprehension: 
+        \\t\\t\\t Perspectives from Cognitive Science, Linguistics, 
+        \\t\\t\\t Artificial Intelligence and Education},
+        \\taddress =\\t{Hillsdale, NJ},
+        \\tyear =\\t\\t{1980},
+        \\teditor =\\t{R.J. Spiro and B.C. Bruce and W.F. Brewer},
+        \\tpublisher =\\t{Lawrence Erlbaum},
+        \\tpages =\\t\\t{385--408},
+        \\ttitle =\\t\\t{Inference in text understanding}
+        )
+      ),
       "key": "Collins:80",
       "type": "book",
     },

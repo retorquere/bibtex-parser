@@ -21,33 +21,41 @@ Object {
             "lastName": "Hendler",
           },
         ],
-        "journal": Array [
-          "AIJ",
-        ],
-        "number": Array [
-          "2–3",
-        ],
-        "pages": Array [
-          "193–258",
-        ],
-        "title": Array [
-          "A Validation Structure-Based Theory of Plan Modification and Reuse",
-        ],
-        "topic": Array [
-          "planning;plan-reuse;",
-        ],
-        "volume": Array [
-          "55",
-        ],
-        "year": Array [
-          "1992",
-        ],
+        "journal": "AIJ",
+        "number": "2–3",
+        "pages": "193–258",
+        "title": "A Validation Structure-Based Theory of Plan Modification and Reuse",
+        "topic": "planning;plan-reuse;",
+        "volume": "55",
+        "year": 1992,
       },
+      "input": String(
+        @Article{kambhampati-hendler:1992a,
+          author =\\t"Subbarao Kambhampati and James Hendler",
+          title =\\t"A Validation Structure-Based Theory of Plan
+        \\t\\t Modification and Reuse",
+          journal =\\tAIJ,
+          year = \\t"1992",
+          volume =\\t"55",
+          number =\\t"2--3",
+          pages =\\t"193--258",
+          topic =\\t"planning;plan-reuse;",
+        }
+      ),
       "key": "kambhampati-hendler:1992a",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"AIJ\\"",
+      "input": "AIJ",
+      "location": Object {
+        "column": 16,
+        "line": 5,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

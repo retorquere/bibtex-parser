@@ -24,13 +24,17 @@ Object {
         "publisher": Array [
           "Plenum Press",
         ],
-        "title": Array [
-          "Logic and databases",
-        ],
-        "year": Array [
-          "1978",
-        ],
+        "title": "Logic and databases",
+        "year": 1978,
       },
+      "input": String(
+        @book(Minker:1978,
+        \\tauthor =\\t{H. Gallaire and Jack Minker},
+        \\tyear =\\t\\t{1978},
+        \\tpublisher =\\t{Plenum Press},
+        \\ttitle =\\t\\t{Logic and Databases}
+        )
+      ),
       "key": "Minker:1978",
       "type": "book",
     },

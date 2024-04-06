@@ -11,7 +11,6 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [],
         "author": Array [
           Object {
             "firstName": "Liem",
@@ -26,28 +25,31 @@ Object {
             "lastName": "Helwig",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the Eleventh Conference on Uncertainty in Artificial Intelligence",
-        ],
-        "editor": Array [],
-        "key": Array [
-          "Conference",
-        ],
-        "month": Array [
-          "August",
-        ],
-        "note": Array [],
-        "organization": Array [],
-        "pages": Array [
-          "419-426",
-        ],
-        "title": Array [
-          "A Theoretical Framework for Context-Sensitive Temporal Probability Model Construction with Application to Plan Projection",
-        ],
-        "year": Array [
-          "1995",
-        ],
+        "booktitle": "Proceedings of the Eleventh Conference on Uncertainty in Artificial Intelligence",
+        "key": "Conference",
+        "month": "August",
+        "pages": "419-426",
+        "title": "A Theoretical Framework for Context-Sensitive Temporal Probability Model Construction with Application to Plan Projection",
+        "year": 1995,
       },
+      "input": String(
+        @InProceedings(Ngo95:Theoretical,
+         Author = "Liem Ngo and Peter Haddawy and J. Helwig",
+         Key = "Conference",
+         Title = "A Theoretical Framework for Context-Sensitive Temporal
+                         Probability Model Construction with Application to
+           Plan Projection",
+         Organization = "",
+         BookTitle = "Proceedings of the Eleventh Conference on
+            Uncertainty in Artificial Intelligence",
+         Editor = "",
+         Address = "",
+         Pages = "419-426",
+         Month = "August",
+         Note = "",
+         Year = "1995"
+         )
+      ),
       "key": "Ngo95:Theoretical",
       "type": "inproceedings",
     },

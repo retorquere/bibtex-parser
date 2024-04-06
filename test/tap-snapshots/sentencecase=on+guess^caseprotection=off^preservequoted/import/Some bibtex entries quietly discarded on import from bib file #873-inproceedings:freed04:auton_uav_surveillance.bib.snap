@@ -25,19 +25,21 @@ Object {
             "lastName": "Shafto",
           },
         ],
-        "booktitle": Array [
-          "American institute of aeronautics and astronautics",
-        ],
-        "title": Array [
-          "Human vs. Autonomous control of UAV surveillance",
-        ],
-        "url": Array [
-          "http://human-factors.arc.nasa.gov/apex/content/papers.html",
-        ],
-        "year": Array [
-          2004,
-        ],
+        "booktitle": "American institute of aeronautics and astronautics",
+        "title": "Human vs. Autonomous control of UAV surveillance",
+        "url": "http://human-factors.arc.nasa.gov/apex/content/papers.html",
+        "year": 2004,
       },
+      "input": String(
+        @InProceedings{freed04:auton_UAV_surveillance,
+          author =\\t {Michael Freed and R. Harris and M. Shafto},
+          title =\\t {Human vs. Autonomous Control of UAV Surveillance},
+          booktitle =\\t {American Institute of Aeronautics and Astronautics},
+          year =\\t 2004,
+          url =
+                          {http://human-factors.arc.nasa.gov/apex/content/papers.html}
+        }
+      ),
       "key": "freed04:auton_UAV_surveillance",
       "type": "inproceedings",
     },

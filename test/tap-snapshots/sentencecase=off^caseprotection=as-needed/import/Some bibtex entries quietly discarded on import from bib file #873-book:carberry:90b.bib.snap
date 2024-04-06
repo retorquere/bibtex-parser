@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "MITP-ADDRESS",
-        ],
+        "address": "MITP-ADDRESS",
         "author": Array [
           Object {
             "firstName": "Sandra",
@@ -23,21 +21,42 @@ Object {
         "publisher": Array [
           "MITP",
         ],
-        "series": Array [
-          "ACL-MIT Press Series in Natural Language Processing",
-        ],
-        "title": Array [
-          "Plan Recognition in Natural Language Dialogue",
-        ],
-        "year": Array [
-          "1990",
-        ],
+        "series": "ACL-MIT Press Series in Natural Language Processing",
+        "title": "Plan Recognition in Natural Language Dialogue",
+        "year": 1990,
       },
+      "input": String(
+        @BOOK(Carberry:90b,
+        \\tAUTHOR = {Sandra Carberry},
+        \\tTITLE = "Plan Recognition in Natural Language Dialogue",
+        \\tPUBLISHER = MITP,
+        \\tYEAR = {1990},
+        \\tSERIES = {ACL-MIT Press Series in Natural Language Processing},
+        \\tADDRESS = MITP-ADDRESS
+        )
+      ),
       "key": "Carberry:90b",
       "type": "book",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"MITP\\"",
+      "input": "MITP",
+      "location": Object {
+        "column": 18,
+        "line": 4,
+      },
+    },
+    Object {
+      "error": "Unresolved @string reference \\"MITP-ADDRESS\\"",
+      "input": "MITP-ADDRESS",
+      "location": Object {
+        "column": 0,
+        "line": 8,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

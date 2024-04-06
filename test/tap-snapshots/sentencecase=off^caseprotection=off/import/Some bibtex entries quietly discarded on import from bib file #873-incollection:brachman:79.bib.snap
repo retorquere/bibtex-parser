@@ -11,28 +11,28 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "Ronald J.",
             "lastName": "Brachman",
           },
         ],
-        "crossref": Array [
-          "Findler",
-        ],
-        "note": Array [
-          "Republished in KR",
-        ],
-        "pages": Array [
-          "3-50",
-        ],
-        "title": Array [
-          "On the epistemological status of semantic networks",
-        ],
+        "crossref": "Findler",
+        "note": "Republished in KR",
+        "pages": "3-50",
+        "title": "On the epistemological status of semantic networks",
       },
+      "input": String(
+        @incollection(Brachman:79,
+        \\tauthor =\\t{Ronald J. Brachman},
+        \\taddress =\\t{New York},
+        \\tpages =\\t\\t{3-50},
+        \\ttitle =\\t\\t"On the epistemological status of semantic networks",
+        \\tcrossref = \\t"Findler",
+        \\tnote =\\t\\t{Republished in \\\\cite{KR}}
+        )
+      ),
       "key": "Brachman:79",
       "type": "incollection",
     },

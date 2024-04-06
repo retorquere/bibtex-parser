@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Boston",
-        ],
+        "address": "Boston",
         "author": Array [
           Object {
             "firstName": "J.J.",
@@ -23,13 +21,18 @@ Object {
         "publisher": Array [
           "Houghton Mifflin",
         ],
-        "title": Array [
-          "The Perception of the Visual World",
-        ],
-        "year": Array [
-          "1950",
-        ],
+        "title": "The Perception of the Visual World",
+        "year": 1950,
       },
+      "input": String(
+        @book(Gibson:1950,
+        \\tauthor =\\t{J.J. Gibson},
+        \\taddress =\\t{Boston},
+        \\tyear =\\t\\t{1950},
+        \\tpublisher =\\t{Houghton Mifflin},
+        \\ttitle =\\t\\t{The Perception of the Visual World}
+        )
+      ),
       "key": "Gibson:1950",
       "type": "book",
     },

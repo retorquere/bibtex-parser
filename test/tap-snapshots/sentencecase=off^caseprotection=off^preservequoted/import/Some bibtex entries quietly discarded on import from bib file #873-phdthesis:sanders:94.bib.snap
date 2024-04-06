@@ -17,19 +17,22 @@ Object {
             "lastName": "Sanders",
           },
         ],
-        "month": Array [
-          "11",
-        ],
-        "school": Array [
-          "Department of Computer Science, Brown University",
-        ],
-        "title": Array [
-          "CHIRON: Planning in an Open-textured Domain",
-        ],
-        "year": Array [
-          "1994",
-        ],
+        "month": 11,
+        "school": "Department of Computer Science, Brown University",
+        "title": "<span class=\\"nocase\\">CHIRON</span>: Planning in an Open-textured Domain",
+        "year": 1994,
       },
+      "input": String(
+        @PHDTHESIS{Sanders:94,
+        \\t    
+        \\tAUTHOR = {Kathryn E. Sanders},
+        \\tTITLE = "{CHIRON}: Planning in an Open-textured Domain",
+        \\tSCHOOL = {Department of Computer Science,
+        \\t\\t  Brown University},
+        \\tYEAR = {1994},
+        \\tMONTH = nov\\t\\t
+        }
+      ),
       "key": "Sanders:94",
       "type": "phdthesis",
     },

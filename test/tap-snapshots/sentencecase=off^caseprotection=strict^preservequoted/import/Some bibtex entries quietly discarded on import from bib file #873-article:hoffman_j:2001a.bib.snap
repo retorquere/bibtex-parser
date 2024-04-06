@@ -13,32 +13,30 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "firstName": "Jörg",
+            "firstName": "Jörg",
             "lastName": "Hoffman",
           },
         ],
-        "journal": Array [
-          "The <span class=\\"nocase\\">AI</span> Magazine",
-        ],
-        "number": Array [
-          "1",
-        ],
-        "pages": Array [
-          "57–62",
-        ],
-        "title": Array [
-          "<span class=\\"nocase\\">FF</span>: The Fast-Forward <span class=\\"nocase\\">PL</span>anning System",
-        ],
-        "topic": Array [
-          "planning;planning-algorithms;planning-systems;",
-        ],
-        "volume": Array [
-          "22",
-        ],
-        "year": Array [
-          "2001",
-        ],
+        "journal": "The AI Magazine",
+        "number": "1",
+        "pages": "57–62",
+        "title": "<span class=\\"nocase\\">FF</span>: The Fast-Forward <span class=\\"nocase\\">PL</span>anning System",
+        "topic": "planning;planning-algorithms;planning-systems;",
+        "volume": "22",
+        "year": 2001,
       },
+      "input": String(
+        @Article{hoffman_j:2001a,
+          author =\\t"J{\\\\"o}rg Hoffman",
+          title =\\t"{FF}: The Fast-Forward {PL}anning System",
+          journal =\\t"The {AI} Magazine",
+          year = \\t"2001",
+          volume =\\t"22",
+          number =\\t"1",
+          pages =\\t"57--62",
+          topic =\\t"planning;planning-algorithms;planning-systems;",
+        }
+      ),
       "key": "hoffman_j:2001a",
       "type": "article",
     },

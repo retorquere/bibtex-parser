@@ -17,9 +17,7 @@ Object {
             "lastName": "Медведев",
           },
         ],
-        "date": Array [
-          "2002",
-        ],
+        "date": "2002",
         "keywords": Array [
           "Chernobyl Nuclear Accident",
           "Chornobylʹ",
@@ -29,19 +27,24 @@ Object {
           "Nuclear reactor accidents",
           "Radioactive wastes",
         ],
-        "langid": Array [
-          "russian",
-        ],
-        "pagetotal": Array [
-          "520",
-        ],
+        "langid": "russian",
+        "pagetotal": "520",
         "publisher": Array [
           "МК-Периодика",
         ],
-        "title": Array [
-          "Ядерный загар",
-        ],
+        "title": "Ядерный загар",
       },
+      "input": String(
+        @book{Medvedev2002,
+          title = {Ядерный загар},
+          author = {Медведев, Григорий},
+          date = {2002},
+          publisher = {{МК-Периодика}},
+          keywords = {Chernobyl Nuclear Accident; Chornobylʹ; Ukraine; 1986,Nuclear industry,Nuclear reactor accidents,Radioactive wastes},
+          langid = {russian},
+          pagetotal = {520}
+        }
+      ),
       "key": "Medvedev2002",
       "type": "book",
     },

@@ -13,36 +13,51 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "lastName": "GINSBERG",
+            "name": "GINSBERG",
           },
         ],
-        "journal": Array [
-          "AIJ",
-        ],
-        "month": Array [
-          "07",
-        ],
-        "number": Array [
-          "1–2",
-        ],
-        "pages": Array [
-          "89–123",
-        ],
-        "title": Array [
-          "Approximate Planning",
-        ],
-        "volume": Array [
-          76,
-        ],
-        "year": Array [
-          1995,
-        ],
+        "journal": "AIJ",
+        "month": 7,
+        "number": "1–2",
+        "pages": "89–123",
+        "title": "Approximate Planning",
+        "volume": "76",
+        "year": 1995,
       },
+      "input": String(
+        @Article{Ginsberg:95,
+          author = \\t GINSBERG,
+          title = \\t "Approximate Planning",
+          journal = \\t AIJ,
+          year = \\t 1995,
+          volume =\\t 76,
+          number =\\t {1--2},
+          pages =\\t {89--123},
+          month =\\t jul
+        }
+      ),
       "key": "Ginsberg:95",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"GINSBERG\\"",
+      "input": "GINSBERG",
+      "location": Object {
+        "column": 22,
+        "line": 2,
+      },
+    },
+    Object {
+      "error": "Unresolved @string reference \\"AIJ\\"",
+      "input": "AIJ",
+      "location": Object {
+        "column": 18,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

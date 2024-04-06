@@ -21,22 +21,22 @@ Object {
             "lastName": "Brown",
           },
         ],
-        "journal": Array [
-          "Proc. AAAI",
-        ],
-        "pages": Array [
-          "236-240",
-        ],
-        "title": Array [
-          "Why AM and eurisko appear to work",
-        ],
-        "volume": Array [
-          "3",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "journal": "Proc. AAAI",
+        "pages": "236-240",
+        "title": "Why AM and eurisko appear to work",
+        "volume": "3",
+        "year": 1983,
       },
+      "input": String(
+        @article(Lenat:1983d,
+        \\tauthor =\\t{Douglas B. Lenat and John Seely Brown},
+        \\tyear =\\t\\t{1983},
+        \\tjournal =\\t{Proc. AAAI},
+        \\tpages =\\t\\t{236-240},
+        \\ttitle =\\t\\t"Why AM and Eurisko appear to work",
+        \\tvolume =\\t{3}
+        )
+      ),
       "key": "Lenat:1983d",
       "type": "article",
     },

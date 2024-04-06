@@ -11,42 +11,48 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "annote": Array [
-          "Presents an optimal k-consistency algorithm, KS.",
-        ],
+        "annote": "Presents an optimal k-consistency algorithm, KS.",
         "author": Array [
           Object {
             "firstName": "Martin C.",
             "lastName": "Cooper",
           },
         ],
-        "journal": Array [
-          "AIJ",
-        ],
-        "month": Array [
-          "11",
-        ],
-        "number": Array [
-          "1",
-        ],
-        "pages": Array [
-          "89–95",
-        ],
-        "title": Array [
-          "An optimal <i>k/</i>-consistency algorithm",
-        ],
-        "volume": Array [
-          "41",
-        ],
-        "year": Array [
-          "1989",
-        ],
+        "journal": "AIJ",
+        "month": 11,
+        "number": "1",
+        "pages": "89–95",
+        "title": "An optimal <i>k</i>-consistency algorithm",
+        "volume": "41",
+        "year": 1989,
       },
+      "input": String(
+        @ARTICLE{Cooper:89,
+        \\tAUTHOR = {Martin C. Cooper},
+        \\tTITLE = "An Optimal {\\\\it k\\\\/}-consistency algorithm",
+        \\tJOURNAL = AIJ,
+        \\tYEAR = {1989},
+        \\tVOLUME = {41},
+        \\tNUMBER = {1},
+        \\tPAGES = {89--95},
+        \\tMONTH = nov,
+        \\tANNOTE = {Presents an optimal k-consistency algorithm, KS.}
+        }
+      ),
       "key": "Cooper:89",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"AIJ\\"",
+      "input": "AIJ",
+      "location": Object {
+        "column": 15,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

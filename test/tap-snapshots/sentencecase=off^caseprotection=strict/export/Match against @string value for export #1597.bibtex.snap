@@ -11,54 +11,54 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "archiveprefix": Array [
-          "arXiv",
-        ],
+        "archiveprefix": "arXiv",
         "author": Array [
           Object {
             "firstName": "Emil",
-            "lastName": "Björnson",
+            "lastName": "Björnson",
           },
           Object {
             "firstName": "Luca",
             "lastName": "Sanguinetti",
           },
         ],
-        "doi": Array [
-          "10.1109/TCOMM.2020.2987311",
-        ],
-        "eprint": Array [
-          "1908.03119",
-        ],
-        "eprinttype": Array [
-          "arxiv",
-        ],
-        "issn": Array [
-          "0090-6778, 1558-0857",
-        ],
-        "journal": Array [
-          "IEEE_J_WC",
-        ],
-        "note": Array [
-          "Comment: To appear in IEEE Transactions on Communications, 14 pages, 6 figures",
-        ],
-        "pages": Array [
-          "1–1",
-        ],
-        "title": Array [
-          "Scalable Cell-Free Massive MIMO Systems",
-        ],
-        "year": Array [
-          "2020",
-        ],
+        "doi": "10.1109/TCOMM.2020.2987311",
+        "eprint": "1908.03119",
+        "eprinttype": "arxiv",
+        "issn": "0090-6778, 1558-0857",
+        "journal": "IEEE_J_WC",
+        "note": "Comment: To appear in IEEE Transactions on Communications, 14 pages, 6 figures",
+        "pages": "1–1",
+        "title": "Scalable Cell-Free Massive MIMO Systems",
+        "year": 2020,
       },
+      "input": String(
+        @article{bjornsonScalable2020,
+          title = {Scalable Cell-Free Massive MIMO Systems},
+          author = {Bj{\\\\"o}rnson, Emil and Sanguinetti, Luca},
+          year = {2020},
+          pages = {1--1},
+          issn = {0090-6778, 1558-0857},
+          doi = {10.1109/TCOMM.2020.2987311},
+          archiveprefix = {arXiv},
+          eprint = {1908.03119},
+          eprinttype = {arxiv},
+          journal = IEEE_J_WC,
+          note = {Comment: To appear in IEEE Transactions on Communications, 14 pages, 6 figures}
+        }
+      ),
       "key": "bjornsonScalable2020",
       "type": "article",
     },
   ],
   "errors": Array [
     Object {
-      "message": "Unresolved @string reference \\"IEEE_J_WC\\"",
+      "error": "Unresolved @string reference \\"IEEE_J_WC\\"",
+      "input": "IEEE_J_WC",
+      "location": Object {
+        "column": 22,
+        "line": 12,
+      },
     },
   ],
   "jabref": Object {

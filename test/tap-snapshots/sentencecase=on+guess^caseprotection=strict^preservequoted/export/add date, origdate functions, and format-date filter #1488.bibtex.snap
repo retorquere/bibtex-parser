@@ -13,19 +13,21 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "literal": "austadísimos",
+            "name": "austadísimos",
           },
         ],
-        "month": Array [
-          "04",
-        ],
-        "title": Array [
-          "Book",
-        ],
-        "year": Array [
-          "2020",
-        ],
+        "month": 4,
+        "title": "Book",
+        "year": 2020,
       },
+      "input": String(
+        @book{Book-2020,
+          title = {Book},
+          author = {{austadísimos}},
+          year = {2020},
+          month = apr
+        }
+      ),
       "key": "Book-2020",
       "type": "book",
     },
@@ -33,19 +35,21 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "literal": "austadísimos",
+            "name": "austadísimos",
           },
         ],
-        "month": Array [
-          "04",
-        ],
-        "title": Array [
-          "Forum post with full date and time",
-        ],
-        "year": Array [
-          "2020",
-        ],
+        "month": 4,
+        "title": "Forum post with full date and time",
+        "year": 2020,
       },
+      "input": String(
+        @misc{Forumpostfull-2020-04-11.08:09,
+          title = {Forum Post with Full Date and Time},
+          author = {{austadísimos}},
+          year = {2020},
+          month = apr
+        }
+      ),
       "key": "Forumpostfull-2020-04-11.08:09",
       "type": "misc",
     },
@@ -53,16 +57,19 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "literal": "austadísimos",
+            "name": "austadísimos",
           },
         ],
-        "title": Array [
-          "Forum <span class=\\"nocase\\">Post</span> with year only",
-        ],
-        "year": Array [
-          "2020",
-        ],
+        "title": "Forum <span class=\\"nocase\\">Post</span> with year only",
+        "year": 2020,
       },
+      "input": String(
+        @misc{ForumPostyear-2020,
+          title = {Forum {{Post}} with Year Only},
+          author = {{austadísimos}},
+          year = {2020}
+        }
+      ),
       "key": "ForumPostyear-2020",
       "type": "misc",
     },
@@ -74,16 +81,18 @@ Object {
             "lastName": "Brennan",
           },
         ],
-        "language": Array [
-          "Spanish",
-        ],
-        "title": Array [
-          "Magia experimental",
-        ],
-        "year": Array [
-          "1982",
-        ],
+        "language": "Spanish",
+        "title": "Magia experimental",
+        "year": 1982,
       },
+      "input": String(
+        @article{Magiaexperimental1976,
+          title = {{Magia experimental}},
+          author = {Brennan, J. H},
+          year = {1982},
+          language = {Spanish}
+        }
+      ),
       "key": "Magiaexperimental1976",
       "type": "article",
     },

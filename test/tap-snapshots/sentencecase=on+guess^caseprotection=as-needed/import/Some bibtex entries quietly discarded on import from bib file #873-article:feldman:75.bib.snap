@@ -27,22 +27,23 @@ Object {
             "lastName": "Nash-Webber",
           },
         ],
-        "journal": Array [
-          "Theoretical Issues in Natural Language Processing",
-        ],
-        "pages": Array [
-          "92-93",
-        ],
-        "title": Array [
-          "Bad-mouthing frames",
-        ],
-        "volume": Array [
-          "1",
-        ],
-        "year": Array [
-          "1975",
-        ],
+        "journal": "Theoretical Issues in Natural Language Processing",
+        "pages": "92-93",
+        "title": "Bad-mouthing frames",
+        "volume": "1",
+        "year": 1975,
       },
+      "input": String(
+        @article(Feldman:75,
+        \\tauthor =\\t{Jerry Feldman},
+        \\tyear =\\t\\t{1975},
+        \\teditor =\\t{R. Schank and B.L. Nash-Webber},
+        \\tjournal =\\t{Theoretical Issues in Natural Language Processing},
+        \\tpages =\\t\\t{92-93},
+        \\ttitle =\\t\\t"Bad-mouthing frames",
+        \\tvolume =\\t{1}
+        )
+      ),
       "key": "Feldman:75",
       "type": "article",
     },

@@ -20,13 +20,17 @@ Object {
         "institution": Array [
           "Stanford University Computer Science Department",
         ],
-        "title": Array [
-          "Planning with constraints",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "title": "Planning with constraints",
+        "year": 1980,
       },
+      "input": String(
+        @techreport(Stefik:1980,
+        \\tauthor =\\t{Mark J. Stefik},
+        \\tyear =\\t\\t{1980},
+        \\tinstitution =\\t{Stanford University Computer Science Department},
+        \\ttitle =\\t\\t{Planning with Constraints}
+        )
+      ),
       "key": "Stefik:1980",
       "type": "techreport",
     },

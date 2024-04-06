@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "Bruce",
@@ -24,9 +22,7 @@ Object {
             "lastName": "Mitchell",
           },
         ],
-        "booktitle": Array [
-          "Pattern-directed inference systems",
-        ],
+        "booktitle": "Pattern-directed inference systems",
         "editor": Array [
           Object {
             "firstName": "D.A.",
@@ -37,19 +33,25 @@ Object {
             "lastName": "Hayes-Roth",
           },
         ],
-        "pages": Array [
-          "297-312",
-        ],
+        "pages": "297-312",
         "publisher": Array [
           "Academic Press",
         ],
-        "title": Array [
-          "Model-directed learning of production rules",
-        ],
-        "year": Array [
-          "1978",
-        ],
+        "title": "Model-directed learning of production rules",
+        "year": 1978,
       },
+      "input": String(
+        @book(Mitchell:1978,
+        \\tauthor =\\t{Bruce Buchanan and Tom Mitchell},
+        \\tbooktitle =\\t{Pattern-Directed Inference Systems},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1978},
+        \\teditor =\\t{D.A. Waterman and F. Hayes-Roth},
+        \\tpublisher =\\t{Academic Press},
+        \\tpages =\\t\\t{297-312},
+        \\ttitle =\\t\\t{Model-directed learning of production rules}
+        )
+      ),
       "key": "Mitchell:1978",
       "type": "book",
     },

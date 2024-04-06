@@ -17,32 +17,36 @@ Object {
             "lastName": "Blahut",
           },
         ],
-        "date": Array [
-          "1972",
-        ],
-        "journaltitle": Array [
-          "IEEE_J_IT",
-        ],
-        "number": Array [
-          "4",
-        ],
-        "pages": Array [
-          "460–473",
-        ],
-        "title": Array [
-          "Computation of Channel Capacity and Rate-Distortion Functions",
-        ],
-        "volume": Array [
-          "18",
-        ],
+        "date": "1972",
+        "journaltitle": "IEEE Transactions on Intelligent Transportation Systems",
+        "number": "4",
+        "pages": "460–473",
+        "title": "Computation of Channel Capacity and Rate-Distortion Functions",
+        "volume": "18",
       },
+      "input": String(
+        @article{blahut_capacity,
+          title = {Computation of Channel Capacity and Rate-Distortion Functions},
+          author = {Blahut, Richard E},
+          date = {1972},
+          journaltitle = IEEE_J_IT,
+          volume = {18},
+          pages = {460--473},
+          number = {4}
+        }
+      ),
       "key": "blahut_capacity",
       "type": "article",
     },
   ],
   "errors": Array [
     Object {
-      "message": "Unresolved @string reference \\"IEEE_J_IT\\"",
+      "error": "Unresolved @string reference \\"IEEE_J_IT\\"",
+      "input": "IEEE_J_IT",
+      "location": Object {
+        "column": 27,
+        "line": 6,
+      },
     },
   ],
   "jabref": Object {

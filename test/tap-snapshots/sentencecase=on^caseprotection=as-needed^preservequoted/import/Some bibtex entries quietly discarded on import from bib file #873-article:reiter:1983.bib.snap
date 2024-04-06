@@ -21,22 +21,22 @@ Object {
             "lastName": "Reiter",
           },
         ],
-        "journal": Array [
-          "Proc. AAAI",
-        ],
-        "pages": Array [
-          "104-108",
-        ],
-        "title": Array [
-          "On inheritance hierarchies with exceptions",
-        ],
-        "volume": Array [
-          "3",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "journal": "Proc. AAAI",
+        "pages": "104-108",
+        "title": "On inheritance hierarchies with exceptions",
+        "volume": "3",
+        "year": 1983,
       },
+      "input": String(
+        @article(Reiter:1983,
+        \\tauthor =\\t{David W. Etherington and Raymond Reiter},
+        \\tyear =\\t\\t{1983},
+        \\tjournal =\\t{Proc. AAAI},
+        \\tpages =\\t\\t{104-108},
+        \\ttitle =\\t\\t"On Inheritance Hierarchies with Exceptions",
+        \\tvolume =\\t{3}
+        )
+      ),
       "key": "Reiter:1983",
       "type": "article",
     },

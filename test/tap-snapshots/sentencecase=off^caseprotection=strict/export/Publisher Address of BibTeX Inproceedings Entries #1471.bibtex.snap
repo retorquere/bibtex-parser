@@ -21,49 +21,44 @@ Object {
             "lastName": "Vinter",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the 29th <span class=\\"nocase\\">ACM</span> International Conference on Supercomputing",
-        ],
-        "copyright": Array [
-          "Copyright is held by the owner/author(s). Publication rights licensed to ACM.",
-        ],
-        "doi": Array [
-          "10.1145/2751205.2751209",
-        ],
-        "isbn": Array [
-          "978-1-4503-3559-1",
-        ],
-        "language": Array [
-          "en-US",
-        ],
-        "month": Array [
-          "06",
-        ],
+        "booktitle": "Proceedings of the 29th <span class=\\"nocase\\">ACM</span> International Conference on Supercomputing",
+        "copyright": "Copyright is held by the owner/author(s). Publication rights licensed to ACM.",
+        "doi": "10.1145/2751205.2751209",
+        "isbn": "978-1-4503-3559-1",
+        "language": "en-US",
+        "month": 6,
         "organization": Array [
-          "<span class=\\"nocase\\">ACM SIGARCH</span>",
+          "ACM SIGARCH",
         ],
-        "pages": Array [
-          "339–350",
-        ],
+        "pages": "339–350",
         "publisher": Array [
           "Association for Computing Machinery",
         ],
-        "series": Array [
-          "<span class=\\"nocase\\">ICS</span> '15",
-        ],
-        "shorttitle": Array [
-          "<span class=\\"nocase\\">CSR5</span>",
-        ],
-        "title": Array [
-          "<span class=\\"nocase\\">CSR5</span>: An Efficient Storage Format for Cross-Platform Sparse Matrix-Vector Multiplication",
-        ],
-        "url": Array [
-          "https://dl.acm.org/doi/10.1145/2751205.2751209",
-        ],
-        "year": Array [
-          "2015",
-        ],
+        "series": "<span class=\\"nocase\\">ICS</span> '15",
+        "shorttitle": "<span class=\\"nocase\\">CSR5</span>",
+        "title": "<span class=\\"nocase\\">CSR5</span>: An Efficient Storage Format for Cross-Platform Sparse Matrix-Vector Multiplication",
+        "url": "https://dl.acm.org/doi/10.1145/2751205.2751209",
+        "year": 2015,
       },
+      "input": String(
+        @inproceedings{liu2015,
+          title = {{{CSR5}}: An Efficient Storage Format for Cross-Platform Sparse Matrix-Vector Multiplication},
+          shorttitle = {{{CSR5}}},
+          booktitle = {Proceedings of the 29th {{ACM}} International Conference on Supercomputing},
+          author = {Liu, Weifeng and Vinter, Brian},
+          year = {2015},
+          month = jun,
+          pages = {339--350},
+          publisher = {{Association for Computing Machinery}},
+          doi = {10.1145/2751205.2751209},
+          url = {https://dl.acm.org/doi/10.1145/2751205.2751209},
+          copyright = {Copyright is held by the owner/author(s). Publication rights licensed to ACM.},
+          isbn = {978-1-4503-3559-1},
+          language = {en-US},
+          organization = {{ACM SIGARCH}},
+          series = {{{ICS}} '15}
+        }
+      ),
       "key": "liu2015",
       "type": "inproceedings",
     },

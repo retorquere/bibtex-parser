@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Cambridge",
-        ],
+        "address": "Cambridge",
         "author": Array [
           Object {
             "firstName": "Michael E.",
@@ -23,13 +21,18 @@ Object {
         "publisher": Array [
           "Harvard University Press",
         ],
-        "title": Array [
-          "Intention, Plans, and Practical Reason",
-        ],
-        "year": Array [
-          "1987",
-        ],
+        "title": "Intention, Plans, and Practical Reason",
+        "year": 1987,
       },
+      "input": String(
+        @book(Bratman:87,
+             title =     "Intention, Plans, and Practical Reason",
+             author =    {Michael E. Bratman},
+             publisher = {Harvard University Press},
+             address =   {Cambridge},
+             year =      {1987}
+             )
+      ),
       "key": "Bratman:87",
       "type": "book",
     },

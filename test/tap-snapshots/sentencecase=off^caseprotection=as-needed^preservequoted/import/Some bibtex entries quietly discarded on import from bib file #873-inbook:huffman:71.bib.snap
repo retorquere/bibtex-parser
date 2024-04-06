@@ -11,18 +11,14 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "David",
             "lastName": "Huffman",
           },
         ],
-        "booktitle": Array [
-          "Machine Intelligence",
-        ],
+        "booktitle": "Machine Intelligence",
         "editor": Array [
           Object {
             "firstName": "B.",
@@ -36,16 +32,22 @@ Object {
         "publisher": Array [
           "American Elsevier",
         ],
-        "title": Array [
-          "Impossible objects as nonsense sentences",
-        ],
-        "volume": Array [
-          "6",
-        ],
-        "year": Array [
-          "1971",
-        ],
+        "title": "Impossible objects as nonsense sentences",
+        "volume": "6",
+        "year": 1971,
       },
+      "input": String(
+        @inbook(Huffman:71,
+        \\tauthor =\\t{David Huffman},
+        \\tbooktitle =\\t{Machine Intelligence},
+        \\tvolume = \\t{6},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1971},
+        \\teditor =\\t{B. Meltzer and D. Michie},
+        \\tpublisher =\\t{American Elsevier},
+        \\ttitle =\\t\\t{Impossible objects as nonsense sentences}
+        )
+      ),
       "key": "Huffman:71",
       "type": "inbook",
     },

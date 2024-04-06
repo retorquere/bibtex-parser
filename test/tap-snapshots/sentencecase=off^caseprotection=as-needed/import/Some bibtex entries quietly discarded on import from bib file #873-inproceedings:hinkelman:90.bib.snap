@@ -17,16 +17,18 @@ Object {
             "lastName": "Hinkelman",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the AAAI Symposium on Abduction",
-        ],
-        "title": Array [
-          "Abductive Speech Act Recognition",
-        ],
-        "year": Array [
-          "1990",
-        ],
+        "booktitle": "Proceedings of the AAAI Symposium on Abduction",
+        "title": "Abductive Speech Act Recognition",
+        "year": 1990,
       },
+      "input": String(
+        @INPROCEEDINGS{Hinkelman:90,
+        \\tAUTHOR = {Elizabeth Hinkelman},
+        \\tTITLE = "Abductive Speech Act Recognition",
+        \\tBOOKTITLE = {Proceedings of the AAAI Symposium on Abduction},
+        \\tYEAR = {1990}
+        }
+      ),
       "key": "Hinkelman:90",
       "type": "inproceedings",
     },

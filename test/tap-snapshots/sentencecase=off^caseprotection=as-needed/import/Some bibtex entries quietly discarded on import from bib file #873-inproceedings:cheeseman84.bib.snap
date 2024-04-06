@@ -7,7 +7,9 @@
 'use strict'
 exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-inproceedings:cheeseman84.bib > must match snapshot 1`] = `
 Object {
-  "comments": Array [],
+  "comments": Array [
+    "Tom Dean",
+  ],
   "entries": Array [
     Object {
       "fields": Object {
@@ -17,19 +19,21 @@ Object {
             "lastName": "Cheeseman",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of IEEE International Conference on Robotics",
-        ],
+        "booktitle": "Proceedings of IEEE International Conference on Robotics",
         "organization": Array [
           "IEEE",
         ],
-        "title": Array [
-          "A Representation of Time for Automatic Planning",
-        ],
-        "year": Array [
-          "1984",
-        ],
+        "title": "A Representation of Time for Automatic Planning",
+        "year": 1984,
       },
+      "input": String(
+        @InProceedings{cheeseman84,
+        author = "Cheeseman, P.",
+        title = "A Representation of Time for Automatic Planning",
+        booktitle = "Proceedings of IEEE International Conference on Robotics",
+        organization = "IEEE",
+        year = "1984"}
+      ),
       "key": "cheeseman84",
       "type": "inproceedings",
     },

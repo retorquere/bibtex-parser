@@ -11,31 +11,30 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "abstract": Array [
-          "When a YA novel was criticized for racism prior to publication, the author attempted something radical — she pushed its release date and rewrote it.",
-        ],
+        "abstract": "When a YA novel was criticized for racism prior to publication, the author attempted something radical — she pushed its release date and rewrote it.",
         "author": Array [
           Object {
             "firstName": "Lila",
             "lastName": "Shapiro",
           },
         ],
-        "issue": Array [
-          "May 12,",
-        ],
-        "title": Array [
-          "Can You Revise a Book to Make It More Woke?",
-        ],
-        "url": Array [
-          "https://www.vulture.com/2018/02/keira-drake-the-continent.html",
-        ],
-        "volume": Array [
-          "2020",
-        ],
-        "year": Array [
-          "2018",
-        ],
+        "issue": "May 12,",
+        "title": "Can You Revise a Book to Make It More Woke?",
+        "url": "https://www.vulture.com/2018/02/keira-drake-the-continent.html",
+        "volume": "2020",
+        "year": 2018,
       },
+      "input": String(
+        @web_page{Shapiro2018,
+           abstract = {When a YA novel was criticized for racism prior to publication, the author attempted something radical — she pushed its release date and rewrote it.},
+           author = {Lila Shapiro},
+           issue = {May 12,},
+           title = {Can You Revise a Book to Make It More Woke?},
+           volume = {2020},
+           url = {https://www.vulture.com/2018/02/keira-drake-the-continent.html},
+           year = {2018},
+        }
+      ),
       "key": "Shapiro2018",
       "type": "web_page",
     },

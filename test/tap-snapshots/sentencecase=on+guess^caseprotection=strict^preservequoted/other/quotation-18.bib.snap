@@ -11,10 +11,19 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "note": Array [
-          "<blockquote>sdadsafsf</blockquote><p><p>PRIME und SAT sind exponenziall ybd gelten in der Praxis als nicht lösbar. (<a href=\\"zotero://open-pdf/library/items/VAB33DNE?page=30\\">note on p.30</a>) <p>",
-        ],
+        "note": "<blockquote>sdadsafsf</blockquote><p>PRIME und SAT sind exponenziall ybd gelten in der Praxis als nicht lösbar. (<a href=\\"zotero://open-pdf/library/items/VAB33DNE?page=30\\">note on p.30</a>) <p>",
       },
+      "input": String(
+        @article{demonstration,
+        note = {\\\\begin{quotation}
+        sdadsafsf
+        \\\\end{quotation}
+        
+        \\\\par
+        PRIME und SAT sind exponenziall ybd gelten in der Praxis als nicht l\\\\"osbar. (\\\\href{zotero://open-pdf/library/items/VAB33DNE?page=30}{note on p.30})
+        \\\\par}
+        }
+      ),
       "key": "demonstration",
       "type": "article",
     },

@@ -22,15 +22,20 @@ Object {
           },
         ],
         "institution": Array [
-          "Syracuse University School of Computer and Information Sciences",
+          "Syracuse University School of Computer",
+          "Information Sciences",
         ],
-        "title": Array [
-          "LOGLISP – An alternative to PROLOG",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "title": "LOGLISP – An alternative to PROLOG",
+        "year": 1980,
       },
+      "input": String(
+        @techreport(Sibert:1980,
+        \\tauthor =\\t{J.A. Robinson and E.E. Sibert},
+        \\tyear =\\t\\t{1980},
+        \\tinstitution =\\t{Syracuse University School of Computer and Information Sciences},
+        \\ttitle =\\t\\t{LOGLISP -- An alternative to PROLOG}
+        )
+      ),
       "key": "Sibert:1980",
       "type": "techreport",
     },

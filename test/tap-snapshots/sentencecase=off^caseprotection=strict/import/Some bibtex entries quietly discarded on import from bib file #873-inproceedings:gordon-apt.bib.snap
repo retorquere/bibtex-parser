@@ -11,28 +11,35 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "annote": Array [
-          "Contains a description of an agent synthesis algorithm involving verification and discusses incremental verification. Unlike the CIRCA method, hers is based on characterizing which changes to the agent would invalidate earlier verification results.",
-        ],
+        "annote": "Contains a description of an agent synthesis algorithm involving verification and discusses incremental verification. Unlike the CIRCA method, hers is based on characterizing which changes to the agent would invalidate earlier verification results.",
         "author": Array [
           Object {
             "firstName": "Diana F.",
             "lastName": "Gordon",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the First Goddard Workshop on Formal Approaches to Agent-Based Systems (FAABS'00)",
-        ],
-        "title": Array [
-          "<span class=\\"nocase\\">APT</span> Agents: Agents That Are Adaptive, Predictable and Timely",
-        ],
-        "url": Array [
-          "http://www.cs.uwyo.edu/~dspears/pubs.html",
-        ],
-        "year": Array [
-          2000,
-        ],
+        "booktitle": "Proceedings of the First Goddard Workshop on Formal Approaches to Agent-Based Systems (FAABS'00)",
+        "title": "<span class=\\"nocase\\">APT</span> Agents: Agents That Are Adaptive, Predictable and Timely",
+        "url": "http://www.cs.uwyo.edu/~dspears/pubs.html",
+        "year": 2000,
       },
+      "input": String(
+        @InProceedings{gordon-apt,
+          author =\\t {Diana F. Gordon},
+          title =\\t {{APT} Agents: Agents That Are Adaptive, Predictable
+                          and Timely},
+          booktitle =\\t {Proceedings of the First Goddard Workshop on Formal
+                          Approaches to Agent-Based Systems (FAABS'00)},
+          year =\\t 2000,
+          annote =\\t {Contains a description of an agent synthesis
+                          algorithm involving verification and discusses
+                          incremental verification. Unlike the CIRCA method,
+                          hers is based on characterizing which changes to the
+                          agent would invalidate earlier verification
+                          results.},
+          url =\\t\\t {http://www.cs.uwyo.edu/~dspears/pubs.html}
+        }
+      ),
       "key": "gordon-apt",
       "type": "inproceedings",
     },

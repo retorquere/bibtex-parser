@@ -20,13 +20,18 @@ Object {
         "institution": Array [
           "MIT Artificial Intelligence Laboratory",
         ],
-        "title": Array [
-          "Hypothesis Formation and Evaluation in Medical Diagnosis",
-        ],
-        "year": Array [
-          "1975",
-        ],
+        "title": "Hypothesis Formation and Evaluation in Medical Diagnosis",
+        "year": 1975,
       },
+      "input": String(
+        @techreport(Rubin:75,
+        \\tauthor =\\t{Ann D. Rubin},
+        \\tyear =\\t\\t{1975},
+        \\tinstitution =\\t{MIT Artificial Intelligence Laboratory},
+        \\ttitle =\\t\\t{Hypothesis Formation and Evaluation in 
+        \\t\\t\\t Medical Diagnosis}
+        )
+      ),
       "key": "Rubin:75",
       "type": "techreport",
     },

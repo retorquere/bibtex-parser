@@ -21,33 +21,41 @@ Object {
             "lastName": "Finin",
           },
         ],
-        "journal": Array [
-          "CL",
-        ],
-        "month": Array [
-          "September",
-        ],
-        "number": Array [
-          "3",
-        ],
-        "pages": Array [
-          "175-181",
-        ],
-        "title": Array [
-          "Workshop on the evaluation of natural language processing systems",
-        ],
-        "volume": Array [
-          "16",
-        ],
-        "year": Array [
-          "1990",
-        ],
+        "journal": "Corolla Londiniensis",
+        "month": 9,
+        "number": "3",
+        "pages": "175-181",
+        "title": "Workshop on the evaluation of natural language processing systems",
+        "volume": "16",
+        "year": 1990,
       },
+      "input": String(
+        @ARTICLE{eval:90,
+        \\tAUTHOR = {Martha Palmer and Tim Finin},
+        \\tTITLE = {Workshop on the Evaluation of Natural
+        \\t\\t Language Processing Systems},
+        \\tJOURNAL = CL,
+        \\tYEAR = {1990},
+        \\tVOLUME = {16},
+        \\tNUMBER = {3},
+        \\tPAGES = {175-181},
+        \\tMONTH = September
+        }
+      ),
       "key": "eval:90",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"CL\\"",
+      "input": "CL",
+      "location": Object {
+        "column": 14,
+        "line": 5,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

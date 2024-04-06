@@ -29,25 +29,24 @@ Object {
             "lastName": "Reddy",
           },
         ],
-        "journal": Array [
-          "Computing Surveys",
-        ],
-        "number": Array [
-          "2",
-        ],
-        "pages": Array [
-          "213-253",
-        ],
-        "title": Array [
-          "The hearsay-II speech-understanding system: integrating knowledge to resolve uncertainty",
-        ],
-        "volume": Array [
-          "12",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "journal": "Computing Surveys",
+        "number": "2",
+        "pages": "213-253",
+        "title": "The hearsay-II speech-understanding system: integrating knowledge to resolve uncertainty",
+        "volume": "12",
+        "year": 1980,
       },
+      "input": String(
+        @article(Erman:80,
+        \\tauthor =\\t{Lee D. Erman and Frederick Hayes-Roth and Victor R. Lesser and D. Raj Reddy},
+        \\tyear =\\t\\t{1980},
+        \\tjournal =\\t{Computing Surveys},
+        \\tnumber =\\t{2},
+        \\tpages =\\t\\t{213-253},
+        \\ttitle =\\t\\t"The Hearsay-II speech-understanding system: integrating knowledge to resolve uncertainty",
+        \\tvolume =\\t{12}
+        )
+      ),
       "key": "Erman:80",
       "type": "article",
     },

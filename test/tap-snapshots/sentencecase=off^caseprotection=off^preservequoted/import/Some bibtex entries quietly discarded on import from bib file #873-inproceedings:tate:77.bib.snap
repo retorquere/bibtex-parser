@@ -17,24 +17,34 @@ Object {
             "lastName": "Tate",
           },
         ],
-        "booktitle": Array [
-          "IJCAI-77",
-        ],
-        "pages": Array [
-          "888–893",
-        ],
-        "title": Array [
-          "Generating project networks",
-        ],
-        "year": Array [
-          "1977",
-        ],
+        "booktitle": "<span class=\\"nocase\\">IJCAI-77</span>",
+        "pages": "888–893",
+        "title": "Generating project networks",
+        "year": 1977,
       },
+      "input": String(
+        @inproceedings(Tate:77,
+        \\tauthor =\\t{Austin Tate},
+        \\tyear =\\t\\t{1977},
+        \\tbooktitle =\\tIJCAI-77,
+        \\tpages =\\t\\t{888--893},
+        \\ttitle =\\t\\t{Generating project networks}
+        )
+      ),
       "key": "Tate:77",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"IJCAI-77\\"",
+      "input": "IJCAI-77",
+      "location": Object {
+        "column": 22,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

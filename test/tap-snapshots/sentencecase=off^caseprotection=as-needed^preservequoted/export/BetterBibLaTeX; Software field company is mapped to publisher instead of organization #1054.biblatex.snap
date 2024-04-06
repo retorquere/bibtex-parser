@@ -13,19 +13,23 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "literal": "Blup",
+            "name": "Blup",
           },
         ],
-        "date": Array [
-          "9265",
-        ],
+        "date": "9265",
         "organization": Array [
           "BliBlaBlup",
         ],
-        "title": Array [
-          "Bla",
-        ],
+        "title": "Bla",
       },
+      "input": String(
+        @software{blup_bla_9265,
+          title = {Bla},
+          author = {{Blup}},
+          date = {9265},
+          organization = {{BliBlaBlup}}
+        }
+      ),
       "key": "blup_bla_9265",
       "type": "software",
     },

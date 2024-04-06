@@ -11,34 +11,34 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Los Altos, Calif.",
-        ],
+        "address": "Los Altos, Calif.",
         "author": Array [
           Object {
             "firstName": "Elaine",
             "lastName": "Rich",
           },
         ],
-        "booktitle": Array [
-          "Proc. AAAI",
-        ],
-        "pages": Array [
-          "348-351",
-        ],
+        "booktitle": "Proc. AAAI",
+        "pages": "348-351",
         "publisher": Array [
           "William Kaufmann, Inc.",
         ],
-        "title": Array [
-          "Default reasoning as likelihood reasoning",
-        ],
-        "volume": Array [
-          "3",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "title": "Default reasoning as likelihood reasoning",
+        "volume": "3",
+        "year": 1983,
       },
+      "input": String(
+        @inproceedings(Rich:83,
+        \\tauthor =\\t{Elaine Rich},
+        \\taddress =\\t{Los Altos, Calif.},
+        \\tyear =\\t\\t{1983},
+        \\tpublisher =\\t{William Kaufmann, Inc.},
+        \\tbooktitle =\\t{Proc. AAAI},
+        \\tpages =\\t\\t{348-351},
+        \\ttitle =\\t\\t"Default reasoning as likelihood reasoning",
+        \\tvolume =\\t{3}
+        )
+      ),
       "key": "Rich:83",
       "type": "inproceedings",
     },

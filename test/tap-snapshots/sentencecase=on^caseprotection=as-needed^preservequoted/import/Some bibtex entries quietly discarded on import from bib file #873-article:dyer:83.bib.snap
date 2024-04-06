@@ -17,22 +17,22 @@ Object {
             "lastName": "Dyer",
           },
         ],
-        "journal": Array [
-          "Cognitive Science",
-        ],
-        "number": Array [
-          "3",
-        ],
-        "title": Array [
-          "The role of affect in narratives",
-        ],
-        "volume": Array [
-          "7",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "journal": "Cognitive Science",
+        "number": "3",
+        "title": "The role of affect in narratives",
+        "volume": "7",
+        "year": 1983,
       },
+      "input": String(
+        @article(Dyer:83,
+        \\tauthor =\\t{Michael G. Dyer},
+        \\tyear =\\t\\t{1983},
+        \\tjournal =\\t{Cognitive Science},
+        \\tnumber =\\t{3},
+        \\ttitle =\\t\\t"The role of affect in narratives",
+        \\tvolume =\\t{7}
+        )
+      ),
       "key": "Dyer:83",
       "type": "article",
     },

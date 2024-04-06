@@ -17,28 +17,32 @@ Object {
             "lastName": "Schubert",
           },
         ],
-        "booktitle": Array [
-          "Knowledge Representation and Defeasible Reasoning",
-        ],
+        "booktitle": "Knowledge Representation and Defeasible Reasoning",
         "editor": Array [
           Object {
             "firstName": "Jr.",
             "lastName": "H.E. Kyburg",
           },
         ],
-        "pages": Array [
-          "23–67",
-        ],
+        "pages": "23–67",
         "publisher": Array [
           "Kluwer Academic Publishers",
         ],
-        "title": Array [
-          "Monotonic Solution of the Frame Problem in the situation calculus",
-        ],
-        "year": Array [
-          "1990",
-        ],
+        "title": "Monotonic Solution of the Frame Problem in the situation calculus",
+        "year": 1990,
       },
+      "input": String(
+        @INCOLLECTION{Schubert:90,
+        \\tAUTHOR = {Lenhart Schubert},
+        \\tTITLE = {Monotonic Solution of the Frame Problem
+        \\t\\t in the situation calculus},
+        \\tBOOKTITLE = {Knowledge Representation and Defeasible Reasoning},
+        \\tPUBLISHER = {Kluwer Academic Publishers},
+        \\tYEAR = {1990},
+        \\tEDITOR = {H.E. Kyburg, Jr.},
+        \\tPAGES = {23--67}
+        }
+      ),
       "key": "Schubert:90",
       "type": "incollection",
     },

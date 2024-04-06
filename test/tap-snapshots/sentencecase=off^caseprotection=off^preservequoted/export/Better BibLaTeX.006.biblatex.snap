@@ -11,10 +11,13 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "title": Array [
-          "Non-Breaking Space: ; Accented Characters: Ñ and ñ; Tilde in <span class=\\"nocase\\">URL</span>: <span class=\\"nocase\\">http://example.com/~user</span>",
-        ],
+        "title": "Non-Breaking Space: ; Accented Characters: Ñ and ñ; Tilde in <span class=\\"nocase\\">URL</span>: <span class=\\"nocase\\">http://example.com/~user</span>",
       },
+      "input": String(
+        @article{test-ticket1661,
+          title = {Non-Breaking Space: ; Accented Characters: Ñ and ñ; Tilde in {{URL}}: {{http://example.com/\\\\textasciitilde user}}}
+        }
+      ),
       "key": "test-ticket1661",
       "type": "article",
     },

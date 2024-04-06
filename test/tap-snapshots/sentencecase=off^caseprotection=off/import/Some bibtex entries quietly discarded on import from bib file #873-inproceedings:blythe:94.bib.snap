@@ -17,16 +17,18 @@ Object {
             "lastName": "Blythe",
           },
         ],
-        "crossref": Array [
-          "UAI94",
-        ],
-        "pages": Array [
-          "94–101",
-        ],
-        "title": Array [
-          "Planning with External Events",
-        ],
+        "crossref": "UAI94",
+        "pages": "94–101",
+        "title": "Planning with External Events",
       },
+      "input": String(
+        @INPROCEEDINGS(Blythe:94,
+        \\tAUTHOR = {Jim Blythe},
+        \\tTITLE = "Planning with External Events",
+        \\tPAGES = {94--101},
+        \\tCROSSREF = {UAI94}
+        )
+      ),
       "key": "Blythe:94",
       "type": "inproceedings",
     },

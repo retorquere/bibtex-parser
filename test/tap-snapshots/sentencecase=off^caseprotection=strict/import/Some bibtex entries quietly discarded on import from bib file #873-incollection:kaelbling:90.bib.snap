@@ -17,16 +17,18 @@ Object {
             "lastName": "Kaelbling",
           },
         ],
-        "crossref": Array [
-          "PlanReadings",
-        ],
-        "pages": Array [
-          "713–728",
-        ],
-        "title": Array [
-          "An Architecture for Intelligent Reactive Systems",
-        ],
+        "crossref": "PlanReadings",
+        "pages": "713–728",
+        "title": "An Architecture for Intelligent Reactive Systems",
       },
+      "input": String(
+        @INCOLLECTION{Kaelbling:90,
+        \\tAUTHOR = {Leslie Pack Kaelbling},
+        \\tTITLE = "An Architecture for Intelligent Reactive Systems",
+        \\tCROSSREF = {PlanReadings},
+        \\tPAGES = {713--728}
+        }
+      ),
       "key": "Kaelbling:90",
       "type": "incollection",
     },

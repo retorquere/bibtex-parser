@@ -11,29 +11,43 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Cambridge, Mass.",
-        ],
+        "address": "Cambridge, Mass.",
         "author": Array [
           Object {
-            "lastName": "MCDERMOTT",
+            "name": "MCDERMOTT",
           },
         ],
         "institution": Array [
           "Massachusetts Institute of Technology, Artificial Intelligence Laboratory",
         ],
-        "title": Array [
-          "Flexibility and Efficiency in a Computer Program for Designing Circuits",
-        ],
-        "year": Array [
-          "June 1977",
-        ],
+        "title": "Flexibility and Efficiency in a Computer Program for Designing Circuits",
+        "year": "June 1977",
       },
+      "input": String(
+        @techreport(McDermott:77,
+        \\tauthor =\\tMCDERMOTT,
+        \\taddress =\\t{Cambridge, Mass.},
+        \\tyear =\\t\\t{June 1977},
+        \\tinstitution =\\t{Massachusetts Institute of Technology, 
+        \\t\\t\\t Artificial Intelligence Laboratory},
+        \\ttitle =\\t\\t{Flexibility and Efficiency in a Computer 
+        \\t\\t\\t Program for Designing Circuits}
+        )
+      ),
       "key": "McDermott:77",
       "type": "techreport",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"MCDERMOTT\\"",
+      "input": "MCDERMOTT",
+      "location": Object {
+        "column": 20,
+        "line": 2,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

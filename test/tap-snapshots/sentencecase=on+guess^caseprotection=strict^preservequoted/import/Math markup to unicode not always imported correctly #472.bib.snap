@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "abstract": Array [
-          "Abstract here",
-        ],
+        "abstract": "Abstract here",
         "author": Array [
           Object {
             "firstName": "J.",
@@ -24,40 +22,38 @@ Object {
             "lastName": "Smith",
           },
         ],
-        "booktitle": Array [
-          "IEEE_J_PROC",
-        ],
-        "doi": Array [
-          "10.1109/JPROC.2016.2526118",
-        ],
-        "issn": Array [
-          "0193-6530",
-        ],
+        "booktitle": "<span class=\\"nocase\\">IEEE_J_PROC</span>",
+        "doi": "10.1109/JPROC.2016.2526118",
+        "issn": "0193-6530",
         "keywords": Array [
           "Keyword 1",
           "Keyword 2",
         ],
-        "month": Array [
-          "Feb",
-        ],
-        "pages": Array [
-          "300–301",
-        ],
-        "title": Array [
-          "<span class=\\"nocase\\">T</span>est <span class=\\"nocase\\">T</span>itle <span class=\\"nocase\\">W</span>ith 100 𝜇<span class=\\"nocase\\">J</span>, 200 𝜇<span class=\\"nocase\\">J E</span>nergy, and ±0.1% <span class=\\"nocase\\">A</span>ccuracy, 0.2 mm² <span class=\\"nocase\\">S</span>ize, and -50 d<span class=\\"nocase\\">B A</span>ttenuation",
-        ],
-        "year": Array [
-          "2016",
-        ],
+        "month": "Feb",
+        "pages": "300–301",
+        "title": "<span class=\\"nocase\\">T</span>est <span class=\\"nocase\\">T</span>itle <span class=\\"nocase\\">W</span>ith 100 <span class=\\"nocase\\">𝜇J</span>, 200 <span class=\\"nocase\\">𝜇J E</span>nergy, and <span class=\\"nocase\\">±</span>0.1% <span class=\\"nocase\\">A</span>ccuracy, 0.2 mm<span class=\\"nocase\\">² S</span>ize, and <span class=\\"nocase\\">-</span>50 d<span class=\\"nocase\\">B A</span>ttenuation",
+        "year": 2016,
       },
+      "input": String(
+        @InProceedings{test_citation1,
+          Title                    = {{T}est {T}itle {W}ith 100~$\\\\mu\${J}, 200\\\\,{\\\\mbox{$\\\\mu$}}{J} {E}nergy, and $\\\\pm$0.1\\\\% {A}ccuracy, 0.2\\\\,mm$^2$ {S}ize, and $-$50\\\\,d{B} {A}ttenuation},
+          Author                   = {Doe, J. and Smith, R.},
+          Booktitle                = IEEE_J_PROC,
+          Year                     = {2016},
+          Month                    = {Feb},
+          Pages                    = {300--301},
+          Abstract                 = {Abstract here},
+          DOI                      = {10.1109/JPROC.2016.2526118},
+          ISSN                     = {0193-6530},
+          Keywords                 = {Keyword 1; Keyword 2}
+        }
+      ),
       "key": "test_citation1",
       "type": "inproceedings",
     },
     Object {
       "fields": Object {
-        "abstract": Array [
-          "Abstract here",
-        ],
+        "abstract": "Abstract here",
         "author": Array [
           Object {
             "firstName": "J.",
@@ -68,39 +64,52 @@ Object {
             "lastName": "Smith",
           },
         ],
-        "booktitle": Array [
-          "IEEE_J_PROC",
-        ],
-        "doi": Array [
-          "10.1109/JPROC.2016.2526118",
-        ],
-        "issn": Array [
-          "0193-6530",
-        ],
+        "booktitle": "<span class=\\"nocase\\">IEEE_J_PROC</span>",
+        "doi": "10.1109/JPROC.2016.2526118",
+        "issn": "0193-6530",
         "keywords": Array [
           "Keyword 1",
           "Keyword 2",
         ],
-        "month": Array [
-          "Feb",
-        ],
-        "pages": Array [
-          "300–301",
-        ],
-        "title": Array [
-          "<span class=\\"nocase\\">T</span>est <span class=\\"nocase\\">T</span>itle with space quad, space semi-colon, space colon, space comma, space nbsp",
-        ],
-        "year": Array [
-          "2016",
-        ],
+        "month": "Feb",
+        "pages": "300–301",
+        "title": "<span class=\\"nocase\\">T</span>est <span class=\\"nocase\\">T</span>itle with space quad, space semi-colon, space colon, space comma, space nbsp",
+        "year": 2016,
       },
+      "input": String(
+        @InProceedings{test_citation2,
+          Title                    = {{T}est {T}itle with space\\\\quad quad, space\\\\;semi-colon, space\\\\:colon, space\\\\,comma, space~nbsp},
+          Author                   = {Doe, J. and Smith, R.},
+          Booktitle                = IEEE_J_PROC,
+          Year                     = {2016},
+          Month                    = {Feb},
+          Pages                    = {300--301},
+          Abstract                 = {Abstract here},
+          DOI                      = {10.1109/JPROC.2016.2526118},
+          ISSN                     = {0193-6530},
+          Keywords                 = {Keyword 1; Keyword 2}
+        }
+      ),
       "key": "test_citation2",
       "type": "inproceedings",
     },
   ],
   "errors": Array [
     Object {
-      "message": "Unresolved @string reference \\"IEEE_J_PROC\\"",
+      "error": "Unresolved @string reference \\"IEEE_J_PROC\\"",
+      "input": "IEEE_J_PROC",
+      "location": Object {
+        "column": 41,
+        "line": 4,
+      },
+    },
+    Object {
+      "error": "Unresolved @string reference \\"IEEE_J_PROC\\"",
+      "input": "IEEE_J_PROC",
+      "location": Object {
+        "column": 41,
+        "line": 17,
+      },
     },
   ],
   "jabref": Object {

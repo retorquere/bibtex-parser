@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Bloomington, IN",
-        ],
+        "address": "Bloomington, IN",
         "author": Array [
           Object {
             "firstName": "Jonathan W.",
@@ -23,16 +21,21 @@ Object {
         "institution": Array [
           "Computer Science Department, Indiana University",
         ],
-        "number": Array [
-          "363a",
-        ],
-        "title": Array [
-          "Stiquito: A Small, simple, inexpensive hexapod robot; Part 1. Locomotion and Hard-wired control",
-        ],
-        "year": Array [
-          "1992",
-        ],
+        "number": "363a",
+        "title": "Stiquito: A Small, simple, inexpensive hexapod robot; Part 1. Locomotion and Hard-wired control",
+        "year": 1992,
       },
+      "input": String(
+        @TECHREPORT{Mills:92,
+        \\tAUTHOR = {Jonathan W. Mills},
+        \\tTITLE = {Stiquito:  A Small, simple, inexpensive hexapod robot;
+        \\t\\t Part 1.  Locomotion and Hard-wired control},
+        \\tINSTITUTION = {Computer Science Department, Indiana University},
+        \\tYEAR = {1992},
+        \\tNUMBER = {363a},
+        \\tADDRESS = {Bloomington, IN}
+        }
+      ),
       "key": "Mills:92",
       "type": "techreport",
     },

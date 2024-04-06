@@ -21,19 +21,20 @@ Object {
             "lastName": "Charniak",
           },
         ],
-        "crossref": Array [
-          "ACL-86",
-        ],
-        "pages": Array [
-          "3-9",
-        ],
-        "title": Array [
-          "Time and Tense in English",
-        ],
-        "year": Array [
-          "1986",
-        ],
+        "crossref": "ACL-86",
+        "pages": "3-9",
+        "title": "Time and Tense in English",
+        "year": 1986,
       },
+      "input": String(
+        @INPROCEEDINGS{Harper:86,
+        \\tAUTHOR = {Mary P. Harper and Eugene Charniak},
+        \\tTITLE = "Time and Tense in English",
+        \\tCROSSREF = {ACL-86},
+        \\tPAGES = {3-9},
+        \\tYEAR = {1986}
+        }
+      ),
       "key": "Harper:86",
       "type": "inproceedings",
     },

@@ -13,24 +13,35 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "lastName": "REITER",
+            "name": "REITER",
           },
         ],
-        "booktitle": Array [
-          "Artificial intelligence and mathematical theory of computation: Papers in honor of john McCarthy, vladimir lifschitz (ed.), academic press",
-        ],
-        "title": Array [
-          "The frame problem in the situation calculus: <span class=\\"nocase\\">A</span> simple solution (sometimes) and a completeness result for goal regression",
-        ],
-        "year": Array [
-          "1991",
-        ],
+        "booktitle": "Artificial intelligence and mathematical theory of computation: Papers in honor of john McCarthy, vladimir lifschitz (ed.), academic press",
+        "title": "The frame problem in the situation calculus: <span class=\\"nocase\\">A</span> simple solution (sometimes) and a completeness result for goal regression",
+        "year": 1991,
       },
+      "input": String(
+        @incollection{ reiter91frame,
+            author = REITER,
+            title = "The Frame Problem in the Situation Calculus: {A} Simple Solution (Sometimes) and a Completeness Result for Goal Regression",
+            booktitle = "Artificial Intelligence and Mathematical Theory of Computation: Papers in Honor of John McCarthy, Vladimir Lifschitz (Ed.), Academic Press",
+            year = "1991"
+        }
+      ),
       "key": "reiter91frame",
       "type": "incollection",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"REITER\\"",
+      "input": "REITER",
+      "location": Object {
+        "column": 20,
+        "line": 2,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

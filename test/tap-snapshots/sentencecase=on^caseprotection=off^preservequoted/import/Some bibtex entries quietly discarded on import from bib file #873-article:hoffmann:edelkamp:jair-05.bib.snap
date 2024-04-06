@@ -13,7 +13,7 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "firstName": "Jörg",
+            "firstName": "Jörg",
             "lastName": "Hoffmann",
           },
           Object {
@@ -21,27 +21,36 @@ Object {
             "lastName": "Edelkamp",
           },
         ],
-        "journal": Array [
-          "JAIR",
-        ],
-        "pages": Array [
-          "519–579",
-        ],
-        "title": Array [
-          "The deterministic part of IPC-4: An overview",
-        ],
-        "volume": Array [
-          "24",
-        ],
-        "year": Array [
-          "2005",
-        ],
+        "journal": "JAIR",
+        "pages": "519–579",
+        "title": "The deterministic part of IPC-4: An overview",
+        "volume": "24",
+        "year": 2005,
       },
+      "input": String(
+        @Article{hoffmann:edelkamp:jair-05,
+          author = \\t {J{\\\\"o}rg Hoffmann and Stefan Edelkamp},
+          title = \\t {The Deterministic Part of {IPC}-4: An Overview},
+          journal = \\t JAIR,
+          year = {2005},
+          volume = {24},
+          pages = {519--579}
+        }
+      ),
       "key": "hoffmann:edelkamp:jair-05",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"JAIR\\"",
+      "input": "JAIR",
+      "location": Object {
+        "column": 19,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

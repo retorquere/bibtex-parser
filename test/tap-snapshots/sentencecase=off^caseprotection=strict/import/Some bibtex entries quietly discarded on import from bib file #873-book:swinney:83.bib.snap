@@ -11,26 +11,18 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "ERLBAUM-ADDRESS",
-        ],
+        "address": "ERLBAUM-ADDRESS",
         "author": Array [
           Object {
             "firstName": "David",
             "lastName": "Swinney",
           },
         ],
-        "booktitle": Array [
-          "Methods and Tactics in Cognitive Science",
-        ],
+        "booktitle": "Methods and Tactics in Cognitive Science",
         "editor": Array [
           Object {
-            "firstName": "W.",
-            "lastName": "Kintsch",
-          },
-          Object {
-            "firstName": "R.J.",
-            "lastName": "Miller",
+            "firstName": "R.J. Miller",
+            "lastName": "W. Kintsch",
           },
           Object {
             "firstName": "P.",
@@ -40,18 +32,34 @@ Object {
         "publisher": Array [
           "Lawrence Erlbaum",
         ],
-        "title": Array [
-          "Theoretical and methodological issues in cognitive science: A psycholinguistic perspective",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "title": "Theoretical and methodological issues in cognitive science: A psycholinguistic perspective",
+        "year": 1983,
       },
+      "input": String(
+        @book(Swinney:83,
+        \\tauthor =\\t{David Swinney},
+        \\tbooktitle =\\t{Methods and Tactics in Cognitive Science},
+        \\taddress =\\tERLBAUM-ADDRESS,
+        \\tyear =\\t\\t{1983},
+        \\teditor =\\t{W. Kintsch, R.J. Miller, and P. Polson},
+        \\tpublisher =\\t{Lawrence Erlbaum},
+        \\ttitle =\\t\\t{Theoretical and methodological issues in cognitive science: A psycholinguistic perspective}
+        )
+      ),
       "key": "Swinney:83",
       "type": "book",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"ERLBAUM-ADDRESS\\"",
+      "input": "ERLBAUM-ADDRESS",
+      "location": Object {
+        "column": 27,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

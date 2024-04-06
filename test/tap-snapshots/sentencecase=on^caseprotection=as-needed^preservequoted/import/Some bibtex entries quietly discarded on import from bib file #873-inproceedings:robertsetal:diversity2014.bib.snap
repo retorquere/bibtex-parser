@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "abstract": Array [
-          "Applications that require alternative plans challenge the single solution, single quality metric assumptions upon which many classical planners are designed and evaluated. To evaluate the distinctness of alternative plans (i.e., plan sets), researchers have created diversity metrics that often measure the set difference between the actions of plans. Many approaches for generating plan sets embed the same diversity metric in a weighted evaluation function to guide the search mechanism, thus confounding the search process with its evaluation. We discover that two diversity metrics fail to distinguish similar plans from each other or to identify plans with extraneous actions, so we introduce two new diversity metrics, <i>uniqueness</i> and <i>overlap</i>, to capture these cases. We then examine the tradeoffs of producing diverse plans while we control for plan length and metric interaction and confirm that metric interaction can significantly impact search performance. We show that planners searching for plan sets must consider a third metric, <i>parsimony</i>, that prefers shorter plans while maximizing diversity.We evaluate three existing approaches for generating diverse plans and two new algorithms that are designed to explicitly manage diversity and interaction between the diversity and quality metrics. Our findings synthesize and extend recent results in plan diversity.",
-        ],
+        "abstract": "Applications that require alternative plans challenge the single solution, single quality metric assumptions upon which many classical planners are designed and evaluated. To evaluate the distinctness of alternative plans (i.e., plan sets), researchers have created diversity metrics that often measure the set difference between the actions of plans. Many approaches for generating plan sets embed the same diversity metric in a weighted evaluation function to guide the search mechanism, thus confounding the search process with its evaluation. We discover that two diversity metrics fail to distinguish similar plans from each other or to identify plans with extraneous actions, so we introduce two new diversity metrics, <i>uniqueness</i> and <i>overlap</i>, to capture these cases. We then examine the tradeoffs of producing diverse plans while we control for plan length and metric interaction and confirm that metric interaction can significantly impact search performance. We show that planners searching for plan sets must consider a third metric, <i>parsimony</i>, that prefers shorter plans while maximizing diversity.We evaluate three existing approaches for generating diverse plans and two new algorithms that are designed to explicitly manage diversity and interaction between the diversity and quality metrics. Our findings synthesize and extend recent results in plan diversity.",
         "author": Array [
           Object {
             "firstName": "Mark",
@@ -28,27 +26,53 @@ Object {
             "lastName": "Ray",
           },
         ],
-        "booktitle": Array [
-          "Proceedings ICAPS",
-        ],
-        "conference": Array [
-          "International Conference on Automated Planning and Scheduling",
-        ],
+        "booktitle": "Proceedings ICAPS",
+        "conference": "International Conference on Automated Planning and Scheduling",
         "keywords": Array [
           "Classical Planning",
           "Diverse Planning",
           "Evaluation of Planning Systems",
         ],
-        "title": Array [
-          "Evaluating diversity in classical planning",
-        ],
-        "url": Array [
-          "http://www.aaai.org/ocs/index.php/ICAPS/ICAPS14/paper/view/7947",
-        ],
-        "year": Array [
-          "2014",
-        ],
+        "title": "Evaluating diversity in classical planning",
+        "url": "http://www.aaai.org/ocs/index.php/ICAPS/ICAPS14/paper/view/7947",
+        "year": 2014,
       },
+      "input": String(
+        @inproceedings{RobertsETAL:Diversity2014,
+          author =       {Mark Roberts and Adele Howe and Indrajit Ray},
+          title =        {Evaluating Diversity in Classical Planning},
+          conference =   {International Conference on Automated Planning and Scheduling},
+          booktitle =    {Proceedings {ICAPS}},
+          year =         {2014},
+          keywords =     {Classical Planning, Diverse Planning, Evaluation of Planning
+                          Systems},
+          abstract =     {Applications that require alternative plans challenge the
+                          single solution, single quality metric assumptions upon which
+                          many classical planners are designed and evaluated. To
+                          evaluate the distinctness of alternative plans (i.e., plan
+                          sets), researchers have created diversity metrics that often
+                          measure the set difference between the actions of plans. Many
+                          approaches for generating plan sets embed the same diversity
+                          metric in a weighted evaluation function to guide the search
+                          mechanism, thus confounding the search process with its
+                          evaluation. We discover that two diversity metrics fail to
+                          distinguish similar plans from each other or to identify plans
+                          with extraneous actions, so we introduce two new diversity
+                          metrics, \\\\emph{uniqueness} and \\\\emph{overlap}, to capture
+                          these cases. We then examine the tradeoffs of producing
+                          diverse plans while we control for plan length and metric
+                          interaction and confirm that metric interaction can
+                          significantly impact search performance.  We show that
+                          planners searching for plan sets must consider a third metric,
+                          \\\\emph{parsimony}, that prefers shorter plans while maximizing
+                          diversity.We evaluate three existing approaches for generating
+                          diverse plans and two new algorithms that are designed to
+                          explicitly manage diversity and interaction between the
+                          diversity and quality metrics. Our findings synthesize and
+                          extend recent results in plan diversity.},
+          url =          {http://www.aaai.org/ocs/index.php/ICAPS/ICAPS14/paper/view/7947}
+        }
+      ),
       "key": "RobertsETAL:Diversity2014",
       "type": "inproceedings",
     },

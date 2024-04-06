@@ -17,30 +17,39 @@ Object {
             "lastName": "Webb",
           },
         ],
-        "journal": Array [
-          "JAIR",
-        ],
-        "month": Array [
-          "12",
-        ],
-        "pages": Array [
-          "431–465",
-        ],
-        "title": Array [
-          "OPUS: An efficient admissible algorithm for unordered search",
-        ],
-        "volume": Array [
-          "3",
-        ],
-        "year": Array [
-          "1995",
-        ],
+        "journal": "JAIR",
+        "month": 12,
+        "pages": "431–465",
+        "title": "<span class=\\"nocase\\">OPUS</span>: An efficient admissible algorithm for unordered search",
+        "volume": "3",
+        "year": 1995,
       },
+      "input": String(
+        @ARTICLE{Webb:95,
+        \\tAUTHOR = {Geoffrey I. Webb},
+        \\tTITLE = {{OPUS}: An efficient admissible algorithm for unordered
+        \\t\\t search},
+        \\tJOURNAL = JAIR,
+        \\tYEAR = {1995},
+        \\tVOLUME = {3},
+        \\tPAGES = {431--465},
+        \\tMONTH = dec
+        }
+      ),
       "key": "Webb:95",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"JAIR\\"",
+      "input": "JAIR",
+      "location": Object {
+        "column": 16,
+        "line": 5,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

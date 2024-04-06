@@ -17,19 +17,21 @@ Object {
             "lastName": "Dean",
           },
         ],
-        "journal": Array [
-          "Decision Support Systems",
-        ],
-        "title": Array [
-          "Handling shared resources in a temporal data base management system",
-        ],
-        "volume": Array [
-          "2",
-        ],
-        "year": Array [
-          1986,
-        ],
+        "journal": "Decision Support Systems",
+        "title": "Handling shared resources in a temporal data base management system",
+        "volume": "2",
+        "year": 1986,
       },
+      "input": String(
+        @article(Dean86a,
+            author = {Thomas Dean},
+            title = {Handling Shared Resources in a
+                Temporal Data Base Management System},
+            journal = {Decision Support Systems},
+            volume = {2},
+            year = 1986
+        )
+      ),
       "key": "Dean86a",
       "type": "article",
     },

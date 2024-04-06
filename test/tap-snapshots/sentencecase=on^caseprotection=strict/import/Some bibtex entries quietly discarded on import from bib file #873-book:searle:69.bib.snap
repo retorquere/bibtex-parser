@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "London",
-        ],
+        "address": "London",
         "author": Array [
           Object {
             "firstName": "John R.",
@@ -23,13 +21,18 @@ Object {
         "publisher": Array [
           "Cambridge University Press",
         ],
-        "title": Array [
-          "Speech acts: An essay in the philosophy of language",
-        ],
-        "year": Array [
-          "1969",
-        ],
+        "title": "Speech acts: An essay in the philosophy of language",
+        "year": 1969,
       },
+      "input": String(
+        @book(Searle:69,
+        \\tauthor =\\t{John R. Searle},
+        \\taddress =\\t{London},
+        \\tyear =\\t\\t{1969},
+        \\tpublisher =\\t{Cambridge University Press},
+        \\ttitle =\\t\\t{Speech Acts: An Essay in the Philosophy of Language}
+        )
+      ),
       "key": "Searle:69",
       "type": "book",
     },

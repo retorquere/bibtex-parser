@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Cambridge, Mass.",
-        ],
+        "address": "Cambridge, Mass.",
         "author": Array [
           Object {
             "firstName": "Scott E.",
@@ -23,13 +21,19 @@ Object {
         "publisher": Array [
           "MIT Press",
         ],
-        "title": Array [
-          "NETL: A System for Representing and Using Real-World Knowledge",
-        ],
-        "year": Array [
-          "1979",
-        ],
+        "title": "NETL: A System for Representing and Using Real-World Knowledge",
+        "year": 1979,
       },
+      "input": String(
+        @book(Fahlman:79,
+        \\tauthor =\\t{Scott E. Fahlman},
+        \\taddress =\\t{Cambridge, Mass.},
+        \\tyear =\\t\\t{1979},
+        \\tpublisher =\\t{MIT Press},
+        \\ttitle =\\t\\t{NETL: A System for Representing and Using 
+        \\t\\t\\t Real-World Knowledge}
+        )
+      ),
       "key": "Fahlman:79",
       "type": "book",
     },

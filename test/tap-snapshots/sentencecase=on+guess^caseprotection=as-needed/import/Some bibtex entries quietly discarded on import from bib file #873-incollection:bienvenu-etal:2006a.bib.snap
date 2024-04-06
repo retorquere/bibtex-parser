@@ -7,13 +7,15 @@
 'use strict'
 exports[`test/all.js > TAP > import=Some bibtex entries quietly discarded on import from bib file #873-incollection:bienvenu-etal:2006a.bib > must match snapshot 1`] = `
 Object {
-  "comments": Array [],
+  "comments": Array [
+    "booktitle =\\t\\"Proceedings of the Fifteenth International Conference",
+    "on Automated Planning and Scheduling ({ICAPS} 2005),",
+    "June 5-10 2005, Monterey, California, {USA}\\",",
+  ],
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Menlo Park, California",
-        ],
+        "address": "Menlo Park, California",
         "author": Array [
           Object {
             "firstName": "Meghyn",
@@ -28,9 +30,7 @@ Object {
             "lastName": "McIlraith",
           },
         ],
-        "booktitle": Array [
-          "KR2006",
-        ],
+        "booktitle": "KR2006",
         "editor": Array [
           Object {
             "firstName": "Patrick",
@@ -45,22 +45,29 @@ Object {
             "lastName": "Welty",
           },
         ],
-        "pages": Array [
-          "134–144",
-        ],
+        "pages": "134–144",
         "publisher": Array [
           "AAAI Press",
         ],
-        "title": Array [
-          "Planning with qualitative temporal preferences",
-        ],
-        "topic": Array [
-          "planning;preferences;qualitative-utility;temporal-reasoning;",
-        ],
-        "year": Array [
-          "2006",
-        ],
+        "title": "Planning with qualitative temporal preferences",
+        "topic": "planning;preferences;qualitative-utility;temporal-reasoning;",
+        "year": 2006,
       },
+      "input": String(
+        @InCollection{bienvenu-etal:2006a,
+          author =\\t"Meghyn Bienvenu and Christian Fritz and Sheila
+        \\t\\t McIlraith",
+          title =\\t"Planning with Qualitative Temporal Preferences",
+          booktitle =\\t"{KR}2006",
+          publisher =\\t"AAAI Press",
+          year = \\t"2006",
+          editor =\\t"Patrick Doherty and John Mylopoulos and Christopher A.
+        \\t\\t Welty",
+          pages =\\t"134--144",
+          address =\\t"Menlo Park, California",
+          topic =\\t"planning;preferences;qualitative-utility;temporal-reasoning;",
+        }
+      ),
       "key": "bienvenu-etal:2006a",
       "type": "incollection",
     },

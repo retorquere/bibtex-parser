@@ -11,37 +11,41 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Boulder, Colorado",
-        ],
+        "address": "Boulder, Colorado",
         "author": Array [
           Object {
             "firstName": "Harry",
             "lastName": "Pople",
           },
         ],
-        "booktitle": Array [
-          "Artificial Intelligence in Medicine",
-        ],
+        "booktitle": "Artificial Intelligence in Medicine",
         "editor": Array [
           Object {
             "firstName": "P.",
             "lastName": "Szolovits",
           },
         ],
-        "pages": Array [
-          "119–190",
-        ],
+        "pages": "119–190",
         "publisher": Array [
           "Westview Press",
         ],
-        "title": Array [
-          "Heuristic methods for imposing structure on ill-structured problems: The structuring of medical diagnostics",
-        ],
-        "year": Array [
-          "1982",
-        ],
+        "title": "Heuristic methods for imposing structure on ill-structured problems: The structuring of medical diagnostics",
+        "year": 1982,
       },
+      "input": String(
+        @inbook(Pople:82,
+        \\tauthor =\\t{Harry Pople},
+        \\tbooktitle =\\t{Artificial Intelligence in Medicine},
+        \\taddress =\\t{Boulder, Colorado},
+        \\tyear =\\t\\t{1982},
+        \\teditor =\\t{P. Szolovits},
+        \\tpublisher =\\t{Westview Press},
+        \\tpages =\\t\\t{119--190},
+        \\ttitle =\\t\\t{Heuristic methods for imposing structure on 
+        \\t\\t\\t ill-structured problems: 
+        \\t\\t\\t The structuring of medical diagnostics}
+        )
+      ),
       "key": "Pople:82",
       "type": "inbook",
     },

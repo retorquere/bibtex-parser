@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Cambridge",
-        ],
+        "address": "Cambridge",
         "author": Array [
           Object {
             "firstName": "A.N.",
@@ -27,13 +25,18 @@ Object {
         "publisher": Array [
           "Cambridge University Press",
         ],
-        "title": Array [
-          "Principia mathematica",
-        ],
-        "year": Array [
-          "1925",
-        ],
+        "title": "Principia mathematica",
+        "year": 1925,
       },
+      "input": String(
+        @book(Whitehead:Principia,
+        \\tauthor =\\t{A.N. Whitehead and B. Russell},
+        \\taddress =\\t{Cambridge},
+        \\tyear =\\t\\t{1925},
+        \\tpublisher =\\t{Cambridge University Press},
+        \\ttitle =\\t\\t{Principia Mathematica}
+        )
+      ),
       "key": "Whitehead:Principia",
       "type": "book",
     },

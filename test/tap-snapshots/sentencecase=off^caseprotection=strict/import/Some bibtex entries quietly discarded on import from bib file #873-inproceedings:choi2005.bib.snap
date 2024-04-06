@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Bonn, Germany",
-        ],
+        "address": "Bonn, Germany",
         "author": Array [
           Object {
             "firstName": "D.",
@@ -24,30 +22,40 @@ Object {
             "lastName": "Langley",
           },
         ],
-        "booktitle": Array [
-          "ILP-05",
-        ],
-        "date-added": Array [
-          "2010-06-22 21:28:06 -0400",
-        ],
-        "date-modified": Array [
-          "2010-06-22 21:28:06 -0400",
-        ],
+        "booktitle": "<span class=\\"nocase\\">ILP-05</span>",
+        "date-added": "2010-06-22 21:28:06 -0400",
+        "date-modified": "2010-06-22 21:28:06 -0400",
         "publisher": Array [
           "Springer",
         ],
-        "title": Array [
-          "Learning teleoreactive logic programs from problem solving",
-        ],
-        "year": Array [
-          "2005",
-        ],
+        "title": "Learning teleoreactive logic programs from problem solving",
+        "year": 2005,
       },
+      "input": String(
+        @inproceedings{Choi2005,
+        \\tAuthor = {Choi, D. and Langley, P.},
+        \\tBooktitle = ILP-05,
+        \\tDate-Added = {2010-06-22 21:28:06 -0400},
+        \\tDate-Modified = {2010-06-22 21:28:06 -0400},
+        \\tAddress = {Bonn, Germany},
+        \\tPublisher = {Springer},
+        \\tTitle = {Learning teleoreactive logic programs from problem solving},
+        \\tYear = {2005}}
+      ),
       "key": "Choi2005",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"ILP-05\\"",
+      "input": "ILP-05",
+      "location": Object {
+        "column": 20,
+        "line": 3,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

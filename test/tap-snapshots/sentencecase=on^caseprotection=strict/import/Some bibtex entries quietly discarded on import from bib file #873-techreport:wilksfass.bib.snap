@@ -24,16 +24,20 @@ Object {
         "institution": Array [
           "Computing Research Laboratory, New Mexico State University",
         ],
-        "number": Array [
-          "MCCS-90-194",
-        ],
-        "title": Array [
-          "Preference semantics: a family history",
-        ],
-        "year": Array [
-          "unknown",
-        ],
+        "number": "MCCS-90-194",
+        "title": "Preference semantics: a family history",
+        "year": "unknown",
       },
+      "input": String(
+        @TECHREPORT{WilksFass,
+        \\tAUTHOR = {Yorick Wilks and Dan Fass},
+        \\tTITLE = "Preference Semantics: a family history",
+        \\tINSTITUTION = {Computing Research Laboratory,
+        \\t\\t       New Mexico State University},
+        \\tYEAR = {unknown},
+        \\tNUMBER = {MCCS-90-194}
+        }
+      ),
       "key": "WilksFass",
       "type": "techreport",
     },

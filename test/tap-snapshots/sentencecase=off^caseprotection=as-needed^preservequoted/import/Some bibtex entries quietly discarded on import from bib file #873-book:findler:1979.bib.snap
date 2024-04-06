@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "Nicholas V.",
@@ -23,13 +21,18 @@ Object {
         "publisher": Array [
           "Academic Press",
         ],
-        "title": Array [
-          "Associative Networks: Representation and Use of Knowledge by Computer",
-        ],
-        "year": Array [
-          "1979",
-        ],
+        "title": "Associative Networks: Representation and Use of Knowledge by Computer",
+        "year": 1979,
       },
+      "input": String(
+        @book{Findler:1979,
+        \\tauthor =\\t{Nicholas V. Findler},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1979},
+        \\tpublisher =\\t{Academic Press},
+        \\ttitle =\\t\\t{Associative Networks: Representation and Use of Knowledge by Computer}
+        }
+      ),
       "key": "Findler:1979",
       "type": "book",
     },

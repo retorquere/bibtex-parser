@@ -17,25 +17,24 @@ Object {
             "lastName": "Fahlman",
           },
         ],
-        "journal": Array [
-          "Artificial Intelligence",
-        ],
-        "number": Array [
-          "1",
-        ],
-        "pages": Array [
-          "1-49",
-        ],
-        "title": Array [
-          "A planning system for robot construction tasks",
-        ],
-        "volume": Array [
-          "5",
-        ],
-        "year": Array [
-          "1974",
-        ],
+        "journal": "Artificial Intelligence",
+        "number": "1",
+        "pages": "1-49",
+        "title": "A planning system for robot construction tasks",
+        "volume": "5",
+        "year": 1974,
       },
+      "input": String(
+        @article(Fahlman:1974,
+        \\tauthor =\\t{Scott E. Fahlman},
+        \\tyear =\\t\\t{1974},
+        \\tjournal =\\t{Artificial Intelligence},
+        \\tnumber =\\t{1},
+        \\tpages =\\t\\t{1-49},
+        \\ttitle =\\t\\t"A planning system for robot construction tasks",
+        \\tvolume =\\t{5}
+        )
+      ),
       "key": "Fahlman:1974",
       "type": "article",
     },

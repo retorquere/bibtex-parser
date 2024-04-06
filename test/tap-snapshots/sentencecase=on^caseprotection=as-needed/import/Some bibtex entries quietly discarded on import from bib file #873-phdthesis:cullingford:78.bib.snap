@@ -20,13 +20,17 @@ Object {
         "institution": Array [
           "Yale University Department of Computer Science",
         ],
-        "title": Array [
-          "Script application: Computer understanding of newspaper stories",
-        ],
-        "year": Array [
-          "1978",
-        ],
+        "title": "Script application: Computer understanding of newspaper stories",
+        "year": 1978,
       },
+      "input": String(
+        @phdthesis(Cullingford:78,
+        \\tauthor =\\t{Richard E. Cullingford},
+        \\tyear =\\t\\t{1978},
+        \\tinstitution =\\t{Yale University Department of Computer Science},
+        \\ttitle =\\t\\t{Script Application: Computer Understanding of Newspaper Stories}
+        )
+      ),
       "key": "Cullingford:78",
       "type": "phdthesis",
     },

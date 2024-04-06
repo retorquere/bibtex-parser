@@ -25,28 +25,27 @@ Object {
             "lastName": "Glicksman",
           },
         ],
-        "journal": Array [
-          "IEEE Transactions on Semiconductor Manufacturing",
-        ],
-        "month": Array [
-          "May",
-        ],
-        "number": Array [
-          "2",
-        ],
-        "pages": Array [
-          "33–46",
-        ],
-        "title": Array [
-          "A Framework for Knowledge-based Computer-Integrated Manufacturing",
-        ],
-        "volume": Array [
-          "2",
-        ],
-        "year": Array [
-          "1989",
-        ],
+        "journal": "IEEE Transactions on Semiconductor Manufacturing",
+        "month": "May",
+        "number": "2",
+        "pages": "33–46",
+        "title": "A Framework for Knowledge-based Computer-Integrated Manufacturing",
+        "volume": "2",
+        "year": 1989,
       },
+      "input": String(
+        @ARTICLE(Pan:Manufacturing,
+        \\tAUTHOR = {Jeff Y.-C. Pan and Jay M. Tenenbaum and Jay Glicksman},
+        \\tTITLE = {A Framework for Knowledge-based Computer-Integrated 
+        \\t\\t Manufacturing},
+        \\tJOURNAL = {IEEE Transactions on Semiconductor Manufacturing},
+        \\tYEAR = {1989},
+        \\tVOLUME = {2},
+        \\tNUMBER = {2},
+        \\tPAGES = {33--46},
+        \\tMONTH = {May}
+        )
+      ),
       "key": "Pan:Manufacturing",
       "type": "article",
     },

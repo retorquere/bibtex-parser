@@ -11,18 +11,14 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Palo Alto, Calif.",
-        ],
+        "address": "Palo Alto, Calif.",
         "author": Array [
           Object {
             "firstName": "John R.",
             "lastName": "Anderson",
           },
         ],
-        "booktitle": Array [
-          "Machine Learning: An Artificial Intelligence Approach",
-        ],
+        "booktitle": "Machine Learning: An Artificial Intelligence Approach",
         "editor": Array [
           Object {
             "firstName": "Ryszard",
@@ -37,19 +33,27 @@ Object {
             "lastName": "Mitchell",
           },
         ],
-        "pages": Array [
-          "191–219",
-        ],
+        "pages": "191–219",
         "publisher": Array [
           "Tioga",
         ],
-        "title": Array [
-          "Acquisition of proof skills in geometry",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "title": "Acquisition of proof skills in geometry",
+        "year": 1983,
       },
+      "input": String(
+        @incollection(JRAnderson:83,
+        \\tauthor =\\t{John R. Anderson},
+        \\tbooktitle =\\t{Machine Learning: 
+        \\t\\t\\t An Artificial Intelligence Approach},
+        \\taddress =\\t{Palo Alto, Calif.},
+        \\tyear =\\t\\t{1983},
+        \\teditor =\\t{Ryszard Michalski and Jaime G. Carbonell 
+        \\t\\t\\t and Tom M. Mitchell},
+        \\tpublisher =\\t{Tioga},
+        \\tpages =\\t\\t{191--219},
+        \\ttitle =\\t\\t{Acquisition of proof skills in geometry}
+        )
+      ),
       "key": "JRAnderson:83",
       "type": "incollection",
     },

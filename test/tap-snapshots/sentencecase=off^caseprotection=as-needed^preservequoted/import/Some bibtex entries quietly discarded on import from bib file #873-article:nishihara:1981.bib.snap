@@ -17,22 +17,22 @@ Object {
             "lastName": "Nishihara",
           },
         ],
-        "journal": Array [
-          "Artificial Intelligence",
-        ],
-        "pages": Array [
-          "256-284",
-        ],
-        "title": Array [
-          "Intensity, Visible-Surface, and Volumetric Representations",
-        ],
-        "volume": Array [
-          "17",
-        ],
-        "year": Array [
-          "1981",
-        ],
+        "journal": "Artificial Intelligence",
+        "pages": "256-284",
+        "title": "Intensity, Visible-Surface, and Volumetric Representations",
+        "volume": "17",
+        "year": 1981,
       },
+      "input": String(
+        @article(Nishihara:1981,
+        \\tauthor =\\t{H. Keith Nishihara},
+        \\tyear =\\t\\t{1981},
+        \\tjournal =\\t{Artificial Intelligence},
+        \\tpages =\\t\\t{256-284},
+        \\ttitle =\\t\\t"Intensity, Visible-Surface, and Volumetric Representations",
+        \\tvolume =\\t{17}
+        )
+      ),
       "key": "Nishihara:1981",
       "type": "article",
     },

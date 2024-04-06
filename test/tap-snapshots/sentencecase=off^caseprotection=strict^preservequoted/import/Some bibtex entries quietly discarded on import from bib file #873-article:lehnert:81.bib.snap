@@ -17,19 +17,20 @@ Object {
             "lastName": "Lehnert",
           },
         ],
-        "journal": Array [
-          "Proceedings of the 3rd Conference of the Cognitive Science Society",
-        ],
-        "pages": Array [
-          "78-83",
-        ],
-        "title": Array [
-          "Affect and memory representation",
-        ],
-        "year": Array [
-          "1981",
-        ],
+        "journal": "Proceedings of the 3rd Conference of the Cognitive Science Society",
+        "pages": "78-83",
+        "title": "Affect and memory representation",
+        "year": 1981,
       },
+      "input": String(
+        @article(Lehnert:81,
+        \\tauthor =\\t{Wendy Lehnert},
+        \\tyear =\\t\\t{1981},
+        \\tjournal =\\t{Proceedings of the 3rd Conference of the Cognitive Science Society},
+        \\tpages =\\t\\t{78-83},
+        \\ttitle =\\t\\t{Affect and memory representation}
+        )
+      ),
       "key": "Lehnert:81",
       "type": "article",
     },

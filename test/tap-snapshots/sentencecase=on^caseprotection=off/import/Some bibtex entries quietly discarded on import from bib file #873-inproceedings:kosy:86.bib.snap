@@ -17,24 +17,34 @@ Object {
             "lastName": "Kosy",
           },
         ],
-        "booktitle": Array [
-          "ACL-86",
-        ],
-        "pages": Array [
-          "78-85",
-        ],
-        "title": Array [
-          "Parsing conjunctions deterministically",
-        ],
-        "year": Array [
-          "1986",
-        ],
+        "booktitle": "ACL-86",
+        "pages": "78-85",
+        "title": "Parsing conjunctions deterministically",
+        "year": 1986,
       },
+      "input": String(
+        @inproceedings(Kosy:86,
+        \\tauthor =\\t{Donald W. Kosy},
+        \\tyear =\\t\\t{1986},
+        \\tbooktitle =\\tACL-86,
+        \\tpages =\\t\\t{78-85},
+        \\ttitle =\\t\\t{Parsing conjunctions deterministically}
+        )
+      ),
       "key": "Kosy:86",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"ACL-86\\"",
+      "input": "ACL-86",
+      "location": Object {
+        "column": 20,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

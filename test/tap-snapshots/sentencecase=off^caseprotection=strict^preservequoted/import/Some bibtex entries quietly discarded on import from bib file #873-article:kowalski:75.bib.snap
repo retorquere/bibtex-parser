@@ -17,28 +17,26 @@ Object {
             "lastName": "Kowalski",
           },
         ],
-        "journal": Array [
-          "Journal of the ACM",
-        ],
-        "month": Array [
-          "October",
-        ],
-        "number": Array [
-          "4",
-        ],
-        "pages": Array [
-          "573–595",
-        ],
-        "title": Array [
-          "A Proof Procedure Using Connection Graphs",
-        ],
-        "volume": Array [
-          "22",
-        ],
-        "year": Array [
-          "1975",
-        ],
+        "journal": "Journal of the ACM",
+        "month": "October",
+        "number": "4",
+        "pages": "573–595",
+        "title": "A Proof Procedure Using Connection Graphs",
+        "volume": "22",
+        "year": 1975,
       },
+      "input": String(
+        @ARTICLE{Kowalski:75,
+        \\tAUTHOR = {Robert Kowalski},
+        \\tTITLE = "A Proof Procedure Using Connection Graphs",
+        \\tJOURNAL = JACM,
+        \\tYEAR = {1975},
+        \\tVOLUME = {22},
+        \\tNUMBER = {4},
+        \\tPAGES = {573--595},
+        \\tMONTH = {October}
+        }
+      ),
       "key": "Kowalski:75",
       "type": "article",
     },

@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "Elaine",
@@ -23,13 +21,18 @@ Object {
         "publisher": Array [
           "McGraw-Hill",
         ],
-        "title": Array [
-          "Artificial Intelligence",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "title": "Artificial Intelligence",
+        "year": 1983,
       },
+      "input": String(
+        @book(Rich:83,
+        \\tauthor =\\t{Elaine Rich},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1983},
+        \\tpublisher =\\t{McGraw-Hill},
+        \\ttitle =\\t\\t{Artificial Intelligence}
+        )
+      ),
       "key": "Rich:83",
       "type": "book",
     },

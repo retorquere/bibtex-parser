@@ -28,16 +28,19 @@ Object {
         "institution": Array [
           "Computer Science Dept., University of Sherbrooke",
         ],
-        "number": Array [
-          "197",
-        ],
-        "title": Array [
-          "Planning Control Rules for Reactive Agents",
-        ],
-        "year": Array [
-          1997,
-        ],
+        "number": "197",
+        "title": "Planning Control Rules for Reactive Agents",
+        "year": 1997,
       },
+      "input": String(
+        @techreport  {Kabanza:97TR,
+          author          = "F. Kabanza and M. Barbeau and R. St-Denis",
+          title           = "Planning Control Rules for Reactive Agents", 
+          institution     = "Computer Science Dept., University  of Sherbrooke", 
+          number          = "197", 
+          year            = 1997,
+          }
+      ),
       "key": "Kabanza:97TR",
       "type": "techreport",
     },

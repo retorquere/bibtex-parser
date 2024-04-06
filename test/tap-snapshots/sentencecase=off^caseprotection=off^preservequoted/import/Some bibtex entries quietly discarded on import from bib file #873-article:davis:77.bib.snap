@@ -25,22 +25,24 @@ Object {
             "lastName": "Shortliffe",
           },
         ],
-        "journal": Array [
-          "Artificial Intelligence",
-        ],
-        "pages": Array [
-          "15-45",
-        ],
-        "title": Array [
-          "Production rules as a representation for knowledge-based consultation program",
-        ],
-        "volume": Array [
-          "8",
-        ],
-        "year": Array [
-          "1977",
-        ],
+        "journal": "Artificial Intelligence",
+        "pages": "15-45",
+        "title": "Production rules as a representation for knowledge-based consultation program",
+        "volume": "8",
+        "year": 1977,
       },
+      "input": String(
+        @article(Davis:77,
+        \\tauthor =\\t{Randall Davis and Bruce Buchanan and 
+        \\t\\t\\t Edward Shortliffe},
+        \\tyear =\\t\\t{1977},
+        \\tjournal =\\t{Artificial Intelligence},
+        \\tpages =\\t\\t{15-45},
+        \\ttitle =\\t\\t{Production rules as a representation for 
+        \\t\\t\\t knowledge-based consultation program},
+        \\tvolume =\\t{8}
+        )
+      ),
       "key": "Davis:77",
       "type": "article",
     },

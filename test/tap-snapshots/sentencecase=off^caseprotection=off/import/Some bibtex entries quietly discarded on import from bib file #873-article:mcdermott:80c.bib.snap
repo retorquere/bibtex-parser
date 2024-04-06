@@ -21,25 +21,24 @@ Object {
             "lastName": "Doyle",
           },
         ],
-        "journal": Array [
-          "Artificial Intelligence",
-        ],
-        "number": Array [
-          "1,2",
-        ],
-        "pages": Array [
-          "41–72",
-        ],
-        "title": Array [
-          "Non-monotonic logic I",
-        ],
-        "volume": Array [
-          "13",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "journal": "Artificial Intelligence",
+        "number": "1,2",
+        "pages": "41–72",
+        "title": "Non-monotonic logic I",
+        "volume": "13",
+        "year": 1980,
       },
+      "input": String(
+        @article(McDermott:80c,
+        \\tauthor =\\t{Drew V. McDermott and Jon Doyle},
+        \\tyear =\\t\\t{1980},
+        \\tjournal =\\t{Artificial Intelligence},
+        \\tnumber =\\t{1,2},
+        \\tpages =\\t\\t{41--72},
+        \\ttitle =\\t\\t"Non-monotonic logic I",
+        \\tvolume =\\t{13}
+        )
+      ),
       "key": "McDermott:80c",
       "type": "article",
     },

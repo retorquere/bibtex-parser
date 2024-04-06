@@ -17,25 +17,24 @@ Object {
             "lastName": "Quillian",
           },
         ],
-        "journal": Array [
-          "Communications of the ACM",
-        ],
-        "number": Array [
-          "8",
-        ],
-        "pages": Array [
-          "459-476",
-        ],
-        "title": Array [
-          "The teachable language comprehender: a simulation program and theory of language",
-        ],
-        "volume": Array [
-          "12",
-        ],
-        "year": Array [
-          "1969",
-        ],
+        "journal": "Communications of the ACM",
+        "number": "8",
+        "pages": "459-476",
+        "title": "The teachable language comprehender: a simulation program and theory of language",
+        "volume": "12",
+        "year": 1969,
       },
+      "input": String(
+        @article(Quillian:69,
+        \\tauthor =\\t{M. Ross Quillian},
+        \\tyear =\\t\\t{1969},
+        \\tjournal =\\t{Communications of the ACM},
+        \\tnumber =\\t{8},
+        \\tpages =\\t\\t{459-476},
+        \\ttitle =\\t\\t"The teachable language comprehender: a simulation program and theory of language",
+        \\tvolume =\\t{12}
+        )
+      ),
       "key": "Quillian:69",
       "type": "article",
     },

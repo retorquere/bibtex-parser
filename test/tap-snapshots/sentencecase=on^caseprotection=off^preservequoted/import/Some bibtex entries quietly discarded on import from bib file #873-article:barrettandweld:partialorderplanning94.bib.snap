@@ -21,30 +21,38 @@ Object {
             "lastName": "Weld",
           },
         ],
-        "journal": Array [
-          "AIJ",
-        ],
-        "number": Array [
-          1,
-        ],
-        "pages": Array [
-          "71–112",
-        ],
-        "title": Array [
-          "Partial order planning: Evaluating possible efficiency gains",
-        ],
-        "volume": Array [
-          67,
-        ],
-        "year": Array [
-          1994,
-        ],
+        "journal": "AIJ",
+        "number": "1",
+        "pages": "71–112",
+        "title": "Partial order planning: Evaluating possible efficiency gains",
+        "volume": "67",
+        "year": 1994,
       },
+      "input": String(
+        @article(BarrettandWeld:PartialOrderPlanning94,
+            author = {A. Barrett and Dan Weld},
+            title = "Partial Order Planning: Evaluating Possible Efficiency Gains",
+            journal = AIJ,
+            volume = 67,
+            number = 1,
+            year = 1994,
+            pages = {71--112}
+        )
+      ),
       "key": "BarrettandWeld:PartialOrderPlanning94",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"AIJ\\"",
+      "input": "AIJ",
+      "location": Object {
+        "column": 18,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

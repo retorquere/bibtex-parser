@@ -57,16 +57,23 @@ Object {
             "lastName": "Reichherzer",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the First International Conference on Knowledge Capture (K-Cap'01)",
-        ],
-        "title": Array [
-          "Knowledge Entry as the Graphical Assembly of Components",
-        ],
-        "year": Array [
-          2001,
-        ],
+        "booktitle": "Proceedings of the First International Conference on Knowledge Capture (K-Cap'01)",
+        "title": "Knowledge Entry as the Graphical Assembly of Components",
+        "year": 2001,
       },
+      "input": String(
+        @InProceedings{Shaken:2000,
+          author =\\t { P. Clark and J. Thompson and K. Barker and
+                          B. Porter and V. Chaudhri and A. Rodriguez and
+                          J. Thomere and S. Mishra and Y. Gil and P. Hayes and
+                          T. Reichherzer},
+          title =\\t {Knowledge Entry as the Graphical Assembly of
+                          Components},
+          booktitle =\\t {Proceedings of the First International Conference on
+                          Knowledge Capture (K-Cap'01)},
+          year =\\t 2001
+        }
+      ),
       "key": "Shaken:2000",
       "type": "inproceedings",
     },

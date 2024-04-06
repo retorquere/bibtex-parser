@@ -53,25 +53,27 @@ Object {
             "lastName": "Yen",
           },
         ],
-        "journal": Array [
-          "AI Magazine",
-        ],
-        "number": Array [
-          "2",
-        ],
-        "pages": Array [
-          "16–23",
-        ],
-        "title": Array [
-          "Term subsumption language in knowledge representation",
-        ],
-        "volume": Array [
-          "11",
-        ],
-        "year": Array [
-          "1990",
-        ],
+        "journal": "AI Magazine",
+        "number": "2",
+        "pages": "16–23",
+        "title": "Term subsumption language in knowledge representation",
+        "volume": "11",
+        "year": 1990,
       },
+      "input": String(
+        @ARTICLE{Patel:90,
+        \\tAUTHOR = {Peter F. Patel-Schneider and B. Owsnicki-Klewe
+        \\t\\t  and A. Kobsa and N. Guarino and R. MacGregor
+        \\t\\t  and W. S. Mark and D.L. McGuiness and B. Nebel
+        \\t\\t  and A. Schmiedel and J. Yen},
+        \\tTITLE = "Term Subsumption language in Knowledge representation",
+        \\tJOURNAL = {AI Magazine},
+        \\tYEAR = {1990},
+        \\tVOLUME = {11},
+        \\tNUMBER = {2},
+        \\tPAGES = {16--23}
+        }
+      ),
       "key": "Patel:90",
       "type": "article",
     },

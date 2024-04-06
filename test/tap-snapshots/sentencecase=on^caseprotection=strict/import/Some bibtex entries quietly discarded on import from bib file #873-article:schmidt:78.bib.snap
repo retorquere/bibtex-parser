@@ -25,22 +25,23 @@ Object {
             "lastName": "Goodson",
           },
         ],
-        "journal": Array [
-          "Artificial Intelligence",
-        ],
-        "pages": Array [
-          "45–83",
-        ],
-        "title": Array [
-          "The plan recognition problem: an intersection of psychology and artificial intelligence",
-        ],
-        "volume": Array [
-          "11",
-        ],
-        "year": Array [
-          "1978",
-        ],
+        "journal": "Artificial Intelligence",
+        "pages": "45–83",
+        "title": "The plan recognition problem: an intersection of psychology and artificial intelligence",
+        "volume": "11",
+        "year": 1978,
       },
+      "input": String(
+        @article(Schmidt:78,
+        \\tauthor =\\t{C.F. Schmidt and N.S. Sridharan and J.L. Goodson},
+        \\tyear =\\t\\t{1978},
+        \\tjournal =\\t{Artificial Intelligence},
+        \\tpages =\\t\\t{45--83},
+        \\ttitle =\\t\\t{The plan recognition problem:  
+        \\t\\t\\t an intersection of psychology and artificial intelligence},
+        \\tvolume =\\t{11}
+        )
+      ),
       "key": "Schmidt:78",
       "type": "article",
     },

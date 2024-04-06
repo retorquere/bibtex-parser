@@ -20,13 +20,17 @@ Object {
         "institution": Array [
           "Yale University Department of Computer Science",
         ],
-        "title": Array [
-          "Scheduling Heuristics for Problem Solvers",
-        ],
-        "year": Array [
-          "1983",
-        ],
+        "title": "Scheduling Heuristics for Problem Solvers",
+        "year": 1983,
       },
+      "input": String(
+        @techreport(Miller:83,
+        \\tauthor =\\t{David P. Miller},
+        \\tyear =\\t\\t{1983},
+        \\tinstitution =\\t{Yale University Department of Computer Science},
+        \\ttitle =\\t\\t{Scheduling Heuristics for Problem Solvers}
+        )
+      ),
       "key": "Miller:83",
       "type": "techreport",
     },

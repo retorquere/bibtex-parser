@@ -21,22 +21,22 @@ Object {
             "lastName": "Fodor",
           },
         ],
-        "journal": Array [
-          "Language",
-        ],
-        "pages": Array [
-          "170-210",
-        ],
-        "title": Array [
-          "The structure of a semantic theory",
-        ],
-        "volume": Array [
-          "39",
-        ],
-        "year": Array [
-          "1963",
-        ],
+        "journal": "Language",
+        "pages": "170-210",
+        "title": "The structure of a semantic theory",
+        "volume": "39",
+        "year": 1963,
       },
+      "input": String(
+        @article(Katz:63,
+        \\tauthor =\\t{J. Katz and J.A. Fodor},
+        \\tyear =\\t\\t{1963},
+        \\tjournal =\\t{Language},
+        \\tpages =\\t\\t{170-210},
+        \\ttitle =\\t\\t"The structure of a semantic theory",
+        \\tvolume =\\t{39}
+        )
+      ),
       "key": "Katz:63",
       "type": "article",
     },

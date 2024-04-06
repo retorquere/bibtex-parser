@@ -14,34 +14,36 @@ Object {
         "author": Array [
           Object {
             "firstName": "Vincenzo",
-            "lastName": "de Risi",
+            "lastName": "Risi",
+            "prefix": "de",
           },
         ],
-        "date": Array [
-          "2007",
-        ],
-        "isbn": Array [
-          "978-3-7643-7986-5",
-        ],
-        "langid": Array [
-          "english",
-        ],
+        "date": "2007",
+        "isbn": "978-3-7643-7986-5",
+        "langid": "english",
         "location": Array [
           "Basel and Boston and Berlin",
         ],
-        "pagetotal": Array [
-          "676",
-        ],
+        "pagetotal": "676",
         "publisher": Array [
           "Birkhäuser",
         ],
-        "shorttitle": Array [
-          "Geometry and monadology",
-        ],
-        "title": Array [
-          "Geometry and monadology: Leibniz's analysis situs and philosophy of space",
-        ],
+        "shorttitle": "Geometry and Monadology",
+        "title": "Geometry and Monadology: Leibniz's Analysis Situs and Philosophy of Space",
       },
+      "input": String(
+        @book{risi_geometry_2007,
+          title = {Geometry and {{Monadology}}: {{Leibniz}}'s {{Analysis Situs}} and {{Philosophy}} of {{Space}}},
+          shorttitle = {Geometry and {{Monadology}}},
+          author = {de Risi, Vincenzo},
+          date = {2007},
+          publisher = {{Birkhäuser}},
+          location = {{Basel and Boston and Berlin}},
+          isbn = {978-3-7643-7986-5},
+          langid = {english},
+          pagetotal = {676}
+        }
+      ),
       "key": "risi_geometry_2007",
       "type": "book",
     },

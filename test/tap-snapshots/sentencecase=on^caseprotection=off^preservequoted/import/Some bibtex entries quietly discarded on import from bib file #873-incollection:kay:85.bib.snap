@@ -17,9 +17,7 @@ Object {
             "lastName": "Kay",
           },
         ],
-        "booktitle": Array [
-          "Natural language parsing",
-        ],
+        "booktitle": "Natural language parsing",
         "editor": Array [
           Object {
             "firstName": "et al.",
@@ -27,16 +25,20 @@ Object {
             "suffix": "D.R.",
           },
         ],
-        "pages": Array [
-          "251-279",
-        ],
-        "title": Array [
-          "Parsing in functional unification grammar",
-        ],
-        "year": Array [
-          "1985",
-        ],
+        "pages": "251-279",
+        "title": "Parsing in functional unification grammar",
+        "year": 1985,
       },
+      "input": String(
+        @incollection(Kay:85,
+        \\tauthor =\\t{Martin Kay},
+        \\tbooktitle =\\t{Natural Language Parsing},
+        \\tyear =\\t\\t{1985},
+        \\teditor =\\t{Dowty, D.R., et al.},
+        \\tpages =\\t\\t{251-279},
+        \\ttitle =\\t\\t{Parsing in functional unification grammar}
+        )
+      ),
       "key": "Kay:85",
       "type": "incollection",
     },

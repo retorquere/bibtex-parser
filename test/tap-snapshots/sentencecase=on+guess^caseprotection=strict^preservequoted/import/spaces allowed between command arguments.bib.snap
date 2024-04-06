@@ -11,12 +11,8 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "howpublished": Array [
-          "<a href=\\"https://www.gap-system.org\\"><tt>https://www.gap-system.org</tt></a>",
-        ],
-        "key": Array [
-          "GAP",
-        ],
+        "howpublished": "<a href=\\"https://www.gap-system.org\\"><code>https://www.gap-system.org</code></a>",
+        "key": "GAP",
         "keywords": Array [
           "groups",
           "*",
@@ -24,12 +20,19 @@ Object {
           "manual",
         ],
         "organization": Array [
-          "The GAP <span class=\\"nocase\\">G</span>roup",
+          "The GAP Group",
         ],
-        "title": Array [
-          "<span class=\\"nocase\\">GAP</span> – <span class=\\"nocase\\">G</span>roups, <span class=\\"nocase\\">A</span>lgorithms, and <span class=\\"nocase\\">P</span>rogramming, <span class=\\"nocase\\">V</span>ersion 4.13dev",
-        ],
+        "title": "<span class=\\"nocase\\">GAP</span> – <span class=\\"nocase\\">G</span>roups, <span class=\\"nocase\\">A</span>lgorithms, and <span class=\\"nocase\\">P</span>rogramming, <span class=\\"nocase\\">V</span>ersion 4.13dev",
       },
+      "input": String(
+        @misc{ GAP4.13dev,
+          title =            {{GAP} {\\\\textendash} {G}roups, {A}lgorithms, and {P}rogramming, {V}ersion 4.13dev},
+          organization =     {The GAP {G}roup},
+          howpublished =     {\\\\href {https://www.gap-system.org} {\\\\texttt{https://www.gap-system.org}}},
+          key =              {GAP},
+          keywords =         {groups; *; gap; manual}
+        }
+      ),
       "key": "GAP4.13dev",
       "type": "misc",
     },

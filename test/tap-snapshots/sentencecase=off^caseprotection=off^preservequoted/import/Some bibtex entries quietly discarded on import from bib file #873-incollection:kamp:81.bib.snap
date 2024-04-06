@@ -11,18 +11,14 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Amsterdam",
-        ],
+        "address": "Amsterdam",
         "author": Array [
           Object {
             "firstName": "Hans",
             "lastName": "Kamp",
           },
         ],
-        "booktitle": Array [
-          "Formal Methods in the Study of Language",
-        ],
+        "booktitle": "Formal Methods in the Study of Language",
         "editor": Array [
           Object {
             "firstName": "J.A.G.",
@@ -37,19 +33,26 @@ Object {
             "lastName": "Stokhof",
           },
         ],
-        "pages": Array [
-          "277-322",
-        ],
+        "pages": "277-322",
         "publisher": Array [
           "Mathematical Centre Tracts",
         ],
-        "title": Array [
-          "A Theory of Truth and Semantic Representation",
-        ],
-        "year": Array [
-          "1981",
-        ],
+        "title": "A Theory of Truth and Semantic Representation",
+        "year": 1981,
       },
+      "input": String(
+        @INCOLLECTION{Kamp:81,
+        \\tAUTHOR = {Hans Kamp},
+        \\tTITLE = "A Theory of Truth and Semantic Representation",
+        \\tBOOKTITLE = {Formal Methods in the Study of Language},
+        \\tPUBLISHER = {Mathematical Centre Tracts},
+        \\tYEAR = {1981},
+        \\tEDITOR = {J.A.G. Groenendijk and
+        \\t\\t  T.M.V. Janssen and M.B.J. Stokhof},
+        \\tPAGES = {277-322},
+        \\tADDRESS = {Amsterdam}
+        }
+      ),
       "key": "Kamp:81",
       "type": "incollection",
     },

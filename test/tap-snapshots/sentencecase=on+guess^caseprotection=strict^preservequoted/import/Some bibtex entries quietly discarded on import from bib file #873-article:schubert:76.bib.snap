@@ -17,25 +17,24 @@ Object {
             "lastName": "Schubert",
           },
         ],
-        "journal": Array [
-          "Artificial Intelligence",
-        ],
-        "number": Array [
-          "2",
-        ],
-        "pages": Array [
-          "163-198",
-        ],
-        "title": Array [
-          "Extending the expressive power of semantic networks",
-        ],
-        "volume": Array [
-          "7",
-        ],
-        "year": Array [
-          "1976",
-        ],
+        "journal": "Artificial Intelligence",
+        "number": "2",
+        "pages": "163-198",
+        "title": "Extending the expressive power of semantic networks",
+        "volume": "7",
+        "year": 1976,
       },
+      "input": String(
+        @article(Schubert:76,
+        \\tauthor =\\t{Lenhart K. Schubert},
+        \\tyear =\\t\\t{1976},
+        \\tjournal =\\t{Artificial Intelligence},
+        \\tnumber =\\t{2},
+        \\tpages =\\t\\t{163-198},
+        \\ttitle =\\t\\t"Extending the expressive power of semantic networks",
+        \\tvolume =\\t{7}
+        )
+      ),
       "key": "Schubert:76",
       "type": "article",
     },

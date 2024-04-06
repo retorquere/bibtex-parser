@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Amsterdam",
-        ],
+        "address": "Amsterdam",
         "author": Array [
           Object {
             "firstName": "Robert A.",
@@ -23,13 +21,18 @@ Object {
         "publisher": Array [
           "Elsevier North-Holland",
         ],
-        "title": Array [
-          "Logic for problem solving",
-        ],
-        "year": Array [
-          "1979",
-        ],
+        "title": "Logic for problem solving",
+        "year": 1979,
       },
+      "input": String(
+        @book(Kowalski:79,
+        \\tauthor =\\t{Robert A. Kowalski},
+        \\taddress =\\t{Amsterdam},
+        \\tyear =\\t\\t{1979},
+        \\tpublisher =\\t{Elsevier North-Holland},
+        \\ttitle =\\t\\t{Logic for Problem Solving}
+        )
+      ),
       "key": "Kowalski:79",
       "type": "book",
     },

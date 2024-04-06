@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Cambridge, Mass.",
-        ],
+        "address": "Cambridge, Mass.",
         "author": Array [
           Object {
             "firstName": "Ronald J.",
@@ -21,15 +19,21 @@ Object {
           },
         ],
         "institution": Array [
-          "Bolt Beranek and Newman",
+          "Bolt Beranek",
+          "Newman",
         ],
-        "title": Array [
-          "An introduction to KL-ONE",
-        ],
-        "year": Array [
-          "1979",
-        ],
+        "title": "An introduction to KL-ONE",
+        "year": 1979,
       },
+      "input": String(
+        @techreport(Brachman:79,
+        \\tauthor =\\t{Ronald J. Brachman},
+        \\taddress =\\t{Cambridge, Mass.},
+        \\tyear =\\t\\t{1979},
+        \\tinstitution =\\t{Bolt Beranek and Newman},
+        \\ttitle =\\t\\t{An Introduction to KL-ONE}
+        )
+      ),
       "key": "Brachman:79",
       "type": "techreport",
     },

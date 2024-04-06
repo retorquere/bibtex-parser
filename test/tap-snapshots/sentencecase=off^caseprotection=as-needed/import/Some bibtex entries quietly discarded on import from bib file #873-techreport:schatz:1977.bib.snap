@@ -20,13 +20,17 @@ Object {
         "institution": Array [
           "MIT Artificial Intelligence Laboratory",
         ],
-        "title": Array [
-          "The Computation of Immediate Texture Discrimination",
-        ],
-        "year": Array [
-          "1977",
-        ],
+        "title": "The Computation of Immediate Texture Discrimination",
+        "year": 1977,
       },
+      "input": String(
+        @techreport(Schatz:1977,
+        \\tauthor =\\t{Bruce R. Schatz},
+        \\tyear =\\t\\t{1977},
+        \\tinstitution =\\t{MIT Artificial Intelligence Laboratory},
+        \\ttitle =\\t\\t{The Computation of Immediate Texture Discrimination}
+        )
+      ),
       "key": "Schatz:1977",
       "type": "techreport",
     },

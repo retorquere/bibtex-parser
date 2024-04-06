@@ -24,13 +24,17 @@ Object {
         "publisher": Array [
           "MIT Artificial Intelligence Laboratory",
         ],
-        "title": Array [
-          "Lisp machine manual",
-        ],
-        "year": Array [
-          "1979",
-        ],
+        "title": "Lisp machine manual",
+        "year": 1979,
       },
+      "input": String(
+        @book(Weinreb:79,
+        \\tauthor =\\t{Daniel Weinreb and David Moon},
+        \\tyear =\\t\\t{1979},
+        \\tpublisher =\\t{MIT Artificial Intelligence Laboratory},
+        \\ttitle =\\t\\t{Lisp Machine Manual}
+        )
+      ),
       "key": "Weinreb:79",
       "type": "book",
     },

@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "L.M.",
@@ -24,9 +22,7 @@ Object {
             "lastName": "Porto",
           },
         ],
-        "booktitle": Array [
-          "Logic programming",
-        ],
+        "booktitle": "Logic programming",
         "editor": Array [
           Object {
             "firstName": "K.L.",
@@ -37,19 +33,25 @@ Object {
             "lastName": "Tarnlund",
           },
         ],
-        "pages": Array [
-          "107-114",
-        ],
+        "pages": "107-114",
         "publisher": Array [
           "Academic Press",
         ],
-        "title": Array [
-          "Selective backtracking",
-        ],
-        "year": Array [
-          "1980",
-        ],
+        "title": "Selective backtracking",
+        "year": 1980,
       },
+      "input": String(
+        @book(Porto:1980,
+        \\tauthor =\\t{L.M. Pereira and A. Porto},
+        \\tbooktitle =\\t{Logic Programming},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1980},
+        \\teditor =\\t{K.L. Clark and S.-A. Tarnlund},
+        \\tpublisher =\\t{Academic Press},
+        \\tpages =\\t\\t{107-114},
+        \\ttitle =\\t\\t{Selective backtracking}
+        )
+      ),
       "key": "Porto:1980",
       "type": "book",
     },

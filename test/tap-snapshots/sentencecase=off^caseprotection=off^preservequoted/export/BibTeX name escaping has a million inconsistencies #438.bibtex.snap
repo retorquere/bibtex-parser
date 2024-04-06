@@ -14,16 +14,19 @@ Object {
         "author": Array [
           Object {
             "firstName": "Name",
-            "lastName": "Nöme",
+            "lastName": "Nöme",
           },
         ],
-        "title": Array [
-          "Why Is Apple Launching a New Version of the iPod?",
-        ],
-        "year": Array [
-          "2014",
-        ],
+        "title": "Why <span class=\\"nocase\\">Is Apple Launching</span> a <span class=\\"nocase\\">New Version</span> of the <span class=\\"nocase\\">iPod</span>?",
+        "year": 2014,
       },
+      "input": String(
+        @article{Nome2014,
+          title = {Why {{Is Apple Launching}} a {{New Version}} of the {{iPod}}?},
+          author = {N{\\\\"o}me, Name},
+          year = {2014}
+        }
+      ),
       "key": "Nome2014",
       "type": "article",
     },
@@ -32,16 +35,20 @@ Object {
         "author": Array [
           Object {
             "firstName": "Vincent",
-            "lastName": "van Gögh",
+            "lastName": "Gögh",
+            "prefix": "van",
           },
         ],
-        "title": Array [
-          "Why Is Apple Launching a New Version of the iPod?",
-        ],
-        "year": Array [
-          "2014",
-        ],
+        "title": "Why <span class=\\"nocase\\">Is Apple Launching</span> a <span class=\\"nocase\\">New Version</span> of the <span class=\\"nocase\\">iPod</span>?",
+        "year": 2014,
       },
+      "input": String(
+        @article{van_Gogh2014,
+          title = {Why {{Is Apple Launching}} a {{New Version}} of the {{iPod}}?},
+          author = {{van G{\\\\"o}gh}, Vincent},
+          year = {2014}
+        }
+      ),
       "key": "van_Gogh2014",
       "type": "article",
     },

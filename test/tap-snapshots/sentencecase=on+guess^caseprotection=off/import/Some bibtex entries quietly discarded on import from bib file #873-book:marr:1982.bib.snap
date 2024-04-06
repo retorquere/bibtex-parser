@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "San Francisco",
-        ],
+        "address": "San Francisco",
         "author": Array [
           Object {
             "firstName": "David",
@@ -23,13 +21,18 @@ Object {
         "publisher": Array [
           "Freeman",
         ],
-        "title": Array [
-          "Vision",
-        ],
-        "year": Array [
-          "1982",
-        ],
+        "title": "Vision",
+        "year": 1982,
       },
+      "input": String(
+        @book(Marr:1982,
+        \\tauthor =\\t{David Marr},
+        \\taddress =\\t{San Francisco},
+        \\tyear =\\t\\t{1982},
+        \\tpublisher =\\t{Freeman},
+        \\ttitle =\\t\\t{Vision}
+        )
+      ),
       "key": "Marr:1982",
       "type": "book",
     },

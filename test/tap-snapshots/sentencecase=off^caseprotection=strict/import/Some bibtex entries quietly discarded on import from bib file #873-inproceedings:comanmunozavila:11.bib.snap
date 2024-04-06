@@ -17,19 +17,23 @@ Object {
             "lastName": "Coman",
           },
           Object {
-            "literal": "Héctor Muñoz-Avila",
+            "firstName": "Héctor",
+            "lastName": "Muñoz-Avila",
           },
         ],
-        "booktitle": Array [
-          "Proceedings <span class=\\"nocase\\">AAAI</span>",
-        ],
-        "title": Array [
-          "Generating Diverse Plans Using Quantitative and Qualitative Plan Distance Metrics",
-        ],
-        "year": Array [
-          2011,
-        ],
+        "booktitle": "Proceedings <span class=\\"nocase\\">AAAI</span>",
+        "title": "Generating Diverse Plans Using Quantitative and Qualitative Plan Distance Metrics",
+        "year": 2011,
       },
+      "input": String(
+        @InProceedings{ComanMunozAvila:11,
+          author =       {Alexandra Coman and {H\\\\'{e}ctor} {Mu\\\\~{n}oz-Avila}},
+          title =        {Generating Diverse Plans Using Quantitative and Qualitative
+                          Plan Distance Metrics},
+          booktitle =    {Proceedings {AAAI}},
+          year =         2011
+        }
+      ),
       "key": "ComanMunozAvila:11",
       "type": "inproceedings",
     },

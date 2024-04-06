@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New Haven, Conn.",
-        ],
+        "address": "New Haven, Conn.",
         "author": Array [
           Object {
             "firstName": "Richard",
@@ -23,13 +21,18 @@ Object {
         "publisher": Array [
           "Yale University Press",
         ],
-        "title": Array [
-          "Formal Philosophy",
-        ],
-        "year": Array [
-          "1974",
-        ],
+        "title": "Formal Philosophy",
+        "year": 1974,
       },
+      "input": String(
+        @book(Montague:1974,
+        \\tauthor =\\t{Richard Montague},
+        \\taddress =\\t{New Haven, Conn.},
+        \\tyear =\\t\\t{1974},
+        \\tpublisher =\\t{Yale University Press},
+        \\ttitle =\\t\\t{Formal Philosophy}
+        )
+      ),
       "key": "Montague:1974",
       "type": "book",
     },

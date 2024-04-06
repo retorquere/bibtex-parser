@@ -17,25 +17,24 @@ Object {
             "lastName": "Hinton",
           },
         ],
-        "journal": Array [
-          "Cognitive Science",
-        ],
-        "number": Array [
-          "3",
-        ],
-        "pages": Array [
-          "231-251",
-        ],
-        "title": Array [
-          "Some demonstrations of the effects of structural descriptions in mental imagery",
-        ],
-        "volume": Array [
-          "3",
-        ],
-        "year": Array [
-          "1979",
-        ],
+        "journal": "Cognitive Science",
+        "number": "3",
+        "pages": "231-251",
+        "title": "Some demonstrations of the effects of structural descriptions in mental imagery",
+        "volume": "3",
+        "year": 1979,
       },
+      "input": String(
+        @article(Hinton:79,
+        \\tauthor =\\t{Geoffrey Hinton},
+        \\tyear =\\t\\t{1979},
+        \\tjournal =\\t{Cognitive Science},
+        \\tnumber =\\t{3},
+        \\tpages =\\t\\t{231-251},
+        \\ttitle =\\t\\t"Some demonstrations of the effects of structural descriptions in mental imagery",
+        \\tvolume =\\t{3}
+        )
+      ),
       "key": "Hinton:79",
       "type": "article",
     },

@@ -24,13 +24,18 @@ Object {
         "institution": Array [
           "Brown University, Department of Computer Science",
         ],
-        "title": Array [
-          "Persistence and probabilistic inference",
-        ],
-        "year": Array [
-          "1987",
-        ],
+        "title": "Persistence and probabilistic inference",
+        "year": 1987,
       },
+      "input": String(
+        @techreport(Dean:87c,
+        \\tauthor =\\t{Thomas Dean and Keiji Kanazawa},
+        \\tinstitution =\\t{Brown University, Department of 
+        \\t\\t\\t Computer Science},
+        \\tyear =\\t\\t{1987},
+        \\ttitle =\\t\\t{Persistence and probabilistic inference}
+        )
+      ),
       "key": "Dean:87c",
       "type": "techreport",
     },

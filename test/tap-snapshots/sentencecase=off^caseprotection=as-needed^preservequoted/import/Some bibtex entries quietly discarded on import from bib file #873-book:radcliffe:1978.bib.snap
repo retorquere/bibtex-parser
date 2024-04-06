@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "C.H.",
@@ -27,13 +25,18 @@ Object {
         "publisher": Array [
           "Wiley",
         ],
-        "title": Array [
-          "Kinematics and Mechanisms Design",
-        ],
-        "year": Array [
-          "1978",
-        ],
+        "title": "Kinematics and Mechanisms Design",
+        "year": 1978,
       },
+      "input": String(
+        @book(Radcliffe:1978,
+        \\tauthor =\\t{C.H. Suh and C.W. Radcliffe},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1978},
+        \\tpublisher =\\t{Wiley},
+        \\ttitle =\\t\\t{Kinematics and Mechanisms Design}
+        )
+      ),
       "key": "Radcliffe:1978",
       "type": "book",
     },

@@ -11,30 +11,51 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "annote": Array [
-          "LDS is a search technique that iteratively makes <span class=\\"nocase\\">n</span> decisions differently from the dictates of its heuristic, for increasing <span class=\\"nocase\\">n</span>. The intuition behind LDS is that heuristics often give recommendations that are worse at the start of the search than at the end. Accordingly, LDS makes divergent decisions initially at the beginning of the search path, working towards the end. Note that were this assumption wrong, depth-first search would work well, because it undoes decisions first at the end of the search. Harvey and Ginsberg also discuss combining LDS with bounded-backtrack search, which they show gives better behavior in large search spaces.",
-        ],
+        "annote": "LDS is a search technique that iteratively makes n decisions differently from the dictates of its heuristic, for increasing n. The intuition behind LDS is that heuristics often give recommendations that are worse at the start of the search than at the end. Accordingly, LDS makes divergent decisions initially at the beginning of the search path, working towards the end. Note that were this assumption wrong, depth-first search would work well, because it undoes decisions first at the end of the search. Harvey and Ginsberg also discuss combining LDS with bounded-backtrack search, which they show gives better behavior in large search spaces.",
         "author": Array [
           Object {
             "firstName": "William D. Harvey",
             "lastName": "andGINSBERG",
           },
         ],
-        "crossref": Array [
-          "ijcai95",
-        ],
-        "pages": Array [
-          "607–613",
-        ],
-        "title": Array [
-          "Limited Discrepancy Search",
-        ],
+        "crossref": "ijcai95",
+        "pages": "607–613",
+        "title": "Limited Discrepancy Search",
       },
+      "input": String(
+        @INPROCEEDINGS(Harvey:IJCAI95,
+        \\tAUTHOR = {William D. Harvey and} # GINSBERG,
+        \\tTITLE = "Limited Discrepancy Search",
+        \\tPAGES = {607--613},
+        \\tCROSSREF = {ijcai95},
+        \\tANNOTE = {LDS is a search technique that iteratively makes $n$
+        \\t\\t  decisions differently from the dictates of its heuristic, 
+        \\t\\t  for increasing $n$.  The intuition behind LDS is that 
+        \\t\\t  heuristics often give recommendations that are worse at
+        \\t\\t  the start of the search than at the end.  Accordingly,
+        \\t\\t  LDS makes divergent decisions initially at the beginning 
+        \\t\\t  of the search path, working towards the end.  Note that
+        \\t\\t  were this assumption wrong, depth-first search would work
+        \\t\\t  well, because it undoes decisions first at the end of 
+        \\t\\t  the search.  Harvey and Ginsberg also discuss combining
+        \\t\\t  LDS with bounded-backtrack search, which they show gives
+        \\t\\t  better behavior in large search spaces.} 
+        )
+      ),
       "key": "Harvey:IJCAI95",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"GINSBERG\\"",
+      "input": "GINSBERG",
+      "location": Object {
+        "column": 45,
+        "line": 2,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

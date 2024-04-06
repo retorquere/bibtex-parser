@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "archiveprefix": Array [
-          "arXiv",
-        ],
+        "archiveprefix": "arXiv",
         "author": Array [
           Object {
             "firstName": "Hannes",
@@ -32,28 +30,29 @@ Object {
             "lastName": "Sharma",
           },
         ],
-        "date": Array [
-          "2017",
-        ],
-        "eprint": Array [
-          "1706.01690",
-        ],
-        "eprinttype": Array [
-          "arxiv",
-        ],
+        "date": "2017",
+        "eprint": "1706.01690",
+        "eprinttype": "arxiv",
         "keywords": Array [
           "_tablet_modified",
         ],
-        "title": Array [
-          "A frame tracking model for memory-enhanced dialogue systems",
-        ],
-        "url": Array [
-          "https://arxiv.org/abs/1706.01690",
-        ],
-        "urldate": Array [
-          "2017-08-17",
-        ],
+        "title": "A Frame Tracking Model for Memory-Enhanced Dialogue Systems",
+        "url": "https://arxiv.org/abs/1706.01690",
+        "urldate": "2017-08-17",
       },
+      "input": String(
+        @online{SchulzZumerEtAl_2017_A_Frame_Tracking_Model_for_Memory-Enhanced_Dialogue_Systems,
+          title = {A {{Frame Tracking Model}} for {{Memory}}-{{Enhanced Dialogue Systems}}},
+          author = {Schulz, Hannes and Zumer, Jeremie and Asri, Layla El and Sharma, Shikhar},
+          date = {2017},
+          url = {https://arxiv.org/abs/1706.01690},
+          urldate = {2017-08-17},
+          archiveprefix = {arXiv},
+          eprint = {1706.01690},
+          eprinttype = {arxiv},
+          keywords = {_tablet_modified}
+        }
+      ),
       "key": "SchulzZumerEtAl_2017_A_Frame_Tracking_Model_for_Memory-Enhanced_Dialogue_Systems",
       "type": "online",
     },

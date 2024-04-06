@@ -11,12 +11,8 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "ERLBAUM-ADDRESS",
-        ],
-        "annote": Array [
-          "Contains definition of “keyhole” and “intended” plan recognition.",
-        ],
+        "address": "ERLBAUM-ADDRESS",
+        "annote": "Contains definition of “keyhole” and “intended” plan recognition.",
         "author": Array [
           Object {
             "firstName": "Philip R.",
@@ -31,9 +27,7 @@ Object {
             "lastName": "Allen",
           },
         ],
-        "booktitle": Array [
-          "Strategies for Natural Language Processing",
-        ],
+        "booktitle": "Strategies for Natural Language Processing",
         "editor": Array [
           Object {
             "firstName": "Wendy",
@@ -44,24 +38,49 @@ Object {
             "lastName": "Ringle",
           },
         ],
-        "pages": Array [
-          "245–274",
-        ],
+        "pages": "245–274",
         "publisher": Array [
           "LEA",
         ],
-        "title": Array [
-          "Beyond Question Answering",
-        ],
-        "year": Array [
-          "1981",
-        ],
+        "title": "Beyond Question Answering",
+        "year": 1981,
       },
+      "input": String(
+        @INCOLLECTION(CohenETAL:81,
+        \\tAUTHOR = {Philip R. Cohen and C. Raymond Perrault and James F. Allen},
+        \\tTITLE = "Beyond Question Answering",
+        \\tBOOKTITLE = {Strategies for Natural Language Processing},
+        \\tPUBLISHER = LEA,
+        \\tYEAR = {1981},
+        \\tEDITOR = {Wendy Lehnert and Marty Ringle},
+        \\tPAGES = {245--274},
+        \\tADDRESS = ERLBAUM-ADDRESS,
+        \\tANNOTE = {Contains definition of \`\`keyhole'' and \`\`intended''
+        \\t\\t  plan recognition.}
+        )
+      ),
       "key": "CohenETAL:81",
       "type": "incollection",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"LEA\\"",
+      "input": "LEA",
+      "location": Object {
+        "column": 17,
+        "line": 5,
+      },
+    },
+    Object {
+      "error": "Unresolved @string reference \\"ERLBAUM-ADDRESS\\"",
+      "input": "ERLBAUM-ADDRESS",
+      "location": Object {
+        "column": 27,
+        "line": 9,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

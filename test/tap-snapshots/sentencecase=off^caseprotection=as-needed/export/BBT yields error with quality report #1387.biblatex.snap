@@ -21,22 +21,24 @@ Object {
             "lastName": "Tank",
           },
         ],
-        "eprint": Array [
-          "4027280",
-        ],
-        "eprinttype": Array [
-          "pubmed",
-        ],
+        "eprint": "4027280",
+        "eprinttype": "pubmed",
         "organization": Array [
           "Biological Cybernetics",
         ],
-        "title": Array [
-          "<span class=\\"nocase\\">\`Neural'</span> computation of decisions in optimization problems.",
-        ],
-        "year": Array [
-          "xx 1985",
-        ],
+        "title": "<span class=\\"nocase\\">\`Neural'</span> computation of decisions in optimization problems.",
+        "year": "xx 1985",
       },
+      "input": String(
+        @online{HopfieldTank85,
+          title = {{\`Neural'} computation of decisions in optimization problems.},
+          author = {Hopfield, J. J. and Tank, D. W.},
+          year = {xx 1985},
+          eprint = {4027280},
+          eprinttype = {pubmed},
+          organization = {Biological Cybernetics}
+        }
+      ),
       "key": "HopfieldTank85",
       "type": "online",
     },

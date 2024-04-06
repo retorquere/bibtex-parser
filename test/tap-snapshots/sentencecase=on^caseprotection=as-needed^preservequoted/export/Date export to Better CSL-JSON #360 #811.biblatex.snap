@@ -17,13 +17,16 @@ Object {
             "lastName": "Doe10",
           },
         ],
-        "date": Array [
-          "2011-05-25 /2012-06-26",
-        ],
-        "title": Array [
-          "EDTF date range, circa begin & end: 2011-05-25~/2012-06-26~",
-        ],
+        "date": "2011-05-25 /2012-06-26",
+        "title": "EDTF date range, circa begin & end: 2011-05-25~/2012-06-26~",
       },
+      "input": String(
+        @online{doe10_edtf_2011,
+          title = {{{EDTF}} Date Range, circa Begin \\\\& End: 2011-05-25\\\\textasciitilde/2012-06-26\\\\textasciitilde},
+          author = {Doe10, John},
+          date = {2011-05-25~/2012-06-26~}
+        }
+      ),
       "key": "doe10_edtf_2011",
       "type": "online",
     },
@@ -35,13 +38,16 @@ Object {
             "lastName": "Doe11",
           },
         ],
-        "date": Array [
-          "2011-05-25/2012-06-26",
-        ],
-        "title": Array [
-          "EDTF date range, circa end: 2011-05-25/2012-06-26~",
-        ],
+        "date": "2011-05-25/2012-06-26",
+        "title": "EDTF date range, circa end: 2011-05-25/2012-06-26~",
       },
+      "input": String(
+        @online{doe11_edtf_2011,
+          title = {{{EDTF}} Date Range, circa End: 2011-05-25/2012-06-26\\\\textasciitilde},
+          author = {Doe11, John},
+          date = {2011-05-25/2012-06-26~}
+        }
+      ),
       "key": "doe11_edtf_2011",
       "type": "online",
     },
@@ -53,13 +59,16 @@ Object {
             "lastName": "Doe12",
           },
         ],
-        "date": Array [
-          "2011-05",
-        ],
-        "title": Array [
-          "EDTF date YYYY-MM~ [Month precision & circa]: 2011-05~",
-        ],
+        "date": "2011-05",
+        "title": "EDTF date YYYY-MM~ [month precision & circa]: 2011-05~",
       },
+      "input": String(
+        @online{doe12_edtf_2011,
+          title = {{{EDTF}} Date {{YYYY}}-{{MM}}\\\\textasciitilde{} [Month Precision \\\\& circa]: 2011-05\\\\textasciitilde},
+          author = {Doe12, John},
+          date = {2011-05~}
+        }
+      ),
       "key": "doe12_edtf_2011",
       "type": "online",
     },
@@ -71,13 +80,16 @@ Object {
             "lastName": "Doe13",
           },
         ],
-        "date": Array [
-          "2017-24",
-        ],
-        "title": Array [
-          "Season circa: : 2017-24~",
-        ],
+        "date": "2017-24",
+        "title": "Season circa: : 2017-24~",
       },
+      "input": String(
+        @online{doe13_season_2017,
+          title = {Season circa: : 2017-24\\\\textasciitilde},
+          author = {Doe13, John},
+          date = {2017-24~}
+        }
+      ),
       "key": "doe13_season_2017",
       "type": "online",
     },
@@ -85,16 +97,19 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "literal": "Doe14",
+            "name": "Doe14",
           },
         ],
-        "date": Array [
-          "2011",
-        ],
-        "title": Array [
-          "Date=2010 & Extra=issued:2011",
-        ],
+        "date": "2011",
+        "title": "Date=2010 & Extra=issued:2011",
       },
+      "input": String(
+        @book{doe14_date2010_2010,
+          title = {Date=2010 \\\\& {{Extra}}=issued:2011},
+          author = {{Doe14}},
+          date = {2011}
+        }
+      ),
       "key": "doe14_date2010_2010",
       "type": "book",
     },
@@ -102,19 +117,21 @@ Object {
       "fields": Object {
         "author": Array [
           Object {
-            "literal": "Doe15",
+            "name": "Doe15",
           },
         ],
-        "date": Array [
-          "2017",
-        ],
-        "isbn": Array [
-          "0-943396-04-2 0-85131-041-9",
-        ],
-        "title": Array [
-          "Multiple ISBNs",
-        ],
+        "date": "2017",
+        "isbn": "0-943396-04-2 0-85131-041-9",
+        "title": "Multiple ISBNs",
       },
+      "input": String(
+        @book{doe15_multiple_2017,
+          title = {Multiple {{ISBNs}}},
+          author = {{Doe15}},
+          date = {2017},
+          isbn = {0-943396-04-2 0-85131-041-9}
+        }
+      ),
       "key": "doe15_multiple_2017",
       "type": "book",
     },
@@ -126,31 +143,28 @@ Object {
             "lastName": "Doe7",
           },
         ],
-        "date": Array [
-          "1985-21",
-        ],
-        "eprint": Array [
-          "1225428",
-        ],
-        "eprinttype": Array [
-          "jstor",
-        ],
-        "journaltitle": Array [
-          "Cinema Journal",
-        ],
-        "number": Array [
-          "3",
-        ],
-        "pages": Array [
-          "4–23",
-        ],
-        "title": Array [
-          "The Politics of Film Canons: Printemps 1985",
-        ],
-        "volume": Array [
-          "24",
-        ],
+        "date": "1985-21",
+        "eprint": "1225428",
+        "eprinttype": "jstor",
+        "journaltitle": "Cinema Journal",
+        "number": "3",
+        "pages": "4–23",
+        "title": "The Politics of Film Canons: Printemps 1985",
+        "volume": "24",
       },
+      "input": String(
+        @article{doe7_politics_1985,
+          title = {The {{Politics}} of {{Film Canons}}: Printemps 1985},
+          author = {Doe7, John},
+          date = {1985-21},
+          journaltitle = {Cinema Journal},
+          volume = {24},
+          pages = {4--23},
+          eprint = {1225428},
+          eprinttype = {jstor},
+          number = {3}
+        }
+      ),
       "key": "doe7_politics_1985",
       "type": "article",
     },
@@ -162,13 +176,16 @@ Object {
             "lastName": "Doe8",
           },
         ],
-        "date": Array [
-          "2017-23",
-        ],
-        "title": Array [
-          "Title: 2017-23",
-        ],
+        "date": "2017-23",
+        "title": "Title: 2017-23",
       },
+      "input": String(
+        @online{doe8_title_2017,
+          title = {Title: 2017-23},
+          author = {Doe8, John},
+          date = {2017-23}
+        }
+      ),
       "key": "doe8_title_2017",
       "type": "online",
     },
@@ -180,13 +197,16 @@ Object {
             "lastName": "Doe9",
           },
         ],
-        "date": Array [
-          "2011-05-25 /2012-06-26",
-        ],
-        "title": Array [
-          "EDTF date range, circa begin: 2011-05-25~/2012-06-26",
-        ],
+        "date": "2011-05-25 /2012-06-26",
+        "title": "EDTF date range, circa begin: 2011-05-25~/2012-06-26",
       },
+      "input": String(
+        @online{doe9_edtf_2011,
+          title = {{{EDTF}} Date Range, circa Begin: 2011-05-25\\\\textasciitilde/2012-06-26},
+          author = {Doe9, John},
+          date = {2011-05-25~/2012-06-26}
+        }
+      ),
       "key": "doe9_edtf_2011",
       "type": "online",
     },
@@ -198,19 +218,20 @@ Object {
             "lastName": "Doe1",
           },
         ],
-        "date": Array [
-          "2014-12-31/2015-01-01",
-        ],
-        "eventdate": Array [
-          "1888-08-28",
-        ],
-        "origdate": Array [
-          "1777-07-27/1888-08-28",
-        ],
-        "title": Array [
-          "A manuscript: 2014-12-31/2015-01-01",
-        ],
+        "date": "2014-12-31/2015-01-01",
+        "eventdate": "1888-08-28",
+        "origdate": "1777-07-27/1888-08-28",
+        "title": "A manuscript: 2014-12-31/2015-01-01",
       },
+      "input": String(
+        @unpublished{t1,
+          title = {A Manuscript: 2014-12-31/2015-01-01},
+          author = {Doe1, John},
+          date = {2014-12-31/2015-01-01},
+          origdate = {1777-07-27/1888-08-28},
+          eventdate = {1888-08-28}
+        }
+      ),
       "key": "t1",
       "type": "unpublished",
     },
@@ -222,13 +243,16 @@ Object {
             "lastName": "Doe2",
           },
         ],
-        "eventdate": Array [
-          "1800-01-01/1800-12-31",
-        ],
-        "title": Array [
-          "Event-date and submitted test",
-        ],
+        "eventdate": "1800-01-01/1800-12-31",
+        "title": "Event-date and submitted test",
       },
+      "input": String(
+        @book{t2,
+          title = {Event-Date and Submitted Test},
+          author = {Doe2, John},
+          eventdate = {1800-01-01/1800-12-31}
+        }
+      ),
       "key": "t2",
       "type": "book",
     },
@@ -240,13 +264,16 @@ Object {
             "lastName": "Doe3",
           },
         ],
-        "date": Array [
-          "2014-12-31/",
-        ],
-        "title": Array [
-          "Open-ended date range test: 2014-12-31/",
-        ],
+        "date": "2014-12-31/",
+        "title": "Open-ended date range test: 2014-12-31/",
       },
+      "input": String(
+        @book{t3,
+          title = {Open-Ended Date Range Test: 2014-12-31/},
+          author = {Doe3, John},
+          date = {2014-12-31/}
+        }
+      ),
       "key": "t3",
       "type": "book",
     },
@@ -258,13 +285,16 @@ Object {
             "lastName": "Doe4",
           },
         ],
-        "date": Array [
-          "2014-12-31",
-        ],
-        "title": Array [
-          "Single date test: 2014-12-31",
-        ],
+        "date": "2014-12-31",
+        "title": "Single date test: 2014-12-31",
       },
+      "input": String(
+        @book{t4,
+          title = {Single Date Test: 2014-12-31},
+          author = {Doe4, John},
+          date = {2014-12-31}
+        }
+      ),
       "key": "t4",
       "type": "book",
     },
@@ -276,19 +306,20 @@ Object {
             "lastName": "Doe5",
           },
         ],
-        "date": Array [
-          "-0333",
-        ],
-        "eventdate": Array [
-          "0000",
-        ],
-        "origdate": Array [
-          "-0333/-0332",
-        ],
-        "title": Array [
-          "BC tests: -0333",
-        ],
+        "date": "-0333",
+        "eventdate": "0000",
+        "origdate": "-0333/-0332",
+        "title": "BC tests: -0333",
       },
+      "input": String(
+        @book{t5,
+          title = {{{BC}} Tests: -0333},
+          author = {Doe5, John},
+          date = {-0333},
+          origdate = {-0333/-0332},
+          eventdate = {0000}
+        }
+      ),
       "key": "t5",
       "type": "book",
     },
@@ -300,13 +331,16 @@ Object {
             "lastName": "Doe6",
           },
         ],
-        "date": Array [
-          "-0099-07-12/-0043-03-15",
-        ],
-        "title": Array [
-          "BC tests 2: -0099-07-12/-0043-03-15",
-        ],
+        "date": "-0099-07-12/-0043-03-15",
+        "title": "BC tests 2: -0099-07-12/-0043-03-15",
       },
+      "input": String(
+        @book{t6,
+          title = {{{BC}} Tests 2: -0099-07-12/-0043-03-15},
+          author = {Doe6, John},
+          date = {-0099-07-12/-0043-03-15}
+        }
+      ),
       "key": "t6",
       "type": "book",
     },

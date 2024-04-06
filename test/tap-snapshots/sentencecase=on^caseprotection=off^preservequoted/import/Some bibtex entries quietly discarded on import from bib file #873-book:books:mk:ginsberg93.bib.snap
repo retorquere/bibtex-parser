@@ -11,35 +11,61 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "KAUFMANN-ADDRESS",
-        ],
+        "address": "KAUFMANN-ADDRESS",
         "author": Array [
           Object {
-            "lastName": "GINSBERG",
+            "name": "GINSBERG",
           },
         ],
-        "isbn": Array [
-          "1-55860-221-6",
-        ],
+        "isbn": "1-55860-221-6",
         "publisher": Array [
           "KAUFMANN",
         ],
-        "title": Array [
-          "Essentials of artificial intelligence",
-        ],
-        "topic": Array [
-          "AI-intro;AI-text;",
-        ],
-        "year": Array [
-          "1993",
-        ],
+        "title": "Essentials of artificial intelligence",
+        "topic": "AI-intro;AI-text;",
+        "year": 1993,
       },
+      "input": String(
+        @Book{books/mk/Ginsberg93,
+          author =       GINSBERG,
+          title =        "Essentials of Artificial Intelligence",
+          publisher =    KAUFMANN,
+          year =         "1993",
+          address =      KAUFMANN-ADDRESS,
+          topic =        "AI-intro;AI-text;",
+          ISBN =         "1-55860-221-6"
+        }
+      ),
       "key": "books/mk/Ginsberg93",
       "type": "book",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"GINSBERG\\"",
+      "input": "GINSBERG",
+      "location": Object {
+        "column": 26,
+        "line": 2,
+      },
+    },
+    Object {
+      "error": "Unresolved @string reference \\"KAUFMANN\\"",
+      "input": "KAUFMANN",
+      "location": Object {
+        "column": 26,
+        "line": 4,
+      },
+    },
+    Object {
+      "error": "Unresolved @string reference \\"KAUFMANN-ADDRESS\\"",
+      "input": "KAUFMANN-ADDRESS",
+      "location": Object {
+        "column": 34,
+        "line": 6,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

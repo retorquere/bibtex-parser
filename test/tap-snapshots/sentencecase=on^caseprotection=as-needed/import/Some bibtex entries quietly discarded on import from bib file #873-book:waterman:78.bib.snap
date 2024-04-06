@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "D.A.",
@@ -27,13 +25,18 @@ Object {
         "publisher": Array [
           "Academic Press",
         ],
-        "title": Array [
-          "Pattern directed inference systems",
-        ],
-        "year": Array [
-          "1978",
-        ],
+        "title": "Pattern directed inference systems",
+        "year": 1978,
       },
+      "input": String(
+        @book{Waterman:78,
+        \\tauthor =\\t{D.A. Waterman and F. Hayes-Roth},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1978},
+        \\tpublisher =\\t{Academic Press},
+        \\ttitle =\\t\\t{Pattern Directed Inference Systems}
+        }
+      ),
       "key": "Waterman:78",
       "type": "book",
     },

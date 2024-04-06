@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "R.S.",
@@ -27,13 +25,18 @@ Object {
         "publisher": Array [
           "Academic Press",
         ],
-        "title": Array [
-          "A computational logic",
-        ],
-        "year": Array [
-          "1979",
-        ],
+        "title": "A computational logic",
+        "year": 1979,
       },
+      "input": String(
+        @book(Boyer:79,
+        \\tauthor =\\t{R.S. Boyer and J S. Moore},
+        \\taddress =\\t{New York},
+        \\tyear =\\t\\t{1979},
+        \\tpublisher =\\t{Academic Press},
+        \\ttitle =\\t\\t{A Computational Logic}
+        )
+      ),
       "key": "Boyer:79",
       "type": "book",
     },

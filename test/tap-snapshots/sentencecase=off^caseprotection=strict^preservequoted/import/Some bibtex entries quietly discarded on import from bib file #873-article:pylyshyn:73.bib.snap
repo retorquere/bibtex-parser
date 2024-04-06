@@ -17,22 +17,23 @@ Object {
             "lastName": "Pylyshyn",
           },
         ],
-        "journal": Array [
-          "Psychological Bulletin",
-        ],
-        "pages": Array [
-          "1-24",
-        ],
-        "title": Array [
-          "What the mind's eye tells the mind's brain: A critique of mental imagery",
-        ],
-        "volume": Array [
-          "80",
-        ],
-        "year": Array [
-          "1973",
-        ],
+        "journal": "Psychological Bulletin",
+        "pages": "1-24",
+        "title": "What the mind's eye tells the mind's brain: A critique of mental imagery",
+        "volume": "80",
+        "year": 1973,
       },
+      "input": String(
+        @article(Pylyshyn:73,
+        \\tauthor =\\t{Zenon W. Pylyshyn},
+        \\tyear =\\t\\t{1973},
+        \\tjournal =\\t{Psychological Bulletin},
+        \\tpages =\\t\\t{1-24},
+        \\ttitle =\\t\\t{What the mind's eye tells the mind's brain: 
+        \\t\\t\\t A critique of mental imagery},
+        \\tvolume =\\t{80}
+        )
+      ),
       "key": "Pylyshyn:73",
       "type": "article",
     },

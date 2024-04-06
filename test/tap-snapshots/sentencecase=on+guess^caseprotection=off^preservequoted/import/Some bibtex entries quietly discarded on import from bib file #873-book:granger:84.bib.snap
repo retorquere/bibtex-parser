@@ -28,13 +28,17 @@ Object {
         "publisher": Array [
           "Irvine Computational Intelligence Project",
         ],
-        "title": Array [
-          "Parsing with parallelism: a spreading-activation model of inference processing during text understanding",
-        ],
-        "year": Array [
-          "1984",
-        ],
+        "title": "Parsing with parallelism: a spreading-activation model of inference processing during text understanding",
+        "year": 1984,
       },
+      "input": String(
+        @book(Granger:84,
+        \\tauthor =\\t{Richard H. Granger and Kurt P. Eiselt and Jennifer K. Holbrook},
+        \\tyear =\\t\\t{1984},
+        \\tpublisher =\\t{Irvine Computational Intelligence Project},
+        \\ttitle =\\t\\t{Parsing with parallelism: a spreading-activation model of inference processing during text understanding}
+        )
+      ),
       "key": "Granger:84",
       "type": "book",
     },

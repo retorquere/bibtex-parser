@@ -17,24 +17,34 @@ Object {
             "lastName": "Litman",
           },
         ],
-        "booktitle": Array [
-          "AAAI-86",
-        ],
-        "pages": Array [
-          "619-626",
-        ],
-        "title": Array [
-          "Understanding plan ellipsis",
-        ],
-        "year": Array [
-          "1986",
-        ],
+        "booktitle": "AAAI-86",
+        "pages": "619-626",
+        "title": "Understanding plan ellipsis",
+        "year": 1986,
       },
+      "input": String(
+        @inproceedings(Litman:86,
+        \\tauthor =\\t{Diane Litman},
+        \\tyear =\\t\\t{1986},
+        \\tbooktitle =\\tAAAI-86,
+        \\tpages =\\t\\t{619-626},
+        \\ttitle =\\t\\t{Understanding plan ellipsis}
+        )
+      ),
       "key": "Litman:86",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"AAAI-86\\"",
+      "input": "AAAI-86",
+      "location": Object {
+        "column": 21,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

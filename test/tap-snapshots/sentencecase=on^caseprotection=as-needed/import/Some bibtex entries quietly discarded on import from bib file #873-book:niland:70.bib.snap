@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "London",
-        ],
+        "address": "London",
         "author": Array [
           Object {
             "firstName": "Powell",
@@ -23,13 +21,19 @@ Object {
         "publisher": Array [
           "Macmillan Co.",
         ],
-        "title": Array [
-          "Production planning, scheduling, and inventory control",
-        ],
-        "year": Array [
-          "1970",
-        ],
+        "title": "Production planning, scheduling, and inventory control",
+        "year": 1970,
       },
+      "input": String(
+        @book(Niland:70,
+        \\tauthor =\\t{Powell Niland},
+        \\taddress =\\t{London},
+        \\tyear =\\t\\t{1970},
+        \\tpublisher =\\t{Macmillan Co.},
+        \\ttitle =\\t\\t{Production Planning, Scheduling, and 
+        \\t\\t\\t Inventory Control}
+        )
+      ),
       "key": "Niland:70",
       "type": "book",
     },

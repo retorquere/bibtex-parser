@@ -21,16 +21,18 @@ Object {
             "lastName": "Barstow",
           },
         ],
-        "crossref": Array [
-          "IJCAI85",
-        ],
-        "pages": Array [
-          "232–239",
-        ],
-        "title": Array [
-          "Some rules for the automatic synthesis of programs",
-        ],
+        "crossref": "IJCAI85",
+        "pages": "232–239",
+        "title": "Some rules for the automatic synthesis of programs",
       },
+      "input": String(
+        @inproceedings(Green:75,
+        \\tauthor =\\t{Cordell Green and David Barstow},
+        \\tcrossref =\\t{IJCAI85},
+        \\tpages =\\t\\t{232--239},
+        \\ttitle =\\t\\t{Some rules for the automatic synthesis of programs}
+        )
+      ),
       "key": "Green:75",
       "type": "inproceedings",
     },

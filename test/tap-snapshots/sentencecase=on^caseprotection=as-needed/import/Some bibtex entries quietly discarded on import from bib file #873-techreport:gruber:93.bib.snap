@@ -11,12 +11,8 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "STANFORD-ADDRESS",
-        ],
-        "annote": Array [
-          "Discussion of using ontologies to translate between knowledge-based systems. Nothing earth-shattering. They have rules for translating between Ontolingua and other KR systems.",
-        ],
+        "address": "STANFORD-ADDRESS",
+        "annote": "Discussion of using ontologies to translate between knowledge-based systems. Nothing earth-shattering. They have rules for translating between Ontolingua and other KR systems.",
         "author": Array [
           Object {
             "firstName": "Thomas R.",
@@ -26,27 +22,50 @@ Object {
         "institution": Array [
           "KSL",
         ],
-        "month": Array [
-          "04",
-        ],
-        "note": Array [
-          "revised version",
-        ],
-        "number": Array [
-          "KSL 92-71",
-        ],
-        "title": Array [
-          "A translation approach to portable ontology specifications",
-        ],
-        "year": Array [
-          "1993",
-        ],
+        "month": 4,
+        "note": "revised version",
+        "number": "KSL 92-71",
+        "title": "A translation approach to portable ontology specifications",
+        "year": 1993,
       },
+      "input": String(
+        @TECHREPORT{Gruber:93,
+        \\tAUTHOR = {Thomas R. Gruber},
+        \\tTITLE = "A Translation Approach to Portable Ontology Specifications",
+        \\tINSTITUTION = KSL,
+        \\tYEAR = {1993},
+        \\tNUMBER = {KSL 92-71},
+        \\tADDRESS = STANFORD-ADDRESS,
+        \\tMONTH = apr,
+        \\tNOTE = {revised version},
+        \\tANNOTE = {Discussion of using ontologies to translate 
+        \\t\\t  between knowledge-based systems.  Nothing
+        \\t\\t  earth-shattering.  They have rules for translating
+        \\t\\t  between Ontolingua and other KR systems.}
+        }
+      ),
       "key": "Gruber:93",
       "type": "techreport",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"KSL\\"",
+      "input": "KSL",
+      "location": Object {
+        "column": 19,
+        "line": 4,
+      },
+    },
+    Object {
+      "error": "Unresolved @string reference \\"STANFORD-ADDRESS\\"",
+      "input": "STANFORD-ADDRESS",
+      "location": Object {
+        "column": 28,
+        "line": 7,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

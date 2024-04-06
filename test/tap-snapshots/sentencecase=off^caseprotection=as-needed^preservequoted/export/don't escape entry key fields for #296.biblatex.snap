@@ -17,40 +17,38 @@ Object {
             "lastName": "Eisenmann",
           },
         ],
-        "booktitle": Array [
-          "Cours de droit administratif",
-        ],
-        "crossref": Array [
-          "eisenmann_cours_1982",
-        ],
-        "date": Array [
-          "1983",
-        ],
-        "isbn": Array [
-          "2-275-01408-X",
-        ],
-        "langid": Array [
-          "french",
-        ],
+        "booktitle": "Cours de droit administratif",
+        "crossref": "eisenmann_cours_1982",
+        "date": "1983",
+        "isbn": "2-275-01408-X",
+        "langid": "french",
         "location": Array [
           "Paris",
         ],
-        "pages": Array [
-          "9–332",
-        ],
+        "pages": "9–332",
         "publisher": Array [
           "LGDJ",
         ],
-        "title": Array [
-          "Les actes de l’Administration [1949-1950]",
-        ],
-        "volume": Array [
-          "t. 2",
-        ],
-        "volumes": Array [
-          "2 vol. (786, xxiv+908 p.)",
-        ],
+        "title": "Les actes de l’Administration [1949-1950]",
+        "volume": "t. 2",
+        "volumes": "2 vol. (786, xxiv+908 p.)",
       },
+      "input": String(
+        @incollection{eisenmann_actes_1983,
+          title = {Les actes de l’Administration [1949-1950]},
+          booktitle = {Cours de droit administratif},
+          author = {Eisenmann, Charles},
+          date = {1983},
+          volume = {t. 2},
+          pages = {9--332},
+          publisher = {{LGDJ}},
+          location = {{Paris}},
+          crossref = {eisenmann_cours_1982},
+          isbn = {2-275-01408-X},
+          langid = {french},
+          volumes = {2 vol. (786, xxiv+908 p.)}
+        }
+      ),
       "key": "eisenmann_actes_1983",
       "type": "incollection",
     },

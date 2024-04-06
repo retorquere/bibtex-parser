@@ -21,25 +21,25 @@ Object {
             "lastName": "Lansky",
           },
         ],
-        "journal": Array [
-          "Proceedings of the <span class=\\"nocase\\">IEEE</span>, Special Issue on Knowledge Representation",
-        ],
-        "month": Array [
-          "10",
-        ],
-        "pages": Array [
-          "1383-1398",
-        ],
-        "title": Array [
-          "Procedural knowledge",
-        ],
-        "volume": Array [
-          "74",
-        ],
-        "year": Array [
-          "1986",
-        ],
+        "journal": "Proceedings of the IEEE, Special Issue on Knowledge Representation",
+        "month": 10,
+        "pages": "1383-1398",
+        "title": "Procedural knowledge",
+        "volume": "74",
+        "year": 1986,
       },
+      "input": String(
+        @ARTICLE(Georgeff:86,
+          AUTHOR =\\t {Michael Georgeff and Amy Lansky},
+          TITLE =\\t "Procedural Knowledge",
+          JOURNAL =\\t {Proceedings of the {IEEE}, Special Issue on Knowledge
+                          Representation},
+          YEAR =\\t {1986},
+          VOLUME =\\t {74},
+          MONTH =\\t oct,
+          PAGES =\\t {1383-1398}
+        )
+      ),
       "key": "Georgeff:86",
       "type": "article",
     },

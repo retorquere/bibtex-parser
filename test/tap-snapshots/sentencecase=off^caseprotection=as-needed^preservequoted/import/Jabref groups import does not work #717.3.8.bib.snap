@@ -17,22 +17,22 @@ Object {
             "lastName": "Doe",
           },
         ],
-        "groups": Array [
-          "my-subgroup-3",
-        ],
-        "owner": Array [
-          "klein",
-        ],
-        "timestamp": Array [
-          "2017.09.11",
-        ],
-        "title": Array [
-          "The paper in my-subgroup-3",
-        ],
-        "year": Array [
-          "2017",
-        ],
+        "groups": "my-subgroup-3",
+        "owner": "klein",
+        "timestamp": "2017.09.11",
+        "title": "The paper in my-subgroup-3",
+        "year": 2017,
       },
+      "input": String(
+        @Article{Doe-2017,
+          author    = {John Doe},
+          title     = {The paper in my-subgroup-3},
+          year      = {2017},
+          groups    = {my-subgroup-3},
+          owner     = {klein},
+          timestamp = {2017.09.11},
+        }
+      ),
       "key": "Doe-2017",
       "type": "article",
     },
@@ -44,19 +44,20 @@ Object {
             "lastName": "Other",
           },
         ],
-        "groups": Array [
-          "my-other-subgroup-3",
-        ],
-        "owner": Array [
-          "klein",
-        ],
-        "timestamp": Array [
-          "2017.09.11",
-        ],
-        "title": Array [
-          "The article in my-other-subgroup-3",
-        ],
+        "groups": "my-other-subgroup-3",
+        "owner": "klein",
+        "timestamp": "2017.09.11",
+        "title": "The article in my-other-subgroup-3",
       },
+      "input": String(
+        @Article{Other-,
+          author    = {I. Other},
+          title     = {The article in my-other-subgroup-3},
+          groups    = {my-other-subgroup-3},
+          owner     = {klein},
+          timestamp = {2017.09.11},
+        }
+      ),
       "key": "Other-",
       "type": "article",
     },
@@ -68,19 +69,20 @@ Object {
             "lastName": "Unkonw",
           },
         ],
-        "groups": Array [
-          "my-subgroup-3, my-other-subgroup-3",
-        ],
-        "owner": Array [
-          "klein",
-        ],
-        "timestamp": Array [
-          "2017.09.11",
-        ],
-        "title": Array [
-          "the paper in my-subgroup-3 and my-other-subgroup-3",
-        ],
+        "groups": "my-subgroup-3, my-other-subgroup-3",
+        "owner": "klein",
+        "timestamp": "2017.09.11",
+        "title": "the paper in my-subgroup-3 and my-other-subgroup-3",
       },
+      "input": String(
+        @Article{Unkonw-,
+          author    = {I Unkonw},
+          title     = {the paper in my-subgroup-3 and my-other-subgroup-3},
+          groups    = {my-subgroup-3, my-other-subgroup-3},
+          owner     = {klein},
+          timestamp = {2017.09.11},
+        }
+      ),
       "key": "Unkonw-",
       "type": "article",
     },
@@ -92,19 +94,20 @@ Object {
             "lastName": "Unkonw",
           },
         ],
-        "groups": Array [
-          "my-main-group-3",
-        ],
-        "owner": Array [
-          "klein",
-        ],
-        "timestamp": Array [
-          "2017.09.11",
-        ],
-        "title": Array [
-          "JR3: paper not in a group",
-        ],
+        "groups": "my-main-group-3",
+        "owner": "klein",
+        "timestamp": "2017.09.11",
+        "title": "JR3: paper not in a group",
       },
+      "input": String(
+        @Article{Unkonw,
+          author    = {I Unkonw},
+          title     = {JR3: paper not in a group},
+          groups    = {my-main-group-3},
+          owner     = {klein},
+          timestamp = {2017.09.11},
+        }
+      ),
       "key": "Unkonw",
       "type": "article",
     },

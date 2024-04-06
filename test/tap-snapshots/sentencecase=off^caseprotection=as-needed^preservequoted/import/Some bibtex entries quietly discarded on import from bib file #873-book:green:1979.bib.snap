@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "New York",
-        ],
+        "address": "New York",
         "author": Array [
           Object {
             "firstName": "Cordell",
@@ -23,13 +21,19 @@ Object {
         "publisher": Array [
           "Garland Publishing Inc.",
         ],
-        "title": Array [
-          "The Application of Theorem Proving to Question Answering",
-        ],
-        "year": Array [
-          "1979",
-        ],
+        "title": "The Application of Theorem Proving to Question Answering",
+        "year": 1979,
       },
+      "input": String(
+        @BOOK{Green:1979,
+        \\tAUTHOR = {Cordell Green},
+        \\tTITLE = {The Application of Theorem Proving to Question
+        \\t\\t Answering},
+        \\tPUBLISHER = {Garland Publishing Inc.},
+        \\tYEAR = {1979},
+        \\tADDRESS = {New York}
+        }
+      ),
       "key": "Green:1979",
       "type": "book",
     },

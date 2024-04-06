@@ -21,22 +21,22 @@ Object {
             "lastName": "Moore",
           },
         ],
-        "journal": Array [
-          "Artificial Intelligence",
-        ],
-        "pages": Array [
-          "293-326",
-        ],
-        "title": Array [
-          "An analysis of alpha-beta pruning",
-        ],
-        "volume": Array [
-          "6",
-        ],
-        "year": Array [
-          "1975",
-        ],
+        "journal": "Artificial Intelligence",
+        "pages": "293-326",
+        "title": "An analysis of alpha-beta pruning",
+        "volume": "6",
+        "year": 1975,
       },
+      "input": String(
+        @article(Moore:1975,
+        \\tauthor =\\t{D.E. Knuth and R.N. Moore},
+        \\tyear =\\t\\t{1975},
+        \\tjournal =\\t{Artificial Intelligence},
+        \\tpages =\\t\\t{293-326},
+        \\ttitle =\\t\\t"An analysis of alpha-beta pruning",
+        \\tvolume =\\t{6}
+        )
+      ),
       "key": "Moore:1975",
       "type": "article",
     },

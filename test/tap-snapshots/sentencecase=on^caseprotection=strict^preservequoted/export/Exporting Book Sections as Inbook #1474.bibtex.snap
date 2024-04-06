@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "<span class=\\"nocase\\">Waltham, MA, USA</span>",
-        ],
+        "address": "Waltham, MA, USA",
         "author": Array [
           Object {
             "firstName": "Albert-Jan N.",
@@ -28,9 +26,7 @@ Object {
             "lastName": "Meerbergen",
           },
         ],
-        "booktitle": Array [
-          "High performance parallelism pearls: Multicore and many-core programming approaches",
-        ],
+        "booktitle": "High performance parallelism pearls: Multicore and many-core programming approaches",
         "collaborator": Array [
           Object {
             "firstName": "James",
@@ -41,40 +37,39 @@ Object {
             "lastName": "Jeffers",
           },
         ],
-        "copyright": Array [
-          "© 2015 Elsevier Inc.",
-        ],
-        "doi": Array [
-          "10.1016/B978-0-12-802118-7.00027-3",
-        ],
-        "isbn": Array [
-          "978-0-12-802118-7",
-        ],
-        "language": Array [
-          "en-US",
-        ],
-        "month": Array [
-          "01",
-        ],
-        "pages": Array [
-          "457–476",
-        ],
+        "copyright": "© 2015 Elsevier Inc.",
+        "doi": "10.1016/B978-0-12-802118-7.00027-3",
+        "isbn": "978-0-12-802118-7",
+        "language": "en-US",
+        "month": 1,
+        "pages": "457–476",
         "publisher": Array [
           "Morgan Kaufmann",
         ],
-        "shorttitle": Array [
-          "Sparse matrix-vector multiplication",
-        ],
-        "title": Array [
-          "Sparse matrix-vector multiplication: Parallelization and vectorization",
-        ],
-        "url": Array [
-          "https://www.sciencedirect.com/science/article/pii/B9780128021187000273",
-        ],
-        "year": Array [
-          "2015",
-        ],
+        "shorttitle": "Sparse matrix-vector multiplication",
+        "title": "Sparse matrix-vector multiplication: Parallelization and vectorization",
+        "url": "https://www.sciencedirect.com/science/article/pii/B9780128021187000273",
+        "year": 2015,
       },
+      "input": String(
+        @inbook{yzelman2015,
+          title = {Sparse Matrix-Vector Multiplication: Parallelization and Vectorization},
+          shorttitle = {Sparse Matrix-Vector Multiplication},
+          booktitle = {High Performance Parallelism Pearls: Multicore and Many-Core Programming Approaches},
+          author = {Yzelman, Albert-Jan N. and Roose, Dirk and Meerbergen, Karl},
+          year = {2015},
+          month = jan,
+          pages = {457--476},
+          publisher = {{Morgan Kaufmann}},
+          address = {{Waltham, MA, USA}},
+          doi = {10.1016/B978-0-12-802118-7.00027-3},
+          url = {https://www.sciencedirect.com/science/article/pii/B9780128021187000273},
+          collaborator = {Reinders, James and Jeffers, Jim},
+          copyright = {© 2015 Elsevier Inc.},
+          isbn = {978-0-12-802118-7},
+          language = {en-US}
+        }
+      ),
       "key": "yzelman2015",
       "type": "inbook",
     },

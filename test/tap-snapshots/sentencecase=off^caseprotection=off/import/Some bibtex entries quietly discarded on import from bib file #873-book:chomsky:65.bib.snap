@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Cambridge, Mass.",
-        ],
+        "address": "Cambridge, Mass.",
         "author": Array [
           Object {
             "firstName": "Noam",
@@ -23,13 +21,18 @@ Object {
         "publisher": Array [
           "MIT Press",
         ],
-        "title": Array [
-          "Aspects of the Theory of Syntax",
-        ],
-        "year": Array [
-          "1965",
-        ],
+        "title": "Aspects of the Theory of Syntax",
+        "year": 1965,
       },
+      "input": String(
+        @book(Chomsky:65,
+        \\tauthor =\\t{Noam Chomsky},
+        \\taddress =\\t{Cambridge, Mass.},
+        \\tyear =\\t\\t{1965},
+        \\tpublisher =\\t{MIT Press},
+        \\ttitle =\\t\\t{Aspects of the Theory of Syntax}
+        )
+      ),
       "key": "Chomsky:65",
       "type": "book",
     },

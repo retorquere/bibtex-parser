@@ -17,25 +17,26 @@ Object {
             "lastName": "Dean",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the Workshop on Planning and Reasoning About Action",
-        ],
-        "month": Array [
-          "July",
-        ],
+        "booktitle": "Proceedings of the Workshop on Planning and Reasoning About Action",
+        "month": "July",
         "organization": Array [
           "AAAI",
         ],
-        "pages": Array [
-          "143-164",
-        ],
-        "title": Array [
-          "Intractability and time dependent planning",
-        ],
-        "year": Array [
-          "1986",
-        ],
+        "pages": "143-164",
+        "title": "Intractability and time dependent planning",
+        "year": 1986,
       },
+      "input": String(
+        @InProceedings{dean86,
+        author = "Thomas Dean",
+        title = "Intractability and time dependent planning",
+        booktitle = "Proceedings of the Workshop on Planning and 
+        \\t     Reasoning About Action",
+        organization = "AAAI",
+        month = "July",
+        pages = "143-164",
+        year = "1986"}
+      ),
       "key": "dean86",
       "type": "inproceedings",
     },

@@ -11,80 +11,90 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "date": Array [
-          "0000-21/0000-24",
-        ],
-        "title": Array [
-          "0000-21/0000-24",
-        ],
+        "date": "0000-21/0000-24",
+        "title": "0000-21/0000-24",
       },
-      "key": "000021000024=00",
+      "input": String(
+        @online{000021000024:00,
+          title = {0000-21/0000-24},
+          date = {0000-21/0000-24}
+        }
+      ),
+      "key": "000021000024:00",
       "type": "online",
     },
     Object {
       "fields": Object {
-        "date": Array [
-          "-0011-21/-0012-22",
-        ],
-        "title": Array [
-          "-0011-21/-0012-22",
-        ],
+        "date": "-0011-21/-0012-22",
+        "title": "-0011-21/-0012-22",
       },
-      "key": "001121001222=-11",
+      "input": String(
+        @online{001121001222:-11,
+          title = {-0011-21/-0012-22},
+          date = {-0011-21/-0012-22}
+        }
+      ),
+      "key": "001121001222:-11",
       "type": "online",
     },
     Object {
       "fields": Object {
-        "date": Array [
-          "0011-21/0012-22",
-        ],
-        "title": Array [
-          "0011-21/0012-22",
-        ],
+        "date": "0011-21/0012-22",
+        "title": "0011-21/0012-22",
       },
-      "key": "001121001222=11",
+      "input": String(
+        @online{001121001222:11,
+          title = {0011-21/0012-22},
+          date = {0011-21/0012-22}
+        }
+      ),
+      "key": "001121001222:11",
       "type": "online",
     },
     Object {
       "fields": Object {
-        "date": Array [
-          "-2011-21/-2012-22",
-        ],
-        "title": Array [
-          "-2011-21/-2012-22",
-        ],
+        "date": "-2011-21/-2012-22",
+        "title": "-2011-21/-2012-22",
       },
-      "key": "201121201222=-2011",
+      "input": String(
+        @online{201121201222:-2011,
+          title = {-2011-21/-2012-22},
+          date = {-2011-21/-2012-22}
+        }
+      ),
+      "key": "201121201222:-2011",
       "type": "online",
     },
     Object {
       "fields": Object {
-        "origdate": Array [
-          "2017-14/2017-99",
-        ],
-        "title": Array [
-          "Months out of Range",
-        ],
-        "year": Array [
-          "2017-14/2017-15",
-        ],
+        "origdate": "2017-14/2017-99",
+        "title": "Months out of Range",
+        "year": "2017-14/2017-15",
       },
-      "key": "monthsoutrange=2017",
+      "input": String(
+        @online{monthsoutrange:2017,
+          title = {Months out of Range},
+          origdate = {2017-14/2017-99},
+          year = {2017-14/2017-15}
+        }
+      ),
+      "key": "monthsoutrange:2017",
       "type": "online",
     },
     Object {
       "fields": Object {
-        "date": Array [
-          "2017-23/2017-24",
-        ],
-        "origdate": Array [
-          "2015-21/2016-22",
-        ],
-        "title": Array [
-          "Season Ranges: <span class=\\"nocase\\">EDTF</span> and Literal",
-        ],
+        "date": "2017-23/2017-24",
+        "origdate": "2015-21/2016-22",
+        "title": "Season Ranges: <span class=\\"nocase\\">EDTF</span> and Literal",
       },
-      "key": "SeasonrangesEDTF=2017",
+      "input": String(
+        @online{SeasonrangesEDTF:2017,
+          title = {Season Ranges: {{EDTF}} and Literal},
+          date = {2017-23/2017-24},
+          origdate = {2015-21/2016-22}
+        }
+      ),
+      "key": "SeasonrangesEDTF:2017",
       "type": "online",
     },
   ],

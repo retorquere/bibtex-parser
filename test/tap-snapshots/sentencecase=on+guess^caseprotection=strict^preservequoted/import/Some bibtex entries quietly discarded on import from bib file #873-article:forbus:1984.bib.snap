@@ -17,16 +17,18 @@ Object {
             "lastName": "Forbus",
           },
         ],
-        "journal": Array [
-          "Artificial Intelligence",
-        ],
-        "title": Array [
-          "Qualitative process theory",
-        ],
-        "year": Array [
-          "1984",
-        ],
+        "journal": "Artificial Intelligence",
+        "title": "Qualitative process theory",
+        "year": 1984,
       },
+      "input": String(
+        @article(Forbus:1984,
+        \\tauthor =\\t{Kenneth Forbus},
+        \\tyear =\\t\\t{1984},
+        \\tjournal =\\t{Artificial Intelligence},
+        \\ttitle =\\t\\t{Qualitative process theory}
+        )
+      ),
       "key": "Forbus:1984",
       "type": "article",
     },

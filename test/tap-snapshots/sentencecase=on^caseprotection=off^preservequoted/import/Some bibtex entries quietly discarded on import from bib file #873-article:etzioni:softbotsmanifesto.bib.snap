@@ -17,30 +17,39 @@ Object {
             "lastName": "Etzioni",
           },
         ],
-        "journal": Array [
-          "AIM",
-        ],
-        "number": Array [
-          "4",
-        ],
-        "pages": Array [
-          "7–13",
-        ],
-        "title": Array [
-          "Intelligence without robots: A reply to brooks",
-        ],
-        "volume": Array [
-          "14",
-        ],
-        "year": Array [
-          "1993",
-        ],
+        "journal": "AIM",
+        "number": "4",
+        "pages": "7–13",
+        "title": "Intelligence without robots: a reply to Brooks",
+        "volume": "14",
+        "year": 1993,
       },
+      "input": String(
+        @ARTICLE{Etzioni:SoftbotsManifesto,
+        \\tAUTHOR = {Oren Etzioni},
+        \\tTITLE = {Intelligence without Robots:
+        \\t\\t A Reply to {B}rooks},
+        \\tJOURNAL = AIM,
+        \\tYEAR = {1993},
+        \\tVOLUME = {14},
+        \\tNUMBER = {4},
+        \\tPAGES = {7--13}
+        }
+      ),
       "key": "Etzioni:SoftbotsManifesto",
       "type": "article",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"AIM\\"",
+      "input": "AIM",
+      "location": Object {
+        "column": 15,
+        "line": 5,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],

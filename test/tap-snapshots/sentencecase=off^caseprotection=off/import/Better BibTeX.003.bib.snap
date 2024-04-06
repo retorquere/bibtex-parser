@@ -21,9 +21,8 @@ Object {
             "lastName": "Author",
           },
         ],
-        "booktitle": Array [
-          "Proceedings of the Xth Conference on XYZ",
-        ],
+        "booktitle": "Proceedings of the Xth Conference on XYZ",
+        "crossref": "conference:06",
         "editor": Array [
           Object {
             "firstName": "First",
@@ -34,27 +33,25 @@ Object {
             "lastName": "Editor",
           },
         ],
-        "month": Array [
-          "oct",
-        ],
-        "pages": Array [
-          "330—331",
-        ],
-        "title": Array [
-          "Some publication title",
-        ],
-        "year": Array [
-          "2006",
-        ],
+        "month": "oct",
+        "pages": "330—331",
+        "title": "Some publication title",
+        "year": 2006,
       },
+      "input": String(
+        @inproceedings{author:06,
+          title = {Some publication title},
+          author = {Author, First and Author, Second},
+          crossref = {conference:06},
+          pages = {330—331}
+        }
+      ),
       "key": "author:06",
       "type": "inproceedings",
     },
     Object {
       "fields": Object {
-        "booktitle": Array [
-          "Proceedings of the Xth Conference on XYZ (Book)",
-        ],
+        "booktitle": "Proceedings of the Xth Conference on XYZ (Book)",
         "editor": Array [
           Object {
             "firstName": "First",
@@ -65,16 +62,19 @@ Object {
             "lastName": "Editor",
           },
         ],
-        "month": Array [
-          "oct",
-        ],
-        "title": Array [
-          "Proceedings of the Xth Conference on XYZ",
-        ],
-        "year": Array [
-          "2006",
-        ],
+        "month": "oct",
+        "title": "Proceedings of the Xth Conference on XYZ",
+        "year": 2006,
       },
+      "input": String(
+        @proceedings{conference:06,
+          editor = {Editor, First and Editor, Second},
+          title = {Proceedings of the Xth Conference on XYZ},
+          booktitle = {Proceedings of the Xth Conference on XYZ (Book)},
+          year = {2006},
+          month = {oct}
+        }
+      ),
       "key": "conference:06",
       "type": "proceedings",
     },

@@ -11,9 +11,7 @@ Object {
   "entries": Array [
     Object {
       "fields": Object {
-        "address": Array [
-          "Princeton, NJ",
-        ],
+        "address": "Princeton, NJ",
         "author": Array [
           Object {
             "firstName": "Patrick",
@@ -23,13 +21,18 @@ Object {
         "publisher": Array [
           "Van Nostrand",
         ],
-        "title": Array [
-          "Introduction to Logic",
-        ],
-        "year": Array [
-          "1957",
-        ],
+        "title": "Introduction to Logic",
+        "year": 1957,
       },
+      "input": String(
+        @book(Suppes:57,
+        \\tauthor =\\t{Patrick Suppes},
+        \\taddress =\\t{Princeton, NJ},
+        \\tyear =\\t\\t{1957},
+        \\tpublisher =\\t{Van Nostrand},
+        \\ttitle =\\t\\t{Introduction to Logic}
+        )
+      ),
       "key": "Suppes:57",
       "type": "book",
     },

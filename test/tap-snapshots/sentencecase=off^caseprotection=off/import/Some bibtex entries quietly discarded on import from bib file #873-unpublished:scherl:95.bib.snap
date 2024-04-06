@@ -21,16 +21,20 @@ Object {
             "lastName": "Levesque",
           },
         ],
-        "note": Array [
-          "Unpublished MSS. submitted to <i>Artificial Intelligence/</i>. Shorter version appeared in Proceedings of AAAI-93",
-        ],
-        "title": Array [
-          "The Frame Problem and Knowledge-producing Actions",
-        ],
-        "year": Array [
-          "1995",
-        ],
+        "note": "Unpublished MSS. submitted to <i>Artificial Intelligence</i>. Shorter version appeared in Proceedings of AAAI-93",
+        "title": "The Frame Problem and Knowledge-producing Actions",
+        "year": 1995,
       },
+      "input": String(
+        @UNPUBLISHED{Scherl:95,
+        \\tAUTHOR = {Richard B. Scherl and Hector J. Levesque},
+        \\tTITLE = "The Frame Problem and Knowledge-producing Actions",
+        \\tNOTE = {Unpublished MSS. submitted to 
+        \\t\\t{\\\\it Artificial Intelligence\\\\/}.  Shorter version
+        \\t\\tappeared in Proceedings of AAAI-93},
+        \\tYEAR = {1995}
+        }
+      ),
       "key": "Scherl:95",
       "type": "unpublished",
     },

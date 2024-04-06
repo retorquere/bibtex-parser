@@ -17,27 +17,36 @@ Object {
             "lastName": "Hayes",
           },
         ],
-        "booktitle": Array [
-          "IJCAI-77",
-        ],
-        "pages": Array [
-          "99–107",
-        ],
-        "title": Array [
-          "On semantic nets, frames and associations",
-        ],
-        "volume": Array [
-          "5",
-        ],
-        "year": Array [
-          "1977",
-        ],
+        "booktitle": "IJCAI-77",
+        "pages": "99–107",
+        "title": "On semantic nets, frames and associations",
+        "volume": "5",
+        "year": 1977,
       },
+      "input": String(
+        @inproceedings(Hayes:77,
+        \\tauthor =\\t{Philip J. Hayes},
+        \\tyear =\\t\\t{1977},
+        \\tbooktitle =\\tIJCAI-77,
+        \\tpages =\\t\\t{99--107},
+        \\ttitle =\\t\\t"On semantic nets, frames and associations",
+        \\tvolume =\\t{5}
+        )
+      ),
       "key": "Hayes:77",
       "type": "inproceedings",
     },
   ],
-  "errors": Array [],
+  "errors": Array [
+    Object {
+      "error": "Unresolved @string reference \\"IJCAI-77\\"",
+      "input": "IJCAI-77",
+      "location": Object {
+        "column": 22,
+        "line": 4,
+      },
+    },
+  ],
   "jabref": Object {
     "groups": Object {},
     "root": Array [],
