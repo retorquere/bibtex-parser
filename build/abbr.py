@@ -111,6 +111,11 @@ with open('build/fixups.json') as f:
       else:
         unabbr[k] = full
 
+for abbr, journal in list(unabbr.items()):
+  for k in [abbr, abbr.replace('.', '')]:
+    if len(k.replace('.', '')) <= 2:
+      unabbr.pop(k, None)
+
 with open('unabbrev.json', 'w') as f:
   json.dump(unabbr, f, indent='  ', sort_keys=True)
 
