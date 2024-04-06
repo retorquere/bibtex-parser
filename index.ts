@@ -325,6 +325,7 @@ const FieldAction = {
 }
 
 const narguments = {
+  advance: 1,
   ElsevierGlyph: 1,
   bar: 1,
   bibcyr: 1,
@@ -337,8 +338,11 @@ const narguments = {
   emph: 1,
   enquote: 1,
   frac: 2,
+  hbox: 1,
   href: 2,
+  hskip: 1,
   hspace: 1,
+  ht: 1,
   mathrm: 1,
   mbox: 1,
   mkbibbold: 1,
@@ -348,6 +352,9 @@ const narguments = {
   newcommand: 2,
   noopsort: 1,
   ocirc: 1,
+  overline: 1,
+  ProvideTextCommandDefault: 2,
+  rlap: 1,
   sb: 1,
   section: 1,
   sp: 1,
@@ -368,7 +375,7 @@ const narguments = {
   url: 1,
   vphantom: 1,
   vspace: 1,
-  overline: 1,
+  wd: 1,
 
   // math
   'math\t_': 1,
@@ -378,7 +385,7 @@ for (const m in combining.tounicode) { // eslint-disable-line guard-for-in
   narguments[m] = 1
 }
 
-type unsupportedHandler = (node: Node, tex?: string, entry?: Entry) => string | undefined
+type unsupportedHandler = (node: Node, tex: string, entry: Entry) => string
 
 type Context = {
   mode: ParseMode
@@ -570,11 +577,14 @@ class BibTeXParser {
 
     switch (node.type) {
       case 'macro':
-        throw new Error(`unhandled ${node.type} ${node.content} (${printRaw(node)})`)
+        this.bib.errors.push({ error: `unhandled ${node.type} ${node.content} (${printRaw(node)})`, input: printRaw(node) })
+        break
       case 'environment':
-        throw new Error(`unhandled ${node.type} ${node.env} (${printRaw(node)})`)
+        this.bib.errors.push({ error: `unhandled ${node.type} ${node.env} (${printRaw(node)})`, input: printRaw(node) })
+        break
       default:
-        throw new Error(`unhandled ${node.type} (${printRaw(node)})`)
+        this.bib.errors.push({ error: `unhandled ${node.type} (${printRaw(node)})`, input: printRaw(node) })
+        break
     }
   }
 
@@ -626,18 +636,37 @@ class BibTeXParser {
     let resolved: string
     switch (node.content) {
       case 'newcommand':
+      case 'ProvideTextCommandDefault':
         return this.registercommand(node)
+
+      // too complex to deal with these
+      case 'raise':
+      case 'accent':
+      case 'def':
+      case 'hss':
+      case 'ifmmode':
+      case 'makeatletter':
+      case 'makeatother':
+      case 'scriptscriptstyle':
+      case 'setbox':
+      case 'dimen':
+      case 'advance':
+        return ''
 
       case 'vphantom':
       case 'noopsort':
       case 'left':
       case 'right':
+      case 'ensuremath':
+      case 'wd':
+      case 'ht':
         return ''
 
       case 'path':
         return '' // until https://github.com/siefkenj/unified-latex/issues/94 is fixed
 
       case 'hspace':
+      case 'hskip':
         if (node.args && node.args.length) {
           if (printRaw(node.args).match(/^[{]?0[a-z]*$/)) return ''
           return ' '
@@ -648,12 +677,15 @@ class BibTeXParser {
       case 'bar':
         return node.args.map(a => this.stringify(a, context)).join('').replace(/[a-z0-9]/ig, m => `${m}\u0305`)
 
+      // accents dealt with by preprocessor
       case 'textup':
       case 'textsc':
       case 'textrm':
       case 'texttt':
       case 'mathrm':
       case 'mbox':
+      case 'hbox':
+      case 'rlap':
         return node.args.map(n => this.stringify(n, context)).join('')
 
       case 'href':
