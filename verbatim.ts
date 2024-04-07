@@ -360,7 +360,7 @@ class Parser {
     }
     else {
       // so maybe a real key?
-      key = this.key('*"')
+      key = this.key('[]*"')
     }
 
     if (this.tryMatch('=')) {
