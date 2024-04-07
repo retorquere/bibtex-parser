@@ -60,36 +60,13 @@ type NumberFields = {
   year?: number | string
   month?: number | string
 }
+type TypedFields = CreatorFields & ArrayFields & NumberFields
+type Fields = TypedFields & Omit<Record<string, string>, keyof TypedFields>
 
 export type Entry = {
   type: string
   key: string
-  fields: {
-    author?: Creator[]
-    bookauthor?: Creator[]
-    collaborator?: Creator[]
-    commentator?: Creator[]
-    director?: Creator[]
-    editor?: Creator[]
-    editora?: Creator[]
-    editorb?: Creator[]
-    editors?: Creator[]
-    holder?: Creator[]
-    scriptwriter?: Creator[]
-    translator?: Creator[]
-
-    keywords?: string[]
-    institution?: string[]
-    publisher?: string[]
-    origpublisher?: string[]
-    organization?: string[]
-    location?: string[]
-    origlocation?: string[]
-    year?: number | string
-    month?: number | string
-
-    [key: string]: string | string[] | Creator[]
-  }
+  fields: Fields
   input: string
 }
 
@@ -461,6 +438,7 @@ class BibTeXParser {
   private fieldMode: typeof FieldMode
   private newcommands: Record<string, Argument> = {}
   private bib: Bibliography
+  private unhandled: Set<string> = new Set
 
   private split(ast: Group | Root, sep: RegExp, split: RegExp): Root[] {
     const roots: Root[] = []
@@ -629,19 +607,31 @@ class BibTeXParser {
   }
 
   private unsupported(node: Node): string {
-    if (this.fallback) return this.fallback(node, printRaw(node), this.current) ?? ''
+    const tex = printRaw(node)
+    if (this.fallback) return this.fallback(node, tex, this.current) ?? ''
 
+    let id: string
     switch (node.type) {
       case 'macro':
-        this.bib.errors.push({ error: `unhandled ${node.type} ${node.content} (${printRaw(node)})`, input: printRaw(node) })
+        id = `${node.type}.${node.content}`
+        if (!this.unhandled.has(id)) {
+          this.unhandled.add(id)
+          this.bib.errors.push({ error: `unhandled ${node.type} ${printRaw(node)}`, input: printRaw(node) })
+        }
         break
       case 'environment':
-        this.bib.errors.push({ error: `unhandled ${node.type} ${node.env} (${printRaw(node)})`, input: printRaw(node) })
+        id = `${node.type}.${node.env}`
+        if (!this.unhandled.has(id)) {
+          this.unhandled.add(id)
+          this.bib.errors.push({ error: `unhandled ${node.type} ${node.env} (${printRaw(node)})`, input: printRaw(node) })
+        }
         break
       default:
         this.bib.errors.push({ error: `unhandled ${node.type} (${printRaw(node)})`, input: printRaw(node) })
         break
     }
+
+    return tex
   }
 
   private wrap(text: string, tag, wrap=true): string {
@@ -1142,13 +1132,17 @@ class BibTeXParser {
 
     switch (mode) {
       case 'creator':
-        entry.fields[field] = this.split(ast, /^and$/i, /(^& | & | &$)/).map(cr => this.parseCreator(cr)).filter(cr => Object.keys(cr).length)
+        entry.fields[field] = (this.split(ast, /^and$/i, /(^& | & | &$)/)
+          .map(cr => this.parseCreator(cr))
+          .filter(cr => Object.keys(cr).length) as unknown as string) // pacify typescript
         break
       case 'literallist':
-        entry.fields[field] = this.split(ast, /^and$/i, /(^& | & | &$)/).map(elt => this.stringify(elt, { mode: 'literal'}).trim())
+        entry.fields[field] = (this.split(ast, /^and$/i, /(^& | & | &$)/)
+          .map(elt => this.stringify(elt, { mode: 'literal'}).trim()) as unknown as string) // pacify typescript
         break
       default:
-        entry.fields[field] = this.stringField(field, this.stringify(ast, { mode }), sentenceCase, mode)
+        // can be number or string, but typescript cannot know this
+        entry.fields[field] = this.stringField(field, this.stringify(ast, { mode }), sentenceCase, mode) as unknown as string
         break
     }
 
@@ -1250,7 +1244,7 @@ class BibTeXParser {
 
         if (typeof entry.fields[field] === 'string') {
           entry.fields[field] = entry.fields[field].trim()
-          if (field === 'month') entry.fields[field] = Month[entry.fields[field].toLowerCase()] || entry.fields[field]
+          if (field === 'month') entry.fields[field] = Month[(<string>entry.fields[field]).toLowerCase()] || entry.fields[field]
         }
       }
 
@@ -1264,9 +1258,9 @@ class BibTeXParser {
   }
 
   private content(tex: string) {
-    const entry: Entry = { key: '', type: '', fields: {} }
+    const entry: Entry = { key: '', type: '', fields: {}, input: tex }
     this.field(entry, 'tex', tex, false)
-    return <string>entry.fields.tex
+    return entry.fields.tex
   }
 
   private prep(base: bibtex.Bibliography) {
@@ -1303,7 +1297,7 @@ class BibTeXParser {
 
       for (const key of order) {
         const child = entries[key.toUpperCase()]
-        const parent = entries[(<string>child.fields.crossref)?.toUpperCase()]
+        const parent = entries[child.fields.crossref?.toUpperCase()]
         if (!parent) continue
 
         for (const mappings of [CrossRef[child.type], CrossRef['*']].filter(m => m)) {
