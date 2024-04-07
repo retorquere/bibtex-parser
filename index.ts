@@ -287,7 +287,7 @@ export const FieldMode = {
     'verba',
     'verbb',
     'verbc',
-    /^keywords(-\d+)?$/,
+    /^keywords([+]duplicate-\d+)?$/,
     /^citeulike-linkout-[0-9]+$/,
     /^bdsk-url-[0-9]+$/,
   ],
@@ -1233,7 +1233,7 @@ class BibTeXParser {
           continue
         }
 
-        if (field.match(/^keywords(-\d+)?$/)) field = 'keywords' // #873
+        if (field.match(/^keywords([+]duplicate-\d+)?$/)) field = 'keywords' // #873
 
         this.field(entry, field, value, sentenceCase)
 

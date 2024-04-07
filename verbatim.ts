@@ -325,10 +325,6 @@ class Parser {
     }
   }
 
-  postfixed(key: string, n: number) {
-    return n ? `${key}-${n}` : key
-  }
-
   private key_equals_value(key?: string) {
     key = key || this.key()
     if (!key) return // no key found, stray comma
@@ -346,7 +342,7 @@ class Parser {
     else {
       const bare = key.toLowerCase()
       let postfix = 0
-      while (typeof this.entries[0].fields[key = (postfix ? `${bare}-${postfix}` : bare)] === 'string') {
+      while (typeof this.entries[0].fields[key = (postfix ? `${bare}+duplicate-${postfix}` : bare)] === 'string') {
         postfix++
       }
       this.entries[0].fields[key] = val
