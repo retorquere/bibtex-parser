@@ -8,4 +8,4 @@ While parsing, the parser will apply markup for commands such as `\textbf`, `\te
 
 BibTeX is a reference management program that makes it easy for users of TeX and LaTeX to generate bibliographies for books and journal articles. When possible, it is usually stylized in the TeX font the way TeX and LaTeX are. LaTeX was first created in 1985 by Leslie Lamport and Oren Patashnik.
 
-Documenation is available at [http://retorque.re/bibtex-parser/](http://retorque.re/bibtex-parser/).
+Documenation is available at [https://retorque.re/bibtex-parser/](https://retorque.re/bibtex-parser/).

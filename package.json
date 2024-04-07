@@ -22,10 +22,8 @@
     "postversion": "git push --follow-tags",
     "update-cases": "curl -s https://raw.githubusercontent.com/retorquere/zotero-better-bibtex/master/test/loaded.json | jq -r '.[] | select(test(\"\\\\.bib((la)?tex)?$\"))' | rsync -av --delete -m --files-from=- ../better-bibtex/test/fixtures/ test/better-bibtex/",
     "predocs": "npm start",
-    "docs": "mkdir -p etc temp && npm run api-extractor && npm run api-documenter",
-    "ncu": "./build/submodules.py && ./build/crossref.py && ncu -u && npm i && git add package.json package-lock.json && npm audit fix && git commit -m ncu",
-    "api-documenter": "api-documenter markdown --input temp --output docs",
-    "api-extractor": "api-extractor run --local --verbose"
+    "docs": "typedoc",
+    "ncu": "./build/submodules.py && ./build/crossref.py && ncu -u && npm i && git add package.json package-lock.json && npm audit fix && git commit -m ncu"
   },
   "repository": {
     "type": "git",
@@ -37,8 +35,6 @@
   "author": "Emiliano Heyns",
   "license": "ISC",
   "devDependencies": {
-    "@microsoft/api-documenter": "^7.24.1",
-    "@microsoft/api-extractor": "^7.43.0",
     "@types/node": "^20.12.2",
     "@typescript-eslint/eslint-plugin": "^7.4.0",
     "@typescript-eslint/parser": "^7.4.0",
@@ -59,6 +55,7 @@
     "tap": "^18.7.2",
     "ts-node": "^10.9.2",
     "tslib": "^2.6.2",
+    "typedoc": "^0.25.12",
     "typescript": "^5.4.3"
   },
   "dependencies": {
