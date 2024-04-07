@@ -8,6 +8,7 @@ import { latex2unicode as latex2unicodemap, combining } from 'unicode2latex'
 import * as bibtex from './verbatim'
 import * as JabRef from './jabref'
 export { JabRefMetadata } from './jabref'
+export { ParseError } from './verbatim'
 export { toSentenceCase } from './sentence-case'
 import { toSentenceCase, guessSentenceCased, tokenize } from './sentence-case'
 
