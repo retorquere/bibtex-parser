@@ -70,7 +70,7 @@ export type Entry = {
   fields: Fields
   crossref?: {
     inherited: string[]
-    donated: []
+    donated: string[]
   }
   input: string
 }
