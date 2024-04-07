@@ -122,13 +122,11 @@ class Parser {
   private input: string
 
   private max_entries: number
-  private keywords: number
 
   constructor(input: string, options: ParserOptions = {}) {
     this.max_entries = options.max_entries || 0
     this.input = input
     this.parsing = null
-    this.keywords = 0
 
     if (typeof options.strings === 'string') {
       this.input = options.strings + '\n' + input // eslint-disable-line prefer-template
@@ -327,6 +325,10 @@ class Parser {
     }
   }
 
+  postfixed(key: string, n: number) {
+    return n ? `${key}-${n}` : key
+  }
+
   private key_equals_value(key?: string) {
     key = key || this.key()
     if (!key) return // no key found, stray comma
@@ -342,12 +344,11 @@ class Parser {
       this.strings[key.toUpperCase()] = val
     }
     else {
-      key = key.toLowerCase()
-      if (key.toLowerCase() === 'keywords' && this.entries[0].fields.keywords) { // #873... the things people do with bibtex
-        this.keywords++
-        key = `keywords[${this.keywords}]`
+      const bare = key.toLowerCase()
+      let postfix = 0
+      while (typeof this.entries[0].fields[key = (postfix ? `${bare}-${postfix}` : bare)] === 'string') {
+        postfix++
       }
-
       this.entries[0].fields[key] = val
     }
   }

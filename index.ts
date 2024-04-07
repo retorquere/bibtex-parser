@@ -33,6 +33,92 @@ for (const tag of ['i', 'b', 'sc', 'nc', 'ncx', 'br', 'p', 'li', 'code']) {
 }
 const collapsable = /\x0E\/([a-z]+)\x0F(\s*)\x0E\1\x0F/ig
 
+type CreatorFields = {
+  author?: Creator[]
+  bookauthor?: Creator[]
+  collaborator?: Creator[]
+  commentator?: Creator[]
+  director?: Creator[]
+  editor?: Creator[]
+  editora?: Creator[]
+  editorb?: Creator[]
+  editors?: Creator[]
+  holder?: Creator[]
+  scriptwriter?: Creator[]
+  translator?: Creator[]
+}
+type ArrayFields = {
+  keywords?: string[]
+  institution?: string[]
+  publisher?: string[]
+  origpublisher?: string[]
+  organization?: string[]
+  location?: string[]
+  origlocation?: string[]
+}
+type NumberFields = {
+  year?: number | string
+  month?: number | string
+}
+
+export type Entry = {
+  type: string
+  key: string
+  fields: {
+    author?: Creator[]
+    bookauthor?: Creator[]
+    collaborator?: Creator[]
+    commentator?: Creator[]
+    director?: Creator[]
+    editor?: Creator[]
+    editora?: Creator[]
+    editorb?: Creator[]
+    editors?: Creator[]
+    holder?: Creator[]
+    scriptwriter?: Creator[]
+    translator?: Creator[]
+
+    keywords?: string[]
+    institution?: string[]
+    publisher?: string[]
+    origpublisher?: string[]
+    organization?: string[]
+    location?: string[]
+    origlocation?: string[]
+    year?: number | string
+    month?: number | string
+
+    [key: string]: string | string[] | Creator[]
+  }
+  input: string
+}
+
+const Month = {
+  jan: 1,
+  january: 1,
+  feb: 2,
+  february: 2,
+  mar: 3,
+  march: 3,
+  apr: 4,
+  april: 4,
+  may: 5,
+  jun: 6,
+  june: 6,
+  jul: 7,
+  july: 7,
+  aug: 8,
+  august: 8,
+  sep: 9,
+  september: 9,
+  oct: 10,
+  october: 10,
+  nov: 11,
+  november: 11,
+  dec: 12,
+  december: 12,
+}
+
 export interface Bibliography {
   /**
    * errors found while parsing
@@ -186,35 +272,6 @@ export interface Creator {
   juniorcomma?: boolean
 }
 
-export interface Entry {
-  type: string
-  key: string
-  fields: {
-    author?: Creator[]
-    bookauthor?: Creator[]
-    collaborator?: Creator[]
-    commentator?: Creator[]
-    director?: Creator[]
-    editor?: Creator[]
-    editora?: Creator[]
-    editorb?: Creator[]
-    editors?: Creator[]
-    holder?: Creator[]
-    scriptwriter?: Creator[]
-    translator?: Creator[]
-
-    keywords?: string[]
-    institution?: string[]
-    publisher?: string[]
-    origpublisher?: string[]
-    organization?: string[]
-    location?: string[]
-    origlocation?: string[]
-
-    [key: string]: number | string | string[] | Creator[]
-  }
-}
-
 export const FieldMode = {
   creator: [
     'author',
@@ -253,6 +310,7 @@ export const FieldMode = {
     'verba',
     'verbb',
     'verbc',
+    /^keywords(-\d+)?$/,
     /^citeulike-linkout-[0-9]+$/,
     /^bdsk-url-[0-9]+$/,
   ],
@@ -263,9 +321,6 @@ export const FieldMode = {
     'review',
     'notes',
     'note',
-  ],
-  commalist: [
-    'keywords',
   ],
   literallist: [
     'institution',
@@ -1089,9 +1144,6 @@ class BibTeXParser {
       case 'creator':
         entry.fields[field] = this.split(ast, /^and$/i, /(^& | & | &$)/).map(cr => this.parseCreator(cr)).filter(cr => Object.keys(cr).length)
         break
-      case 'commalist':
-        entry.fields[field] = this.split(ast, /^[;,]$/, /(&)/).map(elt => this.stringify(elt, { mode: 'literal'}).trim())
-        break
       case 'literallist':
         entry.fields[field] = this.split(ast, /^and$/i, /(^& | & | &$)/).map(elt => this.stringify(elt, { mode: 'literal'}).trim())
         break
@@ -1166,35 +1218,45 @@ class BibTeXParser {
     }
   }
 
-  private reparse(entry: bibtex.Entry) {
-    let langid = (entry.fields.langid || entry.fields.hyphenation || '').toLowerCase()
-    if (!langid && this.options.sentenceCase.language && entry.fields.language) langid = entry.fields.language.toLowerCase()
-    const sentenceCase = (<string[]> this.options.sentenceCase.langids).includes(langid)
+  private reparse(verbatim: bibtex.Entry) {
+    let langid: string = (verbatim.fields.langid || verbatim.fields.hyphenation || '').toLowerCase()
+    if (!langid && this.options.sentenceCase.language && verbatim.fields.language) langid = verbatim.fields.language.toLowerCase()
+    const sentenceCase = (<string[]>this.options.sentenceCase.langids).includes(langid)
 
-    this.current = entry
+    const entry: Entry = this.current = {
+      type: verbatim.type,
+      key: verbatim.key,
+      fields: {},
+      input: verbatim.input,
+    }
     let keywords: string[] = [] // OMG #783
     try {
-      for (const [field, value] of Object.entries(entry.fields)) {
-        if (!value.trim()) {
-          delete entry.fields[field]
+      for (let [field, value] of Object.entries(verbatim.fields)) {
+        if (!value.trim()) continue
+
+        if (this.options.raw) {
+          entry.fields[field] = value.trim()
           continue
         }
 
-        if (this.options.raw) continue
+        if (field.match(/^keywords(-\d+)?$/)) field = 'keywords' // #873
 
         this.field(entry, field, value, sentenceCase)
 
-        if (field.match(/^keywords\[\d+\]$/)) {
-          keywords = [ ...keywords, entry.fields[field] ]
-          delete entry.fields[field]
+        if (field === 'keywords') { // #873
+          keywords = [ ...keywords, ...(entry.fields.keywords as unknown as string).split(/\s*[,;]\s*/) ].map((k: string) => k.trim()).filter(k => k)
+          delete entry.fields.keywords
         }
 
-        if (typeof entry.fields[field] === 'string') entry.fields[field] = entry.fields[field].trim()
+        if (typeof entry.fields[field] === 'string') {
+          entry.fields[field] = entry.fields[field].trim()
+          if (field === 'month') entry.fields[field] = Month[entry.fields[field].toLowerCase()] || entry.fields[field]
+        }
       }
 
-      if (keywords.length) entry.fields.keywords = [ ...(new Set([ ...(entry.fields.keywords || []), ...keywords ])) ].sort() as unknown as string
+      if (keywords.length) entry.fields.keywords = [ ...(new Set(keywords)) ].sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()))
 
-      this.bib.entries.push(<Entry>entry)
+      this.bib.entries.push(entry)
     }
     catch (err) {
       this.bib.errors.push({ error: `${err.message}\n${entry.input}`, input: entry.input })
