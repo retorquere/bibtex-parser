@@ -68,6 +68,10 @@ export type Entry = {
   type: string
   key: string
   fields: Fields
+  crossref?: {
+    inherited: string[]
+    donated: []
+  }
   input: string
 }
 
@@ -355,6 +359,9 @@ const FieldAction = {
   parseInt: [
     'year',
     'month',
+  ],
+  noCrossRef: [
+    'file',
   ],
 }
 
@@ -1296,22 +1303,43 @@ class BibTeXParser {
         if (!order.includes(key)) order.push(key)
       }
 
+      const add = (obj: Record<string, string[]>, kind: string, field: string) => {
+        obj[kind] = [...(new Set([...obj[kind], field]))].sort()
+      }
+
       for (const key of order) {
         const child = entries[key.toUpperCase()]
         const parent = entries[child.fields.crossref?.toUpperCase()]
         if (!parent) continue
 
+        child.crossref = child.crossref || { donated: [], inherited: [] }
+        parent.crossref = parent.crossref || { donated: [], inherited: [] }
+
         for (const mappings of [CrossRef[child.type], CrossRef['*']].filter(m => m)) {
           for (const mapping of [mappings[parent.type], mappings['*']].filter(m => m)) {
             for (const [childfield, parentfield] of Object.entries(<Record<string, string>> mapping)) {
-              if (!child.fields[childfield] && parent.fields[parentfield]) child.fields[childfield] = parent.fields[parentfield]
+              if (!child.fields[childfield] && parent.fields[parentfield]) {
+                child.fields[childfield] = parent.fields[parentfield]
+                add(child.crossref, 'inherited', childfield)
+                add(parent.crossref, 'donated', parentfield)
+              }
             }
 
             for (const field of <string[]>(allowed[child.type] || [])) {
-              if (!child.fields[field] && parent.fields[field]) child.fields[field] = parent.fields[field]
+              if (FieldAction.noCrossRef.includes(field)) continue
+
+              if (!child.fields[field] && parent.fields[field]) {
+                child.fields[field] = parent.fields[field]
+                add(child.crossref, 'inherited', field)
+                add(parent.crossref, 'donated', field)
+              }
             }
           }
         }
+      }
+
+      for (const entry of this.bib.entries) {
+        if (entry.crossref && !entry.crossref.donated.length && !entry.crossref.inherited.length) delete entry.crossref
       }
     }
 
