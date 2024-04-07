@@ -490,19 +490,19 @@ class Parser {
   }
 }
 
-export type Bibliography = Parser
+export type Library = Parser
 
 /**
  * Parses a bibtex source in verbatim mode. Good for detection of bibtex and for later LaTeX-reparsing.
  */
-export function parse(input: string, options: ParserOptions = {}): Bibliography {
+export function parse(input: string, options: ParserOptions = {}): Library {
   const parser = new Parser(input, options)
   parser.parse()
   return parser
 }
 
 export const promises = {
-  async parse(input: string, options: ParserOptions = {}): Promise<Bibliography> { // eslint-disable-line prefer-arrow/prefer-arrow-functions
+  async parse(input: string, options: ParserOptions = {}): Promise<Library> { // eslint-disable-line prefer-arrow/prefer-arrow-functions
     const parser = new Parser(input, options)
     await parser.parseAsync()
     return parser

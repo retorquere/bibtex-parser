@@ -97,7 +97,7 @@ const Month = {
   december: '12',
 }
 
-export interface Bibliography {
+export interface Library {
   /**
    * errors found while parsing
    */
@@ -441,7 +441,7 @@ class BibTeXParser {
   private options: Options
   private fieldMode: typeof FieldMode
   private newcommands: Record<string, Argument> = {}
-  private bib: Bibliography
+  private bib: Library
   private unhandled: Set<string> = new Set
 
   private split(ast: Group | Root, sep: RegExp, split: RegExp): Root[] {
@@ -1267,7 +1267,7 @@ class BibTeXParser {
     return entry.fields.tex
   }
 
-  private prep(base: bibtex.Bibliography) {
+  private prep(base: bibtex.Library) {
     for (const preamble of base.preambles) {
       try {
         this.content(preamble)
@@ -1280,7 +1280,7 @@ class BibTeXParser {
     }
   }
 
-  private finalize(base: bibtex.Bibliography) {
+  private finalize(base: bibtex.Library) {
     if (this.options.applyCrossRef) {
       const entries: Partial<Record<string, Entry>> = {}
       for (const entry of this.bib.entries) {
@@ -1347,7 +1347,7 @@ class BibTeXParser {
     this.bib.errors = [...base.errors, ...this.bib.errors]
   }
 
-  public parse(input: string, options: Options = {}): Bibliography {
+  public parse(input: string, options: Options = {}): Library {
     this.reset(options)
 
     const base = bibtex.parse(input, { strings: options.strings })
@@ -1362,7 +1362,7 @@ class BibTeXParser {
     return this.bib
   }
 
-  public async parseAsync(input: string, options: Options = {}): Promise<Bibliography> {
+  public async parseAsync(input: string, options: Options = {}): Promise<Library> {
     this.reset(options)
 
     const base = await bibtex.promises.parse(input, { strings: options.strings })
@@ -1378,12 +1378,12 @@ class BibTeXParser {
   }
 }
 
-export function parse(input: string, options: Options = {}): Bibliography {
+export function parse(input: string, options: Options = {}): Library {
   const parser = new BibTeXParser
   return parser.parse(input, options)
 }
 
-export async function parseAsync(input: string, options: Options = {}): Promise<Bibliography> {
+export async function parseAsync(input: string, options: Options = {}): Promise<Library> {
   const parser = new BibTeXParser
   return await parser.parseAsync(input, options)
 }
