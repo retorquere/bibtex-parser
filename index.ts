@@ -57,11 +57,7 @@ type ArrayFields = {
   location?: string[]
   origlocation?: string[]
 }
-type NumberFields = {
-  year?: number | string
-  month?: number | string
-}
-type TypedFields = CreatorFields & ArrayFields & NumberFields
+type TypedFields = CreatorFields & ArrayFields
 type Fields = TypedFields & Omit<Record<string, string>, keyof TypedFields>
 
 export type Entry = {
@@ -955,7 +951,7 @@ class BibTeXParser {
 
     if (field === 'crossref') return value
 
-    if (FieldAction.parseInt.includes(field) && value.trim().match(/^-?\d+$/)) return parseInt(value)
+    if (FieldAction.parseInt.includes(field) && value.trim().match(/^-?\d+$/)) return `${parseInt(value)}`
 
     if (mode === 'title' && sentenceCase) {
       if (!this.options.sentenceCase.guess || !guessSentenceCased(value, /\x0E\/?([a-z]+)\x0F/ig)) {
@@ -1252,7 +1248,7 @@ class BibTeXParser {
 
         if (typeof entry.fields[field] === 'string') {
           entry.fields[field] = entry.fields[field].trim()
-          if (field === 'month') entry.fields[field] = Month[(<string>entry.fields[field]).toLowerCase()] || entry.fields[field]
+          if (field === 'month') entry.fields[field] = Month[entry.fields[field].toLowerCase()] || entry.fields[field]
         }
       }
 
