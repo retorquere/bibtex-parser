@@ -10,7 +10,7 @@ import * as JabRef from './jabref'
 export { JabRefMetadata } from './jabref'
 export { ParseError } from './verbatim'
 export { toSentenceCase } from './sentence-case'
-import { toSentenceCase, guessSentenceCased } from './sentence-case'
+import { toSentenceCase } from './sentence-case'
 import { tokenize } from './tokenizer'
 
 import CrossRef from './crossref.json'
@@ -955,14 +955,13 @@ class BibTeXParser {
     if (FieldAction.parseInt.includes(field) && value.trim().match(/^-?\d+$/)) return `${parseInt(value)}`
 
     if (mode === 'title' && sentenceCase) {
-      if (!this.options.sentenceCase.guess || !guessSentenceCased(value, /\x0E\/?([a-z]+)\x0F/ig)) {
-        value = toSentenceCase(value, {
-          preserveQuoted: this.options.sentenceCase.preserveQuoted,
-          subSentenceCapitalization: this.options.sentenceCase.subSentence,
-          markup: /\x0E\/?([a-z]+)\x0F/ig,
-          nocase: /\x0E(ncx?)\x0F.*?\x0E\/\1\x0F/ig,
-        })
-      }
+      value = toSentenceCase(value, {
+        preserveQuoted: this.options.sentenceCase.preserveQuoted,
+        subSentenceCapitalization: this.options.sentenceCase.subSentence,
+        markup: /\x0E\/?([a-z]+)\x0F/ig,
+        nocase: /\x0E(ncx?)\x0F.*?\x0E\/\1\x0F/ig,
+        guess: this.options.sentenceCase.guess,
+      })
 
       let cancel = (_match: string, stripped: string) => stripped
       switch (this.options.caseProtection) {

@@ -31,7 +31,11 @@ class ArgParse(argparse.ArgumentParser):
     print('config:', config)
 
 parser = ArgParse()
-parser.add_argument('-o', '--only')
+
+group = parser.add_mutually_exclusive_group()
+group.add_argument('-o', '--only')
+group.add_argument('-l', '--last', action='store_true')
+
 parser.add_argument('-s', '--sc', '--sentence-case', choices=['on+guess', 'on', 'off'], default='on+guess')
 parser.add_argument('-c', '--cp', '--case-protection', choices=['as-needed', 'off', 'strict'], default='as-needed')
 parser.add_argument('-p', '--pq', '--preserve-quoted', choices=['yes', 'no'], default='yes')
@@ -43,7 +47,7 @@ args = parser.parse_args()
 
 if args.only:
   config['only'] = args.only
-else:
+elif not args.last:
   config.pop('only', None)
 
 config['sentenceCase'] = args.sc

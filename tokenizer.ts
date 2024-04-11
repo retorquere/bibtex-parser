@@ -3,7 +3,7 @@ import XRegExp from 'xregexp'
 import { ReplacementDetail } from 'xregexp'
 
 // eslint-disable-next-line no-magic-numbers
-const show = (obj: any): string => JSON.stringify(obj, null, 2).replace(/[\u007F-\uFFFF]/g, chr => `\\u${(`0000${chr.charCodeAt(0).toString(16)}`).substr(-4)}`)
+// const show = (obj: any): string => JSON.stringify(obj, null, 2).replace(/[\u007F-\uFFFF]/g, chr => `\\u${(`0000${chr.charCodeAt(0).toString(16)}`).substr(-4)}`)
 
 type CharCategory =  {
   name: string
@@ -17,117 +17,47 @@ const charCategories: CharCategory[] = require('xregexp/tools/output/categories'
 function re(cats: CharCategory[], extra?: string, neg=false): string {
   return `[${neg ? '^' : ''}${cats.map(cat => cat.bmp).join('')}${extra || ''}]`
 }
-const LNM: string = re(charCategories.filter(cat => cat.name.match(/^[LNM]/)), '\u2060')
-const Word = new RegExp(`${LNM}+`)
+const L: string = re(charCategories.filter(cat => cat.name === 'L'))
+const LNM: string = re(charCategories.filter(cat => cat.name.match(/^[LNM]/)), '\u00AD\u2060')
+const B = `(?=(?:${re(charCategories.filter(cat => cat.name.match(/^[LNM]/)), '\u00AD\u2060').replace(/^./, '[^')}|$))`
+const Word = new RegExp(`${LNM}+${B}`)
 const P = new RegExp(re(charCategories.filter(cat => cat.name.match(/^P/))))
 
 const Lu: string = re(charCategories.filter(cat => cat.name === 'Lu'), '\u2060')
-const Acronym = new RegExp(`(?:(?:${Lu}[.]){2,}|v[.])(?=${LNM.replace(/^./, '[^')}|$)`)
-const Contraction = new RegExp(`${LNM}+'${LNM}+`)
-const Compound = new RegExp(`${LNM}+(?:-${LNM}+)+`)
-const Whitespace = /[ \t\n\r\u00A0]+/
+const Acronym = new RegExp(`(?:(?:(?:${Lu}[.]){2,}${B})|(?:(?:vs?[.])(?=[ \t\n\r\u00A0])))`)
 
-const prepositions: string = `
-  a
-  about
-  above
-  across
-  after
-  against
-  along
-  among
-  an
-  and
-  around
-  as
-  at
-  before
-  behind
-  below
-  beneath
-  beside
-  between
-  but
-  by
-  down
-  during
-  for
-  from
-  in
-  inside
-  into
-  like
-  near
-  nor
-  of
-  off
-  on
-  onto
-  or
-  out
-  over
-  so
-  the
-  through
-  to
-  towards
-  under
-  underneath
-  until
-  up
-  upon
-  with
-  within
-  without
-  yet
-  according to
-  ahead of
-  apart from
-  as for
-  as of
-  as per
-  as regards
-  aside from
-  back to
-  because of
-  close to
-  due to
-  except for
-  far from
-  inside of
-  instead of
-  next to
-  outside of
-  owing to
-  prior to
-  pursuant to
-  regardless of
-  right of
-  subsequent to
-`.trim()
-  .split(/[\r\n]+/)
-  .map(token => token.trim().replace(/[a-z]/ig, match => `[${match.toUpperCase()}${match.toLowerCase()}]`).replace(' ', Whitespace.source ))
-  .join('|')
-const Preposition = new RegExp(`(?:${prepositions})(?=${LNM.replace(/^./, '[^')}|$)`)
+const Contraction = new RegExp(`${LNM}*${L}'${L}${LNM}*${B}`)
+const Compound = new RegExp(`${LNM}+(?:-${LNM}+)+${B}`)
+const Whitespace = /[ \t\n\r\u00A0]+/
+const ComplexPreposition = /^([^ \t\n\r\u00A0]+)([ \t\n\r\u00A0]+)([^ \t\n\r\u00A0]+)$/
+
+function ci(s: string) {
+  return s
+    .replace(/[a-z]/ig, match => `[${match.toUpperCase()}${match.toLowerCase()}]`)
+    .replace(' ', Whitespace.source )
+}
+const prepositions: string = require('./prepositions.json').map(ci).join('|')
+const Preposition = new RegExp(`(?:${prepositions})${B}`)
 
 const lexer = moo.compile({
-  'word-preposition':   Preposition,
-  'word-acronym':       Acronym,
-  'word-contraction':   Contraction,
-  'word-compound':      Compound,
-  word:                 Word,
-  'punctuation-end':    /[?.!]/,
-  'punctuation-colon':  /:/,
-  punctuation:          P,
-  whitespace:           { match: /[ \t\n\r\u00A0]/, lineBreaks: true },
-  other:                { match: /[\s\S]/, lineBreaks: true },
+  'word-preposition':     Preposition,
+  'word-acronym':         Acronym,
+  'word-contraction':     Contraction,
+  'word-compound':        Compound,
+  word:                   Word,
+  'punctuation-end':      /[?.!](?=[ \t\n\r\u00A0]|$)/,
+  'punctuation-colon':    /:(?=[ \t\n\r\u00A0])/,
+  'punctuation-ellipsis': /[.][.][.]/,
+  punctuation:            P,
+  whitespace:             { match: /[ \t\n\r\u00A0]/, lineBreaks: true },
+  other:                  { match: /[\s\S]/, lineBreaks: true },
 })
 
 const shape: ReplacementDetail[] = [
   [ XRegExp('\\p{Lu}'), 'X', 'all' ],
   [ new RegExp(re(charCategories.filter(cat => cat.name.match(/^L[^Cu]/))), 'g'), 'x' ],
   [ XRegExp('\\p{N}'), 'd', 'all' ],
-  [ /\u2060/g, '' ],
+  [ /[\u2060\u00AD]/g, '' ],
 ]
 
 export type Token = {
@@ -142,8 +72,8 @@ export type Token = {
 }
 
 export function tokenize(title: string, markup?: RegExp): Token[] {
+  // console.log(show(title))
   if (markup) title = title.replace(markup, match => '\u2060'.repeat(match.length))
-  console.log(show(title))
 
   lexer.reset(title)
   const tokens: Token[] = []
@@ -180,7 +110,8 @@ export function tokenize(title: string, markup?: RegExp): Token[] {
     }
   }
 
-  /*
+  const stack = tokens.splice(0)
+
   const combine = (ts: Token[]) => {
     for (const t of ts.slice(1)) {
       ts[0].text += t.text
@@ -190,18 +121,28 @@ export function tokenize(title: string, markup?: RegExp): Token[] {
     return ts[0]
   }
 
-  const compact: Token[] = []
-  while (tokens.length) {
-    // eslint-disable-next-line no-magic-numbers
-    if (tokens.slice(0, 3).map(t => t.type).join('.') === 'word.punctuation.word' && tokens[1].text === '.') {
-      // eslint-disable-next-line no-magic-numbers
-      compact.push(combine(tokens.splice(0, 3)))
+  let cpt: RegExpMatchArray
+  let cps: RegExpMatchArray
+  while (stack.length) {
+    if (stack[0].subtype === 'preposition' && (cpt = stack[0].text.match(ComplexPreposition)) && (cps = stack[0].shape.match(ComplexPreposition))) {
+      const complex = stack.shift()
+      let start
+      tokens.push({ ...complex, text: cpt[1], shape: cps[1], end: (start = complex.start + cps[1].length) - 1 })
+      tokens.push({ ...complex, text: cpt[2], shape: cps[2], start, end: (start = start + cps[2].length) - 1, type: 'whitespace' })
+      tokens.push({ ...complex, text: cpt[3], shape: cps[3], start })
       continue
     }
 
-    compact.push(tokens.shift())
-  }
-  */
+    // eslint-disable-next-line no-magic-numbers
+    if (stack.slice(0, 3).map(t => t.type).join('.') === 'word.punctuation.word' && stack[1].text === '.') {
+      // eslint-disable-next-line no-magic-numbers
+      tokens.push(combine(stack.splice(0, 3)))
+      continue
+    }
 
+    tokens.push(stack.shift())
+  }
+
+  // console.log(show(tokens))
   return tokens
 }

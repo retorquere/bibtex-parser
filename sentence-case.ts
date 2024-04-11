@@ -46,6 +46,7 @@ export type Options = {
   subSentenceCapitalization?: boolean
   markup?: RegExp
   nocase?: RegExp
+  guess?: boolean
 }
 
 export function toSentenceCase(title: string, options: Options = {}): string {
@@ -53,6 +54,22 @@ export function toSentenceCase(title: string, options: Options = {}): string {
     preserveQuoted: true,
     subSentenceCapitalization: true,
     ...options,
+  }
+
+  if (options.guess && title !== title.toUpperCase() && title !== title.toLowerCase()) {
+    let $title = title
+    if (options.nocase) $title = $title.replace(options.nocase, match => match.match(/\s/) ? ' ' : '')
+    if (options.markup) $title = $title.replace(options.markup, '')
+    if (options.preserveQuoted) {
+      for (const q of [/“.*?”/g, /‘.*?’/g, /".*?"/g]) {
+        $title = $title.replace(q, '')
+      }
+    }
+
+    const words = tokenize($title).filter(token => token.type === 'word' && !token.subtype.match(/preposition|acronym/))
+    const scWords = words.filter(token => !token.shape.includes('X'))
+    // console.log(words.map(word => word.text))
+    if (scWords.length > 1) return title // eslint-disable-line no-magic-numbers
   }
 
   title = title.normalize('NFC') // https://github.com/winkjs/wink-nlp/issues/134
@@ -87,16 +104,4 @@ export function toSentenceCase(title: string, options: Options = {}): string {
   }
 
   return sentenceCased
-}
-
-export function guessSentenceCased(title: string, markup = /<\/?(?:i|b|sup|sub|ncx?)>/g): boolean {
-  const noMarkup = title.replace(markup, '')
-  if (noMarkup === noMarkup.toUpperCase()) return false
-  if (noMarkup === noMarkup.toLowerCase()) return false
-
-  const words = tokenize(title, markup).filter(token => token.type === 'word' && token.shape.match(/x/i))
-  if (!words.length) return true
-
-  const titleCased = words.filter(word => word.shape.match(/^X+$|^X.*x|[^Xx]+-X/))
-  return (titleCased.length / words.length) < 0.5 // eslint-disable-line no-magic-numbers
 }
