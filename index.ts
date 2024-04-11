@@ -960,7 +960,7 @@ class BibTeXParser {
         subSentenceCapitalization: this.options.sentenceCase.subSentence,
         markup: /\x0E\/?([a-z]+)\x0F/ig,
         nocase: /\x0E(ncx?)\x0F.*?\x0E\/\1\x0F/ig,
-        guess: this.options.sentenceCase.guess,
+        guess: this.options.sentenceCase.guess && !value.match(/\x0E(nc)\x0F/),
       })
 
       let cancel = (_match: string, stripped: string) => stripped

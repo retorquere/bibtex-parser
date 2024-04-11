@@ -22,13 +22,14 @@ function wordSC(token: Token, allCaps: boolean, subSentence: boolean): string {
     return allCaps ? titleCase(token.text) : XRegExp.replace(token.text, connectedInnerWord, match => match.toLowerCase())
   }
 
+  if (token.subtype === 'preposition') return token.text.toLowerCase()
+  if (token.subtype === 'acronym') return token.text
+
   if (!allCaps && token.shape.match(/^[Xxd]+(-[Xxd]+)+/)) return XRegExp.replace(token.text, connectedWord, match => match.toLowerCase())
 
   if (token.text.match(/^[B-Z]$/)) return token.text
 
   if (!allCaps && token.shape.match(/^[-X]+$/)) return token.text
-
-  if (token.subtype === 'preposition') return token.text.toLowerCase()
 
   const shape = token.shape.replace(/[^Xxd]/g, '')
   if (!allCaps && shape.match(/^[Xd-]+$/)) return token.text
@@ -56,7 +57,9 @@ export function toSentenceCase(title: string, options: Options = {}): string {
     ...options,
   }
 
-  if (options.guess && title !== title.toUpperCase() && title !== title.toLowerCase()) {
+  const allCaps = title === title.toUpperCase()
+  const allLower = title === title.toLowerCase()
+  if (options.guess && !allCaps && !allLower) {
     let $title = title
     if (options.nocase) $title = $title.replace(options.nocase, match => match.match(/\s/) ? ' ' : '')
     if (options.markup) $title = $title.replace(options.markup, '')
@@ -66,14 +69,24 @@ export function toSentenceCase(title: string, options: Options = {}): string {
       }
     }
 
-    const words = tokenize($title).filter(token => token.type === 'word' && !token.subtype.match(/preposition|acronym/))
-    const scWords = words.filter(token => !token.shape.includes('X'))
-    // console.log(words.map(word => word.text))
-    if (scWords.length > 1) return title // eslint-disable-line no-magic-numbers
+    let sc = 0
+    const words = tokenize($title)
+    const minsc = 2
+    words.forEach((token, i) => {
+      // reset for each subsentence
+      if (options.subSentenceCapitalization && token.type === 'punctuation' && token.subtype === 'end' && sc < minsc) {
+        sc = 0
+      }
+      if (token.type === 'word' && token.text.length > 1 && !token.subtype.match(/preposition|acronym|ordinal/) && token.shape.match(/^[^X]*x[^X]*$/)) {
+        if (i === 0 || words[i-1].type === 'whitespace') {
+          sc += 1
+        }
+      }
+    })
+    if (sc >= minsc) return title
   }
 
   title = title.normalize('NFC') // https://github.com/winkjs/wink-nlp/issues/134
-  const allCaps = title === title.toUpperCase()
   if (allCaps && !title.match(/\s/)) return title
 
   let sentenceCased = title

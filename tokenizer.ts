@@ -19,16 +19,23 @@ function re(cats: CharCategory[], extra?: string, neg=false): string {
 }
 const L: string = re(charCategories.filter(cat => cat.name === 'L'))
 const LNM: string = re(charCategories.filter(cat => cat.name.match(/^[LNM]/)), '\u00AD\u2060')
+const W = `${LNM}*?${L}${LNM}*`
 const B = `(?=(?:${re(charCategories.filter(cat => cat.name.match(/^[LNM]/)), '\u00AD\u2060').replace(/^./, '[^')}|$))`
-const Word = new RegExp(`${LNM}+${B}`)
+
+const Word = new RegExp(`${W}${B}`)
 const P = new RegExp(re(charCategories.filter(cat => cat.name.match(/^P/))))
 
 const Lu: string = re(charCategories.filter(cat => cat.name === 'Lu'), '\u2060')
 const Acronym = new RegExp(`(?:(?:(?:${Lu}[.]){2,}${B})|(?:(?:vs?[.])(?=[ \t\n\r\u00A0])))`)
 
-const Contraction = new RegExp(`${LNM}*${L}'${L}${LNM}*${B}`)
-const Compound = new RegExp(`${LNM}+(?:-${LNM}+)+${B}`)
+const Contraction = new RegExp(`${W}['’]${W}${B}`)
+const Compound = new RegExp(`${W}(?:-${W})+${B}`)
 const Whitespace = /[ \t\n\r\u00A0]+/
+const Ordinal = new RegExp(`\\d+(?:st|nd|rd|th)${B}`)
+const Email = new RegExp(`[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:[.][A-Za-z0-9-]+)+${B}`)
+const Handle = new RegExp(`@[A-Za-z0-9-]{2,}${B}`)
+const Int = new RegExp(`[0-9]+${B}`)
+
 const ComplexPreposition = /^([^ \t\n\r\u00A0]+)([ \t\n\r\u00A0]+)([^ \t\n\r\u00A0]+)$/
 
 function ci(s: string) {
@@ -44,7 +51,11 @@ const lexer = moo.compile({
   'word-acronym':         Acronym,
   'word-contraction':     Contraction,
   'word-compound':        Compound,
+  'word-ordinal':         Ordinal,
+  email:                  Email,
+  handle:                 Handle,
   word:                   Word,
+  number:                 Int, // eslint-disable-line id-blacklist
   'punctuation-end':      /[?.!](?=[ \t\n\r\u00A0]|$)/,
   'punctuation-colon':    /:(?=[ \t\n\r\u00A0])/,
   'punctuation-ellipsis': /[.][.][.]/,
@@ -57,6 +68,8 @@ const shape: ReplacementDetail[] = [
   [ XRegExp('\\p{Lu}'), 'X', 'all' ],
   [ new RegExp(re(charCategories.filter(cat => cat.name.match(/^L[^Cu]/))), 'g'), 'x' ],
   [ XRegExp('\\p{N}'), 'd', 'all' ],
+  [ /’/g, "'" ],
+  [ /–/g, '-' ],
   [ /[\u2060\u00AD]/g, '' ],
 ]
 
@@ -92,19 +105,17 @@ export function tokenize(title: string, markup?: RegExp): Token[] {
       subSentenceStart: type === 'word' && subSentenceStart,
     })
 
-    switch (type) {
-      case 'word':
-        sentenceStart = false
-        subSentenceStart = false
+    switch (token.type) {
+      case 'punctuation-end':
+        sentenceStart = true
         break
-      case 'punctuation':
-        switch (subtype) {
-          case 'end':
-            sentenceStart = true
-            break
-          case 'colon':
-            subSentenceStart = true
-            break
+      case 'punctuation-colon':
+        subSentenceStart = true
+        break
+      default:
+        if (type.match(/word|number/)) {
+          sentenceStart = false
+          subSentenceStart = false
         }
         break
     }
@@ -129,7 +140,7 @@ export function tokenize(title: string, markup?: RegExp): Token[] {
       let start
       tokens.push({ ...complex, text: cpt[1], shape: cps[1], end: (start = complex.start + cps[1].length) - 1 })
       tokens.push({ ...complex, text: cpt[2], shape: cps[2], start, end: (start = start + cps[2].length) - 1, type: 'whitespace' })
-      tokens.push({ ...complex, text: cpt[3], shape: cps[3], start })
+      tokens.push({ ...complex, text: cpt[3], shape: cps[3], start }) // eslint-disable-line no-magic-numbers
       continue
     }
 
