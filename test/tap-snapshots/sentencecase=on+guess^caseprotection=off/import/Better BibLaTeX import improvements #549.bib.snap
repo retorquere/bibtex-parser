@@ -20,6 +20,10 @@ Object {
       },
       "input": "@article{1e, author = \\"01e\\",  title = {Blah  \\\\emph{emph} and \\\\enquote{enquote}.},}",
       "key": "1e",
+      "mode": Object {
+        "author": "creator",
+        "title": "title",
+      },
       "type": "article",
     },
     Object {
@@ -33,6 +37,10 @@ Object {
       },
       "input": "@article{1b, author = \\"01b\\",  title = {Blah  \\\\mkbibemph{mkbibemph} and \\\\mkbibquote{mkbibquote}.},}",
       "key": "1b",
+      "mode": Object {
+        "author": "creator",
+        "title": "title",
+      },
       "type": "article",
     },
     Object {
@@ -46,6 +54,10 @@ Object {
       },
       "input": "@book{2e,    author = \\"02e\\",  title = {Blah  \\\\emph{emph} and \\\\enquote{enquote}.},}",
       "key": "2e",
+      "mode": Object {
+        "author": "creator",
+        "title": "title",
+      },
       "type": "book",
     },
     Object {
@@ -59,6 +71,10 @@ Object {
       },
       "input": "@book{2b,    author = \\"02b\\",  title = {Blah  \\\\mkbibemph{mkbibemph} and \\\\mkbibquote{mkbibquote}.},}",
       "key": "2b",
+      "mode": Object {
+        "author": "creator",
+        "title": "title",
+      },
       "type": "book",
     },
     Object {
@@ -86,6 +102,13 @@ Object {
         }
       ),
       "key": "Bennett2003",
+      "mode": Object {
+        "author": "creator",
+        "date": "literal",
+        "institution": "literallist",
+        "title": "title",
+        "type": "literal",
+      },
       "type": "thesis",
     },
     Object {
@@ -111,6 +134,13 @@ Object {
         }
       ),
       "key": "Cooper2013",
+      "mode": Object {
+        "author": "creator",
+        "crossref": "literal",
+        "date": "literal",
+        "pages": "literal",
+        "title": "title",
+      },
       "type": "incollection",
     },
     Object {
@@ -138,6 +168,14 @@ Object {
         }
       ),
       "key": "Correns1891",
+      "mode": Object {
+        "date": "literal",
+        "editor": "creator",
+        "journaltitle": "literal",
+        "pages": "literal",
+        "title": "title",
+        "volume": "literal",
+      },
       "type": "article",
     },
     Object {
@@ -165,6 +203,14 @@ Object {
         }
       ),
       "key": "Algar1985",
+      "mode": Object {
+        "author": "creator",
+        "date": "literal",
+        "lista": "literal",
+        "pages": "literal",
+        "title": "title",
+        "volume": "literal",
+      },
       "type": "inreference",
     },
     Object {
@@ -199,6 +245,13 @@ Object {
         }
       ),
       "key": "Arsdall2012",
+      "mode": Object {
+        "date": "literal",
+        "editor": "creator",
+        "location": "literallist",
+        "publisher": "literallist",
+        "title": "title",
+      },
       "type": "collection",
     },
   ],

@@ -31,6 +31,12 @@ Object {
         }
       ),
       "key": "key",
+      "mode": Object {
+        "author": "creator",
+        "journal": "literal",
+        "title": "title",
+        "year": "literal",
+      },
       "type": "article",
     },
     Object {
@@ -39,6 +45,9 @@ Object {
       },
       "input": "@book{label, title = i }",
       "key": "label",
+      "mode": Object {
+        "title": "title",
+      },
       "type": "book",
     },
     Object {
@@ -47,6 +56,9 @@ Object {
       },
       "input": "@book{a, title = \\"foo\\"}",
       "key": "a",
+      "mode": Object {
+        "title": "title",
+      },
       "type": "book",
     },
     Object {
@@ -55,6 +67,9 @@ Object {
       },
       "input": "@BoOk{a, title = \\"foo\\"}",
       "key": "a",
+      "mode": Object {
+        "title": "title",
+      },
       "type": "book",
     },
     Object {
@@ -63,6 +78,9 @@ Object {
       },
       "input": "@BOOK{a, title = \\"foo\\"}",
       "key": "a",
+      "mode": Object {
+        "title": "title",
+      },
       "type": "book",
     },
     Object {
@@ -71,6 +89,9 @@ Object {
       },
       "input": "@book(a, title = \\"foo\\")",
       "key": "a",
+      "mode": Object {
+        "title": "title",
+      },
       "type": "book",
     },
     Object {
@@ -87,6 +108,9 @@ Object {
             }
       ),
       "key": "a",
+      "mode": Object {
+        "title": "title",
+      },
       "type": "book",
     },
     Object {
@@ -95,6 +119,9 @@ Object {
       },
       "input": "@book{a, title = \\"f\\" # a:a # b:b}",
       "key": "a",
+      "mode": Object {
+        "title": "title",
+      },
       "type": "book",
     },
     Object {
@@ -103,6 +130,9 @@ Object {
       },
       "input": "@book{a, a:a = \\"foo\\" }",
       "key": "a",
+      "mode": Object {
+        "a:a": "literal",
+      },
       "type": "book",
     },
     Object {
@@ -111,6 +141,9 @@ Object {
       },
       "input": "@book{a1, title = \\"foo\\"}",
       "key": "a1",
+      "mode": Object {
+        "title": "title",
+      },
       "type": "book",
     },
     Object {
@@ -119,6 +152,9 @@ Object {
       },
       "input": "@book{b:b, title = \\"foo\\"}",
       "key": "b:b",
+      "mode": Object {
+        "title": "title",
+      },
       "type": "book",
     },
     Object {
@@ -127,6 +163,9 @@ Object {
       },
       "input": "@book{\\"a\\", title = \\"foo\\"}",
       "key": "\\"a\\"",
+      "mode": Object {
+        "title": "title",
+      },
       "type": "book",
     },
     Object {
@@ -135,6 +174,9 @@ Object {
       },
       "input": "@book{a, title = \\"foo\\"}",
       "key": "a",
+      "mode": Object {
+        "title": "title",
+      },
       "type": "book",
     },
     Object {
@@ -143,6 +185,9 @@ Object {
       },
       "input": "@book{a, title = {foo}}",
       "key": "a",
+      "mode": Object {
+        "title": "title",
+      },
       "type": "book",
     },
     Object {
@@ -151,6 +196,9 @@ Object {
       },
       "input": "@book{a, title = foo}",
       "key": "a",
+      "mode": Object {
+        "title": "title",
+      },
       "type": "book",
     },
     Object {
@@ -159,6 +207,9 @@ Object {
       },
       "input": "@book{a, title = foo}",
       "key": "a",
+      "mode": Object {
+        "title": "title",
+      },
       "type": "book",
     },
     Object {
@@ -167,6 +218,9 @@ Object {
       },
       "input": "@book{a, title = foo}",
       "key": "a",
+      "mode": Object {
+        "title": "title",
+      },
       "type": "book",
     },
     Object {
@@ -175,6 +229,9 @@ Object {
       },
       "input": "@book{a, title = foo}",
       "key": "a",
+      "mode": Object {
+        "title": "title",
+      },
       "type": "book",
     },
     Object {
@@ -183,6 +240,9 @@ Object {
       },
       "input": "@book{a, title = foo}",
       "key": "a",
+      "mode": Object {
+        "title": "title",
+      },
       "type": "book",
     },
     Object {
@@ -191,6 +251,9 @@ Object {
       },
       "input": "@book{b, title = FOO}",
       "key": "b",
+      "mode": Object {
+        "title": "title",
+      },
       "type": "book",
     },
     Object {
@@ -199,6 +262,9 @@ Object {
       },
       "input": "@book{a, title = fo # o}",
       "key": "a",
+      "mode": Object {
+        "title": "title",
+      },
       "type": "book",
     },
     Object {
@@ -223,6 +289,10 @@ Object {
             }
       ),
       "key": "test",
+      "mode": Object {
+        "author": "creator",
+        "title": "title",
+      },
       "type": "article",
     },
     Object {
@@ -241,6 +311,9 @@ Object {
             }
       ),
       "key": "test",
+      "mode": Object {
+        "author": "creator",
+      },
       "type": "article",
     },
     Object {
@@ -253,6 +326,9 @@ Object {
             }
       ),
       "key": "test",
+      "mode": Object {
+        "file": "verbatim",
+      },
       "type": "article",
     },
     Object {
@@ -267,6 +343,9 @@ Object {
             }
       ),
       "key": "test",
+      "mode": Object {
+        "publisher": "literallist",
+      },
       "type": "article",
     },
     Object {
@@ -279,6 +358,9 @@ Object {
             }
       ),
       "key": "test",
+      "mode": Object {
+        "title": "title",
+      },
       "type": "article",
     },
     Object {
@@ -287,6 +369,9 @@ Object {
       },
       "input": "@article{test, title = \\"A {\\\\em A} \\\\begin{em}A\\\\end{em} \\\\begin{em}{A}\\\\end{em} {A \\\\em A}\\"}",
       "key": "test",
+      "mode": Object {
+        "title": "title",
+      },
       "type": "article",
     },
   ],

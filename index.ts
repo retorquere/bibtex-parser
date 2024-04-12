@@ -65,6 +65,7 @@ export type Entry = {
   type: string
   key: string
   fields: Fields
+  mode: Record<string, ParseMode>
   crossref?: {
     inherited: string[]
     donated: string[]
@@ -311,7 +312,7 @@ export const FieldMode = {
   ],
 }
 
-type ParseMode = keyof typeof FieldMode | 'literal'
+type ParseMode = keyof typeof FieldMode | 'literal' | 'verbatimlist'
 
 const English = [
   '',
@@ -983,7 +984,7 @@ class BibTeXParser {
   }
 
   private field(entry: Entry, field: string, value: string, sentenceCase: boolean) {
-    const mode: ParseMode = this.mode(field)
+    const mode: ParseMode = entry.mode[field] = this.mode(field)
 
     const ast: Root = LatexPegParser.parse(value)
 
@@ -1225,6 +1226,7 @@ class BibTeXParser {
       type: verbatim.type,
       key: verbatim.key,
       fields: {},
+      mode: {},
       input: verbatim.input,
     }
     let keywords: string[] = [] // OMG #783
@@ -1234,6 +1236,7 @@ class BibTeXParser {
 
         if (this.options.raw && !this.options.removeOuterBraces.includes(field)) {
           entry.fields[field] = value.trim()
+          entry.mode[field] = 'verbatim'
           continue
         }
 
@@ -1252,7 +1255,10 @@ class BibTeXParser {
         }
       }
 
-      if (keywords.length) entry.fields.keywords = [ ...(new Set(keywords)) ].sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()))
+      if (keywords.length) {
+        entry.fields.keywords = [ ...(new Set(keywords)) ].sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()))
+        entry.mode.keywords = 'verbatimlist'
+      }
 
       this.bib.entries.push(entry)
     }
@@ -1262,7 +1268,7 @@ class BibTeXParser {
   }
 
   private content(tex: string) {
-    const entry: Entry = { key: '', type: '', fields: {}, input: tex }
+    const entry: Entry = { key: '', type: '', fields: {}, mode: {}, input: tex }
     this.field(entry, 'tex', tex, false)
     return entry.fields.tex
   }

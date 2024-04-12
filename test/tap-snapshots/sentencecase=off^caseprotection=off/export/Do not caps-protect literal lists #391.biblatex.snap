@@ -23,6 +23,10 @@ Object {
         }
       ),
       "key": "institution",
+      "mode": Object {
+        "institution": "literallist",
+        "title": "title",
+      },
       "type": "report",
     },
     Object {
@@ -51,6 +55,13 @@ Object {
         }
       ),
       "key": "publisher",
+      "mode": Object {
+        "location": "literallist",
+        "origlocation": "literallist",
+        "origpublisher": "literallist",
+        "publisher": "literallist",
+        "title": "title",
+      },
       "type": "book",
     },
     Object {
@@ -67,6 +78,10 @@ Object {
         }
       ),
       "key": "university",
+      "mode": Object {
+        "institution": "literallist",
+        "title": "title",
+      },
       "type": "thesis",
     },
   ],

@@ -13,6 +13,7 @@ Object {
       "fields": Object {},
       "input": "@foo{}",
       "key": "",
+      "mode": Object {},
       "type": "foo",
     },
     Object {
@@ -21,6 +22,9 @@ Object {
       },
       "input": "@article(foo=bar)",
       "key": "",
+      "mode": Object {
+        "foo": "literal",
+      },
       "type": "article",
     },
   ],

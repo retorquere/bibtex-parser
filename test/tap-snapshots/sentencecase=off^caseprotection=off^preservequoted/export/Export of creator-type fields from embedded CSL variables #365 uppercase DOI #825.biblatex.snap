@@ -53,6 +53,17 @@ Object {
         }
       ),
       "key": "Author2015",
+      "mode": Object {
+        "annotation": "richtext",
+        "author": "creator",
+        "date": "literal",
+        "editor": "creator",
+        "institution": "literallist",
+        "location": "literallist",
+        "number": "literal",
+        "title": "title",
+        "type": "literal",
+      },
       "type": "report",
     },
     Object {
@@ -101,6 +112,18 @@ Object {
         }
       ),
       "key": "Blair2004",
+      "mode": Object {
+        "author": "creator",
+        "booktitle": "title",
+        "date": "literal",
+        "doi": "verbatim",
+        "editor": "creator",
+        "location": "literallist",
+        "publisher": "literallist",
+        "title": "title",
+        "url": "verbatim",
+        "urldate": "literal",
+      },
       "type": "inreference",
     },
     Object {
@@ -136,6 +159,14 @@ Object {
         }
       ),
       "key": "Doe2015",
+      "mode": Object {
+        "date": "literal",
+        "editor": "creator",
+        "editortype": "literal",
+        "location": "literallist",
+        "publisher": "literallist",
+        "title": "title",
+      },
       "type": "movie",
     },
     Object {
@@ -154,6 +185,10 @@ Object {
         }
       ),
       "key": "emptybook",
+      "mode": Object {
+        "annotation": "richtext",
+        "editor": "creator",
+      },
       "type": "inreference",
     },
     Object {
@@ -212,6 +247,22 @@ Object {
         }
       ),
       "key": "friends:leia:dvd",
+      "mode": Object {
+        "booktitle": "title",
+        "date": "literal",
+        "editor": "creator",
+        "editora": "creator",
+        "editoratype": "literal",
+        "editortype": "literal",
+        "langid": "literal",
+        "location": "literallist",
+        "number": "literal",
+        "origdate": "literal",
+        "origpublisher": "literallist",
+        "publisher": "literallist",
+        "title": "title",
+        "volume": "literal",
+      },
       "type": "video",
     },
     Object {
@@ -264,6 +315,20 @@ Object {
         }
       ),
       "key": "friends:leia:tv",
+      "mode": Object {
+        "booktitle": "title",
+        "date": "literal",
+        "editor": "creator",
+        "editora": "creator",
+        "editoratype": "literal",
+        "editortype": "literal",
+        "langid": "literal",
+        "location": "literallist",
+        "number": "literal",
+        "publisher": "literallist",
+        "title": "title",
+        "volume": "literal",
+      },
       "type": "video",
     },
     Object {
@@ -289,6 +354,13 @@ Object {
         }
       ),
       "key": "Kubrick1964",
+      "mode": Object {
+        "date": "literal",
+        "editor": "creator",
+        "editortype": "literal",
+        "shorttitle": "title",
+        "title": "title",
+      },
       "type": "video",
     },
   ],
