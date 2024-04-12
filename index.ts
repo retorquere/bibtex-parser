@@ -991,7 +991,7 @@ class BibTeXParser {
       ast.content = ast.content[0].content
     }
 
-    if (mode === 'verbatim') { // &^%@#&^%@# idiots wrapping verbatim fields
+    if (this.options.raw || mode === 'verbatim') { // &^%@#&^%@# idiots wrapping verbatim fields
       entry.fields[field] = printRaw(ast)
       return
     }
@@ -1232,7 +1232,7 @@ class BibTeXParser {
       for (let [field, value] of Object.entries(verbatim.fields)) {
         if (!value.trim()) continue
 
-        if (this.options.raw) {
+        if (this.options.raw && !this.options.removeOuterBraces.includes(field)) {
           entry.fields[field] = value.trim()
           continue
         }
@@ -1246,7 +1246,7 @@ class BibTeXParser {
           delete entry.fields.keywords
         }
 
-        if (typeof entry.fields[field] === 'string') {
+        if (!this.options.raw && typeof entry.fields[field] === 'string') {
           entry.fields[field] = entry.fields[field].trim()
           if (field === 'month') entry.fields[field] = Month[entry.fields[field].toLowerCase()] || entry.fields[field]
         }
