@@ -42,7 +42,7 @@ export type Entry = {
 
 export interface ParseError {
   error: string
-  input: string
+  input?: string
 }
 
 export interface ParserOptions {
