@@ -57,7 +57,7 @@ export interface ParserOptions {
   strings?: string | Record<string, string>
 }
 
-class Parser {
+export class Library {
   public parsing: string
 
   public entries: Entry[] = []
@@ -490,20 +490,18 @@ class Parser {
   }
 }
 
-export type Library = Parser
-
 /**
  * Parses a bibtex source in verbatim mode. Good for detection of bibtex and for later LaTeX-reparsing.
  */
 export function parse(input: string, options: ParserOptions = {}): Library {
-  const parser = new Parser(input, options)
+  const parser = new Library(input, options)
   parser.parse()
   return parser
 }
 
 export const promises = {
   async parse(input: string, options: ParserOptions = {}): Promise<Library> { // eslint-disable-line prefer-arrow/prefer-arrow-functions
-    const parser = new Parser(input, options)
+    const parser = new Library(input, options)
     await parser.parseAsync()
     return parser
   },
