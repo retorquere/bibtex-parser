@@ -292,7 +292,7 @@ export class Library {
       if (typeof resolved === 'undefined') {
         this.errors.push({
           error: `Unresolved @string reference ${JSON.stringify(bare)}`,
-          input: bare,
+          input: '',
         })
       }
       return resolved || `{{${bare}}}`
