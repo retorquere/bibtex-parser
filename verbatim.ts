@@ -144,12 +144,12 @@ export class Library {
     }
   }
 
-  public parse() {
+  public parse(): void {
     this.bibtex()
     this.entries.reverse()
   }
 
-  public async parseAsync() {
+  public async parseAsync(): Promise<void> {
     await this.bibtexAsync()
     this.entries.reverse()
   }
