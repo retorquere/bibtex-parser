@@ -290,10 +290,8 @@ export class Library {
       const u_bare = bare.toUpperCase()
       const resolved = this.strings[u_bare] || this.default_strings[u_bare]
       if (typeof resolved === 'undefined') {
-        this.errors.push({
-          error: `Unresolved @string reference ${JSON.stringify(bare)}`,
-          input: '',
-        })
+        const error = `Unresolved @string reference ${JSON.stringify(bare)}`
+        if (!this.errors.find(err => err.error === error)) this.errors.push({ error, input: '' })
       }
       return resolved || `{{${bare}}}`
     }
