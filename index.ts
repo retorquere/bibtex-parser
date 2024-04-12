@@ -253,7 +253,7 @@ export interface Creator {
 }
 
 export const FieldMode = {
-  creator: [
+  creatorlist: [
     'author',
     'bookauthor',
     'collaborator',
@@ -471,10 +471,10 @@ class BibTeXParser {
   }
 
   private parseCreator(ast: Root): Creator {
-    if (ast.content.length === 1 && ast.content[0].type === 'group') return this.trimCreator({ name: this.stringify(ast, { mode: 'creator' }) })
+    if (ast.content.length === 1 && ast.content[0].type === 'group') return this.trimCreator({ name: this.stringify(ast, { mode: 'creatorlist' }) })
 
     if (ast.content.find(node => node.type === 'string' && node.content === ',')) {
-      const nameparts: string[] = this.split(ast, /^,$/, /(&)/).map((part: Node) => this.stringify(part, { mode: 'creator' }).trim())
+      const nameparts: string[] = this.split(ast, /^,$/, /(&)/).map((part: Node) => this.stringify(part, { mode: 'creatorlist' }).trim())
       const extended = nameparts.every(p => p.match(/^[a-z][-a-z]+\s*=/i))
 
       if (!extended) {
@@ -541,7 +541,7 @@ class BibTeXParser {
       return this.trimCreator(name)
     }
     else { // first-last mode
-      const nameparts = this.split(ast, /^$/, /( )/).map(part => this.stringify(part, { mode: 'creator' })).filter(n => n)
+      const nameparts = this.split(ast, /^$/, /( )/).map(part => this.stringify(part, { mode: 'creatorlist' })).filter(n => n)
       if (nameparts.length === 1) return this.trimCreator({ lastName: nameparts[0] })
 
       const prefix = nameparts.findIndex(n => n.match(/^[a-z]/))
@@ -992,9 +992,26 @@ class BibTeXParser {
       ast.content = ast.content[0].content
     }
 
-    if (this.options.raw || mode === 'verbatim') { // &^%@#&^%@# idiots wrapping verbatim fields
+    if (mode === 'verbatim') { // &^%@#&^%@# idiots wrapping verbatim fields
       entry.fields[field] = printRaw(ast)
       return
+    }
+
+    if (this.options.raw) {
+      switch (mode) {
+        case 'creatorlist':
+          entry.fields[field] = (this.split(ast, /^and$/i, /(^& | & | &$)/)
+            .map(cr => ({ name: printRaw(cr) }))
+            .filter(cr => cr.name) as unknown as string) // pacify typescript
+          return
+        case 'literallist':
+          entry.fields[field] = (this.split(ast, /^and$/i, /(^& | & | &$)/)
+            .map(elt => printRaw(elt)) as unknown as string) // pacify typescript
+          return
+        default:
+          entry.fields[field] = printRaw(ast)
+          return
+      }
     }
 
     if (mode === 'title') {
@@ -1136,7 +1153,7 @@ class BibTeXParser {
     })
 
     switch (mode) {
-      case 'creator':
+      case 'creatorlist':
         entry.fields[field] = (this.split(ast, /^and$/i, /(^& | & | &$)/)
           .map(cr => this.parseCreator(cr))
           .filter(cr => Object.keys(cr).length) as unknown as string) // pacify typescript
@@ -1234,11 +1251,13 @@ class BibTeXParser {
       for (let [field, value] of Object.entries(verbatim.fields)) {
         if (!value.trim()) continue
 
+        /*
         if (this.options.raw && !this.options.removeOuterBraces.includes(field)) {
           entry.fields[field] = value.trim()
           entry.mode[field] = 'verbatim'
           continue
         }
+        */
 
         if (field.match(/^keywords([+]duplicate-\d+)?$/)) field = 'keywords' // #873
 

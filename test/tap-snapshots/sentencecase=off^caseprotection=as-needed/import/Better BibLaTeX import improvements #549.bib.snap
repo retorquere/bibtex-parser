@@ -21,7 +21,7 @@ Object {
       "input": "@article{1e, author = \\"01e\\",  title = {Blah  \\\\emph{emph} and \\\\enquote{enquote}.},}",
       "key": "1e",
       "mode": Object {
-        "author": "creator",
+        "author": "creatorlist",
         "title": "title",
       },
       "type": "article",
@@ -38,7 +38,7 @@ Object {
       "input": "@article{1b, author = \\"01b\\",  title = {Blah  \\\\mkbibemph{mkbibemph} and \\\\mkbibquote{mkbibquote}.},}",
       "key": "1b",
       "mode": Object {
-        "author": "creator",
+        "author": "creatorlist",
         "title": "title",
       },
       "type": "article",
@@ -55,7 +55,7 @@ Object {
       "input": "@book{2e,    author = \\"02e\\",  title = {Blah  \\\\emph{emph} and \\\\enquote{enquote}.},}",
       "key": "2e",
       "mode": Object {
-        "author": "creator",
+        "author": "creatorlist",
         "title": "title",
       },
       "type": "book",
@@ -72,7 +72,7 @@ Object {
       "input": "@book{2b,    author = \\"02b\\",  title = {Blah  \\\\mkbibemph{mkbibemph} and \\\\mkbibquote{mkbibquote}.},}",
       "key": "2b",
       "mode": Object {
-        "author": "creator",
+        "author": "creatorlist",
         "title": "title",
       },
       "type": "book",
@@ -103,7 +103,7 @@ Object {
       ),
       "key": "Bennett2003",
       "mode": Object {
-        "author": "creator",
+        "author": "creatorlist",
         "date": "literal",
         "institution": "literallist",
         "title": "title",
@@ -135,7 +135,7 @@ Object {
       ),
       "key": "Cooper2013",
       "mode": Object {
-        "author": "creator",
+        "author": "creatorlist",
         "crossref": "literal",
         "date": "literal",
         "pages": "literal",
@@ -170,7 +170,7 @@ Object {
       "key": "Correns1891",
       "mode": Object {
         "date": "literal",
-        "editor": "creator",
+        "editor": "creatorlist",
         "journaltitle": "literal",
         "pages": "literal",
         "title": "title",
@@ -204,7 +204,7 @@ Object {
       ),
       "key": "Algar1985",
       "mode": Object {
-        "author": "creator",
+        "author": "creatorlist",
         "date": "literal",
         "lista": "literal",
         "pages": "literal",
@@ -247,7 +247,7 @@ Object {
       "key": "Arsdall2012",
       "mode": Object {
         "date": "literal",
-        "editor": "creator",
+        "editor": "creatorlist",
         "location": "literallist",
         "publisher": "literallist",
         "title": "title",
