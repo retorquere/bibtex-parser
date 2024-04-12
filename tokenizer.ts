@@ -36,14 +36,14 @@ const Email = new RegExp(`[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:[.][A-Za-z0-9-]+)+${
 const Handle = new RegExp(`@[A-Za-z0-9-]{2,}${B}`)
 const Int = new RegExp(`[0-9]+${B}`)
 
-const ComplexPreposition = /^([^ \t\n\r\u00A0]+)([ \t\n\r\u00A0]+)([^ \t\n\r\u00A0]+)$/
+const ComplexPreposition = /^([^ \t\n\r\u00A0]+)([ \t\n\r\u00A0]+)([^ \t\n\r\u00A0]+)(?:([ \t\n\r\u00A0]+)([^ \t\n\r\u00A0]+))?$/
 
 function ci(s: string) {
   return s
     .replace(/[a-z]/ig, match => `[${match.toUpperCase()}${match.toLowerCase()}]`)
     .replace(' ', Whitespace.source )
 }
-const prepositions: string = require('./prepositions.json').map(ci).join('|')
+const prepositions: string = require('./prepositions.json').sort().reverse().map(ci).join('|')
 const Preposition = new RegExp(`(?:${prepositions})${B}`)
 
 const lexer = moo.compile({
@@ -137,10 +137,24 @@ export function tokenize(title: string, markup?: RegExp): Token[] {
   while (stack.length) {
     if (stack[0].subtype === 'preposition' && (cpt = stack[0].text.match(ComplexPreposition)) && (cps = stack[0].shape.match(ComplexPreposition))) {
       const complex = stack.shift()
-      let start
-      tokens.push({ ...complex, text: cpt[1], shape: cps[1], end: (start = complex.start + cps[1].length) - 1 })
-      tokens.push({ ...complex, text: cpt[2], shape: cps[2], start, end: (start = start + cps[2].length) - 1, type: 'whitespace' })
-      tokens.push({ ...complex, text: cpt[3], shape: cps[3], start }) // eslint-disable-line no-magic-numbers
+
+      let start = complex.start
+      let end
+      for (const i of Array.from({length: 5}, (_, n) => n+1)) {
+        if (!cpt[i]) break
+
+        end = start + cps[i].length - 1
+        tokens.push({
+          ...complex,
+          text: cpt[i],
+          shape: cps[i],
+          start,
+          end,
+          type: i % 2 ? complex.type : 'whitespace',
+          subtype: i % 2 ? complex.type : '',
+        })
+        start = end + 1
+      }
       continue
     }
 
