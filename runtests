@@ -25,6 +25,12 @@ def Limit(n):
   except:
     raise argparse.ArgumentTypeError(f'{n} is not a valid integer')
 
+actions = []
+for sentencecase in ['on+guess', 'on', 'off']:
+  for caseprotection in [ 'as-needed', 'strict', 'off' ]:
+    for preservequoted in [ 'no', 'yes' ]:
+      actions.append({ 'sentence-case': sentencecase, 'case-protection': caseprotection, 'preserve-quoted': preservequoted })
+
 class ArgParse(argparse.ArgumentParser):
   def print_help(self):
     super().print_help()  # call the original print_help method
@@ -41,9 +47,14 @@ parser.add_argument('-c', '--cp', '--case-protection', choices=['as-needed', 'of
 parser.add_argument('-p', '--pq', '--preserve-quoted', choices=['yes', 'no'], default='yes')
 parser.add_argument('-d', '--dry-run', action='store_true')
 parser.add_argument('-b', '--big', action='store_true')
+parser.add_argument('-a', '--action', choices=[str(a) for a in range(0,len(actions))])
 parser.add_argument('--snap', action='store_true')
 parser.add_argument('n', nargs='?', type=Limit)
 args = parser.parse_args()
+
+if args.action:
+  for k, v in actions[int(args.action)].items():
+    setattr(args, k, v)
 
 if args.only:
   config['only'] = args.only
