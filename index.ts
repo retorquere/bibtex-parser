@@ -1020,7 +1020,7 @@ class BibTeXParser {
       }
     }
 
-    if (mode === 'title') {
+    if (sentenceCase && mode === 'title') {
       let root = [...ast.content]
       while (root.length) {
         const node = root.shift()
