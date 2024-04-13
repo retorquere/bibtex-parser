@@ -85,7 +85,6 @@ export type Token = {
 }
 
 export function tokenize(title: string, markup?: RegExp): Token[] {
-  // console.log(show(title))
   if (markup) title = title.replace(markup, match => '\u2060'.repeat(match.length))
 
   lexer.reset(title)
@@ -168,6 +167,5 @@ export function tokenize(title: string, markup?: RegExp): Token[] {
     tokens.push(stack.shift())
   }
 
-  // console.log(show(tokens))
   return tokens
 }

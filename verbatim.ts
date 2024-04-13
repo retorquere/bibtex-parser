@@ -112,11 +112,6 @@ export class Library {
     TCS: 'Theoretical Computer Science',
   }
 
-  /**
-   * error found, if any.
-   */
-  error?: string
-
   private pos = 0
   private linebreaks: number[] = []
   private input: string
@@ -194,7 +189,6 @@ export class Library {
     const path = '\\path|'
     const verb = path.replace('path', 'verb')
     if (this.input.substring(this.pos).startsWith(path)) {
-      console.log('replacing path')
       // eslint-disable-next-line prefer-template, no-magic-numbers
       this.input = this.input.substring(0, this.pos) + verb + this.input.substring(this.pos + path.length)
     }
@@ -290,11 +284,18 @@ export class Library {
       const u_bare = bare.toUpperCase()
       const resolved = this.strings[u_bare] || this.default_strings[u_bare]
       if (typeof resolved === 'undefined') {
-        const error = `Unresolved @string reference ${JSON.stringify(bare)}`
-        if (!this.errors.find(err => err.error === error)) this.errors.push({ error, input: '' })
+        this.error({
+          error: `Unresolved @string reference ${JSON.stringify(bare)}`,
+          input: '',
+        })
       }
       return resolved || `{{${bare}}}`
     }
+  }
+
+  error(err: ParseError) {
+    if (this.errors.find(e => e.error === err.error)) return
+    this.errors.push(err)
   }
 
   private value() {
@@ -480,7 +481,7 @@ export class Library {
       // skip ahead to the next @ and try again
       this.pos = start + 1
       while (this.pos < this.input.length && this.input[this.pos] !== '@') this.pos++
-      this.errors.push({
+      this.error({
         error: err.message,
         input: this.input.substring(start, this.pos),
       })
