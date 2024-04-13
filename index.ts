@@ -17,6 +17,8 @@ import CrossRef from './crossref.json'
 import allowed from './fields.json'
 const unabbreviations: Record<string, string> = require('./unabbrev.json')
 
+import { merge } from './merge'
+
 function latexMode(node: Node | Argument): 'math' | 'text' {
   return node._renderInfo.mode as 'math' | 'text'
 }
@@ -173,7 +175,7 @@ export interface Options {
     language?: boolean
 
     /**
-     * Some bibtex files will have titles in sentence case, or all-uppercase. If this is on, and there is a field that would normally have sentence-casing applied in which more words are all-`X`case
+     * Some bibtex files will have titles in sentence case, or all-uppercase. If this is on, and there is a field that would normally have sentence-casing applied in which there are all-lowercase words that are not prepositions
      * (where `X` is either lower or upper) than mixed-case, it is assumed that you want them this way, and no sentence-casing will be applied to that field
      */
     guess?: boolean
@@ -936,7 +938,7 @@ class BibTeXParser {
       .replace(/\x0E/ig, '<').replace(/\x0F/ig, '>')
   }
 
-  private stringField(field: string, value: string, sentenceCase: boolean, mode: string): string | number {
+  private stringField(field: string, value: string, mode: string, sentenceCase: boolean, guess: boolean): string {
     if (FieldAction.unabbrev.includes(field)) {
 
       let full = this.options.unabbreviations[value.toUpperCase()] || this.options.unabbreviations[value.toUpperCase().replace(/s\S+$/, '')]
@@ -961,7 +963,7 @@ class BibTeXParser {
         subSentenceCapitalization: this.options.sentenceCase.subSentence,
         markup: /\x0E\/?([a-z]+)\x0F/ig,
         nocase: /\x0E(ncx?)\x0F.*?\x0E\/\1\x0F/ig,
-        guess: this.options.sentenceCase.guess && !value.match(/\x0E(nc)\x0F/),
+        guess,
       })
 
       let cancel = (_match: string, stripped: string) => stripped
@@ -985,6 +987,10 @@ class BibTeXParser {
 
   private field(entry: Entry, field: string, value: string, sentenceCase: boolean) {
     const mode: ParseMode = entry.mode[field] = this.mode(field)
+    const caseProtection = {
+      present: false,
+      intuitive: 0, // a lot of people don't realise `some text \textit{in italics}` will protect 'in italics'
+    }
 
     const ast: Root = LatexPegParser.parse(value)
 
@@ -1038,7 +1044,13 @@ class BibTeXParser {
       if (mode === 'title' && node.type === 'inlinemath' && !info.parents.find(p => p._renderInfo.protectCase)) node._renderInfo.protectCase = true
 
       if (!info.context.inMathMode) {
-        if (mode === 'title' && node._renderInfo.root) node._renderInfo.protectCase = true
+        if (mode === 'title' && node._renderInfo.root && (node.type !== 'group' || node.content[0].type !== 'macro')) {
+          node._renderInfo.protectCase = true
+          if (node.type === 'group') {
+            caseProtection.present = true
+            caseProtection.intuitive += 1
+          }
+        }
 
         if (node.type === 'macro' && typeof node.escapeToken !== 'string') node.escapeToken = '\\'
 
@@ -1084,6 +1096,7 @@ class BibTeXParser {
             if (url.length === 1 && url[0].type === 'group') url = url[0].content
             node.args[0] = this.wraparg({ type: 'string', content: printRaw(url), _renderInfo: { mode: url[0]._renderInfo.mode } }, node)
           }
+          caseProtection.intuitive -= node.args.filter(arg => arg.content[0].type === 'group' && arg.content[0]._renderInfo.protectCase).length
         }
         else if (node.type === 'macro' && node.content.match(/^[a-z]+$/i) && nodes[0]?.type === 'whitespace') {
           nodes.shift()
@@ -1163,8 +1176,13 @@ class BibTeXParser {
           .map(elt => this.stringify(elt, { mode: 'literal'}).trim()) as unknown as string) // pacify typescript
         break
       default:
-        // can be number or string, but typescript cannot know this
-        entry.fields[field] = this.stringField(field, this.stringify(ast, { mode }), sentenceCase, mode) as unknown as string
+        entry.fields[field] = this.stringField(
+          field,
+          this.stringify(ast, { mode }),
+          mode,
+          sentenceCase,
+          this.options.sentenceCase.guess && (!caseProtection.present || caseProtection.intuitive > 0)
+        ) as unknown as string
         break
     }
 
@@ -1173,23 +1191,18 @@ class BibTeXParser {
   }
 
   private reset(options: Options = {}) {
-    const sentenceCase: Options['sentenceCase'] = {
-      langids : English,
-      guess: true,
-      preserveQuoted: true,
-      ...(options.sentenceCase || {}),
-    }
-
-    this.options = {
+    this.options = merge(options, {
       caseProtection: 'as-needed',
       unabbreviations: true,
       applyCrossRef: options.applyCrossRef ?? true,
       fieldMode: {},
+      sentenceCase: {
+        langids : English,
+        guess: true,
+        preserveQuoted: true,
+      },
+    })
 
-      ...options,
-
-      sentenceCase,
-    }
     if (this.options.caseProtection === true) this.options.caseProtection = 'as-needed'
 
     if (this.options.verbatimFields) this.options.verbatimFields = this.options.verbatimFields.map(f => typeof f === 'string' ? f.toLowerCase() : new RegExp(f.source, f.flags + (f.flags.includes('i') ? '' : 'i')))

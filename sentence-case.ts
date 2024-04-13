@@ -2,6 +2,7 @@
 
 import XRegExp from 'xregexp'
 import { tokenize, Token } from './tokenizer'
+import { merge } from './merge'
 
 // eslint-disable-next-line no-magic-numbers
 // const show = (obj: any): string => JSON.stringify(obj, null, 2).replace(/[\u007F-\uFFFF]/g, chr => `\\u${(`0000${chr.charCodeAt(0).toString(16)}`).substr(-4)}`)
@@ -51,11 +52,11 @@ export type Options = {
 }
 
 export function toSentenceCase(title: string, options: Options = {}): string {
-  options = {
+  options = merge(options, {
     preserveQuoted: true,
     subSentenceCapitalization: true,
-    ...options,
-  }
+    guess: false,
+  })
 
   const allCaps = title === title.toUpperCase()
   const allLower = title === title.toLowerCase()
