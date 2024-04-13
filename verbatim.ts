@@ -8,7 +8,7 @@ class ParsingError extends Error {
   public source: string
 
   constructor(message, parser) {
-    message += ` @ ${parser.pos}`
+    message += ` at ${parser.location()}`
     if (parser.parsing) message += ` in ${JSON.stringify(parser.parsing)}`
     super(message)
     this.name = 'ParsingError'
@@ -291,6 +291,11 @@ export class Library {
       }
       return resolved || `{{${bare}}}`
     }
+  }
+
+  location() {
+    const lines = this.input.substring(0, this.pos).split('\n')
+    return `line ${lines.length}, column ${lines[lines.length - 1].length + 1}`
   }
 
   error(err: ParseError) {
