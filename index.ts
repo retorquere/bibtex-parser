@@ -1181,7 +1181,7 @@ class BibTeXParser {
           this.stringify(ast, { mode }),
           mode,
           sentenceCase,
-          this.options.sentenceCase.guess && (!caseProtection.present || caseProtection.intuitive > 0)
+          this.options.sentenceCase.guess // && (!caseProtection.present || caseProtection.intuitive > 0)
         ) as unknown as string
         break
     }

@@ -70,21 +70,18 @@ export function toSentenceCase(title: string, options: Options = {}): string {
       }
     }
 
-    let sc = 0
-    const words = tokenize($title)
-    const minsc = 2
-    words.forEach((token, i) => {
-      // reset for each subsentence
-      if (options.subSentenceCapitalization && token.type === 'punctuation' && token.subtype === 'end' && sc < minsc) {
-        sc = 0
-      }
-      if (token.type === 'word' && token.text.length > 1 && !token.subtype.match(/preposition|acronym|ordinal/) && token.shape.match(/^[^X]*x[^X]*$/)) {
-        if (i === 0 || words[i-1].type === 'whitespace') {
-          sc += 1
-        }
+    const guess = {
+      words: tokenize($title),
+      sc: 0,
+      other: 0,
+    }
+
+    guess.words.forEach((token, i) => {
+      if (token.type === 'word' && token.text.length > 1 && !token.subtype.match(/preposition|acronym|ordinal/) && (i === 0 || guess.words[i-1].type === 'whitespace')) {
+        guess[token.shape.match(/^[^X]*x[^X]*$/) ? 'sc' : 'other'] += 1
       }
     })
-    if (sc >= minsc) return title
+    if (guess.sc && guess.sc >= guess.other) return title
   }
 
   title = title.normalize('NFC') // https://github.com/winkjs/wink-nlp/issues/134
