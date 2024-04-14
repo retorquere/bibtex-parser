@@ -15,7 +15,6 @@ import { tokenize } from './tokenizer'
 
 import CrossRef from './crossref.json'
 import allowed from './fields.json'
-const unabbreviations: Record<string, string> = require('./unabbrev.json')
 
 import { merge } from './merge'
 
@@ -242,11 +241,6 @@ export interface Options {
   strings?: Record<string, string> | string
 
   /**
-   * BibTeX files may have abbreviations in the journal field. If you provide a dictionary, journal names that are found in the dictionary are replaced with the attached full name
-   */
-  unabbreviations?: boolean | Record<string, string>
-
-  /**
    * Apply crossref inheritance
    */
   applyCrossRef?: boolean
@@ -358,12 +352,6 @@ const FieldAction = {
     'doi',
     // 'publisher',
     // 'location',
-  ],
-  unabbrev: [
-    'journal',
-    'journaltitle',
-    'journal-full',
-    'series',
   ],
   parseInt: [
     'year',
@@ -949,20 +937,6 @@ class BibTeXParser {
   }
 
   private stringField(field: string, value: string, mode: string, guessSC: boolean): string {
-    if (FieldAction.unabbrev.includes(field)) {
-
-      let full = this.options.unabbreviations[value.toUpperCase()] || this.options.unabbreviations[value.toUpperCase().replace(/s\S+$/, '')]
-      if (!full) {
-        const m = value.toUpperCase().match(/(.*)(\s+\S*\d\S*)$/)
-        if (m) {
-          full = this.options.unabbreviations[m[1]]
-          if (full) full += m[2]
-        }
-      }
-      if (full) value = full
-      if (!this.english) return value
-    }
-
     if (field === 'crossref') return value
 
     if (FieldAction.parseInt.includes(field) && value.trim().match(/^-?\d+$/)) return `${parseInt(value)}`
@@ -1202,7 +1176,6 @@ class BibTeXParser {
   private reset(options: Options = {}) {
     this.options = merge(options, {
       caseProtection: 'as-needed',
-      unabbreviations: true,
       applyCrossRef: options.applyCrossRef ?? true,
       fieldMode: {},
       english : English,
@@ -1218,13 +1191,6 @@ class BibTeXParser {
 
     if (typeof this.options.english === 'boolean') this.options.english = this.options.english ? English : []
     this.options.english = this.options.english.map(langid => langid.toLowerCase())
-
-    if (typeof this.options.unabbreviations === 'boolean') this.options.unabbreviations = this.options.unabbreviations ? unabbreviations : {}
-    const unabbr: Record<string, string> = {}
-    for (const abbr in this.options.unabbreviations) { // eslint-disable-line guard-for-in
-      unabbr[abbr.toUpperCase()] = this.options.unabbreviations[abbr]
-    }
-    this.options.unabbreviations = unabbr
 
     this.fieldMode = Object.entries(FieldMode).reduce((acc: typeof FieldMode, [mode, test]: [string, (RegExp | string)[]]) => {
       const strings = test.filter(fieldname_or_regex => typeof fieldname_or_regex === 'string' && !this.options.fieldMode[fieldname_or_regex])

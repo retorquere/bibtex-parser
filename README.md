@@ -16,3 +16,4 @@ Look at the documentation for what has changed:
 
 * the chunker parser is now called the verbatim parser, and the return type of the entries has changed
 * the main parser has changed the structure of the entries returned, the errors returned, and the options passed into the parser
+* unabbreviations left to consumers of the library. `unabbrev.json` remains available.
