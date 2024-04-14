@@ -82,14 +82,14 @@ for (const bibfile of testcases) {
   const settings = `sentencecase=${config.sentenceCase}^caseprotection=${config.caseProtection}${config.preserveQuoted ? '^preservequoted' : ''}`;
   
   parse(bibfile, `${section}=${basename}`, path.resolve(__dirname, 'tap-snapshots', settings, section, basename + '.snap'), {
-    caseProtection: config.caseProtection === 'off' ? false : config.caseProtection,
+    english: config.sentenceCase.startsWith('on'),
+    languageAsLangid: config.tests.language.includes(basename),
     sentenceCase: {
-      langids: config.sentenceCase.startsWith('on'),
-      language: config.tests.language.includes(basename),
       preserveQuoted: config.preserveQuoted,
       guess: config.sentenceCase.endsWith('guess'),
       subSentence: true,
     },
+    caseProtection: config.caseProtection === 'off' ? false : config.caseProtection,
     unabbreviations: unabbreviate && unabbreviations,
     strings: unabbreviate && strings,
     exception: config.tests.exception.includes(basename),

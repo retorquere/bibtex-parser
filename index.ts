@@ -134,67 +134,76 @@ export interface Library {
 }
 
 export interface Options {
+  /**
+   * Bib(La)TeX handles entries that are in English differently from emtries in other languages. For English-like entries,
+   * it expects titles in title-case. Words within braces are recognized as "case-protected" and their original casing is preserved during
+   * rendering. For non-English entries, the casing as entered in the entries is rendered as entered. Other reference managers, such as
+   * Zotero, expect all titles to be in sentence-case. In this parser you can specify which `langid` values mark an entry to be English so
+   * that it can convert those titles to sentence-case, and to carry over case-protection. If no `langid` is present an entry is
+   * assumed to be English by bib(la)tex, and the parser follows that convention. Note that sentence-casing uses heuristics and
+   * does not employ any kind of natural language processing, so you should always inspect the results. If you offer your own list
+   * of english-langids here, do not forget to include the empty string, stands for "`langid` absent". Default languages to sentenceCase
+   * are the empty string, plus:
+   *
+   * - american
+   * - british
+   * - canadian
+   * - english
+   * - australian
+   * - newzealand
+   * - usenglish
+   * - ukenglish
+   * - en
+   * - eng
+   * - en-au
+   * - en-bz
+   * - en-ca
+   * - en-cb
+   * - en-gb
+   * - en-ie
+   * - en-jm
+   * - en-nz
+   * - en-ph
+   * - en-tt
+   * - en-us
+   * - en-za
+   * - en-zw
+   *
+   * If you pass an empty array, or `false`, no sentence casing will be applied (even when there's no language field).
+   */
+  english?: string[] | boolean
+
+  /**
+    * By default, `langid` and `hyphenation` are used to determine whether an entry is English, but some sources (ab)use the `language` field
+    * for this. If you turn on this option, this field will also be taken into account as a source for `langid`.
+    */
+  languageAsLangid?: boolean
+
   sentenceCase?: {
     /**
-     * BibTeX files are expected to store title-type fields in Sentence Case, where other reference managers (such as Zotero) expect them to be stored as Sentence case. When there is no language field, or the language field
-     * is one of the languages (case insensitive) passed in this option, the parser will attempt to sentence-case title-type fields as they are being parsed. This uses heuristics and does not employ any kind of natural
-     * language processing, so you should always inspect the results. Default languages to sentenceCase are:
-     *
-     * - american
-     * - british
-     * - canadian
-     * - english
-     * - australian
-     * - newzealand
-     * - usenglish
-     * - ukenglish
-     * - en
-     * - eng
-     * - en-au
-     * - en-bz
-     * - en-ca
-     * - en-cb
-     * - en-gb
-     * - en-ie
-     * - en-jm
-     * - en-nz
-     * - en-ph
-     * - en-tt
-     * - en-us
-     * - en-za
-     * - en-zw
-     *
-     * If you pass an empty array, or `false`, no sentence casing will be applied (even when there's no language field).
-     */
-    langids?: string[] | boolean
-
-    /**
-      * By default, `langid` and `hyphenation` are used to determine whether an entry should be sentence-cased, but some sources (ab)use the `language` field
-      * for this. If you turn on this option, this field will also be taken into account as a source for `langid`.
-      */
-    language?: boolean
-
-    /**
-     * Some bibtex files will have titles in sentence case, or all-uppercase. If this is on, and there is a field that would normally have sentence-casing applied in which there are all-lowercase words that are not prepositions
-     * (where `X` is either lower or upper) than mixed-case, it is assumed that you want them this way, and no sentence-casing will be applied to that field
+     * Some bibtex files will have English titles in sentence case, or all-uppercase. If this is on, and there is a field that would
+     * normally have sentence-casing applied in which there are all-lowercase words that are not prepositions (where `X` is either
+     * lower or upper) than mixed-case, it is assumed that you want them this way, and no sentence-casing will be applied to that field
      */
     guess?: boolean
 
     /**
-     * Capitalize sub-sentences after colons. Given the input title "Structured Interviewing For OCB: Construct Validity, Faking, And The Effects Of Question Type":
+     * Retain Capitalised words in sub-sentences after colons. Given the input title "Structured Interviewing For OCB: Construct Validity,
+     * Faking, And The Effects Of Question Type":
      * - when `true`, sentence-cases to "Structured interviewing for OCB: Construct validity, faking, and the effects of question type"
      * - when `false`, sentence-cases to "Structured interviewing for OCB: construct validity, faking, and the effects of question type"
      */
     subSentence?: boolean
 
     /**
-     * If you have sentence-casing on, you can independently choose whether quoted titles within a title are preserved as-is (true) or also sentence-cased(false)
+     * If you have sentence-casing on, you can independently choose whether quoted titles within a title are preserved as-is (true)
+     * or also sentence-cased (false).
      */
     preserveQuoted?: boolean
   }
 
   /**
-   * translate braced parts of text into a case-protected counterpart; Default == true == as-needed.
+   * translate braced parts of English-entry titles into a case-protected counterpart; Default == true == as-needed.
    * In as-needed mode the parser will assume that words that have capitals in them imply "nocase" behavior in the consuming application. If you don't want this, turn this option on, and you'll get
    * case protection exactly as the input has it
    */
@@ -316,7 +325,7 @@ export const FieldMode = {
 
 type ParseMode = keyof typeof FieldMode | 'literal' | 'verbatimlist'
 
-const English = [
+export const English = [
   '',
   'american',
   'british',
@@ -442,6 +451,7 @@ async function* asyncGenerator<T>(array: T[]): AsyncGenerator<T, void, unknown> 
 class BibTeXParser {
   private fallback: unsupportedHandler
   private current: Entry
+  private english: boolean
   private options: Options
   private fieldMode: typeof FieldMode
   private newcommands: Record<string, Argument> = {}
@@ -862,7 +872,7 @@ class BibTeXParser {
       if (node._renderInfo.bold) content = `${open.b}${content}${close.b}`
       if (node._renderInfo.smallCaps) content = `${open.sc}${content}${close.sc}`
       if (node._renderInfo.code) content = `${open.code}${content}${close.code}`
-      if (node._renderInfo.protectCase) content = `${open.nc}${content}${close.nc}`
+      if (this.english && node._renderInfo.protectCase) content = `${open.nc}${content}${close.nc}`
     }
     return content
   }
@@ -938,7 +948,7 @@ class BibTeXParser {
       .replace(/\x0E/ig, '<').replace(/\x0F/ig, '>')
   }
 
-  private stringField(field: string, value: string, mode: string, sentenceCase: boolean, guess: boolean): string {
+  private stringField(field: string, value: string, mode: string, guessSC: boolean): string {
     if (FieldAction.unabbrev.includes(field)) {
 
       let full = this.options.unabbreviations[value.toUpperCase()] || this.options.unabbreviations[value.toUpperCase().replace(/s\S+$/, '')]
@@ -950,20 +960,20 @@ class BibTeXParser {
         }
       }
       if (full) value = full
-      if (!sentenceCase) return value
+      if (!this.english) return value
     }
 
     if (field === 'crossref') return value
 
     if (FieldAction.parseInt.includes(field) && value.trim().match(/^-?\d+$/)) return `${parseInt(value)}`
 
-    if (mode === 'title' && sentenceCase) {
+    if (this.english && mode === 'title') {
       value = toSentenceCase(value, {
         preserveQuoted: this.options.sentenceCase.preserveQuoted,
         subSentenceCapitalization: this.options.sentenceCase.subSentence,
         markup: /\x0E\/?([a-z]+)\x0F/ig,
         nocase: /\x0E(ncx?)\x0F.*?\x0E\/\1\x0F/ig,
-        guess,
+        guess: guessSC,
       })
 
       let cancel = (_match: string, stripped: string) => stripped
@@ -985,7 +995,7 @@ class BibTeXParser {
     return value
   }
 
-  private field(entry: Entry, field: string, value: string, sentenceCase: boolean) {
+  private field(entry: Entry, field: string, value: string) {
     const mode: ParseMode = entry.mode[field] = this.mode(field)
     const caseProtection = {
       present: false,
@@ -1020,7 +1030,7 @@ class BibTeXParser {
       }
     }
 
-    if (sentenceCase && mode === 'title') {
+    if (this.english && mode === 'title') {
       let root = [...ast.content]
       while (root.length) {
         const node = root.shift()
@@ -1180,7 +1190,6 @@ class BibTeXParser {
           field,
           this.stringify(ast, { mode }),
           mode,
-          sentenceCase,
           this.options.sentenceCase.guess // && (!caseProtection.present || caseProtection.intuitive > 0)
         ) as unknown as string
         break
@@ -1196,8 +1205,8 @@ class BibTeXParser {
       unabbreviations: true,
       applyCrossRef: options.applyCrossRef ?? true,
       fieldMode: {},
+      english : English,
       sentenceCase: {
-        langids : English,
         guess: true,
         preserveQuoted: true,
       },
@@ -1207,8 +1216,8 @@ class BibTeXParser {
 
     if (this.options.verbatimFields) this.options.verbatimFields = this.options.verbatimFields.map(f => typeof f === 'string' ? f.toLowerCase() : new RegExp(f.source, f.flags + (f.flags.includes('i') ? '' : 'i')))
 
-    if (typeof this.options.sentenceCase.langids === 'boolean') this.options.sentenceCase.langids = this.options.sentenceCase.langids ? English : []
-    this.options.sentenceCase.langids = this.options.sentenceCase.langids.map(langid => langid.toLowerCase())
+    if (typeof this.options.english === 'boolean') this.options.english = this.options.english ? English : []
+    this.options.english = this.options.english.map(langid => langid.toLowerCase())
 
     if (typeof this.options.unabbreviations === 'boolean') this.options.unabbreviations = this.options.unabbreviations ? unabbreviations : {}
     const unabbr: Record<string, string> = {}
@@ -1249,8 +1258,8 @@ class BibTeXParser {
 
   private reparse(verbatim: bibtex.Entry) {
     let langid: string = (verbatim.fields.langid || verbatim.fields.hyphenation || '').toLowerCase()
-    if (!langid && this.options.sentenceCase.language && verbatim.fields.language) langid = verbatim.fields.language.toLowerCase()
-    const sentenceCase = (<string[]>this.options.sentenceCase.langids).includes(langid)
+    if (!langid && this.options.languageAsLangid && verbatim.fields.language) langid = verbatim.fields.language.toLowerCase()
+    this.english = (<string[]>this.options.english).includes(langid)
 
     const entry: Entry = this.current = {
       type: verbatim.type,
@@ -1274,7 +1283,7 @@ class BibTeXParser {
 
         if (field.match(/^keywords([+]duplicate-\d+)?$/)) field = 'keywords' // #873
 
-        this.field(entry, field, value, sentenceCase)
+        this.field(entry, field, value)
 
         if (field === 'keywords') { // #873
           keywords = [ ...keywords, ...(entry.fields.keywords as unknown as string).split(/\s*[,;]\s*/) ].map((k: string) => k.trim()).filter(k => k)
@@ -1301,7 +1310,10 @@ class BibTeXParser {
 
   private content(tex: string) {
     const entry: Entry = { key: '', type: '', fields: {}, mode: {}, input: tex }
-    this.field(entry, 'tex', tex, false)
+    const english = this.english
+    this.english = false
+    this.field(entry, 'tex', tex)
+    this.english = english
     return entry.fields.tex
   }
 

@@ -293,12 +293,12 @@ export class Library {
     }
   }
 
-  location() {
+  location(): string {
     const lines = this.input.substring(0, this.pos).split('\n')
     return `line ${lines.length}, column ${lines[lines.length - 1].length + 1}`
   }
 
-  error(err: ParseError) {
+  error(err: ParseError): void {
     if (this.errors.find(e => e.error === err.error)) return
     this.errors.push(err)
   }
