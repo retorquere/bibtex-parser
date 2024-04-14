@@ -87,14 +87,12 @@ export function toSentenceCase(title: string, options: Options = {}): string {
   title = title.normalize('NFC') // https://github.com/winkjs/wink-nlp/issues/134
   if (allCaps && !title.match(/\s/)) return title
 
-  let sentenceCased = title
 
   const tokens = tokenize(title, options.markup)
 
-  for (const token of tokens) {
-    if (token.type !== 'whitespace') {
-      sentenceCased = sentenceCased.substring(0, token.start) + wordSC(token, allCaps, options.subSentenceCapitalization) + sentenceCased.substring(token.end + 1)
-    }
+  let sentenceCased = ''
+  while (tokens.length) {
+    sentenceCased += wordSC(tokens.shift(), allCaps, options.subSentenceCapitalization)
   }
 
   if (options.markup) {

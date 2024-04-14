@@ -157,6 +157,7 @@ export function tokenize(title: string, markup?: RegExp): Token[] {
       continue
     }
 
+    // domain names
     // eslint-disable-next-line no-magic-numbers
     if (stack.slice(0, 3).map(t => t.type).join('.') === 'word.punctuation.word' && stack[1].text === '.') {
       // eslint-disable-next-line no-magic-numbers
