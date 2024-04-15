@@ -98,7 +98,6 @@ export function toSentenceCase(title: string, options: Options = {}): string {
     if (guess.sc && guess.sc >= guess.other) return title
   }
 
-  title = title.normalize('NFC') // https://github.com/winkjs/wink-nlp/issues/134
   if (allCaps && !title.match(/\s/)) return title
 
   const tokens = tokenize(title, options.markup)
