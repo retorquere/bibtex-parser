@@ -3,32 +3,17 @@ import moo from 'moo'
 // eslint-disable-next-line no-magic-numbers
 // const show = (obj: any): string => JSON.stringify(obj, null, 2).replace(/[\u007F-\uFFFF]/g, chr => `\\u${(`0000${chr.charCodeAt(0).toString(16)}`).substr(-4)}`)
 
-type CharCategory =  {
-  name: string
-  alias: string
-  isBmpLast: boolean
-  bmp: string
-}
+import * as rx from './re'
 
-const charCategories: CharCategory[] = require('xregexp/tools/output/categories')
-
-function char(cats: CharCategory[], extra?: string, neg=false): string {
-  return `[${neg ? '^' : ''}${cats.map(cat => cat.bmp).join('')}${extra || ''}]`
-}
-
-const ciwLu: string = char(charCategories.filter(cat => cat.name === 'Lu'))
-const ciwLl: string = char(charCategories.filter(cat => cat.name === 'Ll'))
-export const connectedInnerWord = new RegExp(`-${ciwLu}${ciwLl}*(?=-|$)`, 'g')
-
-const L: string = char(charCategories.filter(cat => cat.name === 'L'))
-const LNM: string = char(charCategories.filter(cat => cat.name.match(/^[LNM]/)), '\u00AD\u2060')
+const L: string = rx.match(rx.categories.filter(cat => cat.name === 'L'))
+const LNM: string = rx.match(rx.categories.filter(cat => cat.name.match(/^[LNM]/)), '\u00AD\u2060')
 const W = `${LNM}*?${L}${LNM}*`
-const B = `(?=(?:${char(charCategories.filter(cat => cat.name.match(/^[LNM]/)), '\u00AD\u2060').replace(/^./, '[^')}|$))`
+const B = `(?=(?:${rx.match(rx.categories.filter(cat => cat.name.match(/^[LNM]/)), '\u00AD\u2060').replace(/^./, '[^')}|$))`
 
 const Word = new RegExp(`${W}${B}`)
-const P = new RegExp(char(charCategories.filter(cat => cat.name.match(/^P/))))
+const P = new RegExp(rx.match(rx.categories.filter(cat => cat.name.match(/^P/))))
 
-const Lu: string = char(charCategories.filter(cat => cat.name === 'Lu'), '\u2060')
+const Lu: string = rx.match(rx.categories.filter(cat => cat.name === 'Lu'), '\u2060')
 const Acronym = new RegExp(`(?:(?:(?:${Lu}[.]){2,}${B})|(?:(?:vs?[.])(?=[ \t\n\r\u00A0])))`)
 
 const Contraction = new RegExp(`${W}['’]${W}${B}`)
@@ -68,9 +53,9 @@ const lexer = moo.compile({
 })
 
 const shaper: [RegExp, string][] = [
-  [ new RegExp(char(charCategories.filter(cat => cat.name === 'Lu')), 'g'), 'X' ],
-  [ new RegExp(char(charCategories.filter(cat => cat.name.match(/^L[^Cu]/))), 'g'), 'x' ],
-  [ new RegExp(char(charCategories.filter(cat => cat.name[0] === 'N')), 'g'), 'd' ],
+  [ new RegExp(rx.match(rx.categories.filter(cat => cat.name === 'Lu')), 'g'), 'X' ],
+  [ new RegExp(rx.match(rx.categories.filter(cat => cat.name.match(/^L[^Cu]/))), 'g'), 'x' ],
+  [ new RegExp(rx.match(rx.categories.filter(cat => cat.name[0] === 'N')), 'g'), 'd' ],
   [ /’/g, "'" ],
   [ /–/g, '-' ],
   [ /[\u2060\u00AD]/g, '' ],
