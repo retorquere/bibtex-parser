@@ -13,7 +13,7 @@ const B = `(?=(?:${rx.match(rx.categories.filter(cat => cat.name.match(/^[LNM]/)
 const Word = new RegExp(`${W}${B}`)
 const P = new RegExp(rx.match(rx.categories.filter(cat => cat.name.match(/^P/))))
 
-const Lu: string = rx.match(rx.categories.filter(cat => cat.name === 'Lu'), '\u2060')
+const Lu: string = rx.match(rx.categories.filter(cat => cat.name === 'Lu' || cat.name === 'Lt'), '\u2060')
 const Acronym = new RegExp(`(?:(?:(?:${Lu}[.]){2,}${B})|(?:(?:vs?[.])(?=[ \t\n\r\u00A0])))`)
 
 const Contraction = new RegExp(`${W}['’]${W}${B}`)
@@ -21,7 +21,7 @@ const Whitespace = /[ \t\n\r\u00A0]+/
 const Ordinal = new RegExp(`\\d+(?:st|nd|rd|th)${B}`)
 const Email = new RegExp(`[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:[.][A-Za-z0-9-]+)+${B}`)
 const Handle = new RegExp(`@[A-Za-z0-9-]{2,}${B}`)
-const Int = new RegExp(`[0-9]+${B}`)
+const Int = new RegExp(`\\d+${B}`)
 const Domain = new RegExp(`${W}(?:[.]${W})+${B}`)
 const Website = new RegExp(`https?://${W}(?:[.]${W})+(?:[^.!? \t\n\r\u00A0]+|[.!?]${LNM})+`)
 
@@ -54,19 +54,34 @@ const lexer = moo.compile({
   other:                  { match: /[\s\S]/, lineBreaks: true },
 })
 
-const shaper: [RegExp, string][] = [
-  [ new RegExp(rx.match(rx.categories.filter(cat => cat.name === 'Lu')), 'g'), 'X' ],
-  [ new RegExp(rx.match(rx.categories.filter(cat => cat.name.match(/^L[^Cu]/))), 'g'), 'x' ],
-  [ new RegExp(rx.match(rx.categories.filter(cat => cat.name[0] === 'N')), 'g'), 'd' ],
-  [ /’/g, "'" ],
-  [ /–/g, '-' ],
-  [ /[\u2060\u00AD]/g, '' ],
-]
-function shape(s: string) {
-  for (const [ re, repl ] of shaper) {
-    s = s.replace(re, repl)
+const Shape = new class {
+  private shapes: Record<string, string> = {}
+  private re: Record<string, RegExp> = {
+    X: new RegExp(rx.match(rx.categories.filter(cat => cat.name === 'Lu' || cat.name === 'Lt'))),
+    x: new RegExp(rx.match(rx.categories.filter(cat => cat.name.match(/^L[^Cut]/)))),
+    d: new RegExp(rx.match(rx.categories.filter(cat => cat.name[0] === 'N'))),
   }
-  return s
+
+  private match(c: string): string {
+    if (c.match(this.re.d)) return 'd'
+    if (c.toLowerCase() === c.toUpperCase()) return c
+    if (c.match(this.re.X)) return 'X'
+    if (c.match(this.re.x)) return 'x'
+    if (c === '’') return "'"
+    if (c === '–') return '-'
+    if (c === '\u2060' || c === '\u00AD') return ''
+    return c
+  }
+
+  private fetch(c: string): string {
+    if (typeof this.shapes[c] === 'undefined') this.shapes[c] = this.match(c)
+    return this.shapes[c]
+  }
+
+  shape(t: string) {
+    if (!this.shapes[t]) this.shapes[t] = Array.from(t).map(c => this.fetch(c)).join('')
+    return this.shapes[t]
+  }
 }
 
 export type Token = {
@@ -93,7 +108,7 @@ function combine(tokens: Token[]) {
 
 function hyphenate(t: Token) {
   if (t.type === 'word') return 'w'
-  if (t.text === '-') return '-'
+  if (t.text === '-' || t.text === '–') return '-'
   return ' '
 }
 
@@ -112,7 +127,7 @@ export function tokenize(title: string, markup?: RegExp): Token[] {
       text: token.text,
       start: token.offset,
       end: token.offset + token.text.length - 1,
-      shape: shape(<string>token.text),
+      shape: Shape.shape(<string>token.text),
       sentenceStart: type === 'word' && sentenceStart,
       subSentenceStart: type === 'word' && subSentenceStart,
     })

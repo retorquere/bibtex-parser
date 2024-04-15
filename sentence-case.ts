@@ -5,7 +5,7 @@ import { merge } from './merge'
 
 import * as rx from './re'
 
-const Lu: string = rx.match(rx.categories.filter(cat => cat.name === 'Lu'))
+const Lu: string = rx.match(rx.categories.filter(cat => cat.name === 'Lu' || cat.name === 'Lt'))
 const Ll: string = rx.match(rx.categories.filter(cat => cat.name === 'Ll'))
 const connectedInnerWord = new RegExp(`-${Lu}${Ll}*(?=-|$)`, 'g')
 
