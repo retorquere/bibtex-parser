@@ -6,6 +6,7 @@
 // error recovery and unicode handling by Emiliano Heyns (c) 2017-2024
 
 import * as rx from './re'
+import { playnice } from './yield'
 
 class ParsingError extends Error {
   public source: string
@@ -42,11 +43,6 @@ export interface ParserOptions {
     * preload these strings
     */
   strings?: string | Record<string, string>
-
-  /**
-    * delay between parsing entries. Only effective in async parse mode
-    */
-  delay?: number
 }
 
 export class Library {
@@ -107,7 +103,6 @@ export class Library {
   private pos = 0
   private linebreaks: number[] = []
   private input: string
-  private delay: number
 
   private max_entries: number
 
@@ -124,9 +119,6 @@ export class Library {
         this.default_strings[k.toUpperCase()] = v
       }
     }
-
-    // eslint-disable-next-line no-magic-numbers
-    this.delay = typeof options.delay === 'number' ? Math.max(0, options.delay) : 0
 
     let pos = input.indexOf('\n')
     while (pos !== -1) {
@@ -421,9 +413,10 @@ export class Library {
   }
 
   private async bibtexAsync() {
+    let n = 1
     while (this.hasMore()) {
       this.parseNext()
-      await new Promise(resolve => setTimeout(resolve, this.delay))
+      if ((n++ % 1000) === 0) await playnice() // eslint-disable-line no-magic-numbers
     }
   }
 

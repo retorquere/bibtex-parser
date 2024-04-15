@@ -13,6 +13,8 @@ export { toSentenceCase } from './sentence-case'
 import { toSentenceCase } from './sentence-case'
 import { tokenize } from './tokenizer'
 
+import { playnice } from './yield'
+
 import CrossRef from './crossref.json'
 import allowed from './fields.json'
 
@@ -430,11 +432,14 @@ type Context = {
   caseProtected?: boolean
 }
 
+
+/*
 async function* asyncGenerator<T>(array: T[]): AsyncGenerator<T, void, unknown> {
   for (const item of array) {
     yield await Promise.resolve(item)
   }
 }
+*/
 
 class BibTeXParser {
   private fallback: unsupportedHandler
@@ -1385,8 +1390,10 @@ class BibTeXParser {
 
     this.prep(base)
 
-    for await (const entry of asyncGenerator(base.entries)) {
+    let n = 1
+    for (const entry of base.entries) {
       this.reparse(entry)
+      if ((n++ % 1000) === 0) await playnice() // eslint-disable-line no-magic-numbers
     }
 
     this.finalize(base)

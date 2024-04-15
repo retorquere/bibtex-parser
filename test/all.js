@@ -38,10 +38,10 @@ function parse(bibfile, name, snapshot, options) {
     let result = ''
     try {
       if (options.exception) {
-        bibtex.parse(source, {...options, unsupported: (node, tex, entry) => { result = `unsupported ${node.type} (${tex})\n${entry.input}` } })
+        await bibtex.parseAsync(source, {...options, unsupported: (node, tex, entry) => { result = `unsupported ${node.type} (${tex})\n${entry.input}` } })
       }
       else {
-        result = bibtex.parse(source, options)
+        result = await bibtex.parseAsync(source, options)
       }
     }
     catch (err) {
