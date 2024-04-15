@@ -126,7 +126,7 @@ export class Library {
     }
 
     // eslint-disable-next-line no-magic-numbers
-    this.delay = typeof options.delay === 'number' ? Math.max(0, options.delay) : 10
+    this.delay = typeof options.delay === 'number' ? Math.max(0, options.delay) : 0
 
     let pos = input.indexOf('\n')
     while (pos !== -1) {
