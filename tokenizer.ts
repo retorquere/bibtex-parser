@@ -23,7 +23,7 @@ const Email = new RegExp(`[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:[.][A-Za-z0-9-]+)+${
 const Handle = new RegExp(`@[A-Za-z0-9-]{2,}${B}`)
 const Int = new RegExp(`[0-9]+${B}`)
 const Domain = new RegExp(`${W}(?:[.]${W})+${B}`)
-const Website = new RegExp(`https?://${W}(?:[.]${W})+(?:[^.!?]+|[.!?]${LNM})+`)
+const Website = new RegExp(`https?://${W}(?:[.]${W})+(?:[^.!? \t\n\r\u00A0]+|[.!?]${LNM})+`)
 
 const ComplexPreposition = /^([^ \t\n\r\u00A0]+)([ \t\n\r\u00A0]+)([^ \t\n\r\u00A0]+)(?:([ \t\n\r\u00A0]+)([^ \t\n\r\u00A0]+))?$/
 
@@ -125,7 +125,7 @@ export function tokenize(title: string, markup?: RegExp): Token[] {
         subSentenceStart = true
         break
       default:
-        if (type.match(/word|number/)) {
+        if (type.match(/word|number|handle|domain|website/)) {
           sentenceStart = false
           subSentenceStart = false
         }

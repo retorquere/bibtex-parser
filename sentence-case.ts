@@ -17,30 +17,46 @@ function titleCase(s: string): string {
 }
 
 function wordSC(token: Token, allCaps: boolean, subSentence: boolean, hyphenated: boolean): string {
-  if (token.type === 'domain' || token.type === 'website') return token.text.toLowerCase()
+
+  // domains are case-insensitive
+  if (token.type === 'domain') return token.text.toLowerCase()
+
+  // punctuation needs no handling, and websites can have case-sensitive stuff in the URL
   if (token.type !== 'word') return token.text
+
+  // I'll, I'm
   if (token.text.match(/^I'/)) return titleCase(token.text)
+
+  // starting 'a'
   if (subSentence && token.subSentenceStart && token.text.match(/^a$/i)) return 'a'
 
+  // (sub)sentence start
   if ((subSentence && token.subSentenceStart) || token.sentenceStart) {
     return allCaps ? titleCase(token.text) : token.text.replace(connectedInnerWord, match => match.toLowerCase())
   }
 
+  // prepositions should already have been lowercased, but OK
   if (token.subtype === 'preposition') return token.text.toLowerCase()
+
+  // keep acronyms
   if (token.subtype === 'acronym') return token.text
 
   // if (!allCaps && token.shape.match(/^[Xxd]+(-[Xxd]+)+/)) return XRegExp.replace(token.text, connectedWord, match => match.toLowerCase())
 
+  // single-letter capitals are usually some kind of noun, but not when they're part of an hyphenated word
   if (token.text.match(/^[B-Z]$/)) return hyphenated ? token.text.toLowerCase() : token.text
 
-  if (!allCaps && token.shape.match(/^[-X]+$/)) return token.text
+  // ?? if (!allCaps && token.shape.match(/^[-X]+$/)) return token.text
 
-  const shape = token.shape.replace(/[^Xxd]/g, '')
-  if (!allCaps && shape.match(/^[Xd-]+$/)) return token.text
-  if (shape.match(/^X[xd]*(-[Xxd]*)*$/)) return token.text.toLowerCase()
+  const shape = token.shape.replace(/[^-Xxd]/g, '')
+  // ?? if (!allCaps && shape.match(/^[Xd-]+$/)) return token.text
+
+  // hyphenated ?? if (shape.match(/^X[xd]*(-[Xxd]*)*$/)) return token.text.toLowerCase()
+
+  // all-caps and numbers
   if (shape.match(/^[Xd]+$/)) return allCaps ? token.text.toLowerCase() : token.text
 
-  if (token.text.includes('.')) return token.text
+  // domain ?? if (token.text.includes('.')) return token.text
   if (shape.match(/x.*X/)) return token.text
 
   return token.text.toLowerCase()
@@ -67,11 +83,6 @@ export function toSentenceCase(title: string, options: Options = {}): string {
     let $title = title
     if (options.nocase) $title = $title.replace(options.nocase, match => match.match(/\s/) ? ' ' : '')
     if (options.markup) $title = $title.replace(options.markup, '')
-    if (options.preserveQuoted) {
-      for (const q of [/“.*?”/g, /‘.*?’/g, /".*?"/g]) {
-        $title = $title.replace(q, '')
-      }
-    }
 
     const guess = {
       words: tokenize($title),
