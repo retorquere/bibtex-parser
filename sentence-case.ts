@@ -11,10 +11,11 @@ function titleCase(s: string): string {
   return s.replace(/^(.)(.+)/, (match, car, cdr) => `${car}${cdr.toLowerCase()}`)
 }
 
-const connectedWord = XRegExp('(^|-)\\p{Lu}\\p{Ll}*(?=-|$)', 'g')
+// const connectedWord = XRegExp('(^|-)\\p{Lu}\\p{Ll}*(?=-|$)', 'g')
 const connectedInnerWord = XRegExp('-\\p{Lu}\\p{Ll}*(?=-|$)', 'g')
 
-function wordSC(token: Token, allCaps: boolean, subSentence: boolean): string {
+function wordSC(token: Token, allCaps: boolean, subSentence: boolean, hyphenated: boolean): string {
+  if (token.type === 'domain') return token.text.toLowerCase()
   if (token.type !== 'word') return token.text
   if (token.text.match(/^I'/)) return titleCase(token.text)
   if (subSentence && token.subSentenceStart && token.text.match(/^a$/i)) return 'a'
@@ -26,9 +27,9 @@ function wordSC(token: Token, allCaps: boolean, subSentence: boolean): string {
   if (token.subtype === 'preposition') return token.text.toLowerCase()
   if (token.subtype === 'acronym') return token.text
 
-  if (!allCaps && token.shape.match(/^[Xxd]+(-[Xxd]+)+/)) return XRegExp.replace(token.text, connectedWord, match => match.toLowerCase())
+  // if (!allCaps && token.shape.match(/^[Xxd]+(-[Xxd]+)+/)) return XRegExp.replace(token.text, connectedWord, match => match.toLowerCase())
 
-  if (token.text.match(/^[B-Z]$/)) return token.text
+  if (token.text.match(/^[B-Z]$/)) return hyphenated ? token.text.toLowerCase() : token.text
 
   if (!allCaps && token.shape.match(/^[-X]+$/)) return token.text
 
@@ -87,12 +88,21 @@ export function toSentenceCase(title: string, options: Options = {}): string {
   title = title.normalize('NFC') // https://github.com/winkjs/wink-nlp/issues/134
   if (allCaps && !title.match(/\s/)) return title
 
-
   const tokens = tokenize(title, options.markup)
 
   let sentenceCased = ''
-  while (tokens.length) {
-    sentenceCased += wordSC(tokens.shift(), allCaps, options.subSentenceCapitalization)
+  for (const token of tokens) {
+    if (token.hyphenated && token.shape[0] === 'x') {
+      sentenceCased += token.text
+    }
+    else if (token.hyphenated) {
+      for (const t of token.hyphenated) {
+        sentenceCased += wordSC(t, allCaps, options.subSentenceCapitalization, true)
+      }
+    }
+    else {
+      sentenceCased += wordSC(token, allCaps, options.subSentenceCapitalization, false)
+    }
   }
 
   if (options.markup) {

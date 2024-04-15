@@ -29,12 +29,12 @@ const Lu: string = re(charCategories.filter(cat => cat.name === 'Lu'), '\u2060')
 const Acronym = new RegExp(`(?:(?:(?:${Lu}[.]){2,}${B})|(?:(?:vs?[.])(?=[ \t\n\r\u00A0])))`)
 
 const Contraction = new RegExp(`${W}['’]${W}${B}`)
-const Compound = new RegExp(`${W}(?:-${W})+${B}`)
 const Whitespace = /[ \t\n\r\u00A0]+/
 const Ordinal = new RegExp(`\\d+(?:st|nd|rd|th)${B}`)
 const Email = new RegExp(`[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:[.][A-Za-z0-9-]+)+${B}`)
 const Handle = new RegExp(`@[A-Za-z0-9-]{2,}${B}`)
 const Int = new RegExp(`[0-9]+${B}`)
+const Domain = new RegExp(`${W}(?:[.]${W})+${B}`)
 
 const ComplexPreposition = /^([^ \t\n\r\u00A0]+)([ \t\n\r\u00A0]+)([^ \t\n\r\u00A0]+)(?:([ \t\n\r\u00A0]+)([^ \t\n\r\u00A0]+))?$/
 
@@ -50,10 +50,10 @@ const lexer = moo.compile({
   'word-preposition':     Preposition,
   'word-acronym':         Acronym,
   'word-contraction':     Contraction,
-  'word-compound':        Compound,
   'word-ordinal':         Ordinal,
   email:                  Email,
   handle:                 Handle,
+  domain:                 Domain,
   word:                   Word,
   number:                 Int, // eslint-disable-line id-blacklist
   'punctuation-end':      /[?.!](?=[ \t\n\r\u00A0]|$)/,
@@ -82,6 +82,23 @@ export type Token = {
   shape: string
   sentenceStart: boolean
   subSentenceStart: boolean
+  hyphenated?: Token[]
+}
+
+function combine(tokens: Token[]) {
+  const combined = { ...tokens[0] }
+  for (const t of tokens.slice(1)) {
+    combined.text += t.text
+    combined.end = t.end
+    combined.shape += t.shape
+  }
+  return combined
+}
+
+function hyphenate(t: Token) {
+  if (t.type === 'word') return 'w'
+  if (t.text === '-') return '-'
+  return ' '
 }
 
 export function tokenize(title: string, markup?: RegExp): Token[] {
@@ -122,15 +139,6 @@ export function tokenize(title: string, markup?: RegExp): Token[] {
 
   const stack = tokens.splice(0)
 
-  const combine = (ts: Token[]) => {
-    for (const t of ts.slice(1)) {
-      ts[0].text += t.text
-      ts[0].end = t.end
-      ts[0].shape += t.shape
-    }
-    return ts[0]
-  }
-
   let cpt: RegExpMatchArray
   let cps: RegExpMatchArray
   while (stack.length) {
@@ -157,16 +165,16 @@ export function tokenize(title: string, markup?: RegExp): Token[] {
       continue
     }
 
-    // domain names
-    // eslint-disable-next-line no-magic-numbers
-    if (stack.slice(0, 3).map(t => t.type).join('.') === 'word.punctuation.word' && stack[1].text === '.') {
-      // eslint-disable-next-line no-magic-numbers
-      tokens.push(combine(stack.splice(0, 3)))
+    // hyphenated words
+    const pat = stack.map(t => hyphenate(t)).join('')
+    if (cpt = pat.match(/^w(-w)+(?= |$)/)) {
+      const hyphenated = stack.splice(0, cpt[0].length)
+      tokens.push({ ...combine(hyphenated), hyphenated })
       continue
     }
 
     tokens.push(stack.shift())
   }
 
-  return tokens
+  return markup ? tokens.map(token => ({ ...token, text: title.substring(token.start, token.end + 1) })) : tokens
 }
