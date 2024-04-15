@@ -86,3 +86,5 @@ print('running:', config)
 env = os.environ.copy()
 if args.snap: env['TAP_SNAPSHOT'] = '1'
 subprocess.run("npm test", shell=True, env=env)
+
+print('ran:', config)
