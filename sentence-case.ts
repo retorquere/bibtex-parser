@@ -17,7 +17,7 @@ function titleCase(s: string): string {
 }
 
 function wordSC(token: Token, allCaps: boolean, subSentence: boolean, hyphenated: boolean): string {
-  if (token.type === 'domain') return token.text.toLowerCase()
+  if (token.type === 'domain' || token.type === 'website') return token.text.toLowerCase()
   if (token.type !== 'word') return token.text
   if (token.text.match(/^I'/)) return titleCase(token.text)
   if (subSentence && token.subSentenceStart && token.text.match(/^a$/i)) return 'a'

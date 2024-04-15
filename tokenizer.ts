@@ -23,6 +23,7 @@ const Email = new RegExp(`[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:[.][A-Za-z0-9-]+)+${
 const Handle = new RegExp(`@[A-Za-z0-9-]{2,}${B}`)
 const Int = new RegExp(`[0-9]+${B}`)
 const Domain = new RegExp(`${W}(?:[.]${W})+${B}`)
+const Website = new RegExp(`https?://${W}(?:[.]${W})+(?:[^.!?]+|[.!?]${LNM})+`)
 
 const ComplexPreposition = /^([^ \t\n\r\u00A0]+)([ \t\n\r\u00A0]+)([^ \t\n\r\u00A0]+)(?:([ \t\n\r\u00A0]+)([^ \t\n\r\u00A0]+))?$/
 
@@ -41,6 +42,7 @@ const lexer = moo.compile({
   'word-ordinal':         Ordinal,
   email:                  Email,
   handle:                 Handle,
+  website:                Website,
   domain:                 Domain,
   word:                   Word,
   number:                 Int, // eslint-disable-line id-blacklist
