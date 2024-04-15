@@ -42,6 +42,11 @@ export interface ParserOptions {
     * preload these strings
     */
   strings?: string | Record<string, string>
+
+  /**
+    * delay between parsing entries. Only effective in async parse mode
+    */
+  delay?: number
 }
 
 export class Library {
@@ -102,6 +107,7 @@ export class Library {
   private pos = 0
   private linebreaks: number[] = []
   private input: string
+  private delay: number
 
   private max_entries: number
 
@@ -118,6 +124,9 @@ export class Library {
         this.default_strings[k.toUpperCase()] = v
       }
     }
+
+    // eslint-disable-next-line no-magic-numbers
+    this.delay = typeof options.delay === 'number' ? Math.max(0, options.delay) : 10
 
     let pos = input.indexOf('\n')
     while (pos !== -1) {
@@ -411,9 +420,11 @@ export class Library {
     }
   }
 
-  private bibtexAsync() {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    return this.hasMore() ? (new Promise(resolve => resolve(this.parseNext()))).then(() => this.bibtexAsync()) : Promise.resolve(null)
+  private async bibtexAsync() {
+    while (this.hasMore()) {
+      this.parseNext()
+      await new Promise(resolve => setTimeout(resolve, this.delay))
+    }
   }
 
   private matchGuard() {
