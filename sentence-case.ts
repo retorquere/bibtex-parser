@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/unbound-method */
 
-import XRegExp from 'xregexp'
-import { tokenize, Token } from './tokenizer'
+import { tokenize, Token, connectedInnerWord } from './tokenizer'
 import { merge } from './merge'
 
 // eslint-disable-next-line no-magic-numbers
@@ -11,9 +10,6 @@ function titleCase(s: string): string {
   return s.replace(/^(.)(.+)/, (match, car, cdr) => `${car}${cdr.toLowerCase()}`)
 }
 
-// const connectedWord = XRegExp('(^|-)\\p{Lu}\\p{Ll}*(?=-|$)', 'g')
-const connectedInnerWord = XRegExp('-\\p{Lu}\\p{Ll}*(?=-|$)', 'g')
-
 function wordSC(token: Token, allCaps: boolean, subSentence: boolean, hyphenated: boolean): string {
   if (token.type === 'domain') return token.text.toLowerCase()
   if (token.type !== 'word') return token.text
@@ -21,7 +17,7 @@ function wordSC(token: Token, allCaps: boolean, subSentence: boolean, hyphenated
   if (subSentence && token.subSentenceStart && token.text.match(/^a$/i)) return 'a'
 
   if ((subSentence && token.subSentenceStart) || token.sentenceStart) {
-    return allCaps ? titleCase(token.text) : XRegExp.replace(token.text, connectedInnerWord, match => match.toLowerCase())
+    return allCaps ? titleCase(token.text) : token.text.replace(connectedInnerWord, match => match.toLowerCase())
   }
 
   if (token.subtype === 'preposition') return token.text.toLowerCase()

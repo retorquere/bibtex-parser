@@ -1,6 +1,4 @@
 import moo from 'moo'
-import XRegExp from 'xregexp'
-import { ReplacementDetail } from 'xregexp'
 
 // eslint-disable-next-line no-magic-numbers
 // const show = (obj: any): string => JSON.stringify(obj, null, 2).replace(/[\u007F-\uFFFF]/g, chr => `\\u${(`0000${chr.charCodeAt(0).toString(16)}`).substr(-4)}`)
@@ -14,18 +12,23 @@ type CharCategory =  {
 
 const charCategories: CharCategory[] = require('xregexp/tools/output/categories')
 
-function re(cats: CharCategory[], extra?: string, neg=false): string {
+function char(cats: CharCategory[], extra?: string, neg=false): string {
   return `[${neg ? '^' : ''}${cats.map(cat => cat.bmp).join('')}${extra || ''}]`
 }
-const L: string = re(charCategories.filter(cat => cat.name === 'L'))
-const LNM: string = re(charCategories.filter(cat => cat.name.match(/^[LNM]/)), '\u00AD\u2060')
+
+const ciwLu: string = char(charCategories.filter(cat => cat.name === 'Lu'))
+const ciwLl: string = char(charCategories.filter(cat => cat.name === 'Ll'))
+export const connectedInnerWord = new RegExp(`-${ciwLu}${ciwLl}*(?=-|$)`, 'g')
+
+const L: string = char(charCategories.filter(cat => cat.name === 'L'))
+const LNM: string = char(charCategories.filter(cat => cat.name.match(/^[LNM]/)), '\u00AD\u2060')
 const W = `${LNM}*?${L}${LNM}*`
-const B = `(?=(?:${re(charCategories.filter(cat => cat.name.match(/^[LNM]/)), '\u00AD\u2060').replace(/^./, '[^')}|$))`
+const B = `(?=(?:${char(charCategories.filter(cat => cat.name.match(/^[LNM]/)), '\u00AD\u2060').replace(/^./, '[^')}|$))`
 
 const Word = new RegExp(`${W}${B}`)
-const P = new RegExp(re(charCategories.filter(cat => cat.name.match(/^P/))))
+const P = new RegExp(char(charCategories.filter(cat => cat.name.match(/^P/))))
 
-const Lu: string = re(charCategories.filter(cat => cat.name === 'Lu'), '\u2060')
+const Lu: string = char(charCategories.filter(cat => cat.name === 'Lu'), '\u2060')
 const Acronym = new RegExp(`(?:(?:(?:${Lu}[.]){2,}${B})|(?:(?:vs?[.])(?=[ \t\n\r\u00A0])))`)
 
 const Contraction = new RegExp(`${W}['’]${W}${B}`)
@@ -64,14 +67,20 @@ const lexer = moo.compile({
   other:                  { match: /[\s\S]/, lineBreaks: true },
 })
 
-const shape: ReplacementDetail[] = [
-  [ XRegExp('\\p{Lu}'), 'X', 'all' ],
-  [ new RegExp(re(charCategories.filter(cat => cat.name.match(/^L[^Cu]/))), 'g'), 'x' ],
-  [ XRegExp('\\p{N}'), 'd', 'all' ],
+const shaper: [RegExp, string][] = [
+  [ new RegExp(char(charCategories.filter(cat => cat.name === 'Lu')), 'g'), 'X' ],
+  [ new RegExp(char(charCategories.filter(cat => cat.name.match(/^L[^Cu]/))), 'g'), 'x' ],
+  [ new RegExp(char(charCategories.filter(cat => cat.name[0] === 'N')), 'g'), 'd' ],
   [ /’/g, "'" ],
   [ /–/g, '-' ],
   [ /[\u2060\u00AD]/g, '' ],
 ]
+function shape(s: string) {
+  for (const [ re, repl ] of shaper) {
+    s = s.replace(re, repl)
+  }
+  return s
+}
 
 export type Token = {
   type: string
@@ -116,7 +125,7 @@ export function tokenize(title: string, markup?: RegExp): Token[] {
       text: token.text,
       start: token.offset,
       end: token.offset + token.text.length - 1,
-      shape: XRegExp.replaceEach(<string>token.text, shape),
+      shape: shape(<string>token.text),
       sentenceStart: type === 'word' && sentenceStart,
       subSentenceStart: type === 'word' && subSentenceStart,
     })
