@@ -478,29 +478,29 @@ class BibTeXParser {
   private parseCreator(ast: Root): Creator {
     if (ast.content.length === 1 && ast.content[0].type === 'group') return this.trimCreator({ name: this.stringify(ast, { mode: 'creatorlist' }) })
 
-    if (ast.content.find(node => node.type === 'string' && node.content === ',')) {
-      const nameparts: string[] = this.split(ast, /^,$/, /(&)/).map((part: Node) => this.stringify(part, { mode: 'creatorlist' }).trim())
-      const extended = nameparts.every(p => p.match(/^[a-z][-a-z]+\s*=/i))
+    const commaSeperated = this.commaCreator(ast)
+    if (commaSeperated.parts.length) {
+      const { rendered: parts, extended } = commaSeperated
 
       if (!extended) {
         // eslint-disable-next-line no-magic-numbers
-        if (nameparts.length === 3 && nameparts[2] === '') nameparts.pop()
+        if (parts.length === 3 && parts[2] === '') parts.pop()
 
         // eslint-disable-next-line no-magic-numbers
-        if (nameparts.length > 3) {
+        if (parts.length > 3) {
           const key = this.current.key ? `@${this.current.key}: ` : ''
           this.bib.errors.push({
             // eslint-disable-next-line no-magic-numbers
-            error: `${key}unexpected ${nameparts.length}-part name "${nameparts.join(', ')}", dropping "${nameparts.slice(3).join(', ')}"`,
-            input: nameparts.join(', '),
+            error: `${key}unexpected ${parts.length}-part name "${parts.join(', ')}", dropping "${parts.slice(3).join(', ')}"`,
+            input: parts.join(', '),
           })
         }
 
-        let [lastName, suffix, firstName] = (nameparts.length === 2)
-          ? [nameparts[0], undefined, nameparts[1]]
-          // > 3 nameparts are invalid and are dropped
+        let [lastName, suffix, firstName] = (parts.length === 2)
+          ? [parts[0], undefined, parts[1]]
+          // > 3 parts are invalid and are dropped
           // eslint-disable-next-line no-magic-numbers
-          : nameparts.slice(0, 3)
+          : parts.slice(0, 3)
         let prefix
         const m = lastName.match(/^([a-z'. ]+) (.+)/)
         if (m) {
@@ -517,7 +517,7 @@ class BibTeXParser {
 
       const name: Creator = {}
       // eslint-disable-next-line no-magic-numbers
-      for (let [attr, value] of nameparts.map(p => p.match(/^([^=]+)=(.*)/)?.slice(1, 3))) {
+      for (let [attr, value] of parts.map(p => p.match(/^([^=]+)=(.*)/)?.slice(1, 3))) {
         attr = attr.toLowerCase()
         switch (attr) {
           case '':
@@ -974,6 +974,16 @@ class BibTeXParser {
     return value
   }
 
+  private commaCreator(ast: Root): { parts: Root[], rendered: string[], extended: boolean } {
+    if (ast.content.find(node => node.type === 'string' && node.content === ',')) {
+      const parts: Root[] = this.split(ast, /^,$/, /(&)/)
+      const rendered: string[] = parts.map((part: Node) => this.stringify(part, { mode: 'creatorlist' }).trim())
+      const extended: boolean = rendered.every(p => p.match(/^[a-z][-a-z]+\s*=/i))
+      return { parts, rendered, extended }
+    }
+    return { parts: [], rendered: [], extended: false }
+  }
+
   private field(entry: Entry, field: string, value: string) {
     const mode: ParseMode = entry.mode[field] = this.mode(field)
     const caseProtection = {
@@ -990,23 +1000,6 @@ class BibTeXParser {
     if (mode === 'verbatim') { // &^%@#&^%@# idiots wrapping verbatim fields
       entry.fields[field] = printRaw(ast)
       return
-    }
-
-    if (this.options.raw) {
-      switch (mode) {
-        case 'creatorlist':
-          entry.fields[field] = (this.split(ast, /^and$/i, /(^& | & | &$)/)
-            .map(cr => ({ name: printRaw(cr) }))
-            .filter(cr => cr.name) as unknown as string) // pacify typescript
-          return
-        case 'literallist':
-          entry.fields[field] = (this.split(ast, /^and$/i, /(^& | & | &$)/)
-            .map(elt => printRaw(elt)) as unknown as string) // pacify typescript
-          return
-        default:
-          entry.fields[field] = printRaw(ast)
-          return
-      }
     }
 
     if (this.english && mode === 'title') {
@@ -1046,6 +1039,43 @@ class BibTeXParser {
         if (node.type === 'environment' && node.env === 'em') node._renderInfo.emph = true
       }
     })
+
+    if (this.options.raw) {
+      switch (mode) {
+        case 'creatorlist':
+          entry.fields[field] = this.split(ast, /^and$/i, /(^& | & | &$)/)
+            .map(cr => {
+              const commaSeperated = this.commaCreator(cr)
+              if (commaSeperated.parts.length) {
+                const { parts, extended } = commaSeperated
+                if (parts.length === 2 && !extended) {
+                  return this.trimCreator({
+                    lastName: printRaw(parts[0]),
+                    firstName: printRaw(parts[1]),
+                  })
+                }
+              }
+              else { // first-last mode
+                const nameparts = this.split(ast, /^$/, /( )/)
+                if (nameparts.length === 2) {
+                  return this.trimCreator({
+                    lastName: printRaw(nameparts[1]),
+                    firstName: printRaw(nameparts[0]),
+                  })
+                }
+              }
+              return { name: printRaw(cr) }
+            }) as unknown as string
+          return
+        case 'literallist':
+          entry.fields[field] = (this.split(ast, /^and$/i, /(^& | & | &$)/)
+            .map(elt => printRaw(elt)) as unknown as string) // pacify typescript
+          return
+        default:
+          entry.fields[field] = printRaw(ast)
+          return
+      }
+    }
 
     // pass 1 -- mark & normalize
     visit(ast, (nodes, info) => { // eslint-disable-line @typescript-eslint/no-unsafe-argument
