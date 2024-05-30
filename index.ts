@@ -478,75 +478,77 @@ class BibTeXParser {
   private parseCreator(ast: Root): Creator {
     if (ast.content.length === 1 && ast.content[0].type === 'group') return this.trimCreator({ name: this.stringify(ast, { mode: 'creatorlist' }) })
 
-    const commaSeperated = this.commaCreator(ast)
-    if (commaSeperated.parts.length) {
-      const { rendered: parts, extended } = commaSeperated
-
-      if (!extended) {
-        // eslint-disable-next-line no-magic-numbers
-        if (parts.length === 3 && parts[2] === '') parts.pop()
-
-        // eslint-disable-next-line no-magic-numbers
-        if (parts.length > 3) {
-          const key = this.current.key ? `@${this.current.key}: ` : ''
-          this.bib.errors.push({
-            // eslint-disable-next-line no-magic-numbers
-            error: `${key}unexpected ${parts.length}-part name "${parts.join(', ')}", dropping "${parts.slice(3).join(', ')}"`,
-            input: parts.join(', '),
-          })
-        }
-
-        let [lastName, suffix, firstName] = (parts.length === 2)
-          ? [parts[0], undefined, parts[1]]
-          // > 3 parts are invalid and are dropped
-          // eslint-disable-next-line no-magic-numbers
-          : parts.slice(0, 3)
-        let prefix
-        const m = lastName.match(/^([a-z'. ]+) (.+)/)
-        if (m) {
-          prefix = m[1]
-          lastName = m[2]
-        }
-        return this.trimCreator({
-          lastName,
-          firstName,
-          prefix,
-          suffix,
-        })
-      }
-
+    const { parts, extended } = this.commaSeparatedCreator(ast)
+    if (extended) {
       const name: Creator = {}
-      // eslint-disable-next-line no-magic-numbers
-      for (let [attr, value] of parts.map(p => p.match(/^([^=]+)=(.*)/)?.slice(1, 3))) {
-        attr = attr.toLowerCase()
+      for (const [attr, value] of Object.entries(extended)) {
+        const rendered = this.stringify(value, { mode: 'creatorlist' }).trim()
+
         switch (attr) {
           case '':
             break
 
           case 'given':
-            name.firstName = value
+            name.firstName = rendered
             break
+
           case 'family':
-            name.lastName = value
+            name.lastName = rendered
             break
+
           case 'given-i':
-            name.initial = value
+            name.initial = rendered
             break
 
           case 'useprefix':
           case 'juniorcomma':
-            name[attr] = value.toLowerCase() === 'true'
+            name[attr] = rendered.toLowerCase() === 'true'
             break
 
           default:
-            name[attr] = value
+            name[attr] = rendered
             break
         }
       }
       return this.trimCreator(name)
     }
+    else if (parts.length) {
+      const nameparts: string[] = parts.map((part: Node) => this.stringify(part, { mode: 'creatorlist' }).trim())
+
+      // eslint-disable-next-line no-magic-numbers
+      if (nameparts.length === 3 && nameparts[2] === '') nameparts.pop()
+
+      // eslint-disable-next-line no-magic-numbers
+      if (nameparts.length > 3) {
+        const key = this.current.key ? `@${this.current.key}: ` : ''
+        this.bib.errors.push({
+          // eslint-disable-next-line no-magic-numbers
+          error: `${key}unexpected ${nameparts.length}-part name "${nameparts.join(', ')}", dropping "${nameparts.slice(3).join(', ')}"`,
+          input: nameparts.join(', '),
+        })
+      }
+
+      let [lastName, suffix, firstName] = (nameparts.length === 2)
+        ? [nameparts[0], undefined, nameparts[1]]
+        // > 3 parts are invalid and are dropped
+        // eslint-disable-next-line no-magic-numbers
+        : nameparts.slice(0, 3)
+      let prefix
+      const m = lastName.match(/^([a-z'. ]+) (.+)/)
+      if (m) {
+        prefix = m[1]
+        lastName = m[2]
+      }
+      return this.trimCreator({
+        lastName,
+        firstName,
+        prefix,
+        suffix,
+      })
+    }
     else { // first-last mode
       const nameparts = this.split(ast, /^$/, /( )/).map(part => this.stringify(part, { mode: 'creatorlist' })).filter(n => n)
+
       if (nameparts.length === 1) return this.trimCreator({ lastName: nameparts[0] })
 
       const prefix = nameparts.findIndex(n => n.match(/^[a-z]/))
@@ -974,14 +976,32 @@ class BibTeXParser {
     return value
   }
 
-  private commaCreator(ast: Root): { parts: Root[], rendered: string[], extended: boolean } {
-    if (ast.content.find(node => node.type === 'string' && node.content === ',')) {
-      const parts: Root[] = this.split(ast, /^,$/, /(&)/)
-      const rendered: string[] = parts.map((part: Node) => this.stringify(part, { mode: 'creatorlist' }).trim())
-      const extended: boolean = rendered.every(p => p.match(/^[a-z][-a-z]+\s*=/i))
-      return { parts, rendered, extended }
+  private commaSeparatedCreator(ast: Root): { parts: Root[], extended?: Record<string, Root> } {
+    const result: { parts: Root[], extended?: Record<string, Root> } = {
+      parts: [],
     }
-    return { parts: [], rendered: [], extended: false }
+
+    if (!ast.content.find(node => node.type === 'string' && node.content === ',')) return result
+
+    result.parts = this.split(ast, /^,$/, /(&)/)
+    result.extended = {}
+    for (const part of result.parts) {
+      const start = part.content[0]?.type === 'whitespace' ? 1 : 0
+      let signature = part.content
+        .slice(start, start + 4) // eslint-disable-line no-magic-numbers
+        .map((node, i) => node._renderInfo.mode === 'text' && node.type === 'string' ? node.content.replace(i % 2 ? /[^=-]/g : /[^a-z]/gi, '.') : '.')
+        .join('')
+      if (signature.match(/^[a-z]+(-[a-z]+)?=/i)) {
+        signature = signature.replace(/=.*/, '').toLowerCase()
+        // eslint-disable-next-line no-magic-numbers
+        result.extended[signature] = { type: 'root', content: part.content.slice(signature.includes('-') ? start + 4 : start + 2) }
+      }
+      else {
+        delete result.extended
+        break
+      }
+    }
+    return result
   }
 
   private field(entry: Entry, field: string, value: string) {
@@ -1045,17 +1065,12 @@ class BibTeXParser {
         case 'creatorlist':
           entry.fields[field] = this.split(ast, /^and$/i, /(^& | & | &$)/)
             .map(cr => {
-              const commaSeperated = this.commaCreator(cr)
-              if (commaSeperated.parts.length) {
-                const { parts, extended } = commaSeperated
-                if (parts.length === 2 && !extended) {
-                  return this.trimCreator({
-                    lastName: printRaw(parts[0]),
-                    firstName: printRaw(parts[1]),
-                  })
-                }
+              const { parts, extended } = this.commaSeparatedCreator(cr)
+              if (parts.length === 2 && !extended) {
+                return this.trimCreator({ lastName: printRaw(parts[0]), firstName: printRaw(parts[1]) })
               }
-              else { // first-last mode
+
+              if (!parts.length) {
                 const nameparts = this.split(ast, /^$/, /( )/)
                 if (nameparts.length === 2) {
                   return this.trimCreator({
@@ -1064,6 +1079,7 @@ class BibTeXParser {
                   })
                 }
               }
+
               return { name: printRaw(cr) }
             }) as unknown as string
           return
