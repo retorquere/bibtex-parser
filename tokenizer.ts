@@ -1,6 +1,5 @@
 import moo from 'moo'
 
-// eslint-disable-next-line no-magic-numbers
 // const show = (obj: any): string => JSON.stringify(obj, null, 2).replace(/[\u007F-\uFFFF]/g, chr => `\\u${(`0000${chr.charCodeAt(0).toString(16)}`).substr(-4)}`)
 
 import * as rx from './re'

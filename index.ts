@@ -9,9 +9,10 @@ import * as bibtex from './verbatim'
 import * as JabRef from './jabref'
 export { JabRefMetadata } from './jabref'
 export { ParseError } from './verbatim'
-export { toSentenceCase } from './sentence-case'
 import { toSentenceCase } from './sentence-case'
-import { tokenize } from './tokenizer'
+export { toSentenceCase } from './sentence-case'
+import { tokenize, Token } from './tokenizer'
+export { tokenize, Token } from './tokenizer'
 
 import { playnice } from './yield'
 
@@ -515,14 +516,11 @@ class BibTeXParser {
     else if (parts.length) {
       const nameparts: string[] = parts.map((part: Node) => this.stringify(part, { mode: 'creatorlist' }).trim())
 
-      // eslint-disable-next-line no-magic-numbers
       if (nameparts.length === 3 && nameparts[2] === '') nameparts.pop()
 
-      // eslint-disable-next-line no-magic-numbers
       if (nameparts.length > 3) {
         const key = this.current.key ? `@${this.current.key}: ` : ''
         this.bib.errors.push({
-          // eslint-disable-next-line no-magic-numbers
           error: `${key}unexpected ${nameparts.length}-part name "${nameparts.join(', ')}", dropping "${nameparts.slice(3).join(', ')}"`,
           input: nameparts.join(', '),
         })
@@ -531,7 +529,6 @@ class BibTeXParser {
       let [lastName, suffix, firstName] = (nameparts.length === 2)
         ? [nameparts[0], undefined, nameparts[1]]
         // > 3 parts are invalid and are dropped
-        // eslint-disable-next-line no-magic-numbers
         : nameparts.slice(0, 3)
       let prefix
       const m = lastName.match(/^([a-z'. ]+) (.+)/)
@@ -964,7 +961,7 @@ class BibTeXParser {
           break
         case 'as-needed':
           cancel = (match: string, stripped: string) => {
-            const words = tokenize(stripped, /\x0E\/?([a-z]+)\x0F/ig)
+            const words: Token[] = tokenize(stripped, /\x0E\/?([a-z]+)\x0F/ig)
             return words.find(w => w.shape.match(/^(?!.*X).*x.*$/)) ? match : this.wrap(stripped, 'ncx')
           }
           break
@@ -988,12 +985,11 @@ class BibTeXParser {
     for (const part of result.parts) {
       const start = part.content[0]?.type === 'whitespace' ? 1 : 0
       let signature = part.content
-        .slice(start, start + 4) // eslint-disable-line no-magic-numbers
+        .slice(start, start + 4)
         .map((node, i) => node._renderInfo.mode === 'text' && node.type === 'string' ? node.content.replace(i % 2 ? /[^=-]/g : /[^a-z]/gi, '.') : '.')
         .join('')
       if (signature.match(/^[a-z]+(-[a-z]+)?=/i)) {
         signature = signature.replace(/=.*/, '').toLowerCase()
-        // eslint-disable-next-line no-magic-numbers
         result.extended[signature] = { type: 'root', content: part.content.slice(signature.includes('-') ? start + 4 : start + 2) }
       }
       else {
@@ -1036,7 +1032,7 @@ class BibTeXParser {
     }
 
     // pass 0 -- register parse mode
-    visit(ast, (node, info) => { // eslint-disable-line @typescript-eslint/no-unsafe-argument
+    visit(ast, (node, info) => {
       if (!node._renderInfo) node._renderInfo = {}
 
       node._renderInfo.mode = info.context.inMathMode ? 'math' : 'text'
@@ -1094,7 +1090,7 @@ class BibTeXParser {
     }
 
     // pass 1 -- mark & normalize
-    visit(ast, (nodes, info) => { // eslint-disable-line @typescript-eslint/no-unsafe-argument
+    visit(ast, (nodes, info) => {
       let node: Node
       const compacted: Node[] = []
       let inif = 0
@@ -1254,7 +1250,7 @@ class BibTeXParser {
     }
 
     if (!this.options.removeOuterBraces) {
-      this.options.removeOuterBraces = <string[]>[
+      this.options.removeOuterBraces = [
         ...FieldAction.removeOuterBraces,
         ...this.fieldMode.title,
         ...this.fieldMode.verbatim,
@@ -1339,7 +1335,7 @@ class BibTeXParser {
       try {
         this.content(preamble)
       }
-      catch (err) {
+      catch {
       }
     }
     for (const [k, v] of Object.entries(base.strings)) {
@@ -1439,7 +1435,7 @@ class BibTeXParser {
     let n = 1
     for (const entry of base.entries) {
       this.reparse(entry)
-      if ((n++ % 1000) === 0) await playnice() // eslint-disable-line no-magic-numbers
+      if ((n++ % 1000) === 0) await playnice()
     }
 
     this.finalize(base)

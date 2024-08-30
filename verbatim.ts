@@ -144,7 +144,7 @@ export class Library {
   private match(s, sws=true) {
     this.skipWhitespace()
     if (this.input.substr(this.pos, s.length) !== s) {
-      throw new ParsingError(`Token mismatch, expected ${JSON.stringify(s)}, found ${JSON.stringify(this.input.substr(this.pos, 20))}...`, this) // eslint-disable-line no-magic-numbers
+      throw new ParsingError(`Token mismatch, expected ${JSON.stringify(s)}, found ${JSON.stringify(this.input.substr(this.pos, 20))}...`, this)
     }
 
     this.pos += s.length
@@ -177,7 +177,7 @@ export class Library {
     const path = '\\path|'
     const verb = path.replace('path', 'verb')
     if (this.input.substring(this.pos).startsWith(path)) {
-      // eslint-disable-next-line prefer-template, no-magic-numbers
+      // eslint-disable-next-line prefer-template
       this.input = this.input.substring(0, this.pos) + verb + this.input.substring(this.pos + path.length)
     }
   }
@@ -189,7 +189,7 @@ export class Library {
     const start = this.pos
     let math = false
 
-    while (true) { // eslint-disable-line no-constant-condition
+    while (true) {
       // this.fix_path()
 
       switch (this.input[this.pos]) {
@@ -218,7 +218,7 @@ export class Library {
       this.pos++
 
       if (this.pos >= this.input.length) {
-        throw new ParsingError(`Unterminated brace-value ${JSON.stringify(this.input.substr(start, 20))}`, this) // eslint-disable-line no-magic-numbers
+        throw new ParsingError(`Unterminated brace-value ${JSON.stringify(this.input.substr(start, 20))}`, this)
       }
     }
   }
@@ -227,7 +227,7 @@ export class Library {
     this.match('"', false)
     const start = this.pos
     let bracecount = 0
-    while (true) { // eslint-disable-line no-constant-condition
+    while (true) {
       // this.fix_path()
 
       switch (this.input[this.pos]) {
@@ -253,7 +253,7 @@ export class Library {
       this.pos++
 
       if (this.pos >= this.input.length) {
-        throw new ParsingError(`Unterminated quote-value ${JSON.stringify(this.input.substr(start, 20))}`, this) // eslint-disable-line no-magic-numbers
+        throw new ParsingError(`Unterminated quote-value ${JSON.stringify(this.input.substr(start, 20))}`, this)
       }
     }
   }
@@ -303,7 +303,7 @@ export class Library {
 
   private key(allow=''): string {
     const start = this.pos
-    while (true) { // eslint-disable-line no-constant-condition
+    while (true) {
       if (this.pos === this.input.length) {
         throw new ParsingError('Runaway key', this)
       }
@@ -322,7 +322,7 @@ export class Library {
     if (!key) return // no key found, stray comma
 
     if (!this.tryMatch('=')) {
-      throw new ParsingError(`${key} = value expected, equals sign missing: ${JSON.stringify(this.input.substr(this.pos, 20))}...`, this) // eslint-disable-line no-magic-numbers
+      throw new ParsingError(`${key} = value expected, equals sign missing: ${JSON.stringify(this.input.substr(this.pos, 20))}...`, this)
     }
 
     this.match('=')
@@ -416,7 +416,7 @@ export class Library {
     let n = 1
     while (this.hasMore()) {
       this.parseNext()
-      if ((n++ % 1000) === 0) await playnice() // eslint-disable-line no-magic-numbers
+      if ((n++ % 1000) === 0) await playnice()
     }
   }
 
@@ -428,7 +428,7 @@ export class Library {
       }
     }
 
-    throw new ParsingError(`Token mismatch, expected '{' or '(', found ${JSON.stringify(this.input.substr(this.pos, 20))}...`, this) // eslint-disable-line no-magic-numbers
+    throw new ParsingError(`Token mismatch, expected '{' or '(', found ${JSON.stringify(this.input.substr(this.pos, 20))}...`, this)
   }
 
   private parseNext() {
@@ -495,7 +495,7 @@ export function parse(input: string, options: ParserOptions = {}): Library {
 }
 
 export const promises = {
-  async parse(input: string, options: ParserOptions = {}): Promise<Library> { // eslint-disable-line prefer-arrow/prefer-arrow-functions
+  async parse(input: string, options: ParserOptions = {}): Promise<Library> {
     const parser = new Library(input, options)
     await parser.parseAsync()
     return parser

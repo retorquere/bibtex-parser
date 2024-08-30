@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/unbound-method */
-
 import { tokenize, Token } from './tokenizer'
 import { merge } from './merge'
 
@@ -9,7 +7,6 @@ const Lu: string = rx.match(rx.categories.filter(cat => cat.name === 'Lu' || cat
 const Ll: string = rx.match(rx.categories.filter(cat => cat.name === 'Ll'))
 const connectedInnerWord = new RegExp(`-${Lu}${Ll}*(?=-|$)`, 'g')
 
-// eslint-disable-next-line no-magic-numbers
 // const show = (obj: any): string => JSON.stringify(obj, null, 2).replace(/[\u007F-\uFFFF]/g, chr => `\\u${(`0000${chr.charCodeAt(0).toString(16)}`).substr(-4)}`)
 
 function titleCase(s: string): string {
