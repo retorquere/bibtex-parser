@@ -20,7 +20,7 @@ const Whitespace = /[ \t\n\r\u00A0]+/
 const Ordinal = new RegExp(`\\d+(?:st|nd|rd|th)${B}`)
 const Email = new RegExp(`[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:[.][A-Za-z0-9-]+)+${B}`)
 const Handle = new RegExp(`@[A-Za-z0-9-]{2,}${B}`)
-const Int = new RegExp(`\\d+${B}`)
+const IntOrVersion = new RegExp(`\\d+(?:\\.\\d+)*${B}`)
 const Domain = new RegExp(`${W}(?:[.]${W})+${B}`)
 const Website = new RegExp(`https?://${W}(?:[.]${W})+(?:[^.!? \t\n\r\u00A0]+|[.!?]${LNM})+`)
 
@@ -44,7 +44,7 @@ const lexer = moo.compile({
   website:                Website,
   domain:                 Domain,
   word:                   Word,
-  number:                 Int, // eslint-disable-line id-blacklist
+  number:                 IntOrVersion, // eslint-disable-line id-blacklist
   'punctuation-end':      /[?.!](?=[ \t\n\r\u00A0]|$)/,
   'punctuation-colon':    /:(?=[ \t\n\r\u00A0])/,
   'punctuation-ellipsis': /[.][.][.]/,
@@ -84,8 +84,8 @@ const Shape = new class {
 }
 
 export type Token = {
-  type: string
-  subtype: string
+  type: 'word' | 'domain' | 'whitespace'
+  subtype: '' | 'preposition' | 'acronym' | 'whitespace' | 'word' | 'domain'
   text: string
   start: number
   end: number
