@@ -239,7 +239,7 @@ export interface Options {
   raw?: boolean
 
   /**
-   * You can pass in an existing @string dictionary
+   * You can pass in an existing `@string` dictionary
    */
   strings?: Record<string, string> | string
 
