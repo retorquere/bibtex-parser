@@ -181,7 +181,7 @@ export interface Options {
     */
   languageAsLangid?: boolean
 
-  sentenceCase?: {
+  sentenceCase?: false | {
     /**
      * Some bibtex files will have English titles in sentence case, or all-uppercase. If this is on, and there is a field that would
      * normally have sentence-casing applied in which there are all-lowercase words that are not prepositions (where `X` is either
@@ -947,8 +947,8 @@ class BibTeXParser {
 
     if (this.english && mode === 'title') {
       value = toSentenceCase(value, {
-        preserveQuoted: this.options.sentenceCase.preserveQuoted,
-        subSentenceCapitalization: this.options.sentenceCase.subSentence,
+        preserveQuoted: this.options.sentenceCase && this.options.sentenceCase.preserveQuoted,
+        subSentenceCapitalization: this.options.sentenceCase && this.options.sentenceCase.subSentence,
         markup: /\x0E\/?([a-z]+)\x0F/ig,
         nocase: /\x0E(ncx?)\x0F.*?\x0E\/\1\x0F/ig,
         guess: guessSC,
@@ -1211,7 +1211,7 @@ class BibTeXParser {
           field,
           this.stringify(ast, { mode }),
           mode,
-          this.options.sentenceCase.guess // && (!caseProtection.present || caseProtection.intuitive > 0)
+          this.options.sentenceCase && this.options.sentenceCase.guess // && (!caseProtection.present || caseProtection.intuitive > 0)
         ) as unknown as string
         break
     }
@@ -1221,6 +1221,18 @@ class BibTeXParser {
   }
 
   private reset(options: Options = {}) {
+    if (options.sentenceCase === false) {
+      options = {
+        ...options,
+        english: false,
+        sentenceCase: {
+          guess: false,
+          subSentence: false,
+          preserveQuoted: false,
+        },
+      }
+    }
+
     this.options = merge(options, {
       caseProtection: 'as-needed',
       applyCrossRef: options.applyCrossRef ?? true,
