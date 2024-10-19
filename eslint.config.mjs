@@ -86,7 +86,7 @@ export default [
       '@typescript-eslint/no-array-constructor': 'error',
       '@typescript-eslint/no-empty-function': 'error',
       '@typescript-eslint/no-empty-interface': 'error',
-      '@stylyistic/js/no-explicit-any': 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-extra-non-null-assertion': 'error',
       '@stylistic/js/no-extra-semi': 'error',
       '@typescript-eslint/no-floating-promises': 'error',
