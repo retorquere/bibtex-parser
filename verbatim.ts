@@ -40,8 +40,8 @@ export interface ParserOptions {
   max_entries?: number
 
   /**
-    * preload these strings
-    */
+   * preload these strings
+   */
   strings?: string | Record<string, string>
 }
 
@@ -141,7 +141,7 @@ export class Library {
     return (s === ' ' || s === '\t' || (!horizontalOnly && (s === '\r' || s === '\n')))
   }
 
-  private match(s, sws=true) {
+  private match(s, sws = true) {
     this.skipWhitespace()
     if (this.input.substr(this.pos, s.length) !== s) {
       throw new ParsingError(`Token mismatch, expected ${JSON.stringify(s)}, found ${JSON.stringify(this.input.substr(this.pos, 20))}...`, this)
@@ -151,9 +151,9 @@ export class Library {
     if (sws) this.skipWhitespace()
   }
 
-  private tryMatch(s, consume=false) {
+  private tryMatch(s, consume = false) {
     this.skipWhitespace()
-    const match = (this.input.substr(this.pos, s.length) === s)
+    const match = this.input.substr(this.pos, s.length) === s
     if (match && consume) this.pos += s.length
     return match
     // this.skipWhitespace()
@@ -301,7 +301,7 @@ export class Library {
     return values.join('')
   }
 
-  private key(allow=''): string {
+  private key(allow = ''): string {
     const start = this.pos
     while (true) {
       if (this.pos === this.input.length) {
@@ -334,7 +334,7 @@ export class Library {
     else {
       const bare = key.toLowerCase()
       let postfix = 0
-      while (typeof this.entries[0].fields[key = (postfix ? `${bare}+duplicate-${postfix}` : bare)] === 'string') {
+      while (typeof this.entries[0].fields[key = postfix ? `${bare}+duplicate-${postfix}` : bare] === 'string') {
         postfix++
       }
       this.entries[0].fields[key] = val

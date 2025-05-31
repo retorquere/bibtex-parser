@@ -29,28 +29,28 @@ const ComplexPreposition = /^([^ \t\n\r\u00A0]+)([ \t\n\r\u00A0]+)([^ \t\n\r\u00
 function ci(s: string) {
   return s
     .replace(/[a-z]/ig, match => `[${match.toUpperCase()}${match.toLowerCase()}]`)
-    .replace(' ', Whitespace.source )
+    .replace(' ', Whitespace.source)
 }
 const prepositions: string = require('./prepositions.json').sort().reverse().map(ci).join('|')
 const Preposition = new RegExp(`(?:${prepositions})${B}`)
 
 const lexer = moo.compile({
-  'word-preposition':     Preposition,
-  'word-acronym':         Acronym,
-  'word-contraction':     Contraction,
-  'word-ordinal':         Ordinal,
-  email:                  Email,
-  handle:                 Handle,
-  website:                Website,
-  domain:                 Domain,
-  word:                   Word,
-  number:                 IntOrVersion, // eslint-disable-line id-blacklist
-  'punctuation-end':      /[?.!](?=[ \t\n\r\u00A0]|$)/,
-  'punctuation-colon':    /:(?=[ \t\n\r\u00A0])/,
+  'word-preposition': Preposition,
+  'word-acronym': Acronym,
+  'word-contraction': Contraction,
+  'word-ordinal': Ordinal,
+  email: Email,
+  handle: Handle,
+  website: Website,
+  domain: Domain,
+  word: Word,
+  number: IntOrVersion, // eslint-disable-line id-blacklist
+  'punctuation-end': /[?.!](?=[ \t\n\r\u00A0]|$)/,
+  'punctuation-colon': /:(?=[ \t\n\r\u00A0])/,
   'punctuation-ellipsis': /[.][.][.]/,
-  punctuation:            P,
-  whitespace:             { match: /[ \t\n\r\u00A0]/, lineBreaks: true },
-  other:                  { match: /[\s\S]/, lineBreaks: true },
+  punctuation: P,
+  whitespace: { match: /[ \t\n\r\u00A0]/, lineBreaks: true },
+  other: { match: /[\s\S]/, lineBreaks: true },
 })
 
 const Shape = new class {
@@ -81,7 +81,7 @@ const Shape = new class {
     if (!this.shapes[t]) this.shapes[t] = Array.from(t).map(c => this.fetch(c)).join('')
     return this.shapes[t]
   }
-}
+}()
 
 export type Token = {
   type: 'word' | 'domain' | 'whitespace'
@@ -119,14 +119,15 @@ export function tokenize(title: string, markup?: RegExp): Token[] {
   let sentenceStart = true
   let subSentenceStart = false
   for (const token of lexer) {
-    const [ type, subtype ] = (token.type.includes('-') ? token.type : `${token.type}-`).split('-')
+    const [type, subtype] = (token.type.includes('-') ? token.type : `${token.type}-`).split('-')
 
     tokens.push({
-      type, subtype,
+      type,
+      subtype,
       text: token.text,
       start: token.offset,
       end: token.offset + token.text.length - 1,
-      shape: Shape.shape(<string>token.text),
+      shape: Shape.shape(<string> token.text),
       sentenceStart: type === 'word' && sentenceStart,
       subSentenceStart: type === 'word' && subSentenceStart,
     })
@@ -157,7 +158,7 @@ export function tokenize(title: string, markup?: RegExp): Token[] {
 
       let start = complex.start
       let end
-      for (const i of Array.from({length: 5}, (_, n) => n+1)) {
+      for (const i of Array.from({ length: 5 }, (_, n) => n + 1)) {
         if (!cpt[i]) break
 
         end = start + cps[i].length - 1

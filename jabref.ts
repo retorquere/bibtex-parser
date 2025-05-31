@@ -80,7 +80,7 @@ export interface JabRefMetadata {
  * * union: the keys listed in the group are considered to belong to the group, and also the keys that are in the parent group
  * * query: not supported by this parser
  */
-export function parse(comments: string[]): { comments: string[], jabref: JabRefMetadata } {
+export function parse(comments: string[]): { comments: string[]; jabref: JabRefMetadata } {
   const result: JabRefMetadata = {
     root: [],
     groups: {},
@@ -145,7 +145,6 @@ export function parse(comments: string[]): { comments: string[], jabref: JabRefM
 
       if (level === 1) {
         result.root.push(group)
-
       }
       else {
         const parent: Group = levels[level - 2]

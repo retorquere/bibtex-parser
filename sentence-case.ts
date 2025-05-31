@@ -1,5 +1,5 @@
-import { tokenize, Token } from './tokenizer'
 import { merge } from './merge'
+import { Token, tokenize } from './tokenizer'
 
 import * as rx from './re'
 
@@ -14,7 +14,6 @@ function titleCase(s: string): string {
 }
 
 function wordSC(token: Token, allCaps: boolean, subSentence: boolean, hyphenated: boolean): string {
-
   // domains are case-insensitive
   if (token.type === 'domain') return token.text.toLowerCase()
 
@@ -88,7 +87,7 @@ export function toSentenceCase(title: string, options: Options = {}): string {
     }
 
     guess.words.forEach((token, i) => {
-      if (token.type === 'word' && token.text.length > 1 && !token.subtype.match(/preposition|acronym|ordinal/) && (i === 0 || guess.words[i-1].type === 'whitespace')) {
+      if (token.type === 'word' && token.text.length > 1 && !token.subtype.match(/preposition|acronym|ordinal/) && (i === 0 || guess.words[i - 1].type === 'whitespace')) {
         guess[token.shape.match(/^[^X]*x[^X]*$/) ? 'sc' : 'other'] += 1
       }
     })

@@ -1,18 +1,18 @@
 /* eslint-disable no-underscore-dangle */
-import { Root, Macro, String as StringNode, Node, Argument, Group, Environment } from '@unified-latex/unified-latex-types'
-import { replaceNode } from '@unified-latex/unified-latex-util-replace'
+import { Argument, Environment, Group, Macro, Node, Root, String as StringNode } from '@unified-latex/unified-latex-types'
 import { LatexPegParser } from '@unified-latex/unified-latex-util-pegjs'
-import { visit } from '@unified-latex/unified-latex-util-visit'
 import { printRaw } from '@unified-latex/unified-latex-util-print-raw'
-import { latex2unicode as latex2unicodemap, combining } from 'unicode2latex'
-import * as bibtex from './verbatim'
+import { replaceNode } from '@unified-latex/unified-latex-util-replace'
+import { visit } from '@unified-latex/unified-latex-util-visit'
+import { combining, latex2unicode as latex2unicodemap } from 'unicode2latex'
 import * as JabRef from './jabref'
+import * as bibtex from './verbatim'
 export { JabRefMetadata } from './jabref'
 export { ParseError } from './verbatim'
 import { toSentenceCase } from './sentence-case'
 export { toSentenceCase } from './sentence-case'
-import { tokenize, Token } from './tokenizer'
-export { tokenize, Token } from './tokenizer'
+import { Token, tokenize } from './tokenizer'
+export { Token, tokenize } from './tokenizer'
 
 import { playnice } from './yield'
 
@@ -176,9 +176,9 @@ export interface Options {
   english?: string[] | boolean
 
   /**
-    * By default, `langid` and `hyphenation` are used to determine whether an entry is English, but some sources (ab)use the `language` field
-    * for this. If you turn on this option, this field will also be taken into account as a source for `langid`.
-    */
+   * By default, `langid` and `hyphenation` are used to determine whether an entry is English, but some sources (ab)use the `language` field
+   * for this. If you turn on this option, this field will also be taken into account as a source for `langid`.
+   */
   languageAsLangid?: boolean
 
   sentenceCase?: false | {
@@ -433,7 +433,6 @@ type Context = {
   caseProtected?: boolean
 }
 
-
 /*
 async function* asyncGenerator<T>(array: T[]): AsyncGenerator<T, void, unknown> {
   for (const item of array) {
@@ -450,7 +449,7 @@ class BibTeXParser {
   private fieldMode: typeof FieldMode
   private newcommands: Record<string, Argument> = {}
   private bib: Library
-  private unhandled: Set<string> = new Set
+  private unhandled: Set<string> = new Set()
 
   private split(ast: Group | Root, sep: RegExp, split: RegExp): Root[] {
     const roots: Root[] = []
@@ -589,12 +588,12 @@ class BibTeXParser {
     return null
   }
 
-  private wraparg(node: Node, macro: Macro) : Argument {
+  private wraparg(node: Node, macro: Macro): Argument {
     if (macro.content.match(/^(itshape|textsl|textit|emph|mkbibemph)$/)) node._renderInfo.emph = true
     if (macro.content.match(/^(textbf|mkbibbold|bfseries)$/)) node._renderInfo.bold = true
     if (macro.content.match(/^(textsc)$/)) node._renderInfo.smallCaps = true
     if (macro.content.match(/^(texttt)$/)) node._renderInfo.code = true
-    return { type: 'argument', content: [ node ], openMark: '', closeMark: '', _renderInfo: { mode: node._renderInfo.mode } }
+    return { type: 'argument', content: [node], openMark: '', closeMark: '', _renderInfo: { mode: node._renderInfo.mode } }
   }
 
   private argtogroup(node: Argument): Group {
@@ -644,7 +643,7 @@ class BibTeXParser {
     return tex
   }
 
-  private wrap(text: string, tag, wrap=true): string {
+  private wrap(text: string, tag, wrap = true): string {
     if (!text || !wrap) return text || ''
     return `\x0E${tag}\x0F${text}\x0E/${tag}\x0F`
   }
@@ -655,7 +654,7 @@ class BibTeXParser {
     const group = (arg: Argument, kind: string): Node[] => {
       if (!arg) throw new Error(`missing ${kind} for ${printRaw(node)} @ ${JSON.stringify(node.position)}`)
       if (types(arg.content) !== 'group') throw new Error(`Malformed ${kind} for ${printRaw(node)} @ ${JSON.stringify(node.position)}`)
-      return (<Group>arg.content[0]).content
+      return (<Group> arg.content[0]).content
     }
 
     if (!node.args) throw new Error(`No arguments for ${printRaw(node)} @ ${JSON.stringify(node.position)}`)
@@ -663,7 +662,7 @@ class BibTeXParser {
     const namearg = group(node.args[0], 'name')
     if (types(namearg) !== 'macro') throw new Error(`Unexpected name for ${printRaw(node)} @ ${JSON.stringify(node.position)}`)
 
-    this.newcommands[(<Macro>namearg[0]).content] = node.args[1]
+    this.newcommands[(<Macro> namearg[0]).content] = node.args[1]
     return ''
   }
 
@@ -675,7 +674,7 @@ class BibTeXParser {
         subp += char
       }
       else {
-        const tag = {_: 'sub', '^': 'sup'}[macro]
+        const tag = { _: 'sub', '^': 'sup' }[macro]
         return `\x0E${tag}\x0F${text}\x0E/${tag}\x0F`
       }
     }
@@ -833,9 +832,12 @@ class BibTeXParser {
     if (!node) return ''
 
     switch (node.type) {
-      case 'macro': return `macro:${<string>node._renderInfo.mode ?? 'text'}:${node.content}`
-      case 'environment': return `env:${node.env}`
-      default: return node.type
+      case 'macro':
+        return `macro:${<string> node._renderInfo.mode ?? 'text'}:${node.content}`
+      case 'environment':
+        return `env:${node.env}`
+      default:
+        return node.type
     }
   }
   private environment(node: Environment, context: Context) {
@@ -918,7 +920,7 @@ class BibTeXParser {
 
     let mode: ParseMode = 'literal'
     for (const [selected, fields] of Object.entries(this.fieldMode)) {
-      if (fields.find(match => typeof match === 'string' ? field === match : field.match(match))) mode = <ParseMode>selected
+      if (fields.find(match => typeof match === 'string' ? field === match : field.match(match))) mode = <ParseMode> selected
     }
     return mode
   }
@@ -973,8 +975,8 @@ class BibTeXParser {
     return value
   }
 
-  private commaSeparatedCreator(ast: Root): { parts: Root[], extended?: Record<string, Root> } {
-    const result: { parts: Root[], extended?: Record<string, Root> } = {
+  private commaSeparatedCreator(ast: Root): { parts: Root[]; extended?: Record<string, Root> } {
+    const result: { parts: Root[]; extended?: Record<string, Root> } = {
       parts: [],
     }
 
@@ -1080,8 +1082,8 @@ class BibTeXParser {
             }) as unknown as string
           return
         case 'literallist':
-          entry.fields[field] = (this.split(ast, /^and$/i, /(^& | & | &$)/)
-            .map(elt => printRaw(elt)) as unknown as string) // pacify typescript
+          entry.fields[field] = this.split(ast, /^and$/i, /(^& | & | &$)/)
+            .map(elt => printRaw(elt)) as unknown as string // pacify typescript
           return
         default:
           entry.fields[field] = printRaw(ast)
@@ -1121,7 +1123,7 @@ class BibTeXParser {
           ? narguments[node.content] || narguments[`${info.context.inMathMode ? 'math' : 'text'}\t${node.content}`]
           : 0
         if (node.type === 'macro' && nargs) {
-          node.args = Array(nargs).fill(undefined).map(_i => this.argument(nodes, <Macro>node)).filter(arg => arg)
+          node.args = Array(nargs).fill(undefined).map(_i => this.argument(nodes, <Macro> node)).filter(arg => arg)
           if (node.content.match(/^(url|href)$/) && node.args.length) {
             let url: Node[] = node.args[0].content
             if (url.length === 1 && url[0].type === 'group') url = url[0].content
@@ -1198,20 +1200,20 @@ class BibTeXParser {
 
     switch (mode) {
       case 'creatorlist':
-        entry.fields[field] = (this.split(ast, /^and$/i, /(^& | & | &$)/)
+        entry.fields[field] = this.split(ast, /^and$/i, /(^& | & | &$)/)
           .map(cr => this.parseCreator(cr))
-          .filter(cr => Object.keys(cr).length) as unknown as string) // pacify typescript
+          .filter(cr => Object.keys(cr).length) as unknown as string // pacify typescript
         break
       case 'literallist':
-        entry.fields[field] = (this.split(ast, /^and$/i, /(^& | & | &$)/)
-          .map(elt => this.stringify(elt, { mode: 'literal'}).trim()) as unknown as string) // pacify typescript
+        entry.fields[field] = this.split(ast, /^and$/i, /(^& | & | &$)/)
+          .map(elt => this.stringify(elt, { mode: 'literal' }).trim()) as unknown as string // pacify typescript
         break
       default:
         entry.fields[field] = this.stringField(
           field,
           this.stringify(ast, { mode }),
           mode,
-          this.options.sentenceCase && this.options.sentenceCase.guess // && (!caseProtection.present || caseProtection.intuitive > 0)
+          this.options.sentenceCase && this.options.sentenceCase.guess, // && (!caseProtection.present || caseProtection.intuitive > 0)
         ) as unknown as string
         break
     }
@@ -1237,7 +1239,7 @@ class BibTeXParser {
       caseProtection: 'as-needed',
       applyCrossRef: options.applyCrossRef ?? true,
       fieldMode: {},
-      english : English,
+      english: English,
       sentenceCase: {
         guess: true,
         preserveQuoted: true,
@@ -1256,7 +1258,7 @@ class BibTeXParser {
       const regexes = test.filter(fieldname_or_regex => typeof fieldname_or_regex !== 'string')
       acc[mode] = [...strings, ...regexes]
       return acc
-    }, <typeof FieldMode>{})
+    }, <typeof FieldMode> {})
     for (const [field, mode] of Object.entries(this.options.fieldMode)) {
       this.fieldMode[mode].unshift(field)
     }
@@ -1284,7 +1286,7 @@ class BibTeXParser {
   private reparse(verbatim: bibtex.Entry) {
     let langid: string = (verbatim.fields.langid || verbatim.fields.hyphenation || '').toLowerCase()
     if (!langid && this.options.languageAsLangid && verbatim.fields.language) langid = verbatim.fields.language.toLowerCase()
-    this.english = (<string[]>this.options.english).includes(langid)
+    this.english = (<string[]> this.options.english).includes(langid)
 
     const entry: Entry = this.current = {
       type: verbatim.type,
@@ -1311,7 +1313,7 @@ class BibTeXParser {
         this.field(entry, field, value)
 
         if (field === 'keywords') { // #873
-          keywords = [ ...keywords, ...(entry.fields.keywords as unknown as string).split(/\s*[,;]\s*/) ].map((k: string) => k.trim()).filter(k => k)
+          keywords = [...keywords, ...(entry.fields.keywords as unknown as string).split(/\s*[,;]\s*/)].map((k: string) => k.trim()).filter(k => k)
           delete entry.fields.keywords
         }
 
@@ -1322,7 +1324,7 @@ class BibTeXParser {
       }
 
       if (keywords.length) {
-        entry.fields.keywords = [ ...(new Set(keywords)) ].sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()))
+        entry.fields.keywords = [...(new Set(keywords))].sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()))
         entry.mode.keywords = 'verbatimlist'
       }
 
@@ -1396,7 +1398,7 @@ class BibTeXParser {
               }
             }
 
-            for (const field of <string[]>(allowed[child.type] || [])) {
+            for (const field of <string[]> (allowed[child.type] || [])) {
               if (FieldAction.noCrossRef.includes(field)) continue
 
               if (!child.fields[field] && parent.fields[field]) {
@@ -1456,11 +1458,11 @@ class BibTeXParser {
 }
 
 export function parse(input: string, options: Options = {}): Library {
-  const parser = new BibTeXParser
+  const parser = new BibTeXParser()
   return parser.parse(input, options)
 }
 
 export async function parseAsync(input: string, options: Options = {}): Promise<Library> {
-  const parser = new BibTeXParser
+  const parser = new BibTeXParser()
   return await parser.parseAsync(input, options)
 }
