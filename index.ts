@@ -666,16 +666,21 @@ class BibTeXParser {
     return ''
   }
 
-  private subp(text: string, macro: string) {
+  private subp(text: string, mode: 'sub' | 'sup') {
+    const macro = { sub: '_', sup: '^' }[mode]
     let subp = ''
     for (let char of text) {
-      char = latex2unicodemap[`${macro}{${char}}`]
-      if (char) {
-        subp += char
-      }
-      else {
-        const tag = { _: 'sub', '^': 'sup' }[macro]
-        return `\x0E${tag}\x0F${text}\x0E/${tag}\x0F`
+      const mapped = latex2unicodemap[`${macro}{${char}}`]
+      switch (typeof mapped) {
+        case 'string':
+          subp += mapped
+          break
+
+        case 'undefined':
+          return `\x0E${mode}\x0F${text}\x0E/${mode}\x0F`
+
+        default:
+          subp += mapped.math
       }
     }
     return subp
@@ -688,7 +693,6 @@ class BibTeXParser {
     let url: Argument
     let label: Argument
     let arg: string[]
-    let resolved: string
     switch (node.content) {
       case 'newcommand':
       case 'ProvideTextCommandDefault':
@@ -773,22 +777,22 @@ class BibTeXParser {
         return this.stringify(node.args?.[0], context)
 
       case 'textsuperscript':
-        return this.subp(this.stringify(node.args?.[0], context), '^')
+        return this.subp(this.stringify(node.args?.[0], context), 'sup')
 
       case 'textsubscript':
-        return this.subp(this.stringify(node.args?.[0], context), '_')
+        return this.subp(this.stringify(node.args?.[0], context), 'sub')
 
       case '_':
       case '^':
         switch (latexMode(node)) {
           case 'math':
-            return this.subp(this.stringify(node.args?.[0], context), node.content)
+            return this.subp(this.stringify(node.args?.[0], context), node.content === '^' ? 'sup' : 'sub')
           default:
             return node.content
         }
 
       case 'LaTeX':
-        return this.wrap(`L${this.subp('A', '^')}T${this.subp('E', '_')}X`, 'ncx')
+        return this.wrap(`L${this.subp('A', 'sup')}T${this.subp('E', 'sub')}X`, 'ncx')
 
       case 'enquote':
       case 'mkbibquote':
@@ -811,8 +815,11 @@ class BibTeXParser {
 
       case 'frac':
         arg = node.args.map(a => this.stringify(a, context))
-        if (arg.length === 2 && (resolved = latex2unicodemap[`\\frac${arg.map(a => `{${a}}`).join('')}`])) return resolved
-        return arg.map((part, i) => this.subp(part, i ? '_' : '^')).join('\u2044')
+        if (arg.length === 2) {
+          const resolved = latex2unicodemap[`\\frac${arg.map(a => `{${a}}`).join('')}`]
+          if (resolved) return typeof resolved === 'string' ? resolved : (resolved.math || resolved.text)
+        }
+        return arg.map((part, i) => this.subp(part, i ? 'sub' : 'sup')).join('\u2044')
 
       case 'chsf':
       case 'bibstring':
