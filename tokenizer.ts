@@ -2,63 +2,72 @@ import moo from 'moo'
 
 // const show = (obj: any): string => JSON.stringify(obj, null, 2).replace(/[\u007F-\uFFFF]/g, chr => `\\u${(`0000${chr.charCodeAt(0).toString(16)}`).substr(-4)}`)
 
-import * as rx from './re'
+const RE = new class {
+  public Acronym: RegExp
+  public Word: RegExp
+  public Contraction: RegExp
+  public Whitespace = /[ \t\n\r\u00A0]+/u
+  public Ordinal: RegExp
+  public Email: RegExp
+  public Handle: RegExp
+  public IntOrVersion: RegExp
+  public Domain: RegExp
+  public Website: RegExp
+  public Preposition: RegExp
+  public ComplexPreposition = /^([^ \t\n\r\u00A0]+)([ \t\n\r\u00A0]+)([^ \t\n\r\u00A0]+)(?:([ \t\n\r\u00A0]+)([^ \t\n\r\u00A0]+))?$/u
+  public P = /\p{P}/u
 
-const L: string = rx.match(rx.categories.filter(cat => cat.name === 'L'))
-const LNM: string = rx.match(rx.categories.filter(cat => cat.name.match(/^[LNM]/)), '\u00AD\u2060')
-const W = `${LNM}*?${L}${LNM}*`
-const B = `(?=(?:${rx.match(rx.categories.filter(cat => cat.name.match(/^[LNM]/)), '\u00AD\u2060').replace(/^./, '[^')}|$))`
+  constructor() {
+    const B = '(?=(?:[^\\p{L}\\p{N}\\p{M}\\u00AD\\u2060]|$))'
+    const LNM = '[\\p{L}\\p{N}\\p{M}\u00AD\u2060]'
+    const W = `${LNM}*?\\p{L}${LNM}*`
 
-const Word = new RegExp(`${W}${B}`)
-const P = new RegExp(rx.match(rx.categories.filter(cat => cat.name.match(/^P/))))
+    this.Acronym = new RegExp(`(?:(?:(?:[\\p{Lu}\\p{Lt}][.]){2,}${B})|(?:(?:vs?[.])(?=[ \t\n\r\u00A0])))`, 'u')
+    this.Word = new RegExp(`${W}${B}`, 'u')
 
-const Lu: string = rx.match(rx.categories.filter(cat => cat.name === 'Lu' || cat.name === 'Lt'), '\u2060')
-const Acronym = new RegExp(`(?:(?:(?:${Lu}[.]){2,}${B})|(?:(?:vs?[.])(?=[ \t\n\r\u00A0])))`)
+    this.Contraction = new RegExp(`${W}['’]${W}${B}`, 'u')
+    this.Ordinal = new RegExp(`\\d+(?:st|nd|rd|th)${B}`, 'u')
+    this.Email = new RegExp(`[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:[.][A-Za-z0-9-]+)+${B}`, 'u')
+    this.Handle = new RegExp(`@[A-Za-z0-9-]{2,}${B}`, 'u')
+    this.IntOrVersion = new RegExp(`v?\\d+(?:\\.\\d+)*${B}`, 'u')
+    this.Domain = new RegExp(`${W}(?:[.]${W})+${B}`, 'u')
+    this.Website = new RegExp(`https?://${W}(?:[.]${W})+(?:[^.!? \t\n\r\u00A0]+|[.!?]${LNM})+`, 'u')
 
-const Contraction = new RegExp(`${W}['’]${W}${B}`)
-const Whitespace = /[ \t\n\r\u00A0]+/
-const Ordinal = new RegExp(`\\d+(?:st|nd|rd|th)${B}`)
-const Email = new RegExp(`[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:[.][A-Za-z0-9-]+)+${B}`)
-const Handle = new RegExp(`@[A-Za-z0-9-]{2,}${B}`)
-const IntOrVersion = new RegExp(`v?\\d+(?:\\.\\d+)*${B}`)
-const Domain = new RegExp(`${W}(?:[.]${W})+${B}`)
-const Website = new RegExp(`https?://${W}(?:[.]${W})+(?:[^.!? \t\n\r\u00A0]+|[.!?]${LNM})+`)
+    const ci = (s: string): string =>
+      s
+        .replace(/[a-z]/ig, match => `[${match.toUpperCase()}${match.toLowerCase()}]`)
+        .replace(' ', this.Whitespace.source)
 
-const ComplexPreposition = /^([^ \t\n\r\u00A0]+)([ \t\n\r\u00A0]+)([^ \t\n\r\u00A0]+)(?:([ \t\n\r\u00A0]+)([^ \t\n\r\u00A0]+))?$/
-
-function ci(s: string) {
-  return s
-    .replace(/[a-z]/ig, match => `[${match.toUpperCase()}${match.toLowerCase()}]`)
-    .replace(' ', Whitespace.source)
-}
-const prepositions: string = require('./prepositions.json').sort().reverse().map(ci).join('|')
-const Preposition = new RegExp(`(?:${prepositions})${B}`)
+    const prepositions: string = require('./prepositions.json').sort().reverse().map(ci).join('|')
+    this.Preposition = new RegExp(`(?:${prepositions})${B}`, 'u')
+  }
+}()
 
 const lexer = moo.compile({
-  'word-preposition': Preposition,
-  'word-acronym': Acronym,
-  'word-contraction': Contraction,
-  'word-ordinal': Ordinal,
-  email: Email,
-  handle: Handle,
-  website: Website,
-  domain: Domain,
-  word: Word,
-  number: IntOrVersion, // eslint-disable-line id-blacklist
-  'punctuation-end': /[?.!](?=[ \t\n\r\u00A0]|$)/,
-  'punctuation-colon': /:(?=[ \t\n\r\u00A0])/,
-  'punctuation-ellipsis': /[.][.][.]/,
-  punctuation: P,
-  whitespace: { match: /[ \t\n\r\u00A0]/, lineBreaks: true },
-  other: { match: /[\s\S]/, lineBreaks: true },
+  'word-preposition': RE.Preposition,
+  'word-acronym': RE.Acronym,
+  'word-contraction': RE.Contraction,
+  'word-ordinal': RE.Ordinal,
+  email: RE.Email,
+  handle: RE.Handle,
+  website: RE.Website,
+  domain: RE.Domain,
+  word: RE.Word,
+  number: RE.IntOrVersion, // eslint-disable-line id-blacklist
+  'punctuation-end': /[?.!](?=[ \t\n\r\u00A0]|$)/u,
+  'punctuation-colon': /:(?=[ \t\n\r\u00A0])/u,
+  'punctuation-ellipsis': /[.][.][.]/u,
+  punctuation: RE.P,
+  whitespace: { match: /[ \t\n\r\u00A0]/u, lineBreaks: true },
+  other: { match: /[\s\S]/u, lineBreaks: true },
 })
 
 const Shape = new class {
   private shapes: Record<string, string> = {}
   private re: Record<string, RegExp> = {
-    X: new RegExp(rx.match(rx.categories.filter(cat => cat.name === 'Lu' || cat.name === 'Lt'))),
-    x: new RegExp(rx.match(rx.categories.filter(cat => cat.name.match(/^L[^Cut]/)))),
-    d: new RegExp(rx.match(rx.categories.filter(cat => cat.name[0] === 'N'))),
+    X: /[\p{Lu}\p{Lt}]/u,
+    x: /[\p{Ll}\p{Lm}\p{Lo}]/u,
+    d: /\p{N}/u,
   }
 
   private match(c: string): string {
@@ -153,7 +162,7 @@ export function tokenize(title: string, markup?: RegExp): Token[] {
   let cpt: RegExpMatchArray
   let cps: RegExpMatchArray
   while (stack.length) {
-    if (stack[0].subtype === 'preposition' && (cpt = stack[0].text.match(ComplexPreposition)) && (cps = stack[0].shape.match(ComplexPreposition))) {
+    if (stack[0].subtype === 'preposition' && (cpt = stack[0].text.match(RE.ComplexPreposition)) && (cps = stack[0].shape.match(RE.ComplexPreposition))) {
       const complex = stack.shift()
 
       let start = complex.start

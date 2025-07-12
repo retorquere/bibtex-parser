@@ -5,7 +5,6 @@
 //
 // error recovery and unicode handling by Emiliano Heyns (c) 2017-2024
 
-import * as rx from './re'
 import { playnice } from './yield'
 
 class ParsingError extends Error {
@@ -19,7 +18,7 @@ class ParsingError extends Error {
   }
 }
 
-const letter = new RegExp(rx.match(rx.categories.filter(cat => cat.name.match(/^L[utlmo]$/))))
+const letter = /[\p{Lu}\p{Lt}\p{Ll}\p{Lm}\p{Lo}]/u
 
 export type Entry = {
   input: string

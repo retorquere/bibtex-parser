@@ -1,11 +1,7 @@
 import { merge } from './merge'
 import { Token, tokenize } from './tokenizer'
 
-import * as rx from './re'
-
-const Lu: string = rx.match(rx.categories.filter(cat => cat.name === 'Lu' || cat.name === 'Lt'))
-const Ll: string = rx.match(rx.categories.filter(cat => cat.name === 'Ll'))
-const connectedInnerWord = new RegExp(`-${Lu}${Ll}*(?=-|$)`, 'g')
+const connectedInnerWord = /-\p{Lu}\p{Ll}*(?=-|$)/ug
 
 // const show = (obj: any): string => JSON.stringify(obj, null, 2).replace(/[\u007F-\uFFFF]/g, chr => `\\u${(`0000${chr.charCodeAt(0).toString(16)}`).substr(-4)}`)
 
