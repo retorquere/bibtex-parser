@@ -2,19 +2,29 @@
   "name": "@retorquere/bibtex-parser",
   "version": "9.0.21",
   "description": "BibTeX parser",
-  "main": "index.js",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
   "typings": "./index.d.ts",
   "scripts": {
     "unified": "tsx unified.ts",
     "lint": "dprint fmt *.ts && dprint check *.ts",
     "prestart": "npm run lint",
     "start": "npm run tsc",
-    "tsc": "tsc -d",
+    "tsc:esm": "rm -rf dist/esm && tsc -d -p tsconfig.esm.json",
+    "tsc:cjs": "rm -rf dist/cjs && tsc -d -p tsconfig.cjs.json",
+    "tsc": "npm run tsc:esm && npm run tsc:cjs",
     "pretest": "npm start",
     "test": "tap --timeout 0 --disable-coverage --allow-empty-coverage",
     "snap": "npm test --snapshot",
     "snap:big": "npm test --snapshot --big",
-    "minitest": "./build/crossref.py && tsc -d && node i.js",
+    "minitest": "./build/crossref.py && npm run tsc && node i.js",
     "list": "tar tvf $(npm pack)",
     "prepublishOnly": "npm start",
     "abbr": "./build/abbr.py",

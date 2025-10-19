@@ -16,8 +16,8 @@ export { Token, tokenize } from './tokenizer'
 
 import { playnice } from './yield'
 
-import CrossRef from './crossref.json'
-import allowed from './fields.json'
+import CrossRef from './crossref'
+import allowed from './fields'
 
 import { merge } from './merge'
 

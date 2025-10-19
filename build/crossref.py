@@ -25,8 +25,8 @@ for bcf in glob.glob('submodules/biber/t/tdata/*.bcf'):
         field_target = field.attrib['target']
         crossref[type_target][type_source][field_target] = field_source
 
-with open('crossref.json', 'w') as f:
-  json.dump(crossref, f, indent='  ', sort_keys=True)
+with open('crossref.ts', 'w') as f:
+  print(f'export default {json.dumps(crossref, indent='  ', sort_keys=True)}\n', file=f)
 
 allowed = {}
 tree = ET.parse('submodules/biber/data/biber-tool.conf')
@@ -49,5 +49,5 @@ for entryfields in root.findall('.//entryfields'):
 for entrytype in allowed.keys():
   allowed[entrytype] = sorted(list(set(allowed[entrytype])))
 
-with open('fields.json', 'w') as f:
-  json.dump(allowed, f, indent='  ', sort_keys=True)
+with open('fields.ts', 'w') as f:
+  print(f'export default {json.dumps(allowed, indent='  ', sort_keys=True)}\n', file=f)
