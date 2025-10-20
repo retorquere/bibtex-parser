@@ -27,7 +27,7 @@
     "build:esm": "rm -rf dist/esm && esbuild *.ts --outdir=dist/esm --format=esm --sourcemap --target=es2020 --loader:.ts=ts",
     "build:cjs": "rm -rf dist/cjs && esbuild *.ts --outdir=dist/cjs --format=cjs --sourcemap --target=node16 --loader:.ts=ts",
     "build:types": "rm -rf dist/cjs dist/types && tsc -d -p tsconfig.cjs.json",
-    "prebuild": "rm -rf dist && mkdir dist && ./build/abbr.py && ./build/crossref.py && ./build/prepositions.py",
+    "prebuild": "rm -rf dist && mkdir -p dist/data && cp data/*.json dist/data && ./build/abbr.py && ./build/prepositions.py",
     "build": "npm run build:types && npm run build:cjs && npm run build:esm",
     "pretest": "npm start",
     "test": "node test/run.js",

@@ -27,7 +27,7 @@ for bcf in glob.glob('submodules/biber/t/tdata/*.bcf'):
 
 with open('crossref.ts', 'w') as f:
   print(f'export default {json.dumps(crossref, indent='  ', sort_keys=True)}\n', file=f)
-with open('dist/data/crossref.json', 'w') as f:
+with open('data/crossref.json', 'w') as f:
   print(json.dumps(crossref, indent='  ', sort_keys=True), file=f)
 
 allowed = {}
@@ -53,5 +53,5 @@ for entrytype in allowed.keys():
 
 with open('fields.ts', 'w') as f:
   print(f'export default {json.dumps(allowed, indent='  ', sort_keys=True)}\n', file=f)
-with open('dist/data/fields.json', 'w') as f:
+with open('data/fields.json', 'w') as f:
   print(json.dumps(allowed, indent='  ', sort_keys=True), file=f)
