@@ -23,19 +23,12 @@ jobs:
     - name: install node
       uses: actions/setup-node@v4
       with:
-        node-version: 20.x
-    - name: Cache node dependencies
-      uses: actions/cache@v4
-      env:
-        cache-name: cache-dependencies
-      with:
-        path: |
-          ~/.npm
-        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('package-lock.json') }}
+        node-version: 24.x
 
     - run: |
         npm install
         npm run build
+        echo ./test/run.js -sc ${{ matrix.sentencecase }} -cp ${{ matrix.caseprotection }} ${{ matrix.preservequoted }} --big
         ./test/run.js -sc ${{ matrix.sentencecase }} -cp ${{ matrix.caseprotection }} ${{ matrix.preservequoted }} --big
 
   release:
