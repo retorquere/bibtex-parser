@@ -1,0 +1,31 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Patrick H.
+          lastName: Winston
+      booktitle: <span class="nocase">AAAI-83</span>
+      pages: 433–439
+      title: >-
+        Learning physical descriptions from functional definitions, examples,
+        and precedents
+      volume: '3'
+      year: '1983'
+    input: "@inproceedings(Winston:83,\n\tauthor =\t{Patrick H. Winston},\n\tyear =\t\t{1983},\n\tbooktitle =\tAAAI-83,\n\tpages =\t\t{433--439},\n\ttitle =\t\t{Learning physical descriptions from \n\t\t\t functional definitions, examples, and precedents},\n\tvolume =\t{3}\n)"
+    key: Winston:83
+    mode:
+      author: creatorlist
+      booktitle: title
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: inproceedings
+errors:
+  - error: Unresolved @string reference "AAAI-83"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

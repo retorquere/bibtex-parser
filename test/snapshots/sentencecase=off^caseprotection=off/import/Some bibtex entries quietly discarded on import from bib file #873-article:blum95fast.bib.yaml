@@ -1,0 +1,35 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: A. L.
+          lastName: Blum
+        - firstName: M. L.
+          lastName: Furst
+      journal: ijcai
+      pages: 1636–1642
+      title: Fast Planning Through Planning Graph Analysis
+      year: '1995'
+    input: |-
+      @article{blum95fast,
+          Author = {A. L. Blum and M. L. Furst},
+          Journal = ijcai,
+          Pages = {1636--1642},
+          Title = {Fast Planning Through Planning Graph Analysis},
+          Year = 1995}
+    key: blum95fast
+    mode:
+      author: creatorlist
+      journal: literal
+      pages: literal
+      title: title
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "ijcai"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

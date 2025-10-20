@@ -1,0 +1,128 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: John
+          lastName: Doe
+      groups: my-subgroup-3
+      owner: klein
+      timestamp: 2017.09.11
+      title: The paper in my-subgroup-3
+      year: '2017'
+    input: |-
+      @Article{Doe-2017,
+        author    = {John Doe},
+        title     = {The paper in my-subgroup-3},
+        year      = {2017},
+        groups    = {my-subgroup-3},
+        owner     = {klein},
+        timestamp = {2017.09.11},
+      }
+    key: Doe-2017
+    mode:
+      author: creatorlist
+      groups: verbatim
+      owner: literal
+      timestamp: literal
+      title: title
+      year: literal
+    type: article
+  - fields:
+      author:
+        - firstName: I.
+          lastName: Other
+      groups: my-other-subgroup-3
+      owner: klein
+      timestamp: 2017.09.11
+      title: The article in my-other-subgroup-3
+    input: |-
+      @Article{Other-,
+        author    = {I. Other},
+        title     = {The article in my-other-subgroup-3},
+        groups    = {my-other-subgroup-3},
+        owner     = {klein},
+        timestamp = {2017.09.11},
+      }
+    key: Other-
+    mode:
+      author: creatorlist
+      groups: verbatim
+      owner: literal
+      timestamp: literal
+      title: title
+    type: article
+  - fields:
+      author:
+        - firstName: I
+          lastName: Unkonw
+      groups: my-subgroup-3, my-other-subgroup-3
+      owner: klein
+      timestamp: 2017.09.11
+      title: the paper in my-subgroup-3 and my-other-subgroup-3
+    input: |-
+      @Article{Unkonw-,
+        author    = {I Unkonw},
+        title     = {the paper in my-subgroup-3 and my-other-subgroup-3},
+        groups    = {my-subgroup-3, my-other-subgroup-3},
+        owner     = {klein},
+        timestamp = {2017.09.11},
+      }
+    key: Unkonw-
+    mode:
+      author: creatorlist
+      groups: verbatim
+      owner: literal
+      timestamp: literal
+      title: title
+    type: article
+  - fields:
+      author:
+        - firstName: I
+          lastName: Unkonw
+      groups: my-main-group-3
+      owner: klein
+      timestamp: 2017.09.11
+      title: 'JR3: paper not in a group'
+    input: |-
+      @Article{Unkonw,
+        author    = {I Unkonw},
+        title     = {JR3: paper not in a group},
+        groups    = {my-main-group-3},
+        owner     = {klein},
+        timestamp = {2017.09.11},
+      }
+    key: Unkonw
+    mode:
+      author: creatorlist
+      groups: verbatim
+      owner: literal
+      timestamp: literal
+      title: title
+    type: article
+errors: []
+jabref:
+  databaseType: bibtex
+  groups:
+    my-main-group-3: &ref_0
+      entries: []
+      groups:
+        - &ref_1
+          entries: []
+          groups:
+            - &ref_2
+              entries: []
+              groups: []
+              name: sub-sub-group-3
+          name: my-subgroup-3
+        - &ref_3
+          entries: []
+          groups: []
+          name: my-other-subgroup-3
+      name: my-main-group-3
+    my-other-subgroup-3: *ref_3
+    my-subgroup-3: *ref_1
+    sub-sub-group-3: *ref_2
+  root:
+    - *ref_0
+preamble: []
+strings: {}

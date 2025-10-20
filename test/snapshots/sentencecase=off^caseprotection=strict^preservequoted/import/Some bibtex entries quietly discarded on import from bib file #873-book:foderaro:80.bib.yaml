@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: John K.
+          lastName: Foderaro
+        - firstName: Graeme
+          lastName: Hirst
+      publisher:
+        - Brown University Department of Computer Science
+      title: FRANZ LISP ... The Manual
+      year: '1980'
+    input: "@book(Foderaro:80,\n\tauthor =\t{John K. Foderaro and Graeme Hirst},\n\tyear =\t\t{1980},\n\tpublisher =\t{Brown University Department of Computer Science},\n\ttitle =\t\t{FRANZ LISP ... The Manual}\n)"
+    key: Foderaro:80
+    mode:
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

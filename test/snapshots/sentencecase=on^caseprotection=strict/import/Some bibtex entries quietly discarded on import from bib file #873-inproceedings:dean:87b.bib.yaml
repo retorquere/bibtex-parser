@@ -1,0 +1,27 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Thomas
+          lastName: Dean
+        - firstName: Mark
+          lastName: Boddy
+      booktitle: <span class="nocase">AAAI-87</span>
+      title: Incremental causal reasoning
+      year: '1987'
+    input: "@inproceedings(Dean:87b,\n\tauthor =\t{Thomas Dean and Mark Boddy},\n\tyear =\t\t{1987},\n\tbooktitle =\tAAAI-87,\n\ttitle =\t\t{Incremental causal reasoning}\n)"
+    key: Dean:87b
+    mode:
+      author: creatorlist
+      booktitle: title
+      title: title
+      year: literal
+    type: inproceedings
+errors:
+  - error: Unresolved @string reference "AAAI-87"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

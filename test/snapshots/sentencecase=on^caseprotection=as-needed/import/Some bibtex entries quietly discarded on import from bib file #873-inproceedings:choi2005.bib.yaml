@@ -1,0 +1,36 @@
+comments: []
+entries:
+  - fields:
+      address: Bonn, Germany
+      author:
+        - firstName: D.
+          lastName: Choi
+        - firstName: P.
+          lastName: Langley
+      booktitle: ILP-05
+      date-added: 2010-06-22 21:28:06 -0400
+      date-modified: 2010-06-22 21:28:06 -0400
+      publisher:
+        - Springer
+      title: Learning teleoreactive logic programs from problem solving
+      year: '2005'
+    input: "@inproceedings{Choi2005,\n\tAuthor = {Choi, D. and Langley, P.},\n\tBooktitle = ILP-05,\n\tDate-Added = {2010-06-22 21:28:06 -0400},\n\tDate-Modified = {2010-06-22 21:28:06 -0400},\n\tAddress = {Bonn, Germany},\n\tPublisher = {Springer},\n\tTitle = {Learning teleoreactive logic programs from problem solving},\n\tYear = {2005}}"
+    key: Choi2005
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      date-added: literal
+      date-modified: literal
+      publisher: literallist
+      title: title
+      year: literal
+    type: inproceedings
+errors:
+  - error: Unresolved @string reference "ILP-05"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,94 @@
+comments: []
+entries:
+  - fields:
+      abstract: >-
+        Abstract Planning is motivated by acting. Most of the existing work on
+        automated planning underestimates the reasoning and deliberation needed
+        for acting; it is instead biased towards path-finding methods in a
+        compactly specified state-transition system. Researchers in this {AI}
+        field have developed many planners, but very few actors. We believe this
+        is one of the main causes of the relatively low deployment of automated
+        planning applications. In this paper, we advocate a change in focus to
+        actors as the primary topic of investigation. Actors are not mere plan
+        executors: they may use planning and other deliberation tools, before
+        and during acting. This change in focus entails two interconnected
+        principles: a hierarchical structure to integrate the actorʼs
+        deliberation functions, and continual online planning and reasoning
+        throughout the acting process. In the paper, we discuss open problems
+        and research directions toward that objective in knowledge
+        representations, model acquisition and verification, synthesis and
+        refinement, monitoring, goal reasoning, and integration.
+      author:
+        - firstName: Malik
+          lastName: Ghallab
+        - firstName: Dana
+          lastName: Nau
+        - firstName: Paolo
+          lastName: Traverso
+      doi: http://dx.doi.org/10.1016/j.artint.2013.11.002
+      issn: 0004-3702
+      journal: AIJ
+      keywords:
+        - Automated planning and acting
+      pages: 1 – 17
+      title: 'The actorʼs view of automated planning and acting: a position paper'
+      url: http://www.sciencedirect.com/science/article/pii/S0004370213001173
+      volume: '208'
+      year: '2014'
+    input: |-
+      @article{Ghallab20141,
+        title =        "The actorʼs view of automated planning and acting: A position
+                        paper ",
+        journal =      AIJ,
+        volume =       "208",
+        number =       "",
+        pages =        "1 -- 17",
+        year =         "2014",
+        note =         "",
+        issn =         "0004-3702",
+        doi =          "http://dx.doi.org/10.1016/j.artint.2013.11.002",
+        url =
+                        "http://www.sciencedirect.com/science/article/pii/S0004370213001173",
+        author =       "Malik Ghallab and Dana Nau and Paolo Traverso",
+        keywords =     "Automated planning and acting ",
+        abstract =     "Abstract Planning is motivated by acting. Most of the existing
+                        work on automated planning underestimates the reasoning and
+                        deliberation needed for acting; it is instead biased towards
+                        path-finding methods in a compactly specified state-transition
+                        system. Researchers in this \{AI\} field have developed many
+                        planners, but very few actors. We believe this is one of the
+                        main causes of the relatively low deployment of automated
+                        planning applications. In this paper, we advocate a change in
+                        focus to actors as the primary topic of investigation. Actors
+                        are not mere plan executors: they may use planning and other
+                        deliberation tools, before and during acting. This change in
+                        focus entails two interconnected principles: a hierarchical
+                        structure to integrate the actorʼs deliberation functions, and
+                        continual online planning and reasoning throughout the acting
+                        process. In the paper, we discuss open problems and research
+                        directions toward that objective in knowledge representations,
+                        model acquisition and verification, synthesis and refinement,
+                        monitoring, goal reasoning, and integration. "
+      }
+    key: Ghallab20141
+    mode:
+      abstract: literal
+      author: creatorlist
+      doi: verbatim
+      issn: literal
+      journal: literal
+      keywords: verbatimlist
+      pages: literal
+      title: title
+      url: verbatim
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "AIJ"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

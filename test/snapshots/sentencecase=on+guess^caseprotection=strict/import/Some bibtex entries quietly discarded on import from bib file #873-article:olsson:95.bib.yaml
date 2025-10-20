@@ -1,0 +1,42 @@
+comments: []
+entries:
+  - fields:
+      annote: >-
+        Describes the algorithm used by the ADATE system for learning Standard
+        ML (subset) programs. The system is novel in concentrating on learning
+        recursive programs and in being able to learn new imbedded functions.
+        The paper was quite difficult to follow, since I didn't thoroughly
+        understand the ML code...
+      author:
+        - firstName: Roland
+          lastName: Olsson
+      journal: AIJ
+      month: '3'
+      number: '1'
+      pages: 55-81
+      title: >-
+        Inductive Functional Programming using incremental program
+        transformation
+      volume: '74'
+      year: '1995'
+    input: "@ARTICLE{Olsson:95,\n\tAUTHOR = {Roland Olsson},\n\tTITLE = {Inductive Functional Programming using \n\t\t incremental program transformation},\n\tJOURNAL = AIJ,\n\tYEAR = {1995},\n\tVOLUME = {74},\n\tNUMBER = {1},\n\tPAGES = {55-81},\n\tMONTH = mar,\n\tANNOTE = {Describes the algorithm used by the ADATE system\n\t\t  for learning Standard ML (subset) programs.\n\t\t  The system is novel in concentrating on learning\n\t\t  recursive programs and in being able to learn new\n\t\t  imbedded functions.  The paper was quite difficult to \n\t\t  follow, since I didn't thoroughly understand the ML\n\t\t  code...}\n}"
+    key: Olsson:95
+    mode:
+      annote: richtext
+      author: creatorlist
+      journal: literal
+      month: literal
+      number: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "AIJ"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

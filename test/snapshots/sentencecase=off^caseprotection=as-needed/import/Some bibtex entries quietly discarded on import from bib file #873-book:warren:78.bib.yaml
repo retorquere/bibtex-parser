@@ -1,0 +1,28 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Beatrice
+          lastName: Warren
+      publisher:
+        - Acta Universitatis Gothoburgen
+      series: Gothenburg Studies in English
+      title: Semantic Patterns of Noun-Noun Compound
+      volume: '41'
+      year: '1978'
+    input: "@book(Warren:78,\n\tauthor =\t{Beatrice Warren},\n\tyear =\t\t{1978},\n\tpublisher =\t{Acta Universitatis Gothoburgen},\n\ttitle =\t\t\"Semantic Patterns of Noun-Noun Compound\",\n\tseries =\t{Gothenburg Studies in English},\n\tvolume =\t41\t\n)"
+    key: Warren:78
+    mode:
+      author: creatorlist
+      publisher: literallist
+      series: title
+      title: title
+      volume: literal
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

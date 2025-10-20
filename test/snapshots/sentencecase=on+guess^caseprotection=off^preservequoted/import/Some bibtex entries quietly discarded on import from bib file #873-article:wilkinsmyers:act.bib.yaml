@@ -1,0 +1,35 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: David E.
+          lastName: Wilkins
+        - firstName: Karen L.
+          lastName: Myers
+      journal: JLC
+      number: '6'
+      pages: 731–761
+      title: >-
+        A common knowledge representation for plan generation and reactive
+        execution
+      volume: '5'
+      year: '1995'
+    input: "@ARTICLE{WilkinsMyers:ACT,\n\tAUTHOR = {David E. Wilkins and Karen L. Myers},\n\tTITLE = {A Common Knowledge Representation for Plan Generation\n\t\t and Reactive Execution},\n\tJOURNAL = JLC,\n\tYEAR = {1995},\n\tVOLUME = {5},\n\tNUMBER = {6},\n\tPAGES = {731--761}\n}"
+    key: WilkinsMyers:ACT
+    mode:
+      author: creatorlist
+      journal: literal
+      number: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "JLC"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

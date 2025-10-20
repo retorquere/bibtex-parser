@@ -1,0 +1,31 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - name: MCDERMOTT
+        - firstName: Gerald J.
+          lastName: Sussman
+      institution:
+        - MIT Artificial Intelligence Laboratory
+      month: '5'
+      title: >-
+        The <span style="font-variant:small-caps;">CONNIVER</span> reference
+        manual
+      year: '1972'
+    input: "@techreport(McDermott:72,\n\tauthor =\tMCDERMOTT # { and Gerald J. Sussman},\n\tyear =\t\t{1972},\n\tmonth = \tMay,\n\tinstitution =\t{MIT Artificial Intelligence\tLaboratory},\n\ttitle =\t\t{The {\\sc CONNIVER} Reference Manual}\n)"
+    key: McDermott:72
+    mode:
+      author: creatorlist
+      institution: literallist
+      month: literal
+      title: title
+      year: literal
+    type: techreport
+errors:
+  - error: Unresolved @string reference "MCDERMOTT"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

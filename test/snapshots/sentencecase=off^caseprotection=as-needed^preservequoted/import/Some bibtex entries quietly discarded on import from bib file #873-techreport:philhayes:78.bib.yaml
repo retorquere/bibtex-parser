@@ -1,0 +1,24 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Philip J.
+          lastName: Hayes
+      institution:
+        - University of Rochester Department of Computer Science
+      title: Mapping Input onto Schemas
+      year: '1978'
+    input: "@techreport(PhilHayes:78,\n\tauthor =\t{Philip J. Hayes},\n\tyear =\t\t{1978},\n\tinstitution =\t{University of Rochester Department of Computer Science},\n\ttitle =\t\t{Mapping Input onto Schemas}\n)"
+    key: PhilHayes:78
+    mode:
+      author: creatorlist
+      institution: literallist
+      title: title
+      year: literal
+    type: techreport
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

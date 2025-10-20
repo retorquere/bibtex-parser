@@ -1,0 +1,25 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - name: MCDERMOTT
+      institution:
+        - Yale University Department of Computer Science
+      title: Duck reference manual
+      year: '1983'
+    input: "@techreport(McDermott:83Duck,\n\tauthor =\tMCDERMOTT,\n\tyear =\t\t{1983},\n\tinstitution =\t{Yale University Department of Computer Science},\n\ttitle =\t\t{Duck Reference Manual}\n)"
+    key: McDermott:83Duck
+    mode:
+      author: creatorlist
+      institution: literallist
+      title: title
+      year: literal
+    type: techreport
+errors:
+  - error: Unresolved @string reference "MCDERMOTT"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

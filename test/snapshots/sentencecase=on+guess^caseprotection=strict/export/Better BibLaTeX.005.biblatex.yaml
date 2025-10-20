@@ -1,0 +1,38 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: A
+          lastName: Oliveira
+      date: '2009'
+      journaltitle: Oil & Gas Journal
+      number: '29'
+      pages: '29'
+      title: <span class="nocase">USGS</span> monitoring ecological impacts
+      volume: '107'
+    input: |-
+      @article{Oliveira_2009,
+        title = {{{USGS}} Monitoring Ecological Impacts},
+        author = {Oliveira, A},
+        date = {2009},
+        journaltitle = {Oil \& Gas Journal},
+        volume = {107},
+        pages = {29},
+        number = {29}
+      }
+    key: Oliveira_2009
+    mode:
+      author: creatorlist
+      date: literal
+      journaltitle: literal
+      number: literal
+      pages: literal
+      title: title
+      volume: literal
+    type: article
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

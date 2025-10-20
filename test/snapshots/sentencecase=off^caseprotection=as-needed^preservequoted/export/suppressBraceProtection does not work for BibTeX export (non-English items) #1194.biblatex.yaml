@@ -1,0 +1,57 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Л. Д.
+          lastName: Ландау
+        - firstName: Е. М.
+          lastName: Лифшиц
+      date: '2007'
+      edition: '5'
+      isbn: 5-9221-0122-6
+      langid: russian
+      location:
+        - М.
+      pagetotal: '259'
+      publisher:
+        - Физматлит
+      series: Теоретическая физика
+      title: Теория упругости
+      volume: '7'
+      volumes: '10'
+    input: |-
+      @mvbook{Landafshits.V7,
+        author = {Ландау, Л. Д. and Лифшиц, Е. М.},
+        title = {Теория упругости},
+        edition = {5},
+        series = {Теоретическая физика},
+        publisher = {{Физматлит}},
+        volume = {7},
+        pagetotal = {259},
+        isbn = {5-9221-0122-6},
+        date = {2007},
+        location = {{М.}},
+        langid = {russian},
+        volumes = {10}
+      }
+    key: Landafshits.V7
+    mode:
+      author: creatorlist
+      date: literal
+      edition: literal
+      isbn: literal
+      langid: literal
+      location: literallist
+      pagetotal: literal
+      publisher: literallist
+      series: title
+      title: title
+      volume: literal
+      volumes: literal
+    type: mvbook
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

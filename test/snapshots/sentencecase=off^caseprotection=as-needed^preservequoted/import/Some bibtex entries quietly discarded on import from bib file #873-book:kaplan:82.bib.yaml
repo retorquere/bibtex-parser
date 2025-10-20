@@ -1,0 +1,32 @@
+comments: []
+entries:
+  - fields:
+      address: Cambridge Mass.
+      author:
+        - firstName: Ronald M.
+          lastName: Kaplan
+        - firstName: Joan W.
+          lastName: Bresnan
+      booktitle: The Mental Representation of Grammatical Relations
+      publisher:
+        - MIT Press
+      title: >-
+        Lexical-functional grammar: a formal system for grammatical
+        representation
+      year: '1982'
+    input: "@book(Kaplan:82,\n\tauthor =\t{Ronald M. Kaplan and Joan W. Bresnan},\n\tbooktitle =\t{The Mental Representation of Grammatical Relations},\n\taddress =\t{Cambridge Mass.},\n\tyear =\t\t{1982},\n\tpublisher =\t{MIT Press},\n\ttitle =\t\t{Lexical-functional grammar:\ta formal system for grammatical representation}\n)"
+    key: Kaplan:82
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

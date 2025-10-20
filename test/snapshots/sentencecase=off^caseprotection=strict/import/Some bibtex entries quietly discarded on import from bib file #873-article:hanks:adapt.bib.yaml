@@ -1,0 +1,31 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Steve
+          lastName: Hanks
+        - firstName: Daniel S.
+          lastName: Weld
+      journal: JAIR
+      pages: 319–360
+      title: A Domain-independent Algorithm for Plan Adaptation
+      volume: '2'
+      year: '1995'
+    input: "@ARTICLE{Hanks:adapt,\n\tAUTHOR = {Steve Hanks and Daniel S. Weld},\n\tTITLE = {A Domain-independent Algorithm for Plan\n\t\t Adaptation},\n\tJOURNAL = JAIR,\n\tYEAR = {1995},\n\tVOLUME = {2},\n\tPAGES = {319--360}\n}"
+    key: Hanks:adapt
+    mode:
+      author: creatorlist
+      journal: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "JAIR"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

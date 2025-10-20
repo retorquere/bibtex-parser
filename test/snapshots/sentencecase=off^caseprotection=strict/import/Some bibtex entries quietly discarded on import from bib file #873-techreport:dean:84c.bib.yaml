@@ -1,0 +1,29 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Thomas
+          lastName: Dean
+      institution:
+        - Yale University Computer Science Department
+      title: A TNMS User's Manual
+      year: '1984'
+    input: |-
+      @TechReport{Dean:84c,
+      author = "Thomas Dean",
+      title = "A TNMS User's Manual",
+      institution = "Yale University Computer Science Department",
+      year = "1984"}
+    key: Dean:84c
+    mode:
+      author: creatorlist
+      institution: literallist
+      title: title
+      year: literal
+    type: techreport
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

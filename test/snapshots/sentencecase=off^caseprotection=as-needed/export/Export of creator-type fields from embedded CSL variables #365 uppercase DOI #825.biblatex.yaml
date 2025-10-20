@@ -1,0 +1,273 @@
+comments: []
+entries:
+  - fields:
+      annotation: '{:X-genre: xxx}'
+      author:
+        - firstName: Ann
+          lastName: Author
+      date: '2015'
+      editor:
+        - firstName: Emma
+          lastName: Editrix
+        - firstName: Ed
+          lastName: Editor
+      institution:
+        - Institution
+      location:
+        - Place
+      number: '77'
+      title: A Report
+      type: working paper
+    input: |-
+      @report{Author2015,
+        title = {A Report},
+        author = {Author, Ann},
+        editor = {Editrix, Emma and Editor, Ed},
+        date = {2015},
+        institution = {{Institution}},
+        location = {{Place}},
+        annotation = {\{:X-genre: xxx\}},
+        number = {77},
+        type = {working paper}
+      }
+    key: Author2015
+    mode:
+      annotation: richtext
+      author: creatorlist
+      date: literal
+      editor: creatorlist
+      institution: literallist
+      location: literallist
+      number: literal
+      title: title
+      type: literal
+    type: report
+  - fields:
+      author:
+        - firstName: John
+          lastName: Blair
+      booktitle: Oxford Dictionary of National Biography
+      date: '2004'
+      doi: 10.1093/ref:odnb/10183
+      editor:
+        - firstName: H.C.G.
+          lastName: Matthew
+        - firstName: Brian Howard
+          lastName: Harrison
+      location:
+        - Oxford
+      publisher:
+        - Oxford University Press
+      title: Frithuswith (<i>d.</i> 727)
+      url: http://www.oxforddnb.com/view/article/10183
+      urldate: '2014-06-13'
+    input: |-
+      @inreference{Blair2004,
+        title = {Frithuswith ({\emph{d.}} 727)},
+        booktitle = {Oxford Dictionary of National Biography},
+        author = {Blair, John},
+        editor = {Matthew, H.C.G. and Harrison, Brian Howard},
+        date = {2004},
+        publisher = {{Oxford University Press}},
+        location = {{Oxford}},
+        doi = {10.1093/ref:odnb/10183},
+        url = {http://www.oxforddnb.com/view/article/10183},
+        urldate = {2014-06-13}
+      }
+    key: Blair2004
+    mode:
+      author: creatorlist
+      booktitle: title
+      date: literal
+      doi: verbatim
+      editor: creatorlist
+      location: literallist
+      publisher: literallist
+      title: title
+      url: verbatim
+      urldate: literal
+    type: inreference
+  - fields:
+      date: '2015'
+      editor:
+        - firstName: John
+          lastName: Doe
+        - firstName: Rob
+          lastName: Roe
+      editortype: director
+      location:
+        - US/GB
+      publisher:
+        - The Distributor
+      title: A Film
+    input: |-
+      @movie{Doe2015,
+        title = {A Film},
+        editor = {Doe, John and Roe, Rob},
+        date = {2015},
+        publisher = {{The Distributor}},
+        location = {{US/GB}},
+        editortype = {director}
+      }
+    key: Doe2015
+    mode:
+      date: literal
+      editor: creatorlist
+      editortype: literal
+      location: literallist
+      publisher: literallist
+      title: title
+    type: movie
+  - fields:
+      annotation: '{:X-genre: xxx}'
+      editor:
+        - name: Xxx
+    input: |-
+      @inreference{emptybook,
+        editor = {{Xxx}},
+        annotation = {\{:X-genre: xxx\}}
+      }
+    key: emptybook
+    mode:
+      annotation: richtext
+      editor: creatorlist
+    type: inreference
+  - fields:
+      booktitle: Friends
+      date: '2003'
+      editor:
+        - firstName: Gail
+          lastName: Mancuso
+      editora:
+        - firstName: Michael
+          lastName: Curtis
+        - firstName: Gregory S.
+          lastName: Malins
+      editoratype: scriptwriter
+      editortype: director
+      langid: american
+      location:
+        - US
+      number: '1'
+      origdate: '1996-09-16'
+      origpublisher:
+        - NBC
+      publisher:
+        - Warner Home Video
+      title: The One with the Princess Leia Fantasy
+      volume: '3'
+    input: |-
+      @video{friends:leia:dvd,
+        title = {The One with the {{Princess Leia}} Fantasy},
+        booktitle = {Friends},
+        editor = {Mancuso, Gail},
+        date = {2003},
+        origdate = {1996-09-16},
+        volume = {3},
+        publisher = {{Warner Home Video}},
+        location = {{US}},
+        editora = {Curtis, Michael and Malins, Gregory S.},
+        editoratype = {scriptwriter},
+        editortype = {director},
+        langid = {american},
+        number = {1},
+        origpublisher = {{NBC}}
+      }
+    key: friends:leia:dvd
+    mode:
+      booktitle: title
+      date: literal
+      editor: creatorlist
+      editora: creatorlist
+      editoratype: literal
+      editortype: literal
+      langid: literal
+      location: literallist
+      number: literal
+      origdate: literal
+      origpublisher: literallist
+      publisher: literallist
+      title: title
+      volume: literal
+    type: video
+  - fields:
+      booktitle: Friends
+      date: '1996-09-16'
+      editor:
+        - firstName: Gail
+          lastName: Mancuso
+      editora:
+        - firstName: Michael
+          lastName: Curtis
+        - firstName: Gregory S.
+          lastName: Malins
+      editoratype: scriptwriter
+      editortype: director
+      langid: american
+      location:
+        - US
+      number: '1'
+      publisher:
+        - NBC
+      title: The One with the Princess Leia Fantasy
+      volume: '3'
+    input: |-
+      @video{friends:leia:tv,
+        title = {The One with the {{Princess Leia}} Fantasy},
+        booktitle = {Friends},
+        editor = {Mancuso, Gail},
+        date = {1996-09-16},
+        volume = {3},
+        publisher = {{NBC}},
+        location = {{US}},
+        editora = {Curtis, Michael and Malins, Gregory S.},
+        editoratype = {scriptwriter},
+        editortype = {director},
+        langid = {american},
+        number = {1}
+      }
+    key: friends:leia:tv
+    mode:
+      booktitle: title
+      date: literal
+      editor: creatorlist
+      editora: creatorlist
+      editoratype: literal
+      editortype: literal
+      langid: literal
+      location: literallist
+      number: literal
+      publisher: literallist
+      title: title
+      volume: literal
+    type: video
+  - fields:
+      date: '1964'
+      editor:
+        - firstName: Stanley
+          lastName: Kubrick
+      editortype: director
+      shorttitle: Dr. Strangelove
+      title: 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb'
+    input: |-
+      @video{Kubrick1964,
+        title = {Dr. {{Strangelove}} or: How {{I}} Learned to Stop Worrying and Love the Bomb},
+        shorttitle = {Dr. {{Strangelove}}},
+        editor = {Kubrick, Stanley},
+        date = {1964},
+        editortype = {director}
+      }
+    key: Kubrick1964
+    mode:
+      date: literal
+      editor: creatorlist
+      editortype: literal
+      shorttitle: title
+      title: title
+    type: video
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

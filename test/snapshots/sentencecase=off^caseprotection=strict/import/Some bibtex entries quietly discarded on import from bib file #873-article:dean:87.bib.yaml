@@ -1,0 +1,25 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Thomas
+          lastName: Dean
+        - firstName: Drew V.
+          lastName: McDermott
+      journal: Artificial Intelligence
+      title: Temporal data base management
+      year: '1987'
+    input: "@article(Dean:87,\n\tauthor =\t{Thomas Dean and Drew V. McDermott},\n\tyear =\t\t{1987},\n\tjournal =\t{Artificial Intelligence},\n\ttitle =\t\t{Temporal data base management}\n)"
+    key: Dean:87
+    mode:
+      author: creatorlist
+      journal: literal
+      title: title
+      year: literal
+    type: article
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

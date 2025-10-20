@@ -1,0 +1,82 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: E.
+          lastName: Blanton
+        - firstName: M.
+          lastName: Allman
+        - firstName: L.
+          lastName: Wang
+        - firstName: I.
+          lastName: Jarvinen
+        - firstName: M.
+          lastName: Kojo
+        - firstName: Y.
+          lastName: Nishida
+      institution:
+        - RFC Editor
+      month: '8'
+      note: >-
+        <a
+        href="https://tools.ietf.org/html/rfc6675">https://tools.ietf.org/html/rfc6675</a>
+      number: '6675'
+      title: >-
+        A Conservative Loss Recovery Algorithm Based on Selective Acknowledgment
+        (SACK) for TCP
+      type: RFC
+      year: '2012'
+    input: |-
+      @techreport{blantonConservativeLossRecovery2012,
+        title = {A {{Conservative Loss Recovery Algorithm Based}} on {{Selective Acknowledgment}} ({{SACK}}) for {{TCP}}},
+        author = {Blanton, E. and Allman, M. and Wang, L. and Jarvinen, I. and Kojo, M. and Nishida, Y.},
+        year = {2012},
+        month = aug,
+        institution = {{RFC Editor}},
+        note = {\url{https://tools.ietf.org/html/rfc6675}},
+        number = {6675},
+        type = {{{RFC}}}
+      }
+    key: blantonConservativeLossRecovery2012
+    mode:
+      author: creatorlist
+      institution: literallist
+      month: literal
+      note: richtext
+      number: literal
+      title: title
+      type: literal
+      year: literal
+    type: techreport
+  - fields:
+      howpublished: sctplab
+      month: '11'
+      note: >-
+        <a
+        href="https://github.com/sctplab/usrsctp">https://github.com/sctplab/usrsctp</a>
+      title: >-
+        A Portable SCTP Userland Stack. Contribute to Sctplab/Usrsctp
+        Development by Creating an Account on GitHub
+      year: '2018'
+    input: |-
+      @misc{PortableSCTPUserland2018,
+        title = {A Portable {{SCTP}} Userland Stack. {{Contribute}} to Sctplab/Usrsctp Development by Creating an Account on {{GitHub}}},
+        year = {2018},
+        month = nov,
+        howpublished = {sctplab},
+        note = {\url{https://github.com/sctplab/usrsctp}}
+      }
+    key: PortableSCTPUserland2018
+    mode:
+      howpublished: literal
+      month: literal
+      note: richtext
+      title: title
+      year: literal
+    type: misc
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

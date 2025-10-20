@@ -1,0 +1,38 @@
+comments: []
+entries:
+  - fields:
+      address: Edinburgh
+      author:
+        - firstName: Daniel P.
+          lastName: Friedman
+        - firstName: David S.
+          lastName: Wise
+      booktitle: Automata, languages, and programming
+      editor:
+        - firstName: S.
+          lastName: Michaelson
+        - firstName: R.
+          lastName: Milner
+      pages: 257-284
+      publisher:
+        - Edinburgh University Press
+      title: CONS should not evaluate its arguments
+      year: '1976'
+    input: "@book(Wise:1976,\n\tauthor =\t{Daniel P. Friedman and David S. Wise},\n\tbooktitle =\t{Automata, Languages, and Programming},\n\taddress =\t{Edinburgh},\n\tyear =\t\t{1976},\n\teditor =\t{S. Michaelson and R. Milner},\n\tpublisher =\t{Edinburgh University Press},\n\tpages =\t\t{257-284},\n\ttitle =\t\t{CONS should not evaluate its arguments}\n)"
+    key: Wise:1976
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      pages: literal
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

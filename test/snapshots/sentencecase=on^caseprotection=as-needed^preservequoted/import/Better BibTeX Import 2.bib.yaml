@@ -1,0 +1,67 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: Milton
+          lastName: Abramowitz
+        - firstName: Irene A.
+          lastName: Stegun
+      edition: ninth Dover printing, tenth GPO printing
+      publisher:
+        - Dover
+      title: >-
+        Handbook of mathematical functions with formulas, graphs, and
+        mathematical tables
+      year: '1964'
+    input: |-
+      @book{abramowitz+stegun,
+        author = {{Abramowitz}, Milton and {Stegun}, Irene A.},
+        title = {Handbook of Mathematical Functions with Formulas, Graphs, and Mathematical Tables},
+        publisher = {Dover},
+        year = {1964},
+        address = {New York},
+        edition = {ninth Dover printing, tenth GPO printing}
+      }
+    key: abramowitz+stegun
+    mode:
+      address: literal
+      author: creatorlist
+      edition: literal
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+  - fields:
+      author:
+        - firstName: Joe
+          lastName: Torre
+        - firstName: Tom
+          lastName: Verducci
+      isbn: '0385527403'
+      publisher:
+        - Doubleday
+      title: The yankee years
+      year: '2008'
+    input: |-
+      @book{Torre2008,
+        author = {Torre, Joe and Verducci, Tom},
+        publisher = {Doubleday},
+        title = {The Yankee Years},
+        year = {2008},
+        isbn = {0385527403}
+      }
+    key: Torre2008
+    mode:
+      author: creatorlist
+      isbn: literal
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,40 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: Kurt
+          lastName: Konolige
+      booktitle: Machine intelligence 10
+      chapter: '2'
+      editor:
+        - firstName: J.E.
+          lastName: Hayes
+        - firstName: D.
+          lastName: Michie
+      pages: 41–72
+      publisher:
+        - Halstead
+      title: >-
+        A first-order formalisation of knowledge and action for a multi-agent
+        planning system
+      year: '1982'
+    input: "@INCOLLECTION{Konolige:82,\n\tAUTHOR = {Kurt Konolige},\n\tTITLE = {A first-order formalisation of knowledge and action\n\t\t for a multi-agent planning system},\n\tBOOKTITLE = {Machine Intelligence 10},\n\tPUBLISHER = {Halstead},\n\tYEAR = {1982},\n\tEDITOR = {J.E. Hayes and D. Michie},\n\tCHAPTER = {2},\n\tPAGES = {41--72},\n\tADDRESS = {New York}\n}"
+    key: Konolige:82
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      chapter: literal
+      editor: creatorlist
+      pages: literal
+      publisher: literallist
+      title: title
+      year: literal
+    type: incollection
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

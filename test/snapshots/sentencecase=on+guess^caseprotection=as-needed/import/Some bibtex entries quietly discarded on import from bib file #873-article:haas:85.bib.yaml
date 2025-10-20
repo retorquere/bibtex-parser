@@ -1,0 +1,29 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Andrew R.
+          lastName: Haas
+      journal: CI
+      pages: 59–70
+      title: Possible events, actual events, and robots
+      volume: '1'
+      year: '1985'
+    input: "@ARTICLE{Haas:85,\n\tAUTHOR = {Andrew R. Haas},\n\tTITLE = \"Possible Events, Actual Events, and robots\",\n\tJOURNAL = CI,\n\tYEAR = {1985},\n\tVOLUME = {1},\n\tPAGES = {59--70}\n}"
+    key: Haas:85
+    mode:
+      author: creatorlist
+      journal: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "CI"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

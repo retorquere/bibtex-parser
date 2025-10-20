@@ -1,0 +1,21 @@
+comments: []
+entries:
+  - fields:
+      title: >-
+        Non-breaking space: ; Accented characters: Ñ and ñ; tilde in <span
+        class="nocase">URL</span>: <span
+        class="nocase">http://example.com/~user</span>
+    input: |-
+      @article{test-ticket1661,
+        title = {Non-Breaking Space: ; Accented Characters: Ñ and ñ; Tilde in {{URL}}: {{http://example.com/\textasciitilde user}}}
+      }
+    key: test-ticket1661
+    mode:
+      title: title
+    type: article
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

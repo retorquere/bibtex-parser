@@ -1,0 +1,33 @@
+comments: []
+entries:
+  - fields:
+      address: Hillsdale, NJ
+      author:
+        - name: MCDERMOTT
+      booktitle: Formal Theories of the Commonsense World
+      editor:
+        - firstName: J.
+          lastName: Hobbs
+      publisher:
+        - Ablex
+      title: Reasoning about plans
+      year: '1984'
+    input: "@inbook(McDermott:84a,\n\tauthor =\tMCDERMOTT,\n\tbooktitle =\t{Formal Theories of the Commonsense World},\n\taddress =\t{Hillsdale, NJ},\n\tyear =\t\t{1984},\n\teditor =\t{Hobbs, J.},\n\tpublisher =\t{Ablex},\n\ttitle =\t\t{Reasoning about plans}\n)"
+    key: McDermott:84a
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: inbook
+errors:
+  - error: Unresolved @string reference "MCDERMOTT"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

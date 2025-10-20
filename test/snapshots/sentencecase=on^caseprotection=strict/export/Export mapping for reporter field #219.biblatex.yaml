@@ -1,0 +1,51 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Kaetinyeri
+          lastName: Commonwealth
+          prefix: v
+      date: '1998-04-01'
+      institution:
+        - HCA
+      journaltitle: CLR
+      keywords:
+        - au
+      pages: '337'
+      shorttitle: Kartinyeri
+      title: Kartinyeri v <span class="nocase">Commonwealth</span>
+      translator:
+        - lastName: Kartinyeri
+      volume: '195'
+    input: |-
+      @jurisdiction{kartinyeri,
+        title = {Kartinyeri v {{Commonwealth}}},
+        shorttitle = {Kartinyeri},
+        author = {Kaetinyeri v Commonwealth},
+        date = {1998-04-01},
+        journaltitle = {CLR},
+        volume = {195},
+        pages = {337},
+        institution = {{HCA}},
+        keywords = {au},
+        translator = {Kartinyeri}
+      }
+    key: kartinyeri
+    mode:
+      author: creatorlist
+      date: literal
+      institution: literallist
+      journaltitle: literal
+      keywords: verbatimlist
+      pages: literal
+      shorttitle: title
+      title: title
+      translator: creatorlist
+      volume: literal
+    type: jurisdiction
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

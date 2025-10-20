@@ -1,0 +1,152 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Name
+          lastName: Name
+      date: '2018'
+      title: 1 O<sub>abcde</sub>
+    input: |-
+      @article{ref1,
+        title = {1 {{O}}{\textsubscript{abcde}}},
+        author = {Name, Name},
+        date = {2018}
+      }
+    key: ref1
+    mode:
+      author: creatorlist
+      date: literal
+      title: title
+    type: article
+  - fields:
+      author:
+        - firstName: Name
+          lastName: Name
+      date: '2018'
+      title: 2 O<sub>abcde</sub> Test
+    input: |-
+      @article{ref2,
+        title = {2 {{O}}{\textsubscript{abcde}} Test},
+        author = {Name, Name},
+        date = {2018}
+      }
+    key: ref2
+    mode:
+      author: creatorlist
+      date: literal
+      title: title
+    type: article
+  - fields:
+      author:
+        - firstName: Name
+          lastName: Name
+      date: '2018'
+      title: O<sub>abcde</sub>
+    input: |-
+      @article{ref3,
+        title = {{{O{\textsubscript{abcde}}}}},
+        author = {Name, Name},
+        date = {2018}
+      }
+    key: ref3
+    mode:
+      author: creatorlist
+      date: literal
+      title: title
+    type: article
+  - fields:
+      author:
+        - firstName: Name
+          lastName: Name
+      date: '2018'
+      title: Oₓ
+    input: |-
+      @article{ref4,
+        title = {O{\textsubscript{x}}},
+        author = {Name, Name},
+        date = {2018}
+      }
+    key: ref4
+    mode:
+      author: creatorlist
+      date: literal
+      title: title
+    type: article
+  - fields:
+      author:
+        - firstName: Name
+          lastName: Name
+      date: '2018'
+      title: Oₓ Test
+    input: |-
+      @article{ref5,
+        title = {O{\textsubscript{x}} Test},
+        author = {Name, Name},
+        date = {2018}
+      }
+    key: ref5
+    mode:
+      author: creatorlist
+      date: literal
+      title: title
+    type: article
+  - fields:
+      author:
+        - firstName: Name
+          lastName: Name
+      date: '2018'
+      title: Oₓ
+    input: |-
+      @article{ref6,
+        title = {{{O{\textsubscript{x}}}}},
+        author = {Name, Name},
+        date = {2018}
+      }
+    key: ref6
+    mode:
+      author: creatorlist
+      date: literal
+      title: title
+    type: article
+  - fields:
+      author:
+        - firstName: Name
+          lastName: Name
+      date: '2018'
+      title: O₇₋ₓ
+    input: |-
+      @article{ref7,
+        title = {O{\textsubscript{7-x}}},
+        author = {Name, Name},
+        date = {2018}
+      }
+    key: ref7
+    mode:
+      author: creatorlist
+      date: literal
+      title: title
+    type: article
+  - fields:
+      author:
+        - firstName: Name
+          lastName: Name
+      date: '2018'
+      title: O₇₋ₓ Test
+    input: |-
+      @article{ref8,
+        title = {O{\textsubscript{7-x}} Test},
+        author = {Name, Name},
+        date = {2018}
+      }
+    key: ref8
+    mode:
+      author: creatorlist
+      date: literal
+      title: title
+    type: article
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

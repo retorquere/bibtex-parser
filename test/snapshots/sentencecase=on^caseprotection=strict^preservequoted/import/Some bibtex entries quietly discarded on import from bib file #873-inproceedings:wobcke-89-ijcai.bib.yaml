@@ -1,0 +1,33 @@
+comments:
+  - Leora
+entries:
+  - fields:
+      author:
+        - firstName: Wayne
+          lastName: Wobcke
+      booktitle: <span class="nocase">IJCAI-89</span>
+      pages: 1461–1466
+      publisher:
+        - KAUFMANN
+      title: A schema-based approach to understanding subjunctive conditionals
+      year: '1989'
+    input: "@INPROCEEDINGS{Wobcke-89-IJCAI,\n\tAUTHOR = {Wayne Wobcke},\n\tTITLE = {A Schema-based Approach to Understanding \n\t\t\tSubjunctive Conditionals},\n\tBOOKTITLE = IJCAI-89,\n\tPUBLISHER = KAUFMANN,\n\tYEAR = {1989},\n\tPAGES = {1461--1466}\n}"
+    key: Wobcke-89-IJCAI
+    mode:
+      author: creatorlist
+      booktitle: title
+      pages: literal
+      publisher: literallist
+      title: title
+      year: literal
+    type: inproceedings
+errors:
+  - error: Unresolved @string reference "IJCAI-89"
+    input: ''
+  - error: Unresolved @string reference "KAUFMANN"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

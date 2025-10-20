@@ -1,0 +1,40 @@
+comments: []
+entries:
+  - fields:
+      date: '2010-12-23'
+      institution:
+        - CE, Ass.
+      journaltitle: Rec.
+      langid: french
+      number: '337033'
+      pages: '649'
+      title: Dalain
+      volume: I
+    input: |-
+      @jurisdiction{_dalain_2010,
+        title = {Dalain},
+        date = {2010-12-23},
+        journaltitle = {Rec.},
+        volume = {I},
+        pages = {649},
+        institution = {{CE, Ass.}},
+        langid = {french},
+        number = {337033}
+      }
+    key: _dalain_2010
+    mode:
+      date: literal
+      institution: literallist
+      journaltitle: literal
+      langid: literal
+      number: literal
+      pages: literal
+      title: title
+      volume: literal
+    type: jurisdiction
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,46 @@
+comments: []
+entries:
+  - fields:
+      address: Carlton, AUSTRALIA
+      author:
+        - firstName: Elizabeth
+          lastName: Sonnenberg
+        - firstName: Gil
+          lastName: Tidhar
+        - firstName: Eric
+          lastName: Werner
+        - firstName: David
+          lastName: Kinny
+        - firstName: Magnus
+          lastName: Ljungberg
+        - firstName: Anand
+          lastName: Rao
+      institution:
+        - AAII
+      month: '6'
+      note: Revised version of 1993, original July, 1992
+      number: '26'
+      title: Planned team activity
+      type: Technical Note
+      year: '1993'
+    input: "@TECHREPORT(SonnenbergETAL:93,\n\tAUTHOR = {Elizabeth Sonnenberg and Gil Tidhar and Eric Werner\n\t\t  and David Kinny and Magnus Ljungberg and Anand Rao},\n\tTITLE = \"Planned Team Activity\",\n\tINSTITUTION = AAII,\n\tYEAR = {1993},\n\tTYPE = {Technical Note},\n\tNUMBER = {26},\n\tADDRESS = {Carlton, AUSTRALIA},\n\tMONTH = jun,\n\tNOTE = {Revised version of 1993, original July, 1992}\n)"
+    key: SonnenbergETAL:93
+    mode:
+      address: literal
+      author: creatorlist
+      institution: literallist
+      month: literal
+      note: richtext
+      number: literal
+      title: title
+      type: literal
+      year: literal
+    type: techreport
+errors:
+  - error: Unresolved @string reference "AAII"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

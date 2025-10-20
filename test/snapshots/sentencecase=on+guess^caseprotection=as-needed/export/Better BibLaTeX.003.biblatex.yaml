@@ -1,0 +1,60 @@
+comments: []
+entries:
+  - crossref:
+      donated: []
+      inherited:
+        - editor
+    fields:
+      author:
+        - firstName: First
+          lastName: Author
+        - firstName: Second
+          lastName: Author
+      crossref: conference:06
+      editor: &ref_0
+        - firstName: First
+          lastName: Editor
+        - firstName: Second
+          lastName: Editor
+      pages: 330—331
+      title: Some publication title
+    input: |-
+      @inproceedings{author:06,
+        title = {Some Publication Title},
+        author = {Author, First and Author, Second},
+        pages = {330---331},
+        crossref = {conference:06}
+      }
+    key: author:06
+    mode:
+      author: creatorlist
+      crossref: literal
+      pages: literal
+      title: title
+    type: inproceedings
+  - crossref:
+      donated:
+        - editor
+      inherited: []
+    fields:
+      date: 2006-10
+      editor: *ref_0
+      title: Proceedings of the Xth conference on XYZ
+    input: |-
+      @book{conference:06,
+        title = {Proceedings of the {{Xth}} Conference on {{XYZ}}},
+        editor = {Editor, First and Editor, Second},
+        date = {2006-10}
+      }
+    key: conference:06
+    mode:
+      date: literal
+      editor: creatorlist
+      title: title
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

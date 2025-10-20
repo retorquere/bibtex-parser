@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      address: Oxford
+      author:
+        - firstName: David K.
+          lastName: Lewis
+      publisher:
+        - Basil Blackwell
+      title: Counterfactuals
+      year: '1973'
+    input: "@book(Lewis:73,\n\tauthor =\t{David K. Lewis},\n\taddress =\t{Oxford},\n\tyear =\t\t{1973},\n\tpublisher =\t{Basil Blackwell},\n\ttitle =\t\t{Counterfactuals}\n)"
+    key: Lewis:73
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

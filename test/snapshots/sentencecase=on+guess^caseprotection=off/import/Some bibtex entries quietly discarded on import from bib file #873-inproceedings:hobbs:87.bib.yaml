@@ -1,0 +1,29 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Jerry R.
+          lastName: Hobbs
+        - firstName: Paul
+          lastName: Martin
+      booktitle: IJCAI-87
+      pages: 520-523
+      title: Local pragmatics
+      year: '1987'
+    input: "@inproceedings(Hobbs:87,\n\tauthor =\t{Jerry R. Hobbs and Paul Martin},\n\tyear =\t\t{1987},\n\tbooktitle =\tIJCAI-87,\n\ttitle =\t\t\"Local Pragmatics\",\n\tpages =\t\t{520-523}\n)"
+    key: Hobbs:87
+    mode:
+      author: creatorlist
+      booktitle: title
+      pages: literal
+      title: title
+      year: literal
+    type: inproceedings
+errors:
+  - error: Unresolved @string reference "IJCAI-87"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

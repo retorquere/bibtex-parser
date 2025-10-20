@@ -1,0 +1,24 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Patrick
+          lastName: Hayes
+      institution:
+        - University of Essex Computer Science Department
+      title: The Naive Physics Manifesto
+      year: '1978'
+    input: "@techreport(Hayes:Manifesto,\n\tauthor =\t{Patrick Hayes},\n\tyear =\t\t{1978},\n\tinstitution =\t{University of Essex Computer Science Department},\n\ttitle =\t\t{The Naive Physics Manifesto}\n)"
+    key: Hayes:Manifesto
+    mode:
+      author: creatorlist
+      institution: literallist
+      title: title
+      year: literal
+    type: techreport
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

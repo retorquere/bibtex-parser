@@ -1,0 +1,31 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Ken
+          lastName: Currie
+        - firstName: Austin
+          lastName: Tate
+      journal: AIJ
+      pages: 49–86
+      title: 'O-Plan: the open planning architecture'
+      volume: '52'
+      year: '1991'
+    input: "@ARTICLE(Tate:OPLAN,\n\tAUTHOR = {Ken Currie and Austin Tate},\n\tTITLE = \"O-{P}lan:  the open planning architecture\",\n\tJOURNAL = AIJ,\n\tYEAR = {1991},\n\tVOLUME = {52},\n\tPAGES = {49--86}\n)"
+    key: Tate:OPLAN
+    mode:
+      author: creatorlist
+      journal: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "AIJ"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

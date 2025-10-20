@@ -1,0 +1,56 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Don P.
+          lastName: Mitchell
+      booktitle: PROC_SIGGRAPH93_01
+      date: 1996-08
+      editor:
+        - firstName: Holly
+          lastName: Rushmeier
+      organization:
+        - ACM_SIGGRAPH
+      pages: 277–280
+      publisher:
+        - AW
+      series: ACS
+      title: Consequences of Stratified Sampling in Graphics
+    input: |-
+      @inproceedings{Mitchell96,
+        title = {Consequences of {{Stratified Sampling}} in {{Graphics}}},
+        booktitle = PROC_SIGGRAPH93_01,
+        author = {Mitchell, Don P.},
+        editor = {Rushmeier, Holly},
+        date = {1996-08},
+        pages = {277--280},
+        publisher = AW,
+        organization = ACM_SIGGRAPH,
+        series = ACS
+      }
+    key: Mitchell96
+    mode:
+      author: creatorlist
+      booktitle: title
+      date: literal
+      editor: creatorlist
+      organization: literallist
+      pages: literal
+      publisher: literallist
+      series: title
+      title: title
+    type: inproceedings
+errors:
+  - error: Unresolved @string reference "PROC_SIGGRAPH93_01"
+    input: ''
+  - error: Unresolved @string reference "AW"
+    input: ''
+  - error: Unresolved @string reference "ACM_SIGGRAPH"
+    input: ''
+  - error: Unresolved @string reference "ACS"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

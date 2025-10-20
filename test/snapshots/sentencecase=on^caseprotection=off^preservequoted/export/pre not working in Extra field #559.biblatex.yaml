@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      annotation: Hello hej
+      author:
+        - firstName: Morten
+          lastName: Brøns
+      title: pretest
+    input: |-
+      @article{Brons:pretest,
+        title = {$pretest$},
+        author = {Brøns, Morten},
+        annotation = {Hello  hej}
+      }
+    key: Brons:pretest
+    mode:
+      annotation: richtext
+      author: creatorlist
+      title: title
+    type: article
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

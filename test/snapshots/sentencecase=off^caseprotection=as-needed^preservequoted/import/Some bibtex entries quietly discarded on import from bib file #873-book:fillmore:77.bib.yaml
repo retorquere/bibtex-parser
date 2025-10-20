@@ -1,0 +1,36 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: Charles J.
+          lastName: Fillmore
+      booktitle: 'Syntax and Semantics 8: Grammatical Relations'
+      editor:
+        - firstName: P.
+          lastName: Cole
+        - firstName: J.M.
+          lastName: Sadock
+      pages: 59-81
+      publisher:
+        - Academic Press
+      title: The case for case reopened
+      year: '1977'
+    input: "@book(Fillmore:77,\n\tauthor =\t{Charles J. Fillmore},\n\tbooktitle =\t{Syntax and Semantics 8: Grammatical Relations},\n\taddress =\t{New York},\n\tyear =\t\t{1977},\n\teditor =\t{P. Cole and J.M. Sadock},\n\tpublisher =\t{Academic Press},\n\tpages =\t\t{59-81},\n\ttitle =\t\t{The case for case reopened}\n)"
+    key: Fillmore:77
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      pages: literal
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

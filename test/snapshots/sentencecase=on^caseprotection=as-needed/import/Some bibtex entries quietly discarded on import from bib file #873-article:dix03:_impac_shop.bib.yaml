@@ -1,0 +1,42 @@
+comments: []
+entries:
+  - fields:
+      annote: >-
+        A somewhat disappointing paper. The most difficult problem (credit where
+        credit is due, this was identified by the authors) in having SHOP
+        control other agents, is that in evaluating preconditions, SHOP must be
+        able to project the effects of the actions of other agents. However,
+        this very interesting engineering problem is just made the
+        responsibility of the “monitoring agent” and left as an exercise for the
+        reader.
+      author:
+        - firstName: J.
+          lastName: Dix
+        - firstName: H.
+          lastName: Munoz-Avila
+        - firstName: D.
+          lastName: Nau
+        - firstName: L.
+          lastName: Zhang
+      journal: amai
+      note: forthcoming
+      title: 'IMPACTing SHOP: Putting an AI planner into a multi-agent environment'
+      year: '2003'
+    input: "@Article{dix03:_impac_shop,\n  author =\t {J. Dix and H. Munoz-Avila and D. Nau and L. Zhang},\n  title =\t {{IMPACT}ing {SHOP}: Putting an AI Planner into a\n                  Multi-Agent Environment},\n  journal =\t amai,\n  year =\t 2003,\n  note =\t {forthcoming},\n  annote =\t {A somewhat disappointing paper. The most difficult\n                  problem (credit where credit is due, this was\n                  identified by the authors) in having {SHOP} control\n                  other agents, is that in evaluating preconditions,\n                  {SHOP} must be able to project the effects of the\n                  actions of other agents. However, this very\n                  interesting engineering problem is just made the\n                  responsibility of the ``monitoring agent'' and left\n                  as an exercise for the reader.}\n}"
+    key: dix03:_impac_shop
+    mode:
+      annote: richtext
+      author: creatorlist
+      journal: literal
+      note: richtext
+      title: title
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "amai"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

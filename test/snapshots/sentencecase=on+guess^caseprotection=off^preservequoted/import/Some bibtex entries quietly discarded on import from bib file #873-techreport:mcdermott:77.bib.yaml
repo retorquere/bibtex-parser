@@ -1,0 +1,29 @@
+comments: []
+entries:
+  - fields:
+      address: Cambridge, Mass.
+      author:
+        - name: MCDERMOTT
+      institution:
+        - >-
+          Massachusetts Institute of Technology, Artificial Intelligence
+          Laboratory
+      title: Flexibility and efficiency in a computer program for designing circuits
+      year: June 1977
+    input: "@techreport(McDermott:77,\n\tauthor =\tMCDERMOTT,\n\taddress =\t{Cambridge, Mass.},\n\tyear =\t\t{June 1977},\n\tinstitution =\t{Massachusetts Institute of Technology, \n\t\t\t Artificial Intelligence Laboratory},\n\ttitle =\t\t{Flexibility and Efficiency in a Computer \n\t\t\t Program for Designing Circuits}\n)"
+    key: McDermott:77
+    mode:
+      address: literal
+      author: creatorlist
+      institution: literallist
+      title: title
+      year: literal
+    type: techreport
+errors:
+  - error: Unresolved @string reference "MCDERMOTT"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

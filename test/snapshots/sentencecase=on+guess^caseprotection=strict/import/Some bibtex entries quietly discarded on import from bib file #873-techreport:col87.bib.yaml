@@ -1,0 +1,30 @@
+comments: []
+entries:
+  - fields:
+      address: New Haven, CT
+      author:
+        - firstName: Gregg
+          lastName: Collins
+      institution:
+        - Department of Computer Science, Yale University
+      number: '599'
+      title: 'Plan creation: Using strategies as blueprints'
+      type: YALEU/CSD/RR
+      year: '1987'
+    input: "@TECHREPORT(Col87,\n\tAUTHOR = {Gregg Collins},\n\tTITLE = \"Plan creation: Using strategies as blueprints\",\n\tINSTITUTION = {Department of Computer Science, Yale\n  University},\n\tYEAR = {1987},\n\tTYPE = {{YALEU/CSD/RR}},\n\tNUMBER = {599},\n\tADDRESS = {New Haven, CT}\n)"
+    key: Col87
+    mode:
+      address: literal
+      author: creatorlist
+      institution: literallist
+      number: literal
+      title: title
+      type: literal
+      year: literal
+    type: techreport
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

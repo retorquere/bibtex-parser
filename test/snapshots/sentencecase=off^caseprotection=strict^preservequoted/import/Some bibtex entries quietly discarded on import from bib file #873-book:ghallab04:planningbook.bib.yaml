@@ -1,0 +1,30 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Malik
+          lastName: Ghallab
+        - firstName: Dana
+          lastName: Nau
+        - firstName: Paolo
+          lastName: Traverso
+      publisher:
+        - KAUFMANN
+      title: 'Automated Planning: Theory and Practice'
+      year: '2004'
+    input: "@Book{ghallab04:planningBook,\n  author =\t {Malik Ghallab and Dana Nau and Paolo Traverso},\n  title = \t {Automated Planning: Theory and Practice},\n  publisher = \t KAUFMANN,\n  year = \t 2004\n}"
+    key: ghallab04:planningBook
+    mode:
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors:
+  - error: Unresolved @string reference "KAUFMANN"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

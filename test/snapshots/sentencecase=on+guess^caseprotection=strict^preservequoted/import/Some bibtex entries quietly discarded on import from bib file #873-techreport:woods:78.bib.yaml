@@ -1,0 +1,29 @@
+comments: []
+entries:
+  - fields:
+      address: Cambridge, Mass.
+      author:
+        - firstName: William A.
+          lastName: Woods
+      institution:
+        - Bolt Beranek
+        - Newman
+      title: >-
+        Research in natural language understanding: Quarterly technical progress
+        report no. 1,1
+      year: January 1978
+    input: "@techreport(Woods:78,\n\tauthor =\t{William A. Woods},\n\taddress =\t{Cambridge, Mass.},\n\tyear =\t\t{January 1978},\n\tinstitution =\t{Bolt Beranek and Newman},\n\ttitle =\t\t{Research in Natural Language Understanding: \n\t\t\t Quarterly Technical Progress Report No. 1,1}\n)"
+    key: Woods:78
+    mode:
+      address: literal
+      author: creatorlist
+      institution: literallist
+      title: title
+      year: literal
+    type: techreport
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      address: Belmont, Calif.
+      author:
+        - firstName: Clark
+          lastName: Weissman
+      publisher:
+        - Dickenson
+      title: LISP 1.5 Primer
+      year: '1967'
+    input: "@book(Weissman:67,\n\tauthor =\t{Clark Weissman},\n\taddress =\t{Belmont, Calif.},\n\tyear =\t\t{1967},\n\tpublisher =\t{Dickenson},\n\ttitle =\t\t{LISP 1.5 Primer}\n)"
+    key: Weissman:67
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

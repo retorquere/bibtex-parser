@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: Elaine
+          lastName: Rich
+      publisher:
+        - McGraw-Hill
+      title: Artificial Intelligence
+      year: '1983'
+    input: "@book(Rich:83,\n\tauthor =\t{Elaine Rich},\n\taddress =\t{New York},\n\tyear =\t\t{1983},\n\tpublisher =\t{McGraw-Hill},\n\ttitle =\t\t{Artificial Intelligence}\n)"
+    key: Rich:83
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

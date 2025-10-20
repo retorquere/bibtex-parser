@@ -1,0 +1,40 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Thomas
+          lastName: Dean
+      booktitle: IJCAI-85
+      month: '8'
+      organization:
+        - IJCAI
+      pages: 1060-1062
+      title: Temporal reasoning involving counterfactuals and disjunctions
+      year: '1985'
+    input: |-
+      @InProceedings{dean85,
+      author = "Thomas Dean",
+      title = "Temporal Reasoning Involving Counterfactuals and Disjunctions",
+      booktitle = IJCAI-85,
+      organization = "IJCAI",
+      pages = "1060-1062",
+      month = "August",
+      year = "1985"}
+    key: dean85
+    mode:
+      author: creatorlist
+      booktitle: title
+      month: literal
+      organization: literallist
+      pages: literal
+      title: title
+      year: literal
+    type: inproceedings
+errors:
+  - error: Unresolved @string reference "IJCAI-85"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

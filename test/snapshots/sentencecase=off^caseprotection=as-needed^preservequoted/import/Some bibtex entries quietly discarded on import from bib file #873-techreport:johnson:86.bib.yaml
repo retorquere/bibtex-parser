@@ -1,0 +1,34 @@
+comments: []
+entries:
+  - fields:
+      address: CSLI-ADDRESS
+      author:
+        - firstName: Mark
+          lastName: Johnson
+        - firstName: Ewan
+          lastName: Klein
+      institution:
+        - CSLI
+      month: '10'
+      number: CSLI-86-63
+      title: Discourse, Anaphora and Parsing
+      year: '1986'
+    input: "@TECHREPORT{Johnson:86,\n\tAUTHOR = {Mark Johnson and Ewan Klein},\n\tTITLE = \"Discourse, Anaphora and Parsing\",\n\tINSTITUTION = {CSLI},\n\tYEAR = {1986},\n\tNUMBER = {CSLI-86-63},\n\tADDRESS = CSLI-ADDRESS,\n\tMONTH = October\n}"
+    key: Johnson:86
+    mode:
+      address: literal
+      author: creatorlist
+      institution: literallist
+      month: literal
+      number: literal
+      title: title
+      year: literal
+    type: techreport
+errors:
+  - error: Unresolved @string reference "CSLI-ADDRESS"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

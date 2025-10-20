@@ -1,0 +1,41 @@
+comments:
+  - '%Peter Cheeseman'
+entries:
+  - fields:
+      address: Hillsdale, NJ
+      author:
+        - firstName: Bertram C.
+          lastName: Bruce
+      booktitle: >-
+        Theoretical Issues in Reading Comprehension: Perspectives from Cognitive
+        Science, Linguistics, Artificial Intelligence and Education
+      editor:
+        - firstName: R.J.
+          lastName: Spiro
+        - firstName: B.C.
+          lastName: Bruce
+        - firstName: W.F.
+          lastName: Brewer
+      pages: 367–384
+      publisher:
+        - Lawrence Erlbaum
+      title: Plans and Social Actions
+      year: '1980'
+    input: "@book(Bruce:80,\n\tauthor =\t{Bertram C. Bruce},\n\tbooktitle =\t{Theoretical Issues in Reading Comprehension: \n\t\t\t Perspectives from Cognitive Science, Linguistics, \n\t\t\t Artificial Intelligence and Education},\n\taddress =\t{Hillsdale, NJ},\n\tyear =\t\t{1980},\n\teditor =\t{R.J. Spiro and B.C. Bruce and W.F. Brewer},\n\tpublisher =\t{Lawrence Erlbaum},\n\tpages =\t\t{367--384},\n\ttitle =\t\t{Plans and Social Actions}\n)"
+    key: Bruce:80
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      pages: literal
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,28 @@
+comments: []
+entries:
+  - fields:
+      address: Cambridge, Mass.
+      author:
+        - firstName: Robert J.
+          lastName: Bobrow
+      booktitle: Bolt Beranek and Newman
+      publisher:
+        - Quarterly Progress Report 3878
+      title: The RUS System
+      year: '1978'
+    input: "@book(RJBobrow:78,\n\tauthor =\t{Robert J. Bobrow},\n\tbooktitle =\t{Bolt Beranek and Newman},\n\taddress =\t{Cambridge, Mass.},\n\tyear =\t\t{1978},\n\tpublisher =\t{Quarterly Progress Report 3878},\n\ttitle =\t\t{The RUS System}\n)"
+    key: RJBobrow:78
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

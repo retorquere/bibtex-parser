@@ -1,0 +1,32 @@
+comments: []
+entries:
+  - fields:
+      address: Stanford, CA
+      author:
+        - firstName: Fernando C.N.
+          lastName: Pereira
+        - firstName: Stuart M.
+          lastName: Shieber
+      publisher:
+        - CSLI
+      series: CSLI Lecture Notes
+      title: Prolog and Natural-Language Analysis
+      year: '1987'
+    input: "@BOOK{PandS,\n\tAUTHOR = {Fernando C.N. Pereira and\n\t\t  Stuart M. Shieber},\n\tTITLE = \"Prolog and Natural-Language Analysis\",\n\tPUBLISHER = CSLI,\n\tYEAR = {1987},\n\tSERIES = {CSLI Lecture Notes},\n\tADDRESS = {Stanford, CA}\n}"
+    key: PandS
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      series: title
+      title: title
+      year: literal
+    type: book
+errors:
+  - error: Unresolved @string reference "CSLI"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

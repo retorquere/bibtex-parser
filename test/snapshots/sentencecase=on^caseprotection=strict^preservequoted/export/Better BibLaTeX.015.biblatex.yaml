@@ -1,0 +1,56 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Nancy K
+          lastName: Adams
+        - firstName: Shanaka L
+          lastName: DeSilva
+        - firstName: Steven
+          lastName: Self
+        - firstName: Guido
+          lastName: Salas
+        - firstName: Steven
+          lastName: Schubring
+        - firstName: Jason L
+          lastName: Permenter
+        - firstName: Kendra
+          lastName: Arbesman
+      date: '2001'
+      journaltitle: Title, with comma
+      keywords:
+        - breadcrust
+        - plinian
+        - Vulcanian eruptions
+      pages: 493–518
+      title: >-
+        The physical: Violent volcanology of the 1600 eruption of <span
+        class="nocase">Huaynaputina</span>, southern <span
+        class="nocase">Peru</span>
+      volume: '62'
+    input: |-
+      @article{physicalviolentvolcanology,
+        title = {The Physical: Violent Volcanology of the 1600 Eruption of {{Huaynaputina}}, Southern {{Peru}}},
+        author = {Adams, Nancy K and DeSilva, Shanaka L and Self, Steven and Salas, Guido and Schubring, Steven and Permenter, Jason L and Arbesman, Kendra},
+        date = {2001},
+        journaltitle = {Title, with comma},
+        volume = {62},
+        pages = {493--518},
+        keywords = {breadcrust,plinian,Vulcanian eruptions}
+      }
+    key: physicalviolentvolcanology
+    mode:
+      author: creatorlist
+      date: literal
+      journaltitle: literal
+      keywords: verbatimlist
+      pages: literal
+      title: title
+      volume: literal
+    type: article
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

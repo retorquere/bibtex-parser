@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      address: Chicago
+      author:
+        - firstName: Thomas S.
+          lastName: Kuhn
+      publisher:
+        - University of Chicago Press
+      title: The structure of scientific revolutions
+      year: '1962'
+    input: "@book(Kuhn:1962,\n\tauthor =\t{Thomas S. Kuhn},\n\taddress =\t{Chicago},\n\tyear =\t\t{1962},\n\tpublisher =\t{University of Chicago Press},\n\ttitle =\t\t{The Structure of Scientific Revolutions}\n)"
+    key: Kuhn:1962
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

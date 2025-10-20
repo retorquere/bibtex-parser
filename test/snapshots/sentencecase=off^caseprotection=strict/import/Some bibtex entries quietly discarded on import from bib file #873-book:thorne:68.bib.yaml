@@ -1,0 +1,36 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: J.
+          lastName: Thorne
+        - firstName: P.
+          lastName: Bratley
+        - firstName: H.
+          lastName: Dewar
+      booktitle: Machine Intelligence 3
+      editor:
+        - firstName: D.
+          lastName: Michie
+      publisher:
+        - American Elsevier
+      title: The syntactic analysis of English by machine
+      year: '1968'
+    input: "@book(Thorne:68,\n\tauthor =\t{J. Thorne and P. Bratley and H. Dewar},\n\tbooktitle =\t{Machine Intelligence 3},\n\taddress =\t{New York},\n\tyear =\t\t{1968},\n\teditor =\t{D. Michie},\n\tpublisher =\t{American Elsevier},\n\ttitle =\t\t{The syntactic analysis of English by machine}\n)"
+    key: Thorne:68
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

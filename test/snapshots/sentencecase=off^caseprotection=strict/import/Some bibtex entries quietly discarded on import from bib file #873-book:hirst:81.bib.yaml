@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      address: Berlin
+      author:
+        - firstName: Graeme
+          lastName: Hirst
+      publisher:
+        - Springer-Verlag
+      title: 'Anaphora in Natural Language Understanding: A Survey'
+      year: '1981'
+    input: "@book(Hirst:81,\n\tauthor =\t{Graeme Hirst},\n\taddress =\t{Berlin},\n\tyear =\t\t{1981},\n\tpublisher =\t{Springer-Verlag},\n\ttitle =\t\t{Anaphora in Natural Language Understanding: A Survey}\n)"
+    key: Hirst:81
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

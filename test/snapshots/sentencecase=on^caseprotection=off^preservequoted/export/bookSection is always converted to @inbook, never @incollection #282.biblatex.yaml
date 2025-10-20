@@ -1,0 +1,52 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Charles
+          lastName: Eisenmann
+      booktitle: Cours de droit administratif
+      date: '1982'
+      isbn: 2-275-01408-X
+      langid: french
+      location:
+        - Paris
+      pages: 155–300
+      publisher:
+        - LGDJ
+      title: Problèmes d’organisation de l’Administration [1966-1967]
+      volume: t. 1
+      volumes: 2 vol. (786, xxiv+908 p.)
+    input: |-
+      @incollection{eisenmann_problemes_1982,
+        title = {Problèmes d’organisation de l’Administration [1966-1967]},
+        booktitle = {Cours de droit administratif},
+        author = {Eisenmann, Charles},
+        date = {1982},
+        volume = {t. 1},
+        pages = {155--300},
+        publisher = {{LGDJ}},
+        location = {{Paris}},
+        isbn = {2-275-01408-X},
+        langid = {french},
+        volumes = {2 vol. (786, xxiv+908 p.)}
+      }
+    key: eisenmann_problemes_1982
+    mode:
+      author: creatorlist
+      booktitle: title
+      date: literal
+      isbn: literal
+      langid: literal
+      location: literallist
+      pages: literal
+      publisher: literallist
+      title: title
+      volume: literal
+      volumes: literal
+    type: incollection
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

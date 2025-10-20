@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      address: Amsterdam
+      author:
+        - firstName: Robert A.
+          lastName: Kowalski
+      publisher:
+        - Elsevier North-Holland
+      title: Logic for problem solving
+      year: '1979'
+    input: "@book(Kowalski:79,\n\tauthor =\t{Robert A. Kowalski},\n\taddress =\t{Amsterdam},\n\tyear =\t\t{1979},\n\tpublisher =\t{Elsevier North-Holland},\n\ttitle =\t\t{Logic for Problem Solving}\n)"
+    key: Kowalski:79
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

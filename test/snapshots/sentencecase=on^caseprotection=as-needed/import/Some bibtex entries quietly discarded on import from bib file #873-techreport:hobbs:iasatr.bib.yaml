@@ -1,0 +1,38 @@
+comments: []
+entries:
+  - fields:
+      address: SRI-ADDRESS
+      author:
+        - firstName: Jerry R.
+          lastName: Hobbs
+        - firstName: Mark
+          lastName: Stickel
+        - firstName: Douglas
+          lastName: Edwards
+        - firstName: Paul
+          lastName: Martin
+      institution:
+        - Artificial Intelligence Center, SRI International
+      month: '12'
+      number: '499'
+      title: Interpretation as abduction
+      year: '1990'
+    input: "@TECHREPORT{Hobbs:IasATR,\n\tAUTHOR = {Jerry R. Hobbs and Mark Stickel and \n\t\t\t Douglas Edwards and Paul Martin},\n\tTITLE = \"Interpretation as Abduction\",\n\tINSTITUTION = {Artificial Intelligence Center, SRI International},\n\tYEAR = {1990},\n\tNUMBER = {499},\n\tADDRESS = SRI-ADDRESS,\n\tMONTH = December\n}"
+    key: Hobbs:IasATR
+    mode:
+      address: literal
+      author: creatorlist
+      institution: literallist
+      month: literal
+      number: literal
+      title: title
+      year: literal
+    type: techreport
+errors:
+  - error: Unresolved @string reference "SRI-ADDRESS"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

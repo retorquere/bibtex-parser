@@ -1,0 +1,34 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: Ira
+          lastName: Pohl
+      booktitle: Machine intelligence 6
+      editor:
+        - firstName: B.
+          lastName: Meltzer
+        - firstName: D.
+          lastName: Michie
+      publisher:
+        - American Elsevier
+      title: Bi-directional search
+      year: '1971'
+    input: "@book(Pohl:1971,\n\tauthor =\t{Ira Pohl},\n\tbooktitle =\t{Machine Intelligence 6},\n\taddress =\t{New York},\n\tyear =\t\t{1971},\n\teditor =\t{B. Meltzer and D. Michie},\n\tpublisher =\t{American Elsevier},\n\ttitle =\t\t{Bi-directional search}\n)"
+    key: Pohl:1971
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

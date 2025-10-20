@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: Patrick H.
+          lastName: Winston
+      publisher:
+        - McGraw-Hill
+      title: The psychology of computer vision
+      year: '1975'
+    input: "@book{Winston:75,\n\tauthor =\t{Patrick H. Winston},\n\taddress =\t{New York},\n\tyear =\t\t{1975},\n\tpublisher =\t{McGraw-Hill},\n\ttitle =\t\t{The Psychology of Computer Vision}\n}"
+    key: Winston:75
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

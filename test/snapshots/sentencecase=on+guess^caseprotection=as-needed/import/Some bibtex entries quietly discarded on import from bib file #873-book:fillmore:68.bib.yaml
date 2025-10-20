@@ -1,0 +1,37 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: Charles J.
+          lastName: Fillmore
+      booktitle: Universals in linguistic theory
+      editor:
+        - firstName: E.
+          lastName: Bach
+        - firstName: R.T.
+          lastName: Harms
+      pages: 1-88
+      publisher:
+        - Holt, Rinehart,
+        - Winston
+      title: The case for case
+      year: '1968'
+    input: "@book(Fillmore:68,\n\tauthor =\t{Charles J. Fillmore},\n\tbooktitle =\t{Universals in Linguistic Theory},\n\taddress =\t{New York},\n\tyear =\t\t{1968},\n\teditor =\t{E. Bach and R.T. Harms},\n\tpublisher =\t{Holt, Rinehart, and Winston},\n\tpages =\t\t{1-88},\n\ttitle =\t\t{The case for case}\n)"
+    key: Fillmore:68
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      pages: literal
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

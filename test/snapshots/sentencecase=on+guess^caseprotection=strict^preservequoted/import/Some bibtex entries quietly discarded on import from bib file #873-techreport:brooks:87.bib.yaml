@@ -1,0 +1,30 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Rodney
+          lastName: Brooks
+      institution:
+        - MITAI
+      month: '9'
+      number: Working Paper 303
+      title: Planning is just a way of avoiding figuring out what to do next
+      year: '1987'
+    input: "@TECHREPORT{Brooks:87,\n\tAUTHOR = {Rodney Brooks},\n\tTITLE = {Planning is just a way of avoiding figuring out what\n\t\t to do next},\n\tINSTITUTION = MITAI,\n\tYEAR = {1987},\n\tNUMBER = {Working Paper 303},\n\tMONTH = September\n}"
+    key: Brooks:87
+    mode:
+      author: creatorlist
+      institution: literallist
+      month: literal
+      number: literal
+      title: title
+      year: literal
+    type: techreport
+errors:
+  - error: Unresolved @string reference "MITAI"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

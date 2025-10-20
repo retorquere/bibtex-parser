@@ -1,0 +1,28 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: C.L.
+          lastName: Chang
+        - firstName: R.C.-T.
+          lastName: Lee
+      publisher:
+        - Academic Press
+      title: Symbolic logic and mechanical theorem proving
+      year: '1973'
+    input: "@book(ChangLee,\n\tauthor =\t{C.L. Chang and R.C.-T. Lee},\n\taddress =\t{New York},\n\tyear =\t\t{1973},\n\tpublisher =\t{Academic Press},\n\ttitle =\t\t{Symbolic Logic and Mechanical Theorem Proving}\n)"
+    key: ChangLee
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

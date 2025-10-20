@@ -1,0 +1,27 @@
+comments:
+  - B.C. Bruce
+entries:
+  - fields:
+      address: Menlo Park, California
+      author:
+        - firstName: James F.
+          lastName: Allen
+      publisher:
+        - Benjamin / Cummings Publishing Company
+      title: Natural lan­guage un­der­stand­ing
+      year: '1987'
+    input: "@book{Allen:87book,\n\tauthor = \t{James F. Allen},\n\ttitle =\t\t\"Natural Lan\\-guage Un\\-der\\-stand\\-ing\",\n\tyear = \t\t1987,\n\tpublisher =\t{Benjamin  / Cummings Publishing Company},\n\taddress = {Menlo Park, California}}"
+    key: Allen:87book
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

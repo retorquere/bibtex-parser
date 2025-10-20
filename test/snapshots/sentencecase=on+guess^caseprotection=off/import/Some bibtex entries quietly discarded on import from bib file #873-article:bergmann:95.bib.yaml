@@ -1,0 +1,35 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Ralph
+          lastName: Bergmann
+        - firstName: Wolfgang
+          lastName: Wilke
+      journal: JAIR
+      month: '7'
+      pages: 53–118
+      title: >-
+        Building and refining abstract planning cases by change of
+        representation language
+      volume: '3'
+      year: '1995'
+    input: "@ARTICLE{Bergmann:95,\n\tAUTHOR = {Ralph Bergmann and Wolfgang Wilke},\n\tTITLE = {Building and refining abstract planning cases by change\n\t\t of representation language},\n\tJOURNAL = JAIR,\n\tYEAR = {1995},\n\tVOLUME = {3},\n\tPAGES = {53--118},\n\tMONTH = jul\n}"
+    key: Bergmann:95
+    mode:
+      author: creatorlist
+      journal: literal
+      month: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "JAIR"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

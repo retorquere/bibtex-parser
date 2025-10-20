@@ -1,0 +1,28 @@
+comments: []
+entries:
+  - fields:
+      address: ERLBAUM-ADDRESS
+      author:
+        - firstName: John R.
+          lastName: Anderson
+      publisher:
+        - Lawrence Erlbaum
+      title: Language, memory, and thought
+      year: '1976'
+    input: "@book(JRAnderson:76,\n\tauthor =\t{John R. Anderson},\n\taddress =\tERLBAUM-ADDRESS,\n\tyear =\t\t{1976},\n\tpublisher =\t{Lawrence Erlbaum},\n\ttitle =\t\t{Language, Memory, and Thought}\n)"
+    key: JRAnderson:76
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors:
+  - error: Unresolved @string reference "ERLBAUM-ADDRESS"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

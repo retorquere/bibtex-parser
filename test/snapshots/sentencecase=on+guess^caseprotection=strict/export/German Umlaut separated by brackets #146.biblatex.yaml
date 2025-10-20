@@ -1,0 +1,59 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Wolfgang
+          lastName: Kaufmann
+      date: '1995'
+      isbn: 3-8007-2141-4 978-3-8007-2141-2 3-8022-0469-7 978-3-8022-0469-2
+      langid: german
+      location:
+        - Berlin; Frankfurt am Main
+      note: >-
+        "Der Gleichzeitigkeitsgrad g (n) der Spitzenlastanteile Ps von Wohnungen
+        wurde<br> aus Messungen statistisch ermittelt [2.3]. Eine gute Näherung
+        für die Praxis<br> ist die Gleichung (2.5) :" (S. 2.3) <p>Keine
+        Notwendigkeit, in ihrem Grundlegendem Charakter völlig verschiedenartige
+        Belastungen (PV, Wärmepumpe) in dieses Schema zu pressen.
+      publisher:
+        - VDE-Verl. ; Verl.- und Wirtschaftsges. der Elektrizitätswerke
+      title: Planung öffentlicher Elektrizitätsverteilungs-Systeme
+    input: >-
+      @book{Kaufmann1995,
+        title = {Planung öffentlicher Elektrizitätsverteilungs-Systeme},
+        author = {Kaufmann, Wolfgang},
+        date = {1995},
+        publisher = {{VDE-Verl. ; Verl.- und Wirtschaftsges. der Elektrizitätswerke}},
+        location = {{Berlin; Frankfurt am Main}},
+        isbn = {3-8007-2141-4 978-3-8007-2141-2 3-8022-0469-7 978-3-8022-0469-2},
+        langid = {german},
+        note = {"Der Gleichzeitigkeitsgrad g (n) der Spitzenlastanteile Ps von Wohnungen wurde\\
+      aus Messungen statistisch ermittelt [2.3]. Eine gute Näherung für die
+      Praxis\\
+
+      ist die Gleichung (2.5) :" (S. 2.3)
+
+      \par
+
+      Keine Notwendigkeit, in ihrem Grundlegendem Charakter völlig
+      verschiedenartige Belastungen (PV, Wärmepumpe) in dieses Schema zu
+      pressen.}
+
+      }
+    key: Kaufmann1995
+    mode:
+      author: creatorlist
+      date: literal
+      isbn: literal
+      langid: literal
+      location: literallist
+      note: richtext
+      publisher: literallist
+      title: title
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

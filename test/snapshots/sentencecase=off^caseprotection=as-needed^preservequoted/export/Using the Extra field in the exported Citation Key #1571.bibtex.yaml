@@ -1,0 +1,60 @@
+comments: []
+entries:
+  - fields:
+      address: New York, NY, USA
+      author:
+        - firstName: Petra
+          lastName: Heck
+        - firstName: Andy
+          lastName: Zaidman
+      booktitle: >-
+        Proceedings of the 2013 International Workshop on Principles of Software
+        Evolution
+      doi: 10.1145/2501543.2501550
+      isbn: 978-1-4503-2311-6
+      month: '8'
+      pages: 43–52
+      publisher:
+        - Association for Computing Machinery
+      series: IWPSE 2013
+      shorttitle: An Analysis of Requirements Evolution in Open Source Projects
+      title: >-
+        An Analysis of Requirements Evolution in Open Source Projects:
+        Recommendations for Issue Trackers
+      year: '2013'
+    input: |-
+      @inproceedings{Heck_IWPSE_2013,
+        title = {An Analysis of Requirements Evolution in Open Source Projects: Recommendations for Issue Trackers},
+        shorttitle = {An Analysis of Requirements Evolution in Open Source Projects},
+        booktitle = {Proceedings of the 2013 {{International Workshop}} on {{Principles}} of {{Software Evolution}}},
+        author = {Heck, Petra and Zaidman, Andy},
+        year = {2013},
+        month = aug,
+        pages = {43--52},
+        publisher = {{Association for Computing Machinery}},
+        address = {{New York, NY, USA}},
+        doi = {10.1145/2501543.2501550},
+        isbn = {978-1-4503-2311-6},
+        series = {{{IWPSE}} 2013}
+      }
+    key: Heck_IWPSE_2013
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      doi: verbatim
+      isbn: literal
+      month: literal
+      pages: literal
+      publisher: literallist
+      series: title
+      shorttitle: title
+      title: title
+      year: literal
+    type: inproceedings
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

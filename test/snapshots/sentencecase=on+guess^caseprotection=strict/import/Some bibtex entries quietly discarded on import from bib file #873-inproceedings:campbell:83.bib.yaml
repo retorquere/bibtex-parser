@@ -1,0 +1,29 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Murray
+          lastName: Campbell
+        - firstName: Hans
+          lastName: Berliner
+      booktitle: <span class="nocase">AAAI-83</span>
+      pages: 49–53
+      title: A chess program that chunks
+      year: '1983'
+    input: "@inproceedings(Campbell:83,\n\tauthor =\t{Murray Campbell and Hans Berliner},\n\tyear =\t\t{1983},\n\tbooktitle = \tAAAI-83,\n\tpages =\t\t{49--53},\n\ttitle =\t\t{A chess program that chunks}\n)"
+    key: Campbell:83
+    mode:
+      author: creatorlist
+      booktitle: title
+      pages: literal
+      title: title
+      year: literal
+    type: inproceedings
+errors:
+  - error: Unresolved @string reference "AAAI-83"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

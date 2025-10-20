@@ -1,0 +1,29 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Philip J.
+          lastName: Hayes
+      booktitle: IJCAI-77
+      pages: 99–107
+      title: On semantic nets, frames and associations
+      volume: '5'
+      year: '1977'
+    input: "@inproceedings(Hayes:77,\n\tauthor =\t{Philip J. Hayes},\n\tyear =\t\t{1977},\n\tbooktitle =\tIJCAI-77,\n\tpages =\t\t{99--107},\n\ttitle =\t\t\"On semantic nets, frames and associations\",\n\tvolume =\t{5}\n)"
+    key: Hayes:77
+    mode:
+      author: creatorlist
+      booktitle: title
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: inproceedings
+errors:
+  - error: Unresolved @string reference "IJCAI-77"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

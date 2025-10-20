@@ -1,0 +1,47 @@
+comments:
+  - Buridan, old cite
+entries:
+  - fields:
+      address: Seattle
+      author:
+        - firstName: Peter
+          lastName: Haddawy
+      booktitle: >-
+        Proceedings of the Tenth Conference on Uncertainty in Artificial
+        Intelligence
+      key: Conference
+      month: '7'
+      pages: 262-269
+      title: Generating Bayesian Networks from Probability Logic Knowledge Bases
+      year: '1994'
+    input: |-
+      @InProceedings(Haddawy94:Generating,
+       Author = "Peter Haddawy",
+       Key = "Conference",
+       Title = "Generating {Bayesian} Networks from Probability Logic
+          Knowledge Bases",
+       BookTitle = "Proceedings of the Tenth Conference on
+          Uncertainty in Artificial Intelligence",
+       Address = "Seattle",
+       Pages = "262-269",
+       Month = "July",
+       Note = "",
+       Year = "1994"
+       )
+    key: Haddawy94:Generating
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      key: literal
+      month: literal
+      pages: literal
+      title: title
+      year: literal
+    type: inproceedings
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

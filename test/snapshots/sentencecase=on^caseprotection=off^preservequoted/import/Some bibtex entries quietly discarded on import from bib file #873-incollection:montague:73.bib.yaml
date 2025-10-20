@@ -1,0 +1,34 @@
+comments: []
+entries:
+  - fields:
+      address: Dordrecht
+      author:
+        - firstName: Richard
+          lastName: Montague
+      booktitle: Approaches to natural language
+      editor:
+        - firstName: J.M.E. Moravcsik
+          lastName: K.J.J. Hintikka
+        - firstName: P.C.
+          lastName: Suppes
+      publisher:
+        - Reidel
+      title: The proper treatment of quantification in ordinary english
+      year: '1973'
+    input: "@incollection(Montague:73,\n\tauthor =\t{Richard Montague},\n\tbooktitle =\t{Approaches to Natural Language},\n\taddress =\t{Dordrecht},\n\tyear =\t\t{1973},\n\teditor =\t{K.J.J. Hintikka, J.M.E. Moravcsik, and P.C. Suppes},\n\tpublisher =\t{Reidel},\n\ttitle =\t\t{The proper treatment of quantification in ordinary English}\n)"
+    key: Montague:73
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: incollection
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

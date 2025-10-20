@@ -1,0 +1,27 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Peter
+          lastName: Norvig
+      booktitle: <span class="nocase">AAAI-87</span>
+      pages: 561-565
+      title: Inference in text understanding
+      year: '1987'
+    input: "@inproceedings(Norvig:aaai87,\n\tauthor =\t{Peter Norvig},\n\tyear =\t\t{1987},\n\tbooktitle =\tAAAI-87,\n\tpages =\t\t{561-565},\n\ttitle =\t\t{Inference in Text Understanding}\n)"
+    key: Norvig:aaai87
+    mode:
+      author: creatorlist
+      booktitle: title
+      pages: literal
+      title: title
+      year: literal
+    type: inproceedings
+errors:
+  - error: Unresolved @string reference "AAAI-87"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,28 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: G.
+          lastName: Ernst
+        - firstName: Allen
+          lastName: Newell
+      publisher:
+        - Academic Press
+      title: 'GPS: A Case Study in Generality and Problem Solving'
+      year: '1969'
+    input: "@book(Ernst:69,\n\tauthor =\t{G. Ernst and Allen Newell},\n\taddress =\t{New York},\n\tyear =\t\t{1969},\n\tpublisher =\t{Academic Press},\n\ttitle =\t\t{GPS: A Case Study in Generality and Problem Solving}\n)"
+    key: Ernst:69
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

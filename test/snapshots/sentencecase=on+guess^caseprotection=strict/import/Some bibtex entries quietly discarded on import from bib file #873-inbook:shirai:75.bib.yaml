@@ -1,0 +1,32 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: Yoshiaki
+          lastName: Shirai
+      booktitle: The psychology of computer vision
+      editor:
+        - firstName: P.H.
+          lastName: Winston
+      publisher:
+        - McGraw-Hill
+      title: Analysing intensity arrays using knowledge about scenes
+      year: '1975'
+    input: "@inbook(Shirai:75,\n\tauthor =\t{Yoshiaki Shirai},\n\tbooktitle =\t{The Psychology of Computer Vision},\n\taddress =\t{New York},\n\tyear =\t\t{1975},\n\teditor =\t{P.H. Winston},\n\tpublisher =\t{McGraw-Hill},\n\ttitle =\t\t{Analysing intensity arrays using knowledge \n\t\t\t about scenes}\n)"
+    key: Shirai:75
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: inbook
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

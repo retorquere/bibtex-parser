@@ -1,0 +1,50 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Dana
+          lastName: Nau
+        - firstName: Yue
+          lastName: Cao
+        - firstName: Amnon
+          lastName: Lotem
+        - firstName: Hector
+          lastName: Muñoz-Avila
+      journal: AIM
+      number: '1'
+      pages: 91–94
+      title: The Shop planning system
+      topic: planning;planning-algorithms;planning-systems;
+      volume: '22'
+      year: '2001'
+    input: |-
+      @Article{nau-etal:2001a,
+        author =       "Dana Nau and Yue Cao and Amnon Lotem and Hector
+                       {Mu\~{n}oz-Avila}",
+        title =        "The {S}hop Planning System",
+        journal =      AIM,
+        year =         "2001",
+        volume =       "22",
+        number =       "1",
+        pages =        "91--94",
+        topic =        "planning;planning-algorithms;planning-systems;",
+      }
+    key: nau-etal:2001a
+    mode:
+      author: creatorlist
+      journal: literal
+      number: literal
+      pages: literal
+      title: title
+      topic: literal
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "AIM"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

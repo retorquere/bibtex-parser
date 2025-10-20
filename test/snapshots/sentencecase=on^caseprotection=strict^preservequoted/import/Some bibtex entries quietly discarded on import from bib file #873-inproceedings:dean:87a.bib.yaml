@@ -1,0 +1,25 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Thomas
+          lastName: Dean
+      booktitle: <span class="nocase">IJCAI-87</span>
+      title: Large temporal data bases
+      year: '1987'
+    input: "@inproceedings(Dean:87a,\n\tauthor =\t{Thomas Dean},\n\tyear =\t\t{1987},\n\tbooktitle =     IJCAI-87,\n\ttitle =\t\t{Large temporal data bases}\n)"
+    key: Dean:87a
+    mode:
+      author: creatorlist
+      booktitle: title
+      title: title
+      year: literal
+    type: inproceedings
+errors:
+  - error: Unresolved @string reference "IJCAI-87"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

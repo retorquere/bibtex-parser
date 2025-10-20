@@ -1,0 +1,61 @@
+comments: []
+entries:
+  - fields:
+      address: AAAI-PRESS-ADDRESS
+      annote: >-
+        Gives a summary of three-layer architectures for mobile robots. Gat's
+        division into three layers is based on memory and algorithm run-time in
+        the three layers: deliberation layer (top) allows algorithms with long
+        latencies: several Behavior transitions can occur before one of these
+        terminates. The middle layer is the sequencer, whose job it is to select
+        primitive Behaviors, and supply parameters. The Sequencer is allowed to
+        use algorithms with memory. At the bottom level is the Controller, which
+        contains Behaviors, which should run one iteration in constant-bounded
+        time and space, ideally being continuous in the input, and not using
+        memory (although Gat makes exception for filters). Gat also argues that
+        behaviors should fail cognizantly. This is interesting, because not what
+        I would have expected because I'm either (a) a planning bigot or (b)
+        realistic about the fact that one typically doesn't own an entire
+        execution platform, depending on whether you're being (a) harsh or (b)
+        kind. I tend to think that you are given the Controller (or at least a
+        subset thereof), and that cognizant failure may be more than you can
+        ask. Also the Sequencer is needed to provide a plan-cognizant layer
+        above the Controller, which typically doesn't know anything about the
+        context of its behaviors.
+      author:
+        - firstName: Erann
+          lastName: Gat
+      booktitle: Artificial intelligence and mobile robots
+      editor:
+        - firstName: David
+          lastName: Kortenkamp
+        - firstName: R. Peter
+          lastName: Bonasso
+        - firstName: Robin
+          lastName: Murphy
+      publisher:
+        - AAAI-PRESS
+      title: On three-layer architectures
+      year: '1998'
+    input: "@InCollection{Gat:TLAs,\n  author =\t {Erann Gat},\n  title =\t {On Three-Layer Architectures},\n  booktitle =\t {Artificial Intelligence and Mobile Robots},\n  publisher =\t AAAI-PRESS,\n  year =\t 1998,\n  editor =\t {David Kortenkamp and R. Peter Bonasso and Robin\n                  Murphy},\n  address =\t AAAI-PRESS-ADDRESS,\n  annote =\t {Gives a summary of three-layer architectures for\n                  mobile robots. Gat's division into three layers is\n                  based on memory and algorithm run-time in the three\n                  layers: deliberation layer (top) allows algorithms\n                  with long latencies: several Behavior transitions\n                  can occur before one of these terminates. The middle\n                  layer is the sequencer, whose job it is to select\n                  primitive Behaviors, and supply parameters. The\n                  Sequencer is allowed to use algorithms with\n                  memory. At the bottom level is the Controller, which\n                  contains Behaviors, which should run one iteration\n                  in constant-bounded time and space, ideally being\n                  continuous in the input, and not using memory\n                  (although Gat makes exception for filters). Gat also\n                  argues that behaviors should fail cognizantly. This\n                  is interesting, because not what I would have\n                  expected because I'm either (a) a planning bigot or\n                  (b) realistic about the fact that one typically\n                  doesn't own an entire execution platform, depending\n                  on whether you're being (a) harsh or (b) kind. I\n                  tend to think that you are given the Controller (or\n                  at least a subset thereof), and that cognizant\n                  failure may be more than you can ask. Also the\n                  Sequencer is needed to provide a plan-cognizant\n                  layer above the Controller, which typically doesn't\n                  know anything about the context of its behaviors.}\n}"
+    key: Gat:TLAs
+    mode:
+      address: literal
+      annote: richtext
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: incollection
+errors:
+  - error: Unresolved @string reference "AAAI-PRESS"
+    input: ''
+  - error: Unresolved @string reference "AAAI-PRESS-ADDRESS"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

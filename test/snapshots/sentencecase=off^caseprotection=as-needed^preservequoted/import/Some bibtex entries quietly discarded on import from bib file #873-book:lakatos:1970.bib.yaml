@@ -1,0 +1,36 @@
+comments: []
+entries:
+  - fields:
+      address: Cambridge
+      author:
+        - firstName: Imre
+          lastName: Lakatos
+      booktitle: Criticism and the Growth of Knowledge
+      editor:
+        - firstName: I.
+          lastName: Lakatos
+        - firstName: A.
+          lastName: Musgrave
+      pages: 91-196
+      publisher:
+        - Cambridge University Press
+      title: Falsification and the methodology of scientific research programmes
+      year: '1970'
+    input: "@book(Lakatos:1970,\n\tauthor =\t{Imre Lakatos},\n\tbooktitle =\t{Criticism and the Growth of Knowledge},\n\taddress =\t{Cambridge},\n\tyear =\t\t{1970},\n\teditor =\t{I. Lakatos and A. Musgrave},\n\tpublisher =\t{Cambridge University Press},\n\tpages =\t\t{91-196},\n\ttitle =\t\t{Falsification and the methodology of scientific research programmes}\n)"
+    key: Lakatos:1970
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      pages: literal
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

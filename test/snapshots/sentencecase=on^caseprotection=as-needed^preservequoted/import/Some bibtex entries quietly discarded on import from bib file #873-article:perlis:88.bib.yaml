@@ -1,0 +1,29 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Donald
+          lastName: Perlis
+      journal: AIJ
+      pages: 179–212
+      title: 'Languages with self-reference II: knowledge, belief and modality'
+      volume: '34'
+      year: '1988'
+    input: "@ARTICLE{Perlis:88,\n\tAUTHOR = {Donald Perlis},\n\tTITLE = {Languages with Self-reference II: \n\t\t knowledge, belief and modality},\n\tJOURNAL = AIJ,\n\tYEAR = {1988},\n\tVOLUME = {34},\n\tPAGES = {179--212}\n}"
+    key: Perlis:88
+    mode:
+      author: creatorlist
+      journal: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "AIJ"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

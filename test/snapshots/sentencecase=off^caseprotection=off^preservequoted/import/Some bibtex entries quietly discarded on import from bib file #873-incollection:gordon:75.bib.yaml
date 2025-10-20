@@ -1,0 +1,31 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: D.
+          lastName: Gordon
+        - firstName: George
+          lastName: Lakoff
+      booktitle: 'Syntax and Semantics 3: Speech acts'
+      editor:
+        - firstName: P.
+          lastName: Cole
+        - firstName: J.L.
+          lastName: Morgan
+      title: Conversational postulates
+      year: '1975'
+    input: "@incollection(Gordon:75,\n\tauthor =\t{D. Gordon and George Lakoff},\n\tbooktitle =\t{Syntax and Semantics 3: Speech acts},\n\tyear =\t\t{1975},\n\teditor =\t{P. Cole and J.L. Morgan},\n\ttitle =\t\t{Conversational postulates}\n)"
+    key: Gordon:75
+    mode:
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      title: title
+      year: literal
+    type: incollection
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

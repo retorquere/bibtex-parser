@@ -1,0 +1,33 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Moshe
+          lastName: Koppel
+        - firstName: Ronen
+          lastName: Feldman
+        - firstName: Alberto Maria
+          lastName: Segre
+      journal: JAIR
+      pages: 159–208
+      title: Bias-driven Revision of Logical Domain theories
+      volume: '1'
+      year: '1994'
+    input: "@ARTICLE(Koppel:94,\n\tAUTHOR = {Moshe Koppel and Ronen Feldman and Alberto Maria Segre},\n\tTITLE = \"Bias-driven Revision of Logical Domain theories\",\n\tJOURNAL = JAIR,\n\tYEAR = {1994},\n\tVOLUME = {1},\n\tPAGES = {159--208}\n)"
+    key: Koppel:94
+    mode:
+      author: creatorlist
+      journal: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "JAIR"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

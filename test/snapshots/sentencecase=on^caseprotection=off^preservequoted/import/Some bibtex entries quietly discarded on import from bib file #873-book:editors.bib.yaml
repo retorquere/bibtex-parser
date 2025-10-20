@@ -1,0 +1,28 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: Randall
+          lastName: Davis
+        - firstName: Douglas B.
+          lastName: Lenat
+      publisher:
+        - McGraw-Hill
+      title: Knowledge-based systems in artificial intelligence
+      year: '1982'
+    input: "@book{editors,\n\tauthor =\t{Randall Davis and Douglas B. Lenat},\n\taddress =\t{New York},\n\tyear =\t\t{1982},\n\tpublisher =\t{McGraw-Hill},\n\ttitle =\t\t{Knowledge-Based Systems in Artificial Intelligence}\n}"
+    key: editors
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

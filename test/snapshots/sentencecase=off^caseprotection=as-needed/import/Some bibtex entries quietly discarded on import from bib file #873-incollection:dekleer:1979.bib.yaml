@@ -1,0 +1,38 @@
+comments: []
+entries:
+  - fields:
+      address: Cambridge, Mass.
+      author:
+        - firstName: Johan
+          lastName: deKleer
+      booktitle: 'Artificial Intelligence: An MIT Perspective'
+      editor:
+        - firstName: P.H.
+          lastName: Winston
+        - firstName: R.H.
+          lastName: Brown
+      pages: 11-30
+      publisher:
+        - MIT Press
+      title: Qualitative and quantitative reasoning in classical mechanics
+      volume: '1'
+      year: '1979'
+    input: "@incollection(deKleer:1979,\n\tauthor =\t{Johan deKleer},\n\tbooktitle =\t{Artificial Intelligence: An MIT Perspective},\n\taddress =\t{Cambridge, Mass.},\n\tyear =\t\t{1979},\n\teditor =\t{P.H. Winston and R.H. Brown},\n\tpublisher =\t{MIT Press},\n\tpages =\t\t{11-30},\n\ttitle =\t\t\"Qualitative and quantitative reasoning in classical mechanics\",\n\tvolume =\t{1}\n)"
+    key: deKleer:1979
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      pages: literal
+      publisher: literallist
+      title: title
+      volume: literal
+      year: literal
+    type: incollection
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

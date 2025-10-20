@@ -1,0 +1,27 @@
+comments:
+  - filed under Modal Logic
+entries:
+  - fields:
+      address: Boston, Massachusetts
+      author:
+        - firstName: J. Van
+          lastName: Benthem
+      publisher:
+        - Kluwer Academic Publishers
+      title: The logic of time
+      year: '1983'
+    input: "@book(VanBenthemTL,\n\tauthor = {J. Van Benthem},\n\ttitle = \"The Logic of Time\",\n\tpublisher = {Kluwer Academic Publishers},\n\taddress = {Boston, Massachusetts},\n\tyear = 1983\n)"
+    key: VanBenthemTL
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

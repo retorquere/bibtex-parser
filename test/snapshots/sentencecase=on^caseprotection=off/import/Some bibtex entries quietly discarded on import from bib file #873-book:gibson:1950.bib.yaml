@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      address: Boston
+      author:
+        - firstName: J.J.
+          lastName: Gibson
+      publisher:
+        - Houghton Mifflin
+      title: The perception of the visual world
+      year: '1950'
+    input: "@book(Gibson:1950,\n\tauthor =\t{J.J. Gibson},\n\taddress =\t{Boston},\n\tyear =\t\t{1950},\n\tpublisher =\t{Houghton Mifflin},\n\ttitle =\t\t{The Perception of the Visual World}\n)"
+    key: Gibson:1950
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,73 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Eric M.
+          lastName: Orlin
+      booktitle: >-
+        Studies in <span class="nocase">Latin</span> literature and <span
+        class="nocase">Roman</span> history
+      date: '1979'
+      editor:
+        - firstName: Carl
+          lastName: Deroux
+      isbn: >-
+        978-2-87031-104-2 978-2-87031-228-5 978-2-87031-179-0 978-2-87031-184-4
+        978-2-87031-195-0 978-2-87031-213-1 978-2-87031-256-8 978-2-87031-264-3
+        978-2-87031-284-1
+      keywords:
+        - History
+        - History and criticism
+        - Latin literature
+        - Rome
+      langid: english
+      location:
+        - Bruxelles
+      number: >-
+        v. 164, 168, 180, 196, 206, 217, 227, 239, 244, 254, 272, 287, 301, 315,
+        323, 338
+      pages: 70–90
+      publisher:
+        - Latomus
+      series: Collection <span class="nocase">Latomus</span>
+      title: >-
+        Why a <span class="nocase">Second Temple</span> for <span
+        class="nocase">Venus Erycina</span>?
+    input: |-
+      @incollection{Orlin1979SiLlaRh,
+        title = {Why a {{Second Temple}} for {{Venus Erycina}}?},
+        booktitle = {Studies in {{Latin}} Literature and {{Roman}} History},
+        author = {Orlin, Eric M.},
+        editor = {Deroux, Carl},
+        date = {1979},
+        pages = {70--90},
+        publisher = {{Latomus}},
+        location = {{Bruxelles}},
+        isbn = {978-2-87031-104-2 978-2-87031-228-5 978-2-87031-179-0 978-2-87031-184-4 978-2-87031-195-0 978-2-87031-213-1 978-2-87031-256-8 978-2-87031-264-3 978-2-87031-284-1},
+        keywords = {History,History and criticism,Latin literature,Rome},
+        langid = {english},
+        number = {v. 164, 168, 180, 196, 206, 217, 227, 239, 244, 254, 272, 287, 301, 315, 323, 338},
+        series = {Collection {{Latomus}}}
+      }
+    key: Orlin1979SiLlaRh
+    mode:
+      author: creatorlist
+      booktitle: title
+      date: literal
+      editor: creatorlist
+      isbn: literal
+      keywords: verbatimlist
+      langid: literal
+      location: literallist
+      number: literal
+      pages: literal
+      publisher: literallist
+      series: title
+      title: title
+    type: incollection
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: Robert
+          lastName: Wilensky
+      publisher:
+        - Norton
+      title: LISPcraft
+      year: '1984'
+    input: "@book(Wilensky:84,\n\tauthor =\t{Robert Wilensky},\n\taddress =\t{New York},\n\tyear =\t\t{1984},\n\tpublisher =\t{Norton},\n\ttitle =\t\t{LISPcraft}\n)"
+    key: Wilensky:84
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

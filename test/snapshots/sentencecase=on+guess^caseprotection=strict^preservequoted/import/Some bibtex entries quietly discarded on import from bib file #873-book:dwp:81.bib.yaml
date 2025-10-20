@@ -1,0 +1,30 @@
+comments: []
+entries:
+  - fields:
+      address: Dordrecht
+      author:
+        - firstName: David R.
+          lastName: Dowty
+        - firstName: Robert E.
+          lastName: Wall
+        - firstName: Stanley
+          lastName: Peters
+      publisher:
+        - Reidel
+      title: Introduction to montague semantics
+      year: '1981'
+    input: "@book(DWP:81,\n\tauthor =\t{David R. Dowty and Robert E. Wall and Stanley Peters},\n\taddress =\t{Dordrecht},\n\tyear =\t\t{1981},\n\tpublisher =\t{Reidel},\n\ttitle =\t\t{Introduction to Montague Semantics}\n)"
+    key: DWP:81
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

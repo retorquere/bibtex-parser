@@ -1,0 +1,24 @@
+comments: []
+entries:
+  - fields:
+      address: Cambridge, Mass.
+      author:
+        - firstName: Robert C.
+          lastName: Berwick
+      publisher:
+        - MIT Press
+      title: Computation and language acquisition
+    input: "@book(Berwick:Computation,\n\tauthor =\t{Robert C. Berwick},\n\taddress =\t{Cambridge, Mass.},\n\tpublisher =\t{MIT Press},\n\ttitle =\t\t{Computation and Language Acquisition}\n)"
+    key: Berwick:Computation
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

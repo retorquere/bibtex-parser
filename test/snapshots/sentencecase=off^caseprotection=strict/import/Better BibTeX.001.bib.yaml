@@ -1,0 +1,83 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Nancy K
+          lastName: Adams
+        - firstName: Shanaka L
+          lastName: DeSilva
+        - firstName: Steven
+          lastName: Self
+        - firstName: Guido
+          lastName: Salas
+        - firstName: Steven
+          lastName: Schubring
+        - firstName: Jason L
+          lastName: Permenter
+        - firstName: Kendra
+          lastName: Arbesman
+      journal: Bulletin of Volcanology
+      keywords:
+        - breadcrust
+        - plinian
+        - Vulcanian eruptions
+      pages: 493–518
+      title: >-
+        The physical volcanology of the 1600 eruption of Huaynaputina, southern
+        Peru
+      volume: '62'
+      year: '2001'
+    input: "@article{Adams2001,\n  author = {Adams, Nancy K and DeSilva, Shanaka L and Self, Steven and Salas, Guido and Schubring, Steven and Permenter, Jason L and Arbesman, Kendra},\n  title = {{The physical volcanology of the 1600 eruption of Huaynaputina, southern\r Peru}},\n  journal = {Bulletin of Volcanology},\n  year = {2001},\n  volume = {62},\n  pages = {493--518},\n  keywords = {Vulcanian eruptions,breadcrust,plinian}\n}"
+    key: Adams2001
+    mode:
+      author: creatorlist
+      journal: literal
+      keywords: verbatimlist
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+  - fields:
+      author:
+        - firstName: Peter
+          lastName: Rechenberg
+      edition: 3., erw. und aktualisierte Aufl.
+      isbn: '9783446406957'
+      pagetotal: '253'
+      ppn_gvk: '511633173'
+      publisher:
+        - Hanser Fachbuchverlag
+      subtitle: (nicht nur) für Informatiker
+      title: Technisches Schreiben
+      year: '2006'
+    input: |-
+      @Book{Rechenberg2006a,
+      title = {Technisches Schreiben},
+      publisher = {Hanser Fachbuchverlag},
+      year = {2006},
+      author = {Peter Rechenberg},
+      edition = {3., erw. und aktualisierte Aufl.},
+      isbn = {9783446406957},
+      pagetotal = {253},
+      ppn_gvk = {511633173},
+      subtitle = {(nicht nur) für Informatiker},
+      }
+    key: Rechenberg2006a
+    mode:
+      author: creatorlist
+      edition: literal
+      isbn: literal
+      pagetotal: literal
+      ppn_gvk: literal
+      publisher: literallist
+      subtitle: title
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

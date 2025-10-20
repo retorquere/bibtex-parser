@@ -1,0 +1,125 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: René
+          lastName: Descartes
+      date: 1897/1913
+      editor:
+        - firstName: Charles
+          lastName: Adam
+        - firstName: Paul
+          lastName: Tannery
+      langid: french
+      location:
+        - Paris
+      publisher:
+        - Cerf
+      title: Œuvres de Descartes
+      volumes: '13'
+    input: |-
+      @mvbook{descartes_oeuvres_1897,
+        title = {Œuvres de Descartes},
+        author = {Descartes, René},
+        editor = {Adam, Charles and Tannery, Paul},
+        date = {1897/1913},
+        publisher = {{Cerf}},
+        location = {{Paris}},
+        langid = {french},
+        volumes = {13}
+      }
+    key: descartes_oeuvres_1897
+    mode:
+      author: creatorlist
+      date: literal
+      editor: creatorlist
+      langid: literal
+      location: literallist
+      publisher: literallist
+      title: title
+      volumes: literal
+    type: mvbook
+  - fields:
+      author:
+        - firstName: René
+          lastName: Descartes
+      date: 1897/1913
+      editor:
+        - firstName: Charles
+          lastName: Adam
+        - firstName: Paul
+          lastName: Tannery
+      langid: french
+      location:
+        - Paris
+      publisher:
+        - Cerf
+      title: Œuvres de Descartes
+      volumes: '13'
+    input: |-
+      @mvbook{descartes_oeuvres_1897-1,
+        title = {Œuvres de Descartes},
+        author = {Descartes, René},
+        editor = {Adam, Charles and Tannery, Paul},
+        date = {1897/1913},
+        publisher = {{Cerf}},
+        location = {{Paris}},
+        langid = {french},
+        volumes = {13}
+      }
+    key: descartes_oeuvres_1897-1
+    mode:
+      author: creatorlist
+      date: literal
+      editor: creatorlist
+      langid: literal
+      location: literallist
+      publisher: literallist
+      title: title
+      volumes: literal
+    type: mvbook
+  - fields:
+      author:
+        - firstName: René
+          lastName: Descartes
+      date: 1897/1913
+      editor:
+        - firstName: Charles
+          lastName: Adam
+        - firstName: Paul
+          lastName: Tannery
+      langid: french
+      location:
+        - Paris
+      publisher:
+        - Cerf
+      title: Œuvres de Descartes
+      volumes: '13'
+    input: |-
+      @mvbook{descartes_oeuvres_1897-2,
+        title = {Œuvres de Descartes},
+        author = {Descartes, René},
+        editor = {Adam, Charles and Tannery, Paul},
+        date = {1897/1913},
+        publisher = {{Cerf}},
+        location = {{Paris}},
+        langid = {french},
+        volumes = {13}
+      }
+    key: descartes_oeuvres_1897-2
+    mode:
+      author: creatorlist
+      date: literal
+      editor: creatorlist
+      langid: literal
+      location: literallist
+      publisher: literallist
+      title: title
+      volumes: literal
+    type: mvbook
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

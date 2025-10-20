@@ -1,0 +1,32 @@
+comments: []
+entries:
+  - fields:
+      address: Cambridge, Mass.
+      author:
+        - firstName: David Allen
+          lastName: McAllester
+      institution:
+        - >-
+          Massachusetts Institute of Technology, Artificial Intelligence
+          Laboratory
+      month: '1'
+      number: AI-TR-550
+      title: The Use of Equality in Deduction and Knowledge Representation
+      year: '1980'
+    input: "@techreport(McAllester:80,\n\tauthor =\t{David Allen McAllester},\n\taddress =\t{Cambridge, Mass.},\n\tyear =\t\t{1980},\n\tmonth =\t\t{January},\n\tinstitution =\t{Massachusetts Institute of Technology, \n\t\t\t Artificial Intelligence Laboratory},\n\tnumber =\t{AI-TR-550},\n\ttitle =\t\t{The Use of Equality in Deduction\n\t\t\t and Knowledge Representation}\n)"
+    key: McAllester:80
+    mode:
+      address: literal
+      author: creatorlist
+      institution: literallist
+      month: literal
+      number: literal
+      title: title
+      year: literal
+    type: techreport
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,36 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: Roger C.
+          lastName: Schank
+        - firstName: J.G.
+          lastName: Carbonell
+      booktitle: 'Associative Networks: Representation and Use of Knowledge by Computer'
+      editor:
+        - firstName: N.V.
+          lastName: Findler
+      pages: 327-362
+      publisher:
+        - Academic Press
+      title: 'Re: The Gettysburg Address: Representing social and political acts'
+      year: '1979'
+    input: "@inbook(SchankCarbonell:1979,\n\tauthor =\t{Roger C. Schank and J.G. Carbonell},\n\tbooktitle =\t{Associative Networks: Representation and Use of Knowledge by Computer},\n\taddress =\t{New York},\n\tyear =\t\t{1979},\n\teditor =\t{N.V. Findler},\n\tpublisher =\t{Academic Press},\n\tpages =\t\t{327-362},\n\ttitle =\t\t{Re: The Gettysburg Address: Representing social and political acts}\n)"
+    key: SchankCarbonell:1979
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      pages: literal
+      publisher: literallist
+      title: title
+      year: literal
+    type: inbook
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

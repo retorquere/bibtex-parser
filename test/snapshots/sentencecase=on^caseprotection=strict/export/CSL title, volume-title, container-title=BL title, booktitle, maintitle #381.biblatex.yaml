@@ -1,0 +1,104 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - name: Plato
+      booktitle: >-
+        Clitophon, <span class="nocase">Republic</span>, <span
+        class="nocase">Timaeus</span>, <span class="nocase">Critias</span>
+      date: '1901'
+      editor:
+        - firstName: John
+          lastName: Burnet
+      langid: british
+      location:
+        - Oxford
+      maintitle: Opera
+      pages: 327–621
+      publisher:
+        - Clarendon Press
+      series: Oxford classical texts
+      title: Republic
+      volume: '4'
+    input: |-
+      @incollection{Plato1901,
+        title = {Republic},
+        booktitle = {Clitophon, {{Republic}}, {{Timaeus}}, {{Critias}}},
+        author = {{Plato}},
+        editor = {Burnet, John},
+        date = {1901},
+        volume = {4},
+        pages = {327--621},
+        publisher = {{Clarendon Press}},
+        location = {{Oxford}},
+        langid = {british},
+        maintitle = {Opera},
+        series = {Oxford Classical Texts}
+      }
+    key: Plato1901
+    mode:
+      author: creatorlist
+      booktitle: title
+      date: literal
+      editor: creatorlist
+      langid: literal
+      location: literallist
+      maintitle: title
+      pages: literal
+      publisher: literallist
+      series: title
+      title: title
+      volume: literal
+    type: incollection
+  - fields:
+      author:
+        - name: Plato
+      date: '1902'
+      editor:
+        - firstName: John
+          lastName: Burnet
+      langid: british
+      location:
+        - Oxford
+      maintitle: Opera
+      publisher:
+        - Clarendon Press
+      series: >-
+        Oxford classical texts <span class="nocase">CSL</span>-<span
+        class="nocase">VAR</span>
+      title: >-
+        Clitophon, <span class="nocase">Republic</span>, <span
+        class="nocase">Timaeus</span>, <span class="nocase">Critias</span>
+      volume: '4'
+    input: |-
+      @book{Plato1902,
+        title = {Clitophon, {{Republic}}, {{Timaeus}}, {{Critias}}},
+        author = {{Plato}},
+        editor = {Burnet, John},
+        date = {1902},
+        volume = {4},
+        publisher = {{Clarendon Press}},
+        location = {{Oxford}},
+        langid = {british},
+        maintitle = {Opera},
+        series = {Oxford Classical Texts {{CSL}}-{{VAR}}}
+      }
+    key: Plato1902
+    mode:
+      author: creatorlist
+      date: literal
+      editor: creatorlist
+      langid: literal
+      location: literallist
+      maintitle: title
+      publisher: literallist
+      series: title
+      title: title
+      volume: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

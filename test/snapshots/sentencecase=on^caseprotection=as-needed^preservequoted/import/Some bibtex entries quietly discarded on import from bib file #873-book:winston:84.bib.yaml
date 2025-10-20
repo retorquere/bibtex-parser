@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      address: Reading, Mass.
+      author:
+        - firstName: Patrick H.
+          lastName: Winston
+      publisher:
+        - Addison-Wesley
+      title: Artificial intelligence 2nd ed.
+      year: '1984'
+    input: "@book(Winston:84,\n\tauthor =\t{Patrick H. Winston},\n\taddress =\t{Reading, Mass.},\n\tyear =\t\t{1984},\n\tpublisher =\t{Addison-Wesley},\n\ttitle =\t\t{Artificial Intelligence {\\rm 2nd ed.}}\n)"
+    key: Winston:84
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

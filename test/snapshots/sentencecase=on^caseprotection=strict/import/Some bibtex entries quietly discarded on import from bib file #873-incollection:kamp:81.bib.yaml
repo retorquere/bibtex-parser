@@ -1,0 +1,38 @@
+comments: []
+entries:
+  - fields:
+      address: Amsterdam
+      author:
+        - firstName: Hans
+          lastName: Kamp
+      booktitle: Formal methods in the study of language
+      editor:
+        - firstName: J.A.G.
+          lastName: Groenendijk
+        - firstName: T.M.V.
+          lastName: Janssen
+        - firstName: M.B.J.
+          lastName: Stokhof
+      pages: 277-322
+      publisher:
+        - Mathematical Centre Tracts
+      title: A theory of truth and semantic representation
+      year: '1981'
+    input: "@INCOLLECTION{Kamp:81,\n\tAUTHOR = {Hans Kamp},\n\tTITLE = \"A Theory of Truth and Semantic Representation\",\n\tBOOKTITLE = {Formal Methods in the Study of Language},\n\tPUBLISHER = {Mathematical Centre Tracts},\n\tYEAR = {1981},\n\tEDITOR = {J.A.G. Groenendijk and\n\t\t  T.M.V. Janssen and M.B.J. Stokhof},\n\tPAGES = {277-322},\n\tADDRESS = {Amsterdam}\n}"
+    key: Kamp:81
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      pages: literal
+      publisher: literallist
+      title: title
+      year: literal
+    type: incollection
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

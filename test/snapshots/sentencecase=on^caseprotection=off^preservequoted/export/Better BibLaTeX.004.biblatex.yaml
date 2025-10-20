@@ -1,0 +1,47 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Michael
+          lastName: Hicks
+          prefix: von
+          suffix: III
+      date: '2001'
+      edition: 1st,
+      isbn: 0-69-697269-4
+      location:
+        - Palo Alto
+      options: useprefix=true
+      publisher:
+        - Stanford Press
+      title: >-
+        Design of a Carbon Fiber Composite Grid Structure for the GLAST
+        spacecraft using a novel manufacturing technique
+    input: |-
+      @book{hicks2001,
+        title = {Design of a {{Carbon Fiber Composite Grid Structure}} for the {{GLAST}} Spacecraft Using a Novel Manufacturing Technique},
+        author = {von Hicks, III, Michael},
+        date = {2001},
+        edition = {1st,},
+        publisher = {{Stanford Press}},
+        location = {{Palo Alto}},
+        isbn = {0-69-697269-4},
+        options = {useprefix=true}
+      }
+    key: hicks2001
+    mode:
+      author: creatorlist
+      date: literal
+      edition: literal
+      isbn: literal
+      location: literallist
+      options: literal
+      publisher: literallist
+      title: title
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

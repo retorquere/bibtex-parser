@@ -1,0 +1,35 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Thomas
+          lastName: Dean
+      booktitle: >-
+        Proceedings of CSCSI 84. Canadian Society for Computational Studies of
+        Intelligence
+      organization:
+        - CSCSI
+      title: Managing Time Maps
+      year: '1984'
+    input: |-
+      @InProceedings{Dean:84b,
+      author = "Thomas Dean",
+      title = "Managing Time Maps",
+      booktitle = "Proceedings of CSCSI 84.
+                 Canadian Society for Computational Studies of Intelligence",
+      organization = "CSCSI",
+      year = "1984"}
+    key: Dean:84b
+    mode:
+      author: creatorlist
+      booktitle: title
+      organization: literallist
+      title: title
+      year: literal
+    type: inproceedings
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

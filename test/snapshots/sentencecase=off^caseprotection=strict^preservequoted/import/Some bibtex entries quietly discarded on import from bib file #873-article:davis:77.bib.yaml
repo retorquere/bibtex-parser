@@ -1,0 +1,33 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Randall
+          lastName: Davis
+        - firstName: Bruce
+          lastName: Buchanan
+        - firstName: Edward
+          lastName: Shortliffe
+      journal: Artificial Intelligence
+      pages: 15-45
+      title: >-
+        Production rules as a representation for knowledge-based consultation
+        program
+      volume: '8'
+      year: '1977'
+    input: "@article(Davis:77,\n\tauthor =\t{Randall Davis and Bruce Buchanan and \n\t\t\t Edward Shortliffe},\n\tyear =\t\t{1977},\n\tjournal =\t{Artificial Intelligence},\n\tpages =\t\t{15-45},\n\ttitle =\t\t{Production rules as a representation for \n\t\t\t knowledge-based consultation program},\n\tvolume =\t{8}\n)"
+    key: Davis:77
+    mode:
+      author: creatorlist
+      journal: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,46 @@
+comments: []
+entries:
+  - fields:
+      address: ERLBAUM-ADDRESS
+      annote: Contains definition of “keyhole” and “intended” plan recognition.
+      author:
+        - firstName: Philip R.
+          lastName: Cohen
+        - firstName: C. Raymond
+          lastName: Perrault
+        - firstName: James F.
+          lastName: Allen
+      booktitle: Strategies for Natural Language Processing
+      editor:
+        - firstName: Wendy
+          lastName: Lehnert
+        - firstName: Marty
+          lastName: Ringle
+      pages: 245–274
+      publisher:
+        - LEA
+      title: Beyond Question Answering
+      year: '1981'
+    input: "@INCOLLECTION(CohenETAL:81,\n\tAUTHOR = {Philip R. Cohen and C. Raymond Perrault and James F. Allen},\n\tTITLE = \"Beyond Question Answering\",\n\tBOOKTITLE = {Strategies for Natural Language Processing},\n\tPUBLISHER = LEA,\n\tYEAR = {1981},\n\tEDITOR = {Wendy Lehnert and Marty Ringle},\n\tPAGES = {245--274},\n\tADDRESS = ERLBAUM-ADDRESS,\n\tANNOTE = {Contains definition of ``keyhole'' and ``intended''\n\t\t  plan recognition.}\n)"
+    key: CohenETAL:81
+    mode:
+      address: literal
+      annote: richtext
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      pages: literal
+      publisher: literallist
+      title: title
+      year: literal
+    type: incollection
+errors:
+  - error: Unresolved @string reference "LEA"
+    input: ''
+  - error: Unresolved @string reference "ERLBAUM-ADDRESS"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

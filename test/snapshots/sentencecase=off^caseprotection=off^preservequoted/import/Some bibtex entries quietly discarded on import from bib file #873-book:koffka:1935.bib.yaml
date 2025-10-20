@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: K.
+          lastName: Koffka
+      publisher:
+        - Harcourt, Brace & World
+      title: Principles of Gestalt Psychology
+      volume: New York
+      year: '1935'
+    input: "@book(Koffka:1935,\n\tauthor =\t{K. Koffka},\n\tyear =\t\t{1935},\n\tpublisher =\t{Harcourt, Brace & World},\n\ttitle =\t\t\"Principles of Gestalt Psychology\",\n\tvolume =\t{New York}\n)"
+    key: Koffka:1935
+    mode:
+      author: creatorlist
+      publisher: literallist
+      title: title
+      volume: literal
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,57 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Georges
+          lastName: Canguilhem
+      bookauthor:
+        - firstName: Jean
+          lastName: Cavaillès
+      booktitle: Œuvres complètes de philosophie des sciences
+      date: '1994'
+      isbn: 2-7056-6221-9
+      keywords:
+        - Mathematics
+        - Philosophy
+        - Science
+      langid: french
+      location:
+        - Paris
+      pages: 665–86
+      publisher:
+        - Hermann
+      title: In memoriam
+    input: |-
+      @inbook{Canguilhem1994,
+        title = {In memoriam},
+        booktitle = {Œuvres complètes de philosophie des sciences},
+        author = {Canguilhem, Georges},
+        date = {1994},
+        pages = {665--86},
+        publisher = {{Hermann}},
+        location = {{Paris}},
+        bookauthor = {Cavaillès, Jean},
+        isbn = {2-7056-6221-9},
+        keywords = {Mathematics,Philosophy,Science},
+        langid = {french}
+      }
+    key: Canguilhem1994
+    mode:
+      author: creatorlist
+      bookauthor: creatorlist
+      booktitle: title
+      date: literal
+      isbn: literal
+      keywords: verbatimlist
+      langid: literal
+      location: literallist
+      pages: literal
+      publisher: literallist
+      title: title
+    type: inbook
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

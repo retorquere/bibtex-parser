@@ -1,0 +1,28 @@
+comments: []
+entries:
+  - fields:
+      address: Rochester, NY
+      author:
+        - firstName: Henry
+          lastName: Kautz
+      institution:
+        - Department of Computer Science, University of Rochester
+      number: TR 215
+      title: A Formal Theory of Plan Recognition
+      year: May 1987
+    input: "@techreport(Kautz:thesis,\n\tauthor =\t{Henry Kautz},\n\taddress =\t{Rochester, NY},\n\tyear =\t\t{May 1987},\n\tinstitution =\t{Department of Computer Science,\n\t\t\t University of Rochester},\n\ttitle =\t\t\"A Formal Theory of Plan Recognition\",\n\tNUMBER = {TR 215}\n)"
+    key: Kautz:thesis
+    mode:
+      address: literal
+      author: creatorlist
+      institution: literallist
+      number: literal
+      title: title
+      year: literal
+    type: techreport
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

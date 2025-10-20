@@ -1,0 +1,35 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Philip R.
+          lastName: Cohen
+        - firstName: Hector J.
+          lastName: Levesque
+      journal: AIJ
+      month: '3'
+      number: 2–3
+      pages: 213–261
+      title: Intention is choice with commitment
+      volume: '42'
+      year: '1990'
+    input: "@ARTICLE{Cohen:90a,\n\tAUTHOR = {Philip R. Cohen and Hector J. Levesque},\n\tTITLE = \"Intention is Choice with Commitment\",\n\tJOURNAL = AIJ,\n\tYEAR = {1990},\n\tVOLUME = {42},\n\tNUMBER = {2--3},\n\tPAGES = {213--261},\n\tMONTH = March\n}"
+    key: Cohen:90a
+    mode:
+      author: creatorlist
+      journal: literal
+      month: literal
+      number: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "AIJ"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

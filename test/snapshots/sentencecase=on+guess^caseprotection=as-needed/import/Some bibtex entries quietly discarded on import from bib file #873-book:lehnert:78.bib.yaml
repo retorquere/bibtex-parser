@@ -1,0 +1,28 @@
+comments: []
+entries:
+  - fields:
+      address: ERLBAUM-ADDRESS
+      author:
+        - firstName: Wendy
+          lastName: Lehnert
+      publisher:
+        - Lawrence Erlbaum
+      title: The process of question answering
+      year: '1978'
+    input: "@book(Lehnert:78,\n\tauthor =\t{Wendy Lehnert},\n\taddress =\tERLBAUM-ADDRESS,\n\tyear =\t\t{1978},\n\tpublisher =\t{Lawrence Erlbaum},\n\ttitle =\t\t{The Process of Question Answering}\n)"
+    key: Lehnert:78
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors:
+  - error: Unresolved @string reference "ERLBAUM-ADDRESS"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

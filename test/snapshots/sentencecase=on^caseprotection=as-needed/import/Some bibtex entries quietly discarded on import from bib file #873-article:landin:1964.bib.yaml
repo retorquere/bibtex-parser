@@ -1,0 +1,27 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Peter
+          lastName: Landin
+      journal: Computer Journal
+      pages: 308-320
+      title: The mechanical evaluation of expressions
+      volume: '6'
+      year: '1964'
+    input: "@article(Landin:1964,\n\tauthor =\t{Peter Landin},\n\tyear =\t\t{1964},\n\tjournal =\t{Computer Journal},\n\tpages =\t\t{308-320},\n\ttitle =\t\t\"The mechanical evaluation of expressions\",\n\tvolume =\t{6}\n)"
+    key: Landin:1964
+    mode:
+      author: creatorlist
+      journal: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

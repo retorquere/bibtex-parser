@@ -1,0 +1,40 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: D.
+          lastName: Poole
+        - firstName: A.K.
+          lastName: Mackworth
+        - firstName: R.G.
+          lastName: Goebel
+      publisher:
+        - Oxford University Press
+      serial: poo97a
+      title: 'Computational Intelligence: A Logical Approach'
+      year: '1997'
+    input: |-
+      @book{PooMacGoe97a,
+              author = {D. Poole and A.K. Mackworth and R.G. Goebel},
+              year = 1997,
+              title = "Computational Intelligence: A Logical Approach",
+              publisher = {Oxford University Press},
+              serial = {poo97a},
+              address = {New York}
+      }
+    key: PooMacGoe97a
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      serial: literal
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

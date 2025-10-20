@@ -1,0 +1,28 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: E.V.
+          lastName: Clark
+        - firstName: H.H.
+          lastName: Clark
+      publisher:
+        - Harcourt Brace Jovanovich
+      title: Psychology and Language
+      year: '1978'
+    input: "@book(Clark:78,\n\tauthor =\t{E.V. Clark and H.H. Clark},\n\taddress =\t{New York},\n\tyear =\t\t{1978},\n\tpublisher =\t{Harcourt Brace Jovanovich},\n\ttitle =\t\t{Psychology and Language}\n)"
+    key: Clark:78
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

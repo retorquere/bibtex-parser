@@ -1,0 +1,29 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: John R.
+          lastName: Searle
+      journal: COGSCI
+      pages: 47–70
+      title: The intentionality of intention and action
+      volume: '4'
+      year: '1980'
+    input: "@ARTICLE{Searle:80,\n\tAUTHOR = {John R. Searle},\n\tTITLE = \"The Intentionality of Intention and Action\",\n\tJOURNAL = COGSCI,\n\tYEAR = {1980},\n\tVOLUME = {4},\n\tPAGES = {47--70}\n}"
+    key: Searle:80
+    mode:
+      author: creatorlist
+      journal: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "COGSCI"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

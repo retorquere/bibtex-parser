@@ -1,0 +1,38 @@
+comments: []
+entries:
+  - fields:
+      address: Cambridge, Mass.
+      author:
+        - firstName: Kent
+          lastName: Stevens
+      booktitle: 'Artificial Intelligence: An MIT Perspective'
+      editor:
+        - firstName: P.H.
+          lastName: Winston
+        - firstName: R.H.
+          lastName: Brown
+      pages: 103-125
+      publisher:
+        - MIT Press
+      title: Representing and analyzing surface orientation
+      volume: '2'
+      year: '1979'
+    input: "@book(Stevens:1979,\n\tauthor =\t{Kent Stevens},\n\tbooktitle =\t{Artificial Intelligence: An MIT Perspective},\n\taddress =\t{Cambridge, Mass.},\n\tyear =\t\t{1979},\n\teditor =\t{P.H. Winston and R.H. Brown},\n\tpublisher =\t{MIT Press},\n\tpages =\t\t{103-125},\n\ttitle =\t\t\"Representing and analyzing surface orientation\",\n\tvolume =\t{2}\n)"
+    key: Stevens:1979
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      pages: literal
+      publisher: literallist
+      title: title
+      volume: literal
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

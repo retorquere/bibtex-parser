@@ -1,0 +1,40 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Firby
+          lastName: Miller
+          suffix: D.
+        - firstName: T.
+          lastName: Dean
+      booktitle: Proceedings of 9th IJCAI 1985
+      organization:
+        - IJCAI
+      pages: 1052-1054
+      title: Deadlines, Travel Time and Robot Problem Solving
+      year: '1985'
+    input: |-
+      @InProceedings{miller85,
+      author = "Miller, D., Firby, J. and Dean, T.",
+      title = "Deadlines, Travel Time and Robot Problem Solving",
+      booktitle = "Proceedings of 9th IJCAI 1985",
+      organization = "IJCAI",
+      pages = "1052-1054",
+      year = "1985"}
+    key: miller85
+    mode:
+      author: creatorlist
+      booktitle: title
+      organization: literallist
+      pages: literal
+      title: title
+      year: literal
+    type: inproceedings
+errors:
+  - error: '@miller85: unexpected 4-part name "Miller, D., Firby, J.", dropping "J."'
+    input: Miller, D., Firby, J.
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

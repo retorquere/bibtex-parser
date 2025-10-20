@@ -1,0 +1,22 @@
+comments: []
+entries:
+  - fields: {}
+    input: '@foo{}'
+    key: ''
+    mode: {}
+    type: foo
+  - fields:
+      foo: bar
+    input: '@article(foo=bar)'
+    key: ''
+    mode:
+      foo: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "bar"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

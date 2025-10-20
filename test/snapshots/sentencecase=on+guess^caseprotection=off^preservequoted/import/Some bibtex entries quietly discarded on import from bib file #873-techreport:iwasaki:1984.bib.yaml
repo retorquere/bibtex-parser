@@ -1,0 +1,23 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Peter
+          lastName: Friedland
+        - firstName: Y.
+          lastName: Iwasaki
+      title: The concept and implementation of skeletal plans
+      year: '1984'
+    input: "@techreport(Iwasaki:1984,\n\tauthor =\t{Peter Friedland and Y. Iwasaki},\n\tyear =\t\t{1984},\n\ttitle =\t\t{The concept and implementation of skeletal plans}\n)"
+    key: Iwasaki:1984
+    mode:
+      author: creatorlist
+      title: title
+      year: literal
+    type: techreport
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

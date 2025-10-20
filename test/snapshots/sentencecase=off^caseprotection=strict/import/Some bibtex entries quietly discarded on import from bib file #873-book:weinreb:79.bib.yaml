@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Daniel
+          lastName: Weinreb
+        - firstName: David
+          lastName: Moon
+      publisher:
+        - MIT Artificial Intelligence Laboratory
+      title: Lisp Machine Manual
+      year: '1979'
+    input: "@book(Weinreb:79,\n\tauthor =\t{Daniel Weinreb and David Moon},\n\tyear =\t\t{1979},\n\tpublisher =\t{MIT Artificial Intelligence Laboratory},\n\ttitle =\t\t{Lisp Machine Manual}\n)"
+    key: Weinreb:79
+    mode:
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

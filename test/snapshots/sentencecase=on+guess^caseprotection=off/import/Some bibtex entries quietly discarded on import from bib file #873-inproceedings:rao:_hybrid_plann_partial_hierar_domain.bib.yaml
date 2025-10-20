@@ -1,0 +1,54 @@
+comments: []
+entries:
+  - fields:
+      abstract: >-
+        Hierarchical task network and action-based planning approaches have
+        traditionally been studied separately. In many domains, human expertise
+        in the form of hierarchical reduction schemas exists, but is incomplete.
+        In such domains, hybrid approaches that use both HTN and action-based
+        planning techniques are needed. In this paper, we extend our previous
+        work on refinement planning to include hierarchical planning.
+        Specifically, we provide a generalized plan-space refinement that is
+        capable of handling non-primitive actions. The generalization provides a
+        principled way of handling partially hierarchical domains, while
+        preserving systematicity, and respecting the user-intent inherent in the
+        reduction schemas. Our general account also puts into perspective the
+        many surface differences between the HTN and action-based planners, and
+        could support the transfer of progress between HTN and action-based
+        planning approaches.
+      annote: >-
+        Fits HTN planning into Rao's unifying framework. Also shows how to do
+        this in partially hierarchical domains, i.e., those where some goals do
+        not have methods and use normal precondition-chaining. This doesn't
+        really arise in our playbook applications, but it's very neat. Hard to
+        tell how well this works out, since there are a whole bunch of fairly
+        complex bits necessary to ensure completeness and systematicity. The
+        latter could, of course, be sacrificed. Seems to subsume the
+        hierarchical planning in DPOCL and Barrent and Weld, which is handy!
+        It's always nice to be able to not read a paper!
+      author:
+        - firstName: Subbarao
+          lastName: Kambhampati
+        - firstName: Amol
+          lastName: Mali
+        - firstName: Biplav
+          lastName: Srivastava
+      crossref: AAAI98
+      pages: 882–888
+      title: Hybrid planning for partially hierarchical domains
+    input: "@InProceedings{rao:_hybrid_plann_partial_hierar_domain,\n  author =\t \"Subbarao Kambhampati and Amol Mali and Biplav\n                  Srivastava\",\n  title =\t \"Hybrid Planning for Partially Hierarchical Domains\",\n  pages =\t \"882--888\",\n  annote =\t {Fits HTN planning into Rao's unifying\n                  framework. Also shows how to do this in partially\n                  hierarchical domains, i.e., those where some goals\n                  do not have methods and use normal\n                  precondition-chaining. This doesn't really arise in\n                  our playbook applications, but it's very neat. Hard\n                  to tell how well this works out, since there are a\n                  whole bunch of fairly complex bits necessary to\n                  ensure completeness and systematicity. The latter\n                  could, of course, be sacrificed. Seems to subsume\n                  the hierarchical planning in DPOCL and Barrent and\n                  Weld, which is handy! It's always nice to be able to\n                  not read a paper!},\n  abstract =\t \"Hierarchical task network and action-based planning\n                  approaches have traditionally been studied\n                  separately. In many domains, human expertise in the\n                  form of hierarchical reduction schemas exists, but\n                  is incomplete. In such domains, hybrid approaches\n                  that use both HTN and action-based planning\n                  techniques are needed. In this paper, we extend our\n                  previous work on refinement planning to include\n                  hierarchical planning. Specifically, we provide a\n                  generalized plan-space refinement that is capable of\n                  handling non-primitive actions. The generalization\n                  provides a principled way of handling partially\n                  hierarchical domains, while preserving\n                  systematicity, and respecting the user-intent\n                  inherent in the reduction schemas. Our general\n                  account also puts into perspective the many surface\n                  differences between the HTN and action-based\n                  planners, and could support the transfer of progress\n                  between HTN and action-based planning approaches.\",\n  crossref =\t {AAAI98}\n}"
+    key: rao:_hybrid_plann_partial_hierar_domain
+    mode:
+      abstract: literal
+      annote: richtext
+      author: creatorlist
+      crossref: literal
+      pages: literal
+      title: title
+    type: inproceedings
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

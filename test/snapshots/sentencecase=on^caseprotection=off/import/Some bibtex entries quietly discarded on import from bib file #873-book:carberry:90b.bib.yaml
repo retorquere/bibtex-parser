@@ -1,0 +1,32 @@
+comments: []
+entries:
+  - fields:
+      address: MITP-ADDRESS
+      author:
+        - firstName: Sandra
+          lastName: Carberry
+      publisher:
+        - MITP
+      series: ACL-MIT press series in natural language processing
+      title: Plan recognition in natural language dialogue
+      year: '1990'
+    input: "@BOOK(Carberry:90b,\n\tAUTHOR = {Sandra Carberry},\n\tTITLE = \"Plan Recognition in Natural Language Dialogue\",\n\tPUBLISHER = MITP,\n\tYEAR = {1990},\n\tSERIES = {ACL-MIT Press Series in Natural Language Processing},\n\tADDRESS = MITP-ADDRESS\n)"
+    key: Carberry:90b
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      series: title
+      title: title
+      year: literal
+    type: book
+errors:
+  - error: Unresolved @string reference "MITP"
+    input: ''
+  - error: Unresolved @string reference "MITP-ADDRESS"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

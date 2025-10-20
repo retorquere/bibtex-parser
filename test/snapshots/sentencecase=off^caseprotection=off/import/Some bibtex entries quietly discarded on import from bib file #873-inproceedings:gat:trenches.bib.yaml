@@ -1,0 +1,38 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Erann
+          lastName: Gat
+      booktitle: >-
+        AAAI Technical Report SSS-96-04: Planning with Incomplete Information
+        for Robot Problems
+      editor:
+        - firstName: Illah
+          lastName: Nourbakhsh
+      month: '3'
+      organization:
+        - AAAI
+      title: 'News From the Trenches: An Overview of Unmanned Spacecraft for AI'
+      url: http://www-aig.jpl.nasa.gov/home/gat/gp.html
+      year: '1996'
+    input: "@INPROCEEDINGS{Gat:Trenches,\n  AUTHOR =\t {Erann Gat},\n  TITLE =\t {News From the Trenches: An Overview of Unmanned\n                  Spacecraft for {AI}},\n  BOOKTITLE =\t {AAAI Technical Report SSS-96-04: Planning with\n                  Incomplete Information for Robot Problems},\n  YEAR =\t {1996},\n  EDITOR =\t {Illah Nourbakhsh},\n  ORGANIZATION = AAAI,\n  MONTH =\t mar,\n  URL =\t\t {http://www-aig.jpl.nasa.gov/home/gat/gp.html}\n}"
+    key: Gat:Trenches
+    mode:
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      month: literal
+      organization: literallist
+      title: title
+      url: verbatim
+      year: literal
+    type: inproceedings
+errors:
+  - error: Unresolved @string reference "AAAI"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

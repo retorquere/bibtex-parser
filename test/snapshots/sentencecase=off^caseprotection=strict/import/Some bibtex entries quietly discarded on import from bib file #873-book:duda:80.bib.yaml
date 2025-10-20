@@ -1,0 +1,38 @@
+comments: []
+entries:
+  - fields:
+      address: Edinburgh
+      author:
+        - firstName: Richard O.
+          lastName: Duda
+        - firstName: John G.
+          lastName: Gaschnig
+        - firstName: Peter E.
+          lastName: Hart
+      booktitle: Expert Systems in the Microelectronic Age
+      editor:
+        - firstName: D.
+          lastName: Michie
+      pages: 153-167
+      publisher:
+        - Edinburgh University Press
+      title: Model design in the Prospector consultant system for mineral exploration
+      year: '1980'
+    input: "@book(Duda:80,\n\tauthor =\t{Richard O. Duda and John G. Gaschnig and\n\t\t\t  Peter E. Hart},\n\tbooktitle =\t{Expert Systems in the Microelectronic Age},\n\taddress =\t{Edinburgh},\n\tyear =\t\t{1980},\n\teditor =\t{D. Michie},\n\tpublisher =\t{Edinburgh University Press},\n\tpages =\t\t{153-167},\n\ttitle =\t\t{Model design in the Prospector consultant system \n\t\t\t for mineral exploration}\n)"
+    key: Duda:80
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      pages: literal
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,27 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Rodney
+          lastName: Brooks
+      booktitle: AAAI-82
+      title: Solving the find-path problem by good representation of space
+      volume: '2'
+      year: '1982'
+    input: "@inproceedings(Brooks:82,\n\tauthor =\t{Rodney Brooks},\n\tyear =\t\t{1982},\n\tbooktitle =\tAAAI-82,\n\ttitle =\t\t{Solving the find-path problem by good \n\t\t\t representation of space},\n\tvolume =\t{2}\n)"
+    key: Brooks:82
+    mode:
+      author: creatorlist
+      booktitle: title
+      title: title
+      volume: literal
+      year: literal
+    type: inproceedings
+errors:
+  - error: Unresolved @string reference "AAAI-82"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

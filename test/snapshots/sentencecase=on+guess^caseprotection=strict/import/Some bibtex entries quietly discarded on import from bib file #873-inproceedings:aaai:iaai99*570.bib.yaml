@@ -1,0 +1,36 @@
+comments: []
+entries:
+  - fields:
+      address: Menlo Park, Cal.
+      author:
+        - firstName: Karen L.
+          lastName: Myers
+        - firstName: Thomas J.
+          lastName: Lee
+      booktitle: <span class="nocase">AAAI-99</span>
+      month: "07 \_18–22"
+      pages: 570–576
+      publisher:
+        - AAAI/MIT Press
+      title: Generating qualitatively different plans through metatheoretic biases
+      year: '1999'
+    input: "@InProceedings{AAAI/IAAI99*570,\n  author =\t\"Karen L. Myers and Thomas J. Lee\",\n  title =\t\"Generating Qualitatively Different Plans through\n\t\t Metatheoretic Biases\",\n  pages =\t\"570--576\",\n  booktitle =\tAAAI-99,\n  month =\tjul # \" ~18--22\",\n  publisher =\t\"AAAI/MIT Press\",\n  address =\t\"Menlo Park, Cal.\",\n  year = \t\"1999\",\n}"
+    key: AAAI/IAAI99*570
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      month: literal
+      pages: literal
+      publisher: literallist
+      title: title
+      year: literal
+    type: inproceedings
+errors:
+  - error: Unresolved @string reference "AAAI-99"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,25 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Claude E.
+          lastName: Shannon
+      journal: Scientific American
+      title: Automatic chess player
+      volume: '182'
+      year: '1950'
+    input: "@article(Shannon:50,\n\tauthor =\t{Claude E. Shannon},\n\tyear =\t\t{1950},\n\tjournal =\t{Scientific American},\n\ttitle =\t\t\"Automatic chess player\",\n\tvolume =\t{182}\n)"
+    key: Shannon:50
+    mode:
+      author: creatorlist
+      journal: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

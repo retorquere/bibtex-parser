@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      address: Urbana Illinois
+      author:
+        - firstName: Timothy W.
+          lastName: Finin
+      institution:
+        - Department of Computer Science University of Illinois at
+      title: The semantic interpretation of nominal compounds
+      year: '1980'
+    input: "@techreport(Finin:1980,\n\tauthor =\t{Timothy W. Finin},\n\taddress =\t{Urbana Illinois},\n\tyear =\t\t{1980},\n\tinstitution =\t{Department of Computer Science University of Illinois at},\n\ttitle =\t\t{The Semantic Interpretation of Nominal Compounds}\n)"
+    key: Finin:1980
+    mode:
+      address: literal
+      author: creatorlist
+      institution: literallist
+      title: title
+      year: literal
+    type: techreport
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

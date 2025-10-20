@@ -1,0 +1,101 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Xaver
+          lastName: Laufenberg
+        - firstName: Dominique
+          lastName: Eynius
+        - firstName: Helmut
+          lastName: Suelzle
+        - firstName: Stephan
+          lastName: Usbeck
+        - firstName: Matthias
+          lastName: Spaeth
+        - firstName: Miriam
+          lastName: Neuser-Hoffmann
+        - firstName: Christian
+          lastName: Myrzik
+        - firstName: Manfred
+          lastName: Schmid
+        - firstName: Franz
+          lastName: Nietfeld
+        - firstName: Alexander
+          lastName: Thiel
+        - firstName: Harald
+          lastName: Braun
+        - firstName: Norbert
+          lastName: Ebner
+      date: '2006-09-13'
+      holder:
+        - name: Robert Bosch GmbH
+        - name: Daimler Chrysler AG
+        - name: Bayerische Motoren Werke AG
+      number: '1700367'
+      title: Elektrische einrichtung und betriebsverfahren
+      type: patenteu
+      url: http://v3.espacenet.com/textdoc?IDX=EP1700367
+    input: |-
+      @patent{laufenberg,
+        author       = {Laufenberg, Xaver and Eynius, Dominique and Suelzle, Helmut
+                        and Usbeck, Stephan and Spaeth, Matthias and Neuser-Hoffmann,
+                        Miriam and Myrzik, Christian and Schmid, Manfred and Nietfeld,
+                        Franz and Thiel, Alexander and Braun, Harald and Ebner,
+                        Norbert},
+        title        = {Elektrische Einrichtung und Betriebsverfahren},
+        number       = 1700367,
+        date         = {2006-09-13},
+        holder       = {{Robert Bosch GmbH} and {Daimler Chrysler AG} and {Bayerische
+                        Motoren Werke AG}},
+        type         = {patenteu},
+        url          = {http://v3.espacenet.com/textdoc?IDX=EP1700367},
+      }
+    key: laufenberg
+    mode:
+      author: creatorlist
+      date: literal
+      holder: creatorlist
+      number: literal
+      title: title
+      type: literal
+      url: verbatim
+    type: patent
+  - fields:
+      author:
+        - firstName: Ronald E.
+          lastName: Sorace
+        - firstName: Victor S.
+          lastName: Reinhardt
+        - firstName: Steven A.
+          lastName: Vaughn
+      date: '1997-09-16'
+      holder:
+        - name: Hughes Aircraft Company
+      number: '5668842'
+      title: High-speed digital-to-RF converter
+      type: patentus
+    input: |-
+      @patent{sorace,
+        author       = {Sorace, Ronald E. and Reinhardt, Victor S. and Vaughn, Steven
+                        A.},
+        title        = {High-Speed Digital-to-{RF} Converter},
+        number       = 5668842,
+        date         = {1997-09-16},
+        holder       = {{Hughes Aircraft Company}},
+        type         = {patentus},
+      }
+    key: sorace
+    mode:
+      author: creatorlist
+      date: literal
+      holder: creatorlist
+      number: literal
+      title: title
+      type: literal
+    type: patent
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

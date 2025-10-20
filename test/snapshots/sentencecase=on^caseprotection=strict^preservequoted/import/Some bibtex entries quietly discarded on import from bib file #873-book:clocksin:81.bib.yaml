@@ -1,0 +1,28 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: W.
+          lastName: Clocksin
+        - firstName: C.
+          lastName: Mellish
+      publisher:
+        - Springer-Verlag
+      title: Programming in prolog
+      year: '1981'
+    input: "@book(Clocksin:81,\n\tauthor =\t{W. Clocksin and C. Mellish},\n\taddress =\t{New York},\n\tyear =\t\t{1981},\n\tpublisher =\t{Springer-Verlag},\n\ttitle =\t\t{Programming in Prolog}\n)"
+    key: Clocksin:81
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

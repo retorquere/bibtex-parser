@@ -1,0 +1,33 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Jerry
+          lastName: Feldman
+      editor:
+        - firstName: R.
+          lastName: Schank
+        - firstName: B.L.
+          lastName: Nash-Webber
+      journal: Theoretical Issues in Natural Language Processing
+      pages: 92-93
+      title: Bad-mouthing frames
+      volume: '1'
+      year: '1975'
+    input: "@article(Feldman:75,\n\tauthor =\t{Jerry Feldman},\n\tyear =\t\t{1975},\n\teditor =\t{R. Schank and B.L. Nash-Webber},\n\tjournal =\t{Theoretical Issues in Natural Language Processing},\n\tpages =\t\t{92-93},\n\ttitle =\t\t\"Bad-mouthing frames\",\n\tvolume =\t{1}\n)"
+    key: Feldman:75
+    mode:
+      author: creatorlist
+      editor: creatorlist
+      journal: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

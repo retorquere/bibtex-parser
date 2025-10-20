@@ -1,0 +1,40 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Richard E
+          lastName: Blahut
+      date: '1972'
+      journaltitle: IEEE_J_IT
+      number: '4'
+      pages: 460–473
+      title: Computation of channel capacity and rate-distortion functions
+      volume: '18'
+    input: |-
+      @article{blahut_capacity,
+        title = {Computation of Channel Capacity and Rate-Distortion Functions},
+        author = {Blahut, Richard E},
+        date = {1972},
+        journaltitle = IEEE_J_IT,
+        volume = {18},
+        pages = {460--473},
+        number = {4}
+      }
+    key: blahut_capacity
+    mode:
+      author: creatorlist
+      date: literal
+      journaltitle: literal
+      number: literal
+      pages: literal
+      title: title
+      volume: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "IEEE_J_IT"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

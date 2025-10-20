@@ -1,0 +1,82 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - name: TheAuthor
+      title: TheTitle
+      year: '2023'
+    input: |-
+      @misc{theauthorTheTitle2023,
+        title = {{{TheTitle}}},
+        author = {{TheAuthor}},
+        year = {2023}
+      }
+    key: theauthorTheTitle2023
+    mode:
+      author: creatorlist
+      title: title
+      year: literal
+    type: misc
+  - fields:
+      author:
+        - name: TheAuthor
+      howpublished: <a href="https://www.example.com/#foo">https://www.example.com/#foo</a>
+      title: TheTitle
+      year: '2023'
+    input: |-
+      @misc{TheKey,
+        title = {{{TheTitle}}},
+        author = {{TheAuthor}},
+        year = {2023},
+        howpublished = {\url{https://www.example.com/#foo}}
+      }
+    key: TheKey
+    mode:
+      author: creatorlist
+      howpublished: literal
+      title: title
+      year: literal
+    type: misc
+  - fields:
+      author:
+        - name: TheAuthor
+      note: <a href="https://www.example.com/#foo">https://www.example.com/#foo</a>
+      title: TheTitle
+      year: '2023'
+    input: |-
+      @misc{theauthorTheTitle2023,
+        title = {{{TheTitle}}},
+        author = {{TheAuthor}},
+        year = {2023},
+        note = {\href{https://www.example.com/#foo}{https://www.example.com/\#foo}}
+      }
+    key: theauthorTheTitle2023
+    mode:
+      author: creatorlist
+      note: richtext
+      title: title
+      year: literal
+    type: misc
+  - fields:
+      author:
+        - name: TheAuthor
+      title: TheTitle
+      year: '2023'
+    input: |-
+      @misc{TheKey,
+        title = {{{TheTitle}}},
+        author = {{TheAuthor}},
+        year = {2023}
+      }
+    key: TheKey
+    mode:
+      author: creatorlist
+      title: title
+      year: literal
+    type: misc
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

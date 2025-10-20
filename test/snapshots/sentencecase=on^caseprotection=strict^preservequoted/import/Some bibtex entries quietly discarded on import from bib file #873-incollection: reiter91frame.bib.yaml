@@ -1,0 +1,35 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - name: REITER
+      booktitle: >-
+        Artificial intelligence and mathematical theory of computation: Papers
+        in honor of john McCarthy, vladimir lifschitz (ed.), academic press
+      title: >-
+        The frame problem in the situation calculus: <span
+        class="nocase">A</span> simple solution (sometimes) and a completeness
+        result for goal regression
+      year: '1991'
+    input: |-
+      @incollection{ reiter91frame,
+          author = REITER,
+          title = "The Frame Problem in the Situation Calculus: {A} Simple Solution (Sometimes) and a Completeness Result for Goal Regression",
+          booktitle = "Artificial Intelligence and Mathematical Theory of Computation: Papers in Honor of John McCarthy, Vladimir Lifschitz (Ed.), Academic Press",
+          year = "1991"
+      }
+    key: reiter91frame
+    mode:
+      author: creatorlist
+      booktitle: title
+      title: title
+      year: literal
+    type: incollection
+errors:
+  - error: Unresolved @string reference "REITER"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

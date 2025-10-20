@@ -1,0 +1,34 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: Edward A.
+          lastName: Feigenbaum
+      booktitle: Computers and Thought
+      editor:
+        - firstName: Edward A.
+          lastName: Feigenbaum
+        - firstName: Julian
+          lastName: Feldman
+      publisher:
+        - McGraw-Hill
+      title: The simulation of verbal learning behavior
+      year: '1963'
+    input: "@book(Feigenbaum:1963,\n\tauthor =\t{Edward A. Feigenbaum},\n\tbooktitle =\t{Computers and Thought},\n\taddress =\t{New York},\n\tyear =\t\t{1963},\n\teditor =\t{Edward A. Feigenbaum and Julian Feldman},\n\tpublisher =\t{McGraw-Hill},\n\ttitle =\t\t{The simulation of verbal learning behavior}\n)"
+    key: Feigenbaum:1963
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

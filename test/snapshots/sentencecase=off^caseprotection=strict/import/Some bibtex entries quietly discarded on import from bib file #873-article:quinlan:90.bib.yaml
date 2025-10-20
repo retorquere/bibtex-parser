@@ -1,0 +1,29 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: J. Ross
+          lastName: Quinlan
+      journal: ML
+      pages: 239–266
+      title: Learning Logical definitions from relations
+      volume: '5'
+      year: '1990'
+    input: "@ARTICLE{Quinlan:90,\n\tAUTHOR = {J. Ross Quinlan},\n\tTITLE = \"Learning Logical definitions from relations\",\n\tJOURNAL = ML,\n\tYEAR = {1990},\n\tVOLUME = {5},\n\tPAGES = {239--266}\n}"
+    key: Quinlan:90
+    mode:
+      author: creatorlist
+      journal: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "ML"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

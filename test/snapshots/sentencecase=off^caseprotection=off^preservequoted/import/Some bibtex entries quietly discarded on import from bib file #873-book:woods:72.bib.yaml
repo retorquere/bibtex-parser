@@ -1,0 +1,34 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: William A.
+          lastName: Woods
+      booktitle: Natural Language Processing
+      editor:
+        - firstName: R.
+          lastName: Rustin
+      pages: 113-154
+      publisher:
+        - Algorithmics Press
+      title: An experimental parsing system for transition network grammars
+      year: '1972'
+    input: "@book(Woods:72,\n\tauthor =\t{William A. Woods},\n\tbooktitle =\t{Natural Language Processing},\n\taddress =\t{New York},\n\tyear =\t\t{1972},\n\teditor =\t{R. Rustin},\n\tpublisher =\t{Algorithmics Press},\n\tpages =\t\t{113-154},\n\ttitle =\t\t{An experimental parsing system for transition network grammars}\n)"
+    key: Woods:72
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      pages: literal
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

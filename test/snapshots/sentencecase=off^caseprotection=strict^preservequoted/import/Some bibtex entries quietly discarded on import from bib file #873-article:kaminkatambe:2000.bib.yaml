@@ -1,0 +1,43 @@
+comments:
+  - Classic papers --- these may be filed in the CLASSIC folder instead of
+  - "in the folder for their authors\t\t  "
+entries:
+  - fields:
+      annote: >-
+        This article describes work on using keyhole plan recognition to monitor
+        other team members to verify that the team are working together
+        succesfully. The method is particularly of use in cases where
+        agent-to-communications are not reliable. An extra bonus of the article
+        is that it provides a useful hook into the literature on team action and
+        shared plans.
+      author:
+        - firstName: Gal A.
+          lastName: Kaminka
+        - firstName: Milind
+          lastName: Tambe
+      journal: JAIR
+      month: '3'
+      pages: 105–147
+      title: Robust Agent Teams via Socially-Attentive monitoring
+      volume: '12'
+      year: '2000'
+    input: "@ARTICLE{KaminkaTambe:2000,\n\tAUTHOR = {Gal A. Kaminka and Milind Tambe},\n\tTITLE = \"Robust Agent Teams via Socially-Attentive monitoring\",\n\tJOURNAL = JAIR,\n\tYEAR = {2000},\n\tVOLUME = {12},\n\tPAGES = {105--147},\n\tMONTH = mar,\n\tANNOTE = {This article describes work on using keyhole plan\n\t\t  recognition to monitor other team members to verify\n\t\t  that the team are working together succesfully.  The\n\t\t  method is particularly of use in cases where \n\t\t  agent-to-communications are not reliable.  An extra\n\t\t  bonus of the article is that it provides a useful hook\n\t\t  into the literature on team action and shared plans. }\n}"
+    key: KaminkaTambe:2000
+    mode:
+      annote: richtext
+      author: creatorlist
+      journal: literal
+      month: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "JAIR"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

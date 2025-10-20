@@ -1,0 +1,24 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: John K.
+          lastName: Foderaro
+      publisher:
+        - University of California, Berkeley, Department of Computer Science
+      title: FRANZ LISP ... the manual
+      year: '1979'
+    input: "@book(Foderaro,\n\tauthor =\t{John K. Foderaro},\n\tyear =\t\t{1979},\n\tpublisher =\t{University of California, Berkeley, Department of Computer Science},\n\ttitle =\t\t{FRANZ LISP ... The Manual}\n)"
+    key: Foderaro
+    mode:
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

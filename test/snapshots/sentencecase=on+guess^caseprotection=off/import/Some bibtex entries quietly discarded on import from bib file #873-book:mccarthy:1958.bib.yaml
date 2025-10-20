@@ -1,0 +1,28 @@
+comments: []
+entries:
+  - fields:
+      address: Teddington, England
+      author:
+        - firstName: John
+          lastName: McCarthy
+      booktitle: Proceedings of the symposium on the mechanization of thought processes
+      publisher:
+        - National Physical Laboratory
+      title: Programs with common sense
+      year: '1958'
+    input: "@book(McCarthy:1958,\n\tauthor =\t{John McCarthy},\n\tbooktitle =\t{Proceedings of the Symposium on the Mechanization of Thought Processes},\n\taddress =\t{Teddington, England},\n\tyear =\t\t{1958},\n\tpublisher =\t{National Physical Laboratory},\n\ttitle =\t\t{Programs with common sense}\n)"
+    key: McCarthy:1958
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

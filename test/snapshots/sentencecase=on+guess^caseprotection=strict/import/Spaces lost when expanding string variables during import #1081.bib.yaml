@@ -1,0 +1,29 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - lastName: Author
+      journal: a space between this and this
+      title: Title
+      year: '1990'
+    input: |-
+      @article{key,
+          author  = "Author",
+          title   = "Title",
+          year    = 1990,
+          journal = j # "and this"
+      }
+    key: key
+    mode:
+      author: creatorlist
+      journal: literal
+      title: title
+      year: literal
+    type: article
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings:
+  J: 'a space between this '

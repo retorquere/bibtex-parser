@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: Terry
+          lastName: Winograd
+      publisher:
+        - Academic Press
+      title: Understanding Natural Language
+      year: '1972'
+    input: "@book(Winograd:72,\n\tauthor =\t{Terry Winograd},\n\taddress =\t{New York},\n\tyear =\t\t{1972},\n\tpublisher =\t{Academic Press},\n\ttitle =\t\t{Understanding Natural Language}\n)"
+    key: Winograd:72
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

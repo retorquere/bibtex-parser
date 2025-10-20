@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      address: Cambridge, Mass.
+      author:
+        - firstName: Richard P.
+          lastName: Paul
+      publisher:
+        - MIT Press
+      title: 'Robot Manipulators: Mathematics, Programming, and Control'
+      year: '1981'
+    input: "@book(Paul:1981,\n\tauthor =\t{Richard P. Paul},\n\taddress =\t{Cambridge, Mass.},\n\tyear =\t\t{1981},\n\tpublisher =\t{MIT Press},\n\ttitle =\t\t{Robot Manipulators: Mathematics, Programming, and Control}\n)"
+    key: Paul:1981
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

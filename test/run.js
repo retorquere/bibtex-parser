@@ -1,16 +1,18 @@
 #!/usr/bin/env node
 
+import minimist from 'minimist'
 import { globSync } from 'glob'
 import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
 import { test } from 'node:test'
-import * as bibtex from '../dist/esm/index.js'
-
 import * as yaml from 'js-yaml'
 
+import * as bibtex from '../dist/esm/index.js'
+
 const here = path.dirname(new URL(import.meta.url).pathname)
+const saved = path.resolve(here, 'run.yaml')
 
 function load(filename) {
   const data = fs.readFileSync(filename, 'utf-8')
@@ -26,9 +28,74 @@ function load(filename) {
 }
 
 const config = {
-  ...(fs.existsSync(path.resolve(here, 'run.yaml')) ? load(path.resolve(here, 'run.yaml')) : {}),
-  tests: load(path.resolve(here, 'config.yaml')),
+  sentenceCase: 'on+guess',
+  caseProtection: 'as-needed',
+  preserveQuoted: true,
+  big: true,
+  ...(fs.existsSync(saved) ? load(saved) : {}),
 }
+
+function verify(v, options) {
+  if (options.includes(v)) return v
+  throw new Error(`${v} must be one of ${options}`)
+}
+
+const args = minimist(process.argv.slice(2))
+for (const [k, v] of Object.entries(args)) {
+  switch (k) {
+    case '_':
+      config.only = config.only || []
+      config.only = [...config.only, ...v]
+      break
+
+    case 's':
+    case 'sc':
+    case 'sentencecase':
+      config.sentenceCase = verify(v, ['off', 'on+guess', 'on'])
+      break
+
+    case 'c':
+    case 'cp':
+    case 'caseprotection':
+      config.caseProtection = verify(v, ['as-needed', 'off', 'strict'])
+      break
+
+    case 'P':
+    case 'pq':
+    case 'preservequoted':
+      config.preserveQuoted = true
+      break
+
+    case 'p':
+    case 'no-pq':
+    case 'no-preservequoted':
+      config.preserveQuoted = false
+      break
+
+    case 'b':
+    case 'no-big':
+      config.big = false
+      break
+
+    case 'B':
+    case 'big':
+      config.big = true
+      break
+
+    case 'save':
+    case 'snap':
+      break
+
+    default:
+      throw new Error(`Unexpected option ${k}`)
+  }
+}
+if (config.only && !config.only.length) delete config.only
+if (args.save) fs.writeFileSync(saved, yaml.dump(config))
+console.log('running', config)
+
+config.tests = load(path.resolve(here, 'config.yaml'))
+
 const unabbreviations = load(path.resolve(here, '..', 'unabbrev.json'))
 const strings = path.resolve(here, '..', 'strings.bib')
 
@@ -47,9 +114,15 @@ function stringify(obj) {
 
 function matchSnapshot(actual, snapshot) {
   if (!fs.existsSync(snapshot)) {
-    fs.mkdirSync(path.dirname(snapshot), { recursive: true })
-    fs.writeFileSync(snapshot, stringify(actual))
-    console.log(`Created snapshot: ${snapshot}`)
+    if (args.snap) {
+      fs.mkdirSync(path.dirname(snapshot), { recursive: true })
+      fs.writeFileSync(snapshot, stringify(actual))
+      console.log(`Created snapshot: ${snapshot}`)
+      return
+    }
+    else {
+      assert.strictEqual(stringify(actual), '')
+    }
   }
   else {
     const expected = fs.readFileSync(snapshot, 'utf-8')
@@ -59,10 +132,18 @@ function matchSnapshot(actual, snapshot) {
 
 let tested = 0
 function skip(test) {
-  if (config.n && tested > config.n) return true
-  if (config.only && !path.basename(test.input).toLowerCase().includes(config.only.toLowerCase())) return true
-  if (!config.big && config.tests.toobig.includes(path.basename(test.input))) return true
-  return false
+  if (config.n && tested > config.n) {
+    return `skipping tests after ${config.n}`
+  }
+  else if (config.only && !config.only.find(o => o.toLowerCase().includes(path.basename(test.input).toLowerCase()))) {
+    return `only testing ${config.only}`
+  }
+  else if (!config.big && config.tests.toobig.includes(path.basename(test.input))) {
+    return 'too big'
+  }
+  else {
+    return false
+  }
 }
 
 function parse(bibfile, name, snapshot, options) {

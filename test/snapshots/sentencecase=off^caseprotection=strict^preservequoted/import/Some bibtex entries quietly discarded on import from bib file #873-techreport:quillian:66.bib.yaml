@@ -1,0 +1,27 @@
+comments: []
+entries:
+  - fields:
+      address: Cambridge, Mass.
+      author:
+        - firstName: M. Ross
+          lastName: Quillian
+      institution:
+        - Bolt Beranek
+        - Newman
+      title: Semantic Memory
+      year: '1966'
+    input: "@techreport(Quillian:66,\n\tauthor =\t{M. Ross Quillian},\n\taddress =\t{Cambridge, Mass.},\n\tyear =\t\t{1966},\n\tinstitution =\t{Bolt Beranek and Newman},\n\ttitle =\t\t{Semantic Memory}\n)"
+    key: Quillian:66
+    mode:
+      address: literal
+      author: creatorlist
+      institution: literallist
+      title: title
+      year: literal
+    type: techreport
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

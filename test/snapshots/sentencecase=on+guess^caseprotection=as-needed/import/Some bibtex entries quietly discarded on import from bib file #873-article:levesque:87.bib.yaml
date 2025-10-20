@@ -1,0 +1,31 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Hector J.
+          lastName: Levesque
+        - firstName: R.J.
+          lastName: Brachman
+      journal: CI
+      pages: 78–93
+      title: Expressiveness and tractability in knowledge representation
+      volume: '3'
+      year: '1987'
+    input: "@ARTICLE{Levesque:87,\n\tAUTHOR = {Hector J. Levesque and R.J. Brachman},\n\tTITLE = \"Expressiveness and tractability in knowledge representation\",\n\tJOURNAL = CI,\n\tYEAR = {1987},\n\tVOLUME = {3},\n\tPAGES = {78--93}\n}"
+    key: Levesque:87
+    mode:
+      author: creatorlist
+      journal: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "CI"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

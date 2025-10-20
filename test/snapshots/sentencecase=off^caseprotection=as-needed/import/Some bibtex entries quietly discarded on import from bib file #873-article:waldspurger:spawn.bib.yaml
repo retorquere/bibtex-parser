@@ -1,0 +1,41 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Carl A.
+          lastName: Waldspurger
+        - firstName: Tad
+          lastName: Hogg
+        - firstName: Bernardo A.
+          lastName: Huberman
+        - firstName: Jeffrey O.
+          lastName: Kephart
+        - firstName: W. Scott
+          lastName: Stornetta
+      journal: TSWE
+      month: '2'
+      number: '2'
+      pages: 103–117
+      title: 'Spawn: A distributed Computational Economy'
+      volume: '18'
+      year: '1992'
+    input: "@ARTICLE(Waldspurger:Spawn,\n\tAUTHOR = {Carl A. Waldspurger and Tad Hogg and Bernardo A.\n\t\t  Huberman and Jeffrey O. Kephart and W. Scott Stornetta},\n\tTITLE = \"Spawn: A distributed Computational Economy\",\n\tJOURNAL = TSWE,\n\tYEAR = {1992},\n\tVOLUME = {18},\n\tNUMBER = {2},\n\tPAGES = {103--117},\n\tMONTH = {February}\n)"
+    key: Waldspurger:Spawn
+    mode:
+      author: creatorlist
+      journal: literal
+      month: literal
+      number: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "TSWE"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

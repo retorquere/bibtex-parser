@@ -1,0 +1,40 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: Paul
+          lastName: Grice
+      booktitle: Speech Acts
+      editor:
+        - firstName: P.
+          lastName: Cole
+        - firstName: J.
+          lastName: Morgan
+      number: '3'
+      pages: 41-58
+      publisher:
+        - Academic Press
+      series: Syntax and Semantics
+      title: Logic and conversation
+      year: '1975'
+    input: "@incollection(Grice,\n\tauthor =\t{Paul Grice},\n\tbooktitle =\t{Speech Acts},\n\tseries = \t{Syntax and Semantics},\n\tnumber = \t{3},\n\taddress =\t{New York},\n\tyear =\t\t{1975},\n\teditor =\t{P. Cole and J. Morgan},\n\tpublisher =\t{Academic Press},\n\tpages =\t\t{41-58},\n\ttitle =\t\t{Logic and conversation}\n)"
+    key: Grice
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      number: literal
+      pages: literal
+      publisher: literallist
+      series: title
+      title: title
+      year: literal
+    type: incollection
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

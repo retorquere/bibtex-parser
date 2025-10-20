@@ -1,0 +1,29 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Benjamin
+          lastName: Kuipers
+        - firstName: Yung-Tai
+          lastName: Byun
+      booktitle: <span class="nocase">AAAI-88</span>
+      pages: 774–779
+      title: A robust, qualitative method for robot spatial reasoning
+      year: '1988'
+    input: "@inproceedings(Kuipers:88,\n\tauthor =\t{Benjamin Kuipers and Yung-Tai Byun},\n\tyear =\t\t{1988},\n\tbooktitle =\tAAAI-88,\n\tpages =\t\t{774--779},\n\ttitle =\t\t{A robust, qualitative method for robot \n\t\t\t spatial reasoning}\n)"
+    key: Kuipers:88
+    mode:
+      author: creatorlist
+      booktitle: title
+      pages: literal
+      title: title
+      year: literal
+    type: inproceedings
+errors:
+  - error: Unresolved @string reference "AAAI-88"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

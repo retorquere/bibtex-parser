@@ -1,0 +1,190 @@
+comments: []
+entries:
+  - fields:
+      abstract: Example from CMoS, 16e, 14.249
+      address: Mesopotamia, OH
+      author:
+        - firstName: Hazel V.
+          lastName: Clark
+      publisher:
+        - Trumbull County Historical Society
+      title: 'Mesopotamia: Between Two Rivers'
+      year: '1957'
+    input: |-
+      @booklet{clark_mesopotamia_1957,
+        title = {Mesopotamia: Between Two Rivers},
+        author = {Clark, Hazel V.},
+        year = {1957},
+        publisher = {{Trumbull County Historical Society}},
+        address = {{Mesopotamia, OH}},
+        abstract = {Example from CMoS, 16e, 14.249}
+      }
+    key: clark_mesopotamia_1957
+    mode:
+      abstract: literal
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: booklet
+  - fields:
+      abstract: Example from CMoS, 16e, 14.125
+      author:
+        - firstName: David
+          lastName: Kamp
+      chapter: Sunday Book Review
+      collaborator:
+        - firstName: Michael
+          lastName: Pollan
+      language: en-US
+      month: '4'
+      title: Deconstructing Dinner
+      year: '2006'
+    input: |-
+      @article{kamp_deconstructing_2006,
+        title = {Deconstructing Dinner},
+        author = {Kamp, David},
+        year = {2006},
+        month = apr,
+        abstract = {Example from CMoS, 16e, 14.125},
+        chapter = {Sunday Book Review},
+        collaborator = {Pollan, Michael},
+        language = {en-US}
+      }
+    key: kamp_deconstructing_2006
+    mode:
+      abstract: literal
+      author: creatorlist
+      chapter: literal
+      collaborator: creatorlist
+      language: literal
+      month: literal
+      title: title
+      year: literal
+    type: article
+  - fields:
+      abstract: >-
+        Example from CMoS, 16e, 14.269 “Prepared from the autographs and
+        earliest printed sources by Nathan Broder”
+      address: Bryn Mawr, PA
+      author:
+        - firstName: Wolfgang Amadeus
+          lastName: Mozart
+      edition: Rev. ed.
+      editor:
+        - firstName: Nathan
+          lastName: Broder
+      publisher:
+        - Theodore Presser
+      title: Sonatas and Fantasies for the Piano
+      year: '1960'
+    input: |-
+      @misc{mozart_sonatas_1960,
+        title = {Sonatas and Fantasies for the Piano},
+        author = {Mozart, Wolfgang Amadeus},
+        editor = {Broder, Nathan},
+        year = {1960},
+        edition = {Rev. ed.},
+        publisher = {{Theodore Presser}},
+        address = {{Bryn Mawr, PA}},
+        abstract = {Example from CMoS, 16e, 14.269 ``Prepared from the autographs and earliest printed sources by Nathan Broder''}
+      }
+    key: mozart_sonatas_1960
+    mode:
+      abstract: literal
+      address: literal
+      author: creatorlist
+      edition: literal
+      editor: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: misc
+  - fields:
+      abstract: Example from CMoS, 16e, 14.272
+      journal: NASA/IPAC Extragalactic Database
+      title: Object Name IRAS F00400+4059
+    input: |-
+      @misc{noauthor_object_nodate,
+        title = {Object Name {{IRAS F00400}}+4059},
+        abstract = {Example from CMoS, 16e, 14.272},
+        journal = {NASA/IPAC Extragalactic Database}
+      }
+    key: noauthor_object_nodate
+    mode:
+      abstract: literal
+      journal: literal
+      title: title
+    type: misc
+  - fields:
+      abstract: Example from CMoS, 16e, 14.215 “ed. and trans. John Charles Chasteen”
+      author:
+        - firstName: Ben
+          lastName: Ratliff
+      collaborator:
+        - name: Hermano Vianna
+      journal: Lingua Franca
+      language: en-US
+      month: '4'
+      note: "biblatex-chicago example, adapted from <a href=\"http://mirrors.ctan.org/macros/latex/contrib/biblatex-contrib/biblatex-chicago/doc/examples/dates-test.bib\">http://mirrors.ctan.org/macros/latex/contrib/biblatex-contrib/biblatex-chicago/doc/examples/dates-test.bib</a> <p>Original annotation: <p>*16th edition only.* A Review entry presenting a review from a scholarly journaltitle, hence no entrysubtype needed.\_\_Note the bibstrings in the title of the review, and the formatting of the title of the book reviewed there.\_\_Also note the use of \\parteditandtrans.\_\_The author-date system doesn't absolutely require the use of these mechanisms, which were invented to cope with the differences between notes and bibliography in the other Chicago style.\_\_Still, although simply writing \"edited and translated by\" yourself will suffice, using these mechanisms will make your .bib file work across multiple languages, and will also allow it to work, with fewer modifications, in the notes \\& bibliography style, should that be needed.\_\_See next entry. <p>Example from CMoS, 16e, 14.125"
+      pages: B13–B14
+      title: 'The Mystery of Samba: Popular Music and National Identity in Brazil'
+      volume: '9'
+      year: '1999'
+    input: >-
+      @article{ratliff_mystery_1999,
+        title = {The Mystery of Samba: {{Popular}} Music and National Identity in {{Brazil}}},
+        author = {Ratliff, Ben},
+        year = {1999},
+        month = apr,
+        volume = {9},
+        pages = {B13--B14},
+        abstract = {Example from CMoS, 16e, 14.215 ``ed. and trans. John Charles Chasteen''},
+        collaborator = {{Hermano Vianna}},
+        journal = {Lingua Franca},
+        language = {en-US},
+        note = {biblatex-chicago example, adapted from \href{http://mirrors.ctan.org/macros/latex/contrib/biblatex-contrib/biblatex-chicago/doc/examples/dates-test.bib}{http://mirrors.ctan.org/macros/latex/contrib/biblatex-contrib/biblatex-chicago/doc/examples/dates-test.bib}
+      \par
+
+      Original annotation:
+
+      \par
+
+      *16th edition only.* A Review entry presenting a review from a scholarly
+      journaltitle, hence no entrysubtype needed.~~Note the bibstrings in the
+      title of the review, and the formatting of the title of the book reviewed
+      there.~~Also note the use of \textbackslash parteditandtrans.~~The
+      author-date system doesn't absolutely require the use of these mechanisms,
+      which were invented to cope with the differences between notes and
+      bibliography in the other Chicago style.~~Still, although simply writing
+      "edited and translated by" yourself will suffice, using these mechanisms
+      will make your .bib file work across multiple languages, and will also
+      allow it to work, with fewer modifications, in the notes \textbackslash\&
+      bibliography style, should that be needed.~~See next entry.
+
+      \par
+
+      Example from CMoS, 16e, 14.125}
+
+      }
+    key: ratliff_mystery_1999
+    mode:
+      abstract: literal
+      author: creatorlist
+      collaborator: creatorlist
+      journal: literal
+      language: literal
+      month: literal
+      note: richtext
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

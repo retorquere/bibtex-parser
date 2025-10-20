@@ -1,0 +1,36 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Thomas
+          lastName: Dean
+        - firstName: Mark
+          lastName: Boddy
+      booktitle: <span class="nocase">AAAI-88</span>
+      pages: 49–54
+      title: An analysis of time-dependent planning
+      year: '1988'
+    input: |-
+      @inproceedings{deanboddy88,
+          author    = "Thomas Dean and Mark Boddy",
+          title     = "{An Analysis of Time-Dependent Planning}",
+          booktitle = AAAI-88,
+          year      = 1988,
+          pages     = {49--54}
+      }
+    key: deanboddy88
+    mode:
+      author: creatorlist
+      booktitle: title
+      pages: literal
+      title: title
+      year: literal
+    type: inproceedings
+errors:
+  - error: Unresolved @string reference "AAAI-88"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

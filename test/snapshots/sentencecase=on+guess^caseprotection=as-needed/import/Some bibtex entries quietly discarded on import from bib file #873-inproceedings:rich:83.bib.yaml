@@ -1,0 +1,32 @@
+comments: []
+entries:
+  - fields:
+      address: Los Altos, Calif.
+      author:
+        - firstName: Elaine
+          lastName: Rich
+      booktitle: Proc. AAAI
+      pages: 348-351
+      publisher:
+        - William Kaufmann, Inc.
+      title: Default reasoning as likelihood reasoning
+      volume: '3'
+      year: '1983'
+    input: "@inproceedings(Rich:83,\n\tauthor =\t{Elaine Rich},\n\taddress =\t{Los Altos, Calif.},\n\tyear =\t\t{1983},\n\tpublisher =\t{William Kaufmann, Inc.},\n\tbooktitle =\t{Proc. AAAI},\n\tpages =\t\t{348-351},\n\ttitle =\t\t\"Default reasoning as likelihood reasoning\",\n\tvolume =\t{3}\n)"
+    key: Rich:83
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      pages: literal
+      publisher: literallist
+      title: title
+      volume: literal
+      year: literal
+    type: inproceedings
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      address: Englewood Cliffs, NJ
+      author:
+        - firstName: M. Morris
+          lastName: Mano
+      publisher:
+        - Prentice-Hall, Inc.
+      title: Computer system architecture
+      year: '1976'
+    input: "@book(Mano:76,\n\tauthor =\t{M. Morris Mano},\n\taddress =\t{Englewood Cliffs, NJ},\n\tyear =\t\t{1976},\n\tpublisher =\t{Prentice-Hall, Inc.},\n\ttitle =\t\t{Computer System Architecture}\n)"
+    key: Mano:76
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

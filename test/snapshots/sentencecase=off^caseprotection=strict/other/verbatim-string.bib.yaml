@@ -1,0 +1,59 @@
+comments: []
+entries:
+  - fields:
+      address: Basel
+      author:
+        - firstName: Jacques
+          lastName: Laskar
+      booktitle: 'Chaos: Poincaré Seminar 2010'
+      doi: 10.1007/978-3-0348-0697-8_7
+      editor:
+        - firstName: Bertrand
+          lastName: Duplantier
+        - firstName: Stéphane
+          lastName: Nonnenmacher
+        - firstName: Vincent
+          lastName: Rivasseau
+      isbn: 978-3-0348-0697-8
+      pages: 239–270
+      publisher:
+        - Springer Basel
+      title: IS THE SOLAR SYSTEM STABLE?
+      url: https://doi.org/10.1007/978-3-0348-0697-8_7
+      year: '2013'
+    input: |-
+      @Inbook{Laskar2013,
+      author="Laskar, Jacques",
+      editor="Duplantier, Bertrand
+      and Nonnenmacher, St{\'e}phane
+      and Rivasseau, Vincent",
+      title="IS THE SOLAR SYSTEM STABLE?",
+      bookTitle="Chaos: Poincar{\'e} Seminar 2010",
+      year="2013",
+      publisher="Springer Basel",
+      address="Basel",
+      pages="239--270",
+      isbn="978-3-0348-0697-8",
+      doi="10.1007/978-3-0348-0697-8_7",
+      url="https://doi.org/10.1007/978-3-0348-0697-8_7"
+      }
+    key: Laskar2013
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      doi: verbatim
+      editor: creatorlist
+      isbn: literal
+      pages: literal
+      publisher: literallist
+      title: title
+      url: verbatim
+      year: literal
+    type: inbook
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

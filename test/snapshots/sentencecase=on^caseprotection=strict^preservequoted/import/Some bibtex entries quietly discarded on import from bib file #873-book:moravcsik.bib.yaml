@@ -1,0 +1,28 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: Edith A.
+          lastName: Moravcsik
+        - firstName: Jessica A.
+          lastName: Wirth
+      publisher:
+        - Academic Press
+      title: 'Syntax and semantics 13: Current approaches to syntax'
+      year: '1980'
+    input: "@book(Moravcsik,\n\tauthor =\t{Edith A. Moravcsik and Jessica A. Wirth},\n\taddress =\t{New York},\n\tyear =\t\t{1980},\n\tpublisher =\t{Academic Press},\n\ttitle =\t\t{Syntax and Semantics 13:  \n\t\t\t Current Approaches to Syntax}\n)"
+    key: Moravcsik
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

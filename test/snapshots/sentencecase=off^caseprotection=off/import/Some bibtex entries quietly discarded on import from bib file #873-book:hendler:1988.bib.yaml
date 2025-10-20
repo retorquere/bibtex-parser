@@ -1,0 +1,30 @@
+comments: []
+entries:
+  - fields:
+      address: Hillsdale, NJ
+      author:
+        - firstName: James A.
+          lastName: Hendler
+      publisher:
+        - LEA
+      title: >-
+        Integrated Marker-Passing and Problem-Solving: A Spreading-Activation
+        Approach to Improved Choice in Planning
+      year: '1988'
+    input: "@book(Hendler:1988,\n\tauthor =\t{James A. Hendler},\n\tpublisher =\tLEA,\n\taddress =\t{Hillsdale, NJ},\n\tyear =\t\t{1988},\n\ttitle =\t\t{Integrated Marker-Passing and Problem-Solving:  A Spreading-Activation Approach to Improved Choice in Planning}\n)"
+    key: Hendler:1988
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors:
+  - error: Unresolved @string reference "LEA"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

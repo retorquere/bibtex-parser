@@ -1,0 +1,36 @@
+comments: []
+entries:
+  - fields:
+      address: Palo Alto, Calif.
+      author:
+        - firstName: Douglas B.
+          lastName: Lenat
+      booktitle: 'Machine learning: An artificial intelligence approach'
+      editor:
+        - firstName: Jaime G. Carbonell
+          lastName: Ryszard Michalski
+        - firstName: Tom M.
+          lastName: Mitchell
+      pages: 243-306
+      publisher:
+        - Tioga
+      title: 'The role of heuristics in learning by discovery: Three case studies'
+      year: '1983'
+    input: "@book(Lenat:1983c,\n\tauthor =\t{Douglas B. Lenat},\n\tbooktitle =\t{Machine Learning: An Artificial Intelligence Approach},\n\taddress =\t{Palo Alto, Calif.},\n\tyear =\t\t{1983},\n\teditor =\t{Ryszard Michalski, Jaime G. Carbonell, and Tom M. Mitchell},\n\tpublisher =\t{Tioga},\n\tpages =\t\t{243-306},\n\ttitle =\t\t{The role of heuristics in learning by discovery: Three case studies}\n)"
+    key: Lenat:1983c
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      pages: literal
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

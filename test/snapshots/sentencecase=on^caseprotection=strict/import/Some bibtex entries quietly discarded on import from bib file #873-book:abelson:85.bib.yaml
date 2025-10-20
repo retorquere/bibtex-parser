@@ -1,0 +1,32 @@
+comments: []
+entries:
+  - fields:
+      address: MIT-ADDRESS
+      author:
+        - firstName: Harold
+          lastName: Abelson
+        - firstName: Gerald Jay
+          lastName: Sussman
+      publisher:
+        - MITP
+      title: Structure and interpretation of computer programs
+      year: '1985'
+    input: "@BOOK{Abelson:85,\n\tAUTHOR = {Harold Abelson and Gerald Jay Sussman},\n\tTITLE = \"Structure and Interpretation of Computer Programs\",\n\tPUBLISHER = MITP,\n\tYEAR = {1985},\n\tADDRESS = MIT-ADDRESS\n}"
+    key: Abelson:85
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors:
+  - error: Unresolved @string reference "MITP"
+    input: ''
+  - error: Unresolved @string reference "MIT-ADDRESS"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

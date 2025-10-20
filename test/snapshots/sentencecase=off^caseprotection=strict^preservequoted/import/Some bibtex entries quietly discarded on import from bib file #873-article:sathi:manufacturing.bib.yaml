@@ -1,0 +1,37 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Arvind
+          lastName: Sathi
+        - firstName: Mark S.
+          lastName: Fox
+        - firstName: Michael
+          lastName: Greenberg
+      journal: PAMI
+      month: '9'
+      number: '5'
+      pages: 531–552
+      title: Representation of Activity Knowledge for Project Management
+      volume: PAMI-7
+      year: '1985'
+    input: "@ARTICLE(Sathi:Manufacturing,\n\tAUTHOR = {Arvind Sathi and Mark S. Fox and Michael Greenberg},\n\tTITLE = {Representation of Activity Knowledge for Project\n\t\t Management},\n\tJOURNAL = PAMI,\n\tYEAR = {1985},\n\tVOLUME = {PAMI-7},\n\tNUMBER = {5},\n\tPAGES = {531--552},\n\tMONTH = {September}\n)"
+    key: Sathi:Manufacturing
+    mode:
+      author: creatorlist
+      journal: literal
+      month: literal
+      number: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "PAMI"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

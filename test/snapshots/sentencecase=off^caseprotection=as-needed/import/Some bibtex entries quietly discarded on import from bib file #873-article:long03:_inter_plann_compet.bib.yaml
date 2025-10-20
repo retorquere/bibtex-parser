@@ -1,0 +1,47 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Derek
+          lastName: Long
+        - firstName: Maria
+          lastName: Fox
+      bibsource: DBLP, http://dblp.uni-trier.de
+      ee: http://www.cs.washington.edu/research/jair/abstracts/long03a.html
+      journal: JAIR
+      pages: 1-59
+      title: 'The 3rd International Planning Competition: Results and Analysis.'
+      volume: '20'
+      year: '2003'
+    input: |-
+      @article{long03:_inter_plann_compet,
+        author    = {Derek Long and
+                     Maria Fox},
+        title     = {The 3rd International Planning Competition: Results and
+                     Analysis.},
+        journal   = JAIR,
+        volume    = 20,
+        year      = 2003,
+        pages     = {1-59},
+        ee        = {http://www.cs.washington.edu/research/jair/abstracts/long03a.html},
+        bibsource = {DBLP, http://dblp.uni-trier.de}
+      }
+    key: long03:_inter_plann_compet
+    mode:
+      author: creatorlist
+      bibsource: literal
+      ee: literal
+      journal: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "JAIR"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

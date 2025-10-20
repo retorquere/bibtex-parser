@@ -1,0 +1,29 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Chuck
+          lastName: Rieger
+        - firstName: Steve
+          lastName: Small
+      journal: Proc. Ijcai
+      pages: 723-728
+      title: Word expert parsing
+      volume: '6'
+      year: '1979'
+    input: "@article(Rieger:79,\n\tauthor =\t{Chuck Rieger and Steve Small},\n\tyear =\t\t{1979},\n\tjournal =\t{Proc. Ijcai},\n\tpages =\t\t{723-728},\n\ttitle =\t\t\"Word expert parsing\",\n\tvolume =\t{6}\n)"
+    key: Rieger:79
+    mode:
+      author: creatorlist
+      journal: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

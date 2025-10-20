@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      address: Reading, Mass.
+      author:
+        - firstName: Terry
+          lastName: Winograd
+      publisher:
+        - Addison-Wesley
+      title: 'Language as a cognitive process, volume I: Syntax'
+      year: '1983'
+    input: "@book(Winograd:83,\n\tauthor =\t{Terry Winograd},\n\taddress =\t{Reading, Mass.},\n\tyear =\t\t{1983},\n\tpublisher =\t{Addison-Wesley},\n\ttitle =\t\t{Language as a Cognitive Process, Volume I:  Syntax}\n)"
+    key: Winograd:83
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

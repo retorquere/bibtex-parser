@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      address: Cambridge, Mass.
+      author:
+        - firstName: Ray
+          lastName: Jackendoff
+      publisher:
+        - MIT Press
+      title: Semantic Interpretation in Generative Grammar
+      year: '1972'
+    input: "@book(Jackendoff:72,\n\tauthor =\t{Ray Jackendoff},\n\taddress =\t{Cambridge, Mass.},\n\tyear =\t\t{1972},\n\tpublisher =\t{MIT Press},\n\ttitle =\t\t{Semantic Interpretation in Generative Grammar}\n)"
+    key: Jackendoff:72
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

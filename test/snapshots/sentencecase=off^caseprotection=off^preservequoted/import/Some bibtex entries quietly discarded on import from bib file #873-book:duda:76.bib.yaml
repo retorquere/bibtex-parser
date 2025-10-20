@@ -1,0 +1,30 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: R.O.
+          lastName: Duda
+        - firstName: P.E.
+          lastName: Hart
+        - firstName: N.J.
+          lastName: Nilsson
+      booktitle: Proceedings of the 1976 National Computer Conference
+      publisher:
+        - AFIPS Press
+      title: Subjective Bayesian methods for rule-based inference systems
+      year: '1976'
+    input: "@book(Duda:76,\n\tauthor =\t{R.O. Duda and P.E. Hart and N.J. Nilsson},\n\tbooktitle =\t{Proceedings of the 1976 National Computer Conference},\n\tyear =\t\t{1976},\n\tpublisher =\t{AFIPS Press},\n\ttitle =\t\t{Subjective Bayesian methods for rule-based inference systems}\n)"
+    key: Duda:76
+    mode:
+      author: creatorlist
+      booktitle: title
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      address: Chicago
+      author:
+        - firstName: Bela
+          lastName: Julesz
+      publisher:
+        - University of Chicago Press
+      title: Foundations of Cyclopean Perception
+      year: '1971'
+    input: "@book(Julesz:1971,\n\tauthor =\t{Bela Julesz},\n\taddress =\t{Chicago},\n\tyear =\t\t{1971},\n\tpublisher =\t{University of Chicago Press},\n\ttitle =\t\t{Foundations of Cyclopean Perception}\n)"
+    key: Julesz:1971
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

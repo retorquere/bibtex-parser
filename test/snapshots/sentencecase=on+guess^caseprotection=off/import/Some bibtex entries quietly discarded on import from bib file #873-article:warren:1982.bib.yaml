@@ -1,0 +1,29 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Mark
+          lastName: Jones
+        - firstName: David S.
+          lastName: Warren
+      journal: Proc. AAAI
+      pages: 79-83
+      title: 'Conceptual dependency and montague grammar: A step toward conciliation'
+      volume: '2'
+      year: '1982'
+    input: "@article(Warren:1982,\n\tauthor =\t{Mark Jones and David S. Warren},\n\tyear =\t\t{1982},\n\tjournal =\t{Proc. AAAI},\n\tpages =\t\t{79-83},\n\ttitle =\t\t\"Conceptual dependency and montague grammar: A step toward conciliation\",\n\tvolume =\t{2}\n)"
+    key: Warren:1982
+    mode:
+      author: creatorlist
+      journal: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

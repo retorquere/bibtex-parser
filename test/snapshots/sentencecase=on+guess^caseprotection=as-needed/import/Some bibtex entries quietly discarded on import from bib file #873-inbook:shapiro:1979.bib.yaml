@@ -1,0 +1,34 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: S.C.
+          lastName: Shapiro
+      booktitle: 'Associative networks: Representation and use of knowledge by computer'
+      editor:
+        - firstName: N.V.
+          lastName: Findler
+      pages: 179-203
+      publisher:
+        - Academic Press
+      title: The SNePS semantic network processing system
+      year: '1979'
+    input: "@inbook(Shapiro:1979,\n\tauthor =\t{S.C. Shapiro},\n\tbooktitle =\t{Associative Networks: Representation and Use of Knowledge by Computer},\n\taddress =\t{New York},\n\tyear =\t\t{1979},\n\teditor =\t{N.V. Findler},\n\tpublisher =\t{Academic Press},\n\tpages =\t\t{179-203},\n\ttitle =\t\t{The SNePS semantic network processing system}\n)"
+    key: Shapiro:1979
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      pages: literal
+      publisher: literallist
+      title: title
+      year: literal
+    type: inbook
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

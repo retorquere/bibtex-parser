@@ -1,0 +1,31 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Philippe
+          lastName: David
+      journal: JAIR
+      month: '5'
+      pages: 447–474
+      title: Using Pivot Consistency to Decompose and Solve Functional CSPs
+      volume: '2'
+      year: '1995'
+    input: "@ARTICLE(David:95,\n\tAUTHOR = {Philippe David},\n\tTITLE = {Using Pivot Consistency to Decompose and Solve\n\t\t Functional {CSPs}},\n\tJOURNAL = JAIR,\n\tYEAR = {1995},\n\tVOLUME = {2},\n\tPAGES = {447--474},\n\tMONTH = {May}\n)"
+    key: David:95
+    mode:
+      author: creatorlist
+      journal: literal
+      month: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "JAIR"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

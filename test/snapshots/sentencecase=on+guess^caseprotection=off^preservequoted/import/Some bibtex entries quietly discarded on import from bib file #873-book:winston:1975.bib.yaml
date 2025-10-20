@@ -1,0 +1,32 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: Patrick H.
+          lastName: Winston
+      booktitle: The psychology of computer vision
+      editor:
+        - firstName: P.H.
+          lastName: Winston
+      publisher:
+        - McGraw-Hill
+      title: Learning structural descriptions from examples
+      year: '1975'
+    input: "@book(Winston:1975,\n\tauthor =\t{Patrick H. Winston},\n\tbooktitle =\t{The Psychology of Computer Vision},\n\taddress =\t{New York},\n\tyear =\t\t{1975},\n\teditor =\t{P.H. Winston},\n\tpublisher =\t{McGraw-Hill},\n\ttitle =\t\t{Learning structural descriptions from examples}\n)"
+    key: Winston:1975
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

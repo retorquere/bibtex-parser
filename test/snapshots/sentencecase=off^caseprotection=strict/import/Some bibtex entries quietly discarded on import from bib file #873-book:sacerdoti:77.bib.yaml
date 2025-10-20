@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: Earl
+          lastName: Sacerdoti
+      publisher:
+        - American Elsevier
+      title: A Structure for Plans and Behavior
+      year: '1977'
+    input: "@book(Sacerdoti:77,\n\tauthor =\t{Earl Sacerdoti},\n\taddress =\t{New York},\n\tyear =\t\t{1977},\n\tpublisher =\t{American Elsevier},\n\ttitle =\t\t{A Structure for Plans and Behavior}\n)"
+    key: Sacerdoti:77
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

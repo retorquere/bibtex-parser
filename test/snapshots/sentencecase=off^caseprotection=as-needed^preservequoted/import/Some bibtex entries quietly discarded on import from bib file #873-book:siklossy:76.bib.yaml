@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      address: Englewood Cliffs, NJ
+      author:
+        - firstName: Laurent
+          lastName: Siklossy
+      publisher:
+        - Prentice-Hall
+      title: Let's Talk LISP
+      year: '1976'
+    input: "@book(Siklossy:76,\n\tauthor =\t{Laurent Siklossy},\n\taddress =\t{Englewood Cliffs, NJ},\n\tyear =\t\t{1976},\n\tpublisher =\t{Prentice-Hall},\n\ttitle =\t\t{Let's Talk LISP}\n)"
+    key: Siklossy:76
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

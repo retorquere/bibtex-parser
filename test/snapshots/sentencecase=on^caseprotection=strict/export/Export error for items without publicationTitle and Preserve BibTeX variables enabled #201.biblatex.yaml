@@ -1,0 +1,32 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Roger D.
+          lastName: Blandford
+        - firstName: Kip S.
+          lastName: Thorne
+      date: '2006'
+      publisher:
+        - Caltech
+      title: Applications of <span class="nocase">Classical Physics</span>
+    input: |-
+      @book{Blandford2006,
+        title = {Applications of {{Classical Physics}}},
+        author = {Blandford, Roger D. and Thorne, Kip S.},
+        date = {2006},
+        publisher = {{Caltech}}
+      }
+    key: Blandford2006
+    mode:
+      author: creatorlist
+      date: literal
+      publisher: literallist
+      title: title
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

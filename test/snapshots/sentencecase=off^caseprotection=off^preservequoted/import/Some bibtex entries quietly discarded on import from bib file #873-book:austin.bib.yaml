@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      address: London
+      author:
+        - firstName: J.L.
+          lastName: Austin
+      publisher:
+        - Oxford University Press
+      title: How to Do Things with Words
+      year: '1962'
+    input: "@book(Austin,\n\tauthor =\t{J.L. Austin},\n\taddress =\t{London},\n\tyear =\t\t{1962},\n\tpublisher =\t{Oxford University Press},\n\ttitle =\t\t{How to Do Things with Words}\n)"
+    key: Austin
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

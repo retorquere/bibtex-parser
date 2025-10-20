@@ -1,0 +1,32 @@
+comments: []
+entries:
+  - fields:
+      address: London, UK
+      author:
+        - firstName: R. A.
+          lastName: Bert
+      publisher:
+        - Freds Publishing
+      title: SQL is great
+    input: |-
+      @Book{Bert:2001:SQL,
+        author = "R. A. Bert",
+        title = "SQL is great",
+        publisher = pub-FRED,
+        address = pub-FRED:adr,
+      }
+    key: Bert:2001:SQL
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings:
+  PUB-FRED: Freds Publishing
+  PUB-FRED:ADR: London, UK

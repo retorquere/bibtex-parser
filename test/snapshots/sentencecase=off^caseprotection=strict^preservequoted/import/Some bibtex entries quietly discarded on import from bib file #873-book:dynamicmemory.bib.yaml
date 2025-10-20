@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      address: Cambridge
+      author:
+        - firstName: Roger
+          lastName: Schank
+      publisher:
+        - Cambridge University Press
+      title: 'Dynamic Memory: A Theory of Learning in Computers and People'
+      year: '1982'
+    input: "@book(DynamicMemory,\n\tauthor =\t{Roger Schank},\n\taddress =\t{Cambridge},\n\tyear =\t\t{1982},\n\tpublisher =\t{Cambridge University Press},\n\ttitle =\t\t{Dynamic Memory: A Theory of Learning in Computers and People}\n)"
+    key: DynamicMemory
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,66 @@
+comments: []
+entries:
+  - fields:
+      address: Pathumthani, Thailand
+      author:
+        - firstName: Liem
+          lastName: Ngo
+        - firstName: Peter
+          lastName: Haddawy
+      booktitle: Algorithms, concurrency and knowledge (proceedings ACSC95)
+      editor:
+        - firstName: K.
+          lastName: Kanchanasut
+        - firstName: J.
+          lastName: Levy
+      key: Conference
+      month: '12'
+      pages: 286-300
+      publisher:
+        - Springer-Verlag
+      series: Lecture notes in computer science
+      title: >-
+        Probabilistic logic programming and <span class="nocase">B</span>ayesian
+        networks
+      volume: '1023'
+      year: '1995'
+    input: |-
+      @InProceedings(Ngo95:Probabilistic,
+       Author = "Liem Ngo and Peter Haddawy",
+       Key = "Conference",
+       Title = "Probabilistic Logic Programming and {B}ayesian
+          Networks",
+       Publisher = "Springer-Verlag",
+              Series = "Lecture Notes in Computer Science",
+              Volume = "1023",
+       Organization = "",
+       BookTitle = "Algorithms, Concurrency and Knowledge
+          (Proceedings ACSC95)",
+       Editor = "K. Kanchanasut and J. Levy",
+       Address = "Pathumthani, Thailand",
+       Pages = "286-300",
+       Month = "December",
+       Note = "",
+       Year = "1995"
+       )
+    key: Ngo95:Probabilistic
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      key: literal
+      month: literal
+      pages: literal
+      publisher: literallist
+      series: title
+      title: title
+      volume: literal
+      year: literal
+    type: inproceedings
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

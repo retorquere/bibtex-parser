@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: Judith N.
+          lastName: Levi
+      publisher:
+        - Academic Press
+      title: The Syntax and Semantics of Complex Nominals
+      year: '1978'
+    input: "@book(Levi:78,\n\tauthor =\t{Judith N. Levi},\n\taddress =\t{New York},\n\tyear =\t\t{1978},\n\tpublisher =\t{Academic Press},\n\ttitle =\t\t{The Syntax and Semantics of Complex Nominals}\n)"
+    key: Levi:78
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

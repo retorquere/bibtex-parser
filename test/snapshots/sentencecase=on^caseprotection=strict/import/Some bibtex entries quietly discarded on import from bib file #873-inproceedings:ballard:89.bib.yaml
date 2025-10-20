@@ -1,0 +1,36 @@
+comments: []
+entries:
+  - fields:
+      address: KAUFMANN-ADDRESS
+      author:
+        - firstName: Dana H.
+          lastName: Ballard
+      booktitle: <span class="nocase">IJCAI-89</span>
+      pages: 1635–1641
+      publisher:
+        - KAUFMANN
+      title: Reference frames for animate vision
+      year: '1989'
+    input: "@INPROCEEDINGS{Ballard:89,\n\tAUTHOR = {Dana H. Ballard},\n\tTITLE = \"Reference Frames for Animate Vision\",\n\tBOOKTITLE = IJCAI-89,\n\tYEAR = {1989},\n\tPAGES = {1635--1641},\n\tPUBLISHER = KAUFMANN,\n\tADDRESS = KAUFMANN-ADDRESS\n}"
+    key: Ballard:89
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      pages: literal
+      publisher: literallist
+      title: title
+      year: literal
+    type: inproceedings
+errors:
+  - error: Unresolved @string reference "IJCAI-89"
+    input: ''
+  - error: Unresolved @string reference "KAUFMANN"
+    input: ''
+  - error: Unresolved @string reference "KAUFMANN-ADDRESS"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

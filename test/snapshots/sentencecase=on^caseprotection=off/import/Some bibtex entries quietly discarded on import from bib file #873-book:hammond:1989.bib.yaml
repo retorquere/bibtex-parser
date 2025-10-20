@@ -1,0 +1,36 @@
+comments: []
+entries:
+  - fields:
+      address: Boston
+      author:
+        - firstName: K. J.
+          lastName: Hammond
+      publisher:
+        - Academic press
+      series: perspectives in AI
+      title: 'Case-based planning: viewing planning as a memory task'
+      year: '1989'
+    input: |-
+      @Book{Hammond:1989,
+        author =       "K. J. Hammond",
+        title =        "Case-Based Planning: viewing planning as a memory task",
+        publisher =    "Academic press",
+        year =         1989,
+        series =       "perspectives in AI",
+        address =      "Boston",
+      }
+    key: Hammond:1989
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      series: title
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

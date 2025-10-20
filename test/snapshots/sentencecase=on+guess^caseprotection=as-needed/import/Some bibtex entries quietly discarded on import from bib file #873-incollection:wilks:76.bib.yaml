@@ -1,0 +1,33 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Yorick
+          lastName: Wilks
+      booktitle: >-
+        Computational semantics: An introduction to artificial intelligence and
+        natural language comprehension
+      editor:
+        - firstName: E.
+          lastName: Charniak
+        - firstName: Y.
+          lastName: Wilks
+      pages: 155–184
+      title: Parsing english II
+      year: '1976'
+    input: "@incollection(Wilks:76,\n\tauthor =\t{Yorick Wilks},\n\tbooktitle =\t{Computational Semantics:  \n\t\t\t An Introduction to Artificial Intelligence and \n\t\t\t Natural Language Comprehension},\n\tyear =\t\t{1976},\n\teditor =\t{E. Charniak and Y. Wilks},\n\tpages =\t\t{155--184},\n\ttitle =\t\t{Parsing English {II}}\n)"
+    key: Wilks:76
+    mode:
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      pages: literal
+      title: title
+      year: literal
+    type: incollection
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

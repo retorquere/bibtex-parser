@@ -1,0 +1,47 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Jörg
+          lastName: Hoffmann
+        - firstName: Piergiorgio
+          lastName: Bertoli
+        - firstName: Malte
+          lastName: Helmert
+        - firstName: Marco
+          lastName: Pistore
+      journal: JAIR
+      pages: 49-117
+      title: >-
+        Message-Based Web Service Composition, Integrity Constraints, and
+        Planning under Uncertainty: A New Connection
+      volume: '35'
+      year: '2009'
+    input: |-
+      @Article{hoffmann:etal:jair-09,
+        author =       {J{\"o}rg Hoffmann and Piergiorgio Bertoli and Malte Helmert
+                        and Marco Pistore},
+        title =        {Message-Based Web Service Composition, Integrity Constraints,
+                        and Planning under Uncertainty: A New Connection},
+        journal =      JAIR,
+        year =         {2009},
+        volume =       {35},
+        pages =        {49-117}
+      }
+    key: hoffmann:etal:jair-09
+    mode:
+      author: creatorlist
+      journal: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "JAIR"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

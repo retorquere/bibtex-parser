@@ -1,0 +1,29 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Graeme
+          lastName: Hirst
+        - firstName: Eugene
+          lastName: Charniak
+      crossref: AAAI-82
+      title: Word sense and case slot disambiguation
+      volume: '2'
+      year: '1982'
+    input: "@inproceedings(Hirst:82,\n\tauthor =\t{Graeme Hirst and Eugene Charniak},\n\tyear =\t\t{1982},\n\tcrossref =\tAAAI-82,\n\ttitle =\t\t\"Word sense and case slot disambiguation\",\n\tvolume =\t{2}\n)"
+    key: Hirst:82
+    mode:
+      author: creatorlist
+      crossref: literal
+      title: title
+      volume: literal
+      year: literal
+    type: inproceedings
+errors:
+  - error: Unresolved @string reference "AAAI-82"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

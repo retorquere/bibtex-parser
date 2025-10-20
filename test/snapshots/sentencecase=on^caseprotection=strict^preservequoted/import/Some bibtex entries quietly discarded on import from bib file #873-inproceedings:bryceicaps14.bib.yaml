@@ -1,0 +1,32 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Daniel
+          lastName: Bryce
+      booktitle: <span class="nocase">PICAPS</span>
+      title: Landmark-based plan distance measures for diverse planning
+      year: '2014'
+    input: |-
+      @inproceedings{bryceICAPS14,
+        title =        {Landmark-Based Plan Distance Measures for Diverse Planning},
+        author =       {Bryce, Daniel},
+        booktitle =    PICAPS,
+        pages =        {},
+        year =         {2014}
+      }
+    key: bryceICAPS14
+    mode:
+      author: creatorlist
+      booktitle: title
+      title: title
+      year: literal
+    type: inproceedings
+errors:
+  - error: Unresolved @string reference "PICAPS"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

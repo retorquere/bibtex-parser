@@ -1,0 +1,31 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Elaine
+          lastName: Kant
+      booktitle: >-
+        Proceeding of the symposium on artificial intelligence and programming
+        languages
+      journal: Sigart Newsletter
+      month: '8'
+      number: '64'
+      title: The selection of efficient implementations for a high-level language
+      year: '1977'
+    input: "@article(Kant:77,\n\tauthor =\t{Elaine Kant},\n\tbooktitle =\t{Proceeding of the Symposium on Artificial \n\t\t\t Intelligence and Programming Languages},\n\tyear =\t\t{1977},\n\tmonth = \t{August},\n\tjournal =\t{Sigart Newsletter},\n\tnumber =\t{64},\n\ttitle =\t\t{The selection of efficient implementations for a \n\t\t\t high-level language}\n)"
+    key: Kant:77
+    mode:
+      author: creatorlist
+      booktitle: title
+      journal: literal
+      month: literal
+      number: literal
+      title: title
+      year: literal
+    type: article
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

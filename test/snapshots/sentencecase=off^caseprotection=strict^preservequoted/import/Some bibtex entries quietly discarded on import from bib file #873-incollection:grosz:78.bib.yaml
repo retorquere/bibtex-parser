@@ -1,0 +1,34 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: Barbara J.
+          lastName: Grosz
+      booktitle: Understanding Spoken language
+      editor:
+        - firstName: D.
+          lastName: Walker
+      pages: 229-347
+      publisher:
+        - North-Holland
+      title: Discourse knowledge
+      year: '1978'
+    input: "@incollection(Grosz:78,\n\tauthor =\t{Barbara J. Grosz},\n\tbooktitle =\t{Understanding Spoken language},\n\taddress =\t{New York},\n\tyear =\t\t{1978},\n\teditor =\t{D. Walker},\n\tpublisher =\t{North-Holland},\n\tpages =\t\t{229-347},\n\ttitle =\t\t{Discourse knowledge}\n)"
+    key: Grosz:78
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      pages: literal
+      publisher: literallist
+      title: title
+      year: literal
+    type: incollection
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

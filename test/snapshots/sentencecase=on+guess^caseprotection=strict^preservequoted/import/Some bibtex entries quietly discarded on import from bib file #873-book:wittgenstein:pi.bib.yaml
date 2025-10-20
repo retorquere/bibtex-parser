@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      address: Oxford
+      author:
+        - firstName: Ludwig
+          lastName: Wittgenstein
+      publisher:
+        - Basil Blackwell
+      title: Philosophical investigations
+      year: '1953'
+    input: "@book(Wittgenstein:PI,\n\tauthor =\t{Ludwig Wittgenstein},\n\taddress =\t{Oxford},\n\tyear =\t\t{1953},\n\tpublisher =\t{Basil Blackwell},\n\ttitle =\t\t{Philosophical Investigations}\n)"
+    key: Wittgenstein:PI
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

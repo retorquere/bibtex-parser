@@ -1,0 +1,28 @@
+comments: []
+entries:
+  - fields:
+      address: Cambridge, England
+      author:
+        - firstName: Graeme
+          lastName: Hirst
+      publisher:
+        - Cambridge University Press
+      series: Studies in Natural Language Processing
+      title: Semantic Interpretation and the Resolution of Ambiguity
+      year: '1987'
+    input: "@book(Hirst:87,\n\tauthor =\t{Graeme Hirst},\n\tpublisher =\t{Cambridge University Press},\n\tseries =\t {Studies in Natural Language Processing},\n\tyear =\t\t{1987},\n\taddress =\t{Cambridge, England},\n\ttitle =\t\t{Semantic Interpretation and the Resolution of Ambiguity}\n)"
+    key: Hirst:87
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      series: title
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,33 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Andrew G.
+          lastName: Barto
+        - firstName: Richard S.
+          lastName: Sutton
+      journal: SMC
+      month: September/October
+      number: '5'
+      title: Neuronlike Adaptive Elements That Can Solve Difficult Learning Problems
+      volume: <span style="font-variant:small-caps;">SMC</span>–13
+      year: '1983'
+    input: "@ARTICLE{Barto:83,\n\tAUTHOR = {Andrew G. Barto and Richard S. Sutton},\n\tTITLE = {Neuronlike Adaptive Elements That Can Solve Difficult\n\t\t Learning Problems},\n\tJOURNAL = SMC,\n\tYEAR = {1983},\n\tVOLUME = {{\\sc SMC}--13},\n\tNUMBER = {5},\n\tMONTH = {September/October}\n}"
+    key: Barto:83
+    mode:
+      author: creatorlist
+      journal: literal
+      month: literal
+      number: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "SMC"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,55 @@
+comments: []
+entries:
+  - fields:
+      address: Krakow
+      author:
+        - firstName: Thomas
+          lastName: Emmert
+        - firstName: Stefan
+          lastName: Jaensch
+        - firstName: Carlo
+          lastName: Sovardi
+        - firstName: Wolfgang
+          lastName: Polifke
+      booktitle: 7th <span class="nocase">Forum Acusticum</span>
+      keywords:
+        - NonPerRev
+      month: '9'
+      note: >-
+        <a
+        href="http://www.fa2014.agh.edu.pl/fa2014_cd/">http://www.fa2014.agh.edu.pl/fa2014_cd/</a>
+      title: >-
+        <span class="nocase">taX</span> - a <span class="nocase">Flexible
+        Tool</span> for <span class="nocase">Low</span>-<span
+        class="nocase">Order Duct Acoustic Simulation</span> in <span
+        class="nocase">Time</span> and <span class="nocase">Frequency
+        Domain</span>
+      year: '2014'
+    input: |-
+      @inproceedings{EmmerJaens14a,
+        title = {{{taX}} - a {{Flexible Tool}} for {{Low}}-{{Order Duct Acoustic Simulation}} in {{Time}} and {{Frequency Domain}}},
+        booktitle = {7th {{Forum Acusticum}}},
+        author = {Emmert, Thomas and Jaensch, Stefan and Sovardi, Carlo and Polifke, Wolfgang},
+        year = {2014},
+        month = sep,
+        address = {{Krakow}},
+        keywords = {NonPerRev},
+        note = {\url{http://www.fa2014.agh.edu.pl/fa2014_cd/}}
+      }
+    key: EmmerJaens14a
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      keywords: verbatimlist
+      month: literal
+      note: richtext
+      title: title
+      year: literal
+    type: inproceedings
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

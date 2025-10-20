@@ -1,0 +1,32 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: David A.
+          lastName: Plaisted
+      booktitle: Formal techniques in artificial intelligence
+      editor:
+        - firstName: R. B.
+          lastName: Banerji
+      publisher:
+        - ELSEVIER
+      title: Mechanical theorem proving
+      year: '1990'
+    input: "@INCOLLECTION(Plaisted:90,\n\tAUTHOR = {David A. Plaisted},\n\tTITLE = \"Mechanical Theorem Proving\",\n\tBOOKTITLE = {Formal Techniques in Artificial Intelligence},\n\tPUBLISHER = ELSEVIER,\n\tYEAR = {1990},\n\tEDITOR = {R. B. Banerji}\n)"
+    key: Plaisted:90
+    mode:
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: incollection
+errors:
+  - error: Unresolved @string reference "ELSEVIER"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

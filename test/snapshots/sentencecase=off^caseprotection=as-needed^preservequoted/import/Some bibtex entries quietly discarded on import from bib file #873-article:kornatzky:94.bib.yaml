@@ -1,0 +1,31 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Yoram
+          lastName: Kornatzky
+        - firstName: Solomon Eyal
+          lastName: Shimony
+      journal: DKE
+      pages: 143–166
+      title: A Probabilistic Object-oriented Data Model
+      volume: '12'
+      year: '1994'
+    input: "@ARTICLE{Kornatzky:94,\n\tAUTHOR = {Yoram Kornatzky and Solomon Eyal Shimony},\n\tTITLE = \"A Probabilistic Object-oriented Data Model\",\n\tJOURNAL = DKE,\n\tYEAR = {1994},\n\tVOLUME = {12},\n\tPAGES = {143--166}\n}"
+    key: Kornatzky:94
+    mode:
+      author: creatorlist
+      journal: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "DKE"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

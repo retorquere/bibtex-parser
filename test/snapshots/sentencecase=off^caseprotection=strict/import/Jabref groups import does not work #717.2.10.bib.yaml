@@ -1,0 +1,95 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: John
+          lastName: Doe
+      owner: klein
+      timestamp: 2017.09.11
+      title: The paper in my-subgroup-2
+      year: '2017'
+    input: |-
+      @Article{Doe-2017,
+        Title                    = {The paper in my-subgroup-2},
+        Author                   = {John Doe},
+        Year                     = {2017},
+
+        Owner                    = {klein},
+        Timestamp                = {2017.09.11}
+      }
+    key: Doe-2017
+    mode:
+      author: creatorlist
+      owner: literal
+      timestamp: literal
+      title: title
+      year: literal
+    type: article
+  - fields:
+      author:
+        - firstName: I.
+          lastName: Other
+      owner: klein
+      timestamp: 2017.09.11
+      title: The article in my-other-subgroup-2
+    input: |-
+      @Article{Other-,
+        Title                    = {The article in my-other-subgroup-2},
+        Author                   = {I. Other},
+
+        Owner                    = {klein},
+        Timestamp                = {2017.09.11}
+      }
+    key: Other-
+    mode:
+      author: creatorlist
+      owner: literal
+      timestamp: literal
+      title: title
+    type: article
+  - fields:
+      author:
+        - firstName: I
+          lastName: Unkonw
+      owner: klein
+      timestamp: 2017.09.11
+      title: 'JR2: paper not in a group'
+    input: |-
+      @Article{Unkonw-,
+        Title                    = {JR2: paper not in a group},
+        Author                   = {I Unkonw},
+
+        Owner                    = {klein},
+        Timestamp                = {2017.09.11}
+      }
+    key: Unkonw-
+    mode:
+      author: creatorlist
+      owner: literal
+      timestamp: literal
+      title: title
+    type: article
+errors: []
+jabref:
+  groups:
+    my-main-group-2: &ref_0
+      entries: []
+      groups:
+        - &ref_1
+          entries:
+            - Doe-2017
+          groups: []
+          name: my-subgroup-2
+        - &ref_2
+          entries:
+            - Other-
+          groups: []
+          name: my-other-subgroup-2
+      name: my-main-group-2
+    my-other-subgroup-2: *ref_2
+    my-subgroup-2: *ref_1
+  groupsversion: 3
+  root:
+    - *ref_0
+preamble: []
+strings: {}

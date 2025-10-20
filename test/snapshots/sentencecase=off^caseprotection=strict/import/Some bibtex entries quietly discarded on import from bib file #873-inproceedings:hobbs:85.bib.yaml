@@ -1,0 +1,27 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Jerry R.
+          lastName: Hobbs
+      booktitle: ACL-85
+      pages: 61–69
+      title: Ontological Promiscuity
+      year: '1985'
+    input: "@inproceedings(Hobbs:85,\n\tauthor =\t{Jerry R. Hobbs},\n\tyear =\t\t{1985},\n\tbooktitle =\tACL-85,\n\ttitle =\t\t\"Ontological Promiscuity\",\n\tpages =\t\t{61--69}\n)"
+    key: Hobbs:85
+    mode:
+      author: creatorlist
+      booktitle: title
+      pages: literal
+      title: title
+      year: literal
+    type: inproceedings
+errors:
+  - error: Unresolved @string reference "ACL-85"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

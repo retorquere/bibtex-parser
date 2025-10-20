@@ -1,0 +1,29 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: James F.
+          lastName: Allen
+      journal: AIJ
+      pages: 123–154
+      title: Towards a General Theory of Action and Time
+      volume: '23'
+      year: '1984'
+    input: "@Article{Allen:84,\n  author = \t {James F. Allen},\n  title = \t \"Towards a General Theory of Action and Time\",\n  journal = \t AIJ,\n  year = \t 1984,\n  volume =\t 23,\n  pages =\t {123--154}\n}"
+    key: Allen:84
+    mode:
+      author: creatorlist
+      journal: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "AIJ"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

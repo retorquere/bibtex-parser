@@ -1,0 +1,37 @@
+comments: []
+entries:
+  - fields:
+      annotation: a "monumental" work on the mosaics of San Marco
+      author:
+        - firstName: Otto
+          lastName: Demus
+      date: '1984'
+      location:
+        - Chicago
+      publisher:
+        - University of Chicago Press
+      title: The mosaics of san marco in venice
+    input: |-
+      @Book{Demus1984,
+      Title = {The Mosaics of San Marco in Venice},
+      Author = {Demus, Otto},
+      Date = {1984},
+      Location = {Chicago},
+      Publisher = {University of Chicago Press},
+      Annotation = {a "monumental" work on the mosaics of San Marco},
+      }
+    key: Demus1984
+    mode:
+      annotation: richtext
+      author: creatorlist
+      date: literal
+      location: literallist
+      publisher: literallist
+      title: title
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

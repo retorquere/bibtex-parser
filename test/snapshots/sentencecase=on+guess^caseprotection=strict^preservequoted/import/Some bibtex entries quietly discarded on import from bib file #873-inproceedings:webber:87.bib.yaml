@@ -1,0 +1,27 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Bonnie Lynn
+          lastName: Webber
+      booktitle: <span class="nocase">ACL-87</span>
+      pages: 147–154
+      title: The interpretation of tense in discourse
+      year: '1987'
+    input: "@inproceedings(Webber:87,\n\tauthor =\t{Bonnie Lynn Webber},\n\tyear =\t\t{1987},\n\tbooktitle =\tACL-87,\n\tpages =\t\t{147--154},\n\ttitle =\t\t{The interpretation of tense in discourse}\n)"
+    key: Webber:87
+    mode:
+      author: creatorlist
+      booktitle: title
+      pages: literal
+      title: title
+      year: literal
+    type: inproceedings
+errors:
+  - error: Unresolved @string reference "ACL-87"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

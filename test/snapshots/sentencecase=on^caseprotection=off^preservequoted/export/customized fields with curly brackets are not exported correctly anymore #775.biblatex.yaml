@@ -1,0 +1,57 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Karl
+          lastName: Knoblauch
+          prefix: von
+          useprefix: false
+      date: '1789'
+      keywords:
+        - anonym
+        - Knoblauch
+        - Monographie
+        - Quelle
+      langid: german
+      location:
+        - '[Marburg]'
+      options: pseudoauthor=true
+      pagetotal: '72'
+      publisher:
+        - Krieger
+      shorttitle: Dialogen
+      title: >-
+        Dialogen über einige Gegenstände der politischen Oekonomie und
+        Philosophie
+    input: |-
+      @book{knoblauch_dialogen_1789-1,
+        title = {Dialogen \"uber einige Gegenst\"ande der politischen Oekonomie und Philosophie},
+        shorttitle = {Dialogen},
+        author = {family=Knoblauch, given=Karl, prefix=von, useprefix=false},
+        date = {1789},
+        publisher = {{Krieger}},
+        location = {{[Marburg]}},
+        keywords = {anonym,Knoblauch,Monographie,Quelle},
+        langid = {german},
+        options = {pseudoauthor=true},
+        pagetotal = {72}
+      }
+    key: knoblauch_dialogen_1789-1
+    mode:
+      author: creatorlist
+      date: literal
+      keywords: verbatimlist
+      langid: literal
+      location: literallist
+      options: literal
+      pagetotal: literal
+      publisher: literallist
+      shorttitle: title
+      title: title
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

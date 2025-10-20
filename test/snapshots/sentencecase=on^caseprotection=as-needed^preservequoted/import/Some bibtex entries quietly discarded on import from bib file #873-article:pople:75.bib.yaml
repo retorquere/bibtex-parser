@@ -1,0 +1,31 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Harry
+          lastName: Pople
+        - firstName: Jack
+          lastName: Myers
+        - firstName: Randolph
+          lastName: Miller
+      journal: Proc. Ijcai
+      pages: 848-855
+      title: 'DIALOG: a model of diagnostic logic for internal medicine'
+      volume: '4'
+      year: '1975'
+    input: "@article(Pople:75,\n\tauthor =\t{Harry Pople and Jack Myers and Randolph Miller},\n\tyear =\t\t{1975},\n\tjournal =\t{Proc. Ijcai},\n\tpages =\t\t{848-855},\n\ttitle =\t\t\"DIALOG: A model of diagnostic logic for internal medicine\",\n\tvolume =\t{4}\n)"
+    key: Pople:75
+    mode:
+      author: creatorlist
+      journal: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

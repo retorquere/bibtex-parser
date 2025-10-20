@@ -1,0 +1,50 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Mark S.
+          lastName: Boddy
+        - firstName: Johnathan
+          lastName: Gohde
+        - firstName: Thomas
+          lastName: Haigh
+        - firstName: Steven A.
+          lastName: Harp
+      bibdate: '2006-04-27'
+      bibsource: DBLP, http://dblp.uni-trier.de/db/conf/aips/icaps2005.html#BoddyGHH05
+      booktitle: <span class="nocase">ICAPS</span>
+      editor:
+        - firstName: Susanne
+          lastName: Biundo
+        - firstName: Karen L.
+          lastName: Myers
+        - firstName: Kanna
+          lastName: Rajan
+      isbn: 1-57735-220-3
+      pages: 12–21
+      publisher:
+        - AAAI
+      title: Course of action generation for cyber security using classical planning
+      year: '2005'
+    input: "@InProceedings{conf/aips/BoddyGHH05,\n  title =\t\"Course of Action Generation for Cyber Security Using\n\t\t Classical Planning\",\n  author =\t\"Mark S. Boddy and Johnathan Gohde and Thomas Haigh and\n\t\t Steven A. Harp\",\n  bibdate =\t\"2006-04-27\",\n  bibsource =\t\"DBLP,\n\t\t http://dblp.uni-trier.de/db/conf/aips/icaps2005.html#BoddyGHH05\",\n  booktitle =\tICAPS,\n  publisher =\t\"AAAI\",\n  year = \t\"2005\",\n  editor =\t\"Susanne Biundo and Karen L. Myers and Kanna Rajan\",\n  ISBN = \t\"1-57735-220-3\",\n  pages =\t\"12--21\",\n}"
+    key: conf/aips/BoddyGHH05
+    mode:
+      author: creatorlist
+      bibdate: literal
+      bibsource: literal
+      booktitle: title
+      editor: creatorlist
+      isbn: literal
+      pages: literal
+      publisher: literallist
+      title: title
+      year: literal
+    type: inproceedings
+errors:
+  - error: Unresolved @string reference "ICAPS"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

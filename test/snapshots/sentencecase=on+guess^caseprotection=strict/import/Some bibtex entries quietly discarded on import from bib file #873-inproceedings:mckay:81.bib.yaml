@@ -1,0 +1,29 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: D.P.
+          lastName: McKay
+        - firstName: S.C.
+          lastName: Shapiro
+      booktitle: <span class="nocase">IJCAI-81</span>
+      pages: 368–374
+      title: Using active connection graphs for reasoning with recursive rules
+      year: '1981'
+    input: "@inproceedings(McKay:81,\n\tauthor =\t{D.P. McKay and S.C. Shapiro},\n\tyear =\t\t{1981},\n\tbooktitle =\tIJCAI-81,\n\tpages =\t\t{368--374},\n\ttitle =\t\t{Using Active Connection Graphs\n\t\t\t  for Reasoning with Recursive Rules}\n)"
+    key: McKay:81
+    mode:
+      author: creatorlist
+      booktitle: title
+      pages: literal
+      title: title
+      year: literal
+    type: inproceedings
+errors:
+  - error: Unresolved @string reference "IJCAI-81"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

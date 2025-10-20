@@ -1,0 +1,35 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Fausto
+          lastName: Giunchiglia
+        - firstName: Paolo
+          lastName: Traverso
+      booktitle: Proceedings of ECP-99
+      note: >-
+        Paper accompanying invited talk to be presented at the 1999 European
+        Conference on Planning (ECP-99). Available through <a
+        href="http://afrodite.itc.it:1024/~leaf/">http://afrodite.itc.it:1024/~leaf/</a>
+      publisher:
+        - SPRINGER
+      title: Planning as Model-checking
+      year: '1999'
+    input: "@INPROCEEDINGS{GiunchigliaTraverso:99,\n\tAUTHOR = {Fausto Giunchiglia and Paolo Traverso},\n\tTITLE = \"Planning as Model-checking\",\n\tBOOKTITLE = {Proceedings of {ECP-99}},\n\tYEAR = {1999},\n\tPUBLISHER = SPRINGER,\n\tNOTE = {Paper accompanying invited talk \n\t\tto be presented at the 1999 European \n\t\tConference on Planning (ECP-99).\n\t\tAvailable through \\url{http://afrodite.itc.it:1024/~leaf/}}\n}"
+    key: GiunchigliaTraverso:99
+    mode:
+      author: creatorlist
+      booktitle: title
+      note: richtext
+      publisher: literallist
+      title: title
+      year: literal
+    type: inproceedings
+errors:
+  - error: Unresolved @string reference "SPRINGER"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

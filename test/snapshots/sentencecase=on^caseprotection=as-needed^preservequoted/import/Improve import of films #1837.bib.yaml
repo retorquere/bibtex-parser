@@ -1,0 +1,121 @@
+comments: []
+entries:
+  - fields:
+      date-added: 2021-09-16 13:56:16 +0200
+      date-modified: 2021-09-16 13:56:52 +0200
+      director:
+        - firstName: Sebastiaan
+          lastName: Marka
+      location:
+        - DE
+      read: '1'
+      title: Interview
+      year: '2011'
+    input: "@movie{Marka.S:2011movie,\n\tdate-added = {2021-09-16 13:56:16 +0200},\n\tdate-modified = {2021-09-16 13:56:52 +0200},\n\tdirector = {Sebastiaan Marka},\n\tlocation = {DE},\n\tread = {1},\n\ttitle = {Interview},\n\tyear = {2011}}"
+    key: Marka.S:2011movie
+    mode:
+      date-added: literal
+      date-modified: literal
+      director: creatorlist
+      location: literallist
+      read: literal
+      title: title
+      year: literal
+    type: movie
+  - fields:
+      date-added: 2020-09-16 13:56:16 +0200
+      date-modified: 2020-09-16 13:56:52 +0200
+      director:
+        - firstName: Sebastian
+          lastName: Marka
+      location:
+        - DE
+      read: '1'
+      title: Interview
+      year: '2011'
+    input: "@video{Marka.S:2011video,\n\tdate-added = {2020-09-16 13:56:16 +0200},\n\tdate-modified = {2020-09-16 13:56:52 +0200},\n\tdirector = {Sebastian Marka},\n\tlocation = {DE},\n\tread = {1},\n\ttitle = {Interview},\n\tyear = {2011}}"
+    key: Marka.S:2011video
+    mode:
+      date-added: literal
+      date-modified: literal
+      director: creatorlist
+      location: literallist
+      read: literal
+      title: title
+      year: literal
+    type: video
+  - fields:
+      author:
+        - firstName: Olivier
+          lastName: Roy
+      location:
+        - New York
+      origdate: '2016'
+      origlanguage: french
+      origlocation:
+        - Paris
+      origtitle: Le djihad et la mort le djihad et la mort
+      publisher:
+        - Oxford University Press
+      subtitle: The global appeal of islamic state
+      title: Jihad and death
+      translator:
+        - firstName: Cynthia
+          lastName: Schoch
+      year: '2017'
+    input: |-
+      @book{Roy.O:2017a,
+        location = {New York},
+        author = {Roy, Olivier},
+        origdate = {2016},
+        origlanguage = {french},
+        origlocation = {Paris},
+        origtitle = {Le djihad et la mort Le djihad et la mort},
+        publisher = {Oxford University Press},
+        subtitle = {The Global Appeal of Islamic State},
+        title = {Jihad and Death},
+        translator = {Schoch, Cynthia},
+        year = {2017}}
+    key: Roy.O:2017a
+    mode:
+      author: creatorlist
+      location: literallist
+      origdate: literal
+      origlanguage: literal
+      origlocation: literallist
+      origtitle: title
+      publisher: literallist
+      subtitle: title
+      title: title
+      translator: creatorlist
+      year: literal
+    type: book
+  - fields:
+      address: US
+      author:
+        - firstName: Wes
+          lastName: Ball
+      editor:
+        - firstName: Noah
+          lastName: Oppenheim
+        - firstName: Grant Pierce
+          lastName: Myers
+        - firstName: T.S.
+          lastName: Nowlin
+      title: The maze runner
+      year: '2014'
+    input: "@movie{Ball.W:2014a,\n\taddress = {US},\n\tauthor = {Ball, Wes},\n\teditor = {Noah Oppenheim and Grant Pierce Myers and T.S. Nowlin},\n\ttitle = {The Maze Runner},\n\tyear = {2014}}"
+    key: Ball.W:2014a
+    mode:
+      address: literal
+      author: creatorlist
+      editor: creatorlist
+      title: title
+      year: literal
+    type: movie
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

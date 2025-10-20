@@ -1,0 +1,31 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Robert
+          lastName: Givan
+        - firstName: Thomas
+          lastName: Dean
+      booktitle: IJCAI-97
+      crossref: ijcai97
+      month: '8'
+      title: Model minimization, regression and propositional STRIPS planning
+      year: '1997'
+    input: "@INPROCEEDINGS(Givan:97,\n\tAUTHOR = {Robert Givan and Thomas Dean},\n\tTITLE = {Model Minimization, Regression and \n\t\t Propositional {STRIPS} Planning},\n\tBOOKTITLE = IJCAI-97,\n\tYEAR = {1997},\n\tMONTH = aug,\n\tCROSSREF = {ijcai97}\n)"
+    key: Givan:97
+    mode:
+      author: creatorlist
+      booktitle: title
+      crossref: literal
+      month: literal
+      title: title
+      year: literal
+    type: inproceedings
+errors:
+  - error: Unresolved @string reference "IJCAI-97"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

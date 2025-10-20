@@ -1,0 +1,32 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Jane
+          lastName: Doe
+      title: Test title of test book
+      weirdfield: Blam
+      wonderfield: Bla
+      year: '2020'
+    input: |-
+      @misc{Doe2020,
+        title = {Test title of test book},
+        author = {Doe, Jane},
+        year = {2020},
+        weirdfield = {Blam},
+        wonderfield = {Bla}
+      }
+    key: Doe2020
+    mode:
+      author: creatorlist
+      title: title
+      weirdfield: literal
+      wonderfield: literal
+      year: literal
+    type: misc
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

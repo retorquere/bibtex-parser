@@ -1,0 +1,28 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: R.S.
+          lastName: Boyer
+        - firstName: J S.
+          lastName: Moore
+      publisher:
+        - Academic Press
+      title: A computational logic
+      year: '1979'
+    input: "@book(Boyer:79,\n\tauthor =\t{R.S. Boyer and J S. Moore},\n\taddress =\t{New York},\n\tyear =\t\t{1979},\n\tpublisher =\t{Academic Press},\n\ttitle =\t\t{A Computational Logic}\n)"
+    key: Boyer:79
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

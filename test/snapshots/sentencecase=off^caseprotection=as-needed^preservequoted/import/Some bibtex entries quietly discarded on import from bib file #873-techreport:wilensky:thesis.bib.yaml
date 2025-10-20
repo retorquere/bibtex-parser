@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Robert
+          lastName: Wilensky
+      institution:
+        - Yale University Department of Computer Science
+      number: '140'
+      title: Understanding Goal-based Stories
+      year: '1978'
+    input: "@techreport(Wilensky:thesis,\n\tauthor =\t{Robert Wilensky},\n\tyear =\t\t{1978},\n\tinstitution =\t{Yale University Department of Computer Science},\n\ttitle =\t\t\"Understanding Goal-based Stories\",\n\tnumber = \t{140}\n)"
+    key: Wilensky:thesis
+    mode:
+      author: creatorlist
+      institution: literallist
+      number: literal
+      title: title
+      year: literal
+    type: techreport
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

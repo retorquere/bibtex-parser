@@ -1,0 +1,25 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - name: MCDERMOTT
+      publisher:
+        - Yale University Computer Science Department
+      title: Metric Time Maps
+      year: '1984'
+    input: "@techreport(McDermott:84,\n\tauthor =\tMCDERMOTT,\n\tyear =\t\t{1984},\n\tpublisher =\t{Yale University Computer Science Department},\n\ttitle =\t\t{Metric Time Maps}\n)"
+    key: McDermott:84
+    mode:
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: techreport
+errors:
+  - error: Unresolved @string reference "MCDERMOTT"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

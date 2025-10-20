@@ -1,0 +1,38 @@
+comments: []
+entries:
+  - fields:
+      address: STANFORD-ADDRESS
+      author:
+        - firstName: Thomas R.
+          lastName: Gruber
+      institution:
+        - KSL
+      month: '8'
+      note: revised version
+      number: KSL 93-04
+      title: >-
+        Toward principles for the design of ontologies used for knowledge
+        sharing
+      year: '1993'
+    input: "@TECHREPORT{Gruber:93b,\n\tAUTHOR = {Thomas R. Gruber},\n\tTITLE = {Toward Principles for the Design of Ontologies \n\t\t Used for Knowledge Sharing},\n\tINSTITUTION = KSL,\n\tYEAR = {1993},\n\tNUMBER = {KSL 93-04},\n\tADDRESS = STANFORD-ADDRESS,\n\tMONTH = aug,\n\tNOTE = {revised version}\n}"
+    key: Gruber:93b
+    mode:
+      address: literal
+      author: creatorlist
+      institution: literallist
+      month: literal
+      note: richtext
+      number: literal
+      title: title
+      year: literal
+    type: techreport
+errors:
+  - error: Unresolved @string reference "KSL"
+    input: ''
+  - error: Unresolved @string reference "STANFORD-ADDRESS"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      address: Reading, Mass.
+      author:
+        - firstName: David G.
+          lastName: Luenberger
+      publisher:
+        - Addison-Wesley
+      title: Introduction to linear and nonlinear programming
+      year: '1973'
+    input: "@book(Luenberger:1973,\n\tauthor =\t{David G. Luenberger},\n\taddress =\t{Reading, Mass.},\n\tyear =\t\t{1973},\n\tpublisher =\t{Addison-Wesley},\n\ttitle =\t\t{Introduction to Linear and Nonlinear Programming}\n)"
+    key: Luenberger:1973
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

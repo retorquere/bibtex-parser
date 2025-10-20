@@ -1,0 +1,60 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Nils
+          lastName: Werner
+      holder:
+        - name: My Employer
+      number: '456456456'
+      title: This is a patent application. It has the application number EP456456456
+      type: patreqeu
+    input: |-
+      @patent{wernerThisPatentApplication,
+        title = {This Is a Patent Application. It Has the Application Number EP456456456},
+        author = {Werner, Nils},
+        holder = {{My Employer}},
+        number = {456456456},
+        type = {patreqeu}
+      }
+    key: wernerThisPatentApplication
+    mode:
+      author: creatorlist
+      holder: creatorlist
+      number: literal
+      title: title
+      type: literal
+    type: patent
+  - fields:
+      author:
+        - firstName: Nils
+          lastName: Werner
+      holder:
+        - name: My Employer
+      number: '123123123'
+      title: >-
+        This is a patent. It has the patent number EP123123123. It had the
+        application number EP789789789 when it was first submitted.
+      type: patenteu
+    input: |-
+      @patent{wernerThisPatentIt,
+        title = {This Is a Patent. It Has the Patent Number EP123123123. It Had the Application Number EP789789789 When It Was First Submitted.},
+        author = {Werner, Nils},
+        holder = {{My Employer}},
+        number = {123123123},
+        type = {patenteu}
+      }
+    key: wernerThisPatentIt
+    mode:
+      author: creatorlist
+      holder: creatorlist
+      number: literal
+      title: title
+      type: literal
+    type: patent
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

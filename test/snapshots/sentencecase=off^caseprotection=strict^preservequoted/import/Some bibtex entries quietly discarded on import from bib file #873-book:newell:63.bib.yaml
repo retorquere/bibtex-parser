@@ -1,0 +1,36 @@
+comments: []
+entries:
+  - fields:
+      address: New York New York
+      author:
+        - firstName: Allen
+          lastName: Newell
+        - firstName: Herbert A.
+          lastName: Simon
+      booktitle: Computers and Thought
+      editor:
+        - firstName: Edward A.
+          lastName: Feigenbaum
+        - firstName: Julian
+          lastName: Feldman
+      publisher:
+        - McGraw-Hill
+      title: GPS, a program that simulates human thought
+      year: '1963'
+    input: "@book(Newell:63,\n\tauthor =\t{Allen Newell and Herbert A. Simon},\n\tbooktitle =\t{Computers and Thought},\n\taddress =\t{New York New York},\n\tyear =\t\t{1963},\n\teditor =\t{Edward A. Feigenbaum and Julian Feldman},\n\tpublisher =\t{McGraw-Hill},\n\ttitle =\t\t{GPS, a program that simulates human thought}\n)"
+    key: Newell:63
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

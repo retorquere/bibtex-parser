@@ -1,0 +1,31 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Barbara J.
+          lastName: Grosz
+      journal: AIM
+      number: '2'
+      pages: 67–85
+      title: Collaborative Systems
+      volume: '17'
+      year: '1996'
+    input: "@ARTICLE{Grosz:96,\n\tAUTHOR = {Barbara J. Grosz},\n\tTITLE = \"Collaborative Systems\",\n\tJOURNAL = AIM,\n\tYEAR = {1996},\n\tVOLUME = {17},\n\tNUMBER = {2},\n\tPAGES = {67--85}\n}"
+    key: Grosz:96
+    mode:
+      author: creatorlist
+      journal: literal
+      number: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "AIM"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

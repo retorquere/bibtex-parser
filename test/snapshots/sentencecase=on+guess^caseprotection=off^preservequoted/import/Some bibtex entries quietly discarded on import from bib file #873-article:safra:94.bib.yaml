@@ -1,0 +1,31 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Shmuel
+          lastName: Safra
+        - firstName: Moshe
+          lastName: Tennenholtz
+      journal: JAIR
+      pages: 111–129
+      title: On planning while learning
+      volume: '2'
+      year: '1994'
+    input: "@ARTICLE{Safra:94,\n\tAUTHOR = {Shmuel Safra and Moshe Tennenholtz},\n\tTITLE = \"On Planning While Learning\",\n\tJOURNAL = JAIR,\n\tYEAR = {1994},\n\tVOLUME = {2},\n\tPAGES = {111--129}\n}"
+    key: Safra:94
+    mode:
+      author: creatorlist
+      journal: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "JAIR"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,27 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Austin
+          lastName: Tate
+      booktitle: <span class="nocase">IJCAI-77</span>
+      pages: 888–893
+      title: Generating project networks
+      year: '1977'
+    input: "@inproceedings(Tate:77,\n\tauthor =\t{Austin Tate},\n\tyear =\t\t{1977},\n\tbooktitle =\tIJCAI-77,\n\tpages =\t\t{888--893},\n\ttitle =\t\t{Generating project networks}\n)"
+    key: Tate:77
+    mode:
+      author: creatorlist
+      booktitle: title
+      pages: literal
+      title: title
+      year: literal
+    type: inproceedings
+errors:
+  - error: Unresolved @string reference "IJCAI-77"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,187 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Mark D.
+          lastName: Wilkinson
+        - firstName: Michel
+          lastName: Dumontier
+        - firstName: IJsbrand Jan
+          lastName: Aalbersberg
+        - firstName: Gabrielle
+          lastName: Appleton
+        - firstName: Myles
+          lastName: Axton
+        - firstName: Arie
+          lastName: Baak
+        - firstName: Niklas
+          lastName: Blomberg
+        - firstName: Jan-Willem
+          lastName: Boiten
+        - firstName: Luiz Bonino da Silva
+          lastName: Santos
+        - firstName: Philip E.
+          lastName: Bourne
+        - firstName: Jildau
+          lastName: Bouwman
+        - firstName: Anthony J.
+          lastName: Brookes
+        - firstName: Tim
+          lastName: Clark
+        - firstName: Mercè
+          lastName: Crosas
+        - firstName: Ingrid
+          lastName: Dillo
+        - firstName: Olivier
+          lastName: Dumon
+        - firstName: Scott
+          lastName: Edmunds
+        - firstName: Chris T.
+          lastName: Evelo
+        - firstName: Richard
+          lastName: Finkers
+        - firstName: Alejandra
+          lastName: Gonzalez-Beltran
+        - firstName: Alasdair J. G.
+          lastName: Gray
+        - firstName: Paul
+          lastName: Groth
+        - firstName: Carole
+          lastName: Goble
+        - firstName: Jeffrey S.
+          lastName: Grethe
+        - firstName: Jaap
+          lastName: Heringa
+        - firstName: Peter A. C.
+          lastName: Hoen
+          prefix: ’t
+          useprefix: false
+        - firstName: Rob
+          lastName: Hooft
+        - firstName: Tobias
+          lastName: Kuhn
+        - firstName: Ruben
+          lastName: Kok
+        - firstName: Joost
+          lastName: Kok
+        - firstName: Scott J.
+          lastName: Lusher
+        - firstName: Maryann E.
+          lastName: Martone
+        - firstName: Albert
+          lastName: Mons
+        - firstName: Abel L.
+          lastName: Packer
+        - firstName: Bengt
+          lastName: Persson
+        - firstName: Philippe
+          lastName: Rocca-Serra
+        - firstName: Marco
+          lastName: Roos
+        - firstName: Rene
+          lastName: Schaik
+          prefix: van
+          useprefix: false
+        - firstName: Susanna-Assunta
+          lastName: Sansone
+        - firstName: Erik
+          lastName: Schultes
+        - firstName: Thierry
+          lastName: Sengstag
+        - firstName: Ted
+          lastName: Slater
+        - firstName: George
+          lastName: Strawn
+        - firstName: Morris A.
+          lastName: Swertz
+        - firstName: Mark
+          lastName: Thompson
+        - firstName: Johan
+          lastName: Lei
+          prefix: van der
+          useprefix: false
+        - firstName: Erik
+          lastName: Mulligen
+          prefix: van
+          useprefix: false
+        - firstName: Jan
+          lastName: Velterop
+        - firstName: Andra
+          lastName: Waagmeester
+        - firstName: Peter
+          lastName: Wittenburg
+        - firstName: Katherine
+          lastName: Wolstencroft
+        - firstName: Jun
+          lastName: Zhao
+        - firstName: Barend
+          lastName: Mons
+      date: '2016-03-15'
+      doi: 10.1038/sdata.2016.18
+      issn: 2052-4463
+      issue: '1'
+      journaltitle: Scientific Data
+      keywords:
+        - data
+        - data-collection
+        - data-gathering
+        - data-generation
+        - data-management
+        - data-quality
+        - methodology
+        - open-acccess
+      langid: english
+      number: '1'
+      pages: 1–9
+      publisher:
+        - Nature Publishing Group
+      shortjournal: Sci Data
+      title: >-
+        The FAIR Guiding Principles for Scientific Data Management and
+        Stewardship
+      volume: '3'
+    input: |-
+      @article{wilkinson-fair-2016,
+        title = {The {{FAIR Guiding Principles}} for Scientific Data Management and Stewardship},
+        author = {Wilkinson, Mark D. and Dumontier, Michel and Aalbersberg, IJsbrand Jan and Appleton, Gabrielle and Axton, Myles and Baak, Arie and Blomberg, Niklas and Boiten, Jan-Willem and Santos, Luiz Bonino da Silva and Bourne, Philip E. and Bouwman, Jildau and Brookes, Anthony J. and Clark, Tim and Crosas, Mercè and Dillo, Ingrid and Dumon, Olivier and Edmunds, Scott and Evelo, Chris T. and Finkers, Richard and Gonzalez-Beltran, Alejandra and Gray, Alasdair J. G. and Groth, Paul and Goble, Carole and Grethe, Jeffrey S. and Heringa, Jaap and family=Hoen, given=Peter A. C., prefix=’t, useprefix=false and Hooft, Rob and Kuhn, Tobias and Kok, Ruben and Kok, Joost and Lusher, Scott J. and Martone, Maryann E. and Mons, Albert and Packer, Abel L. and Persson, Bengt and Rocca-Serra, Philippe and Roos, Marco and family=Schaik, given=Rene, prefix=van, useprefix=false and Sansone, Susanna-Assunta and Schultes, Erik and Sengstag, Thierry and Slater, Ted and Strawn, George and Swertz, Morris A. and Thompson, Mark and family=Lei, given=Johan, prefix=van der, useprefix=false and family=Mulligen, given=Erik, prefix=van, useprefix=false and Velterop, Jan and Waagmeester, Andra and Wittenburg, Peter and Wolstencroft, Katherine and Zhao, Jun and Mons, Barend},
+        date = {2016-03-15},
+        journaltitle = {Scientific Data},
+        shortjournal = {Sci Data},
+        volume = {3},
+        pages = {1--9},
+        publisher = {{Nature Publishing Group}},
+        issn = {2052-4463},
+        doi = {10.1038/sdata.2016.18},
+        issue = {1},
+        keywords = {data,data-collection,data-gathering,data-generation,data-management,data-quality,methodology,open-acccess},
+        langid = {english},
+        number = {1}
+      }
+      % == BibLateX quality report for wilkinson-fair-2016:
+      % Unexpected field 'publisher'
+      % ? Unused libraryCatalog: www.nature.com
+      % ? Unused rights: 2016 The Author(s)
+      % ? Unused url: https://www.nature.com/articles/sdata201618
+    key: wilkinson-fair-2016
+    mode:
+      author: creatorlist
+      date: literal
+      doi: verbatim
+      issn: literal
+      issue: literal
+      journaltitle: literal
+      keywords: verbatimlist
+      langid: literal
+      number: literal
+      pages: literal
+      publisher: literallist
+      shortjournal: literal
+      title: title
+      volume: literal
+    type: article
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

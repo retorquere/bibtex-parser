@@ -1,0 +1,37 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Yorick
+          lastName: Wilks
+      booktitle: >-
+        Computational semantics: An introduction to artificial intelligence and
+        natural language comprehension
+      editor:
+        - firstName: E.
+          lastName: Charniak
+        - firstName: Y.
+          lastName: Wilks
+      pages: 205-233
+      series: Philosophy of language
+      title: >-
+        Computational semantics: An introduction to artificial intelligence and
+        natural language comprehension
+      year: '1976'
+    input: "@book(Wilks:76,\n\tauthor =\t{Yorick Wilks},\n\ttitle =\t{Computational Semantics:  An Introduction to Artificial Intelligence and Natural Language Comprehension},\n\tbooktitle =\t{Computational Semantics:  An Introduction to Artificial Intelligence and Natural Language Comprehension},\n\tyear =\t\t{1976},\n\teditor =\t{E. Charniak and Y. Wilks},\n\tpages =\t\t{205-233},\n\tseries =\t{Philosophy of language}\n)"
+    key: Wilks:76
+    mode:
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      pages: literal
+      series: title
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,28 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: C.H.
+          lastName: Suh
+        - firstName: C.W.
+          lastName: Radcliffe
+      publisher:
+        - Wiley
+      title: Kinematics and mechanisms design
+      year: '1978'
+    input: "@book(Radcliffe:1978,\n\tauthor =\t{C.H. Suh and C.W. Radcliffe},\n\taddress =\t{New York},\n\tyear =\t\t{1978},\n\tpublisher =\t{Wiley},\n\ttitle =\t\t{Kinematics and Mechanisms Design}\n)"
+    key: Radcliffe:1978
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

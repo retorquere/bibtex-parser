@@ -1,0 +1,34 @@
+comments: []
+entries:
+  - fields:
+      address: Stanford University, Stanford, CA
+      author:
+        - firstName: Gerald
+          lastName: Gazdar
+      institution:
+        - CSLI
+      month: '9'
+      note: Review of <i>Two-level Morphology</i>
+      number: CSLI-85-32
+      title: 'Finite State Morphology: A review of Koskenniemi (1983)'
+      year: '1985'
+    input: "@TECHREPORT{Gazdar:85,\n\tAUTHOR = {Gerald Gazdar},\n\tTITLE = {Finite State Morphology:  \n\t\t A review of {K}oskenniemi (1983)},\n\tINSTITUTION = CSLI,\n\tYEAR = {1985},\n\tNUMBER = {CSLI-85-32},\n\tADDRESS = {Stanford University, Stanford, CA},\n\tMONTH = {September},\n\tNOTE = {Review of {\\em Two-level Morphology}}\n}"
+    key: Gazdar:85
+    mode:
+      address: literal
+      author: creatorlist
+      institution: literallist
+      month: literal
+      note: richtext
+      number: literal
+      title: title
+      year: literal
+    type: techreport
+errors:
+  - error: Unresolved @string reference "CSLI"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

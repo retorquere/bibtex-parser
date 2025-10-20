@@ -1,0 +1,31 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: G.J.
+          lastName: Sussman
+        - firstName: G.L.
+          lastName: Steele
+      journal: Artificial Intelligence
+      number: '1'
+      pages: 1-39
+      title: CONSTRAINTS – a language for expressing almost-hierarchical descriptions
+      volume: '14'
+      year: '1980'
+    input: "@article(Steele:1980,\n\tauthor =\t{G.J. Sussman and G.L. Steele},\n\tyear =\t\t{1980},\n\tjournal =\t{Artificial Intelligence},\n\tnumber =\t{1},\n\tpages =\t\t{1-39},\n\ttitle =\t\t\"CONSTRAINTS -- A language for expressing almost-hierarchical descriptions\",\n\tvolume =\t{14}\n)"
+    key: Steele:1980
+    mode:
+      author: creatorlist
+      journal: literal
+      number: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

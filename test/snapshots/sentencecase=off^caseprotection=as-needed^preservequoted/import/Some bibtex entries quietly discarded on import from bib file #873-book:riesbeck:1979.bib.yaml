@@ -1,0 +1,36 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: Christopher K.
+          lastName: Riesbeck
+      booktitle: 'Associative Networks: Representation and Use of Knowledge by Computer'
+      editor:
+        - firstName: N.V.
+          lastName: Findler
+      pages: 409-424
+      publisher:
+        - Academic Press
+      title: >-
+        Representations to aid distributed understanding in a multiprogram
+        system
+      year: '1979'
+    input: "@book(Riesbeck:1979,\n\tauthor =\t{Christopher K. Riesbeck},\n\tbooktitle =\t{Associative Networks: Representation and Use of Knowledge by Computer},\n\taddress =\t{New York},\n\tyear =\t\t{1979},\n\teditor =\t{N.V. Findler},\n\tpublisher =\t{Academic Press},\n\tpages =\t\t{409-424},\n\ttitle =\t\t{Representations to aid distributed understanding in a multiprogram system}\n)"
+    key: Riesbeck:1979
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      pages: literal
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

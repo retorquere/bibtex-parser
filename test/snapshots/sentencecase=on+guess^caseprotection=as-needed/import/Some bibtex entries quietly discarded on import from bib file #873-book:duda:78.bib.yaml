@@ -1,0 +1,40 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: Richard O.
+          lastName: Duda
+        - firstName: Peter E.
+          lastName: Hart
+        - firstName: G.L.
+          lastName: Sutherland
+      booktitle: Pattern directed inference systems
+      editor:
+        - firstName: D.A.
+          lastName: Waterman
+        - firstName: F.
+          lastName: Hayes-Roth
+      pages: 203-221
+      publisher:
+        - Academic Press
+      title: Semantic network representations in rule-based inference systems
+      year: '1978'
+    input: "@book(Duda:78,\n\tauthor =\t{Richard O. Duda and Peter E. Hart and \n\t\t\t G.L. Sutherland},\n\tbooktitle =\t{Pattern Directed Inference Systems},\n\taddress =\t{New York},\n\tyear =\t\t{1978},\n\teditor =\t{D.A. Waterman and F. Hayes-Roth},\n\tpublisher =\t{Academic Press},\n\tpages =\t\t{203-221},\n\ttitle =\t\t{Semantic network representations in \n\t\t\t rule-based inference systems}\n)"
+    key: Duda:78
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      pages: literal
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

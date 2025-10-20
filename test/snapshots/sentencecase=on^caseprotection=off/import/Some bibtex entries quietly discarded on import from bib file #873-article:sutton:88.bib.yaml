@@ -1,0 +1,29 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Richard S.
+          lastName: Sutton
+      journal: ML
+      pages: 9–44
+      title: Learning to predict by the methods of temporal differences
+      volume: '3'
+      year: '1988'
+    input: "@ARTICLE{Sutton:88,\n\tAUTHOR = {Richard S. Sutton},\n\tTITLE = {Learning to predict by the methods of temporal \n\t\t differences},\n\tJOURNAL = ML,\n\tYEAR = {1988},\n\tVOLUME = {3},\n\tPAGES = {9--44}\n}"
+    key: Sutton:88
+    mode:
+      author: creatorlist
+      journal: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "ML"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

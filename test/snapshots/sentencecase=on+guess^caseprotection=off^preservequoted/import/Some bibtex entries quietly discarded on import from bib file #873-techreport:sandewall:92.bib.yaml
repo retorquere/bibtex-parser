@@ -1,0 +1,30 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Erik
+          lastName: Sandewall
+      institution:
+        - Linköping University
+      month: '9'
+      note: Preliminary version of Chapters 1-9 of a book
+      number: LiTH-IDA-R-92-30
+      title: Features and fluents
+      year: '1992'
+    input: "@TECHREPORT(Sandewall:92,\n\tAUTHOR = {Erik Sandewall},\n\tTITLE = \"Features and Fluents\",\n\tINSTITUTION = {Link\\\"oping University},\n\tNUMBER = {LiTH-IDA-R-92-30},\t\t       \n\tYEAR = {1992},\n\tMONTH = sep,\n\tNOTE = {Preliminary version of Chapters 1-9 of a book}\n)"
+    key: Sandewall:92
+    mode:
+      author: creatorlist
+      institution: literallist
+      month: literal
+      note: richtext
+      number: literal
+      title: title
+      year: literal
+    type: techreport
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

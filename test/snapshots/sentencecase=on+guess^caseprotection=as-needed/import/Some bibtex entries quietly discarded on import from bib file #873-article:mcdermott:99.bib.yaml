@@ -1,0 +1,41 @@
+comments: []
+entries:
+  - fields:
+      annote: >-
+        A more in-depth version of Drew's AIPS-96 paper, that described his
+        search heuristic for forward planners. The article discusses the problem
+        of “attention-deficit” in McDermott's UNPOP — the problem of switching
+        between goals too much. Also discusses preservation goals, which we have
+        just been kludging into SA-CIRCA.
+      author:
+        - name: MCDERMOTT
+      journal: AIJ
+      month: '4'
+      number: 1 – 2
+      pages: 111-159
+      title: Using Regression-match graphs to control search in planning
+      volume: '109'
+      year: '1999'
+    input: "@ARTICLE{McDermott:99,\n\tAUTHOR = MCDERMOTT,\n\tTITLE = {Using Regression-match graphs to control search\n\t\t in planning},\n\tJOURNAL = AIJ,\n\tYEAR = {1999},\n\tVOLUME = {109},\n\tNUMBER = {1 -- 2},\n\tPAGES = {111-159},\n\tMONTH = apr,\n\tANNOTE = {A more in-depth version of Drew's AIPS-96 paper, \n\t\t  that described his search heuristic for forward\n\t\t  planners.\n\t\t  The article discusses the problem of ``attention-deficit'' \n\t\t  in McDermott's UNPOP --- the problem of switching \n\t\t  between goals too much.\n\t\t  Also discusses preservation goals, which we have\n\t\t  just been kludging into SA-CIRCA.}\n}"
+    key: McDermott:99
+    mode:
+      annote: richtext
+      author: creatorlist
+      journal: literal
+      month: literal
+      number: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "MCDERMOTT"
+    input: ''
+  - error: Unresolved @string reference "AIJ"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

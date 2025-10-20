@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: William
+          lastName: Martin
+      institution:
+        - Project MAC, MIT
+      title: >-
+        Translation of English into MAPL Using Winograd's Syntax, State
+        Transition Networks, and a Semantic Case Grammar
+      year: '1973'
+    input: "@techreport(Martin:73,\n\tauthor =\t{William Martin},\n\tyear =\t\t{1973},\n\tinstitution =\t{Project MAC, MIT},\n\ttitle =\t\t{Translation of English into MAPL Using Winograd's \n\t\t\t Syntax, State Transition Networks, and a \n\t\t\t Semantic Case Grammar}\n)"
+    key: Martin:73
+    mode:
+      author: creatorlist
+      institution: literallist
+      title: title
+      year: literal
+    type: techreport
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

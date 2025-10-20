@@ -1,0 +1,30 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: J.S.
+          lastName: Bruner
+        - firstName: J.J.
+          lastName: Goodnow
+        - firstName: G.A.
+          lastName: Austin
+      publisher:
+        - Wiley
+      title: A Study of Thinking
+      year: '1956'
+    input: "@book(BrunerETAL:1956,\n\tauthor =\t{J.S. Bruner and J.J. Goodnow and G.A. Austin},\n\taddress =\t{New York},\n\tyear =\t\t{1956},\n\tpublisher =\t{Wiley},\n\ttitle =\t\t{A Study of Thinking}\n)"
+    key: BrunerETAL:1956
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

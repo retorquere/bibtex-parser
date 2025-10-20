@@ -1,0 +1,36 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Jane
+          lastName: Doe
+      date: '2020-11-19'
+      title: Test title of test book
+      weirdfield: Blam
+      wonderfield: Blub
+    input: |-
+      @inproceedings{Doe2020,
+        title = {Test title of test book},
+        author = {Doe, Jane},
+        date = {2020-11-19},
+        weirdfield = {Blam},
+        wonderfield = {Blub}
+      }
+      % == BibLateX quality report for Doe2020:
+      % Unexpected field 'weirdfield'
+      % Unexpected field 'wonderfield'
+      % Missing required field 'booktitle'
+    key: Doe2020
+    mode:
+      author: creatorlist
+      date: literal
+      title: title
+      weirdfield: literal
+      wonderfield: literal
+    type: inproceedings
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,32 @@
+comments: []
+entries:
+  - fields:
+      address: 台北
+      author:
+        - name: 傅斯年
+      publisher:
+        - 新文豐
+      title: 性命古訓辨證
+      year: '1985'
+    input: |-
+      @book{傅斯年性命古訓1985,
+        title = {性命古訓辨證},
+        author = {{傅斯年}},
+        year = {1985},
+        publisher = {{新文豐}},
+        address = {{台北}}
+      }
+    key: 傅斯年性命古訓1985
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

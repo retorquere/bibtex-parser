@@ -1,0 +1,38 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: W.
+          lastName: Reitman
+        - firstName: B.
+          lastName: Wilcox
+      booktitle: Pattern-Directed Inference Systems
+      editor:
+        - firstName: D.A.
+          lastName: Waterman
+        - firstName: F.
+          lastName: Hayes-Roth
+      publisher:
+        - Academic Press
+      title: >-
+        Pattern recognition and pattern-directed inference in a program for
+        playing go
+      year: '1978'
+    input: "@book(Wilcox:1978,\n\tauthor =\t{W. Reitman and B. Wilcox},\n\tbooktitle =\t{Pattern-Directed Inference Systems},\n\taddress =\t{New York},\n\tyear =\t\t{1978},\n\teditor =\t{D.A. Waterman and F. Hayes-Roth},\n\tpublisher =\t{Academic Press},\n\ttitle =\t\t{Pattern recognition and pattern-directed inference in a program for playing go}\n)"
+    key: Wilcox:1978
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,39 @@
+comments: []
+entries:
+  - fields:
+      address: Denver
+      author:
+        - firstName: Robert
+          lastName: St-Aubin
+        - firstName: Jesse
+          lastName: Hoey
+        - firstName: Craig
+          lastName: Boutilier
+      booktitle: NIPS-2000
+      pages: 1089–1095
+      title: 'APRICODD: Approximate Policy Construction using Decision Diagrams'
+      year: '2000'
+    input: |-
+      @INPROCEEDINGS{apricodd,
+        author = {Robert St-Aubin and Jesse Hoey and Craig Boutilier},
+        title = {{APRICODD}: Approximate Policy Construction using Decision Diagrams},
+        booktitle = {{NIPS-2000}},
+        year = {2000},
+        pages = {1089--1095},
+        address = {Denver}
+      }
+    key: apricodd
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      pages: literal
+      title: title
+      year: literal
+    type: inproceedings
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

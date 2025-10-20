@@ -1,0 +1,32 @@
+comments: []
+entries:
+  - fields:
+      address: ERLBAUM-ADDRESS
+      author:
+        - firstName: J.
+          lastName: Moore
+        - firstName: A.
+          lastName: Newell
+      booktitle: Knowledge and cognition
+      publisher:
+        - Lawrence Erlbaum
+      title: How can merlin understand?
+      year: '1974'
+    input: "@book(JMoore:74,\n\tauthor =\t{J. Moore and A. Newell},\n\tbooktitle =\t{Knowledge and Cognition},\n\taddress =\tERLBAUM-ADDRESS,\n\tyear =\t\t{1974},\n\tpublisher =\t{Lawrence Erlbaum},\n\ttitle =\t\t{How can Merlin understand?}\n)"
+    key: JMoore:74
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors:
+  - error: Unresolved @string reference "ERLBAUM-ADDRESS"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

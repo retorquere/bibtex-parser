@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      address: Cambridge, Mass.
+      author:
+        - firstName: Mitchell P.
+          lastName: Marcus
+      publisher:
+        - MIT Press
+      title: A Theory of Syntactic Recognition for Natural Language
+      year: '1980'
+    input: "@book(Marcus:80,\n\tauthor =\t{Mitchell P. Marcus},\n\taddress =\t{Cambridge, Mass.},\n\tyear =\t\t{1980},\n\tpublisher =\t{MIT Press},\n\ttitle =\t\t{A Theory of Syntactic Recognition \n\t\t\t for Natural Language}\n)"
+    key: Marcus:80
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,36 @@
+comments: []
+entries:
+  - fields:
+      address: San Francisco
+      author:
+        - firstName: Roger C.
+          lastName: Schank
+      booktitle: Computer Models of Thought and Language
+      editor:
+        - firstName: R.C.
+          lastName: Schank
+        - firstName: K.M.
+          lastName: Colby
+      pages: 187-248
+      publisher:
+        - Freeman
+      title: Identification of conceptualizations underlying natural language
+      year: '1973'
+    input: "@inbook(Schank:73,\n\tauthor =\t{Roger C. Schank},\n\tbooktitle =\t{Computer Models of Thought and Language},\n\taddress =\t{San Francisco},\n\tyear =\t\t{1973},\n\teditor =\t{R.C. Schank and K.M. Colby},\n\tpublisher =\t{Freeman},\n\tpages =\t\t{187-248},\n\ttitle =\t\t{Identification of conceptualizations underlying natural language}\n)"
+    key: Schank:73
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      pages: literal
+      publisher: literallist
+      title: title
+      year: literal
+    type: inbook
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

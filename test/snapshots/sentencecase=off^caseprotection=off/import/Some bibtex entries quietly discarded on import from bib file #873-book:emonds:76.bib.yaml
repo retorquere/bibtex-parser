@@ -1,0 +1,28 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: Joseph E.
+          lastName: Emonds
+      publisher:
+        - Academic Press
+      title: >-
+        A Transformational Approach to English Syntax: Root,
+        Structure-preserving, and Local Transformations
+      year: '1976'
+    input: "@book(Emonds:76,\n\tauthor =\t{Joseph E. Emonds},\n\taddress =\t{New York},\n\tyear =\t\t{1976},\n\tpublisher =\t{Academic Press},\n\ttitle =\t\t{A Transformational Approach to English Syntax: Root, Structure-preserving, and Local Transformations}\n)"
+    key: Emonds:76
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

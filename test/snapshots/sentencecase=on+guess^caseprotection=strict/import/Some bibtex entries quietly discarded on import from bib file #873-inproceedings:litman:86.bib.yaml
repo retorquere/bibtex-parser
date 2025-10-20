@@ -1,0 +1,27 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Diane
+          lastName: Litman
+      booktitle: <span class="nocase">AAAI-86</span>
+      pages: 619-626
+      title: Understanding plan ellipsis
+      year: '1986'
+    input: "@inproceedings(Litman:86,\n\tauthor =\t{Diane Litman},\n\tyear =\t\t{1986},\n\tbooktitle =\tAAAI-86,\n\tpages =\t\t{619-626},\n\ttitle =\t\t{Understanding plan ellipsis}\n)"
+    key: Litman:86
+    mode:
+      author: creatorlist
+      booktitle: title
+      pages: literal
+      title: title
+      year: literal
+    type: inproceedings
+errors:
+  - error: Unresolved @string reference "AAAI-86"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,31 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: A. V.
+          lastName: Aho
+        - firstName: S. C.
+          lastName: Johnson
+      journal: Computing Surveys
+      number: '2'
+      pages: 99-124
+      title: LR parsing
+      volume: '6'
+      year: '1974'
+    input: "@article(Johnson:1974,\n\tauthor =\t{A. V. Aho and S. C. Johnson},\n\tyear =\t\t{1974},\n\tjournal =\t{Computing Surveys},\n\tnumber =\t{2},\n\tpages =\t\t{99-124},\n\ttitle =\t\t\"LR parsing\",\n\tvolume =\t{6}\n)"
+    key: Johnson:1974
+    mode:
+      author: creatorlist
+      journal: literal
+      number: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

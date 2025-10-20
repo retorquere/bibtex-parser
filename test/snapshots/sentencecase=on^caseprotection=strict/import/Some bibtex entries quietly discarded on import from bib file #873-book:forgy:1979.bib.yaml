@@ -1,0 +1,24 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: C.L.
+          lastName: Forgy
+      publisher:
+        - Carnegie-Mellon University Department of Computer Science
+      title: On the efficient implementation of production systems
+      year: '1979'
+    input: "@book(Forgy:1979,\n\tauthor =\t{C.L. Forgy},\n\tyear =\t\t{1979},\n\tpublisher =\t{Carnegie-Mellon University Department of Computer Science},\n\ttitle =\t\t{On the efficient implementation of production systems}\n)"
+    key: Forgy:1979
+    mode:
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,30 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Richard H.
+          lastName: Granger
+        - firstName: Kurt P.
+          lastName: Eiselt
+        - firstName: Jennifer K.
+          lastName: Holbrook
+      publisher:
+        - Irvine Computational Intelligence Project
+      title: >-
+        Parsing with parallelism: a spreading-activation model of inference
+        processing during text understanding
+      year: '1984'
+    input: "@book(Granger:84,\n\tauthor =\t{Richard H. Granger and Kurt P. Eiselt and Jennifer K. Holbrook},\n\tyear =\t\t{1984},\n\tpublisher =\t{Irvine Computational Intelligence Project},\n\ttitle =\t\t{Parsing with parallelism: a spreading-activation model of inference processing during text understanding}\n)"
+    key: Granger:84
+    mode:
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

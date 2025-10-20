@@ -1,0 +1,28 @@
+comments: []
+entries:
+  - fields:
+      address: Cambridge
+      author:
+        - firstName: A.N.
+          lastName: Whitehead
+        - firstName: B.
+          lastName: Russell
+      publisher:
+        - Cambridge University Press
+      title: Principia Mathematica
+      year: '1925'
+    input: "@book(Whitehead:Principia,\n\tauthor =\t{A.N. Whitehead and B. Russell},\n\taddress =\t{Cambridge},\n\tyear =\t\t{1925},\n\tpublisher =\t{Cambridge University Press},\n\ttitle =\t\t{Principia Mathematica}\n)"
+    key: Whitehead:Principia
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

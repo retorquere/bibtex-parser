@@ -1,0 +1,35 @@
+comments: []
+entries:
+  - fields:
+      address: Montgomery, Vermont
+      author:
+        - name: MCDERMOTT
+      booktitle: Mind design
+      editor:
+        - firstName: John
+          lastName: Haugeland
+      pages: 143-160
+      publisher:
+        - Bradford Books
+      title: Artificial intelligence meets natural stupidity
+      year: '1981'
+    input: "@inbook(McDermott:81,\n\tauthor =\tMCDERMOTT,\n\tbooktitle =\t{Mind design},\n\taddress =\t{Montgomery, Vermont},\n\tyear =\t\t{1981},\n\teditor =\t{John Haugeland},\n\tpublisher =\t{Bradford Books},\n\tpages =\t\t{143-160},\n\ttitle =\t\t{Artificial intelligence meets natural stupidity}\n)"
+    key: McDermott:81
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      pages: literal
+      publisher: literallist
+      title: title
+      year: literal
+    type: inbook
+errors:
+  - error: Unresolved @string reference "MCDERMOTT"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

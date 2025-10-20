@@ -1,0 +1,47 @@
+comments: []
+entries:
+  - fields:
+      annote: >-
+        Wow! A paper containing the germs of a vast amount of other work.
+        Explains how <span style="font-variant:small-caps;">Strips</span> plans
+        are to be executed, stored, and reused. The key to all of these
+        techniques are the <i>triangle tables</i>, which are a limited form of
+        explanation-based learning. They also underly the approach to execution
+        monitoring. For the plan monitoring, the triangle table contains a
+        cached out representation of the preconditions necessary for execution
+        of each plan suffix. So the executor monitors the truth of each of these
+        preconditions, allowing it both to re-execute failed prefixes and
+        exploit opportunities to skip steps.
+      author:
+        - firstName: Richard
+          lastName: Fikes
+        - firstName: Peter
+          lastName: Hart
+        - firstName: Nils
+          lastName: Nilsson
+      journal: AIJ
+      note: "Republished in \_PlanReadings."
+      pages: 251–288
+      title: Learning and executing generalized robot plans
+      volume: '3'
+      year: '1972'
+    input: "@Article{fikes72:_learn,\n  author =\t {Richard Fikes and Peter Hart and Nils Nilsson},\n  title =\t {Learning and executing generalized robot plans},\n  journal =\t AIJ,\n  year =\t 1972,\n  volume =\t 3,\n  pages =\t {251--288},\n  note =\t {Republished in ~\\cite{PlanReadings}.},\n  annote =\t {Wow! A paper containing the germs of a vast amount\n                  of other work. Explains how \\textsc{Strips} plans\n                  are to be executed, stored, and reused. The key to\n                  all of these techniques are the \\emph{triangle\n                  tables}, which are a limited form of\n                  explanation-based learning. They also underly the\n                  approach to execution monitoring. For the plan\n                  monitoring, the triangle table contains a cached out\n                  representation of the preconditions necessary for\n                  execution of each plan suffix. So the executor\n                  monitors the truth of each of these preconditions,\n                  allowing it both to re-execute failed prefixes and\n                  exploit opportunities to skip steps.}\n}"
+    key: fikes72:_learn
+    mode:
+      annote: richtext
+      author: creatorlist
+      journal: literal
+      note: richtext
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "AIJ"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

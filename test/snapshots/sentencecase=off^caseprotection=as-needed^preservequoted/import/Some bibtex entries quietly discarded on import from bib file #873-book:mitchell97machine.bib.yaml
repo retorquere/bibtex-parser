@@ -1,0 +1,30 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: Tom M.
+          lastName: Mitchell
+      date-added: 2010-06-24 17:45:39 -0400
+      date-modified: 2010-06-24 17:45:55 -0400
+      publisher:
+        - McGraw-Hill
+      title: Machine Learning
+      year: '1997'
+    input: "@book{mitchell97machine,\n\tAddress = {New York},\n\tAuthor = {Tom M. Mitchell},\n\tDate-Added = {2010-06-24 17:45:39 -0400},\n\tDate-Modified = {2010-06-24 17:45:55 -0400},\n\tPublisher = {McGraw-Hill},\n\tTitle = {Machine Learning},\n\tYear = {1997}}"
+    key: mitchell97machine
+    mode:
+      address: literal
+      author: creatorlist
+      date-added: literal
+      date-modified: literal
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

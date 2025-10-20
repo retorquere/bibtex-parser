@@ -1,0 +1,24 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Graeme
+          lastName: Hirst
+      institution:
+        - Brown University Department of Computer Science
+      title: Semantic interpretation against ambiguity
+      year: '1983'
+    input: "@techreport(Hirst:83,\n\tauthor =\t{Graeme Hirst},\n\tyear =\t\t{1983},\n\tinstitution =\t{Brown University Department of Computer Science},\n\ttitle =\t\t{Semantic Interpretation against Ambiguity}\n)"
+    key: Hirst:83
+    mode:
+      author: creatorlist
+      institution: literallist
+      title: title
+      year: literal
+    type: techreport
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

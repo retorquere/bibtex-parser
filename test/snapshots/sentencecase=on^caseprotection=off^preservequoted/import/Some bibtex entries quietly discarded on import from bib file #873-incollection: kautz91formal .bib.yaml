@@ -1,0 +1,40 @@
+comments: []
+entries:
+  - fields:
+      address: Los Altos, CA
+      author:
+        - firstName: Henry A.
+          lastName: Kautz
+      booktitle: Reasoning about plans
+      chapter: '2'
+      editor:
+        - firstName: James F.
+          lastName: Allen
+        - firstName: Henry A.
+          lastName: Kautz
+        - firstName: Richard N.
+          lastName: Pelavin
+        - firstName: Josh D.
+          lastName: Tenenberg
+      publisher:
+        - Morgan Kaufmann
+      title: A Formal theory of plan recognition and its implementation
+      year: '1991'
+    input: "@incollection( Kautz91Formal, \n  author =\t{Henry A. Kautz}, \n  title =\t{A {F}ormal Theory of Plan Recognition and \n\t\t its Implementation}, \n  chapter =\t{2},\t\t \n  year =\t1991, \n  booktitle =\t{Reasoning About Plans}, \n  editor =\t{James F. Allen\n\t\tand Henry A. Kautz\n\t\tand Richard N. Pelavin\n\t\tand Josh D. Tenenberg}, \n  publisher =\t{Morgan Kaufmann}, \n  address =\t{Los Altos, CA} \n\t)"
+    key: Kautz91Formal
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      chapter: literal
+      editor: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: incollection
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,34 @@
+comments: []
+entries:
+  - fields:
+      address: London
+      author:
+        - firstName: Alan
+          lastName: Turing
+      booktitle: Faster Than Thought
+      editor:
+        - firstName: B.V.
+          lastName: Bowden
+      pages: 288-295
+      publisher:
+        - Pitman
+      title: Part of Chapter 25
+      year: '1953'
+    input: "@book(Turing:53,\n\tauthor =\t{Alan Turing},\n\tbooktitle =\t{Faster Than Thought},\n\taddress =\t{London},\n\tyear =\t\t{1953},\n\teditor =\t{B.V. Bowden},\n\tpublisher =\t{Pitman},\n\tpages =\t\t{288-295},\n\ttitle =\t\t{Part of Chapter 25}\n)"
+    key: Turing:53
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      pages: literal
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

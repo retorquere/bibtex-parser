@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: Margaret
+          lastName: Boden
+      publisher:
+        - Basic Books
+      title: Artificial Intelligence and Natural Man
+      year: '1977'
+    input: "@book(Boden:77,\n\tauthor =\t{Margaret Boden},\n\taddress =\t{New York},\n\tyear =\t\t{1977},\n\tpublisher =\t{Basic Books},\n\ttitle =\t\t{Artificial Intelligence and Natural Man}\n)"
+    key: Boden:77
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

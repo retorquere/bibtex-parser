@@ -1,0 +1,23 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Penny
+          lastName: Prather
+        - firstName: David
+          lastName: Swinney
+      title: Some effects of syntactic context upon lexical access
+      year: '1977'
+    input: "@misc(Prather:77,\n\tauthor =\t{Penny Prather and David Swinney},\n\tyear =\t\t{1977},\n\ttitle =\t\t{Some effects of syntactic context upon lexical access}\n)"
+    key: Prather:77
+    mode:
+      author: creatorlist
+      title: title
+      year: literal
+    type: misc
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

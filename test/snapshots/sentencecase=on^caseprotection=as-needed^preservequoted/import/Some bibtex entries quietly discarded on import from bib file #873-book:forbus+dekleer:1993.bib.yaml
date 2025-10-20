@@ -1,0 +1,35 @@
+comments: []
+entries:
+  - fields:
+      address: Cambridge, Massachusetts
+      author:
+        - firstName: Kenneth D.
+          lastName: Forbus
+        - firstName: Johan
+          lastName: deKleer
+      publisher:
+        - "MIT\_Press"
+      title: Building problem solvers
+      year: '1993'
+    input: |-
+      @Book{Forbus+DeKleer:1993,
+        author =       "Kenneth D. Forbus and Johan {deKleer}",
+        year =         "1993",
+        title =        "Building Problem Solvers",
+        publisher =    "MIT~Press",
+        address =      "Cambridge, Massachusetts"
+      }
+    key: Forbus+DeKleer:1993
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

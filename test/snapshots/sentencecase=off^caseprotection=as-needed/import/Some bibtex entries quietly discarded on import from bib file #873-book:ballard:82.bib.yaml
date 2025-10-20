@@ -1,0 +1,28 @@
+comments: []
+entries:
+  - fields:
+      address: Englewood Cliffs, NJ
+      author:
+        - firstName: Dana
+          lastName: Ballard
+        - firstName: Christopher
+          lastName: Brown
+      publisher:
+        - Prentice-Hall
+      title: Computer Vision
+      year: '1982'
+    input: "@book(Ballard:82,\n\tauthor =\t{Dana Ballard and Christopher Brown},\n\taddress =\t{Englewood Cliffs, NJ},\n\tyear =\t\t{1982},\n\tpublisher =\t{Prentice-Hall},\n\ttitle =\t\t{Computer Vision}\n)"
+    key: Ballard:82
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

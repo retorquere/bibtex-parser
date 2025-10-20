@@ -1,0 +1,29 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Harry
+          lastName: Blum
+        - firstName: Roger N.
+          lastName: Nagel
+      journal: Pattern Recognition
+      pages: 167-180
+      title: Shape description using weighted symmetric axis features
+      volume: '10'
+      year: '1978'
+    input: "@article(Blum:78,\n\tauthor =\t{Harry Blum and Roger N. Nagel},\n\tyear =\t\t{1978},\n\tjournal =\t{Pattern Recognition},\n\tpages =\t\t{167-180},\n\ttitle =\t\t\"Shape description using weighted symmetric axis features\",\n\tvolume =\t{10}\n)"
+    key: Blum:78
+    mode:
+      author: creatorlist
+      journal: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

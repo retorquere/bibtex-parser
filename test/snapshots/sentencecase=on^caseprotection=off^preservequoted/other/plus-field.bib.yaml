@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: U.
+          lastName: Author
+      author+an:username: 1="@ausername"
+      date: '2014'
+    input: |-
+      @BOOK{9.8:11,
+        AUTHOR             = {U. Author},
+        AUTHOR+an:username = {1="@ausername"},
+        DATE               = {2014}
+      }
+    key: 9.8:11
+    mode:
+      author: creatorlist
+      author+an:username: literal
+      date: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

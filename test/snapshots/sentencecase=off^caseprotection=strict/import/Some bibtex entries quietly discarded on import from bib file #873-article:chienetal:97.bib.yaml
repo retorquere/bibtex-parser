@@ -1,0 +1,39 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Steve
+          lastName: Chien
+        - firstName: Dennis
+          lastName: DeCoste
+        - firstName: Richard
+          lastName: Doyle
+        - firstName: Paul
+          lastName: Stolorz
+      journal: AIM
+      number: '1'
+      pages: 103–122
+      title: >-
+        Making an Impact: Artificial Intelligence at the Jet Propulsion
+        Laboratory
+      volume: '17'
+      year: '1997'
+    input: "@ARTICLE{ChienETAL:97,\n\tAUTHOR = {Steve Chien and Dennis DeCoste and Richard Doyle\n\t\t  and Paul Stolorz},\n\tTITLE = {Making an Impact:  Artificial Intelligence at the\n\t\t Jet Propulsion Laboratory},\n\tJOURNAL = AIM,\n\tYEAR = {1997},\n\tVOLUME = {17},\n\tNUMBER = {1},\n\tPAGES = {103--122}\n}"
+    key: ChienETAL:97
+    mode:
+      author: creatorlist
+      journal: literal
+      number: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "AIM"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

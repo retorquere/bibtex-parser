@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      address: Cambridge, Mass.
+      author:
+        - firstName: Marvin
+          lastName: Minsky
+      publisher:
+        - MIT Press
+      title: Semantic Information Processing
+      year: '1968'
+    input: "@book(Minsky:68,\n\tauthor =\t{Marvin Minsky},\n\taddress =\t{Cambridge, Mass.},\n\tyear =\t\t{1968},\n\tpublisher =\t{MIT Press},\n\ttitle =\t\t{Semantic Information Processing}\n)"
+    key: Minsky:68
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

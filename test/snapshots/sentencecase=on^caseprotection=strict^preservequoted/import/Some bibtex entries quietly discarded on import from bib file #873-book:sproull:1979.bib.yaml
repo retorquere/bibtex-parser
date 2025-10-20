@@ -1,0 +1,28 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: William M.
+          lastName: Newman
+        - firstName: Robert F.
+          lastName: Sproull
+      publisher:
+        - McGraw-Hill
+      title: Principles of interactive computer graphics
+      year: '1979'
+    input: "@book(Sproull:1979,\n\tauthor =\t{William M. Newman and Robert F. Sproull},\n\taddress =\t{New York},\n\tyear =\t\t{1979},\n\tpublisher =\t{McGraw-Hill},\n\ttitle =\t\t{Principles of Interactive Computer Graphics}\n)"
+    key: Sproull:1979
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

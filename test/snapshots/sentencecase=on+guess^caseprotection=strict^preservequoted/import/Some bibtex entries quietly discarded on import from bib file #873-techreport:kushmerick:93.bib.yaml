@@ -1,0 +1,41 @@
+comments:
+  - BURIDAN
+entries:
+  - fields:
+      address: Seattle, WA
+      author:
+        - firstName: Nicholas
+          lastName: Kushmerick
+        - firstName: Steve
+          lastName: Hanks
+        - firstName: Daniel
+          lastName: Weld
+      institution:
+        - UDUB
+      month: '6'
+      note: >-
+        This citation should be replaced with Kushmerick, et. al., <i>Artificial
+        Intelligence</i>, 1995
+      number: 93-06-03
+      title: An algorithm for probabilistic planning
+      year: '1993'
+    input: "@TECHREPORT(Kushmerick:93,\n\tAUTHOR = {Nicholas Kushmerick and Steve Hanks\n\t\t  and Daniel Weld},\n\tTITLE = \"An Algorithm for Probabilistic Planning\",\n\tINSTITUTION = UDUB,\n\tYEAR = {1993},\n\tNUMBER = {93-06-03},\n\tADDRESS = {Seattle, WA},\n\tNOTE = {This citation should be replaced with Kushmerick, et. al.,\n\t\t{\\it Artificial Intelligence\\/}, 1995},\t\t  \n\tMONTH = {June}\n)"
+    key: Kushmerick:93
+    mode:
+      address: literal
+      author: creatorlist
+      institution: literallist
+      month: literal
+      note: richtext
+      number: literal
+      title: title
+      year: literal
+    type: techreport
+errors:
+  - error: Unresolved @string reference "UDUB"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

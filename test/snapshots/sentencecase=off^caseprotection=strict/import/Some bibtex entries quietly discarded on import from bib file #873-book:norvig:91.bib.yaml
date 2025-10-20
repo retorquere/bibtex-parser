@@ -1,0 +1,32 @@
+comments: []
+entries:
+  - fields:
+      address: KAUFMANN-ADDRESS
+      author:
+        - firstName: Peter
+          lastName: Norvig
+      publisher:
+        - KAUFMANN
+      title: >-
+        Paradigms of Artificial Intelligence Programming: Case Studies in Common
+        Lisp
+      year: '1991'
+    input: "@BOOK{Norvig:91,\n\tAUTHOR = {Peter Norvig},\n\tTITLE = {Paradigms of Artificial Intelligence Programming:\n\t\t Case Studies in Common Lisp},\n\tPUBLISHER = KAUFMANN,\n\tYEAR = {1991},\n\tADDRESS = KAUFMANN-ADDRESS\n}"
+    key: Norvig:91
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors:
+  - error: Unresolved @string reference "KAUFMANN"
+    input: ''
+  - error: Unresolved @string reference "KAUFMANN-ADDRESS"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,48 @@
+comments: []
+entries:
+  - fields:
+      address: MITP-ADDRESS
+      author:
+        - firstName: Matthew T.
+          lastName: Mason
+      booktitle: 'Robot Motion: Planning and Control'
+      chapter: '5'
+      editor:
+        - firstName: Michael
+          lastName: Brady
+        - firstName: John M.
+          lastName: Hollerbach
+        - firstName: Timothy L.
+          lastName: Johnson
+        - firstName: Tomas
+          lastName: Lozano-Perez
+        - firstName: Matthew T.
+          lastName: Mason
+      pages: 305–322
+      publisher:
+        - MITP
+      title: Compliant Motion
+      year: '1982'
+    input: "@INCOLLECTION(Mason:82,\n\tAUTHOR = {Matthew T. Mason},\n\tTITLE = \"Compliant Motion\",\n\tBOOKTITLE = {Robot Motion: Planning and Control},\n\tPUBLISHER = MITP,\n\tYEAR = {1982},\n\tEDITOR = {Michael Brady and John M. Hollerbach and Timothy L.\n\t\t  Johnson and Tomas Lozano-Perez and Matthew T. Mason},\n\tCHAPTER = {5},\n\tPAGES = {305--322},\n\tADDRESS = MITP-ADDRESS\n)"
+    key: Mason:82
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      chapter: literal
+      editor: creatorlist
+      pages: literal
+      publisher: literallist
+      title: title
+      year: literal
+    type: incollection
+errors:
+  - error: Unresolved @string reference "MITP"
+    input: ''
+  - error: Unresolved @string reference "MITP-ADDRESS"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

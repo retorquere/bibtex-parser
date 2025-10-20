@@ -1,0 +1,29 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Benjamin
+          lastName: Kuipers
+      booktitle: AAAI-82
+      pages: 209–212
+      title: Getting the envisionment right
+      volume: '2'
+      year: '1982'
+    input: "@inproceedings(Kuipers:82,\n\tauthor =\t{Benjamin Kuipers},\n\tyear =\t\t{1982},\n\tbooktitle =\tAAAI-82,\n\tpages =\t\t{209--212},\n\ttitle =\t\t\"Getting the envisionment right\",\n\tvolume =\t{2}\n)"
+    key: Kuipers:82
+    mode:
+      author: creatorlist
+      booktitle: title
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: inproceedings
+errors:
+  - error: Unresolved @string reference "AAAI-82"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

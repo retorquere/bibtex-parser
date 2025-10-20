@@ -1,0 +1,32 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Marianne
+          lastName: Winslett
+      booktitle: <span class="nocase">AAAI-88</span>
+      pages: 89–93
+      publisher:
+        - KAUFMANN
+      title: Reasoning about actions using a possible models approach
+      year: '1988'
+    input: "@INPROCEEDINGS{Winslett-88-AAAI,\n\tAUTHOR = {Marianne Winslett},\n\tTITLE = \"Reasoning about Actions using a Possible Models Approach\",\n\tBOOKTITLE = AAAI-88,\n\tPUBLISHER = KAUFMANN,\n\tYEAR = {1988},\n\tPAGES = {89--93}\n}"
+    key: Winslett-88-AAAI
+    mode:
+      author: creatorlist
+      booktitle: title
+      pages: literal
+      publisher: literallist
+      title: title
+      year: literal
+    type: inproceedings
+errors:
+  - error: Unresolved @string reference "AAAI-88"
+    input: ''
+  - error: Unresolved @string reference "KAUFMANN"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

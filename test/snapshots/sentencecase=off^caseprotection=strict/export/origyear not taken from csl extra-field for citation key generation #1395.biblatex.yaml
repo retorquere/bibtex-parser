@@ -1,0 +1,94 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: J. H
+          lastName: Brennan
+      date: '1982'
+      isbn: 84-7166-852-1
+      langid: spanish
+      location:
+        - Madrid
+      origdate: '1976'
+      publisher:
+        - Edaf
+      title: Magia experimental
+    input: |-
+      @book{Brennan.1976.MagiaExperimental.,
+        title = {Magia experimental},
+        author = {Brennan, J. H},
+        date = {1982},
+        origdate = {1976},
+        publisher = {{Edaf}},
+        location = {{Madrid}},
+        isbn = {84-7166-852-1},
+        langid = {spanish}
+      }
+    key: Brennan.1976.MagiaExperimental.
+    mode:
+      author: creatorlist
+      date: literal
+      isbn: literal
+      langid: literal
+      location: literallist
+      origdate: literal
+      publisher: literallist
+      title: title
+    type: book
+  - fields:
+      author:
+        - firstName: Waldo
+          lastName: Vieira
+      booktitle: 700 Experimentos da Conscienciologia
+      date: '2002'
+      edition: 1. ed.
+      isbn: 978-85-86019-05-0
+      langid: portuguese
+      location:
+        - Rio de Janeiro
+      origdate: '1994'
+      pages: p.22
+      publisher:
+        - Instituto Internacional de Projeciologia
+      title: Capítulo 5
+    input: >-
+      @incollection{Vieira.1994.700ExperimentosdaConscienciologia.Capitulo.p.22,
+        title = {Capítulo 5},
+        booktitle = {700 Experimentos da Conscienciologia},
+        author = {Vieira, Waldo},
+        date = {2002},
+        origdate = {1994},
+        edition = {1. ed.},
+        pages = {p.22},
+        publisher = {{Instituto Internacional de Projeciologia}},
+        location = {{Rio de Janeiro}},
+        isbn = {978-85-86019-05-0},
+        langid = {portuguese}
+      }
+
+      % == BibLateX quality report for
+      Vieira.1994.700ExperimentosdaConscienciologia.Capitulo.p.22:
+
+      % Missing required field 'editor'
+
+      % ? Title looks like it was stored in title-case in Zotero
+    key: Vieira.1994.700ExperimentosdaConscienciologia.Capitulo.p.22
+    mode:
+      author: creatorlist
+      booktitle: title
+      date: literal
+      edition: literal
+      isbn: literal
+      langid: literal
+      location: literallist
+      origdate: literal
+      pages: literal
+      publisher: literallist
+      title: title
+    type: incollection
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

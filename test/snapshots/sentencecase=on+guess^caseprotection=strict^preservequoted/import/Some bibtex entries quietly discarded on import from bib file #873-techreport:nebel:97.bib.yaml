@@ -1,0 +1,34 @@
+comments: []
+entries:
+  - fields:
+      address: Freiburg, Germany
+      author:
+        - firstName: Bernhard
+          lastName: Nebel
+        - firstName: Yannis
+          lastName: Dimopoulos
+        - firstName: Jana
+          lastName: Koehler
+      institution:
+        - Albert-Ludwigs-Universität, Institut für Informatik
+      month: '4'
+      number: '89'
+      title: Ignoring Irrelevant Facts and operators in plan generation
+      year: '1997'
+    input: "@TECHREPORT{Nebel:97,\n\tAUTHOR = {Bernhard Nebel and Yannis Dimopoulos and\n\t\t  Jana Koehler},\n\tTITLE = {Ignoring Irrelevant Facts and operators in plan\n\t\t generation},\n\tINSTITUTION = {Albert-Ludwigs-Universit\\\"{a}t,\n\t\t       Institut f\\\"{u}r Informatik},\n\tYEAR = {1997},\n\tNUMBER = {89},\n\tADDRESS = {Freiburg, Germany},\n\tMONTH = apr\n}"
+    key: Nebel:97
+    mode:
+      address: literal
+      author: creatorlist
+      institution: literallist
+      month: literal
+      number: literal
+      title: title
+      year: literal
+    type: techreport
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

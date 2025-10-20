@@ -1,0 +1,38 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: Christopher K.
+          lastName: Riesbeck
+        - firstName: Roger C.
+          lastName: Schank
+      booktitle: Studies in the Perception of Language
+      editor:
+        - firstName: W.J.M
+          lastName: Levelt
+        - firstName: G.B. Flores
+          lastName: d'Arcais
+      institution:
+        - Wiley
+      title: >-
+        Comprehension by computer: Expectation-based analysis of sentences in
+        context
+      year: '1978'
+    input: "@book(Riesbeck:78,\n\tauthor =\t{Christopher K. Riesbeck and Roger C. Schank},\n\tbooktitle =\t{Studies in the Perception of Language},\n\taddress =\t{New York},\n\tyear =\t\t{1978},\n\teditor =\t{W.J.M Levelt and G.B. Flores d'Arcais},\n\tinstitution =\t{Wiley},\n\ttitle =\t\t{Comprehension by computer:  Expectation-based analysis of sentences in context}\n)"
+    key: Riesbeck:78
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      institution: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

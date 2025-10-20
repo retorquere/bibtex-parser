@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Thomas
+          lastName: Dean
+        - firstName: Keiji
+          lastName: Kanazawa
+      institution:
+        - Brown University, Department of Computer Science
+      title: Persistence and probabilistic inference
+      year: '1987'
+    input: "@techreport(Dean:87c,\n\tauthor =\t{Thomas Dean and Keiji Kanazawa},\n\tinstitution =\t{Brown University, Department of \n\t\t\t Computer Science},\n\tyear =\t\t{1987},\n\ttitle =\t\t{Persistence and probabilistic inference}\n)"
+    key: Dean:87c
+    mode:
+      author: creatorlist
+      institution: literallist
+      title: title
+      year: literal
+    type: techreport
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

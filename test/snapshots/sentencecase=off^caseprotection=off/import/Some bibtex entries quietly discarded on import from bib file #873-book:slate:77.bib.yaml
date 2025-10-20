@@ -1,0 +1,36 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: David J.
+          lastName: Slate
+        - firstName: Lawrence R.
+          lastName: Atkin
+      booktitle: Chess Skill in Man and Machine
+      editor:
+        - firstName: P.W.
+          lastName: Frey
+      pages: 82-118
+      publisher:
+        - Springer-Verlag
+      title: CHESS 4.5 - the Northwestern University chess program
+      year: '1977'
+    input: "@book(Slate:77,\n\tauthor =\t{David J. Slate and Lawrence R. Atkin},\n\tbooktitle =\t{Chess Skill in Man and Machine},\n\taddress =\t{New York},\n\tyear =\t\t{1977},\n\teditor =\t{P.W. Frey},\n\tpublisher =\t{Springer-Verlag},\n\tpages =\t\t{82-118},\n\ttitle =\t\t{CHESS 4.5 - the Northwestern University chess program}\n)"
+    key: Slate:77
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      pages: literal
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

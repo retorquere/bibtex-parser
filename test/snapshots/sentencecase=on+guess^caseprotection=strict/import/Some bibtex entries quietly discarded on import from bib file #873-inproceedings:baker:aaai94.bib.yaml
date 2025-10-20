@@ -1,0 +1,31 @@
+comments: []
+entries:
+  - fields:
+      annote: >-
+        Baker discusses ways in which dynamic backtracking can behave
+        exponentially worse than simpler approaches, in particular depth-first
+        search and backjumping. Briefly, the intuition is that in the attempt to
+        preserve work done through backtracking, dynamic backtracking often
+        preserves constraints propagated from value choices that have since been
+        retracted, confining it in bad parts of the search space.
+      author:
+        - firstName: Andrew B.
+          lastName: Baker
+      crossref: AAAI94
+      pages: 288–293
+      title: The hazards of fancy backtracking
+    input: "@INPROCEEDINGS(Baker:AAAI94,\n\tAUTHOR = {Andrew B. Baker},\n\tTITLE = \"The Hazards of Fancy Backtracking\",\n\tPAGES = {288--293},\n\tCROSSREF = {AAAI94},\n\tANNOTE = {Baker discusses ways in which dynamic backtracking\n\t\t  can behave exponentially worse than simpler approaches,\n\t\t  in particular depth-first search and backjumping.  \n\t\t  Briefly, the intuition is that in the attempt to preserve\n\t\t  work done through backtracking, dynamic backtracking \n\t\t  often preserves constraints propagated from value choices\n\t\t  that have since been retracted, confining it in bad\n\t\t  parts of the search space.}\n)"
+    key: Baker:AAAI94
+    mode:
+      annote: richtext
+      author: creatorlist
+      crossref: literal
+      pages: literal
+      title: title
+    type: inproceedings
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

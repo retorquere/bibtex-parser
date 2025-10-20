@@ -1,0 +1,29 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Matthew L.
+          lastName: Ginsberg
+      journal: JAIR
+      pages: 25–46
+      title: Dynamic backtracking
+      volume: '1'
+      year: '1993'
+    input: "@ARTICLE(Ginsberg:DB,\n\tAUTHOR = {Matthew L. Ginsberg},\n\tTITLE = \"Dynamic Backtracking\",\n\tJOURNAL = JAIR,\n\tYEAR = {1993},\n\tVOLUME = {1},\n\tPAGES = {25--46}\n)"
+    key: Ginsberg:DB
+    mode:
+      author: creatorlist
+      journal: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "JAIR"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

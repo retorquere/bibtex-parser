@@ -1,0 +1,31 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Jon
+          lastName: Doyle
+        - firstName: Michael P.
+          lastName: Wellman
+      journal: AIJ
+      pages: 97–128
+      title: Impediments to universal preference-based default theories
+      volume: '49'
+      year: '1991'
+    input: "@ARTICLE{DoyleWellman:91,\n\tAUTHOR = {Jon Doyle and Michael P. Wellman},\n\tTITLE = \"Impediments to universal preference-based default theories\",\n\tJOURNAL = AIJ,\n\tYEAR = {1991},\n\tVOLUME = {49},\n\tPAGES = {97--128}\n}"
+    key: DoyleWellman:91
+    mode:
+      author: creatorlist
+      journal: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "AIJ"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

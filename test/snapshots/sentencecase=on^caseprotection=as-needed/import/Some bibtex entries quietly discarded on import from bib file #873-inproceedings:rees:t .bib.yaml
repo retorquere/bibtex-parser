@@ -1,0 +1,28 @@
+comments:
+  - Ray Reiter
+entries:
+  - fields:
+      author:
+        - firstName: Jonathan
+          lastName: Rees
+        - firstName: Norman
+          lastName: Adams
+      booktitle: Proceedings of the ACM symposium on lisp and functional programming
+      pages: 114-122
+      title: 'T: a dialect of LISP or, LAMBDA: The ultimate software tool'
+      year: '1982'
+    input: "@inproceedings(Rees:T, \n\tauthor =\t{Jonathan Rees and Norman Adams},\n\tbooktitle =\t{Proceedings of the ACM Symposium on Lisp and Functional Programming},\n\tyear =\t\t{1982},\n\tpages =\t\t{114-122},\n\ttitle =\t\t{{T}: A dialect of {LISP} or, {LAMBDA}: The ultimate software tool}\n)"
+    key: Rees:T
+    mode:
+      author: creatorlist
+      booktitle: title
+      pages: literal
+      title: title
+      year: literal
+    type: inproceedings
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

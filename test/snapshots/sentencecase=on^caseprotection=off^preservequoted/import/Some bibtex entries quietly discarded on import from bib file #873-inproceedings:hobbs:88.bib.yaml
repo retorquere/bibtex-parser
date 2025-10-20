@@ -1,0 +1,33 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Jerry R.
+          lastName: Hobbs
+        - firstName: Mark
+          lastName: Stickel
+        - firstName: Paul
+          lastName: Martin
+        - firstName: Douglas
+          lastName: Edwards
+      booktitle: ACL-88
+      pages: 95-103
+      title: Interpretation as abduction
+      year: '1988'
+    input: "@inproceedings(Hobbs:88,\n\tauthor =\t{Jerry R. Hobbs and Mark Stickel and \n\t\t\t Paul Martin and Douglas Edwards},\n\tyear =\t\t{1988},\n\tbooktitle =\tACL-88,\n\ttitle =\t\t\"Interpretation as Abduction\",\n\tpages =\t\t{95-103}\n)"
+    key: Hobbs:88
+    mode:
+      author: creatorlist
+      booktitle: title
+      pages: literal
+      title: title
+      year: literal
+    type: inproceedings
+errors:
+  - error: Unresolved @string reference "ACL-88"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,36 @@
+comments: []
+entries:
+  - fields:
+      address: ERLBAUM-ADDRESS
+      author:
+        - firstName: Jacob
+          lastName: Beck
+      booktitle: Organization and Representation in Perception
+      editor:
+        - firstName: Jacob
+          lastName: Beck
+      pages: 285-317
+      publisher:
+        - Lawrence Erlbaum
+      title: Textural segmentation
+      year: '1982'
+    input: "@book(Beck:82,\n\tauthor =\t{Jacob Beck},\n\tbooktitle =\t{Organization and Representation in Perception},\n\taddress =\tERLBAUM-ADDRESS,\n\tyear =\t\t{1982},\n\teditor =\t{Jacob Beck},\n\tpublisher =\t{Lawrence Erlbaum},\n\tpages =\t\t{285-317},\n\ttitle =\t\t{Textural segmentation}\n)"
+    key: Beck:82
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      pages: literal
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors:
+  - error: Unresolved @string reference "ERLBAUM-ADDRESS"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

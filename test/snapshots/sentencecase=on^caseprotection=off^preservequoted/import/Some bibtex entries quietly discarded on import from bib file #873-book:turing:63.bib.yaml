@@ -1,0 +1,37 @@
+comments:
+  - Len Schubert
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: Alan M.
+          lastName: Turing
+      booktitle: Computers and thought
+      editor:
+        - firstName: E.
+          lastName: Feigenbaum
+        - firstName: J.
+          lastName: Feldman
+      pages: 1-35
+      publisher:
+        - McGraw-Hill
+      title: Computing machinery and intelligence
+      year: '1963'
+    input: "@book(Turing:63,\n\tauthor =\t{Alan M. Turing},\n\tbooktitle =\t{Computers and Thought},\n\taddress =\t{New York},\n\tyear =\t\t{1963},\n\teditor =\t{E. Feigenbaum and J. Feldman},\n\tpublisher =\t{McGraw-Hill},\n\tpages =\t\t{1-35},\n\ttitle =\t\t{Computing machinery and intelligence}\n)"
+    key: Turing:63
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      pages: literal
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,33 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Manuela
+          lastName: Veloso
+        - firstName: Peter
+          lastName: Stone
+      journal: JAIR
+      month: '6'
+      pages: 25–52
+      title: 'FLECS: Planning with a flexible commitment strategy'
+      volume: '3'
+      year: '1995'
+    input: "@ARTICLE{Veloso:95,\n\tAUTHOR = {Manuela Veloso and Peter Stone},\n\tTITLE = \"{FLECS}: Planning with a flexible commitment strategy\",\n\tJOURNAL = JAIR,\n\tYEAR = {1995},\n\tVOLUME = {3},\n\tPAGES = {25--52},\n\tMONTH = jun\n}"
+    key: Veloso:95
+    mode:
+      author: creatorlist
+      journal: literal
+      month: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "JAIR"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      address: San Francisco
+      author:
+        - firstName: David
+          lastName: Marr
+      publisher:
+        - Freeman
+      title: Vision
+      year: '1982'
+    input: "@book(Marr:1982,\n\tauthor =\t{David Marr},\n\taddress =\t{San Francisco},\n\tyear =\t\t{1982},\n\tpublisher =\t{Freeman},\n\ttitle =\t\t{Vision}\n)"
+    key: Marr:1982
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

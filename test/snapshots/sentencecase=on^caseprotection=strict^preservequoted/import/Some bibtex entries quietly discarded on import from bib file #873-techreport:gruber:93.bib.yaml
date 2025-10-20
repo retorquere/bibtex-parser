@@ -1,0 +1,41 @@
+comments: []
+entries:
+  - fields:
+      address: STANFORD-ADDRESS
+      annote: >-
+        Discussion of using ontologies to translate between knowledge-based
+        systems. Nothing earth-shattering. They have rules for translating
+        between Ontolingua and other KR systems.
+      author:
+        - firstName: Thomas R.
+          lastName: Gruber
+      institution:
+        - KSL
+      month: '4'
+      note: revised version
+      number: KSL 92-71
+      title: A translation approach to portable ontology specifications
+      year: '1993'
+    input: "@TECHREPORT{Gruber:93,\n\tAUTHOR = {Thomas R. Gruber},\n\tTITLE = \"A Translation Approach to Portable Ontology Specifications\",\n\tINSTITUTION = KSL,\n\tYEAR = {1993},\n\tNUMBER = {KSL 92-71},\n\tADDRESS = STANFORD-ADDRESS,\n\tMONTH = apr,\n\tNOTE = {revised version},\n\tANNOTE = {Discussion of using ontologies to translate \n\t\t  between knowledge-based systems.  Nothing\n\t\t  earth-shattering.  They have rules for translating\n\t\t  between Ontolingua and other KR systems.}\n}"
+    key: Gruber:93
+    mode:
+      address: literal
+      annote: richtext
+      author: creatorlist
+      institution: literallist
+      month: literal
+      note: richtext
+      number: literal
+      title: title
+      year: literal
+    type: techreport
+errors:
+  - error: Unresolved @string reference "KSL"
+    input: ''
+  - error: Unresolved @string reference "STANFORD-ADDRESS"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: John
+          lastName: Doe
+      date: 2014-12-31/2015-01-01
+      title: Test
+    input: |-
+      @online{doe_test,
+        title = {Test},
+        author = {Doe, John},
+        date = {2014-12-31/2015-01-01}
+      }
+    key: doe_test
+    mode:
+      author: creatorlist
+      date: literal
+      title: title
+    type: online
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

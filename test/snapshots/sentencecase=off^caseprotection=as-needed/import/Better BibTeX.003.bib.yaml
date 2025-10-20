@@ -1,0 +1,75 @@
+comments: []
+entries:
+  - crossref:
+      donated: []
+      inherited:
+        - booktitle
+        - editor
+        - month
+        - year
+    fields:
+      author:
+        - firstName: First
+          lastName: Author
+        - firstName: Second
+          lastName: Author
+      booktitle: Proceedings of the Xth Conference on XYZ
+      crossref: conference:06
+      editor: &ref_0
+        - firstName: First
+          lastName: Editor
+        - firstName: Second
+          lastName: Editor
+      month: '10'
+      pages: 330—331
+      title: Some publication title
+      year: '2006'
+    input: |-
+      @inproceedings{author:06,
+        title = {Some publication title},
+        author = {Author, First and Author, Second},
+        crossref = {conference:06},
+        pages = {330—331}
+      }
+    key: author:06
+    mode:
+      author: creatorlist
+      crossref: literal
+      pages: literal
+      title: title
+    type: inproceedings
+  - crossref:
+      donated:
+        - editor
+        - month
+        - title
+        - year
+      inherited: []
+    fields:
+      booktitle: Proceedings of the Xth Conference on XYZ (Book)
+      editor: *ref_0
+      month: '10'
+      title: Proceedings of the Xth Conference on XYZ
+      year: '2006'
+    input: |-
+      @proceedings{conference:06,
+        editor = {Editor, First and Editor, Second},
+        title = {Proceedings of the Xth Conference on XYZ},
+        booktitle = {Proceedings of the Xth Conference on XYZ (Book)},
+        year = {2006},
+        month = {oct}
+      }
+    key: conference:06
+    mode:
+      booktitle: title
+      editor: creatorlist
+      month: literal
+      title: title
+      year: literal
+    type: proceedings
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

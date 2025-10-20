@@ -1,0 +1,33 @@
+comments: []
+entries:
+  - fields:
+      address: Cambridge
+      author:
+        - firstName: Michael E.
+          lastName: Bratman
+      publisher:
+        - Harvard University Press
+      title: Intention, Plans, and Practical Reason
+      year: '1987'
+    input: |-
+      @book(Bratman:87,
+           title =     "Intention, Plans, and Practical Reason",
+           author =    {Michael E. Bratman},
+           publisher = {Harvard University Press},
+           address =   {Cambridge},
+           year =      {1987}
+           )
+    key: Bratman:87
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

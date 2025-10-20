@@ -1,0 +1,29 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Henry
+          lastName: Kautz
+        - firstName: James F.
+          lastName: Allen
+      booktitle: AAAI-86
+      pages: 32–38
+      title: Generalized plan recognition
+      year: '1986'
+    input: "@inproceedings(Kautz:86,\n\tauthor =\t{Henry Kautz and James F. Allen},\n\tyear =\t\t{1986},\n\tbooktitle =\tAAAI-86,\n\tpages =\t\t{32--38},\n\ttitle =\t\t{Generalized plan recognition}\n)"
+    key: Kautz:86
+    mode:
+      author: creatorlist
+      booktitle: title
+      pages: literal
+      title: title
+      year: literal
+    type: inproceedings
+errors:
+  - error: Unresolved @string reference "AAAI-86"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,27 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Drew V.
+          lastName: McDermott
+        - firstName: Ruven
+          lastName: Brooks
+      booktitle: AAAI-82
+      title: 'Arby: diagnosis with shallow causal models'
+      year: '1982'
+    input: "@inproceedings(McDermott:82a,\n\tauthor =\t{Drew V. McDermott and Ruven Brooks},\n\tyear =\t\t{1982},\n\tbooktitle =\tAAAI-82,\n\ttitle =\t\t{Arby: diagnosis with shallow causal models}\n)"
+    key: McDermott:82a
+    mode:
+      author: creatorlist
+      booktitle: title
+      title: title
+      year: literal
+    type: inproceedings
+errors:
+  - error: Unresolved @string reference "AAAI-82"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,29 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Patrick J.
+          lastName: Hayes
+      booktitle: <span class="nocase">IJCAI-77</span>
+      pages: 559–565
+      title: In defense of logic
+      volume: '5'
+      year: '1977'
+    input: "@inproceedings(Hayes:77a,\n\tauthor =\t{Patrick J. Hayes},\n\tyear =\t\t{1977},\n\tbooktitle =\tIJCAI-77,\n\tpages =\t\t{559--565},\n\ttitle =\t\t\"In defense of logic\",\n\tvolume =\t{5}\n)"
+    key: Hayes:77a
+    mode:
+      author: creatorlist
+      booktitle: title
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: inproceedings
+errors:
+  - error: Unresolved @string reference "IJCAI-77"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

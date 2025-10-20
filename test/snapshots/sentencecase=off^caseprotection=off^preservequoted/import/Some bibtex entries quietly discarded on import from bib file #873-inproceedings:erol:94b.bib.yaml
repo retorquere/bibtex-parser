@@ -1,0 +1,41 @@
+comments: []
+entries:
+  - fields:
+      annote: >-
+        Erol, et. al. discuss the complexity and expressivity of HTN planning
+        based on their UMCP planning. They show that HTN planning is strictly
+        more expressive than simple STRIPS planning. The reason HTN planning is
+        more expressive is that having a goal task network instead of a
+        propositional goal allows the user of the system to specify not just
+        what is to be achieved, but some aspects of how it is to be achieved.
+        They use the example that in an HTN planner one can specify the goal of
+        “build a house,” as distinct from simply “own a house,” which could also
+        be satisfied by “buy a house.” As far as expressivity is concerned, HTN
+        planning in the general case is undecidable. Forcing HTNs to be
+        totally-ordered sets of tasks or removing variables from the tasks can
+        reduce the complexity.
+      author:
+        - firstName: Kutluhan
+          lastName: Erol
+        - firstName: James
+          lastName: Hendler
+        - firstName: Dana S.
+          lastName: Nau
+      crossref: AAAI94
+      pages: 1123–1128
+      title: 'HTN Planning: Complexity and Expressivity'
+    input: "@INPROCEEDINGS{Erol:94b,\n\tAUTHOR = {Kutluhan Erol and James Hendler and Dana S. Nau},\n\tTITLE = \"{HTN} Planning: Complexity and Expressivity\",\n\tPAGES = {1123--1128},\n\tCROSSREF = {AAAI94},\n\tANNOTE = {Erol, et. al. discuss the complexity and expressivity\n\t\t  of HTN planning based on their UMCP planning.  They show\n\t\t  that HTN planning is strictly more expressive than \n\t\t  simple STRIPS planning.  The reason HTN planning is more\n\t\t  expressive is that having a goal task network instead of \n\t\t  a propositional goal allows the user of the system to \n\t\t  specify not just what is to be achieved, but some aspects of \n\t\t  how it is to be achieved.  They use the example that in an\n\t\t  HTN planner one can specify the goal of ``build a house,''\n\t\t  as distinct from simply ``own a house,'' which could also\n\t\t  be satisfied by ``buy a house.''  As far as expressivity \n\t\t  is concerned, HTN planning in the general case is \n\t\t  undecidable.  Forcing HTNs to be totally-ordered sets of\n\t\t  tasks or removing variables from the tasks can reduce the\n\t\t  complexity.\n\t\t  }\n}"
+    key: Erol:94b
+    mode:
+      annote: richtext
+      author: creatorlist
+      crossref: literal
+      pages: literal
+      title: title
+    type: inproceedings
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

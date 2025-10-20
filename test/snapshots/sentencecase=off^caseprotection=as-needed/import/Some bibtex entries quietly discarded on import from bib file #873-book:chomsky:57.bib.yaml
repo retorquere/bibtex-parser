@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      address: The Hague
+      author:
+        - firstName: Noam
+          lastName: Chomsky
+      publisher:
+        - Mouton
+      title: Syntactic Structures
+      year: '1957'
+    input: "@book(Chomsky:57,\n\tauthor =\t{Noam Chomsky},\n\taddress =\t{The Hague},\n\tyear =\t\t{1957},\n\tpublisher =\t{Mouton},\n\ttitle =\t\t{Syntactic Structures}\n)"
+    key: Chomsky:57
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

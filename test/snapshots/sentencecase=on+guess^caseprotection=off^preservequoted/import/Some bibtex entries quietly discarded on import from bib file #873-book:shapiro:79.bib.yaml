@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: Stuart
+          lastName: Shapiro
+      publisher:
+        - Van Nostrand
+      title: Techniques of artificial intelligence
+      year: '1979'
+    input: "@book(Shapiro:79,\n\tauthor =\t{Stuart Shapiro},\n\taddress =\t{New York},\n\tyear =\t\t{1979},\n\tpublisher =\t{Van Nostrand},\n\ttitle =\t\t{Techniques of Artificial Intelligence}\n)"
+    key: Shapiro:79
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

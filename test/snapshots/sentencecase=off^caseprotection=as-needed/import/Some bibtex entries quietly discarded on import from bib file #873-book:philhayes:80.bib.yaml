@@ -1,0 +1,30 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Phil
+          lastName: Hayes
+        - firstName: George
+          lastName: Mouradian
+      booktitle: >-
+        Proceedings of the 18th Conference of the Association for Computational
+        Linguistics
+      publisher:
+        - Association for Computational Linguistics
+      title: Flexible parsing
+      year: '1980'
+    input: "@book(PhilHayes:80,\n\tauthor =\t{Phil Hayes and George Mouradian},\n\tbooktitle =\t{Proceedings of the 18th Conference of the Association for Computational Linguistics},\n\tyear =\t\t{1980},\n\tpublisher =\t{Association for Computational Linguistics},\n\ttitle =\t\t{Flexible parsing}\n)"
+    key: PhilHayes:80
+    mode:
+      author: creatorlist
+      booktitle: title
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

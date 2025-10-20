@@ -1,0 +1,28 @@
+comments: []
+entries:
+  - fields:
+      address: Reading, Mass.
+      author:
+        - firstName: Patrick
+          lastName: Winston
+        - firstName: Berthold
+          lastName: Horn
+      publisher:
+        - Addison-Wesley
+      title: LISP
+      year: '1980'
+    input: "@book(Winston:80a,\n\tauthor =\t{Patrick Winston and Berthold Horn},\n\taddress =\t{Reading, Mass.},\n\tyear =\t\t{1980},\n\tpublisher =\t{Addison-Wesley},\n\ttitle =\t\t{LISP}\n)"
+    key: Winston:80a
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

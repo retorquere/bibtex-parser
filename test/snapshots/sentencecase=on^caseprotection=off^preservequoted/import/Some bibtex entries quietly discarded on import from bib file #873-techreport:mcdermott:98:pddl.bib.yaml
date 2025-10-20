@@ -1,0 +1,55 @@
+comments: []
+entries:
+  - fields:
+      address: New Haven, CT
+      author:
+        - firstName: Malik
+          lastName: Ghallab
+        - firstName: Adele
+          lastName: Howe
+        - firstName: Craig
+          lastName: Knoblock
+        - firstName: Drew
+          lastName: McDermott
+        - firstName: Ashwin
+          lastName: Ram
+        - firstName: Manuela
+          lastName: Veloso
+        - firstName: Dan
+          lastName: Weld
+        - firstName: David
+          lastName: Wilkins
+      institution:
+        - Yale Center for Computational Vision
+        - Control
+      month: '10'
+      number: CVC TR-98-003
+      title: PDDL – the planning domain definition language
+      year: '1998'
+    input: |-
+      @TechReport{McDermott:98:pddl,
+        author =       {Malik Ghallab and Adele Howe and Craig Knoblock and Drew
+                        {McDermott} and Ashwin Ram and Manuela Veloso and Dan Weld and
+                        David Wilkins},
+        title =        {{PDDL} -- The Planning Domain Definition Language},
+        institution =  {Yale Center for Computational Vision and Control},
+        year =         1998,
+        number =    {CVC TR-98-003},
+        address =   {New Haven, CT},
+        month =     oct}
+    key: McDermott:98:pddl
+    mode:
+      address: literal
+      author: creatorlist
+      institution: literallist
+      month: literal
+      number: literal
+      title: title
+      year: literal
+    type: techreport
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

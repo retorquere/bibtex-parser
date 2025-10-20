@@ -1,0 +1,30 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Martin
+          lastName: Kay
+      booktitle: Natural Language Parsing
+      editor:
+        - firstName: et al.
+          lastName: Dowty
+          suffix: D.R.
+      pages: 251-279
+      title: Parsing in functional unification grammar
+      year: '1985'
+    input: "@incollection(Kay:85,\n\tauthor =\t{Martin Kay},\n\tbooktitle =\t{Natural Language Parsing},\n\tyear =\t\t{1985},\n\teditor =\t{Dowty, D.R., et al.},\n\tpages =\t\t{251-279},\n\ttitle =\t\t{Parsing in functional unification grammar}\n)"
+    key: Kay:85
+    mode:
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      pages: literal
+      title: title
+      year: literal
+    type: incollection
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

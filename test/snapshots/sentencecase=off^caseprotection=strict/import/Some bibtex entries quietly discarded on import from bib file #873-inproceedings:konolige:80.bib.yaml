@@ -1,0 +1,31 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Kurt
+          lastName: Konolige
+        - firstName: Nils J.
+          lastName: Nilsson
+      booktitle: AAAI-80
+      pages: 138–141
+      title: Multiple-Agent Planning Systems
+      volume: '1'
+      year: '1980'
+    input: "@inproceedings(Konolige:80,\n\tauthor =\t{Kurt Konolige and Nils J. Nilsson},\n\tyear =\t\t{1980},\n\tbooktitle =\tAAAI-80,\n\tpages =\t\t{138--141},\n\ttitle =\t\t\"Multiple-Agent Planning Systems\",\n\tvolume =\t{1}\n)"
+    key: Konolige:80
+    mode:
+      author: creatorlist
+      booktitle: title
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: inproceedings
+errors:
+  - error: Unresolved @string reference "AAAI-80"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

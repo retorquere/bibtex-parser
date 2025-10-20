@@ -1,0 +1,28 @@
+comments: []
+entries:
+  - fields:
+      address: Berkeley
+      author:
+        - firstName: David M.
+          lastName: Perlmutter
+        - firstName: Scott
+          lastName: Soames
+      publisher:
+        - University of California Press
+      title: Syntactic Argumentation and the Structure of English
+      year: '1979'
+    input: "@book(Perlmutter:79,\n\tauthor =\t{David M. Perlmutter and Scott Soames},\n\taddress =\t{Berkeley},\n\tyear =\t\t{1979},\n\tpublisher =\t{University of California Press},\n\ttitle =\t\t{Syntactic Argumentation and the Structure of English}\n)"
+    key: Perlmutter:79
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

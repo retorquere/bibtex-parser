@@ -1,0 +1,53 @@
+comments: []
+entries:
+  - fields:
+      acontentnote: >-
+        Abstract: Closed-world inference-an essential component of many planning
+        algorithms-is the process of determining that a logical sentence is
+        false based on its absence from a knowledge base, or the inability to
+        derive it. We describe a novel method for closed-world inference and
+        update over the first-order theories of action used by planning
+        algorithms such as NONLIN, TWEAK, and UCPOP. We show the method to be
+        sound and efficient, but incomplete. In our experiments, closed-world
+        inference consistently averaged about 2 milliseconds while updates
+        averaged approximately 1.2 milliseconds. Furthermore, we demonstrate
+        that incompleteness is nonproblematic in practice, since our mechanism
+        makes over 99incorporated our method into the XII planner, which
+        supports our Internet Softbot (software robot). The technique cut the
+        number of actions executed by the Softbot by a factor of one hundred,
+        and resulted in a corresponding speedup to XII.
+      author:
+        - firstName: Oren
+          lastName: Etzioni
+        - firstName: Keith
+          lastName: Golden
+        - firstName: Daniel S.
+          lastName: Weld
+      journal: AIJ
+      number: 1–2
+      pages: 113–148
+      title: Sound and Efficient Closed-World Reasoning for Planning
+      topic: planning;circumscription;closed-world-reasoning;
+      volume: '89'
+      year: '1997'
+    input: "@Article{Etzioni-etal:1997a,\n  author =\t\"Oren Etzioni and Keith Golden and Daniel S. Weld\",\n  title =\t\"Sound and Efficient Closed-World Reasoning for\n\t\t Planning\",\n  journal =\tAIJ,\n  year = \t\"1997\",\n  volume =\t\"89\",\n  number =\t\"1--2\",\n  pages =\t\"113--148\",\n  acontentnote = \"Abstract: Closed-world inference-an essential\n\t\t component of many planning algorithms-is the process of\n\t\t determining that a logical sentence is false based on\n\t\t its absence from a knowledge base, or the inability to\n\t\t derive it. We describe a novel method for closed-world\n\t\t inference and update over the first-order theories of\n\t\t action used by planning algorithms such as NONLIN,\n\t\t TWEAK, and UCPOP. We show the method to be sound and\n\t\t efficient, but incomplete. In our experiments,\n\t\t closed-world inference consistently averaged about 2\n\t\t milliseconds while updates averaged approximately 1.2\n\t\t milliseconds. Furthermore, we demonstrate that\n\t\t incompleteness is nonproblematic in practice, since our\n\t\t mechanism makes over 99% of the desired inferences. We\n\t\t incorporated our method into the XII planner, which\n\t\t supports our Internet Softbot (software robot). The\n\t\t technique cut the number of actions executed by the\n\t\t Softbot by a factor of one hundred, and resulted in a\n\t\t corresponding speedup to XII.\",\n  topic =\t\"planning;circumscription;closed-world-reasoning;\",\n}"
+    key: Etzioni-etal:1997a
+    mode:
+      acontentnote: literal
+      author: creatorlist
+      journal: literal
+      number: literal
+      pages: literal
+      title: title
+      topic: literal
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "AIJ"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

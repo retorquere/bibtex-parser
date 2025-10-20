@@ -1,0 +1,38 @@
+comments:
+  - Oren Etzioni gets a little list for himself...
+entries:
+  - fields:
+      address: Seattle, WA
+      author:
+        - firstName: Anthony
+          lastName: Barrett
+        - firstName: Keith
+          lastName: Golden
+        - firstName: Scott
+          lastName: Penberthy
+        - firstName: Daniel
+          lastName: Weld
+      institution:
+        - Department of Computer Science
+        - Engineering, University of Washington
+      month: '2'
+      number: 93–09–06
+      title: UCPOP User's Manual (Version 2.0)
+      year: '1994'
+    input: "@TECHREPORT{Barrett:UCPOP,\n\tAUTHOR = {Anthony Barrett and Keith Golden and \n\t\t  Scott Penberthy and Daniel Weld},\n\tTITLE = \"{UCPOP} User's Manual (Version 2.0)\",\n\tINSTITUTION = {Department of Computer Science and Engineering,\n\t\t       University of Washington},\n\tYEAR = {1994},\n\tNUMBER = {93--09--06},\n\tADDRESS = {Seattle, WA},\n\tMONTH = {February}\n}"
+    key: Barrett:UCPOP
+    mode:
+      address: literal
+      author: creatorlist
+      institution: literallist
+      month: literal
+      number: literal
+      title: title
+      year: literal
+    type: techreport
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

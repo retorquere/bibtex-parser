@@ -1,0 +1,33 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Greg
+          lastName: Sidebottom
+        - firstName: William S.
+          lastName: Havens
+      journal: CIJ
+      number: '4'
+      title: >-
+        Hierarchical arc consistency for disjoint real intervals in constraint
+        logic programming
+      volume: '8'
+      year: '1992'
+    input: "@ARTICLE(Sidebottom:92,\n\tAUTHOR = {Greg Sidebottom and William S. Havens},\n\tTITLE = {Hierarchical Arc Consistency for Disjoint\n\t\t Real Intervals in Constraint Logic Programming},\n\tJOURNAL = CIJ,\n\tYEAR = {1992},\n\tVOLUME = {8},\n\tNUMBER = {4}\n)"
+    key: Sidebottom:92
+    mode:
+      author: creatorlist
+      journal: literal
+      number: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "CIJ"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,31 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Jörg
+          lastName: Hoffmann
+        - firstName: Stefan
+          lastName: Edelkamp
+      journal: JAIR
+      pages: 519–579
+      title: 'The Deterministic Part of IPC-4: An Overview'
+      volume: '24'
+      year: '2005'
+    input: "@Article{hoffmann:edelkamp:jair-05,\n  author = \t {J{\\\"o}rg Hoffmann and Stefan Edelkamp},\n  title = \t {The Deterministic Part of {IPC}-4: An Overview},\n  journal = \t JAIR,\n  year = {2005},\n  volume = {24},\n  pages = {519--579}\n}"
+    key: hoffmann:edelkamp:jair-05
+    mode:
+      author: creatorlist
+      journal: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "JAIR"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

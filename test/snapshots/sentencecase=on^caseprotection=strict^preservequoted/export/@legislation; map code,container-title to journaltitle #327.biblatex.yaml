@@ -1,0 +1,39 @@
+comments: []
+entries:
+  - fields:
+      date: '2011-05-18'
+      journaltitle: JORF
+      langid: french
+      number: BCRX0929142L
+      pages: '8537'
+      title: >-
+        Loi nᵒ 2011-525 du 17 mai 2011 de simplification et d'amélioration de la
+        qualité du droit
+      url: >-
+        http://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000024021430&categorieLien=id
+    input: |-
+      @legislation{_loi_2011,
+        title = {Loi n\textsuperscript{o} 2011-525 du 17 mai 2011 de simplification et d'amélioration de la qualité du droit},
+        date = {2011-05-18},
+        journaltitle = {JORF},
+        pages = {8537},
+        url = {http://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000024021430&categorieLien=id},
+        langid = {french},
+        number = {BCRX0929142L}
+      }
+    key: _loi_2011
+    mode:
+      date: literal
+      journaltitle: literal
+      langid: literal
+      number: literal
+      pages: literal
+      title: title
+      url: verbatim
+    type: legislation
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

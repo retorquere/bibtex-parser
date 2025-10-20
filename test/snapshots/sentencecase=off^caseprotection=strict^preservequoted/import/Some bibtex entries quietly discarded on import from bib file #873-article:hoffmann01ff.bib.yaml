@@ -1,0 +1,38 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Jörg
+          lastName: Hoffmann
+        - firstName: Bernhard
+          lastName: Nebel
+      journal: jair
+      pages: 253–302
+      title: 'The FF Planning System: Fast Plan Generation Through Heuristic Search'
+      volume: '14'
+      year: '2001'
+    input: |-
+      @article{hoffmann01ff,
+          Author = {J\"{o}rg Hoffmann and Bernhard Nebel},
+          Journal = jair,
+          Pages = {253--302},
+          Title = {The {FF} Planning System: Fast Plan Generation Through Heuristic Search},
+          Volume = 14,
+          Year = 2001}
+    key: hoffmann01ff
+    mode:
+      author: creatorlist
+      journal: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "jair"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

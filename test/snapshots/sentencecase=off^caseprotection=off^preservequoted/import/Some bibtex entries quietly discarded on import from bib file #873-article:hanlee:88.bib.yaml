@@ -1,0 +1,39 @@
+comments: []
+entries:
+  - fields:
+      annote: >-
+        Fixes a bug in the Path Consistency algorithm (PC-3) presented by Mohr
+        and Henderson in 1986. They present a revised algorithm, PC-4.
+      author:
+        - firstName: Ching-Chih
+          lastName: Han
+        - firstName: Chia-Hoang
+          lastName: Lee
+      journal: AIJ
+      month: '8'
+      number: '1'
+      pages: 125–130
+      title: Comments on Mohr and Henderson's Path Consistency Algorithm
+      volume: '36'
+      year: '1988'
+    input: "@ARTICLE{HanLee:88,\n\tAUTHOR = {Ching-Chih Han and Chia-Hoang Lee},\n\tTITLE = {Comments on Mohr and Henderson's Path Consistency\n\t\t Algorithm},\n\tJOURNAL = AIJ,\n\tYEAR = {1988},\n\tVOLUME = {36},\n\tNUMBER = {1},\n\tPAGES = {125--130},\n\tMONTH = aug,\n\tANNOTE = {Fixes a bug in the Path Consistency algorithm (PC-3)\n\t\t  presented by Mohr and Henderson in 1986.  They\n\t\t  present a revised algorithm, PC-4.}\n}"
+    key: HanLee:88
+    mode:
+      annote: richtext
+      author: creatorlist
+      journal: literal
+      month: literal
+      number: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "AIJ"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

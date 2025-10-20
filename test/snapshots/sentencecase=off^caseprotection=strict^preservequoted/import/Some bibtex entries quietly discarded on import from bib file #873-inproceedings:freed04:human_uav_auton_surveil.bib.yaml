@@ -1,0 +1,33 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - name: FREED
+        - firstName: R.
+          lastName: Harris
+        - firstName: M.G.
+          lastName: Shafto
+      booktitle: >-
+        Working Notes of the AAAI Spring Symposium on Human Interaction with
+        Autonomous System Over Extended Operations
+      location:
+        - Falmouth, MA
+      title: Human-interaction challenges in UAV-based Autonomous Surveillance
+      year: '2004'
+    input: "@InProceedings{freed04:human_uav_auton_surveil,\n  author =\t FREED # { and R. Harris and M.G. Shafto},\n  title =\t {Human-interaction challenges in UAV-based Autonomous\n                  Surveillance},\n  booktitle =\t {Working Notes of the {AAAI} Spring Symposium on\n                  Human Interaction with Autonomous System Over\n                  Extended Operations},\n  location = \t {Falmouth, MA},\n  year =\t 2004\n}"
+    key: freed04:human_uav_auton_surveil
+    mode:
+      author: creatorlist
+      booktitle: title
+      location: literallist
+      title: title
+      year: literal
+    type: inproceedings
+errors:
+  - error: Unresolved @string reference "FREED"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,40 @@
+comments: []
+entries:
+  - fields:
+      address: Hillsdale, NJ
+      author:
+        - firstName: E.
+          lastName: Soloway
+        - firstName: K.
+          lastName: Ehrlich
+        - firstName: J.
+          lastName: Bonar
+        - firstName: J.
+          lastName: Greenspan
+      booktitle: Directions in human-computer interactions
+      editor:
+        - firstName: B.
+          lastName: Shneiderman
+        - firstName: A.
+          lastName: Badre
+      publisher:
+        - Ablex
+      title: What do novices know about programming?
+      year: '1982'
+    input: "@book(Soloway:82,\n\tauthor =\t{E. Soloway and K. Ehrlich and J. Bonar and J. \n\t\t\t Greenspan},\n\tbooktitle =\t{Directions in Human-Computer Interactions},\n\taddress =\t{Hillsdale, NJ},\n\tyear =\t\t{1982},\n\teditor =\t{B. Shneiderman and A. Badre},\n\tpublisher =\t{Ablex},\n\ttitle =\t\t{What do novices know about programming?}\n)"
+    key: Soloway:82
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

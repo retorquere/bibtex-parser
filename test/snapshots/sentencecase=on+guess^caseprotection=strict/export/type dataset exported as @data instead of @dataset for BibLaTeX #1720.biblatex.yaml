@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: John
+          lastName: Doe
+      date: '2021'
+      title: Faulty dataset export
+    input: |-
+      @dataset{Doe2021,
+        title = {Faulty Dataset Export},
+        author = {Doe, John},
+        date = {2021}
+      }
+    key: Doe2021
+    mode:
+      author: creatorlist
+      date: literal
+      title: title
+    type: dataset
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

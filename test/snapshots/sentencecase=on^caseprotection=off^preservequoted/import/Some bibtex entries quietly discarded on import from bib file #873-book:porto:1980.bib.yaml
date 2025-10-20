@@ -1,0 +1,38 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: L.M.
+          lastName: Pereira
+        - firstName: A.
+          lastName: Porto
+      booktitle: Proceedings of the 5th conference on automated deduction
+      editor:
+        - firstName: W.
+          lastName: Bibel
+        - firstName: R.
+          lastName: Kowalski
+      pages: 306-317
+      publisher:
+        - Springer-Verlag
+      title: Selective backtracking for logic programs
+      year: '1980'
+    input: "@book(Porto:1980,\n\tauthor =\t{L.M. Pereira and A. Porto},\n\tbooktitle =\t{Proceedings of the 5th Conference on Automated Deduction},\n\taddress =\t{New York},\n\tyear =\t\t{1980},\n\teditor =\t{W. Bibel and R. Kowalski},\n\tpublisher =\t{Springer-Verlag},\n\tpages =\t\t{306-317},\n\ttitle =\t\t{Selective backtracking for logic programs}\n)"
+    key: Porto:1980
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      pages: literal
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

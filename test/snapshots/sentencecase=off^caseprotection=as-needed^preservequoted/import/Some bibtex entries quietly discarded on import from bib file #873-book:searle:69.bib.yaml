@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      address: London
+      author:
+        - firstName: John R.
+          lastName: Searle
+      publisher:
+        - Cambridge University Press
+      title: 'Speech Acts: An Essay in the Philosophy of Language'
+      year: '1969'
+    input: "@book(Searle:69,\n\tauthor =\t{John R. Searle},\n\taddress =\t{London},\n\tyear =\t\t{1969},\n\tpublisher =\t{Cambridge University Press},\n\ttitle =\t\t{Speech Acts: An Essay in the Philosophy of Language}\n)"
+    key: Searle:69
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,27 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Douglas
+          lastName: Wong
+      booktitle: <span class="nocase">IJCAI-81</span>
+      pages: 7-12
+      title: Language comprehension in a problem solver
+      year: '1981'
+    input: "@inproceedings(Wong:81,\n\tauthor =\t{Douglas Wong},\n\tyear =\t\t{1981},\n\tbooktitle =\tIJCAI-81,\n\ttitle =\t\t\"Language comprehension in a problem solver\",\n\tpages =\t\t{7-12}\n)"
+    key: Wong:81
+    mode:
+      author: creatorlist
+      booktitle: title
+      pages: literal
+      title: title
+      year: literal
+    type: inproceedings
+errors:
+  - error: Unresolved @string reference "IJCAI-81"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

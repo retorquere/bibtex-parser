@@ -1,0 +1,35 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Richard
+          lastName: Dearden
+        - firstName: Craig
+          lastName: Boutilier
+      journal: AIJ
+      month: '1'
+      number: 1–2
+      pages: 219–283
+      title: Abstraction and Approximate Decision-theoretic planning
+      volume: '89'
+      year: '1997'
+    input: "@ARTICLE{DeardenBoutilier:97,\n\tAUTHOR = {Richard Dearden and Craig Boutilier},\n\tTITLE = {Abstraction and Approximate Decision-theoretic\n\t\t planning},\n\tJOURNAL = AIJ,\n\tYEAR = {1997},\n\tVOLUME = {89},\n\tNUMBER = {1--2},\n\tPAGES = {219--283},\n\tMONTH = jan\n}"
+    key: DeardenBoutilier:97
+    mode:
+      author: creatorlist
+      journal: literal
+      month: literal
+      number: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "AIJ"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

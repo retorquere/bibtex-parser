@@ -1,0 +1,25 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - name: MCDERMOTT
+      institution:
+        - Yale University Computer Science Department
+      title: Finding objects with given spatial properties
+      year: '1981'
+    input: "@techreport(McDermott:81a,\n\tauthor =\tMCDERMOTT,\n\tyear =\t\t{1981},\n\tinstitution =\t{Yale University Computer Science Department},\n\ttitle =\t\t{Finding objects with given spatial properties}\n)"
+    key: McDermott:81a
+    mode:
+      author: creatorlist
+      institution: literallist
+      title: title
+      year: literal
+    type: techreport
+errors:
+  - error: Unresolved @string reference "MCDERMOTT"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

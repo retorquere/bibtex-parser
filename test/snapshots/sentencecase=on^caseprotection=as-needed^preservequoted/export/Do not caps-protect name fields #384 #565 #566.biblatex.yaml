@@ -1,0 +1,643 @@
+comments: []
+entries:
+  - fields:
+      annotation: '[al-Hakim][Tawfiq]'
+      author:
+        - firstName: Tawfiq
+          lastName: al- Hakim
+      options: useprefix=true
+    input: |-
+      @book{al-hakim,
+        author = {al- Hakim, Tawfiq},
+        annotation = {[al-Hakim][Tawfiq]},
+        options = {useprefix=true}
+      }
+    key: al-hakim
+    mode:
+      annotation: richtext
+      author: creatorlist
+      options: literal
+    type: book
+  - fields:
+      annotation: '[Beauvoir][Simone de]'
+      author:
+        - firstName: Simone
+          lastName: Beauvoir
+          prefix: de
+    input: |-
+      @book{beauvoir,
+        author = {de Beauvoir, Simone},
+        annotation = {[Beauvoir][Simone de]}
+      }
+    key: beauvoir
+    mode:
+      annotation: richtext
+      author: creatorlist
+    type: book
+  - fields:
+      annotation: '[boven d''Eert][Christianus]'
+      author:
+        - firstName: Christianus
+          lastName: Eert
+          prefix: boven d'
+      options: useprefix=true
+    input: |-
+      @book{bovendeert,
+        author = {boven d' Eert, Christianus},
+        annotation = {[boven d'Eert][Christianus]},
+        options = {useprefix=true}
+      }
+    key: bovendeert
+    mode:
+      annotation: richtext
+      author: creatorlist
+      options: literal
+    type: book
+  - fields:
+      annotation: '["da Gama"][Vasco]'
+      author:
+        - firstName: Vasco
+          lastName: Gama
+          prefix: da
+    input: |-
+      @book{dagama,
+        author = {{da Gama}, Vasco},
+        annotation = {["da Gama"][Vasco]}
+      }
+    key: dagama
+    mode:
+      annotation: richtext
+      author: creatorlist
+    type: book
+  - fields:
+      annotation: '[d’Alembert][Jean le Rond]'
+      author:
+        - firstName: Jean le Rond
+          lastName: d’ Alembert
+      options: useprefix=true
+    input: |-
+      @book{dalembert,
+        author = {d’ Alembert, Jean le Rond},
+        annotation = {[d’Alembert][Jean le Rond]},
+        options = {useprefix=true}
+      }
+    key: dalembert
+    mode:
+      annotation: richtext
+      author: creatorlist
+      options: literal
+    type: book
+  - fields:
+      annotation: '[D’Amato][Alfonse]'
+      author:
+        - firstName: Alfonse
+          lastName: D’Amato
+    input: |-
+      @book{damato,
+        author = {D’Amato, Alfonse},
+        annotation = {[D’Amato][Alfonse]}
+      }
+    key: damato
+    mode:
+      annotation: richtext
+      author: creatorlist
+    type: book
+  - fields:
+      annotation: '[D’Annunzio][Gabriele]'
+      author:
+        - firstName: Gabriele
+          lastName: D’Annunzio
+    input: |-
+      @book{dannunzio,
+        author = {D’Annunzio, Gabriele},
+        annotation = {[D’Annunzio][Gabriele]}
+      }
+    key: dannunzio
+    mode:
+      annotation: richtext
+      author: creatorlist
+    type: book
+  - fields:
+      annotation: '[Da Ponte][Lorenzo]'
+      author:
+        - firstName: Lorenzo
+          lastName: Da Ponte
+    input: |-
+      @book{daponte,
+        author = {Da Ponte, Lorenzo},
+        annotation = {[Da Ponte][Lorenzo]}
+      }
+    key: daponte
+    mode:
+      annotation: richtext
+      author: creatorlist
+    type: book
+  - fields:
+      annotation: '["de Gaulle"][Charles]'
+      author:
+        - firstName: Charles
+          lastName: Gaulle
+          prefix: de
+    input: |-
+      @book{degaulle,
+        author = {{de Gaulle}, Charles},
+        annotation = {["de Gaulle"][Charles]}
+      }
+    key: degaulle
+    mode:
+      annotation: richtext
+      author: creatorlist
+    type: book
+  - fields:
+      annotation: '[DeGette][Diana]'
+      author:
+        - firstName: Diana
+          lastName: DeGette
+    input: |-
+      @book{degette,
+        author = {DeGette, Diana},
+        annotation = {[DeGette][Diana]}
+      }
+    key: degette
+    mode:
+      annotation: richtext
+      author: creatorlist
+    type: book
+  - fields:
+      annotation: '["de la Mare"][Walter]'
+      author:
+        - firstName: Walter
+          lastName: Mare
+          prefix: de la
+    input: |-
+      @book{delamare,
+        author = {{de la Mare}, Walter},
+        annotation = {["de la Mare"][Walter]}
+      }
+    key: delamare
+    mode:
+      annotation: richtext
+      author: creatorlist
+    type: book
+  - fields:
+      annotation: '[Della Robbia][Luca]'
+      author:
+        - firstName: Luca
+          lastName: Della Robbia
+    input: |-
+      @book{dellarobbia,
+        author = {Della Robbia, Luca},
+        annotation = {[Della Robbia][Luca]}
+      }
+    key: dellarobbia
+    mode:
+      annotation: richtext
+      author: creatorlist
+    type: book
+  - fields:
+      annotation: '[De Quincey][Thomas]'
+      author:
+        - firstName: Thomas
+          lastName: De Quincey
+    input: |-
+      @book{dequincey,
+        author = {De Quincey, Thomas},
+        annotation = {[De Quincey][Thomas]}
+      }
+    key: dequincey
+    mode:
+      annotation: richtext
+      author: creatorlist
+    type: book
+  - fields:
+      annotation: '[Dumas][Alexandre, père]'
+      author:
+        - firstName: Alexandre
+          lastName: Dumas
+          suffix: père
+    input: |-
+      @book{dumas,
+        author = {Dumas, père, Alexandre},
+        annotation = {[Dumas][Alexandre, père]}
+      }
+    key: dumas
+    mode:
+      annotation: richtext
+      author: creatorlist
+    type: book
+  - fields:
+      annotation: '[du Puy de Clinchamps][PhU+0097ilippe]'
+      author:
+        - firstName: Philippe
+          lastName: Puy de Clinchamps
+          prefix: du
+      options: useprefix=true
+    input: |-
+      @book{dupuydeclinchamps,
+        author = {du Puy de Clinchamps, {\relax Ph}ilippe},
+        annotation = {[du Puy de Clinchamps][PhU+0097ilippe]},
+        options = {useprefix=true}
+      }
+    key: dupuydeclinchamps
+    mode:
+      annotation: richtext
+      author: creatorlist
+      options: literal
+    type: book
+  - fields:
+      annotation: '[Este][Beatrice d’]'
+      author:
+        - firstName: Beatrice
+          lastName: d’ Este
+    input: |-
+      @book{este,
+        author = {d’ Este, Beatrice},
+        annotation = {[Este][Beatrice d’]}
+      }
+    key: este
+    mode:
+      annotation: richtext
+      author: creatorlist
+    type: book
+  - fields:
+      annotation: '[Humboldt][Alexander von]'
+      author:
+        - firstName: Alexander
+          lastName: Humboldt
+          prefix: von
+    input: |-
+      @book{humboldt,
+        author = {von Humboldt, Alexander},
+        annotation = {[Humboldt][Alexander von]}
+      }
+    key: humboldt
+    mode:
+      annotation: richtext
+      author: creatorlist
+    type: book
+  - fields:
+      annotation: '[King][Martin Luther, Jr.]'
+      author:
+        - firstName: Martin Luther
+          lastName: King
+          suffix: Jr.
+    input: |-
+      @book{king,
+        author = {King, Jr., Martin Luther},
+        annotation = {[King][Martin Luther, Jr.]}
+      }
+    key: king
+    mode:
+      annotation: richtext
+      author: creatorlist
+    type: book
+  - fields:
+      annotation: '[La Follette][Robert M., Sr.]'
+      author:
+        - firstName: Robert M.
+          lastName: La Follette
+          suffix: Sr.
+    input: |-
+      @book{lafollette,
+        author = {La Follette, Sr., Robert M.},
+        annotation = {[La Follette][Robert M., Sr.]}
+      }
+    key: lafollette
+    mode:
+      annotation: richtext
+      author: creatorlist
+    type: book
+  - fields:
+      annotation: '[La Fontaine][Jean de]'
+      author:
+        - firstName: Jean
+          lastName: La Fontaine
+          prefix: de
+    input: |-
+      @book{lafontaine,
+        author = {de La Fontaine, Jean},
+        annotation = {[La Fontaine][Jean de]}
+      }
+    key: lafontaine
+    mode:
+      annotation: richtext
+      author: creatorlist
+    type: book
+  - fields:
+      annotation: '[La Salle][René-Robert Cavelier de]'
+      author:
+        - firstName: René-Robert Cavelier
+          lastName: La Salle
+          prefix: de
+    input: |-
+      @book{lasalle,
+        author = {de La Salle, René-Robert Cavelier},
+        annotation = {[La Salle][René-Robert Cavelier de]}
+      }
+    key: lasalle
+    mode:
+      annotation: richtext
+      author: creatorlist
+    type: book
+  - fields:
+      annotation: '[L’Enfant][Pierre-Charles]'
+      author:
+        - firstName: Pierre-Charles
+          lastName: L’Enfant
+    input: |-
+      @book{lenfant,
+        author = {L’Enfant, Pierre-Charles},
+        annotation = {[L’Enfant][Pierre-Charles]}
+      }
+    key: lenfant
+    mode:
+      annotation: richtext
+      author: creatorlist
+    type: book
+  - fields:
+      annotation: '[Le Vayer][François de La Mothe]'
+      author:
+        - firstName: François de La Mothe
+          lastName: Le Vayer
+    input: |-
+      @book{levayer,
+        author = {Le Vayer, François de La Mothe},
+        annotation = {[Le Vayer][François de La Mothe]}
+      }
+    key: levayer
+    mode:
+      annotation: richtext
+      author: creatorlist
+    type: book
+  - fields:
+      annotation: '[[Marcus Aurelius]]'
+      author:
+        - name: Marcus Aurelius
+    input: |-
+      @book{marcusaurelius,
+        author = {{Marcus Aurelius}},
+        annotation = {[[Marcus Aurelius]]}
+      }
+    key: marcusaurelius
+    mode:
+      annotation: richtext
+      author: creatorlist
+    type: book
+  - fields:
+      annotation: '[Medici][Lorenzo de’U+200B]'
+      author:
+        - firstName: Lorenzo
+          lastName: de’ Medici
+    input: |-
+      @book{medici,
+        author = {de’\mbox{} Medici, Lorenzo},
+        annotation = {[Medici][Lorenzo de’U+200B]}
+      }
+    key: medici
+    mode:
+      annotation: richtext
+      author: creatorlist
+    type: book
+  - fields:
+      annotation: '[Mies van der Rohe][Ludwig]'
+      author:
+        - firstName: Ludwig
+          lastName: Mies van der Rohe
+    input: |-
+      @book{miesvanderrohe,
+        author = {Mies van der Rohe, Ludwig},
+        annotation = {[Mies van der Rohe][Ludwig]}
+      }
+    key: miesvanderrohe
+    mode:
+      annotation: richtext
+      author: creatorlist
+    type: book
+  - fields:
+      annotation: '[[National Aeronautics and Space Administration]]'
+      author:
+        - name: National Aeronautics and Space Administration
+    input: |-
+      @book{nationalaeronauticsandspaceadministration,
+        author = {{National Aeronautics and Space Administration}},
+        annotation = {[[National Aeronautics and Space Administration]]}
+      }
+    key: nationalaeronauticsandspaceadministration
+    mode:
+      annotation: richtext
+      author: creatorlist
+    type: book
+  - fields:
+      annotation: '[Ortega y Gasset][José]'
+      author:
+        - firstName: José
+          lastName: Ortega y Gasset
+    input: |-
+      @book{ortegaygasset,
+        author = {Ortega y Gasset, José},
+        annotation = {[Ortega y Gasset][José]}
+      }
+    key: ortegaygasset
+    mode:
+      annotation: richtext
+      author: creatorlist
+    type: book
+  - fields:
+      annotation: '[''s-Gravesande][Goverdus]'
+      author:
+        - firstName: Goverdus
+          lastName: '''s- Gravesande'
+      options: useprefix=true
+    input: |-
+      @book{s-gravesande,
+        author = {'s- Gravesande, Goverdus},
+        annotation = {['s-Gravesande][Goverdus]},
+        options = {useprefix=true}
+      }
+    key: s-gravesande
+    mode:
+      annotation: richtext
+      author: creatorlist
+      options: literal
+    type: book
+  - fields:
+      annotation: '[Sackville-West][Victoria]'
+      author:
+        - firstName: Victoria
+          lastName: Sackville-West
+    input: |-
+      @book{sackville-west,
+        author = {Sackville-West, Victoria},
+        annotation = {[Sackville-West][Victoria]}
+      }
+    key: sackville-west
+    mode:
+      annotation: richtext
+      author: creatorlist
+    type: book
+  - fields:
+      annotation: '[Sadat][Anwar el-]'
+      author:
+        - firstName: Anwar
+          lastName: el- Sadat
+    input: |-
+      @book{sadat,
+        author = {el- Sadat, Anwar},
+        annotation = {[Sadat][Anwar el-]}
+      }
+    key: sadat
+    mode:
+      annotation: richtext
+      author: creatorlist
+    type: book
+  - fields:
+      annotation: '[Saunders][John Bertrand de Cusance Morant]'
+      author:
+        - firstName: John Bertrand de Cusance Morant
+          lastName: Saunders
+    input: |-
+      @book{saunders,
+        author = {Saunders, John Bertrand de Cusance Morant},
+        annotation = {[Saunders][John Bertrand de Cusance Morant]}
+      }
+    key: saunders
+    mode:
+      annotation: richtext
+      author: creatorlist
+    type: book
+  - fields:
+      annotation: '[Silva][Agostinho da]'
+      author:
+        - firstName: Agostinho
+          lastName: Silva
+          prefix: da
+    input: |-
+      @book{silva,
+        author = {da Silva, Agostinho},
+        annotation = {[Silva][Agostinho da]}
+      }
+    key: silva
+    mode:
+      annotation: richtext
+      author: creatorlist
+    type: book
+  - fields:
+      annotation: '[Stein][Heinrich Friedrich Karl vom und zum]'
+      author:
+        - firstName: Heinrich Friedrich Karl
+          lastName: Stein
+          prefix: vom und zum
+    input: |-
+      @book{stein,
+        author = {vom und zum Stein, Heinrich Friedrich Karl},
+        annotation = {[Stein][Heinrich Friedrich Karl vom und zum]}
+      }
+    key: stein
+    mode:
+      annotation: richtext
+      author: creatorlist
+    type: book
+  - fields:
+      annotation: '[Stevenson][Adlai E.,! III]'
+      author:
+        - firstName: Adlai E.
+          lastName: Stevenson
+          suffix: III
+    input: |-
+      @book{stevenson,
+        author = {Stevenson, III, Adlai E.},
+        annotation = {[Stevenson][Adlai E.,! III]}
+      }
+    key: stevenson
+    mode:
+      annotation: richtext
+      author: creatorlist
+    type: book
+  - fields:
+      annotation: '[Tocqueville][Alexis de]'
+      author:
+        - firstName: Alexis
+          lastName: Tocqueville
+          prefix: de
+    input: |-
+      @book{tocqueville,
+        author = {de Tocqueville, Alexis},
+        annotation = {[Tocqueville][Alexis de]}
+      }
+    key: tocqueville
+    mode:
+      annotation: richtext
+      author: creatorlist
+    type: book
+  - fields:
+      annotation: '[van Gogh][Vincent]'
+      author:
+        - firstName: Vincent
+          lastName: Gogh
+          prefix: van
+      options: useprefix=true
+    input: |-
+      @book{vangogh,
+        author = {van Gogh, Vincent},
+        annotation = {[van Gogh][Vincent]},
+        options = {useprefix=true}
+      }
+    key: vangogh
+    mode:
+      annotation: richtext
+      author: creatorlist
+      options: literal
+    type: book
+  - fields:
+      annotation: '["van Gulik"][Robert]'
+      author:
+        - firstName: Robert
+          lastName: Gulik
+          prefix: van
+    input: |-
+      @book{vangulik,
+        author = {{van Gulik}, Robert},
+        annotation = {["van Gulik"][Robert]}
+      }
+    key: vangulik
+    mode:
+      annotation: richtext
+      author: creatorlist
+    type: book
+  - fields:
+      annotation: '[Van Rensselaer][Stephen]'
+      author:
+        - firstName: Stephen
+          lastName: Van Rensselaer
+    input: |-
+      @book{vanrensselaer,
+        author = {Van Rensselaer, Stephen},
+        annotation = {[Van Rensselaer][Stephen]}
+      }
+    key: vanrensselaer
+    mode:
+      annotation: richtext
+      author: creatorlist
+    type: book
+  - fields:
+      annotation: '[Vaughan Williams][Ralph]'
+      author:
+        - firstName: Ralph
+          lastName: Vaughan Williams
+    input: |-
+      @book{vaughanwilliams,
+        author = {Vaughan Williams, Ralph},
+        annotation = {[Vaughan Williams][Ralph]}
+      }
+    key: vaughanwilliams
+    mode:
+      annotation: richtext
+      author: creatorlist
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble:
+  - ' "\ifdefined\DeclarePrefChars\DeclarePrefChars{''’-}\else\fi " '
+strings: {}

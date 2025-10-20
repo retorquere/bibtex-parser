@@ -1,0 +1,29 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: J. Ross
+          lastName: Quinlan
+      journal: JAIR
+      pages: 139–161
+      title: Learning First-order definitions of functions
+      volume: '5'
+      year: '1996'
+    input: "@ARTICLE{Quinlan:96,\n\tAUTHOR = {J. Ross Quinlan},\n\tTITLE = \"Learning First-order definitions of functions\",\n\tJOURNAL = JAIR,\n\tYEAR = {1996},\n\tVOLUME = {5},\n\tPAGES = {139--161}\n}"
+    key: Quinlan:96
+    mode:
+      author: creatorlist
+      journal: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "JAIR"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

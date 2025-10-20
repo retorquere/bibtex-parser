@@ -1,0 +1,34 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Raymond
+          lastName: Reiter
+      booktitle: Logic and Databases
+      editor:
+        - firstName: H.
+          lastName: Gallaire
+        - firstName: J.
+          lastName: Minker
+      pages: 55-76
+      publisher:
+        - Plenum Press
+      title: On closed world data bases
+      year: '1978'
+    input: "@book(Reiter:78,\n\tauthor =\t{Raymond Reiter},\n\tbooktitle =\t{Logic and Databases},\n\tyear =\t\t{1978},\n\teditor =\t{H. Gallaire and J. Minker},\n\tpublisher =\t{Plenum Press},\n\tpages =\t\t{55-76},\n\ttitle =\t\t{On closed world data bases}\n)"
+    key: Reiter:78
+    mode:
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      pages: literal
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

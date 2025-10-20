@@ -1,0 +1,29 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Tomas
+          lastName: Lozano-Perez
+        - firstName: Patrick H.
+          lastName: Winston
+      booktitle: <span class="nocase">IJCAI-77</span>
+      pages: 710–716
+      title: 'LAMA: A language for automatic mechanical assembly'
+      year: '1977'
+    input: "@article(LozanoPerez:77,\n\tauthor =\t{Tomas Lozano-Perez and Patrick H. Winston},\n\tyear =\t\t{1977},\n\tbooktitle =\tIJCAI-77,\n\tpages =\t\t{710--716},\n\ttitle =\t\t{LAMA: A language for automatic mechanical assembly}\n)"
+    key: LozanoPerez:77
+    mode:
+      author: creatorlist
+      booktitle: title
+      pages: literal
+      title: title
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "IJCAI-77"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

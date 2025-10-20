@@ -1,0 +1,38 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: L.M.
+          lastName: Pereira
+        - firstName: A.
+          lastName: Porto
+      booktitle: Logic programming
+      editor:
+        - firstName: K.L.
+          lastName: Clark
+        - firstName: S.-A.
+          lastName: Tarnlund
+      pages: 107-114
+      publisher:
+        - Academic Press
+      title: Selective backtracking
+      year: '1980'
+    input: "@book(Porto:1980,\n\tauthor =\t{L.M. Pereira and A. Porto},\n\tbooktitle =\t{Logic Programming},\n\taddress =\t{New York},\n\tyear =\t\t{1980},\n\teditor =\t{K.L. Clark and S.-A. Tarnlund},\n\tpublisher =\t{Academic Press},\n\tpages =\t\t{107-114},\n\ttitle =\t\t{Selective backtracking}\n)"
+    key: Porto:1980
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      pages: literal
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

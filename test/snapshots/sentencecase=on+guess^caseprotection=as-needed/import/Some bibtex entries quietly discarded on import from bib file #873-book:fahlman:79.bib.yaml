@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      address: Cambridge, Mass.
+      author:
+        - firstName: Scott E.
+          lastName: Fahlman
+      publisher:
+        - MIT Press
+      title: 'NETL: a system for representing and using real-world knowledge'
+      year: '1979'
+    input: "@book(Fahlman:79,\n\tauthor =\t{Scott E. Fahlman},\n\taddress =\t{Cambridge, Mass.},\n\tyear =\t\t{1979},\n\tpublisher =\t{MIT Press},\n\ttitle =\t\t{NETL: A System for Representing and Using \n\t\t\t Real-World Knowledge}\n)"
+    key: Fahlman:79
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

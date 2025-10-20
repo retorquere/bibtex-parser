@@ -1,0 +1,34 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: Marvin
+          lastName: Minsky
+      booktitle: The Psychology of Computer Vision
+      editor:
+        - firstName: P.H.
+          lastName: Winston
+      note: Republished in KR
+      publisher:
+        - McGraw-Hill
+      title: A framework for representing knowledge
+      year: '1975'
+    input: "@incollection(Minsky:Frames,\n\tauthor =\t{Marvin Minsky},\n\tbooktitle =\t{The Psychology of Computer Vision},\n\taddress =\t{New York},\n\tyear =\t\t{1975},\n\teditor =\t{P.H. Winston},\n\tpublisher =\t{McGraw-Hill},\n\ttitle =\t\t\"A framework for representing knowledge\",\n\tNOTE = {Republished in \\cite{KR}}\n)"
+    key: Minsky:Frames
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      note: richtext
+      publisher: literallist
+      title: title
+      year: literal
+    type: incollection
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,32 @@
+comments: []
+entries:
+  - fields:
+      address: Amsterdam
+      author:
+        - firstName: Chuck
+          lastName: Rieger
+      booktitle: Conceptual information processing
+      editor:
+        - firstName: R.C.
+          lastName: Schank
+      publisher:
+        - North-Holland
+      title: Conceptual memory
+      year: '1975'
+    input: "@book(Rieger:75,\n\tauthor =\t{Chuck Rieger},\n\tbooktitle =\t{Conceptual Information Processing},\n\taddress =\t{Amsterdam},\n\tyear =\t\t{1975},\n\teditor =\t{R.C. Schank},\n\tpublisher =\t{North-Holland},\n\ttitle =\t\t{Conceptual memory}\n)"
+    key: Rieger:75
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

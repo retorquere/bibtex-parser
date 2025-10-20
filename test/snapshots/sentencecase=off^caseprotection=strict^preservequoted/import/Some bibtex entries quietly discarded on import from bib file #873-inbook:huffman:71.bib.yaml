@@ -1,0 +1,36 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: David
+          lastName: Huffman
+      booktitle: Machine Intelligence
+      editor:
+        - firstName: B.
+          lastName: Meltzer
+        - firstName: D.
+          lastName: Michie
+      publisher:
+        - American Elsevier
+      title: Impossible objects as nonsense sentences
+      volume: '6'
+      year: '1971'
+    input: "@inbook(Huffman:71,\n\tauthor =\t{David Huffman},\n\tbooktitle =\t{Machine Intelligence},\n\tvolume = \t{6},\n\taddress =\t{New York},\n\tyear =\t\t{1971},\n\teditor =\t{B. Meltzer and D. Michie},\n\tpublisher =\t{American Elsevier},\n\ttitle =\t\t{Impossible objects as nonsense sentences}\n)"
+    key: Huffman:71
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      publisher: literallist
+      title: title
+      volume: literal
+      year: literal
+    type: inbook
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

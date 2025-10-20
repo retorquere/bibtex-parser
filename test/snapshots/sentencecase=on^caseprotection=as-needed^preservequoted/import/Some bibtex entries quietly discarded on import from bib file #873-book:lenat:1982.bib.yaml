@@ -1,0 +1,36 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: Douglas B.
+          lastName: Lenat
+      booktitle: Knowledge-based systems in artificial intelligence
+      editor:
+        - firstName: Randall
+          lastName: Davis
+        - firstName: Douglas B.
+          lastName: Lenat
+      pages: 1-225
+      publisher:
+        - McGraw-Hill
+      title: 'AM: Discovery in mathematics as heuristic search'
+      year: '1982'
+    input: "@book(Lenat:1982,\n\tauthor =\t{Douglas B. Lenat},\n\tbooktitle =\t{Knowledge-Based Systems in Artificial Intelligence},\n\taddress =\t{New York},\n\tyear =\t\t{1982},\n\teditor =\t{Randall Davis and Douglas B. Lenat},\n\tpublisher =\t{McGraw-Hill},\n\tpages =\t\t{1-225},\n\ttitle =\t\t{AM: Discovery in mathematics as heuristic search}\n)"
+    key: Lenat:1982
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      pages: literal
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

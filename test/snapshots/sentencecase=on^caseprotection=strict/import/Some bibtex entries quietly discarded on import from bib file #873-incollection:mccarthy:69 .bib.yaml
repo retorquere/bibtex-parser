@@ -1,0 +1,40 @@
+comments: []
+entries:
+  - fields:
+      address: Edinburgh
+      author:
+        - firstName: John
+          lastName: McCarthy
+        - firstName: Patrick J.
+          lastName: Hayes
+      booktitle: Machine intelligence
+      editor:
+        - firstName: B.
+          lastName: Meltzer
+        - firstName: D.
+          lastName: Michie
+      publisher:
+        - Edinburgh University Press
+      title: >-
+        Some philosophical problems from the standpoint of artificial
+        intelligence
+      volume: '4'
+      year: '1969'
+    input: "@incollection{McCarthy:69, \n\tauthor =\t{John McCarthy and Patrick J. Hayes},\n\tbooktitle =\t{Machine Intelligence},\n\tvolume = \t4,\n\taddress =\t{Edinburgh},\n\tyear =\t\t{1969},\n\teditor =\t{B. Meltzer and D. Michie},\n\tpublisher =\t{Edinburgh University Press},\n\ttitle =\t\t{Some philosophical problems \n\t\t\t from the standpoint of artificial intelligence}\n}"
+    key: McCarthy:69
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      publisher: literallist
+      title: title
+      volume: literal
+      year: literal
+    type: incollection
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

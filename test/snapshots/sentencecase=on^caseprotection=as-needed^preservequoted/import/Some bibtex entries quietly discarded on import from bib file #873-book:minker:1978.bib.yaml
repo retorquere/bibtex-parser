@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: H.
+          lastName: Gallaire
+        - firstName: Jack
+          lastName: Minker
+      publisher:
+        - Plenum Press
+      title: Logic and databases
+      year: '1978'
+    input: "@book(Minker:1978,\n\tauthor =\t{H. Gallaire and Jack Minker},\n\tyear =\t\t{1978},\n\tpublisher =\t{Plenum Press},\n\ttitle =\t\t{Logic and Databases}\n)"
+    key: Minker:1978
+    mode:
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

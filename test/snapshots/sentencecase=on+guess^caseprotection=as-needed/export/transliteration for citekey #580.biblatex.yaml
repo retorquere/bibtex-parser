@@ -1,0 +1,46 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Григорий
+          lastName: Медведев
+      date: '2002'
+      keywords:
+        - '1986'
+        - Chernobyl Nuclear Accident
+        - Chornobylʹ
+        - Nuclear industry
+        - Nuclear reactor accidents
+        - Radioactive wastes
+        - Ukraine
+      langid: russian
+      pagetotal: '520'
+      publisher:
+        - МК-Периодика
+      title: Ядерный загар
+    input: |-
+      @book{Medvedev2002,
+        title = {Ядерный загар},
+        author = {Медведев, Григорий},
+        date = {2002},
+        publisher = {{МК-Периодика}},
+        keywords = {Chernobyl Nuclear Accident; Chornobylʹ; Ukraine; 1986,Nuclear industry,Nuclear reactor accidents,Radioactive wastes},
+        langid = {russian},
+        pagetotal = {520}
+      }
+    key: Medvedev2002
+    mode:
+      author: creatorlist
+      date: literal
+      keywords: verbatimlist
+      langid: literal
+      pagetotal: literal
+      publisher: literallist
+      title: title
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

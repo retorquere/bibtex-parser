@@ -1,0 +1,33 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Reid G.
+          lastName: Smith
+      journal: TCOMPUTERS
+      number: '12'
+      pages: 1104–1113
+      title: >-
+        The contract net protocol: High-level communication and control in a
+        distributed problem solver
+      volume: C-29
+      year: '1980'
+    input: "@ARTICLE(Smith:ContractNet,\n\tAUTHOR = {Reid G. Smith},\n\tTITLE = {The Contract Net Protocol:  High-level Communication\n\t\t and Control in a Distributed Problem Solver},\n\tJOURNAL = TCOMPUTERS,\n\tYEAR = {1980},\n\tVOLUME = {C-29},\n\tNUMBER = {12},\n\tPAGES = {1104--1113}\n)"
+    key: Smith:ContractNet
+    mode:
+      author: creatorlist
+      journal: literal
+      number: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "TCOMPUTERS"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

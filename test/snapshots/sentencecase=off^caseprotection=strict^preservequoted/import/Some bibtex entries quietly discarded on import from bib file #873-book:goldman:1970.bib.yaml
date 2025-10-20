@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      address: Englewood Cliffs, NJ
+      author:
+        - firstName: Alvin I.
+          lastName: Goldman
+      publisher:
+        - Prentice-Hall
+      title: A Theory of Human Action
+      year: '1970'
+    input: "@book(Goldman:1970,\n\tauthor =\t{Alvin I. Goldman},\n\taddress =\t{Englewood Cliffs, NJ},\n\tyear =\t\t{1970},\n\tpublisher =\t{Prentice-Hall},\n\ttitle =\t\t{A Theory of Human Action}\n)"
+    key: Goldman:1970
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

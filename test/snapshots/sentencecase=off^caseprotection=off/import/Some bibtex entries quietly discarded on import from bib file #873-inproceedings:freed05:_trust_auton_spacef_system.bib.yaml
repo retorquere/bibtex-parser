@@ -1,0 +1,38 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - name: FREED
+        - firstName: P.
+          lastName: Bonasso
+        - firstName: D.
+          lastName: Ingham
+          suffix: M.and Kortenkamp
+        - firstName: B.
+          lastName: Pell
+        - firstName: J.
+          lastName: Penix
+      booktitle: >-
+        Proceedings of the 1st Space Exploration Conference: Continuing the
+        Voyage of Discovery
+      location:
+        - Orlando, FL
+      title: Trusted Autonomy for Spaceflight Systems
+      year: '2005'
+    input: "@InProceedings{freed05:_trust_auton_spacef_system,\n  author =\t FREED # { and Bonasso, P. and Ingham, M.and Kortenkamp,\n                  D. and Pell, B. and Penix, J.},\n  title =\t {Trusted Autonomy for Spaceflight Systems},\n  booktitle =\t {Proceedings of the 1st Space Exploration Conference:\n                  Continuing the Voyage of Discovery},\n  location =\t {Orlando, FL},\n  year =\t 2005\n}"
+    key: freed05:_trust_auton_spacef_system
+    mode:
+      author: creatorlist
+      booktitle: title
+      location: literallist
+      title: title
+      year: literal
+    type: inproceedings
+errors:
+  - error: Unresolved @string reference "FREED"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

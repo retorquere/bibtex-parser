@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Roger
+          lastName: Schank
+        - firstName: Lawrence
+          lastName: Birnbaum
+      institution:
+        - Yale University Department of Computer Science
+      title: Memory, meaning, and syntax
+      year: '1980'
+    input: "@techreport(Schank:80,\n\tauthor =\t{Roger Schank and Lawrence Birnbaum},\n\tyear =\t\t{1980},\n\tinstitution =\t{Yale University Department of Computer Science},\n\ttitle =\t\t{Memory, Meaning, and Syntax}\n)"
+    key: Schank:80
+    mode:
+      author: creatorlist
+      institution: literallist
+      title: title
+      year: literal
+    type: techreport
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

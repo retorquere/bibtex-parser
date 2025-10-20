@@ -1,0 +1,33 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Stuart J.
+          lastName: Russell
+        - firstName: Devika
+          lastName: Subramanian
+      journal: JAIR
+      month: '5'
+      pages: 575–609
+      title: Provably Bounded-Optimal Agents
+      volume: '2'
+      year: '1995'
+    input: "@ARTICLE(Russell:95,\n\tAUTHOR = {Stuart J. Russell and Devika Subramanian},\n\tTITLE = \"Provably Bounded-Optimal Agents\",\n\tJOURNAL = JAIR,\n\tYEAR = {1995},\n\tVOLUME = {2},\n\tPAGES = {575--609},\n\tMONTH = {May}\n)"
+    key: Russell:95
+    mode:
+      author: creatorlist
+      journal: literal
+      month: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "JAIR"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

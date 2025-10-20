@@ -1,0 +1,32 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: David
+          lastName: Waltz
+      booktitle: The Psychology of Computer Vision
+      editor:
+        - firstName: P.H.
+          lastName: Winston
+      publisher:
+        - McGraw-Hill
+      title: Understanding line drawings of scenes with shadows
+      year: '1975'
+    input: "@book(Waltz:75,\n\tauthor =\t{David Waltz},\n\tbooktitle =\t{The Psychology of Computer Vision},\n\taddress =\t{New York},\n\tyear =\t\t{1975},\n\teditor =\t{P.H. Winston},\n\tpublisher =\t{McGraw-Hill},\n\ttitle =\t\t{Understanding line drawings of scenes with shadows}\n)"
+    key: Waltz:75
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

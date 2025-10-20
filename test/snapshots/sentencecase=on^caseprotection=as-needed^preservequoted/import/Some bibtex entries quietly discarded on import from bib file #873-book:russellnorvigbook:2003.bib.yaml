@@ -1,0 +1,30 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Stuart
+          lastName: Russell
+        - firstName: Peter
+          lastName: Norvig
+      edition: Second
+      isbn: 0-13-790395-2
+      publisher:
+        - Prentice-Hall
+      title: 'Artificial intelligence : A modern approach'
+      year: '2003'
+    input: "@book{RussellNorvigBook:2003,\n\tAuthor = {Stuart Russell and Peter Norvig},\n\tEdition = {Second},\n\tIsbn = {0-13-790395-2},\n\tPublisher = {Prentice-Hall},\n\tTitle = {Artificial Intelligence : {A} Modern Approach},\n\tYear = {2003}}"
+    key: RussellNorvigBook:2003
+    mode:
+      author: creatorlist
+      edition: literal
+      isbn: literal
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,37 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Craig
+          lastName: Boutilier
+        - firstName: Thomas
+          lastName: Dean
+        - firstName: Steve
+          lastName: Hanks
+      journal: JAIR
+      month: '7'
+      pages: 1–94
+      title: >-
+        Decision-Theoretic Planning: Structural Assumptions and Computational
+        Leverage
+      volume: '11'
+      year: '1999'
+    input: "@ARTICLE(BoutilierETAL:99,\n\tAUTHOR = {Craig Boutilier and Thomas Dean and Steve Hanks},\n\tTITLE = {Decision-Theoretic Planning: Structural Assumptions\n\t\t and Computational Leverage},\n\tJOURNAL = JAIR,\n\tYEAR = {1999},\n\tVOLUME = {11},\n\tPAGES = {1--94},\n\tMONTH = jul\n)"
+    key: BoutilierETAL:99
+    mode:
+      author: creatorlist
+      journal: literal
+      month: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "JAIR"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

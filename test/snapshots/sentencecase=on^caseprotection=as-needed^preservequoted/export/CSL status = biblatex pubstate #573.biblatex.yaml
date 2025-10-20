@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: John
+          lastName: Doe
+      pubstate: forthcoming
+      title: Title
+    input: |-
+      @book{doe_title_nodate,
+        title = {Title},
+        author = {Doe, John},
+        pubstate = {forthcoming}
+      }
+    key: doe_title_nodate
+    mode:
+      author: creatorlist
+      pubstate: literal
+      title: title
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

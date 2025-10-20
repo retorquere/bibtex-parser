@@ -1,0 +1,28 @@
+comments: []
+entries:
+  - fields:
+      address: AW-ADDRESS
+      author:
+        - firstName: Robert
+          lastName: Wilensky
+      publisher:
+        - Addison-Wesley
+      title: Planning and understanding
+      year: '1983'
+    input: "@book(Wilensky:83,\n\tauthor =\t{Robert Wilensky},\n\taddress =\tAW-ADDRESS,\n\tyear =\t\t{1983},\n\tpublisher =\t{Addison-Wesley},\n\ttitle =\t\t{Planning and Understanding}\n)"
+    key: Wilensky:83
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors:
+  - error: Unresolved @string reference "AW-ADDRESS"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,42 @@
+comments: []
+entries:
+  - fields:
+      address: San Mateo
+      author:
+        - firstName: Philippe
+          lastName: Laborie
+        - firstName: Malik
+          lastName: Ghallab
+      booktitle: >-
+        Proceedings of the Fourteenth International Joint Conference on
+        Artificial Intelligence
+      editor:
+        - firstName: Chris S.
+          lastName: Mellish
+      isbn: 1-55860-363-8
+      month: "08\_20–25"
+      pages: 1643–1651
+      publisher:
+        - Morgan Kaufmann
+      title: Planning with Sharable Resource Constraints
+      year: '1995'
+    input: "@InProceedings{LaborieGhallab:95,\n  author =\t\"Philippe Laborie and Malik Ghallab\",\n  title =\t\"Planning with Sharable Resource Constraints\",\n  pages =\t\"1643--1651\",\n  ISBN = \t\"1-55860-363-8\",\n  editor =\t\"Chris S. Mellish\",\n  booktitle =\t\"Proceedings of the Fourteenth International Joint\n\t\t Conference on Artificial Intelligence\",\n  month =\taug # \"~20--25\",\n  publisher =\t\"Morgan Kaufmann\",\n  address =\t\"San Mateo\",\n  year = \t\"1995\",\n}"
+    key: LaborieGhallab:95
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      isbn: literal
+      month: literal
+      pages: literal
+      publisher: literallist
+      title: title
+      year: literal
+    type: inproceedings
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

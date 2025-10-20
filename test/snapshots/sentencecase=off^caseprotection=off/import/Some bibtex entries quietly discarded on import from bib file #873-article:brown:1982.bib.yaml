@@ -1,0 +1,27 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Johan
+          lastName: deKleer
+        - firstName: J.S.
+          lastName: Brown
+      journal: Proc. AAAI
+      title: Foundations of envisioning
+      volume: '2'
+      year: '1982'
+    input: "@article(Brown:1982,\n\tauthor =\t{Johan deKleer and J.S. Brown},\n\tyear =\t\t{1982},\n\tjournal =\t{Proc. AAAI},\n\ttitle =\t\t\"Foundations of envisioning\",\n\tvolume =\t{2}\n)"
+    key: Brown:1982
+    mode:
+      author: creatorlist
+      journal: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

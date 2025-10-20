@@ -1,0 +1,48 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Håkan L. S.
+          lastName: Younes
+        - firstName: Reid G.
+          lastName: Simmons
+      bibsource: DBLP, http://dblp.uni-trier.de
+      journal: JAIR
+      pages: 405-430
+      title: >-
+        <span class="nocase">VHPOP</span>: Versatile heuristic partial order
+        planner.
+      url: http://www.cs.washington.edu/research/jair/abstracts/younes03a.html
+      volume: '20'
+      year: '2003'
+    input: |-
+      @article{younes03:_vhpop,
+        author    = {H{\aa}kan L. S. Younes and
+                     Reid G. Simmons},
+        title     = {{VHPOP}: Versatile Heuristic Partial Order Planner.},
+        journal   = JAIR,
+        volume    = 20,
+        year      = 2003,
+        pages     = {405-430},
+        url       = {http://www.cs.washington.edu/research/jair/abstracts/younes03a.html},
+        bibsource = {DBLP, http://dblp.uni-trier.de}
+      }
+    key: younes03:_vhpop
+    mode:
+      author: creatorlist
+      bibsource: literal
+      journal: literal
+      pages: literal
+      title: title
+      url: verbatim
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "JAIR"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

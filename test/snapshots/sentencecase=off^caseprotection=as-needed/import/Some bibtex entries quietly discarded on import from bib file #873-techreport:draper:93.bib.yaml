@@ -1,0 +1,38 @@
+comments: []
+entries:
+  - fields:
+      address: Seattle, WA
+      author:
+        - firstName: Denise
+          lastName: Draper
+        - firstName: Steve
+          lastName: Hanks
+        - firstName: Daniel
+          lastName: Weld
+      institution:
+        - UDUB
+      month: '12'
+      number: 93-12-04
+      title: >-
+        Probabilistic Planning with Information Gathering and Contingent
+        Execution
+      year: '1993'
+    input: "@TECHREPORT(Draper:93,\n\tAUTHOR = {Denise Draper and Steve Hanks and Daniel Weld},\n\tTITLE = {Probabilistic Planning with Information Gathering\n\t\t and Contingent Execution},\n\tINSTITUTION = UDUB,\n\tYEAR = {1993},\n\tNUMBER = {93-12-04},\n\tADDRESS = {Seattle, WA},\n\tMONTH = {December}\n)"
+    key: Draper:93
+    mode:
+      address: literal
+      author: creatorlist
+      institution: literallist
+      month: literal
+      number: literal
+      title: title
+      year: literal
+    type: techreport
+errors:
+  - error: Unresolved @string reference "UDUB"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

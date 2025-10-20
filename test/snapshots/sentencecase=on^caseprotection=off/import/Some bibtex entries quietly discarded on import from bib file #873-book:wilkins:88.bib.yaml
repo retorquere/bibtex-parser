@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: David
+          lastName: Wilkins
+      publisher:
+        - KAUFMANN
+      title: Practical planning
+      year: '1988'
+    input: "@book(Wilkins:88,\nauthor\t=\t{David Wilkins},\ntitle\t=\t\"Practical Planning\",\npublisher=\tKAUFMANN,\nyear\t=\t{1988} \n)"
+    key: Wilkins:88
+    mode:
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors:
+  - error: Unresolved @string reference "KAUFMANN"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

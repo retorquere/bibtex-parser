@@ -1,0 +1,36 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: Steven
+          lastName: Vere
+      booktitle: Pattern-Directed Inference Systems
+      editor:
+        - firstName: D.A.
+          lastName: Waterman
+        - firstName: F.
+          lastName: Hayes-Roth
+      pages: 281-295
+      publisher:
+        - Academic Press
+      title: Inductive learning of relational productions
+      year: '1978'
+    input: "@book(Vere:78,\n\tauthor =\t{Steven Vere},\n\tbooktitle =\t{Pattern-Directed Inference Systems},\n\taddress =\t{New York},\n\tyear =\t\t{1978},\n\teditor =\t{D.A. Waterman and F. Hayes-Roth},\n\tpublisher =\t{Academic Press},\n\tpages =\t\t{281-295},\n\ttitle =\t\t{Inductive learning of relational productions}\n)"
+    key: Vere:78
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      pages: literal
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

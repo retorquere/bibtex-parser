@@ -1,0 +1,29 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Ernest
+          lastName: Davis
+      booktitle: IJCAI-83
+      pages: 295–301
+      title: The MERCATOR representation of spatial knowledge
+      volume: '8'
+      year: '1983'
+    input: "@inproceedings(Davis:83,\n\tauthor =\t{Ernest Davis},\n\tyear =\t\t{1983},\n\tbooktitle =\tIJCAI-83,\n\tpages =\t\t{295--301},\n\ttitle =\t\t\"The MERCATOR representation of spatial knowledge\",\n\tvolume =\t{8}\n)"
+    key: Davis:83
+    mode:
+      author: creatorlist
+      booktitle: title
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: inproceedings
+errors:
+  - error: Unresolved @string reference "IJCAI-83"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

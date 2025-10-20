@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      address: Cambridge, Mass.
+      author:
+        - firstName: Noam
+          lastName: Chomsky
+      publisher:
+        - MIT Press
+      title: Aspects of the theory of syntax
+      year: '1965'
+    input: "@book(Chomsky:65,\n\tauthor =\t{Noam Chomsky},\n\taddress =\t{Cambridge, Mass.},\n\tyear =\t\t{1965},\n\tpublisher =\t{MIT Press},\n\ttitle =\t\t{Aspects of the Theory of Syntax}\n)"
+    key: Chomsky:65
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

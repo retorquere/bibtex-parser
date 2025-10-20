@@ -1,0 +1,38 @@
+comments: []
+entries:
+  - fields:
+      address: Edinburgh, Scotland
+      author:
+        - firstName: Richard
+          lastName: Waldinger
+      booktitle: Machine Intelligence
+      editor:
+        - firstName: E.
+          lastName: Elcock
+        - firstName: D.
+          lastName: Michie
+      pages: 94–136
+      publisher:
+        - Ellis Horwood
+      title: Achieving Several goals Simultaneously
+      volume: '8'
+      year: '1977'
+    input: "@incollection(Waldinger:Regression,\n\tAUTHOR = {Richard Waldinger},\n\tTITLE = \"Achieving Several goals Simultaneously\",\n\tBooktitle = {Machine Intelligence},\n\tEDITOR = {E. Elcock and D. Michie},\n\tYEAR = {1977},\n\tPUBLISHER = {Ellis Horwood},\n\tADDRESS = {Edinburgh, Scotland},\n\tVOLUME = {8},\n\tPAGES = {94--136},\n)"
+    key: Waldinger:Regression
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      pages: literal
+      publisher: literallist
+      title: title
+      volume: literal
+      year: literal
+    type: incollection
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,36 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: H.
+          lastName: Barrow
+        - firstName: J.M.
+          lastName: Tenenbaum
+      booktitle: Computer vision systems
+      editor:
+        - firstName: A.
+          lastName: Hanson
+        - firstName: E.
+          lastName: Riseman
+      publisher:
+        - Academic Press
+      title: Recovering intrinsic scene characteristics from images
+      year: '1978'
+    input: "@book(Barrow:78,\n\tauthor =\t{H. Barrow and J.M. Tenenbaum},\n\tbooktitle =\t{Computer Vision Systems},\n\taddress =\t{New York},\n\tyear =\t\t{1978},\n\teditor =\t{A. Hanson and E. Riseman},\n\tpublisher =\t{Academic Press},\n\ttitle =\t\t{Recovering intrinsic scene characteristics from images}\n)"
+    key: Barrow:78
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

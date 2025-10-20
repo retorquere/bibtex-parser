@@ -1,0 +1,37 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Joe
+          lastName: Torre
+        - firstName: Tom
+          lastName: Verducci
+      date: '2008'
+      note: note 1 <p>note 2
+      publisher:
+        - Doubleday
+      title: XYZZY
+    input: |-
+      @misc{Torre2008,
+        title = {{{XYZZY}}},
+        author = {Torre, Joe and Verducci, Tom},
+        date = {2008},
+        publisher = {{Doubleday}},
+        note = {note 1
+      \par
+      note 2}
+      }
+    key: Torre2008
+    mode:
+      author: creatorlist
+      date: literal
+      note: richtext
+      publisher: literallist
+      title: title
+    type: misc
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

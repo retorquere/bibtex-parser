@@ -1,0 +1,34 @@
+comments: []
+entries:
+  - fields:
+      address: Seattle, WA
+      author:
+        - firstName: Peter
+          lastName: Haddawy
+        - firstName: Steve
+          lastName: Hanks
+      institution:
+        - UDUB
+      month: '6'
+      number: 93-06-04
+      title: Utility Models for Goal-directed Decision-theoretic Planners
+      year: '1993'
+    input: "@TECHREPORT(Haddawy:93,\n\tAUTHOR = {Peter Haddawy and Steve Hanks},\n\tTITLE = {Utility Models for Goal-directed\n\t\t Decision-theoretic Planners},\n\tINSTITUTION = UDUB,\n\tYEAR = {1993},\n\tNUMBER = {93-06-04},\n\tADDRESS = {Seattle, WA},\n\tMONTH = {June}\n)"
+    key: Haddawy:93
+    mode:
+      address: literal
+      author: creatorlist
+      institution: literallist
+      month: literal
+      number: literal
+      title: title
+      year: literal
+    type: techreport
+errors:
+  - error: Unresolved @string reference "UDUB"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

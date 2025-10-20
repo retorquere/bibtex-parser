@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: Emmon
+          lastName: Bach
+      publisher:
+        - Holt, Rinehart & Winston
+      title: Syntactic theory
+      year: '1974'
+    input: "@book(Bach:74,\n\tauthor =\t{Emmon Bach},\n\taddress =\t{New York},\n\tyear =\t\t{1974},\n\tpublisher =\t{Holt, Rinehart & Winston},\n\ttitle =\t\t{Syntactic Theory}\n)"
+    key: Bach:74
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

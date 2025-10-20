@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      address: Chicago
+      author:
+        - firstName: Richard
+          lastName: Rorty
+      publisher:
+        - University of Chicago Press
+      title: 'The linguistic turn: Recent essays in philosophical method'
+      year: '1967'
+    input: "@book(Rorty:67,\n\tauthor =\t{Richard Rorty},\n\taddress =\t{Chicago},\n\tyear =\t\t{1967},\n\tpublisher =\t{University of Chicago Press},\n\ttitle =\t\t{The Linguistic Turn:  Recent Essays in Philosophical Method}\n)"
+    key: Rorty:67
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

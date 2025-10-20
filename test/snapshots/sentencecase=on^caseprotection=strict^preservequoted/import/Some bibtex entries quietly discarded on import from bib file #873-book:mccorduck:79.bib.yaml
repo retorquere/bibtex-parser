@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      address: San Francisco
+      author:
+        - firstName: Pamela
+          lastName: McCorduck
+      publisher:
+        - Freeman
+      title: Machines who think
+      year: '1979'
+    input: "@book(McCorduck:79,\n\tauthor =\t{Pamela McCorduck},\n\taddress =\t{San Francisco},\n\tyear =\t\t{1979},\n\tpublisher =\t{Freeman},\n\ttitle =\t\t{Machines Who Think}\n)"
+    key: McCorduck:79
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

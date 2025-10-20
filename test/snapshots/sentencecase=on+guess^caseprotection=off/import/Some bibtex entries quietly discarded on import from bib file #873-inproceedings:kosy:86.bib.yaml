@@ -1,0 +1,27 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Donald W.
+          lastName: Kosy
+      booktitle: ACL-86
+      pages: 78-85
+      title: Parsing conjunctions deterministically
+      year: '1986'
+    input: "@inproceedings(Kosy:86,\n\tauthor =\t{Donald W. Kosy},\n\tyear =\t\t{1986},\n\tbooktitle =\tACL-86,\n\tpages =\t\t{78-85},\n\ttitle =\t\t{Parsing conjunctions deterministically}\n)"
+    key: Kosy:86
+    mode:
+      author: creatorlist
+      booktitle: title
+      pages: literal
+      title: title
+      year: literal
+    type: inproceedings
+errors:
+  - error: Unresolved @string reference "ACL-86"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

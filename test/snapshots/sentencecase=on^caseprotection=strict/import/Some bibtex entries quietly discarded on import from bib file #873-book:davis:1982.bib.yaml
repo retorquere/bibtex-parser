@@ -1,0 +1,36 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: Randall
+          lastName: Davis
+      booktitle: Knowledge-based systems in artificial intelligence
+      editor:
+        - firstName: Randall
+          lastName: Davis
+        - firstName: Douglas B.
+          lastName: Lenat
+      pages: 227-490
+      publisher:
+        - McGraw-Hill
+      title: 'Teiresias: Applications of meta-level knowledge'
+      year: '1982'
+    input: "@book(Davis:1982,\n\tauthor =\t{Randall Davis},\n\tbooktitle =\t{Knowledge-Based Systems in Artificial Intelligence},\n\taddress =\t{New York},\n\tyear =\t\t{1982},\n\teditor =\t{Randall Davis and Douglas B. Lenat},\n\tpublisher =\t{McGraw-Hill},\n\tpages =\t\t{227-490},\n\ttitle =\t\t{Teiresias: Applications of meta-level knowledge}\n)"
+    key: Davis:1982
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      pages: literal
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

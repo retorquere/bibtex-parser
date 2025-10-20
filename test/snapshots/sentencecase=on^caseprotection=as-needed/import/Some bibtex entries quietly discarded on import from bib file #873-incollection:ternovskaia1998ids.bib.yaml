@@ -1,0 +1,57 @@
+comments: []
+entries:
+  - fields:
+      abstract: >-
+        We explore the situation calculus within the framework of inductive
+        definability. A consequence of this view of the situation calculus is to
+        establish direct connections with different variants of the mu-calculus,
+        structural operational semantics of concurrent processes, and logic
+        programming. First we show that the induction principle on situations is
+        implied by an inductive definition of the set of situations. Then we
+        consider the frame problem from the point of view of inductive
+        definability and by defining fluents inductively we obtain essentially
+        the same form of successor state axioms as Reiter's. Our approach allows
+        extending this result to the case where ramification constraints are
+        present. Finally we demonstrate a method of applying inductive
+        definitions for computing fixed point properties of GOLOG programs.
+      author:
+        - firstName: Eugenia
+          lastName: Ternovskaia
+      booktitle: Transactions and change in logic databases
+      coden: LNCSD9
+      editor:
+        - firstName: B.
+          lastName: Freitag
+        - firstName: H.
+          lastName: Decker
+        - firstName: M.
+          lastName: Kifer
+        - firstName: A.
+          lastName: Voronkov
+      issn: 0302-9743
+      series: LNCS
+      title: Inductive definability and the situation calculus
+      volume: '1472'
+      year: '1998'
+    input: "@incollection{Ternovskaia1998IDS,\n  author =\t \"Eugenia Ternovskaia\",\n  title =\t \"Inductive Definability and the Situation Calculus\",\n  booktitle =\t \"Transactions and Change in Logic Databases\",\n  editor =\t \"B. Freitag and H. Decker and M. Kifer and\n                  A. Voronkov\",\n  series =\t LNCS,\n  volume =\t \"1472\",\n  year =\t \"1998\",\n  CODEN =\t \"LNCSD9\",\n  ISSN =\t \"0302-9743\",\n  abstract =     \"We explore the situation calculus within the\n                 framework of inductive definability. A consequence of\n                 this view of the situation calculus is to establish\n                 direct connections with different variants of the mu-calculus,\n                 structural operational semantics of concurrent\n                 processes, and logic programming.\n                 First we show that the induction principle on\n                 situations is implied by an inductive\n                 definition of the set of situations. Then we consider\n                 the frame problem from the point of view of inductive\n                 definability and by defining fluents inductively we\n                 obtain essentially the same form of successor state\n                 axioms as Reiter's. Our approach allows extending\n                 this result to the case where ramification constraints\n                 are present. Finally we demonstrate a method of\n                 applying inductive definitions for computing fixed\n                 point properties of GOLOG programs.\"\n}"
+    key: Ternovskaia1998IDS
+    mode:
+      abstract: literal
+      author: creatorlist
+      booktitle: title
+      coden: literal
+      editor: creatorlist
+      issn: literal
+      series: title
+      title: title
+      volume: literal
+      year: literal
+    type: incollection
+errors:
+  - error: Unresolved @string reference "LNCS"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

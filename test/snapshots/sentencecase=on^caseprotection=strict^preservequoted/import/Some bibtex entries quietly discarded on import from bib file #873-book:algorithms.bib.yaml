@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      address: Reading, Mass.
+      author:
+        - firstName: Robert
+          lastName: Sedgewick
+      publisher:
+        - Addison-Wesley
+      title: Algorithms
+      year: '1983'
+    input: "@book(Algorithms,\n\tauthor =\t{Robert Sedgewick},\n\taddress =\t{Reading, Mass.},\n\tyear =\t\t{1983},\n\tpublisher =\t{Addison-Wesley},\n\ttitle =\t\t{Algorithms}\n)"
+    key: Algorithms
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

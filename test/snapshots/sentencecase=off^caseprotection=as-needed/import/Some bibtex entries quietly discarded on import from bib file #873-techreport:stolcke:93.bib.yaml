@@ -1,0 +1,34 @@
+comments: []
+entries:
+  - fields:
+      address: Berkeley, CA
+      author:
+        - firstName: Andreas
+          lastName: Stolcke
+      institution:
+        - ICSI
+      month: '11'
+      number: TR-93-065
+      title: >-
+        An Efficient Probabilistic Context-free Parsing Algorithm that Computes
+        Prefix Probabilities
+      year: '1993'
+    input: "@TECHREPORT(Stolcke:93,\n\tAUTHOR = {Andreas Stolcke},\n\tTITLE = {An Efficient Probabilistic Context-free Parsing\n\t\t Algorithm that Computes Prefix Probabilities},\n\tINSTITUTION = ICSI,\n\tYEAR = {1993},\n\tNUMBER = {TR-93-065},\n\tADDRESS = {Berkeley, CA},\n\tMONTH = {November}\n)"
+    key: Stolcke:93
+    mode:
+      address: literal
+      author: creatorlist
+      institution: literallist
+      month: literal
+      number: literal
+      title: title
+      year: literal
+    type: techreport
+errors:
+  - error: Unresolved @string reference "ICSI"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

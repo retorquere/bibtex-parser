@@ -1,0 +1,29 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Ray
+          lastName: Reiter
+      journal: Artificial Intelligence
+      note: Reprinted in NONMON.
+      pages: 81–132
+      title: A logic for default reasoning
+      volume: '13'
+      year: '1980'
+    input: "@article(Reiter:defaults,\n\tauthor =\t{Ray Reiter},\n\tyear =\t\t{1980},\n\tjournal =\t{Artificial Intelligence},\n\ttitle =\t\t\"A logic for default reasoning\",\n\tvolume =\t{13},\n\tnote = \t\t{Reprinted in \\cite{NONMON}.},\n\tpages =\t\t{81--132}\n)"
+    key: Reiter:defaults
+    mode:
+      author: creatorlist
+      journal: literal
+      note: richtext
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

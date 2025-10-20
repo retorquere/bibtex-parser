@@ -1,0 +1,30 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Louise
+          lastName: Pryor
+        - firstName: Gregg
+          lastName: Collins
+      institution:
+        - The Institute for the Learning Sciences, Northwestern University
+      month: '6'
+      number: '41'
+      title: 'Cassandra: Planning for Contingencies'
+      year: '1993'
+    input: "@TECHREPORT(Pryor:CassandraORIG,\n\tAUTHOR = {Louise Pryor and Gregg Collins},\n\tTITLE = \"Cassandra:  Planning for Contingencies\",\n\tINSTITUTION = {The Institute for the Learning Sciences,\n\t\t       Northwestern University},\n\tYEAR = {1993},\n\tNUMBER = {41},\n\tMONTH = {June}\n)"
+    key: Pryor:CassandraORIG
+    mode:
+      author: creatorlist
+      institution: literallist
+      month: literal
+      number: literal
+      title: title
+      year: literal
+    type: techreport
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

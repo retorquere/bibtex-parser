@@ -1,0 +1,33 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Alexander
+          lastName: Borgida
+        - firstName: Peter F.
+          lastName: Patel-Schneider
+      journal: JAIR
+      pages: 277–308
+      title: >-
+        A semantics and complete algorithm for subsumption in the <span
+        class="nocase">CLASSIC</span> description logic
+      volume: '1'
+      year: '1994'
+    input: "@ARTICLE(Borgida:CLASSIC,\n\tAUTHOR = {Alexander Borgida and Peter F. Patel-Schneider},\n\tTITLE = {A Semantics and Complete Algorithm for\n\t\t Subsumption in the {CLASSIC} Description Logic},\n\tJOURNAL = JAIR,\n\tYEAR = {1994},\n\tVOLUME = {1},\n\tPAGES = {277--308}\n)"
+    key: Borgida:CLASSIC
+    mode:
+      author: creatorlist
+      journal: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "JAIR"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

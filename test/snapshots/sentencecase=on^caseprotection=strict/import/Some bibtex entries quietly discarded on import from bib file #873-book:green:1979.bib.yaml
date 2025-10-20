@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      address: New York
+      author:
+        - firstName: Cordell
+          lastName: Green
+      publisher:
+        - Garland Publishing Inc.
+      title: The application of theorem proving to question answering
+      year: '1979'
+    input: "@BOOK{Green:1979,\n\tAUTHOR = {Cordell Green},\n\tTITLE = {The Application of Theorem Proving to Question\n\t\t Answering},\n\tPUBLISHER = {Garland Publishing Inc.},\n\tYEAR = {1979},\n\tADDRESS = {New York}\n}"
+    key: Green:1979
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

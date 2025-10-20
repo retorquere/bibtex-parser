@@ -1,0 +1,41 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Pieter
+          lastName: Koopman
+        - firstName: Rinus
+          lastName: Plasmeijer
+      booktitle: Implementation of Functional Languages
+      date: '1999'
+      doi: 10.1007/3-540-48515-5_8
+      pages: 120–136
+      publisher:
+        - Springer
+      title: Efficient Combinator Parsers
+    input: |-
+      @incollection{koopman_efficient_99,
+        title = {Efficient Combinator Parsers},
+        booktitle = {Implementation of {{Functional Languages}}},
+        author = {Koopman, Pieter and Plasmeijer, Rinus},
+        date = {1999},
+        pages = {120--136},
+        publisher = {{Springer}},
+        doi = {10.1007/3-540-48515-5_8}
+      }
+    key: koopman_efficient_99
+    mode:
+      author: creatorlist
+      booktitle: title
+      date: literal
+      doi: verbatim
+      pages: literal
+      publisher: literallist
+      title: title
+    type: incollection
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

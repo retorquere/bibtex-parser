@@ -1,0 +1,44 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Christopher D.
+          lastName: Manning
+        - firstName: Prabhakar
+          lastName: Raghavan
+        - firstName: Hinrich
+          lastName: Schütze
+      date: '2008-07-07'
+      isbn: 978-0-521-86571-5
+      location:
+        - New York
+      pagetotal: '496'
+      publisher:
+        - Cambridge University Press
+      title: Introduction to Information Retrieval
+    input: |-
+      @book{Manning2008,
+        title = {Introduction to {{Information Retrieval}}},
+        author = {Manning, Christopher D. and Raghavan, Prabhakar and Schütze, Hinrich},
+        date = {2008-07-07},
+        publisher = {{Cambridge University Press}},
+        location = {{New York}},
+        isbn = {978-0-521-86571-5},
+        pagetotal = {496}
+      }
+    key: Manning2008
+    mode:
+      author: creatorlist
+      date: literal
+      isbn: literal
+      location: literallist
+      pagetotal: literal
+      publisher: literallist
+      title: title
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}
