@@ -28,8 +28,8 @@ jobs:
     - run: |
         npm install
         npm run build
-        echo ./test/run.js -sc ${{ matrix.sentencecase }} -cp ${{ matrix.caseprotection }} ${{ matrix.preservequoted }} --big
-        ./test/run.js -sc ${{ matrix.sentencecase }} -cp ${{ matrix.caseprotection }} ${{ matrix.preservequoted }} --big
+        echo ./test/run.js --sc ${{ matrix.sentencecase }} --cp ${{ matrix.caseprotection }} ${{ matrix.preservequoted }} --big
+        ./test/run.js --sc ${{ matrix.sentencecase }} --cp ${{ matrix.caseprotection }} ${{ matrix.preservequoted }} --big
 
   release:
     runs-on: ubuntu-latest
