@@ -11,7 +11,7 @@ unabbr = {}
 with open('build/strings-base.bib') as f:
   strings = f.read()
 
-with open('node_modules/unicode2latex/tables/biblatex.json') as f:
+with open('node_modules/unicode2latex/dist/tables/biblatex.json') as f:
   u2l = json.load(f)
 def unicode2latex(s):
   l = ''
