@@ -1,6 +1,6 @@
 import moo from 'moo'
 
-import { prepositions } from './prepositions.js'
+import prepositions from './prepositions.js'
 
 // const show = (obj: any): string => JSON.stringify(obj, null, 2).replace(/[\u007F-\uFFFF]/g, chr => `\\u${(`0000${chr.charCodeAt(0).toString(16)}`).substr(-4)}`)
 

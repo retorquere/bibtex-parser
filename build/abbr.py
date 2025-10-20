@@ -5,7 +5,9 @@ from pathlib import Path
 import re
 import urllib.request
 import csv
-import glob
+import glob, os
+
+os.makedirs('dist/data', exist_ok=True)
 
 unabbr = {}
 with open('build/strings-base.bib') as f:
@@ -116,7 +118,7 @@ for abbr, journal in list(unabbr.items()):
     if len(k.replace('.', '')) <= 2:
       unabbr.pop(k, None)
 
-with open('unabbrev.json', 'w') as f:
+with open('dist/data/unabbrev.json', 'w') as f:
   json.dump(unabbr, f, indent='  ', sort_keys=True)
 
 def fetch(name):
@@ -126,5 +128,5 @@ for bib in fetch('00dir.cmd').split('\n'):
   if not bib.endswith('.bib'): continue
   bib = re.sub('^get ', '', bib)
   strings += f'%% {bib}\n{fetch(bib)}\n'
-with open('strings.bib', 'w') as f:
+with open('dist/data/strings.bib', 'w') as f:
   f.write(strings)
