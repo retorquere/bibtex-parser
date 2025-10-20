@@ -35,6 +35,7 @@ jobs:
 
     - run: |
         npm install
+        npm run build
         ./test/run.js -sc ${{ matrix.sentencecase }} -cp ${{ matrix.caseprotection }} ${{ matrix.preservequoted }} --big
 
   release:
