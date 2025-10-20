@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      address: London
+      author:
+        - firstName: Powell
+          lastName: Niland
+      publisher:
+        - Macmillan Co.
+      title: Production planning, scheduling, and inventory control
+      year: '1970'
+    input: "@book(Niland:70,\n\tauthor =\t{Powell Niland},\n\taddress =\t{London},\n\tyear =\t\t{1970},\n\tpublisher =\t{Macmillan Co.},\n\ttitle =\t\t{Production Planning, Scheduling, and \n\t\t\t Inventory Control}\n)"
+    key: Niland:70
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

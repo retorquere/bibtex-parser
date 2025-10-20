@@ -1,0 +1,35 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Bernie
+          lastName: Sanders
+      date: '2016-04-06'
+      title: >-
+        The largest U.S. companies would owe $620 billion in U.S. taxes on the
+        cash they store in tax havens, the equivalent of our defense budget.
+        [Tweet]
+      titleaddon: SenSanders
+      url: https://twitter.com/SenSanders/status/717771426284060673
+    input: |-
+      @article{sanders_largest_2016,
+        title = {The Largest {U.S.} Companies Would Owe \$620 Billion in {U.S.} Taxes on the Cash They Store in Tax Havens, the Equivalent of Our Defense Budget. [{{Tweet}}]},
+        author = {Sanders, Bernie},
+        date = {2016-04-06},
+        url = {https://twitter.com/SenSanders/status/717771426284060673},
+        titleaddon = {SenSanders}
+      }
+    key: sanders_largest_2016
+    mode:
+      author: creatorlist
+      date: literal
+      title: title
+      titleaddon: literal
+      url: verbatim
+    type: article
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

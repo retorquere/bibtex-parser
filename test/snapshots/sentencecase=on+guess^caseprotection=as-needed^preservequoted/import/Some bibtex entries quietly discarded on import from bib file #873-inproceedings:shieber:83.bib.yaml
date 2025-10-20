@@ -1,0 +1,27 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Stuart M.
+          lastName: Shieber
+      booktitle: IJCAI-83
+      pages: 699–704
+      title: Sentence disambiguation by a shift-reduce parsing technique
+      year: '1983'
+    input: "@inproceedings(Shieber:83,\n\tauthor =\t{Stuart M. Shieber},\n\tyear =\t\t{1983},\n\tbooktitle =\tIJCAI-83,\n\tpages =\t\t{699--704},\n\ttitle =\t\t{Sentence disambiguation by a shift-reduce \n\t\t\t parsing technique}\n)"
+    key: Shieber:83
+    mode:
+      author: creatorlist
+      booktitle: title
+      pages: literal
+      title: title
+      year: literal
+    type: inproceedings
+errors:
+  - error: Unresolved @string reference "IJCAI-83"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

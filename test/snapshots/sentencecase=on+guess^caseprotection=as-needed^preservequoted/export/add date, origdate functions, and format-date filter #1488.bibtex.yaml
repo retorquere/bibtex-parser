@@ -1,0 +1,86 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - name: austadísimos
+      month: '4'
+      title: Book
+      year: '2020'
+    input: |-
+      @book{Book-2020,
+        title = {Book},
+        author = {{austadísimos}},
+        year = {2020},
+        month = apr
+      }
+    key: Book-2020
+    mode:
+      author: creatorlist
+      month: literal
+      title: title
+      year: literal
+    type: book
+  - fields:
+      author:
+        - name: austadísimos
+      month: '4'
+      title: Forum post with full date and time
+      year: '2020'
+    input: |-
+      @misc{Forumpostfull-2020-04-11.08:09,
+        title = {Forum Post with Full Date and Time},
+        author = {{austadísimos}},
+        year = {2020},
+        month = apr
+      }
+    key: Forumpostfull-2020-04-11.08:09
+    mode:
+      author: creatorlist
+      month: literal
+      title: title
+      year: literal
+    type: misc
+  - fields:
+      author:
+        - name: austadísimos
+      title: Forum Post with year only
+      year: '2020'
+    input: |-
+      @misc{ForumPostyear-2020,
+        title = {Forum {{Post}} with Year Only},
+        author = {{austadísimos}},
+        year = {2020}
+      }
+    key: ForumPostyear-2020
+    mode:
+      author: creatorlist
+      title: title
+      year: literal
+    type: misc
+  - fields:
+      author:
+        - firstName: J. H
+          lastName: Brennan
+      language: Spanish
+      title: Magia experimental
+      year: '1982'
+    input: |-
+      @article{Magiaexperimental1976,
+        title = {{Magia experimental}},
+        author = {Brennan, J. H},
+        year = {1982},
+        language = {Spanish}
+      }
+    key: Magiaexperimental1976
+    mode:
+      author: creatorlist
+      language: literal
+      title: title
+      year: literal
+    type: article
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

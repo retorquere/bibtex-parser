@@ -1,5 +1,6 @@
-import { merge } from './merge'
-import { Token, tokenize } from './tokenizer'
+import { merge } from './merge.js'
+import type { Token } from './tokenizer.js'
+import { tokenize } from './tokenizer.js'
 
 const connectedInnerWord = /-\p{Lu}\p{Ll}*(?=-|$)/ug
 

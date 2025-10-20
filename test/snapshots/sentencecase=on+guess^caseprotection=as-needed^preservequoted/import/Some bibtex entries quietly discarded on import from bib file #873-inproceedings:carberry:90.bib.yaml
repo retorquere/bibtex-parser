@@ -1,0 +1,36 @@
+comments: []
+entries:
+  - fields:
+      address: MITP-ADDRESS
+      author:
+        - firstName: Sandra
+          lastName: Carberry
+      booktitle: AAAI-90
+      pages: 471–478
+      publisher:
+        - MITP
+      title: Incorporating default inferences into plan recognition
+      year: '1990'
+    input: "@INPROCEEDINGS{Carberry:90,\n\tAUTHOR = {Sandra Carberry},\n\tTITLE = \"Incorporating Default Inferences Into Plan Recognition\",\n\tBOOKTITLE = AAAI-90,\n\tYEAR = {1990},\n\tPAGES = {471--478},\n\tPUBLISHER = MITP,\n\tADDRESS = MITP-ADDRESS\n}"
+    key: Carberry:90
+    mode:
+      address: literal
+      author: creatorlist
+      booktitle: title
+      pages: literal
+      publisher: literallist
+      title: title
+      year: literal
+    type: inproceedings
+errors:
+  - error: Unresolved @string reference "AAAI-90"
+    input: ''
+  - error: Unresolved @string reference "MITP"
+    input: ''
+  - error: Unresolved @string reference "MITP-ADDRESS"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

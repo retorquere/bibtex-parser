@@ -1,5 +1,7 @@
 import moo from 'moo'
 
+import { prepositions } from './prepositions.js'
+
 // const show = (obj: any): string => JSON.stringify(obj, null, 2).replace(/[\u007F-\uFFFF]/g, chr => `\\u${(`0000${chr.charCodeAt(0).toString(16)}`).substr(-4)}`)
 
 const RE = new class {
@@ -38,8 +40,7 @@ const RE = new class {
         .replace(/[a-z]/ig, match => `[${match.toUpperCase()}${match.toLowerCase()}]`)
         .replace(' ', this.Whitespace.source)
 
-    const prepositions: string = require('./prepositions.json').sort().reverse().map(ci).join('|')
-    this.Preposition = new RegExp(`(?:${prepositions})${B}`, 'u')
+    this.Preposition = new RegExp(`(?:${prepositions.sort().reverse().map(ci).join('|')})${B}`, 'u')
   }
 }()
 

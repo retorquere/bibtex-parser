@@ -1,0 +1,36 @@
+comments: []
+entries:
+  - fields:
+      address: CMU-ADDRESS
+      author:
+        - firstName: Eugene
+          lastName: Fink
+        - firstName: Manuela
+          lastName: Veloso
+      institution:
+        - CMUSCS
+      month: '3'
+      number: CMU-CS-94-123
+      title: Prodigy planning algorithm
+      year: '1992'
+    input: "@TECHREPORT{Fink:92,\n\tAUTHOR = {Eugene Fink and Manuela Veloso},\n\tTITLE = \"Prodigy Planning Algorithm\",\n\tINSTITUTION = CMUSCS,\n\tYEAR = {1992},\n\tNUMBER = {CMU-CS-94-123},\n\tADDRESS = CMU-ADDRESS,\n\tMONTH = mar\n}"
+    key: Fink:92
+    mode:
+      address: literal
+      author: creatorlist
+      institution: literallist
+      month: literal
+      number: literal
+      title: title
+      year: literal
+    type: techreport
+errors:
+  - error: Unresolved @string reference "CMUSCS"
+    input: ''
+  - error: Unresolved @string reference "CMU-ADDRESS"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,30 @@
+comments: []
+entries:
+  - fields:
+      address: CSLI-ADDRESS
+      author:
+        - firstName: Stuart M.
+          lastName: Shieber
+      publisher:
+        - CSLI
+      title: An introduction to unification-based approaches to grammar
+      year: '1986'
+    input: "@book{Shieber:Unification,\n\tauthor = \t{Stuart M. Shieber},\n\ttitle =\t\t{An Introduction to Unification-based Approaches to \n\t\t\t\tGrammar},\n\tyear = \t\t1986,\n\tpublisher =\tCSLI,\n\taddress = CSLI-ADDRESS}"
+    key: Shieber:Unification
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors:
+  - error: Unresolved @string reference "CSLI"
+    input: ''
+  - error: Unresolved @string reference "CSLI-ADDRESS"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

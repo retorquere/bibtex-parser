@@ -1,0 +1,28 @@
+comments: []
+entries:
+  - fields:
+      title: "non-braking space: \_; accented characters: ñ and ñ; tilde in URL: <a href=\"http://example.com/~user\">http://example.com/~user</a>"
+    input: |-
+      @article{test-ticket1661,
+        title = {non-braking space: ~; accented characters: {\~n} and \~{n}; tilde in URL: \url{http://example.com/~user}}
+      }
+    key: test-ticket1661
+    mode:
+      title: title
+    type: article
+  - fields:
+      title: "non-braking space: \_; accented characters: ñ and ñ; tilde in URL: <a href=\"http://example.com/~user\">Home</a>"
+    input: |-
+      @article{test-ticket1661a,
+        title = {non-braking space: ~; accented characters: {\~n} and \~{n}; tilde in URL: \href{http://example.com/~user}{Home}}
+      }
+    key: test-ticket1661a
+    mode:
+      title: title
+    type: article
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

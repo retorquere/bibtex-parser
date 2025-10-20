@@ -1,0 +1,40 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - name: One, Author
+        - name: Two, Author
+        - name: Three, Author
+        - name: Four, Author
+      journal: A Fancy Journal
+      number: '1'
+      pages: 1–2
+      title: My Article
+      volume: '1'
+      year: '2018'
+    input: |-
+      @article{OnTwTh2018,
+        title = {My {{Article}}},
+        author = {{One, Author} and {Two, Author} and {Three, Author} and {Four, Author}},
+        year = {2018},
+        volume = {1},
+        pages = {1--2},
+        journal = {A Fancy Journal},
+        number = {1}
+      }
+    key: OnTwTh2018
+    mode:
+      author: creatorlist
+      journal: literal
+      number: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

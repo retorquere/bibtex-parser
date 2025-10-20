@@ -1,0 +1,36 @@
+comments:
+  - Peter Haddawy
+entries:
+  - fields:
+      author:
+        - firstName: Oren
+          lastName: Etzioni
+        - firstName: Daniel S.
+          lastName: Weld
+      journal: EXPERT
+      month: '8'
+      number: '4'
+      pages: 44–49
+      title: 'Intelligent agents on the internet: Fact, fiction, and forecast'
+      volume: '10'
+      year: '1995'
+    input: "@ARTICLE{Etzioni:Expert95,\n\tAUTHOR = {Oren Etzioni and Daniel S. Weld},\n\tTITLE = {Intelligent Agents on the Internet:\n\t\t Fact, Fiction, and Forecast},\n\tJOURNAL = EXPERT,\n\tYEAR = {1995},\n\tVOLUME = {10},\n\tNUMBER = {4},\n\tPAGES = {44--49},\n\tMONTH = aug\n}"
+    key: Etzioni:Expert95
+    mode:
+      author: creatorlist
+      journal: literal
+      month: literal
+      number: literal
+      pages: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "EXPERT"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

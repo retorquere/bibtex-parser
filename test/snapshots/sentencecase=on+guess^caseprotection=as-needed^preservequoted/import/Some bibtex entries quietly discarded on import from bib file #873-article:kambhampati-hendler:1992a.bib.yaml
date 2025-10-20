@@ -1,0 +1,35 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Subbarao
+          lastName: Kambhampati
+        - firstName: James
+          lastName: Hendler
+      journal: AIJ
+      number: 2–3
+      pages: 193–258
+      title: A validation structure-based theory of plan modification and reuse
+      topic: planning;plan-reuse;
+      volume: '55'
+      year: '1992'
+    input: "@Article{kambhampati-hendler:1992a,\n  author =\t\"Subbarao Kambhampati and James Hendler\",\n  title =\t\"A Validation Structure-Based Theory of Plan\n\t\t Modification and Reuse\",\n  journal =\tAIJ,\n  year = \t\"1992\",\n  volume =\t\"55\",\n  number =\t\"2--3\",\n  pages =\t\"193--258\",\n  topic =\t\"planning;plan-reuse;\",\n}"
+    key: kambhampati-hendler:1992a
+    mode:
+      author: creatorlist
+      journal: literal
+      number: literal
+      pages: literal
+      title: title
+      topic: literal
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "AIJ"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

@@ -1,0 +1,29 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Barbara J.
+          lastName: Grosz
+        - firstName: Candace
+          lastName: Sidner
+      journal: CL
+      title: Attention, intention and the structure of discourse
+      volume: '12'
+      year: '1986'
+    input: "@article(Grosz:86,\n\tauthor =\t{Barbara J. Grosz and Candace Sidner},\n\tyear =\t\t{1986},\n\tjournal =\tCL,\n\ttitle =\t\t\"Attention, Intention and the Structure of Discourse\",\n\tvolume =\t{12}\n)"
+    key: Grosz:86
+    mode:
+      author: creatorlist
+      journal: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "CL"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

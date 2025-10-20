@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      address: Princeton, NJ
+      author:
+        - firstName: Elliott
+          lastName: Mendelson
+      publisher:
+        - Van Nostrand
+      title: Introduction to mathematical logic
+      year: '1964'
+    input: "@book(Mendelson:64,\n\tauthor =\t{Elliott Mendelson},\n\taddress =\t{Princeton, NJ},\n\tyear =\t\t{1964},\n\tpublisher =\t{Van Nostrand},\n\ttitle =\t\t{Introduction to Mathematical Logic}\n)"
+    key: Mendelson:64
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

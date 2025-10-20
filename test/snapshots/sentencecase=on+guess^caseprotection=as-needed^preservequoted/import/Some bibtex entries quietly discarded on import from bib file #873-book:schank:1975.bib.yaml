@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      address: Amsterdam
+      author:
+        - firstName: Roger C.
+          lastName: Schank
+      publisher:
+        - North-Holland
+      title: Conceptual information processing
+      year: '1975'
+    input: "@book(Schank:1975,\n\tauthor =\t{Roger C. Schank},\n\taddress =\t{Amsterdam},\n\tyear =\t\t{1975},\n\tpublisher =\t{North-Holland},\n\ttitle =\t\t{Conceptual Information Processing}\n)"
+    key: Schank:1975
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

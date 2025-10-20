@@ -5,7 +5,7 @@
 //
 // error recovery and unicode handling by Emiliano Heyns (c) 2017-2024
 
-import { playnice } from './yield'
+import { playnice } from './yield.js'
 
 class ParsingError extends Error {
   public source: string

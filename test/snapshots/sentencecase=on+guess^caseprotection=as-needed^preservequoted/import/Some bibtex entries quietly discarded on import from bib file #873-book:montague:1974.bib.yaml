@@ -1,0 +1,26 @@
+comments: []
+entries:
+  - fields:
+      address: New Haven, Conn.
+      author:
+        - firstName: Richard
+          lastName: Montague
+      publisher:
+        - Yale University Press
+      title: Formal philosophy
+      year: '1974'
+    input: "@book(Montague:1974,\n\tauthor =\t{Richard Montague},\n\taddress =\t{New Haven, Conn.},\n\tyear =\t\t{1974},\n\tpublisher =\t{Yale University Press},\n\ttitle =\t\t{Formal Philosophy}\n)"
+    key: Montague:1974
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

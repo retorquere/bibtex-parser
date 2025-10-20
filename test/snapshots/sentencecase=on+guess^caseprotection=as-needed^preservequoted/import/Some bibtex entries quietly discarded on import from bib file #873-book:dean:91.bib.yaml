@@ -1,0 +1,33 @@
+comments:
+  - 'Big Brown paper '
+entries:
+  - fields:
+      address: KAUFMANN-ADDRESS
+      author:
+        - firstName: Thomas L.
+          lastName: Dean
+        - firstName: Michael P.
+          lastName: Wellman
+      publisher:
+        - KAUFMANN
+      title: Planning and control
+      year: '1991'
+    input: "@BOOK{Dean:91,\n\tAUTHOR = {Thomas L. Dean and Michael P. Wellman},\n\tTITLE = \"Planning and Control\",\n\tPUBLISHER = KAUFMANN,\n\tYEAR = {1991},\n\tADDRESS = KAUFMANN-ADDRESS\n}"
+    key: Dean:91
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors:
+  - error: Unresolved @string reference "KAUFMANN"
+    input: ''
+  - error: Unresolved @string reference "KAUFMANN-ADDRESS"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

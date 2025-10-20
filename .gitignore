@@ -5,13 +5,10 @@ update-ci.json
 .progress
 mini
 __tests__/cases
-*.map
-*.js
 node_modules
 dump
 *.tgz
 *.swp
-*.d.ts
 test/gen
 !test/*.js
 !grammar.d.ts
@@ -23,4 +20,5 @@ test/gen
 
 temp
 etc
-test/runtests.json
+test/run.yaml
+dist

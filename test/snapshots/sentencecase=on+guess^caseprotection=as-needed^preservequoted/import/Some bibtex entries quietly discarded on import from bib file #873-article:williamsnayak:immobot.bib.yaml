@@ -1,0 +1,31 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Brian C.
+          lastName: Williams
+        - firstName: P. Pandurang
+          lastName: Nayak
+      journal: AIM
+      number: '3'
+      title: 'Immobile robots: AI in the new millennium'
+      volume: '17'
+      year: '1996'
+    input: "@ARTICLE{WilliamsNayak:Immobot,\n\tAUTHOR = {Brian C. Williams and P. Pandurang Nayak},\n\tTITLE = \"Immobile Robots: {AI} in the New Millennium\",\n\tJOURNAL = AIM,\n\tYEAR = {1996},\n\tVOLUME = {17},\n\tNUMBER = {3}\n}"
+    key: WilliamsNayak:Immobot
+    mode:
+      author: creatorlist
+      journal: literal
+      number: literal
+      title: title
+      volume: literal
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "AIM"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

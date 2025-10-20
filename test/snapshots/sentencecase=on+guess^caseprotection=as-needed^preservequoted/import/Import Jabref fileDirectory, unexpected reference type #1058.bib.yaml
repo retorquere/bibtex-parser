@@ -1,0 +1,93 @@
+comments: []
+entries:
+  - fields:
+      affiliation: >-
+        University of Cordoba Department of Zoology Campus de Rabanales Ed.
+        Darwin 14071 CÃ³rdoba Spain
+      author:
+        - firstName: Isabel
+          lastName: Barrio
+        - firstName: Pelayo
+          lastName: Acevedo
+        - firstName: Francisco
+          lastName: Tortosa
+      issn: 1612-4642
+      issue: '3'
+      journal: European Journal of Wildlife Research
+      keyword: Biomedical and Life Sciences
+      note: 10.1007/s10344-009-0327-7
+      owner: tiago
+      pages: 335-340
+      publisher:
+        - Springer Berlin / Heidelberg
+      subdatabase: distance
+      timestamp: 2011.06.17
+      title: >-
+        Assessment of methods for estimating wild rabbit population abundance in
+        agricultural landscapes
+      url: http://dx.doi.org/10.1007/s10344-009-0327-7
+      volume: '56'
+      year: '2010'
+    input: "@ARTICLE{springerlink:10.1007/s10344-009-0327-7,\n  author = {Barrio, Isabel and Acevedo, Pelayo and Tortosa, Francisco},\n  title = {Assessment of methods for estimating wild rabbit population abundance\n\tin agricultural landscapes},\n  journal = {European Journal of Wildlife Research},\n  year = {2010},\n  volume = {56},\n  pages = {335-340},\n  note = {10.1007/s10344-009-0327-7},\n  affiliation = {University of Cordoba Department of Zoology Campus de Rabanales Ed.\n\tDarwin 14071 CÃ³rdoba Spain},\n  issn = {1612-4642},\n  issue = {3},\n  keyword = {Biomedical and Life Sciences},\n  owner = {tiago},\n  publisher = {Springer Berlin / Heidelberg},\n  subdatabase = {distance},\n  timestamp = {2011.06.17},\n  url = {http://dx.doi.org/10.1007/s10344-009-0327-7}\n}"
+    key: springerlink:10.1007/s10344-009-0327-7
+    mode:
+      affiliation: literal
+      author: creatorlist
+      issn: literal
+      issue: literal
+      journal: literal
+      keyword: literal
+      note: richtext
+      owner: literal
+      pages: literal
+      publisher: literallist
+      subdatabase: literal
+      timestamp: literal
+      title: title
+      url: verbatim
+      volume: literal
+      year: literal
+    type: article
+  - fields:
+      author:
+        - firstName: Anabela
+          lastName: Afonso
+        - firstName: Russell
+          lastName: Alpizar-Jara
+      file: ':2.pdf:PDF;stuff:1.pdf:PDF'
+      location:
+        - Poster apresentado no Congresso da SPE
+      owner: tiago
+      timestamp: 2011.10.04
+      title: >-
+        Amostragem em duas fases adaptativa para estimar a abundância de
+        populações raras
+      year: '2011'
+    input: |-
+      @Talk{Afonso2011,
+        author    = {Anabela Afonso and Russell Alpizar-Jara},
+        title     = {Amostragem em duas fases adaptativa para estimar a abundância de populações raras},
+        year      = {2011},
+        file      = {:2.pdf:PDF;stuff:1.pdf:PDF},
+        location  = {Poster apresentado no Congresso da SPE},
+        owner     = {tiago},
+        timestamp = {2011.10.04},
+      }
+    key: Afonso2011
+    mode:
+      author: creatorlist
+      file: verbatim
+      location: literallist
+      owner: literal
+      timestamp: literal
+      title: title
+      year: literal
+    type: talk
+errors: []
+jabref:
+  databaseType: bibtex
+  fileDirectory: /home/emile/github/better-bibtex/test/fixtures/import/attachments
+  groups: {}
+  root: []
+preamble: []
+strings: {}

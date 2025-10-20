@@ -1,0 +1,28 @@
+comments: []
+entries:
+  - fields:
+      address: Cambridge, Mass.
+      author:
+        - firstName: Patrick H.
+          lastName: Winston
+        - firstName: Richard H.
+          lastName: Brown
+      publisher:
+        - MIT Press
+      title: 'Artificial intelligence: An MIT perspective, vol. 2'
+      year: '1979'
+    input: "@book(Winston:79,\n\tauthor =\t{Patrick H. Winston and Richard H. Brown},\n\taddress =\t{Cambridge, Mass.},\n\tyear =\t\t{1979},\n\tpublisher =\t{MIT Press},\n\ttitle =\t\t{Artificial Intelligence: An MIT Perspective, Vol. 2}\n)"
+    key: Winston:79
+    mode:
+      address: literal
+      author: creatorlist
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

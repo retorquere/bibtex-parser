@@ -1,0 +1,37 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Jörg
+          lastName: Hoffmann
+      journal: JAIR
+      pages: 685–758
+      title: >-
+        Where "ignoring delete lists" works: local search topology in planning
+        benchmarks
+      year: '2005'
+    input: |-
+      @article{hoffmann2005ignoring,
+        title =        {Where "ignoring delete lists" works: local search topology in
+                        planning benchmarks},
+        author =       {Hoffmann, J{\"o}rg},
+        journal =      JAIR,
+        pages =        {685--758},
+        year =         {2005}
+      }
+    key: hoffmann2005ignoring
+    mode:
+      author: creatorlist
+      journal: literal
+      pages: literal
+      title: title
+      year: literal
+    type: article
+errors:
+  - error: Unresolved @string reference "JAIR"
+    input: ''
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

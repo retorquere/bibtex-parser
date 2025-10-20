@@ -1,0 +1,24 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Thomas
+          lastName: Dean
+      institution:
+        - Yale University Computer Science Department
+      title: Time map maintenance
+      year: '1983'
+    input: "@techreport(Dean:83,\n\tauthor =\t{Thomas Dean},\n\tyear =\t\t{1983},\n\tinstitution =\t{Yale University Computer Science Department},\n\ttitle =\t\t{Time Map Maintenance}\n)"
+    key: Dean:83
+    mode:
+      author: creatorlist
+      institution: literallist
+      title: title
+      year: literal
+    type: techreport
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

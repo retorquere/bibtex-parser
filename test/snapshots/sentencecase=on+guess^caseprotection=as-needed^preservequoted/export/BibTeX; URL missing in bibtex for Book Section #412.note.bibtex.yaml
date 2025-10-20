@@ -1,0 +1,66 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Thibaut
+          lastName: Lust
+        - firstName: Jacques
+          lastName: Teghem
+      booktitle: Advances in Multi-Objective Nature Inspired Computing
+      doi: 10.1007/978-3-642-11218-8_6
+      editor:
+        - firstName: Carlos A. Coello
+          lastName: Coello
+        - firstName: Clarisse
+          lastName: Dhaenens
+        - firstName: Laetitia
+          lastName: Jourdan
+      isbn: 978-3-642-11217-1 978-3-642-11218-8
+      note: >-
+        <a
+        href="http://link.springer.com/chapter/10.1007/978-3-642-11218-8_6">http://link.springer.com/chapter/10.1007/978-3-642-11218-8_6</a>
+      number: '272'
+      pages: 119–141
+      publisher:
+        - Springer Berlin Heidelberg
+      series: Studies in Computational Intelligence
+      title: >-
+        The Multiobjective Traveling Salesman Problem: A Survey and a New
+        Approach
+      year: '2010'
+    input: |-
+      @incollection{lt2010,
+        title = {The {{Multiobjective Traveling Salesman Problem}}: {{A Survey}} and a {{New Approach}}},
+        booktitle = {Advances in {{Multi}}-{{Objective Nature Inspired Computing}}},
+        author = {Lust, Thibaut and Teghem, Jacques},
+        editor = {Coello, Carlos A. Coello and Dhaenens, Clarisse and Jourdan, Laetitia},
+        year = {2010},
+        pages = {119--141},
+        publisher = {{Springer Berlin Heidelberg}},
+        doi = {10.1007/978-3-642-11218-8_6},
+        isbn = {978-3-642-11217-1 978-3-642-11218-8},
+        note = {\url{http://link.springer.com/chapter/10.1007/978-3-642-11218-8_6}},
+        number = {272},
+        series = {Studies in {{Computational Intelligence}}}
+      }
+    key: lt2010
+    mode:
+      author: creatorlist
+      booktitle: title
+      doi: verbatim
+      editor: creatorlist
+      isbn: literal
+      note: richtext
+      number: literal
+      pages: literal
+      publisher: literallist
+      series: title
+      title: title
+      year: literal
+    type: incollection
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

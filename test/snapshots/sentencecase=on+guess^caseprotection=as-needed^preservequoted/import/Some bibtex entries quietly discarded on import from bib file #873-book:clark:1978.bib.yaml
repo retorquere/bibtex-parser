@@ -1,0 +1,34 @@
+comments: []
+entries:
+  - fields:
+      author:
+        - firstName: Keith L.
+          lastName: Clark
+      booktitle: Logic and databases
+      editor:
+        - firstName: H.
+          lastName: Gallaire
+        - firstName: J.
+          lastName: Minker
+      pages: 293-322
+      publisher:
+        - Plenum Press
+      title: Negation as failure
+      year: '1978'
+    input: "@book(Clark:1978,\n\tauthor =\t{Keith L. Clark},\n\tbooktitle =\t{Logic and Databases},\n\tyear =\t\t{1978},\n\teditor =\t{H. Gallaire and J. Minker},\n\tpublisher =\t{Plenum Press},\n\tpages =\t\t{293-322},\n\ttitle =\t\t{Negation as failure}\n)"
+    key: Clark:1978
+    mode:
+      author: creatorlist
+      booktitle: title
+      editor: creatorlist
+      pages: literal
+      publisher: literallist
+      title: title
+      year: literal
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}
