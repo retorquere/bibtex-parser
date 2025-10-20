@@ -39,7 +39,7 @@
     "postversion": "git push --follow-tags",
     "update-cases": "curl -s https://raw.githubusercontent.com/retorquere/zotero-better-bibtex/master/test/loaded.json | jq -r '.[] | select(test(\"\\\\.bib((la)?tex)?$\"))' | rsync -av --delete -m --files-from=- ../better-bibtex/test/fixtures/ test/better-bibtex/",
     "predocs": "npm start",
-    "docs": "typedoc",
+    "docs": "typedoc --tsconfig tsconfig.cjs.json",
     "ncu": "./build/submodules.py && ./build/crossref.py && ncu -u && npm i && git add package.json package-lock.json && npm audit fix && git commit -m ncu"
   },
   "repository": {
