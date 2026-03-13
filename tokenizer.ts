@@ -64,7 +64,7 @@ const lexer = moo.compile({
 })
 
 const Shape = new class {
-  private shapes: Record<string, string> = {}
+  private shapes: Map<string, string> = new Map()
   private re: Record<string, RegExp> = {
     X: /[\p{Lu}\p{Lt}]/u,
     x: /[\p{Ll}\p{Lm}\p{Lo}]/u,
@@ -83,13 +83,13 @@ const Shape = new class {
   }
 
   private fetch(c: string): string {
-    if (typeof this.shapes[c] === 'undefined') this.shapes[c] = this.match(c)
-    return this.shapes[c]
+    if (!this.shapes.has(c)) this.shapes.set(c, this.match(c))
+    return this.shapes.get(c)
   }
 
   shape(t: string) {
-    if (!this.shapes[t]) this.shapes[t] = Array.from(t).map(c => this.fetch(c)).join('')
-    return this.shapes[t]
+    if (!this.shapes.has(t)) this.shapes.set(t, Array.from(t).map(c => this.fetch(c)).join(''))
+    return this.shapes.get(t)
   }
 }()
 
