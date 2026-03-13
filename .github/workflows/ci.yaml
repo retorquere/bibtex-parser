@@ -49,4 +49,4 @@ jobs:
     - name: install node dependencies
       run: npm install
     - name: publish
-      run: npm publish --provenance
+      run: npm publish --provenance --access public
