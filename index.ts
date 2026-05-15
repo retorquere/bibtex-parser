@@ -24,7 +24,7 @@ import allowed from './fields.js'
 import { merge } from './merge.js'
 
 function latexMode(node: Node | Argument): 'math' | 'text' {
-  return node._renderInfo.mode as 'math' | 'text'
+  return node._renderInfo!.mode as 'math' | 'text'
 }
 
 function latex2unicode(tex: string, node: Node): string {
@@ -591,11 +591,11 @@ class BibTeXParser {
   }
 
   private wraparg(node: Node, macro: Macro): Argument {
-    if (macro.content.match(/^(itshape|textsl|textit|emph|mkbibemph)$/)) node._renderInfo.emph = true
-    if (macro.content.match(/^(textbf|mkbibbold|bfseries)$/)) node._renderInfo.bold = true
-    if (macro.content.match(/^(textsc)$/)) node._renderInfo.smallCaps = true
-    if (macro.content.match(/^(texttt)$/)) node._renderInfo.code = true
-    return { type: 'argument', content: [node], openMark: '', closeMark: '', _renderInfo: { mode: node._renderInfo.mode } }
+    if (macro.content.match(/^(itshape|textsl|textit|emph|mkbibemph)$/)) node._renderInfo!.emph = true
+    if (macro.content.match(/^(textbf|mkbibbold|bfseries)$/)) node._renderInfo!.bold = true
+    if (macro.content.match(/^(textsc)$/)) node._renderInfo!.smallCaps = true
+    if (macro.content.match(/^(texttt)$/)) node._renderInfo!.code = true
+    return { type: 'argument', content: [node], openMark: '', closeMark: '', _renderInfo: { mode: node._renderInfo!.mode } }
   }
 
   private argtogroup(node: Argument): Group {
@@ -842,7 +842,7 @@ class BibTeXParser {
 
     switch (node.type) {
       case 'macro':
-        return `macro:${<string> node._renderInfo.mode ?? 'text'}:${node.content}`
+        return `macro:${<string> node._renderInfo!.mode ?? 'text'}:${node.content}`
       case 'environment':
         return `env:${node.env}`
       default:
@@ -871,11 +871,11 @@ class BibTeXParser {
   private stringify(node: Node | Argument, context: Context): string {
     let content = this.stringifyContent(node, context)
     if (content && node._renderInfo) {
-      if (node._renderInfo.emph) content = `${open.i}${content}${close.i}`
-      if (node._renderInfo.bold) content = `${open.b}${content}${close.b}`
-      if (node._renderInfo.smallCaps) content = `${open.sc}${content}${close.sc}`
-      if (node._renderInfo.code) content = `${open.code}${content}${close.code}`
-      if (this.english && node._renderInfo.protectCase) content = `${open.nc}${content}${close.nc}`
+      if (node._renderInfo!.emph) content = `${open.i}${content}${close.i}`
+      if (node._renderInfo!.bold) content = `${open.b}${content}${close.b}`
+      if (node._renderInfo!.smallCaps) content = `${open.sc}${content}${close.sc}`
+      if (node._renderInfo!.code) content = `${open.code}${content}${close.code}`
+      if (this.english && node._renderInfo!.protectCase) content = `${open.nc}${content}${close.nc}`
     }
     return content
   }
@@ -901,7 +901,7 @@ class BibTeXParser {
         return context.mode === 'richtext' ? open.p : ' '
 
       case 'whitespace':
-        return node._renderInfo.mode === 'math' ? '' : ' '
+        return node._renderInfo!.mode === 'math' ? '' : ' '
 
       case 'comment':
         return ''
@@ -997,7 +997,7 @@ class BibTeXParser {
       const start = part.content[0]?.type === 'whitespace' ? 1 : 0
       let signature = part.content
         .slice(start, start + 4)
-        .map((node, i) => node._renderInfo.mode === 'text' && node.type === 'string' ? node.content.replace(i % 2 ? /[^=-]/g : /[^a-z]/gi, '.') : '.')
+        .map((node, i) => node._renderInfo!.mode === 'text' && node.type === 'string' ? node.content.replace(i % 2 ? /[^=-]/g : /[^a-z]/gi, '.') : '.')
         .join('')
       if (signature.match(/^[a-z]+(-[a-z]+)?=/i)) {
         signature = signature.replace(/=.*/, '').toLowerCase()
@@ -1046,15 +1046,15 @@ class BibTeXParser {
     visit(ast, (node, info) => {
       if (!node._renderInfo) node._renderInfo = {}
 
-      node._renderInfo.mode = info.context.inMathMode ? 'math' : 'text'
+      node._renderInfo!.mode = info.context.inMathMode ? 'math' : 'text'
 
       // if (info.context.inMathMode || info.context.hasMathModeAncestor) return
 
-      if (mode === 'title' && node.type === 'inlinemath' && !info.parents.find(p => p._renderInfo.protectCase)) node._renderInfo.protectCase = true
+      if (mode === 'title' && node.type === 'inlinemath' && !info.parents.find(p => p._renderInfo!.protectCase)) node._renderInfo!.protectCase = true
 
       if (!info.context.inMathMode) {
-        if (mode === 'title' && node._renderInfo.root && (node.type !== 'group' || node.content[0].type !== 'macro')) {
-          node._renderInfo.protectCase = true
+        if (mode === 'title' && node._renderInfo!.root && (node.type !== 'group' || node.content[0].type !== 'macro')) {
+          node._renderInfo!.protectCase = true
           if (node.type === 'group') {
             caseProtection.present = true
             caseProtection.intuitive += 1
@@ -1063,7 +1063,7 @@ class BibTeXParser {
 
         if (node.type === 'macro' && typeof node.escapeToken !== 'string') node.escapeToken = '\\'
 
-        if (node.type === 'environment' && node.env === 'em') node._renderInfo.emph = true
+        if (node.type === 'environment' && node.env === 'em') node._renderInfo!.emph = true
       }
     })
 
@@ -1136,9 +1136,9 @@ class BibTeXParser {
           if (node.content.match(/^(url|href)$/) && node.args.length) {
             let url: Node[] = node.args[0].content
             if (url.length === 1 && url[0].type === 'group') url = url[0].content
-            node.args[0] = this.wraparg({ type: 'string', content: printRaw(url), _renderInfo: { mode: url[0]._renderInfo.mode } }, node)
+            node.args[0] = this.wraparg({ type: 'string', content: printRaw(url), _renderInfo: { mode: url[0]._renderInfo!.mode } }, node)
           }
-          caseProtection.intuitive -= node.args.filter(arg => arg.content[0].type === 'group' && arg.content[0]._renderInfo.protectCase).length
+          caseProtection.intuitive -= node.args.filter(arg => arg.content[0].type === 'group' && arg.content[0]._renderInfo!.protectCase).length
         }
         else if (node.type === 'macro' && node.content.match(/^[a-z]+$/i) && nodes[0]?.type === 'whitespace') {
           nodes.shift()

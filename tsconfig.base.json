@@ -1,5 +1,10 @@
 {
   "compilerOptions": {
+    "paths": {
+      "@unified-latex/unified-latex-types": [
+        "./node_modules/@unified-latex/unified-latex-types/index.d.ts"
+      ]
+    },
     "declaration": true,
     "declarationMap": true,
     "allowUnreachableCode": false,
@@ -8,10 +13,12 @@
     "target": "es2022",
     "disableSizeLimit": true,
     "noImplicitAny": false,
+    "strictNullChecks": false,
+    "strictPropertyInitialization": false,
+    "useUnknownInCatchVariables": false,
     "removeComments": false,
-    "downlevelIteration": true,
     "esModuleInterop": true,
-    "lib": [ "es2022" ],
+    "lib": [ "es2022", "dom" ],
     "skipDefaultLibCheck": true,
     "skipLibCheck": true
   },

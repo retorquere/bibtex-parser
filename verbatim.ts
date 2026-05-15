@@ -472,7 +472,7 @@ export class Library {
       }
     }
     catch (err) {
-      if (err.name !== 'ParsingError') throw err
+      if ((err as any).name !== 'ParsingError') throw err
       // skip ahead to the next @ and try again
       this.pos = start + 1
       while (this.pos < this.input.length && this.input[this.pos] !== '@') this.pos++
