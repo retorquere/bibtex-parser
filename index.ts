@@ -444,13 +444,13 @@ async function* asyncGenerator<T>(array: T[]): AsyncGenerator<T, void, unknown> 
 */
 
 class BibTeXParser {
-  private fallback: unsupportedHandler
-  private current: Entry
-  private english: boolean
-  private options: Options
-  private fieldMode: typeof FieldMode
+  private fallback: unsupportedHandler | undefined
+  private current!: Entry
+  private english!: boolean
+  private options!: Options
+  private fieldMode!: typeof FieldMode
   private newcommands: Record<string, Argument> = {}
-  private bib: Library
+  private bib!: Library
   private unhandled: Set<string> = new Set()
 
   private split(ast: Group | Root, sep: RegExp, split: RegExp): Root[] {
@@ -564,7 +564,7 @@ class BibTeXParser {
     }
   }
 
-  private ligature(nodes: Node[]): StringNode {
+  private ligature(nodes: Node[]): StringNode | null {
     if (latexMode(nodes[0]) !== 'text') return null
 
     const max = 3
@@ -603,7 +603,7 @@ class BibTeXParser {
     return { type: 'group', content: node.content }
   }
 
-  private argument(nodes: Node[], macro: Macro): Argument {
+  private argument(nodes: Node[], macro: Macro): Argument | null {
     if (!nodes.length) return null
     if (nodes[0].type === 'whitespace') nodes.shift()
     if (!nodes.length) return null
@@ -614,7 +614,7 @@ class BibTeXParser {
       if (!nodes[0].content) nodes.shift()
       return this.wraparg(arg, macro)
     }
-    return this.wraparg(nodes.shift(), macro)
+    return this.wraparg(nodes.shift()!, macro)
   }
 
   private unsupported(node: Node): string {
@@ -736,7 +736,7 @@ class BibTeXParser {
 
       case 'overline':
       case 'bar':
-        return node.args.map(a => this.stringify(a, context)).join('').replace(/[a-z0-9]/ig, m => `${m}\u0305`)
+        return node.args!.map(a => this.stringify(a, context)).join('').replace(/[a-z0-9]/ig, m => `${m}\u0305`)
 
       // accents dealt with by preprocessor
       case 'textup':
@@ -747,7 +747,7 @@ class BibTeXParser {
       case 'mbox':
       case 'hbox':
       case 'rlap':
-        return node.args.map(n => this.stringify(n, context)).join('')
+        return node.args!.map(n => this.stringify(n, context)).join('')
 
       case 'href':
       case 'url':
@@ -755,7 +755,7 @@ class BibTeXParser {
           url = node.args[0]
           label = node.args[node.content === 'url' ? 0 : 1]
         }
-        return `<a href="${this.stringify(url, context)}">${this.stringify(label, context)}</a>`
+        return `<a href="${this.stringify(url!, context)}">${this.stringify(label!, context)}</a>`
 
       case 'relax':
       case 'aftergroup':
@@ -776,19 +776,19 @@ class BibTeXParser {
       case 'textit':
       case 'emph':
       case 'mkbibemph':
-        return this.stringify(node.args?.[0], context)
+        return this.stringify(node.args![0], context)
 
       case 'textsuperscript':
-        return this.subp(this.stringify(node.args?.[0], context), 'sup')
+        return this.subp(this.stringify(node.args![0], context), 'sup')
 
       case 'textsubscript':
-        return this.subp(this.stringify(node.args?.[0], context), 'sub')
+        return this.subp(this.stringify(node.args![0], context), 'sub')
 
       case '_':
       case '^':
         switch (latexMode(node)) {
           case 'math':
-            return this.subp(this.stringify(node.args?.[0], context), node.content === '^' ? 'sup' : 'sub')
+            return this.subp(this.stringify(node.args![0], context), node.content === '^' ? 'sup' : 'sub')
           default:
             return node.content
         }
@@ -798,7 +798,7 @@ class BibTeXParser {
 
       case 'enquote':
       case 'mkbibquote':
-        return this.wrap(this.stringify(node.args?.[0], context), 'enquote')
+        return this.wrap(this.stringify(node.args![0], context), 'enquote')
 
       case '\\':
         return context.mode === 'richtext' ? open.br : ' '
@@ -813,10 +813,10 @@ class BibTeXParser {
       case 'subsection':
       case 'subsubsection':
       case 'subsubsubsection':
-        return this.wrap(this.stringify(node.args?.[0], context), `h${node.content.split('sub').length}`)
+        return this.wrap(this.stringify(node.args![0], context), `h${node.content.split('sub').length}`)
 
       case 'frac':
-        arg = node.args.map(a => this.stringify(a, context))
+        arg = node.args!.map(a => this.stringify(a, context))
         if (arg.length === 2) {
           const resolved = latex2unicodemap[`\\frac${arg.map(a => `{${a}}`).join('')}`]
           if (resolved) return typeof resolved === 'string' ? resolved : (resolved.math || resolved.text)
@@ -829,7 +829,7 @@ class BibTeXParser {
       case 'textcite':
       case 'citeauthor':
         // ncx protects but will be stripped later
-        return this.wrap(this.stringify(node.args?.[0], context), 'ncx', context.mode === 'title')
+        return this.wrap(this.stringify(node.args![0], context), 'ncx', context.mode === 'title')
 
       default:
         if (this.newcommands[node.content]) return this.stringify(this.newcommands[node.content], context)
@@ -1020,7 +1020,7 @@ class BibTeXParser {
 
     const ast: Root = LatexPegParser.parse(value)
 
-    if (this.options.removeOuterBraces.includes(field) && ast.content.length === 1 && ast.content[0].type === 'group') {
+    if (this.options.removeOuterBraces!.includes(field) && ast.content.length === 1 && ast.content[0].type === 'group') {
       ast.content = ast.content[0].content
     }
 
@@ -1032,7 +1032,7 @@ class BibTeXParser {
     if (this.english && mode === 'title') {
       let root = [...ast.content]
       while (root.length) {
-        const node = root.shift()
+        const node = root.shift()!
 
         // only root groups offer case protecten -- but it may be as an macro arg, so mark here before gobbling
         if (this.protect(node)) node._renderInfo = { root: true }
@@ -1102,16 +1102,16 @@ class BibTeXParser {
 
     // pass 1 -- mark & normalize
     visit(ast, (nodes, info) => {
-      let node: Node
       const compacted: Node[] = []
       let inif = 0
       while (nodes.length) {
-        if (node = this.ligature(nodes)) {
-          compacted.push(node)
+        const ligatureResult = this.ligature(nodes)
+        if (ligatureResult) {
+          compacted.push(ligatureResult)
           continue
         }
 
-        node = nodes.shift()
+        const node = nodes.shift()!
 
         if (node.type === 'macro' && node.content === 'ifdefined') {
           inif += 1
@@ -1132,13 +1132,14 @@ class BibTeXParser {
           ? narguments[node.content] || narguments[`${info.context.inMathMode ? 'math' : 'text'}\t${node.content}`]
           : 0
         if (node.type === 'macro' && nargs) {
-          node.args = Array(nargs).fill(undefined).map(_i => this.argument(nodes, <Macro> node)).filter(arg => arg)
-          if (node.content.match(/^(url|href)$/) && node.args.length) {
-            let url: Node[] = node.args[0].content
+          const args = Array(nargs).fill(undefined).map(_i => this.argument(nodes, <Macro> node)).filter((arg): arg is Argument => arg !== null)
+          node.args = args
+          if (node.content.match(/^(url|href)$/) && args.length) {
+            let url: Node[] = args[0].content
             if (url.length === 1 && url[0].type === 'group') url = url[0].content
-            node.args[0] = this.wraparg({ type: 'string', content: printRaw(url), _renderInfo: { mode: url[0]._renderInfo!.mode } }, node)
+            args[0] = this.wraparg({ type: 'string', content: printRaw(url), _renderInfo: { mode: url[0]._renderInfo!.mode } }, node)
           }
-          caseProtection.intuitive -= node.args.filter(arg => arg.content[0].type === 'group' && arg.content[0]._renderInfo!.protectCase).length
+          caseProtection.intuitive -= args.filter(arg => arg.content[0].type === 'group' && arg.content[0]._renderInfo!.protectCase).length
         }
         else if (node.type === 'macro' && node.content.match(/^[a-z]+$/i) && nodes[0]?.type === 'whitespace') {
           nodes.shift()
@@ -1150,11 +1151,11 @@ class BibTeXParser {
       if (!info.context.inMathMode) {
         // feed-forward inline macros
         for (const [macro, markup] of Object.entries({ em: 'emph', it: 'emph', sl: 'emph', bf: 'bold', sc: 'smallCaps', tt: 'code' })) {
-          if (info.parents.find(p => p._renderInfo[markup])) continue
+          if (info.parents.find(p => p._renderInfo?.[markup])) continue
 
           compacted.forEach((markup_node, i) => {
             if (markup_node.type === 'macro' && markup_node.content === macro) {
-              compacted.slice(i + 1).forEach(n => n._renderInfo[markup] = true)
+              compacted.slice(i + 1).forEach(n => n._renderInfo![markup] = true)
             }
           })
         }
@@ -1222,7 +1223,7 @@ class BibTeXParser {
           field,
           this.stringify(ast, { mode }),
           mode,
-          this.options.sentenceCase && this.options.sentenceCase.guess, // && (!caseProtection.present || caseProtection.intuitive > 0)
+          !!(this.options.sentenceCase && this.options.sentenceCase.guess), // && (!caseProtection.present || caseProtection.intuitive > 0)
         ) as unknown as string
         break
     }
@@ -1260,15 +1261,15 @@ class BibTeXParser {
     if (this.options.verbatimFields) this.options.verbatimFields = this.options.verbatimFields.map(f => typeof f === 'string' ? f.toLowerCase() : new RegExp(f.source, f.flags + (f.flags.includes('i') ? '' : 'i')))
 
     if (typeof this.options.english === 'boolean') this.options.english = this.options.english ? English : []
-    this.options.english = this.options.english.map(langid => langid.toLowerCase())
+    this.options.english = (this.options.english as string[]).map(langid => langid.toLowerCase())
 
     this.fieldMode = Object.entries(FieldMode).reduce((acc: typeof FieldMode, [mode, test]: [string, (RegExp | string)[]]) => {
-      const strings = test.filter(fieldname_or_regex => typeof fieldname_or_regex === 'string' && !this.options.fieldMode[fieldname_or_regex])
+      const strings = test.filter(fieldname_or_regex => typeof fieldname_or_regex === 'string' && !this.options.fieldMode![fieldname_or_regex])
       const regexes = test.filter(fieldname_or_regex => typeof fieldname_or_regex !== 'string')
       acc[mode] = [...strings, ...regexes]
       return acc
     }, <typeof FieldMode> {})
-    for (const [field, mode] of Object.entries(this.options.fieldMode)) {
+    for (const [field, mode] of Object.entries(this.options.fieldMode!)) {
       this.fieldMode[mode].unshift(field)
     }
 
@@ -1288,7 +1289,7 @@ class BibTeXParser {
       comments: [],
       strings: {},
       preamble: [],
-      jabref: null,
+      jabref: { root: [], groups: {} },
     }
   }
 
@@ -1390,7 +1391,7 @@ class BibTeXParser {
       }
 
       for (const key of order) {
-        const child = entries[key.toUpperCase()]
+        const child = entries[key.toUpperCase()]!
         const parent = entries[child.fields.crossref?.toUpperCase()]
         if (!parent) continue
 

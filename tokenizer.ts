@@ -84,12 +84,12 @@ const Shape = new class {
 
   private fetch(c: string): string {
     if (!this.shapes.has(c)) this.shapes.set(c, this.match(c))
-    return this.shapes.get(c)
+    return this.shapes.get(c)!
   }
 
   shape(t: string) {
     if (!this.shapes.has(t)) this.shapes.set(t, Array.from(t).map(c => this.fetch(c)).join(''))
-    return this.shapes.get(t)
+    return this.shapes.get(t)!
   }
 }()
 
@@ -137,7 +137,7 @@ export function tokenize(title: string, markup?: RegExp): Token[] {
       text: token.text,
       start: token.offset,
       end: token.offset + token.text.length - 1,
-      shape: Shape.shape(<string> token.text),
+      shape: Shape.shape(<string> token.text)!,
       sentenceStart: type === 'word' && sentenceStart,
       subSentenceStart: type === 'word' && subSentenceStart,
     })
@@ -160,11 +160,11 @@ export function tokenize(title: string, markup?: RegExp): Token[] {
 
   const stack = tokens.splice(0)
 
-  let cpt: RegExpMatchArray
-  let cps: RegExpMatchArray
+  let cpt: RegExpMatchArray | null
+  let cps: RegExpMatchArray | null
   while (stack.length) {
     if (stack[0].subtype === 'preposition' && (cpt = stack[0].text.match(RE.ComplexPreposition)) && (cps = stack[0].shape.match(RE.ComplexPreposition))) {
-      const complex = stack.shift()
+      const complex = stack.shift()!
 
       let start = complex.start
       let end
@@ -194,7 +194,7 @@ export function tokenize(title: string, markup?: RegExp): Token[] {
       continue
     }
 
-    tokens.push(stack.shift())
+    tokens.push(stack.shift()!)
   }
 
   return markup ? tokens.map(token => ({ ...token, text: title.substring(token.start, token.end + 1) })) : tokens

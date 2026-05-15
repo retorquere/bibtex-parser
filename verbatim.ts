@@ -8,7 +8,7 @@
 import { playnice } from './yield.js'
 
 class ParsingError extends Error {
-  public source: string
+  public source!: string
 
   constructor(message, parser) {
     message += ` at ${parser.location()}`
@@ -45,7 +45,7 @@ export interface ParserOptions {
 }
 
 export class Library {
-  public parsing: string
+  public parsing: string | null
 
   public entries: Entry[] = []
   public strings: Record<string, string> = {}
@@ -291,7 +291,7 @@ export class Library {
   }
 
   private value() {
-    const values = []
+    const values: string[] = []
     values.push(this.single_value())
     while (this.tryMatch('#')) {
       this.match('#')

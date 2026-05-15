@@ -102,11 +102,11 @@ export function toSentenceCase(title: string, options: Options = {}): string {
     }
     else if (token.hyphenated) {
       for (const t of token.hyphenated) {
-        sentenceCased += wordSC(t, allCaps, options.subSentenceCapitalization, true)
+        sentenceCased += wordSC(t, allCaps, options.subSentenceCapitalization!, true)
       }
     }
     else {
-      sentenceCased += wordSC(token, allCaps, options.subSentenceCapitalization, false)
+      sentenceCased += wordSC(token, allCaps, options.subSentenceCapitalization!, false)
     }
   }
 

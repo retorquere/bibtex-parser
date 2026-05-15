@@ -89,11 +89,11 @@ export function parse(comments: string[]): { comments: string[]; jabref: JabRefM
   const levels: Group[] = []
 
   const decoded = {
-    fileDirectory: null,
-    groupsversion: null,
-    groupstree: null,
-    grouping: null,
-    databaseType: null,
+    fileDirectory: null as string[] | null,
+    groupsversion: null as string[] | null,
+    groupstree: null as string[] | null,
+    grouping: null as string[] | null,
+    databaseType: null as string[] | null,
   }
 
   comments = comments.filter(comment => {
@@ -105,7 +105,7 @@ export function parse(comments: string[]): { comments: string[]; jabref: JabRefM
     return true
   })
 
-  if (decoded.groupsversion) result.groupsversion = parseInt(decoded.groupsversion[0].trim()) || decoded.groupsversion[0] // eslint-disable-line @typescript-eslint/no-unsafe-argument
+  if (decoded.groupsversion) result.groupsversion = parseInt(decoded.groupsversion[0].trim()) // eslint-disable-line @typescript-eslint/no-unsafe-argument
   if (decoded.fileDirectory) result.fileDirectory = decoded.fileDirectory[0]
   if (decoded.databaseType) result.databaseType = decoded.databaseType[0]
 
