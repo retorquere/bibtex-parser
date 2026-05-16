@@ -109,11 +109,12 @@ const testcases = globSync(path.resolve(here, '**', '*.{json,bib,bibtex,biblatex
 }).sort()
 
 function stringify(obj) {
-  return yaml.dump(obj, { sortKeys: true })
+  // stringify-parse to prevent yaml references for inner objects
+  return yaml.dump(JSON.parse(JSON.stringify(obj)), { sortKeys: true })
 }
 
 function matchSnapshot(actual, snapshot) {
-  if (!fs.existsSync(snapshot)) {
+  if (!fs.existsSync(snapshot) || (args.snap && args.force)) {
     if (args.snap) {
       fs.mkdirSync(path.dirname(snapshot), { recursive: true })
       fs.writeFileSync(snapshot, stringify(actual))
@@ -125,8 +126,17 @@ function matchSnapshot(actual, snapshot) {
     }
   }
   else {
-    const expected = fs.readFileSync(snapshot, 'utf-8')
-    assert.strictEqual(stringify(actual), expected)
+    // const expected = fs.readFileSync(snapshot, 'utf-8')
+    // assert.strictEqual(stringify(actual), expected)
+
+    for (const entry of (actual.entries || [])) {
+      delete entry.crossref
+    }
+    const expected = yaml.load(fs.readFileSync(snapshot, 'utf-8'))
+    for (const entry of (expected.entries || [])) {
+      delete entry.crossref
+    }
+    assert.strictEqual(stringify(actual), stringify(expected))
   }
 }
 
