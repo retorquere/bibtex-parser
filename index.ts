@@ -1380,6 +1380,11 @@ class BibTeXParser {
         if (!entries[crossref]) continue
 
         const key = entry.key.toUpperCase()
+        // Topological sort: parents are unshifted to the front, children pushed
+        // to the back.  Because a parent may itself be a child of another entry,
+        // unshift guarantees every ancestor appears before all of its descendants
+        // regardless of the order entries appear in the .bib file.  Duplicate
+        // entries are skipped so a shared parent is only processed once.
         if (!order.includes(crossref)) order.unshift(crossref)
         if (!order.includes(key)) order.push(key)
       }

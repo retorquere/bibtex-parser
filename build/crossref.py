@@ -55,7 +55,6 @@ for bcf in glob.glob('submodules/biber/t/tdata/*.bcf'):
 # crossref pair, even when no explicit type-specific mapping exists.
 crossref['*']['*']  # touch to create the empty dict via defaultdict
 
-#crossref_out = {k: dict(v) for k, v in crossref.items()}
 with open('crossref.ts', 'w') as f:
   print(f'export const crossref: Record<string, Record<string, Record<string, string>>> = {json.dumps(crossref, indent="  ", sort_keys=True)} as const\n', file=f)
 with open('data/crossref.json', 'w') as f:
@@ -98,7 +97,7 @@ for entrytype in allowed:
 # explicitly: it is an entrykey field that biber resolves before the crossref
 # inheritance step, so it is never truly "inherited".
 
-no_crossref_set = set()
+no_crossref = set()
 for bcf in glob.glob('submodules/biber/t/tdata/*.bcf'):
   try:
     tree = ET.parse(bcf)
@@ -112,12 +111,14 @@ for bcf in glob.glob('submodules/biber/t/tdata/*.bcf'):
           if field.attrib.get('skip') == 'true':
             src = field.attrib.get('source', '')
             if src:
-              no_crossref_set.add(src)
+              no_crossref.add(src)
   except Exception:
     pass
 
-no_crossref_set.add('xdata')
-no_crossref = sorted(no_crossref_set)
+no_crossref.add('crossref')
+no_crossref.add('xdata')
+no_crossref.add('file')  # per-entry local path; never meaningful to inherit
+no_crossref = sorted(no_crossref)
 
 with open('fields.ts', 'w') as f:
   print(f'export const allowed: Record<string, string[]> = {json.dumps(allowed, indent="  ", sort_keys=True)} as const\n', file=f)
