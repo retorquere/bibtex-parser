@@ -103,26 +103,46 @@ errors: []
 jabref:
   databaseType: bibtex
   groups:
-    my-main-group-3: &ref_0
+    my-main-group-3:
       entries: []
       groups:
-        - &ref_1
-          entries: []
+        - entries: []
           groups:
-            - &ref_2
-              entries: []
+            - entries: []
               groups: []
               name: sub-sub-group-3
           name: my-subgroup-3
-        - &ref_3
-          entries: []
+        - entries: []
           groups: []
           name: my-other-subgroup-3
       name: my-main-group-3
-    my-other-subgroup-3: *ref_3
-    my-subgroup-3: *ref_1
-    sub-sub-group-3: *ref_2
+    my-other-subgroup-3:
+      entries: []
+      groups: []
+      name: my-other-subgroup-3
+    my-subgroup-3:
+      entries: []
+      groups:
+        - entries: []
+          groups: []
+          name: sub-sub-group-3
+      name: my-subgroup-3
+    sub-sub-group-3:
+      entries: []
+      groups: []
+      name: sub-sub-group-3
   root:
-    - *ref_0
+    - entries: []
+      groups:
+        - entries: []
+          groups:
+            - entries: []
+              groups: []
+              name: sub-sub-group-3
+          name: my-subgroup-3
+        - entries: []
+          groups: []
+          name: my-other-subgroup-3
+      name: my-main-group-3
 preamble: []
 strings: {}

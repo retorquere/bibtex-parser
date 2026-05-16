@@ -1,12 +1,11 @@
 comments: []
 entries:
   - crossref:
-      donated: []
-      inherited:
-        - booktitle
-        - editor
-        - month
-        - year
+      conference:06:
+        booktitle: title
+        editor: editor
+        month: month
+        year: year
     fields:
       author:
         - firstName: First
@@ -15,7 +14,7 @@ entries:
           lastName: Author
       booktitle: Proceedings of the Xth Conference on XYZ
       crossref: conference:06
-      editor: &ref_0
+      editor:
         - firstName: First
           lastName: Editor
         - firstName: Second
@@ -38,16 +37,13 @@ entries:
       pages: literal
       title: title
     type: inproceedings
-  - crossref:
-      donated:
-        - editor
-        - month
-        - title
-        - year
-      inherited: []
-    fields:
+  - fields:
       booktitle: Proceedings of the Xth Conference on XYZ (Book)
-      editor: *ref_0
+      editor:
+        - firstName: First
+          lastName: Editor
+        - firstName: Second
+          lastName: Editor
       month: '10'
       title: Proceedings of the Xth Conference on XYZ
       year: '2006'

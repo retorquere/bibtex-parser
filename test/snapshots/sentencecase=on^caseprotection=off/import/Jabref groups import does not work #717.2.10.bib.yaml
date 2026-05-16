@@ -72,24 +72,40 @@ entries:
 errors: []
 jabref:
   groups:
-    my-main-group-2: &ref_0
+    my-main-group-2:
       entries: []
       groups:
-        - &ref_1
-          entries:
+        - entries:
             - Doe-2017
           groups: []
           name: my-subgroup-2
-        - &ref_2
-          entries:
+        - entries:
             - Other-
           groups: []
           name: my-other-subgroup-2
       name: my-main-group-2
-    my-other-subgroup-2: *ref_2
-    my-subgroup-2: *ref_1
+    my-other-subgroup-2:
+      entries:
+        - Other-
+      groups: []
+      name: my-other-subgroup-2
+    my-subgroup-2:
+      entries:
+        - Doe-2017
+      groups: []
+      name: my-subgroup-2
   groupsversion: 3
   root:
-    - *ref_0
+    - entries: []
+      groups:
+        - entries:
+            - Doe-2017
+          groups: []
+          name: my-subgroup-2
+        - entries:
+            - Other-
+          groups: []
+          name: my-other-subgroup-2
+      name: my-main-group-2
 preamble: []
 strings: {}

@@ -176,26 +176,34 @@ entries:
 errors: []
 jabref:
   groups:
-    Group1: &ref_0
+    Group1:
       entries:
         - Marvin2020
       groups:
-        - &ref_1
-          entries:
+        - entries:
             - Venkateshaiah2020
             - Xie2020
             - Marvin2020
           groups: []
           name: Group1a
-        - &ref_2
-          entries:
+        - entries:
             - Marvin2020
           groups: []
           name: Group1b
       name: Group1
-    Group1a: *ref_1
-    Group1b: *ref_2
-    Group2: &ref_3
+    Group1a:
+      entries:
+        - Venkateshaiah2020
+        - Xie2020
+        - Marvin2020
+      groups: []
+      name: Group1a
+    Group1b:
+      entries:
+        - Marvin2020
+      groups: []
+      name: Group1b
+    Group2:
       entries:
         - Chau2020
         - Venkateshaiah2020
@@ -203,7 +211,24 @@ jabref:
       name: Group2
   groupsversion: 3
   root:
-    - *ref_0
-    - *ref_3
+    - entries:
+        - Marvin2020
+      groups:
+        - entries:
+            - Venkateshaiah2020
+            - Xie2020
+            - Marvin2020
+          groups: []
+          name: Group1a
+        - entries:
+            - Marvin2020
+          groups: []
+          name: Group1b
+      name: Group1
+    - entries:
+        - Chau2020
+        - Venkateshaiah2020
+      groups: []
+      name: Group2
 preamble: []
 strings: {}

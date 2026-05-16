@@ -1,9 +1,9 @@
 comments: []
 entries:
   - crossref:
-      donated: []
-      inherited:
-        - editor
+      conference:06:
+        date: date
+        editor: editor
     fields:
       author:
         - firstName: First
@@ -12,7 +12,7 @@ entries:
           lastName: Author
       crossref: conference:06
       date: 2006-10
-      editor: &ref_0
+      editor:
         - firstName: First
           lastName: Editor
         - firstName: Second
@@ -33,13 +33,13 @@ entries:
       pages: literal
       title: title
     type: inproceedings
-  - crossref:
-      donated:
-        - editor
-      inherited: []
-    fields:
+  - fields:
       date: 2006-10
-      editor: *ref_0
+      editor:
+        - firstName: First
+          lastName: Editor
+        - firstName: Second
+          lastName: Editor
       title: Proceedings of the Xth conference on XYZ
     input: |-
       @book{conference:06,

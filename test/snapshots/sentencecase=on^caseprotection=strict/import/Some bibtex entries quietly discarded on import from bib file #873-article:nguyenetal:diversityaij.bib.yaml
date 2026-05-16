@@ -1,16 +1,15 @@
 comments: []
 entries:
   - crossref:
-      donated: []
-      inherited:
-        - author
-        - pages
-        - title
-        - url
-        - volume
-        - year
+      journals/ai/NguyenDGSSK12:
+        author: author
+        pages: pages
+        title: title
+        url: url
+        volume: volume
+        year: year
     fields:
-      author: &ref_0
+      author:
         - firstName: Tuan Anh
           lastName: Nguyen
         - firstName: Minh Binh
@@ -39,17 +38,20 @@ entries:
     mode:
       crossref: literal
     type: article
-  - crossref:
-      donated:
-        - author
-        - pages
-        - title
-        - url
-        - volume
-        - year
-      inherited: []
-    fields:
-      author: *ref_0
+  - fields:
+      author:
+        - firstName: Tuan Anh
+          lastName: Nguyen
+        - firstName: Minh Binh
+          lastName: Do
+        - firstName: Alfonso
+          lastName: Gerevini
+        - firstName: Ivan
+          lastName: Serina
+        - firstName: Biplav
+          lastName: Srivastava
+        - firstName: Subbarao
+          lastName: Kambhampati
       bibdate: '2012-11-12'
       bibsource: DBLP, http://dblp.uni-trier.de/db/journals/ai/ai190.html#NguyenDGSSK12
       journal: AIJ

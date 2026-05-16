@@ -183,37 +183,58 @@ errors: []
 jabref:
   databaseType: bibtex
   groups:
-    Group1: &ref_2
+    Group1:
       entries: []
       groups:
-        - &ref_3
-          entries: []
+        - entries: []
           groups: []
           name: Group1a
-        - &ref_4
-          entries: []
+        - entries: []
           groups: []
           name: Group1b
       name: Group1
-    Group1a: *ref_3
-    Group1b: *ref_4
-    Group2: &ref_5
+    Group1a:
+      entries: []
+      groups: []
+      name: Group1a
+    Group1b:
+      entries: []
+      groups: []
+      name: Group1b
+    Group2:
       entries: []
       groups: []
       name: Group2
-    Markings: &ref_0
+    Markings:
       entries: []
       groups:
-        - &ref_1
-          entries: []
+        - entries: []
           groups: []
           name: jfd1
       name: Markings
-    jfd1: *ref_1
+    jfd1:
+      entries: []
+      groups: []
+      name: jfd1
   groupsversion: 3
   root:
-    - *ref_0
-    - *ref_2
-    - *ref_5
+    - entries: []
+      groups:
+        - entries: []
+          groups: []
+          name: jfd1
+      name: Markings
+    - entries: []
+      groups:
+        - entries: []
+          groups: []
+          name: Group1a
+        - entries: []
+          groups: []
+          name: Group1b
+      name: Group1
+    - entries: []
+      groups: []
+      name: Group2
 preamble: []
 strings: {}

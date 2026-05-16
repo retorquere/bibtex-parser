@@ -84,6 +84,7 @@ for (const [k, v] of Object.entries(args)) {
 
     case 'save':
     case 'snap':
+    case 'force':
       break
 
     default:
@@ -126,17 +127,8 @@ function matchSnapshot(actual, snapshot) {
     }
   }
   else {
-    // const expected = fs.readFileSync(snapshot, 'utf-8')
-    // assert.strictEqual(stringify(actual), expected)
-
-    for (const entry of (actual.entries || [])) {
-      delete entry.crossref
-    }
-    const expected = yaml.load(fs.readFileSync(snapshot, 'utf-8'))
-    for (const entry of (expected.entries || [])) {
-      delete entry.crossref
-    }
-    assert.strictEqual(stringify(actual), stringify(expected))
+    const expected = fs.readFileSync(snapshot, 'utf-8')
+    assert.strictEqual(stringify(actual), expected)
   }
 }
 

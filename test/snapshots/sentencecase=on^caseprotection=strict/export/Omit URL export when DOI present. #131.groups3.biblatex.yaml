@@ -203,7 +203,7 @@ entries:
 errors: []
 jabref:
   groups:
-    'Omit URL export when DOI present. #131': &ref_0
+    'Omit URL export when DOI present. #131':
       entries:
         - CapEA11
         - CumEA14
@@ -212,6 +212,11 @@ jabref:
       name: 'Omit URL export when DOI present. #131'
   groupsversion: 3
   root:
-    - *ref_0
+    - entries:
+        - CapEA11
+        - CumEA14
+        - TayEA11
+      groups: []
+      name: 'Omit URL export when DOI present. #131'
 preamble: []
 strings: {}
