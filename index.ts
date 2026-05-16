@@ -72,11 +72,7 @@ export type Entry = {
   key: string
   fields: Fields
   mode: Record<string, ParseMode>
-  crossref?: {
-    parents?: string[]
-    inherited: string[]
-    donated: string[]
-  }
+  crossref?: Record<string, Record<string, string>>
   input: string
 }
 
@@ -1389,29 +1385,20 @@ class BibTeXParser {
         if (!order.includes(key)) order.push(key)
       }
 
-      const add = (list: string[], value: string) => {
-        if (!list.includes(value)) {
-          list.push(value)
-          list.sort()
-        }
-      }
-
       for (const key of order) {
         const child = entries[key.toUpperCase()]!
         const parent = entries[child.fields.crossref?.toUpperCase()]
         if (!parent) continue
-
-        child.crossref ??= { parents: [], donated: [], inherited: [] }
-        parent.crossref ??= { parents: [], donated: [], inherited: [] }
 
         for (const mappings of [CrossRef[child.type], CrossRef['*']].filter(m => m)) {
           for (const mapping of [mappings[parent.type], mappings['*']].filter(m => m)) {
             for (const [childfield, parentfield] of Object.entries(mapping)) {
               if (!child.fields[childfield] && parent.fields[parentfield]) {
                 child.fields[childfield] = parent.fields[parentfield]
-                add(child.crossref.parents!, parent.key)
-                add(child.crossref.inherited, childfield)
-                add(parent.crossref.donated, parentfield)
+
+                child.crossref ??= {}
+                child.crossref[parent.key] ??= {}
+                child.crossref[parent.key][childfield] = parentfield
               }
             }
 
@@ -1420,19 +1407,13 @@ class BibTeXParser {
 
               if (!child.fields[field] && parent.fields[field]) {
                 child.fields[field] = parent.fields[field]
-                add(child.crossref.parents!, parent.key)
-                add(child.crossref.inherited, field)
-                add(parent.crossref.donated, field)
+
+                child.crossref ??= {}
+                child.crossref[parent.key] ??= {}
+                child.crossref[parent.key][field] = field
               }
             }
           }
-        }
-      }
-
-      for (const entry of this.bib.entries) {
-        if (entry.crossref) {
-          if (!entry.crossref.parents!.length) delete entry.crossref.parents
-          if (!entry.crossref.donated.length && !entry.crossref.inherited.length) delete entry.crossref
         }
       }
     }
