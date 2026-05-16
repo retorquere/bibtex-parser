@@ -18,8 +18,8 @@ export type { Token } from './tokenizer.js'
 
 import { playnice } from './yield.js'
 
-import CrossRef from './crossref.js'
-import allowed from './fields.js'
+import { crossref as CrossRef } from './crossref.js'
+import { allowed as Allowed, noCrossRef as NoCrossRef } from './fields.js'
 
 import { merge } from './merge.js'
 
@@ -73,6 +73,7 @@ export type Entry = {
   fields: Fields
   mode: Record<string, ParseMode>
   crossref?: {
+    parents?: string[]
     inherited: string[]
     donated: string[]
   }
@@ -361,9 +362,6 @@ const FieldAction = {
   parseInt: [
     'year',
     'month',
-  ],
-  noCrossRef: [
-    'file',
   ],
 }
 
@@ -1386,8 +1384,11 @@ class BibTeXParser {
         if (!order.includes(key)) order.push(key)
       }
 
-      const add = (obj: Record<string, string[]>, kind: string, field: string) => {
-        obj[kind] = [...(new Set([...obj[kind], field]))].sort()
+      const add = (list: string[], value: string) => {
+        if (!list.includes(value)) {
+          list.push(value)
+          list.sort()
+        }
       }
 
       for (const key of order) {
@@ -1395,26 +1396,28 @@ class BibTeXParser {
         const parent = entries[child.fields.crossref?.toUpperCase()]
         if (!parent) continue
 
-        child.crossref = child.crossref || { donated: [], inherited: [] }
-        parent.crossref = parent.crossref || { donated: [], inherited: [] }
+        child.crossref ??= { parents: [], donated: [], inherited: [] }
+        parent.crossref ??= { parents: [], donated: [], inherited: [] }
 
         for (const mappings of [CrossRef[child.type], CrossRef['*']].filter(m => m)) {
           for (const mapping of [mappings[parent.type], mappings['*']].filter(m => m)) {
-            for (const [childfield, parentfield] of Object.entries(<Record<string, string>> mapping)) {
+            for (const [childfield, parentfield] of Object.entries(mapping)) {
               if (!child.fields[childfield] && parent.fields[parentfield]) {
                 child.fields[childfield] = parent.fields[parentfield]
-                add(child.crossref, 'inherited', childfield)
-                add(parent.crossref, 'donated', parentfield)
+                add(child.crossref.parents!, parent.key)
+                add(child.crossref.inherited, childfield)
+                add(parent.crossref.donated, parentfield)
               }
             }
 
-            for (const field of <string[]> (allowed[child.type] || [])) {
-              if (FieldAction.noCrossRef.includes(field)) continue
+            for (const field of (Allowed[child.type] || [])) {
+              if (NoCrossRef.includes(field)) continue
 
               if (!child.fields[field] && parent.fields[field]) {
                 child.fields[field] = parent.fields[field]
-                add(child.crossref, 'inherited', field)
-                add(parent.crossref, 'donated', field)
+                add(child.crossref.parents!, parent.key)
+                add(child.crossref.inherited, field)
+                add(parent.crossref.donated, field)
               }
             }
           }
@@ -1422,7 +1425,10 @@ class BibTeXParser {
       }
 
       for (const entry of this.bib.entries) {
-        if (entry.crossref && !entry.crossref.donated.length && !entry.crossref.inherited.length) delete entry.crossref
+        if (entry.crossref) {
+          if (!entry.crossref.parents!.length) delete entry.crossref.parents
+          if (!entry.crossref.donated.length && !entry.crossref.inherited.length) delete entry.crossref
+        }
       }
     }
 

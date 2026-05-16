@@ -1,8 +1,6 @@
-export default {
+export const crossref: Record<string, Record<string, Record<string, string>>> = {
   '*': {
-    '*': {
-      verbb: 'verba',
-    },
+    '*': {},
   },
   article: {
     periodical: {
@@ -19,14 +17,12 @@ export default {
   },
   bookinbook: {
     book: {
-      author: 'author',
       bookauthor: 'author',
       booksubtitle: 'subtitle',
       booktitle: 'title',
       booktitleaddon: 'titleaddon',
     },
     mvbook: {
-      author: 'author',
       bookauthor: 'author',
       mainsubtitle: 'subtitle',
       maintitle: 'title',
@@ -50,14 +46,12 @@ export default {
       bookauthor: 'author',
     },
     book: {
-      author: 'author',
       bookauthor: 'author',
       booksubtitle: 'subtitle',
       booktitle: 'title',
       booktitleaddon: 'titleaddon',
     },
     mvbook: {
-      author: 'author',
       bookauthor: 'author',
       mainsubtitle: 'subtitle',
       maintitle: 'title',
@@ -141,14 +135,12 @@ export default {
   },
   suppbook: {
     book: {
-      author: 'author',
       bookauthor: 'author',
       booksubtitle: 'subtitle',
       booktitle: 'title',
       booktitleaddon: 'titleaddon',
     },
     mvbook: {
-      author: 'author',
       bookauthor: 'author',
       mainsubtitle: 'subtitle',
       maintitle: 'title',
@@ -183,4 +175,4 @@ export default {
       journaltitle: 'title',
     },
   },
-}
+} as const
