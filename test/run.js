@@ -127,7 +127,7 @@ function matchSnapshot(actual, snapshot) {
     }
   }
   else {
-    const expected = fs.readFileSync(snapshot, 'utf-8')
+    const expected = stringify(load(snapshot))
     assert.strictEqual(stringify(actual), expected)
   }
 }
