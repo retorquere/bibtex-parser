@@ -1,11 +1,18 @@
 comments: []
 entries:
   - crossref:
-      conference:06:
-        booktitle: title
-        editor: editor
-        month: month
-        year: year
+      booktitle:
+        field: title
+        parent: conference:06
+      editor:
+        field: editor
+        parent: conference:06
+      month:
+        field: month
+        parent: conference:06
+      year:
+        field: year
+        parent: conference:06
     fields:
       author:
         - firstName: First

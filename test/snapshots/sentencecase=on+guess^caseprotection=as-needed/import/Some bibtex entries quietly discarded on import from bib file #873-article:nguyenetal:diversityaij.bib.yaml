@@ -1,13 +1,24 @@
 comments: []
 entries:
   - crossref:
-      journals/ai/NguyenDGSSK12:
-        author: author
-        pages: pages
-        title: title
-        url: url
-        volume: volume
-        year: year
+      author:
+        field: author
+        parent: journals/ai/NguyenDGSSK12
+      pages:
+        field: pages
+        parent: journals/ai/NguyenDGSSK12
+      title:
+        field: title
+        parent: journals/ai/NguyenDGSSK12
+      url:
+        field: url
+        parent: journals/ai/NguyenDGSSK12
+      volume:
+        field: volume
+        parent: journals/ai/NguyenDGSSK12
+      year:
+        field: year
+        parent: journals/ai/NguyenDGSSK12
     fields:
       author:
         - firstName: Tuan Anh

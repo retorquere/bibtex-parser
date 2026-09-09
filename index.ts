@@ -72,7 +72,7 @@ export type Entry = {
   key: string
   fields: Fields
   mode: Record<string, ParseMode>
-  crossref?: Record<string, Record<string, string>>
+  crossref?: Record<string, { parent: string; field: string }>
   input: string
 }
 
@@ -1397,8 +1397,7 @@ class BibTeXParser {
                 child.fields[childfield] = parent.fields[parentfield]
 
                 child.crossref ??= {}
-                child.crossref[parent.key] ??= {}
-                child.crossref[parent.key][childfield] = parentfield
+                child.crossref[childfield] = { parent: parent.key, field: parentfield }
               }
             }
 
@@ -1409,8 +1408,7 @@ class BibTeXParser {
                 child.fields[field] = parent.fields[field]
 
                 child.crossref ??= {}
-                child.crossref[parent.key] ??= {}
-                child.crossref[parent.key][field] = field
+                child.crossref[field] = { parent: parent.key, field }
               }
             }
           }

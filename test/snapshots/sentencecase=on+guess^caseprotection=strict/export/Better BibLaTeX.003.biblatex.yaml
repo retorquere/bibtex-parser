@@ -1,9 +1,12 @@
 comments: []
 entries:
   - crossref:
-      conference:06:
-        date: date
-        editor: editor
+      date:
+        field: date
+        parent: conference:06
+      editor:
+        field: editor
+        parent: conference:06
     fields:
       author:
         - firstName: First
