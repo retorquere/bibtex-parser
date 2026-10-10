@@ -8,7 +8,7 @@
 - Macro arities follow TypeScript's `narguments` table. Simple `\newcommand`/`\ProvideTextCommandDefault` definitions expand; nested `\ifdefined` blocks are skipped.
 - Custom `\newcommand` definitions now store parameter arity, optional default arguments, and replacement bodies, and they expand `#1`, `#2`, ... placeholders during nested expansion.
 - TeX-to-Unicode mappings are generated from `unicode2latex` at Cargo build time and compiled into the crate. The wasm runtime does not load mapping JSON.
-- Selected rich-text environments and markup macros render to the current TypeScript-compatible output forms.
+- The Rust TeX visitor renders generated Unicode mappings and combining marks, common inline markup, rich-text wrappers and list items, and unsupported macro/environment diagnostics. Title root groups and math receive default as-needed case-protection spans; sentence-case integration and configurable case-protection policies remain incomplete.
 - `wasm-pack` generates the JavaScript wrapper and TypeScript declarations; the Rust crate also remains usable natively.
 
 ## Completed Milestones
@@ -41,7 +41,9 @@ New code without inline documentation for functions and branch points is not con
 
 ## Remaining Parity Work
 
-1. **TeX visitor:** Port node context such as text/math mode, root-group status, emphasis/markup flags, and case protection. Complete command behavior, combining/accent handling, rich-text paragraph/list rendering, and unsupported-macro reporting.
+In all cases, an implementation should document function purpose, arguments, key decision branches, and any deviations from the TypeScript reference behavior.
+
+1. **TeX visitor:** Complete case-protection policy/configuration and its sentence-case integration, then close any remaining command and rich-text paragraph/list differences against shared fixture snapshots.
 2. **Sentence casing:** Port the tokenizer, preposition handling, quote preservation, sub-sentence capitalization, and guess heuristics used by `sentence-case.ts`.
 3. **Field and creator normalization:** Match all TypeScript field-mode overrides, raw/verbatim options, outer-brace rules, creator edge cases, duplicate-field handling, and normalization errors.
 4. **Library finalization:** Port preamble and string rendering, JabRef metadata parsing, cross-reference inheritance, and final error aggregation.
@@ -57,6 +59,7 @@ Run the native Rust checks with:
 cargo test --manifest-path rust/Cargo.toml
 cargo fmt --manifest-path rust/Cargo.toml -- --check
 cargo clippy --manifest-path rust/Cargo.toml --all-targets -- -D warnings
+npm run wasm:test
 ```
 
-Build the JavaScript/WebAssembly package with `npm run wasm:build`, then smoke-test the generated wrapper and type-check its declarations.
+`npm run wasm:test` rebuilds the JavaScript/WebAssembly package and compares selected Rust visitor fields with structurally parsed TypeScript YAML snapshots. Type-check the generated declarations separately when changing the wasm API.

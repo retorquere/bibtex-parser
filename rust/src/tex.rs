@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 
 /// A source position using the TypeScript parser's UTF-16 offset and 1-based coordinates.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -1062,33 +1062,262 @@ pub(crate) fn parse(source: &str) -> Ast {
     Ast { content, span }
 }
 
-/// Parse, visit, and trim one field value using the field's rendering mode.
+/// Collects unsupported TeX constructs while normalized fields are rendered.
+///
+/// Diagnostics are shared across every field in one library normalization so a macro
+/// or environment is reported only once, matching the TypeScript parser's library-level set.
+#[derive(Default)]
+pub(crate) struct RenderDiagnostics {
+    /// First error for each unsupported construct, in the order it was encountered.
+    pub(crate) errors: Vec<super::ParseError>,
+    /// Stable kind/name identifiers used to suppress duplicate macro and environment errors.
+    unhandled: HashSet<String>,
+}
+
+impl RenderDiagnostics {
+    /// Record an unsupported construct once while preserving its reconstructed TeX source.
+    ///
+    /// `kind` selects the diagnostic format, `name` forms the deduplication key, and
+    /// `source` is retained as the error input. Macro and environment errors are deduplicated;
+    /// callers currently report only those two construct kinds.
+    fn report(&mut self, kind: &str, name: &str, source: String) {
+        let id = format!("{kind}.{name}");
+        if self.unhandled.insert(id) {
+            let error = if kind == "macro" {
+                format!("unhandled macro {source}")
+            } else {
+                format!("unhandled environment {name} ({source})")
+            };
+            self.errors.push(super::ParseError {
+                error,
+                input: source,
+            });
+        }
+    }
+}
+
+/// Parse, visit, and trim a TeX fragment using its field rendering mode.
+///
+/// This test-only convenience function discards unsupported-construct diagnostics; production
+/// normalization calls `render_with_diagnostics` so those errors reach `ParsedLibrary.errors`.
+/// `source` is the raw field value and `mode` is a field mode such as `title` or `richtext`.
+#[cfg(test)]
 pub(crate) fn render(source: &str, mode: &str) -> String {
-    render_nodes(&parse(source).content, mode, false)
-        .trim()
-        .to_string()
+    render_with_diagnostics(source, mode, &mut RenderDiagnostics::default())
 }
 
-/// Render sibling nodes in order while carrying field mode and verbatim context.
-fn render_nodes(nodes: &[Node], mode: &str, verbatim: bool) -> String {
-    nodes
-        .iter()
-        .map(|node| render_node(node, mode, verbatim))
-        .collect()
+/// Render one field and add unsupported constructs to library-level diagnostics.
+///
+/// # Arguments
+/// * `source` - Raw TeX source for one field.
+/// * `mode` - Field rendering mode; only `title` enables title root-group protection.
+/// * `diagnostics` - Shared state that deduplicates unsupported constructs across fields.
+///
+/// The visitor starts at root scope and assumes the current default English `as-needed`
+/// protection policy. Sentence casing and configurable `strict`/`off` policies are separate work.
+pub(crate) fn render_with_diagnostics(
+    source: &str,
+    mode: &str,
+    diagnostics: &mut RenderDiagnostics,
+) -> String {
+    render_nodes(
+        &parse(source).content,
+        mode,
+        false,
+        diagnostics,
+        mode == "title",
+        false,
+        true,
+    )
+    .trim()
+    .to_string()
 }
 
-/// Render one AST node; groups recurse, while text honors verbatim tilde behavior.
-fn render_node(node: &Node, mode: &str, verbatim: bool) -> String {
+/// Render a sibling sequence while tracking field mode, local markup, and title context.
+///
+/// `nodes` is one AST child list; `mode` controls whitespace and rich-text output; `verbatim`
+/// preserves literal text such as URLs. `diagnostics` is shared recursively. `title_mode` enables
+/// case protection, `protected_ancestor` prevents duplicate protection inside a protected region,
+/// and `root_scope` limits root-group handling to the original field or a root environment body.
+///
+/// Declaration-style markup persists only across siblings in this sequence. Recursive groups
+/// start their own markup state, matching the TypeScript visitor's parent-scoped feed-forward pass.
+fn render_nodes(
+    nodes: &[Node],
+    mode: &str,
+    verbatim: bool,
+    diagnostics: &mut RenderDiagnostics,
+    title_mode: bool,
+    protected_ancestor: bool,
+    root_scope: bool,
+) -> String {
+    let mut output = String::new();
+    let mut paragraph_boundary = false;
+    let mut markup = Markup::default();
+    for node in nodes {
+        // These declaration commands change formatting for later siblings and render no text.
+        if mode != "math"
+            && let Node::Macro { name, .. } = node
+            && markup.activate(name)
+        {
+            continue;
+        }
+        let is_parbreak = matches!(node, Node::Parbreak(_))
+            || matches!(node, Node::Macro { name, .. } if name == "par");
+        if mode == "richtext" {
+            // Collapse repeated paragraph boundaries and their following layout whitespace.
+            if is_parbreak && paragraph_boundary {
+                continue;
+            }
+            if paragraph_boundary && matches!(node, Node::Whitespace(_, _)) {
+                continue;
+            }
+        }
+
+        // The TS visitor marks nonempty root groups unless their first child is a macro.
+        let protect_group = title_mode
+            && root_scope
+            && !protected_ancestor
+            && matches!(node, Node::Group(children, _) if !children.is_empty() && !matches!(children[0], Node::Macro { .. }));
+        let rendered = render_node(
+            node,
+            mode,
+            verbatim,
+            diagnostics,
+            title_mode,
+            protected_ancestor || protect_group,
+            root_scope,
+        );
+        if mode == "richtext" && is_parbreak {
+            paragraph_boundary = true;
+        } else if !matches!(node, Node::Comment { .. }) && !rendered.is_empty() {
+            paragraph_boundary = false;
+        }
+        let mut rendered = markup.wrap(rendered);
+        if protect_group && needs_case_protection(&rendered) {
+            rendered = format!("<span class=\"nocase\">{rendered}</span>");
+        }
+        output.push_str(&rendered);
+    }
+    let wrappers = [
+        ("<i>", "</i>"),
+        ("<b>", "</b>"),
+        ("<code>", "</code>"),
+        ("<span style=\"font-variant:small-caps;\">", "</span>"),
+    ];
+    // Adjacent siblings receive separate wrappers above; collapse equal neighbors into one span.
+    loop {
+        let collapsed = wrappers.iter().fold(output.clone(), |text, (open, close)| {
+            text.replace(&format!("{close}{open}"), "")
+        });
+        if collapsed == output {
+            break;
+        }
+        output = collapsed;
+    }
+    output
+}
+
+/// Formatting state activated by TeX declaration commands for later siblings in one node list.
+#[derive(Default)]
+struct Markup {
+    /// Whether subsequent siblings render inside italic markup.
+    emph: bool,
+    /// Whether subsequent siblings render inside bold markup.
+    bold: bool,
+    /// Whether subsequent siblings render inside small-caps markup.
+    small_caps: bool,
+    /// Whether subsequent siblings render inside code markup.
+    code: bool,
+}
+
+impl Markup {
+    /// Activate a supported declaration command and report whether it should be omitted.
+    ///
+    /// `name` is the parsed macro name. Only text-mode `em`/`it`/`sl`, `bf`, `sc`, and `tt`
+    /// are feed-forward commands in the TypeScript visitor; other macros remain for normal dispatch.
+    fn activate(&mut self, name: &str) -> bool {
+        let flag = match name {
+            "em" | "it" | "sl" => &mut self.emph,
+            "bf" => &mut self.bold,
+            "sc" => &mut self.small_caps,
+            "tt" => &mut self.code,
+            _ => return false,
+        };
+        *flag = true;
+        true
+    }
+
+    /// Wrap one rendered sibling in active markup, preserving TypeScript wrapper nesting order.
+    ///
+    /// Empty output stays empty so comments and formatting declarations do not create empty tags.
+    fn wrap(&self, mut text: String) -> String {
+        if text.is_empty() {
+            return text;
+        }
+        if self.emph {
+            text = format!("<i>{text}</i>");
+        }
+        if self.bold {
+            text = format!("<b>{text}</b>");
+        }
+        if self.small_caps {
+            text = format!("<span style=\"font-variant:small-caps;\">{text}</span>");
+        }
+        if self.code {
+            text = format!("<code>{text}</code>");
+        }
+        text
+    }
+}
+
+/// Approximate the TypeScript default `as-needed` rule for already-rendered title text.
+///
+/// Generated markup is ignored before words are inspected. A word needs protection when it
+/// contains ASCII lowercase letters and no ASCII uppercase letters. This deliberately small
+/// heuristic does not port the TypeScript tokenizer, Unicode word shapes, or `strict`/`off`
+/// settings; title sentence-casing and those options remain separate roadmap work.
+fn needs_case_protection(text: &str) -> bool {
+    let mut visible = String::new();
+    let mut in_tag = false;
+    for character in text.chars() {
+        match character {
+            '<' => in_tag = true,
+            '>' => in_tag = false,
+            _ if !in_tag => visible.push(character),
+            _ => {}
+        }
+    }
+    visible
+        .split(|character: char| !character.is_alphanumeric())
+        .any(|word| {
+            word.chars().any(|character| character.is_ascii_lowercase())
+                && !word.chars().any(|character| character.is_ascii_uppercase())
+        })
+}
+
+/// Render one AST node using its field mode and inherited title-protection context.
+///
+/// `node` is the syntax-tree item; `mode` selects text, math, or rich-text behavior; `verbatim`
+/// bypasses text ligatures; `diagnostics` receives unsupported constructs. The remaining flags
+/// carry title protection: `title_mode` enables it, `protected_ancestor` suppresses nested spans,
+/// and `root_scope` lets environments expose their contents to the root-group pass.
+fn render_node(
+    node: &Node,
+    mode: &str,
+    verbatim: bool,
+    diagnostics: &mut RenderDiagnostics,
+    title_mode: bool,
+    protected_ancestor: bool,
+    root_scope: bool,
+) -> String {
     match node {
         Node::String(text, _) => {
             // URLs and other verbatim arguments retain literal tildes; ordinary TeX text uses a tie.
-            if verbatim {
-                text.clone()
-            } else {
-                text.replace('~', "\u{00a0}")
-            }
+            render_text(text, mode, verbatim)
         }
         Node::Whitespace(_text, _) => {
+            // TeX layout spaces are insignificant inside math but become one text space elsewhere.
             if mode == "math" {
                 String::new()
             } else {
@@ -1096,6 +1325,7 @@ fn render_node(node: &Node, mode: &str, verbatim: bool) -> String {
             }
         }
         Node::Parbreak(_) => {
+            // A paragraph boundary is structural HTML only for rich-text fields.
             if mode == "richtext" {
                 "<p>".to_string()
             } else {
@@ -1105,104 +1335,272 @@ fn render_node(node: &Node, mode: &str, verbatim: bool) -> String {
         Node::Comment { .. } => String::new(),
         Node::Verb(contents, _) => contents.clone(),
         // Group delimiters protect structure but are omitted from rendered field text.
-        Node::Group(nodes, _) => render_nodes(nodes, mode, verbatim),
-        Node::InlineMath(nodes, _) => render_nodes(nodes, "math", false),
-        Node::Environment { name, content, .. } => render_environment(name, content, mode),
+        Node::Group(nodes, _) => render_nodes(
+            nodes,
+            mode,
+            verbatim,
+            diagnostics,
+            title_mode,
+            protected_ancestor,
+            false,
+        ),
+        Node::InlineMath(nodes, _) => {
+            // Math children use math mappings; title protection is applied to the rendered result.
+            let rendered = render_nodes(
+                nodes,
+                "math",
+                false,
+                diagnostics,
+                title_mode,
+                protected_ancestor,
+                false,
+            );
+            if title_mode && !protected_ancestor && needs_case_protection(&rendered) {
+                format!("<span class=\"nocase\">{rendered}</span>")
+            } else {
+                rendered
+            }
+        }
+        Node::Environment { name, content, .. } => render_environment(
+            name,
+            content,
+            mode,
+            diagnostics,
+            title_mode,
+            protected_ancestor,
+            root_scope,
+        ),
         Node::Macro {
             name, arguments, ..
-        } => render_macro(name, arguments, mode),
+        } => render_macro(name, arguments, mode, diagnostics),
     }
 }
 
-/// Render one already-parsed macro argument, or an empty string when the argument is absent.
-fn render_argument(arguments: &[Vec<Node>], index: usize, mode: &str, verbatim: bool) -> String {
+/// Convert plain-text ligatures with the generated `unicode2latex` text map.
+///
+/// `text` is one parsed string node. `mode == "math"` and `verbatim == true` preserve its bytes;
+/// otherwise the longest matching mapping of up to three Unicode characters is emitted first.
+/// The three-character limit mirrors the TypeScript visitor's short adjacent-node ligature pass.
+fn render_text(text: &str, mode: &str, verbatim: bool) -> String {
+    if verbatim || mode == "math" {
+        return text.to_string();
+    }
+
+    let characters: Vec<char> = text.chars().collect();
+    let mut output = String::new();
+    let mut position = 0;
+    while position < characters.len() {
+        let mut replacement = None;
+        for width in (1..=3).rev() {
+            let end = (position + width).min(characters.len());
+            let key: String = characters[position..end].iter().collect();
+            if let Some(mapping) = unicode_mapping(&key)
+                && let Some(mapped) = mapping.text
+            {
+                replacement = Some((end, mapped));
+                break;
+            }
+        }
+        if let Some((end, mapped)) = replacement {
+            output.push_str(mapped);
+            position = end;
+        } else {
+            output.push(characters[position]);
+            position += 1;
+        }
+    }
+    output
+}
+
+/// Render one parsed macro argument, returning empty text when it is absent.
+///
+/// `arguments` and `index` select the argument; `mode`, `verbatim`, and `diagnostics` are forwarded
+/// to its child visitor. Argument nodes are not root scope because the parser has already consumed
+/// their original group delimiters.
+fn render_argument(
+    arguments: &[Vec<Node>],
+    index: usize,
+    mode: &str,
+    verbatim: bool,
+    diagnostics: &mut RenderDiagnostics,
+) -> String {
     arguments
         .get(index)
-        .map(|argument| render_nodes(argument, mode, verbatim))
+        .map(|argument| {
+            render_nodes(
+                argument,
+                mode,
+                verbatim,
+                diagnostics,
+                mode == "title",
+                false,
+                false,
+            )
+        })
         .unwrap_or_default()
 }
 
-/// Apply structural/markup macro behavior first, then consult the generated Unicode table.
-fn render_macro(name: &str, arguments: &[Vec<Node>], mode: &str) -> String {
+/// Render a macro using structural cases before exact generated Unicode mappings.
+///
+/// `name` is the TeX command without its escape token, `arguments` are the parser-consumed child
+/// lists, `mode` selects text/math/rich-text semantics, and `diagnostics` collects unsupported
+/// commands. Explicit visitor cases handle layout and markup; remaining commands use exact mode
+/// mappings, combining marks, then source-preserving unsupported fallback.
+fn render_macro(
+    name: &str,
+    arguments: &[Vec<Node>],
+    mode: &str,
+    diagnostics: &mut RenderDiagnostics,
+) -> String {
     match name {
         // Line breaks are HTML breaks in rich text and ordinary spaces in scalar fields.
         "\\" => return if mode == "richtext" { "<br>" } else { " " }.to_string(),
         "url" => {
             // URL content is rendered verbatim so query strings and tildes are not transformed.
-            let url = render_argument(arguments, 0, mode, true);
+            let url = render_argument(arguments, 0, mode, true, diagnostics);
             return format!("<a href=\"{url}\">{url}</a>");
         }
         "href" => {
             // The first href argument is the destination; only the label receives normal rendering.
-            let url = render_argument(arguments, 0, mode, true);
-            let label = render_argument(arguments, 1, mode, false);
+            let url = render_argument(arguments, 0, mode, true, diagnostics);
+            let label = render_argument(arguments, 1, mode, false, diagnostics);
             return format!("<a href=\"{url}\">{label}</a>");
         }
         "textbf" | "mkbibbold" => {
             // Keep the established markup shape used by the TypeScript renderer.
-            return format!("<b>{}</b>", render_argument(arguments, 0, mode, false));
+            return format!(
+                "<b>{}</b>",
+                render_argument(arguments, 0, mode, false, diagnostics)
+            );
         }
-        "textit" | "emph" | "mkbibemph" => {
+        "textit" | "textsl" | "emph" | "mkbibemph" => {
             // Italic and emphasis macros share the same output wrapper.
-            return format!("<i>{}</i>", render_argument(arguments, 0, mode, false));
+            return format!(
+                "<i>{}</i>",
+                render_argument(arguments, 0, mode, false, diagnostics)
+            );
         }
         "textsc" => {
             // Small caps retain the markup format expected by the TypeScript parser.
             return format!(
                 "<span style=\"font-variant:small-caps;\">{}</span>",
-                render_argument(arguments, 0, mode, false)
+                render_argument(arguments, 0, mode, false, diagnostics)
             );
         }
         "texttt" => {
             // Monospaced text uses the parser's code markup tag.
             return format!(
                 "<code>{}</code>",
-                render_argument(arguments, 0, mode, false)
+                render_argument(arguments, 0, mode, false, diagnostics)
             );
         }
-        "textrm" | "textup" | "mbox" | "hbox" => {
+        "textrm" | "textup" | "mathrm" | "mbox" | "hbox" | "rlap" => {
             // These macros affect TeX layout, not the resulting characters.
-            return render_argument(arguments, 0, mode, false);
+            return render_argument(arguments, 0, mode, false, diagnostics);
         }
+        // Layout, definition, and spacing-control commands in this group contribute no field text.
+        "vphantom" | "noopsort" | "left" | "right" | "ensuremath" | "wd" | "ht" | "raise"
+        | "accent" | "def" | "hss" | "ifmmode" | "makeatletter" | "makeatother"
+        | "scriptscriptstyle" | "setbox" | "dimen" | "advance" | "path" | "relax"
+        | "aftergroup" | "ignorespaces" | "rm" => return String::new(),
+        "sc" => return String::new(),
+        "hspace" | "hskip" => {
+            // Match the TS visitor's zero-width special case; other explicit spacing becomes one space.
+            let amount = arguments
+                .first()
+                .map(|argument| serialize_nodes(argument))
+                .unwrap_or_default();
+            let amount = amount.trim_matches(['{', '}']);
+            return if amount.is_empty()
+                || (amount.starts_with('0') && amount[1..].chars().all(char::is_alphabetic))
+            {
+                String::new()
+            } else {
+                " ".to_string()
+            };
+        }
+        "bar" | "overline" => {
+            // The TS visitor appends a combining macron to ASCII letters and digits only.
+            let value = render_argument(arguments, 0, mode, false, diagnostics);
+            return value
+                .chars()
+                .map(|character| {
+                    if character.is_ascii_alphanumeric() {
+                        format!("{character}\u{0305}")
+                    } else {
+                        character.to_string()
+                    }
+                })
+                .collect();
+        }
+        "enquote" | "mkbibquote" => {
+            // `restoreMarkup` turns the TS enquote wrapper into curly quotation marks.
+            return format!(
+                "“{}”",
+                render_argument(arguments, 0, mode, false, diagnostics)
+            );
+        }
+        "section" | "subsection" | "subsubsection" | "subsubsubsection" => {
+            // Heading depth is the command name's number of `sub` components.
+            let level = name.split("sub").count();
+            let content = render_argument(arguments, 0, mode, false, diagnostics);
+            return format!("<h{level}>{content}</h{level}>");
+        }
+        "chsf" | "bibstring" | "cite" | "textcite" | "citeauthor" => {
+            // The TS no-case wrapper for these commands is stripped after title processing.
+            return render_argument(arguments, 0, mode, false, diagnostics);
+        }
+        "LaTeX" => return "L<sup>A</sup>T<sub>E</sub>X".to_string(),
         "textsuperscript" => {
-            return render_script_argument(arguments, 0, "^", mode);
+            return render_script_argument(arguments, 0, "^", mode, diagnostics);
         }
         "textsubscript" => {
-            return render_script_argument(arguments, 0, "_", mode);
+            return render_script_argument(arguments, 0, "_", mode, diagnostics);
         }
         "^" | "_" if mode == "math" => {
-            return render_script_argument(arguments, 0, name, mode);
+            return render_script_argument(arguments, 0, name, mode, diagnostics);
         }
         "frac" if mode == "math" => {
+            // Prefer an exact fraction mapping; otherwise compose mapped numerator and denominator scripts.
             let latex = serialize_macro(name, arguments);
             if let Some(mapping) = unicode_mapping(&latex)
                 && let Some(text) = mapping.math.or(mapping.text)
             {
                 return text.to_string();
             }
-            let numerator = render_argument(arguments, 0, mode, false);
-            let denominator = render_argument(arguments, 1, mode, false);
+            let numerator = render_argument(arguments, 0, mode, false, diagnostics);
+            let denominator = render_argument(arguments, 1, mode, false, diagnostics);
             return match (script_text(&numerator, "^"), script_text(&denominator, "_")) {
                 (Some(numerator), Some(denominator)) => format!("{numerator}\u{2044}{denominator}"),
                 _ => latex,
             };
         }
         "par" => return if mode == "richtext" { "<p>" } else { " " }.to_string(),
+        "item" => return if mode == "richtext" { "<li>" } else { " " }.to_string(),
+        "_" | "^" => return name.to_string(),
         _ => {}
+    }
+
+    // Combining entries are keyed by command alone; composed scalar mappings include their arguments.
+    let command = format!("\\{name}");
+    if let Some(mapping) = unicode_mapping(&command)
+        && let Some(mark) = mapping.combining
+    {
+        let argument = render_argument(arguments, 0, mode, false, diagnostics);
+        return format!(
+            "{}{mark}",
+            if argument.is_empty() { " " } else { &argument }
+        );
     }
 
     // Ordinary TeX macros use the build-generated unicode2latex maps.
     let latex = serialize_macro(name, arguments);
     if let Some(mapping) = unicode_mapping(&latex) {
-        // Accent entries append their mark to the rendered argument rather than replacing it.
-        if let Some(mark) = mapping.combining {
-            return format!("{}{mark}", render_argument(arguments, 0, mode, false));
-        }
-        // Prefer text output, falling back to math where the table has no text equivalent.
+        // Require a mapping for the active mode, as `latex2unicode` does in the TS visitor.
         let mapped_text = if mode == "math" {
-            mapping.math.or(mapping.text)
+            mapping.math
         } else {
-            mapping.text.or(mapping.math)
+            mapping.text
         };
         if let Some(text) = mapped_text {
             return text.to_string();
@@ -1210,11 +1608,26 @@ fn render_macro(name: &str, arguments: &[Vec<Node>], mode: &str) -> String {
     }
 
     // Keep unknown macros in the rendered text for later unsupported-macro handling.
+    diagnostics.report("macro", name, latex.clone());
     latex
 }
 
-/// Render supported environment nodes using the wrappers selected by field mode.
-fn render_environment(name: &str, content: &[Node], mode: &str) -> String {
+/// Render supported environment nodes or report unsupported ones without visiting their bodies.
+///
+/// `name` and `content` identify the parsed environment; `mode` controls rich-text wrappers;
+/// `diagnostics` collects unsupported environments. Title flags are forwarded to supported
+/// descendants. Leading/trailing whitespace, paragraph breaks, and `\\par` are trimmed to match
+/// the TypeScript visitor before known content is rendered. Unknown environments are reported as
+/// one construct and preserved as TeX, so nested body macros do not create extra diagnostics.
+fn render_environment(
+    name: &str,
+    content: &[Node],
+    mode: &str,
+    diagnostics: &mut RenderDiagnostics,
+    title_mode: bool,
+    protected_ancestor: bool,
+    root_scope: bool,
+) -> String {
     let trims_environment_edge = |node: &Node| match node {
         Node::Whitespace(_, _) | Node::Parbreak(_) => true,
         Node::Macro { name, .. } => name == "par",
@@ -1222,34 +1635,60 @@ fn render_environment(name: &str, content: &[Node], mode: &str) -> String {
     };
     let mut start = 0;
     let mut end = content.len();
+    // The reference visitor discards layout-only nodes at both environment edges.
     while start < end && trims_environment_edge(&content[start]) {
         start += 1;
     }
     while end > start && trims_environment_edge(&content[end - 1]) {
         end -= 1;
     }
-    let body = render_nodes(&content[start..end], mode, false)
-        .trim()
-        .to_string();
-    if mode != "richtext" {
-        // TypeScript applies environment wrappers only to rich-text fields.
-        return body;
-    }
     match name {
-        "quotation" => format!("<blockquote>{body}</blockquote>"),
-        "itemize" => format!("<ul>{body}</ul>"),
-        "em" => format!("<i>{body}</i>"),
-        _ => format!("\\begin{{{name}}}{body}\\end{{{name}}}"),
+        "quotation" | "itemize" | "em" => {
+            let body = render_nodes(
+                &content[start..end],
+                mode,
+                false,
+                diagnostics,
+                title_mode,
+                protected_ancestor,
+                root_scope,
+            )
+            .trim()
+            .to_string();
+            if mode != "richtext" {
+                return body;
+            }
+            match name {
+                "quotation" => format!("<blockquote>{body}</blockquote>"),
+                "itemize" => format!("<ul>{body}</ul>"),
+                _ => format!("<i>{body}</i>"),
+            }
+        }
+        // Do not recurse into unknown environments: their complete source is one unsupported node.
+        _ => {
+            let source = format!(
+                "\\begin{{{name}}}{}\\end{{{name}}}",
+                serialize_nodes(&content[start..end])
+            );
+            diagnostics.report("environment", name, source.clone());
+            source
+        }
     }
 }
 
+/// Render a superscript or subscript argument as Unicode when every character has a mapping.
+///
+/// `arguments` and `index` select the parsed value; `script_macro` is `^` or `_`; `mode` is carried
+/// into child rendering; `diagnostics` collects any unsupported commands inside the argument. If
+/// a character has no script mapping, the whole argument falls back to an HTML `sup`/`sub` wrapper.
 fn render_script_argument(
     arguments: &[Vec<Node>],
     index: usize,
     script_macro: &str,
     mode: &str,
+    diagnostics: &mut RenderDiagnostics,
 ) -> String {
-    let value = render_argument(arguments, index, mode, false);
+    let value = render_argument(arguments, index, mode, false, diagnostics);
     if let Some(script) = script_text(&value, script_macro) {
         script
     } else {
@@ -1258,6 +1697,9 @@ fn render_script_argument(
     }
 }
 
+/// Convert a string to Unicode script characters, returning `None` on the first unmapped character.
+///
+/// `value` is rendered argument text and `script_macro` selects the generated `^{x}` or `_{x}` key.
 fn script_text(value: &str, script_macro: &str) -> Option<String> {
     value
         .chars()

@@ -871,6 +871,7 @@ fn field_mode(field: &str) -> &'static str {
 
 /// Convert verbatim entries to typed field values and assign each field's parsing mode.
 pub fn normalize(verbatim: Library) -> ParsedLibrary {
+    let mut render_diagnostics = tex::RenderDiagnostics::default();
     let entries = verbatim
         .entries
         .into_iter()
@@ -903,7 +904,8 @@ pub fn normalize(verbatim: Library) -> ParsedLibrary {
                 }
                 // Verbatim data must remain untouched; creator lists need their own name tokenizer.
                 if current_mode != "verbatim" && current_mode != "creatorlist" {
-                    value = tex::render(&value, current_mode);
+                    value =
+                        tex::render_with_diagnostics(&value, current_mode, &mut render_diagnostics);
                 }
                 // These two modes produce arrays; all remaining non-keyword fields are scalar text.
                 let parsed = match current_mode {
@@ -939,11 +941,13 @@ pub fn normalize(verbatim: Library) -> ParsedLibrary {
             }
         })
         .collect();
+    let mut errors = verbatim.errors;
+    errors.extend(render_diagnostics.errors);
     ParsedLibrary {
         entries,
         strings: verbatim.strings,
         comments: verbatim.comments,
-        errors: verbatim.errors,
+        errors,
         preamble: verbatim.preambles,
     }
 }
@@ -1330,6 +1334,115 @@ mod tests {
     }
 
     #[test]
+    /// Checks declaration-style markup, list items, and quote macros render in their TeX modes.
+    fn tex_visitor_renders_declarations_lists_and_quotes() {
+        assert_eq!(
+            super::tex::render(r"\bf bold \em italic", "literal"),
+            "<b>bold <i>italic</i></b>"
+        );
+        assert_eq!(
+            super::tex::render(
+                r"\begin{itemize}\item First\item Second\end{itemize}",
+                "richtext"
+            ),
+            "<ul><li>First<li>Second</ul>"
+        );
+        assert_eq!(
+            super::tex::render(r"\enquote{quoted}", "literal"),
+            "“quoted”"
+        );
+        assert_eq!(
+            super::tex::render(r"dash -- em --- quotes ``quoted''", "literal"),
+            "dash – em — quotes “quoted”"
+        );
+        assert_eq!(
+            super::tex::render(
+                r"\mathrm{Roman}\rlap{over}\textsl{italic}\bar{abc}",
+                "literal"
+            ),
+            "Romanover<i>italic</i>a\u{0305}b\u{0305}c\u{0305}"
+        );
+        assert_eq!(
+            super::tex::render(r"a\hspace{1em}b\hspace{0pt}c", "literal"),
+            "a bc"
+        );
+        assert_eq!(
+            super::tex::render("An {unusual name}", "title"),
+            "An <span class=\"nocase\">unusual name</span>"
+        );
+        assert_eq!(
+            super::tex::render("An $n$", "title"),
+            "An <span class=\"nocase\">n</span>"
+        );
+    }
+
+    #[test]
+    /// Checks text ligature conversion against a shared fixture and its TypeScript snapshot.
+    fn parses_text_ligature_fixture_like_default_case() {
+        let parsed = fixture(include_str!(
+            "../../test/better-bibtex/export/Better BibLaTeX.001.biblatex"
+        ));
+        assert_eq!(
+            parsed.entries[0].fields["pages"],
+            FieldValue::Text("493–518".into())
+        );
+    }
+
+    #[test]
+    /// Checks common text markup macros against the existing TypeScript fixture snapshot.
+    fn parses_text_markup_fixture_like_default_case() {
+        let parsed = fixture(include_str!(
+            "../../test/better-bibtex/export/Better BibLaTeX.007.biblatex"
+        ));
+        let FieldValue::Text(title) = &parsed.entries[0].fields["title"] else {
+            panic!("title should be scalar text");
+        };
+        assert_eq!(
+            title,
+            "Test of markupconversion: Italics, bold, superscript, subscript, and small caps: Mitochondrial DNA₂ sequences suggest unexpected phylogenetic position of Corso-Sardinian grass snakes (<i>Natrix cetti</i>) and <b>do not</b> support their <span style=\"font-variant:small-caps;\">species status</span>, with notes on phylogeography and subspecies delineation of grass snakes."
+        );
+    }
+
+    #[test]
+    /// Checks rich-text list and paragraph rendering against an existing fixture snapshot.
+    fn parses_richtext_itemize_fixture_like_default_case() {
+        let parsed = fixture(include_str!(
+            "../../test/better-bibtex/export/Unicode ø in author name is exported with trailing space which does not work in bibtex #1538.bibtex"
+        ));
+        let FieldValue::Text(note) = &parsed.entries[0].fields["note"] else {
+            panic!("note should be scalar text");
+        };
+        assert!(note.contains("<ul><li>Clean experiment"));
+        assert!(note.contains("<p><li>The amount of work"));
+    }
+
+    #[test]
+    /// Checks unknown macros and environments are retained and reported once by kind.
+    fn tex_visitor_reports_unsupported_constructs() {
+        let parsed = parse_normalized(
+            r"@article{k,title={\unknown one \unknown two},note={\begin{custom}\inside body\end{custom}}}",
+            Options::default(),
+        );
+        assert_eq!(parsed.errors.len(), 2);
+        assert!(parsed.errors.iter().any(|error| {
+            error.error == "unhandled macro \\unknown" && error.input == r"\unknown"
+        }));
+        assert!(parsed.errors.iter().any(|error| {
+            error
+                .error
+                .starts_with("unhandled environment custom (\\begin{custom}")
+                && error.input.starts_with(r"\begin{custom}")
+                && error.input.ends_with(r"\end{custom}")
+        }));
+        assert!(
+            parsed
+                .errors
+                .iter()
+                .all(|error| !error.error.contains("macro \\inside"))
+        );
+    }
+
+    #[test]
     /// Checks unbraced fraction arguments and script fallback in an existing math-title fixture.
     fn parses_fraction_macros_in_math_mode_from_existing_fixture() {
         let parsed = fixture(include_str!(
@@ -1422,14 +1535,9 @@ mod tests {
         assert_eq!(entry.key, "demonstration");
         assert_eq!(entry.mode["note"], "richtext");
         let expected_environment = "<blockquote>sdadsafsf</blockquote>";
-        let typescript_snapshot = include_str!(
-            "../../test/snapshots/sentencecase=on+guess^caseprotection=as-needed^preservequoted/other/quotation-18.bib.yaml"
-        );
-        assert!(typescript_snapshot.contains(expected_environment));
-        assert!(matches!(
-            &entry.fields["note"],
-            FieldValue::Text(note) if note.starts_with(expected_environment)
-        ));
+        let expected_note = "<blockquote>sdadsafsf</blockquote><p>PRIME und SAT sind exponenziall ybd gelten in der Praxis als nicht lo\u{308}sbar. (<a href=\"zotero://open-pdf/library/items/VAB33DNE?page=30\">note on p.30</a>) <p>";
+        assert!(expected_note.starts_with(expected_environment));
+        assert_eq!(entry.fields["note"], FieldValue::Text(expected_note.into()));
     }
 
     #[test]
