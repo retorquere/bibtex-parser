@@ -1,0 +1,18 @@
+[package]
+name = "bibtex-parser"
+version = "0.1.0"
+edition = "2024"
+description = "Rust BibTeX parser with WebAssembly bindings"
+repository = "https://github.com/retorquere/bibtex-parser.git"
+
+[lib]
+name = "bibtex_parser"
+path = "src/lib.rs"
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+serde-wasm-bindgen = "0.6"
+wasm-bindgen = "0.2"
