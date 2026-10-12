@@ -20,6 +20,16 @@ import { parse } from '@retorquere/bibtex-parser'
 const library = parse('@article{example, title={A title}}')
 ```
 
+For the scanner-level representation, use `parseVerbatim`. Its fields are strings and have not been normalized or interpreted as LaTeX:
+
+```js
+import { parseVerbatim } from '@retorquere/bibtex-parser'
+
+const library = parseVerbatim('@article{example, title={A title}}')
+```
+
+The generated API documentation includes both the normalized parser and the verbatim parser.
+
 The WebAssembly implementation is available as an ESM entry point at `/wasm`. Initialize it before calling the parser. In a browser, `init()` loads the binary relative to the module:
 
 ```js

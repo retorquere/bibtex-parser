@@ -12,7 +12,7 @@ jobs:
     steps:
     - name: cancel matching master run on tag
       if: startsWith(github.ref, 'refs/tags/')
-      uses: actions/github-script@v8
+      uses: actions/github-script@v9
       with:
         script: |
           const { owner, repo } = context.repo
@@ -109,7 +109,7 @@ jobs:
 
   pages:
     needs: [cancel_master, test]
-    if: startsWith(github.ref, 'refs/tags/') && needs.test.result == 'success'
+    if: (github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/tags/')) && needs.test.result == 'success'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
