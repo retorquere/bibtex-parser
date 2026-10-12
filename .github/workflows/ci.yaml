@@ -5,24 +5,18 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        library: ['typescript', 'wasm']
-        sentencecase: ['on+guess', 'on', 'off']
-        caseprotection: [ 'as-needed', 'strict', 'off' ]
-        preservequoted: [ '-p', '-P' ]
     steps:
-    - uses: actions/checkout@v6
-    - run: echo "::version="`jq -r .version package.json` >> $GITHUB_OUTPUT
+    - uses: actions/checkout@v7
+    - run: echo "version=$(jq -r .version package.json)" >> "$GITHUB_OUTPUT"
       id: version
     - name: cancel spurious build on tagged version
       uses: andymckay/cancel-action@master
       if: github.event.head_commit.message == steps.version.outputs.version && !startsWith(github.ref, 'refs/tags/')
 
     - name: install node
-      uses: actions/setup-node@v6
+      uses: actions/setup-node@v7
       with:
         node-version: 24.x
         cache: 'npm'
@@ -37,22 +31,58 @@ jobs:
       with:
         tool: wasm-pack
 
-    - run: |
+    - name: build all parsers
+      run: |
         npm install
         npm run build
 
-    - name: test TypeScript parser
-      if: matrix.library == 'typescript'
-      run: |
-        echo ./test/run.js --sc ${{ matrix.sentencecase }} --cp ${{ matrix.caseprotection }} ${{ matrix.preservequoted }} --big
-        ./test/run.js --sc ${{ matrix.sentencecase }} --cp ${{ matrix.caseprotection }} ${{ matrix.preservequoted }} --big
+    - name: upload parser build
+      uses: actions/upload-artifact@v7
+      with:
+        name: parser-build
+        path: |
+          dist/
+          rust/pkg/
+        if-no-files-found: error
 
-    - name: test WASM parser
-      if: matrix.library == 'wasm'
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        library: ['typescript', 'wasm']
+        sentencecase: ['on+guess', 'on', 'off']
+        caseprotection: [ 'as-needed', 'strict', 'off' ]
+        preservequoted: [ '-p', '-P' ]
+    steps:
+    - uses: actions/checkout@v7
+    - name: install node
+      uses: actions/setup-node@v7
+      with:
+        node-version: 24.x
+        cache: 'npm'
+    - name: install node dependencies
+      run: npm install
+    - name: download parser build
+      uses: actions/download-artifact@v8
+      with:
+        name: parser-build
+        path: .
+    - name: test ${{ matrix.library }} parser
       run: |
-        echo node test/wasm.js --sc ${{ matrix.sentencecase }} --cp ${{ matrix.caseprotection }} ${{ matrix.preservequoted }} --big
-        node test/wasm.js --sc ${{ matrix.sentencecase }} --cp ${{ matrix.caseprotection }} ${{ matrix.preservequoted }} --big
-        node --test test/rust-wasm-parity.test.js
+        case "${{ matrix.library }}" in
+          typescript)
+            ./test/run.js --sc ${{ matrix.sentencecase }} --cp ${{ matrix.caseprotection }} ${{ matrix.preservequoted }} --big
+            ;;
+          wasm)
+            node test/wasm.js --sc ${{ matrix.sentencecase }} --cp ${{ matrix.caseprotection }} ${{ matrix.preservequoted }} --big
+            node --test test/rust-wasm-parity.test.js
+            ;;
+          *)
+            echo "Unsupported library: ${{ matrix.library }}" >&2
+            exit 1
+            ;;
+        esac
 
   release:
     runs-on: ubuntu-latest
@@ -62,13 +92,16 @@ jobs:
     needs: test
     if: startsWith(github.ref, 'refs/tags/')
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
+    - name: download parser build
+      uses: actions/download-artifact@v8
+      with:
+        name: parser-build
+        path: .
     - name: install node
-      uses: actions/setup-node@v6
+      uses: actions/setup-node@v7
       with:
         node-version: 24.x
         registry-url: 'https://registry.npmjs.org'
-    - name: install node dependencies
-      run: npm install
     - name: publish
-      run: npm publish --provenance --access public
+      run: npm publish --ignore-scripts --provenance --access public
