@@ -1,6 +1,6 @@
 {
   "name": "@retorquere/bibtex-parser",
-  "version": "11.0.0",
+  "version": "12.0.0",
   "description": "BibTeX parser",
   "type": "module",
   "main": "./dist/cjs/index.js",
@@ -29,7 +29,6 @@
     "lint": "dprint fmt *.ts && dprint check *.ts",
     "prestart": "npm run lint",
     "start": "npm run build",
-
     "build:esm": "rm -rf dist/esm && esbuild *.ts --outdir=dist/esm --format=esm --sourcemap --target=es2020 --loader:.ts=ts",
     "build:cjs": "rm -rf dist/cjs && esbuild *.ts --outdir=dist/cjs --format=cjs --sourcemap --target=node16 --loader:.ts=ts",
     "build:types": "rm -rf dist/esm dist/types && tsc -d -p tsconfig.esm.json",
