@@ -66,7 +66,7 @@ Both `parse` and `parseAsync` accept an `unsupported` option:
 
 These policies also apply to unsupported environments. Custom handler functions are no longer supported.
 
-## TypeScript Breaking Changes Since `master`
+## TypeScript Breaking Changes Since `v11`
 
 * `Options.unsupported` no longer accepts a callback `(node, tex, entry) => string` for custom replacement text. Use `ignore`, `keep`, or `throw`. The default remains `keep`, matching `master`; passing any other value now throws a `TypeError` during parser setup.
 * The new `unsupported: 'throw'` mode propagates unsupported-command/environment errors out of `parse` (or rejects `parseAsync`) instead of adding them to the entry's `errors` and continuing.
