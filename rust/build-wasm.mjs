@@ -1,5 +1,5 @@
 import { execFileSync } from 'node:child_process'
-import { copyFileSync, readFileSync, writeFileSync } from 'node:fs'
+import { copyFileSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -41,3 +41,9 @@ manifest.exports = {
   },
 }
 writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`)
+
+const dist = path.resolve(rust, '../dist/wasm')
+mkdirSync(dist, { recursive: true })
+for (const file of manifest.files) {
+  copyFileSync(path.join(pkg, file), path.join(dist, file))
+}

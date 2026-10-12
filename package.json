@@ -16,7 +16,12 @@
         "types": "./dist/types/index.d.ts",
         "default": "./dist/cjs/index.js"
       }
-    }
+    },
+    "./wasm": {
+      "types": "./dist/wasm/index.d.ts",
+      "import": "./dist/wasm/index.js"
+    },
+    "./wasm/bibtex_parser_bg.wasm": "./dist/wasm/bibtex_parser_bg.wasm"
   },
   "typings": "./index.d.ts",
   "scripts": {
@@ -29,9 +34,10 @@
     "build:types": "rm -rf dist/esm dist/types && tsc -d -p tsconfig.esm.json",
     "wasm:build": "node rust/build-wasm.mjs",
     "prebuild": "rm -rf dist && mkdir -p dist/data && cp data/*.json dist/data && ./build/abbr.py && ./build/prepositions.py",
-    "build": "npm run build:types && npm run build:cjs && npm run build:esm",
+    "build": "npm run build:types && npm run build:cjs && npm run build:esm && npm run wasm:build",
     "pretest": "npm start",
     "test": "node test/run.js",
+    "test:package": "npm run build && node --test test/package.test.js",
     "minitest": "./build/crossref.py && npm run build && node i.js",
     "list": "tar tvf $(npm pack)",
     "prepublishOnly": "npm start",

@@ -10,6 +10,38 @@ BibTeX is a reference management program that makes it easy for users of TeX and
 
 Documentation is available at [https://retorque.re/bibtex-parser/](https://retorque.re/bibtex-parser/).
 
+## Choosing a Parser
+
+The TypeScript implementation remains the default:
+
+```js
+import { parse } from '@retorquere/bibtex-parser'
+
+const library = parse('@article{example, title={A title}}')
+```
+
+The WebAssembly implementation is available as an ESM entry point at `/wasm`. Initialize it before calling the parser. In a browser, `init()` loads the binary relative to the module:
+
+```js
+import init, { parse } from '@retorquere/bibtex-parser/wasm'
+
+await init()
+const library = parse('@article{example, title={A title}}')
+```
+
+In Node.js, load the exported binary explicitly:
+
+```js
+import { readFile } from 'node:fs/promises'
+import init, { parse } from '@retorquere/bibtex-parser/wasm'
+
+const binary = new URL(import.meta.resolve('@retorquere/bibtex-parser/wasm/bibtex_parser_bg.wasm'))
+await init({ module_or_path: await readFile(binary) })
+const library = parse('@article{example, title={A title}}')
+```
+
+Both entry points include TypeScript declarations. Building the package from source also builds WebAssembly and requires Rust with the `wasm32-unknown-unknown` target and `wasm-pack`; consumers do not need these tools.
+
 ## Unknown TeX Commands
 
 Both `parse` and `parseAsync` accept an `unsupported` option:
