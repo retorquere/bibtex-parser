@@ -84,6 +84,41 @@ jobs:
             ;;
         esac
 
+  pages:
+    needs: test
+    if: github.ref == 'refs/heads/master'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v7
+    - name: install node
+      uses: actions/setup-node@v7
+      with:
+        node-version: 24.x
+        cache: 'npm'
+    - name: install node dependencies
+      run: npm ci
+    - name: generate documentation
+      run: ./node_modules/.bin/typedoc --tsconfig tsconfig.cjs.json
+    - name: configure Pages
+      uses: actions/configure-pages@v6
+    - name: upload documentation
+      uses: actions/upload-pages-artifact@v5
+      with:
+        path: ./docs
+    - name: deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v5
+
   release:
     runs-on: ubuntu-latest
     permissions:
