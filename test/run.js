@@ -152,19 +152,13 @@ function parse(bibfile, name, snapshot, options) {
   tested += 1
   test(name, { skip: skip({ input: bibfile }) }, async () => {
     const source = fs.readFileSync(bibfile, 'utf-8')
+    if (options.exception) {
+      await assert.rejects(bibtex.parseAsync(source, { ...options, unsupported: 'throw' }), /unhandled macro \\/)
+      return
+    }
     let result = ''
     try {
-      if (options.exception) {
-        await bibtex.parseAsync(source, {
-          ...options,
-          unsupported: (node, tex, entry) => {
-            result = `unsupported ${node.type} (${tex})\n${entry.input}`
-          },
-        })
-      }
-      else {
-        result = await bibtex.parseAsync(source, options)
-      }
+      result = await bibtex.parseAsync(source, options)
     }
     catch (err) {
       result = err.message + '\n' + err.stack
@@ -181,6 +175,33 @@ function sentenceCase(input, name, snapshot) {
   test(name, async () => {
     const result = data.items.map(item => bibtex.toSentenceCase(item.title, { subSentenceCapitalization: false }))
     matchSnapshot(result, snapshot)
+  })
+}
+
+for (const [name, parse] of [['parse', bibtex.parse], ['parseAsync', bibtex.parseAsync]]) {
+  const source = String.raw`@article{unknown, note = {before \unknownmacro after}}`
+
+  test(`unsupported ignore (${name})`, async () => {
+    const result = await parse(source, { unsupported: 'ignore' })
+    assert.equal(result.entries[0].fields.note, 'before after')
+    assert.deepEqual(result.errors, [])
+  })
+
+  test(`unsupported keep (${name})`, async () => {
+    const result = await parse(source, { unsupported: 'keep' })
+    assert.equal(result.entries[0].fields.note, String.raw`before \unknownmacroafter`)
+    assert.equal(result.errors[0].error, String.raw`unhandled macro \unknownmacro`)
+    assert.deepEqual(await parse(source), result)
+  })
+
+  for (const input of [source, String.raw`@preamble{\unknownmacro}`, String.raw`@string{unknown = {\unknownmacro}}`]) {
+    test(`unsupported throw ${input} (${name})`, async () => {
+      await assert.rejects(async () => parse(input, { unsupported: 'throw' }), /unhandled macro \\unknownmacro/)
+    })
+  }
+
+  test(`unsupported rejects removed handler (${name})`, async () => {
+    await assert.rejects(async () => parse(source, { unsupported: () => 'custom' }), TypeError)
   })
 }
 

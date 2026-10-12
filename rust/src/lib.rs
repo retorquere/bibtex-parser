@@ -1,8 +1,9 @@
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
+use std::sync::OnceLock;
 
 mod tex;
-
+mod tokenizer;
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 /// One BibTeX entry as read by the verbatim parser.
@@ -42,11 +43,258 @@ pub struct Library {
     pub errors: Vec<ParseError>,
     /// Values from `@preamble` directives.
     pub preambles: Vec<String>,
+    /// JabRef metadata extracted from `jabref-meta:` comments.
+    #[serde(default)]
+    pub jabref: JabRefMetadata,
 }
 
-#[derive(Debug, Clone, Default, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Default, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+/// A JabRef group; nested groups are stored in their parent's `groups` vector.
+pub struct JabRefGroup {
+    /// The group name.
+    pub name: String,
+    /// Citation keys belonging to this group after intersection/union calculations.
+    pub entries: Vec<String>,
+    /// Child groups in the hierarchy.
+    pub groups: Vec<JabRefGroup>,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Default, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+/// Metadata imported from JabRef's `jabref-meta:` comments.
+pub struct JabRefMetadata {
+    /// Top-level groups; nested groups are available through each group's `groups` field.
+    pub root: Vec<JabRefGroup>,
+    /// First group encountered for each name. JabRef 3.8+ permits duplicate names, so entry keys
+    /// are not assigned to a unique hierarchy node by this map.
+    pub groups: HashMap<String, JabRefGroup>,
+    /// Base directory for attachment paths.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub file_directory: Option<String>,
+    /// JabRef group metadata format version.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub groupsversion: Option<u32>,
+    /// JabRef database type.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub database_type: Option<String>,
+}
+
+/// Decode JabRef's backslash-escaped separators and remove line breaks from metadata records.
+fn decode_jabref(input: &str, separator: char) -> Vec<String> {
+    let mut records = vec![String::new()];
+    let mut chars = input.chars().peekable();
+    while let Some(ch) = chars.next() {
+        match ch {
+            '\\' => {
+                if let Some(escaped) = chars.next() {
+                    records[0].push(escaped);
+                }
+            }
+            '\r' if chars.peek() == Some(&'\n') => {
+                chars.next();
+            }
+            '\n' => {}
+            ch if ch == separator => records.insert(0, String::new()),
+            ch => records[0].push(ch),
+        }
+    }
+    records.reverse();
+    records.retain(|record| !record.is_empty());
+    records
+}
+
+fn jabref_group_at_path_mut<'a>(
+    groups: &'a mut [JabRefGroup],
+    path: &[usize],
+) -> Option<&'a mut JabRefGroup> {
+    let (index, remainder) = path.split_first()?;
+    let group = groups.get_mut(*index)?;
+    if remainder.is_empty() {
+        Some(group)
+    } else {
+        jabref_group_at_path_mut(&mut group.groups, remainder)
+    }
+}
+
+fn collect_jabref_groups(groups: &[JabRefGroup], index: &mut HashMap<String, JabRefGroup>) {
+    for group in groups {
+        index
+            .entry(group.name.clone())
+            .or_insert_with(|| group.clone());
+        collect_jabref_groups(&group.groups, index);
+    }
+}
+
+/// Import JabRef groups from metadata comments and return unrelated comments unchanged.
+///
+/// Independent groups keep their listed keys, intersections retain only keys in the parent,
+/// unions add parent keys, and query groups are not supported by the TypeScript parser.
+fn parse_jabref_metadata(comments: Vec<String>) -> (Vec<String>, JabRefMetadata) {
+    let mut metadata = JabRefMetadata::default();
+    let mut kept = Vec::new();
+    let mut decoded = HashMap::<String, Vec<String>>::new();
+
+    for comment in comments {
+        let Some(rest) = comment.strip_prefix("jabref-meta:") else {
+            kept.push(comment);
+            continue;
+        };
+        let rest = rest.trim_start();
+        let Some((kind, payload)) = rest.split_once(':') else {
+            kept.push(comment);
+            continue;
+        };
+        decoded.insert(kind.to_string(), decode_jabref(payload, ';'));
+    }
+
+    if let Some(value) = decoded
+        .get("groupsversion")
+        .and_then(|values| values.first())
+    {
+        metadata.groupsversion = value.trim().parse::<u32>().ok();
+    }
+    metadata.file_directory = decoded
+        .get("fileDirectory")
+        .and_then(|values| values.first())
+        .cloned();
+    metadata.database_type = decoded
+        .get("databaseType")
+        .and_then(|values| values.first())
+        .cloned();
+
+    let mut levels = Vec::<Vec<usize>>::new();
+    for tree in ["groupstree", "grouping"] {
+        let Some(encoded_groups) = decoded.get(tree) else {
+            continue;
+        };
+        for encoded in encoded_groups {
+            let mut fields = decode_jabref(encoded, ';');
+            let Some(level_type_name) = fields.first().cloned() else {
+                break;
+            };
+            fields.remove(0);
+            let level_and_type = decode_jabref(&level_type_name, ':');
+            let Some(level_type) = level_and_type.first() else {
+                break;
+            };
+            let Some((level, group_type)) = level_type.split_once(' ') else {
+                break;
+            };
+            let Ok(level) = level.parse::<usize>() else {
+                break;
+            };
+            if group_type == "AllEntriesGroup" {
+                // JabRef's synthetic all-entries group is a root marker, not a named child group.
+                continue;
+            }
+            let Some(name) = level_and_type.get(1) else {
+                break;
+            };
+            let intersection = fields
+                .first()
+                .and_then(|field| decode_jabref(field, ';').first().cloned())
+                .unwrap_or_default();
+            if !fields.is_empty() {
+                fields.remove(0);
+            }
+            let mut group = JabRefGroup {
+                name: name.clone(),
+                entries: if tree == "grouping" {
+                    Vec::new()
+                } else {
+                    fields
+                        .iter()
+                        .filter_map(|field| decode_jabref(field, ';').first().cloned())
+                        .collect()
+                },
+                groups: Vec::new(),
+            };
+
+            if level == 1 {
+                let root_index = metadata.root.len();
+                metadata.root.push(group);
+                let path = vec![root_index];
+                if levels.len() < level {
+                    levels.push(path);
+                } else {
+                    levels[level - 1] = path;
+                }
+            } else if let Some(parent_path) = levels.get(level - 2).cloned() {
+                let Some(parent) = jabref_group_at_path_mut(&mut metadata.root, &parent_path)
+                else {
+                    continue;
+                };
+                let parent_entries = parent.entries.clone();
+                match intersection.as_str() {
+                    "1" => group.entries.retain(|key| parent_entries.contains(key)),
+                    "2" => {
+                        let inherited: Vec<_> = parent_entries
+                            .into_iter()
+                            .filter(|key| !group.entries.contains(key))
+                            .collect();
+                        group.entries.extend(inherited);
+                    }
+                    _ => {}
+                }
+                let child_index = parent.groups.len();
+                parent.groups.push(group);
+                let mut path = parent_path;
+                path.push(child_index);
+                if levels.len() < level {
+                    levels.push(path);
+                } else {
+                    levels[level - 1] = path;
+                }
+            }
+        }
+    }
+    collect_jabref_groups(&metadata.root, &mut metadata.groups);
+    (kept, metadata)
+}
+
+#[derive(Deserialize)]
+struct CrossReferenceData {
+    allowed: HashMap<String, Vec<String>>,
+    #[serde(rename = "noCrossRef")]
+    no_cross_ref: Vec<String>,
+}
+
+static CROSS_REFERENCE_DATA: OnceLock<CrossReferenceData> = OnceLock::new();
+static CROSS_REFERENCE_MAP: OnceLock<HashMap<String, HashMap<String, HashMap<String, String>>>> =
+    OnceLock::new();
+
+fn cross_reference_data() -> &'static CrossReferenceData {
+    CROSS_REFERENCE_DATA.get_or_init(|| {
+        serde_json::from_str(include_str!("../../data/fields.json"))
+            .expect("fields.json is valid cross-reference data")
+    })
+}
+
+fn cross_reference_map() -> &'static HashMap<String, HashMap<String, HashMap<String, String>>> {
+    CROSS_REFERENCE_MAP.get_or_init(|| {
+        serde_json::from_str(include_str!("../../data/crossref.json"))
+            .expect("crossref.json is valid cross-reference data")
+    })
+}
+
+fn field_value_is_truthy(value: &FieldValue) -> bool {
+    match value {
+        FieldValue::Text(value) => !value.is_empty(),
+        FieldValue::Creators(_) | FieldValue::List(_) => true,
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct CrossRefSource {
+    pub parent: String,
+    pub field: String,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(default, rename_all = "camelCase")]
-/// Configuration for verbatim BibTeX parsing.
+/// Configuration for verbatim and normalized BibTeX parsing.
 pub struct Options {
     /// Stop after this many entries. `None` and `Some(0)` both mean no limit.
     pub max_entries: Option<usize>,
@@ -54,6 +302,105 @@ pub struct Options {
     pub strings: HashMap<String, String>,
     /// BibTeX source parsed before the main input, commonly a strings file.
     pub strings_source: Option<String>,
+    /// Skip TeX-to-Unicode conversion and sentence-casing while still parsing field structure.
+    pub raw: bool,
+    /// Apply inherited cross-reference fields from the target entry to its children.
+    pub apply_crossref: bool,
+    /// Exact field names that always stay in verbatim mode even when they are not in the default list.
+    ///
+    /// Fields such as `url` are normally parsed in verbatim mode, where TeX commands are treated
+    /// as regular text. This option adds fields that should receive that treatment; the WASM
+    /// adapter also resolves TypeScript RegExp selectors to exact field names before normalization.
+    pub verbatim_fields: Vec<String>,
+    /// Fields whose single outer brace layer should be removed before normalization.
+    ///
+    /// BibTeX data often wraps fields in double braces as a workaround for case handling. Listed
+    /// fields have one outer group ignored when the complete field value is exactly one group.
+    pub remove_outer_braces: Vec<String>,
+    /// Explicit mode overrides for specific fields. These precede the default field-mode tables.
+    pub field_mode: HashMap<String, String>,
+    /// Language identifiers whose titles receive sentence casing; an empty list disables it.
+    ///
+    /// Bib(La)TeX treats English entries differently from other languages: English titles are
+    /// conventionally title-cased and braced words carry case protection. This parser converts
+    /// English-like titles to sentence case for consumers such as Zotero. If no language field is
+    /// present, Bib(La)TeX assumes English; include the empty string in custom language lists to
+    /// preserve that default. Sentence casing is heuristic and does not use natural-language
+    /// processing, so results should be reviewed. The TypeScript/WASM adapter normalizes a boolean
+    /// to either the default language list or an empty list.
+    pub english: Vec<String>,
+    /// Use the `language` field as a fallback when neither `langid` nor `hyphenation` is present.
+    ///
+    /// Some sources use `language` for this purpose despite the usual `langid` and `hyphenation`
+    /// fields; enable this option to include that fallback.
+    pub language_as_langid: bool,
+    /// Sentence-case heuristics matching the TypeScript parser's option object.
+    pub sentence_case: SentenceCaseOptions,
+    /// Title case-protection policy: `off`, `as-needed`, or `strict`.
+    ///
+    /// In `as-needed` mode, mixed-case words inside root groups are inferred to need no-case
+    /// protection. This avoids treating ordinary `\\textit{...}` emphasis as intentional case
+    /// protection when authors may not expect the braces to affect title casing. `strict` preserves
+    /// protection exactly as entered; `off` disables protection.
+    pub case_protection: String,
+    /// Ignore unsupported TeX constructs instead of retaining their diagnostic.
+    ///
+    /// This is the Rust/WASM equivalent of the TypeScript unsupported-command handler’s
+    /// ignore policy; replacement callbacks are applied by the JS adapter.
+    pub ignore_unsupported: bool,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(default, rename_all = "camelCase")]
+/// Sentence-case controls used while normalizing English title fields.
+pub struct SentenceCaseOptions {
+    /// Skip sentence casing when the parser guesses a title is already sentence-cased.
+    ///
+    /// Some English titles are already sentence-cased or all-uppercase. When this option is on,
+    /// a title with enough sentence-case words that are not prepositions, acronyms, or ordinals is
+    /// returned unchanged.
+    pub guess: bool,
+    /// Preserve capitalization after sentence-like separators such as colons.
+    ///
+    /// For `Structured Interviewing For OCB: Construct Validity, Faking, And The Effects Of
+    /// Question Type`, `true` yields `Structured interviewing for OCB: Construct validity,
+    /// faking, and the effects of question type`; `false` lowercases after the colon as well.
+    pub sub_sentence: bool,
+    /// Retain capitalization inside quoted portions of a title.
+    ///
+    /// When enabled, quoted titles are preserved as entered while other title text is
+    /// sentence-cased.
+    pub preserve_quoted: bool,
+}
+
+impl Default for SentenceCaseOptions {
+    fn default() -> Self {
+        Self {
+            guess: true,
+            sub_sentence: true,
+            preserve_quoted: true,
+        }
+    }
+}
+
+impl Default for Options {
+    fn default() -> Self {
+        Self {
+            max_entries: None,
+            strings: HashMap::new(),
+            strings_source: None,
+            raw: false,
+            apply_crossref: true,
+            verbatim_fields: Vec::new(),
+            remove_outer_braces: default_remove_outer_braces(),
+            field_mode: HashMap::new(),
+            english: default_english(),
+            language_as_langid: false,
+            sentence_case: SentenceCaseOptions::default(),
+            case_protection: "as-needed".to_string(),
+            ignore_unsupported: false,
+        }
+    }
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Default, Serialize, Deserialize)]
@@ -61,25 +408,36 @@ pub struct Options {
 /// A creator parsed from a creator-list field such as `author` or `editor`.
 pub struct Creator {
     /// An unparsed literal name, used when the input wraps a whole name in braces.
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
     /// Family name.
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub last_name: Option<String>,
     /// Given name.
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub first_name: Option<String>,
     /// Family-name prefix, such as `van`.
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub prefix: Option<String>,
     /// Name suffix, such as `Jr.`.
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub suffix: Option<String>,
     /// Initials supplied by an extended-name field.
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub initial: Option<String>,
     /// Extended-name `useprefix` property.
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub useprefix: Option<bool>,
     /// Extended-name `juniorcomma` property.
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub juniorcomma: Option<bool>,
+    /// Additional TypeScript extended-name properties.
+    #[serde(flatten)]
+    pub extra: HashMap<String, serde_json::Value>,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
-#[serde(tag = "kind", content = "value", rename_all = "camelCase")]
+#[serde(untagged)]
 /// Typed representation of a normalized field value.
 pub enum FieldValue {
     /// Scalar text, including fields whose TeX markup is not yet rendered.
@@ -105,6 +463,10 @@ pub struct ParsedEntry {
     pub fields: HashMap<String, FieldValue>,
     /// Parser mode assigned to each field (for example, `title` or `creatorlist`).
     pub mode: HashMap<String, String>,
+    /// Field inherited from a cross-referenced parent entry.
+    #[serde(skip_serializing_if = "HashMap::is_empty")]
+    #[serde(default)]
+    pub crossref: HashMap<String, CrossRefSource>,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Default, Serialize, Deserialize)]
@@ -121,6 +483,9 @@ pub struct ParsedLibrary {
     pub errors: Vec<ParseError>,
     /// Values from `@preamble` directives.
     pub preamble: Vec<String>,
+    /// JabRef metadata extracted from `jabref-meta:` comments.
+    #[serde(default)]
+    pub jabref: JabRefMetadata,
 }
 
 struct Parser {
@@ -139,6 +504,7 @@ impl Parser {
             max_entries,
             strings,
             strings_source,
+            ..
         } = options;
         let mut defaults = default_strings();
         defaults.extend(
@@ -247,7 +613,10 @@ impl Parser {
     /// Read a BibTeX identifier, allowing the syntax characters accepted by the TS parser.
     fn key(&mut self, allow: &str) -> Result<String, String> {
         let start = self.pos;
-        while let Some(ch) = self.chars.get(self.pos).copied() {
+        loop {
+            let Some(ch) = self.chars.get(self.pos).copied() else {
+                return Err(self.error("Runaway key"));
+            };
             if ch.is_alphabetic()
                 || ch.is_ascii_digit()
                 || matches!(
@@ -261,11 +630,7 @@ impl Parser {
                 break;
             }
         }
-        if self.pos == start && self.pos == self.chars.len() {
-            Err(self.error("Runaway key"))
-        } else {
-            Ok(self.text(start, self.pos))
-        }
+        Ok(self.text(start, self.pos))
     }
 
     /// Read the entry delimiter and return its matching closing character.
@@ -363,7 +728,9 @@ impl Parser {
                     .library
                     .strings
                     .get(&upper)
+                    .filter(|value| !value.is_empty())
                     .or_else(|| self.defaults.get(&upper))
+                    .filter(|value| !value.is_empty())
                 {
                     value.clone()
                 } else {
@@ -409,7 +776,8 @@ impl Parser {
         let value = self.value()?;
         // @string values extend the lookup table; entry-field values attach to the current record.
         if self.parsing == "string" {
-            self.library.strings.insert(key.to_uppercase(), value);
+            let key = key.to_uppercase();
+            self.library.strings.insert(key, value);
         } else if let Some(entry) = self.library.entries.last_mut() {
             // Preserve duplicate fields using the same numbered suffix convention as TypeScript.
             let base = key.to_lowercase();
@@ -493,20 +861,21 @@ impl Parser {
         let start = self.pos;
         let result = (|| {
             self.expect("@")?;
+            self.skip_whitespace();
             self.parsing = self.key("")?.to_lowercase();
             // Comments have a different body grammar and do not create an entry record.
             if self.parsing == "comment" {
                 return self.comment();
             }
-            let end = self.guard()?;
-            if self.parsing == "string" {
-                self.field(None)?;
-                return self.expect(&end.to_string());
-            }
-            // Preambles are concatenated values; ordinary directives create entries.
+            // TypeScript parses preambles as values before reading an entry guard.
             if self.parsing == "preamble" {
                 let preamble = self.value()?;
                 self.library.preambles.push(preamble);
+                return Ok(());
+            }
+            let end = self.guard()?;
+            if self.parsing == "string" {
+                self.field(None)?;
                 return self.expect(&end.to_string());
             }
             self.library.entries.push(Entry {
@@ -517,6 +886,7 @@ impl Parser {
             });
             self.entry(end)?;
             self.expect(&end.to_string())?;
+            self.skip_whitespace();
             let input = self.text(start, self.pos).trim().to_string();
             if let Some(entry) = self.library.entries.last_mut() {
                 entry.input = input;
@@ -550,6 +920,9 @@ impl Parser {
                 break;
             }
         }
+        let (comments, jabref) = parse_jabref_metadata(self.library.comments.clone());
+        self.library.comments = comments;
+        self.library.jabref = jabref;
         self.library
     }
 }
@@ -612,6 +985,68 @@ fn default_strings() -> HashMap<String, String> {
     .collect()
 }
 
+/// Return the TypeScript parser's default set of English language identifiers.
+fn default_english() -> Vec<String> {
+    [
+        "",
+        "american",
+        "british",
+        "canadian",
+        "english",
+        "australian",
+        "newzealand",
+        "usenglish",
+        "ukenglish",
+        "en",
+        "eng",
+        "en-au",
+        "en-bz",
+        "en-ca",
+        "en-cb",
+        "en-gb",
+        "en-ie",
+        "en-jm",
+        "en-nz",
+        "en-ph",
+        "en-tt",
+        "en-us",
+        "en-za",
+        "en-zw",
+        "anglais",
+    ]
+    .into_iter()
+    .map(str::to_string)
+    .collect()
+}
+
+/// Return the default fields whose outer protection braces TypeScript removes or preserves.
+fn default_remove_outer_braces() -> Vec<String> {
+    [
+        "doi",
+        "title",
+        "subtitle",
+        "series",
+        "shorttitle",
+        "booktitle",
+        "origtitle",
+        "maintitle",
+        "eventtitle",
+        "eprint",
+        "file",
+        "files",
+        "pdf",
+        "groups",
+        "ids",
+        "url",
+        "verba",
+        "verbb",
+        "verbc",
+    ]
+    .into_iter()
+    .map(str::to_string)
+    .collect()
+}
+
 const CREATOR_FIELDS: &[&str] = &[
     "author",
     "bookauthor",
@@ -638,6 +1073,7 @@ const TITLE_FIELDS: &[&str] = &[
     "eventtitle",
 ];
 
+// JabRef's `groups` field is nonstandard and must stay literal like the other verbatim fields.
 const VERBATIM_FIELDS: &[&str] = &[
     "doi", "eprint", "file", "files", "pdf", "groups", "ids", "url", "verba", "verbb", "verbc",
 ];
@@ -711,9 +1147,9 @@ fn split_creators(input: &str) -> Vec<String> {
             // Require `and` to be a complete token at the current top-level depth.
             if token.eq_ignore_ascii_case("and")
                 && index > 0
-                && chars[index - 1].is_whitespace()
+                && chars[index - 1].is_ascii_whitespace()
                 && index + 3 < chars.len()
-                && chars[index + 3].is_whitespace()
+                && chars[index + 3].is_ascii_whitespace()
             {
                 result.push(
                     chars[start..index]
@@ -723,7 +1159,7 @@ fn split_creators(input: &str) -> Vec<String> {
                         .to_string(),
                 );
                 index += 3;
-                while index < chars.len() && chars[index].is_whitespace() {
+                while index < chars.len() && chars[index].is_ascii_whitespace() {
                     index += 1;
                 }
                 start = index;
@@ -734,6 +1170,38 @@ fn split_creators(input: &str) -> Vec<String> {
     }
     result.push(chars[start..].iter().collect::<String>().trim().to_string());
     result.into_iter().filter(|name| !name.is_empty()).collect()
+}
+
+/// Split first-last creator names on whitespace outside TeX groups.
+fn split_creator_words(input: &str) -> Vec<String> {
+    let mut words = Vec::new();
+    let mut word = String::new();
+    let (mut depth, mut escaped) = (0usize, false);
+    for character in input.chars() {
+        if escaped {
+            word.push(character);
+            escaped = false;
+        } else if character == '\\' {
+            word.push(character);
+            escaped = true;
+        } else if character == '{' {
+            depth += 1;
+            word.push(character);
+        } else if character == '}' {
+            depth = depth.saturating_sub(1);
+            word.push(character);
+        } else if character.is_ascii_whitespace() && depth == 0 {
+            if !word.is_empty() {
+                words.push(std::mem::take(&mut word));
+            }
+        } else {
+            word.push(character);
+        }
+    }
+    if !word.is_empty() {
+        words.push(word);
+    }
+    words
 }
 
 /// Remove one complete outer name group while leaving partial or nested source intact.
@@ -747,17 +1215,51 @@ fn clean_name_part(value: &str) -> String {
 }
 
 /// Parse one creator using the extended-name, comma-separated, or first-last convention.
-fn parse_creator(input: &str) -> Creator {
+fn parse_creator(
+    input: &str,
+    entry_key: &str,
+    macro_registry: &mut HashMap<String, Vec<tex::Node>>,
+    diagnostics: &mut tex::RenderDiagnostics,
+) -> Creator {
     // A fully braced name is an indivisible literal rather than a family/given name pair.
-    if input.starts_with('{') && input.ends_with('}') {
+    let unwrapped = remove_outer_braces(input);
+    if unwrapped != input {
         return Creator {
-            name: Some(clean_name_part(input)),
+            name: Some(
+                tex::render_with_policy_and_registry(
+                    &unwrapped,
+                    "creatorlist",
+                    diagnostics,
+                    tex::CaseProtection::Off,
+                    macro_registry,
+                )
+                .trim()
+                .to_string(),
+            ),
             ..Creator::default()
         };
     }
-    let parts = split_top_level(input, ',');
-    // Better BibTeX's extended-name syntax is a comma-separated set of named properties.
-    if parts.iter().any(|part| part.contains('=')) {
+    let raw_input = input.trim();
+    let input = tex::render_with_policy_and_registry(
+        raw_input,
+        "creatorlist",
+        diagnostics,
+        tex::CaseProtection::Off,
+        macro_registry,
+    )
+    .trim()
+    .to_string();
+    let mut parts = split_top_level(&input, ',');
+    if parts.len() == 3 && parts[2].is_empty() {
+        parts.pop();
+    }
+    // TypeScript recognizes extended names only when every comma-delimited part has a key=value signature.
+    let extended = parts.len() > 1
+        && parts.iter().all(|part| {
+            part.split_once('=')
+                .is_some_and(|(key, _)| is_extended_creator_key(key.trim()))
+        });
+    if extended {
         let mut creator = Creator::default();
         for part in parts {
             let Some((key, value)) = part.split_once('=') else {
@@ -766,11 +1268,14 @@ fn parse_creator(input: &str) -> Creator {
             let key = key.trim().to_ascii_lowercase();
             let value = clean_name_part(value);
             match key.as_str() {
-                "given" => creator.first_name = Some(value),
-                "family" => creator.last_name = Some(value),
-                "given-i" => creator.initial = Some(value),
+                "given" if !value.is_empty() => creator.first_name = Some(value),
+                "family" if !value.is_empty() => creator.last_name = Some(value),
+                "given-i" if !value.is_empty() => creator.initial = Some(value),
                 "useprefix" => creator.useprefix = Some(value.eq_ignore_ascii_case("true")),
                 "juniorcomma" => creator.juniorcomma = Some(value.eq_ignore_ascii_case("true")),
+                _ if !value.is_empty() => {
+                    creator.extra.insert(key, serde_json::Value::String(value));
+                }
                 _ => {}
             }
         }
@@ -778,7 +1283,24 @@ fn parse_creator(input: &str) -> Creator {
     }
 
     // BibTeX comma form is `family, suffix, given`; without commas names use first-last rules.
+    // More than three comma parts are diagnosed and discarded, retaining only these first fields.
     if parts.len() > 1 {
+        if parts.len() > 3 {
+            let joined = parts.join(", ");
+            let key_prefix = if entry_key.is_empty() {
+                String::new()
+            } else {
+                format!("@{entry_key}: ")
+            };
+            diagnostics.errors.push(ParseError {
+                error: format!(
+                    "{key_prefix}unexpected {}-part name \"{joined}\", dropping \"{}\"",
+                    parts.len(),
+                    parts[3..].join(", ")
+                ),
+                input: joined,
+            });
+        }
         let (last_name, suffix, first_name) = match parts.as_slice() {
             [last, first] => (last.as_str(), None, Some(first.as_str())),
             [last, suffix, first, ..] => {
@@ -796,28 +1318,47 @@ fn parse_creator(input: &str) -> Creator {
             suffix: suffix.map(clean_name_part).filter(|name| !name.is_empty()),
             ..Creator::default()
         };
-        if let Some((prefix, family)) = last_name.split_once(' ')
-            && !prefix.is_empty()
-            && prefix
-                .chars()
-                .all(|ch| ch.is_ascii_lowercase() || ch == '.' || ch == '\'')
-        {
-            creator.prefix = Some(prefix.to_string());
-            creator.last_name = Some(family.to_string());
+        if let Some((split, _)) = last_name.char_indices().rev().find(|(index, ch)| {
+            *ch == ' '
+                && *index > 0
+                && *index + ch.len_utf8() < last_name.len()
+                && last_name[..*index]
+                    .chars()
+                    .all(|prefix| prefix.is_ascii_lowercase() || matches!(prefix, '.' | '\'' | ' '))
+        }) {
+            creator.prefix = Some(last_name[..split].to_string());
+            creator.last_name = Some(last_name[split + 1..].to_string());
         }
         return creator;
     }
 
-    let words: Vec<String> = input.split_whitespace().map(clean_name_part).collect();
+    let words: Vec<String> = split_creator_words(raw_input)
+        .iter()
+        .map(|word| {
+            tex::render_with_policy_and_registry(
+                word,
+                "creatorlist",
+                diagnostics,
+                tex::CaseProtection::Off,
+                macro_registry,
+            )
+            .trim()
+            .to_string()
+        })
+        .filter(|word| !word.is_empty())
+        .map(|word| clean_name_part(&word))
+        .collect();
     if words.len() <= 1 {
         return Creator {
             last_name: words.first().cloned(),
             ..Creator::default()
         };
     }
-    let prefix_index = words
-        .iter()
-        .position(|word| word.chars().next().is_some_and(char::is_lowercase));
+    let prefix_index = words.iter().position(|word| {
+        word.chars()
+            .next()
+            .is_some_and(|ch| ch.is_ascii_lowercase())
+    });
     // Lowercase particles mark the prefix; all-uppercase names use the final token as family name.
     match prefix_index {
         None => Creator {
@@ -835,53 +1376,389 @@ fn parse_creator(input: &str) -> Creator {
                 .iter()
                 .enumerate()
                 .skip(index + 1)
-                .find(|(_, word)| word.chars().next().is_some_and(|ch| !ch.is_lowercase()))
-                .map(|(i, _)| i)
-                .unwrap_or(words.len());
-            Creator {
-                first_name: Some(words[..index].join(" ")),
-                prefix: Some(words[index..postfix].join(" ")),
-                last_name: Some(words[postfix..].join(" ")),
-                ..Creator::default()
+                .find(|(_, word)| {
+                    word.chars()
+                        .next()
+                        .is_some_and(|ch| !ch.is_ascii_lowercase())
+                })
+                .map(|(i, _)| i);
+            if let Some(postfix) = postfix {
+                Creator {
+                    first_name: Some(words[..index].join(" ")),
+                    prefix: Some(words[index..postfix].join(" ")),
+                    last_name: Some(words[postfix..].join(" ")),
+                    ..Creator::default()
+                }
+            } else {
+                Creator {
+                    first_name: Some(words[..words.len() - 1].join(" ")),
+                    last_name: words.last().cloned(),
+                    ..Creator::default()
+                }
             }
         }
     }
 }
 
-/// Select the parser mode used for a Bib(La)TeX field.
-fn field_mode(field: &str) -> &'static str {
-    // Specific field groups control creator splitting and which TeX features are rendered.
-    if CREATOR_FIELDS.contains(&field) {
-        "creatorlist"
-    } else if TITLE_FIELDS.contains(&field) {
-        "title"
-    } else if VERBATIM_FIELDS.contains(&field)
-        || field.starts_with("citeulike-linkout-")
-        || field.starts_with("bdsk-url-")
-    {
-        "verbatim"
-    } else if RICHTEXT_FIELDS.contains(&field) {
-        "richtext"
-    } else if LIST_FIELDS.contains(&field) {
-        "literallist"
-    } else {
-        "literal"
+fn is_extended_creator_key(key: &str) -> bool {
+    let is_letters = |segment: &str| {
+        !segment.is_empty()
+            && segment
+                .chars()
+                .all(|character| character.is_ascii_alphabetic())
+    };
+    match key.split_once('-') {
+        Some((prefix, suffix)) => is_letters(prefix) && is_letters(suffix) && !suffix.contains('-'),
+        None => is_letters(key),
     }
+}
+
+/// Parse raw creator parts using the TypeScript `raw` branch without rendering or brace cleanup.
+fn parse_raw_creator(input: &str) -> Creator {
+    let parts = split_top_level(input, ',');
+    let extended = parts.len() > 1
+        && parts.iter().all(|part| {
+            part.split_once('=')
+                .is_some_and(|(key, _)| is_extended_creator_key(key.trim()))
+        });
+    if parts.len() == 2 && !extended {
+        return Creator {
+            last_name: Some(parts[0].clone()),
+            first_name: Some(parts[1].clone()),
+            ..Creator::default()
+        };
+    }
+    if parts.len() == 1 {
+        let words: Vec<_> = input.split_ascii_whitespace().collect();
+        if words.len() == 2 {
+            return Creator {
+                last_name: Some(words[1].to_string()),
+                first_name: Some(words[0].to_string()),
+                ..Creator::default()
+            };
+        }
+    }
+    Creator {
+        name: Some(input.trim().to_string()),
+        ..Creator::default()
+    }
+}
+
+/// Choose the field parser mode, honoring explicit overrides before the default mode table.
+///
+/// The TypeScript reference resolves `verbatimFields` and `fieldMode` before falling back to the
+/// built-in lists for creators, titles, rich text, and literal lists. This helper keeps the same
+/// precedence so custom field rules can still be overridden by later defaults.
+fn field_mode(field: &str, options: &Options) -> String {
+    if options
+        .verbatim_fields
+        .iter()
+        .any(|candidate| candidate.eq_ignore_ascii_case(field))
+    {
+        return "verbatim".to_string();
+    }
+
+    let configured = options.field_mode.get(field);
+    let has_override = configured.is_some();
+    let mut mode = "literal";
+    for (candidate, matches_default) in [
+        (
+            "creatorlist",
+            !has_override && CREATOR_FIELDS.contains(&field),
+        ),
+        ("title", !has_override && TITLE_FIELDS.contains(&field)),
+        (
+            "verbatim",
+            !has_override && VERBATIM_FIELDS.contains(&field),
+        ),
+        (
+            "richtext",
+            !has_override && RICHTEXT_FIELDS.contains(&field),
+        ),
+        ("literallist", !has_override && LIST_FIELDS.contains(&field)),
+    ] {
+        if configured.is_some_and(|configured| configured == candidate) || matches_default {
+            mode = candidate;
+        }
+        let matches_verbatim_pattern = (field == "keywords"
+            || field
+                .strip_prefix("keywords+duplicate-")
+                .is_some_and(|suffix| {
+                    !suffix.is_empty() && suffix.chars().all(|ch| ch.is_ascii_digit())
+                }))
+            || ["citeulike-linkout-", "bdsk-url-"].iter().any(|prefix| {
+                field.strip_prefix(prefix).is_some_and(|suffix| {
+                    !suffix.is_empty() && suffix.chars().all(|ch| ch.is_ascii_digit())
+                })
+            });
+        if matches_verbatim_pattern {
+            mode = "verbatim";
+        }
+    }
+    mode.to_string()
+}
+
+/// Remove a single outer brace layer from fields listed in `removeOuterBraces`.
+///
+/// The TypeScript parser strips one bracket layer only when the entire value is wrapped in a root
+/// group; this keeps repeated braces intact unless they are the direct wrapper around the field.
+fn remove_outer_braces(value: &str) -> String {
+    if !value.starts_with('{') || !value.ends_with('}') || value.len() < 2 {
+        return value.to_string();
+    }
+    let inner = &value[1..value.len() - 1];
+    let mut depth = 0usize;
+    let mut escaped = false;
+    for ch in inner.chars() {
+        if escaped {
+            escaped = false;
+            continue;
+        }
+        match ch {
+            '\\' => escaped = true,
+            '{' => depth += 1,
+            '}' if depth == 0 => return value.to_string(),
+            '}' => depth -= 1,
+            _ => {}
+        }
+    }
+    if depth == 0 {
+        inner.to_string()
+    } else {
+        value.to_string()
+    }
+}
+
+fn remove_outer_braces_fields(options: &Options) -> Vec<String> {
+    if options.remove_outer_braces != default_remove_outer_braces() {
+        return options.remove_outer_braces.clone();
+    }
+    let mut fields = vec!["doi".to_string()];
+    fields.extend(
+        CREATOR_FIELDS
+            .iter()
+            .chain(TITLE_FIELDS)
+            .chain(VERBATIM_FIELDS)
+            .chain(RICHTEXT_FIELDS)
+            .chain(LIST_FIELDS)
+            .map(|field| (*field).to_string()),
+    );
+    fields.extend(options.field_mode.keys().cloned());
+    fields.retain(|field| matches!(field_mode(field, options).as_str(), "title" | "verbatim"));
+    fields.sort();
+    fields.dedup();
+    fields
+}
+
+fn render_string_value(
+    value: &str,
+    registry: &mut HashMap<String, Vec<tex::Node>>,
+    options: &Options,
+    diagnostics: &mut tex::RenderDiagnostics,
+) -> String {
+    // TypeScript `prep()` visits every string as TeX content and shares the command registry with
+    // later entries; raw mode instead preserves the parsed source without invoking that visitor.
+    if options.raw {
+        return value.to_string();
+    }
+    tex::render_with_policy_and_registry(
+        value,
+        "literal",
+        diagnostics,
+        tex::CaseProtection::default(),
+        registry,
+    )
+}
+
+/// Apply type remappings and allowed parent fields through the cross-reference graph.
+///
+/// Parents are processed before descendants even when the input lists a parent after its child;
+/// shared parents are processed once. Type-specific field remappings run before the allowed-field
+/// pass, and `noCrossRef` fields are excluded from ordinary inheritance.
+fn apply_crossref_inheritance(entries: &mut [ParsedEntry], enabled: bool) {
+    if !enabled {
+        return;
+    }
+    let keys: HashMap<String, usize> = entries
+        .iter()
+        .enumerate()
+        .filter_map(|(idx, entry)| {
+            if entry.key.is_empty() {
+                None
+            } else {
+                Some((entry.key.to_uppercase(), idx))
+            }
+        })
+        .collect();
+
+    // Topological ordering: ancestors are unshifted and children appended, so chains inherit
+    // complete ancestor data before descendants are visited.
+    let mut order = Vec::new();
+    for entry in entries.iter() {
+        let Some(parent_key) = entry.fields.get("crossref").and_then(|field| match field {
+            FieldValue::Text(value) => Some(value.to_uppercase()),
+            _ => None,
+        }) else {
+            continue;
+        };
+        if !keys.contains_key(&parent_key) {
+            continue;
+        }
+        let child_key = entry.key.to_uppercase();
+        if !order.contains(&parent_key) {
+            order.insert(0, parent_key);
+        }
+        if !order.contains(&child_key) {
+            order.push(child_key);
+        }
+    }
+
+    let allowed = cross_reference_data();
+    let mappings = cross_reference_map();
+    for key in order {
+        let Some(&child_index) = keys.get(&key) else {
+            continue;
+        };
+        let parent_key =
+            entries[child_index]
+                .fields
+                .get("crossref")
+                .and_then(|field| match field {
+                    FieldValue::Text(value) => Some(value.to_uppercase()),
+                    _ => None,
+                });
+        let Some(parent_key) = parent_key else {
+            continue;
+        };
+        let Some(&parent_index) = keys.get(&parent_key) else {
+            continue;
+        };
+        let child_type = entries[child_index].entry.clone();
+        let parent_type = entries[parent_index].entry.clone();
+
+        for child_mapping in [mappings.get(&child_type), mappings.get("*")]
+            .into_iter()
+            .flatten()
+        {
+            for field_mapping in [child_mapping.get(&parent_type), child_mapping.get("*")]
+                .into_iter()
+                .flatten()
+            {
+                for (child_field, parent_field) in field_mapping {
+                    inherit_crossref_field(
+                        entries,
+                        child_index,
+                        parent_index,
+                        child_field,
+                        parent_field,
+                    );
+                }
+            }
+            for field in allowed.allowed.get(&child_type).into_iter().flatten() {
+                if allowed.no_cross_ref.contains(field) {
+                    continue;
+                }
+                inherit_crossref_field(entries, child_index, parent_index, field, field);
+            }
+        }
+    }
+}
+
+fn inherit_crossref_field(
+    entries: &mut [ParsedEntry],
+    child_index: usize,
+    parent_index: usize,
+    child_field: &str,
+    parent_field: &str,
+) {
+    let Some(parent_value) = entries[parent_index].fields.get(parent_field).cloned() else {
+        return;
+    };
+    if !field_value_is_truthy(&parent_value)
+        || entries[child_index]
+            .fields
+            .get(child_field)
+            .is_some_and(field_value_is_truthy)
+    {
+        return;
+    }
+    entries[child_index]
+        .fields
+        .insert(child_field.to_string(), parent_value);
+    entries[child_index].crossref.insert(
+        child_field.to_string(),
+        CrossRefSource {
+            parent: entries[parent_index].key.clone(),
+            field: parent_field.to_string(),
+        },
+    );
 }
 
 /// Convert verbatim entries to typed field values and assign each field's parsing mode.
 pub fn normalize(verbatim: Library) -> ParsedLibrary {
+    normalize_with_options(verbatim, &Options::default())
+}
+
+/// Normalize with the same precedence as the TypeScript parser, including explicit mode overrides.
+///
+/// This path matches the reference behavior for `fieldMode`, `verbatimFields`, and the brace-removal
+/// rule before field values are converted into typed data. The function keeps the source-order error
+/// aggregation from the raw parser and appends render diagnostics for unsupported TeX constructs.
+pub fn normalize_with_options(verbatim: Library, options: &Options) -> ParsedLibrary {
     let mut render_diagnostics = tex::RenderDiagnostics::default();
-    let entries = verbatim
+    render_diagnostics.ignore_unsupported = options.ignore_unsupported;
+    let preambles = verbatim.preambles.clone();
+    let mut macro_registry = HashMap::new();
+    if !options.raw {
+        // TS `prep()` processes preambles before strings, allowing their commands in later content.
+        for preamble in &preambles {
+            let _ = tex::render_with_policy_and_registry(
+                preamble,
+                "literal",
+                &mut render_diagnostics,
+                tex::CaseProtection::Off,
+                &mut macro_registry,
+            );
+        }
+    }
+    let mut strings = verbatim.strings;
+    for value in strings.values_mut() {
+        *value = render_string_value(value, &mut macro_registry, options, &mut render_diagnostics);
+    }
+    let remove_brace_fields = remove_outer_braces_fields(options);
+    let mut entries: Vec<ParsedEntry> = verbatim
         .entries
         .into_iter()
         .map(|entry| {
+            let mut langid = entry
+                .fields
+                .get("langid")
+                .filter(|value| !value.is_empty())
+                .or_else(|| entry.fields.get("hyphenation"))
+                .map(|value| value.to_lowercase())
+                .unwrap_or_default();
+            if langid.is_empty() && options.language_as_langid {
+                langid = entry
+                    .fields
+                    .get("language")
+                    .map(|value| value.to_lowercase())
+                    .unwrap_or_default();
+            }
+            let english = options
+                .english
+                .iter()
+                .any(|language| language.to_lowercase() == langid);
             let mut fields = HashMap::new();
             let mut mode = HashMap::new();
             let mut keywords = Vec::new();
             for (field, value) in entry.fields {
-                // Duplicate keyword fields are merged after splitting both comma and semicolon lists.
+                if value.trim().is_empty() {
+                    continue;
+                }
+                // TS renames duplicate keyword fields to this prefix before normalization; merge
+                // their split values into one vector without sorting or removing repeated terms.
                 if field == "keywords" || field.starts_with("keywords+duplicate-") {
+                    let value = tex::print_raw(&value);
                     keywords.extend(
                         value
                             .split([',', ';'])
@@ -891,43 +1768,117 @@ pub fn normalize(verbatim: Library) -> ParsedLibrary {
                     );
                     continue;
                 }
-                let current_mode = field_mode(&field);
-                mode.insert(field.clone(), current_mode.to_string());
+                let current_mode = field_mode(&field, options);
+                mode.insert(field.clone(), current_mode.clone());
                 let mut value = value;
-                // These deterministic field actions precede TeX rendering, matching the TS parser.
-                if field == "year" {
-                    if let Ok(year) = value.trim().parse::<i64>() {
-                        value = year.to_string();
+                // `removeOuterBraces` removes one root Group only when it is the entire field value.
+                if remove_brace_fields.contains(&field) {
+                    value = remove_outer_braces(&value);
+                }
+                if !options.raw && matches!(field.as_str(), "year" | "month") {
+                    if let Some(integer) = parse_integer_string(&value) {
+                        value = integer;
+                    } else if field == "month" {
+                        value = normalize_month(&value);
                     }
-                } else if field == "month" {
-                    value = normalize_month(&value);
                 }
-                // Verbatim data must remain untouched; creator lists need their own name tokenizer.
+                if current_mode == "verbatim" {
+                    // TS returns `printRaw(ast)` before its raw-mode and normal rendering passes.
+                    fields.insert(field, FieldValue::Text(tex::print_raw(&value)));
+                    continue;
+                }
+                if options.raw {
+                    // Raw mode still parses typed creators/lists, but otherwise returns printed TeX.
+                    if current_mode == "creatorlist" {
+                        let names: Vec<_> = split_creators(&value)
+                            .iter()
+                            .map(|name| parse_raw_creator(name))
+                            .collect();
+                        fields.insert(field, FieldValue::Creators(names));
+                    } else if current_mode == "literallist" {
+                        let items: Vec<_> = split_creators(&value)
+                            .iter()
+                            .map(|element| element.to_string())
+                            .collect();
+                        fields.insert(field, FieldValue::List(items));
+                    } else {
+                        fields.insert(field, FieldValue::Text(value));
+                    }
+                    continue;
+                }
+                // Literal lists split the AST before stringifying each element, so braced `and`
+                // remains content rather than becoming a separator.
+                if current_mode == "literallist" {
+                    let items = split_creators(&value)
+                        .iter()
+                        .map(|element| {
+                            tex::render_with_policy_and_registry(
+                                element,
+                                "literal",
+                                &mut render_diagnostics,
+                                tex::CaseProtection::Off,
+                                &mut macro_registry,
+                            )
+                            .trim()
+                            .to_string()
+                        })
+                        .collect();
+                    fields.insert(field, FieldValue::List(items));
+                    continue;
+                }
                 if current_mode != "verbatim" && current_mode != "creatorlist" {
-                    value =
-                        tex::render_with_diagnostics(&value, current_mode, &mut render_diagnostics);
+                    let case_protection = match options.case_protection.as_str() {
+                        "off" => tex::CaseProtection::Off,
+                        "strict" => tex::CaseProtection::Strict,
+                        _ => tex::CaseProtection::AsNeeded,
+                    };
+                    let protect_title = current_mode == "title" && english;
+                    // Pass 0 marks root groups and inline math before the sentence-case pass.
+                    render_diagnostics.mark_case_groups =
+                        protect_title && case_protection != tex::CaseProtection::Off;
+                    value = tex::render_with_policy_and_registry(
+                        &value,
+                        &current_mode,
+                        &mut render_diagnostics,
+                        if protect_title {
+                            case_protection
+                        } else {
+                            tex::CaseProtection::Off
+                        },
+                        &mut macro_registry,
+                    );
+                    render_diagnostics.mark_case_groups = false;
+                    if protect_title {
+                        // Sentence casing runs after TeX rendering, with original groups restored
+                        // according to the configured `as-needed`, `strict`, or `off` policy.
+                        value = tex::sentence_case_title(
+                            &value,
+                            options.sentence_case.guess,
+                            options.sentence_case.sub_sentence,
+                            options.sentence_case.preserve_quoted,
+                            case_protection,
+                        );
+                    }
                 }
-                // These two modes produce arrays; all remaining non-keyword fields are scalar text.
-                let parsed = match current_mode {
+                let parsed = match current_mode.as_str() {
                     "creatorlist" => FieldValue::Creators(
                         split_creators(&value)
                             .iter()
-                            .map(|name| parse_creator(name))
+                            .map(|name| {
+                                parse_creator(
+                                    name,
+                                    &entry.key,
+                                    &mut macro_registry,
+                                    &mut render_diagnostics,
+                                )
+                            })
                             .collect(),
                     ),
-                    "literallist" => FieldValue::List(
-                        split_creators(&value)
-                            .iter()
-                            .map(|element| clean_name_part(element))
-                            .collect(),
-                    ),
-                    _ => FieldValue::Text(value),
+                    "literallist" => unreachable!("literal lists are parsed before rendering"),
+                    _ => FieldValue::Text(value.trim().to_string()),
                 };
                 fields.insert(field, parsed);
             }
-            // Sort case-insensitively before deduplication to produce stable output.
-            keywords.sort_by_key(|keyword| keyword.to_lowercase());
-            keywords.dedup();
             if !keywords.is_empty() {
                 mode.insert("keywords".to_string(), "verbatimlist".to_string());
                 fields.insert("keywords".to_string(), FieldValue::List(keywords));
@@ -938,29 +1889,44 @@ pub fn normalize(verbatim: Library) -> ParsedLibrary {
                 key: entry.key,
                 fields,
                 mode,
+                crossref: HashMap::new(),
             }
         })
         .collect();
+    apply_crossref_inheritance(entries.as_mut_slice(), options.apply_crossref);
     let mut errors = verbatim.errors;
     errors.extend(render_diagnostics.errors);
     ParsedLibrary {
         entries,
-        strings: verbatim.strings,
+        strings,
         comments: verbatim.comments,
         errors,
         preamble: verbatim.preambles,
+        jabref: verbatim.jabref,
     }
 }
 
 /// Convert a month name or number to the parser's unpadded numeric form.
+fn parse_integer_string(value: &str) -> Option<String> {
+    let value = value.trim();
+    let (negative, digits) = value
+        .strip_prefix('-')
+        .map_or((false, value), |digits| (true, digits));
+    if digits.is_empty() || !digits.chars().all(|character| character.is_ascii_digit()) {
+        return None;
+    }
+    let digits = digits.trim_start_matches('0');
+    if digits.is_empty() {
+        Some("0".to_string())
+    } else if negative {
+        Some(format!("-{digits}"))
+    } else {
+        Some(digits.to_string())
+    }
+}
+
 fn normalize_month(value: &str) -> String {
     let value = value.trim();
-    if let Ok(month) = value.parse::<u8>() {
-        // Keep only valid calendar month numbers normalized; non-month values remain unchanged.
-        if (1..=12).contains(&month) {
-            return month.to_string();
-        }
-    }
     let month = match value.to_ascii_lowercase().as_str() {
         "jan" | "january" => "1",
         "feb" | "february" => "2",
@@ -991,12 +1957,13 @@ pub fn parse(input: &str, options: Options) -> Library {
 
 /// Parse BibTeX and apply the initial typed field normalization.
 pub fn parse_normalized(input: &str, options: Options) -> ParsedLibrary {
-    normalize(parse_verbatim(input, options))
+    normalize_with_options(parse_verbatim(input, options.clone()), &options)
 }
 
 #[cfg(target_arch = "wasm32")]
 mod wasm_bindings {
     use serde::Serialize;
+    use std::collections::HashMap;
     use wasm_bindgen::prelude::*;
 
     use super::{Options, parse_normalized, parse_verbatim};
@@ -1032,17 +1999,107 @@ mod wasm_bindings {
         let options = decode_options(options)?;
         encode_result(&parse_normalized(input, options))
     }
+
+    /// Apply sentence casing with the standalone TypeScript API's defaulted option object.
+    #[wasm_bindgen(js_name = toSentenceCase)]
+    pub fn to_sentence_case_js(input: &str, options: Option<JsValue>) -> Result<String, JsValue> {
+        let options = options
+            .map(|value| {
+                serde_wasm_bindgen::from_value::<HashMap<String, bool>>(value)
+                    .map_err(|error| JsValue::from_str(&error.to_string()))
+            })
+            .transpose()?
+            .unwrap_or_default();
+        Ok(super::tex::sentence_case_with_options(
+            input,
+            options.get("guess").copied().unwrap_or(false),
+            options
+                .get("subSentenceCapitalization")
+                .copied()
+                .unwrap_or(true),
+            options.get("preserveQuoted").copied().unwrap_or(true),
+        ))
+    }
+
+    /// Tokenize Unicode title text using the same token record shape as TypeScript.
+    #[wasm_bindgen(js_name = tokenize)]
+    pub fn tokenize_js(input: &str) -> Result<JsValue, JsValue> {
+        encode_result(&super::tokenizer::tokenize(input))
+    }
 }
 
+// --- Tests ---
 #[cfg(test)]
 mod tests {
-    use super::{FieldValue, Options, ParsedLibrary, parse, parse_normalized};
+    use super::{
+        FieldValue, Options, ParsedLibrary, normalize_with_options, parse, parse_normalized,
+        parse_verbatim,
+    };
 
     /// Parse a fixture with default options and fail immediately on recoverable parse errors.
     fn fixture(source: &str) -> ParsedLibrary {
         let parsed = parse_normalized(source, Options::default());
         assert!(parsed.errors.is_empty(), "{:?}", parsed.errors.first());
         parsed
+    }
+
+    #[test]
+    /// Checks the final library pass merges JabRef metadata and inherited crossref fields.
+    fn library_finalization_renders_comments_and_inherits_crossref() {
+        let parsed = parse_normalized(
+            "@comment{jabref-meta: groupsversion: 3}\n@book{parent, title={Parent title}, author={Doe, John}}\n@inbook{child, crossref={parent}, chapter={A}}",
+            Options::default(),
+        );
+        assert_eq!(parsed.jabref.groupsversion, Some(3));
+        assert!(
+            matches!(parsed.entries[1].fields.get("title"), Some(FieldValue::Text(title)) if title == "Parent title")
+        );
+        assert!(
+            matches!(parsed.entries[1].fields.get("author"), Some(FieldValue::Creators(creators)) if creators.iter().any(|creator| creator.last_name.as_deref() == Some("Doe") && creator.first_name.as_deref() == Some("John")))
+        );
+        assert_eq!(
+            parsed.entries[1].crossref.get("title").unwrap().field,
+            "title"
+        );
+        assert!(parsed.comments.is_empty());
+    }
+
+    #[test]
+    fn crossref_uses_type_mappings_and_allowed_fields() {
+        let parsed = parse_normalized(
+            "@periodical{p,title={Transactions}}\n@article{a,crossref={p}}",
+            Options::default(),
+        );
+        assert_eq!(
+            parsed.entries[1].fields.get("journaltitle"),
+            Some(&FieldValue::Text("Transactions".into()))
+        );
+        assert_eq!(
+            parsed.entries[1].crossref.get("journaltitle"),
+            Some(&super::CrossRefSource {
+                parent: "p".into(),
+                field: "title".into(),
+            })
+        );
+    }
+
+    #[test]
+    fn parses_jabref_group_tree_hierarchy() {
+        let parsed = parse_normalized(
+            include_str!(
+                "../../test/better-bibtex/import/Jabref groups import does not work #717.3.8.bib"
+            ),
+            Options::default(),
+        );
+        assert_eq!(parsed.jabref.database_type.as_deref(), Some("bibtex"));
+        assert_eq!(parsed.jabref.root.len(), 1, "{:?}", parsed.jabref);
+        assert_eq!(parsed.jabref.root[0].groups.len(), 2, "{:?}", parsed.jabref);
+        assert_eq!(parsed.jabref.root[0].name, "my-main-group-3");
+        assert_eq!(parsed.jabref.root[0].groups[0].name, "my-subgroup-3");
+        assert_eq!(
+            parsed.jabref.root[0].groups[0].groups[0].name,
+            "sub-sub-group-3"
+        );
     }
 
     #[test]
@@ -1057,6 +2114,22 @@ mod tests {
         assert_eq!(fields["title"], "A {nested} title");
         assert_eq!(fields["journal"], "Journal ! ");
         assert_eq!(fields["note+duplicate-1"], "two");
+    }
+
+    #[test]
+    fn verbatim_fields_normalize_printed_whitespace() {
+        let parsed = parse_normalized(
+            "@book{x,url={https://example.org/a   b/\\~wilkins},doi={first\n    second}}",
+            Options::default(),
+        );
+        assert_eq!(
+            parsed.entries[0].fields["url"],
+            FieldValue::Text("https://example.org/a b/\\~wilkins".into())
+        );
+        assert_eq!(
+            parsed.entries[0].fields["doi"],
+            FieldValue::Text("first second".into())
+        );
     }
 
     #[test]
@@ -1095,16 +2168,20 @@ mod tests {
                 },
             )]
         );
-        assert_eq!(arguments[1].len(), 1);
-        assert!(
-            matches!(arguments[1][0], super::tex::Node::String(ref text, _) if text == "label")
-        );
+        assert!(matches!(
+            arguments[0].as_slice(),
+            [super::tex::Node::String(text, _)] if text == "https://example.org"
+        ));
+        assert!(matches!(
+            arguments[1].as_slice(),
+            [super::tex::Node::Group(children, _)] if matches!(children.as_slice(), [super::tex::Node::String(text, _)] if text == "label")
+        ));
     }
 
     #[test]
     /// Checks whitespace, paragraph breaks, and comments remain as distinct AST nodes.
     fn tex_parser_preserves_whitespace_parbreaks_and_comments() {
-        let nodes = super::tex::parse("alpha  \n\n% comment\n beta");
+        let nodes = super::tex::parse("alpha  \n\n% comment\n beta gamma");
         assert!(
             nodes
                 .content
@@ -1124,8 +2201,22 @@ mod tests {
                 .any(|node| matches!(node, super::tex::Node::Comment { .. }))
         );
         assert_eq!(
-            super::tex::render("alpha  \n\n% comment\n beta", "title"),
-            "alpha   beta"
+            super::tex::render("alpha  \n\n% comment\n beta gamma", "title"),
+            "alpha beta gamma"
+        );
+        assert_eq!(super::tex::render("A.  \n   B", "literal"), "A. B");
+        let nbsp = super::tex::parse("a\u{00a0}b");
+        assert!(matches!(
+            nbsp.content.as_slice(),
+            [super::tex::Node::String(text, _)] if text == "a\u{00a0}b"
+        ));
+        assert_eq!(
+            super::tex::render("00\u{2009}text", "literal"),
+            "00\u{2009}text"
+        );
+        assert_eq!(
+            super::tex::render("aa\u{2005}bb", "literal"),
+            "aa\u{2005}bb"
         );
     }
 
@@ -1209,13 +2300,8 @@ mod tests {
             [
                 super::tex::Node::String(_, _),
                 super::tex::Node::Comment { span, .. },
-                super::tex::Node::Whitespace(space, whitespace_span),
                 super::tex::Node::String(b, _),
-            ] if span.start.offset == 1
-                && span.end.offset == 5
-                && space == " "
-                && whitespace_span.start.offset == 5
-                && b == "b"
+            ] if span.start.offset == 1 && span.end.offset == 6 && b == "b"
         ));
     }
 
@@ -1299,31 +2385,67 @@ mod tests {
     }
 
     #[test]
-    /// Checks custom macros consume parameterized definitions and optional arguments.
-    fn tex_parser_supports_custom_macro_parameters_and_optionals() {
+    /// Matches the TypeScript visitor's literal parameter treatment after parsing definitions.
+    fn tex_parser_matches_parameterized_custom_command_behavior() {
         assert_eq!(
-            super::tex::render(
-                r"\newcommand{\hello}[2]{Hello #1, #2!} \hello{world}{there}",
-                "title"
-            ),
-            "Hello world, there!"
+            super::tex::render(r"\newcommand{\hello}[1]{Hello #1} \hello{world}", "literal"),
+            "Hello #1world"
         );
         assert_eq!(
             super::tex::render(
                 r"\newcommand{\greet}[2][Hi]{#1 #2} \greet[Howdy]{friend}",
+                "literal"
+            ),
+            "#1 #2[Howdy]friend"
+        );
+    }
+
+    #[test]
+    fn preamble_newcommands_expand_in_entry_fields() {
+        assert_eq!(
+            super::tex::render(
+                r"\newcommand{\mnras}{Monthly Notices of the Royal Astronomical Society} {\mnras}",
                 "title"
             ),
-            "Howdy friend"
+            "<span class=\"nocase\">Monthly Notices of the Royal Astronomical Society</span>"
+        );
+        let library = parse_verbatim(
+            r"@preamble{\newcommand{\mnras}{Monthly Notices of the Royal Astronomical Society}}
+@ARTICLE{test,
+  journal = {\mnras},
+  title = {Example}
+}",
+            Options::default(),
+        );
+        let parsed = normalize_with_options(library, &Options::default());
+        let journal = parsed.entries[0]
+            .fields
+            .get("journal")
+            .and_then(|value| match value {
+                FieldValue::Text(value) => Some(value.as_str()),
+                _ => None,
+            })
+            .unwrap();
+        assert_eq!(journal, "Monthly Notices of the Royal Astronomical Society");
+
+        let from_string = parse_normalized(
+            r"@string{define={\newcommand{\x}{Expanded}}}
+@book{x,title={\x}}",
+            Options::default(),
         );
         assert_eq!(
-            super::tex::render(r"\newcommand{\greet}[2][Hi]{#1 #2} \greet{friend}", "title"),
-            "Hi friend"
+            from_string.entries[0].fields.get("title"),
+            Some(&FieldValue::Text("Expanded".into()))
         );
     }
 
     #[test]
     /// Checks nested environments become nested AST nodes before rich-text rendering.
     fn tex_parser_nests_environment_nodes() {
+        assert_eq!(
+            super::tex::render(r"\begin{em}inside\end{em}", "literal"),
+            "<i>inside</i>"
+        );
         assert_eq!(
             super::tex::render(
                 r"\begin{quotation}start \begin{em}inside\end{em} end\end{quotation}",
@@ -1351,6 +2473,14 @@ mod tests {
             super::tex::render(r"\enquote{quoted}", "literal"),
             "“quoted”"
         );
+        assert_eq!(super::tex::render(r"\textbf abc", "literal"), "<b>abc</b>");
+        assert_eq!(super::tex::render(r"\LaTeX", "literal"), "LᴬT<sub>E</sub>X");
+        assert_eq!(super::tex::render(r"a\par~\par b", "richtext"), "a<p>b");
+        assert_eq!(super::tex::render("a\r\nb", "richtext"), "a<p>b");
+        assert_eq!(
+            super::tex::render(r"\url{http://example.org/\textbf{MiX}}", "literal"),
+            r#"<a href="http://example.org/\textbf{MiX}">http://example.org/\textbf{MiX}</a>"#
+        );
         assert_eq!(
             super::tex::render(r"dash -- em --- quotes ``quoted''", "literal"),
             "dash – em — quotes “quoted”"
@@ -1374,6 +2504,194 @@ mod tests {
             super::tex::render("An $n$", "title"),
             "An <span class=\"nocase\">n</span>"
         );
+    }
+
+    #[test]
+    /// Checks title rendering respects the TypeScript case-protection policies.
+    fn tex_visitor_honors_case_protection_policies() {
+        let mut diagnostics = super::tex::RenderDiagnostics::default();
+        assert_eq!(
+            super::tex::render_with_policy(
+                "An {unusual name}",
+                "title",
+                &mut diagnostics,
+                super::tex::CaseProtection::Off,
+            ),
+            "An unusual name"
+        );
+        assert_eq!(
+            super::tex::render_with_policy(
+                "An {unusual name}",
+                "title",
+                &mut diagnostics,
+                super::tex::CaseProtection::AsNeeded,
+            ),
+            "An <span class=\"nocase\">unusual name</span>"
+        );
+        assert_eq!(
+            super::tex::render_with_policy(
+                "An {unusual name}",
+                "title",
+                &mut diagnostics,
+                super::tex::CaseProtection::Strict,
+            ),
+            "An <span class=\"nocase\">unusual name</span>"
+        );
+        for (title, expected) in [
+            (
+                r"Stability {Analysis} and {\emph{Optimization}}",
+                "Stability Analysis and <i>optimization</i>",
+            ),
+            (
+                "{NASA} and {the} study",
+                "NASA and <span class=\"nocase\">the</span> study",
+            ),
+            (
+                "{van der Waals} interactions",
+                "<span class=\"nocase\">van der Waals</span> interactions",
+            ),
+            (
+                "{TitleCase} {alllower}",
+                "TitleCase <span class=\"nocase\">alllower</span>",
+            ),
+        ] {
+            let parsed = parse_normalized(
+                &format!("@book{{case,title={{{title}}}}}"),
+                Options::default(),
+            );
+            assert_eq!(
+                parsed.entries[0].fields["title"],
+                FieldValue::Text(expected.into())
+            );
+        }
+        let markup_title = parse_normalized(
+            r"@article{x,title={A {\em A} \begin{em}A\end{em} \begin{em}{A}\end{em} {A \em A}}}",
+            Options::default(),
+        );
+        assert_eq!(
+            markup_title.entries[0].fields["title"],
+            FieldValue::Text("A <i>A A A</i> A <i>A</i>".into())
+        );
+        let quoted = parse_normalized(
+            r"@article{x,langid={en},title={Blah and \enquote{enquote}.}}",
+            Options::default(),
+        );
+        assert_eq!(
+            quoted.entries[0].fields["title"],
+            FieldValue::Text("Blah and “<span class=\"nocase\">enquote</span>”.".into())
+        );
+        let mut options = Options::default();
+        options.english = vec!["en".into()];
+        let grouped_markup = parse_normalized(
+            r"@book{x,langid={en},title={Reading {{HLA Hart}}'s: {{{\emph{The Concept}}}}{\emph{ of }}{{{\emph{Law}}}}}}",
+            options,
+        );
+        assert_eq!(
+            grouped_markup.entries[0].fields["title"],
+            FieldValue::Text("Reading HLA Hart's: <i>The Concept of Law</i>".into())
+        );
+        let hyphenated = parse_normalized(
+            "@book{x,title={Symphony {No.}~3 in {E-flat} major}}",
+            Options::default(),
+        );
+        assert_eq!(
+            hyphenated.entries[0].fields["title"],
+            FieldValue::Text("Symphony No.\u{00a0}3 in E-flat major".into())
+        );
+    }
+
+    #[test]
+    /// Matches the TypeScript sentence-case tokenizer's common word, quote, and state rules.
+    fn sentence_case_matches_tokenizer_rules() {
+        let sentence_case = |text| super::tex::sentence_case_with_options(text, true, true, true);
+        let cases = [
+            ("AN ANALYSIS OF DNA AND RNA", "An analysis of dna and rna"),
+            (
+                "The Effects of DNA Sequencing",
+                "The effects of DNA sequencing",
+            ),
+            ("𐐨 the Method", "𐐨 the Method"),
+            ("Title. ١ Next", "Title. ١ Next"),
+            ("Title. VS. Next", "Title. VS. Next"),
+            ("The v2.1 Results", "The v2.1 Results"),
+            ("The x-ray Results", "The x-ray Results"),
+            (
+                "The C3-OH and N6-Methyladenine use 13C and P450-based assays",
+                "The C3-OH and N6-methyladenine use 13C and P450-based assays",
+            ),
+            ("The can't-Based Results", "The can't-Based results"),
+            ("A-B: Another Title", "A-b: Another title"),
+            (
+                "The https://foo/UPPER Results",
+                "The https://foo/UPPER Results",
+            ),
+            ("The a\u{05b0}-Based Results", "The a\u{05b0}-Based results"),
+            (
+                "A Study of \"DNA Sequencing\" in Cells",
+                "A study of \"DNA Sequencing\" in cells",
+            ),
+            (
+                "An overview: Studies in Cells",
+                "An overview: Studies in cells",
+            ),
+            (
+                "A Contact name@example.com Title",
+                "A contact name@example.com title",
+            ),
+            (
+                "An Overview of https://EXAMPLE.COM/Path",
+                "An overview of https://EXAMPLE.COM/Path",
+            ),
+            (
+                "A Title <span class=\"nocase\">nASA Name</span> of Cells",
+                "A title <span class=\"nocase\">nASA Name</span> of cells",
+            ),
+            (
+                "An analysis according to the current laws of physics",
+                "An analysis according to the current laws of physics",
+            ),
+            (
+                "The State-of-the-art and Alpha-Beta-Gamma",
+                "The state-of-the-art and alpha-beta-gamma",
+            ),
+            (
+                "The A-B Test in the 21st Century",
+                "The a-b test in the 21st century",
+            ),
+            ("TITLE", "TITLE"),
+            ("ALL CAPS TITLE", "All caps title"),
+            (
+                "First sentence. A Second one! And third?",
+                "First sentence. A Second one! And third?",
+            ),
+            ("A colon: A subheading", "A colon: A subheading"),
+            ("The U.S. vs. U.K. results", "The U.S. vs. U.K. results"),
+            ("I’m sure I'm right", "I’m sure I'm right"),
+            (
+                "A quotation ‘With Uppercase Words’ in Text",
+                "A quotation ‘With Uppercase Words’ in text",
+            ),
+            (
+                "The use of x-ray and DNA-based methods",
+                "The use of x-ray and DNA-based methods",
+            ),
+            (
+                "This is a title… with ellipsis",
+                "This is a title… with ellipsis",
+            ),
+            (
+                "An HTTP://Example.com/Path URL",
+                "An HTTP://example.com/path URL",
+            ),
+            (
+                "An example.com Domain and example.org",
+                "An example.com domain and example.org",
+            ),
+            ("An {unusual name}", "An {unusual name}"),
+        ];
+        for (input, expected) in cases {
+            assert_eq!(sentence_case(input), expected, "{input}");
+        }
     }
 
     #[test]
@@ -1440,6 +2758,13 @@ mod tests {
                 .iter()
                 .all(|error| !error.error.contains("macro \\inside"))
         );
+
+        let nested_accent = parse_normalized(r"@book{x,title={\'{\a}}}", Options::default());
+        assert!(
+            nested_accent.errors.iter().any(|error| {
+                error.error == r"unhandled macro \'{\a}" && error.input == r"\'{\a}"
+            })
+        );
     }
 
     #[test]
@@ -1459,6 +2784,11 @@ mod tests {
         let braced_title = &braced.entries[0].fields["title"];
         assert_eq!(unbraced_title, braced_title);
         assert_eq!(unbraced_title, &FieldValue::Text("ⁿ⁄₂".into()));
+        let scripts = parse_normalized("@book{x,abstract={$x^2_{e}$}}", Options::default());
+        assert_eq!(
+            scripts.entries[0].fields["abstract"],
+            FieldValue::Text("x²ₑ".into())
+        );
     }
 
     #[test]
@@ -1501,6 +2831,83 @@ mod tests {
     }
 
     #[test]
+    fn creator_names_render_tex_sequences() {
+        let parsed = parse_normalized(
+            "@article{foo, author={H\\\"{a}gg, Nils and Nonnenmacher, St{\\'e}phane and Lecomte, J\\'{e}r\\^{o}me and Nested, J\\'{e}r\\^{\\a}me and D\\'{\\i}az, Carlos}}",
+            Options::default(),
+        );
+        let authors = match &parsed.entries[0].fields["author"] {
+            FieldValue::Creators(authors) => authors,
+            other => panic!("expected creators, got {other:?}"),
+        };
+        assert_eq!(authors[0].last_name.as_deref(), Some("Hägg"));
+        assert_eq!(authors[1].last_name.as_deref(), Some("Nonnenmacher"));
+        assert_eq!(authors[1].first_name.as_deref(), Some("Stéphane"));
+        assert_eq!(authors[2].first_name.as_deref(), Some("Jérôme"));
+        assert_eq!(authors[3].first_name.as_deref(), Some("Jér^me"));
+        assert_eq!(authors[4].last_name.as_deref(), Some("Dı́az"));
+
+        let empty_macro_argument = parse_normalized(
+            r"@book{x,author={de'{\mbox} Medici, Lorenzo}}",
+            Options::default(),
+        );
+        let FieldValue::Creators(creators) = &empty_macro_argument.entries[0].fields["author"]
+        else {
+            panic!("expected creators");
+        };
+        assert_eq!(creators[0].prefix.as_deref(), Some("de'"));
+        assert_eq!(creators[0].last_name.as_deref(), Some("Medici"));
+
+        let grouped_family = parse_normalized(
+            r"@book{x,author={Giuseppe {De Giacomo} and Riccardo {De Masellis}}}",
+            Options::default(),
+        );
+        let FieldValue::Creators(creators) = &grouped_family.entries[0].fields["author"] else {
+            panic!("expected creators");
+        };
+        assert_eq!(creators[0].first_name.as_deref(), Some("Giuseppe"));
+        assert_eq!(creators[0].last_name.as_deref(), Some("De Giacomo"));
+        assert_eq!(creators[1].first_name.as_deref(), Some("Riccardo"));
+        assert_eq!(creators[1].last_name.as_deref(), Some("De Masellis"));
+
+        let nbsp_separator = parse_normalized(
+            "@book{x,author={A\u{00a0}and\u{00a0}B}}",
+            Options::default(),
+        );
+        assert!(matches!(
+            nbsp_separator.entries[0].fields.get("author"),
+            Some(FieldValue::Creators(creators)) if creators.len() == 1 && creators[0].last_name.as_deref() == Some("A\u{00a0}and\u{00a0}B")
+        ));
+
+        let mut macro_registry = std::collections::HashMap::new();
+        let mut diagnostics = super::tex::RenderDiagnostics::default();
+        let narrow_space = super::parse_creator(
+            "van\u{2005}Loon, John",
+            "",
+            &mut macro_registry,
+            &mut diagnostics,
+        );
+        assert_eq!(narrow_space.last_name.as_deref(), Some("van\u{2005}Loon"));
+        assert_eq!(narrow_space.prefix, None);
+    }
+
+    #[test]
+    fn string_values_collapse_multiline_whitespace() {
+        let parsed = parse_normalized(
+            "@STRING{PHILTR-B = \"Philosophical Transactions of the Royal Society of London.\n                      Series B.  Biological Sciences\"}\n@STRING{BOUNDARY = {  alpha\n  beta  }}",
+            Options::default(),
+        );
+        assert_eq!(
+            parsed.strings.get("PHILTR-B"),
+            Some(&"Philosophical Transactions of the Royal Society of London. Series B. Biological Sciences".to_string())
+        );
+        assert_eq!(
+            parsed.strings.get("BOUNDARY").map(String::as_str),
+            Some(" alpha beta ")
+        );
+    }
+
+    #[test]
     /// Checks conversion of Better BibTeX's extended creator-property syntax.
     fn parses_extended_creator_fixture_like_default_case() {
         let parsed = fixture(include_str!("../../test/other/stray-marker.bib"));
@@ -1512,6 +2919,18 @@ mod tests {
         assert_eq!(author[0].last_name.as_deref(), Some("Duchamp"));
         assert_eq!(author[0].initial.as_deref(), Some("Ph"));
         assert_eq!(parsed.entries[0].mode["author"], "creatorlist");
+
+        let ordinary = parse_normalized("@book{x,author={A=B, John}}", Options::default());
+        assert!(matches!(
+            ordinary.entries[0].fields.get("author"),
+            Some(FieldValue::Creators(creators)) if creators[0].last_name.as_deref() == Some("A=B") && creators[0].first_name.as_deref() == Some("John")
+        ));
+
+        let custom = parse_normalized("@book{x,author={foo=bar, given=Jane}}", Options::default());
+        assert!(matches!(
+            custom.entries[0].fields.get("author"),
+            Some(FieldValue::Creators(creators)) if creators[0].extra.get("foo") == Some(&serde_json::Value::String("bar".into()))
+        ));
     }
 
     #[test]
@@ -1598,6 +3017,16 @@ mod tests {
         assert_eq!(authors[5].last_name.as_deref(), Some("Hyun Kong"));
         assert_eq!(entry.fields["month"], FieldValue::Text("2".into()));
         assert_eq!(entry.mode["title"], "title");
+
+        let editor = parse_normalized(
+            "@book{x,editor={Ryszard Michalski, Jaime G. Carbonell, and Tom M. Mitchell}}",
+            Options::default(),
+        );
+        let FieldValue::Creators(editors) = &editor.entries[0].fields["editor"] else {
+            panic!("editor should be a creator list");
+        };
+        assert_eq!(editors[0].last_name.as_deref(), Some("Ryszard Michalski"));
+        assert_eq!(editors[0].first_name.as_deref(), Some("Jaime G. Carbonell"));
     }
 
     #[test]
@@ -1621,17 +3050,87 @@ mod tests {
     }
 
     #[test]
-    /// Checks duplicate keyword fields merge, sort, and deduplicate consistently.
+    fn literal_list_split_respects_braced_and() {
+        let parsed = parse_normalized(
+            "@book{x,publisher={{Henry Holt and Co.}}}",
+            Options::default(),
+        );
+        assert_eq!(
+            parsed.entries[0].fields["publisher"],
+            FieldValue::List(vec!["Henry Holt and Co.".into()])
+        );
+        let punctuated = parse_normalized(
+            "@book{x,publisher={Holt, Rinehart, and Winston}}",
+            Options::default(),
+        );
+        assert_eq!(
+            punctuated.entries[0].fields["publisher"],
+            FieldValue::List(vec!["Holt, Rinehart,".into(), "Winston".into()])
+        );
+    }
+
+    #[test]
+    /// Checks duplicate keyword fields merge without sorting or deduplication.
     fn normalizes_duplicate_keyword_fields() {
         let parsed = parse_normalized(
             "@article{k, keywords={zeta, alpha}, keywords={beta; zeta}}",
             Options::default(),
         );
+        let FieldValue::List(keywords) = parsed.entries[0].fields["keywords"].clone() else {
+            panic!("keywords should be a list");
+        };
+        assert_eq!(keywords.len(), 4);
         assert_eq!(
-            parsed.entries[0].fields["keywords"],
-            FieldValue::List(vec!["alpha".into(), "beta".into(), "zeta".into()])
+            keywords.iter().filter(|keyword| *keyword == "zeta").count(),
+            2
         );
         assert_eq!(parsed.entries[0].mode["keywords"], "verbatimlist");
+
+        let collated = parse_normalized(
+            "@article{k, keywords={Forskningspolitik, Förenta staterna, Zebra, zebra}}",
+            Options::default(),
+        );
+        let FieldValue::List(keywords) = collated.entries[0].fields["keywords"].clone() else {
+            panic!("keywords should be a list");
+        };
+        assert_eq!(keywords.len(), 4);
+        assert!(keywords.contains(&"Forskningspolitik".to_string()));
+        assert!(keywords.contains(&"Förenta staterna".to_string()));
+
+        let whitespace = fixture("@article{k, keywords={alpha,\n   beta}}");
+        assert_eq!(
+            whitespace.entries[0].fields["keywords"],
+            FieldValue::List(vec!["alpha".into(), "beta".into()])
+        );
+    }
+
+    #[test]
+    /// Checks user field-mode overrides and outer-brace stripping match the TypeScript parser contract.
+    fn field_mode_overrides_and_outer_braces_match_reference_behavior() {
+        let mut field_mode = std::collections::HashMap::new();
+        field_mode.insert("customfield".to_string(), "verbatim".to_string());
+        let mut remove_outer_braces = vec!["doi".to_string()];
+        remove_outer_braces.push("customfield".to_string());
+
+        let parsed = parse_normalized(
+            "@article{k, doi={{10.1234/example}}, customfield={{literal value}}}",
+            Options {
+                field_mode,
+                remove_outer_braces,
+                ..Options::default()
+            },
+        );
+
+        assert_eq!(parsed.entries[0].mode["doi"], "verbatim");
+        assert_eq!(
+            parsed.entries[0].fields["doi"],
+            FieldValue::Text("10.1234/example".into())
+        );
+        assert_eq!(parsed.entries[0].mode["customfield"], "verbatim");
+        assert_eq!(
+            parsed.entries[0].fields["customfield"],
+            FieldValue::Text("literal value".into())
+        );
     }
 
     #[test]
@@ -1641,6 +3140,12 @@ mod tests {
             max_entries: Some(1),
             strings: [("custom".to_string(), "From options".to_string())].into(),
             strings_source: Some("@string{source = {From source}}".to_string()),
+            raw: false,
+            apply_crossref: true,
+            verbatim_fields: vec![],
+            remove_outer_braces: vec![],
+            field_mode: std::collections::HashMap::new(),
+            ..Options::default()
         };
         let parsed = parse(
             "@article{one, journal=custom, title=source}\n@article{two}",
@@ -1660,7 +3165,7 @@ mod tests {
             Options::default(),
         );
         assert_eq!(parsed.comments, ["block {comment}", "line comment"]);
-        assert_eq!(parsed.preambles, ["prefixsuffix"]);
+        assert_eq!(parsed.preambles, ["\"prefix\" # {suffix}"]);
         assert_eq!(parsed.errors.len(), 1);
         assert_eq!(parsed.entries.len(), 2);
         assert_eq!(parsed.entries[1].key, "good");

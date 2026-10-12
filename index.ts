@@ -211,9 +211,11 @@ export interface Options {
   caseProtection?: 'as-needed' | 'strict' | boolean
 
   /**
-   * By default, when a TeX command is encountered which the parser does not know about, the parser will throw an error. You can pass a function here to return the appropriate text output for the command.
+   * How to handle unknown TeX commands and environments: `ignore` replaces them with nothing,
+   * `keep` preserves their literal TeX (including the backslash) and records a diagnostic,
+   * and `throw` throws an error identifying the unsupported TeX. Defaults to `keep`.
    */
-  unsupported?: 'ignore' | unsupportedHandler
+  unsupported?: 'ignore' | 'keep' | 'throw'
 
   /**
    * Some fields such as `url` are parsed in what is called "verbatim mode" where pretty much everything except braces is treated as regular text, not TeX commands. You can change the default list here if you want,
@@ -422,7 +424,7 @@ for (const m in combining.tounicode) { // eslint-disable-line guard-for-in
   narguments[m] = 1
 }
 
-type unsupportedHandler = (node: Node, tex: string, entry: Entry) => string
+class UnsupportedError extends Error {}
 
 type Context = {
   mode: ParseMode
@@ -438,7 +440,6 @@ async function* asyncGenerator<T>(array: T[]): AsyncGenerator<T, void, unknown> 
 */
 
 class BibTeXParser {
-  private fallback: unsupportedHandler | undefined
   private current!: Entry
   private english!: boolean
   private options!: Options
@@ -613,7 +614,8 @@ class BibTeXParser {
 
   private unsupported(node: Node): string {
     const tex = printRaw(node)
-    if (this.fallback) return this.fallback(node, tex, this.current) ?? ''
+    if (this.options.unsupported === 'ignore') return ''
+    if (this.options.unsupported === 'throw') throw new UnsupportedError(`unhandled ${node.type} ${tex}`)
 
     let id: string
     switch (node.type) {
@@ -1275,7 +1277,9 @@ class BibTeXParser {
       ].filter(field => typeof field === 'string')
     }
 
-    this.fallback = options.unsupported === 'ignore' ? ((_node: Node, _tex: string): string => '') : options.unsupported
+    if (options.unsupported !== undefined && !['ignore', 'keep', 'throw'].includes(options.unsupported)) {
+      throw new TypeError('unsupported must be ignore, keep, or throw')
+    }
 
     this.bib = {
       errors: [],
@@ -1328,13 +1332,14 @@ class BibTeXParser {
       }
 
       if (keywords.length) {
-        entry.fields.keywords = [...(new Set(keywords))].sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()))
+        entry.fields.keywords = keywords
         entry.mode.keywords = 'verbatimlist'
       }
 
       this.bib.entries.push(entry)
     }
     catch (err) {
+      if (err instanceof UnsupportedError) throw err
       this.bib.errors.push({ error: `${err.message}\n${entry.input}`, input: entry.input })
     }
   }
@@ -1353,7 +1358,8 @@ class BibTeXParser {
       try {
         this.content(preamble)
       }
-      catch {
+      catch (err) {
+        if (err instanceof UnsupportedError) throw err
       }
     }
     for (const [k, v] of Object.entries(base.strings)) {

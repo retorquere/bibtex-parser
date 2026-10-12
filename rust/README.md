@@ -19,3 +19,5 @@ const normalized = parseNormalized('@article{example, title={A title}}')
 ```
 
 `parseVerbatim` returns the scanner-level representation. `parseNormalized` returns the current typed-field representation. Their options and result structures are described in `rust/pkg/index.d.ts` after building.
+
+The handwritten title tokenizer lives in `src/tokenizer.rs`, separate from TeX rendering and sentence casing. Token precedence, sentence state, and UTF-16 offsets retain the existing behavior; the BibTeX parser is unchanged.

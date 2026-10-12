@@ -1,3 +1,7 @@
+use crate::tokenizer::{
+    SentenceToken, SentenceTokenKind, SentenceTokenSubtype, hyphenated_end, is_case_whitespace,
+    sentence_tokens, token_text,
+};
 use std::collections::{HashMap, HashSet};
 
 /// A source position using the TypeScript parser's UTF-16 offset and 1-based coordinates.
@@ -53,6 +57,8 @@ pub(crate) enum Node {
     },
     /// A braced group whose delimiters are retained until rendering.
     Group(Vec<Node>, SourceSpan),
+    /// A custom macro replacement visited as an argument subtree, not as field-root nodes.
+    Expansion(Vec<Node>, SourceSpan),
     /// A math fragment whose macros use math-mode mappings and arity rules.
     InlineMath(Vec<Node>, SourceSpan),
     /// A matched environment's name and recursively parsed body.
@@ -89,19 +95,6 @@ struct UnicodeMapping {
 
 include!(concat!(env!("OUT_DIR"), "/unicode_tables.rs"));
 
-/// Stored metadata for a user-defined TeX macro.
-///
-/// `arity` counts required parameters; `optional` stores the default value for an
-/// optional bracket argument when the definition uses the TypeScript style
-/// `\newcommand{\foo}[n][default]{...}` form. The replacement `body` is kept as
-/// an AST so it can be expanded with parameter substitution later.
-#[derive(Debug, Clone, PartialEq, Eq)]
-struct MacroDefinition {
-    arity: usize,
-    optional: Option<Vec<Node>>,
-    body: Vec<Node>,
-}
-
 /// Recursive-descent parser state for one TeX fragment.
 struct Parser {
     chars: Vec<char>,
@@ -109,12 +102,16 @@ struct Parser {
     position: usize,
     /// Active environment names; inner parsers return parent terminators without consuming them.
     environment_ends: Vec<String>,
-    newcommands: HashMap<String, MacroDefinition>,
+    newcommands: HashMap<String, Vec<Node>>,
 }
 
 impl Parser {
     /// Create a character-indexed parser over a field value.
     fn new(source: &str) -> Self {
+        Self::new_with_macros(source, HashMap::new())
+    }
+
+    fn new_with_macros(source: &str, newcommands: HashMap<String, Vec<Node>>) -> Self {
         let chars: Vec<char> = source.chars().collect();
         let mut positions = Vec::with_capacity(chars.len() + 1);
         let (mut offset, mut line, mut column) = (0, 1, 1);
@@ -142,7 +139,7 @@ impl Parser {
             positions,
             position: 0,
             environment_ends: Vec::new(),
-            newcommands: HashMap::new(),
+            newcommands,
         }
     }
 
@@ -168,6 +165,7 @@ impl Parser {
             | Node::Whitespace(_, span)
             | Node::Parbreak(span)
             | Node::Group(_, span)
+            | Node::Expansion(_, span)
             | Node::InlineMath(_, span)
             | Node::Verb(_, span) => *span,
             Node::Comment { span, .. }
@@ -242,6 +240,27 @@ impl Parser {
                         self.sequence(false, Some(MathDelimiter::Bracket), environment_end);
                     nodes.push(Node::InlineMath(content, self.span(start, self.position)));
                 }
+                '_' | '^' if math.is_some() => {
+                    self.flush_text(&mut nodes, &mut text, &mut text_start);
+                    let start = self.position;
+                    let name = if self.chars[self.position] == '_' {
+                        "math_"
+                    } else {
+                        "math^"
+                    };
+                    self.position += 1;
+                    self.skip_argument_space();
+                    let arguments = if self.position < self.chars.len() {
+                        vec![self.argument(math, environment_end)]
+                    } else {
+                        Vec::new()
+                    };
+                    nodes.push(Node::Macro {
+                        name: name.to_string(),
+                        arguments,
+                        span: self.span(start, self.position.min(start + 1)),
+                    });
+                }
                 '{' => {
                     // Retain group structure so rendering and later case-protection passes can inspect it.
                     self.flush_text(&mut nodes, &mut text, &mut text_start);
@@ -267,7 +286,7 @@ impl Parser {
                         } if name == "begin" => {
                             let environment = arguments
                                 .first()
-                                .map(|argument| serialize_nodes(argument))
+                                .map(|argument| serialize_argument(argument))
                                 .unwrap_or_default()
                                 .trim()
                                 .to_string();
@@ -306,7 +325,7 @@ impl Parser {
                         } if name == "end"
                             && environment_end.is_some_and(|expected| {
                                 arguments.first().is_some_and(|argument| {
-                                    serialize_nodes(argument).trim() == expected
+                                    serialize_argument(argument).trim() == expected
                                 })
                             }) =>
                         {
@@ -316,7 +335,7 @@ impl Parser {
                             name, arguments, ..
                         } if name == "end"
                             && arguments.first().is_some_and(|argument| {
-                                let end_name = serialize_nodes(argument).trim().to_string();
+                                let end_name = serialize_argument(argument).trim().to_string();
                                 self.environment_ends
                                     .iter()
                                     .rev()
@@ -350,7 +369,10 @@ impl Parser {
                             arguments,
                             span,
                         } if self.newcommands.contains_key(&name) => {
-                            nodes.extend(self.expand_macro(&name, 0, &arguments, span));
+                            nodes.push(Node::Expansion(
+                                self.expand_macro(&name, 0, &arguments, span),
+                                span,
+                            ));
                         }
                         macro_node => nodes.push(macro_node),
                     }
@@ -410,36 +432,42 @@ impl Parser {
                         }
                     }
                     let suffix_parbreak = line_breaks > 1;
-                    if line_breaks == 1 {
-                        self.position = line_ending_end;
+                    if line_breaks > 0 {
+                        self.position = lookahead;
                     }
                     nodes.push(Node::Comment {
                         content: comment,
-                        span: self.span(comment_start, self.position),
+                        span: self.span(
+                            comment_start,
+                            if line_breaks == 0 {
+                                content_end
+                            } else if suffix_parbreak {
+                                content_end
+                            } else {
+                                lookahead
+                            },
+                        ),
                         sameline,
                         leading_whitespace,
                         suffix_parbreak,
                     });
                     if suffix_parbreak {
                         nodes.push(Node::Parbreak(self.span(content_end, line_ending_end)));
-                        self.position = line_ending_end;
                     }
                 }
-                ch if ch.is_whitespace() && !matches!(ch, '\n' | '\r') => {
+                // Keep non-ASCII spacing characters as text so rendering preserves their width.
+                ch if ch.is_ascii_whitespace() && !matches!(ch, '\n' | '\r') => {
                     self.flush_text(&mut nodes, &mut text, &mut text_start);
                     let start = self.position;
                     let mut whitespace = String::new();
                     while self.position < self.chars.len()
-                        && self.chars[self.position].is_whitespace()
+                        && self.chars[self.position].is_ascii_whitespace()
                         && !matches!(self.chars[self.position], '\n' | '\r')
                     {
                         whitespace.push(self.chars[self.position]);
                         self.position += 1;
                     }
-                    nodes.push(Node::Whitespace(
-                        whitespace,
-                        self.span(start, self.position),
-                    ));
+                    Self::push_whitespace(&mut nodes, whitespace, self.span(start, self.position));
                 }
                 '\n' | '\r' => {
                     self.flush_text(&mut nodes, &mut text, &mut text_start);
@@ -455,6 +483,8 @@ impl Parser {
                                 line_breaks += 1;
                                 self.position += 1;
                                 if self.chars.get(self.position) == Some(&'\n') {
+                                    // TypeScript's parser counts CR and LF separately; a CRLF pair is a parbreak.
+                                    line_breaks += 1;
                                     self.position += 1;
                                 }
                             }
@@ -468,12 +498,20 @@ impl Parser {
                         }
                     }
                     if line_breaks > 1 {
-                        nodes.push(Node::Parbreak(self.span(start, self.position)));
+                        let mut parbreak_start = start;
+                        if let Some(Node::Whitespace(_, span)) = nodes.last()
+                            && span.end.offset == self.positions[start].offset
+                        {
+                            parbreak_start = self.char_index(span.start.offset);
+                            nodes.pop();
+                        }
+                        nodes.push(Node::Parbreak(self.span(parbreak_start, self.position)));
                     } else {
-                        nodes.push(Node::Whitespace(
+                        Self::push_whitespace(
+                            &mut nodes,
                             self.chars[start..self.position].iter().collect(),
                             self.span(start, self.position),
-                        ));
+                        );
                     }
                 }
                 ch => {
@@ -500,11 +538,22 @@ impl Parser {
         }
     }
 
-    /// Parse a macro name and consume the arguments required by its arity.
+    fn push_whitespace(nodes: &mut Vec<Node>, content: String, span: SourceSpan) {
+        if let Some(Node::Whitespace(previous, previous_span)) = nodes.last_mut()
+            && previous_span.end.offset == span.start.offset
+        {
+            previous.push_str(&content);
+            previous_span.end = span.end;
+        } else {
+            nodes.push(Node::Whitespace(content, span));
+        }
+    }
+
+    /// Parse a macro name and consume its arguments, handling custom-command definitions separately.
     ///
-    /// The key distinction is that custom call sites may include an optional
-    /// bracket argument before the required braced parameters, while ordinary
-    /// built-ins follow the `narguments` table and never consume optional braces.
+    /// Unlisted custom macros do not consume following groups. Alphabetic zero-argument macros
+    /// discard one trailing delimiter whitespace node, while math-mode `_` and `^` take one
+    /// argument. `url` and `href` replace their first parsed argument with its raw printed text.
     fn parse_macro(&mut self, math: Option<MathDelimiter>, environment_end: Option<&str>) -> Node {
         let macro_start = self.position;
         self.position += 1;
@@ -530,71 +579,72 @@ impl Parser {
         }
 
         let mut arguments = Vec::new();
-        let parse_custom_definition =
-            matches!(name.as_str(), "newcommand" | "ProvideTextCommandDefault");
-        let custom_arity = self
-            .newcommands
-            .get(&name)
-            .map(|definition| {
-                let base = definition.arity;
-                let optional = definition.optional.is_some();
-                if optional && self.peek_non_space_char() == Some('[') {
-                    base
-                } else if optional {
-                    base.saturating_sub(1)
-                } else {
-                    base
-                }
-            })
-            .unwrap_or_else(|| macro_arity(&name, math.is_some()));
+        if matches!(name.as_str(), "newcommand" | "ProvideTextCommandDefault") {
+            // Definition arity/default brackets are syntax; the visitor stores the replacement body.
+            self.skip_argument_space();
+            arguments.push(self.argument(math, environment_end));
+            self.skip_argument_space();
+            if self.skip_optional_bracket_argument() {
+                self.skip_argument_space();
+                self.skip_optional_bracket_argument();
+            }
+            self.skip_argument_space();
+            if self.position < self.chars.len() && self.chars[self.position] != '}' {
+                arguments.push(self.argument(math, environment_end));
+            }
+            return Node::Macro {
+                name,
+                arguments,
+                span: macro_span,
+            };
+        }
 
-        if parse_custom_definition {
-            // A custom definition is parsed in a very specific order:
-            //   1. macro name
-            //   2. optional arity count (for `\newcommand{\foo}[2]{...}`)
-            //   3. optional default argument in `[...]`
-            //   4. replacement body in `{...}`
+        let arity = macro_arity(&name, math.is_some());
+        for _ in 0..arity {
+            // TeX permits whitespace between a macro name and its braced arguments.
             self.skip_argument_space();
-            if self.position < self.chars.len() {
-                arguments.push(self.argument(math, environment_end));
+            if self.position == self.chars.len() || self.chars[self.position] == '}' {
+                break;
             }
-            while self.position < self.chars.len() && self.peek_non_space_char() == Some('[') {
-                self.skip_argument_space();
-                if self.position < self.chars.len() && self.chars[self.position] == '[' {
-                    arguments.push(self.parse_bracketed_argument(math, environment_end));
-                }
-            }
-            self.skip_argument_space();
-            if self.position < self.chars.len() && self.chars[self.position] == '{' {
-                arguments.push(self.argument(math, environment_end));
-            }
-        } else {
-            for _ in 0..custom_arity {
-                // TeX permits whitespace between a macro name and its braced arguments.
-                self.skip_argument_space();
-                if self.position == self.chars.len() {
-                    break;
-                }
-                if self
-                    .newcommands
-                    .get(&name)
-                    .and_then(|definition| definition.optional.as_ref())
-                    .is_some()
-                    && self.peek_non_space_char() == Some('[')
-                {
-                    arguments.push(self.parse_bracketed_argument(math, environment_end));
-                } else {
-                    arguments.push(self.argument(math, environment_end));
-                }
-            }
+            let styled_argument = matches!(
+                name.as_str(),
+                "textbf"
+                    | "mkbibbold"
+                    | "textit"
+                    | "textsl"
+                    | "emph"
+                    | "mkbibemph"
+                    | "textsc"
+                    | "texttt"
+            );
+            arguments.push(if styled_argument {
+                self.styled_argument(math, environment_end)
+            } else {
+                self.argument(math, environment_end)
+            });
+        }
+        if matches!(name.as_str(), "url" | "href")
+            && let Some(argument) = arguments.first()
+        {
+            // TypeScript replaces the destination with printRaw text before visiting it, so
+            // commands inside a URL are literal rather than formatting instructions.
+            let nodes = match argument.as_slice() {
+                [Node::Group(children, _)] => children.as_slice(),
+                _ => argument.as_slice(),
+            };
+            let span = nodes
+                .first()
+                .map(|node| self.node_span(node))
+                .unwrap_or(macro_span);
+            arguments[0] = vec![Node::String(serialize_print_raw_nodes(nodes), span)];
         }
         if alphabetic_name
-            && custom_arity == 0
+            && arity == 0
             && self.position < self.chars.len()
-            && self.chars[self.position].is_whitespace()
+            && self.chars[self.position].is_ascii_whitespace()
         {
             // The delimiter after a zero-argument alphabetic macro is syntax, not rendered text.
-            self.position += 1;
+            self.skip_argument_space();
         }
         Node::Macro {
             name,
@@ -603,82 +653,82 @@ impl Parser {
         }
     }
 
-    /// Skip whitespace before a macro argument, as the TypeScript argument reader does.
-    fn skip_argument_space(&mut self) {
-        while self.position < self.chars.len() && self.chars[self.position].is_whitespace() {
-            self.position += 1;
-        }
-    }
-
-    /// Look ahead past whitespace to the next concrete token.
+    /// Consume one optional square-bracket argument, respecting braces and escaped delimiters.
     ///
-    /// This is used to distinguish a macro call like `\foo[default]{arg}` from a
-    /// regular braced argument where whitespace before `[` should not matter.
-    fn peek_non_space_char(&self) -> Option<char> {
-        let mut index = self.position;
-        while index < self.chars.len() && self.chars[index].is_whitespace() {
-            index += 1;
+    /// Newcommand arity and default arguments are syntax around the replacement body. The
+    /// TypeScript visitor stores only that body, so these bracketed sections are skipped rather
+    /// than rendered. The shared noopsort fixture exercises the `[1]` arity form.
+    fn skip_optional_bracket_argument(&mut self) -> bool {
+        if self.chars.get(self.position) != Some(&'[') {
+            return false;
         }
-        self.chars.get(index).copied()
-    }
-
-    /// Parse a bracketed optional argument, omitting the surrounding delimiters.
-    ///
-    /// The optional default value is preserved as a normal node list so it can be
-    /// substituted later by `#1`-style parameter expansion without discarding the
-    /// original group structure.
-    fn parse_bracketed_argument(
-        &mut self,
-        math: Option<MathDelimiter>,
-        environment_end: Option<&str>,
-    ) -> Vec<Node> {
-        debug_assert_eq!(self.chars[self.position], '[');
         self.position += 1;
-        let mut nodes = Vec::new();
-        let mut text = String::new();
-        let mut text_start = None;
+        let (mut depth, mut escaped) = (0usize, false);
         while self.position < self.chars.len() {
-            match self.chars[self.position] {
-                ']' => {
-                    self.position += 1;
-                    break;
-                }
-                '{' => {
-                    self.flush_text(&mut nodes, &mut text, &mut text_start);
-                    let start = self.position;
-                    self.position += 1;
-                    let (content, matched) = self.sequence(true, math, environment_end);
-                    if matched {
-                        nodes.push(Node::Group(content, self.span(start, self.position)));
-                    } else {
-                        nodes.push(Node::String("{".to_string(), self.span(start, start + 1)));
-                        nodes.extend(content);
-                    }
-                }
-                '\\' => {
-                    self.flush_text(&mut nodes, &mut text, &mut text_start);
-                    nodes.push(self.parse_macro(math, environment_end));
-                }
-                ch => {
-                    if text.is_empty() {
-                        text_start = Some(self.position);
-                    }
-                    text.push(ch);
-                    self.position += 1;
-                }
+            let character = self.chars[self.position];
+            self.position += 1;
+            if escaped {
+                escaped = false;
+                continue;
+            }
+            match character {
+                '\\' => escaped = true,
+                '{' => depth += 1,
+                '}' => depth = depth.saturating_sub(1),
+                ']' if depth == 0 => return true,
+                _ => {}
             }
         }
-        self.flush_text(&mut nodes, &mut text, &mut text_start);
-        nodes
+        false
+    }
+
+    /// Skip whitespace before a macro argument, as the TypeScript argument reader does.
+    fn skip_argument_space(&mut self) {
+        if self.position >= self.chars.len() {
+            return;
+        }
+        if matches!(self.chars[self.position], ' ' | '\t') {
+            while self.position < self.chars.len()
+                && matches!(self.chars[self.position], ' ' | '\t')
+            {
+                self.position += 1;
+            }
+            return;
+        }
+        if !matches!(self.chars[self.position], '\n' | '\r') {
+            return;
+        }
+
+        let start = self.position;
+        if self.chars[self.position] == '\r' {
+            self.position += 1;
+            if self.chars.get(self.position) == Some(&'\n') {
+                self.position += 1;
+            }
+        } else {
+            self.position += 1;
+        }
+        while self.position < self.chars.len() && matches!(self.chars[self.position], ' ' | '\t') {
+            self.position += 1;
+        }
+        if self.chars.get(self.position) == Some(&'\n')
+            || self.chars.get(self.position) == Some(&'\r')
+        {
+            self.position = start;
+        }
     }
 
     /// Parse a braced macro argument, nested macro, or single-token argument.
+    ///
+    /// Braced arguments remain `Group` nodes: TypeScript marks root groups before pass 1 consumes
+    /// them, and later stringification still needs their case-protection metadata. Malformed
+    /// groups retain a literal opening brace with the content parsed so far.
     fn argument(
         &mut self,
         math: Option<MathDelimiter>,
         environment_end: Option<&str>,
     ) -> Vec<Node> {
-        // Braced arguments retain their children as nodes but omit delimiter tokens from the child list.
+        // Keep balanced braces as a Group; the source delimiters are structural, not field text.
         if self.chars[self.position] == '{' {
             let start = self.position;
             self.position += 1;
@@ -688,8 +738,10 @@ impl Parser {
                     0,
                     Node::String("{".to_string(), self.span(start, start + 1)),
                 );
+                content
+            } else {
+                vec![Node::Group(content, self.span(start, self.position))]
             }
-            content
         // An unbraced argument may itself be a macro; otherwise it consumes one character.
         } else if self.chars[self.position] == '\\' {
             vec![self.parse_macro(math, environment_end)]
@@ -702,6 +754,37 @@ impl Parser {
                 self.span(start, self.position),
             )]
         }
+    }
+
+    /// Match TypeScript `wraparg` aliasing by consuming a complete unbraced string node for styles.
+    ///
+    /// Style macros attach formatting metadata to the consumed string node, so `\textbf abc`
+    /// styles the complete `abc` run; other unbraced macro arguments consume only one token.
+    fn styled_argument(
+        &mut self,
+        math: Option<MathDelimiter>,
+        environment_end: Option<&str>,
+    ) -> Vec<Node> {
+        if self.position >= self.chars.len() || matches!(self.chars[self.position], '{' | '\\') {
+            return self.argument(math, environment_end);
+        }
+        let start = self.position;
+        while self.position < self.chars.len()
+            && !matches!(
+                self.chars[self.position],
+                '{' | '}' | '\\' | '$' | '%' | '\n' | '\r'
+            )
+            && !self.chars[self.position].is_ascii_whitespace()
+        {
+            self.position += 1;
+        }
+        if self.position == start {
+            return self.argument(math, environment_end);
+        }
+        vec![Node::String(
+            self.chars[start..self.position].iter().collect(),
+            self.span(start, self.position),
+        )]
     }
 
     /// Parse a delimited `\\verb` token and retain its source range including delimiters.
@@ -724,59 +807,36 @@ impl Parser {
         Node::Verb(contents, self.span(start, self.position))
     }
 
-    /// Register a custom macro definition using the TypeScript AST layout.
+    /// Store the replacement body parsed after custom-command declaration syntax.
     ///
-    /// The first argument names the command; the rest are either:
-    /// - a bare replacement body for `\newcommand{\name}{body}`
-    /// - a count + replacement body for `\newcommand{\name}[2]{body}`
-    /// - a count + default + replacement body for `\newcommand{\name}[2][default]{body}`
+    /// TypeScript validates that the first argument is a group containing one macro name, then
+    /// stores `node.args[1]`. The parser removes arity/default brackets so that this is the body.
     fn register_macro(&mut self, arguments: &[Vec<Node>]) -> bool {
         // TypeScript requires the first argument to contain a macro node naming the definition.
-        let Some(Node::Macro { name, .. }) =
-            arguments.first().and_then(|argument| argument.first())
-        else {
+        let name_node = arguments
+            .first()
+            .and_then(|argument| match argument.as_slice() {
+                [Node::Group(children, _)] => children.first(),
+                [node] => Some(node),
+                _ => None,
+            });
+        let Some(Node::Macro { name, .. }) = name_node else {
             return false;
         };
 
-        let tail: Vec<&Vec<Node>> = arguments.iter().skip(1).collect();
-        let mut arity = 0usize;
-        let mut optional: Option<Vec<Node>> = None;
-        let mut replacement: Option<Vec<Node>> = None;
-
-        if let Some(argument) = tail.first().copied() {
-            if let Some(count) = extract_newcommand_arity(argument) {
-                arity = count;
-                match tail.len() {
-                    2 => replacement = Some(tail[1].clone()),
-                    len if len > 2 => {
-                        // A second bracketed value is the optional default for the first
-                        // parameter; the final item is always the replacement body.
-                        optional = Some(tail[1].clone());
-                        replacement = Some(tail[len - 1].clone());
-                    }
-                    _ => {}
-                }
-            } else {
-                replacement = Some(argument.clone());
-            }
-        }
-
-        let Some(replacement) = replacement else {
+        let Some(replacement) = arguments.get(1).cloned() else {
             return false;
         };
 
-        self.newcommands.insert(
-            name.clone(),
-            MacroDefinition {
-                arity,
-                optional,
-                body: replacement,
-            },
-        );
+        let name = name.clone();
+        self.newcommands.insert(name, replacement);
         true
     }
 
     /// Expand nested custom macros with a recursion limit for self-referential definitions.
+    ///
+    /// Invocation arguments are ignored because the TypeScript visitor recursively renders the
+    /// stored replacement body without substituting `#1`-style placeholders.
     fn expand_macro(
         &self,
         name: &str,
@@ -792,13 +852,10 @@ impl Parser {
                 span,
             }];
         }
+        let _ = arguments;
         self.newcommands
             .get(name)
-            .map(|definition| {
-                let actual = resolve_macro_arguments(definition, arguments);
-                let substituted = substitute_parameters(&definition.body, &actual);
-                self.expand_nodes(&substituted, depth + 1)
-            })
+            .map(|body| self.expand_nodes(body, depth + 1))
             .unwrap_or_default()
     }
 
@@ -876,162 +933,6 @@ impl Parser {
     }
 }
 
-/**
- * Detect the parameter-count marker used by a custom `\newcommand` definition.
- *
- * In a definition like `\newcommand{\foo}[2]{...}` or
- * `\newcommand{\foo}[2][default]{...}`, the bracketed integer is not part of the
- * replacement body. It tells us how many `#1`, `#2`, ... placeholders the macro
- * expects. This helper recognizes only that custom-definition slot and leaves all
- * other AST fragments alone.
- */
-fn extract_newcommand_arity(argument: &[Node]) -> Option<usize> {
-    let literal = serialize_nodes(argument).trim().to_string();
-    if literal.is_empty() {
-        None
-    } else {
-        literal.parse::<usize>().ok()
-    }
-}
-
-/// Resolve the actual parameter list for a custom macro.
-///
-/// If the definition includes an optional default argument, the first actual call
-/// value is inserted as the default when the caller omits it. Otherwise the call
-/// arguments are used as-is, with missing values left empty to preserve TeX's
-/// parameter semantics as much as possible.
-fn resolve_macro_arguments(
-    definition: &MacroDefinition,
-    arguments: &[Vec<Node>],
-) -> Vec<Vec<Node>> {
-    let mut resolved = if let Some(optional) = &definition.optional {
-        if arguments.len() == definition.arity {
-            let mut params = vec![arguments[0].clone()];
-            params.extend(arguments.iter().skip(1).cloned());
-            params
-        } else {
-            let mut params = vec![optional.clone()];
-            params.extend(arguments.iter().cloned());
-            params
-        }
-    } else {
-        arguments.to_vec()
-    };
-
-    while resolved.len() < definition.arity {
-        resolved.push(Vec::new());
-    }
-
-    resolved.truncate(definition.arity.max(1));
-    resolved
-}
-
-/// Substitute `#1`, `#2`, ... placeholders in a stored macro body.
-///
-/// The implementation walks the AST and only rewrites the parameter markers in
-/// string nodes while preserving nested groups, math, environments, and other
-/// structural nodes. This keeps the replacement tree faithful to the original
-/// source structure while expanding the actual arguments.
-fn substitute_parameters(nodes: &[Node], parameters: &[Vec<Node>]) -> Vec<Node> {
-    let mut output = Vec::new();
-    for node in nodes {
-        match node {
-            Node::String(text, span) => {
-                let chars: Vec<char> = text.chars().collect();
-                let mut index = 0usize;
-                let mut last = 0usize;
-                while index < chars.len() {
-                    if chars[index] == '#' {
-                        if index + 1 < chars.len() && chars[index + 1] == '#' {
-                            if last < index {
-                                output
-                                    .push(Node::String(chars[last..index].iter().collect(), *span));
-                            }
-                            output.push(Node::String('#'.to_string(), *span));
-                            index += 2;
-                            last = index;
-                            continue;
-                        }
-                        if index + 1 < chars.len() && chars[index + 1].is_ascii_digit() {
-                            if last < index {
-                                output
-                                    .push(Node::String(chars[last..index].iter().collect(), *span));
-                            }
-                            let mut end = index + 2;
-                            while end < chars.len() && chars[end].is_ascii_digit() {
-                                end += 1;
-                            }
-                            let parameter_index = chars[index + 1..end]
-                                .iter()
-                                .collect::<String>()
-                                .parse::<usize>()
-                                .unwrap_or_default();
-                            if let Some(argument) =
-                                parameters.get(parameter_index.saturating_sub(1))
-                            {
-                                output.extend(argument.iter().cloned());
-                            }
-                            index = end;
-                            last = index;
-                            continue;
-                        }
-                    }
-                    index += 1;
-                }
-                if last < chars.len() {
-                    output.push(Node::String(chars[last..].iter().collect(), *span));
-                }
-            }
-            Node::Whitespace(text, span) => output.push(Node::Whitespace(text.clone(), *span)),
-            Node::Parbreak(span) => output.push(Node::Parbreak(*span)),
-            Node::Comment {
-                content,
-                span,
-                sameline,
-                leading_whitespace,
-                suffix_parbreak,
-            } => output.push(Node::Comment {
-                content: content.clone(),
-                span: *span,
-                sameline: *sameline,
-                leading_whitespace: *leading_whitespace,
-                suffix_parbreak: *suffix_parbreak,
-            }),
-            Node::Group(children, span) => output.push(Node::Group(
-                substitute_parameters(children, parameters),
-                *span,
-            )),
-            Node::InlineMath(children, span) => output.push(Node::InlineMath(
-                substitute_parameters(children, parameters),
-                *span,
-            )),
-            Node::Environment {
-                name,
-                content,
-                span,
-            } => output.push(Node::Environment {
-                name: name.clone(),
-                content: substitute_parameters(content, parameters),
-                span: *span,
-            }),
-            Node::Macro {
-                name,
-                arguments,
-                span,
-            } => output.push(Node::Macro {
-                name: name.clone(),
-                arguments: arguments
-                    .iter()
-                    .map(|argument| substitute_parameters(argument, parameters))
-                    .collect(),
-                span: *span,
-            }),
-            Node::Verb(_, _) => output.push(node.clone()),
-        }
-    }
-    output
-}
-
 /// Return the argument arity for markup macros and combining macros.
 fn macro_arity(name: &str, in_math: bool) -> usize {
     // Accent arity comes from the generated combining table rather than a second accent list.
@@ -1040,7 +941,7 @@ fn macro_arity(name: &str, in_math: bool) -> usize {
     }
     // This is the TypeScript narguments table; underscore/caret are argument-taking only in math.
     match name {
-        "frac" | "href" | "newcommand" | "ProvideTextCommandDefault" => 2,
+        "frac" | "href" => 2,
         "advance" | "ElsevierGlyph" | "bar" | "begin" | "end" | "bibcyr" | "bibstring" | "chsf"
         | "cite" | "citeauthor" | "cyrchar" | "ding" | "emph" | "enquote" | "hbox" | "hskip"
         | "hspace" | "ht" | "mathrm" | "mbox" | "mkbibbold" | "mkbibemph" | "mkbibitalic"
@@ -1062,6 +963,11 @@ pub(crate) fn parse(source: &str) -> Ast {
     Ast { content, span }
 }
 
+/// Print parsed TeX nodes with the whitespace normalization used by TypeScript `printRaw`.
+pub(crate) fn print_raw(source: &str) -> String {
+    serialize_print_raw_nodes(&parse(source).content)
+}
+
 /// Collects unsupported TeX constructs while normalized fields are rendered.
 ///
 /// Diagnostics are shared across every field in one library normalization so a macro
@@ -1072,6 +978,10 @@ pub(crate) struct RenderDiagnostics {
     pub(crate) errors: Vec<super::ParseError>,
     /// Stable kind/name identifiers used to suppress duplicate macro and environment errors.
     unhandled: HashSet<String>,
+    /// Whether unsupported nodes are omitted without recording a diagnostic.
+    pub(crate) ignore_unsupported: bool,
+    /// Whether root-title group boundaries should be retained for post-render casing.
+    pub(crate) mark_case_groups: bool,
 }
 
 impl RenderDiagnostics {
@@ -1081,6 +991,9 @@ impl RenderDiagnostics {
     /// `source` is retained as the error input. Macro and environment errors are deduplicated;
     /// callers currently report only those two construct kinds.
     fn report(&mut self, kind: &str, name: &str, source: String) {
+        if self.ignore_unsupported {
+            return;
+        }
         let id = format!("{kind}.{name}");
         if self.unhandled.insert(id) {
             let error = if kind == "macro" {
@@ -1096,6 +1009,36 @@ impl RenderDiagnostics {
     }
 }
 
+/// TypeScript-compatible case-protection settings for title rendering.
+///
+/// `as-needed` matches the default browser/JS behavior: lower-case words that look like they
+/// require preservation are wrapped in a `nocase` span. `strict` preserves the author-supplied
+/// protected text while leaving the same default title heuristics in place for the visitor. `off`
+/// disables the root-title protection pass entirely.
+#[allow(dead_code)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Default)]
+pub(crate) enum CaseProtection {
+    #[default]
+    AsNeeded,
+    Off,
+    Strict,
+}
+
+impl CaseProtection {
+    /// Whether the visitor should wrap a title word in a case-preserving span.
+    fn enabled(self) -> bool {
+        !matches!(self, Self::Off)
+    }
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+struct RenderContext {
+    title_mode: bool,
+    protected_ancestor: bool,
+    root_scope: bool,
+    case_protection: CaseProtection,
+}
+
 /// Parse, visit, and trim a TeX fragment using its field rendering mode.
 ///
 /// This test-only convenience function discards unsupported-construct diagnostics; production
@@ -1106,6 +1049,52 @@ pub(crate) fn render(source: &str, mode: &str) -> String {
     render_with_diagnostics(source, mode, &mut RenderDiagnostics::default())
 }
 
+/// Render one field with an explicit case-protection policy.
+///
+/// The `case_protection` policy mirrors the TypeScript visitor's `caseProtection` option. The
+/// default visitor path keeps the reference `as-needed` behavior, while callers can opt out or
+/// force the stricter mode without changing the rest of the render pipeline.
+pub(crate) fn render_with_policy(
+    source: &str,
+    mode: &str,
+    diagnostics: &mut RenderDiagnostics,
+    case_protection: CaseProtection,
+) -> String {
+    render_with_policy_and_registry(
+        source,
+        mode,
+        diagnostics,
+        case_protection,
+        &mut HashMap::new(),
+    )
+    .trim()
+    .to_string()
+}
+
+pub(crate) fn render_with_policy_and_registry(
+    source: &str,
+    mode: &str,
+    diagnostics: &mut RenderDiagnostics,
+    case_protection: CaseProtection,
+    newcommands: &mut HashMap<String, Vec<Node>>,
+) -> String {
+    let mut parser = Parser::new_with_macros(source, std::mem::take(newcommands));
+    let (content, _) = parser.sequence(false, None, None);
+    *newcommands = parser.newcommands;
+    render_nodes(
+        &content,
+        mode,
+        false,
+        diagnostics,
+        RenderContext {
+            title_mode: mode == "title",
+            protected_ancestor: false,
+            root_scope: true,
+            case_protection,
+        },
+    )
+}
+
 /// Render one field and add unsupported constructs to library-level diagnostics.
 ///
 /// # Arguments
@@ -1113,24 +1102,13 @@ pub(crate) fn render(source: &str, mode: &str) -> String {
 /// * `mode` - Field rendering mode; only `title` enables title root-group protection.
 /// * `diagnostics` - Shared state that deduplicates unsupported constructs across fields.
 ///
-/// The visitor starts at root scope and assumes the current default English `as-needed`
-/// protection policy. Sentence casing and configurable `strict`/`off` policies are separate work.
+/// The visitor starts at root scope using the default English `as-needed` protection policy.
 pub(crate) fn render_with_diagnostics(
     source: &str,
     mode: &str,
     diagnostics: &mut RenderDiagnostics,
 ) -> String {
-    render_nodes(
-        &parse(source).content,
-        mode,
-        false,
-        diagnostics,
-        mode == "title",
-        false,
-        true,
-    )
-    .trim()
-    .to_string()
+    render_with_policy(source, mode, diagnostics, CaseProtection::default())
 }
 
 /// Render a sibling sequence while tracking field mode, local markup, and title context.
@@ -1147,14 +1125,12 @@ fn render_nodes(
     mode: &str,
     verbatim: bool,
     diagnostics: &mut RenderDiagnostics,
-    title_mode: bool,
-    protected_ancestor: bool,
-    root_scope: bool,
+    context: RenderContext,
 ) -> String {
     let mut output = String::new();
     let mut paragraph_boundary = false;
     let mut markup = Markup::default();
-    for node in nodes {
+    for (index, node) in nodes.iter().enumerate() {
         // These declaration commands change formatting for later siblings and render no text.
         if mode != "math"
             && let Node::Macro { name, .. } = node
@@ -1165,8 +1141,19 @@ fn render_nodes(
         let is_parbreak = matches!(node, Node::Parbreak(_))
             || matches!(node, Node::Macro { name, .. } if name == "par");
         if mode == "richtext" {
-            // Collapse repeated paragraph boundaries and their following layout whitespace.
+            let next_non_layout = nodes[index + 1..]
+                .iter()
+                .find(|next| !matches!(next, Node::Whitespace(_, _) | Node::Comment { .. }));
+            let tie_between_paragraphs = matches!(node, Node::String(text, _) if text == "~" || text == "\u{00a0}")
+                && next_non_layout.is_some_and(|next| {
+                    matches!(next, Node::Parbreak(_))
+                        || matches!(next, Node::Macro { name, .. } if name == "par")
+                });
+            // Collapse repeated paragraph boundaries, their layout whitespace, and ties between them.
             if is_parbreak && paragraph_boundary {
+                continue;
+            }
+            if paragraph_boundary && tie_between_paragraphs {
                 continue;
             }
             if paragraph_boundary && matches!(node, Node::Whitespace(_, _)) {
@@ -1175,18 +1162,21 @@ fn render_nodes(
         }
 
         // The TS visitor marks nonempty root groups unless their first child is a macro.
-        let protect_group = title_mode
-            && root_scope
-            && !protected_ancestor
+        let protect_group = context.title_mode
+            && context.root_scope
+            && !context.protected_ancestor
             && matches!(node, Node::Group(children, _) if !children.is_empty() && !matches!(children[0], Node::Macro { .. }));
         let rendered = render_node(
             node,
             mode,
             verbatim,
             diagnostics,
-            title_mode,
-            protected_ancestor || protect_group,
-            root_scope,
+            RenderContext {
+                title_mode: context.title_mode,
+                protected_ancestor: context.protected_ancestor || protect_group,
+                root_scope: context.root_scope,
+                case_protection: context.case_protection,
+            },
         );
         if mode == "richtext" && is_parbreak {
             paragraph_boundary = true;
@@ -1194,11 +1184,20 @@ fn render_nodes(
             paragraph_boundary = false;
         }
         let mut rendered = markup.wrap(rendered);
-        if protect_group && needs_case_protection(&rendered) {
+        if diagnostics.mark_case_groups && protect_group {
+            rendered = format!("<case-protection>{rendered}</case-protection>");
+        } else if protect_group
+            && context.case_protection.enabled()
+            && needs_case_protection(&rendered)
+        {
             rendered = format!("<span class=\"nocase\">{rendered}</span>");
         }
         output.push_str(&rendered);
     }
+    collapse_markup_spans(output)
+}
+
+fn collapse_markup_spans(mut output: String) -> String {
     let wrappers = [
         ("<i>", "</i>"),
         ("<b>", "</b>"),
@@ -1208,7 +1207,7 @@ fn render_nodes(
     // Adjacent siblings receive separate wrappers above; collapse equal neighbors into one span.
     loop {
         let collapsed = wrappers.iter().fold(output.clone(), |text, (open, close)| {
-            text.replace(&format!("{close}{open}"), "")
+            collapse_markup_pairs(&text, open, close)
         });
         if collapsed == output {
             break;
@@ -1216,6 +1215,41 @@ fn render_nodes(
         output = collapsed;
     }
     output
+}
+
+fn collapse_markup_pairs(text: &str, open: &str, close: &str) -> String {
+    let mut current = text.to_string();
+    loop {
+        let mut output = String::with_capacity(current.len());
+        let mut cursor = 0;
+        let mut replaced = false;
+        while let Some(relative_close) = current[cursor..].find(close) {
+            let close_start = cursor + relative_close;
+            let after_close = close_start + close.len();
+            let mut next_open = after_close;
+            for (offset, character) in current[after_close..].char_indices() {
+                if character.is_whitespace() {
+                    next_open = after_close + offset + character.len_utf8();
+                } else {
+                    break;
+                }
+            }
+            output.push_str(&current[cursor..close_start]);
+            if current[next_open..].starts_with(open) {
+                output.push_str(&current[after_close..next_open]);
+                cursor = next_open + open.len();
+                replaced = true;
+            } else {
+                output.push_str(close);
+                cursor = after_close;
+            }
+        }
+        output.push_str(&current[cursor..]);
+        if !replaced {
+            return current;
+        }
+        current = output;
+    }
 }
 
 /// Formatting state activated by TeX declaration commands for later siblings in one node list.
@@ -1271,29 +1305,526 @@ impl Markup {
     }
 }
 
-/// Approximate the TypeScript default `as-needed` rule for already-rendered title text.
-///
-/// Generated markup is ignored before words are inspected. A word needs protection when it
-/// contains ASCII lowercase letters and no ASCII uppercase letters. This deliberately small
-/// heuristic does not port the TypeScript tokenizer, Unicode word shapes, or `strict`/`off`
-/// settings; title sentence-casing and those options remain separate roadmap work.
+/// Apply the TypeScript tokenizer's `as-needed` decision to already-rendered title text.
 fn needs_case_protection(text: &str) -> bool {
-    let mut visible = String::new();
-    let mut in_tag = false;
-    for character in text.chars() {
-        match character {
-            '<' => in_tag = true,
-            '>' => in_tag = false,
-            _ if !in_tag => visible.push(character),
-            _ => {}
+    let characters: Vec<char> = text.chars().collect();
+    let mut tokenized = Vec::new();
+    let mut position = 0;
+    while position < characters.len() {
+        if characters[position] == '<'
+            && let Some(relative_end) = characters[position..]
+                .iter()
+                .position(|character| *character == '>')
+        {
+            tokenized.extend(std::iter::repeat_n('\u{2060}', relative_end + 1));
+            position += relative_end + 1;
+        } else {
+            tokenized.push(characters[position]);
+            position += 1;
         }
     }
+    let characters = tokenized;
+    let tokens = sentence_tokens(&characters, true, false);
+    let mut index = 0;
+    while index < tokens.len() {
+        let end = hyphenated_end(&tokens, &characters, index).unwrap_or(index);
+        let shape = tokens[index..=end]
+            .iter()
+            .map(|token| {
+                if token.kind == SentenceTokenKind::Other {
+                    token_text(token, &characters)
+                } else {
+                    token.shape.clone()
+                }
+            })
+            .collect::<String>();
+        if shape.contains('x') && !shape.contains('X') {
+            return true;
+        }
+        index = end + 1;
+    }
+    false
+}
+
+/// Apply the TypeScript default title-casing pipeline to rendered visitor output.
+///
+/// `text` contains plain Unicode and may contain rendered markup plus `nocase` spans. Guessing is
+/// enabled, quotes and nocase content are preserved, and capitalization follows token sentence
+/// and sub-sentence state. HTML tags are treated as opaque markup tokens. The Rust tokenizer uses
+/// Unicode character categories and the same English preposition list; its URL boundary scanner
+/// follows the TypeScript website-token host and sentence-punctuation rules. Shared title snapshots
+/// and `sentence_case_matches_tokenizer_rules` exercise casing and preservation; the
+/// `sentence-case-utf16.bib` snapshot locks tokenizer parity cases.
+/// Apply sentence casing with the TypeScript tokenizer options for guessing and preservation.
+pub(crate) fn sentence_case_with_options(
+    text: &str,
+    guess: bool,
+    sub_sentence: bool,
+    preserve_quoted: bool,
+) -> String {
+    let visible = visible_case_text(text, false);
+    let all_caps = text
+        .chars()
+        .flat_map(char::to_uppercase)
+        .collect::<String>()
+        == text;
+    let all_lower = text
+        .chars()
+        .flat_map(char::to_lowercase)
+        .collect::<String>()
+        == text;
+    if guess && !all_caps && !all_lower && looks_sentence_cased(text) {
+        return text.to_string();
+    }
+    if all_caps && !visible.chars().any(char::is_whitespace) {
+        return text.to_string();
+    }
+
+    let characters: Vec<char> = text.chars().collect();
+    let tokens = sentence_tokens(&characters, sub_sentence, true);
+    let mut preserved = nocase_ranges(&characters);
+    if preserve_quoted {
+        preserved.extend(quoted_ranges(&characters));
+    }
+    let mut changes = Vec::new();
+    let mut index = 0;
+    while index < tokens.len() {
+        if let Some(end) = hyphenated_end(&tokens, &characters, index) {
+            let grouped_shape = tokens[index..=end]
+                .iter()
+                .map(|token| {
+                    if token.kind == SentenceTokenKind::Other {
+                        token_text(token, &characters)
+                    } else {
+                        token.shape.clone()
+                    }
+                })
+                .collect::<String>();
+            if !grouped_shape.starts_with('x')
+                && !is_preserved(tokens[index].start, tokens[end].end, &preserved)
+            {
+                let mut rendered = String::new();
+                for token in &tokens[index..=end] {
+                    if token.kind == SentenceTokenKind::Word {
+                        rendered.push_str(&sentence_word(token, &characters, all_caps, true));
+                    } else {
+                        rendered.push_str(&token_text(token, &characters));
+                    }
+                }
+                if rendered
+                    != characters[tokens[index].start..tokens[end].end]
+                        .iter()
+                        .collect::<String>()
+                {
+                    changes.push((tokens[index].start, tokens[end].end, rendered));
+                }
+            }
+            index = end + 1;
+            continue;
+        }
+
+        let token = &tokens[index];
+        if (token.kind == SentenceTokenKind::Word || token.kind == SentenceTokenKind::Domain)
+            && !is_preserved(token.start, token.end, &preserved)
+        {
+            let rendered = sentence_word(token, &characters, all_caps, false);
+            if rendered != token.text(&characters) {
+                changes.push((token.start, token.end, rendered));
+            }
+        }
+        index += 1;
+    }
+
+    let mut output = String::with_capacity(text.len());
+    let mut cursor = 0;
+    for (start, end, replacement) in changes {
+        output.extend(characters[cursor..start].iter());
+        output.push_str(&replacement);
+        cursor = end;
+    }
+    output.extend(characters[cursor..].iter());
+    output
+}
+
+/// Apply whole-title casing, then resolve root-group markers against each group's transformed span.
+///
+/// The renderer inserts markers only for AST root groups that TypeScript marks as case-protected.
+/// Strict mode restores every marked span; as-needed restores a span when casing changed it or
+/// when its original lowercase words otherwise require preservation. Off mode emits no markers.
+pub(crate) fn sentence_case_title(
+    text: &str,
+    guess: bool,
+    sub_sentence: bool,
+    preserve_quoted: bool,
+    case_protection: CaseProtection,
+) -> String {
+    let cased = sentence_case_with_options(text, guess, sub_sentence, preserve_quoted);
+    let open = "<case-protection>";
+    let close = "</case-protection>";
+    let mut source_position = 0;
+    let mut cased_position = 0;
+    let mut output = String::with_capacity(cased.len());
+
+    while let (Some(source_open), Some(cased_open)) = (
+        text[source_position..].find(open),
+        cased[cased_position..].find(open),
+    ) {
+        let source_open = source_position + source_open;
+        let cased_open = cased_position + cased_open;
+        let source_content_start = source_open + open.len();
+        let cased_content_start = cased_open + open.len();
+        let Some(source_close) = text[source_content_start..].find(close) else {
+            break;
+        };
+        let Some(cased_close) = cased[cased_content_start..].find(close) else {
+            break;
+        };
+        let source_close = source_content_start + source_close;
+        let cased_close = cased_content_start + cased_close;
+        let original = &text[source_content_start..source_close];
+        let transformed = &cased[cased_content_start..cased_close];
+
+        output.push_str(&cased[cased_position..cased_open]);
+        let preserve = match case_protection {
+            CaseProtection::Off => false,
+            CaseProtection::Strict => true,
+            CaseProtection::AsNeeded => original != transformed || needs_case_protection(original),
+        };
+        if preserve {
+            output.push_str("<span class=\"nocase\">");
+            output.push_str(original);
+            output.push_str("</span>");
+        } else if case_protection == CaseProtection::AsNeeded {
+            output.push_str(original);
+        } else {
+            output.push_str(transformed);
+        }
+        source_position = source_close + close.len();
+        cased_position = cased_close + close.len();
+    }
+
+    output.push_str(&cased[cased_position..]);
+    collapse_markup_spans(output)
+}
+
+/// Match the TypeScript `guess` rule before altering title-cased or sentence-cased text.
+///
+/// Markup is removed and nocase spans collapse to one space when their contents contain spacing.
+/// Hyphenated runs count as one word. Only leading/whitespace-preceded word tokens longer than one
+/// UTF-16 code unit count; prepositions, acronyms, and ordinals do not. A positive sentence-case
+/// count tied with or greater than the alternative count preserves the complete input, matching
+/// the reference's default `guess: true` behavior. Direct and shared fixture regressions cover the
+/// guess boundaries.
+fn looks_sentence_cased(text: &str) -> bool {
+    let visible = visible_case_text(text, true);
+    let characters: Vec<char> = visible.chars().collect();
+    let tokens = sentence_tokens(&characters, true, false);
+    let (mut index, mut sentence_case, mut other_case) = (0, 0, 0);
+    while index < tokens.len() {
+        let end = hyphenated_end(&tokens, &characters, index).unwrap_or(index);
+        let token = &tokens[index];
+        let shape = tokens[index..=end]
+            .iter()
+            .map(|part| {
+                if part.kind == SentenceTokenKind::Other {
+                    token_text(part, &characters)
+                } else {
+                    part.shape.clone()
+                }
+            })
+            .collect::<String>();
+        let text_length = if end == index {
+            token.text_len(&characters)
+        } else {
+            characters[token.start..tokens[end].end]
+                .iter()
+                .map(|character| character.len_utf16())
+                .sum()
+        };
+        if token.kind != SentenceTokenKind::Word
+            || text_length <= 1
+            || matches!(
+                token.subtype,
+                SentenceTokenSubtype::Preposition
+                    | SentenceTokenSubtype::Acronym
+                    | SentenceTokenSubtype::Ordinal
+            )
+            || (index != 0 && tokens[index - 1].kind != SentenceTokenKind::Whitespace)
+        {
+            index = end + 1;
+            continue;
+        }
+        if !shape.contains('X') && shape.contains('x') {
+            sentence_case += 1;
+        } else {
+            other_case += 1;
+        }
+        index = end + 1;
+    }
+    sentence_case > 0 && sentence_case >= other_case
+}
+
+/// Render one word token with TypeScript's sentence-start, preposition, acronym, and shape rules.
+///
+/// `token` supplies the source range, shape, and capitalization state; `characters` supplies its
+/// original spelling, `all_caps` controls title-wide uppercase handling, and `hyphenated` changes
+/// single-letter-capital treatment. Non-word types pass through, while domains lowercase and
+/// ordinary words follow the reference decision order.
+fn sentence_word(
+    token: &SentenceToken,
+    characters: &[char],
+    all_caps: bool,
+    hyphenated: bool,
+) -> String {
+    let text = token.text(characters);
+    // Domains are case-insensitive, so their labels are always lowercased.
+    if token.kind == SentenceTokenKind::Domain {
+        return text.chars().flat_map(char::to_lowercase).collect();
+    }
+    // Punctuation, websites, and other non-word token types are left untouched; URLs may be case-sensitive.
+    if token.kind != SentenceTokenKind::Word {
+        return text;
+    }
+    // Preserve the conventional capitalization of contractions such as `I'll` and `I'm`.
+    if text.starts_with("I'") {
+        return title_case(&text);
+    }
+    // A single `a` at the start of a sub-sentence is lowercased even at a colon boundary.
+    if token.sub_sentence_start && text.eq_ignore_ascii_case("a") {
+        return "a".to_string();
+    }
+    // Sentence starts retain their first word; in all-caps titles, normalize it to title case.
+    if token.sentence_start || token.sub_sentence_start {
+        return if all_caps {
+            title_case(&text)
+        } else {
+            lower_connected_inner_words(&text)
+        };
+    }
+    // Prepositions are normally already lowercase, but normalize them defensively.
+    if token.subtype == SentenceTokenSubtype::Preposition {
+        return text.chars().flat_map(char::to_lowercase).collect();
+    }
+    // Acronyms keep the spelling supplied by the source.
+    if token.subtype == SentenceTokenSubtype::Acronym {
+        return text;
+    }
+    // TypeScript's single-capital rule matches the complete token, not its alphabetic characters.
+    if text.len() == 1 && text.as_bytes()[0].is_ascii_uppercase() && text.as_bytes()[0] != b'A' {
+        // A single capital usually names a noun; inside a hyphenated word it is lowercased.
+        return if hyphenated {
+            text.chars().flat_map(char::to_lowercase).collect()
+        } else {
+            text
+        };
+    }
+    let shape = token
+        .shape
+        .chars()
+        .filter(|character| matches!(character, '-' | 'X' | 'x' | 'd'))
+        .collect::<String>();
+    if !shape.is_empty()
+        && shape
+            .chars()
+            .all(|character| matches!(character, 'X' | 'd'))
+    {
+        // All-caps words and numbers are lowercased only when the whole title is all-caps.
+        return if all_caps {
+            text.chars().flat_map(char::to_lowercase).collect()
+        } else {
+            text
+        };
+    }
+    let mut has_lower = false;
+    let mixed_case = token.shape.chars().any(|character| {
+        if character == 'x' {
+            has_lower = true;
+        }
+        character == 'X' && has_lower
+    });
+    if mixed_case {
+        // Preserve camel-case and other mixed-case tokens.
+        return text;
+    }
+    text.chars().flat_map(char::to_lowercase).collect()
+}
+
+/// Match the TypeScript title-case helper by retaining the first character and lowercasing the rest.
+fn title_case(text: &str) -> String {
+    let mut characters = text.chars();
+    let Some(first) = characters.next() else {
+        return String::new();
+    };
+    first
+        .to_string()
+        .chars()
+        .chain(characters.flat_map(char::to_lowercase))
+        .collect()
+}
+
+/// Lowercase title-cased components after hyphens when a connected word begins a sentence.
+fn lower_connected_inner_words(text: &str) -> String {
+    let mut output = String::new();
+    let mut start = 0;
+    for (index, character) in text.char_indices() {
+        if matches!(character, '-' | '–') {
+            output.push_str(&text[start..index + character.len_utf8()]);
+            start = index + character.len_utf8();
+        }
+    }
+    output.push_str(&text[start..]);
+    let mut parts = output.split_inclusive(['-', '–']).peekable();
+    let mut result = String::new();
+    let mut first = true;
+    while let Some(part) = parts.next() {
+        let has_separator = part.ends_with('-') || part.ends_with('–');
+        let word = part.trim_end_matches(['-', '–']);
+        if first {
+            result.push_str(word);
+            first = false;
+        } else if title_cased_word(word) {
+            result.extend(word.chars().flat_map(char::to_lowercase));
+        } else {
+            result.push_str(word);
+        }
+        if has_separator {
+            result.push(part.chars().last().unwrap_or('-'));
+        }
+        if parts.peek().is_none() && word.is_empty() {
+            result.push_str(word);
+        }
+    }
+    result
+}
+
+/// Return whether a segment has one uppercase first letter and only lowercase letters after it.
+fn title_cased_word(text: &str) -> bool {
+    let mut characters = text.chars();
+    characters.next().is_some_and(char::is_uppercase) && characters.all(char::is_lowercase)
+}
+
+/// Find token ranges and remove HTML tags, optionally omitting nocase contents for guessing.
+fn visible_case_text(text: &str, omit_nocase: bool) -> String {
+    let characters: Vec<char> = text.chars().collect();
+    let (mut index, mut preserve_depth, mut omitted_space) = (0, 0usize, false);
+    let mut visible = String::new();
+    while index < characters.len() {
+        if characters[index] == '<'
+            && let Some(relative_end) = characters[index..]
+                .iter()
+                .position(|character| *character == '>')
+        {
+            let end = index + relative_end + 1;
+            let tag: String = characters[index..end].iter().collect();
+            if tag.starts_with("<case-protection>") || tag.starts_with("<span class=\"nocase\"") {
+                preserve_depth = 1;
+            } else if preserve_depth > 0 && tag.starts_with("<span") {
+                preserve_depth += 1;
+            } else if preserve_depth > 0
+                && (tag.starts_with("</span") || tag.starts_with("</case-protection>"))
+            {
+                preserve_depth -= 1;
+                if preserve_depth == 0 && omit_nocase && omitted_space {
+                    visible.push(' ');
+                    omitted_space = false;
+                }
+            }
+            index = end;
+            continue;
+        }
+        if preserve_depth == 0 || !omit_nocase {
+            visible.push(characters[index]);
+        } else if is_case_whitespace(characters[index]) {
+            omitted_space = true;
+        }
+        index += 1;
+    }
     visible
-        .split(|character: char| !character.is_alphanumeric())
-        .any(|word| {
-            word.chars().any(|character| character.is_ascii_lowercase())
-                && !word.chars().any(|character| character.is_ascii_uppercase())
-        })
+}
+
+/// Return whether a token range overlaps any case-preserved quote or nocase range.
+fn is_preserved(start: usize, end: usize, ranges: &[std::ops::Range<usize>]) -> bool {
+    ranges
+        .iter()
+        .any(|range| start < range.end && range.start < end)
+}
+
+/// Find text ranges protected by generated `nocase` spans, including nested span elements.
+fn nocase_ranges(characters: &[char]) -> Vec<std::ops::Range<usize>> {
+    let mut ranges = Vec::new();
+    let (mut index, mut depth, mut start) = (0, 0usize, None);
+    while index < characters.len() {
+        if characters[index] == '<'
+            && let Some(relative_end) = characters[index..]
+                .iter()
+                .position(|character| *character == '>')
+        {
+            let end = index + relative_end + 1;
+            let tag: String = characters[index..end].iter().collect();
+            if depth == 0
+                && (tag.starts_with("<case-protection>")
+                    || tag.starts_with("<span class=\"nocase\""))
+            {
+                depth = 1;
+                start = Some(end);
+            } else if depth > 0 && tag.starts_with("<span") {
+                depth += 1;
+            } else if depth > 0
+                && (tag.starts_with("</span") || tag.starts_with("</case-protection>"))
+            {
+                depth -= 1;
+                if depth == 0
+                    && let Some(start) = start.take()
+                {
+                    ranges.push(start..index);
+                }
+            }
+            index = end;
+        } else {
+            index += 1;
+        }
+    }
+    ranges
+}
+
+/// Find quoted ranges that the TypeScript default preserves byte-for-byte.
+fn quoted_ranges(characters: &[char]) -> Vec<std::ops::Range<usize>> {
+    let mut ranges = Vec::new();
+    let mut index = 0;
+    while index < characters.len() {
+        if characters[index] == '<'
+            && let Some(relative_end) = characters[index..]
+                .iter()
+                .position(|character| *character == '>')
+        {
+            index += relative_end + 1;
+            continue;
+        }
+        let closing = match characters[index] {
+            '“' => Some('”'),
+            '‘' => Some('’'),
+            '"' => Some('"'),
+            _ => None,
+        };
+        if let Some(closing) = closing {
+            let start = index;
+            let mut end = index + 1;
+            while end < characters.len()
+                && characters[end] != closing
+                && characters[end] != '\n'
+                && characters[end] != '\r'
+            {
+                end += 1;
+            }
+            if end < characters.len() && characters[end] == closing {
+                ranges.push(start..end + 1);
+                index = end + 1;
+                continue;
+            }
+        }
+        index += 1;
+    }
+    ranges
 }
 
 /// Render one AST node using its field mode and inherited title-protection context.
@@ -1301,15 +1832,14 @@ fn needs_case_protection(text: &str) -> bool {
 /// `node` is the syntax-tree item; `mode` selects text, math, or rich-text behavior; `verbatim`
 /// bypasses text ligatures; `diagnostics` receives unsupported constructs. The remaining flags
 /// carry title protection: `title_mode` enables it, `protected_ancestor` suppresses nested spans,
-/// and `root_scope` lets environments expose their contents to the root-group pass.
+/// `root_scope` lets environments expose their contents to the root-group pass, and
+/// `case_protection` selects the TypeScript `as-needed`/`strict`/`off` policy.
 fn render_node(
     node: &Node,
     mode: &str,
     verbatim: bool,
     diagnostics: &mut RenderDiagnostics,
-    title_mode: bool,
-    protected_ancestor: bool,
-    root_scope: bool,
+    context: RenderContext,
 ) -> String {
     match node {
         Node::String(text, _) => {
@@ -1340,9 +1870,24 @@ fn render_node(
             mode,
             verbatim,
             diagnostics,
-            title_mode,
-            protected_ancestor,
-            false,
+            RenderContext {
+                title_mode: context.title_mode,
+                protected_ancestor: context.protected_ancestor,
+                root_scope: false,
+                case_protection: context.case_protection,
+            },
+        ),
+        Node::Expansion(nodes, _) => render_nodes(
+            nodes,
+            mode,
+            verbatim,
+            diagnostics,
+            RenderContext {
+                title_mode: context.title_mode,
+                protected_ancestor: context.protected_ancestor,
+                root_scope: false,
+                case_protection: context.case_protection,
+            },
         ),
         Node::InlineMath(nodes, _) => {
             // Math children use math mappings; title protection is applied to the rendered result.
@@ -1351,11 +1896,18 @@ fn render_node(
                 "math",
                 false,
                 diagnostics,
-                title_mode,
-                protected_ancestor,
-                false,
+                RenderContext {
+                    title_mode: context.title_mode,
+                    protected_ancestor: context.protected_ancestor,
+                    root_scope: false,
+                    case_protection: context.case_protection,
+                },
             );
-            if title_mode && !protected_ancestor && needs_case_protection(&rendered) {
+            if context.title_mode
+                && !context.protected_ancestor
+                && context.case_protection.enabled()
+                && needs_case_protection(&rendered)
+            {
                 format!("<span class=\"nocase\">{rendered}</span>")
             } else {
                 rendered
@@ -1366,13 +1918,40 @@ fn render_node(
             content,
             mode,
             diagnostics,
-            title_mode,
-            protected_ancestor,
-            root_scope,
+            RenderContext {
+                title_mode: context.title_mode,
+                protected_ancestor: context.protected_ancestor,
+                root_scope: context.root_scope,
+                case_protection: context.case_protection,
+            },
         ),
         Node::Macro {
             name, arguments, ..
-        } => render_macro(name, arguments, mode, diagnostics),
+        } => {
+            let rendered = render_macro(name, arguments, mode, diagnostics, context);
+            let combining_macro = unicode_mapping(&format!("\\{name}"))
+                .is_some_and(|mapping| mapping.combining.is_some());
+            // TS marks root groups before pass 1 consumes macro arguments; repeat that check on
+            // the retained Group nodes so a protected argument is not lost during parsing.
+            let protect_argument = context.title_mode
+                && context.root_scope
+                && !combining_macro
+                && !matches!(name.as_str(), "enquote" | "mkbibquote")
+                && arguments.iter().enumerate().any(|(index, argument)| {
+                    !(matches!(name.as_str(), "url" | "href") && index == 0)
+                        && matches!(argument.as_slice(), [Node::Group(children, _)] if !children.is_empty() && !matches!(children[0], Node::Macro { .. }))
+                });
+            if diagnostics.mark_case_groups && protect_argument {
+                format!("<case-protection>{rendered}</case-protection>")
+            } else if protect_argument
+                && context.case_protection.enabled()
+                && needs_case_protection(&rendered)
+            {
+                format!("<span class=\"nocase\">{rendered}</span>")
+            } else {
+                rendered
+            }
+        }
     }
 }
 
@@ -1415,14 +1994,15 @@ fn render_text(text: &str, mode: &str, verbatim: bool) -> String {
 /// Render one parsed macro argument, returning empty text when it is absent.
 ///
 /// `arguments` and `index` select the argument; `mode`, `verbatim`, and `diagnostics` are forwarded
-/// to its child visitor. Argument nodes are not root scope because the parser has already consumed
-/// their original group delimiters.
+/// to its child visitor. Argument nodes are not root scope; their retained Group children are
+/// inspected by the owning macro node for TypeScript root-group protection.
 fn render_argument(
     arguments: &[Vec<Node>],
     index: usize,
     mode: &str,
     verbatim: bool,
     diagnostics: &mut RenderDiagnostics,
+    case_protection: CaseProtection,
 ) -> String {
     arguments
         .get(index)
@@ -1432,12 +2012,30 @@ fn render_argument(
                 mode,
                 verbatim,
                 diagnostics,
-                mode == "title",
-                false,
-                false,
+                RenderContext {
+                    title_mode: mode == "title",
+                    protected_ancestor: false,
+                    root_scope: false,
+                    case_protection,
+                },
             )
         })
         .unwrap_or_default()
+}
+
+/// Reconstruct a URL argument as raw TeX, unwrapping one argument group like the TS visitor.
+///
+/// The TypeScript pass replaces `url`/`href`'s first argument with a String node built from
+/// `printRaw`, so nested TeX commands in the destination are not rendered.
+fn serialize_verbatim_argument(arguments: &[Vec<Node>], index: usize) -> String {
+    let Some(argument) = arguments.get(index) else {
+        return String::new();
+    };
+    if let [Node::Group(children, _)] = argument.as_slice() {
+        serialize_nodes(children)
+    } else {
+        serialize_nodes(argument)
+    }
 }
 
 /// Render a macro using structural cases before exact generated Unicode mappings.
@@ -1451,58 +2049,70 @@ fn render_macro(
     arguments: &[Vec<Node>],
     mode: &str,
     diagnostics: &mut RenderDiagnostics,
+    context: RenderContext,
 ) -> String {
+    let case_protection = context.case_protection;
     match name {
         // Line breaks are HTML breaks in rich text and ordinary spaces in scalar fields.
         "\\" => return if mode == "richtext" { "<br>" } else { " " }.to_string(),
         "url" => {
             // URL content is rendered verbatim so query strings and tildes are not transformed.
-            let url = render_argument(arguments, 0, mode, true, diagnostics);
+            let url = serialize_verbatim_argument(arguments, 0);
             return format!("<a href=\"{url}\">{url}</a>");
         }
         "href" => {
             // The first href argument is the destination; only the label receives normal rendering.
-            let url = render_argument(arguments, 0, mode, true, diagnostics);
-            let label = render_argument(arguments, 1, mode, false, diagnostics);
+            let url = serialize_verbatim_argument(arguments, 0);
+            let label = render_argument(arguments, 1, mode, false, diagnostics, case_protection);
             return format!("<a href=\"{url}\">{label}</a>");
         }
         "textbf" | "mkbibbold" => {
-            // Keep the established markup shape used by the TypeScript renderer.
-            return format!(
-                "<b>{}</b>",
-                render_argument(arguments, 0, mode, false, diagnostics)
-            );
+            // TypeScript attaches bold metadata in `wraparg`; emit that wrapper around the child.
+            let content = render_argument(arguments, 0, mode, false, diagnostics, case_protection);
+            return if content.is_empty() {
+                String::new()
+            } else {
+                format!("<b>{content}</b>")
+            };
         }
         "textit" | "textsl" | "emph" | "mkbibemph" => {
-            // Italic and emphasis macros share the same output wrapper.
-            return format!(
-                "<i>{}</i>",
-                render_argument(arguments, 0, mode, false, diagnostics)
-            );
+            // TypeScript attaches emphasis metadata in `wraparg`; emit the matching wrapper.
+            let content = render_argument(arguments, 0, mode, false, diagnostics, case_protection);
+            return if content.is_empty() {
+                String::new()
+            } else {
+                format!("<i>{content}</i>")
+            };
         }
         "textsc" => {
-            // Small caps retain the markup format expected by the TypeScript parser.
-            return format!(
-                "<span style=\"font-variant:small-caps;\">{}</span>",
-                render_argument(arguments, 0, mode, false, diagnostics)
-            );
+            // TypeScript attaches small-caps metadata in `wraparg`; use its restored HTML wrapper.
+            let content = render_argument(arguments, 0, mode, false, diagnostics, case_protection);
+            return if content.is_empty() {
+                String::new()
+            } else {
+                format!("<span style=\"font-variant:small-caps;\">{content}</span>")
+            };
         }
         "texttt" => {
-            // Monospaced text uses the parser's code markup tag.
-            return format!(
-                "<code>{}</code>",
-                render_argument(arguments, 0, mode, false, diagnostics)
-            );
+            // TypeScript attaches code metadata in `wraparg`; use its restored HTML wrapper.
+            let content = render_argument(arguments, 0, mode, false, diagnostics, case_protection);
+            return if content.is_empty() {
+                String::new()
+            } else {
+                format!("<code>{content}</code>")
+            };
         }
         "textrm" | "textup" | "mathrm" | "mbox" | "hbox" | "rlap" => {
             // These macros affect TeX layout, not the resulting characters.
-            return render_argument(arguments, 0, mode, false, diagnostics);
+            return render_argument(arguments, 0, mode, false, diagnostics, case_protection);
         }
-        // Layout, definition, and spacing-control commands in this group contribute no field text.
+        // TeX controls too complex to interpret are intentionally omitted from field text.
         "vphantom" | "noopsort" | "left" | "right" | "ensuremath" | "wd" | "ht" | "raise"
         | "accent" | "def" | "hss" | "ifmmode" | "makeatletter" | "makeatother"
-        | "scriptscriptstyle" | "setbox" | "dimen" | "advance" | "path" | "relax"
-        | "aftergroup" | "ignorespaces" | "rm" => return String::new(),
+        | "scriptscriptstyle" | "setbox" | "dimen" | "advance" | "relax" | "aftergroup"
+        | "ignorespaces" | "rm" => return String::new(),
+        // The unified-latex parser does not reliably parse `\\path` arguments; match TS by omitting it.
+        "path" => return String::new(),
         "sc" => return String::new(),
         "hspace" | "hskip" => {
             // Match the TS visitor's zero-width special case; other explicit spacing becomes one space.
@@ -1521,7 +2131,7 @@ fn render_macro(
         }
         "bar" | "overline" => {
             // The TS visitor appends a combining macron to ASCII letters and digits only.
-            let value = render_argument(arguments, 0, mode, false, diagnostics);
+            let value = render_argument(arguments, 0, mode, false, diagnostics, case_protection);
             return value
                 .chars()
                 .map(|character| {
@@ -1535,30 +2145,64 @@ fn render_macro(
         }
         "enquote" | "mkbibquote" => {
             // `restoreMarkup` turns the TS enquote wrapper into curly quotation marks.
-            return format!(
-                "“{}”",
-                render_argument(arguments, 0, mode, false, diagnostics)
-            );
+            let mut content =
+                render_argument(arguments, 0, mode, false, diagnostics, case_protection);
+            let protected_root_argument = context.title_mode
+                && context.root_scope
+                && !context.protected_ancestor
+                && matches!(arguments.first().map(Vec::as_slice), Some([Node::Group(children, _)]) if !children.is_empty() && !matches!(children[0], Node::Macro { .. }));
+            if protected_root_argument && diagnostics.mark_case_groups {
+                content = format!("<case-protection>{content}</case-protection>");
+            } else if protected_root_argument
+                && case_protection.enabled()
+                && needs_case_protection(&content)
+            {
+                content = format!("<span class=\"nocase\">{content}</span>");
+            }
+            return if content.is_empty() {
+                String::new()
+            } else {
+                format!("“{content}”")
+            };
         }
         "section" | "subsection" | "subsubsection" | "subsubsubsection" => {
             // Heading depth is the command name's number of `sub` components.
             let level = name.split("sub").count();
-            let content = render_argument(arguments, 0, mode, false, diagnostics);
-            return format!("<h{level}>{content}</h{level}>");
+            let content = render_argument(arguments, 0, mode, false, diagnostics, case_protection);
+            return if content.is_empty() {
+                String::new()
+            } else {
+                format!("<h{level}>{content}</h{level}>")
+            };
         }
         "chsf" | "bibstring" | "cite" | "textcite" | "citeauthor" => {
-            // The TS no-case wrapper for these commands is stripped after title processing.
-            return render_argument(arguments, 0, mode, false, diagnostics);
+            // TS adds an `ncx` wrapper in titles, then `restoreMarkup` strips it after casing.
+            return render_argument(arguments, 0, mode, false, diagnostics, case_protection);
         }
-        "LaTeX" => return "L<sup>A</sup>T<sub>E</sub>X".to_string(),
+        "LaTeX" => {
+            let superscript = script_text("A", "^").unwrap_or_else(|| "<sup>A</sup>".to_string());
+            let subscript = script_text("E", "_").unwrap_or_else(|| "<sub>E</sub>".to_string());
+            return format!("L{superscript}T{subscript}X");
+        }
         "textsuperscript" => {
-            return render_script_argument(arguments, 0, "^", mode, diagnostics);
+            return render_script_argument(arguments, 0, "^", mode, diagnostics, case_protection);
         }
         "textsubscript" => {
-            return render_script_argument(arguments, 0, "_", mode, diagnostics);
+            return render_script_argument(arguments, 0, "_", mode, diagnostics, case_protection);
+        }
+        "math^" | "math_" => {
+            let script = if name == "math^" { "^" } else { "_" };
+            return render_script_argument(
+                arguments,
+                0,
+                script,
+                mode,
+                diagnostics,
+                case_protection,
+            );
         }
         "^" | "_" if mode == "math" => {
-            return render_script_argument(arguments, 0, name, mode, diagnostics);
+            return render_script_argument(arguments, 0, name, mode, diagnostics, case_protection);
         }
         "frac" if mode == "math" => {
             // Prefer an exact fraction mapping; otherwise compose mapped numerator and denominator scripts.
@@ -1568,8 +2212,10 @@ fn render_macro(
             {
                 return text.to_string();
             }
-            let numerator = render_argument(arguments, 0, mode, false, diagnostics);
-            let denominator = render_argument(arguments, 1, mode, false, diagnostics);
+            let numerator =
+                render_argument(arguments, 0, mode, false, diagnostics, case_protection);
+            let denominator =
+                render_argument(arguments, 1, mode, false, diagnostics, case_protection);
             return match (script_text(&numerator, "^"), script_text(&denominator, "_")) {
                 (Some(numerator), Some(denominator)) => format!("{numerator}\u{2044}{denominator}"),
                 _ => latex,
@@ -1577,23 +2223,25 @@ fn render_macro(
         }
         "par" => return if mode == "richtext" { "<p>" } else { " " }.to_string(),
         "item" => return if mode == "richtext" { "<li>" } else { " " }.to_string(),
-        "_" | "^" => return name.to_string(),
+        "_" | "^" if arguments.is_empty() => return name.to_string(),
         _ => {}
     }
 
-    // Combining entries are keyed by command alone; composed scalar mappings include their arguments.
+    // The TS preprocessor handles combining accents before macro dispatch; only a command-only
+    // table entry is an accent, while composed Unicode mappings include the macro arguments.
     let command = format!("\\{name}");
     if let Some(mapping) = unicode_mapping(&command)
         && let Some(mark) = mapping.combining
     {
-        let argument = render_argument(arguments, 0, mode, false, diagnostics);
-        return format!(
-            "{}{mark}",
-            if argument.is_empty() { " " } else { &argument }
-        );
+        if let Some(value) = combining_argument(arguments, mark, mode) {
+            return value;
+        }
+        if mode == "creatorlist" {
+            return name.to_string();
+        }
     }
 
-    // Ordinary TeX macros use the build-generated unicode2latex maps.
+    // Exact TeX spellings use the generated Unicode map only after structural visitor cases.
     let latex = serialize_macro(name, arguments);
     if let Some(mapping) = unicode_mapping(&latex) {
         // Require a mapping for the active mode, as `latex2unicode` does in the TS visitor.
@@ -1609,7 +2257,50 @@ fn render_macro(
 
     // Keep unknown macros in the rendered text for later unsupported-macro handling.
     diagnostics.report("macro", name, latex.clone());
-    latex
+    if diagnostics.ignore_unsupported {
+        String::new()
+    } else {
+        latex
+    }
+}
+
+/// Apply a combining accent only to the node shapes accepted by TypeScript’s preprocessor.
+fn combining_argument(arguments: &[Vec<Node>], mark: &str, mode: &str) -> Option<String> {
+    // TS substitutes a space when an accent has no argument or an empty one; it rejects multiple
+    // arguments, multi-node groups, and non-string nodes instead of guessing at their structure.
+    let Some(argument) = arguments.first() else {
+        return Some(format!(" {mark}"));
+    };
+    if arguments.len() != 1 || argument.is_empty() {
+        return Some(format!(" {mark}"));
+    }
+    if argument.len() != 1 {
+        return None;
+    }
+    let node = match &argument[0] {
+        Node::Group(children, _) => match children.as_slice() {
+            [] => return Some(format!(" {mark}")),
+            [node] => node,
+            _ => return None,
+        },
+        node => node,
+    };
+    let value = match node {
+        Node::String(value, _) | Node::Verb(value, _) => value.clone(),
+        Node::Macro {
+            name, arguments, ..
+        } => {
+            let latex = serialize_macro(name, arguments);
+            let mapping = unicode_mapping(&latex)?;
+            if mode == "math" {
+                mapping.math.or(mapping.text)?.to_string()
+            } else {
+                mapping.text?.to_string()
+            }
+        }
+        _ => return None,
+    };
+    Some(format!("{value}{mark}"))
 }
 
 /// Render supported environment nodes or report unsupported ones without visiting their bodies.
@@ -1619,14 +2310,14 @@ fn render_macro(
 /// descendants. Leading/trailing whitespace, paragraph breaks, and `\\par` are trimmed to match
 /// the TypeScript visitor before known content is rendered. Unknown environments are reported as
 /// one construct and preserved as TeX, so nested body macros do not create extra diagnostics.
+/// When the environment appears at field root, its body keeps root scope because TypeScript treats
+/// those descendants as root nodes for title case protection.
 fn render_environment(
     name: &str,
     content: &[Node],
     mode: &str,
     diagnostics: &mut RenderDiagnostics,
-    title_mode: bool,
-    protected_ancestor: bool,
-    root_scope: bool,
+    context: RenderContext,
 ) -> String {
     let trims_environment_edge = |node: &Node| match node {
         Node::Whitespace(_, _) | Node::Parbreak(_) => true,
@@ -1644,18 +2335,25 @@ fn render_environment(
     }
     match name {
         "quotation" | "itemize" | "em" => {
+            // The TS pass marks `em` environment bodies as emphasized, including outside rich text.
             let body = render_nodes(
                 &content[start..end],
                 mode,
                 false,
                 diagnostics,
-                title_mode,
-                protected_ancestor,
-                root_scope,
+                RenderContext {
+                    title_mode: context.title_mode,
+                    protected_ancestor: context.protected_ancestor,
+                    root_scope: context.root_scope,
+                    case_protection: context.case_protection,
+                },
             )
             .trim()
             .to_string();
             if mode != "richtext" {
+                if name == "em" {
+                    return format!("<i>{body}</i>");
+                }
                 return body;
             }
             match name {
@@ -1671,7 +2369,11 @@ fn render_environment(
                 serialize_nodes(&content[start..end])
             );
             diagnostics.report("environment", name, source.clone());
-            source
+            if diagnostics.ignore_unsupported {
+                String::new()
+            } else {
+                source
+            }
         }
     }
 }
@@ -1687,8 +2389,9 @@ fn render_script_argument(
     script_macro: &str,
     mode: &str,
     diagnostics: &mut RenderDiagnostics,
+    case_protection: CaseProtection,
 ) -> String {
-    let value = render_argument(arguments, index, mode, false, diagnostics);
+    let value = render_argument(arguments, index, mode, false, diagnostics, case_protection);
     if let Some(script) = script_text(&value, script_macro) {
         script
     } else {
@@ -1722,36 +2425,82 @@ fn unicode_mapping(latex: &str) -> Option<&'static UnicodeMapping> {
 
 /// Reconstruct a macro and its braced arguments for exact Unicode-table lookup.
 fn serialize_macro(name: &str, arguments: &[Vec<Node>]) -> String {
-    let mut source = format!("\\{name}");
+    serialize_macro_with_mode(name, arguments, false)
+}
+
+fn serialize_macro_with_mode(name: &str, arguments: &[Vec<Node>], print_raw: bool) -> String {
+    let mut source = match name {
+        "math^" => "^".to_string(),
+        "math_" => "_".to_string(),
+        _ => format!("\\{name}"),
+    };
     for argument in arguments {
-        source.push('{');
-        source.push_str(&serialize_nodes(argument));
-        source.push('}');
+        if matches!(argument.as_slice(), [Node::Group(_, _)]) {
+            source.push_str(&serialize_nodes_with_mode(argument, print_raw));
+        } else if print_raw {
+            source.push_str(&serialize_nodes_with_mode(argument, true));
+        } else {
+            source.push('{');
+            source.push_str(&serialize_nodes_with_mode(argument, print_raw));
+            source.push('}');
+        }
     }
     source
 }
 
+fn serialize_argument(argument: &[Node]) -> String {
+    match argument {
+        [Node::Group(children, _)] => serialize_nodes(children),
+        _ => serialize_nodes(argument),
+    }
+}
+
 /// Reconstruct source from a node sequence, preserving group and macro boundaries.
 fn serialize_nodes(nodes: &[Node]) -> String {
+    serialize_nodes_with_mode(nodes, false)
+}
+
+fn serialize_print_raw_nodes(nodes: &[Node]) -> String {
+    serialize_nodes_with_mode(nodes, true)
+}
+
+fn serialize_nodes_with_mode(nodes: &[Node], print_raw: bool) -> String {
     nodes
         .iter()
         .map(|node| match node {
             Node::String(text, _) => text.clone(),
-            Node::Whitespace(text, _) => text.clone(),
-            Node::Parbreak(_) => "\n\n".to_string(),
+            Node::Whitespace(text, _) => {
+                if print_raw {
+                    " ".to_string()
+                } else {
+                    text.clone()
+                }
+            }
+            Node::Parbreak(_) => {
+                if print_raw {
+                    " ".to_string()
+                } else {
+                    "\n\n".to_string()
+                }
+            }
             Node::Comment { content, .. } => format!("%{content}"),
             Node::Verb(contents, _) => contents.clone(),
-            Node::Group(children, _) => format!("{{{}}}", serialize_nodes(children)),
-            Node::InlineMath(children, _) => format!("${}$", serialize_nodes(children)),
+            Node::Group(children, _) => {
+                format!("{{{}}}", serialize_nodes_with_mode(children, print_raw))
+            }
+            Node::Expansion(children, _) => serialize_nodes_with_mode(children, print_raw),
+            Node::InlineMath(children, _) => {
+                format!("${}$", serialize_nodes_with_mode(children, print_raw))
+            }
             Node::Environment { name, content, .. } => {
                 format!(
                     "\\begin{{{name}}}{}\\end{{{name}}}",
-                    serialize_nodes(content)
+                    serialize_nodes_with_mode(content, print_raw)
                 )
             }
             Node::Macro {
                 name, arguments, ..
-            } => serialize_macro(name, arguments),
+            } => serialize_macro_with_mode(name, arguments, print_raw),
         })
         .collect()
 }

@@ -10,6 +10,16 @@ BibTeX is a reference management program that makes it easy for users of TeX and
 
 Documentation is available at [https://retorque.re/bibtex-parser/](https://retorque.re/bibtex-parser/).
 
+## Unknown TeX Commands
+
+Both `parse` and `parseAsync` accept an `unsupported` option:
+
+* `ignore`: replace unknown commands with nothing.
+* `keep` (default): preserve literal TeX, including the backslash, and record a diagnostic in `errors`.
+* `throw`: throw an error identifying the unknown command (`parseAsync` rejects).
+
+These policies also apply to unsupported environments. Custom handler functions are no longer supported.
+
 # 9.0 is a breaking change!
 
 Look at the documentation for what has changed:
