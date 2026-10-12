@@ -5,16 +5,39 @@ on:
   workflow_dispatch:
 
 jobs:
+  cancel_master:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+    - name: cancel matching master run on tag
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: actions/github-script@v8
+      with:
+        script: |
+          const { owner, repo } = context.repo
+          const { data } = await github.rest.actions.listWorkflowRuns({
+            owner,
+            repo,
+            workflow_id: 'ci.yaml',
+            head_sha: context.sha,
+            per_page: 100,
+          })
+          const masterRuns = data.workflow_runs.filter(run =>
+            run.id !== context.runId &&
+            run.head_branch === 'master' &&
+            run.event === 'push' &&
+            run.status !== 'completed'
+          )
+          for (const run of masterRuns) {
+            await github.rest.actions.cancelWorkflowRun({ owner, repo, run_id: run.id })
+          }
+
   build:
+    needs: cancel_master
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v7
-    - run: echo "version=$(jq -r .version package.json)" >> "$GITHUB_OUTPUT"
-      id: version
-    - name: cancel spurious build on tagged version
-      uses: andymckay/cancel-action@master
-      if: github.event.head_commit.message == steps.version.outputs.version && !startsWith(github.ref, 'refs/tags/')
-
     - name: install node
       uses: actions/setup-node@v7
       with:
@@ -85,8 +108,8 @@ jobs:
         esac
 
   pages:
-    needs: test
-    if: github.ref == 'refs/heads/master'
+    needs: [cancel_master, test]
+    if: startsWith(github.ref, 'refs/tags/') && needs.test.result == 'success'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
