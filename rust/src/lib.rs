@@ -344,7 +344,7 @@ pub struct Options {
     /// protection when authors may not expect the braces to affect title casing. `strict` preserves
     /// protection exactly as entered; `off` disables protection.
     pub case_protection: String,
-    /// Ignore unsupported TeX constructs instead of retaining their diagnostic.
+    /// Omit unsupported TeX constructs from rendered text while retaining their diagnostic.
     ///
     /// This is the Rust/WASM equivalent of the TypeScript unsupported-command handler’s
     /// ignore policy; replacement callbacks are applied by the JS adapter.
@@ -1219,7 +1219,7 @@ fn clean_name_part(value: &str) -> String {
 fn parse_creator(
     input: &str,
     entry_key: &str,
-    macro_registry: &mut HashMap<String, Vec<tex::Node>>,
+    macro_definitions: &mut HashMap<String, Vec<tex::Node>>,
     diagnostics: &mut tex::RenderDiagnostics,
 ) -> Creator {
     // A fully braced name is an indivisible literal rather than a family/given name pair.
@@ -1227,12 +1227,12 @@ fn parse_creator(
     if unwrapped != input {
         return Creator {
             name: Some(
-                tex::render_with_policy_and_registry(
+                tex::render_with_case_protection_and_macro_definitions(
                     &unwrapped,
                     "creatorlist",
                     diagnostics,
                     tex::CaseProtection::Off,
-                    macro_registry,
+                    macro_definitions,
                 )
                 .trim()
                 .to_string(),
@@ -1241,12 +1241,12 @@ fn parse_creator(
         };
     }
     let raw_input = input.trim();
-    let input = tex::render_with_policy_and_registry(
+    let input = tex::render_with_case_protection_and_macro_definitions(
         raw_input,
         "creatorlist",
         diagnostics,
         tex::CaseProtection::Off,
-        macro_registry,
+        macro_definitions,
     )
     .trim()
     .to_string();
@@ -1336,12 +1336,12 @@ fn parse_creator(
     let words: Vec<String> = split_creator_words(raw_input)
         .iter()
         .map(|word| {
-            tex::render_with_policy_and_registry(
+            tex::render_with_case_protection_and_macro_definitions(
                 word,
                 "creatorlist",
                 diagnostics,
                 tex::CaseProtection::Off,
-                macro_registry,
+                macro_definitions,
             )
             .trim()
             .to_string()
@@ -1553,21 +1553,21 @@ fn remove_outer_braces_fields(options: &Options) -> Vec<String> {
 
 fn render_string_value(
     value: &str,
-    registry: &mut HashMap<String, Vec<tex::Node>>,
+    macro_definitions: &mut HashMap<String, Vec<tex::Node>>,
     options: &Options,
     diagnostics: &mut tex::RenderDiagnostics,
 ) -> String {
-    // TypeScript `prep()` visits every string as TeX content and shares the command registry with
+    // TypeScript `prep()` visits every string as TeX content and shares macro definitions with
     // later entries; raw mode instead preserves the parsed source without invoking that visitor.
     if options.raw {
         return value.to_string();
     }
-    tex::render_with_policy_and_registry(
+    tex::render_with_case_protection_and_macro_definitions(
         value,
         "literal",
         diagnostics,
         tex::CaseProtection::default(),
-        registry,
+        macro_definitions,
     )
 }
 
@@ -1709,22 +1709,27 @@ pub fn normalize_with_options(verbatim: Library, options: &Options) -> ParsedLib
     let mut render_diagnostics = tex::RenderDiagnostics::default();
     render_diagnostics.ignore_unsupported = options.ignore_unsupported;
     let preambles = verbatim.preambles.clone();
-    let mut macro_registry = HashMap::new();
+    let mut macro_definitions = HashMap::new();
     if !options.raw {
         // TS `prep()` processes preambles before strings, allowing their commands in later content.
         for preamble in &preambles {
-            let _ = tex::render_with_policy_and_registry(
+            let _ = tex::render_with_case_protection_and_macro_definitions(
                 preamble,
                 "literal",
                 &mut render_diagnostics,
                 tex::CaseProtection::Off,
-                &mut macro_registry,
+                &mut macro_definitions,
             );
         }
     }
     let mut strings = verbatim.strings;
     for value in strings.values_mut() {
-        *value = render_string_value(value, &mut macro_registry, options, &mut render_diagnostics);
+        *value = render_string_value(
+            value,
+            &mut macro_definitions,
+            options,
+            &mut render_diagnostics,
+        );
     }
     let remove_brace_fields = remove_outer_braces_fields(options);
     let mut entries: Vec<ParsedEntry> = verbatim
@@ -1813,12 +1818,12 @@ pub fn normalize_with_options(verbatim: Library, options: &Options) -> ParsedLib
                     let items = split_creators(&value)
                         .iter()
                         .map(|element| {
-                            tex::render_with_policy_and_registry(
+                            tex::render_with_case_protection_and_macro_definitions(
                                 element,
                                 "literal",
                                 &mut render_diagnostics,
                                 tex::CaseProtection::Off,
-                                &mut macro_registry,
+                                &mut macro_definitions,
                             )
                             .trim()
                             .to_string()
@@ -1837,7 +1842,7 @@ pub fn normalize_with_options(verbatim: Library, options: &Options) -> ParsedLib
                     // Pass 0 marks root groups and inline math before the sentence-case pass.
                     render_diagnostics.mark_case_groups =
                         protect_title && case_protection != tex::CaseProtection::Off;
-                    value = tex::render_with_policy_and_registry(
+                    value = tex::render_with_case_protection_and_macro_definitions(
                         &value,
                         &current_mode,
                         &mut render_diagnostics,
@@ -1846,12 +1851,12 @@ pub fn normalize_with_options(verbatim: Library, options: &Options) -> ParsedLib
                         } else {
                             tex::CaseProtection::Off
                         },
-                        &mut macro_registry,
+                        &mut macro_definitions,
                     );
                     render_diagnostics.mark_case_groups = false;
                     if protect_title {
                         // Sentence casing runs after TeX rendering, with original groups restored
-                        // according to the configured `as-needed`, `strict`, or `off` policy.
+                        // according to the configured `as-needed`, `strict`, or `off` mode.
                         value = tex::sentence_case_title(
                             &value,
                             options.sentence_case.guess,
@@ -1869,7 +1874,7 @@ pub fn normalize_with_options(verbatim: Library, options: &Options) -> ParsedLib
                                 parse_creator(
                                     name,
                                     &entry.key,
-                                    &mut macro_registry,
+                                    &mut macro_definitions,
                                     &mut render_diagnostics,
                                 )
                             })
@@ -2508,11 +2513,11 @@ mod tests {
     }
 
     #[test]
-    /// Checks title rendering respects the TypeScript case-protection policies.
-    fn tex_visitor_honors_case_protection_policies() {
+    /// Checks title rendering respects the TypeScript case-protection modes.
+    fn tex_visitor_honors_case_protection_modes() {
         let mut diagnostics = super::tex::RenderDiagnostics::default();
         assert_eq!(
-            super::tex::render_with_policy(
+            super::tex::render_with_case_protection(
                 "An {unusual name}",
                 "title",
                 &mut diagnostics,
@@ -2521,7 +2526,7 @@ mod tests {
             "An unusual name"
         );
         assert_eq!(
-            super::tex::render_with_policy(
+            super::tex::render_with_case_protection(
                 "An {unusual name}",
                 "title",
                 &mut diagnostics,
@@ -2530,7 +2535,7 @@ mod tests {
             "An <span class=\"nocase\">unusual name</span>"
         );
         assert_eq!(
-            super::tex::render_with_policy(
+            super::tex::render_with_case_protection(
                 "An {unusual name}",
                 "title",
                 &mut diagnostics,
@@ -2762,6 +2767,19 @@ mod tests {
                 .all(|error| !error.error.contains("macro \\inside"))
         );
 
+        let ignored = parse_normalized(
+            r"@article{k,note={before \unknown after}}",
+            Options {
+                ignore_unsupported: true,
+                ..Options::default()
+            },
+        );
+        assert_eq!(ignored.errors.len(), 1);
+        assert!(matches!(
+            &ignored.entries[0].fields["note"],
+            FieldValue::Text(note) if note == "before after"
+        ));
+
         let nested_accent = parse_normalized(r"@book{x,title={\'{\a}}}", Options::default());
         assert!(
             nested_accent.errors.iter().any(|error| {
@@ -2882,12 +2900,12 @@ mod tests {
             Some(FieldValue::Creators(creators)) if creators.len() == 1 && creators[0].last_name.as_deref() == Some("A\u{00a0}and\u{00a0}B")
         ));
 
-        let mut macro_registry = std::collections::HashMap::new();
+        let mut macro_definitions = std::collections::HashMap::new();
         let mut diagnostics = super::tex::RenderDiagnostics::default();
         let narrow_space = super::parse_creator(
             "van\u{2005}Loon, John",
             "",
-            &mut macro_registry,
+            &mut macro_definitions,
             &mut diagnostics,
         );
         assert_eq!(narrow_space.last_name.as_deref(), Some("van\u{2005}Loon"));

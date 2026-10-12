@@ -62,14 +62,19 @@ Both `parse` and `parseAsync` accept an `unsupported` option:
 
 * `ignore`: replace unknown commands with nothing.
 * `keep` (default): preserve literal TeX, including the backslash, and record a diagnostic in `errors`.
-* `throw`: throw an error identifying the unknown command (`parseAsync` rejects).
+* `throw`: throw an error identifying the unsupported TeX command (`parse` throws and `parseAsync` rejects). This bypasses the normal `errors` collection.
 
 These policies also apply to unsupported environments. Custom handler functions are no longer supported.
 
-# 9.0 is a breaking change!
+## TypeScript Breaking Changes Since `master`
 
-Look at the documentation for what has changed:
+* `Options.unsupported` no longer accepts a callback `(node, tex, entry) => string` for custom replacement text. Use `ignore`, `keep`, or `throw`. The default remains `keep`, matching `master`; passing any other value now throws a `TypeError` during parser setup.
+* The new `unsupported: 'throw'` mode propagates unsupported-command/environment errors out of `parse` (or rejects `parseAsync`) instead of adding them to the entry's `errors` and continuing.
+* Merged `keywords` now retain encounter order and exact duplicate strings. Previously, exact duplicates were removed and the remaining values were sorted case-insensitively. Case variants were not deduplicated before either.
 
-* the chunker parser is now called the verbatim parser, and the return type of the entries has changed
-* the main parser has changed the structure of the entries returned, the errors returned, and the options passed into the parser
-* unabbreviations left to consumers of the library. `unabbrev.json` remains available.
+# Migrating from 8.x to 9.0
+
+* Move `sentenceCase.langids` to the top-level `english` option. It still accepts a language array or a boolean; include `''` in a custom array to match entries with no `langid`.
+* Move `sentenceCase.language` to the top-level `languageAsLangid` option. It still controls whether the `language` field is used as a fallback when `langid` and `hyphenation` are absent.
+
+The `Entry` and `ParseError` shapes, including the verbatim parser's entry shape, did not change between 8.0.23 and 9.0.0. Bundled unabbreviations also remain enabled by default.

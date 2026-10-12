@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
+        library: ['typescript', 'wasm']
         sentencecase: ['on+guess', 'on', 'off']
         caseprotection: [ 'as-needed', 'strict', 'off' ]
         preservequoted: [ '-p', '-P' ]
@@ -29,8 +30,19 @@ jobs:
     - run: |
         npm install
         npm run build
+
+    - name: test TypeScript parser
+      if: matrix.library == 'typescript'
+      run: |
         echo ./test/run.js --sc ${{ matrix.sentencecase }} --cp ${{ matrix.caseprotection }} ${{ matrix.preservequoted }} --big
         ./test/run.js --sc ${{ matrix.sentencecase }} --cp ${{ matrix.caseprotection }} ${{ matrix.preservequoted }} --big
+
+    - name: test WASM parser
+      if: matrix.library == 'wasm'
+      run: |
+        echo node test/wasm.js --sc ${{ matrix.sentencecase }} --cp ${{ matrix.caseprotection }} ${{ matrix.preservequoted }} --big
+        node test/wasm.js --sc ${{ matrix.sentencecase }} --cp ${{ matrix.caseprotection }} ${{ matrix.preservequoted }} --big
+        node --test test/rust-wasm-parity.test.js
 
   release:
     runs-on: ubuntu-latest

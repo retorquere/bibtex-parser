@@ -184,7 +184,10 @@ test('matches TypeScript unsupported ignore/keep/throw behavior', async () => {
 
   const ignored = await parseAsync(source, { unsupported: 'ignore' })
   assert.equal(ignored.entries[0].fields.note, 'before after')
-  assert.deepEqual(ignored.errors, [])
+  assert.deepEqual(ignored.errors, [{
+    error: String.raw`unhandled macro \unknownmacro`,
+    input: String.raw`\unknownmacro`,
+  }])
 
   const kept = await parseAsync(source, { unsupported: 'keep' })
   assert.equal(kept.entries[0].fields.note, String.raw`before \unknownmacroafter`)

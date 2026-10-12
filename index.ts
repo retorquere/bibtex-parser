@@ -614,7 +614,6 @@ class BibTeXParser {
 
   private unsupported(node: Node): string {
     const tex = printRaw(node)
-    if (this.options.unsupported === 'ignore') return ''
     if (this.options.unsupported === 'throw') throw new UnsupportedError(`unhandled ${node.type} ${tex}`)
 
     let id: string
@@ -638,7 +637,7 @@ class BibTeXParser {
         break
     }
 
-    return tex
+    return this.options.unsupported === 'ignore' ? '' : tex
   }
 
   private wrap(text: string, tag, wrap = true): string {

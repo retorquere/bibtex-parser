@@ -184,7 +184,10 @@ for (const [name, parse] of [['parse', bibtex.parse], ['parseAsync', bibtex.pars
   test(`unsupported ignore (${name})`, async () => {
     const result = await parse(source, { unsupported: 'ignore' })
     assert.equal(result.entries[0].fields.note, 'before after')
-    assert.deepEqual(result.errors, [])
+    assert.deepEqual(result.errors, [{
+      error: String.raw`unhandled macro \unknownmacro`,
+      input: String.raw`\unknownmacro`,
+    }])
   })
 
   test(`unsupported keep (${name})`, async () => {

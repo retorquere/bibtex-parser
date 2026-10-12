@@ -102,16 +102,19 @@ struct Parser {
     position: usize,
     /// Active environment names; inner parsers return parent terminators without consuming them.
     environment_ends: Vec<String>,
-    newcommands: HashMap<String, Vec<Node>>,
+    macro_definitions: HashMap<String, Vec<Node>>,
 }
 
 impl Parser {
     /// Create a character-indexed parser over a field value.
     fn new(source: &str) -> Self {
-        Self::new_with_macros(source, HashMap::new())
+        Self::new_with_macro_definitions(source, HashMap::new())
     }
 
-    fn new_with_macros(source: &str, newcommands: HashMap<String, Vec<Node>>) -> Self {
+    fn new_with_macro_definitions(
+        source: &str,
+        macro_definitions: HashMap<String, Vec<Node>>,
+    ) -> Self {
         let chars: Vec<char> = source.chars().collect();
         let mut positions = Vec::with_capacity(chars.len() + 1);
         let (mut offset, mut line, mut column) = (0, 1, 1);
@@ -139,7 +142,7 @@ impl Parser {
             positions,
             position: 0,
             environment_ends: Vec::new(),
-            newcommands,
+            macro_definitions,
         }
     }
 
@@ -368,7 +371,7 @@ impl Parser {
                             name,
                             arguments,
                             span,
-                        } if self.newcommands.contains_key(&name) => {
+                        } if self.macro_definitions.contains_key(&name) => {
                             nodes.push(Node::Expansion(
                                 self.expand_macro(&name, 0, &arguments, span),
                                 span,
@@ -827,7 +830,7 @@ impl Parser {
         };
 
         let name = name.clone();
-        self.newcommands.insert(name, replacement);
+        self.macro_definitions.insert(name, replacement);
         true
     }
 
@@ -851,7 +854,7 @@ impl Parser {
             }];
         }
         let _ = arguments;
-        self.newcommands
+        self.macro_definitions
             .get(name)
             .map(|body| self.expand_nodes(body, depth + 1))
             .unwrap_or_default()
@@ -867,7 +870,7 @@ impl Parser {
                     name,
                     arguments,
                     span,
-                } if self.newcommands.contains_key(name) => {
+                } if self.macro_definitions.contains_key(name) => {
                     self.expand_macro(name, depth, arguments, *span)
                 }
                 Node::Group(children, span) => {
@@ -976,7 +979,7 @@ pub(crate) struct RenderDiagnostics {
     pub(crate) errors: Vec<super::ParseError>,
     /// Stable kind/name identifiers used to suppress duplicate macro and environment errors.
     unhandled: HashSet<String>,
-    /// Whether unsupported nodes are omitted without recording a diagnostic.
+    /// Whether unsupported nodes are omitted from rendered output.
     pub(crate) ignore_unsupported: bool,
     /// Whether root-title group boundaries should be retained for post-render casing.
     pub(crate) mark_case_groups: bool,
@@ -989,9 +992,6 @@ impl RenderDiagnostics {
     /// `source` is retained as the error input. Macro and environment errors are deduplicated;
     /// callers currently report only those two construct kinds.
     fn report(&mut self, kind: &str, name: &str, source: String) {
-        if self.ignore_unsupported {
-            return;
-        }
         let id = format!("{kind}.{name}");
         if self.unhandled.insert(id) {
             let error = if kind == "macro" {
@@ -1047,18 +1047,18 @@ pub(crate) fn render(source: &str, mode: &str) -> String {
     render_with_diagnostics(source, mode, &mut RenderDiagnostics::default())
 }
 
-/// Render one field with an explicit case-protection policy.
+/// Render one field with an explicit case-protection mode.
 ///
-/// The `case_protection` policy mirrors the TypeScript visitor's `caseProtection` option. The
+/// The `case_protection` mode mirrors the TypeScript visitor's `caseProtection` option. The
 /// default visitor path keeps the reference `as-needed` behavior, while callers can opt out or
 /// force the stricter mode without changing the rest of the render pipeline.
-pub(crate) fn render_with_policy(
+pub(crate) fn render_with_case_protection(
     source: &str,
     mode: &str,
     diagnostics: &mut RenderDiagnostics,
     case_protection: CaseProtection,
 ) -> String {
-    render_with_policy_and_registry(
+    render_with_case_protection_and_macro_definitions(
         source,
         mode,
         diagnostics,
@@ -1069,16 +1069,16 @@ pub(crate) fn render_with_policy(
     .to_string()
 }
 
-pub(crate) fn render_with_policy_and_registry(
+pub(crate) fn render_with_case_protection_and_macro_definitions(
     source: &str,
     mode: &str,
     diagnostics: &mut RenderDiagnostics,
     case_protection: CaseProtection,
-    newcommands: &mut HashMap<String, Vec<Node>>,
+    macro_definitions: &mut HashMap<String, Vec<Node>>,
 ) -> String {
-    let mut parser = Parser::new_with_macros(source, std::mem::take(newcommands));
+    let mut parser = Parser::new_with_macro_definitions(source, std::mem::take(macro_definitions));
     let (content, _) = parser.sequence(false, None, None);
-    *newcommands = parser.newcommands;
+    *macro_definitions = parser.macro_definitions;
     render_nodes(
         &content,
         mode,
@@ -1100,13 +1100,13 @@ pub(crate) fn render_with_policy_and_registry(
 /// * `mode` - Field rendering mode; only `title` enables title root-group protection.
 /// * `diagnostics` - Shared state that deduplicates unsupported constructs across fields.
 ///
-/// The visitor starts at root scope using the default English `as-needed` protection policy.
+/// The visitor starts at root scope using the default English `as-needed` protection mode.
 pub(crate) fn render_with_diagnostics(
     source: &str,
     mode: &str,
     diagnostics: &mut RenderDiagnostics,
 ) -> String {
-    render_with_policy(source, mode, diagnostics, CaseProtection::default())
+    render_with_case_protection(source, mode, diagnostics, CaseProtection::default())
 }
 
 /// Render a sibling sequence while tracking field mode, local markup, and title context.
@@ -1831,7 +1831,7 @@ fn quoted_ranges(characters: &[char]) -> Vec<std::ops::Range<usize>> {
 /// bypasses text ligatures; `diagnostics` receives unsupported constructs. The remaining flags
 /// carry title protection: `title_mode` enables it, `protected_ancestor` suppresses nested spans,
 /// `root_scope` lets environments expose their contents to the root-group pass, and
-/// `case_protection` selects the TypeScript `as-needed`/`strict`/`off` policy.
+/// `case_protection` selects the TypeScript `as-needed`/`strict`/`off` mode.
 fn render_node(
     node: &Node,
     mode: &str,

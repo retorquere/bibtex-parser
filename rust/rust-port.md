@@ -8,7 +8,7 @@
 - Macro arities follow TypeScript's `narguments` table. Simple `\newcommand`/`\ProvideTextCommandDefault` definitions expand; nested `\ifdefined` blocks are skipped.
 - Custom `\newcommand` definitions parse optional arity/default brackets and retain the replacement body. As in the TypeScript visitor, nested expansion renders that body literally and does not substitute `#1`-style placeholders.
 - TeX-to-Unicode mappings are generated from `unicode2latex` at Cargo build time and compiled into the crate. The wasm runtime does not load mapping JSON.
-- The Rust TeX visitor renders generated Unicode mappings and combining marks, common inline markup, rich-text wrappers and list items, and unsupported macro/environment diagnostics. Title root groups and math honor the TypeScript `caseProtection` policy (`off`/`as-needed`/`strict`), and normalized titles pass through sentence casing after TeX rendering.
+- The Rust TeX visitor renders generated Unicode mappings and combining marks, common inline markup, rich-text wrappers and list items, and unsupported macro/environment diagnostics. Title root groups and math honor the TypeScript `caseProtection` mode (`off`/`as-needed`/`strict`), and normalized titles pass through sentence casing after TeX rendering.
 - `wasm-pack` generates the JavaScript wrapper and TypeScript declarations; the Rust crate also remains usable natively.
 - The WASM facade accepts the TypeScript parser option shapes, exposes synchronous `parse` plus Promise-returning `parseAsync`, and serializes normalized entries as the TypeScript `Library` shape. JavaScript `RegExp` values in `verbatimFields` are resolved against parsed field names before Rust normalization.
 - `test/wasm.js` mirrors `test/run.js` fixture selection, options, exception assertions, and unchanged snapshot comparisons. The full Rust-backed WASM suite passes 1,338 of 1,338 tests.
@@ -29,11 +29,11 @@
 - Direct AST regressions cover UTF-16 positions, malformed groups, comment boundaries, and matched/unmatched/nested environments. The existing `quotation-18.bib` fixture is also checked against the corresponding environment fragment in its default TypeScript snapshot.
 - Recovery assumption: when a group opener has no matching closer, only the opener is made literal and its contents continue through the enclosing sequence. Macro expansion preserves the spans of the source nodes from which replacement and argument nodes originated.
 
-### Step 3: TeX visitor policy parity
+### Step 3: TeX visitor case-protection parity
 
-- Title rendering now carries a TypeScript-compatible `CaseProtection` policy through the render context, allowing the visitor to respect `off`, `as-needed`, and `strict` behavior in the same way as the JavaScript title visitor.
+- Title rendering now carries a TypeScript-compatible `CaseProtection` mode through the render context, allowing the visitor to respect `off`, `as-needed`, and `strict` behavior in the same way as the JavaScript title visitor.
 - Root-title protection is triggered for protected groups and math, while nested protected ancestors continue to suppress duplicate wrapping to match the reference behavior.
-- The regression suite includes a direct policy check covering the root title path so the default and explicit policy modes remain locked to the visitor contract.
+- The regression suite includes a direct mode check covering the root title path so the default and explicit case-protection modes remain locked to the visitor contract.
 
 ### Step 4: TeX visitor output parity
 
