@@ -42,6 +42,20 @@ const library = parse('@article{example, title={A title}}')
 
 Both entry points include TypeScript declarations. Building the package from source also builds WebAssembly and requires Rust with the `wasm32-unknown-unknown` target and `wasm-pack`; consumers do not need these tools.
 
+### Zotero Plugins
+
+Include the `/wasm` JavaScript entry point in your plugin's build and package the WASM binary as a plugin resource. In the plugin's privileged Zotero context, initialize the parser during startup, before any parsing calls:
+
+```js
+import init, { parse } from '@retorquere/bibtex-parser/wasm'
+
+await init({ module_or_path: 'chrome://zotero-better-bibtex/content/resource/bibtex/bibtex_parser_bg.wasm' })
+
+const library = parse('@article{example, title={A title}}')
+```
+
+Await initialization once during startup; subsequent `parse` or `parseAsync` calls reuse the initialized module.
+
 ## Unknown TeX Commands
 
 Both `parse` and `parseAsync` accept an `unsupported` option:
