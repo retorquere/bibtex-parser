@@ -2543,6 +2543,78 @@ mod tests {
             ),
             "An <span class=\"nocase\">unusual name</span>"
         );
+        diagnostics.mark_case_groups = true;
+        assert_eq!(
+            super::tex::render_with_case_protection(
+                "An $n$",
+                "title",
+                &mut diagnostics,
+                super::tex::CaseProtection::Strict,
+            ),
+            "An <case-protection>n</case-protection>"
+        );
+        assert_eq!(
+            super::tex::render_with_case_protection(
+                "{Astrophysical} {$\\rightarrow$} {Reactions}",
+                "title",
+                &mut diagnostics,
+                super::tex::CaseProtection::Strict,
+            ),
+            "<case-protection>Astrophysical</case-protection> <case-protection>→</case-protection> <case-protection>Reactions</case-protection>"
+        );
+        assert_eq!(
+            super::tex::sentence_case_title(
+                "<case-protection>Astrophysical</case-protection> <case-protection>→</case-protection> <case-protection>Reactions</case-protection>",
+                false,
+                true,
+                true,
+                super::tex::CaseProtection::Strict,
+            ),
+            "<span class=\"nocase\">Astrophysical → Reactions</span>"
+        );
+        assert_eq!(
+            super::tex::render_with_case_protection(
+                r"{\mbox{$\mu$}} {J}",
+                "title",
+                &mut diagnostics,
+                super::tex::CaseProtection::Strict,
+            ),
+            "<case-protection>𝜇</case-protection> <case-protection>J</case-protection>"
+        );
+        assert_eq!(
+            super::tex::sentence_case_title(
+                "<case-protection>𝜇</case-protection> <case-protection>J</case-protection>",
+                false,
+                true,
+                true,
+                super::tex::CaseProtection::Strict,
+            ),
+            "<span class=\"nocase\">𝜇 J</span>"
+        );
+        assert_eq!(
+            super::tex::render_with_case_protection(
+                r"A\hspace{1em}B",
+                "title",
+                &mut diagnostics,
+                super::tex::CaseProtection::Strict,
+            ),
+            "A B"
+        );
+        diagnostics.mark_case_groups = false;
+        let href = parse_normalized(
+            r"@article{x,title={\href{https://example.test}{Home}}}",
+            Options {
+                case_protection: "strict".to_string(),
+                ..Options::default()
+            },
+        );
+        assert_eq!(
+            href.entries[0].fields["title"],
+            FieldValue::Text(
+                "<a href=\"https://example.test\"><span class=\"nocase\">Home</span></a>"
+                    .to_string()
+            )
+        );
         for (title, expected) in [
             (
                 r"Stability {Analysis} and {\emph{Optimization}}",

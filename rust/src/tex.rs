@@ -1502,7 +1502,8 @@ pub(crate) fn sentence_case_title(
     }
 
     output.push_str(&cased[cased_position..]);
-    collapse_markup_spans(output)
+    let output = collapse_markup_spans(output);
+    collapse_markup_pairs(&output, "<span class=\"nocase\">", "</span>")
 }
 
 /// Match the TypeScript `guess` rule before altering title-cased or sentence-cased text.
@@ -1901,7 +1902,9 @@ fn render_node(
                     case_protection: context.case_protection,
                 },
             );
-            if context.title_mode
+            if diagnostics.mark_case_groups && context.title_mode && !context.protected_ancestor {
+                format!("<case-protection>{rendered}</case-protection>")
+            } else if context.title_mode
                 && !context.protected_ancestor
                 && context.case_protection.enabled()
                 && needs_case_protection(&rendered)
@@ -1934,6 +1937,8 @@ fn render_node(
             let protect_argument = context.title_mode
                 && context.root_scope
                 && !combining_macro
+                && name != "href"
+                && !matches!(name.as_str(), "hspace" | "hskip")
                 && !matches!(name.as_str(), "enquote" | "mkbibquote")
                 && arguments.iter().enumerate().any(|(index, argument)| {
                     !(matches!(name.as_str(), "url" | "href") && index == 0)
@@ -2021,6 +2026,38 @@ fn render_argument(
         .unwrap_or_default()
 }
 
+/// Render a root macro argument with the same case-protection boundary as a root TeX group.
+fn render_case_protected_argument(
+    arguments: &[Vec<Node>],
+    index: usize,
+    mode: &str,
+    diagnostics: &mut RenderDiagnostics,
+    context: RenderContext,
+) -> String {
+    let protect = context.title_mode
+        && context.root_scope
+        && matches!(
+            arguments.get(index).map(Vec::as_slice),
+            Some([Node::Group(children, _)])
+                if !children.is_empty() && !matches!(children[0], Node::Macro { .. })
+        );
+    let rendered = render_argument(
+        arguments,
+        index,
+        mode,
+        false,
+        diagnostics,
+        context.case_protection,
+    );
+    if diagnostics.mark_case_groups && protect {
+        format!("<case-protection>{rendered}</case-protection>")
+    } else if protect && context.case_protection.enabled() && needs_case_protection(&rendered) {
+        format!("<span class=\"nocase\">{rendered}</span>")
+    } else {
+        rendered
+    }
+}
+
 /// Reconstruct a URL argument as raw TeX, unwrapping one argument group like the TS visitor.
 ///
 /// The TypeScript pass replaces `url`/`href`'s first argument with a String node built from
@@ -2061,7 +2098,7 @@ fn render_macro(
         "href" => {
             // The first href argument is the destination; only the label receives normal rendering.
             let url = serialize_verbatim_argument(arguments, 0);
-            let label = render_argument(arguments, 1, mode, false, diagnostics, case_protection);
+            let label = render_case_protected_argument(arguments, 1, mode, diagnostics, context);
             return format!("<a href=\"{url}\">{label}</a>");
         }
         "textbf" | "mkbibbold" => {
