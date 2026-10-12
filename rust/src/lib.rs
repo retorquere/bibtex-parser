@@ -260,9 +260,10 @@ struct CrossReferenceData {
     no_cross_ref: Vec<String>,
 }
 
+type CrossReferenceMap = HashMap<String, HashMap<String, HashMap<String, String>>>;
+
 static CROSS_REFERENCE_DATA: OnceLock<CrossReferenceData> = OnceLock::new();
-static CROSS_REFERENCE_MAP: OnceLock<HashMap<String, HashMap<String, HashMap<String, String>>>> =
-    OnceLock::new();
+static CROSS_REFERENCE_MAP: OnceLock<CrossReferenceMap> = OnceLock::new();
 
 fn cross_reference_data() -> &'static CrossReferenceData {
     CROSS_REFERENCE_DATA.get_or_init(|| {
@@ -271,7 +272,7 @@ fn cross_reference_data() -> &'static CrossReferenceData {
     })
 }
 
-fn cross_reference_map() -> &'static HashMap<String, HashMap<String, HashMap<String, String>>> {
+fn cross_reference_map() -> &'static CrossReferenceMap {
     CROSS_REFERENCE_MAP.get_or_init(|| {
         serde_json::from_str(include_str!("../../data/crossref.json"))
             .expect("crossref.json is valid cross-reference data")
@@ -2580,8 +2581,10 @@ mod tests {
             quoted.entries[0].fields["title"],
             FieldValue::Text("Blah and “<span class=\"nocase\">enquote</span>”.".into())
         );
-        let mut options = Options::default();
-        options.english = vec!["en".into()];
+        let options = Options {
+            english: vec!["en".into()],
+            ..Options::default()
+        };
         let grouped_markup = parse_normalized(
             r"@book{x,langid={en},title={Reading {{HLA Hart}}'s: {{{\emph{The Concept}}}}{\emph{ of }}{{{\emph{Law}}}}}}",
             options,

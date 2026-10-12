@@ -1,0 +1,105 @@
+comments: []
+entries:
+  - fields:
+      title: 𐐨 the method
+    input: |-
+      @book{astral,
+        title = {𐐨 the Method}
+      }
+    key: astral
+    mode:
+      title: title
+    type: book
+  - fields:
+      title: Title. ١ Next
+    input: |-
+      @book{unicode-number,
+        title = {Title. ١ Next}
+      }
+    key: unicode-number
+    mode:
+      title: title
+    type: book
+  - fields:
+      title: Title. VS. Next
+    input: |-
+      @book{uppercase-vs,
+        title = {Title. VS. Next}
+      }
+    key: uppercase-vs
+    mode:
+      title: title
+    type: book
+  - fields:
+      title: The v2.1 results
+    input: |-
+      @book{version-word,
+        title = {The v2.1 Results}
+      }
+    key: version-word
+    mode:
+      title: title
+    type: book
+  - fields:
+      title: The x-ray results
+    input: |-
+      @book{hyphen-guess,
+        title = {The x-ray Results}
+      }
+    key: hyphen-guess
+    mode:
+      title: title
+    type: book
+  - fields:
+      title: The can't-Based results
+    input: |-
+      @book{hyphen-contraction,
+        title = {The can't-Based Results}
+      }
+    key: hyphen-contraction
+    mode:
+      title: title
+    type: book
+  - fields:
+      title: 'A-b: Another title'
+    input: |-
+      @book{hyphen-punctuation,
+        title = {A-B: Another Title}
+      }
+    key: hyphen-punctuation
+    mode:
+      title: title
+    type: book
+  - fields:
+      title: The https://foo/UPPER results
+    input: |-
+      @book{website-boundary,
+        title = {The https://foo/UPPER Results}
+      }
+    key: website-boundary
+    mode:
+      title: title
+    type: book
+  - fields:
+      title: The aְ-Based results
+    input: |-
+      @book{unicode-mark,
+        title = {The aְ-Based Results}
+      }
+    key: unicode-mark
+    mode:
+      title: title
+    type: book
+  - fields:
+      title: "The a\_ results"
+    input: "@book{nbsp-preservation,\n  title = {The a\_ Results}\n}"
+    key: nbsp-preservation
+    mode:
+      title: title
+    type: book
+errors: []
+jabref:
+  groups: {}
+  root: []
+preamble: []
+strings: {}

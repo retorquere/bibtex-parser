@@ -439,9 +439,7 @@ impl Parser {
                         content: comment,
                         span: self.span(
                             comment_start,
-                            if line_breaks == 0 {
-                                content_end
-                            } else if suffix_parbreak {
+                            if line_breaks == 0 || suffix_parbreak {
                                 content_end
                             } else {
                                 lookahead
