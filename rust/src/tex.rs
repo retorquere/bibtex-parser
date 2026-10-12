@@ -1012,7 +1012,7 @@ impl RenderDiagnostics {
 /// `as-needed` matches the default browser/JS behavior: lower-case words that look like they
 /// require preservation are wrapped in a `nocase` span. `strict` preserves the author-supplied
 /// protected text while leaving the same default title heuristics in place for the visitor. `off`
-/// disables the root-title protection pass entirely.
+/// preserves root-title casing without emitting protection markup.
 #[allow(dead_code)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Default)]
 pub(crate) enum CaseProtection {
@@ -1484,14 +1484,18 @@ pub(crate) fn sentence_case_title(
 
         output.push_str(&cased[cased_position..cased_open]);
         let preserve = match case_protection {
-            CaseProtection::Off => false,
+            CaseProtection::Off => true,
             CaseProtection::Strict => true,
             CaseProtection::AsNeeded => original != transformed || needs_case_protection(original),
         };
         if preserve {
-            output.push_str("<span class=\"nocase\">");
-            output.push_str(original);
-            output.push_str("</span>");
+            if case_protection == CaseProtection::Off {
+                output.push_str(original);
+            } else {
+                output.push_str("<span class=\"nocase\">");
+                output.push_str(original);
+                output.push_str("</span>");
+            }
         } else if case_protection == CaseProtection::AsNeeded {
             output.push_str(original);
         } else {

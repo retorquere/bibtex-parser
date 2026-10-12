@@ -1840,8 +1840,7 @@ pub fn normalize_with_options(verbatim: Library, options: &Options) -> ParsedLib
                     };
                     let protect_title = current_mode == "title" && english;
                     // Pass 0 marks root groups and inline math before the sentence-case pass.
-                    render_diagnostics.mark_case_groups =
-                        protect_title && case_protection != tex::CaseProtection::Off;
+                    render_diagnostics.mark_case_groups = protect_title;
                     value = tex::render_with_case_protection_and_macro_definitions(
                         &value,
                         &current_mode,
@@ -2599,6 +2598,16 @@ mod tests {
                 super::tex::CaseProtection::Strict,
             ),
             "A B"
+        );
+        assert_eq!(
+            super::tex::sentence_case_title(
+                "<case-protection>Generating Bayesian</case-protection> networks",
+                false,
+                true,
+                true,
+                super::tex::CaseProtection::Off,
+            ),
+            "Generating Bayesian networks"
         );
         diagnostics.mark_case_groups = false;
         let href = parse_normalized(
