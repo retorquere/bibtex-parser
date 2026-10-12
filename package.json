@@ -29,12 +29,14 @@
     "lint": "dprint fmt *.ts && dprint check *.ts",
     "prestart": "npm run lint",
     "start": "npm run build",
+
     "build:esm": "rm -rf dist/esm && esbuild *.ts --outdir=dist/esm --format=esm --sourcemap --target=es2020 --loader:.ts=ts",
     "build:cjs": "rm -rf dist/cjs && esbuild *.ts --outdir=dist/cjs --format=cjs --sourcemap --target=node16 --loader:.ts=ts",
     "build:types": "rm -rf dist/esm dist/types && tsc -d -p tsconfig.esm.json",
-    "wasm:build": "node rust/build-wasm.mjs",
+    "build:ts": "npm run build:types && npm run build:cjs && npm run build:esm",
+    "build:wasm": "node rust/build-wasm.mjs",
     "prebuild": "rm -rf dist && mkdir -p dist/data && cp data/*.json dist/data && ./build/abbr.py && ./build/prepositions.py",
-    "build": "npm run build:types && npm run build:cjs && npm run build:esm && npm run wasm:build",
+    "build": "npm run build:ts && npm run build:wasm",
     "pretest": "npm start",
     "test": "node test/run.js",
     "test:package": "npm run build && node --test test/package.test.js",
@@ -48,7 +50,7 @@
     "predocs": "npm start",
     "docs": "typedoc --tsconfig tsconfig.cjs.json",
     "modules": "git submodule update --init --recursive",
-    "wasm:test": "npm run wasm:build && node --test test/wasm.js test/rust-wasm-parity.test.js",
+    "wasm:test": "npm run build:wasm && node --test test/wasm.js test/rust-wasm-parity.test.js",
     "ncu": "./build/submodules.py && ./build/crossref.py && ncu -u && npm i && git add package.json package-lock.json && npm audit fix && git commit -m ncu"
   },
   "repository": {

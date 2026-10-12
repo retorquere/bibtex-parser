@@ -27,6 +27,16 @@ jobs:
         node-version: 24.x
         cache: 'npm'
 
+    - name: install Rust toolchain
+      uses: dtolnay/rust-toolchain@stable
+      with:
+        targets: wasm32-unknown-unknown
+
+    - name: install wasm-pack
+      uses: taiki-e/install-action@v2
+      with:
+        tool: wasm-pack
+
     - run: |
         npm install
         npm run build

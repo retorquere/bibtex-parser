@@ -3,7 +3,7 @@
 Build the browser-targeted WebAssembly module, JavaScript glue, and TypeScript declarations from the repository root:
 
 ```sh
-npm run wasm:build
+npm run build:wasm
 ```
 
 The build requires Node.js, the repository's npm dependencies, Rust with the `wasm32-unknown-unknown` target, and `wasm-pack`. Cargo generates a compact static Rust lookup from `unicode2latex`'s `latex2unicode` and `combining.tounicode` maps at compile time. The wasm runtime does not load or parse JSON. The generated package is written to `rust/pkg` and is intentionally ignored by Git.
