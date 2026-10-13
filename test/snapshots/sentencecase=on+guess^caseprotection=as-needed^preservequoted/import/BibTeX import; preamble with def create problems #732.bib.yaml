@@ -17,6 +17,6 @@ errors: []
 jabref:
   groups: {}
   root: []
-preamble:
+preambles:
   - "\n       \"\\def\\ocirc#1{\\ifmmode\\setbox0=\\hbox{$#1$}\\dimen0=\\ht0\n\t       \\advance\\dimen0 by1pt\\rlap{\\hbox to\\wd0{\\hss\\raise\\dimen0\n\t\t       \\hbox{\\hskip.2em$\\scriptscriptstyle\\circ$}\\hss}}#1\\else\n\t\t           {\\accent\"17 #1}\\fi} \"\n\t\t\t   "
 strings: {}
