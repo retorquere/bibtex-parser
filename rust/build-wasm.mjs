@@ -1,5 +1,5 @@
 import { execFileSync } from 'node:child_process'
-import { copyFileSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { copyFileSync, cpSync, mkdirSync, readFileSync, unlinkSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -17,8 +17,25 @@ execFileSync('wasm-pack', [
   'bibtex_parser',
 ], { stdio: 'inherit' })
 
-copyFileSync(path.join(rust, 'wasm.js'), path.join(pkg, 'index.js'))
-copyFileSync(path.join(rust, 'wasm.d.ts'), path.join(pkg, 'index.d.ts'))
+const source = path.join(pkg, 'index.ts')
+copyFileSync(path.join(rust, 'index.ts'), source)
+try {
+  execFileSync(path.join(rust, '../node_modules/.bin/tsc'), [
+    '--target',
+    'ES2022',
+    '--module',
+    'NodeNext',
+    '--moduleResolution',
+    'NodeNext',
+    '--declaration',
+    '--skipLibCheck',
+    '--strictNullChecks',
+    source,
+  ], { stdio: 'inherit' })
+}
+finally {
+  unlinkSync(source)
+}
 
 const manifestPath = path.join(pkg, 'package.json')
 const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'))
@@ -32,6 +49,7 @@ manifest.files = [
   'bibtex_parser_bg.wasm.d.ts',
   'index.js',
   'index.d.ts',
+  'snippets',
 ]
 manifest.exports = {
   '.': {
@@ -45,5 +63,5 @@ writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`)
 const dist = path.resolve(rust, '../dist/wasm')
 mkdirSync(dist, { recursive: true })
 for (const file of manifest.files) {
-  copyFileSync(path.join(pkg, file), path.join(dist, file))
+  cpSync(path.join(pkg, file), path.join(dist, file), { recursive: true })
 }

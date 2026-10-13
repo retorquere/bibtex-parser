@@ -294,8 +294,38 @@ pub struct CrossRefSource {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum VerbatimField {
+    Name(String),
+    Pattern {
+        #[serde(
+            serialize_with = "serialize_field_pattern",
+            deserialize_with = "deserialize_field_pattern"
+        )]
+        source: regex_lite::Regex,
+    },
+}
+
+fn serialize_field_pattern<S: serde::Serializer>(
+    pattern: &regex_lite::Regex,
+    serializer: S,
+) -> Result<S::Ok, S::Error> {
+    serializer.serialize_str(pattern.as_str())
+}
+
+fn deserialize_field_pattern<'de, D: serde::Deserializer<'de>>(
+    deserializer: D,
+) -> Result<regex_lite::Regex, D::Error> {
+    let source = String::deserialize(deserializer)?;
+    regex_lite::RegexBuilder::new(&source)
+        .case_insensitive(true)
+        .build()
+        .map_err(serde::de::Error::custom)
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(default, rename_all = "camelCase")]
-/// Configuration for verbatim and normalized BibTeX parsing.
+/// Configuration for verbatim and full BibTeX parsing.
 pub struct Options {
     /// Stop after this many entries. `None` and `Some(0)` both mean no limit.
     pub max_entries: Option<usize>,
@@ -307,13 +337,12 @@ pub struct Options {
     pub raw: bool,
     /// Apply inherited cross-reference fields from the target entry to its children.
     pub apply_crossref: bool,
-    /// Exact field names that always stay in verbatim mode even when they are not in the default list.
+    /// Case-insensitive exact field names or regex patterns that select verbatim mode.
     ///
     /// Fields such as `url` are normally parsed in verbatim mode, where TeX commands are treated
-    /// as regular text. This option adds fields that should receive that treatment; the WASM
-    /// adapter also resolves TypeScript RegExp selectors to exact field names before normalization.
-    pub verbatim_fields: Vec<String>,
-    /// Fields whose single outer brace layer should be removed before normalization.
+    /// as regular text. Regex patterns use search semantics; anchor them for whole-name matching.
+    pub verbatim_fields: Vec<VerbatimField>,
+    /// Fields whose single outer brace layer should be removed before reparsing.
     ///
     /// BibTeX data often wraps fields in double braces as a workaround for case handling. Listed
     /// fields have one outer group ignored when the complete field value is exactly one group.
@@ -327,8 +356,8 @@ pub struct Options {
     /// English-like titles to sentence case for consumers such as Zotero. If no language field is
     /// present, Bib(La)TeX assumes English; include the empty string in custom language lists to
     /// preserve that default. Sentence casing is heuristic and does not use natural-language
-    /// processing, so results should be reviewed. The TypeScript/WASM adapter normalizes a boolean
-    /// to either the default language list or an empty list.
+    /// processing, so results should be reviewed. The WASM adapter exposes the default language
+    /// list as `english`; custom arrays replace it exactly.
     pub english: Vec<String>,
     /// Use the `language` field as a fallback when neither `langid` nor `hyphenation` is present.
     ///
@@ -439,7 +468,7 @@ pub struct Creator {
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(untagged)]
-/// Typed representation of a normalized field value.
+/// Typed representation of a parsed field value.
 pub enum FieldValue {
     /// Scalar text, including fields whose TeX markup is not yet rendered.
     Text(String),
@@ -451,7 +480,7 @@ pub enum FieldValue {
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
-/// An entry after field-mode assignment and initial typed normalization.
+/// An entry after reparsing its fields according to their assigned modes.
 pub struct ParsedEntry {
     /// Original trimmed entry source.
     pub input: String,
@@ -460,7 +489,7 @@ pub struct ParsedEntry {
     pub entry: String,
     /// Citation key.
     pub key: String,
-    /// Normalized field values.
+    /// Parsed field values.
     pub fields: HashMap<String, FieldValue>,
     /// Parser mode assigned to each field (for example, `title` or `creatorlist`).
     pub mode: HashMap<String, String>,
@@ -472,7 +501,7 @@ pub struct ParsedEntry {
 
 #[derive(Debug, Clone, PartialEq, Eq, Default, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
-/// Results from [`parse_normalized`], before TeX rendering and other later transformations.
+/// Results from [`parse`], including TeX rendering and field interpretation.
 pub struct ParsedLibrary {
     /// Entries in source order.
     pub entries: Vec<ParsedEntry>,
@@ -483,7 +512,7 @@ pub struct ParsedLibrary {
     /// Recoverable parsing errors.
     pub errors: Vec<ParseError>,
     /// Values from `@preamble` directives.
-    pub preamble: Vec<String>,
+    pub preambles: Vec<String>,
     /// JabRef metadata extracted from `jabref-meta:` comments.
     #[serde(default)]
     pub jabref: JabRefMetadata,
@@ -910,12 +939,26 @@ impl Parser {
     }
 
     /// Parse directives until input ends or the requested entry limit is reached.
-    fn parse(mut self) -> Library {
+    fn parse(self) -> Library {
+        futures_util::FutureExt::now_or_never(self.parse_with_yield(|| std::future::ready(())))
+            .expect("synchronous parsing does not suspend")
+    }
+
+    async fn parse_with_yield<F, Fut>(mut self, mut yield_now: F) -> Library
+    where
+        F: FnMut() -> Fut,
+        Fut: std::future::Future<Output = ()>,
+    {
+        let mut iterations = 0;
         while self.pos < self.chars.len()
             && (self.max_entries == 0 || self.library.entries.len() < self.max_entries)
         {
             let previous = self.pos;
             self.parse_next();
+            iterations += 1;
+            if iterations % 1000 == 0 {
+                yield_now().await;
+            }
             // Guard against a parser branch that reports success without advancing the cursor.
             if previous == self.pos {
                 break;
@@ -1454,7 +1497,10 @@ fn field_mode(field: &str, options: &Options) -> String {
     if options
         .verbatim_fields
         .iter()
-        .any(|candidate| candidate.eq_ignore_ascii_case(field))
+        .any(|candidate| match candidate {
+            VerbatimField::Name(name) => name.eq_ignore_ascii_case(field),
+            VerbatimField::Pattern { source } => source.is_match(field),
+        })
     {
         return "verbatim".to_string();
     }
@@ -1696,16 +1742,31 @@ fn inherit_crossref_field(
 }
 
 /// Convert verbatim entries to typed field values and assign each field's parsing mode.
-pub fn normalize(verbatim: Library) -> ParsedLibrary {
-    normalize_with_options(verbatim, &Options::default())
+pub fn reparse(verbatim: Library) -> ParsedLibrary {
+    reparse_with_options(verbatim, &Options::default())
 }
 
-/// Normalize with the same precedence as the TypeScript parser, including explicit mode overrides.
+/// Reparse with the same precedence as the TypeScript parser, including explicit mode overrides.
 ///
 /// This path matches the reference behavior for `fieldMode`, `verbatimFields`, and the brace-removal
 /// rule before field values are converted into typed data. The function keeps the source-order error
 /// aggregation from the raw parser and appends render diagnostics for unsupported TeX constructs.
-pub fn normalize_with_options(verbatim: Library, options: &Options) -> ParsedLibrary {
+pub fn reparse_with_options(verbatim: Library, options: &Options) -> ParsedLibrary {
+    futures_util::FutureExt::now_or_never(reparse_with_yield(verbatim, options, || {
+        std::future::ready(())
+    }))
+    .expect("synchronous reparsing does not suspend")
+}
+
+async fn reparse_with_yield<F, Fut>(
+    verbatim: Library,
+    options: &Options,
+    mut yield_now: F,
+) -> ParsedLibrary
+where
+    F: FnMut() -> Fut,
+    Fut: std::future::Future<Output = ()>,
+{
     let mut render_diagnostics = tex::RenderDiagnostics::default();
     render_diagnostics.ignore_unsupported = options.ignore_unsupported;
     let preambles = verbatim.preambles.clone();
@@ -1732,172 +1793,172 @@ pub fn normalize_with_options(verbatim: Library, options: &Options) -> ParsedLib
         );
     }
     let remove_brace_fields = remove_outer_braces_fields(options);
-    let mut entries: Vec<ParsedEntry> = verbatim
-        .entries
-        .into_iter()
-        .map(|entry| {
-            let mut langid = entry
+    let mut entries = Vec::with_capacity(verbatim.entries.len());
+    for (index, entry) in verbatim.entries.into_iter().enumerate() {
+        let mut langid = entry
+            .fields
+            .get("langid")
+            .filter(|value| !value.is_empty())
+            .or_else(|| entry.fields.get("hyphenation"))
+            .map(|value| value.to_lowercase())
+            .unwrap_or_default();
+        if langid.is_empty() && options.language_as_langid {
+            langid = entry
                 .fields
-                .get("langid")
-                .filter(|value| !value.is_empty())
-                .or_else(|| entry.fields.get("hyphenation"))
+                .get("language")
                 .map(|value| value.to_lowercase())
                 .unwrap_or_default();
-            if langid.is_empty() && options.language_as_langid {
-                langid = entry
-                    .fields
-                    .get("language")
-                    .map(|value| value.to_lowercase())
-                    .unwrap_or_default();
+        }
+        let english = options
+            .english
+            .iter()
+            .any(|language| language.to_lowercase() == langid);
+        let mut fields = HashMap::new();
+        let mut mode = HashMap::new();
+        let mut keywords = Vec::new();
+        for (field, value) in entry.fields {
+            if value.trim().is_empty() {
+                continue;
             }
-            let english = options
-                .english
-                .iter()
-                .any(|language| language.to_lowercase() == langid);
-            let mut fields = HashMap::new();
-            let mut mode = HashMap::new();
-            let mut keywords = Vec::new();
-            for (field, value) in entry.fields {
-                if value.trim().is_empty() {
-                    continue;
+            // TS renames duplicate keyword fields to this prefix before reparsing; merge
+            // their split values into one vector without sorting or removing repeated terms.
+            if field == "keywords" || field.starts_with("keywords+duplicate-") {
+                let value = tex::print_raw(&value);
+                keywords.extend(
+                    value
+                        .split([',', ';'])
+                        .map(str::trim)
+                        .filter(|keyword| !keyword.is_empty())
+                        .map(str::to_string),
+                );
+                continue;
+            }
+            let current_mode = field_mode(&field, options);
+            mode.insert(field.clone(), current_mode.clone());
+            let mut value = value;
+            // `removeOuterBraces` removes one root Group only when it is the entire field value.
+            if remove_brace_fields.contains(&field) {
+                value = remove_outer_braces(&value);
+            }
+            if !options.raw && matches!(field.as_str(), "year" | "month") {
+                if let Some(integer) = parse_integer_string(&value) {
+                    value = integer;
+                } else if field == "month" {
+                    value = normalize_month(&value);
                 }
-                // TS renames duplicate keyword fields to this prefix before normalization; merge
-                // their split values into one vector without sorting or removing repeated terms.
-                if field == "keywords" || field.starts_with("keywords+duplicate-") {
-                    let value = tex::print_raw(&value);
-                    keywords.extend(
-                        value
-                            .split([',', ';'])
-                            .map(str::trim)
-                            .filter(|keyword| !keyword.is_empty())
-                            .map(str::to_string),
-                    );
-                    continue;
-                }
-                let current_mode = field_mode(&field, options);
-                mode.insert(field.clone(), current_mode.clone());
-                let mut value = value;
-                // `removeOuterBraces` removes one root Group only when it is the entire field value.
-                if remove_brace_fields.contains(&field) {
-                    value = remove_outer_braces(&value);
-                }
-                if !options.raw && matches!(field.as_str(), "year" | "month") {
-                    if let Some(integer) = parse_integer_string(&value) {
-                        value = integer;
-                    } else if field == "month" {
-                        value = normalize_month(&value);
-                    }
-                }
-                if current_mode == "verbatim" {
-                    // TS returns `printRaw(ast)` before its raw-mode and normal rendering passes.
-                    fields.insert(field, FieldValue::Text(tex::print_raw(&value)));
-                    continue;
-                }
-                if options.raw {
-                    // Raw mode still parses typed creators/lists, but otherwise returns printed TeX.
-                    if current_mode == "creatorlist" {
-                        let names: Vec<_> = split_creators(&value)
-                            .iter()
-                            .map(|name| parse_raw_creator(name))
-                            .collect();
-                        fields.insert(field, FieldValue::Creators(names));
-                    } else if current_mode == "literallist" {
-                        let items: Vec<_> = split_creators(&value)
-                            .iter()
-                            .map(|element| element.to_string())
-                            .collect();
-                        fields.insert(field, FieldValue::List(items));
-                    } else {
-                        fields.insert(field, FieldValue::Text(value));
-                    }
-                    continue;
-                }
-                // Literal lists split the AST before stringifying each element, so braced `and`
-                // remains content rather than becoming a separator.
-                if current_mode == "literallist" {
-                    let items = split_creators(&value)
+            }
+            if current_mode == "verbatim" {
+                // TS returns `printRaw(ast)` before its raw-mode and normal rendering passes.
+                fields.insert(field, FieldValue::Text(tex::print_raw(&value)));
+                continue;
+            }
+            if options.raw {
+                // Raw mode still parses typed creators/lists, but otherwise returns printed TeX.
+                if current_mode == "creatorlist" {
+                    let names: Vec<_> = split_creators(&value)
                         .iter()
-                        .map(|element| {
-                            tex::render_with_case_protection_and_macro_definitions(
-                                element,
-                                "literal",
-                                &mut render_diagnostics,
-                                tex::CaseProtection::Off,
-                                &mut macro_definitions,
-                            )
-                            .trim()
-                            .to_string()
-                        })
+                        .map(|name| parse_raw_creator(name))
+                        .collect();
+                    fields.insert(field, FieldValue::Creators(names));
+                } else if current_mode == "literallist" {
+                    let items: Vec<_> = split_creators(&value)
+                        .iter()
+                        .map(|element| element.to_string())
                         .collect();
                     fields.insert(field, FieldValue::List(items));
-                    continue;
+                } else {
+                    fields.insert(field, FieldValue::Text(value));
                 }
-                if current_mode != "verbatim" && current_mode != "creatorlist" {
-                    let case_protection = match options.case_protection.as_str() {
-                        "off" => tex::CaseProtection::Off,
-                        "strict" => tex::CaseProtection::Strict,
-                        _ => tex::CaseProtection::AsNeeded,
-                    };
-                    let protect_title = current_mode == "title" && english;
-                    // Pass 0 marks root groups and inline math before the sentence-case pass.
-                    render_diagnostics.mark_case_groups = protect_title;
-                    value = tex::render_with_case_protection_and_macro_definitions(
-                        &value,
-                        &current_mode,
-                        &mut render_diagnostics,
-                        if protect_title {
-                            case_protection
-                        } else {
-                            tex::CaseProtection::Off
-                        },
-                        &mut macro_definitions,
-                    );
-                    render_diagnostics.mark_case_groups = false;
-                    if protect_title {
-                        // Sentence casing runs after TeX rendering, with original groups restored
-                        // according to the configured `as-needed`, `strict`, or `off` mode.
-                        value = tex::sentence_case_title(
-                            &value,
-                            options.sentence_case.guess,
-                            options.sentence_case.sub_sentence,
-                            options.sentence_case.preserve_quoted,
-                            case_protection,
-                        );
-                    }
-                }
-                let parsed = match current_mode.as_str() {
-                    "creatorlist" => FieldValue::Creators(
-                        split_creators(&value)
-                            .iter()
-                            .map(|name| {
-                                parse_creator(
-                                    name,
-                                    &entry.key,
-                                    &mut macro_definitions,
-                                    &mut render_diagnostics,
-                                )
-                            })
-                            .collect(),
-                    ),
-                    "literallist" => unreachable!("literal lists are parsed before rendering"),
-                    _ => FieldValue::Text(value.trim().to_string()),
+                continue;
+            }
+            // Literal lists split the AST before stringifying each element, so braced `and`
+            // remains content rather than becoming a separator.
+            if current_mode == "literallist" {
+                let items = split_creators(&value)
+                    .iter()
+                    .map(|element| {
+                        tex::render_with_case_protection_and_macro_definitions(
+                            element,
+                            "literal",
+                            &mut render_diagnostics,
+                            tex::CaseProtection::Off,
+                            &mut macro_definitions,
+                        )
+                        .trim()
+                        .to_string()
+                    })
+                    .collect();
+                fields.insert(field, FieldValue::List(items));
+                continue;
+            }
+            if current_mode != "verbatim" && current_mode != "creatorlist" {
+                let case_protection = match options.case_protection.as_str() {
+                    "off" => tex::CaseProtection::Off,
+                    "strict" => tex::CaseProtection::Strict,
+                    _ => tex::CaseProtection::AsNeeded,
                 };
-                fields.insert(field, parsed);
+                let protect_title = current_mode == "title" && english;
+                // Pass 0 marks root groups and inline math before the sentence-case pass.
+                render_diagnostics.mark_case_groups = protect_title;
+                value = tex::render_with_case_protection_and_macro_definitions(
+                    &value,
+                    &current_mode,
+                    &mut render_diagnostics,
+                    if protect_title {
+                        case_protection
+                    } else {
+                        tex::CaseProtection::Off
+                    },
+                    &mut macro_definitions,
+                );
+                render_diagnostics.mark_case_groups = false;
+                if protect_title {
+                    // Sentence casing runs after TeX rendering, with original groups restored
+                    // according to the configured `as-needed`, `strict`, or `off` mode.
+                    value = tex::sentence_case_title(
+                        &value,
+                        options.sentence_case.guess,
+                        options.sentence_case.sub_sentence,
+                        options.sentence_case.preserve_quoted,
+                        case_protection,
+                    );
+                }
             }
-            if !keywords.is_empty() {
-                mode.insert("keywords".to_string(), "verbatimlist".to_string());
-                fields.insert("keywords".to_string(), FieldValue::List(keywords));
-            }
-            ParsedEntry {
-                input: entry.input,
-                entry: entry.entry,
-                key: entry.key,
-                fields,
-                mode,
-                crossref: HashMap::new(),
-            }
-        })
-        .collect();
+            let parsed = match current_mode.as_str() {
+                "creatorlist" => FieldValue::Creators(
+                    split_creators(&value)
+                        .iter()
+                        .map(|name| {
+                            parse_creator(
+                                name,
+                                &entry.key,
+                                &mut macro_definitions,
+                                &mut render_diagnostics,
+                            )
+                        })
+                        .collect(),
+                ),
+                "literallist" => unreachable!("literal lists are parsed before rendering"),
+                _ => FieldValue::Text(value.trim().to_string()),
+            };
+            fields.insert(field, parsed);
+        }
+        if !keywords.is_empty() {
+            mode.insert("keywords".to_string(), "verbatimlist".to_string());
+            fields.insert("keywords".to_string(), FieldValue::List(keywords));
+        }
+        entries.push(ParsedEntry {
+            input: entry.input,
+            entry: entry.entry,
+            key: entry.key,
+            fields,
+            mode,
+            crossref: HashMap::new(),
+        });
+        if (index + 1) % 1000 == 0 {
+            yield_now().await;
+        }
+    }
     apply_crossref_inheritance(entries.as_mut_slice(), options.apply_crossref);
     let mut errors = verbatim.errors;
     errors.extend(render_diagnostics.errors);
@@ -1906,7 +1967,7 @@ pub fn normalize_with_options(verbatim: Library, options: &Options) -> ParsedLib
         strings,
         comments: verbatim.comments,
         errors,
-        preamble: verbatim.preambles,
+        preambles: verbatim.preambles,
         jabref: verbatim.jabref,
     }
 }
@@ -1950,19 +2011,14 @@ fn normalize_month(value: &str) -> String {
     month.to_string()
 }
 
-/// Parse BibTeX syntax without higher-level LaTeX or field normalization.
+/// Parse BibTeX syntax without interpreting LaTeX or field values.
 pub fn parse_verbatim(input: &str, options: Options) -> Library {
     Parser::new(input, options).parse()
 }
 
-/// Compatibility alias for [`parse_verbatim`].
-pub fn parse(input: &str, options: Options) -> Library {
-    parse_verbatim(input, options)
-}
-
-/// Parse BibTeX and apply the initial typed field normalization.
-pub fn parse_normalized(input: &str, options: Options) -> ParsedLibrary {
-    normalize_with_options(parse_verbatim(input, options.clone()), &options)
+/// Parse BibTeX and reparse its fields into typed values, rendering LaTeX content.
+pub fn parse(input: &str, options: Options) -> ParsedLibrary {
+    reparse_with_options(parse_verbatim(input, options.clone()), &options)
 }
 
 #[cfg(target_arch = "wasm32")]
@@ -1971,7 +2027,14 @@ mod wasm_bindings {
     use std::collections::HashMap;
     use wasm_bindgen::prelude::*;
 
-    use super::{Options, parse_normalized, parse_verbatim};
+    use super::{Options, Parser, parse, parse_verbatim, reparse_with_yield};
+
+    #[wasm_bindgen(
+        inline_js = "export function playnice() { return new Promise(resolve => setTimeout(resolve, 0)); }"
+    )]
+    extern "C" {
+        async fn playnice();
+    }
 
     /// Decode optional JavaScript options, defaulting omitted/null options and surfacing type errors.
     fn decode_options(options: Option<JsValue>) -> Result<Options, JsValue> {
@@ -1999,10 +2062,35 @@ mod wasm_bindings {
     }
 
     /// Parse a BibTeX string and return the initial typed result as a JavaScript object.
-    #[wasm_bindgen(js_name = parseNormalized)]
-    pub fn parse_normalized_js(input: &str, options: Option<JsValue>) -> Result<JsValue, JsValue> {
+    #[wasm_bindgen(js_name = parse)]
+    pub fn parse_js(input: &str, options: Option<JsValue>) -> Result<JsValue, JsValue> {
         let options = decode_options(options)?;
-        encode_result(&parse_normalized(input, options))
+        encode_result(&parse(input, options))
+    }
+
+    #[wasm_bindgen(js_name = parseVerbatimAsync)]
+    pub async fn parse_verbatim_async_js(
+        input: String,
+        options: Option<JsValue>,
+    ) -> Result<JsValue, JsValue> {
+        let options = decode_options(options)?;
+        let library = Parser::new(&input, options)
+            .parse_with_yield(playnice)
+            .await;
+        encode_result(&library)
+    }
+
+    #[wasm_bindgen(js_name = parseAsync)]
+    pub async fn parse_async_js(
+        input: String,
+        options: Option<JsValue>,
+    ) -> Result<JsValue, JsValue> {
+        let options = decode_options(options)?;
+        let verbatim = Parser::new(&input, options.clone())
+            .parse_with_yield(playnice)
+            .await;
+        let library = reparse_with_yield(verbatim, &options, playnice).await;
+        encode_result(&library)
     }
 
     /// Apply sentence casing with the standalone TypeScript API's defaulted option object.
@@ -2036,14 +2124,11 @@ mod wasm_bindings {
 // --- Tests ---
 #[cfg(test)]
 mod tests {
-    use super::{
-        FieldValue, Options, ParsedLibrary, normalize_with_options, parse, parse_normalized,
-        parse_verbatim,
-    };
+    use super::{FieldValue, Options, ParsedLibrary, parse, parse_verbatim, reparse_with_options};
 
     /// Parse a fixture with default options and fail immediately on recoverable parse errors.
     fn fixture(source: &str) -> ParsedLibrary {
-        let parsed = parse_normalized(source, Options::default());
+        let parsed = parse(source, Options::default());
         assert!(parsed.errors.is_empty(), "{:?}", parsed.errors.first());
         parsed
     }
@@ -2051,7 +2136,7 @@ mod tests {
     #[test]
     /// Checks the final library pass merges JabRef metadata and inherited crossref fields.
     fn library_finalization_renders_comments_and_inherits_crossref() {
-        let parsed = parse_normalized(
+        let parsed = parse(
             "@comment{jabref-meta: groupsversion: 3}\n@book{parent, title={Parent title}, author={Doe, John}}\n@inbook{child, crossref={parent}, chapter={A}}",
             Options::default(),
         );
@@ -2071,7 +2156,7 @@ mod tests {
 
     #[test]
     fn crossref_uses_type_mappings_and_allowed_fields() {
-        let parsed = parse_normalized(
+        let parsed = parse(
             "@periodical{p,title={Transactions}}\n@article{a,crossref={p}}",
             Options::default(),
         );
@@ -2090,7 +2175,7 @@ mod tests {
 
     #[test]
     fn parses_jabref_group_tree_hierarchy() {
-        let parsed = parse_normalized(
+        let parsed = parse(
             include_str!(
                 "../../test/better-bibtex/import/Jabref groups import does not work #717.3.8.bib"
             ),
@@ -2110,7 +2195,7 @@ mod tests {
     #[test]
     /// Checks nested values, string expansion, and duplicate-field suffixing.
     fn parses_nested_values_and_duplicate_fields() {
-        let result = parse(
+        let result = parse_verbatim(
             "@string{venue={Journal}} @article{key,title={A {nested} title},journal=venue # { ! },note={one},note={two}}",
             Options::default(),
         );
@@ -2122,8 +2207,36 @@ mod tests {
     }
 
     #[test]
+    fn verbatim_fields_match_regex_patterns() {
+        let options: Options = serde_json::from_value(serde_json::json!({
+            "verbatimFields": ["TITLE", {"source": "^(file.*|custom.)$"}, {"source": "note"}, "x.y", "a[b]"]
+        }))
+        .unwrap();
+        for field in [
+            "title", "file", "files", "FILEPATH", "customa", "custom1", "mynotes", "x.y", "a[b]",
+        ] {
+            assert_eq!(super::field_mode(field, &options), "verbatim", "{field}");
+        }
+        for field in ["subtitle", "profile", "custom", "customaa", "xay", "ab"] {
+            assert_ne!(super::field_mode(field, &options), "verbatim", "{field}");
+        }
+        assert!(
+            serde_json::from_value::<Options>(serde_json::json!({
+                "verbatimFields": [{"source": "["}]
+            }))
+            .is_err()
+        );
+        assert!(
+            serde_json::from_value::<Options>(serde_json::json!({
+                "verbatimFields": [{"source": "(?=title)"}]
+            }))
+            .is_err()
+        );
+    }
+
+    #[test]
     fn verbatim_fields_normalize_printed_whitespace() {
-        let parsed = parse_normalized(
+        let parsed = parse(
             "@book{x,url={https://example.org/a   b/\\~wilkins},doi={first\n    second}}",
             Options::default(),
         );
@@ -2422,7 +2535,7 @@ mod tests {
 }",
             Options::default(),
         );
-        let parsed = normalize_with_options(library, &Options::default());
+        let parsed = reparse_with_options(library, &Options::default());
         let journal = parsed.entries[0]
             .fields
             .get("journal")
@@ -2433,7 +2546,7 @@ mod tests {
             .unwrap();
         assert_eq!(journal, "Monthly Notices of the Royal Astronomical Society");
 
-        let from_string = parse_normalized(
+        let from_string = parse(
             r"@string{define={\newcommand{\x}{Expanded}}}
 @book{x,title={\x}}",
             Options::default(),
@@ -2610,7 +2723,7 @@ mod tests {
             "Generating Bayesian networks"
         );
         diagnostics.mark_case_groups = false;
-        let href = parse_normalized(
+        let href = parse(
             r"@article{x,title={\href{https://example.test}{Home}}}",
             Options {
                 case_protection: "strict".to_string(),
@@ -2642,7 +2755,7 @@ mod tests {
                 "TitleCase <span class=\"nocase\">alllower</span>",
             ),
         ] {
-            let parsed = parse_normalized(
+            let parsed = parse(
                 &format!("@book{{case,title={{{title}}}}}"),
                 Options::default(),
             );
@@ -2651,7 +2764,7 @@ mod tests {
                 FieldValue::Text(expected.into())
             );
         }
-        let markup_title = parse_normalized(
+        let markup_title = parse(
             r"@article{x,title={A {\em A} \begin{em}A\end{em} \begin{em}{A}\end{em} {A \em A}}}",
             Options::default(),
         );
@@ -2659,7 +2772,7 @@ mod tests {
             markup_title.entries[0].fields["title"],
             FieldValue::Text("A <i>A A A</i> A <i>A</i>".into())
         );
-        let quoted = parse_normalized(
+        let quoted = parse(
             r"@article{x,langid={en},title={Blah and \enquote{enquote}.}}",
             Options::default(),
         );
@@ -2671,7 +2784,7 @@ mod tests {
             english: vec!["en".into()],
             ..Options::default()
         };
-        let grouped_markup = parse_normalized(
+        let grouped_markup = parse(
             r"@book{x,langid={en},title={Reading {{HLA Hart}}'s: {{{\emph{The Concept}}}}{\emph{ of }}{{{\emph{Law}}}}}}",
             options,
         );
@@ -2679,7 +2792,7 @@ mod tests {
             grouped_markup.entries[0].fields["title"],
             FieldValue::Text("Reading HLA Hart's: <i>The Concept of Law</i>".into())
         );
-        let hyphenated = parse_normalized(
+        let hyphenated = parse(
             "@book{x,title={Symphony {No.}~3 in {E-flat} major}}",
             Options::default(),
         );
@@ -2826,7 +2939,7 @@ mod tests {
     #[test]
     /// Checks unknown macros and environments are retained and reported once by kind.
     fn tex_visitor_reports_unsupported_constructs() {
-        let parsed = parse_normalized(
+        let parsed = parse(
             r"@article{k,title={\unknown one \unknown two},note={\begin{custom}\inside body\end{custom}}}",
             Options::default(),
         );
@@ -2848,7 +2961,7 @@ mod tests {
                 .all(|error| !error.error.contains("macro \\inside"))
         );
 
-        let ignored = parse_normalized(
+        let ignored = parse(
             r"@article{k,note={before \unknown after}}",
             Options {
                 ignore_unsupported: true,
@@ -2861,7 +2974,7 @@ mod tests {
             FieldValue::Text(note) if note == "before after"
         ));
 
-        let nested_accent = parse_normalized(r"@book{x,title={\'{\a}}}", Options::default());
+        let nested_accent = parse(r"@book{x,title={\'{\a}}}", Options::default());
         assert!(
             nested_accent.errors.iter().any(|error| {
                 error.error == r"unhandled macro \'{\a}" && error.input == r"\'{\a}"
@@ -2880,13 +2993,13 @@ mod tests {
             FieldValue::Text(title) if title.contains("ⁿ⁄₂") && !title.contains("\\frac")
         ));
 
-        let unbraced = parse_normalized(r"@article{u,title={ $\frac n 2$ }}", Options::default());
-        let braced = parse_normalized(r"@article{b,title={ $\frac{n}{2}$ }}", Options::default());
+        let unbraced = parse(r"@article{u,title={ $\frac n 2$ }}", Options::default());
+        let braced = parse(r"@article{b,title={ $\frac{n}{2}$ }}", Options::default());
         let unbraced_title = &unbraced.entries[0].fields["title"];
         let braced_title = &braced.entries[0].fields["title"];
         assert_eq!(unbraced_title, braced_title);
         assert_eq!(unbraced_title, &FieldValue::Text("ⁿ⁄₂".into()));
-        let scripts = parse_normalized("@book{x,abstract={$x^2_{e}$}}", Options::default());
+        let scripts = parse("@book{x,abstract={$x^2_{e}$}}", Options::default());
         assert_eq!(
             scripts.entries[0].fields["abstract"],
             FieldValue::Text("x²ₑ".into())
@@ -2894,17 +3007,17 @@ mod tests {
     }
 
     #[test]
-    /// Verifies callers can use the raw parser without applying field normalization.
-    fn verbatim_parser_is_callable_without_normalization() {
+    /// Verifies callers can use the raw parser without reparsing its fields.
+    fn verbatim_parser_is_callable_without_reparsing() {
         let source = include_str!("../../test/better-bibtex/import/Better BibTeX.014.bib");
         let raw = super::parse_verbatim(source, Options::default());
         assert_eq!(
             raw.entries[0].fields["title"],
             r"\textbackslash\textbackslash\{\}: \\{}"
         );
-        let normalized = parse_normalized(source, Options::default());
+        let parsed = parse(source, Options::default());
         assert!(matches!(
-            &normalized.entries[0].fields["title"],
+            &parsed.entries[0].fields["title"],
             super::FieldValue::Text(_)
         ));
     }
@@ -2934,7 +3047,7 @@ mod tests {
 
     #[test]
     fn creator_names_render_tex_sequences() {
-        let parsed = parse_normalized(
+        let parsed = parse(
             "@article{foo, author={H\\\"{a}gg, Nils and Nonnenmacher, St{\\'e}phane and Lecomte, J\\'{e}r\\^{o}me and Nested, J\\'{e}r\\^{\\a}me and D\\'{\\i}az, Carlos}}",
             Options::default(),
         );
@@ -2949,7 +3062,7 @@ mod tests {
         assert_eq!(authors[3].first_name.as_deref(), Some("Jér^me"));
         assert_eq!(authors[4].last_name.as_deref(), Some("Dı́az"));
 
-        let empty_macro_argument = parse_normalized(
+        let empty_macro_argument = parse(
             r"@book{x,author={de'{\mbox} Medici, Lorenzo}}",
             Options::default(),
         );
@@ -2960,7 +3073,7 @@ mod tests {
         assert_eq!(creators[0].prefix.as_deref(), Some("de'"));
         assert_eq!(creators[0].last_name.as_deref(), Some("Medici"));
 
-        let grouped_family = parse_normalized(
+        let grouped_family = parse(
             r"@book{x,author={Giuseppe {De Giacomo} and Riccardo {De Masellis}}}",
             Options::default(),
         );
@@ -2972,7 +3085,7 @@ mod tests {
         assert_eq!(creators[1].first_name.as_deref(), Some("Riccardo"));
         assert_eq!(creators[1].last_name.as_deref(), Some("De Masellis"));
 
-        let nbsp_separator = parse_normalized(
+        let nbsp_separator = parse(
             "@book{x,author={A\u{00a0}and\u{00a0}B}}",
             Options::default(),
         );
@@ -2995,7 +3108,7 @@ mod tests {
 
     #[test]
     fn string_values_collapse_multiline_whitespace() {
-        let parsed = parse_normalized(
+        let parsed = parse(
             "@STRING{PHILTR-B = \"Philosophical Transactions of the Royal Society of London.\n                      Series B.  Biological Sciences\"}\n@STRING{BOUNDARY = {  alpha\n  beta  }}",
             Options::default(),
         );
@@ -3022,13 +3135,13 @@ mod tests {
         assert_eq!(author[0].initial.as_deref(), Some("Ph"));
         assert_eq!(parsed.entries[0].mode["author"], "creatorlist");
 
-        let ordinary = parse_normalized("@book{x,author={A=B, John}}", Options::default());
+        let ordinary = parse("@book{x,author={A=B, John}}", Options::default());
         assert!(matches!(
             ordinary.entries[0].fields.get("author"),
             Some(FieldValue::Creators(creators)) if creators[0].last_name.as_deref() == Some("A=B") && creators[0].first_name.as_deref() == Some("John")
         ));
 
-        let custom = parse_normalized("@book{x,author={foo=bar, given=Jane}}", Options::default());
+        let custom = parse("@book{x,author={foo=bar, given=Jane}}", Options::default());
         assert!(matches!(
             custom.entries[0].fields.get("author"),
             Some(FieldValue::Creators(creators)) if creators[0].extra.get("foo") == Some(&serde_json::Value::String("bar".into()))
@@ -3120,7 +3233,7 @@ mod tests {
         assert_eq!(entry.fields["month"], FieldValue::Text("2".into()));
         assert_eq!(entry.mode["title"], "title");
 
-        let editor = parse_normalized(
+        let editor = parse(
             "@book{x,editor={Ryszard Michalski, Jaime G. Carbonell, and Tom M. Mitchell}}",
             Options::default(),
         );
@@ -3153,7 +3266,7 @@ mod tests {
 
     #[test]
     fn literal_list_split_respects_braced_and() {
-        let parsed = parse_normalized(
+        let parsed = parse(
             "@book{x,publisher={{Henry Holt and Co.}}}",
             Options::default(),
         );
@@ -3161,7 +3274,7 @@ mod tests {
             parsed.entries[0].fields["publisher"],
             FieldValue::List(vec!["Henry Holt and Co.".into()])
         );
-        let punctuated = parse_normalized(
+        let punctuated = parse(
             "@book{x,publisher={Holt, Rinehart, and Winston}}",
             Options::default(),
         );
@@ -3174,7 +3287,7 @@ mod tests {
     #[test]
     /// Checks duplicate keyword fields merge without sorting or deduplication.
     fn normalizes_duplicate_keyword_fields() {
-        let parsed = parse_normalized(
+        let parsed = parse(
             "@article{k, keywords={zeta, alpha}, keywords={beta; zeta}}",
             Options::default(),
         );
@@ -3188,7 +3301,7 @@ mod tests {
         );
         assert_eq!(parsed.entries[0].mode["keywords"], "verbatimlist");
 
-        let collated = parse_normalized(
+        let collated = parse(
             "@article{k, keywords={Forskningspolitik, Förenta staterna, Zebra, zebra}}",
             Options::default(),
         );
@@ -3214,7 +3327,7 @@ mod tests {
         let mut remove_outer_braces = vec!["doi".to_string()];
         remove_outer_braces.push("customfield".to_string());
 
-        let parsed = parse_normalized(
+        let parsed = parse(
             "@article{k, doi={{10.1234/example}}, customfield={{literal value}}}",
             Options {
                 field_mode,
@@ -3249,7 +3362,7 @@ mod tests {
             field_mode: std::collections::HashMap::new(),
             ..Options::default()
         };
-        let parsed = parse(
+        let parsed = parse_verbatim(
             "@article{one, journal=custom, title=source}\n@article{two}",
             options,
         );

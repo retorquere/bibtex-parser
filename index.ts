@@ -128,7 +128,7 @@ export interface Library {
   /**
    * `@preamble` declarations found in the bibtex file
    */
-  preamble: string[]
+  preambles: string[]
 
   /**
    * jabref metadata (such as groups information) found in the bibtex file
@@ -1287,7 +1287,7 @@ class BibTeXParser {
       entries: [],
       comments: [],
       strings: {},
-      preamble: [],
+      preambles: [],
       jabref: { root: [], groups: {} },
     }
   }
@@ -1427,7 +1427,7 @@ class BibTeXParser {
     this.bib.comments = comments
     this.bib.jabref = jabref
 
-    this.bib.preamble = base.preambles
+    this.bib.preambles = base.preambles
     this.bib.errors = [...base.errors, ...this.bib.errors]
   }
 

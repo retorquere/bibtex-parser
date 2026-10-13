@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url'
 import { before, test } from 'node:test'
 import * as yaml from 'js-yaml'
 
-import init, { parseAsync, parseNormalized, parseVerbatim, tokenize } from '../rust/pkg/index.js'
+import init, { english, parseAsync, parse, parseVerbatim, parseVerbatimAsync, tokenize } from '../rust/pkg/index.js'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 
@@ -135,7 +135,7 @@ for (const { name, fixture, snapshot, field, entryIndex = 0 } of cases) {
   test(name, () => {
     const source = fs.readFileSync(path.join(root, fixture), 'utf8')
     const expected = yaml.load(fs.readFileSync(path.join(root, snapshot), 'utf8'))
-    const actual = parseNormalized(source)
+    const actual = parse(source)
     const actualField = actual.entries[entryIndex].fields[field]
 
     assert.equal(actualField, expected.entries[entryIndex].fields[field])
@@ -162,21 +162,124 @@ test('preserves ordered title-token boundaries', () => {
   }
 })
 
-test('exposes TypeScript-shaped libraries from sync, async, and verbatim APIs', async () => {
-  const source = fs.readFileSync(path.join(root, 'test/other/mid-word-capital.bib'), 'utf8')
-  const normalized = await parseAsync(source)
+test('exposes normalized and verbatim libraries with JabRef metadata', async () => {
+  const source = '@comment{jabref-meta: groupsversion: 3}\n' + fs.readFileSync(path.join(root, 'test/other/mid-word-capital.bib'), 'utf8')
+  const parsed = await parseAsync(source)
   const raw = parseVerbatim(source)
 
-  assert.deepEqual(Object.keys(normalized).sort(), ['comments', 'entries', 'errors', 'jabref', 'preamble', 'strings'])
-  assert.deepEqual(Object.keys(raw).sort(), ['comments', 'entries', 'errors', 'preambles', 'strings'])
-  assert.equal(parseNormalized(source).entries[0].type, normalized.entries[0].type)
+  assert.deepEqual(Object.keys(parsed).sort(), ['comments', 'entries', 'errors', 'jabref', 'preambles', 'strings'])
+  assert.deepEqual(Object.keys(raw).sort(), ['comments', 'entries', 'errors', 'jabref', 'preambles', 'strings'])
+  assert.equal(raw.jabref.groupsversion, 3)
+  assert.deepEqual(raw.jabref, parsed.jabref)
+  assert.deepEqual(await parseVerbatimAsync(source), raw)
+  assert.equal(parse(source).entries[0].type, parsed.entries[0].type)
 })
 
-test('resolves RegExp verbatim field selectors before Rust normalization', () => {
+test('async parsers yield every 1,000 directives and parsed entries', async () => {
+  const setTimeout = globalThis.setTimeout
+  let yields = 0
+  globalThis.setTimeout = (callback, delay, ...args) => {
+    yields++
+    return setTimeout(callback, delay, ...args)
+  }
+  try {
+    for (const count of [0, 999, 1000, 2001]) {
+      const source = Array.from({ length: count }, (_, index) => `@misc{entry${index},title={Title}}`).join('\n')
+      yields = 0
+      assert.deepEqual(await parseVerbatimAsync(source), parseVerbatim(source))
+      assert.equal(yields, Math.floor(count / 1000))
+      yields = 0
+      assert.deepEqual(await parseAsync(source), parse(source))
+      assert.equal(yields, 2 * Math.floor(count / 1000))
+    }
+    const source = '@comment{comment}\n'.repeat(1000) + '@misc{entry,title={Title}}'
+    yields = 0
+    assert.deepEqual(await parseAsync(source), parse(source))
+    assert.equal(yields, 1)
+    yields = 0
+    const limited = await parseVerbatimAsync('@misc{entry}\n'.repeat(2000), { maxEntries: 1000 })
+    assert.equal(limited.entries.length, 1000)
+    assert.equal(yields, 1)
+    yields = 0
+    const selected = await parseAsync('@misc{entry,title={Title}}\n'.repeat(1000), { verbatimFields: [/^title$/] })
+    assert.equal(selected.entries[0].mode.title, 'verbatim')
+    assert.equal(yields, 2)
+  }
+  finally {
+    globalThis.setTimeout = setTimeout
+  }
+})
+
+test('passes explicit language lists and case-protection modes to Rust', async () => {
+  const source = '@misc{english,title={A Long Title},langid={en}}\n@misc{unspecified,title={A Long Title}}'
+  const titles = result => result.entries.map(entry => entry.fields.title)
+
+  assert.deepEqual(parse(source, { english }), parse(source))
+  for (const [languages, expected] of [
+    [english, ['A long title', 'A long title']],
+    [[], ['A Long Title', 'A Long Title']],
+    [['en'], ['A long title', 'A Long Title']],
+  ]) {
+    const originalLanguages = [...languages]
+    const options = { english: languages, sentenceCase: { guess: false } }
+    const parsed = parse(source, options)
+    assert.deepEqual(titles(parsed), expected)
+    assert.deepEqual(await parseAsync(source, options), parsed)
+    assert.deepEqual(languages, originalLanguages)
+  }
+
+  const protectedSource = '@misc{protected,title={A {Protected} Title}}'
+  const options = { caseProtection: 'off', sentenceCase: { guess: false } }
+  const parsed = parse(protectedSource, options)
+  assert.equal(parsed.entries[0].fields.title, 'A Protected title')
+  assert.equal(parse(protectedSource, { ...options, caseProtection: 'strict' }).entries[0].fields.title,
+    'A <span class="nocase">Protected</span> title')
+  assert.deepEqual(await parseAsync(protectedSource, options), parsed)
+})
+
+test('passes string maps and BibTeX stringsSource separately to Rust', async () => {
+  const source = '@misc{strings,title=mapped # { and } # sourced}'
+  const options = {
+    strings: { mapped: 'Mapped' },
+    stringsSource: '@string{sourced={Sourced}}',
+    english: [],
+    maxEntries: 1,
+  }
+  const parsed = parse(source, options)
+  assert.equal(parsed.entries[0].fields.title, 'Mapped and Sourced')
+  assert.deepEqual(await parseAsync(source, options), parsed)
+  const raw = parseVerbatim(source, options)
+  assert.equal(raw.entries[0].fields.title, 'Mapped and Sourced')
+  assert.deepEqual(await parseVerbatimAsync(source, options), raw)
+  assert.deepEqual(parse(source, { english: undefined }), parse(source))
+})
+
+test('matches RegExp verbatim field selectors directly in Rust', async () => {
   const source = fs.readFileSync(path.join(root, 'test/other/mid-word-capital.bib'), 'utf8')
-  const parsed = parseNormalized(source, { verbatimFields: [/^title$/] })
+  const parsed = parse(source, { verbatimFields: [/^title$/] })
 
   assert.equal(parsed.entries[0].mode.title, 'verbatim')
+  assert.deepEqual(await parseAsync(source, { verbatimFields: [/^title$/] }), parsed)
+})
+
+test('matches exact names and case-insensitive regex selectors without changing caller options', async () => {
+  const source = '@misc{patterns,title={Title},subtitle={Subtitle},customa={One},customb={Two},customaa={Three},x.y={Dot},xay={Other}}'
+  const options = { verbatimFields: ['TITLE', /^custom[ab]$/g, 'x.y'] }
+  const parsed = parse(source, options)
+  for (const field of ['title', 'customa', 'customb', 'x.y']) assert.equal(parsed.entries[0].mode[field], 'verbatim')
+  for (const field of ['subtitle', 'customaa', 'xay']) assert.notEqual(parsed.entries[0].mode[field], 'verbatim')
+  assert.deepEqual(await parseAsync(source, options), parsed)
+  assert.equal(options.verbatimFields[0], 'TITLE')
+  assert.equal(options.verbatimFields[1].lastIndex, 0)
+  assert.equal(parse(source, { verbatimFields: [/CUSTOM[AB]/] }).entries[0].mode.customaa, 'verbatim')
+  assert.notEqual(parse(source, { verbatimFields: [/title/y] }).entries[0].mode.subtitle, 'verbatim')
+})
+
+test('rejects regex selectors unsupported by regex-lite', async () => {
+  const source = '@misc{entry,title={Title}}'
+  const options = { verbatimFields: [/(?=title)/] }
+  assert.throws(() => parse(source, options))
+  await assert.rejects(() => parseAsync(source, options))
 })
 
 test('matches TypeScript unsupported ignore/keep/throw behavior', async () => {

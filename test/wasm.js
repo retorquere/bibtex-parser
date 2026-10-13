@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url'
 import { before, test } from 'node:test'
 import * as yaml from 'js-yaml'
 
-import init, { parseAsync, toSentenceCase } from '../rust/pkg/index.js'
+import init, { english, parseAsync, toSentenceCase } from '../rust/pkg/index.js'
 
 const here = path.dirname(fileURLToPath(import.meta.url))
 const root = path.resolve(here, '..')
@@ -208,16 +208,16 @@ for (const bibfile of testcases) {
     `${section}=${basename}`,
     path.resolve(here, 'snapshots', settings, section, basename + '.yaml'),
     {
-      english: config.sentenceCase.startsWith('on'),
+      english: config.sentenceCase.startsWith('on') ? english : [],
       languageAsLangid: config.tests.language.includes(basename),
       sentenceCase: {
         preserveQuoted: config.preserveQuoted,
         guess: config.sentenceCase.endsWith('guess'),
         subSentence: true,
       },
-      caseProtection: config.caseProtection === 'off' ? false : config.caseProtection,
+      caseProtection: config.caseProtection,
       unabbreviations: unabbreviate && unabbreviations,
-      strings: unabbreviate && strings,
+      stringsSource: unabbreviate ? fs.readFileSync(strings, 'utf-8') : undefined,
       exception: config.tests.exception.includes(basename),
       raw: config.tests.raw.includes(basename),
       verbatimFields: config.tests.mendeley.includes(basename)

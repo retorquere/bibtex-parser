@@ -11,13 +11,33 @@ The build requires Node.js, the repository's npm dependencies, Rust with the `wa
 Initialize the module before calling either parser function:
 
 ```js
-import init, { parseNormalized, parseVerbatim } from './rust/pkg/index.js'
+import init, { parse, parseVerbatim } from './rust/pkg/index.js'
 
 await init()
 const raw = parseVerbatim('@article{example, title={A title}}')
-const normalized = parseNormalized('@article{example, title={A title}}')
+const parsed = parse('@article{example, title={A title}}')
 ```
 
-`parseVerbatim` returns the scanner-level representation. `parseNormalized` returns the current typed-field representation. Their options and result structures are described in `rust/pkg/index.d.ts` after building.
+`parseVerbatim` returns the scanner-level representation. `parse` reparses those fields into typed values and renders LaTeX, matching the TypeScript parser's naming. `parseAsync` and `parseVerbatimAsync` provide asynchronous counterparts that yield every 1,000 iterations. Their options and result structures are described in `rust/pkg/index.d.ts` after building.
+
+Both WASM verbatim parsers retain parsed JabRef metadata in `jabref`, unlike the TypeScript verbatim API. JabRef metadata comments are extracted from `comments` into that structured result.
+
+WASM options use explicit values rather than the TypeScript parser's shorthand forms:
+
+- `english` accepts an exact array of language identifiers. Import the exported `english` array for the default languages, or pass `[]` to disable sentence casing (instead of `english: false` or `sentenceCase: false`). Omitting it uses Rust's default English list. Include `''` in a custom list to sentence-case entries without a language identifier.
+- `sentenceCase` accepts an object with `guess`, `subSentence`, and `preserveQuoted` controls.
+- `caseProtection` accepts `'off'`, `'as-needed'`, or `'strict'`, not booleans.
+- `strings` accepts a map of predefined strings; `stringsSource` accepts BibTeX source text. Both can be supplied together to either parser.
+- `verbatimFields` accepts exact field-name strings and JavaScript `RegExp` selectors. Both match case-insensitively; regexes are compiled once per parse in Rust using `regex-lite`, without a preliminary JS parse. Multiline, dot-all, and sticky-start matching are supported. Case folding is ASCII-only, and lookaround, backreferences, and Unicode property classes are not supported; unsupported patterns are rejected. Regexes search within field names unless anchored with `^` and `$`.
+
+```js
+import { english, parse } from './rust/pkg/index.js'
+
+const parsed = parse('@article{example, title={A Long Title}}', {
+	english,
+	caseProtection: 'off',
+	stringsSource: '@string{journal = {Example Journal}}',
+})
+```
 
 The handwritten title tokenizer lives in `src/tokenizer.rs`, separate from TeX rendering and sentence casing. Token precedence, sentence state, and UTF-16 offsets retain the existing behavior; the BibTeX parser is unchanged.

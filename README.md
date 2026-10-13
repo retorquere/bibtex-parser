@@ -28,7 +28,9 @@ import { parseVerbatim } from '@retorquere/bibtex-parser'
 const library = parseVerbatim('@article{example, title={A title}}')
 ```
 
-The generated API documentation includes both the normalized parser and the verbatim parser.
+The generated API documentation covers the normalized TypeScript API, the root `parseVerbatim` export, and the WASM exports available from `/wasm`.
+
+All parser results expose `preambles: string[]`, retaining multiple `@preamble` directives in source order. The normalized result property was previously named `preamble`; callers should use `preambles` instead.
 
 The WebAssembly implementation is available as an ESM entry point at `/wasm`. Initialize it before calling the parser. In a browser, `init()` loads the binary relative to the module:
 
