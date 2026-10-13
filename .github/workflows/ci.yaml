@@ -130,8 +130,13 @@ jobs:
         cache: 'npm'
     - name: install node dependencies
       run: npm ci
+    - name: download parser build
+      uses: actions/download-artifact@v8
+      with:
+        name: parser-build
+        path: .
     - name: generate documentation
-      run: ./node_modules/.bin/typedoc --tsconfig tsconfig.cjs.json
+      run: npm run docs --ignore-scripts -- --treatWarningsAsErrors
     - name: configure Pages
       uses: actions/configure-pages@v6
     - name: upload documentation
