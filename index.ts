@@ -29,7 +29,15 @@ function latexMode(node: Node | Argument): 'math' | 'text' {
   return node._renderInfo!.mode as 'math' | 'text'
 }
 
+const macroAliases: Record<string, string> = {
+  sb: 'textsubscript',
+  sp: 'textsuperscript',
+}
+
 function latex2unicode(tex: string, node: Node): string {
+  if (node.type === 'macro' && macroAliases[node.content]) {
+    tex = `\\${macroAliases[node.content]}${tex.slice(node.content.length + 1)}`
+  }
   const text: string | Record<string, string> = latex2unicodemap[tex]
   if (typeof text === 'string') return text
   return text && text[latexMode(node)]
@@ -689,10 +697,11 @@ class BibTeXParser {
     const text = latex2unicode(printRaw(node), node)
     if (text) return text
 
+    const name = macroAliases[node.content] ?? node.content
     let url: Argument
     let label: Argument
     let arg: string[]
-    switch (node.content) {
+    switch (name) {
       case 'newcommand':
       case 'ProvideTextCommandDefault':
         return this.registercommand(node)

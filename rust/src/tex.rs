@@ -2223,10 +2223,10 @@ fn render_macro(
             let subscript = script_text("E", "_").unwrap_or_else(|| "<sub>E</sub>".to_string());
             return format!("L{superscript}T{subscript}X");
         }
-        "textsuperscript" => {
+        "sp" | "textsuperscript" => {
             return render_script_argument(arguments, 0, "^", mode, diagnostics, case_protection);
         }
-        "textsubscript" => {
+        "sb" | "textsubscript" => {
             return render_script_argument(arguments, 0, "_", mode, diagnostics, case_protection);
         }
         "math^" | "math_" => {

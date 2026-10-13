@@ -195,7 +195,7 @@ for (const bibfile of testcases) {
   }
 
   const unabbreviate = config.tests.unabbreviate.includes(basename)
-  const loadstrings = config.tests.unabbreviate.includes(basename)
+  const loadstrings = config.tests.strings.includes(basename)
   const settings = [
     `sentencecase=${config.sentenceCase}`,
     `caseprotection=${config.caseProtection}`,

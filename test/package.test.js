@@ -26,6 +26,27 @@ test('the WASM entry point loads the exported binary and parses', async () => {
   assert.equal(wasm.parseVerbatim(input).entries[0].key, 'example')
 })
 
+test('renders \\sb and \\sp like text sub/superscripts in both parsers', async () => {
+  await init({ module_or_path: readFileSync(require.resolve('@retorquere/bibtex-parser/wasm/bibtex_parser_bg.wasm')) })
+  const aliases = [
+    ['\\sb{2}', '\\textsubscript{2}'],
+    ['\\sb 2', '\\textsubscript 2'],
+    ['\\sp{2}', '\\textsuperscript{2}'],
+    ['\\sp 2', '\\textsuperscript 2'],
+  ]
+  for (const [alias, canonical] of aliases) {
+    const source = macro => `@article{example, title={H${macro}O}}`
+    const expected = typescript.parse(source(canonical)).entries[0].fields.title
+    const ts = typescript.parse(source(alias))
+    const parsed = wasm.parse(source(alias))
+
+    assert.equal(ts.entries[0].fields.title, expected)
+    assert.equal(parsed.entries[0].fields.title, expected)
+    assert.deepEqual(ts.errors, [])
+    assert.deepEqual(parsed.errors, [])
+  }
+})
+
 test('all public parser results retain multiple preambles under the plural name', async () => {
   await init({ module_or_path: readFileSync(require.resolve('@retorquere/bibtex-parser/wasm/bibtex_parser_bg.wasm')) })
   const source = '@preamble{First}\n@preamble{Second}\n@misc{entry,title={Title}}'
