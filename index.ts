@@ -766,10 +766,14 @@ class BibTeXParser {
       case 'relax':
       case 'aftergroup':
       case 'ignorespaces':
+      case 'undefined':
       case 'em':
       case 'it':
       case 'tt':
       case 'sl':
+      case 'if':
+      case 'ifx':
+      case 'else':
         return ''
 
       case 'rm':
@@ -808,6 +812,9 @@ class BibTeXParser {
 
       case '\\':
         return context.mode === 'richtext' ? open.br : ' '
+
+      case ' ':
+        return ' '
 
       case 'par':
         return context.mode === 'richtext' ? open.p : ' '

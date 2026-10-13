@@ -2092,6 +2092,7 @@ fn render_macro(
 ) -> String {
     let case_protection = context.case_protection;
     match name {
+        " " => return " ".to_string(),
         // Line breaks are HTML breaks in rich text and ordinary spaces in scalar fields.
         "\\" => return if mode == "richtext" { "<br>" } else { " " }.to_string(),
         "url" => {
@@ -2149,7 +2150,7 @@ fn render_macro(
         "vphantom" | "noopsort" | "left" | "right" | "ensuremath" | "wd" | "ht" | "raise"
         | "accent" | "def" | "hss" | "ifmmode" | "makeatletter" | "makeatother"
         | "scriptscriptstyle" | "setbox" | "dimen" | "advance" | "relax" | "aftergroup"
-        | "ignorespaces" | "rm" => return String::new(),
+        | "ignorespaces" | "undefined" | "rm" | "if" | "ifx" | "else" => return String::new(),
         // The unified-latex parser does not reliably parse `\\path` arguments; match TS by omitting it.
         "path" => return String::new(),
         "sc" => return String::new(),

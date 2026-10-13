@@ -26,6 +26,18 @@ test('the WASM entry point loads the exported binary and parses', async () => {
   assert.equal(wasm.parseVerbatim(input).entries[0].key, 'example')
 })
 
+test('renders TeX control-space as a regular space in the TypeScript parser', () => {
+  const parsed = typescript.parse(String.raw`@article{example, title={foo\ bar}}`)
+  assert.equal(parsed.entries[0].fields.title, 'foo bar')
+  assert.deepEqual(parsed.errors, [])
+})
+
+test('treats \\undefined as a no-op in the TypeScript parser', () => {
+  const parsed = typescript.parse(String.raw`@article{example, title={foo\undefined bar}}`)
+  assert.equal(parsed.entries[0].fields.title, 'foobar')
+  assert.deepEqual(parsed.errors, [])
+})
+
 test('renders \\sb and \\sp like text sub/superscripts in both parsers', async () => {
   await init({ module_or_path: readFileSync(require.resolve('@retorquere/bibtex-parser/wasm/bibtex_parser_bg.wasm')) })
   const aliases = [

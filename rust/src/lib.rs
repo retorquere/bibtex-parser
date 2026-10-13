@@ -2314,6 +2314,7 @@ mod tests {
             super::tex::render("alpha  \n\n% comment\n beta gamma", "title"),
             "alpha beta gamma"
         );
+        assert_eq!(super::tex::render(r"foo\ bar", "title"), "foo bar");
         assert_eq!(super::tex::render("A.  \n   B", "literal"), "A. B");
         let nbsp = super::tex::parse("a\u{00a0}b");
         assert!(matches!(
@@ -2605,6 +2606,10 @@ mod tests {
         assert_eq!(
             super::tex::render(r"a\hspace{1em}b\hspace{0pt}c", "literal"),
             "a bc"
+        );
+        assert_eq!(
+            super::tex::render(r"foo\undefined bar", "literal"),
+            "foobar"
         );
         assert_eq!(
             super::tex::render("An {unusual name}", "title"),
