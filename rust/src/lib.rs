@@ -331,8 +331,6 @@ pub struct Options {
     pub max_entries: Option<usize>,
     /// Additional predefined strings, matched without regard to key case.
     pub strings: HashMap<String, String>,
-    /// BibTeX source parsed before the main input, commonly a strings file.
-    pub strings_source: Option<String>,
     /// Skip TeX-to-Unicode conversion and sentence-casing while still parsing field structure.
     pub raw: bool,
     /// Apply inherited cross-reference fields from the target entry to its children.
@@ -418,7 +416,6 @@ impl Default for Options {
         Self {
             max_entries: None,
             strings: HashMap::new(),
-            strings_source: None,
             raw: false,
             apply_crossref: true,
             verbatim_fields: Vec::new(),
@@ -528,12 +525,11 @@ struct Parser {
 }
 
 impl Parser {
-    /// Prepare parser state, merging predefined strings and optionally prepending a strings file.
+    /// Prepare parser state, merging predefined strings into the built-in lookup table.
     fn new(input: &str, options: Options) -> Self {
         let Options {
             max_entries,
             strings,
-            strings_source,
             ..
         } = options;
         let mut defaults = default_strings();
@@ -542,12 +538,8 @@ impl Parser {
                 .into_iter()
                 .map(|(key, value)| (key.to_uppercase(), value)),
         );
-        // Parsing the preload first makes its declarations available to the main input.
-        let source = strings_source
-            .map(|strings| format!("{strings}\n{input}"))
-            .unwrap_or_else(|| input.to_string());
         Self {
-            chars: source.chars().collect(),
+            chars: input.chars().collect(),
             pos: 0,
             parsing: String::new(),
             library: Library::default(),
@@ -3349,12 +3341,11 @@ mod tests {
     }
 
     #[test]
-    /// Checks object/source string preloads and the maximum-entry stop condition.
+    /// Checks map/source string preloads and the maximum-entry stop condition.
     fn supports_preloaded_strings_and_max_entry_limit() {
         let options = Options {
             max_entries: Some(1),
             strings: [("custom".to_string(), "From options".to_string())].into(),
-            strings_source: Some("@string{source = {From source}}".to_string()),
             raw: false,
             apply_crossref: true,
             verbatim_fields: vec![],
@@ -3363,13 +3354,11 @@ mod tests {
             ..Options::default()
         };
         let parsed = parse_verbatim(
-            "@article{one, journal=custom, title=source}\n@article{two}",
+            "@article{one, journal=custom}\n@article{two}",
             options,
         );
         assert_eq!(parsed.entries.len(), 1);
         assert_eq!(parsed.entries[0].fields["journal"], "From options");
-        assert_eq!(parsed.entries[0].fields["title"], "From source");
-        assert_eq!(parsed.strings["SOURCE"], "From source");
     }
 
     #[test]

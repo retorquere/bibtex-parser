@@ -237,21 +237,23 @@ test('passes explicit language lists and case-protection modes to Rust', async (
   assert.deepEqual(await parseAsync(protectedSource, options), parsed)
 })
 
-test('passes string maps and BibTeX stringsSource separately to Rust', async () => {
-  const source = '@misc{strings,title=mapped # { and } # sourced}'
-  const options = {
-    strings: { mapped: 'Mapped' },
-    stringsSource: '@string{sourced={Sourced}}',
-    english: [],
-    maxEntries: 1,
-  }
-  const parsed = parse(source, options)
-  assert.equal(parsed.entries[0].fields.title, 'Mapped and Sourced')
-  assert.deepEqual(await parseAsync(source, options), parsed)
-  const raw = parseVerbatim(source, options)
-  assert.equal(raw.entries[0].fields.title, 'Mapped and Sourced')
-  assert.deepEqual(await parseVerbatimAsync(source, options), raw)
-  assert.deepEqual(parse(source, { english: undefined }), parse(source))
+test('accepts string maps or BibTeX source through strings', async () => {
+  const mapInput = '@misc{strings,title=mapped}'
+  const mapOptions = { strings: { mapped: 'Mapped' }, english: [], maxEntries: 1 }
+  const parsedMap = parse(mapInput, mapOptions)
+  assert.equal(parsedMap.entries[0].fields.title, 'Mapped')
+  assert.deepEqual(await parseAsync(mapInput, mapOptions), parsedMap)
+
+  const sourceInput = '@misc{strings,title=sourced}'
+  const sourceOptions = { strings: '@string{sourced={Sourced}}', english: [], maxEntries: 1 }
+  const parsedSource = parse(sourceInput, sourceOptions)
+  assert.equal(parsedSource.entries[0].fields.title, 'Sourced')
+  assert.deepEqual(await parseAsync(sourceInput, sourceOptions), parsedSource)
+  const raw = parseVerbatim(sourceInput, sourceOptions)
+  assert.equal(raw.entries[0].fields.title, 'Sourced')
+  assert.ok(raw.strings.SOURCED)
+  assert.deepEqual(await parseVerbatimAsync(sourceInput, sourceOptions), raw)
+  assert.deepEqual(parse(sourceInput, { english: undefined }), parse(sourceInput))
 })
 
 test('matches RegExp verbatim field selectors directly in Rust', async () => {

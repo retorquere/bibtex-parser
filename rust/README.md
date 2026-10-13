@@ -27,7 +27,7 @@ WASM options use explicit values rather than the TypeScript parser's shorthand f
 - `english` accepts an exact array of language identifiers. Import the exported `english` array for the default languages, or pass `[]` to disable sentence casing (instead of `english: false` or `sentenceCase: false`). Omitting it uses Rust's default English list. Include `''` in a custom list to sentence-case entries without a language identifier.
 - `sentenceCase` accepts an object with `guess`, `subSentence`, and `preserveQuoted` controls.
 - `caseProtection` accepts `'off'`, `'as-needed'`, or `'strict'`, not booleans.
-- `strings` accepts a map of predefined strings; `stringsSource` accepts BibTeX source text. Both can be supplied together to either parser.
+- `strings` accepts either BibTeX source text, which is prepended to the input, or a map of predefined strings that extends the built-in table.
 - `verbatimFields` accepts exact field-name strings and JavaScript `RegExp` selectors. Both match case-insensitively; regexes are compiled once per parse in Rust using `regex-lite`, without a preliminary JS parse. Multiline, dot-all, and sticky-start matching are supported. Case folding is ASCII-only, and lookaround, backreferences, and Unicode property classes are not supported; unsupported patterns are rejected. Regexes search within field names unless anchored with `^` and `$`.
 
 ```js
@@ -36,7 +36,7 @@ import { english, parse } from './rust/pkg/index.js'
 const parsed = parse('@article{example, title={A Long Title}}', {
 	english,
 	caseProtection: 'off',
-	stringsSource: '@string{journal = {Example Journal}}',
+	strings: '@string{journal = {Example Journal}}',
 })
 ```
 

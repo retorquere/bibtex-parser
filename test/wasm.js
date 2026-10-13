@@ -98,7 +98,7 @@ console.log('running rust wasm', config)
 
 config.tests = load(path.resolve(here, 'config.yaml'))
 const unabbreviations = load(path.resolve(here, '..', 'unabbrev.json'))
-const strings = path.resolve(here, '..', 'strings.bib')
+const strings = fs.readFileSync(path.resolve(here, '..', 'strings.bib'), 'utf-8')
 if (process.env.CI === 'true') config.tests.toobig = []
 
 const testcases = globSync(path.resolve(here, '**', '*.{json,bib,bibtex,biblatex}'), {
@@ -217,7 +217,7 @@ for (const bibfile of testcases) {
       },
       caseProtection: config.caseProtection,
       unabbreviations: unabbreviate && unabbreviations,
-      stringsSource: unabbreviate ? fs.readFileSync(strings, 'utf-8') : undefined,
+      strings: unabbreviate ? strings : undefined,
       exception: config.tests.exception.includes(basename),
       raw: config.tests.raw.includes(basename),
       verbatimFields: config.tests.mendeley.includes(basename)

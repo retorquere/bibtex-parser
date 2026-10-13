@@ -98,7 +98,7 @@ console.log('running', config)
 config.tests = load(path.resolve(here, 'config.yaml'))
 
 const unabbreviations = load(path.resolve(here, '..', 'unabbrev.json'))
-const strings = path.resolve(here, '..', 'strings.bib')
+const strings = fs.readFileSync(path.resolve(here, '..', 'strings.bib'), 'utf-8')
 
 if (process.env.CI === 'true') config.tests.toobig = []
 
