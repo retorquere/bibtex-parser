@@ -267,14 +267,14 @@ static CROSS_REFERENCE_MAP: OnceLock<CrossReferenceMap> = OnceLock::new();
 
 fn cross_reference_data() -> &'static CrossReferenceData {
     CROSS_REFERENCE_DATA.get_or_init(|| {
-        serde_json::from_str(include_str!("../../data/fields.json"))
+        serde_json::from_str(include_str!("../data/fields.json"))
             .expect("fields.json is valid cross-reference data")
     })
 }
 
 fn cross_reference_map() -> &'static CrossReferenceMap {
     CROSS_REFERENCE_MAP.get_or_init(|| {
-        serde_json::from_str(include_str!("../../data/crossref.json"))
+        serde_json::from_str(include_str!("../data/crossref.json"))
             .expect("crossref.json is valid cross-reference data")
     })
 }

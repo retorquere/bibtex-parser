@@ -2,6 +2,7 @@
 
 import json
 import glob
+from pathlib import Path
 from collections import defaultdict
 
 import xml.etree.ElementTree as ET
@@ -58,6 +59,9 @@ crossref['*']['*']  # touch to create the empty dict via defaultdict
 with open('crossref.ts', 'w') as f:
   print(f'export const crossref: Record<string, Record<string, Record<string, string>>> = {json.dumps(crossref, indent="  ", sort_keys=True)} as const\n', file=f)
 with open('data/crossref.json', 'w') as f:
+  print(json.dumps(crossref, indent='  ', sort_keys=True), file=f)
+Path('rust/data').mkdir(parents=True, exist_ok=True)
+with open('rust/data/crossref.json', 'w') as f:
   print(json.dumps(crossref, indent='  ', sort_keys=True), file=f)
 
 # ── 2. Allowed fields per entry type ──────────────────────────────────────────
@@ -124,4 +128,6 @@ with open('fields.ts', 'w') as f:
   print(f'export const allowed: Record<string, string[]> = {json.dumps(allowed, indent="  ", sort_keys=True)} as const\n', file=f)
   print(f'export const noCrossRef: string[] = {json.dumps(no_crossref, indent="  ", sort_keys=True)} as const\n', file=f)
 with open('data/fields.json', 'w') as f:
+  print(json.dumps({'allowed': allowed, 'noCrossRef': no_crossref}, indent='  ', sort_keys=True), file=f)
+with open('rust/data/fields.json', 'w') as f:
   print(json.dumps({'allowed': allowed, 'noCrossRef': no_crossref}, indent='  ', sort_keys=True), file=f)

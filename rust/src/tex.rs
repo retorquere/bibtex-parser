@@ -85,7 +85,7 @@ enum MathDelimiter {
 }
 
 #[derive(Debug, Clone, Copy)]
-/// One entry in the compile-generated `unicode2latex` conversion table.
+/// One entry in the `unicode2latex` conversion table.
 struct UnicodeMapping {
     key: &'static str,
     text: Option<&'static str>,
@@ -93,7 +93,7 @@ struct UnicodeMapping {
     combining: Option<&'static str>,
 }
 
-include!(concat!(env!("OUT_DIR"), "/unicode_tables.rs"));
+include!("unicode_tables.rs");
 
 /// Recursive-descent parser state for one TeX fragment.
 struct Parser {

@@ -3,20 +3,6 @@
 version = 4
 
 [[package]]
-name = "bibtex-parser"
-version = "0.1.0"
-dependencies = [
- "futures-util",
- "regex-lite",
- "serde",
- "serde-wasm-bindgen",
- "serde_json",
- "unicode-general-category",
- "wasm-bindgen",
- "wasm-bindgen-futures",
-]
-
-[[package]]
 name = "bumpalo"
 version = "3.20.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -110,6 +96,20 @@ name = "regex-lite"
 version = "0.1.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "cab834c73d247e67f4fae452806d17d3c7501756d98c8808d7c9c7aa7d18f973"
+
+[[package]]
+name = "rq-bibtex-parser"
+version = "0.1.0"
+dependencies = [
+ "futures-util",
+ "regex-lite",
+ "serde",
+ "serde-wasm-bindgen",
+ "serde_json",
+ "unicode-general-category",
+ "wasm-bindgen",
+ "wasm-bindgen-futures",
+]
 
 [[package]]
 name = "rustversion"

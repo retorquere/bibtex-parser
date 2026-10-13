@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url'
 const rust = path.dirname(fileURLToPath(import.meta.url))
 const pkg = path.join(rust, 'pkg')
 
+execFileSync('node', [path.join(rust, 'unicode-tables.mjs')], { stdio: 'inherit' })
 execFileSync('wasm-pack', [
   'build',
   rust,

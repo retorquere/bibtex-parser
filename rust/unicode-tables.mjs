@@ -1,5 +1,6 @@
 import { writeFileSync } from 'node:fs'
 import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { combining, latex2unicode } from 'unicode2latex'
 
 /** Encode table strings as Rust literals, escaping syntax and invisible control/format code points. */
@@ -57,5 +58,5 @@ const source = [
   '',
 ].join('\n')
 
-// Cargo sets OUT_DIR for build scripts and their child processes.
-writeFileSync(path.join(process.env.OUT_DIR, 'unicode_tables.rs'), source)
+const rust = path.dirname(fileURLToPath(import.meta.url))
+writeFileSync(path.join(rust, 'src', 'unicode_tables.rs'), source)

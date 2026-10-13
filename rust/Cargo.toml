@@ -1,9 +1,15 @@
 [package]
-name = "bibtex-parser"
+name = "rq-bibtex-parser"
 version = "0.1.0"
 edition = "2024"
-description = "Rust BibTeX parser with WebAssembly bindings"
+rust-version = "1.85"
+description = "BibTeX parser for Better BibTeX 4 zotero"
 repository = "https://github.com/retorquere/bibtex-parser.git"
+readme = "README.md"
+license = "MIT"
+keywords = ["bibtex", "parser", "bibliography", "latex"]
+categories = ["parser-implementations", "text-processing"]
+include = ["Cargo.toml", "README.md", "LICENSE", "data/**", "src/**"]
 
 [lib]
 name = "bibtex_parser"
