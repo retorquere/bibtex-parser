@@ -7,12 +7,13 @@ import { visit } from '@unified-latex/unified-latex-util-visit'
 import { combining, latex2unicode as latex2unicodemap } from 'unicode2latex'
 import * as JabRef from './jabref.js'
 import * as bibtex from './verbatim.js'
-export type { JabRefMetadata } from './jabref.js'
+export type { Group as JabRefGroup, JabRefMetadata } from './jabref.js'
 export type { ParseError } from './verbatim.js'
 export { Library as VerbatimLibrary, parse as parseVerbatim } from './verbatim.js'
 export type { Entry as VerbatimEntry, ParserOptions as VerbatimParserOptions } from './verbatim.js'
 import { toSentenceCase } from './sentence-case.js'
 export { toSentenceCase } from './sentence-case.js'
+export type { Options as SentenceCaseOptions } from './sentence-case.js'
 import { tokenize } from './tokenizer.js'
 import type { Token } from './tokenizer.js'
 export { tokenize } from './tokenizer.js'
@@ -51,7 +52,7 @@ for (const tag of ['i', 'b', 'sc', 'nc', 'ncx', 'br', 'p', 'li', 'code']) {
 }
 const collapsable = /\x0E\/([a-z]+)\x0F(\s*)\x0E\1\x0F/ig
 
-type CreatorFields = {
+export type CreatorFields = {
   author?: Creator[]
   bookauthor?: Creator[]
   collaborator?: Creator[]
@@ -65,7 +66,7 @@ type CreatorFields = {
   scriptwriter?: Creator[]
   translator?: Creator[]
 }
-type ArrayFields = {
+export type ArrayFields = {
   keywords?: string[]
   institution?: string[]
   publisher?: string[]
@@ -74,8 +75,8 @@ type ArrayFields = {
   location?: string[]
   origlocation?: string[]
 }
-type TypedFields = CreatorFields & ArrayFields
-type Fields = TypedFields & Omit<Record<string, string>, keyof TypedFields>
+export type TypedFields = CreatorFields & ArrayFields
+export type Fields = TypedFields & Omit<Record<string, string>, keyof TypedFields>
 
 export type Entry = {
   type: string
@@ -331,7 +332,7 @@ export const FieldMode = {
   ],
 }
 
-type ParseMode = keyof typeof FieldMode | 'literal' | 'verbatimlist'
+export type ParseMode = keyof typeof FieldMode | 'literal' | 'verbatimlist'
 
 export const English = [
   '',
