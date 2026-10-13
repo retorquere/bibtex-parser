@@ -9,13 +9,16 @@ import * as JabRef from './jabref.js'
 import * as bibtex from './verbatim.js'
 export type { Group as JabRefGroup, JabRefMetadata } from './jabref.js'
 export type { ParseError } from './verbatim.js'
+/** Parses BibTeX without interpreting field contents as LaTeX. */
 export { Library as VerbatimLibrary, parse as parseVerbatim } from './verbatim.js'
 export type { Entry as VerbatimEntry, ParserOptions as VerbatimParserOptions } from './verbatim.js'
 import { toSentenceCase } from './sentence-case.js'
+/** Converts a title to sentence case using heuristic token classification. */
 export { toSentenceCase } from './sentence-case.js'
 export type { Options as SentenceCaseOptions } from './sentence-case.js'
 import { tokenize } from './tokenizer.js'
 import type { Token } from './tokenizer.js'
+/** Splits text into classified tokens with source offsets. */
 export { tokenize } from './tokenizer.js'
 export type { Token } from './tokenizer.js'
 
@@ -78,6 +81,7 @@ export type ArrayFields = {
 export type TypedFields = CreatorFields & ArrayFields
 export type Fields = TypedFields & Omit<Record<string, string>, keyof TypedFields>
 
+/** A normalized BibTeX entry returned by {@link parse}. */
 export type Entry = {
   type: string
   key: string
@@ -113,6 +117,7 @@ const Month = {
   december: '12',
 }
 
+/** The parsed contents of a BibTeX library. */
 export interface Library {
   /**
    * errors found while parsing
@@ -261,6 +266,7 @@ export interface Options {
   applyCrossRef?: boolean
 }
 
+/** A parsed personal or organizational name. */
 export interface Creator {
   name?: string
   lastName?: string
@@ -332,6 +338,7 @@ export const FieldMode = {
   ],
 }
 
+/** Controls how a field's TeX content is interpreted. */
 export type ParseMode = keyof typeof FieldMode | 'literal' | 'verbatimlist'
 
 export const English = [
@@ -1481,11 +1488,13 @@ class BibTeXParser {
   }
 }
 
+/** Parses BibTeX or BibLaTeX source into a normalized library. */
 export function parse(input: string, options: Options = {}): Library {
   const parser = new BibTeXParser()
   return parser.parse(input, options)
 }
 
+/** Asynchronous variant of {@link parse}, yielding periodically for large libraries. */
 export async function parseAsync(input: string, options: Options = {}): Promise<Library> {
   const parser = new BibTeXParser()
   return await parser.parseAsync(input, options)

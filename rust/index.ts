@@ -2,11 +2,14 @@
 import init, { initSync, parse as parseWasm, parseAsync as parseAsyncWasm, parseVerbatim as parseVerbatimWasm, parseVerbatimAsync as parseVerbatimAsyncWasm, tokenize as tokenizeWasm, toSentenceCase as toSentenceCaseWasm } from './bibtex_parser.js'
 
 export type { InitInput, InitOutput, SyncInitInput } from './bibtex_parser.js'
+/** Initializes the WebAssembly parser; await this before using its exports. */
 export { init, initSync }
 export default init
 
+/** Describes how a BibTeX field is interpreted. */
 export type ParseMode = 'creatorlist' | 'title' | 'verbatim' | 'richtext' | 'literallist' | 'literal' | 'verbatimlist'
 
+/** A parsed personal or organizational name. */
 export interface Creator {
   name?: string
   lastName?: string
@@ -20,6 +23,7 @@ export interface Creator {
 
 export type FieldValue = string | string[] | Creator[]
 
+/** A normalized BibTeX entry returned by the parser. */
 export interface Entry {
   type: string
   key: string
@@ -29,17 +33,20 @@ export interface Entry {
   input: string
 }
 
+/** A parsing diagnostic. */
 export interface ParseError {
   error: string
   input?: string
 }
 
+/** A group in JabRef's nested group hierarchy. */
 export interface JabRefGroup {
   name: string
   entries: string[]
   groups: JabRefGroup[]
 }
 
+/** JabRef metadata extracted from a BibTeX library. */
 export interface JabRefMetadata {
   root: JabRefGroup[]
   groups: Record<string, JabRefGroup>
@@ -48,6 +55,7 @@ export interface JabRefMetadata {
   databaseType?: string
 }
 
+/** The parsed contents of a BibTeX library. */
 export interface Library {
   errors: ParseError[]
   entries: Entry[]
@@ -57,12 +65,14 @@ export interface Library {
   jabref: JabRefMetadata
 }
 
+/** Options controlling title sentence casing. */
 export interface SentenceCaseOptions {
   guess?: boolean
   subSentence?: boolean
   preserveQuoted?: boolean
 }
 
+/** A classified text token returned by {@link tokenize}. */
 export interface Token {
   type: 'word' | 'domain' | 'whitespace' | 'number' | 'email' | 'handle' | 'website' | 'markup' | 'other' | 'punctuation'
   subtype: '' | 'preposition' | 'acronym' | 'contraction' | 'ordinal' | 'word' | 'end' | 'colon' | 'ellipsis'
@@ -75,24 +85,39 @@ export interface Token {
   hyphenated?: Token[]
 }
 
+/** Options for normalized BibTeX parsing. */
 export interface Options extends ParserOptions {
+  /** Language identifiers treated as English for title casing. */
   english?: string[]
+  /** Use the `language` field as a fallback language identifier. */
   languageAsLangid?: boolean
+  /** Configure sentence-casing behavior. */
   sentenceCase?: SentenceCaseOptions
+  /** Control preservation of capitalization inside braces. */
   caseProtection?: 'off' | 'as-needed' | 'strict'
+  /** Policy for unsupported TeX commands and environments. */
   unsupported?: 'ignore' | 'keep' | 'throw'
+  /** Fields parsed as verbatim text rather than TeX. */
   verbatimFields?: (string | RegExp)[]
+  /** Fields for which a redundant outer brace pair is removed. */
   removeOuterBraces?: string[]
+  /** Override the default parsing mode for individual fields. */
   fieldMode?: Record<string, ParseMode>
+  /** Return field text without LaTeX-to-Unicode conversion. */
   raw?: boolean
+  /** Inherit missing fields from cross-referenced entries. */
   applyCrossRef?: boolean
 }
 
+/** Options shared by the normalized and verbatim parsers. */
 export interface ParserOptions {
+  /** Stop after this many entries have been parsed. */
   maxEntries?: number
+  /** Preload string definitions as a dictionary or BibTeX source. */
   strings?: Record<string, string> | string
 }
 
+/** An entry whose field values retain their original BibTeX text. */
 export interface VerbatimEntry {
   input: string
   type: string
@@ -100,6 +125,7 @@ export interface VerbatimEntry {
   fields: Record<string, string>
 }
 
+/** The library returned by the verbatim parser. */
 export interface VerbatimLibrary {
   entries: VerbatimEntry[]
   strings: Record<string, string>
@@ -109,6 +135,7 @@ export interface VerbatimLibrary {
   jabref: JabRefMetadata
 }
 
+/** Default language identifiers treated as English. */
 export const english = [
   '',
   'american',
@@ -168,16 +195,19 @@ function throwOnUnsupported(result: Library): Library {
   return result
 }
 
+/** Parses BibTeX while leaving field contents uninterpreted. */
 export function parseVerbatim(input: string, options: ParserOptions = {}): VerbatimLibrary {
   const prepared = prepare(input, options)
   return parseVerbatimWasm(prepared.input, prepared.options) as VerbatimLibrary
 }
 
+/** Asynchronous variant of {@link parseVerbatim}. */
 export async function parseVerbatimAsync(input: string, options: ParserOptions = {}): Promise<VerbatimLibrary> {
   const prepared = prepare(input, options)
   return await parseVerbatimAsyncWasm(prepared.input, prepared.options) as VerbatimLibrary
 }
 
+/** Parses BibTeX or BibLaTeX source into a normalized library. */
 export function parse(input: string, options: Options = {}): Library {
   const prepared = prepare(input, options)
   const result = parseWasm(prepared.input, prepared.options) as Library
@@ -185,6 +215,7 @@ export function parse(input: string, options: Options = {}): Library {
   return result
 }
 
+/** Asynchronous variant of {@link parse}, yielding during large parses. */
 export async function parseAsync(input: string, options: Options = {}): Promise<Library> {
   const prepared = prepare(input, options)
   const result = await parseAsyncWasm(prepared.input, prepared.options) as Library
@@ -192,10 +223,12 @@ export async function parseAsync(input: string, options: Options = {}): Promise<
   return result
 }
 
+/** Converts a title to sentence case using heuristic token classification. */
 export function toSentenceCase(input: string, options: { preserveQuoted?: boolean; subSentenceCapitalization?: boolean; guess?: boolean } = {}): string {
   return toSentenceCaseWasm(input, options)
 }
 
+/** Splits text into classified tokens with source offsets. */
 export function tokenize(input: string, markup?: RegExp): Token[] {
   if (!(markup instanceof RegExp)) return tokenizeWasm(input) as Token[]
   const masked = input.replace(markup, match => '\u2060'.repeat(match.length))
