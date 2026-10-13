@@ -24629,9 +24629,2725 @@ entries:
       volume: literal
       year: literal
     type: article
-errors: []
+errors:
+  - error: unhandled macro \ifx
+    input: \ifx
+  - error: unhandled macro \undefined
+    input: \undefined
+  - error: unhandled macro \allcaps
+    input: \allcaps
+  - error: unhandled macro \sp{\rmo}
+    input: \sp{\rmo}
+  - error: unhandled macro \sb3
+    input: \sb3
+  - error: unhandled macro \b
+    input: \b
+  - error: unhandled macro \lhook
+    input: \lhook
+  - error: unhandled macro \polhk
+    input: \polhk
+  - error: 'unhandled macro \ '
+    input: '\ '
 jabref:
   groups: {}
   root: []
-preambles: []
-strings: {}
+preambles:
+  - '"\ifx\undefined\allcaps\def\allcaps#1{#1}\fi"'
+  - '"\ifx\undefined\allcaps\def\allcaps#1{#1}\fi"'
+  - '"\ifx\undefined\allcaps\def\allcaps#1{#1}\fi"'
+  - '"\ifx\undefined\allcaps\def\allcaps#1{#1}\fi"'
+strings:
+  ABHBW2: Abh. Braunschweig. Wiss. Ges.
+  ABHMS: Abh. Math. Sem. Univ. Hamburg
+  ABHSA: Abh. Sächs. Akad. Wiss. Leipzig Math.-Natur. Kl.
+  ABSAM: Abstracts Amer. Math. Soc.
+  ACARB: Acad. Roy. Belg.
+  ACARB3: Acad. Roy. Belg. Bull. Cl. Sci. (5)
+  ACARB4: Acad. Roy. Belg. Cl. Sci. M ́em. Collect. 8\sp{\rmo} (2)
+  ACASS: Acad. Serbe Sci. Arts Glas
+  ACMTD: ACM Trans. Database Systems
+  ACMTM: ACM Trans. Math. Software
+  ACTAA: Acta Acad. Ȧbo. Ser. B
+  ACTAA1: Acta Arith.
+  ACTAA3: Acta Acust.
+  ACTAC: Acta Cybernet.
+  ACTAI2: Acta Inform.
+  ACTAM1: Acta Math.
+  ACTAM2: Acta Mech.
+  ACTAM3: Acta Appl. Math.
+  ACTAS: Acta Astronom. Sinica
+  ACTAS1: Acta Automat. Sinica
+  ACTAS2: Acta Astrophys. Sinica
+  ACTCC2: Acta Cient. Compostelana
+  ACTCI4: Acta Cienc. Indica Math.
+  ACTCSA: Acta Cryst. Sect. A
+  ACTCV2: Acta Cient. Venezolana
+  ACTGS: Acta Geophys. Sinica
+  ACTHS: Acta Human. Sci. Univ. Sangio Kyotien. Natur. Sci. Ser.
+  ACTMA2: Acta Math. Appl. Sinica
+  ACTMC2: Acta Mexicana Cienc. Tecn.
+  ACTMH: Acta Math. Hungar.
+  ACTMS1: Acta Math. Sinica
+  ACTMS3: Acta Mech. Sinica (Beijing)
+  ACTMS5: Acta Math. Sci. (Chinese)
+  ACTMS6: Acta Math. Sci. (English Ed.)
+  ACTMU: Acta Math. Univ. Comenian.
+  ACTMV: Acta Math. Vietnam.
+  ACTOP: Acta Oeconomica Pragensia
+  ACTPA2: Acta Phys. Austriaca
+  ACTPH: Acta Phys. Hungar.
+  ACTPPA: Acta Phys. Polon. A
+  ACTPPB: Acta Phys. Polon. B
+  ACTPS1: Acta Phys. Sinica
+  ACTPS2: Acta Phys. Slovaca
+  ACTPS4: Acta Polytech. Scand. Math. Comput. Sci. Ser.
+  ACTSM: Acta Sci. Math. (Szeged)
+  ACTSN2: Acta Sci. Natur. Univ. Pekinensis
+  ACTSN3: Acta Sci. Natur. Univ. Fudan
+  ACTSN4: Acta Sci. Natur. Univ. Jilin.
+  ACTSN5: Acta Sci. Natur. Univ. Sunyatseni
+  ACTSN6: Acta Sci. Natur. Univ. Intramongolicae
+  ACTSN7: Acta Sci. Natur. Univ. Amoien.
+  ACTTA: Acta Tech. Acad. Sci. Hungar.
+  ACTTC: Acta Tech. ČSAV
+  ACTUC2: Acta Univ. Carolin.—Math. Phys.
+  ACTUL: Acta Univ. Lodz. Folia Philos.
+  ACTUL1: Acta Univ. Lodz. Folia Math.
+  ACTUO: Acta Univ. Oulu. Ser. A Sci. Rerum Natur. Math.
+  ACTUP: Acta Univ. Palack. Olomuc. Fac. Rerum Natur. Chem.
+  ACTUP2: Acta Univ. Palack. Olomuc. Fac. Rerum Natur. Math.
+  ACTUP3: Acta Univ. Palack. Olomuc. Fac. Rerum Natur. Phys.
+  ACTUTA: Acta Univ. Tamper. Ser. A
+  ACTUW1: Acta Univ. Wratislav. Mat. Fiz. Astronom.
+  ACTUZ: Acta Agricultkurae Univ. Zhejiangensis
+  ACUST: Acustica
+  ADASA1: Adapt. Sistemy Avtomat. Upravleniya
+  ADVAM2: Adv. in Math.
+  ADVAM3: Adv. in Appl. Mech.
+  ADVAP2: Adv. in Appl. Probab.
+  ADVIA: Adv. in Appl. Math.
+  ADVIM: Adv. in Mech.
+  ADVIM1: Adv. in Math. (Beijing)
+  ADVIP: Adv. in Phys.
+  AEQUM: Aequationes Math.
+  AFRIM: Afrika Mat.
+  AIAAJ: AIAA J.
+  AICHJ: AIChE J.
+  AKANA3: Akad. Nauk Armyan. SSR Dokl.
+  AKANA4: Akad. Nauk Azerbaı̆dzhan. SSR Dokl.
+  AKANK1: Akad. Nauk Kazakh. SSR Trudy Astrofiz. Inst.
+  AKANS: Akad. Nauk SSSR Sibirsk. Otdel.
+  AKANS2: Akad. Nauk SSSR Sibirsk. Otdel. Inst. Geol. Geofiz. Trudy
+  AKANS3: Akad. Nauk SSSR Sibirsk. Otdel. Vychisl. Tsentr Preprint
+  AKANU: Akad. Nauka Umjet. Bosne Hercegov. Rad. Odjelj.
+  AKANU4: Akad. Nauk Ukrain. SSR Inst. Mat. Preprint
+  AKANU5: Akad. Nauk SSSR Inst. Prikl. Mat. Preprint
+  AKANUM: Akad. Nauka Umjet. Bosne Hercegov. Rad. Odjelj. Prirod. Mat. Nauk
+  AKANUT: Akad. Nauka Umjet. Bosne Hercegov. Rad. Odjelj. Tehn. Nauka
+  AKUSZ1: Akust. Zh.
+  ALGEL1: Algebra and Logic
+  ALGEL2: Algebra i Logika
+  ALGEU: Algebra Universalis
+  ALGGG: Algebras Groups Geom.
+  ALIBM: Aligarh Bull. Math.
+  ALIJS: Aligarh J. Statist.
+  ALKML: Alkalmaz. Mat. Lapok
+  ALMAG1: Alma-Atin. Gos. Ped. Inst. Uchen. Zap.
+  AMEJM: Amer. J. Math.
+  AMEJM1: Amer. J. Math. Management Sci.
+  AMEJP: Amer. J. Phys.
+  AMEMM: Amer. Math. Monthly
+  AMERN: Amer. Natur.
+  AMERS1: Amer. Sci.
+  AMERS2: Amer. Statist.
+  ANABC2: An. Acad. Brasil. Ciênc.
+  ANALM: Anal. Math.
+  ANALY: Analysis
+  ANALY1: Analysis (Oxford)
+  ANANT: Anal. Numér. Théor. Approx.
+  ANASD: Ann. Acad. Sci. Fenn. Ser. A I Math. Dissertationes
+  ANASM: Ann. Acad. Sci. Fenn. Ser. A I Math.
+  ANINM: An. Inst. Mat. Univ. Nac. Autónoma México
+  ANINS: Ann. I.N.S.É.É.
+  ANNEN: Ann. École Nat. Sup. Méc. Nantes
+  ANNFS: Ann. Fac. Sci. Univ. Nat. Zaı̈re (Kinshasa) Sect. Math.-Phys.
+  ANNFS1: Ann. Fac. Sci. Toulouse Math. (5)
+  ANNFS2: Ann. Fac. Sci. Naut.
+  ANNFSUNZ: Ann. Fac. Sci. Univ. Nat. Zaı̈re
+  ANNGAG: Ann. Global Anal. Geom.
+  ANNGC: Ann. Gifu College Ed.
+  ANNHC: Ann. Hist. Comput.
+  ANNHG: Ann. Human Genetics
+  ANNIF: Ann. Inst. Fourier (Grenoble)
+  ANNIHN: Ann. Inst. H. Poincaré. Anal. Non Linéaire
+  ANNIHP: Ann. Inst. H. Poincaré. Phys. Théor.
+  ANNIHS: Ann. Inst. H. Poincaré. Probab. Statist.
+  ANNIS: Ann. Inst. Statist. Math.
+  ANNIU: Ann. Istit. Univ. Navale Napoli
+  ANNJA: Ann. Japan Assoc. Philos. Sci.
+  ANNMA2: Ann. of Math. (2)
+  ANNMP2: Ann. Mat. Pura Appl. (4)
+  ANNMS: Ann. Math. Sil.
+  ANNNE: Ann. Nuclear Energy
+  ANNPA: Ann. Pure Appl. Logic
+  ANNPH1: Ann. Physics
+  ANNPH3: Ann. Physik (7)
+  ANNPM: Ann. Polon. Math.
+  ANNPR2: Ann. Probab.
+  ANNRA: Annual Rep. Asahikawa Med. College
+  ANNRF1: Annual Rep. Fac. Ed. Iwate Univ.
+  ANNSC: Ann. of Sci.
+  ANNSE2: Ann. Sci. École Norm. Sup. (4)
+  ANNSK: Ann. Sci. Kanazawa Univ.
+  ANNSM: Ann. Sci. Math. Québec
+  ANNSM1: Ann. Soc. Math. Polon. Ser. I Comment. Math. Prace Mat.
+  ANNSM2: Ann. Soc. Math. Polon. Ser. II Wiadom. Mat.
+  ANNSM3: Ann. Soc. Math. Polon. Ser. III Mat. Stos.
+  ANNSM4: Ann. Soc. Math. Polon. Ser. IV Fund. Inform.
+  ANNSN3: Ann. Scuola Norm. Sup. Pisa Cl. Sci. (4)
+  ANNSS: Ann. Soc. Sci. Bruxelles Sér. I
+  ANNST: Ann. Statist.
+  ANNSU4: Ann. Sci. Univ. Besançon Méc. Phys. Théor. (3)
+  ANNSU6: Ann. Sci. Univ. Clermont-Ferrand II Math.
+  ANNSU7: Ann. Sci. Univ. Clermont-Ferrand II. Probab. Appl.
+  ANNSU8: Ann. Sci. Univ. Besançon Méc. Phys. Théor. (4)
+  ANNUF2: Ann. Univ. Ferrara Sez. VII (N.S.)
+  ANNUM2: Ann. Univ. Mariae Curie-Skłodowska Sect. A
+  ANNUS2: Ann. Univ. Sci. Budapest. Eötvös Sect. Math.
+  ANNUS4: Annuaire Univ. Sofia Fac. Math. Méc.
+  ANNUS5: Ann. Univ. Sci. Budapest. Sect. Comput.
+  ANNUT: Ann. Univ. Turku. Ser. A I
+  ANSTU: An. Ştiinţ. Univ. “Al. I. Cuza” Iaşi
+  ANSTUF: An. Ştiinţ. Univ. “Al. I. Cuza” Iaşi Secţ. I b Fiz. (N.S.)
+  ANSTUM: An. Ştiinţ. Univ. “Al. I. Cuza” Iaşi Secţ. I a Mat. (N.S.)
+  ANUNBF: An. Univ. Bucureşti Fiz.
+  ANUNBM: An. Univ. Bucureşti Mat.
+  ANUNC3: An. Univ. Craiova Mat. Fiz.-Chim.
+  ANUNT3: An. Univ. Timişoara Ştiinţ. Fiz.
+  ANUNTM: An. Univ. Timişoara Ser. Ştiinţ. Mat.
+  ANZOS2: Anz. Österreich. Akad. Wiss. Math.-Natur. Kl.
+  APLMA: Apl. Mat.
+  APPLA: Applicable Anal.
+  APPMC: Appl. Math. Comput.
+  APPMM: Appl. Math. Modelling
+  APPMM1: Appl. Math. Mech.
+  APPMM2: Appl. Math. Mech. (English Ed.)
+  APPMM3: Appl. Math. Math. Comput.
+  APPMN: Appl. Math. Notes
+  APPMO: Appl. Math. Optim.
+  APPMR: AMR
+  APPNM: Appl. Numer. Math.
+  APPSR: Appl. Sci. Res.
+  APPTA: Approx. Theor. Appl.
+  ARAGJ: Arab Gulf J. Sci. Res.
+  ARAJM: Arab J. Math.
+  ARAJS: Arabian J. Sci. Engrg.
+  ARBUB: Ȧrbok Univ. Bergen Mat.-Natur. Ser.
+  ARCAT2: Arch. Automat. Telemech.
+  ARCEW: Arch. Elektrotech.
+  ARCHA: Archaeoastronomy
+  ARCHE2: Arch. Hist. Exact Sci.
+  ARCHI: Archimede
+  ARCIH2: Arch. Internat. Hist. Sci.
+  ARCMA: Arch. Mech. (Arch. Mech. Stos.)
+  ARCMB1: Arch. Math. (Basel)
+  ARCMB2: Arch. Math. (Brno)
+  ARCML2: Arch. Math. Logik Grundlag.
+  ARCRM: Arch. Rational Mech. Anal.
+  ARKHI: Arkhimedes
+  ARKMA: Ark. Mat.
+  ARSCO2: Ars Combin.
+  ARTII: Artificial Intelligence
+  ASTER: Astérisque
+  ASTIB: Astin Bull.
+  ASTRA: Astronom. and Astrophys.
+  ASTRA1: Astrometr. i Astrofiz.
+  ASTRJ2: Astrophys. J.
+  ASTRN: Astronom. Nachr.
+  ASTRO1: Astrofizika
+  ASTRO2: Astrophysics
+  ASTRZ1: Astronom. Zh.
+  ASTSS: Astrophys. and Space Sci.
+  ATASP2: Atti Accad. Sci. Lett. Arti Palermo Parte I (4)
+  ATAST: Atti Accad. Sci. Torino Cl. Sci. Fis. Mat. Natur.
+  ATTAF: Atti Accad. Sci. Siena Fisiocrit. (14)
+  ATTAL: Atti Accad. Ligure Sci. Lett.
+  ATTAN: Atti Accad. Naz. Lincei
+  ATTANM: Atti Accad. Naz. Lincei Mem. Cl. Sci. Fis. Mat. Natur. Sez. Ia (8)
+  ATTANR: Atti Accad. Naz. Lincei Rend. Cl. Sci. Fis. Mat. Natur. (8)
+  ATTAP: Atti Accad. Peloritana Pericolanti Cl. Sci. Fis. Mat. Natur.
+  ATTASB: Atti Accad. Sci. Istit. Bologna Cl. Sci. Fis. Rend. (13)
+  ATTASL: Atti Accad. Sci. Lett. Arti Palermo Ser. (5)
+  ATTBL: AT&T Bell Labs. Tech. J.
+  ATTSM: Atti Sem. Mat. Fis. Univ. Modena
+  ATTSP: Atti Soc. Peloritana Sci. Fis. Mat. Natur.
+  ATTTJ: AT&T Tech. J.
+  AUNIG: An. Univ. Galaţi Metal.
+  AUSCJ: Austral. Comput. J.
+  AUSJP: Austral. J. Phys.
+  AUSJS: Austral. J. Statist.
+  AUSMS: Austral. Math. Soc. Gaz.
+  AUTDM: Automat. Document. and Math. Linguistics
+  AUTOM: Automatica—J. IFAC
+  AUTRC: Automat. Remote Control
+  AVTIT3: Avtomat. Izchisl. Tekhn.
+  AVTOM1: Avtomatika
+  AVTOT1: Avtomat. i Telemekh.
+  AVTSU3: Avtomat. Sistemy Upravleniya i Pribory Avtomat.
+  AVTUV1: Avtomat. Upravlenie i Vychisl. Tekhn.
+  AVTVT1: Avtomat. i Vychisl. Tekhn. (Riga)
+  AVTVT2: Avtomat. i Vychisl. Tekhn. (Minsk)
+  AZEGU3: Azerbaı̆dzhan. Gos. Univ. Uchen. Zap.
+  BALGP1: Balashov. Gos. Ped. Inst. Uchen. Zap.
+  BANEC: Bangabasi Evening College Mag.
+  BARGP1: Barnaul. Gos. Ped. Inst. Uchen. Zap.
+  BAYAWA: Bayer. Akad. Wiss. Math.-Natur. Kl. Abh. (N.F.)
+  BAYAWS: Bayer. Akad. Wiss. Math.-Natur. Kl. Sitzungsber.
+  BAYMS: Bayreuth. Math. Schr.
+  BEHAS: Behavioral Sci.
+  BEIAG1: Beiträge Algebra Geom.
+  BEIJX: Beijing Daxue Xuebao
+  BEINM: Beiträge Numer. Math.
+  BEIPP: Beitr. Plasmaphys.
+  BEISD: Beijing Shifan Daxue Xuebao
+  BELJO: Belg. J. Oper. Res. Statist. Comput. Sci.
+  BERWG: Ber. Wiss.-Gesch.
+  BIBLF: Biblio. France
+  BIOLC: Biol. Cybernet.
+  BIOME1: Biometrics
+  BIOME2: Biometrika
+  BIOMJ: Biometrical J.
+  BIOPJ: Biophys. J.
+  BIT: BIT
+  BIT1: BIT (Tokyo)
+  BIULT: Biul. Lubel. Towarz. Nauk. Mat. Fiz. Chem.
+  BJUIT1: Byull. Inst. Teoret. Astronom.
+  BOGUD: Boğaziçi Üniv. Dergisi
+  BOLGS: Boll. Geod. Sci. Affini
+  BOLLI: Bol. Lima
+  BOLMA: Bol. Mat.
+  BOLSB: Bol. Soc. Brasil. Mat.
+  BOLSM2: Bol. Soc. Mat. Mexicana (2)
+  BOLSP: Bol. Soc. Paran. Mat. (2)
+  BOLSP1: Bol. Soc. Port. Mat.
+  BOLSS: Boll. Storia Sci. Mat.
+  BOLUM3: Boll. Un. Mat. Ital. A (6)
+  BOLUM4: Boll. Un. Mat. Ital. B (6)
+  BOLUM5: Boll. Un. Mat. Ital. D (6)
+  BOLUM6: Boll. Un. Mat. Ital. C (6)
+  BOLUMS: Boll. Un. Mat. Ital. Suppl.
+  BRIJH: British J. Hist. Sci.
+  BRIJM2: British J. Math. Statist. Psych.
+  BRIJP: British J. Philos. Sci.
+  BRINB: British Nat. Biblio.
+  BUASN1: Bull. Acad. Serbe Sci. Arts Cl. Sci. Math. Natur.
+  BULAI: Bull. Astronom. Inst. Czechoslovakia
+  BULAM2: Bull. Austral. Math. Soc.
+  BULAM3: Bull. Amer. Math. Soc. (N.S.)
+  BULAPT: Bull. Acad. Polon. Sci. Sér. Sci. Tech.
+  BULAU: Bull. Aichi Univ. Ed. Natur. Sci.
+  BULCM: Bull. Calcutta Math. Soc.
+  BULCR2: Bull. Central Res. Inst. Fukuoka Univ.
+  BULCS1: Bull. College Sci. Univ. Ryukyus
+  BULDG: Bull. Dept. Gen. Ed. College Sci. Tech. Nihon Univ.
+  BULEA: Bull. European Assoc. Theoret. Comput. Sci.
+  BULFE: Bull. Fac. Ed. Kagoshima Univ. Natur. Sci.
+  BULFEM: Bull. Fac. Engrg. Miyazaki Univ.
+  BULFEU: Bull. Fac. Ed. Utsunomiya Univ. Sect. 2
+  BULFEW: Bull. Fac. Ed. Wakayama Univ. Natur. Sci.
+  BULFG: Bull. Fac. Gen. Ed. Gifu Univ.
+  BULFL: Bull. Fac. Liberal Arts Nagasaki Univ.
+  BULFL1: Bull. Fac. Liberal Arts Chukyo Univ.
+  BULFS2: Bull. Fac. Sci. Engrg. Chuo Univ.
+  BULFS3: Bull. Fac. Sci. Ibaraki Univ. Ser. A
+  BULFS5: Bull. Fac. Sci. King Abdul Aziz Univ.
+  BULFS6: Bull. Fac. School Ed. Hiroshima Univ. Part II
+  BULFS7: Bull. Fac. Sci. Assiut Univ. A
+  BULFS8: Bull. Fac. Sci. Assiut Univ. B
+  BULFT: Bull. Fac. Textile Sci. Kyoto Univ. Industrial Arts Textile Fiber
+  BULFTK: Bull. Fac. Textile Sci. Kyoto Univ.
+  BULFU: Bull. Fukuoka Univ. Ed. III
+  BULGE: Bull. Gen. Ed. Dokkyo Univ. School Medicine
+  BULIA: Bull. Inst. Adv. Res. Fukuoka Univ.
+  BULIC: Bull. Inform. Cybernet.
+  BULII: Bull. Inst. Internat. Statist.
+  BULIM1: Bull. Inst. Math. Acad. Sinica
+  BULIM2: Bull. Inst. Math. Appl.
+  BULIM3: Bull. Iranian Math. Soc.
+  BULIP3: Bul. Inst. Politehn. Iaşi Secţ. I
+  BULIP4: >-
+    Bul. Inst. Politehn. Bucureşti Ser. Electrotehn. Energet. Automat. Calc.
+    Electron.
+  BULIP5: >-
+    Bul. Inst. Politehn. Bucureşti Ser. Mec. Construc. Maş. Transport.
+    Aeronave
+  BULIP6: Bul. Inst. Politehn. Bucureşti Ser. Chim.
+  BULIP7: Bul. Inst. Politehn. Bucureşti Ser. Electrotehn.
+  BULIP8: Bul. Inst. Politehn. Bucureşti. Ser. Mec.
+  BULIP9: Bul. Inst. Politehn. Bucureşti Ser. Construc. Maş.
+  BULIPA: Bul. Inst. Politehn. Bucureşti Ser. Automat.
+  BULIPB: Bul. Inst. Politehn. Bucureşti Ser. Electron.
+  BULIPD: Bul. Inst. Politehn. Bucureşti Ser. Energet.
+  BULIPT: Bul. Inst. Politehn. Bucureşti Ser. Transport. Aeronave
+  BULJP: Bulgar. J. Phys.
+  BULKI: Bull. Kyushu Inst. Tech. Math. Natur. Sci.
+  BULKUB: Bull. Kyoto Univ. Ed. Ser. B
+  BULLG: Bull. Géodésique
+  BULLJ: Bull. JSME
+  BULLKM: Bull. Korean Math. Soc.
+  BULLM: Bull. London Math. Soc.
+  BULLM1: Bull. Math.
+  BULLS: BullSig(110)
+  BULMA: Bull. Math. Assoc. India
+  BULMB2: Bull. Math. Biol.
+  BULMM1: Bull. Malaysian Math. Soc. (2)
+  BULMS3: Bull. Math. Soc. Sci. Math. R. S. Roumanie (N.S.)
+  BULNI: Bull. Nagoya Inst. Tech.
+  BULNT: Bull. Number Theory Related Topics
+  BULNU: Bull. Nara Univ. Ed. Natur. Sci.
+  BULOP: Bull. Osaka Prefect. Tech. College
+  BULPA: Bull. Polish Acad. Sci. Math.
+  BULPA1: Bull. Polish Acad. Sci. Tech. Sci.
+  BULRL: Bull. Res. Lab. Precision Mach. Electron.
+  BULSB: Bull. Satyendranath Bose Inst. Phys. Sci.
+  BULSE2: Bull. Sci. Engrg. Res. Lab. Waseda Univ.
+  BULSF: Bull. Soc. Franco-Japon. Sci. Pures Appl.
+  BULSI6: Bul. ştiinţ. Inst. Politehn. Cluj-Napoca Ser. Chim. Metal.
+  BULSI7: >-
+    Bul. ştiinţ. Inst. Politehn. Cluj-Napoca Ser.
+    Electrotehn.-Energet.-Inform.
+  BULSI8: Bul. ştiinţ. Inst. Politehn. Cluj-Napoca Ser. Mat.-Fiz.-Mec. Apl.
+  BULSM2: Bull. Sci. Math. (2)
+  BULSM3: Bull. Soc. Math. Belg. Sér. A
+  BULSM4: Bull. Soc. Math. Belg. Sér. B
+  BULSM5: Bull. Soc. Math. Grèce (N.S.)
+  BULSMF: Bull. Soc. Math. France
+  BULSR: Bull. Soc. Roy. Sci. Liège
+  BULSS2: Bull. Soc. Sci. Lett. Łódź
+  BULSS3: Bull. Seismol. Soc. Amer.
+  BULST3: Bul. ştiinţ. Tehn. Inst. Politehn. “Traian Vuia” Timişoara
+  BULTG2: Bull. Tokyo Gakugei Univ. (4)
+  BULTW: Bull. Tōkai Women's College
+  BULUB1: Bul. Univ. Braşov Ser. C
+  BULUG: Bul. Univ. Galaţi Fasc. II Mat. Fiz. Mec. Teoret.
+  BULUO2: Bull. Univ. Osaka Prefect. Ser. A
+  BULYU: Bull. Yamagata Univ. Natur. Sci.
+  BUTSC: Butl. Soc. Catalana Ciènc. Fı́s. Quı́m. Mat. (2)
+  BUTSM1: Butl. Sec. Mat.
+  BYTE: Byte
+  CAHCE2: Cahiers Centre Études Rech. Opér.
+  CAHTG: Cahiers Topologie Géom. Différentielle
+  CAHTG1: Cahiers Topologie Géom. Différentielle Catégoriques
+  CAIJK: Caijing Kexue
+  CALCO: Calcolo
+  CALSA: Calcutta Statist. Assoc. Bull.
+  CANJM: Canad. J. Math.
+  CANJP: Canad. J. Phys.
+  CANJS: Canad. J. Statist.
+  CANMB: Canad. Math. Bull.
+  CARJM: Caribbean J. Math.
+  CASPM: Časopis Pěst. Mat.
+  CELEM: Celestial Mech.
+  CENTA: Centaurus
+  CHEEJ: Chem. Engrg. J.
+  CHEKD: Chengdu Keji Daxue Xuebao
+  CHEMP: Chem. Phys.
+  CHEPL: Chem. Phys. Lett.
+  CHIAA: Chinese Astronom. Astrophys.
+  CHIAM1: Chinese Ann. Math. Ser. A
+  CHIAM2: Chinese Ann. Math. Ser. B
+  CHIJC: Chinese J. Comput.
+  CHIJM: Chinese J. Math.
+  CHINP: Chinese Phys.
+  CHIOR: Chinese J. Oper. Res.
+  CHISA: Chinese Sci. Abstracts Part A
+  CHITA1: China Sci. Tech. Abstracts Ser. I Math. Astronom. Phys.
+  CHIUS: Chittagong Univ. Stud. Part II Sci.
+  CHOIK: Cho-sŏn In-min Kong-hwa-kuk Kwa-hak-wŏn T'ong-bo
+  CIENC: Ciênc. Cultura
+  CIENM1: Cienc. Mat. (Havana)
+  CIENT: Cienc. Tecn.
+  CIFVT1: Tsifr. Vychisl. Tekhn. i Programmirovanie
+  CIRCE: Circé
+  CIRSS: Circuits Systems Signal Process.
+  CISMM1: Chisl. Metody Mekh. Sploshn. Sredy
+  CLAQG: Classical Quantum Gravity
+  CLCLC: CL & CL—Comput. Linguist. Comput. Lang.
+  CMCCC: CMCI CompuMath Citation Index
+  COGNS: Cognitive Sci.
+  COLLM: Colloq. Math.
+  COLLM1: Collect. Math.
+  COLMJ: College Math. J.
+  COMAG: Comput. Aided Geom. Design
+  COMBI: Combinatorica
+  COMBI1: Combinatória
+  COMCA: CCA
+  COMDI2: Comm. Dublin Inst. Adv. Stud. Ser. A
+  COMFSA: Comm. Fac. Sci. Univ. Ankara Sér. A\sb3 Astronom.
+  COMFSM: Comm. Fac. Sci. Univ. Ankara Sér. A\sb1 Math.
+  COMFSP: Comm. Fac. Sci. Univ. Ankara Sér. A\sb2 Phys.
+  COMMA1: Comm. ACM
+  COMMA2: Comm. Algebra
+  COMMA3: Comput. Math. Appl.
+  COMMA4: Comput. Methods Appl. Mech. Engrg.
+  COMMC: Comm. Cognition
+  COMMH: Comment. Math. Helv.
+  COMMP: Comm. Math. Phys.
+  COMMP1: Comment. Math. Prace Mat.
+  COMMS: Comment. Math. Special Issue
+  COMMSA: Comm. Statist. A—Theory Methods
+  COMMSB: Comm. Statist. B—Simulation Comput.
+  COMMU2: Comment. Math. Univ. St. Paul.
+  COMMU3: Comment. Math. Univ. Carolin.
+  COMOR: Comput. Oper. Res.
+  COMPA: Comm. Pure Appl. Math.
+  COMPC: Comput. Phys. Comm.
+  COMPD: Comm. Partial Differential Equations
+  COMPEE: Comput. Electr. Engrg.
+  COMPEL: Compel
+  COMPF: Comput. & Fluids
+  COMPJ: Comput. J.
+  COMPM: Comment. Phys.-Math.
+  COMPM1: Comment. Phys.-Math. Dissertationes
+  COMPN: Comput. Networks
+  COMPN1: Comput. Networks ISDN Systems
+  COMPO: Compositio Math.
+  COMPR: CR
+  COMPS: Comput. Surveys
+  COMPS2: Comput. & Structures
+  COMPS3: Comput. Sci.
+  COMPU: Computing
+  COMSD: Comput. Statist. Data Anal.
+  COMSSM: Comm. Statist. Stochastic Models
+  COMTP: Comm. Theoret. Phys.
+  COMVT: Complex Variables Theory Appl.
+  CONCE: Conceptus
+  CONGN: Congr. Numer.
+  CONPP: Contrib. Plasma Phys.
+  CONSA: Constr. Approx.
+  CONSM: Confer. Sem. Mat. Univ. Bari
+  CONTA: Control Theory Appl.
+  CONTC: Control Cybernet.
+  CRACA: C. R. Acad. Bulgare Sci.
+  CRACA1: C. R. Acad. Sci. Paris Sér. I Math.
+  CRACA2: C. R. Acad. Sci. Paris Sér. II Méc. Phys. Chim. Sci. Univers Sci. Terre
+  CRACA4: C. R. Acad. Sci. Sér. Gén. Vie Sci.
+  CRACS: C. R. Acad. Sci. Paris Vie Académique
+  CRACS1: C. R. Acad. Sci. Paris Sér. D
+  CRMAR: C. R. Math. Rep. Acad. Sci. Canada
+  CRYPT: Cryptologia
+  CSQCS: CSQ–Comput. Statist. Quart.
+  CURCC: Current Contents/CompuMath
+  CURMP: CMP
+  CUTRJ: Cuttington Res. J.
+  CWINE: CWI Newslett.
+  CYBCT: Cybernet. Comput. Tech.
+  CYBER1: Cybernetica
+  CYBER2: Cybernetics
+  CYBES: Cybernet. Systems
+  CZEJPB: Czechoslovak J. Phys. B
+  CZEMJ: Czechoslovak Math. J.
+  DALGX: Dalian Gongxueyuan Xuebao
+  DAQIK: Daqi Kexue
+  DATAM: Datamation
+  DEFSJ: Defence Sci. J.
+  DELPR: Delft Progr. Rep.
+  DEMOM: Demonstratio Math.
+  DENTG: Denshi Tsushin Gakkai Ronbunshi Sect. A-D
+  DEUBW1: Deutsch. Biblio. Wöchentl. Verzeich. Neuerscheinungen Sofordienst (CIP)
+  DEUBWA: Deutsch. Biblio. Wöchentl. Verzeich. Amtsblatt Deutsch. Bibliothek Ser. A
+  DEUBWB: Deutsch. Biblio. Wöchentl. Verzeich. Amtsblatt Deutsch. Bibliothek Ser. B
+  DEUBWC: Deutsch. Biblio. Wöchentl. Verzeich. Ser. C
+  DEUNRA: Deutsch. Nationalbiblio. Reihe A
+  DEUNRB: Deutsch. Nationalbiblio. Reihe B
+  DIAGR: Diagrammes
+  DIALE: Dialectica
+  DIALO: Dialogue
+  DIFFE: Differential Equations
+  DIFFU1: Differentsial'nye Uravneniya
+  DIFGM: Differentsial'naya Geom. Mnogoobraz. Figur
+  DIFUP2: Differentsial'nye Uravneniya i Primenen.
+  DIGIP: Digital Process.
+  DINAS: Dinamika Sistem
+  DINPM1: Dinamika i Prochnost' Mashin
+  DINSS1: Dinamika Sploshn. Sredy
+  DIRRJ: Dirāsāt Res. J. Natur. Sci.
+  DISAM: Discrete Appl. Math.
+  DISCM: Discrete Math.
+  DISMR: Dissertationes Math. (Rozprawy Mat.)
+  DOGBD: 'Doğa Bilim Dergisi. Ser. A\sb1: Mat. Fiz. Kim. Astronom. Yerbilim.'
+  DOGBD1: 'Doğa Bilim Dergisi. Ser. A\sb1: Mat. Fiz. Kim. Astronom.'
+  DOGMF: 'Doḡa. Ser. A\sb{1}: Mat. Fiz. Kim. Astronom. Yerbilim.'
+  DOKAN1: Dokl. Akad. Nauk BSSR
+  DOKAN2: Dokl. Akad. Nauk SSSR
+  DOKAN4: Dokl. Akad. Nauk UzSSR
+  DOKAN5: Dokl. Akad. Nauk Tadzhik. SSR
+  DOKANA: Dokl. Akad. Nauk Ukrain. SSR Ser. A
+  DONGX: Dongbei Gongxueyuan Xuebao
+  DONSX: Dongbei Shida Xuebao
+  DOPANA: Dopovı̄dı̄ Akad. Nauk Ukraı̈n. RSR Ser. A.
+  DUKMJ: Duke Math. J.
+  DUREG: Dürerner Geschichtsblätter
+  DVTDV2: DVT—Dějiny Věd Tech.
+  ECOCE2: Econom. Comput. Econom. Cybernet. Stud. Res.
+  ECONL: Econom. Lett.
+  ECONO: Econometrica
+  ECONR: Econometric Rev.
+  EDFBD: EDF Bull. Direction Études Rech. Sér. C Math. Inform.
+  EDSTM: Ed. Stud. Math.
+  EESNT2: Eesti NSV Tead. Akad. Füüs. Inst. Uurim.
+  EESNT4: Eesti NSV Tead. Akad. Toimetised Füüs.-Mat.
+  EGYSJ: Egyptian Statist. J.
+  EKOMM: Èkonom. i Mat. Metody
+  EKOMO: Ekonom.-Mat. Obzor
+  ELECJ2: Electron. Comm. Japan
+  ELEIK2: Elektron. Informationsverarb. Kybernet.
+  ELEMM: Elem. Math.
+  ENCYC: Encyclia
+  ENGFM: Engrg. Fracture Mech.
+  ENGRC: Engrg. Cybernetics
+  ENSEM2: Enseign. Math. (2)
+  EREGU1: Erevan. Gos. Univ. Uchen. Zap. Estestv. Nauki
+  ERGTD: Ergodic Theory Dynamical Systems
+  ESTAD: Estadı́stica
+  ESTAE: Estadı́st. Española
+  EUCLG: Euclides (Groningen)
+  EURJC: European J. Combin.
+  EURJO: European J. Oper. Res.
+  EURJP: European J. Phys.
+  EXPNA: Exploration Nature
+  EXPOM: Exposition. Math.
+  FASCM: Fasc. Math.
+  FIBOQ: Fibonacci Quart.
+  FIZEC1: Fiz. Èlementar. Chastits i Atom. Yadra
+  FIZMS: Fiz.-Mat. Spis. B\bud lgar. Akad. Nauk.
+  FLUID: Fluid Dynamics
+  FLUMS: Fluid Mech.—Soviet Res.
+  FOLFS: Folia Fac. Sci. Natur. Univ. Purk. Brun. Phys.
+  FORMS: Formosan Sci.
+  FORTP2: Fortschr. Phys.
+  FOUCE: Found. Control Engrg.
+  FOUNP: Found. Phys.
+  FUDAX: Fudan Xuebao
+  FUJES: Fu Jen Stud.
+  FUKUS: Fukuoka Univ. Sci. Rep.
+  FUNAA: Functional Anal. Appl.
+  FUNAC: Funct. Approx. Comment. Math.
+  FUNAP1: Funktsional. Anal. i Prilozhen.
+  FUNDI3: Fund. Inform.
+  FUNDM: Fund. Math.
+  FUNDS: Fund. Sci.
+  FUNKE: Funkcial. Ekvac.
+  FUZDX: Fuzhou Daxue Xuebao
+  FUZSS: Fuzzy Sets and Systems
+  FUZZM: Fuzzy Math.
+  GACMM2: Gaceta Mat. (1) (Madrid)
+  GANIB: Gaṇita Bhāratı̄
+  GANIT: Gaṇita
+  GANIT1: Ganit
+  GAOWY: Gaoneng Wuli yu He Wuli
+  GAOXJ: Gaodeng Xuexiao Jisuan Shuxue Xuebao
+  GAUGG: Gauss-Ges. Göttingen Mitt.
+  GAZEM: Gaz. Math.
+  GAZMB: Gaz. Mat. (Bucharest)
+  GAZMM: Gaz. Mat. Mat. Inform.
+  GENER: Gen. Ed. Rev. Toho Univ.
+  GENRG2: Gen. Relativity Gravitation
+  GEOAF: Geophys. Astrophys. Fluid Dynamics
+  GEOMD2: Geom. Dedicata
+  GESNE: Gesnerus
+  GIDRK1: Gidromekh. (Kiev)
+  GLAMJ: Glasgow Math. J.
+  GLASM2: Glas. Mat. Ser. III
+  GODSU: Godishnik Sofiı̆sk. Univ. Fak. Mat. Mekh.
+  GODSU1: Godishnik Sofiı̆sk. Univ. Fiz. Fak.
+  GODVI1: Godishnik Vissh. Inzh.-Stroitel. Inst.
+  GODVP1: Godishnik Vissh. Ped. Inst. Shumen Prirod.-Mat. Fak.
+  GODVU1: Godishnik Vissh. Uchebn. Zaved. Tekhn. Mekh.
+  GODVU2: Godishnik Vissh. Uchebn. Zaved. Tekhn. Fiz.
+  GODVU3: Godishnik Vissh. Uchebn. Zaved. Prilozhna Mat.
+  GRAPC: Graphs Combin.
+  GRATO1: Gravitatsiya i Teor. Otnositel'nosti
+  GUJSR: Gujarat Statist. Rev.
+  HADJS: Hadronic J. Suppl.
+  HADRJ: Hadronic J.
+  HAEGD: Harbin Gongye Daxue Xuebo
+  HAKSC: Hak-sul Chi
+  HANDX: Hangzhou Daxue Xuebao
+  HARRJ: Hardy-Ramanujan J.
+  HEIDZ: Heilongjiang Daxue Ziran Kexue Xuebao
+  HEIKA: Heimatblätter Kreises Aachen
+  HELPA: Helv. Phys. Acta
+  HEWPJ: Hewlett–Packard J.
+  HIRMJ: Hiroshima Math. J.
+  HISPL: Hist. Philos. Logic
+  HISTM: Historia Math.
+  HISTO: Historia Sci.
+  HISTS: Hist. of Sci.
+  HISTT: Hist. Tech.
+  HITJA: Hitotsubashi J. Arts Sci.
+  HOKMJ: Hokkaido Math. J.
+  HOMME: Homme
+  HONMJ: Honam Math. J.
+  HOUJM: Houston J. Math.
+  HUAGX: Huazhong Gong Xueyuan Xuebao
+  HUASD: Huadong Shifan Dazue Xuebao. Ziran Kexue Ban
+  HUASX: Huazhong Shiyuan Xuebao
+  HUNSD: Hunan Shifan Daxue Xuebao. Ziran Kexue Ban
+  HUNSX: Hunan Shiyuan Xuebao
+  IAPAR: IAPQR Trans.
+  IBMJR: IBM J. Res. Develop.
+  IEEE_J_: IEEE Transactions on Reliability
+  IEEE_J_A: IEEE Transactions on Automatic Control
+  IEEE_J_ADV: IEEE Transactions on Advanced Packaging
+  IEEE_J_AE: IEEE Transactions on Aerospace and Electronic Systems
+  IEEE_J_AFF: IEEE Transactions on Affective Computing
+  IEEE_J_AIR: IEEE Transactions on Airborne Electronics
+  IEEE_J_AM: IEEE Transactions on Autonomous Mental Development
+  IEEE_J_AN: IEEE Transactions on Aerospace and Navigational Electronics
+  IEEE_J_ANN: IEEE Transactions on Aeronautical and Navigational Electronics
+  IEEE_J_APPIN: IEEE Transactions on Applications and Industry
+  IEEE_J_AS: IEEE Transactions on Automation Science and Engineering
+  IEEE_J_ASL: IEEE/ACM Transactions on Audio, Speech, and Language Processing
+  IEEE_J_ASS: IEEE Transactions on Acoustics, Speech, and Signal Processing
+  IEEE_J_AUE: IEEE Transactions on Audio and Electroacoustics
+  IEEE_J_AWP: IEEE Antennas and Wireless Propagation Letters
+  IEEE_J_B: IEEE Transactions on Broadcasting
+  IEEE_J_B-M: IEEE Transactions on Bio-Medical Engineering
+  IEEE_J_BCA: IEEE Transactions on Biomedical Circuits and Systems
+  IEEE_J_BCT: IEEE Transactions on Broadcast and Television Receivers
+  IEEE_J_BH: IEEE Journal of Biomedical and Health Informatics
+  IEEE_J_BM: IEEE Transactions on Biomedical Engineering
+  IEEE_J_BMEL: IEEE Transactions on Bio-Medical Electronics
+  IEEE_J_C: IEEE Transactions on Consumer Electronics
+  IEEE_J_CA: >-
+    IEEE Transactions on Computer-Aided Design of Integrated Circuits and
+    Systems
+  IEEE_J_CAP: IEEE Transactions on Components and Packaging Technology
+  IEEE_J_CAPT: IEEE Transactions on Components and Packaging Technologies
+  IEEE_J_CAS: >-
+    IEEE Transactions on Circuits and Systems I: Fundamental Theory and
+    Applications
+  IEEE_J_CASI: >-
+    IEEE Transactions on Circuits and Systems II: Analog and Digital Signal
+    Processing
+  IEEE_J_CASII_E: 'IEEE Transactions on Circuits and Systems II: Express Briefs'
+  IEEE_J_CASI_R: 'IEEE Transactions on Circuits and Systems I: Regular Papers'
+  IEEE_J_CASV: IEEE Transactions on Circuits and Systems for Video Technology
+  IEEE_J_CAT: IEEE Transactions on Cable Television
+  IEEE_J_CB: IEEE/ACM Transactions on Computational Biology and Bioinformatics
+  IEEE_J_CC: IEEE Transactions on Cognitive Communications and Networking
+  IEEE_J_CD: IEEE Transactions on Cognitive and Developmental Systems
+  IEEE_J_CHM: IEEE Transactions on Components, Hybrids and Manufacturing Technology
+  IEEE_J_CIAI: IEEE Transactions on Computational Intelligence and AI in Games
+  IEEE_J_CJEC: Canadian Journal of Electrical and Computer Engineering
+  IEEE_J_CN: IEEE Transactions on Control of Network Systems
+  IEEE_J_CO: IEEE Transactions on Communications
+  IEEE_J_COM: IEEE Transactions on Communications Systems
+  IEEE_J_CPAR: IEEE Transactions on Component Parts
+  IEEE_J_CPM: IEEE Transactions on Components, Packaging and Manufacturing Technology
+  IEEE_J_CPMT: >-
+    IEEE Transactions on Components, Packaging and Manufacturing Technology C:
+    Manufacturing
+  IEEE_J_CS: IEEE Transactions on Control Systems Technology
+  IEEE_J_CY: IEEE Transactions on Cybernetics
+  IEEE_J_DE: IEEE Transactions on Dielectrics and Electrical Insulation
+  IEEE_J_DM: IEEE Transactions on Device and Materials Reliability
+  IEEE_J_DS: IEEE Transactions on Dependable and Secure Computing
+  IEEE_J_E: IEEE Transactions on Engineering Management
+  IEEE_J_ECOM: IEEE Transactions on Electronic Computers
+  IEEE_J_ED: IEEE Transactions on Education
+  IEEE_J_EM: IEEE Transactions on Electromagnetic Compatibility
+  IEEE_J_ENAN: IEEE Nanotechnology Express
+  IEEE_J_EP: IEEE Transactions on Electronics Packaging Manufacturing
+  IEEE_J_ESS: IEEE/ECS Electrochemical and Solid-State Letters
+  IEEE_J_ESTP: IEEE Transactions on Emerging and Selected Topics in Power Electronics
+  IEEE_J_ET: IEEE Transactions on Emerging Topics in Computing
+  IEEE_J_ETC: IEEE Transactions on Emerging Topics in Computational Intelligence
+  IEEE_J_ETCA: IEEE Transactions on Emerging and Selected Topics in Circuits and Systems
+  IEEE_J_EV: IEEE Transactions on Evolutionary Computation
+  IEEE_J_EW: IEEE Transactions on Engineering Writing and Speech
+  IEEE_J_FUZ: IEEE Transactions on Fuzzy Systems
+  IEEE_J_G: IEEE Transactions on Geoscience Electronics
+  IEEE_J_GC: IEEE Transactions on Green Communications and Networking
+  IEEE_J_GR: IEEE Transactions on Geoscience and Remote Sensing
+  IEEE_J_GRS: IEEE Geoscience and Remote Sensing Letters
+  IEEE_J_HF: IEEE Transactions on Human Factors in Electronics
+  IEEE_J_HM: IEEE Transactions on Human-Machine Systems
+  IEEE_J_I: IEEE Transactions on Intelligent Vehicles
+  IEEE_J_IEC: IEEE Transactions on Industrial Electronics and Control Instrumentation
+  IEEE_J_IF: IEEE Transactions on Information Forensics and Security
+  IEEE_J_IG: IEEE Transactions on Industry and General Applications
+  IEEE_J_IIN: IEEE Transactions on Industrial Informatics
+  IEEE_J_IO: IEEE Internet of Things Journal
+  IEEE_J_IT: IEEE Transactions on Intelligent Transportation Systems
+  IEEE_J_ITB: IEEE Transactions on Information Technology in Biomedicine
+  IEEE_J_JA: IEEE/CAA Journal of Automatica Sinica
+  IEEE_J_JD: IEEE/OSA Journal of Display Technology
+  IEEE_J_JE: IEEE/TMS Journal of Electronic Materials
+  IEEE_J_JL: IEEE/OSA Journal of Lightwave Technology
+  IEEE_J_JQ: IEEE Journal of Quantum Electronics
+  IEEE_J_JR: IEEE Journal of Robotics and Automation
+  IEEE_J_JSA: IEEE Journal on Selected Areas in Communications
+  IEEE_J_JSS: IEEE Journal of Solid-State Circuits
+  IEEE_J_JSTQ: IEEE Journal of Selected Topics in Quantum Electronics
+  IEEE_J_KD: IEEE Transactions on Knowledge and Data Engineering
+  IEEE_J_L: IEEE Transactions on Learning Technologies
+  IEEE_J_M: IEEE Transactions on Multimedia
+  IEEE_J_MA: IEEE Transactions on Magnetics
+  IEEE_J_MAG: IEEE Magnetics Letters
+  IEEE_J_MBS: IEEE Transactions on Molecular, Biological and Multi-Scale Communications
+  IEEE_J_MEC: IEEE/ASME Transactions on Mechatronics
+  IEEE_J_MEM: IEEE/ASME Journal of Microelectromechanical Systems
+  IEEE_J_MEMS: IEEE Journal of Microelectromechanical Systems
+  IEEE_J_MF: IEEE Transactions on Manufacturing Technology
+  IEEE_J_MGW: IEEE Microwave and Guided Wave Letters
+  IEEE_J_MI: IEEE Transactions on Military Electronics
+  IEEE_J_MM: IEEE Transactions on Man-Machine Systems
+  IEEE_J_MMC: IEEE Journal on Multiscale and Multiphysics Computational Techniques
+  IEEE_J_MR: IEEE Transactions on Medical Robotics and Bionics
+  IEEE_J_MSC: IEEE Transactions on Multi-Scale Computing Systems
+  IEEE_J_MT: IEEE Transactions on Microwave Theory and Techniques
+  IEEE_J_MWC: IEEE Microwave and Wireless Components Letters
+  IEEE_J_N: IEEE Transactions on Nuclear Science
+  IEEE_J_NAN: IEEE Transactions on Nanotechnology
+  IEEE_J_NE: IEEE/ACM Transactions on Networking
+  IEEE_J_NNL: IEEE Transactions on Neural Networks and Learning Systems
+  IEEE_J_NS: IEEE Transactions on Network and Service Management
+  IEEE_J_NSR: IEEE Transactions on Neural Systems and Rehabilitation Engineering
+  IEEE_J_O: IEEE Journal of Oceanic Engineering
+  IEEE_J_OC: IEEE Journal of Optical Communications and Networking
+  IEEE_J_P: IEEE Transactions on Professional Communication
+  IEEE_J_PAM: IEEE Transactions on Pattern Analysis and Machine Intelligence
+  IEEE_J_PD: IEEE Transactions on Parallel and Distributed Systems
+  IEEE_J_PE: IEEE Power Electronics Letters
+  IEEE_J_PET: IEEE Power and Energy Technology Systems Journal
+  IEEE_J_PH: IEEE Transactions on Parts, Hybrids and Packaging
+  IEEE_J_PHO: IEEE Journal of Photovoltaics
+  IEEE_J_PM: IEEE Transactions on Parts, Materials and Packaging
+  IEEE_J_PRO: Proceedings of the IEEE
+  IEEE_J_PS: IEEE Journal of Product Safety Engineering
+  IEEE_J_PT: IEEE Photonics Technology Letters
+  IEEE_J_PWR: IEEE Transactions on Power Systems
+  IEEE_J_PWRA: IEEE Transactions on Power Apparatus and Systems
+  IEEE_J_Q: IEEE Transactions on Quantum Engineering
+  IEEE_J_R: IEEE Transactions on Robotics and Automation
+  IEEE_J_RA: IEEE Robotics and Automation Letters
+  IEEE_J_RBM: IEEE Reviews in Biomedical Engineering
+  IEEE_J_RF: IEEE Transactions on Radio Frequency Interference
+  IEEE_J_RFI: IEEE RFID Journal
+  IEEE_J_RIT: IEEE Revista Iberoamericana de Technolog'ias del Aprendizaje
+  IEEE_J_S: IEEE Transactions on Sonics and Ultrasonics
+  IEEE_J_SA: IEEE Transactions on Speech and Audio Processing
+  IEEE_J_SE: IEEE Transactions on Space Electronics and Telemetry
+  IEEE_J_SENSO: IEEE Sensors Journal
+  IEEE_J_SIP: IEEE Transactions on Signal and Power Integrity
+  IEEE_J_SM: IEEE Transactions on Systems, Man, and Cybernetics
+  IEEE_J_SMC: 'IEEE Transactions on Systems, Man, and Cybernetics: Systems'
+  IEEE_J_SP: IEEE Signal Processing Letters
+  IEEE_J_SS: IEEE Transactions on Systems Science and Cybernetics
+  IEEE_J_ST: IEEE Transactions on Sustainable Energy
+  IEEE_J_STAR: >-
+    IEEE Journal of Selected Topics in Applied Earth Observations and Remote
+    Sensing
+  IEEE_J_STM: IEEE Transactions on Semiconductor Technology Modeling and Simulation
+  IEEE_J_STS: IEEE Journal of Selected Topics in Signal Processing
+  IEEE_J_SUS: IEEE Transactions on Sustainable Computing
+  IEEE_J_SYS: IEEE Systems Journal
+  IEEE_J_T: IEEE Transactions on Technology and Society
+  IEEE_J_TCA: IEEE Journal on Technology in Computer Aided Design
+  IEEE_J_TEH: IEEE Journal of Translational Engineering in Health and Medicine
+  IEEE_J_TJM: IEEE Translation Journal on Magnetics in Japan
+  IEEE_J_TT: IEEE Transactions on Transportation Electrification
+  IEEE_J_TTH: IEEE Transactions on Terahertz Science and Technology
+  IEEE_J_U: IEEE Transactions on Ultrasonics Engineering
+  IEEE_J_UFF: IEEE Transactions on Ultrasonics, Ferroelectrics, and Frequency Control
+  IEEE_J_V: IEEE Transactions on Vehicular Technology
+  IEEE_J_VC: IEEE Transactions on Visualization and Computer Graphics
+  IEEE_J_VLS: IEEE Transactions on Very Large Scale Integration (VLSI) Systems
+  IEEE_J_WCO: IEEE Transactions on Wireless Communications
+  IEEE_J_WCOM: IEEE Wireless Communications Letters
+  IEEE_J_XCD: IEEE Journal on Exploratory Solid-State Computational Devices and Circuits
+  IEEE_M_: IEEE Software
+  IEEE_M_A: IEEE Antennas and Propagation Magazine
+  IEEE_M_AE: IEEE Aerospace and Electronics Systems Magazine
+  IEEE_M_ASS: IEEE ASSP Magazine
+  IEEE_M_C: IEEE Control Systems Magazine
+  IEEE_M_CA: IEEE Computer Applications in Power
+  IEEE_M_CG: IEEE Computer Graphics and Applications
+  IEEE_M_CHINA: China Communications Magazine
+  IEEE_M_CI: IEEE Computational Intelligence Magazine
+  IEEE_M_CO: IEEE Communications Magazine
+  IEEE_M_COMSO: IEEE Communications Society Magazine
+  IEEE_M_CON: IEEE Concurrency
+  IEEE_M_CS: IEEE Computing in Science and Engineering
+  IEEE_M_CSE: IEEE Computational Science and Engineering Magazine
+  IEEE_M_D: IEEE Design & Test
+  IEEE_M_DT: IEEE Design and Test of Computers
+  IEEE_M_E: IEEE Electrical Insulation Magazine
+  IEEE_M_EM: IEEE Engineering in Medicine and Biology Magazine
+  IEEE_M_ET: IEEE ElectroTechnology Review
+  IEEE_M_EX: IEEE Expert
+  IEEE_M_GR: IEEE Geoscience and Remote Sensing Magazine
+  IEEE_M_HIS: IEEE Annals of the History of Computing
+  IEEE_M_I: IEEE Internet Computing
+  IEEE_M_IT: IEEE Intelligent Transportation Systems Magazine
+  IEEE_M_M: IEEE Multimedia
+  IEEE_M_NAN: IEEE Nanotechnology Magazine
+  IEEE_M_NE: IEEE Network
+  IEEE_M_P: IEEE Power and Energy Magazine
+  IEEE_M_PCO: IEEE Personal Communications Magazine
+  IEEE_M_PE: IEEE Power Engineering Review
+  IEEE_M_PO: IEEE Potentials
+  IEEE_M_PV: IEEE Pervasive Computing
+  IEEE_M_R: IEEE Robotics and Automation Magazine
+  IEEE_M_S: IEEE Signal Processing Magazine
+  IEEE_M_SA: IEEE Security and Privacy
+  IEEE_M_SM: IEEE Systems, Man, and Cybernetics Magazine
+  IEEE_M_SPEC: IEEE Spectrum
+  IEEE_M_SS: IEEE Solid-State Circuits Magazine
+  IEEE_M_T: IEEE Technology and Society Magazine
+  IEEE_M_TODA: Today's Engineer
+  IEEE_M_V: IEEE Vehicular Technology Magazine
+  IEEE_M_W: IEEE Wireless Communications
+  IEEE_O_AC: IEEE Access
+  IEEE_O_CST: IEEE Communications Surveys and Tutorials
+  IEEE_O_DS: IEEE Distributed Systems Online
+  IEETA1: IEEE Trans. Acoust. Speech Signal Process.
+  IEETA3: IEEE Trans. Antennas and Propagation
+  IEETA6: IEEE Trans. Aerospace Electron. Systems
+  IEETA7: IEEE Trans. Automat. Control
+  IEETC1: IEEE Trans. Circuits and Systems
+  IEETC2: IEEE Trans. Comm.
+  IEETC4: IEEE Trans. Comput.
+  IEETG3: IEEE Trans. Geosci. Remote Sensing
+  IEETI2: IEEE Trans. Inform. Theory
+  IEETM: IEEE Trans. Microwave Theory Tech.
+  IEETP: IEEE Trans. Plasma Sci.
+  IEETS1: IEEE Trans. Software Engrg.
+  IEETS2: IEEE Trans. Systems Man Cybernet.
+  ILLJM: Illinois J. Math.
+  IMAJA: IMA J. Appl. Math.
+  IMAJM: IMA J. Math. Appl. Med. Biol.
+  IMAJN: IMA J. Numer. Anal.
+  INDAM: Indag. Math.
+  INDJH2: Indian J. Hist. Sci.
+  INDJM1: Indian J. Math.
+  INDJM2: Indian J. Mech. Math.
+  INDJPM: Indian J. Pure Appl. Math.
+  INDJPP: Indian J. Pure Appl. Phys.
+  INDUM1: Indiana Univ. Math. J.
+  INDUM2: Indust. Math.
+  INFAC: Inform. and Control (Shenyang)
+  INFOC2: Inform. and Control
+  INFOS3: Inform. Sci.
+  INFPL2: Inform. Process. Lett.
+  INSHE: Inst. Hautes Études Sci. Publ. Math.
+  INSMS: Inst. Math. Statist. Bull.
+  INSPT: Inst. Politehn. “Traian Vuia” Timişoara. Lucrăr. Sem. Mat. Fiz.
+  INST-ARMY-MRC: Mathematics Research Center, U.S. Army
+  INST-ARMY-MRC:ADR: U. Wisconsin, Madison
+  INST-AWARE: Aware
+  INST-COURANT-CS: Courant Inst., Dept. Computer Science
+  INST-IRISA: IRISA
+  INST-IRISA:ADR: Campus de Beaulieu, F-35042 Rennes cedex
+  INST-LUMINY: \allcapsCPT, \allcapsCNRS Luminy
+  INST-LUMINY:ADR: Marseilles
+  INST-MIT: Massachusetts Institute of Technology
+  INST-NUSC: NUSC
+  INST-PLANCK-METEOR: Max Planck Institüt für Meteorologie
+  INST-PLANCK-METEOR:ADR: Hamburg, Germany
+  INST-PROMETHEUS: Prometheus Inc.
+  INST-RAND: Rand Corp.
+  INST-RIT: Rochester Institute of Technology
+  INST-TAMU: Texas A&M University
+  INST-TUFTS-CS: Tufts University, Department of Computer Science
+  INST-U-BREMEN: U. Bremen
+  INST-U-CAMBRIDGE: U. Cambridge
+  INST-U-CAMBRIDGE:ADR: Corn Exchange St., Cambridge CB2 3QG, U.K.
+  INST-U-KYOTO: U. Kyoto
+  INST-U-KYOTO:ADR: Kyoto, Japan
+  INST-U-WASH: U. Washington
+  INST-UMASS-AMHERST: University of Massachusetts, Amherst
+  INST-URW: URW
+  INST-URW:ADR: Harksheider Str. 107, D-2000 Hamburg 65
+  INSUR: Insurance Math. Econom.
+  INTEO: Integral Equations Operator Theory
+  INTER: Internat. Econom. Rev.
+  INTJC3: Internat. J. Comput. Math.
+  INTJC4: Internat. J. Control
+  INTJC5: Internat. J. Comput. Inform. Sci.
+  INTJC6: Internat. J. Circuit Theory Appl.
+  INTJE1: Internat. J. Electron.
+  INTJE2: Internat. J. Engrg. Sci.
+  INTJF: Internat. J. Fracture
+  INTJG1: Internat. J. Game Theory
+  INTJG3: Internat. J. Gen. Systems
+  INTJM2: Internat. J. Math. Ed. Sci. Tech.
+  INTJM4: Internat. J. Math. Math. Sci.
+  INTJN: Internat. J. Neuroscience
+  INTJN1: Internat. J. Non-Linear Mech.
+  INTJN2: Internat. J. Numer. Methods Engrg.
+  INTJN3: Internat. J. Numer. Anal. Methods Geomech.
+  INTJN4: Internat. J. Numer. Methods Fluids
+  INTJP1: Internat. J. Plast.
+  INTJQ: Internat. J. Quantum Chem.
+  INTJQ1: Internat. J. Quantum Chem.
+  INTJS1: Internat. J. Solids and Structures
+  INTJS2: Internat. J. Systems Sci.
+  INTJT: Internat. J. Theoret. Phys.
+  INTLR: Internat. Logic Rev.
+  INTMN: Internat. Math. News
+  INTRR: Internat. J. Robotics Res.
+  INTSR: Internat. Statist. Rev.
+  INTSR1: Interdisciplinary Sci. Rev.
+  INVEM: Invent. Math.
+  INVEO: Investigación Oper.
+  INVEP: Inverse Problems
+  INZFZ1: Inzh.-Fiz. Zh.
+  IRAJS: Iraqi J. Sci.
+  IRIMS: Irish Math. Soc. Newslett.
+  ISIS: Isis
+  ISLJS: Islamabad J. Sci.
+  ISRJM: Israel J. Math.
+  ISRJT: Israel J. Tech.
+  ISSOA1: Issled. Operatsiı̆ i ASU
+  ISSPM: Issled. Prikl. Mat.
+  ISSTP1: Issled. Teor. Plastin i Obolochek
+  ISTAI: Istor.-Astronom. Issled.
+  ISTLAA: Istit. Lombardo Accad. Sci. Lett. Rend. A
+  ISTMI: Istor.-Mat. Issled.
+  ISTTU: İstanbul Tek. Üniv. Bül.
+  ISTUF: İstanbul Üniv. Fen Fak. Mecm. Ser. A
+  ISTVS2: Istit. Veneto Sci. Lett. Arti Atti Cl. Sci. Mat. Natur.
+  IZVAN4: Izv. Akad. Nauk SSSR Ser. Mat.
+  IZVAN7: Izv. Akad. Nauk UzSSR Ser. Fiz.-Mat. Nauk
+  IZVAN9: Izv. Akad. Nauk Kirgiz. SSR
+  IZVANB: Izv. Akad. Nauk Armyan. SSR Ser. Mat.
+  IZVANC: Izv. Akad. Nauk Armyan. SSR Ser. Mekh.
+  IZVAND: Izv. Akad. Nauk Armyan. SSR Ser. Tekhn. Nauk
+  IZVANE: Izv. Akad. Nauk Azerbaı̆dzhan. SSR Ser. Fiz.-Tekhn. Mat. Nauk
+  IZVANI: Izv. Akad. Nauk Kazakh. SSR Ser. Fiz.-Mat.
+  IZVANJ: Izv. Akad. Nauk Moldav. SSR Ser. Fiz.-Tekhn. Mat. Nauk
+  IZVANM: Izv. Akad. Nauk SSSR Mekh. Tverd. Tela
+  IZVANO: Izv. Akad. Nauk SSSR Ser. Fiz. Atmosfer. i Okeana
+  IZVANP: Izv. Akad. Nauk SSSR Mekh. Zhidk. Gaza
+  IZVANQ: Izv. Akad. Nauk SSSR Tekhn. Kibernet.
+  IZVANR: Izv. Akad. Nauk Tadzhik. SSR Otdel. Fiz.-Mat. Khim. i Geol. Nauk
+  IZVANS: Izv. Akad. Nauk Armyan. SSR Ser. Fiz.
+  IZVANU: Izv. Akad. Nauk Turkmen. SSR Ser. Fiz.-Tekhn. Khim. Geol. Nauk
+  IZVANZ: Izv. Akad. Nauk SSSR Ser. Fiz. Zemli
+  IZVAS1: Izv. Acad. Sci. USSR Atmospher. Ocean. Phys.
+  IZVSK3: Izv. Severo-Kavkaz. Nauchn. Tsentra Vyssh. Shkoly Estestv. Nauk.
+  IZVSK4: Izv. Severo-Kavkaz. Nauchn. Tsentra Vyssh. Shkoly Tekhn. Nauk.
+  IZVSO2: Izv. Sibirsk. Otdel. Akad. Nauk SSSR Ser. Tekhn. Nauk
+  IZVTP1: Izv. Tomsk. Politekhn. Inst.
+  IZVVG1: Izv. Voronezh. Gos. Ped. Inst.
+  IZVVU3: Izv. Vyssh. Uchebn. Zaved. Fiz.
+  IZVVU4: Izv. Vyssh. Uchebn. Zaved. Mat.
+  IZVVU5: Izv. Vyssh. Uchebn. Zaved. Radiofiz.
+  IZVVU6: Izv. Vyssh. Uchebn. Zaved. Aviatsion. Tekhn.
+  J-16TH-CENT: The Sixteenth Century Journal
+  J-AARBOEKJE-LEIDEN: Jaarboekje voor geschiedenis en oudheidkunde van Leiden en omstreken
+  J-ABACUS: Abacus
+  J-ACM-SIGSOFT: ACM Sigsoft
+  J-ACOUST-SOC-AMER: J. Acoustic Soc. Amer.
+  J-ACTA-APPL-MATH: Acta Applicandae Math.
+  J-ACTA-ARITH: Acta Arith.
+  J-ACTA-CRYSTAL-A: ' Acta Crystal A'
+  J-ACTA-LITT-SCI: Acta Litt. Sci. Szeged
+  J-ACTA-MATH: Acta Math
+  J-ACTA-MATH-HUNG: Acta Math. Acad. Sci. Hung.
+  J-ADV-APPL-MATH: Adv. Appl. Math
+  J-ADV-APPL-PROB: Adv. Appl. Prob.
+  J-ADV-MATER: Adv. Mater.
+  J-ADV-MATH: Adv. Math
+  J-ADV-WATER-RSRC: Advances in Water Resources
+  J-AIAA: AIAA Journal
+  J-AMER-EDUCATOR: Amer. Educator
+  J-AMER-MATH: Amer. J. Math.
+  J-AMER-MATH-MONTHLY: Amer. Math. Monthly
+  J-AMER-STAT-ASSOC: J. Amer. Stat. Assoc.
+  J-AMS: J. Amer. Math. Soc.
+  J-AMS-COLL-PUB: AMS Coll. Publ.
+  J-AMS-CONTEMP-MATH: AMS Contemp. Math.
+  J-ANAL-MATH: J. Anal. Math.
+  J-ANALYSE-MATH: J. d'Analyse Math.
+  J-ANN-POINCARE: Ann. Inst. Henri Poincaré
+  J-ANN-REV-MATERIAL-SCI: Annual Rev. of Materials Sciences
+  J-ANN-REV-NEURO: Annual Rev. Neurosci.
+  J-ANN-REV-PHYSIOL: Annual Rev. Physiol.
+  J-ANNALS-FOURIER: Ann. Inst. Fourier (Grenoble)
+  J-ANNALS-MATH: Annals of Mathematics
+  J-ANNALS-MATH-2: Annals of Mathematics (2)
+  J-ANNALS-MATH-STAT: Ann. Math. Stat.
+  J-ANNALS-MATH-STUDIES: Annals of Mathematics Studies
+  J-ANNALS-PROB: Annals of Probability
+  J-ANNALS-SENS: Ann. Scient. Ec. Norm. Sup.
+  J-ANNALS-STAT: Annals of Statistics
+  J-APPL-MATH-OPT: Appl. Math. and Optimization
+  J-APPL-OPTICS: Appl. Optics
+  J-APPL-PHYS: J. Appl. Physics
+  J-APPL-PHYS-LET: Appl. Phys. Lett.
+  J-APPL-PSYCH: J. of Applied Psychology
+  J-APPL-STAT: Appl. Stat.
+  J-APPLIC-ANAL: Applicable Analysis
+  J-APPROX-TH: J. Approx. Th.
+  J-ARCH-RAT-MECH-ANAL: Arch. Rat. Mech. and Analysis
+  J-ARITH-TEACHER: Arithmetic Teacher
+  J-ARKIV-MATH: Arkiv für Math.
+  J-ART-BULL: Art Bulletin
+  J-ASSP-MAG: \allcapsASSP Magazine
+  J-ASYMP-STAT: Asymptotic Statistics
+  J-ATMOS-ENV: Atmospheric Environment
+  J-ATMOS-SCI: J. of Atmospheric Science
+  J-AUSTRALIAN-MATH: Australian J. Math.
+  J-BELL-SYS-TECH: Bell Sys. Tech. J
+  J-BIO-CYB: Biological Cybernetics
+  J-BIOMET: Biometrika
+  J-BOL-MAT-SAO-PAULO: Bol. Soc. Matem. Saõ Paulo
+  J-BOSTON-GLOBE: Boston Globe
+  J-BOSTON-PHOENIX: Boston Phoenix
+  J-BULL-AMS: Bull. AMS
+  J-BULL-AMS-NEW: Bull. (New Series) AMS
+  J-BULL-KNOB: Bulletin van de Koninklijke Nederlandese Oudheidkundige Bond
+  J-BULL-LONDON-MS: Bull. London Math. Soc.
+  J-BULL-MATH-SOC-SCI-MATH-ROUMANIE: Bull. Math. de la Soc. Sci. Math. de la R. S. Roumanie
+  J-BULL-SOC-MATH-FRANCE: Bull. Soc. Math. France
+  J-CABLE-TRANS: Cables et Transmissions
+  J-CAMBRIDGE-STUDIES-ADV-MATH: Cambridge Studies in Advanced Mathematics
+  J-CAN-MATH: Canadian J. Math.
+  J-CAN-PHYS: Canadian J. Phys.
+  J-CHEMO-INTELL-LAB: Chemometrics and Intelligent Laboratory System
+  J-CHILD-MATH-BEHAVIOR: J. Child. Math. Behavior
+  J-COLLOQ-MATH: Colloq. Math.
+  J-COLLOQ-MATH-BOLYAI: Colloq. Math. Soc. János Bolyai
+  J-COMB-TH: J. Combinatorial Theory
+  J-COMB-TH-SERIES-A: J. Combinatorial Theory Series A
+  J-COMM-ACM: Comm. ACM
+  J-COMM-MATH-PHYS: Comm. Math Phys.
+  J-COMM-PARTIAL-DIFF-EQNS: Comm. in Partial Differential Equations
+  J-COMM-PURE-APPL-MATH: Comm. Pure Appl. Math.
+  J-COMMENT-MATH-HELV: Comment. Math. Helv.
+  J-COMMON-CAUSE: Common Cause Magazine
+  J-COMP-CLASS-LEARN: Computer Classroom Learning
+  J-COMP-GRAPHICS: Computer Graphics
+  J-COMP-J: Computer Journal
+  J-COMP-LAW: Computer/Law Journal
+  J-COMP-MATH-APPL: Comp. and Maths. with Appls.
+  J-COMP-OP-RES: Computers and Operations Research
+  J-COMP-SPEECH-LANG: Computer Speech and Language
+  J-COMP-TECH-LAW: Journal of Computers, Technology and Law
+  J-COMP-VIS-GRAPHICS-IMG-PROC: Computer Vision, Graphics, and Image Processing
+  J-COMPOS-MATH: Compositio Math.
+  J-COMPUTER: Computer
+  J-CONCEPTS-NEURO: Concepts Neurosci.
+  J-CONTROL-OPT: SIAM J. Control Optim.
+  J-CORNELL-REV: Cornell Review
+  J-CPSR: \allcapsCPSR Newsletter
+  J-CR-ACADSCI-CANADA: C.R. Math. Rep. Acad. Sci. Canada
+  J-CR-ACADSCI-PARIS: C.R. Acad. Sci. Paris
+  J-CR-ACADSCI-USSR: C.R. (Doklady) Acad. Sci. U.S.S.R.
+  J-CRAS: C.R.A.S.
+  J-DATAMATION: Datamation
+  J-DEUTSCH-MATH-V: Jber. Deutsch. Math.—Verein
+  J-DIFF-EQ: J. Diff. Equations
+  J-DIFF-GEOM: J. Diff. Geom.
+  J-DISCRETE-MATH: Discrete Math
+  J-DOKLADI-AKAD-NAUK: Dokladi Akad. Nauk SSSR
+  J-DOOPS: Doopsgezinde Bijdragen
+  J-DUKE-MATH: Duke Math. J.
+  J-EDM: Ergebnisse der Mathematik
+  J-EMORY-LAW: Emory Law Journal
+  J-ENG-MAT: Eng. Mat.
+  J-ENSEIGNEMENT-MATH-2: l'Enseignement Math. (2)
+  J-ENV-SCI-TECH: Envir. Sci. Technol.
+  J-ERGONOMICS: Ergonomics
+  J-FLUID-MECH: Journal of Fluid Mech.
+  J-FUNC-ANAL: J. Functional Analysis
+  J-FUND-MATH: Fund. Math.
+  J-GAMM-MIT: GAMM-Mitteilungen
+  J-GEOM-ANAL: J. Geometric Anal.
+  J-GEOPHYS-RES: J. of Geophysical Research
+  J-GEOPHYSICS: Geophysics
+  J-GRAPH-TH: J. Graph Theory
+  J-HARPERS: Harper's Magazine
+  J-HARVARD-BUS-REV: Harvard Business Review
+  J-HARVARD-ED-REV: Harvard Educational Review
+  J-HARVARD-LAW-REV: Harvard Law Review
+  J-HUMAN-NEURO: Human Neurobiol.
+  J-HYDRAULIC-DIV: J. Hydraulic Div.
+  J-IBM-RES-DEV: IBM J. Res. Develop.
+  J-IDEM: Idem
+  J-IEEE: J. of \allcapsIEEE
+  J-IEEE-ACOUST-SPEECH: \allcapsIEEE Trans. Acoust., Speech, and Signal Process.
+  J-IEEE-AEROSPACE: \allcapsIEEE Trans. Aerospace Electronic Systems
+  J-IEEE-ANTENNA: \allcapsIEEE Trans. Antennas Propagation
+  J-IEEE-ASSP: \allcapsIEEE Trans. \allcapsASSP
+  J-IEEE-BIO-MED: \allcapsIEEE Trans. Biomedical Eng.
+  J-IEEE-CIRCUIT-TH: \allcapsIEEE Trans. Circuit Theory
+  J-IEEE-COMM: \allcapsIEEE Trans. Comm.
+  J-IEEE-COMP: \allcapsIEEE Trans. Computers
+  J-IEEE-ED: \allcapsIEEE Trans. Education
+  J-IEEE-ELECT: \allcapsIEEE Trans. Audio Electroacoustics
+  J-IEEE-GEO-RS: \allcapsIEEE Trans. Geo. Remote Sensing
+  J-IEEE-INF-TH: \allcapsIEEE Trans. Inf. Theory
+  J-IEEE-MED-IMAG: \allcapsIEEE Medical Imaging
+  J-IEEE-NEURAL-NETWORKS: \allcapsIEEE Trans. Neural Networks
+  J-IEEE-PAMI: \allcapsIEEE Trans. on Pattern Anal. and Machine Intel.
+  J-IEEE-QUANT-ELECT: \allcapsIEEE J. Quantum Electronics
+  J-IEEE-REL: \allcapsIEEE Trans. Reliability
+  J-IEEE-SIG-PROC: \allcapsIEEE Trans. Signal Processing
+  J-IEEE-SMC: \allcapsIEEE Trans. Systems, Man, and Cybernetics
+  J-IEEE-SPECTRUM: \allcapsIEEE Spectrum
+  J-ILLINOIS-MATH: Illinois J. Math
+  J-INDIANA-U-MATH: Indiana Univ. Math. J.
+  J-INFORM-CONTR: Inform. Contr.
+  J-INSTRUCTOR: The Instructor
+  J-INT-EQN-OP-TH: Integral Equations and Operator Theory
+  J-INT-J-TH-PHYS: Int. J. Theor. Phys.
+  J-INT-MANAGEMENT-SYS: Int. J. of Management and Systems
+  J-INT-NEURAL-SYS: Int. J. Neural Syst.
+  J-INTERFACES: Interfaces
+  J-ISRAEL-MATH: Israël J. Math.
+  J-IZV-AKAD: Izv. Akad. Nauk. USSR Ser. Mat.
+  J-JAPAN-APPL-MATH: Japan J. Appl. Math.
+  J-JERUSALEM: Jerusalem
+  J-JEWISH-SOCIAL-STUDIES: Jewish Social Studies
+  J-JHAPLTD: Johns Hopkins \allcapsAPL Tech. Dig.
+  J-JMIV: JMIV
+  J-JOSA-COMM: JOSA Communications
+  J-KYBER: Kybernetik
+  J-LECT-NOTES-BIOMATH: Lecture Notes in Biomathematics
+  J-LECT-NOTES-MATH: Lecture Notes in Mathematics
+  J-LET-MATH-PHYS: Lett. Math. Phys.
+  J-LONDON-MATH-SOC: J. London Math. Soc.
+  J-MACQUARIE-MATH-REP: Macquarie Mathematics Report
+  J-MATH-ANAL-APPL: J. Math. Anal. Appl.
+  J-MATH-ANN: Math. Ann.
+  J-MATH-APPL-ANAL: J. Math. Appl. Anal.
+  J-MATH-BEHAVIOR: J. Math. Behavior
+  J-MATH-CLUJ: Mathematicae Cluj
+  J-MATH-COMP: Math. Comp.
+  J-MATH-CTRL-SIG-SYS: Math. Control, Signals and Sys.
+  J-MATH-GEO: Mathematical Geology
+  J-MATH-IMAG-VIS: J. Math. Imag. Vision
+  J-MATH-KYOTO-U: Jour. Math. Kyoto Univ.
+  J-MATH-MECH: J. Math. Mech.
+  J-MATH-METH-APPL: Math. Meth. in the Appl. Sci.
+  J-MATH-MODEL: Math. Modeling
+  J-MATH-NACHR: Math. Nachr.
+  J-MATH-NOTE: Mat. Note
+  J-MATH-PHYS: J. Math and Physics
+  J-MATH-PROC-CAMB: Math. Proc. Camb. Phil. Soc.
+  J-MATH-PURES-APPL: Journal de Mathématiques Pures et Appliquées
+  J-MATH-SBORNIK: Math. \allcapsUSSR Sbornik
+  J-MATH-SCAN: Math. Scand.
+  J-MATH-SYS-TH: Math. Systems Theory
+  J-MATH-ZEITSCHR: Math. Zeitschr.
+  J-MAYFLOWER-QUARTERLY: Mayflower Quarterly
+  J-MEM-AMS: Mem. Am. Math Soc.
+  J-MEM-KYUSHU: Mem. Fac. Sci. Kyushu Univ.
+  J-METAPHILOSOPHY: Metaphilosophy
+  J-MICH-MATH: Michigan Math. J.
+  J-MOD-OPT: J. Mod. Opt.
+  J-MONAT-MATH: ' Monatsh. für Math.'
+  J-MONAT-MATH-PHYSIK: Monatsch. Math. u. Physik
+  J-MOTHER-JONES: Mother Jones
+  J-MULTIVAR-ANAL: J. Multivariate Analysis
+  J-NANOBIO: Nanobiology
+  J-NAT-LAMPOON: National Lampoon
+  J-NATURE: Nature
+  J-NEDERLAND-ARCH: >-
+    Nederlandse Archievenblad, Tijdschrift van de Vereniging van Archivarissen
+    in Nederland
+  J-NEDERLAND-KUNST-JAARBOEK: Nederlands Kunsthistorisch Jaarboek
+  J-NEURAL-COMP: Neural Computation
+  J-NEURAL-NETWORKS: Neural Networks
+  J-NEURO: J. Neurophysiology
+  J-NEUROSCI: J. Neurosci.
+  J-NEW-ENGLAND-HIST: New England Historical and Genealogical Register
+  J-NONLINEAR-ANAL-TH: Nonlinear Anal., Theory, Methods and Applications
+  J-NOTES-CRAS: Notes au Compte-Rendu de l'Academie Des Sciences
+  J-NUM-MATH: Num. Math
+  J-NUMBER-TH: Journal of Number Theory
+  J-NY-TIMES: New York Times
+  J-OCTOBER: October
+  J-OPT-COMM: Opt. Commun.
+  J-OPT-LET: Opt. Lett.
+  J-OPT-SOC-AMER-A: J. Opt. Soc. Amer.
+  J-OPTICA-ACTA: Optica Acta
+  J-OPTICAL-ENG: Optical Eng.
+  J-OPTICAL-QUANTUM-ELECT: Optical and Quantum Electronics
+  J-ORG-DYNAMIC: Organizational Dynamic
+  J-OUD-HOLLAND: Oud Holland
+  J-PACIFIC-MATH: Pacific J. Math.
+  J-PATT-REC: Journal of Pattern Recognition
+  J-PERCEPTION-PSYCHOPHYSICS: Perception & Psychophysics
+  J-PHILIPS-RES: Philips J. of Research
+  J-PHONETICS: J. of Phonetics
+  J-PHYS-LET: Phys. Lett.
+  J-PHYS-REV: Phys. Rev.
+  J-PHYS-REV-A: Phys. Rev. A
+  J-PHYS-REV-LET: Phys. Rev. Lett.
+  J-PHYSICA: Physica
+  J-PHYSICA-SCRIPTA: Physica Scripta
+  J-PHYSIOL: J. Physiol.
+  J-PITMAN-RNM: Pitman Research Notes in Math.
+  J-PITMAN-RNM:ADR: Longman Scientific and Technical, Harlow, Essex
+  J-PRINT: Print
+  J-PRINTING-WORLD: Printing World
+  J-PROB-REL-FIELDS: Prob. Th. Rel. Fields
+  J-PROC-AMS: Proc. Amer. Math. Soc.
+  J-PROC-CMAANU: Proc. Centre for Mathematical Analysis of the Australian National University
+  J-PROC-CMAANU:ADR: Canberra
+  J-PROC-ICASSP: Proc. \allcapsICASSP
+  J-PROC-IEEE: Proc. \allcapsIEEE
+  J-PROC-IMP-ACAD-TOKYO: Proc. Imp. Acad. Tokyo
+  J-PROC-LONDON-MATH-SOC: Proc. London Math. Soc.
+  J-PROC-MATH: Proc. J. Math.
+  J-PROC-NAT-ACAD-SCI-USA: Proc. Nat. Acad. Sci. USA
+  J-PROC-PHYS-SOC: Proc. Phys. Soc.
+  J-PROC-ROY-SOC-LONDON: Proc. Roy. Soc. London B.
+  J-PROC-SYMP-PURE-MATH: Proc. of Symp. Pure Math.
+  J-PROF-ISSUES: Journal of Professional Issues
+  J-PSYCH-WOMEN: Psychology of Women Quarterly
+  J-PUB-AFFAIRS-QUART: Public Affairs Quarterly
+  J-PUB-CENTRE: Publication du Centre Européen d'Études Burgondo-Médianes
+  J-PUB-MAT: Publicacions Matematiques
+  J-Q-MATH: Quarterly J. of Math.
+  J-Q-MATH-OXFORD: Quarterly J. of Math. Oxford
+  J-QUAERENDO: >-
+    Quaerendo, A Quarterly Journal from the Low Countries Devoted to Manuscripts
+    and Printed Books
+  J-RADIO-SCI: Radio Science
+  J-REINE-MATH: J. für die Reine u. Angewandte Math.
+  J-RENAISSANCE-Q: Renaissance Quarterly
+  J-REND-CIRC-MAT: Rend. Circ. Mat. Palermo
+  J-REP-MATH-PHYS: Reports on Math. Physics
+  J-RESULTS-MATH: Results in Math.
+  J-REV-MATH-IBER: Revista Math. Iberoamericana
+  J-REV-MOD-PHYS: Rev. Mod. Phys.
+  J-ROCKY-MATH: Rocky Mountain J. Math.
+  J-ROYAL-LONDON: Proc. Roy. Soc. London
+  J-RUTGERS-COMP-TECH-LAW: Rutgers J. of Computer Technology and the Law
+  J-SCI-AMER: Scientific American
+  J-SCIENCE: Science
+  J-SCREEN: Screen
+  J-SEX-ROLES: Sex Roles
+  J-SIAM-ALG-DISC-METH: \allcapsSIAM J. Alg. Disc. Meth.
+  J-SIAM-APPL-MATH: \allcapsSIAM J. of Applied Math.
+  J-SIAM-MATH: \allcapsSIAM J. Math.
+  J-SIAM-MATH-ANAL: \allcapsSIAM J. Math. Anal.
+  J-SIAM-NUM-ANAL: \allcapsSIAM Journal of Numerical Analysis
+  J-SIAM-REV: \allcapsSIAM Review
+  J-SIG-PROC: Signal Processing
+  J-SOC-ECON-PLAN: Socio-Economic Planning
+  J-SOC-IND-MATH: J. Soc. Indust. Appl. Math.
+  J-SOURCE: Source
+  J-SOURCE-ART: Source, Notes in the History of Art
+  J-SOVIET-MATH: J. of Soviet Mathematics
+  J-SOVIET-MATH-DOKL: Soviet Math. Dokl.
+  J-SPATIAL-VIS: Spatial Vision
+  J-STAT-PHYS: J. Stat. Phys.
+  J-STAT-SOC-B: J.R. Stat. Soc. B
+  J-STOCH-REPS: Stochastics and Stochastic Reports
+  J-STOCH-SYS-APPL: Stochastic Systems and Appl.
+  J-STUDIA-MATH: Studia Math.
+  J-STUDIA-ROSE: Studia Rosenthaliana
+  J-SYS-SOFT: Journal of System Software
+  J-TECH-REVIEW: Technology Review
+  J-TH-PRAC-SOFT-TECH: Theory and Practice
+  J-TH-PROB-APPL: Theor. Probability Appl.
+  J-TOPOLOGY: Topology
+  J-TRANS-AMS: Trans. Amer. Math. Soc.
+  J-TRANS-IRE: Trans. \allcapsIRE
+  J-TRANS-IRE-INF-TH: Trans. \allcapsIRE Inform. Theory
+  J-TRUDY: Trudy Matem. Inst. Steklov
+  J-ULTRA-MIC: Ultramicroscopy
+  J-VIS-COMM-IMG-PROC: Vision Comm. and Image Proc.
+  J-VIS-COMM-IMG-REP: J. Visual Communication and Image Representation
+  J-VIS-RES: Vision Res.
+  J-WALL-ST: Wall Street Journal
+  J-WATER-RSRC-RES: Water Resources Research
+  J-WHOLE-EARTH-REV: Whole Earth Review
+  J-YALE-LAW-REV: Yale Law Review
+  J-Z-WAHR: Z. für Wahrscheinlichkeitstheorie
+  JACOS: J. Acoust. Soc. Amer.
+  JAHDM: Jahresber. Deutsch. Math.-Verein.
+  JAHRS: 'Jahangirnagar Rev. Part A: Sci.'
+  JALGE: J. Algebra
+  JALGO: J. Algorithms
+  JAMEC: J. Amer. Chem. Soc.
+  JAMEM: J. Amer. Math. Soc.
+  JAMES: J. Amer. Statist. Assoc.
+  JANAM: J. Analyse Math.
+  JANIE: J. Animal Ecology
+  JANUS: Janus
+  JAPJM2: Japan. J. Math. (N.S.)
+  JAPPM1: J. Appl. Math. Mech.
+  JAPPM2: J. Appl. Mech. Tech. Phys.
+  JAPPP2: J. Appl. Probab.
+  JAPPT2: J. Approx. Theory
+  JASAT: J. Asahikawa Tech. College
+  JASSC: J. Assoc. Comput. Mach.
+  JASTS: J. Astronaut. Sci.
+  JATMS: J. Atmospheric Sci.
+  JAUSMA: J. Austral. Math. Soc. Ser. A
+  JAUSMB: J. Austral. Math. Soc. Ser. B
+  JBIHM: J. Bihar Math. Soc.
+  JBIOM: J. Biomech.
+  JBUHA: Jbuch. Heidelberger Akad. Wiss.
+  JCENC: J. Central China Teachers College
+  JCHEP: J. Chem. Phys.
+  JCHES: J. Chem. Soc. Faraday Trans. II
+  JCHEU: J. Chekiang Univ.
+  JCHII: J. Chinese Inst. Engrs.
+  JCHIU: J. China Univ. Sci. Tech.
+  JCHUS: J. Chengdu Univ. Sci. Tech.
+  JCLAS: J. Classification
+  JCOLEB: J. College Engrg. Nihon Univ. Ser. B
+  JCOLI: J. Colloid Interface Sci.
+  JCOLS: J. College Sci. Univ. Riyadh
+  JCOMA: J. Comput. Appl. Math.
+  JCOMC: J. Comput. Chem.
+  JCOMI2: J. Combin. Inform. System Sci.
+  JCOMM: J. Comput. Math.
+  JCOMP2: J. Comput. Phys.
+  JCOMS: J. Comput. System Sci.
+  JCOMTA: J. Combin. Theory Ser. A
+  JCOMTB: J. Combin. Theory Ser. B
+  JCUNS: J. Cuneiform Stud.
+  JDALI: J. Dalian Inst. Tech.
+  JDIFE: J. Differential Equations
+  JDIFG2: J. Differential Geom.
+  JDIGS: J. Digital Systems
+  JEASC: J. East China Norm. Univ. Natur. Sci. Ed.
+  JECOD: J. Econom. Dynamics Control
+  JECON2: J. Econometrics
+  JECONT: J. Econom. Theory
+  JELAS: J. Elasticity
+  JELIM: J. Elisha Mitchell Sci. Soc.
+  JENGM: J. Engrg. Math.
+  JENGP: J. Engrg. Phys.
+  JFACE1: J. Fac. Engrg. Chiba Univ.
+  JFACE2: J. Fac. Engrg. Univ. Tokyo Ser. B
+  JFACE4: J. Fac. Ed. Saga Univ.
+  JFACL1: J. Fac. Liberal Arts Yamaguchi Univ. Natur. Sci.
+  JFACS1: J. Fac. Sci. Shinshu Univ.
+  JFACS2: J. Fac. Sci. Univ. Tokyo Sect. IA Math.
+  JFINA: J. Finance
+  JFLUM: J. Fluid Mech.
+  JFRAI: J. Franklin Inst.
+  JFUDU: J. Fudan Univ. Natur. Sci.
+  JFUNA2: J. Funct. Anal.
+  JFUZU: J. Fuzhou Univ.
+  JGEOM2: J. Geom.
+  JGEOP: J. Geom. Phys.
+  JGRAT: J. Graph Theory
+  JHANU: J. Hangzhou Univ.
+  JHARI: J. Harbin Inst. Tech.
+  JHEIU: J. Heilongjiang Univ. Natur. Sci.
+  JHISA1: J. Hist. Astronom.
+  JHISA2: J. Hist. Arabic Sci.
+  JHOKUA: J. Hokkaido Univ. Ed. Sect. II A
+  JHUAI1: J. Huachung Inst. Tech.
+  JHUAU: J. Huazhong Univ. Sci. Tech. (English Ed.)
+  JHUAU1: J. Huazhong Univ. Sci. Tech.
+  JHUNN: J. Hunan Norm. Univ. Natur. Sci. Ed.
+  JILDZ: Jilin Daxue Ziran Kexue Xuebao
+  JINDA: J. Indian Acad. Math.
+  JINDI: J. Indian Inst. Sci.
+  JINDM2: J. Indian Math. Soc. (N.S.)
+  JINDS: J. Indian Statist. Assoc.
+  JINDS1: J. Indian Soc. Statist. Oper. Res.
+  JINDS2: J. Indian Soc. Agricultural Statist.
+  JINFO: J. Inform. Optim. Sci.
+  JINFP1: J. Inform. Process.
+  JINNM: J. Inner Mongolia Univ.
+  JINTA2: J. Internat. Assoc. Math. Geol.
+  JINTE: J. Integral Equations
+  JISUS: Jisuan Shuxue
+  JJAPS: J. Japan Statist. Soc.
+  JKARU: J. Karnatak Univ. Sci.
+  JKARU1: J. Karadeniz Univ. Fac. Arts Sci. Ser. Math.-Phys.
+  JKORM: J. Korean Math. Soc.
+  JKORS: J. Korean Statist. Soc.
+  JLANU: J. Lanzhou Univ.
+  JLOGP: J. Logic Programming
+  JLONM2: J. London Math. Soc. (2)
+  JMADK: J. Madurai Kamaraj Univ.
+  JMATA: J. Math. Anal. Appl.
+  JMATB: J. Math. Biol.
+  JMATE: J. Math. Econom.
+  JMATK: J. Math. Kyoto Univ.
+  JMATP4: J. Math. Phys.
+  JMATP5: J. Math. Phys. Sci.
+  JMATP6: J. Math. Psych.
+  JMATP7: J. Math. Pures Appl.
+  JMATR: J. Math. Res. Exposition
+  JMATS2: J. Math. Sci.
+  JMATS3: J. Math. Soc. Japan
+  JMATS5: J. Math. Sociol.
+  JMATT: J. Math. Tokushima Univ.
+  JMATW: J. Math. (Wuhan)
+  JMAUA: J. Maulana Azad College Tech.
+  JMECP: J. Mech. Phys. Solids
+  JMECT: J. Méc. Théor. Appl.
+  JMULA: J. Multivariate Anal.
+  JNANA: Jñānābha
+  JNANI: J. Nanjing Inst. Tech.
+  JNANU: J. Nanjing Univ.
+  JNATA: J. Nat. Acad. Math. India
+  JNATC: J. Nat. Chiao Tung Univ.
+  JNATS2: J. Natur. Sci. Math.
+  JNATS3: J. Natur. Sci. Beijing Normal Univ.
+  JNIGM: J. Nigerian Math. Soc.
+  JNONC: J. Non-Classical Logic
+  JNORI: J. Northeast Inst. Tech.
+  JNORN: J. Northeast Normal Univ.
+  JNORN1: J. Northeast Normal Univ.
+  JNORU: J. Northwest Univ.
+  JNUMM: J. Numer. Methods Comput. Appl.
+  JNUMT: J. Number Theory
+  JOPER2: J. Oper. Res. Soc. Japan
+  JOPET: J. Operator Theory
+  JOPTS1: J. Opt. Soc. Amer. A
+  JOPTT2: J. Optim. Theory Appl.
+  JORIM: J. Orissa Math. Soc.
+  JOUTS: J. Time Ser. Anal.
+  JPHIL: J. Philos. Logic
+  JPHIL2: J. Philos.
+  JPHYS1: J. Phys. Soc. Japan
+  JPHYS2: J. Physique
+  JPHYSA: J. Phys. A
+  JPHYSB: J. Phys. B
+  JPREF: J. Predent. Fac. Gifu College Dent.
+  JPROR: J. Proc. Roy. Soc. New South Wales
+  JPURA1: J. Pure Appl. Algebra
+  JPURA2: J. Pure Appl. Sci.
+  JPURM: J. Pure Math.
+  JRECM: J. Recreational Math.
+  JREIA: J. Reine Angew. Math.
+  JRESN1: J. Res. Nat. Bur. Standards
+  JRHEO: J. Rheol.
+  JROYSA: J. Roy. Statist. Soc. Ser. A
+  JROYSB: J. Roy. Statist. Soc. Ser. B
+  JROYSC: J. Roy. Statist. Soc. Ser. C
+  JSAIU: J. Saitama Univ. Fac. Ed. Math. Natur. Sci.
+  JSCIR1: J. Sci. Res.
+  JSHAC: J. Shanghai Chiaotung Univ.
+  JSHAC1: J. Shandong College Oceanol.
+  JSHAJ: J. Shanghai Jiaotong Univ.
+  JSHAU: J. Shanghai Univ. Sci. Tech.
+  JSHAU1: J. Shanxi Univ. Natur. Sci. Ed.
+  JSHIU2: J. Shivaji Univ. (Sci.)
+  JSKKU: J. Sung Kyan Kwan Univ.
+  JSOCA: J. Soc. Architect. Hist.
+  JSOUG: J. South Gujarat Univ.
+  JSOUV: J. Sound Vibration
+  JSOVM: J. Soviet Math.
+  JSTAC2: J. Statist. Comput. Simulation
+  JSTAP2: J. Statist. Plann. Inference
+  JSTAP3: J. Statist. Phys.
+  JSTAR: J. Statist. Res.
+  JSTRM: J. Structural Mech.
+  JSUNY: J. Sun Yatsen Univ.
+  JSYMC: J. Symb. Comput.
+  JSYML: J. Symbolic Logic
+  JSYSS1: J. Systems Sci. Math. Sci.
+  JTECB: J. Tech. Bengal Engrg. College
+  JTECP: J. Tech. Phys.
+  JTECR: J. Technikon Res. Ed.
+  JTENS: J. Tensor Soc. India
+  JTHEB: J. Theoret. Biol.
+  JTHEN: J. Theoret. Neurobiol.
+  JTHES: J. Thermal Stresses
+  JTIAU: J. Tianjin Univ.
+  JTONU: J. Tongji Univ.
+  JTSIU: J. Tsinghua Univ.
+  JTSUC: J. Tsuda College
+  JUNIB2: J. Univ. Bombay (N.S.)
+  JUNIK: J. Univ. Kuwait Sci.
+  JUNIP: J. Univ. Poona
+  JVLSC: J. VLSI Comput. Syst.
+  JWARC2: J. Warburg Courtauld Inst.
+  JWUHI: J. Wuhan Inst. Hydraulic Electr. Engrg.
+  JWUHI1: J. Wuhan Inst. Bldg. Materials
+  JWUHI2: J. Wuhan Inst. Iron Steel Tech.
+  JWUHU: J. Wuhan Univ. Natur. Sci. Ed.
+  JXIAJ: J. Xi'an Jiaotong Univ.
+  JXINU: J. Xinjiang Univ. Nat. Sci.
+  JXUNS: J. Xiamen Univ. Nat. Sci.
+  JZHEU: J. Zhejiang Univ.
+  KARMA: Karachi Math. Assoc. Riazi (Souvenir)
+  KARUJ: Karachi Univ. J. Sci.
+  KARUM: Karadeniz Univ. Math. J.
+  KEISC: Keio Sci. Tech. Rep.
+  KENKG: Kenkyû Kiyô—Gakushûin Kôtôka
+  KEXTC: Kexue Tongbao (Chinese)
+  KEXTE: Kexue Tongbao (English Ed.)
+  KEXUT1: Kexue Tansuo
+  KIBEK: Kibernetika (Kiev)
+  KIBVT1: Kibernet. i Vychisl. Tekhn.
+  KINAM: Kinam Rev. Fı́s.
+  KINFN: Kinemat. Fiz. Nebesn. Tel
+  KIRGP1: Kirov. Gos. Ped. Inst. Uchen. Zap.
+  KNILD1: Knizhnaya Letopis' Dopl. Vyp.
+  KNILU1: Knizhnaya Letopis' Ukazatel' Ser. Izdaniı̆
+  KNIZL1: Knizhnaya Letopis'
+  KOBJM: Kobe J. Math.
+  KODMJ: Kodai Math. J.
+  KOZMS2: Közl.—MTA Számitástech. Automat. Kutató Int. Budapest
+  KRIST1: Kristallografiya
+  KUIGP3: Kuı̆byshev. Gos. Ped. Inst. Nauchn. Trudy
+  KUMJSM: Kumamoto J. Sci. (Math.)
+  KVANE1: Kvantovaya Èlektronika
+  KWAGU: Kwansei Gakuin Univ. Annual Stud.
+  KWAHN2: Kwart. Hist. Nauk. Tech.
+  KYBEP: Kybernetika (Prague)
+  KYBER: Kybernetes
+  KYBPS: Kybernetika (Prague) Suppl.
+  KYUMJ: Kyungpook Math. J.
+  LANDX: Lanzhou Daxue Xuebao
+  LARSS: Large Scale Systems
+  LATME3: Latv. Mat. Ezhegodnik
+  LATPZV: Latvijas PSR Zinātņ. Akad. Vēstis
+  LATPZZ: Latvijas PSR Zināt\lhook n. Akad. Vēstis Fiz. Tehn. Zināt\lhook n. Sēr.
+  LENGP3: Leninabad. Gos. Ped. Inst. Uchen. Zap.
+  LENGU3: Leningrad. Gos. Univ. Uchen. Zap. Ser. Mat. Nauk
+  LEONA: Leonardo
+  LETMP: Lett. Math. Phys.
+  LETNC2: Lett. Nuovo Cimento (2)
+  LIBEM: Libertas Math.
+  LIBJS: Libyan J. Sci.
+  LINAA2: Linear Algebra Appl.
+  LINGP: Linguist. Philos.
+  LINMA: Linear and Multilinear Algebra
+  LITFS: Litovsk. Fiz. Sb.
+  LITMJ: Lithuanian Math. J.
+  LITMS: Litovsk. Mat. Sb.
+  LIXUX: Lixue Xuebao
+  LIXYS1: Lixue yu Shijian
+  LOGIA2: Logique et Anal. (N.S.)
+  LOSAS: Los Alamos Sci.
+  LUNLL: Lunli Liwu
+  LUSJS: Luso J. Sci. Tech.
+  MAGNET: Magnetohydrodynamics
+  MAGNG: Magnit. Gidrodinamika
+  MAKAN: Makedon. Akad. Nauk. Umet. Oddel. Prirod.-Mat. Nauk. Prilozi
+  MAKAN1: Makedon. Akad. Nauk. Umet. Oddel. Mat.-Tehn. Nauk. Prilozi
+  MANAS: Management Sci.
+  MANUG: Manuscripta Geod.
+  MANUM: Manuscripta Math.
+  MARGP1: Mari Gos. Ped. Inst. Uchen. Zap.
+  MATAC: Mat. Apl. Comput.
+  MATBI: Mat. Bilten
+  MATCE: Math. Comput. Ed.
+  MATCH: Match
+  MATCR: Mat. Costarricense
+  MATCS: Math. Comput. Simulation
+  MATCU: Math. Colloq. Univ. Cape Town
+  MATEB1: Matematika (Sarajevo)
+  MATEC: Matematiche (Catania)
+  MATEN: Mat. Enseñanza
+  MATES: Math. Ed. (Siwan)
+  MATFI1: Mat. Fiz. Nelineı̆n. Mekh.
+  MATFM: Mat.-Fys. Medd. Danske Vid. Selsk.
+  MATFU: Mat. Fak. Univ. Kiril Metodij Skopje Godišen Zb.
+  MATHA: Math. Ann.
+  MATHA1: Math. Agōgē
+  MATHB1: Math. Balkanica
+  MATHB2: Math. Biosci.
+  MATHC: Mathematica (Cluj)
+  MATHC1: Math. Chronicle
+  MATHC3: Math. Comp.
+  MATHE: Mathematika
+  MATHE2: Math. Ed.
+  MATHF: Math. Forum
+  MATHG: Math. Gaz.
+  MATHI: Math. Intelligencer
+  MATHJ: Math. Japon.
+  MATHM1: Math. Mag.
+  MATHM2: Math. Medley
+  MATHM3: Math. Modelling
+  MATHN1: Math. Nachr.
+  MATHN2: Math. Notae
+  MATHN3: Math. Notes
+  MATHP: Math. Programming
+  MATHR: MR
+  MATHR1: MR (Microfiche)
+  MATHS1: Math. Scand.
+  MATHS3: Math. Slovaca
+  MATHS4: Math. Student
+  MATHS5: Math. Sci.
+  MATHS6: Math. Semesterber.
+  MATHS7: Math. Spectrum
+  MATHT: Math. Today
+  MATHZ: Math. Z.
+  MATIM: Matimyás Mat.
+  MATIS: Mat. Issled.
+  MATJO: Math. J. Okayama Univ.
+  MATLA: Mat. Lapok
+  MATLP: Mat. Logika Primenen.
+  MATMA: Math. Methods Appl. Sci.
+  MATMF1: Mat. Metody i Fiz.-Mekh. Polya
+  MATMP: Mat. Mar del Plata
+  MATMS2: Mat. Metody v Sotsial. Nauk.
+  MATNS: Math. Numer. Sinica
+  MATOR: Math. Oper. Res.
+  MATOS2: Math. Operationsforsch. Statist. Ser. Optim.
+  MATOSS: Math. Operationsforsch. Statist. Ser. Statist.
+  MATPC: Math. Proc. Cambridge Philos. Soc.
+  MATPS2: Math. Programming Stud.
+  MATPT: Math. Practice Theory
+  MATRE: Math. Rep.
+  MATRK: Math. Rep. Kyushu Univ.
+  MATRS: Math. Rev. Sect.
+  MATRT: Math. Rep. Toyama Univ.
+  MATSB1: Mat. Sb. (N.S.)
+  MATSH: Math. Sci. Humaines
+  MATSK2: Mat. v Shkole
+  MATSN: Math. Sem. Notes Kobe Univ.
+  MATSS: Math. Social Sci.
+  MATST: Math. Systems Theory
+  MATST3: Mat. Stos.
+  MATTQ: Matrix Tensor Quart.
+  MATUI: Math. USSR-Izv.
+  MATUS: Math. USSR-Sb.
+  MATVE: Mat. Vesnik
+  MATVK: Mat. Voprosy Kibernet. Vychisl. Tekhn.
+  MATZA: Mat. Zametki
+  MECHP: Mech. Practice
+  MECHS2: Mech. Solids
+  MECJI: Meccanica—J. Ital. Assoc. Theoret. Appl. Mech.
+  MECME: Méc. Matériaux Électr.
+  MECRC: Mech. Res. Comm.
+  MECTS: Mech. Teoret. Stos.
+  MEDKA2: Med. Konink. Acad. Wetensch. België
+  MEHTT1: Mekh. Tverd. Tela
+  MEMAM: Mem. Amer. Math. Soc.
+  MEMAS3: Mem. Accad. Sci. Torino Cl. Sci. Fis. Mat. Natur. (5)
+  MEMEUA: Mem. Ehime Univ. Natur. Sci. Ser. A
+  MEMFE2: Mem. Fac. Ed. Miyazaki Univ.
+  MEMFE3: Mem. Fac. Engrg. Hiroshima Univ.
+  MEMFE4: Mem. Fac. Engrg. Kyoto Univ.
+  MEMFE5: Mem. Fac. Engrg. Miyazaki Univ.
+  MEMFE6: Mem. Fac. Ed. Shiga Univ. Natur. Sci.
+  MEMFE7: Mem. Fac. Ed. Shimane Univ. Natur. Sci.
+  MEMFE8: Mem. Fac. Ed. Kumamoto Univ. Natur. Sci.
+  MEMFE9: Mem. Fac. Ed. Akita Univ. Natur. Sci.
+  MEMFED: Mem. Fac. Engrg. Design Kyoto Inst. Tech. Ser. Sci. Tech.
+  MEMFG: Mem. Fac. Gen. Ed. Kumamoto Univ. Natur. Sci.
+  MEMFS: Mem. Fac. Sci. Kyushu Univ. Ser. A
+  MEMFS1: Mem. Fac. Sci. Shimane Univ.
+  MEMFS2: Mem. Fac. Sci. Kôchi Univ. Ser. A Math.
+  MEMKI: Mem. Kitami Inst. Tech.
+  MEMKT: Mem. Kyoto Tech. Univ. Sci. Tech.
+  MEMMI: Mem. Muroran Inst. Tech.
+  MEMND: Mem. Nat. Defense Acad.
+  MEMNM: Mem. Numer. Math.
+  MEMOI: Mem. Osaka Inst. Tech. Ser. A
+  MEMOK: Mem. Osaka Kyoiku Univ. III Natur. Sci. Appl. Sci.
+  MEMRA3: Mem. Real Acad. Cienc. Artes Barcelona
+  MEMRA4: Mem. Real Acad. Cienc. Exact. Fı́s. Natur. Madrid
+  MEMRI: Mem. Res. Inst. Sci. Engrg. Ritsumeikan Univ.
+  MEMSA2: Mem. Soc. Astronom. Ital. (N.S.)
+  MEMSE: Mem. School Engrg. Okayama Univ.
+  MEMSM: Mém. Soc. Math. France (N.S.)
+  MEMSS: Mem. School Sci. Engrg. Waseda Univ.
+  MEMSS1: Mem. Secţ. ştiinţ. Acad. Repub. Soc. România Ser. IV
+  MENEM: Menemui Mat.
+  METDA: Metody Diskret. Analiz.
+  METOV1: Metody Vychisl.
+  METRI: Metrika
+  METRI1: Métrica
+  METRO2: Metron
+  METRO3: Metroeconomica
+  MICMI: MIC—Modeling Identification Control
+  MICMJ: Michigan Math. J.
+  MIND: Mind
+  MISCM: Miscelánea Mat.
+  MITMG1: Mitt. Math. Ges. Hamburg
+  MITMG2: Mitt. Math. Ges. DDR
+  MITMS: Mitt. Math. Sem. Giessen
+  MITVS: Mitt. Verein. Schweiz. Versicherungsmath.
+  MOHUS: Mohu Shuxue
+  MOLEP: Molecular Phys.
+  MONAM: Monatsh. Math.
+  MONNR: Monthly Notices Roy. Astronom. Soc.
+  MOSGU3: Moskov. Gos. Univ. Soobshch. Gos. Astronom. Inst. Shternberga
+  MOSGU4: Moskov. Gos. Univ. Trudy Gos. Astronom. Inst. Shternberga
+  MOSII1: Moskov. Inst. Inzh. Zheleznodorozh. Transporta Trudy
+  MOSOP1: Moskov. Oblast. Ped. Inst. Sb. Trudov
+  MOSUM: Moscow Univ. Math. Bull.
+  MOSUP: Moscow Univ. Phys. Bull.
+  NACAW: Nachr. Akad. Wiss. Göttingen Math.-Phys. Kl. II
+  NAGMJ: Nagoya Math. J.
+  NANDX: Nanjing Daxue Xuebao Ziran Kexue Ban
+  NANDX1: Nanjing Daxue Xuebao Shuxue Bannian Kan
+  NANGX: Najning Gong Xueyuan Xuebao
+  NARAA: Narody Azii i Afiki
+  NARIP1: Narisi Īstor. Prirodoznav. ı̄ Tekhn.
+  NATAS: Nat. Acad. Sci. Lett.
+  NATSJ: Natur. Sci. J. Xiangtan Univ.
+  NATSR: Natur. Sci. Rep. Ochanomizu Univ.
+  NATUR: Naturalia
+  NAUIP1: >-
+    Nauchn.-Issled. i Proekt. Inst. Mekhanizatsii i Avtomatizatsii Upravleniya
+    Proizv. v Avtomobil. Promyshl. (NIIUAVTOPROM) Trudy
+  NAUTI3: >-
+    Nauchn.-Tekhn. Informatsiya (VINITI) Ser. 2 Informatsionnye Protsessy i
+    Sistemy
+  NAVRL: Naval Res. Logist. Quart.
+  NEDAW: Nederl. Akad. Wetensch. Indag. Math.
+  NEDAW2: Nederl. Akad. Wetensch. Proc. Ser. A
+  NEDAWB: Nederl. Akad. Wetensch. Proc. Ser. B
+  NEDAWN: Nederl. Akad. Wetensch. Verslag Afd. Natuurk.
+  NEIDX: Neimenggu Daxue Xuebao
+  NEIMS: Nei Meng Shiyuan Xuebao
+  NEPMS: Nepali Math. Sci. Rep.
+  NETWO: Networks
+  NEWGC: New Gener. Comput.
+  NEWZM: New Zealand Math. Mag.
+  NEWZM1: New Zealand Math. Soc. Newsletter
+  NEWZM2: New Zealand Math. Soc. Newslett.
+  NEWZO: New Zealand Oper. Res.
+  NIEAW3: Nieuw Arch. Wisk. (4)
+  NIETW: Nieuw Tijdschr. Wisk.
+  NIGJS: Nigerian J. Sci.
+  NONLA: Nonlinear Anal.
+  NORDI: Nordia
+  NORMA: Normat
+  NORTI2: Nordisk Tidskr. Informationsbehandling (BIT)
+  NORVA2: Norske Vid.-Akad. Oslo Mat.-Natur. Kl. Skr. (N.S.)
+  NORVSF: Norske Vid. Selsk. Forh. (Trondheim)
+  NORVSS: Norske Vid. Selsk. Skr. (Trondheim)
+  NOTAM: Notices Amer. Math. Soc.
+  NOTDJ: Notre Dame J. Formal Logic
+  NOTEM: Note Mat.
+  NOTRS: Notes and Records Roy. Soc. London
+  NOUS: Noûs
+  NOVAL: Nova Acta Leopoldina (N.F.)
+  NOVKS: Novye Knigi SSSR
+  NTMSG2: NTM Schr. Geschichte Natur. Tech. Medizin
+  NUCPA: Nuclear Phys. A
+  NUCPB: Nuclear Phys. B
+  NUMEM: Numer. Math.
+  NUMFA: Numer. Funct. Anal. Optim.
+  NUMMJ: Numer. Math. J. Chinese Univ.
+  NUOVCA: Nuovo Cimento A (11)
+  NUOVCB: Nuovo Cimento B (11)
+  NUOVCC: Nuovo Cimento C (1)
+  NUOVCD: Nuovo Cimento D (1)
+  OBSAU: Obs. Astronóm. Univ. Nac. La Plata Ser. Astronóm.
+  OBZMF: Obzornik Mat. Fiz.
+  OPERL: Oper. Res. Lett.
+  OPERR2: Oper. Res.
+  OPSEA: Opsearch
+  OPTCA: Optimal Control Appl. Methods
+  OPTIA: Optica Acta
+  OPTIM1: Optimizatsiya
+  OPTIM2: Optimization
+  ORDER: Order
+  OREZP1: Orekhovo-Zuev. Ped. Inst. Uchen. Zap. Kaf. Mat.
+  ORGAN: Organon
+  ORSJM: Osaka J. Math.
+  ORSPE: OR Spektrum
+  OSIRIS: Osiris (2)
+  OSTAWD: Österreich. Akad. Wiss. Math.-Natur. Kl. Denkschr.
+  OSTAWS: Österreich. Akad. Wiss. Math.-Natur. Kl. Sitzungsber. II
+  OTBPI1: Otbor i Peredacha Informatsii
+  PACJM: Pacific J. Math.
+  PAPPR2: Papers Proc. Roy. Soc. Tasmania
+  PARAC: Parallel Comput.
+  PATRL: Pattern Recognition Lett.
+  PATTR: Pattern Recognition
+  PERFE: Performance Evaluation
+  PERIM2: Period. Mat. (5)
+  PERMH: Period. Math. Hungar.
+  PERPM: Period. Polytech. Mech. Engrg.
+  PHIJR: Philips J. Res.
+  PHILJ: Philos. Jbuch.
+  PHILM: Philos. Math.
+  PHILN: Philos. Natur.
+  PHILO: Philologus
+  PHILQ: Philos. Quart.
+  PHILS1: Philos. Sci.
+  PHILS3: Philos. Stud.
+  PHITRA: Philos. Trans. Roy. Soc. London Ser. A
+  PHYEF: Phys. Energi. Fort. Phys. Nuclear.
+  PHYLA: Phys. Lett. A
+  PHYLB: Phys. Lett. B
+  PHYRI: Physis—Riv. Internaz. Storia Sci.
+  PHYRK: Phys. Rep. Kumamoto Univ.
+  PHYRL: Phys. Rev. Lett.
+  PHYSA: Phys. A
+  PHYSBC: Phys. B + C
+  PHYSD: Phys. D
+  PHYSF: Phys. Fluids
+  PHYSR: Phys. Rep.
+  PHYSRA: Phys. Rev. A (3)
+  PHYSRB: Phys. Rev. B (3)
+  PHYSRC: Phys. Rev. C (3)
+  PHYSRD: Phys. Rev. D (3)
+  PHYSS: Phys. Scripta
+  PHYST: Phys. Today
+  PLAPC: Plasma Phys. Control. Fusion
+  PLISM2: PLISKA Stud. Math. Bulgar.
+  PLOUN1: Plovdiv. Univ. Nauchn. Trud.
+  PODSS: Podstawy Sterowania
+  POKMF: Pokroky Mat. Fyz. Astronom.
+  POLAS: Polish Acad. Sci. Inst. Philos. Sociol. Bull. Sect. Logic
+  POLBA: Polska Biblio. Analit. Mech.
+  PORTM: Portugal. Math.
+  PORTP: Portugal. Phys.
+  POSTC: Post\polhkepy Cybernet.
+  PRAAA: Prakt. Akad. Athēnōn
+  PRABM: Prague Bull. Math. Linguist.
+  PRAIM: Prace Inst. Maszyn Przepływowych
+  PRANB: Prace Nauk.-Bad. Inst. Masz. Mat.
+  PRASV1: Práce Štúd. Vysokej Školy Doprav. Spojov Žiline Sér. Mat.-Fyz.
+  PRAXM: Praxis Math.
+  PRIEA: Proc. IEE-A
+  PRIEB: Proc. IEE-B
+  PRIEC: Proc. IEE-C
+  PRIED: Proc. IEE-D
+  PRIEE: Proc. IEE-E
+  PRIEF: Proc. IEE-F
+  PRIEG: Proc. IEE-G
+  PRIEH: Proc. IEE-H
+  PRIEI: Proc. IEE-I
+  PRIKM1: Prikl. Mekh.
+  PRIME: Primenen. Mat. Èkonom.
+  PRIMM1: Prikl. Mat. Mekh.
+  PRIPP1: Prikl. Problemy Proch. i Plast.
+  PRITV1: Primenen. Teor. Veroyatnost. i Mat. Statist.
+  PRNICK: Prace Nauk. Inst. Cybernet. Tech. Politech. Wrocław. Ser. Konfe
+  PRNICM: Prace Nauk. Inst. Cybernet. Tech. Politech. Wrocław. Ser. Monograf.
+  PRNICS: Prace Nauk. Inst. Cybernet. Tech. Politech. Wrocław. Ser. Stud. Materiały
+  PRNIM: Prace Nauk. Inst. Mat. Politech. Wrocław. Ser. Stud. Materiały
+  PRNIMK: Prace Nauk. Inst. Mat. Politech. Wrocław. Ser. Konfer.
+  PRNIMM: Prace Nauk. Inst. Mat. Politech. Wrocław. Ser. Monograf.
+  PROAM: Proc. Amer. Math. Soc.
+  PROBK2: Problemy Kibernet.
+  PROBM: Problemy Mat.
+  PROCI2: Problems Control Inform. Theory/Problemy Upravlen. Teor. Inform.
+  PROCN: Proc. College Natur. Sci. Seoul Nat. Univ.
+  PROEF: Proc. Einstein Found. Internat.
+  PROEM: Proc. Edinburgh Math. Soc. Edinburgh Math. Notes
+  PROEM2: Proc. Edinburgh Math. Soc. (2)
+  PROFS: Proc. Fac. Sci. Tokai Univ.
+  PROGE: Programmirovanie ÈVM
+  PROGI1: Prikl. Geom. i Inzhener. Grafika
+  PROGP: Progr. Phys.
+  PROGR: Programmirovanie
+  PROIA4: Proc. Indian Acad. Sci. Chem. Sci.
+  PROIA5: Proc. Indian Acad. Sci. Earth Planetary Sci.
+  PROIA6: Proc. Indian Acad. Sci. Math. Sci.
+  PROIN: Proc. Indian Nat. Sci. Acad. Part A
+  PROIS: Proc. Inst. Statist. Math.
+  PROIT2: Problems Inform. Transmission
+  PROJAA: Proc. Japan Acad. Ser. A Math. Sci.
+  PROJAB: Proc. Japan Acad. Ser. B Phys. Biol. Sci.
+  PROJF1: Problemy Yadern Fiz. i Kosm. Lucheı̆
+  PROLM2: Proc. London Math. Soc. (3)
+  PROMA2: Progr. Math. (Allahabad)
+  PROMP: Proc. Math. Phys. Soc. Egypt
+  PROMS: Probab. Math. Statist.
+  PRONA: Proc. Nat. Acad. Sci. U.S.A.
+  PRONAA: Proc. Nat. Acad. Sci. India Sect. A
+  PRONS: Proc. Nat. Sci. Council
+  PROOU4: Protsessy Optimal. Upravleniya Trudy Sem. I Sektsiya
+  PROOU5: Protsessy Optimal. Upravleniya Trudy Sem. II Sektsiya
+  PROOU6: Protsessy Optimal. Upravleniya Trudy Sem. V Sektsiya
+  PROPA: Proc. Pakistan Acad. Sci.
+  PROPI1: Problemy Peredachi Informatsii
+  PRORIA: Proc. Roy. Irish Acad. Sect. A
+  PRORS2: Proc. Roy. Soc. Canada (4)
+  PROSI: Proc. Steklov Inst. Math.
+  PROSP1: Problemy Sluchaı̆n. Poiska
+  PROTG1: Problemy Teor. Gravitatsii i Èlement. Chastits
+  PROTK2: Problemi Tekhn. Kibernet. Robot.
+  PROTP2: Progr. Theoret. Phys.
+  PROTP3: Progr. Theoret. Phys. Suppl.
+  PROTR: Probab. Theor. Relat. Fields
+  PROWV: Proc. West Virginia Acad. Sci.
+  PRRSEA: Proc. Roy. Soc. Edinburgh Sect. A
+  PRRSLA: Proc. Roy. Soc. London Ser. A
+  PRZES: Przegl\polhkad Statyst.
+  PSKPI1: Pskov. Ped. Inst. Fiz.-Mat. Fak. Uchen. Zap.
+  PSYCH: Psychometrika
+  PUB-AARHUS: Aarhus
+  PUB-ACAD-CHICAGO: Academy Chicago Publishers
+  PUB-ACAD-CHICAGO:ADR: Chicago, IL
+  PUB-ACAD-PR: Academic Press
+  PUB-ACAD-PR:ADR: New York
+  PUB-ACADEMIA: Academia
+  PUB-ACADEMIA:ADR: Prague
+  PUB-ACE-SCIFI: Ace Science Fiction Books
+  PUB-ACE-SCIFI:ADR: New York
+  PUB-AFCEA: AFCEA International Press
+  PUB-AFCEA:ADR: Fairfax, VA
+  PUB-AMACOM: Amacom
+  PUB-AMACOM:ADR: New York
+  PUB-AMS: American Mathematical Society
+  PUB-AMS:ADR: Providence, RI
+  PUB-ANCHOR: Anchor/​Doubleday
+  PUB-ANCHOR:ADR: Garden City, N.Y.
+  PUB-ANSI: American National Standards Institute
+  PUB-ANSI:ADR: 1430 Broadway, New York, NY 10018, USA
+  PUB-ARGONNE: Argonne National Laboratory
+  PUB-ARGONNE:ADR: Argonne, IL, USA
+  PUB-ARIZONA: University of Arizona Press
+  PUB-ARIZONA:ADR: Tucson, AZ
+  PUB-ARTECH: Artech House
+  PUB-ARTECH:ADR: Norwood, MA
+  PUB-AVON: Avon Books
+  PUB-AVON:ADR: New York
+  PUB-AW: Ad­di­son-Wes­ley
+  PUB-AW-CAN:ADR: Don Mills, Ontario, Canada
+  PUB-AW:ADR: Reading, MA, USA
+  PUB-BALLANTINE: Ballantine Books
+  PUB-BALLANTINE:ADR: New York
+  PUB-BANTAM: Bantam Books
+  PUB-BANTAM:ADR: Toronto
+  PUB-BARRE: Barre Publishers
+  PUB-BARRE:ADR: Barre, MA
+  PUB-BASIC: Basic Books
+  PUB-BASIC:ADR: New York
+  PUB-BELKNAP: Belknap Press of Harvard University Press
+  PUB-BELKNAP:ADR: Cambridge, \allcapsMA and London
+  PUB-BERKLEY: Berkley University Press
+  PUB-BI-WISS: BI-Wissenschaftsverlag
+  PUB-BI-WISS:ADR: Mannheim, Wien, Zürich
+  PUB-BIB-SOC: Bibliographical Society
+  PUB-BIB-SOC-USA: Bibliographical Society of America
+  PUB-BIB-SOC-USA:ADR: New York, NY, USA
+  PUB-BIB-SOC:ADR: London, UK
+  PUB-BIRKHAUSER: Birkhäuser Verlag
+  PUB-BIRKHAUSER:ADR: Basel
+  PUB-BOBBS-MERRILL: Bobbs-Merrill
+  PUB-BOBBS-MERRILL:ADR: Indianapolis/​New York
+  PUB-BOOKMAN: Bookman
+  PUB-BOOKMAN:ADR: Taipei, Taiwan
+  PUB-BRAZILLER: George Braziller
+  PUB-BRAZILLER:ADR: New York
+  PUB-CHARTWELL: Chartwell Books
+  PUB-CHARTWELL:ADR: Secaucus
+  PUB-CLARENDON: Clarendon Press
+  PUB-CLARENDON:ADR: Oxford
+  PUB-CLUT: Edizioni Cooperativa Libraria Universitaria Torino
+  PUB-CLUT:ADR: Corso Duca degli Abruzzi, 24, I 10129 Torino, Italy
+  PUB-CNRS-PARIS: \allcapsCNRS Paris
+  PUB-COLUMBIA: Columbia University Press
+  PUB-COLUMBIA:ADR: New York
+  PUB-CORNELL: Cornell University Press
+  PUB-CORNELL:ADR: Ithaca
+  PUB-CPS: Cambridge Philosophical Society
+  PUB-CRC: CRC Publishers
+  PUB-CRC:ADR: Boca Raton, FL
+  PUB-CUP: Cambridge University Press
+  PUB-CUP:ADR: Cambridge, U.K.
+  PUB-DOUBLEDAY: Doubleday & Co.
+  PUB-DOUBLEDAY:ADR: Garden City, N.Y.
+  PUB-DOVER: Dover Publications
+  PUB-DOVER:ADR: New York
+  PUB-EFF: Publications of the EFF
+  PUB-EFF:ADR: Cambridge, MA
+  PUB-FACH: Fachbuchverlag
+  PUB-FACH:ADR: Leipzig
+  PUB-FARRAR: Farrar, Strauss, and Giroux
+  PUB-FARRAR:ADR: New York
+  PUB-FREE: Free Press
+  PUB-FREE:ADR: New York
+  PUB-FREEMAN: W.H. Freeman
+  PUB-FREEMAN:ADR: San Francisco, New York
+  PUB-GARMISCH: Garmisch-Partenkirchen
+  PUB-GAUTHIER: Gauthier-Villars
+  PUB-GODINE: David R. Godine
+  PUB-GODINE:ADR: Boston
+  PUB-GROLIER: Grolier Club
+  PUB-GROLIER:ADR: New York
+  PUB-GROVE: Grove Press
+  PUB-GROVE:ADR: New York
+  PUB-GRUYTER: Walter de Gruyter
+  PUB-GRUYTER:ADR: New York
+  PUB-HARCOURT-BRACE-JOVANOVICH: Harcourt, Brace, Jovanovich
+  PUB-HARCOURT-BRACE-JOVANOVICH:ADR: San Diego, CA
+  PUB-HARCOURT-BRACE-WORLD: Harcourt, Brace, & World
+  PUB-HARCOURT-BRACE-WORLD:ADR: New York
+  PUB-HARPER-ROW: Harper & Row
+  PUB-HARPER-ROW:ADR: New York
+  PUB-HARVARD: Harvard University Press
+  PUB-HARVARD:ADR: Cambridge, Mass.
+  PUB-HEATH: Heath
+  PUB-HERMANN: Hermann
+  PUB-HERMANN:ADR: Paris
+  PUB-HILGER: Adam Hilger Ltd., Bristol
+  PUB-HOUGHTON-MIFFLIN: Houghton-Mifflin
+  PUB-HOUGHTON-MIFFLIN:ADR: Boston
+  PUB-HRW: Holt, Rinehart and Winston
+  PUB-HUNTER: Hunter House
+  PUB-HUNTER:ADR: Pomona, CA
+  PUB-HUTCH-ROSS: Hutchinson Ross Publishing Co.
+  PUB-HUTCH-ROSS:ADR: Colorado
+  PUB-IEEE: IEEE Press
+  PUB-IEEE:ADR: New York
+  PUB-IG: International General
+  PUB-IG:ADR: New York
+  PUB-INDIANA: Indiana University Press
+  PUB-INDIANA:ADR: Bloomington
+  PUB-INST-ADV-STUDY: Institute for Advanced Study
+  PUB-INST-ADV-STUDY:ADR: Princeton, NJ
+  PUB-INTERSCI: Interscience Publishers
+  PUB-INTERSCI:ADR: New York
+  PUB-JOHNS-HOPKINS: Johns Hopkins Press
+  PUB-JOHNS-HOPKINS:ADR: Baltimore
+  PUB-JONES-BARTLETT: Jones and Bartlett
+  PUB-JONES-BARTLETT:ADR: Boston
+  PUB-KLUWER: Kluwer Academic Publishers Group
+  PUB-KLUWER:ADR: Dordrecht, The Netherlands
+  PUB-KNOPF: Alfred A. Knopf
+  PUB-KNOPF:ADR: New York
+  PUB-LONGMAN: Longman Scientific and Technical
+  PUB-LONGMAN:ADR: Harlow, Essex
+  PUB-LOOMPANICS: Loompanics Unlimited
+  PUB-LOOMPANICS:ADR: Port Townsend, WA
+  PUB-MACMILLAN: MacMillan
+  PUB-MACMILLAN:ADR: New York
+  PUB-MATH-ASSOC-AMER: Mathematical Association of America
+  PUB-MATH-ASSOC-AMER:ADR: Washington, DC
+  PUB-MATH-ORSAY: Publications Mathématiques d'Orsay
+  PUB-MCGRAW-HILL: McGraw-Hill
+  PUB-MCGRAW-HILL:ADR: New York
+  PUB-MEDITERRANEAN: Mediterranean Press
+  PUB-MEDITERRANEAN:ADR: Bethesda
+  PUB-MIT: MIT Press
+  PUB-MIT:ADR: Cambridge, MA
+  PUB-MITTAG-LEFFLER: Institut Mittag-Leffler
+  PUB-MORGAN-KAUFMANN: Morgan Kaufmann
+  PUB-MORGAN-KAUFMANN:ADR: San Mateo
+  PUB-N-HOLLAND: North Holland-Elsevier Science Publishers
+  PUB-N-HOLLAND:ADR: Amsterdam, New York, Oxford
+  PUB-NAL: New American Library
+  PUB-NAL:ADR: New York
+  PUB-NATL-ACADEMIC-PRESS: National Academic Press
+  PUB-NATL-ACADEMIC-PRESS:ADR: Washington, \allcapsDC
+  PUB-OMEGA: Omega Books Ltd.
+  PUB-OMEGA:ADR: 1 West Street, Ware, Hertfordshire
+  PUB-OXFORD: Oxford University Press
+  PUB-OXFORD:ADR: New York, Oxford
+  PUB-PANTHEON: Pantheon Books
+  PUB-PANTHEON:ADR: New York
+  PUB-PENGUIN: Penguin Books
+  PUB-PENGUIN:ADR: Harmondsworth, U.K.
+  PUB-PERGAMON: Pergamon
+  PUB-PERGAMON:ADR: New York
+  PUB-PITMAN: Pitman
+  PUB-PITMAN-ADVANCED: Pitman Advanced Publishing Company
+  PUB-PITMAN:ADR: Boston
+  PUB-PLENUM: Plenum Press
+  PUB-PLENUM:ADR: New York and London
+  PUB-POCKET: Pocket Books
+  PUB-POCKET:ADR: New York
+  PUB-PRAEGER: Praeger Publishers
+  PUB-PRAEGER:ADR: New York
+  PUB-PRENTICE-HALL: Prentice-Hall
+  PUB-PRENTICE-HALL:ADR: Englewood Cliffs, N.J.
+  PUB-PRINCETON: Princeton University Press
+  PUB-PRINCETON:ADR: Princeton
+  PUB-PUTNAM: G.P. Putnam
+  PUB-PUTNAM:ADR: New York
+  PUB-QED-INFO: QED Information Sciences, Inc.
+  PUB-QED-INFO:ADR: Wellesley, MA
+  PUB-RANDOM: Random House
+  PUB-RANDOM:ADR: New York
+  PUB-REIDEL: D. Reidel
+  PUB-REIDEL:ADR: Dordrecht, Boston, Lancaster, Tokyo
+  PUB-REINHARDT-WINSTON: Reinhart & Winston
+  PUB-REINHARDT-WINSTON:ADR: New York
+  PUB-ROUTLEDGE: Routledge & Kegan Paul
+  PUB-ROUTLEDGE:ADR: London and New York
+  PUB-SCHERZ: Scherz Verlag
+  PUB-SCHERZ:ADR: Bern, München, Wien
+  PUB-SCHIRMER: Schirmer Books
+  PUB-SCHIRMER:ADR: New York
+  PUB-SCOTT-U-SS: Scottish Universities Summer School in Physics Publications
+  PUB-SCOTT-U-SS:ADR: Edinburgh
+  PUB-SIAM: SIAM Publ.
+  PUB-SIAM:ADR: Philadelphia
+  PUB-SIMON-SCHUSTER: Simon and Schuster
+  PUB-SIMON-SCHUSTER:ADR: New York
+  PUB-SPARTAN: Spartan Books
+  PUB-SPIE: \allcapsSPIE Optical Engineering Press
+  PUB-SPIE:ADR: Bellingham, WA
+  PUB-SPRINGER: Springer-Verlag
+  PUB-SPRINGER:ADR: Berlin
+  PUB-ST-MARTINS: St.\ Martins Press
+  PUB-ST-MARTINS:ADR: New York
+  PUB-TAPLINGER: Taplinger Publishing Co.
+  PUB-TAPLINGER:ADR: New York
+  PUB-TEUBNER: Teubner
+  PUB-TEUBNER:ADR: Stuttgart, Leipzig
+  PUB-THAMES-HUDSON: Thames and Hudson, Inc.
+  PUB-THAMES-HUDSON:ADR: New York
+  PUB-U-BREMEN: Universität Bremen
+  PUB-U-CAL: University of California Press
+  PUB-U-CAL:ADR: Berkeley
+  PUB-U-CHICAGO: University of Chicago Press
+  PUB-U-CHICAGO:ADR: Chicago
+  PUB-U-COLUMBIA: Columbia University Press
+  PUB-U-COLUMBIA:ADR: New York
+  PUB-U-ILL: University of Illinois Press
+  PUB-U-MICHIGAN: University of Michigan Press
+  PUB-U-MICHIGAN:ADR: Ann Arbor
+  PUB-U-NC: University of North Carolina Press
+  PUB-U-NC:ADR: Chapel Hill
+  PUB-U-NIS: University of Niš
+  PUB-U-NIS:ADR: Niš
+  PUB-U-NOTRE-DAME: University of Notre Dame Press
+  PUB-U-NOTRE-DAME:ADR: Notre Dame
+  PUB-U-PENN: University of Pennsylvania Press
+  PUB-U-PENN:ADR: Philadelphia
+  PUB-U-TORONTO: University of Toronto Press
+  PUB-U-TORONTO:ADR: Toronto
+  PUB-U-WAYNE-STATE: Wayne State University Press
+  PUB-U-WAYNE-STATE:ADR: Detroit
+  PUB-US-GPO: U.S. Government Printing Office
+  PUB-US-GPO:ADR: Washington, DC
+  PUB-VIKING: Viking Press
+  PUB-VIKING:ADR: New York
+  PUB-VINTAGE: Vintage
+  PUB-VINTAGE:ADR: New York
+  PUB-VNR: Van Nostrand Reinhold Company Inc.
+  PUB-VNR:ADR: New York
+  PUB-WADSWORTH: Wadsworth
+  PUB-WADSWORTH:ADR: Belmont, Calif.
+  PUB-WATSON-GUPTILL: Watson-Guptill Publications
+  PUB-WATSON-GUPTILL:ADR: New York
+  PUB-WESTVIEW: Westview Press
+  PUB-WESTVIEW:ADR: Boulder, CO
+  PUB-WILEY: John Wiley & Sons
+  PUB-WILEY:ADR: New York, London, Sydney
+  PUB-WORLD: World Publishing Co.
+  PUB-WORLD-SCI: World Scientific
+  PUB-WORLD-SCI:ADR: Singapore, Philadelphia
+  PUB-WORLD:ADR: Cleveland, Ohio
+  PUB-WWNORTON: W.W. Norton
+  PUB-WWNORTON:ADR: New York
+  PUB-YALE: Yale University Press
+  PUB-YALE:ADR: New Haven, Conn.
+  PUBBI3: Pubbl. Istit. Mat. Appl. Fac. Ingr. Univ. Stud. Roma Quaderno
+  PUBCR3: Publ. Centre Rech. Math. Pures (I) (Neuchâtel)
+  PUBDM3: Pubbl. Dip. Metod. Model. Mat. Sci. Appl. Univ. Stud. Roma Quad.
+  PUBIM2: Publ. Inst. Math. (Beograd) (N.S.)
+  PUBIS: Publ. Inst. Statist. Univ. Paris
+  PUBLE: Publ. Économétriques
+  PUBMD: Publ. Math. Debrecen
+  PUBRI: Publ. Res. Inst. Math. Sci.
+  PUBSM3: Publ. Sec. Mat. Univ. Autónoma Barcelona
+  PUNUJ: Punjab Univ. J. Math. (Lahore)
+  PURAM: Pure Appl. Math. Sci.
+  PURMM: Pure Math. Manuscript
+  QUAAM: Quart. Appl. Math.
+  QUAEM: Quaestiones Math.
+  QUAJE: Quart. J. Econom.
+  QUAJM2: Quart. J. Mech. Appl. Math.
+  QUAJM3: Quart. J. Math. Oxford Ser. (2)
+  QUAMC: Quad. Mathesis Cosenza
+  QUATE: Quant. Tech. Econom.
+  QUATG: Quatern. Geod.
+  QUEAG: Questions Answers Gen. Topology
+  QUFSX: Qufu Shiyuan Xuebao
+  RADEE: Radio Engrg. Electron. Phys.
+  RADIE1: Radiotekhn. i Èlektron.
+  RADIH1: Radiotekhn. (Khar'kov)
+  RADJA: Rad Jugoslav. Akad. Znan. Umjet.
+  RADMA: Rad. Mat.
+  RADQE: Radiophys. and Quantum Electronics
+  RAIAN: RAIRO Anal. Numér.
+  RAIAP: RAIRO Automat.-Prod. Inform. Ind.
+  RAIIT2: RAIRO Inform. Théor.
+  RAIMM: RAIRO Modél. Math. Anal. Numér.
+  RAIRA: RAIRO Automat.
+  RAIRO2: RAIRO Rech. Opér.
+  RANJE: Rand J. Econom.
+  RANUM: Ranchi Univ. Math. J.
+  RATIO: Ratio
+  RCARE: RCA Rev.
+  REAAE: Real Anal. Exchange
+  RECAE: Rech. Aérospat. (English Edition)
+  RECDM: Rech. Didact. Math.
+  RECHA2: Rech. Aérospat.
+  RECPN: Recent Progr. Natur. Sci. Japan
+  RENAN4: Rend. Accad. Naz. Sci. XL Mem. Mat. (5)
+  RENAN6: Rend. Accad. Naz. Sci. XL Mem. Mat. Sci. Fis. Natur. (5)
+  RENAN7: Rend. Accad. Naz. Sci. XL Mem. Sci. Fis. Natur. (5)
+  RENAS2: Rend. Accad. Sci. Fis. Mat. Napoli (4)
+  RENCM2: Rend. Circ. Mat. Palermo (2)
+  RENDM3: Rend. Mat. (7)
+  RENIM2: Rend. Istit. Mat. Univ. Trieste
+  RENSF: Rend. Sem. Fac. Sci. Univ. Cagliari
+  RENSMM: Rend. Sem. Mat. Fis. Milano
+  RENSMP: Rend. Sem. Mat. Univ. Padova
+  RENSMT: Rend. Sem. Mat. Univ. Politec. Torino
+  REPFE1: Rep. Fac. Engrg. Kanagawa Univ.
+  REPFE2: Rep. Fac. Engrg. Oita Univ.
+  REPFS1: Rep. Fac. Sci. Engrg. Saga Univ. Math.
+  REPFS3: Rep. Fac. Sci. Shizuoka Univ.
+  REPFS4: Rep. Fac. Sci. Kagoshima Univ. Math. Phys. Chem.
+  REPIH: Rep. Inst. High Speed Mech. Tôhoku Univ.
+  REPML: Rep. Math. Logic
+  REPMP2: Rep. Math. Phys.
+  REPPP: Rep. Progr. Phys.
+  REPSA: Rep. Statist. Appl. Res. Un. Japan. Sci. Engrs.
+  REPUE2: Rep. Univ. Electro-Comm.
+  REPVB2: Repúb. Venezuela Bol. Acad. Cienc. Fı́s. Mat. Natur.
+  RESAF: Res. Act. Fac. Sci. Engrg. Tokyo Denki Univ.
+  RESBF: Res. Bull. Fac. Ed. Oita Univ.
+  RESBM: Res. Bull. Meisei Univ.
+  RESBP2: Res. Bull. Panjab Univ. (N.S.)
+  RESIF2: Res. Inst. Fund. Inform. Sci. Res. Rep.
+  RESRA: Res. Rep. Anan Tech. College
+  RESRF: Res. Rep. Fac. Engrg. Tokyo Denki Univ.
+  RESRK: Res. Rep. Kushiro Tech. College
+  RESRM: Res. Rep. Miyagi Tech. College
+  RESRN: Res. Rep. Nagaoka Tech. College
+  RESRN1: Res. Rep. Nat. Sci. Council Math. Res. Center
+  RESUM: Resultate Math.
+  REVAC2: Rev. Acad. Cienc. Zaragoza (2)
+  REVCE1: Rev. CETHEDEC
+  REVCE2: Rev. CETHEDEC Cahier
+  REVCL2: Rev. Cienc. (Lima)
+  REVCM2: Rev. Colombiana Mat.
+  REVES1: Rev. Econom. Stud.
+  REVGS: Rev. Geophys. Space Phys.
+  REVGS1: Rev. Geophys.
+  REVHA: Rev. Mexicana Astronom. Astrofı́s.
+  REVHS: Rev. Histoire Sci. Appl.
+  REVIP: Rev. Internat. Philos.
+  REVME: Rev. Mat. Estatist.
+  REVMF: Rev. Mexicana Fı́s.
+  REVMH2: Rev. Mat. Hisp.-Amer. (4)
+  REVMP: Rev. Modern Phys.
+  REVPD: Rev. Palais Découverte
+  REVQS: Rev. Questions Sci.
+  REVRA2: Rev. Real Acad. Cienc. Exact. Fı́s. Natur. Madrid
+  REVRM: Rev. Roumaine Math. Pures Appl.
+  REVRP: Rev. Roumaine Phys.
+  REVRSE: Rev. Roumaine Sci. Tech. Sér. Électrotech. Énergét.
+  REVRSM: Rev. Roumaine Sci. Tech. Sér. Méc. Appl.
+  REVSA: Rev. Statist. Appl.
+  REVTF: Rev. Técn. Fac. Ingr. Univ. Zulia
+  REVUM: Rev. Un. Mat. Argentina
+  REVUS: Rev. Univ. Santander
+  RHEWA: Rheinisch-Westfälische Akad. Wissen. Natur-, Ingr.-Wirtschaftswiss.
+  RIAJK: Riazi J. Karachi Math. Assoc.
+  RICEA: Ricerche Automat.
+  RICEM: Ricerche Mat.
+  RICMP: 'Ricerca: Mat. Pure Appl.'
+  RICUS2: Rice Univ. Stud.
+  RIVMS: Riv. Mat. Sci. Econom. Social.
+  RIVMU2: Riv. Mat. Univ. Parma (4)
+  RIVNC3: Riv. Nuovo Cimento (3)
+  ROCMJ: Rocky Mountain J. Math.
+  ROSDG3: Rostov.-na-Donu Gos. Ped. Inst. Fiz.-Mat. Fak. Uchen. Zap.
+  ROSMK: Rostock. Math. Kolloq.
+  ROYSN: Roy. Soc. New Zealand Bull.
+  ROZCA: Rozpravy Československé Akad. Věd Řada Mat. Přı́rod. Věd
+  ROZPE: Rozprawy Elektrotech.
+  ROZPI: Rozprawy Inż.
+  ROZPP: Rozprawy Politech. Poznań
+  RUSMS: Russian Math. Surveys
+  RZAVT1: RZh. Avtomat. Telemekh. i Vychisl. Tekhn.
+  RZMAT3: RZhMat
+  RZMEH3: RZhMekh
+  RZTEK3: RZhTekhnKibernet
+  SAIMJ: Saitama Math. J.
+  SAKSP: Sakharth. SSR Ped. Inst. Šrom. Phiz.-Math. Ser.
+  SANKA: Sankhyā Ser. A
+  SANKB: Sankhyā Ser. B
+  SBNAS1: Sb. Nauchn. Soobshch. Dagestan. Gos. Univ.
+  SBPRP: Sb. Pracı́ Ped. Fak. v Ostravě Ser. A
+  SCAAJ: Scand. Actuar. J.
+  SCAJS: Scand. J. Statist.
+  SCHBF: Sci. Bull. Fac. Ed. Nagasaki Univ.
+  SCIAN: Science and Nature
+  SCIAS: Sci. Atmospher. Sinica
+  SCICP: Sci. Comput. Programming
+  SCIEA: Sci. Amer.
+  SCIEM: Scientia (Milano)
+  SCIEN: Science
+  SCIEV: Scientia (Valparaı́so)
+  SCIEX: Sci. Exploration
+  SCIPC1: Sci. Papers College Arts Sci. Univ. Tokyo
+  SCIRC: Sci. Rep. College Gen. Ed. Osaka Univ.
+  SCIRF: Sci. Rep. Fac. Ed. Gifu Univ. Natur. Sci.
+  SCIRF1: Sci. Rep. Fac. Ed. Fukushima Univ.
+  SCIRH: Sci. Rep. Hirosaki Univ.
+  SCIRK1: Sci. Rep. Kagoshima Univ.
+  SCIRK2: Sci. Rep. Kanazawa Univ.
+  SCIRK4: Sci. Rep. Kyoto Prefect. Univ. Natur. Sci. Living Sci.
+  SCIRNA: Sci. Rep. Niigata Univ. Ser. A
+  SCIRR: Sci. Rep. Res. Inst. Engrg. Kanagawa Univ.
+  SCIRT2: Sci. Rep. Tokyo Woman's Christian Univ.
+  SCIRY1: Sci. Rep. Yokohama Nat. Univ. Sect. I
+  SCISS: Sci. Sinica Suppl.
+  SCISSA: Sci. Sinica Ser. A
+  SCISSB: Sci. Sinica Ser. B
+  SCRFS: Scripta Fac. Sci. Natur. Univ. Purk. Brun.
+  SEIBB: Seibutsu Butsuri
+  SELMS: Selecta Math. Soviet.
+  SEMAC: Sém. Anal. Convexe
+  SEMIF: Semigroup Forum
+  SEMIP1: Sem. Inst. Prikl. Mat. Dokl.
+  SEQUA: Sequential Anal.
+  SERDI: Serdica
+  SERIL: Serials Librarian
+  SHADX: Shanxi Daxue Xuebao. Ziran Kexue Ban
+  SHAJD: Shanghai Jiaotong Daxue Xuebao
+  SHAKJ: Shanghai Kexue Jishu Daxue Xuebao
+  SHENX: Shengxue Xuebao
+  SHUJJ: Shuliang Jingji Jishu Jingji Xanjiu
+  SHUJY: Shuxue Jisuan yu Jisuanji Yingyong
+  SHUNJ: Shuxue Niankan Ji A
+  SHUSY: Shuxuede Shijian yu Renshi
+  SHUWX: Shuxue Wuli Xuebao
+  SHUXJ: Shuxue Jinzhan
+  SHUXN: Shuxue Niankan
+  SHUXX: Shuxue Xuebao
+  SHUXZ: Shuxue Zazhi
+  SHUYY: Shuxue Yanjiu yu Pinglun
+  SIAJA: SIAM J. Appl. Math.
+  SIAJA1: SIAM J. Algebraic Discrete Methods
+  SIAJC1: SIAM J. Comput.
+  SIAJC3: SIAM J. Control Optim.
+  SIAJM: SIAM J. Math. Anal.
+  SIAJN: SIAM J. Numer. Anal.
+  SIAJS: SIAM J. Sci. Statist. Comput.
+  SIAMR: SIAM Rev.
+  SIBMJ: Siberian Math. J.
+  SIBMZ1: Sibirsk. Mat. Zh.
+  SICDX: Sichuan Daxue Xuebao
+  SIEFE2: Siemens Forsch. Entwickl.
+  SIGNP: Signal Process.
+  SIMOS: Simon Stevin
+  SINET: SINET
+  SITSA: Sitzungsber. Sächs. Akad. Wiss. Leipzig. Math.-Natur. Kl.
+  SITWG: Sitzber. Wiss. Ges. Johann Wolfgang Goethe-Univ. Frankf. am Main
+  SOCCW: Soc. Choice Welf.
+  SOCIN: Social Networks
+  SOCSF: Soc. Sci. Fenn. Comment. Phys.-Math.
+  SOKES: Sōka Econom. Stud.
+  SOLMA: Solid Mech. Arch.
+  SOOAN1: Soobshch. Akad. Nauk Gruzin. SSR
+  SOOJM1: Soochow J. Math.
+  SOUAB: Southeast Asian Bull. Math.
+  SOUAS: South African Statist. J.
+  SOUJP: Southwestern J. Philos.
+  SOVAC: Soviet Automat. Control
+  SOVAM: Soviet Appl. Mech.
+  SOVIA1: Soviet Aeronaut.
+  SOVIA2: Soviet Astronom.
+  SOVJC: Soviet J. Contemporary Math. Anal.
+  SOVJC1: Soviet J. Comm. Tech. Electron.
+  SOVJC2: Soviet J. Comput. Syst. Sci.
+  SOVJN: Soviet J. Nuclear Phys.
+  SOVJP: Soviet J. Particles and Nuclei
+  SOVMD: Soviet Math. Dokl.
+  SOVMI: Soviet Math. (Iz. VUZ)
+  SOVPA2: Soviet Phys. Acoust.
+  SOVPC2: Soviet Phys.—Collection
+  SOVPC3: Soviet Phys. Cryst.
+  SOVPD2: Soviet Phys. Dokl.
+  SOVPJ3: Soviet Phys. J.
+  SOVPJ4: Soviet Phys. JETP
+  SOVPU2: Soviet Phys. Uspekhi
+  SPIRA: Spirales
+  STAAD: Statist. Anal. Données
+  STAPL: Statist. Probab. Lett.
+  STATB: Statistica (Bologna)
+  STATD: Statist. Decisions
+  STATH2: Statist. Hefte (N.F.)
+  STATI1: Statistics
+  STATM: STMA
+  STATN2: Statist. Neerlandica
+  STATP1: Statist. Problemy Upravleniya
+  STOAA: Stochastic Anal. Appl.
+  STOCH1: Stochastica
+  STOCH2: Stochastics
+  STOPA2: Stochastic Process. Appl.
+  STRML: Strukturn. i Mat. Lingvistika
+  STRUT: Structural Topology
+  STUAM2: Stud. Appl. Math.
+  STUCF: Stud. Cerc. Fiz.
+  STUCM: Stud. Cerc. Mat.
+  STUCMA: Stud. Cerc. Mec. Apl.
+  STUDA: Studia Automat.
+  STUDE: Stud. Develop.
+  STUDL1: Studia Leibnitiana
+  STUDL2: Studia Logica
+  STUDM: Studia Math.
+  STUDS: Stud. Develop. Special Issue
+  STUGM: Studia Geotech. Mech.
+  STUHP: Stud. Hist. Philos. Sci.
+  STUSC: Studia Sci. Math. Hungar.
+  STUUB1: Studia Univ. Babeş-Bolyai Math.
+  STUUBP: Studia Univ. Babeş-Bolyai Ser. Phys.
+  SUDHA: Sudhoffs Arch.
+  SUGAK1: Sûgaku
+  SUGAK2: Sûgakushi Kenkyû
+  SUHAM: Su-hak kwa Mul-li
+  SUIAT: Suid-Afrikaanse Tydskr. Natuurwetenskap Tegnol.
+  SUNKK: Sung Kyun Kwan Univ. J. Nat. Sci.
+  SURIK: Sûrikaisekikenkyûsho Kôkyûroku
+  SYNTH: Synthese
+  SYSAM: Systems Anal. Modelling Simulation
+  SYSCC2: Systems-Comput.-Controls
+  SYSCJ: Syst. Comput. Japan
+  SYSCL: Systems Control Lett.
+  SYSTC: Systems and Control
+  SYSTS: Systems Sci.
+  SZAMT: SZÁMKI Tanulmányok
+  SZIMK: Szigma—Mat.-Közgazdasági Folyóirat
+  TAMJM: Tamkang J. Math.
+  TAMJM1: Tamkang J. Management Sci.
+  TANMS2: Tanulmányok—MTA Számitástech. Automat. Kutató Int. Budapest
+  TAPCT: Tạp chı́ Toán học
+  TARRU: Tartu Riikl. Ül. Toimetised
+  TASGU4: Tashkent. Gos. Univ. Sb. Nauchn. Trudov
+  TBIGU: Tbiliss. Gos. Univ. Inst. Prikl. Mat. Trudy
+  TECHC: Tech. Chronica
+  TECHN1: Technikgeschichte
+  TECHN2: Technometrics
+  TECRK: Tech. Rep. Kansai Univ.
+  TECRO: Tech. Rep. Osaka Univ.
+  TELLU1: Tellus Ser. A
+  TENSO2: Tensor (N.S.)
+  TEOFF1: Teor. Funktsiı̆ Funktsional. Anal. i Prilozhen.
+  TEOKA2: Teor. Konechn. Avtomatov i Prilozhen.
+  TEOMF: Teoret. Mat. Fiz.
+  TEOOR2: Teor. Optimal. Resheniı̆
+  TEOPM: Teoret. i Prikl. Mekh. (Minsk)
+  TEOPM7: Teor. Primen. Meh.
+  TEOPM8: Teoret. Prilozhna Mekh.
+  TEOPM9: Teoret. i Prikl. Mekh. (Kiev/Donetsk)
+  TEORE1: Teorema
+  TEORE3: Teoret. Èlektrotekhn.
+  TEORI: Teoria
+  TEOVM1: Teor. Veroyatnost. i Mat. Statist.
+  TEOVP1: Teor. Veroyatnost. i Primenen.
+  TESLE2: TESLA Electron.
+  TEXJS: Texas J. Sci.
+  THEAF: Theor. Appl. Fract. Mech.
+  THEC5: Theoret. Comput. Sci.
+  THEMP: Theoret. and Math. Phys.
+  THEOD: Theory and Decision
+  THEOL: Theoret. Linguist.
+  THEOP: Theoret. Papers
+  THEOR: Theoria
+  THEOR1: Theoria (Madrid)
+  THEOR2: Theoria (San Sebastián)(2)
+  THEPA2: Theory Probab. Appl.
+  THEPB2: Theoret. Population Biol.
+  THEPM2: Theory Probab. Math. Statist.
+  TIADX: Tianjin Daxue Xuebao
+  TIANX: Tianwen Xuebao
+  TIAWX: Tianti Wuli Xuebao
+  TJUGU1: Tyumen. Gos. Univ. Nauchn. Trudy
+  TOHMJ2: Tôhoku Math. J. (2)
+  TOKJM: Tokyo J. Math.
+  TONDX: Tongji Daxue Xuebao
+  TOPOA: Topology Appl.
+  TOPOI: Topoi
+  TOPOL: Topology
+  TOPOP: Topology Proc.
+  TRAAM: Trans. Amer. Math. Soc.
+  TRAEI: Trabajos Estadı́st. Investigación Oper.
+  TRAIE: Trans. Inst. Electron. Comm. Engrs. Japan Sect. E
+  TRAIS: Trans. Illinois State Acad. Sci.
+  TRAJA: Trans. Japan Acad.
+  TRAMM: Trans. Moscow Math. Soc.
+  TRANAE: Trans. ASME Ser. E J. Appl. Mech.
+  TRANRB: Transportation Res. Part B
+  TRANS: Transportation Sci.
+  TRARS: Trans. Roy. Soc. South Africa
+  TRARS2: Trans. Roy. Soc. Canada (4)
+  TRASI: Traitement Signal
+  TRATS: Transport Theory Statist. Phys.
+  TRUAL1: Trudy Arkhangel. Lesotekhn. Inst.
+  TRUAN: Trudy Akad. Nauk Litov. SSR Ser. B
+  TRUDC1: Trudy TsNIIKA
+  TRUDV: Trudy VTI
+  TRUDV1: Trudy VTI
+  TRUFI: Trudy Fiz. Inst. Lebedev.
+  TRUGG: Trudy Glavn. Geofiz. Observator.
+  TRUGS1: Trudy Geom. Sem. Kazan. Univ.
+  TRUIM1: Trudy Inst. Mat. i Mekh. Ural. Nauchn. Tsentr Akad. Nauk SSSR
+  TRUIS3: Trudy Inst. Sistem Upravleniya Akad. Nauk Gruzin. SSR
+  TRUIT: Trudy Inst. Teoret. Astronom.
+  TRUKF3: Trudy Kolomen. Filiala Vsesoyuz. Zaochn. Politekhn. Inst.
+  TRUKG3: Trudy Kirgiz. Gos. Univ. Ser. Mat. Nauk
+  TRUKP1: Trudy Kalinin. Politekhn. Inst.
+  TRUKS1: Trudy Kazan. S.-kh. Inst.
+  TRUMA: TRU Math.
+  TRUME1: Trudy Moskov. Èlektrotekhn. Inst. Svyazi (MÈIS)
+  TRUMI1: Trudy Mat. Inst. Steklov.
+  TRUMI2: Trudy Metrolog. Inst. SSSR
+  TRUMI3: Trudy Moskov. Inst. Radiotehn. Èlektron. i Avtomat.
+  TRUMI4: Trudy Moskov. Inst. Radiotekhn. Èlektron. i Avtomat.
+  TRUMM1: Trudy Moskov. Mat. Obshch.
+  TRUMO: Trudy Moskov. Orden. Lenin. Ènerget. Inst.
+  TRUMV1: Trudy Moskov. Vyssh. Tekhn. Uchilishcha
+  TRUNI1: >-
+    Trudy Nauchno-Issled. Inst. Avtomatizatsii Proizvod. Protsessov Khim.
+    Promyshl. i Tsvet. Metallurgii
+  TRUNK: Trudy Nikolaev. Korablestroitel. Inst.
+  TRURI1: Trudy Rizhsk. Inst. Inzh. Grazhdan. Aviatsii
+  TRUSG1: Trudy Samarkand. Gos. Univ. (N.S.)
+  TRUSK4: Trudy Sem. Kraev. Zadacham
+  TRUSP: Trudy Sem. Petrovsk.
+  TRUSV: Trudy Sem. Vektor. Tenzor. Anal.
+  TRUTM: Trudy Tbiliss. Mat. Inst. Razmadze Akad. Nauk Gruzin. SSR
+  TRUTP1: Trudy Tadzhik. Politekhn. Inst.
+  TRUTU: Trudy Tbiliss. Univ.
+  TRUUD1: Trudy Univ. Druzhby Narod.
+  TRUVC6: Trudy Vychisl. Tsentra Tartu. Gos. Univ.
+  TRUVI: Trudy Inst. Vychisl. Mat. Akad. Nauk Gruzin. SSR
+  TRUVN2: Trudy Vsesoyuz. Nauchno-Issled. Inst. Èlektromekh.
+  TSUJM: Tsukuba J. Math.
+  TULGP1: Tul. Gos. Ped. Inst. Uchen. Zap. Mat. Kaf.
+  UCEZC1: Uchen. Zap. TsAGI
+  UCEZK1: Uchen. Zap. Karel. Ped. Inst. Ser. Fiz.-Mat. Nauk
+  UKRFZ3: Ukrain. Fiz. Zh.
+  UKRGS2: Ukrain. Geom. Sb.
+  UKRMJ: Ukrainian Math. J.
+  UKRMZ3: Ukrain. Mat. Zh.
+  ULSIT: Ulsan Inst. Tech. Rep.
+  UNIBP: Univ. Beograd. Publ. Elektrotehn. Fak.
+  UNIBPE: Univ. Beograd. Publ. Elektrotehn. Fak.Ser. Elektron. Telekomun. Automat.
+  UNIBPM: Univ. Beograd. Publ. Elektrotehn. Fak.Ser. Mat. Fiz.
+  UNIBT: Univ. Beograd. Tehn. Fiz.
+  UNIIA: Univ. Iagel. Acta Math.
+  UNINS1: Univ. u Novom Sadu Zb. Rad. Prirod.-Mat. Fak. Ser. Mat.
+  UNINTA: Univ. Nac. Tucumán Rev. Ser. A
+  UNISK4: Uniw. Śl\polhkaski w Katowicach Prace Nauk.-Prace Mat.
+  UPRAS1: Upravlyaemye Sistemy
+  URAGU: Ural. Gos. Univ. Mat. Zap.
+  URDGP1: Urdmurt. i Glazov. Ped. Inst. Uchen. Zap.
+  URDPI1: Urdmurt. Ped. Inst. Uchen. Zap.
+  USPFN1: Uspekhi Fiz. Nauk
+  USPMN1: Uspekhi Mat. Nauk
+  USSRC: U.S.S.R. Comput. Math. and Math. Phys.
+  UTILM: Utilitas Math.
+  VERKA2: Verh. Konink. Acad. Wetensch. België
+  VERZ4: Verzekerings-Arch.
+  VESAN3: Vestnik Akad. Nauk SSSR
+  VESAN4: Vestsı̄ Akad. Navuk BSSR Ser. Fı̄z.-Mat. Navuk
+  VESAN5: Vestnik Akad. Nauk Kazakh. SSR
+  VESBG: Vestnik Beloruss. Gos. Univ. Ser. I
+  VESHG1: Vestnik Khar'kov. Gos. Univ.
+  VESKU: Vestnik Kiev. Univ. Model. Optim. Slozhn. Sist.
+  VESLP1: Vestnik L'vov. Politekhn. Inst.
+  VESLU1: Vestnik Leningrad. Univ. Fiz. Khim.
+  VESLU2: Vestnik Leningrad. Univ. Mat. Mekh. Astronom.
+  VESLUM: Vestnik Leningrad Univ. Math.
+  VESMU: Vestnik Moskov. Univ. Ser. I Mat. Mekh.
+  VESMU1: Vestnik Moskov. Univ. Ser. XV Vychisl. Mat. Kibernet.
+  VESMUF: Vestnik Moskov. Univ. Ser. III Fiz. Astronom.
+  VIDYAB: Vidya B
+  VIGNB: Vignana Bharathi
+  VIJPA: Vijnana Parishad Anusandhan Patrika
+  VIKRA1: Vikram
+  VIKRAM: Vikram Math. J.
+  VIRJS: Virginia J. Sci.
+  VISIL: Visible Lang.
+  VISKU1: Vı̄snik Kiı̈v. Unı̄v. Ser. Mat. Mekh.
+  VISLD1: Vı̄snik L'vı̄v. Derzh. Unı̄v. Ser. Mekh.-Mat.
+  VISLP1: Vı̄snik L'vı̄v. Polı̄tekhn. Īnst.
+  VISTA: Vistas Astronom.
+  VLAGP1: Vladimir. Gos. Ped. Inst. Uchen. Zap.
+  VOLGP3: Volgograd. Gos. Ped. Inst. Uchen. Zap.
+  VOPDP1: Voprosy Dinamiki i Prochnosti
+  VOPIE1: Voprosy Istor. Estestvoznan. i Tekhn.
+  VOPIT1: Voprosy Informatsion. Teorii i Praktiki
+  VOPKM: Voprosy Kibernet. (Moscow)
+  VOPKT: Voprosy Kibernet. (Tashkent)
+  VOPRF: Voprosy Filos.
+  VOPTS1: Voprosy Teor. Sistem Avtomat. Upravleniya
+  VOPVP1: Voprosy Vychisl. i Prikl. Mat. (Tashkent)
+  VORTI1: Voronezh. Tekhn. Inst. Trudy
+  VYCIS1: Vychisl. Sistemy
+  VYCMP1: Vychisl. Metody i Programmirovanie
+  VYCPM1: Vychisl. Prikl. Mat. (Kiev)
+  VYCTV1: Vychisl. Tekhn. i Voprosy Kibernet.
+  WAVEM: Wave Motion
+  WIADM3: Wiadom. Mat.
+  WISZE: Wiss. Z. Ernst-Moritz-Arndt-Univ. Greifswald Math.-Natur. Reihe
+  WISZH1: Wiss. Z. Hochsch. Verkehrswesen “Friedrich List” Dresden
+  WISZH2: Wiss. Z. Humboldt-Univ. Berlin Math.-Natur. Reihe
+  WISZK: Wiss. Z. Karl-Marx-Univ. Leipzig Math.-Natur. Reihe
+  WISZK2: Wiss. Z. Karl-Marx-Univ. Leipzig Ges. Reihe
+  WISZM: Wiss. Z. Martin-Luther-Univ. Halle-Wittenberg Math.-Natur. Reihe
+  WISZP: Wiss. Z. Pädagog. Hochsch. “Karl Liebknecht” Potsdam
+  WISZP1: Wiss. Z. Pädagog. Hochsch. “Karl Friedrich Wilhelm Wander” Dresden
+  WISZT6: Wiss. Z. Tech. Hochsch. Magdeburg
+  WISZTD: Wiss. Z. Tech. Univ. Dresden
+  WISZTI: Wiss. Z. Tech. Hochsch. Ilmenau
+  WISZTK: Wiss. Z. Tech. Hochsch. Karl-Marx-Stadt
+  WISZTL: Wiss. Z. Tech. Hochsch. Leuna-Merseburg
+  WUHUJ: Wuhan Univ. J.
+  WULIJ: Wulixue Jingzhan
+  WULIX: Wuli Xuebao
+  WYZSP3: Wyż. Szkoła Ped. Krakow. Rocznik Nauk.-Dydakt. Prace Mat.
+  XIADZ: Xiangtan Daxue Ziran Kexue Xuebao
+  XIAJD: Xi'an Jiaotong Daxue Xuebao
+  XIAME: Xiamen. Daxue Xuebao
+  XIBDX: Xibei Daxue Xuebao
+  XINDX: Xinjiang Daxue Xuebao Ziran Kexue Ban
+  XINYK: Xinxi yu Kongzhi
+  XITKY: Xitong Kexue yu Shuxue
+  YADEF: Yadernaya Fiz.
+  YINSH: Yingyong Shuxue he Lixue
+  YINSX: Yingyong Shuxue Xuebao
+  YOKMJ: Yokohama Math. J.
+  YUNCZ: Yunchouxue Zazhi
+  ZALLW: Z. Allgemeine Wissenschaftstheorie
+  ZANAA: Z. Anal. Anwendungen
+  ZANGM1: Z. Angew. Math. Mech.
+  ZANGM2: Z. Angew. Math. Phys.
+  ZAPNS1: Zap. Nauchn. Sem. Leningrad. Otdel. Mat. Inst. Steklov. (LOMI)
+  ZASTM: Zastos. Mat.
+  ZBLMA: Zbl
+  ZBORM2: Zb. Rad. Mat. Inst. Beograd. (N.S.)
+  ZEKST1: Zh. Èksper. Teoret. Fiz.
+  ZELIE2: Z. Elektr. Inform. Energietech.
+  ZEMEM1: Zemledel. Mekh.
+  ZESNA: Zeszyty Nauk. Akad. Górn.-Hutniczej—Mat.-Fiz.-Chem.
+  ZESNG: Zeszyty Nauk. Geom.
+  ZESNPL: Zeszyty Nauk. Politech. Łódz. Mat.
+  ZESNPM: Zeszyty Nauk. Politech. Śl\polhkask. Mat.-Fiz.
+  ZESNPR: Zeszyty Nauk. Politech. Rzeszowskiej. Mat. Fiz.
+  ZESNUF: Zeszyty Nauk. Uniw. Jagielloń. Prace Fiz.
+  ZESNUM: Zeszyty Nauk. Uniw. Jagielloń. Prace Mat.
+  ZESNW1: Zeszyty Nauk. Wyż. Szkoły Ped. Szczecine Prace Wydz. Mat. Przyrod.
+  ZESNWF: Zeszyty Nauk. Wyż. Szkoły Ped. w Opolu Fiz.
+  ZESNWM: Zeszyty Nauk. Wyż. Szkoły Ped. w Opolu Mat.
+  ZFIZH1: Zh. Fiz. Khim.
+  ZHEDX: Zhejiang Daxue Xuebao
+  ZHODX: Zhongshan Daxue Xuebao
+  ZHOKJ: Zhongguo Kexue Jishu Daxue Xuebao
+  ZHONX: Zhongguo Kexue
+  ZIDOH: Zidonghua Xuebao
+  ZKRIS: Z. Krist.
+  ZMATL2: Z. Math. Logik Grundlag. Math.
+  ZNATA: Z. Naturforsch. A
+  ZNATIO: Z. Nationalökonom.
+  ZOPRAB: Z. Oper. Res. Ser. A-B
+  ZPHYA: Z. Phys. A
+  ZPHYB: Z. Phys. B
+  ZPHYC: Z. Phys. C
+  ZPRIM1: Zh. Prikl. Mekh. i Tekhn. Fiz.
+  ZVYCM1: Zh. Vychisl. Mat. i Mat. Fiz.
+  ZWAHV2: Z. Wahrsch. Verw. Gebiete

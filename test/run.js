@@ -222,6 +222,7 @@ for (const bibfile of testcases) {
   }
 
   const unabbreviate = config.tests.unabbreviate.includes(basename)
+  const loadstrings = config.tests.strings.includes(basename)
   const settings = [
     `sentencecase=${config.sentenceCase}`,
     `caseprotection=${config.caseProtection}`,
@@ -244,7 +245,7 @@ for (const bibfile of testcases) {
       },
       caseProtection: config.caseProtection === 'off' ? false : config.caseProtection,
       unabbreviations: unabbreviate && unabbreviations,
-      strings: unabbreviate && strings,
+      strings: loadstrings && strings,
       exception: config.tests.exception.includes(basename),
       raw: config.tests.raw.includes(basename),
       verbatimFields: config.tests.mendeley.includes(basename)
