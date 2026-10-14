@@ -2021,6 +2021,11 @@ mod wasm_bindings {
 
     use super::{Options, Parser, parse, parse_verbatim, reparse_with_yield};
 
+    #[wasm_bindgen(start)]
+    pub fn start() {
+        console_error_panic_hook::set_once();
+    }
+
     #[wasm_bindgen(
         inline_js = "export function playnice() { return new Promise(resolve => setTimeout(resolve, 0)); }"
     )]
