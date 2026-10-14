@@ -272,7 +272,7 @@ export class Library {
       const resolved = this.strings[u_bare] || this.default_strings[u_bare]
       if (typeof resolved === 'undefined') {
         this.error({
-          error: `Unresolved @string reference ${JSON.stringify(bare)}`,
+          error: `unresolved @string reference ${JSON.stringify(bare)}`,
           input: '',
         })
       }

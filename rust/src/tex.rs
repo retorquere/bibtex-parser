@@ -947,7 +947,7 @@ fn macro_arity(name: &str, in_math: bool) -> usize {
         | "cite" | "citeauthor" | "cyrchar" | "ding" | "emph" | "enquote" | "hbox" | "hskip"
         | "hspace" | "ht" | "mathrm" | "mbox" | "mkbibbold" | "mkbibemph" | "mkbibitalic"
         | "mkbibquote" | "noopsort" | "ocirc" | "overline" | "rlap" | "sb" | "section" | "sp"
-        | "subsection" | "subsubsection" | "subsubsubsection" | "t" | "textbf" | "textcite"
+        | "subsection" | "subsubsection" | "subsubsubsection" | "symbol" | "t" | "textbf" | "textcite"
         | "textit" | "textrm" | "textsc" | "textsl" | "textsubscript" | "textsuperscript"
         | "texttt" | "textup" | "url" | "vphantom" | "vspace" | "wd" => 1,
         "_" | "^" if in_math => 1,
@@ -2195,6 +2195,17 @@ fn render_macro(
                     }
                 })
                 .collect();
+        }
+        "symbol" => {
+            let code = arguments
+                .first()
+                .map(|argument| serialize_argument(argument))
+                .unwrap_or_default();
+            if let Ok(code) = code.trim().parse::<u32>() {
+                if let Some(character) = char::from_u32(code) {
+                    return character.to_string();
+                }
+            }
         }
         "enquote" | "mkbibquote" => {
             // `restoreMarkup` turns the TS enquote wrapper into curly quotation marks.

@@ -59,6 +59,26 @@ test('renders \\sb and \\sp like text sub/superscripts in both parsers', async (
   }
 })
 
+test('renders numeric \\symbol codes in both parsers', async () => {
+  await init({ module_or_path: readFileSync(require.resolve('@retorquere/bibtex-parser/wasm/bibtex_parser_bg.wasm')) })
+  const source = String.raw`@article{example, title={\symbol{65}\symbol{32}\symbol{126}\symbol{8364}\symbol{128512}}, note={\symbol{128}}}`
+  const ts = typescript.parse(source)
+  const rust = wasm.parse(source)
+
+  assert.equal(ts.entries[0].fields.title, 'A ~€😀')
+  assert.equal(rust.entries[0].fields.title, 'A ~€😀')
+  assert.equal(ts.entries[0].fields.note, '\u0080')
+  assert.equal(rust.entries[0].fields.note, '\u0080')
+  assert.deepEqual(ts.errors, [])
+  assert.deepEqual(rust.errors, [])
+
+  const invalid = String.raw`@article{example, note={\symbol{1114112}}}`
+  for (const parsed of [typescript.parse(invalid), wasm.parse(invalid)]) {
+    assert.equal(parsed.entries[0].fields.note, String.raw`\symbol{1114112}`)
+    assert.ok(parsed.errors[0].error.includes(String.raw`unhandled macro \symbol`))
+  }
+})
+
 test('all public parser results retain multiple preambles under the plural name', async () => {
   await init({ module_or_path: readFileSync(require.resolve('@retorquere/bibtex-parser/wasm/bibtex_parser_bg.wasm')) })
   const source = '@preamble{First}\n@preamble{Second}\n@misc{entry,title={Title}}'

@@ -763,7 +763,7 @@ impl Parser {
                     value.clone()
                 } else {
                     // Match the TS parser's placeholder behavior while recording one error per message.
-                    let message = format!("Unresolved @string reference {bare:?}");
+                    let message = format!("unresolved @string reference {bare:?}");
                     if !self
                         .library
                         .errors

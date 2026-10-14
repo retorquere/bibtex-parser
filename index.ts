@@ -415,6 +415,7 @@ const narguments = {
   rlap: 1,
   sb: 1,
   section: 1,
+  symbol: 1,
   sp: 1,
   subsection: 1,
   subsubsection: 1,
@@ -713,10 +714,21 @@ class BibTeXParser {
   }
 
   private macro(node: Macro, context: Context): string {
+    const name = macroAliases[node.content] ?? node.content
+    if (name === 'symbol') {
+      const argument = node.args?.[0]?.content ?? []
+      const content = argument.length === 1 && argument[0].type === 'group' ? argument[0].content : argument
+      const code = content.map(n => this.stringify(n, context)).join('').trim()
+      const value = /^\d+$/.test(code) ? Number(code) : NaN
+      if (Number.isSafeInteger(value) && value <= 0x10ffff && !(value >= 0xd800 && value <= 0xdfff)) {
+        return String.fromCodePoint(value)
+      }
+      return this.unsupported(node)
+    }
+
     const text = latex2unicode(printRaw(node), node)
     if (text) return text
 
-    const name = macroAliases[node.content] ?? node.content
     let url: Argument
     let label: Argument
     let arg: string[]
