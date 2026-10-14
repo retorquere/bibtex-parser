@@ -2982,12 +2982,31 @@ mod tests {
             FieldValue::Text(note) if note == "before after"
         ));
 
-        let nested_accent = parse(r"@book{x,title={\'{\a}}}", Options::default());
-        assert!(
-            nested_accent.errors.iter().any(|error| {
-                error.error == r"unhandled macro \'{\a}" && error.input == r"\'{\a}"
-            })
+        let nested_accent = parse(
+            r"@book{x,title={\'{\a}}}",
+            Options {
+                english: Vec::new(),
+                ..Options::default()
+            },
         );
+        assert!(matches!(
+            &nested_accent.entries[0].fields["title"],
+            FieldValue::Text(title) if title == "a\u{0301}"
+        ));
+        assert!(nested_accent.errors.is_empty());
+
+        let standalone = parse(
+            r"@book{x,title={\a}}",
+            Options {
+                english: Vec::new(),
+                ..Options::default()
+            },
+        );
+        assert!(matches!(
+            &standalone.entries[0].fields["title"],
+            FieldValue::Text(title) if title == r"\a"
+        ));
+        assert_eq!(standalone.errors[0].error, r"unhandled macro \a");
     }
 
     #[test]

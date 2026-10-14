@@ -205,6 +205,16 @@ for (const [name, parse] of [['parse', bibtex.parse], ['parseAsync', bibtex.pars
     assert.equal(result.errors[0].error, String.raw`unhandled macro \unknownmacro`)
   })
 
+  test(`accent handles an unhandled single-letter base locally (${name})`, async () => {
+    const accented = await parse(String.raw`@book{x,title={\'{\a}}}`, { english: [] })
+    assert.equal(accented.entries[0].fields.title, 'a\u0301')
+    assert.deepEqual(accented.errors, [])
+
+    const standalone = await parse(String.raw`@book{x,title={\a}}`, { english: [] })
+    assert.equal(standalone.entries[0].fields.title, String.raw`\a`)
+    assert.equal(standalone.errors[0].error, String.raw`unhandled macro \a`)
+  })
+
   for (const input of [source, String.raw`@preamble{\unknownmacro}`, String.raw`@string{unknown = {\unknownmacro}}`]) {
     test(`unsupported throw ${input} (${name})`, async () => {
       await assert.rejects(async () => parse(input, { unsupported: 'throw' }), /unhandled macro \\unknownmacro/)

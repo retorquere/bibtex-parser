@@ -2313,6 +2313,10 @@ fn render_macro(
 }
 
 /// Apply a combining accent only to the node shapes accepted by TypeScript’s preprocessor.
+///
+/// Some legacy input represents the base as an unknown one-letter control word, such as
+/// `\'{\a}`. That letter is treated as plain base text only here, after checking for a Unicode
+/// mapping; unsupported macros elsewhere continue through the normal unsupported handler.
 fn combining_argument(arguments: &[Vec<Node>], mark: &str, mode: &str) -> Option<String> {
     // TS substitutes a space when an accent has no argument or an empty one; it rejects multiple
     // arguments, multi-node groups, and non-string nodes instead of guessing at their structure.
@@ -2339,11 +2343,21 @@ fn combining_argument(arguments: &[Vec<Node>], mark: &str, mode: &str) -> Option
             name, arguments, ..
         } => {
             let latex = serialize_macro(name, arguments);
-            let mapping = unicode_mapping(&latex)?;
-            if mode == "math" {
-                mapping.math.or(mapping.text)?.to_string()
+            if let Some(mapping) = unicode_mapping(&latex) {
+                if mode == "math" {
+                    mapping.math.or(mapping.text)?.to_string()
+                } else {
+                    mapping.text?.to_string()
+                }
+            // The accent is known, but a legacy one-letter base command such as `\a` is not.
+            // Use its letter only when it has no arguments; do not change general macro fallback.
+            } else if arguments.is_empty()
+                && name.len() == 1
+                && name.as_bytes()[0].is_ascii_alphabetic()
+            {
+                name.clone()
             } else {
-                mapping.text?.to_string()
+                return None;
             }
         }
         _ => return None,

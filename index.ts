@@ -1229,6 +1229,18 @@ class BibTeXParser {
           case 'verbatim':
           case 'string':
             return { type: 'string', content: `${arg.content}${combining.tounicode[node.content]}`, _renderInfo: {} }
+          case 'macro':
+            // Legacy input can encode an accented base as an unknown control word, for example
+            // `\'{\a}`. The outer accent is recognized, but `\a` has no Unicode mapping. Treat
+            // only that argument-free, single-letter payload as text here; ordinary unknown
+            // macros must still go through the unsupported-command handler unchanged.
+            if (arg.escapeToken && /^[A-Za-z]$/.test(arg.content) && !arg.args?.length) {
+              const command = `${arg.escapeToken}${arg.content}`
+              if (!(command in latex2unicodemap)) {
+                return { type: 'string', content: `${arg.content}${combining.tounicode[node.content]}`, _renderInfo: {} }
+              }
+            }
+            return
           default:
             return
         }
