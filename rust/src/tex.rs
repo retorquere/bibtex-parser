@@ -943,6 +943,7 @@ fn macro_arity(name: &str, in_math: bool) -> usize {
     // This is the TypeScript narguments table; underscore/caret are argument-taking only in math.
     match name {
         "frac" | "href" => 2,
+        "discretionary" => 3,
         "advance" | "ElsevierGlyph" | "bar" | "begin" | "end" | "bibcyr" | "bibstring" | "chsf"
         | "cite" | "citeauthor" | "cyrchar" | "ding" | "emph" | "enquote" | "hbox" | "hskip"
         | "hspace" | "ht" | "mathrm" | "mbox" | "mkbibbold" | "mkbibemph" | "mkbibitalic"
@@ -2105,6 +2106,9 @@ fn render_macro(
 ) -> String {
     let case_protection = context.case_protection;
     match name {
+        "discretionary" => {
+            return render_argument(arguments, 2, mode, false, diagnostics, case_protection);
+        }
         " " => return " ".to_string(),
         // Line breaks are HTML breaks in rich text and ordinary spaces in scalar fields.
         "\\" => return if mode == "richtext" { "<br>" } else { " " }.to_string(),

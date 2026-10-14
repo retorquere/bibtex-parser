@@ -392,6 +392,7 @@ const narguments = {
   cite: 1,
   citeauthor: 1,
   cyrchar: 1,
+  discretionary: 3,
   ding: 1,
   emph: 1,
   enquote: 1,
@@ -715,6 +716,9 @@ class BibTeXParser {
 
   private macro(node: Macro, context: Context): string {
     const name = macroAliases[node.content] ?? node.content
+    if (name === 'discretionary') {
+      return node.args?.[2] ? this.stringify(node.args[2], context) : ''
+    }
     if (name === 'symbol') {
       const argument = node.args?.[0]?.content ?? []
       const content = argument.length === 1 && argument[0].type === 'group' ? argument[0].content : argument

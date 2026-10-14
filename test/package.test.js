@@ -79,6 +79,16 @@ test('renders numeric \\symbol codes in both parsers', async () => {
   }
 })
 
+test('renders the third \\discretionary argument in both parsers', async () => {
+  await init({ module_or_path: readFileSync(require.resolve('@retorquere/bibtex-parser/wasm/bibtex_parser_bg.wasm')) })
+  const source = String.raw`@article{example, note={A\discretionary{pre}{post}{third}B}}`
+
+  for (const parsed of [typescript.parse(source), wasm.parse(source)]) {
+    assert.equal(parsed.entries[0].fields.note, 'AthirdB')
+    assert.deepEqual(parsed.errors, [])
+  }
+})
+
 test('all public parser results retain multiple preambles under the plural name', async () => {
   await init({ module_or_path: readFileSync(require.resolve('@retorquere/bibtex-parser/wasm/bibtex_parser_bg.wasm')) })
   const source = '@preamble{First}\n@preamble{Second}\n@misc{entry,title={Title}}'
