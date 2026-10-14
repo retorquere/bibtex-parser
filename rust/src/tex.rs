@@ -986,7 +986,7 @@ pub(crate) struct RenderDiagnostics {
 }
 
 impl RenderDiagnostics {
-    fn render_unsupported(&self, command: &str) -> String {
+    fn render_unsupported(&self, command: &str, source: &str) -> String {
         match self.unsupported {
             Some(super::UnsupportedHandler::Tex | super::UnsupportedHandler::Throw) => {
                 format!("<script>{command}</script>")
@@ -995,7 +995,7 @@ impl RenderDiagnostics {
                 command.strip_prefix('\\').unwrap_or(command).to_string()
             }
             Some(super::UnsupportedHandler::Ignore) => String::new(),
-            None => command.to_string(),
+            None => source.to_string(),
         }
     }
 
@@ -2308,8 +2308,8 @@ fn render_macro(
         }
     }
 
-    diagnostics.report("macro", name, latex);
-    diagnostics.render_unsupported(&command)
+    diagnostics.report("macro", name, latex.clone());
+    diagnostics.render_unsupported(&command, &latex)
 }
 
 /// Apply a combining accent only to the node shapes accepted by TypeScript’s preprocessor.
@@ -2417,7 +2417,7 @@ fn render_environment(
                 serialize_nodes(&content[start..end])
             );
             diagnostics.report("environment", name, source.clone());
-            diagnostics.render_unsupported(&source)
+            diagnostics.render_unsupported(&source, &source)
         }
     }
 }
