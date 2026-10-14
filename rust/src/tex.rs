@@ -979,13 +979,26 @@ pub(crate) struct RenderDiagnostics {
     pub(crate) errors: Vec<super::ParseError>,
     /// Stable kind/name identifiers used to suppress duplicate macro and environment errors.
     unhandled: HashSet<String>,
-    /// Whether unsupported nodes are omitted from rendered output.
-    pub(crate) ignore_unsupported: bool,
+    /// Output policy for unsupported nodes.
+    pub(crate) unsupported: Option<super::UnsupportedHandler>,
     /// Whether root-title group boundaries should be retained for post-render casing.
     pub(crate) mark_case_groups: bool,
 }
 
 impl RenderDiagnostics {
+    fn render_unsupported(&self, command: &str) -> String {
+        match self.unsupported {
+            Some(super::UnsupportedHandler::Tex | super::UnsupportedHandler::Throw) => {
+                format!("<script>{command}</script>")
+            }
+            Some(super::UnsupportedHandler::Text) => {
+                command.strip_prefix('\\').unwrap_or(command).to_string()
+            }
+            Some(super::UnsupportedHandler::Ignore) => String::new(),
+            None => command.to_string(),
+        }
+    }
+
     /// Record an unsupported construct once while preserving its reconstructed TeX source.
     ///
     /// `kind` selects the diagnostic format, `name` forms the deduplication key, and
@@ -2295,13 +2308,8 @@ fn render_macro(
         }
     }
 
-    // Keep unknown macros in the rendered text for later unsupported-macro handling.
-    diagnostics.report("macro", name, latex.clone());
-    if diagnostics.ignore_unsupported {
-        String::new()
-    } else {
-        latex
-    }
+    diagnostics.report("macro", name, latex);
+    diagnostics.render_unsupported(&command)
 }
 
 /// Apply a combining accent only to the node shapes accepted by TypeScript’s preprocessor.
@@ -2409,11 +2417,7 @@ fn render_environment(
                 serialize_nodes(&content[start..end])
             );
             diagnostics.report("environment", name, source.clone());
-            if diagnostics.ignore_unsupported {
-                String::new()
-            } else {
-                source
-            }
+            diagnostics.render_unsupported(&source)
         }
     }
 }

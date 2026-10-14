@@ -190,11 +190,19 @@ for (const [name, parse] of [['parse', bibtex.parse], ['parseAsync', bibtex.pars
     }])
   })
 
-  test(`unsupported keep (${name})`, async () => {
-    const result = await parse(source, { unsupported: 'keep' })
-    assert.equal(result.entries[0].fields.note, String.raw`before \unknownmacroafter`)
+  test(`unsupported tex (${name})`, async () => {
+    const result = await parse(source, { unsupported: 'tex' })
+    assert.equal(result.entries[0].fields.note, 'before <script>\\unknownmacro</script>after')
     assert.equal(result.errors[0].error, String.raw`unhandled macro \unknownmacro`)
-    assert.deepEqual(await parse(source), result)
+    const defaultResult = await parse(source)
+    assert.equal(defaultResult.entries[0].fields.note, String.raw`before \unknownmacroafter`)
+    assert.deepEqual(defaultResult.errors, result.errors)
+  })
+
+  test(`unsupported text (${name})`, async () => {
+    const result = await parse(source, { unsupported: 'text' })
+    assert.equal(result.entries[0].fields.note, 'before unknownmacroafter')
+    assert.equal(result.errors[0].error, String.raw`unhandled macro \unknownmacro`)
   })
 
   for (const input of [source, String.raw`@preamble{\unknownmacro}`, String.raw`@string{unknown = {\unknownmacro}}`]) {
@@ -204,7 +212,7 @@ for (const [name, parse] of [['parse', bibtex.parse], ['parseAsync', bibtex.pars
   }
 
   test(`unsupported rejects removed handler (${name})`, async () => {
-    await assert.rejects(async () => parse(source, { unsupported: () => 'custom' }), TypeError)
+    await assert.rejects(async () => parse(source, { unsupported: 'keep' }), TypeError)
   })
 }
 

@@ -227,11 +227,12 @@ export interface Options {
   caseProtection?: 'as-needed' | 'strict' | boolean
 
   /**
-   * How to handle unknown TeX commands and environments: `ignore` replaces them with nothing,
-   * `keep` preserves their literal TeX (including the backslash) and records a diagnostic,
-   * and `throw` throws an error identifying the unsupported TeX. Defaults to `keep`.
+   * How to handle unknown TeX commands and environments: `tex` wraps the command in a script
+   * element, `text` returns the command without its backslash, `ignore` omits it, and `throw`
+   * throws an error identifying the unsupported TeX. When omitted, literal TeX is preserved for
+   * backwards compatibility.
    */
-  unsupported?: 'ignore' | 'keep' | 'throw'
+  unsupported?: 'tex' | 'text' | 'ignore' | 'throw'
 
   /**
    * Some fields such as `url` are parsed in what is called "verbatim mode" where pretty much everything except braces is treated as regular text, not TeX commands. You can change the default list here if you want,
@@ -655,7 +656,17 @@ class BibTeXParser {
         break
     }
 
-    return this.options.unsupported === 'ignore' ? '' : tex
+    const command = node.type === 'macro' ? `\\${node.content}` : tex
+    switch (this.options.unsupported) {
+      case 'ignore':
+        return ''
+      case 'text':
+        return command.replace(/^\\/, '')
+      case 'tex':
+        return `<script>${command}</script>`
+      default:
+        return tex
+    }
   }
 
   private wrap(text: string, tag, wrap = true): string {
@@ -1302,8 +1313,8 @@ class BibTeXParser {
       ].filter(field => typeof field === 'string')
     }
 
-    if (options.unsupported !== undefined && !['ignore', 'keep', 'throw'].includes(options.unsupported)) {
-      throw new TypeError('unsupported must be ignore, keep, or throw')
+    if (options.unsupported !== undefined && !['tex', 'text', 'ignore', 'throw'].includes(options.unsupported)) {
+      throw new TypeError('unsupported must be tex, text, ignore, or throw')
     }
 
     this.bib = {

@@ -284,8 +284,11 @@ test('rejects regex selectors unsupported by regex-lite', async () => {
   await assert.rejects(() => parseAsync(source, options))
 })
 
-test('matches TypeScript unsupported ignore/keep/throw behavior', async () => {
+test('matches TypeScript unsupported tex/text/ignore/throw behavior', async () => {
   const source = String.raw`@article{unknown, note = {before \unknownmacro after}}`
+
+  const defaultResult = await parseAsync(source)
+  assert.equal(defaultResult.entries[0].fields.note, String.raw`before \unknownmacroafter`)
 
   const ignored = await parseAsync(source, { unsupported: 'ignore' })
   assert.equal(ignored.entries[0].fields.note, 'before after')
@@ -294,12 +297,16 @@ test('matches TypeScript unsupported ignore/keep/throw behavior', async () => {
     input: String.raw`\unknownmacro`,
   }])
 
-  const kept = await parseAsync(source, { unsupported: 'keep' })
-  assert.equal(kept.entries[0].fields.note, String.raw`before \unknownmacroafter`)
-  assert.equal(kept.errors[0].error, String.raw`unhandled macro \unknownmacro`)
+  const tex = await parseAsync(source, { unsupported: 'tex' })
+  assert.equal(tex.entries[0].fields.note, 'before <script>\\unknownmacro</script>after')
+  assert.equal(tex.errors[0].error, String.raw`unhandled macro \unknownmacro`)
+
+  const text = await parseAsync(source, { unsupported: 'text' })
+  assert.equal(text.entries[0].fields.note, 'before unknownmacroafter')
+  assert.equal(text.errors[0].error, String.raw`unhandled macro \unknownmacro`)
 
   await assert.rejects(() => parseAsync(source, { unsupported: 'throw' }), /unhandled macro \\unknownmacro/)
-  await assert.rejects(() => parseAsync(source, { unsupported: () => 'custom' }), TypeError)
+  await assert.rejects(() => parseAsync(source, { unsupported: 'keep' }), TypeError)
 })
 
 test('exports TypeScript-shaped tokens with UTF-16 offsets and markup masks', () => {

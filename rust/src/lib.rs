@@ -306,6 +306,15 @@ pub enum VerbatimField {
     },
 }
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "lowercase")]
+pub enum UnsupportedHandler {
+    Tex,
+    Text,
+    Ignore,
+    Throw,
+}
+
 fn serialize_field_pattern<S: serde::Serializer>(
     pattern: &regex_lite::Regex,
     serializer: S,
@@ -371,11 +380,8 @@ pub struct Options {
     /// protection when authors may not expect the braces to affect title casing. `strict` preserves
     /// protection exactly as entered; `off` disables protection.
     pub case_protection: String,
-    /// Omit unsupported TeX constructs from rendered text while retaining their diagnostic.
-    ///
-    /// This is the Rust/WASM equivalent of the TypeScript unsupported-command handler’s
-    /// ignore policy; replacement callbacks are applied by the JS adapter.
-    pub ignore_unsupported: bool,
+    /// Policy for rendering unknown TeX commands and environments.
+    pub unsupported: Option<UnsupportedHandler>,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
@@ -425,7 +431,7 @@ impl Default for Options {
             language_as_langid: false,
             sentence_case: SentenceCaseOptions::default(),
             case_protection: "as-needed".to_string(),
-            ignore_unsupported: false,
+            unsupported: None,
         }
     }
 }
@@ -1760,7 +1766,7 @@ where
     Fut: std::future::Future<Output = ()>,
 {
     let mut render_diagnostics = tex::RenderDiagnostics::default();
-    render_diagnostics.ignore_unsupported = options.ignore_unsupported;
+    render_diagnostics.unsupported = options.unsupported;
     let preambles = verbatim.preambles.clone();
     let mut macro_definitions = HashMap::new();
     if !options.raw {
@@ -2966,7 +2972,7 @@ mod tests {
         let ignored = parse(
             r"@article{k,note={before \unknown after}}",
             Options {
-                ignore_unsupported: true,
+                unsupported: Some(crate::UnsupportedHandler::Ignore),
                 ..Options::default()
             },
         );

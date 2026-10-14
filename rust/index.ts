@@ -96,7 +96,7 @@ export interface Options extends ParserOptions {
   /** Control preservation of capitalization inside braces. */
   caseProtection?: 'off' | 'as-needed' | 'strict'
   /** Policy for unsupported TeX commands and environments. */
-  unsupported?: 'ignore' | 'keep' | 'throw'
+  unsupported?: 'tex' | 'text' | 'ignore' | 'throw'
   /** Fields parsed as verbatim text rather than TeX. */
   verbatimFields?: (string | RegExp)[]
   /** Fields for which a redundant outer brace pair is removed. */
@@ -171,11 +171,9 @@ function prepare(input: string, options: Options | ParserOptions = {}): { input:
     delete parserOptions.strings
   }
 
-  if (parserOptions.unsupported && !['ignore', 'keep', 'throw'].includes(parserOptions.unsupported as unknown as string)) {
-    throw new TypeError('unsupported must be ignore, keep, or throw')
+  if (parserOptions.unsupported !== undefined && !['tex', 'text', 'ignore', 'throw'].includes(parserOptions.unsupported as unknown as string)) {
+    throw new TypeError('unsupported must be tex, text, ignore, or throw')
   }
-  if (parserOptions.unsupported === 'ignore') parserOptions.ignoreUnsupported = true
-  delete parserOptions.unsupported
 
   if (Array.isArray(parserOptions.verbatimFields)) {
     parserOptions.verbatimFields = parserOptions.verbatimFields.map((field: string | RegExp) => {
