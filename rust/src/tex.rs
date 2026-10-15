@@ -600,7 +600,7 @@ impl Parser {
             };
         }
 
-        let arity = macro_arity(&name, math.is_some());
+        let arity = narguments(&name, math.is_some());
         for _ in 0..arity {
             // TeX permits whitespace between a macro name and its braced arguments.
             self.skip_argument_space();
@@ -935,7 +935,7 @@ impl Parser {
 }
 
 /// Return the argument arity for markup macros and combining macros.
-fn macro_arity(name: &str, in_math: bool) -> usize {
+fn narguments(name: &str, in_math: bool) -> usize {
     // Accent arity comes from the generated combining table rather than a second accent list.
     if unicode_mapping(&format!("\\{name}")).is_some_and(|mapping| mapping.combining.is_some()) {
         return 1;
@@ -945,7 +945,7 @@ fn macro_arity(name: &str, in_math: bool) -> usize {
         "frac" | "href" => 2,
         "discretionary" => 3,
         "advance" | "ElsevierGlyph" | "bar" | "begin" | "end" | "bibcyr" | "bibstring" | "chsf"
-        | "cite" | "citeauthor" | "cyrchar" | "ding" | "emph" | "enquote" | "hbox" | "hskip"
+        | "allcaps" | "cite" | "citeauthor" | "cyrchar" | "ding" | "emph" | "enquote" | "hbox" | "hskip"
         | "hspace" | "ht" | "mathrm" | "mbox" | "mkbibbold" | "mkbibemph" | "mkbibitalic"
         | "mkbibquote" | "noopsort" | "ocirc" | "overline" | "rlap" | "sb" | "section" | "sp"
         | "subsection" | "subsubsection" | "subsubsubsection" | "symbol" | "t" | "textbf" | "textcite"
@@ -1956,6 +1956,7 @@ fn render_node(
                 && context.root_scope
                 && !combining_macro
                 && name != "href"
+                && name != "allcaps"
                 && !matches!(name.as_str(), "hspace" | "hskip")
                 && !matches!(name.as_str(), "enquote" | "mkbibquote")
                 && arguments.iter().enumerate().any(|(index, argument)| {
@@ -2108,6 +2109,16 @@ fn render_macro(
     match name {
         "discretionary" => {
             return render_argument(arguments, 2, mode, false, diagnostics, case_protection);
+        }
+        "allcaps" => {
+            let content = render_argument(arguments, 0, mode, false, diagnostics, case_protection);
+            return if context.title_mode && diagnostics.mark_case_groups {
+                format!("<case-protection>{content}</case-protection>")
+            } else if context.title_mode && case_protection.enabled() {
+                format!("<span class=\"nocase\">{content}</span>")
+            } else {
+                content
+            };
         }
         " " => return " ".to_string(),
         // Line breaks are HTML breaks in rich text and ordinary spaces in scalar fields.

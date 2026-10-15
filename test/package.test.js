@@ -38,6 +38,18 @@ test('treats \\undefined as a no-op in the TypeScript parser', () => {
   assert.deepEqual(parsed.errors, [])
 })
 
+test('\\allcaps protects its contents in both parsers', async () => {
+  await init({ module_or_path: readFileSync(require.resolve('@retorquere/bibtex-parser/wasm/bibtex_parser_bg.wasm')) })
+  const source = String.raw`@article{example, title={A \allcaps{NASA} title}, note={\allcaps{NASA}}}`
+  const options = { caseProtection: 'strict' }
+
+  for (const parsed of [typescript.parse(source, options), wasm.parse(source, options)]) {
+    assert.equal(parsed.entries[0].fields.title, 'A <span class="nocase">NASA</span> title')
+    assert.equal(parsed.entries[0].fields.note, 'NASA')
+    assert.deepEqual(parsed.errors, [])
+  }
+})
+
 test('renders \\sb and \\sp like text sub/superscripts in both parsers', async () => {
   await init({ module_or_path: readFileSync(require.resolve('@retorquere/bibtex-parser/wasm/bibtex_parser_bg.wasm')) })
   const aliases = [

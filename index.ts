@@ -384,6 +384,7 @@ const FieldAction = {
 
 const narguments = {
   advance: 1,
+  allcaps: 1,
   ElsevierGlyph: 1,
   bar: 1,
   bibcyr: 1,
@@ -829,6 +830,9 @@ class BibTeXParser {
       case 'textsubscript':
         return this.subp(this.stringify(node.args![0], context), 'sub')
 
+      case 'allcaps':
+        return this.wrap(this.stringify(node.args![0], { ...context, caseProtected: true }), 'nc', this.english && context.mode === 'title')
+
       case '_':
       case '^':
         switch (latexMode(node)) {
@@ -923,7 +927,7 @@ class BibTeXParser {
       if (node._renderInfo!.bold) content = `${open.b}${content}${close.b}`
       if (node._renderInfo!.smallCaps) content = `${open.sc}${content}${close.sc}`
       if (node._renderInfo!.code) content = `${open.code}${content}${close.code}`
-      if (this.english && node._renderInfo!.protectCase) content = `${open.nc}${content}${close.nc}`
+      if (this.english && node._renderInfo!.protectCase && !context.caseProtected) content = `${open.nc}${content}${close.nc}`
     }
     return content
   }
