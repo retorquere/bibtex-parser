@@ -23,11 +23,39 @@ export interface Creator {
 
 export type FieldValue = string | string[] | Creator[]
 
+export type CreatorFields = {
+  author?: Creator[]
+  bookauthor?: Creator[]
+  collaborator?: Creator[]
+  commentator?: Creator[]
+  director?: Creator[]
+  editor?: Creator[]
+  editora?: Creator[]
+  editorb?: Creator[]
+  editors?: Creator[]
+  holder?: Creator[]
+  scriptwriter?: Creator[]
+  translator?: Creator[]
+}
+
+export type ArrayFields = {
+  keywords?: string[]
+  institution?: string[]
+  publisher?: string[]
+  origpublisher?: string[]
+  organization?: string[]
+  location?: string[]
+  origlocation?: string[]
+}
+
+export type TypedFields = CreatorFields & ArrayFields
+export type Fields = TypedFields & Omit<Record<string, string>, keyof TypedFields>
+
 /** A normalized BibTeX entry returned by the parser. */
 export interface Entry {
   type: string
   key: string
-  fields: Record<string, FieldValue>
+  fields: Fields
   mode: Record<string, ParseMode>
   crossref?: Record<string, { parent: string; field: string }>
   input: string
