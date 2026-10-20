@@ -7,7 +7,8 @@ import { visit } from '@unified-latex/unified-latex-util-visit'
 import { combining, latex2unicode as latex2unicodemap } from 'unicode2latex'
 import * as JabRef from './jabref.js'
 import * as bibtex from './verbatim.js'
-export type { Group as JabRefGroup, JabRefMetadata } from './jabref.js'
+export type { Group as JabRefGroup } from './jabref.js'
+export { JabRefMetadata } from './jabref.js'
 export type { ParseError } from './verbatim.js'
 /** Parses BibTeX without interpreting field contents as LaTeX. */
 export { Library as VerbatimLibrary, parse as parseVerbatim } from './verbatim.js'
@@ -1355,7 +1356,7 @@ class BibTeXParser {
       comments: [],
       strings: {},
       preambles: [],
-      jabref: { root: [], groups: {} },
+      jabref: new JabRef.JabRefMetadata(),
     }
   }
 

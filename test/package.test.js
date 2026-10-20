@@ -26,6 +26,53 @@ test('the WASM entry point loads the exported binary and parses', async () => {
   assert.equal(wasm.parseVerbatim(input).entries[0].key, 'example')
 })
 
+test('JabRef metadata supports identical membership updates in both implementations', async () => {
+  await init({ module_or_path: readFileSync(require.resolve('@retorquere/bibtex-parser/wasm/bibtex_parser_bg.wasm')) })
+  const source = String.raw`@comment{jabref-meta: grouping:
+0 AllEntriesGroup:;
+1 StaticGroup:Parent\;0\;;
+2 StaticGroup:Child\;0\;;
+1 StaticGroup:Child\;0\;;
+}`
+  for (const parser of [typescript, wasm]) {
+    const results = [parser.parse(source), await parser.parseAsync(source)]
+    if (parser === wasm) results.push(parser.parseVerbatim(source), await parser.parseVerbatimAsync(source))
+    for (const { jabref } of results) {
+      assert.ok(jabref instanceof parser.JabRefMetadata)
+      assert.equal('groups' in jabref, false)
+      assert.equal(jabref.addEntry('Child', 'example'), true)
+      assert.equal(jabref.addEntry('Child', 'example'), true)
+      assert.deepEqual(jabref.root[0].groups[0].entries, ['example'])
+      assert.deepEqual(jabref.root[1].entries, [])
+      assert.equal(jabref.addEntry('Missing', 'example'), false)
+      assert.equal(jabref.addEntry('Parent', 'example'), true)
+      assert.deepEqual(jabref.root[0].entries, ['example'])
+      const serialized = JSON.parse(JSON.stringify(jabref))
+      assert.deepEqual(Object.keys(serialized), ['root'])
+      assert.deepEqual(serialized.root, jabref.root)
+    }
+  }
+})
+
+test('JabRef preserves the collections hierarchy from the #901 fixture', async () => {
+  await init({ module_or_path: readFileSync(require.resolve('@retorquere/bibtex-parser/wasm/bibtex_parser_bg.wasm')) })
+  const source = readFileSync(new URL('./better-bibtex/export/Better BibTeX does not export collections %23901.bibtex', import.meta.url), 'utf8')
+  for (const parser of [typescript, wasm]) {
+    for (const result of [parser.parse(source), await parser.parseAsync(source)]) {
+      const roots = result.jabref.root
+      assert.deepEqual(roots.map(group => group.name), ['Commun', 'FM', 'Isa'])
+      const find = (groups, ...path) => {
+        const group = groups.find(group => group.name === path[0])
+        assert.ok(group, `Missing group: ${path[0]}`)
+        return path.length === 1 ? group : find(group.groups, ...path.slice(1))
+      }
+      assert.ok(find(roots, 'FM', '_Auteurs', 'Aristote'))
+      assert.ok(find(roots, 'FM', '0018_MarioBunge', 'Oeuvres'))
+      assert.ok(find(roots, 'Isa', 'Refworks', '_Non-classees'))
+    }
+  }
+})
+
 test('renders TeX control-space as a regular space in the TypeScript parser', () => {
   const parsed = typescript.parse(String.raw`@article{example, title={foo\ bar}}`)
   assert.equal(parsed.entries[0].fields.title, 'foo bar')
@@ -131,6 +178,8 @@ test('the npm package includes both implementations and their declarations', () 
     'dist/types/index.d.ts',
     'dist/wasm/index.js',
     'dist/wasm/index.d.ts',
+    'dist/wasm/jabref.js',
+    'dist/wasm/jabref.d.ts',
     'dist/wasm/bibtex_parser.js',
     'dist/wasm/bibtex_parser.d.ts',
     'dist/wasm/bibtex_parser_bg.wasm',

@@ -1,4 +1,4 @@
-function decode(s, sep = ';') {
+function decode(s = '', sep = ';') {
   s = s.replace(/\r?\n/g, '')
   let pos = 0
   const records = ['']
@@ -41,33 +41,50 @@ export interface Group {
   groups: Group[]
 }
 
-export interface JabRefMetadata {
+export class JabRefMetadata {
+  #groups = new Map<string, Group>()
+
   /**
    * The root groups. You can find the nested groups in their `groups` property
    */
-  root: Group[]
-
-  /**
-   * JabRef since 3.8 has changed their groups format. Entries have a `groups` field which has the names of the groups they belong to -- this name does not have to be unique in the groups hierarchy so if you
-   * have multiple groups with the same name, it's not well-defined where the entries should end up. This property gives you the for each group name the first time the group showed up in the hierarchy. Note that
-   * keys from the entries themselves have *not* yet been added to the [[Group]]s. You need to combine this yourself as you're parsing the entries.
-   */
-  groups: { [key: string]: Group }
+  root: Group[] = []
 
   /**
    * The base path for file paths
    */
-  fileDirectory?: string
+  declare fileDirectory?: string
 
   /**
    * The JabRef metadata format version
    */
-  groupsversion?: number
+  declare groupsversion?: number
 
   /**
    * The JabRef metadata database type
    */
-  databaseType?: string
+  declare databaseType?: string
+
+  constructor(data: Partial<Pick<JabRefMetadata, 'root' | 'fileDirectory' | 'groupsversion' | 'databaseType'>> = {}) {
+    this.root = data.root ?? []
+    for (const field of ['fileDirectory', 'groupsversion', 'databaseType'] as const) {
+      if (data[field] !== undefined) Object.assign(this, { [field]: data[field] })
+    }
+    const index = (groups: Group[]) => {
+      for (const group of groups) {
+        if (!this.#groups.has(group.name)) this.#groups.set(group.name, group)
+        index(group.groups)
+      }
+    }
+    index(this.root)
+  }
+
+  /** Populates JabRef 3.8+ memberships in `root` by group name; duplicate names select the first node. */
+  addEntry(name: string, key: string): boolean {
+    const group = this.#groups.get(name)
+    if (!group) return false
+    if (!group.entries.includes(key)) group.entries.push(key)
+    return true
+  }
 }
 
 /**
@@ -81,14 +98,11 @@ export interface JabRefMetadata {
  * * query: not supported by this parser
  */
 export function parse(comments: string[]): { comments: string[]; jabref: JabRefMetadata } {
-  const result: JabRefMetadata = {
-    root: [],
-    groups: {},
-  }
+  const result = new JabRefMetadata()
 
   const levels: Group[] = []
 
-  const decoded = {
+  const decoded: Record<string, string[] | null> = {
     fileDirectory: null as string[] | null,
     groupsversion: null as string[] | null,
     groupstree: null as string[] | null,
@@ -134,8 +148,6 @@ export function parse(comments: string[]): { comments: string[]; jabref: JabRefM
         groups: [],
       }
 
-      result.groups[name] = result.groups[name] || group
-
       if (levels.length < level) {
         levels.push(group)
       }
@@ -164,5 +176,5 @@ export function parse(comments: string[]): { comments: string[]; jabref: JabRefM
     }
   }
 
-  return { comments, jabref: result }
+  return { comments, jabref: new JabRefMetadata(result) }
 }

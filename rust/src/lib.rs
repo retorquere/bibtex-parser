@@ -66,9 +66,6 @@ pub struct JabRefGroup {
 pub struct JabRefMetadata {
     /// Top-level groups; nested groups are available through each group's `groups` field.
     pub root: Vec<JabRefGroup>,
-    /// First group encountered for each name. JabRef 3.8+ permits duplicate names, so entry keys
-    /// are not assigned to a unique hierarchy node by this map.
-    pub groups: HashMap<String, JabRefGroup>,
     /// Base directory for attachment paths.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub file_directory: Option<String>,
@@ -78,6 +75,31 @@ pub struct JabRefMetadata {
     /// JabRef database type.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub database_type: Option<String>,
+}
+
+impl JabRefMetadata {
+    /// Populates JabRef 3.8+ memberships in `root` by group name; duplicate names select the first node.
+    pub fn add_entry(&mut self, name: &str, key: &str) -> bool {
+        fn find<'a>(groups: &'a mut [JabRefGroup], name: &str) -> Option<&'a mut JabRefGroup> {
+            for group in groups {
+                if group.name == name {
+                    return Some(group);
+                }
+                if let Some(found) = find(&mut group.groups, name) {
+                    return Some(found);
+                }
+            }
+            None
+        }
+
+        let Some(group) = find(&mut self.root, name) else {
+            return false;
+        };
+        if !group.entries.iter().any(|entry| entry == key) {
+            group.entries.push(key.to_string());
+        }
+        true
+    }
 }
 
 /// Decode JabRef's backslash-escaped separators and remove line breaks from metadata records.
@@ -114,15 +136,6 @@ fn jabref_group_at_path_mut<'a>(
         Some(group)
     } else {
         jabref_group_at_path_mut(&mut group.groups, remainder)
-    }
-}
-
-fn collect_jabref_groups(groups: &[JabRefGroup], index: &mut HashMap<String, JabRefGroup>) {
-    for group in groups {
-        index
-            .entry(group.name.clone())
-            .or_insert_with(|| group.clone());
-        collect_jabref_groups(&group.groups, index);
     }
 }
 
@@ -249,7 +262,6 @@ fn parse_jabref_metadata(comments: Vec<String>) -> (Vec<String>, JabRefMetadata)
             }
         }
     }
-    collect_jabref_groups(&metadata.root, &mut metadata.groups);
     (kept, metadata)
 }
 
@@ -2178,7 +2190,7 @@ mod tests {
 
     #[test]
     fn parses_jabref_group_tree_hierarchy() {
-        let parsed = parse(
+        let mut parsed = parse(
             include_str!(
                 "../../test/better-bibtex/import/Jabref groups import does not work #717.3.8.bib"
             ),
@@ -2192,6 +2204,27 @@ mod tests {
         assert_eq!(
             parsed.jabref.root[0].groups[0].groups[0].name,
             "sub-sub-group-3"
+        );
+        assert!(
+            parsed
+                .jabref
+                .add_entry("sub-sub-group-3", "membership-probe")
+        );
+        assert!(
+            parsed
+                .jabref
+                .add_entry("sub-sub-group-3", "membership-probe")
+        );
+        assert_eq!(
+            parsed.jabref.root[0].groups[0].groups[0].entries,
+            vec!["membership-probe"]
+        );
+        assert!(!parsed.jabref.add_entry("Missing", "membership-probe"));
+        assert!(
+            serde_json::to_value(&parsed.jabref)
+                .unwrap()
+                .get("groups")
+                .is_none()
         );
     }
 

@@ -1,5 +1,9 @@
 /** @module wasm */
 import init, { initSync, parse as parseWasm, parseAsync as parseAsyncWasm, parseVerbatim as parseVerbatimWasm, parseVerbatimAsync as parseVerbatimAsyncWasm, tokenize as tokenizeWasm, toSentenceCase as toSentenceCaseWasm } from './bibtex_parser.js'
+import { JabRefMetadata } from './jabref.js'
+
+export { JabRefMetadata }
+export type { Group as JabRefGroup } from './jabref.js'
 
 export type { InitInput, InitOutput, SyncInitInput } from './bibtex_parser.js'
 /** Initializes the WebAssembly parser; await this before using its exports. */
@@ -65,22 +69,6 @@ export interface Entry {
 export interface ParseError {
   error: string
   input?: string
-}
-
-/** A group in JabRef's nested group hierarchy. */
-export interface JabRefGroup {
-  name: string
-  entries: string[]
-  groups: JabRefGroup[]
-}
-
-/** JabRef metadata extracted from a BibTeX library. */
-export interface JabRefMetadata {
-  root: JabRefGroup[]
-  groups: Record<string, JabRefGroup>
-  fileDirectory?: string
-  groupsversion?: number
-  databaseType?: string
 }
 
 /** The parsed contents of a BibTeX library. */
@@ -221,22 +209,27 @@ function throwOnUnsupported(result: Library): Library {
   return result
 }
 
+function withJabRef<Parsed extends { jabref: JabRefMetadata }>(result: Parsed): Parsed {
+  result.jabref = new JabRefMetadata(result.jabref)
+  return result
+}
+
 /** Parses BibTeX while leaving field contents uninterpreted. */
 export function parseVerbatim(input: string, options: ParserOptions = {}): VerbatimLibrary {
   const prepared = prepare(input, options)
-  return parseVerbatimWasm(prepared.input, prepared.options) as VerbatimLibrary
+  return withJabRef(parseVerbatimWasm(prepared.input, prepared.options) as VerbatimLibrary)
 }
 
 /** Asynchronous variant of {@link parseVerbatim}. */
 export async function parseVerbatimAsync(input: string, options: ParserOptions = {}): Promise<VerbatimLibrary> {
   const prepared = prepare(input, options)
-  return await parseVerbatimAsyncWasm(prepared.input, prepared.options) as VerbatimLibrary
+  return withJabRef(await parseVerbatimAsyncWasm(prepared.input, prepared.options) as VerbatimLibrary)
 }
 
 /** Parses BibTeX or BibLaTeX source into a normalized library. */
 export function parse(input: string, options: Options = {}): Library {
   const prepared = prepare(input, options)
-  const result = parseWasm(prepared.input, prepared.options) as Library
+  const result = withJabRef(parseWasm(prepared.input, prepared.options) as Library)
   if (options.unsupported === 'throw') return throwOnUnsupported(result)
   return result
 }
@@ -244,7 +237,7 @@ export function parse(input: string, options: Options = {}): Library {
 /** Asynchronous variant of {@link parse}, yielding during large parses. */
 export async function parseAsync(input: string, options: Options = {}): Promise<Library> {
   const prepared = prepare(input, options)
-  const result = await parseAsyncWasm(prepared.input, prepared.options) as Library
+  const result = withJabRef(await parseAsyncWasm(prepared.input, prepared.options) as Library)
   if (options.unsupported === 'throw') return throwOnUnsupported(result)
   return result
 }
