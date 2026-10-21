@@ -103,6 +103,10 @@ const strings = fs.readFileSync(path.resolve(here, '..', 'strings.bib'), 'utf-8'
 if (process.env.CI === 'true') config.tests.toobig = []
 
 const testcases = globSync(path.resolve(here, '**', '*.{json,bib,bibtex,biblatex}'), {
+  ignore: [
+    path.resolve(here, 'other/strings.bib'),
+    path.resolve(here, 'better-bibtex/import/Some bibtex entries quietly discarded on import from bib file #873-article:bagchi:1983:ahs.bib'),
+  ],
   nocase: true,
   matchBase: true,
   nonull: false,
