@@ -1,3 +1,7 @@
+//! Recognize title tokens without changing their source text. Rule priority determines both
+//! exported token categories and sentence-casing decisions in `tex`. Internal ranges are
+//! half-open Unicode scalar indices; only public token serialization converts them to UTF-16.
+
 use serde::Serialize;
 use unicode_general_category::{GeneralCategory, get_general_category};
 
@@ -301,6 +305,8 @@ pub(crate) fn sentence_tokens(
 }
 
 /// Tokenize text using the TypeScript `tokenize()` result shape.
+/// Unlike title rendering, this public API does not hide HTML tags behind markup tokens.
+/// Hyphenated runs become one token while retaining their component tokens for callers.
 pub(crate) fn tokenize(text: &str) -> Vec<Token> {
     let characters: Vec<char> = text.chars().collect();
     let tokens = sentence_tokens(&characters, true, false);
@@ -335,6 +341,8 @@ pub(crate) fn tokenize(text: &str) -> Vec<Token> {
     result
 }
 
+/// Convert internal categories and half-open scalar ranges to the JavaScript token contract.
+/// Public `end` is inclusive and measured in UTF-16 code units, including surrogate pairs.
 fn public_token(
     token: &SentenceToken,
     characters: &[char],
@@ -505,7 +513,7 @@ fn token_shape(characters: &[char]) -> String {
     shape
 }
 
-/// Tokenize rendered title text into ranges with TypeScript-compatible start flags.
+/// Recover one token's original text using its internal half-open character range.
 pub(crate) fn token_text(token: &SentenceToken, characters: &[char]) -> String {
     token.text(characters)
 }
@@ -626,7 +634,7 @@ fn number_digits_end(characters: &[char], start: usize) -> usize {
     end
 }
 
-/// Recognize a website token so sentence casing never changes case-sensitive URL content.
+/// Recognize an ASCII email address before generic words or domains can split its components.
 fn email_end(characters: &[char], start: usize) -> Option<usize> {
     if !characters[start].is_ascii_alphanumeric() {
         return None;

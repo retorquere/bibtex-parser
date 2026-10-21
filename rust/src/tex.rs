@@ -1,8 +1,43 @@
+//! Parse field fragments into a source-spanned TeX AST, then render them according to field mode.
+//! Parsing owns groups, environments, macro arguments, and literal command boundaries. Rendering
+//! owns Unicode conversion, supported markup, and unsupported-command policy. Title casing runs
+//! afterward, using temporary root-group markers to restore author-supplied case protection.
+
 use crate::tokenizer::{
     SentenceToken, SentenceTokenKind, SentenceTokenSubtype, hyphenated_end, is_case_whitespace,
     sentence_tokens, token_text,
 };
 use std::collections::{HashMap, HashSet};
+
+/// Locate the literal contents of `\verb` or `\path` starting at a backslash.
+///
+/// The character immediately after the name must be non-alphanumeric. It closes its own
+/// literal, except that `\path{...}` closes on `}`. The first closing delimiter wins:
+/// braces do not nest, backslashes do not escape delimiters, and `*` is a delimiter.
+/// The returned character-index range excludes both delimiters; `range.end + 1` is the
+/// first character after the command. Missing delimiters return `None` without consuming input.
+///
+/// Both BibTeX value scanning and TeX AST construction use this rule so literal braces,
+/// quotes, dollars, and comments cannot be interpreted before the TeX parser sees them.
+pub(crate) fn verbatim_range(chars: &[char], start: usize) -> Option<std::ops::Range<usize>> {
+    let source = chars.get(start..)?;
+    let path = source.starts_with(&['\\', 'p', 'a', 't', 'h']);
+    if !path && !source.starts_with(&['\\', 'v', 'e', 'r', 'b']) {
+        return None;
+    }
+    let delimiter_position = start + 5;
+    let delimiter = *chars.get(delimiter_position)?;
+    if delimiter.is_alphanumeric() {
+        return None;
+    }
+    let closing_delimiter = if path && delimiter == '{' { '}' } else { delimiter };
+    let content_start = delimiter_position + 1;
+    let content_end = content_start
+        + chars[content_start..]
+            .iter()
+            .position(|character| *character == closing_delimiter)?;
+    Some(content_start..content_end)
+}
 
 /// A source position using the TypeScript parser's UTF-16 offset and 1-based coordinates.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -67,7 +102,7 @@ pub(crate) enum Node {
         content: Vec<Node>,
         span: SourceSpan,
     },
-    /// Literal contents delimited by the TeX `\verb` macro.
+    /// Literal contents delimited by the TeX `\verb` or `\path` macro.
     Verb(String, SourceSpan),
     /// A TypeScript-style macro node with its name and parsed arguments.
     Macro {
@@ -177,7 +212,9 @@ impl Parser {
         }
     }
 
-    /// Parse nodes until the source ends or the matching group delimiter is reached.
+    /// Parse nodes until EOF or a terminator owned by this recursive context is reached.
+    /// Group and math closes consume their delimiters; environment recovery can hand an outer
+    /// terminator back to its owner. The boolean reports a matched close, not merely EOF.
     fn sequence(
         &mut self,
         grouped: bool,
@@ -575,7 +612,8 @@ impl Parser {
         }
         let name: String = self.chars[start..self.position].iter().collect();
         let macro_span = self.span(macro_start, self.position);
-        if name == "verb" {
+        // Literal commands bypass arity lookup and recursive argument parsing entirely.
+        if matches!(name.as_str(), "verb" | "path") {
             return self.verbatim(macro_start);
         }
 
@@ -788,10 +826,14 @@ impl Parser {
         )]
     }
 
-    /// Parse a delimited `\\verb` token and retain its source range including delimiters.
+    /// Parse a delimited literal token and retain its source range including delimiters.
+    /// Matched commands share the BibTeX scanner's delimiter rules. If that lookup fails,
+    /// retain the permissive TeX-only fallback: consume through the delimiter or EOF.
     fn verbatim(&mut self, start: usize) -> Node {
-        if self.chars.get(self.position) == Some(&'*') {
-            self.position += 1;
+        if let Some(range) = verbatim_range(&self.chars, start) {
+            let contents = self.chars[range.clone()].iter().collect();
+            self.position = range.end + 1;
+            return Node::Verb(contents, self.span(start, self.position));
         }
         let Some(delimiter) = self.chars.get(self.position).copied() else {
             return Node::Verb(String::new(), self.span(start, self.position));
@@ -987,9 +1029,12 @@ pub(crate) struct RenderDiagnostics {
 }
 
 impl RenderDiagnostics {
+    /// Choose fallback output independently of diagnostic collection in `report`.
+    /// No policy preserves reconstructed source; explicit policies emit a script wrapper,
+    /// a bare command name, or nothing. `Throw` uses the same rendering branch as `TeX` here.
     fn render_unsupported(&self, command: &str, source: &str) -> String {
         match self.unsupported {
-            Some(super::UnsupportedHandler::Tex | super::UnsupportedHandler::Throw) => {
+            Some(super::UnsupportedHandler::TeX | super::UnsupportedHandler::Throw) => {
                 format!("<script>{command}</script>")
             }
             Some(super::UnsupportedHandler::Text) => {
@@ -1388,6 +1433,7 @@ pub(crate) fn sentence_case_with_options(
     if guess && !all_caps && !all_lower && looks_sentence_cased(text) {
         return text.to_string();
     }
+    // Keep single-token all-caps identifiers intact even when guessing is disabled.
     if all_caps && !visible.chars().any(char::is_whitespace) {
         return text.to_string();
     }
@@ -1880,6 +1926,7 @@ fn render_node(
             }
         }
         Node::Comment { .. } => String::new(),
+        // Neither commands, whitespace, ligatures, nor brace protection are visited inside literals.
         Node::Verb(contents, _) => contents.clone(),
         // Group delimiters protect structure but are omitted from rendered field text.
         Node::Group(nodes, _) => render_nodes(
@@ -2179,8 +2226,6 @@ fn render_macro(
         | "accent" | "def" | "hss" | "ifmmode" | "makeatletter" | "makeatother"
         | "scriptscriptstyle" | "setbox" | "dimen" | "advance" | "relax" | "aftergroup"
         | "ignorespaces" | "undefined" | "rm" | "if" | "ifx" | "else" => return String::new(),
-        // The unified-latex parser does not reliably parse `\\path` arguments; match TS by omitting it.
-        "path" => return String::new(),
         "sc" => return String::new(),
         "hspace" | "hskip" => {
             // Match the TS visitor's zero-width special case; other explicit spacing becomes one space.

@@ -1,3 +1,8 @@
+//! BibTeX processing has two stages: scan directives into raw field strings, then reparse
+//! those strings by field mode. The raw scanner owns entry recovery and string concatenation;
+//! `tex` owns TeX syntax and rendering, while `tokenizer` supplies title-casing token boundaries.
+//! Synchronous and WASM asynchronous entry points share the same parsing and normalization paths.
+
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::sync::OnceLock;
@@ -321,7 +326,7 @@ pub enum VerbatimField {
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "lowercase")]
 pub enum UnsupportedHandler {
-    Tex,
+    TeX,
     Text,
     Ignore,
     Throw,
@@ -697,6 +702,11 @@ impl Parser {
         let mut depth = 0usize;
         let mut math = false;
         while self.pos < self.chars.len() {
+            // Literal commands must bypass both brace balancing and math-delimiter tracking.
+            if let Some(range) = tex::verbatim_range(&self.chars, self.pos) {
+                self.pos = range.end + 1;
+                continue;
+            }
             match self.chars[self.pos] {
                 // Skip the escaped character so it cannot affect brace or math depth.
                 '\\' => self.pos += 1,
@@ -711,7 +721,7 @@ impl Parser {
                     };
                 }
                 '}' => depth -= 1,
-                // Dollars toggle inline math so an inner brace cannot close a math value early.
+                // Track math independently of brace depth; an outer close rejects unmatched dollars.
                 '$' => math = !math,
                 _ => {}
             }
@@ -729,6 +739,11 @@ impl Parser {
         let start = self.pos;
         let mut depth = 0isize;
         while self.pos < self.chars.len() {
+            // A quote inside a literal command is content, even outside a braced group.
+            if let Some(range) = tex::verbatim_range(&self.chars, self.pos) {
+                self.pos = range.end + 1;
+                continue;
+            }
             match self.chars[self.pos] {
                 // Escaped quotes and braces are content, not syntax delimiters.
                 '\\' => self.pos += 1,
@@ -934,6 +949,8 @@ impl Parser {
             Ok(())
         })();
         if let Err(error) = result {
+            // Recovery is deliberately lexical, not brace-aware: even an unclosed value must
+            // allow a later directive to be found. Any partially inserted entry is retained.
             // Resume at the next directive marker so a bad entry does not discard later records.
             self.pos = start + 1;
             while self.pos < self.chars.len() && self.chars[self.pos] != '@' {
@@ -954,6 +971,8 @@ impl Parser {
             .expect("synchronous parsing does not suspend")
     }
 
+    /// Share directive parsing between sync and async callers without yielding inside a value.
+    /// The interval counts parse attempts, including comments and failures, rather than entries.
     async fn parse_with_yield<F, Fut>(mut self, mut yield_now: F) -> Library
     where
         F: FnMut() -> Fut,
@@ -1498,11 +1517,12 @@ fn parse_raw_creator(input: &str) -> Creator {
     }
 }
 
-/// Choose the field parser mode, honoring explicit overrides before the default mode table.
+/// Choose the field parser mode using the reference parser's override precedence.
 ///
-/// The TypeScript reference resolves `verbatimFields` and `fieldMode` before falling back to the
-/// built-in lists for creators, titles, rich text, and literal lists. This helper keeps the same
-/// precedence so custom field rules can still be overridden by later defaults.
+/// `verbatimFields` wins immediately. Otherwise any explicit `fieldMode` disables ordinary
+/// default lists, even if its value is unrecognized and leaves the mode as `literal`.
+/// Built-in keyword and numbered export-field patterns still force `verbatim`, overriding
+/// configured modes. Without an override, the last matching default list wins.
 fn field_mode(field: &str, options: &Options) -> String {
     if options
         .verbatim_fields
@@ -1768,6 +1788,9 @@ pub fn reparse_with_options(verbatim: Library, options: &Options) -> ParsedLibra
     .expect("synchronous reparsing does not suspend")
 }
 
+/// Normalize fields before cross-reference inheritance, then append shared render diagnostics.
+/// Unlike directive scanning, cooperative yields here count completed entries; a single field
+/// is always rendered atomically. Synchronous callers supply an immediately ready yield future.
 async fn reparse_with_yield<F, Fut>(
     verbatim: Library,
     options: &Options,
@@ -1819,6 +1842,7 @@ where
                 .map(|value| value.to_lowercase())
                 .unwrap_or_default();
         }
+        // Language selection gates title casing only; every language still receives TeX rendering.
         let english = options
             .english
             .iter()
@@ -1969,6 +1993,7 @@ where
             yield_now().await;
         }
     }
+    // Inherited fields are already typed and rendered in their parent's context, not the child's.
     apply_crossref_inheritance(entries.as_mut_slice(), options.apply_crossref);
     let mut errors = verbatim.errors;
     errors.extend(render_diagnostics.errors);
@@ -2240,6 +2265,34 @@ mod tests {
         assert_eq!(fields["title"], "A {nested} title");
         assert_eq!(fields["journal"], "Journal ! ");
         assert_eq!(fields["note+duplicate-1"], "two");
+    }
+
+    #[test]
+    fn verbatim_commands_preserve_literal_field_contents() {
+        for (value, expected) in [
+            (r#"{before \verb|} $ % \textbf{raw| after}"#, r#"before } $ % \textbf{raw after"#),
+            (r#""before \verb!{ " raw! after""#, "before { \" raw after"),
+            (r#"{\verb{unbalanced } braces{}"#, "unbalanced } braces"),
+            (r#"{\verb}unbalanced { braces}}"#, "unbalanced { braces"),
+            (r#"{\verb*literal } {*}"#, "literal } {"),
+            (r#"{\verb%literal $ { %}"#, "literal $ {"),
+            (r#"{before\verb||after}"#, "beforeafter"),
+            (r#"{\\verb|ordinary|}"#, "<br>verb|ordinary|"),
+            (r#"{before \path{a{b} after}"#, "before a{b after"),
+            (r#"{\path{C:\raw_%$#file} after}"#, r#"C:\raw_%$#file after"#),
+            (r#"{before \path|} $ % \textbf{raw| after}"#, r#"before } $ % \textbf{raw after"#),
+            (r#""before \path!{ " raw! after""#, "before { \" raw after"),
+            (r#"{\path}unbalanced { braces}}"#, "unbalanced { braces"),
+            (r#"{before\path{}after}"#, "beforeafter"),
+        ] {
+            let source = format!("@misc{{entry,note={value},year={{2026}}}}");
+            let raw = parse_verbatim(&source, Options::default());
+            assert!(raw.errors.is_empty(), "{value}: {:?}", raw.errors);
+            assert_eq!(raw.entries[0].fields["note"], &value[1..value.len() - 1]);
+            let parsed = fixture(&source);
+            assert_eq!(parsed.entries[0].fields["note"], FieldValue::Text(expected.into()));
+            assert_eq!(parsed.entries[0].fields["year"], FieldValue::Text("2026".into()));
+        }
     }
 
     #[test]
