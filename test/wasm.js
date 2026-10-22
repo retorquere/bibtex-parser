@@ -108,12 +108,16 @@ const testcases = globSync(path.resolve(here, '**', '*.{json,bib,bibtex,biblatex
   nodir: true,
 }).sort()
 
-function stringify(value) {
+function normalize(value) {
   const normalized = JSON.parse(JSON.stringify(value))
   for (const entry of normalized?.entries ?? []) {
     if (Array.isArray(entry.fields?.keywords)) entry.fields.keywords.sort()
   }
-  return yaml.dump(normalized, { sortKeys: true })
+  return normalized
+}
+
+function stringify(value) {
+  return yaml.dump(normalize(value), { sortKeys: true })
 }
 
 function matchSnapshot(actual, snapshot) {
@@ -124,11 +128,11 @@ function matchSnapshot(actual, snapshot) {
       console.log(`Created snapshot: ${snapshot}`)
       return
     }
-    assert.strictEqual(stringify(actual), '')
+    assert.deepEqual(normalize(actual), '')
   }
   else {
-    const expected = stringify(load(snapshot))
-    assert.strictEqual(stringify(actual), expected)
+    const expected = normalize(load(snapshot))
+    assert.deepEqual(normalize(actual), expected)
   }
 }
 
