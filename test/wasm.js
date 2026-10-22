@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url'
 import { before, test } from 'node:test'
 import * as yaml from 'js-yaml'
 
-import init, { english, parseAsync, toSentenceCase } from '../rust/pkg/index.js'
+import init, { english, parse as parseSync, parseAsync, toSentenceCase } from '../rust/pkg/index.js'
 
 const here = path.dirname(fileURLToPath(import.meta.url))
 const root = path.resolve(here, '..')
@@ -184,6 +184,54 @@ before(async () => {
   const wasm = fs.readFileSync(path.resolve(root, 'rust/pkg/bibtex_parser_bg.wasm'))
   await init({ module_or_path: wasm })
 })
+
+for (const [name, parse] of [['parse', parseSync], ['parseAsync', parseAsync]]) {
+  const source = String.raw`@article{unknown, note = {before \unknownmacro after}}`
+
+  test(`unsupported ignore (${name})`, async () => {
+    const result = await parse(source, { unsupported: 'ignore' })
+    assert.equal(result.entries[0].fields.note, 'before after')
+    assert.deepEqual(result.errors, [{
+      error: String.raw`unhandled macro \unknownmacro`,
+      input: String.raw`\unknownmacro`,
+    }])
+  })
+
+  test(`unsupported tex (${name})`, async () => {
+    const result = await parse(source, { unsupported: 'tex' })
+    assert.equal(result.entries[0].fields.note, 'before <script>\\unknownmacro</script>after')
+    assert.equal(result.errors[0].error, String.raw`unhandled macro \unknownmacro`)
+    const defaultResult = await parse(source)
+    assert.equal(defaultResult.entries[0].fields.note, String.raw`before \unknownmacroafter`)
+    assert.deepEqual(defaultResult.errors, result.errors)
+  })
+
+  test(`unsupported text (${name})`, async () => {
+    const result = await parse(source, { unsupported: 'text' })
+    assert.equal(result.entries[0].fields.note, 'before unknownmacroafter')
+    assert.equal(result.errors[0].error, String.raw`unhandled macro \unknownmacro`)
+  })
+
+  test(`accent handles an unhandled single-letter base locally (${name})`, async () => {
+    const accented = await parse(String.raw`@book{x,title={\'{\a}}}`, { english: [] })
+    assert.equal(accented.entries[0].fields.title, 'a\u0301')
+    assert.deepEqual(accented.errors, [])
+
+    const standalone = await parse(String.raw`@book{x,title={\a}}`, { english: [] })
+    assert.equal(standalone.entries[0].fields.title, String.raw`\a`)
+    assert.equal(standalone.errors[0].error, String.raw`unhandled macro \a`)
+  })
+
+  for (const input of [source, String.raw`@preamble{\unknownmacro}`, String.raw`@string{unknown = {\unknownmacro}}`]) {
+    test(`unsupported throw ${input} (${name})`, async () => {
+      await assert.rejects(async () => parse(input, { unsupported: 'throw' }), /unhandled macro \\unknownmacro/)
+    })
+  }
+
+  test(`unsupported rejects removed handler (${name})`, async () => {
+    await assert.rejects(async () => parse(source, { unsupported: 'keep' }), TypeError)
+  })
+}
 
 for (const bibfile of testcases) {
   const basename = path.basename(bibfile)
