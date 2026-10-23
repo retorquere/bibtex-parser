@@ -111,6 +111,8 @@ export interface Options extends ParserOptions {
   sentenceCase?: SentenceCaseOptions
   /** Control preservation of capitalization inside braces. */
   caseProtection?: 'off' | 'as-needed' | 'strict'
+  /** Merge adjacent equal markup spans separated only by whitespace (default true). */
+  collapseMarkup?: boolean
   /** Render URL commands as HTML links (default true), or as case-protected destinations. */
   richURL?: boolean
   /** Policy for unsupported TeX commands and environments. */

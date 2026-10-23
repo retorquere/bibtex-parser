@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { execFileSync } from 'node:child_process'
-import { createRequire } from 'node:module'
 import { readFileSync } from 'node:fs'
+import { createRequire } from 'node:module'
 import { test } from 'node:test'
 
 import * as typescript from '@retorquere/bibtex-parser'
@@ -17,6 +17,24 @@ test('the default entry point remains the TypeScript parser', () => {
 
 test('the WASM entry point is ESM-only', () => {
   assert.throws(() => require('@retorquere/bibtex-parser/wasm'), { code: 'ERR_PACKAGE_PATH_NOT_EXPORTED' })
+})
+
+test('sentence casing ignores markup while retaining whole words', () => {
+  const markup = /<\/?[a-z]+>/ig
+  const options = { markup, guess: false }
+  assert.equal(typescript.toSentenceCase('A <i>A</i> B I', options), 'A <i>a</i> B I')
+  assert.equal(typescript.toSentenceCase('An Ex<em>ample</em>', options), 'An ex<em>ample</em>')
+  assert.equal(typescript.toSentenceCase('A İ<i>X</i>', options), 'A i\u0307<i>x</i>')
+})
+
+test('sentence casing lowercases standalone A but preserves other initials', async () => {
+  await init({ module_or_path: readFileSync(require.resolve('@retorquere/bibtex-parser/wasm/bibtex_parser_bg.wasm')) })
+  const options = { guess: false, subSentenceCapitalization: false }
+  for (const parser of [typescript, wasm]) {
+    for (const title of ['Model A B I X', 'MODEL A B I X']) {
+      assert.equal(parser.toSentenceCase(title, options), 'Model a B I X')
+    }
+  }
 })
 
 test('the WASM entry point loads the exported binary and parses', async () => {

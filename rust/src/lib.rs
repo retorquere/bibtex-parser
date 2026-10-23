@@ -7,6 +7,7 @@ use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::sync::OnceLock;
 
+pub mod sentencecase;
 mod tex;
 mod tokenizer;
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
@@ -147,7 +148,7 @@ fn jabref_group_at_path_mut<'a>(
 /// Import JabRef groups from metadata comments and return unrelated comments unchanged.
 ///
 /// Independent groups keep their listed keys, intersections retain only keys in the parent,
-/// unions add parent keys, and query groups are not supported by the TypeScript parser.
+/// unions add parent keys, and query groups are not parsed.
 fn parse_jabref_metadata(comments: Vec<String>) -> (Vec<String>, JabRefMetadata) {
     let mut metadata = JabRefMetadata::default();
     let mut kept = Vec::new();
@@ -388,7 +389,7 @@ pub struct Options {
     /// Some sources use `language` for this purpose despite the usual `langid` and `hyphenation`
     /// fields; enable this option to include that fallback.
     pub language_as_langid: bool,
-    /// Sentence-case heuristics matching the TypeScript parser's option object.
+    /// Controls for guessing and applying sentence case to titles.
     pub sentence_case: SentenceCaseOptions,
     /// Title case-protection policy: `off`, `as-needed`, or `strict`.
     ///
@@ -397,6 +398,8 @@ pub struct Options {
     /// protection when authors may not expect the braces to affect title casing. `strict` preserves
     /// protection exactly as entered; `off` disables protection.
     pub case_protection: String,
+    /// Merge adjacent equal markup spans separated only by whitespace (default true).
+    pub collapse_markup: bool,
     #[serde(rename = "richURL")]
     pub rich_url: bool,
     /// Policy for rendering unknown TeX commands and environments.
@@ -450,6 +453,7 @@ impl Default for Options {
             language_as_langid: false,
             sentence_case: SentenceCaseOptions::default(),
             case_protection: "as-needed".to_string(),
+            collapse_markup: true,
             rich_url: true,
             unsupported: None,
         }
@@ -484,7 +488,7 @@ pub struct Creator {
     /// Extended-name `juniorcomma` property.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub juniorcomma: Option<bool>,
-    /// Additional TypeScript extended-name properties.
+    /// Unrecognized extended-name properties, retained as JSON values.
     #[serde(flatten)]
     pub extra: HashMap<String, serde_json::Value>,
 }
@@ -587,7 +591,7 @@ impl Parser {
         )
     }
 
-    /// Format the current source position using the TypeScript parser's UTF-16 columns.
+    /// Format the current source position with a 1-based line and UTF-16 column.
     fn location(&self) -> String {
         let before = self.text(0, self.pos.min(self.chars.len()));
         let line = before.chars().filter(|ch| *ch == '\n').count() + 1;
@@ -658,7 +662,7 @@ impl Parser {
         self.chars.get(self.pos..self.pos + token.len()) == Some(token.as_slice())
     }
 
-    /// Read a BibTeX identifier, allowing the syntax characters accepted by the TS parser.
+    /// Read a BibTeX identifier containing letters, digits, or the permitted syntax characters.
     fn key(&mut self, allow: &str) -> Result<String, String> {
         let start = self.pos;
         loop {
@@ -792,7 +796,7 @@ impl Parser {
                 {
                     value.clone()
                 } else {
-                    // Match the TS parser's placeholder behavior while recording one error per message.
+                    // Preserve unresolved names in braces and record one error per distinct name.
                     let message = format!("unresolved @string reference {bare:?}");
                     if !self
                         .library
@@ -837,7 +841,7 @@ impl Parser {
             let key = key.to_uppercase();
             self.library.strings.insert(key, value);
         } else if let Some(entry) = self.library.entries.last_mut() {
-            // Preserve duplicate fields using the same numbered suffix convention as TypeScript.
+            // Preserve duplicate fields by appending an incrementing duplicate suffix.
             let base = key.to_lowercase();
             let mut name = base.clone();
             let mut duplicate = 0;
@@ -925,7 +929,7 @@ impl Parser {
             if self.parsing == "comment" {
                 return self.comment();
             }
-            // TypeScript parses preambles as values before reading an entry guard.
+            // Preambles contain values and do not have an entry key.
             if self.parsing == "preamble" {
                 let preamble = self.value()?;
                 self.library.preambles.push(preamble);
@@ -1061,7 +1065,7 @@ fn default_strings() -> HashMap<String, String> {
     .collect()
 }
 
-/// Return the TypeScript parser's default set of English language identifiers.
+/// Return the language identifiers treated as English by default.
 fn default_english() -> Vec<String> {
     [
         "",
@@ -1095,7 +1099,7 @@ fn default_english() -> Vec<String> {
     .collect()
 }
 
-/// Return the default fields whose outer protection braces TypeScript removes or preserves.
+/// Return the fields whose single outer brace group is removed during normalization.
 fn default_remove_outer_braces() -> Vec<String> {
     [
         "doi",
@@ -1329,7 +1333,7 @@ fn parse_creator(
     if parts.len() == 3 && parts[2].is_empty() {
         parts.pop();
     }
-    // TypeScript recognizes extended names only when every comma-delimited part has a key=value signature.
+    // Treat comma-separated parts as extended properties only when every part has a valid key=value signature.
     let extended = parts.len() > 1
         && parts.iter().all(|part| {
             part.split_once('=')
@@ -1489,7 +1493,7 @@ fn is_extended_creator_key(key: &str) -> bool {
     }
 }
 
-/// Parse raw creator parts using the TypeScript `raw` branch without rendering or brace cleanup.
+/// Parse creator parts without TeX rendering or outer-brace cleanup.
 fn parse_raw_creator(input: &str) -> Creator {
     let parts = split_top_level(input, ',');
     let extended = parts.len() > 1
@@ -1520,10 +1524,10 @@ fn parse_raw_creator(input: &str) -> Creator {
     }
 }
 
-/// Choose the field parser mode using the reference parser's override precedence.
+/// Choose a field parser mode by applying explicit overrides before built-in defaults.
 ///
-/// `verbatimFields` wins immediately. Otherwise any explicit `fieldMode` disables ordinary
-/// default lists, even if its value is unrecognized and leaves the mode as `literal`.
+/// A matching `verbatimFields` entry wins immediately. Otherwise an explicit `fieldMode` disables
+/// ordinary default lists, even when its value is unrecognized and leaves the mode as `literal`.
 /// Built-in keyword and numbered export-field patterns still force `verbatim`, overriding
 /// configured modes. Without an override, the last matching default list wins.
 fn field_mode(field: &str, options: &Options) -> String {
@@ -1580,8 +1584,8 @@ fn field_mode(field: &str, options: &Options) -> String {
 
 /// Remove a single outer brace layer from fields listed in `removeOuterBraces`.
 ///
-/// The TypeScript parser strips one bracket layer only when the entire value is wrapped in a root
-/// group; this keeps repeated braces intact unless they are the direct wrapper around the field.
+/// The value must consist of one balanced outer group; repeated braces and braces within the value
+/// remain intact unless they are the direct wrapper around the complete field.
 fn remove_outer_braces(value: &str) -> String {
     if !value.starts_with('{') || !value.ends_with('}') || value.len() < 2 {
         return value.to_string();
@@ -1636,8 +1640,8 @@ fn render_string_value(
     options: &Options,
     diagnostics: &mut tex::RenderDiagnostics,
 ) -> String {
-    // TypeScript `prep()` visits every string as TeX content and shares macro definitions with
-    // later entries; raw mode instead preserves the parsed source without invoking that visitor.
+    // Render string values as TeX and share macro definitions with later entries; raw mode keeps
+    // the parsed source without invoking the renderer.
     if options.raw {
         return value.to_string();
     }
@@ -1779,11 +1783,10 @@ pub fn reparse(verbatim: Library) -> ParsedLibrary {
     reparse_with_options(verbatim, &Options::default())
 }
 
-/// Reparse with the same precedence as the TypeScript parser, including explicit mode overrides.
+/// Reparse with field-mode overrides and brace removal applied before values become typed data.
 ///
-/// This path matches the reference behavior for `fieldMode`, `verbatimFields`, and the brace-removal
-/// rule before field values are converted into typed data. The function keeps the source-order error
-/// aggregation from the raw parser and appends render diagnostics for unsupported TeX constructs.
+/// Errors from raw parsing remain in source order; diagnostics for unsupported TeX constructs are
+/// appended during rendering.
 pub fn reparse_with_options(verbatim: Library, options: &Options) -> ParsedLibrary {
     futures_util::FutureExt::now_or_never(reparse_with_yield(verbatim, options, || {
         std::future::ready(())
@@ -1809,7 +1812,7 @@ where
     let preambles = verbatim.preambles.clone();
     let mut macro_definitions = HashMap::new();
     if !options.raw {
-        // TS `prep()` processes preambles before strings, allowing their commands in later content.
+        // Process preambles first so their macro definitions are available to later strings.
         for preamble in &preambles {
             let _ = tex::render_with_case_protection_and_macro_definitions(
                 preamble,
@@ -1858,8 +1861,7 @@ where
             if value.trim().is_empty() {
                 continue;
             }
-            // TS renames duplicate keyword fields to this prefix before reparsing; merge
-            // their split values into one vector without sorting or removing repeated terms.
+            // Merge duplicate keyword fields into one vector without sorting or removing repeats.
             if field == "keywords" || field.starts_with("keywords+duplicate-") {
                 let value = tex::print_raw(&value);
                 keywords.extend(
@@ -1886,7 +1888,7 @@ where
                 }
             }
             if current_mode == "verbatim" {
-                // TS returns `printRaw(ast)` before its raw-mode and normal rendering passes.
+                // Normalize parsed whitespace while preserving TeX commands and literal content.
                 fields.insert(field, FieldValue::Text(tex::print_raw(&value)));
                 continue;
             }
@@ -1997,6 +1999,46 @@ where
             yield_now().await;
         }
     }
+    if options.collapse_markup && !options.raw {
+        for value in strings.values_mut() {
+            *value = tex::collapse_markup(value);
+        }
+        for entry in &mut entries {
+            for (field, value) in &mut entry.fields {
+                if matches!(
+                    entry.mode.get(field).map(String::as_str),
+                    Some("verbatim" | "verbatimlist")
+                ) {
+                    continue;
+                }
+                match value {
+                    FieldValue::Text(text) => *text = tex::collapse_markup(text),
+                    FieldValue::List(items) => {
+                        for item in items {
+                            *item = tex::collapse_markup(item);
+                        }
+                    }
+                    FieldValue::Creators(creators) => {
+                        for creator in creators {
+                            for text in [
+                                &mut creator.name,
+                                &mut creator.last_name,
+                                &mut creator.first_name,
+                                &mut creator.prefix,
+                                &mut creator.suffix,
+                                &mut creator.initial,
+                            ]
+                            .into_iter()
+                            .flatten()
+                            {
+                                *text = tex::collapse_markup(text);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
     // Inherited fields are already typed and rendered in their parent's context, not the child's.
     apply_crossref_inheritance(entries.as_mut_slice(), options.apply_crossref);
     let mut errors = verbatim.errors;
@@ -2091,7 +2133,7 @@ mod wasm_bindings {
             .map(Option::unwrap_or_default)
     }
 
-    /// Serialize Rust maps as plain JS objects to match the TypeScript API's record types.
+    /// Serialize Rust maps as plain JavaScript objects rather than key/value pair arrays.
     fn encode_result<T: Serialize>(value: &T) -> Result<JsValue, JsValue> {
         value
             .serialize(&serde_wasm_bindgen::Serializer::new().serialize_maps_as_objects(true))
@@ -2137,7 +2179,7 @@ mod wasm_bindings {
         encode_result(&library)
     }
 
-    /// Apply sentence casing with the standalone TypeScript API's defaulted option object.
+    /// Apply sentence casing using optional `guess`, `subSentenceCapitalization`, and `preserveQuoted` flags.
     #[wasm_bindgen(js_name = toSentenceCase)]
     pub fn to_sentence_case_js(input: &str, options: Option<JsValue>) -> Result<String, JsValue> {
         let options = options
@@ -2158,7 +2200,7 @@ mod wasm_bindings {
         ))
     }
 
-    /// Tokenize Unicode title text using the same token record shape as TypeScript.
+    /// Tokenize Unicode title text into records with UTF-16 offsets and optional hyphen components.
     #[wasm_bindgen(js_name = tokenize)]
     pub fn tokenize_js(input: &str) -> Result<JsValue, JsValue> {
         encode_result(&super::tokenizer::tokenize(input))
@@ -2274,7 +2316,10 @@ mod tests {
     #[test]
     fn verbatim_commands_preserve_literal_field_contents() {
         for (value, expected) in [
-            (r#"{before \verb|} $ % \textbf{raw| after}"#, r#"before } $ % \textbf{raw after"#),
+            (
+                r#"{before \verb|} $ % \textbf{raw| after}"#,
+                r#"before } $ % \textbf{raw after"#,
+            ),
             (r#""before \verb!{ " raw! after""#, "before { \" raw after"),
             (r#"{\verb{unbalanced } braces{}"#, "unbalanced } braces"),
             (r#"{\verb}unbalanced { braces}}"#, "unbalanced { braces"),
@@ -2283,8 +2328,14 @@ mod tests {
             (r#"{before\verb||after}"#, "beforeafter"),
             (r#"{\\verb|ordinary|}"#, "<br>verb|ordinary|"),
             (r#"{before \path{a{b} after}"#, "before a{b after"),
-            (r#"{\path{C:\raw_%$#file} after}"#, r#"C:\raw_%$#file after"#),
-            (r#"{before \path|} $ % \textbf{raw| after}"#, r#"before } $ % \textbf{raw after"#),
+            (
+                r#"{\path{C:\raw_%$#file} after}"#,
+                r#"C:\raw_%$#file after"#,
+            ),
+            (
+                r#"{before \path|} $ % \textbf{raw| after}"#,
+                r#"before } $ % \textbf{raw after"#,
+            ),
             (r#""before \path!{ " raw! after""#, "before { \" raw after"),
             (r#"{\path}unbalanced { braces}}"#, "unbalanced { braces"),
             (r#"{before\path{}after}"#, "beforeafter"),
@@ -2294,8 +2345,14 @@ mod tests {
             assert!(raw.errors.is_empty(), "{value}: {:?}", raw.errors);
             assert_eq!(raw.entries[0].fields["note"], &value[1..value.len() - 1]);
             let parsed = fixture(&source);
-            assert_eq!(parsed.entries[0].fields["note"], FieldValue::Text(expected.into()));
-            assert_eq!(parsed.entries[0].fields["year"], FieldValue::Text("2026".into()));
+            assert_eq!(
+                parsed.entries[0].fields["note"],
+                FieldValue::Text(expected.into())
+            );
+            assert_eq!(
+                parsed.entries[0].fields["year"],
+                FieldValue::Text("2026".into())
+            );
         }
     }
 
@@ -2433,7 +2490,7 @@ mod tests {
     }
 
     #[test]
-    /// Checks UTF-16 spans, malformed-group fallback, and TypeScript comment metadata.
+    /// Checks UTF-16 spans, malformed-group recovery, and comment-boundary metadata.
     fn tex_parser_matches_source_span_and_recovery_contract() {
         let malformed = super::tex::parse("a {b");
         assert_eq!(malformed.span.start.offset, 0);
@@ -2597,7 +2654,7 @@ mod tests {
     }
 
     #[test]
-    /// Matches the TypeScript visitor's literal parameter treatment after parsing definitions.
+    /// Checks that custom-command arity and default parameters do not enter replacement text.
     fn tex_parser_matches_parameterized_custom_command_behavior() {
         assert_eq!(
             super::tex::render(r"\newcommand{\hello}[1]{Hello #1} \hello{world}", "literal"),
@@ -2723,7 +2780,61 @@ mod tests {
     }
 
     #[test]
-    /// Checks title rendering respects the TypeScript case-protection modes.
+    fn collapse_markup_option_defaults_on_and_can_be_disabled() {
+        let source = r"@book{x,title={\textit{one} \textit{two}}}";
+        let field_mode =
+            std::collections::HashMap::from([("title".to_string(), "literal".to_string())]);
+        let collapsed = parse(
+            source,
+            Options {
+                field_mode: field_mode.clone(),
+                ..Options::default()
+            },
+        );
+        assert_eq!(
+            collapsed.entries[0].fields["title"],
+            FieldValue::Text("<i>one two</i>".into())
+        );
+
+        let separate = parse(
+            source,
+            Options {
+                field_mode,
+                collapse_markup: false,
+                ..Options::default()
+            },
+        );
+        assert_eq!(
+            separate.entries[0].fields["title"],
+            FieldValue::Text("<i>one</i> <i>two</i>".into())
+        );
+
+        let cased = parse(
+            r"@book{x,title={\textit{The} \textit{Title}}}",
+            Options {
+                collapse_markup: false,
+                ..Options::default()
+            },
+        );
+        assert_eq!(
+            cased.entries[0].fields["title"],
+            FieldValue::Text("<i>The</i> <i>Title</i>".into())
+        );
+
+        let marked = "<case-protection><i>The</i></case-protection> <case-protection><i>Title</i></case-protection>";
+        let restored = super::tex::sentence_case_title(
+            marked,
+            false,
+            true,
+            true,
+            super::tex::CaseProtection::Off,
+        );
+        assert_eq!(restored, "<i>The</i> <i>Title</i>");
+        assert_eq!(super::tex::collapse_markup(&restored), "<i>The Title</i>");
+    }
+
+    #[test]
+    /// Checks title rendering for `off`, `as-needed`, and `strict` case protection.
     fn tex_visitor_honors_case_protection_modes() {
         let mut diagnostics = super::tex::RenderDiagnostics::default();
         assert_eq!(
@@ -2780,7 +2891,7 @@ mod tests {
                 true,
                 super::tex::CaseProtection::Strict,
             ),
-            "<span class=\"nocase\">Astrophysical → Reactions</span>"
+            "<span class=\"nocase\">Astrophysical</span> <span class=\"nocase\">→</span> <span class=\"nocase\">Reactions</span>"
         );
         assert_eq!(
             super::tex::render_with_case_protection(
@@ -2799,7 +2910,7 @@ mod tests {
                 true,
                 super::tex::CaseProtection::Strict,
             ),
-            "<span class=\"nocase\">𝜇 J</span>"
+            "<span class=\"nocase\">𝜇</span> <span class=\"nocase\">J</span>"
         );
         assert_eq!(
             super::tex::render_with_case_protection(
@@ -2830,9 +2941,7 @@ mod tests {
         );
         assert_eq!(
             href.entries[0].fields["title"],
-            FieldValue::Text(
-                "<a href=\"https://example.test\">Home</a>".to_string()
-            )
+            FieldValue::Text("<a href=\"https://example.test\">Home</a>".to_string())
         );
         for (title, expected) in [
             (
@@ -2867,7 +2976,7 @@ mod tests {
         );
         assert_eq!(
             markup_title.entries[0].fields["title"],
-            FieldValue::Text("A <i>A A A</i> A <i>A</i>".into())
+            FieldValue::Text("A <i>a a A</i> A <i>A</i>".into())
         );
         let quoted = parse(
             r"@article{x,langid={en},title={Blah and \enquote{enquote}.}}",
@@ -2900,11 +3009,13 @@ mod tests {
     }
 
     #[test]
-    /// Matches the TypeScript sentence-case tokenizer's common word, quote, and state rules.
+    /// Checks sentence tokenization for words, quotes, and sentence-start state.
     fn sentence_case_matches_tokenizer_rules() {
         let sentence_case = |text| super::tex::sentence_case_with_options(text, true, true, true);
         let cases = [
             ("AN ANALYSIS OF DNA AND RNA", "An analysis of dna and rna"),
+            ("A B I", "A B I"),
+            ("A <i>A</i>", "A <i>a</i>"),
             (
                 "The Effects of DNA Sequencing",
                 "The effects of DNA sequencing",
@@ -2919,7 +3030,7 @@ mod tests {
                 "The C3-OH and N6-methyladenine use 13C and P450-based assays",
             ),
             ("The can't-Based Results", "The can't-Based results"),
-            ("A-B: Another Title", "A-b: Another title"),
+            ("A-B: Another Title", "A-B: Another title"),
             (
                 "The https://foo/UPPER Results",
                 "The https://foo/UPPER Results",
@@ -2955,7 +3066,7 @@ mod tests {
             ),
             (
                 "The A-B Test in the 21st Century",
-                "The a-b test in the 21st century",
+                "The a-B test in the 21st century",
             ),
             ("TITLE", "TITLE"),
             ("ALL CAPS TITLE", "All caps title"),
@@ -2991,10 +3102,22 @@ mod tests {
         for (input, expected) in cases {
             assert_eq!(sentence_case(input), expected, "{input}");
         }
+        assert_eq!(
+            super::tex::sentence_case_with_options("An <i>ex</i>ample Title", false, true, true),
+            "An <i>ex</i>ample title"
+        );
+        assert_eq!(
+            super::tex::sentence_case_with_options("An Ex<i>ample</i>", false, true, true),
+            "An ex<i>ample</i>"
+        );
+        assert_eq!(
+            super::tex::sentence_case_with_options("A İ<i>X</i>", false, true, true),
+            "A i\u{0307}<i>x</i>"
+        );
     }
 
     #[test]
-    /// Checks text ligature conversion against a shared fixture and its TypeScript snapshot.
+    /// Checks text ligature conversion for the shared bibliography fixture.
     fn parses_text_ligature_fixture_like_default_case() {
         let parsed = fixture(include_str!(
             "../../test/better-bibtex/export/Better BibLaTeX.001.biblatex"
@@ -3006,7 +3129,7 @@ mod tests {
     }
 
     #[test]
-    /// Checks common text markup macros against the existing TypeScript fixture snapshot.
+    /// Checks rendered output for common text markup macros.
     fn parses_text_markup_fixture_like_default_case() {
         let parsed = fixture(include_str!(
             "../../test/better-bibtex/export/Better BibLaTeX.007.biblatex"
@@ -3278,7 +3401,7 @@ mod tests {
     }
 
     #[test]
-    /// Checks quotation rendering against its fragment in the existing TypeScript default snapshot.
+    /// Checks quotation rendering for the shared rich-text fixture.
     fn parses_richtext_quotation_fixture_like_default_case() {
         let parsed = fixture(include_str!("../../test/other/quotation-18.bib"));
         let entry = &parsed.entries[0];
@@ -3313,7 +3436,7 @@ mod tests {
     }
 
     #[test]
-    /// Matches Unicode quote and dash rendering against the default TypeScript snapshot.
+    /// Checks Unicode quote and dash rendering in the default fixture output.
     fn parses_unicode_abstract_fixture_like_default_case() {
         let parsed = fixture(include_str!("../../test/other/textquotedblleft_13.bib"));
         let entry = &parsed.entries[0];
@@ -3436,7 +3559,7 @@ mod tests {
     }
 
     #[test]
-    /// Checks user field-mode overrides and outer-brace stripping match the TypeScript parser contract.
+    /// Checks user field-mode overrides and single outer-brace stripping.
     fn field_mode_overrides_and_outer_braces_match_reference_behavior() {
         let mut field_mode = std::collections::HashMap::new();
         field_mode.insert("customfield".to_string(), "verbatim".to_string());
@@ -3477,10 +3600,7 @@ mod tests {
             field_mode: std::collections::HashMap::new(),
             ..Options::default()
         };
-        let parsed = parse_verbatim(
-            "@article{one, journal=custom}\n@article{two}",
-            options,
-        );
+        let parsed = parse_verbatim("@article{one, journal=custom}\n@article{two}", options);
         assert_eq!(parsed.entries.len(), 1);
         assert_eq!(parsed.entries[0].fields["journal"], "From options");
     }

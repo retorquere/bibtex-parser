@@ -120,6 +120,63 @@ function stringify(value) {
   return yaml.dump(normalize(value), { sortKeys: true })
 }
 
+const missing = Symbol('missing')
+
+function firstDifference(actual, expected, currentPath = '$') {
+  if (Object.is(actual, expected)) return undefined
+
+  if (Array.isArray(actual) || Array.isArray(expected)) {
+    if (!Array.isArray(actual) || !Array.isArray(expected)) return { path: currentPath, actual, expected }
+    if (actual.length !== expected.length) {
+      return { path: `${currentPath}.length`, actual: actual.length, expected: expected.length }
+    }
+    for (let index = 0; index < actual.length; index++) {
+      const difference = firstDifference(actual[index], expected[index], `${currentPath}[${index}]`)
+      if (difference) return difference
+    }
+    return undefined
+  }
+
+  if (actual !== null && expected !== null && typeof actual === 'object' && typeof expected === 'object') {
+    const keys = new Set([...Object.keys(expected), ...Object.keys(actual)])
+    for (const key of keys) {
+      const hasActual = Object.hasOwn(actual, key)
+      const hasExpected = Object.hasOwn(expected, key)
+      const property = /^[A-Za-z_$][\w$]*$/.test(key) ? `.${key}` : `[${JSON.stringify(key)}]`
+      const path = `${currentPath}${property}`
+      if (!hasActual || !hasExpected) {
+        return {
+          path,
+          actual: hasActual ? actual[key] : missing,
+          expected: hasExpected ? expected[key] : missing,
+        }
+      }
+      const difference = firstDifference(actual[key], expected[key], path)
+      if (difference) return difference
+    }
+    return undefined
+  }
+
+  return { path: currentPath, actual, expected }
+}
+
+function preview(value) {
+  if (value === missing) return '<missing>'
+  const text = JSON.stringify(value)
+  if (text === undefined) return String(value)
+  return text.length > 240 ? `${text.slice(0, 237)}...` : text
+}
+
+function assertSnapshot(actual, expected, snapshot) {
+  const difference = firstDifference(actual, expected)
+  if (!difference) return
+  throw new Error([
+    `Snapshot mismatch in ${path.relative(root, snapshot)} at ${difference.path}`,
+    `  expected: ${preview(difference.expected)}`,
+    `  actual:   ${preview(difference.actual)}`,
+  ].join('\n'))
+}
+
 function matchSnapshot(actual, snapshot) {
   if (!fs.existsSync(snapshot) || (args.snap && args.force)) {
     if (args.snap) {
@@ -128,13 +185,25 @@ function matchSnapshot(actual, snapshot) {
       console.log(`Created snapshot: ${snapshot}`)
       return
     }
-    assert.deepEqual(normalize(actual), '')
+    throw new Error(`Missing snapshot: ${path.relative(root, snapshot)}`)
   }
   else {
     const expected = normalize(load(snapshot))
-    assert.deepEqual(normalize(actual), expected)
+    assertSnapshot(normalize(actual), expected, snapshot)
   }
 }
+
+test('snapshot mismatch reports the first field path and values', () => {
+  assert.throws(
+    () =>
+      assertSnapshot(
+        { entries: [{ fields: { title: 'Actual title' } }] },
+        { entries: [{ fields: { title: 'Expected title' } }] },
+        path.join(here, 'example.yaml'),
+      ),
+    /example\.yaml at \$\.entries\[0\]\.fields\.title\n  expected: "Expected title"\n  actual:   "Actual title"/,
+  )
+})
 
 let tested = 0
 function skip(input) {

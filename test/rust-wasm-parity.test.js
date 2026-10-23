@@ -23,6 +23,12 @@ const cases = [
     field: 'title',
   },
   {
+    name: 'sentence-cases inline TeX markup like the default snapshot',
+    fixture: 'test/citation-js/entry value with sentence-casing (env markup).bib',
+    snapshot: 'test/snapshots/sentencecase=on+guess^caseprotection=as-needed^preservequoted/citation-js/entry value with sentence-casing (env markup).bib.yaml',
+    field: 'title',
+  },
+  {
     name: 'sentence-cases title text like the default snapshot',
     fixture: 'test/better-bibtex/export/Better BibLaTeX.005.biblatex',
     snapshot: 'test/snapshots/sentencecase=on^caseprotection=as-needed/export/Better BibLaTeX.005.biblatex.yaml',
@@ -235,6 +241,14 @@ test('passes explicit language lists and case-protection modes to Rust', async (
   assert.equal(parse(protectedSource, { ...options, caseProtection: 'strict' }).entries[0].fields.title,
     'A <span class="nocase">Protected</span> title')
   assert.deepEqual(await parseAsync(protectedSource, options), parsed)
+})
+
+test('controls adjacent markup collapsing through collapseMarkup', () => {
+  const source = String.raw`@book{x,title={\textit{One} \textit{Two}}}`
+  const options = { fieldMode: { title: 'literal' } }
+
+  assert.equal(parse(source, options).entries[0].fields.title, '<i>One Two</i>')
+  assert.equal(parse(source, { ...options, collapseMarkup: false }).entries[0].fields.title, '<i>One</i> <i>Two</i>')
 })
 
 test('accepts string maps or BibTeX source through strings', async () => {
