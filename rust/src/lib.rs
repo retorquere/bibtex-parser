@@ -397,6 +397,8 @@ pub struct Options {
     /// protection when authors may not expect the braces to affect title casing. `strict` preserves
     /// protection exactly as entered; `off` disables protection.
     pub case_protection: String,
+    #[serde(rename = "richURL")]
+    pub rich_url: bool,
     /// Policy for rendering unknown TeX commands and environments.
     pub unsupported: Option<UnsupportedHandler>,
 }
@@ -448,6 +450,7 @@ impl Default for Options {
             language_as_langid: false,
             sentence_case: SentenceCaseOptions::default(),
             case_protection: "as-needed".to_string(),
+            rich_url: true,
             unsupported: None,
         }
     }
@@ -1802,6 +1805,7 @@ where
 {
     let mut render_diagnostics = tex::RenderDiagnostics::default();
     render_diagnostics.unsupported = options.unsupported;
+    render_diagnostics.plain_urls = !options.rich_url;
     let preambles = verbatim.preambles.clone();
     let mut macro_definitions = HashMap::new();
     if !options.raw {
@@ -2827,8 +2831,7 @@ mod tests {
         assert_eq!(
             href.entries[0].fields["title"],
             FieldValue::Text(
-                "<a href=\"https://example.test\"><span class=\"nocase\">Home</span></a>"
-                    .to_string()
+                "<a href=\"https://example.test\">Home</a>".to_string()
             )
         );
         for (title, expected) in [

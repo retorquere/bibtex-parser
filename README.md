@@ -68,6 +68,10 @@ const library = parse('@article{example, title={A title}}')
 
 Await initialization once during startup; subsequent `parse` or `parseAsync` calls reuse the initialized module.
 
+## URL Commands
+
+Both parsers accept `richURL`, a boolean that defaults to `true`. With `richURL: true`, `\href{http://example.org/{id}}{url}` renders as `<a href="http://example.org/{id}">url</a>` without case-protection spans. With `richURL: false`, it renders as `<span class="nocase">http://example.org/{id}</span>`, discarding the label and preserving the destination's casing regardless of the `caseProtection` setting. The option also applies to `\url`.
+
 ## Unknown TeX Commands
 
 Both `parse` and `parseAsync` accept an `unsupported` option:

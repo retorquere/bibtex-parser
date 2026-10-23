@@ -227,6 +227,9 @@ export interface Options {
    */
   caseProtection?: 'as-needed' | 'strict' | boolean
 
+  /** Render URL commands as HTML links (default true), or as case-protected destinations. */
+  richURL?: boolean
+
   /**
    * How to handle unknown TeX commands and environments: `tex` wraps the command in a script
    * element, `text` returns the command without its backslash, `ignore` omits it, and `throw`
@@ -798,7 +801,9 @@ class BibTeXParser {
           url = node.args[0]
           label = node.args[node.content === 'url' ? 0 : 1]
         }
-        return `<a href="${this.stringify(url!, context)}">${this.stringify(label!, context)}</a>`
+        return this.options.richURL === false
+          ? `<span class="nocase">${this.stringify(url!, { ...context, caseProtected: true })}</span>`
+          : `<a href="${this.stringify(url!, { ...context, caseProtected: true })}">${this.stringify(label!, { ...context, caseProtected: true })}</a>`
 
       case 'relax':
       case 'aftergroup':

@@ -111,6 +111,8 @@ export interface Options extends ParserOptions {
   sentenceCase?: SentenceCaseOptions
   /** Control preservation of capitalization inside braces. */
   caseProtection?: 'off' | 'as-needed' | 'strict'
+  /** Render URL commands as HTML links (default true), or as case-protected destinations. */
+  richURL?: boolean
   /** Policy for unsupported TeX commands and environments. */
   unsupported?: 'tex' | 'text' | 'ignore' | 'throw'
   /** Fields parsed as verbatim text rather than TeX. */

@@ -1026,6 +1026,7 @@ pub(crate) struct RenderDiagnostics {
     pub(crate) unsupported: Option<super::UnsupportedHandler>,
     /// Whether root-title group boundaries should be retained for post-render casing.
     pub(crate) mark_case_groups: bool,
+    pub(crate) plain_urls: bool,
 }
 
 impl RenderDiagnostics {
@@ -2092,38 +2093,6 @@ fn render_argument(
         .unwrap_or_default()
 }
 
-/// Render a root macro argument with the same case-protection boundary as a root TeX group.
-fn render_case_protected_argument(
-    arguments: &[Vec<Node>],
-    index: usize,
-    mode: &str,
-    diagnostics: &mut RenderDiagnostics,
-    context: RenderContext,
-) -> String {
-    let protect = context.title_mode
-        && context.root_scope
-        && matches!(
-            arguments.get(index).map(Vec::as_slice),
-            Some([Node::Group(children, _)])
-                if !children.is_empty() && !matches!(children[0], Node::Macro { .. })
-        );
-    let rendered = render_argument(
-        arguments,
-        index,
-        mode,
-        false,
-        diagnostics,
-        context.case_protection,
-    );
-    if diagnostics.mark_case_groups && protect {
-        format!("<case-protection>{rendered}</case-protection>")
-    } else if protect && context.case_protection.enabled() && needs_case_protection(&rendered) {
-        format!("<span class=\"nocase\">{rendered}</span>")
-    } else {
-        rendered
-    }
-}
-
 /// Reconstruct a URL argument as raw TeX, unwrapping one argument group like the TS visitor.
 ///
 /// The TypeScript pass replaces `url`/`href`'s first argument with a String node built from
@@ -2173,12 +2142,26 @@ fn render_macro(
         "url" => {
             // URL content is rendered verbatim so query strings and tildes are not transformed.
             let url = serialize_verbatim_argument(arguments, 0);
-            return format!("<a href=\"{url}\">{url}</a>");
+            return if diagnostics.plain_urls {
+                format!("<span class=\"nocase\">{url}</span>")
+            } else {
+                format!("<a href=\"{url}\">{url}</a>")
+            };
         }
         "href" => {
             // The first href argument is the destination; only the label receives normal rendering.
             let url = serialize_verbatim_argument(arguments, 0);
-            let label = render_case_protected_argument(arguments, 1, mode, diagnostics, context);
+            if diagnostics.plain_urls {
+                return format!("<span class=\"nocase\">{url}</span>");
+            }
+            let label = render_argument(
+                arguments,
+                1,
+                if mode == "title" { "literal" } else { mode },
+                false,
+                diagnostics,
+                CaseProtection::Off,
+            );
             return format!("<a href=\"{url}\">{label}</a>");
         }
         "textbf" | "mkbibbold" => {

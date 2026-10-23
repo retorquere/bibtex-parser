@@ -10,7 +10,7 @@ function titleCase(s: string): string {
   return s.replace(/^(.)(.+)/, (match, car, cdr) => `${car}${cdr.toLowerCase()}`)
 }
 
-function wordSC(token: Token, allCaps: boolean, subSentence: boolean, hyphenated: boolean): string {
+function wordSC(token: Token, allCaps: boolean, subSentence: boolean): string {
   // domains are case-insensitive
   if (token.type === 'domain') return token.text.toLowerCase()
 
@@ -36,8 +36,8 @@ function wordSC(token: Token, allCaps: boolean, subSentence: boolean, hyphenated
 
   // if (!allCaps && token.shape.match(/^[Xxd]+(-[Xxd]+)+/)) return XRegExp.replace(token.text, connectedWord, match => match.toLowerCase())
 
-  // single-letter capitals are usually some kind of noun, but not when they're part of an hyphenated word
-  if (token.text.match(/^[B-Z]$/)) return hyphenated ? token.text.toLowerCase() : token.text
+  // Only the pronoun I stays uppercase as a noninitial single capital.
+  if (token.text.match(/^[A-HJ-Z]$/)) return token.text.toLowerCase()
 
   // ?? if (!allCaps && token.shape.match(/^[-X]+$/)) return token.text
 
@@ -55,6 +55,97 @@ function wordSC(token: Token, allCaps: boolean, subSentence: boolean, hyphenated
   return token.text.toLowerCase()
 }
 
+type InlineMarkup = { sourceStart: number; position: number; text: string }
+type CasingEdit = { start: number; end: number; replacement: string; boundaries: number[] }
+
+function globalRegex(pattern: RegExp): RegExp {
+  return new RegExp(pattern.source, pattern.flags.includes('g') ? pattern.flags : `${pattern.flags}g`)
+}
+
+function stripMarkup(source: string, pattern?: RegExp) {
+  const markup: InlineMarkup[] = []
+  if (pattern) {
+    let removed = 0
+    for (const match of source.matchAll(globalRegex(pattern))) {
+      if (!match[0].length) continue
+      markup.push({ sourceStart: match.index!, position: match.index! - removed, text: match[0] })
+      removed += match[0].length
+    }
+  }
+  const text = pattern ? source.replace(globalRegex(pattern), '') : source
+  const visibleOffset = (sourceOffset: number): number => {
+    let removed = 0
+    for (const tag of markup) {
+      if (sourceOffset <= tag.sourceStart) break
+      removed += Math.min(tag.text.length, sourceOffset - tag.sourceStart)
+    }
+    return sourceOffset - removed
+  }
+  return { text, markup, visibleOffset }
+}
+
+function matchingRanges(source: string, pattern: RegExp | undefined, visibleOffset: (offset: number) => number): [number, number][] {
+  if (!pattern) return []
+  return Array.from(source.matchAll(globalRegex(pattern)), match => [
+    visibleOffset(match.index!),
+    visibleOffset(match.index! + match[0].length),
+  ])
+}
+
+function replacementBoundaries(source: string, replacement: string): number[] {
+  const boundaries = Array<number>(source.length + 1).fill(0)
+  let sourceOffset = 0
+  let outputOffset = 0
+  while (sourceOffset < source.length) {
+    const sourceChar = String.fromCodePoint(source.codePointAt(sourceOffset)!)
+    const sourceEnd = sourceOffset + sourceChar.length
+    const lower = sourceChar.toLowerCase()
+    let outputLength: number
+    if (replacement.startsWith(sourceChar, outputOffset)) outputLength = sourceChar.length
+    else if (replacement.startsWith(lower, outputOffset)) outputLength = lower.length
+    else if (outputOffset < replacement.length) outputLength = String.fromCodePoint(replacement.codePointAt(outputOffset)!).length
+    else outputLength = 0
+    for (let offset = sourceOffset + 1; offset < sourceEnd; offset++) boundaries[offset] = outputOffset
+    sourceOffset = sourceEnd
+    outputOffset += outputLength
+    boundaries[sourceOffset] = outputOffset
+  }
+  return boundaries
+}
+
+function applyEdits(source: string, edits: CasingEdit[]): string {
+  let result = ''
+  let cursor = 0
+  for (const edit of edits) {
+    result += source.slice(cursor, edit.start) + edit.replacement
+    cursor = edit.end
+  }
+  return result + source.slice(cursor)
+}
+
+function outputBoundary(position: number, edits: CasingEdit[]): number {
+  let delta = 0
+  for (const edit of edits) {
+    if (position < edit.start) break
+    if (position <= edit.end) return edit.start + delta + edit.boundaries[position - edit.start]
+    delta += edit.replacement.length - (edit.end - edit.start)
+  }
+  return position + delta
+}
+
+function restoreMarkup(text: string, markup: InlineMarkup[], edits: CasingEdit[]): string {
+  const insertions = markup
+    .map(tag => ({ position: outputBoundary(tag.position, edits), sourceStart: tag.sourceStart, text: tag.text }))
+    .sort((left, right) => left.position - right.position || left.sourceStart - right.sourceStart)
+  let result = ''
+  let cursor = 0
+  for (const insertion of insertions) {
+    result += text.slice(cursor, insertion.position) + insertion.text
+    cursor = insertion.position
+  }
+  return result + text.slice(cursor)
+}
+
 export type Options = {
   preserveQuoted?: boolean
   subSentenceCapitalization?: boolean
@@ -70,12 +161,13 @@ export function toSentenceCase(title: string, options: Options = {}): string {
     guess: false,
   })
 
-  const allCaps = title === title.toUpperCase()
-  const allLower = title === title.toLowerCase()
+  const view = stripMarkup(title, options.markup)
+  const allCaps = view.text === view.text.toUpperCase()
+  const allLower = view.text === view.text.toLowerCase()
   if (options.guess && !allCaps && !allLower) {
     let $title = title
     if (options.nocase) $title = $title.replace(options.nocase, match => match.match(/\s/) ? ' ' : '')
-    if (options.markup) $title = $title.replace(options.markup, '')
+    $title = stripMarkup($title, options.markup).text
 
     const guess = {
       words: tokenize($title),
@@ -91,41 +183,35 @@ export function toSentenceCase(title: string, options: Options = {}): string {
     if (guess.sc && guess.sc >= guess.other) return title
   }
 
-  if (allCaps && !title.match(/\s/)) return title
+  if (allCaps && !view.text.match(/\s/)) return title
 
-  const tokens = tokenize(title, options.markup)
-
-  let sentenceCased = ''
-  for (const token of tokens) {
-    if (token.hyphenated && token.shape[0] === 'x') {
-      sentenceCased += token.text
-    }
-    else if (token.hyphenated) {
-      for (const t of token.hyphenated) {
-        sentenceCased += wordSC(t, allCaps, options.subSentenceCapitalization!, true)
-      }
-    }
-    else {
-      sentenceCased += wordSC(token, allCaps, options.subSentenceCapitalization!, false)
-    }
-  }
-
-  if (options.markup) {
-    for (const match of title.matchAll(options.markup)) {
-      sentenceCased = sentenceCased.substring(0, match.index) + match[0] + sentenceCased.substring(match.index + match[0].length)
-    }
-  }
-
-  if (options.nocase) {
-    sentenceCased = sentenceCased
-      .replace(options.nocase, (match: string, tag: string, offset: number) => title.substring(offset, offset + match.length))
-  }
-
+  const tokens = tokenize(view.text)
+  const preserved = matchingRanges(title, options.nocase, view.visibleOffset)
   if (options.preserveQuoted) {
-    for (const q of [/“.*?”/g, /‘.*?’/g, /".*?"/g]) {
-      sentenceCased = sentenceCased.replace(q, (match: string, offset: number) => title.substring(offset, offset + match.length))
+    for (const quote of [/“.*?”/g, /‘.*?’/g, /".*?"/g]) {
+      preserved.push(...matchingRanges(title, quote, view.visibleOffset))
+    }
+  }
+  const edits: CasingEdit[] = []
+  const addEdit = (token: Token) => {
+    if (token.type !== 'word' && token.type !== 'domain') return
+    const start = token.start
+    const end = token.end + 1
+    if (preserved.some(([protectedStart, protectedEnd]) => protectedStart < end && protectedEnd > start)) return
+    const replacement = wordSC(token, allCaps, options.subSentenceCapitalization!)
+    if (replacement !== token.text) {
+      edits.push({ start, end, replacement, boundaries: replacementBoundaries(token.text, replacement) })
+    }
+  }
+  for (const token of tokens) {
+    if (token.hyphenated) {
+      if (token.shape[0] !== 'x') {
+        for (const part of token.hyphenated) addEdit(part)
+      }
+    } else {
+      addEdit(token)
     }
   }
 
-  return sentenceCased
+  return restoreMarkup(applyEdits(view.text, edits), view.markup, edits)
 }
