@@ -1,0 +1,18 @@
+comments: []
+entries:
+  - fields:
+      title: >-
+        A <i>a a <span class="nocase">A</span></i> <span class="nocase">A
+        <i>A</i></span>
+    input: >-
+      @article{test, title = "A {\em A} \begin{em}A\end{em}
+      \begin{em}{A}\end{em} {A \em A}"}
+    key: test
+    mode:
+      title: title
+    type: article
+errors: []
+jabref:
+  root: []
+preambles: []
+strings: {}
