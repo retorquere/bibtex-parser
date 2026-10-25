@@ -276,6 +276,10 @@ fn word(source: &str) -> Option<(&str, SentenceTokenKind, SentenceTokenSubtype)>
 }
 
 /// Detect words inside an HTML-style markup element, which TS tokenizes as word-joiner text.
+///
+/// Only complete tags before `start` affect depth: closing tags decrement it, declarations beginning
+/// with `!` are ignored, and other opening tags increment it. This lightweight scan only prevents
+/// preposition recognition inside markup; it is not a general HTML parser.
 fn inside_markup(characters: &[char], start: usize) -> bool {
     let (mut position, mut depth) = (0, 0usize);
     while position < start {
@@ -554,6 +558,7 @@ mod tests {
 
     /// Measure first-use and warmed tokenization separately; run explicitly with release optimizations.
     /// Seven trials alternate traversal order and report the median to reduce scheduling/order noise.
+    /// `TOKENIZER_BENCH_ITERATIONS` overrides the 2,000-iteration default; invalid values fail loudly.
     #[test]
     #[ignore = "manual tokenizer benchmark; use --release --ignored --nocapture"]
     fn benchmark_tokenization() {

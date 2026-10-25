@@ -1692,6 +1692,7 @@ pub(crate) fn sentence_case_with_options(
                     }
                 })
                 .collect::<String>();
+            // Lowercase-leading compounds already look sentence-cased, so preserve the complete run.
             if !grouped_shape.starts_with('x') {
                 let mut rendered = String::new();
                 for token in &tokens[index..=end] {
@@ -2166,7 +2167,7 @@ fn render_node(
 ) -> String {
     match node {
         Node::String(text, _) => {
-            // URLs and other verbatim arguments retain literal tildes; ordinary TeX text uses a tie.
+            // Delegate mode-specific conversion and verbatim/math preservation to `render_text`.
             render_text(text, mode, verbatim)
         }
         Node::Whitespace(_text, _) => {
@@ -2185,8 +2186,9 @@ fn render_node(
                 " ".to_string()
             }
         }
+        // Comments affect TeX source layout but never contribute rendered field text.
         Node::Comment { .. } => String::new(),
-        // Neither commands, whitespace, ligatures, nor brace protection are visited inside literals.
+        // Verbatim contents bypass normal TeX rendering, preserving their literal text unchanged.
         Node::Verb(contents, _) => contents.clone(),
         // Group delimiters protect structure but are omitted from rendered field text.
         Node::Group(nodes, _) => render_nodes(
@@ -2206,6 +2208,7 @@ fn render_node(
             mode,
             verbatim,
             diagnostics,
+            // Expanded replacement text is nested content, not a source-level root group.
             RenderContext {
                 title_mode: context.title_mode,
                 protected_ancestor: context.protected_ancestor,
@@ -2227,6 +2230,8 @@ fn render_node(
                     case_protection: context.case_protection,
                 },
             );
+            // The marker pass defers protection choice until sentence casing can compare original
+            // and transformed text; ordinary rendering emits no-case markup only when needed.
             if diagnostics.mark_case_groups && context.title_mode && !context.protected_ancestor {
                 format!("<case-protection>{rendered}</case-protection>")
             } else if context.title_mode
@@ -2239,6 +2244,7 @@ fn render_node(
                 rendered
             }
         }
+        // Preserve root scope through environments so their body groups can retain title protection.
         Node::Environment { name, content, .. } => render_environment(
             name,
             content,
@@ -2258,7 +2264,9 @@ fn render_node(
             let combining_macro = unicode_mapping(&format!("\\{name}"))
                 .is_some_and(|mapping| mapping.combining.is_some());
             // Macro parsing consumes arguments before this pass, so inspect retained groups here
-            // to preserve title case protection on eligible root arguments.
+            // to preserve title case protection on eligible root arguments. Destinations, spacing,
+            // accents, all-caps, and quote macros have separate semantics and must not make their
+            // grouped arguments look like author-protected title text.
             let protect_argument = context.title_mode
                 && context.root_scope
                 && !combining_macro
@@ -2387,6 +2395,7 @@ fn render_macro(
         }
         "allcaps" => {
             let content = render_argument(arguments, 0, mode, false, diagnostics, case_protection);
+            // All-caps markup is explicit author intent, so title casing must preserve its contents.
             return if context.title_mode && diagnostics.mark_case_groups {
                 format!("<case-protection>{content}</case-protection>")
             } else if context.title_mode && case_protection.enabled() {
@@ -2468,6 +2477,7 @@ fn render_macro(
         | "accent" | "def" | "hss" | "ifmmode" | "makeatletter" | "makeatother"
         | "scriptscriptstyle" | "setbox" | "dimen" | "advance" | "relax" | "aftergroup"
         | "ignorespaces" | "undefined" | "rm" | "if" | "ifx" | "else" => return String::new(),
+        // Small-caps declarations update sibling markup in `render_nodes`; they emit no text.
         "sc" => return String::new(),
         "hspace" | "hskip" => {
             // Empty and zero-valued dimensions add no space; other dimensions add one space.
@@ -2503,6 +2513,7 @@ fn render_macro(
                 .first()
                 .map(|argument| serialize_argument(argument))
                 .unwrap_or_default();
+            // Invalid integers and non-scalar code points fall through to the unsupported handler.
             if let Ok(code) = code.trim().parse::<u32>() {
                 if let Some(character) = char::from_u32(code) {
                     return character.to_string();
@@ -2587,8 +2598,10 @@ fn render_macro(
                 _ => latex,
             };
         }
+        // Rich text retains paragraph/list structure; scalar fields flatten both markers to spaces.
         "par" => return if mode == "richtext" { "<p>" } else { " " }.to_string(),
         "item" => return if mode == "richtext" { "<li>" } else { " " }.to_string(),
+        // Preserve a bare script operator when parsing found no argument to render.
         "_" | "^" if arguments.is_empty() => return name.to_string(),
         _ => {}
     }
@@ -2602,6 +2615,7 @@ fn render_macro(
             return value;
         }
         if mode == "creatorlist" {
+            // Keep an unrenderable accent command visible in names instead of dropping it.
             return name.to_string();
         }
     }

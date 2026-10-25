@@ -108,7 +108,8 @@ impl JabRefMetadata {
     }
 }
 
-/// Decode JabRef's backslash-escaped separators and remove line breaks from metadata records.
+/// Decode JabRef metadata records: backslash quotes the next character, separators split records,
+/// and LF/CRLF line breaks are discarded. Empty records are omitted from the returned list.
 fn decode_jabref(input: &str, separator: char) -> Vec<String> {
     let mut records = vec![String::new()];
     let mut chars = input.chars().peekable();
@@ -149,7 +150,8 @@ fn jabref_group_at_path_mut<'a>(
 /// Import JabRef groups from metadata comments and return unrelated comments unchanged.
 ///
 /// Independent groups keep their listed keys, intersections retain only keys in the parent,
-/// unions add parent keys, and query groups are not parsed.
+/// unions add parent keys, and query groups are not parsed. A malformed record stops processing
+/// its encoded tree because later hierarchy levels may depend on the missing group path.
 fn parse_jabref_metadata(comments: Vec<String>) -> (Vec<String>, JabRefMetadata) {
     let mut metadata = JabRefMetadata::default();
     let mut kept = Vec::new();
@@ -162,9 +164,11 @@ fn parse_jabref_metadata(comments: Vec<String>) -> (Vec<String>, JabRefMetadata)
         };
         let rest = rest.trim_start();
         let Some((kind, payload)) = rest.split_once(':') else {
+            // Preserve malformed metadata verbatim rather than silently dropping the source comment.
             kept.push(comment);
             continue;
         };
+        // Preserve input-order precedence: a later declaration of the same kind replaces the earlier one.
         decoded.insert(kind.to_string(), decode_jabref(payload, ';'));
     }
 
@@ -183,6 +187,7 @@ fn parse_jabref_metadata(comments: Vec<String>) -> (Vec<String>, JabRefMetadata)
         .and_then(|values| values.first())
         .cloned();
 
+    // Track the latest group path at each depth so subsequent records attach to their immediate parent.
     let mut levels = Vec::<Vec<usize>>::new();
     for tree in ["groupstree", "grouping"] {
         let Some(encoded_groups) = decoded.get(tree) else {
@@ -191,6 +196,7 @@ fn parse_jabref_metadata(comments: Vec<String>) -> (Vec<String>, JabRefMetadata)
         for encoded in encoded_groups {
             let mut fields = decode_jabref(encoded, ';');
             let Some(level_type_name) = fields.first().cloned() else {
+                // Tree records are ordered by hierarchy, so later groups may depend on this record.
                 break;
             };
             fields.remove(0);
@@ -220,6 +226,7 @@ fn parse_jabref_metadata(comments: Vec<String>) -> (Vec<String>, JabRefMetadata)
             }
             let mut group = JabRefGroup {
                 name: name.clone(),
+                // The `grouping` records describe hierarchy only; `groupstree` carries memberships.
                 entries: if tree == "grouping" {
                     Vec::new()
                 } else {
@@ -231,6 +238,7 @@ fn parse_jabref_metadata(comments: Vec<String>) -> (Vec<String>, JabRefMetadata)
                 groups: Vec::new(),
             };
 
+            // Root groups start new branches; nested groups require the previously recorded parent path.
             if level == 1 {
                 let root_index = metadata.root.len();
                 metadata.root.push(group);
@@ -243,6 +251,7 @@ fn parse_jabref_metadata(comments: Vec<String>) -> (Vec<String>, JabRefMetadata)
             } else if let Some(parent_path) = levels.get(level - 2).cloned() {
                 let Some(parent) = jabref_group_at_path_mut(&mut metadata.root, &parent_path)
                 else {
+                    // Do not attach an orphan at the wrong level when an earlier path is invalid.
                     continue;
                 };
                 let parent_entries = parent.entries.clone();
@@ -1292,6 +1301,7 @@ fn parse_creator(
     .to_string();
     let mut parts = split_top_level(&input, ',');
     if parts.len() == 3 && parts[2].is_empty() {
+        // Ignore the trailing empty part before applying BibTeX comma-name rules.
         parts.pop();
     }
     // Treat comma-separated parts as extended properties only when every part has a valid key=value signature.
@@ -1314,6 +1324,7 @@ fn parse_creator(
                 "given-i" if !value.is_empty() => creator.initial = Some(value),
                 "useprefix" => creator.useprefix = Some(value.eq_ignore_ascii_case("true")),
                 "juniorcomma" => creator.juniorcomma = Some(value.eq_ignore_ascii_case("true")),
+                // Keep nonempty extension properties instead of discarding unknown keys.
                 _ if !value.is_empty() => {
                     creator.extra.insert(key, serde_json::Value::String(value));
                 }
@@ -1359,6 +1370,7 @@ fn parse_creator(
             suffix: suffix.map(clean_name_part).filter(|name| !name.is_empty()),
             ..Creator::default()
         };
+        // A lowercase particle sequence in the family slot becomes the prefix; the final token is the surname.
         if let Some((split, _)) = last_name.char_indices().rev().find(|(index, ch)| {
             *ch == ' '
                 && *index > 0
@@ -1456,6 +1468,10 @@ fn is_extended_creator_key(key: &str) -> bool {
 }
 
 /// Parse creator parts without TeX rendering or outer-brace cleanup.
+///
+/// A two-part comma form is interpreted as family/given name unless every part is an extended
+/// `key=value` property. A two-word unseparated form is interpreted as given/family; other forms
+/// remain a single literal name.
 fn parse_raw_creator(input: &str) -> Creator {
     let parts = split_top_level(input, ',');
     let extended = parts.len() > 1
@@ -1806,6 +1822,7 @@ where
     let remove_brace_fields = remove_outer_braces_fields(options);
     let mut entries = Vec::with_capacity(verbatim.entries.len());
     for (index, entry) in verbatim.entries.into_iter().enumerate() {
+        // Prefer a nonempty `langid`, then `hyphenation`; `language` is consulted only when enabled.
         let mut langid = entry
             .fields
             .get("langid")
@@ -1903,6 +1920,7 @@ where
                 continue;
             }
             if current_mode != "verbatim" && current_mode != "creatorlist" {
+                // Unknown policy strings retain the default as-needed behavior.
                 let case_protection = match options.case_protection.as_str() {
                     "off" => tex::CaseProtection::Off,
                     "strict" => tex::CaseProtection::Strict,
