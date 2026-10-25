@@ -1,98 +1,88 @@
 //! Recognize title tokens without changing their source text. Rule priority determines both
-//! exported token categories and sentence-casing decisions in `tex`. Internal ranges are
-//! half-open Unicode scalar indices; only public token serialization converts them to UTF-16.
+//! token categories and sentence-casing decisions in `tex`. Handwritten recognizers match
+//! prefixes; `recognize` selects the first successful rule, not the longest across categories.
+//! Unicode scans reuse the existing category predicates instead of generating duplicate tables.
+//! Recognition uses UTF-8 slices; token emission converts lengths to half-open Unicode scalar ranges.
+
+use std::sync::OnceLock;
 
 use unicode_general_category::{GeneralCategory, get_general_category};
 
-/// English prepositions used by the TypeScript tokenizer, checked longest match first.
-const PREPOSITIONS: &[&str] = &[
-    "a",
-    "about",
-    "above",
-    "according to",
-    "across",
-    "after",
-    "against",
-    "ahead of",
-    "along",
-    "although",
-    "among",
-    "an",
-    "and",
-    "apart from",
-    "around",
-    "as for",
-    "as if",
-    "as long as",
-    "as of",
-    "as per",
-    "as regards",
-    "as soon as",
-    "as",
-    "aside from",
-    "at",
-    "back to",
-    "because of",
-    "because",
-    "before",
-    "behind",
-    "below",
-    "beneath",
-    "beside",
-    "between",
-    "but",
-    "by",
-    "close to",
-    "down",
-    "due to",
-    "during",
-    "except for",
-    "far from",
-    "for",
-    "from",
-    "if",
-    "in",
-    "inside of",
-    "inside",
-    "instead of",
-    "into",
-    "like",
-    "near",
-    "next to",
-    "nor",
-    "of",
-    "off",
-    "on",
-    "onto",
-    "or",
-    "out",
-    "outside of",
-    "over",
-    "owing to",
-    "prior to",
-    "pursuant to",
-    "regardless of",
-    "right of",
-    "since",
-    "so",
-    "subsequent to",
-    "the",
-    "through",
-    "to",
-    "towards",
-    "under",
-    "underneath",
-    "unless",
-    "until",
-    "up",
-    "upon",
-    "when",
-    "while",
-    "with",
-    "within",
-    "without",
-    "yet",
-];
+/// Return the nonempty prefix satisfying a scalar predicate, stopping only at UTF-8 boundaries.
+fn prefix_while(source: &str, mut predicate: impl FnMut(char) -> bool) -> Option<&str> {
+    let end = source
+        .find(|character| !predicate(character))
+        .unwrap_or(source.len());
+    (end > 0).then_some(&source[..end])
+}
+
+/// Recognize a complete tag through its first closing `>`; an unfinished opener consumes nothing.
+fn markup(source: &str) -> Option<&str> {
+    source.strip_prefix('<')?;
+    let end = source.find('>')?;
+    Some(&source[..end + 1])
+}
+
+/// Count leading ASCII digits in bytes; the returned offset is also a valid UTF-8 boundary.
+fn ascii_digits(source: &str) -> usize {
+    source.bytes().take_while(u8::is_ascii_digit).count()
+}
+
+/// Recognize lowercase ASCII ordinal suffixes only at a complete word boundary.
+fn ordinal(source: &str) -> Option<&str> {
+    let digits = ascii_digits(source);
+    if digits == 0 || !matches!(source.get(digits..digits + 2)?, "st" | "nd" | "rd" | "th") {
+        return None;
+    }
+    bounded(source, Some(&source[..digits + 2]))
+}
+
+/// Recognize an `@` handle with at least two ASCII alphanumeric/hyphen characters and a word boundary.
+fn handle(source: &str) -> Option<&str> {
+    let suffix = source.strip_prefix('@')?;
+    let text = prefix_while(suffix, |character| {
+        character.is_ascii_alphanumeric() || character == '-'
+    })?;
+    if text.len() < 2 {
+        return None;
+    }
+    bounded(source, Some(&source[..text.len() + 1]))
+}
+
+/// Return a maximal Unicode word prefix, rejecting non-word starters.
+/// Shared predicates keep recognition and casing on the same Unicode category tables.
+fn word_run(source: &str) -> Option<&str> {
+    prefix_while(source, is_word_character)
+}
+
+/// Extend an uppercase starter through dotted initials; fewer than two pairs reject the rule.
+/// The caller checks the final word boundary before accepting the complete initialism.
+fn initialism(source: &str) -> Option<&str> {
+    let mut characters = source.char_indices();
+    let mut end = 0;
+    let mut pairs = 0;
+    while let Some((_, character)) = characters.next()
+        && character.is_uppercase()
+        && let Some((offset, '.')) = characters.next()
+    {
+        end = offset + 1;
+        pairs += 1;
+    }
+    (pairs >= 2).then_some(&source[..end])
+}
+
+/// Accept a prefix only before end-of-input or a non-word scalar, without consuming the boundary.
+fn bounded<'source>(source: &'source str, text: Option<&'source str>) -> Option<&'source str> {
+    let text = text?;
+    (!source[text.len()..]
+        .chars()
+        .next()
+        .is_some_and(is_word_character))
+    .then_some(text)
+}
+
+/// English prepositions shared with the TypeScript tokenizer, decoded once from embedded JSON.
+static PREPOSITIONS: OnceLock<Vec<&'static str>> = OnceLock::new();
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub(crate) enum SentenceTokenKind {
@@ -147,8 +137,8 @@ impl SentenceToken {
 /// `characters` is the rendered field split into Unicode scalar values. Markup tags, whitespace,
 /// and punctuation remain distinct; preposition phrases, contractions, acronyms, domains, URLs,
 /// handles, numbers, and ordinals receive separate token kinds so casing and guessing can follow
-/// the same branches as `tokenizer.ts`. Direct edge cases live in
-/// `sentence_case_matches_tokenizer_rules`; shared parser cases live in
+/// the same branches as `tokenizer.ts`. Direct edge cases live in this module's tests;
+/// shared parser cases live in
 /// `test/other/sentence-case-utf16.bib` and its default snapshot. Token priority keeps letter-started
 /// runs ahead of number matching, uses ASCII-only ordinal/version digits, and recognizes URLs only
 /// with letter-bearing dotted host labels; only reference word-like tokens clear pending starts.
@@ -158,89 +148,15 @@ pub(crate) fn sentence_tokens(
     recognize_markup: bool,
 ) -> Vec<SentenceToken> {
     let (mut position, mut sentence_start, mut sub_sentence_start) = (0, true, false);
+    let source: String = characters.iter().collect();
+    let mut remaining = source.as_str();
     let mut tokens = Vec::new();
     while position < characters.len() {
         let start = position;
-        let (end, kind, subtype) = if recognize_markup
-            && characters[position] == '<'
-            && let Some(relative_end) = characters[position..].iter().position(|ch| *ch == '>')
-        {
-            (
-                position + relative_end + 1,
-                SentenceTokenKind::Markup,
-                SentenceTokenSubtype::Word,
-            )
-        } else if is_case_whitespace(characters[position]) {
-            let mut end = position + 1;
-            while end < characters.len() && is_case_whitespace(characters[end]) {
-                end += 1;
-            }
-            (
-                end,
-                SentenceTokenKind::Whitespace,
-                SentenceTokenSubtype::Word,
-            )
-        } else if let Some(end) = website_end(characters, position) {
-            (end, SentenceTokenKind::Website, SentenceTokenSubtype::Word)
-        } else if let Some(end) = email_end(characters, position) {
-            (end, SentenceTokenKind::Email, SentenceTokenSubtype::Word)
-        } else if let Some(end) = handle_end(characters, position) {
-            (end, SentenceTokenKind::Handle, SentenceTokenSubtype::Word)
-        } else if !inside_markup(characters, position)
-            && let Some(end) = preposition_end(characters, position)
-        {
-            (
-                end,
-                SentenceTokenKind::Word,
-                SentenceTokenSubtype::Preposition,
-            )
-        } else if let Some(end) = acronym_end(characters, position) {
-            (end, SentenceTokenKind::Word, SentenceTokenSubtype::Acronym)
-        } else if let Some(end) = ordinal_end(characters, position) {
-            (end, SentenceTokenKind::Word, SentenceTokenSubtype::Ordinal)
-        // TypeScript's number rule is ASCII-only and follows letter-started words like `v2`.
-        } else if !is_unicode_letter(characters[position])
-            && let Some(end) = number_end(characters, position)
-        {
-            (end, SentenceTokenKind::Number, SentenceTokenSubtype::Word)
-        } else if let Some(mut end) = word_token_end(characters, position) {
-            let mut subtype = SentenceTokenSubtype::Word;
-            if end < characters.len() && matches!(characters[end], '\'' | '\u{2019}') {
-                let contraction_end = word_end(characters, end + 1);
-                if contraction_end > end + 1 {
-                    end = contraction_end;
-                    subtype = SentenceTokenSubtype::Contraction;
-                }
-            }
-            let mut domain_end = end;
-            while domain_end + 1 < characters.len() && characters[domain_end] == '.' {
-                let label_start = domain_end + 1;
-                let label_end = word_end(characters, label_start);
-                // TypeScript's domain rule requires at least one letter in every dotted label.
-                if label_end == label_start
-                    || !characters[label_start..label_end]
-                        .iter()
-                        .any(|character| is_unicode_letter(*character))
-                {
-                    break;
-                }
-                domain_end = label_end;
-            }
-            if domain_end > end {
-                (domain_end, SentenceTokenKind::Domain, subtype)
-            } else {
-                (end, SentenceTokenKind::Word, subtype)
-            }
-        } else {
-            let end = if position + 3 <= characters.len()
-                && characters[position..position + 3] == ['.', '.', '.']
-            {
-                position + 3
-            } else {
-                position + 1
-            };
-            (end, SentenceTokenKind::Other, SentenceTokenSubtype::Word)
-        };
+        let (text, kind, subtype) = recognize(remaining, characters, position, recognize_markup);
+        // Matchers return byte slices; only emitted ranges use Unicode scalar indices.
+        let end = start + text.chars().count();
+        remaining = &remaining[text.len()..];
 
         let token = SentenceToken {
             start,
@@ -285,6 +201,78 @@ pub(crate) fn sentence_tokens(
         position = end.max(position + 1);
     }
     tokens
+}
+
+/// Select the first successful token rule; later rules never win merely by matching more bytes.
+/// `position` is a scalar offset into `characters`, while `source` is its remaining UTF-8 suffix.
+/// The final punctuation fallback guarantees a nonempty prefix for every nonempty source.
+fn recognize<'source>(
+    source: &'source str,
+    characters: &[char],
+    position: usize,
+    recognize_markup: bool,
+) -> (&'source str, SentenceTokenKind, SentenceTokenSubtype) {
+    use SentenceTokenKind as Kind;
+    use SentenceTokenSubtype as Subtype;
+
+    if recognize_markup && let Some(text) = markup(source) {
+        (text, Kind::Markup, Subtype::Word)
+    } else if let Some(text) = prefix_while(source, is_case_whitespace) {
+        (text, Kind::Whitespace, Subtype::Word)
+    } else if let Some(text) = website(source) {
+        (text, Kind::Website, Subtype::Word)
+    } else if let Some(text) = email(source) {
+        (text, Kind::Email, Subtype::Word)
+    } else if let Some(text) = handle(source) {
+        (text, Kind::Handle, Subtype::Word)
+    } else if !inside_markup(characters, position)
+        && let Some(text) = preposition(source)
+    {
+        // Markup content remains ordinary text; outside it, prepositions outrank domains/contractions.
+        (text, Kind::Word, Subtype::Preposition)
+    } else if let Some(text) = acronym(source) {
+        (text, Kind::Word, Subtype::Acronym)
+    } else if let Some(text) = ordinal(source) {
+        (text, Kind::Word, Subtype::Ordinal)
+    } else if let Some(text) = number(source) {
+        (text, Kind::Number, Subtype::Word)
+    } else if let Some(token) = word(source) {
+        token
+    } else {
+        let end = if source.starts_with("...") {
+            3
+        } else {
+            characters[position].len_utf8()
+        };
+        (&source[..end], Kind::Other, Subtype::Word)
+    }
+}
+
+/// Recognize a letter-bearing word, then extend it through a contraction and dotted word labels.
+/// Each domain label needs a letter; a domain retains the initial word's contraction subtype.
+fn word(source: &str) -> Option<(&str, SentenceTokenKind, SentenceTokenSubtype)> {
+    let text = word_run(source)?;
+    if !text.chars().any(is_unicode_letter) {
+        return None;
+    }
+    let mut end = text.len();
+    let mut subtype = SentenceTokenSubtype::Word;
+    if let Some(quote @ ('\'' | '\u{2019}')) = source[end..].chars().next()
+        && let Some(contraction) = word_run(&source[end + quote.len_utf8()..])
+    {
+        // The reference accepts any word run after the apostrophe, including numeric-only suffixes.
+        end += quote.len_utf8() + contraction.len();
+        subtype = SentenceTokenSubtype::Contraction;
+    }
+    let mut kind = SentenceTokenKind::Word;
+    while let Some(suffix) = source[end..].strip_prefix('.')
+        && let Some(label) = word_run(suffix)
+        && label.chars().any(is_unicode_letter)
+    {
+        end += 1 + label.len();
+        kind = SentenceTokenKind::Domain;
+    }
+    Some((&source[..end], kind, subtype))
 }
 
 /// Detect words inside an HTML-style markup element, which TS tokenizes as word-joiner text.
@@ -382,134 +370,92 @@ pub(crate) fn token_text(token: &SentenceToken, characters: &[char]) -> String {
 }
 
 /// Consume an English preposition or multiword preposition at the current word boundary.
-fn preposition_end(characters: &[char], start: usize) -> Option<usize> {
-    if !characters[start].is_alphabetic() {
+/// Compare all boundary-valid phrases so a rejected longer phrase can fall back to a shorter one.
+/// The embedded list is decoded on first use; invalid bundled JSON is a build-data error and panics.
+fn preposition(source: &str) -> Option<&str> {
+    if !source.chars().next()?.is_alphabetic() {
         return None;
     }
     PREPOSITIONS
+        .get_or_init(|| {
+            serde_json::from_str(include_str!("../data/prepositions.json"))
+                .expect("prepositions.json is a valid preposition list")
+        })
         .iter()
-        .filter_map(|preposition| match_preposition(characters, start, preposition))
-        .max()
+        .filter_map(|preposition| match_preposition(source, preposition))
+        .max_by_key(|text| text.len())
 }
 
 /// Match one preposition case-insensitively, allowing TypeScript whitespace between its words.
-fn match_preposition(characters: &[char], start: usize, preposition: &str) -> Option<usize> {
-    let mut index = start;
+fn match_preposition<'source>(source: &'source str, preposition: &str) -> Option<&'source str> {
+    let mut remaining = source;
     for expected in preposition.chars() {
         if expected == ' ' {
-            if index >= characters.len() || !is_case_whitespace(characters[index]) {
+            let rest = remaining.trim_start_matches(is_case_whitespace);
+            if rest.len() == remaining.len() {
                 return None;
             }
-            while index < characters.len() && is_case_whitespace(characters[index]) {
-                index += 1;
-            }
-        } else if index >= characters.len() || !characters[index].eq_ignore_ascii_case(&expected) {
-            return None;
+            remaining = rest;
         } else {
-            index += 1;
+            let actual = remaining.chars().next()?;
+            if !actual.eq_ignore_ascii_case(&expected) {
+                return None;
+            }
+            remaining = &remaining[actual.len_utf8()..];
         }
     }
-    (index == characters.len() || !is_word_character(characters[index])).then_some(index)
+    (!remaining.chars().next().is_some_and(is_word_character))
+        .then_some(&source[..source.len() - remaining.len()])
 }
 
 /// Recognize dotted initialisms and lowercase `v.`/`vs.` aliases used by the reference tokenizer.
 /// Uppercase `VS.` is intentionally left as punctuation plus a word; the shared fixture and direct
 /// sentence-case regressions cover this case-sensitive distinction.
-fn acronym_end(characters: &[char], start: usize) -> Option<usize> {
+fn acronym(source: &str) -> Option<&str> {
     for abbreviation in ["vs.", "v."] {
-        let end = start + abbreviation.chars().count();
-        if end <= characters.len()
-            && characters[start..end]
-                .iter()
-                .zip(abbreviation.chars())
-                .all(|(actual, expected)| *actual == expected)
-            && end < characters.len()
-            && is_case_whitespace(characters[end])
+        if let Some(remainder) = source.strip_prefix(abbreviation)
+            && remainder.chars().next().is_some_and(is_case_whitespace)
         {
-            return Some(end);
+            return Some(&source[..abbreviation.len()]);
         }
     }
-    let mut index = start;
-    let mut pairs = 0;
-    while index + 1 < characters.len()
-        && characters[index].is_uppercase()
-        && characters[index + 1] == '.'
-    {
-        pairs += 1;
-        index += 2;
-    }
-    (pairs >= 2 && (index == characters.len() || !is_word_character(characters[index])))
-        .then_some(index)
+    bounded(source, initialism(source))
 }
 
-/// Recognize lowercase ASCII integer ordinals such as `21st` before the general number token.
-/// Uppercase suffixes remain separate tokens, matching the case-sensitive TypeScript rule; the
-/// direct sentence-case cases exercise ordinal handling.
-fn ordinal_end(characters: &[char], start: usize) -> Option<usize> {
-    if !characters[start].is_ascii_digit() {
+/// Recognize a boundary-terminated ASCII integer/version without accepting a partial Unicode suffix.
+/// Letter-started versions such as `v2` belong to the ordinary word rule, not this numeric rule.
+fn number(source: &str) -> Option<&str> {
+    let mut end = ascii_digits(source);
+    if end == 0 {
         return None;
     }
-    let digits_end = number_digits_end(characters, start);
-    for suffix in ["st", "nd", "rd", "th"] {
-        let end = digits_end + suffix.len();
-        if end <= characters.len()
-            && characters[digits_end..end]
-                .iter()
-                .zip(suffix.chars())
-                .all(|(actual, expected)| *actual == expected)
-            && (end == characters.len() || !is_word_character(characters[end]))
-        {
-            return Some(end);
+    while let Some(suffix) = source[end..].strip_prefix('.') {
+        let digits = ascii_digits(suffix);
+        if digits == 0 {
+            // Leave terminal punctuation untouched; the Unicode-numeric rejection below is stricter.
+            break;
         }
+        end += 1 + digits;
     }
-    None
-}
-
-/// Recognize ASCII digits and their optional lowercase `v` version prefix.
-/// Letter-starting version text is dispatched as a word before this rule, matching lexer priority;
-/// `The v2.1 Results` in the shared fixture locks that behavior.
-fn number_end(characters: &[char], start: usize) -> Option<usize> {
-    let number_start = if characters[start] == 'v'
-        && characters
-            .get(start + 1)
-            .is_some_and(|character| character.is_numeric())
+    let text = bounded(source, Some(&source[..end]))?;
+    if let Some(remainder) = source[text.len()..].strip_prefix('.')
+        && remainder.chars().next().is_some_and(char::is_numeric)
     {
-        start + 1
-    } else {
-        start
-    };
-    if !characters[number_start].is_ascii_digit() {
+        // A Unicode numeric suffix invalidates the whole number, rather than accepting its prefix.
         return None;
     }
-    let mut end = number_digits_end(characters, number_start);
-    while end + 1 < characters.len() && characters[end] == '.' && characters[end + 1].is_numeric() {
-        end = number_digits_end(characters, end + 1);
-    }
-    (end == characters.len() || !is_word_character(characters[end])).then_some(end)
-}
-
-/// Consume the consecutive digits used by number and ordinal token recognition.
-fn number_digits_end(characters: &[char], start: usize) -> usize {
-    let mut end = start;
-    while end < characters.len() && characters[end].is_ascii_digit() {
-        end += 1;
-    }
-    end
+    Some(text)
 }
 
 /// Recognize an ASCII email address before generic words or domains can split its components.
-fn email_end(characters: &[char], start: usize) -> Option<usize> {
-    if !characters[start].is_ascii_alphanumeric() {
+fn email(source: &str) -> Option<&str> {
+    if !source.chars().next()?.is_ascii_alphanumeric() {
         return None;
     }
-    let mut end = start;
-    while end < characters.len()
-        && (characters[end].is_ascii_alphanumeric()
-            || matches!(characters[end], '.' | '_' | '%' | '+' | '-' | '@'))
-    {
-        end += 1;
-    }
-    let candidate: String = characters[start..end].iter().collect();
+    // Validate the entire maximal candidate, never a valid prefix of a malformed longer address.
+    let candidate = prefix_while(source, |character| {
+        character.is_ascii_alphanumeric() || matches!(character, '.' | '_' | '%' | '+' | '-' | '@')
+    })?;
     let (local, host) = candidate.split_once('@')?;
     (local
         .chars()
@@ -520,46 +466,7 @@ fn email_end(characters: &[char], start: usize) -> Option<usize> {
             .all(|character| character.is_ascii_alphanumeric() || ".-".contains(character))
         && !host.starts_with('.')
         && !host.ends_with('.'))
-    .then_some(end)
-}
-
-/// Recognize a social handle with at least two ASCII alphanumeric or hyphen characters.
-fn handle_end(characters: &[char], start: usize) -> Option<usize> {
-    if characters[start] != '@' {
-        return None;
-    }
-    let mut end = start + 1;
-    while end < characters.len()
-        && (characters[end].is_ascii_alphanumeric() || characters[end] == '-')
-    {
-        end += 1;
-    }
-    (end - start >= 3 && (end == characters.len() || !is_word_character(characters[end])))
-        .then_some(end)
-}
-
-/// Consume Unicode letters, numbers, combining marks, soft hyphens, and word joiners.
-fn word_end(characters: &[char], start: usize) -> usize {
-    let mut end = start;
-    while end < characters.len() && is_word_character(characters[end]) {
-        end += 1;
-    }
-    end
-}
-
-/// Return the end of a Unicode word token, which must contain at least one letter.
-///
-/// `start` is the first code point in a run of TypeScript `LNM` characters. Numeric-only and
-/// mark-only runs are left to the number or fallback lexer branches, while mixed runs containing
-/// a Unicode letter match the reference `W` pattern. Unicode-number cases in
-/// `sentence_case_matches_tokenizer_rules` and the shared sentence-case fixture exercise this
-/// distinction.
-fn word_token_end(characters: &[char], start: usize) -> Option<usize> {
-    let end = word_end(characters, start);
-    characters[start..end]
-        .iter()
-        .any(|character| is_unicode_letter(*character))
-        .then_some(end)
+    .then_some(candidate)
 }
 
 /// Recognize all Unicode letters, numbers, and marks used by the TypeScript `LNM` pattern.
@@ -612,42 +519,20 @@ pub(crate) fn is_case_whitespace(character: char) -> bool {
     matches!(character, ' ' | '\t' | '\n' | '\r' | '\u{00a0}')
 }
 
-/// Compare an ASCII marker against a character slice without allocating a temporary string.
-fn starts_with_ascii(characters: &[char], start: usize, marker: &str) -> bool {
-    let marker: Vec<char> = marker.chars().collect();
-    characters
-        .get(start..start + marker.len())
-        .is_some_and(|candidate| {
-            candidate
-                .iter()
-                .zip(marker.iter())
-                .all(|(actual, expected)| actual == expected)
-        })
-}
-
 /// Recognize the reference URL token only when its host contains valid dotted letter labels.
 ///
-/// `start` points at lowercase `http://` or `https://`. Each host label must contain a Unicode
+/// `source` starts with lowercase `http://` or `https://`. Each host label must contain a Unicode
 /// letter, matching the tokenizer's `W(?:[.]W)+` rule; malformed hosts fall back to ordinary
 /// tokens. The URL then extends to TypeScript whitespace, excluding terminal sentence punctuation.
 /// The malformed-host entry in `test/other/sentence-case-utf16.bib` exercises the fallback branch.
-fn website_end(characters: &[char], start: usize) -> Option<usize> {
-    let scheme_length = if starts_with_ascii(characters, start, "https://") {
-        8
-    } else if starts_with_ascii(characters, start, "http://") {
-        7
-    } else {
-        return None;
-    };
-    let host_start = start + scheme_length;
-    let mut host_end = host_start;
-    while host_end < characters.len()
-        && (is_word_character(characters[host_end]) || characters[host_end] == '.')
-    {
-        host_end += 1;
-    }
-    let host: String = characters[host_start..host_end].iter().collect();
-    let host = host.trim_end_matches('.');
+fn website(source: &str) -> Option<&str> {
+    let rest = source
+        .strip_prefix("https://")
+        .or_else(|| source.strip_prefix("http://"))?;
+    let host_end = rest
+        .find(|character| !is_word_character(character) && character != '.')
+        .unwrap_or(rest.len());
+    let host = rest[..host_end].trim_end_matches('.');
     let labels: Vec<_> = host.split('.').collect();
     if labels.len() < 2
         || labels
@@ -657,12 +542,164 @@ fn website_end(characters: &[char], start: usize) -> Option<usize> {
         return None;
     }
 
-    let mut end = start;
-    while end < characters.len() && !is_case_whitespace(characters[end]) {
-        end += 1;
+    Some(
+        prefix_while(source, |character| !is_case_whitespace(character))?
+            .trim_end_matches(['.', '!', '?']),
+    )
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    /// Measure first-use and warmed tokenization separately; run explicitly with release optimizations.
+    /// Seven trials alternate traversal order and report the median to reduce scheduling/order noise.
+    #[test]
+    #[ignore = "manual tokenizer benchmark; use --release --ignored --nocapture"]
+    fn benchmark_tokenization() {
+        use std::hint::black_box;
+        use std::time::Instant;
+
+        let inputs: Vec<Vec<char>> = include_str!("../../test/other/sentence-case-utf16.bib")
+            .lines()
+            .chain([
+                "A TITLE: AN EXPLANATION",
+                "The Effect of DNA on RNA in Cells",
+                "According to the State-of-the-Art Results",
+                "Email a+b@example.org or Visit https://example.org/path?!",
+                "An Ex<i>ample</i> with \u{1f600} and \u{301}\u{e9} Unicode",
+            ])
+            .map(|source| source.chars().collect())
+            .collect();
+        let started = Instant::now();
+        black_box(sentence_tokens(black_box(&inputs[0]), true, true));
+        println!("first tokenization: {:?}", started.elapsed());
+
+        let iterations = std::env::var("TOKENIZER_BENCH_ITERATIONS")
+            .map(|value| {
+                value
+                    .parse::<usize>()
+                    .expect("benchmark iterations must be an integer")
+            })
+            .unwrap_or(2_000);
+        let mut trials = Vec::new();
+        for trial in 0..7 {
+            let started = Instant::now();
+            for iteration in 0..iterations {
+                for offset in 0..inputs.len() {
+                    let index = if (trial + iteration) % 2 == 0 {
+                        offset
+                    } else {
+                        inputs.len() - offset - 1
+                    };
+                    black_box(sentence_tokens(black_box(&inputs[index]), true, true));
+                }
+            }
+            trials.push(started.elapsed());
+        }
+        trials.sort();
+        println!(
+            "{} inputs x {iterations} iterations; trials: {trials:?}; median: {:?}",
+            inputs.len(),
+            trials[3]
+        );
     }
-    while end > start && matches!(characters[end - 1], '.' | '!' | '?') {
-        end -= 1;
+
+    #[test]
+    /// Lock down first-rule precedence, rejected boundaries, and Unicode callback fallbacks.
+    fn recognition_priority_and_boundaries() {
+        use SentenceTokenKind::*;
+        use SentenceTokenSubtype as Subtype;
+
+        for (source, text, kind, subtype) in [
+            (
+                "according\tto Results",
+                "according\tto",
+                Word,
+                Subtype::Preposition,
+            ),
+            ("as long asx", "as", Word, Subtype::Preposition),
+            ("inside.example", "inside", Word, Subtype::Preposition),
+            ("and's", "and", Word, Subtype::Preposition),
+            ("DNA Results", "DNA", Word, Subtype::Word),
+            ("U.S.A. Results", "U.S.A.", Word, Subtype::Acronym),
+            (
+                "\u{24b6}.\u{24b6}.",
+                "\u{24b6}.\u{24b6}.",
+                Word,
+                Subtype::Acronym,
+            ),
+            ("vs. Results", "vs.", Word, Subtype::Acronym),
+            ("vs.", "vs", Word, Subtype::Word),
+            ("VS. Results", "VS", Word, Subtype::Word),
+            ("21st Results", "21st", Word, Subtype::Ordinal),
+            ("21ST Results", "21ST", Word, Subtype::Word),
+            ("v2.1 Results", "v2", Word, Subtype::Word),
+            ("2.1 Results", "2.1", Number, Subtype::Word),
+            ("2.\u{663}", "2", Other, Subtype::Word),
+            (
+                "don't.example",
+                "don't.example",
+                Domain,
+                Subtype::Contraction,
+            ),
+            ("x'123", "x'123", Word, Subtype::Contraction),
+            (
+                "\u{301}\u{e9}2.example",
+                "\u{301}\u{e9}2.example",
+                Domain,
+                Subtype::Word,
+            ),
+            ("\u{b2}Title", "\u{b2}Title", Word, Subtype::Word),
+            ("\u{b2} Results", "\u{b2}", Other, Subtype::Word),
+            ("a+b@example.org", "a+b@example.org", Email, Subtype::Word),
+            ("@ab Results", "@ab", Handle, Subtype::Word),
+            ("@ab\u{e9}", "@", Other, Subtype::Word),
+            (
+                "https://\u{e9}.example/path?!",
+                "https://\u{e9}.example/path",
+                Website,
+                Subtype::Word,
+            ),
+            ("http://a.b.2/path", "http", Word, Subtype::Word),
+            ("... Results", "...", Other, Subtype::Word),
+        ] {
+            let characters: Vec<char> = source.chars().collect();
+            let tokens = sentence_tokens(&characters, true, true);
+            let token = &tokens[0];
+            assert_eq!(
+                (token.text(&characters), token.kind, token.subtype),
+                (text.to_owned(), kind, subtype),
+                "{source:?}",
+            );
+        }
     }
-    Some(end)
+
+    #[test]
+    /// Verify scalar offsets and pending sentence/colon starts across markup and astral characters.
+    fn scalar_offsets_markup_and_pending_starts() {
+        let characters: Vec<char> = "\u{1f600} <i>Inside</i>: Next. Final".chars().collect();
+        let tokens = sentence_tokens(&characters, true, true);
+        let words: Vec<_> = tokens
+            .iter()
+            .filter(|token| token.kind == SentenceTokenKind::Word)
+            .map(|token| {
+                (
+                    token.start,
+                    token.end,
+                    token.subtype,
+                    token.sentence_start,
+                    token.sub_sentence_start,
+                )
+            })
+            .collect();
+        assert_eq!(
+            words,
+            vec![
+                (5, 11, SentenceTokenSubtype::Word, true, false),
+                (17, 21, SentenceTokenSubtype::Word, false, true),
+                (23, 28, SentenceTokenSubtype::Word, true, false),
+            ]
+        );
+    }
 }

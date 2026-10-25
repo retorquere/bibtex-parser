@@ -85,6 +85,7 @@ pub struct JabRefMetadata {
 impl JabRefMetadata {
     /// Populates JabRef 3.8+ memberships in `root` by group name; duplicate names select the first node.
     pub fn add_entry(&mut self, name: &str, key: &str) -> bool {
+        /// Return the first depth-first group with this name, preserving duplicate-name precedence.
         fn find<'a>(groups: &'a mut [JabRefGroup], name: &str) -> Option<&'a mut JabRefGroup> {
             for group in groups {
                 if group.name == name {
@@ -131,6 +132,7 @@ fn decode_jabref(input: &str, separator: char) -> Vec<String> {
     records
 }
 
+/// Follow child indices from the root; an empty path or any invalid index returns `None`.
 fn jabref_group_at_path_mut<'a>(
     groups: &'a mut [JabRefGroup],
     path: &[usize],
@@ -244,6 +246,8 @@ fn parse_jabref_metadata(comments: Vec<String>) -> (Vec<String>, JabRefMetadata)
                     continue;
                 };
                 let parent_entries = parent.entries.clone();
+                // JabRef encodes membership as intersection (1), union (2), or independent (0).
+                // Union appends only missing parent keys so the child's entry order is retained.
                 match intersection.as_str() {
                     "1" => group.entries.retain(|key| parent_entries.contains(key)),
                     "2" => {
@@ -282,6 +286,7 @@ type CrossReferenceMap = HashMap<String, HashMap<String, HashMap<String, String>
 static CROSS_REFERENCE_DATA: OnceLock<CrossReferenceData> = OnceLock::new();
 static CROSS_REFERENCE_MAP: OnceLock<CrossReferenceMap> = OnceLock::new();
 
+/// Lazily decode embedded allowed-field and exclusion lists shared by all inheritance passes.
 fn cross_reference_data() -> &'static CrossReferenceData {
     CROSS_REFERENCE_DATA.get_or_init(|| {
         serde_json::from_str(include_str!("../data/fields.json"))
@@ -289,6 +294,7 @@ fn cross_reference_data() -> &'static CrossReferenceData {
     })
 }
 
+/// Lazily decode child/parent type mappings and their source-to-destination field remappings.
 fn cross_reference_map() -> &'static CrossReferenceMap {
     CROSS_REFERENCE_MAP.get_or_init(|| {
         serde_json::from_str(include_str!("../data/crossref.json"))
@@ -296,6 +302,7 @@ fn cross_reference_map() -> &'static CrossReferenceMap {
     })
 }
 
+/// Match JavaScript truthiness for fields: empty text is false, but even empty lists are true.
 fn field_value_is_truthy(value: &FieldValue) -> bool {
     match value {
         FieldValue::Text(value) => !value.is_empty(),
@@ -332,6 +339,7 @@ pub enum UnsupportedHandler {
     Throw,
 }
 
+/// Serialize a compiled verbatim-field regex as its source pattern, without engine state.
 fn serialize_field_pattern<S: serde::Serializer>(
     pattern: &regex_lite::Regex,
     serializer: S,
@@ -339,6 +347,7 @@ fn serialize_field_pattern<S: serde::Serializer>(
     serializer.serialize_str(pattern.as_str())
 }
 
+/// Compile a serialized field pattern case-insensitively, reporting invalid syntax through Serde.
 fn deserialize_field_pattern<'de, D: serde::Deserializer<'de>>(
     deserializer: D,
 ) -> Result<regex_lite::Regex, D::Error> {
@@ -429,6 +438,7 @@ pub struct SentenceCaseOptions {
 }
 
 impl Default for SentenceCaseOptions {
+    /// Enable guessing, colon-start capitalization, and quoted-text preservation by default.
     fn default() -> Self {
         Self {
             guess: true,
@@ -439,6 +449,7 @@ impl Default for SentenceCaseOptions {
 }
 
 impl Default for Options {
+    /// Configure rendered, unlimited parsing with built-in English, field, and inheritance defaults.
     fn default() -> Self {
         Self {
             max_entries: None,
@@ -770,6 +781,8 @@ impl Parser {
         )))
     }
 
+    /// Read a braced, quoted, numeric, or string-referenced value and resolve `#` concatenation.
+    /// Unresolved references retain protected source text and emit one diagnostic per name.
     fn value(&mut self) -> Result<String, String> {
         // Braced and quoted values retain their contents; bare integers are literals and other bare
         // identifiers resolve through the declared or predefined string tables.
@@ -785,6 +798,7 @@ impl Parser {
                 bare
             } else {
                 let upper = bare.to_uppercase();
+                // Nonempty user declarations take precedence over built-in abbreviations.
                 if let Some(value) = self
                     .library
                     .strings
@@ -1066,7 +1080,7 @@ fn default_strings() -> HashMap<String, String> {
 
 /// Return the language identifiers treated as English by default.
 fn default_english() -> Vec<String> {
-    serde_json::from_str(include_str!("../english.json"))
+    serde_json::from_str(include_str!("../data/english.json"))
         .expect("default English language list must be valid JSON")
 }
 
@@ -1451,6 +1465,7 @@ fn parse_creator(
     }
 }
 
+/// Accept ASCII alphabetic extended-name keys with at most one nonempty hyphenated suffix.
 fn is_extended_creator_key(key: &str) -> bool {
     let is_letters = |segment: &str| {
         !segment.is_empty()
@@ -1584,6 +1599,8 @@ fn remove_outer_braces(value: &str) -> String {
     }
 }
 
+/// Honor a custom brace-removal list; otherwise derive title/verbatim fields from effective modes.
+/// Explicitly supplying the unchanged default list is indistinguishable from omitting the option.
 fn remove_outer_braces_fields(options: &Options) -> Vec<String> {
     if options.remove_outer_braces != default_remove_outer_braces() {
         return options.remove_outer_braces.clone();
@@ -1605,6 +1622,7 @@ fn remove_outer_braces_fields(options: &Options) -> Vec<String> {
     fields
 }
 
+/// Render an `@string` value unless raw mode is active, sharing new macros with subsequent fields.
 fn render_string_value(
     value: &str,
     macro_definitions: &mut HashMap<String, Vec<tex::Node>>,
@@ -1691,6 +1709,8 @@ fn apply_crossref_inheritance(entries: &mut [ParsedEntry], enabled: bool) {
         let child_type = entries[child_index].entry.clone();
         let parent_type = entries[parent_index].entry.clone();
 
+        // Specific child/parent mappings run before wildcard mappings. Inheritance fills only
+        // falsey destinations, so the first meaningful value wins over later defaults.
         for child_mapping in [mappings.get(&child_type), mappings.get("*")]
             .into_iter()
             .flatten()
@@ -1710,6 +1730,7 @@ fn apply_crossref_inheritance(entries: &mut [ParsedEntry], enabled: bool) {
                 }
             }
             for field in allowed.allowed.get(&child_type).into_iter().flatten() {
+                // Exclusions apply to ordinary same-name inheritance, not explicit remappings above.
                 if allowed.no_cross_ref.contains(field) {
                     continue;
                 }
@@ -1719,6 +1740,8 @@ fn apply_crossref_inheritance(entries: &mut [ParsedEntry], enabled: bool) {
     }
 }
 
+/// Fill a missing or falsey child field from a truthy parent value and record its provenance.
+/// Existing meaningful child values, including empty list objects, must never be overwritten.
 fn inherit_crossref_field(
     entries: &mut [ParsedEntry],
     child_index: usize,
@@ -2024,7 +2047,8 @@ where
     }
 }
 
-/// Convert a month name or number to the parser's unpadded numeric form.
+/// Normalize a trimmed, optionally negative ASCII integer without a fixed-width numeric conversion.
+/// Invalid syntax returns `None`; leading zeroes and negative zero collapse to canonical text.
 fn parse_integer_string(value: &str) -> Option<String> {
     let value = value.trim();
     let (negative, digits) = value
@@ -2043,6 +2067,7 @@ fn parse_integer_string(value: &str) -> Option<String> {
     }
 }
 
+/// Convert English month names to unpadded numbers; otherwise return the trimmed input unchanged.
 fn normalize_month(value: &str) -> String {
     let value = value.trim();
     let month = match value.to_ascii_lowercase().as_str() {
@@ -2081,6 +2106,7 @@ mod wasm_bindings {
 
     use super::{Options, Parser, parse, parse_verbatim, reparse_with_yield};
 
+    /// Install the browser-console panic hook once when the WASM module is initialized.
     #[wasm_bindgen(start)]
     pub fn start() {
         console_error_panic_hook::set_once();
@@ -2090,6 +2116,7 @@ mod wasm_bindings {
         inline_js = "export function playnice() { return new Promise(resolve => setTimeout(resolve, 0)); }"
     )]
     extern "C" {
+        /// Yield to the JavaScript event loop via a timer so cooperative parsing does not starve UI work.
         async fn playnice();
     }
 
@@ -2125,6 +2152,7 @@ mod wasm_bindings {
         encode_result(&parse(input, options))
     }
 
+    /// Parse raw BibTeX cooperatively, yielding between directive batches and returning a JS object.
     #[wasm_bindgen(js_name = parseVerbatimAsync)]
     pub async fn parse_verbatim_async_js(
         input: String,
@@ -2137,6 +2165,7 @@ mod wasm_bindings {
         encode_result(&library)
     }
 
+    /// Parse and render BibTeX cooperatively, yielding between directive and entry batches.
     #[wasm_bindgen(js_name = parseAsync)]
     pub async fn parse_async_js(
         input: String,
@@ -2207,6 +2236,7 @@ mod tests {
     }
 
     #[test]
+    /// Verify type remappings, allowed fields, and child-value precedence during inheritance.
     fn crossref_uses_type_mappings_and_allowed_fields() {
         let parsed = parse(
             "@periodical{p,title={Transactions}}\n@article{a,crossref={p}}",
@@ -2226,6 +2256,7 @@ mod tests {
     }
 
     #[test]
+    /// Verify nested JabRef memberships and the handling of metadata versus ordinary comments.
     fn parses_jabref_group_tree_hierarchy() {
         let mut parsed = parse(
             include_str!(
@@ -2280,6 +2311,7 @@ mod tests {
     }
 
     #[test]
+    /// Keep literal command delimiters and contents from affecting surrounding field parsing.
     fn verbatim_commands_preserve_literal_field_contents() {
         for (value, expected) in [
             (
@@ -2323,6 +2355,7 @@ mod tests {
     }
 
     #[test]
+    /// Verify case-insensitive verbatim-field regex matching and serialized pattern round trips.
     fn verbatim_fields_match_regex_patterns() {
         let options: Options = serde_json::from_value(serde_json::json!({
             "verbatimFields": ["TITLE", {"source": "^(file.*|custom.)$"}, {"source": "note"}, "x.y", "a[b]"]
@@ -2351,6 +2384,7 @@ mod tests {
     }
 
     #[test]
+    /// Verify raw-print whitespace normalization without interpreting verbatim field commands.
     fn verbatim_fields_normalize_printed_whitespace() {
         let parsed = parse(
             "@book{x,url={https://example.org/a   b/\\~wilkins},doi={first\n    second}}",
@@ -2636,6 +2670,7 @@ mod tests {
     }
 
     #[test]
+    /// Verify preamble definitions remain available while rendering subsequent entry fields.
     fn preamble_newcommands_expand_in_entry_fields() {
         assert_eq!(
             super::tex::render(
@@ -2746,6 +2781,7 @@ mod tests {
     }
 
     #[test]
+    /// Verify adjacent markup collapse is enabled by default and can be explicitly disabled.
     fn collapse_markup_option_defaults_on_and_can_be_disabled() {
         let source = r"@book{x,title={\textit{one} \textit{two}}}";
         let field_mode =
@@ -3190,6 +3226,7 @@ mod tests {
     }
 
     #[test]
+    /// Exercise TeX rendering and literal-name handling in parsed creator components.
     fn creator_names_render_tex_sequences() {
         let parsed = parse(
             "@article{foo, author={H\\\"{a}gg, Nils and Nonnenmacher, St{\\'e}phane and Lecomte, J\\'{e}r\\^{o}me and Nested, J\\'{e}r\\^{\\a}me and D\\'{\\i}az, Carlos}}",
@@ -3251,6 +3288,7 @@ mod tests {
     }
 
     #[test]
+    /// Verify multiline string declarations use the same layout normalization as rendered fields.
     fn string_values_collapse_multiline_whitespace() {
         let parsed = parse(
             "@STRING{PHILTR-B = \"Philosophical Transactions of the Royal Society of London.\n                      Series B.  Biological Sciences\"}\n@STRING{BOUNDARY = {  alpha\n  beta  }}",
@@ -3409,6 +3447,7 @@ mod tests {
     }
 
     #[test]
+    /// Split literal lists at unprotected `and` separators while preserving braced phrases.
     fn literal_list_split_respects_braced_and() {
         let parsed = parse(
             "@book{x,publisher={{Henry Holt and Co.}}}",

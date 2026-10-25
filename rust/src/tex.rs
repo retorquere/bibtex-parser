@@ -150,6 +150,8 @@ impl Parser {
         Self::new_with_macro_definitions(source, HashMap::new())
     }
 
+    /// Initialize a scalar-indexed parser with reusable macros and UTF-16 source-boundary metadata.
+    /// Offsets start at zero; lines and columns start at one, and columns count UTF-16 code units.
     fn new_with_macro_definitions(
         source: &str,
         macro_definitions: HashMap<String, Vec<Node>>,
@@ -194,6 +196,7 @@ impl Parser {
     }
 
     /// Translate a UTF-16 source offset back to the parser's character index.
+    /// Panics if the offset is not one of the recorded scalar boundaries.
     fn char_index(&self, offset: usize) -> usize {
         self.positions
             .binary_search_by_key(&offset, |position| position.offset)
@@ -314,6 +317,7 @@ impl Parser {
                     if matched {
                         nodes.push(Node::Group(content, self.span(start, self.position)));
                     } else {
+                        // A missing close must not hide the opener or discard the content parsed so far.
                         nodes.push(Node::String("{".to_string(), self.span(start, start + 1)));
                         nodes.extend(content);
                     }
@@ -353,6 +357,8 @@ impl Parser {
                                         span: self.span(start, self.position),
                                     });
                                 } else {
+                                    // An unclosed environment falls back to its opening macro and body,
+                                    // rather than inventing a closing delimiter or losing source content.
                                     nodes.push(Node::Macro {
                                         name,
                                         arguments,
@@ -373,6 +379,7 @@ impl Parser {
                                 })
                             }) =>
                         {
+                            // This end macro was consumed by parse_macro; only its owning sequence closes.
                             return (nodes, true);
                         }
                         Node::Macro {
@@ -392,6 +399,7 @@ impl Parser {
                             return (nodes, false);
                         }
                         Node::Macro { name, .. } if name == "ifdefined" => {
+                            // Conditional execution is unsupported; skip both branches as one nested block.
                             self.skip_ifdefined();
                         }
                         Node::Macro { name, .. } if name == "else" || name == "fi" => {}
@@ -401,6 +409,7 @@ impl Parser {
                             span,
                         } if name == "newcommand" || name == "ProvideTextCommandDefault" => {
                             if !self.register_macro(&arguments) {
+                                // Keep malformed definitions visible to the renderer's unsupported policy.
                                 nodes.push(Node::Macro {
                                     name,
                                     arguments,
@@ -580,6 +589,7 @@ impl Parser {
         }
     }
 
+    /// Merge adjacent whitespace only when source spans touch; gaps must retain distinct nodes.
     fn push_whitespace(nodes: &mut Vec<Node>, content: String, span: SourceSpan) {
         if let Some(Node::Whitespace(previous, previous_span)) = nodes.last_mut()
             && previous_span.end.offset == span.start.offset
@@ -756,6 +766,7 @@ impl Parser {
         if self.chars.get(self.position) == Some(&'\n')
             || self.chars.get(self.position) == Some(&'\r')
         {
+            // Rewind the first line ending too, so argument parsing cannot swallow a paragraph boundary.
             self.position = start;
         }
     }
@@ -1136,6 +1147,8 @@ pub(crate) fn render_with_case_protection(
     .to_string()
 }
 
+/// Parse and render one field with explicit protection policy and shared macro definitions.
+/// Definitions registered while parsing are returned through the map for later fields; output is untrimmed.
 pub(crate) fn render_with_case_protection_and_macro_definitions(
     source: &str,
     mode: &str,
@@ -1227,7 +1240,8 @@ fn render_nodes(
             }
         }
 
-        // Protect nonempty root groups unless their first child is a macro.
+        // Root braces express author case intent; a leading macro instead denotes formatting.
+        // Already-protected ancestors suppress duplicate protection on nested content.
         let protect_group = context.title_mode
             && context.root_scope
             && !context.protected_ancestor
@@ -1269,6 +1283,8 @@ pub(crate) fn collapse_markup(text: &str) -> String {
     collapse_markup_pairs(&output, "<span class=\"nocase\">", "</span>")
 }
 
+/// Merge adjacent identical formatting wrappers until no merge exposes another eligible pair.
+/// Whitespace between equal wrappers is retained inside the merged span.
 fn collapse_markup_spans(mut output: String) -> String {
     let wrappers = [
         ("<i>", "</i>"),
@@ -1289,6 +1305,8 @@ fn collapse_markup_spans(mut output: String) -> String {
     output
 }
 
+/// Remove matching close/open tag pairs separated only by whitespace, preserving all other text.
+/// Repeat to a fixed point because removing tags may expose another merge opportunity.
 fn collapse_markup_pairs(text: &str, open: &str, close: &str) -> String {
     let mut current = text.to_string();
     loop {
@@ -1382,6 +1400,7 @@ impl Markup {
 }
 
 /// Detect lowercase-shaped words that need case protection in rendered title text.
+/// Mask tags with word joiners so formatting cannot introduce artificial word boundaries.
 fn needs_case_protection(text: &str) -> bool {
     let characters: Vec<char> = text.chars().collect();
     let mut tokenized = Vec::new();
@@ -1760,7 +1779,7 @@ pub(crate) fn sentence_case_title(
             // No protection is needed, so retain the source group's spelling.
             output.push_str(original);
         } else {
-            // Strict mode applies the sentence-cased text when preservation was not selected.
+            // Defensive fallback: current policies either preserve above or select the as-needed path.
             output.push_str(transformed);
         }
         source_position = source_close + close.len();
@@ -1963,7 +1982,8 @@ fn title_cased_word(text: &str) -> bool {
     characters.next().is_some_and(char::is_uppercase) && characters.all(char::is_lowercase)
 }
 
-/// Find token ranges and remove HTML tags, optionally omitting nocase contents for guessing.
+/// Return visible text without tags, optionally omitting protected contents during case guessing.
+/// Omitted whitespace becomes one separator so unprotected neighboring words do not accidentally join.
 fn visible_case_text(text: &str, omit_nocase: bool) -> String {
     let characters: Vec<char> = text.chars().collect();
     let (mut index, mut preserve_depth, mut omitted_space) = (0, 0usize, false);
@@ -2330,6 +2350,7 @@ fn render_macro(
     let case_protection = context.case_protection;
     match name {
         "discretionary" => {
+            // Bibliographic text has no line wrapping, so use TeX's unbroken (third) alternative.
             return render_argument(arguments, 2, mode, false, diagnostics, case_protection);
         }
         "allcaps" => {
@@ -2744,6 +2765,8 @@ fn serialize_macro(name: &str, arguments: &[Vec<Node>]) -> String {
     serialize_macro_with_mode(name, arguments, false)
 }
 
+/// Reconstruct a macro, converting internal math-script names back to their TeX operators.
+/// Lookup mode braces ungrouped arguments; raw-print mode leaves them bare and normalizes layout.
 fn serialize_macro_with_mode(name: &str, arguments: &[Vec<Node>], print_raw: bool) -> String {
     let mut source = match name {
         "math^" => "^".to_string(),
@@ -2751,6 +2774,7 @@ fn serialize_macro_with_mode(name: &str, arguments: &[Vec<Node>], print_raw: boo
         _ => format!("\\{name}"),
     };
     for argument in arguments {
+        // Reuse retained source groups; adding another wrapper would change exact mapping keys.
         if matches!(argument.as_slice(), [Node::Group(_, _)]) {
             source.push_str(&serialize_nodes_with_mode(argument, print_raw));
         } else if print_raw {
@@ -2764,6 +2788,7 @@ fn serialize_macro_with_mode(name: &str, arguments: &[Vec<Node>], print_raw: boo
     source
 }
 
+/// Serialize argument contents, stripping exactly one enclosing AST group when it is the sole node.
 fn serialize_argument(argument: &[Node]) -> String {
     match argument {
         [Node::Group(children, _)] => serialize_nodes(children),
@@ -2776,10 +2801,13 @@ fn serialize_nodes(nodes: &[Node]) -> String {
     serialize_nodes_with_mode(nodes, false)
 }
 
+/// Reconstruct TeX with each whitespace or paragraph node normalized to a single space.
 fn serialize_print_raw_nodes(nodes: &[Node]) -> String {
     serialize_nodes_with_mode(nodes, true)
 }
 
+/// Reconstruct canonical TeX, optionally normalizing layout nodes to spaces for raw field output.
+/// This is not lossless source recovery: expansions use their bodies and math delimiters become `$`.
 fn serialize_nodes_with_mode(nodes: &[Node], print_raw: bool) -> String {
     nodes
         .iter()
@@ -2806,6 +2834,7 @@ fn serialize_nodes_with_mode(nodes: &[Node], print_raw: bool) -> String {
             }
             Node::Expansion(children, _) => serialize_nodes_with_mode(children, print_raw),
             Node::InlineMath(children, _) => {
+                // The AST deliberately unifies dollar, parenthesis, and bracket math delimiters.
                 format!("${}$", serialize_nodes_with_mode(children, print_raw))
             }
             Node::Environment { name, content, .. } => {
