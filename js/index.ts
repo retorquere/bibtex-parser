@@ -57,6 +57,7 @@ for (const tag of ['i', 'b', 'sc', 'nc', 'ncx', 'br', 'p', 'li', 'code']) {
 }
 const collapsable = /\x0E\/([a-z]+)\x0F(\s*)\x0E\1\x0F/ig
 
+/** Known creator-list fields, each returned as an array of parsed {@link Creator} values. */
 export type CreatorFields = {
   author?: Creator[]
   bookauthor?: Creator[]
@@ -71,6 +72,7 @@ export type CreatorFields = {
   scriptwriter?: Creator[]
   translator?: Creator[]
 }
+/** Known multi-value fields whose elements remain strings. */
 export type ArrayFields = {
   keywords?: string[]
   institution?: string[]
@@ -80,16 +82,24 @@ export type ArrayFields = {
   location?: string[]
   origlocation?: string[]
 }
+/** The known creator-list and string-list fields in a normalized entry. */
 export type TypedFields = CreatorFields & ArrayFields
+/** BibTeX field names mapped to normalized values; fields outside the known lists are strings. */
 export type Fields = TypedFields & Omit<Record<string, string>, keyof TypedFields>
 
 /** A normalized BibTeX entry returned by {@link parse}. */
 export type Entry = {
+  /** Entry type from the source, such as `article` or `inproceedings`. */
   type: string
+  /** Citation key identifying this entry. */
   key: string
+  /** Parsed field values, with known creator and list fields represented as arrays. */
   fields: Fields
+  /** Parsing mode used for each field; see {@link ParseMode}. */
   mode: Record<string, ParseMode>
+  /** For fields inherited through `crossref`, records the parent entry key and source field name. */
   crossref?: Record<string, { parent: string; field: string }>
+  /** Source text for this entry. */
   input: string
 }
 
@@ -122,32 +132,32 @@ const Month = {
 /** The parsed contents of a BibTeX library. */
 export interface Library {
   /**
-   * errors found while parsing
+   * Diagnostics collected while parsing. Recoverable errors do not necessarily prevent entries from being returned.
    */
   errors: bibtex.ParseError[]
 
   /**
-   * entries in the order in which they are found, omitting those which could not be parsed.
+   * Successfully parsed entries, in source order; entries that could not be parsed are omitted.
    */
   entries: Entry[]
 
   /**
-   * `@comment`s found in the bibtex file.
+   * Text from `@comment` directives.
    */
   comments: string[]
 
   /**
-   * `@string`s found in the bibtex file.
+   * Resolved values declared by `@string` directives.
    */
   strings: Record<string, string>
 
   /**
-   * `@preamble` declarations found in the bibtex file
+   * Values from `@preamble` directives, in source order.
    */
   preambles: string[]
 
   /**
-   * jabref metadata (such as groups information) found in the bibtex file
+   * JabRef metadata extracted from the library, including groups and file settings.
    */
   jabref: JabRef.JabRefMetadata
 }
@@ -274,13 +284,21 @@ export interface Options {
 
 /** A parsed personal or organizational name. */
 export interface Creator {
+  /** Complete name when the parser cannot safely separate it into components. */
   name?: string
+  /** Family name, including any parsed name prefix. */
   lastName?: string
+  /** Given name. */
   firstName?: string
+  /** Name particle, such as "von" or "de", when separated from the family name. */
   prefix?: string
+  /** Generational or other name suffix. */
   suffix?: string
+  /** Initials of the given name. */
   initial?: string
+  /** Whether the parsed family name includes a name prefix. */
   useprefix?: boolean
+  /** Whether the source separated the suffix from the name with a comma. */
   juniorcomma?: boolean
 }
 
@@ -344,7 +362,7 @@ export const FieldMode = {
   ],
 }
 
-/** Controls how a field's TeX content is interpreted. */
+/** Controls how a field's TeX content is interpreted and which normalized value shape it receives. */
 export type ParseMode = keyof typeof FieldMode | 'literal' | 'verbatimlist'
 
 export const English = [
@@ -1567,13 +1585,22 @@ class BibTeXParser {
   }
 }
 
-/** Parses BibTeX or BibLaTeX source into a normalized library. */
+/**
+ * Parses BibTeX or BibLaTeX source into normalized entries and field values.
+ * Recoverable problems are reported in `Library.errors`; set `unsupported: 'throw'` to throw on unsupported TeX commands or environments.
+ *
+ * @example
+ * ```ts
+ * const { entries, errors } = parse('@article{example, author={Ada Lovelace}, title={A title}}')
+ * const title = entries[0]?.fields.title
+ * ```
+ */
 export function parse(input: string, options: Options = {}): Library {
   const parser = new BibTeXParser()
   return parser.parse(input, options)
 }
 
-/** Asynchronous variant of {@link parse}, yielding periodically for large libraries. */
+/** Asynchronous variant of {@link parse}; returns the same result shape and yields periodically for large libraries. */
 export async function parseAsync(input: string, options: Options = {}): Promise<Library> {
   const parser = new BibTeXParser()
   return await parser.parseAsync(input, options)

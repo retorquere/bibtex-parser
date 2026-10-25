@@ -21,36 +21,49 @@ class ParsingError extends Error {
 const letter = /[\p{Lu}\p{Lt}\p{Ll}\p{Lm}\p{Lo}]/u
 
 export type Entry = {
+  /** Source text for this entry. */
   input: string
+  /** Entry type from the source. */
   type: string
+  /** Citation key identifying this entry. */
   key: string
+  /** Field names mapped to BibTeX text values; LaTeX and creator names are not normalized. */
   fields: Record<string, string>
 }
 
 export interface ParseError {
+  /** Human-readable diagnostic, with a source location when one is available. */
   error: string
+  /** Source fragment associated with the diagnostic; may be empty when no fragment is available. */
   input?: string
 }
 
 export interface ParserOptions {
   /**
-   * stop parsing after `max_entries` entries have been found. Useful for quick detection if a text file is in fact a bibtex file
+   * Stop after this many entries have been parsed; useful for quickly checking whether text is BibTeX.
    */
   max_entries?: number
 
   /**
-   * preload these strings
+   * Preload `@string` definitions as a name-to-value map or BibTeX source text.
    */
   strings?: string | Record<string, string>
 }
 
+/** Parser state and verbatim result for one BibTeX source string. */
 export class Library {
+  /** The directive currently being parsed, or `null` when no directive is active. */
   public parsing: string | null
 
+  /** Successfully parsed entries, in source order. */
   public entries: Entry[] = []
+  /** Resolved values declared by `@string` directives. */
   public strings: Record<string, string> = {}
+  /** Text from `@comment` directives. */
   public comments: string[] = []
+  /** Diagnostics collected while parsing. */
   public errors: ParseError[] = []
+  /** Values from `@preamble` directives, in source order. */
   public preambles: string[] = []
 
   private default_strings: Record<string, string> = {
@@ -105,6 +118,7 @@ export class Library {
 
   private max_entries: number
 
+  /** Creates a parser for `input`; call {@link parse} or {@link parseAsync} to populate the result fields. */
   constructor(input: string, options: ParserOptions = {}) {
     this.max_entries = options.max_entries || 0
     this.input = input
@@ -126,11 +140,13 @@ export class Library {
     }
   }
 
+  /** Parses the complete source synchronously and populates this library's result fields. */
   public parse(): void {
     this.bibtex()
     this.entries.reverse()
   }
 
+  /** Asynchronously parses the complete source, yielding during large inputs. */
   public async parseAsync(): Promise<void> {
     await this.bibtexAsync()
     this.entries.reverse()
@@ -485,7 +501,14 @@ export class Library {
 }
 
 /**
- * Parses a bibtex source in verbatim mode. Good for detection of bibtex and for later LaTeX-reparsing.
+ * Parses BibTeX without interpreting field contents as LaTeX, making the result useful for detection or later reparsing.
+ * `@string` references are resolved, but entry fields remain strings and retain their TeX source.
+ *
+ * @example
+ * ```ts
+ * const library = parse('@article{example, title={A \\LaTeX title}}')
+ * const rawTitle = library.entries[0]?.fields.title
+ * ```
  */
 export function parse(input: string, options: ParserOptions = {}): Library {
   const parser = new Library(input, options)
@@ -494,6 +517,7 @@ export function parse(input: string, options: ParserOptions = {}): Library {
 }
 
 export const promises = {
+  /** Asynchronous variant of {@link parse}; resolves after parsing and populating the library. */
   async parse(input: string, options: ParserOptions = {}): Promise<Library> {
     const parser = new Library(input, options)
     await parser.parseAsync()

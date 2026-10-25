@@ -25,45 +25,33 @@ function decode(s = '', sep = ';') {
  * A JabRef group.
  */
 export interface Group {
-  /**
-   * the group name
-   */
+  /** Name displayed for this group in JabRef. */
   name: string
 
-  /**
-   * The citation keys which are specified to belong to this group, after intersection calculation has been applied
-   */
+  /** Citation keys belonging to this group after supported group rules are applied. */
   entries: string[]
 
-  /**
-   * Sub-groups under this group
-   */
+  /** Direct child groups. */
   groups: Group[]
 }
 
+/** JabRef metadata parsed from a BibTeX library, including its group tree and file settings. */
 export class JabRefMetadata {
   #groups = new Map<string, Group>()
 
-  /**
-   * The root groups. You can find the nested groups in their `groups` property
-   */
+  /** Top-level groups; nested groups are available through each group's `groups` property. */
   root: Group[] = []
 
-  /**
-   * The base path for file paths
-   */
+  /** Base directory used to resolve relative attachment paths. */
   declare fileDirectory?: string
 
-  /**
-   * The JabRef metadata format version
-   */
+  /** JabRef group metadata format version. */
   declare groupsversion?: number
 
-  /**
-   * The JabRef metadata database type
-   */
+  /** Database type recorded in the JabRef metadata. */
   declare databaseType?: string
 
+  /** Creates metadata from parsed JabRef properties and indexes groups for membership updates. */
   constructor(data: Partial<Pick<JabRefMetadata, 'root' | 'fileDirectory' | 'groupsversion' | 'databaseType'>> = {}) {
     this.root = data.root ?? []
     for (const field of ['fileDirectory', 'groupsversion', 'databaseType'] as const) {

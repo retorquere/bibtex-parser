@@ -6,9 +6,40 @@ import englishDefaults from './english.json' with { type: 'json' }
 export { JabRefMetadata }
 export type { Group as JabRefGroup } from './jabref.js'
 
-export type { InitInput, InitOutput, SyncInitInput } from './bibtex_parser.js'
-/** Initializes the WebAssembly parser; await this before using its exports. */
-export { init, initSync }
+/** Inputs for asynchronous WASM initialization: a URL-like resource to fetch, bytes, or a compiled module. */
+export type { InitInput } from './bibtex_parser.js'
+/** Inputs for synchronous WASM initialization: bytes or a compiled module; synchronous initialization cannot fetch a URL. */
+export type { SyncInitInput } from './bibtex_parser.js'
+/** @ignore */
+export type { InitOutput } from './bibtex_parser.js'
+/**
+ * Loads and initializes the WebAssembly parser asynchronously.
+ *
+ * With no argument, the browser build fetches the package's WASM file relative to this module. Pass a URL-like resource to choose another location, or pass bytes when the caller loads the binary itself. Initialize once before calling parser functions.
+ *
+ * @example
+ * ```ts
+ * import init, { parse } from '@retorquere/bibtex-parser'
+ *
+ * await init()
+ * const library = parse('@article{example, title={A title}}')
+ * ```
+ */
+export { init }
+/**
+ * Initializes the WebAssembly parser from bytes or a compiled module without fetching it.
+ * Call this before any parser function; prefer {@link init} when the binary should be loaded asynchronously.
+ *
+ * @example
+ * ```ts
+ * import { readFile } from 'node:fs/promises'
+ * import { initSync, parse } from '@retorquere/bibtex-parser'
+ *
+ * initSync({ module: await readFile('bibtex_parser_bg.wasm') })
+ * const library = parse('@article{example, title={A title}}')
+ * ```
+ */
+export { initSync }
 export default init
 
 /** Describes how a BibTeX field is interpreted. */
@@ -16,18 +47,28 @@ export type ParseMode = 'creatorlist' | 'title' | 'verbatim' | 'richtext' | 'lit
 
 /** A parsed personal or organizational name. */
 export interface Creator {
+  /** Complete name when the parser cannot safely separate the name into components. */
   name?: string
+  /** Family name, including any parsed name prefix. */
   lastName?: string
+  /** Given name. */
   firstName?: string
+  /** Name particle, such as "von" or "de", when separated from the family name. */
   prefix?: string
+  /** Generational or other name suffix. */
   suffix?: string
+  /** Initials of the given name. */
   initial?: string
+  /** Whether the parsed family name includes a name prefix. */
   useprefix?: boolean
+  /** Whether the source separated the suffix from the name with a comma. */
   juniorcomma?: boolean
 }
 
+/** A normalized field value: scalar text, a list of strings, or parsed creator records. */
 export type FieldValue = string | string[] | Creator[]
 
+/** Creator-list fields whose values are returned as arrays of {@link Creator} objects. */
 export type CreatorFields = {
   author?: Creator[]
   bookauthor?: Creator[]
@@ -43,6 +84,7 @@ export type CreatorFields = {
   translator?: Creator[]
 }
 
+/** List-valued fields whose elements remain strings. */
 export type ArrayFields = {
   keywords?: string[]
   institution?: string[]
@@ -53,32 +95,48 @@ export type ArrayFields = {
   origlocation?: string[]
 }
 
+/** The known creator-list and string-list fields in a normalized entry. */
 export type TypedFields = CreatorFields & ArrayFields
+/** Normalized BibTeX fields: known list fields have structured values; other fields are strings. */
 export type Fields = TypedFields & Omit<Record<string, string>, keyof TypedFields>
 
 /** A normalized BibTeX entry returned by the parser. */
 export interface Entry {
+  /** Entry type from the source, such as `article` or `inproceedings`. */
   type: string
+  /** Citation key identifying this entry. */
   key: string
+  /** Parsed field values, with known creator and list fields represented as arrays. */
   fields: Fields
+  /** Parsing mode used for each field; see {@link ParseMode}. */
   mode: Record<string, ParseMode>
+  /** For fields inherited through `crossref`, records the parent entry key and source field name. */
   crossref?: Record<string, { parent: string; field: string }>
+  /** Source text for this entry. */
   input: string
 }
 
 /** A parsing diagnostic. */
 export interface ParseError {
+  /** Human-readable diagnostic describing the parse or normalization issue. */
   error: string
+  /** Source fragment associated with the diagnostic, when available. */
   input?: string
 }
 
 /** The parsed contents of a BibTeX library. */
 export interface Library {
+  /** Diagnostics collected while parsing; recoverable errors do not necessarily prevent entries from being returned. */
   errors: ParseError[]
+  /** Successfully parsed entries, in source order. */
   entries: Entry[]
+  /** Text from `@comment` directives. */
   comments: string[]
+  /** Resolved values declared by `@string` directives. */
   strings: Record<string, string>
+  /** Values from `@preamble` directives, in source order. */
   preambles: string[]
+  /** JabRef metadata extracted from the library, including groups and file settings. */
   jabref: JabRefMetadata
 }
 
@@ -119,27 +177,37 @@ export interface Options extends ParserOptions {
 
 /** Options shared by the normalized and verbatim parsers. */
 export interface ParserOptions {
-  /** Stop after this many entries have been parsed. */
+  /** Stop after this many entries have been parsed; useful for quickly checking whether text is BibTeX. */
   maxEntries?: number
-  /** Preload string definitions as a dictionary or BibTeX source. */
+  /** Preload `@string` definitions as a name-to-value map or BibTeX source text. */
   strings?: Record<string, string> | string
 }
 
-/** An entry whose field values retain their original BibTeX text. */
+/** An entry whose field values retain their BibTeX text instead of being interpreted as LaTeX. */
 export interface VerbatimEntry {
+  /** Source text for this entry. */
   input: string
+  /** Entry type from the source. */
   type: string
+  /** Citation key identifying this entry. */
   key: string
+  /** Field names mapped to their text values; creator names and LaTeX are not normalized. */
   fields: Record<string, string>
 }
 
-/** The library returned by the verbatim parser. */
+/** The library returned by the verbatim parser, before normalized field parsing. */
 export interface VerbatimLibrary {
+  /** Successfully parsed entries, in source order. */
   entries: VerbatimEntry[]
+  /** Resolved values declared by `@string` directives. */
   strings: Record<string, string>
+  /** Text from `@comment` directives. */
   comments: string[]
+  /** Diagnostics collected while parsing. */
   errors: ParseError[]
+  /** Values from `@preamble` directives, in source order. */
   preambles: string[]
+  /** JabRef metadata extracted from the library. */
   jabref: JabRefMetadata
 }
 
@@ -171,19 +239,37 @@ function withJabRef<Parsed extends { jabref: JabRefMetadata }>(result: Parsed): 
   return result
 }
 
-/** Parses BibTeX while leaving field contents uninterpreted. */
+/**
+ * Parses BibTeX without converting LaTeX field contents to Unicode or structured creator values.
+ * `@string` references are resolved, while each entry's fields remain strings for later processing.
+ *
+ * @example
+ * ```ts
+ * const library = parseVerbatim('@article{example, title={A \\LaTeX title}}')
+ * const rawTitle = library.entries[0]?.fields.title
+ * ```
+ */
 export function parseVerbatim(input: string, options: ParserOptions = {}): VerbatimLibrary {
   const prepared = prepare(input, options)
   return withJabRef(parseVerbatimWasm(prepared.input, prepared.options) as VerbatimLibrary)
 }
 
-/** Asynchronous variant of {@link parseVerbatim}. */
+/** Asynchronous variant of {@link parseVerbatim}; yields while processing large inputs. */
 export async function parseVerbatimAsync(input: string, options: ParserOptions = {}): Promise<VerbatimLibrary> {
   const prepared = prepare(input, options)
   return withJabRef(await parseVerbatimAsyncWasm(prepared.input, prepared.options) as VerbatimLibrary)
 }
 
-/** Parses BibTeX or BibLaTeX source into a normalized library. */
+/**
+ * Parses BibTeX or BibLaTeX source into normalized entries and field values.
+ * Recoverable problems are reported in `Library.errors`; set `unsupported: 'throw'` to throw on unsupported TeX commands or environments.
+ *
+ * @example
+ * ```ts
+ * const { entries, errors } = parse('@article{example, author={Ada Lovelace}, title={A title}}')
+ * const title = entries[0]?.fields.title
+ * ```
+ */
 export function parse(input: string, options: Options = {}): Library {
   const prepared = prepare(input, options)
   const result = withJabRef(parseWasm(prepared.input, prepared.options) as Library)
@@ -191,7 +277,7 @@ export function parse(input: string, options: Options = {}): Library {
   return result
 }
 
-/** Asynchronous variant of {@link parse}, yielding during large parses. */
+/** Asynchronous variant of {@link parse}; returns the same result shape and yields between batches for large inputs. */
 export async function parseAsync(input: string, options: Options = {}): Promise<Library> {
   const prepared = prepare(input, options)
   const result = withJabRef(await parseAsyncWasm(prepared.input, prepared.options) as Library)
