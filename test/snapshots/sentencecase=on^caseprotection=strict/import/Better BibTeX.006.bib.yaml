@@ -11,7 +11,7 @@ entries:
       title: title
     type: article
   - fields:
-      title: "non-braking space: \_; accented characters: ñ and ñ; tilde in URL: <a href=\"http://example.com/~user\"><span class=\"nocase\">Home</span></a>"
+      title: "non-braking space: \_; accented characters: ñ and ñ; tilde in URL: <a href=\"http://example.com/~user\">Home</a>"
     input: |-
       @article{test-ticket1661a,
         title = {non-braking space: ~; accented characters: {\~n} and \~{n}; tilde in URL: \href{http://example.com/~user}{Home}}

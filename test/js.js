@@ -103,11 +103,7 @@ const strings = fs.readFileSync(path.resolve(here, '..', 'strings.bib'), 'utf-8'
 if (process.env.CI === 'true') config.tests.toobig = []
 
 const testcases = globSync(path.resolve(here, '**', '*.{json,bib,bibtex,biblatex}'), {
-  ignore: [
-    path.resolve(here, 'other/strings.bib'),
-    path.resolve(here, 'better-bibtex/import/Some bibtex entries quietly discarded on import from bib file #873.bib'),
-    path.resolve(here, 'better-bibtex/import/Some bibtex entries quietly discarded on import from bib file #873-article:bagchi:1983:ahs.bib'),
-  ],
+  ignore: config.tests.ignore.js.map(filename => path.resolve(here, filename)),
   nocase: true,
   matchBase: true,
   nonull: false,
@@ -189,6 +185,13 @@ function sentenceCase(input, name, snapshot) {
     matchSnapshot(result, snapshot)
   })
 }
+
+test('sentence casing lowercases capitals inside hyphenated words', () => {
+  const options = { guess: false, subSentenceCapitalization: false }
+  assert.equal(bibtex.toSentenceCase("A K-Cap'01", options), "A k-cap'01")
+  assert.equal(bibtex.toSentenceCase('A K Barker', options), 'A K barker')
+  assert.equal(bibtex.toSentenceCase('K-Cap Proceedings', options), 'K-cap proceedings')
+})
 
 for (const [name, parse] of [['parse', bibtex.parse], ['parseAsync', bibtex.parseAsync]]) {
   const source = String.raw`@article{unknown, note = {before \unknownmacro after}}`

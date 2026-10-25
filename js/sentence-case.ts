@@ -12,7 +12,7 @@ function titleCase(s: string): string {
 }
 
 /** Apply the established sentence-case priority order to one complete visible-text token. */
-function wordSC(token: Token, allCaps: boolean, subSentence: boolean): string {
+function wordSC(token: Token, allCaps: boolean, subSentence: boolean, hyphenatedPart = false): string {
   // Domain labels are case-insensitive even when their source spelling is mixed case.
   if (token.type === 'domain') return token.text.toLowerCase()
 
@@ -35,6 +35,9 @@ function wordSC(token: Token, allCaps: boolean, subSentence: boolean): string {
 
   // Acronym recognition takes priority over the ordinary single-capital rule.
   if (token.subtype === 'acronym') return token.text
+
+  // Hyphenated title-case parts are not standalone initials, but all-caps parts remain acronyms.
+  if (hyphenatedPart && token.shape.match(/^Xx*$/)) return token.text.toLowerCase()
 
   // Lowercase the standalone article A, but preserve other one-letter capitals as initials.
   if (token.shape === 'X' && Array.from(token.text).length === 1) return token.text === 'A' ? 'a' : token.text
@@ -232,12 +235,12 @@ export function toSentenceCase(title: string, options: Options = {}): string {
     }
   }
   const edits: CasingEdit[] = []
-  const addEdit = (token: Token) => {
+  const addEdit = (token: Token, hyphenatedPart = false) => {
     // Only lexical tokens are cased; punctuation, markup-free spacing, and URLs remain untouched.
     if (token.type !== 'word' && token.type !== 'domain') return
     const start = token.start
     const end = token.end + 1
-    const replacement = wordSC(token, allCaps, options.subSentenceCapitalization!)
+    const replacement = wordSC(token, allCaps, options.subSentenceCapitalization!, hyphenatedPart)
     if (replacement !== token.text) {
       edits.push({ start, end, replacement, boundaries: replacementBoundaries(token.text, replacement) })
     }
@@ -246,7 +249,7 @@ export function toSentenceCase(title: string, options: Options = {}): string {
     if (token.hyphenated) {
       // A lowercase-leading hyphenated word is already sentence-cased; retain the entire form.
       if (token.shape[0] !== 'x') {
-        for (const part of token.hyphenated) addEdit(part)
+        for (const part of token.hyphenated) addEdit(part, true)
       }
     }
     else {
