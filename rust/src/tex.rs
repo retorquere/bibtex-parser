@@ -1696,7 +1696,7 @@ pub(crate) fn sentence_case_with_options(
                 let mut rendered = String::new();
                 for token in &tokens[index..=end] {
                     if token.kind == SentenceTokenKind::Word {
-                        rendered.push_str(&sentence_word(token, &view.characters, all_caps));
+                        rendered.push_str(&sentence_word(token, &view.characters, all_caps, true));
                     } else {
                         rendered.push_str(&token_text(token, &view.characters));
                     }
@@ -1724,7 +1724,7 @@ pub(crate) fn sentence_case_with_options(
         let token = &tokens[index];
         // Case every visible token first; protected source spans are overlaid after all edits.
         if token.kind == SentenceTokenKind::Word || token.kind == SentenceTokenKind::Domain {
-            let rendered = sentence_word(token, &view.characters, all_caps);
+            let rendered = sentence_word(token, &view.characters, all_caps, false);
             let original = token.text(&view.characters);
             if rendered != original {
                 edits.push(CasingEdit {
@@ -1879,9 +1879,16 @@ fn looks_sentence_cased(text: &str) -> bool {
 /// Render one word token according to sentence position, subtype, and capitalization shape.
 ///
 /// `token` supplies the source range, shape, and capitalization state; `characters` supplies its
-/// original spelling and `all_caps` controls title-wide uppercase handling. Non-word types pass
-/// through, while domains lowercase and ordinary words follow the decision order below.
-fn sentence_word(token: &SentenceToken, characters: &[char], all_caps: bool) -> String {
+/// original spelling, `all_caps` controls title-wide uppercase handling, and `in_hyphenated_run`
+/// lets one-letter components lowercase instead of being treated as standalone initials.
+/// Non-word types pass through, while domains lowercase and ordinary words follow the decision
+/// order below.
+fn sentence_word(
+    token: &SentenceToken,
+    characters: &[char],
+    all_caps: bool,
+    in_hyphenated_run: bool,
+) -> String {
     let text = token.text(characters);
     // Domains are case-insensitive, so their labels are always lowercased.
     if token.kind == SentenceTokenKind::Domain {
@@ -1915,9 +1922,13 @@ fn sentence_word(token: &SentenceToken, characters: &[char], all_caps: bool) -> 
     if token.subtype == SentenceTokenSubtype::Acronym {
         return text;
     }
-    // Lowercase the standalone article A, but preserve other one-letter capitals as initials.
+    // Lowercase article A; preserve other one-letter capitals only when they stand alone.
     if text.chars().count() == 1 && text.chars().next().is_some_and(char::is_uppercase) {
-        return if text == "A" { "a".to_string() } else { text };
+        return if text == "A" || in_hyphenated_run {
+            text.chars().flat_map(char::to_lowercase).collect()
+        } else {
+            text
+        };
     }
     let shape = token
         .shape

@@ -2176,7 +2176,6 @@ mod wasm_bindings {
             options.get("preserveQuoted").copied().unwrap_or(true),
         ))
     }
-
 }
 
 // --- Tests ---
@@ -2974,6 +2973,23 @@ mod tests {
         assert_eq!(
             hyphenated.entries[0].fields["title"],
             FieldValue::Text("Symphony No.\u{00a0}3 in E-flat major".into())
+        );
+    }
+
+    #[test]
+    /// Ensures compound initials lowercase while standalone and sentence-initial capitals remain.
+    fn sentence_case_lowercases_capitals_inside_hyphenated_words() {
+        assert_eq!(
+            super::tex::sentence_case_with_options("A K-Cap'01", false, false, true),
+            "A k-cap'01"
+        );
+        assert_eq!(
+            super::tex::sentence_case_with_options("A K Barker", false, false, true),
+            "A K barker"
+        );
+        assert_eq!(
+            super::tex::sentence_case_with_options("K-Cap Proceedings", false, false, true),
+            "K-cap proceedings"
         );
     }
 
