@@ -654,27 +654,12 @@ impl Parser {
 
         let arity = narguments(&name, math.is_some());
         for _ in 0..arity {
-            // TeX permits whitespace between a macro name and its braced arguments.
+            // Whitespace separates the macro name from either a group or one unbraced token.
             self.skip_argument_space();
             if self.position == self.chars.len() || self.chars[self.position] == '}' {
                 break;
             }
-            let styled_argument = matches!(
-                name.as_str(),
-                "textbf"
-                    | "mkbibbold"
-                    | "textit"
-                    | "textsl"
-                    | "emph"
-                    | "mkbibemph"
-                    | "textsc"
-                    | "texttt"
-            );
-            arguments.push(if styled_argument {
-                self.styled_argument(math, environment_end)
-            } else {
-                self.argument(math, environment_end)
-            });
+            arguments.push(self.argument(math, environment_end));
         }
         if matches!(name.as_str(), "url" | "href")
             && let Some(argument) = arguments.first()
@@ -807,37 +792,6 @@ impl Parser {
                 self.span(start, self.position),
             )]
         }
-    }
-
-    /// Consume a complete unbraced string run for style macros.
-    ///
-    /// Thus `\textbf abc` styles the complete `abc` run; other unbraced macro arguments consume
-    /// only one token.
-    fn styled_argument(
-        &mut self,
-        math: Option<MathDelimiter>,
-        environment_end: Option<&str>,
-    ) -> Vec<Node> {
-        if self.position >= self.chars.len() || matches!(self.chars[self.position], '{' | '\\') {
-            return self.argument(math, environment_end);
-        }
-        let start = self.position;
-        while self.position < self.chars.len()
-            && !matches!(
-                self.chars[self.position],
-                '{' | '}' | '\\' | '$' | '%' | '\n' | '\r'
-            )
-            && !self.chars[self.position].is_ascii_whitespace()
-        {
-            self.position += 1;
-        }
-        if self.position == start {
-            return self.argument(math, environment_end);
-        }
-        vec![Node::String(
-            self.chars[start..self.position].iter().collect(),
-            self.span(start, self.position),
-        )]
     }
 
     /// Parse a delimited literal token and retain its source range including delimiters.

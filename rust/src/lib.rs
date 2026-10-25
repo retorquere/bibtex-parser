@@ -2710,7 +2710,7 @@ mod tests {
     }
 
     #[test]
-    /// Checks declaration-style markup, list items, and quote macros render in their TeX modes.
+    /// Checks declarations, single-token style arguments, lists, and quotes in their TeX modes.
     fn tex_visitor_renders_declarations_lists_and_quotes() {
         assert_eq!(
             super::tex::render(r"\bf bold \em italic", "literal"),
@@ -2727,7 +2727,7 @@ mod tests {
             super::tex::render(r"\enquote{quoted}", "literal"),
             "“quoted”"
         );
-        assert_eq!(super::tex::render(r"\textbf abc", "literal"), "<b>abc</b>");
+        assert_eq!(super::tex::render(r"\textbf abc", "literal"), "<b>a</b>bc");
         assert_eq!(super::tex::render(r"\LaTeX", "literal"), "LᴬT<sub>E</sub>X");
         assert_eq!(super::tex::render(r"a\par~\par b", "richtext"), "a<p>b");
         assert_eq!(super::tex::render("a\r\nb", "richtext"), "a<p>b");
@@ -3091,6 +3091,27 @@ mod tests {
             parsed.entries[0].fields["pages"],
             FieldValue::Text("493–518".into())
         );
+    }
+
+    #[test]
+    /// Checks style macros consume one unbraced character, a group, or a nested command.
+    fn tex_style_macros_consume_single_unbraced_argument() {
+        for (source, expected) in [
+            (r"Stability analysis and \emph optimization", "Stability analysis and <i>o</i>ptimization"),
+            (r"\emph{optimization}", "<i>optimization</i>"),
+            (r"\emph \textbf{optimization}", "<i><b>optimization</b></i>"),
+            (r"\textbf optimization", "<b>o</b>ptimization"),
+            (r"\mkbibbold optimization", "<b>o</b>ptimization"),
+            (r"\textit optimization", "<i>o</i>ptimization"),
+            (r"\textsl optimization", "<i>o</i>ptimization"),
+            (r"\mkbibemph optimization", "<i>o</i>ptimization"),
+            (r"\textsc optimization", "<span style=\"font-variant:small-caps;\">o</span>ptimization"),
+            (r"\texttt optimization", "<code>o</code>ptimization"),
+            ("\\emph \u{1f600}optimization", "<i>\u{1f600}</i>optimization"),
+        ] {
+            let parsed = parse(&format!("@article{{x,note={{{source}}}}}"), Options::default());
+            assert_eq!(parsed.entries[0].fields["note"], FieldValue::Text(expected.into()), "{source}");
+        }
     }
 
     #[test]
