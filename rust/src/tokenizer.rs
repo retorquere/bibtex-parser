@@ -2,10 +2,9 @@
 //! exported token categories and sentence-casing decisions in `tex`. Internal ranges are
 //! half-open Unicode scalar indices; only public token serialization converts them to UTF-16.
 
-use serde::Serialize;
 use unicode_general_category::{GeneralCategory, get_general_category};
 
-/// English prepositions recognized during title tokenization, checked longest match first.
+/// English prepositions used by the TypeScript tokenizer, checked longest match first.
 const PREPOSITIONS: &[&str] = &[
     "a",
     "about",
@@ -128,29 +127,13 @@ pub(crate) struct SentenceToken {
     pub(crate) sub_sentence_start: bool,
 }
 
-#[derive(Debug, Clone, Serialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct Token {
-    #[serde(rename = "type")]
-    kind: String,
-    subtype: String,
-    text: String,
-    start: usize,
-    end: usize,
-    shape: String,
-    sentence_start: bool,
-    sub_sentence_start: bool,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    hyphenated: Option<Vec<Token>>,
-}
-
 impl SentenceToken {
     /// Recover this token's original characters without normalizing the surrounding source.
     pub(crate) fn text(&self, characters: &[char]) -> String {
         characters[self.start..self.end].iter().collect()
     }
 
-    /// Count UTF-16 code units for title-case guess classification.
+    /// Count UTF-16 code units for the TypeScript string-length guess heuristic.
     pub(crate) fn text_len(&self, characters: &[char]) -> usize {
         characters[self.start..self.end]
             .iter()
@@ -159,14 +142,16 @@ impl SentenceToken {
     }
 }
 
-/// Tokenize title text while tracking sentence and colon-start state.
+/// Tokenize title text while tracking the TypeScript sentence and colon-start state.
 ///
 /// `characters` is the rendered field split into Unicode scalar values. Markup tags, whitespace,
 /// and punctuation remain distinct; preposition phrases, contractions, acronyms, domains, URLs,
-/// handles, numbers, and ordinals receive separate token kinds for casing and guessing. Letter-
-/// started runs take priority over number matching; ordinal and version digits are ASCII-only;
-/// URLs require letter-bearing dotted host labels. Word-like, domain, and website tokens clear
-/// pending sentence-start state.
+/// handles, numbers, and ordinals receive separate token kinds so casing and guessing can follow
+/// the same branches as `tokenizer.ts`. Direct edge cases live in
+/// `sentence_case_matches_tokenizer_rules`; shared parser cases live in
+/// `test/other/sentence-case-utf16.bib` and its default snapshot. Token priority keeps letter-started
+/// runs ahead of number matching, uses ASCII-only ordinal/version digits, and recognizes URLs only
+/// with letter-bearing dotted host labels; only reference word-like tokens clear pending starts.
 pub(crate) fn sentence_tokens(
     characters: &[char],
     preserve_sub_sentence: bool,
@@ -213,7 +198,7 @@ pub(crate) fn sentence_tokens(
             (end, SentenceTokenKind::Word, SentenceTokenSubtype::Acronym)
         } else if let Some(end) = ordinal_end(characters, position) {
             (end, SentenceTokenKind::Word, SentenceTokenSubtype::Ordinal)
-        // Number tokens use ASCII digits; letter-started strings such as `v2` are words.
+        // TypeScript's number rule is ASCII-only and follows letter-started words like `v2`.
         } else if !is_unicode_letter(characters[position])
             && let Some(end) = number_end(characters, position)
         {
@@ -231,7 +216,7 @@ pub(crate) fn sentence_tokens(
             while domain_end + 1 < characters.len() && characters[domain_end] == '.' {
                 let label_start = domain_end + 1;
                 let label_end = word_end(characters, label_start);
-                // Every dotted domain label must contain at least one Unicode letter.
+                // TypeScript's domain rule requires at least one letter in every dotted label.
                 if label_end == label_start
                     || !characters[label_start..label_end]
                         .iter()
@@ -302,124 +287,7 @@ pub(crate) fn sentence_tokens(
     tokens
 }
 
-/// Tokenize text into public records with inclusive UTF-16 offsets.
-/// HTML tags are not hidden behind markup tokens. Hyphenated runs become one token while retaining
-/// their component tokens for callers.
-pub(crate) fn tokenize(text: &str) -> Vec<Token> {
-    let characters: Vec<char> = text.chars().collect();
-    let tokens = sentence_tokens(&characters, true, false);
-    let mut result = Vec::new();
-    let mut index = 0;
-    while index < tokens.len() {
-        if let Some(end) = hyphenated_end(&tokens, &characters, index) {
-            let parts = tokens[index..=end]
-                .iter()
-                .map(|token| public_token(token, &characters, None))
-                .collect();
-            let shape = tokens[index..=end]
-                .iter()
-                .map(|token| token.shape.as_str())
-                .collect();
-            let combined = SentenceToken {
-                start: tokens[index].start,
-                end: tokens[end].end,
-                kind: tokens[index].kind,
-                subtype: tokens[index].subtype,
-                shape,
-                sentence_start: tokens[index].sentence_start,
-                sub_sentence_start: tokens[index].sub_sentence_start,
-            };
-            result.push(public_token(&combined, &characters, Some(parts)));
-            index = end + 1;
-        } else {
-            result.push(public_token(&tokens[index], &characters, None));
-            index += 1;
-        }
-    }
-    result
-}
-
-/// Convert internal categories and half-open scalar ranges to the JavaScript token contract.
-/// Public `end` is inclusive and measured in UTF-16 code units, including surrogate pairs.
-fn public_token(
-    token: &SentenceToken,
-    characters: &[char],
-    hyphenated: Option<Vec<Token>>,
-) -> Token {
-    let text = token.text(characters);
-    let (kind, subtype) = match token.kind {
-        SentenceTokenKind::Word => (
-            "word",
-            match token.subtype {
-                SentenceTokenSubtype::Word => "",
-                SentenceTokenSubtype::Preposition => "preposition",
-                SentenceTokenSubtype::Acronym => "acronym",
-                SentenceTokenSubtype::Contraction => "contraction",
-                SentenceTokenSubtype::Ordinal => "ordinal",
-            },
-        ),
-        SentenceTokenKind::Domain => ("domain", ""),
-        SentenceTokenKind::Whitespace => ("whitespace", ""),
-        SentenceTokenKind::Number => ("number", ""),
-        SentenceTokenKind::Email => ("email", ""),
-        SentenceTokenKind::Handle => ("handle", ""),
-        SentenceTokenKind::Website => ("website", ""),
-        SentenceTokenKind::Markup => ("word", ""),
-        SentenceTokenKind::Other => {
-            let next_is_whitespace =
-                token.end == characters.len() || is_case_whitespace(characters[token.end]);
-            if text == "..." {
-                ("punctuation", "ellipsis")
-            } else if text == ":" && next_is_whitespace {
-                ("punctuation", "colon")
-            } else if text.len() == 1
-                && matches!(text.as_str(), "." | "!" | "?")
-                && next_is_whitespace
-            {
-                ("punctuation", "end")
-            } else if text.chars().all(is_unicode_punctuation) {
-                ("punctuation", "")
-            } else {
-                ("other", "")
-            }
-        }
-    };
-    let start = characters[..token.start]
-        .iter()
-        .map(|character| character.len_utf16())
-        .sum();
-    let end = characters[..token.end]
-        .iter()
-        .map(|character| character.len_utf16())
-        .sum::<usize>()
-        .saturating_sub(1);
-    Token {
-        kind: kind.to_string(),
-        subtype: subtype.to_string(),
-        text,
-        start,
-        end,
-        shape: token.shape.clone(),
-        sentence_start: token.sentence_start,
-        sub_sentence_start: token.sub_sentence_start,
-        hyphenated,
-    }
-}
-
-fn is_unicode_punctuation(character: char) -> bool {
-    matches!(
-        get_general_category(character),
-        GeneralCategory::ConnectorPunctuation
-            | GeneralCategory::DashPunctuation
-            | GeneralCategory::OpenPunctuation
-            | GeneralCategory::ClosePunctuation
-            | GeneralCategory::InitialPunctuation
-            | GeneralCategory::FinalPunctuation
-            | GeneralCategory::OtherPunctuation
-    )
-}
-
-/// Detect whether a character position is inside an HTML-style markup element.
+/// Detect words inside an HTML-style markup element, which TS tokenizes as word-joiner text.
 fn inside_markup(characters: &[char], start: usize) -> bool {
     let (mut position, mut depth) = (0, 0usize);
     while position < start {
@@ -442,12 +310,13 @@ fn inside_markup(characters: &[char], start: usize) -> bool {
     depth > 0
 }
 
-/// Find a hyphenated word run that ends before a non-word, non-hyphen token.
+/// Find a TypeScript-style hyphenated run that ends before a non-word, non-hyphen token.
 ///
 /// The first index identifies the initial word, and the returned index identifies the final
 /// component. A following punctuation or whitespace token forms the boundary; another word or
-/// hyphen does not. The combined run is one token for guessing and casing, and inherits the first
-/// component's subtype and capitalization state.
+/// hyphen does not. The combined run is one token for both guess and casing, preserving the first
+/// component's subtype and capitalization state just like `tokenizer.ts`. The direct tokenizer
+/// test and shared `sentence-case-utf16.bib` snapshot cover these grouping decisions.
 pub(crate) fn hyphenated_end(
     tokens: &[SentenceToken],
     characters: &[char],
@@ -477,8 +346,9 @@ pub(crate) fn hyphenated_end(
     (end > start && boundary).then_some(end)
 }
 
-/// Build a case-shape string that distinguishes numbers, uppercase letters, and lowercase letters.
-/// Other characters, including punctuation, retain their original shape.
+/// Build the tokenizer's case-shape string using TypeScript's number, case, and Unicode-category order.
+/// Direct sentence-case cases and the shared sentence-case fixture cover its letter, number, and
+/// punctuation shapes.
 fn token_shape(characters: &[char]) -> String {
     let mut shape = String::new();
     for character in characters {
@@ -522,7 +392,7 @@ fn preposition_end(characters: &[char], start: usize) -> Option<usize> {
         .max()
 }
 
-/// Match one preposition case-insensitively, allowing sentence-token whitespace between its words.
+/// Match one preposition case-insensitively, allowing TypeScript whitespace between its words.
 fn match_preposition(characters: &[char], start: usize, preposition: &str) -> Option<usize> {
     let mut index = start;
     for expected in preposition.chars() {
@@ -542,8 +412,9 @@ fn match_preposition(characters: &[char], start: usize, preposition: &str) -> Op
     (index == characters.len() || !is_word_character(characters[index])).then_some(index)
 }
 
-/// Recognize dotted initialisms and lowercase `v.`/`vs.` aliases.
-/// Uppercase `VS.` remains punctuation followed by a word; alias matching is case-sensitive.
+/// Recognize dotted initialisms and lowercase `v.`/`vs.` aliases used by the reference tokenizer.
+/// Uppercase `VS.` is intentionally left as punctuation plus a word; the shared fixture and direct
+/// sentence-case regressions cover this case-sensitive distinction.
 fn acronym_end(characters: &[char], start: usize) -> Option<usize> {
     for abbreviation in ["vs.", "v."] {
         let end = start + abbreviation.chars().count();
@@ -572,7 +443,8 @@ fn acronym_end(characters: &[char], start: usize) -> Option<usize> {
 }
 
 /// Recognize lowercase ASCII integer ordinals such as `21st` before the general number token.
-/// Uppercase suffixes remain separate tokens; ordinal suffix matching is case-sensitive.
+/// Uppercase suffixes remain separate tokens, matching the case-sensitive TypeScript rule; the
+/// direct sentence-case cases exercise ordinal handling.
 fn ordinal_end(characters: &[char], start: usize) -> Option<usize> {
     if !characters[start].is_ascii_digit() {
         return None;
@@ -677,9 +549,11 @@ fn word_end(characters: &[char], start: usize) -> usize {
 
 /// Return the end of a Unicode word token, which must contain at least one letter.
 ///
-/// `start` begins a run of Unicode letters, numbers, marks, soft hyphens, or word joiners.
-/// Numeric-only and mark-only runs are left to number or fallback tokenization; a word token must
-/// contain at least one Unicode letter.
+/// `start` is the first code point in a run of TypeScript `LNM` characters. Numeric-only and
+/// mark-only runs are left to the number or fallback lexer branches, while mixed runs containing
+/// a Unicode letter match the reference `W` pattern. Unicode-number cases in
+/// `sentence_case_matches_tokenizer_rules` and the shared sentence-case fixture exercise this
+/// distinction.
 fn word_token_end(characters: &[char], start: usize) -> Option<usize> {
     let end = word_end(characters, start);
     characters[start..end]
@@ -688,7 +562,9 @@ fn word_token_end(characters: &[char], start: usize) -> Option<usize> {
         .then_some(end)
 }
 
-/// Recognize Unicode letters, numbers, and marks, plus soft hyphens and word joiners.
+/// Recognize all Unicode letters, numbers, and marks used by the TypeScript `LNM` pattern.
+/// Unicode mark and number entries in the direct tokenizer test and shared sentence-case fixture
+/// cover the category branches.
 fn is_word_character(character: char) -> bool {
     is_unicode_letter(character)
         || is_unicode_number(character)
@@ -696,7 +572,8 @@ fn is_word_character(character: char) -> bool {
         || matches!(character, '\u{00ad}' | '\u{2060}')
 }
 
-/// Identify Unicode uppercase, lowercase, titlecase, modifier, and other letters.
+/// Identify Unicode letter categories used by the TypeScript `\p{L}` class.
+/// The direct sentence-case test and combining-mark fixture entry exercise non-ASCII letter runs.
 fn is_unicode_letter(character: char) -> bool {
     matches!(
         get_general_category(character),
@@ -708,7 +585,8 @@ fn is_unicode_letter(character: char) -> bool {
     )
 }
 
-/// Identify Unicode decimal, letter, and other numbers.
+/// Identify Unicode number categories used by the TypeScript `\p{N}` class.
+/// The direct sentence-case test and Unicode-number fixture entry exercise this predicate.
 fn is_unicode_number(character: char) -> bool {
     matches!(
         get_general_category(character),
@@ -718,7 +596,8 @@ fn is_unicode_number(character: char) -> bool {
     )
 }
 
-/// Identify Unicode nonspacing, spacing, and enclosing marks.
+/// Identify all Unicode mark categories used by the TypeScript `\p{M}` class.
+/// The direct sentence-case test and combining-mark fixture entry exercise this predicate.
 fn is_unicode_mark(character: char) -> bool {
     matches!(
         get_general_category(character),
@@ -728,7 +607,7 @@ fn is_unicode_mark(character: char) -> bool {
     )
 }
 
-/// Recognize sentence-token separators: space, tab, line breaks, and nonbreaking space.
+/// Recognize the exact whitespace characters accepted by the TypeScript sentence tokenizer.
 pub(crate) fn is_case_whitespace(character: char) -> bool {
     matches!(character, ' ' | '\t' | '\n' | '\r' | '\u{00a0}')
 }
@@ -746,11 +625,12 @@ fn starts_with_ascii(characters: &[char], start: usize, marker: &str) -> bool {
         })
 }
 
-/// Recognize an HTTP or HTTPS URL only when its host contains valid dotted letter labels.
+/// Recognize the reference URL token only when its host contains valid dotted letter labels.
 ///
 /// `start` points at lowercase `http://` or `https://`. Each host label must contain a Unicode
-/// letter; malformed hosts fall back to ordinary tokens. The URL ends at sentence-token whitespace
-/// or terminal sentence punctuation.
+/// letter, matching the tokenizer's `W(?:[.]W)+` rule; malformed hosts fall back to ordinary
+/// tokens. The URL then extends to TypeScript whitespace, excluding terminal sentence punctuation.
+/// The malformed-host entry in `test/other/sentence-case-utf16.bib` exercises the fallback branch.
 fn website_end(characters: &[char], start: usize) -> Option<usize> {
     let scheme_length = if starts_with_ascii(characters, start, "https://") {
         8

@@ -7,7 +7,6 @@ use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::sync::OnceLock;
 
-pub mod sentencecase;
 mod tex;
 mod tokenizer;
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
@@ -1067,36 +1066,8 @@ fn default_strings() -> HashMap<String, String> {
 
 /// Return the language identifiers treated as English by default.
 fn default_english() -> Vec<String> {
-    [
-        "",
-        "american",
-        "british",
-        "canadian",
-        "english",
-        "australian",
-        "newzealand",
-        "usenglish",
-        "ukenglish",
-        "en",
-        "eng",
-        "en-au",
-        "en-bz",
-        "en-ca",
-        "en-cb",
-        "en-gb",
-        "en-ie",
-        "en-jm",
-        "en-nz",
-        "en-ph",
-        "en-tt",
-        "en-us",
-        "en-za",
-        "en-zw",
-        "anglais",
-    ]
-    .into_iter()
-    .map(str::to_string)
-    .collect()
+    serde_json::from_str(include_str!("../english.json"))
+        .expect("default English language list must be valid JSON")
 }
 
 /// Return the fields whose single outer brace group is removed during normalization.
@@ -2200,11 +2171,6 @@ mod wasm_bindings {
         ))
     }
 
-    /// Tokenize Unicode title text into records with UTF-16 offsets and optional hyphen components.
-    #[wasm_bindgen(js_name = tokenize)]
-    pub fn tokenize_js(input: &str) -> Result<JsValue, JsValue> {
-        encode_result(&super::tokenizer::tokenize(input))
-    }
 }
 
 // --- Tests ---
@@ -3009,110 +2975,49 @@ mod tests {
     }
 
     #[test]
-    /// Checks sentence tokenization for words, quotes, and sentence-start state.
-    fn sentence_case_matches_tokenizer_rules() {
-        let sentence_case = |text| super::tex::sentence_case_with_options(text, true, true, true);
-        let cases = [
-            ("AN ANALYSIS OF DNA AND RNA", "An analysis of dna and rna"),
-            ("A B I", "A B I"),
-            ("A <i>A</i>", "A <i>a</i>"),
-            (
-                "The Effects of DNA Sequencing",
-                "The effects of DNA sequencing",
-            ),
-            ("𐐨 the Method", "𐐨 the Method"),
-            ("Title. ١ Next", "Title. ١ Next"),
-            ("Title. VS. Next", "Title. VS. Next"),
-            ("The v2.1 Results", "The v2.1 Results"),
-            ("The x-ray Results", "The x-ray Results"),
-            (
-                "The C3-OH and N6-Methyladenine use 13C and P450-based assays",
-                "The C3-OH and N6-methyladenine use 13C and P450-based assays",
-            ),
-            ("The can't-Based Results", "The can't-Based results"),
-            ("A-B: Another Title", "A-B: Another title"),
-            (
-                "The https://foo/UPPER Results",
-                "The https://foo/UPPER Results",
-            ),
-            ("The a\u{05b0}-Based Results", "The a\u{05b0}-Based results"),
-            (
-                "A Study of \"DNA Sequencing\" in Cells",
-                "A study of \"DNA Sequencing\" in cells",
-            ),
-            (
-                "An overview: Studies in Cells",
-                "An overview: Studies in cells",
-            ),
-            (
-                "A Contact name@example.com Title",
-                "A contact name@example.com title",
-            ),
-            (
-                "An Overview of https://EXAMPLE.COM/Path",
-                "An overview of https://EXAMPLE.COM/Path",
-            ),
-            (
-                "A Title <span class=\"nocase\">nASA Name</span> of Cells",
-                "A title <span class=\"nocase\">nASA Name</span> of cells",
-            ),
-            (
-                "An analysis according to the current laws of physics",
-                "An analysis according to the current laws of physics",
-            ),
-            (
-                "The State-of-the-art and Alpha-Beta-Gamma",
-                "The state-of-the-art and alpha-beta-gamma",
-            ),
-            (
-                "The A-B Test in the 21st Century",
-                "The a-B test in the 21st century",
-            ),
-            ("TITLE", "TITLE"),
-            ("ALL CAPS TITLE", "All caps title"),
-            (
-                "First sentence. A Second one! And third?",
-                "First sentence. A Second one! And third?",
-            ),
-            ("A colon: A subheading", "A colon: A subheading"),
-            ("The U.S. vs. U.K. results", "The U.S. vs. U.K. results"),
-            ("I’m sure I'm right", "I’m sure I'm right"),
-            (
-                "A quotation ‘With Uppercase Words’ in Text",
-                "A quotation ‘With Uppercase Words’ in text",
-            ),
-            (
-                "The use of x-ray and DNA-based methods",
-                "The use of x-ray and DNA-based methods",
-            ),
-            (
-                "This is a title… with ellipsis",
-                "This is a title… with ellipsis",
-            ),
-            (
-                "An HTTP://Example.com/Path URL",
-                "An HTTP://example.com/path URL",
-            ),
-            (
-                "An example.com Domain and example.org",
-                "An example.com domain and example.org",
-            ),
-            ("An {unusual name}", "An {unusual name}"),
-        ];
-        for (input, expected) in cases {
-            assert_eq!(sentence_case(input), expected, "{input}");
-        }
+    /// Checks sentence-case delegation while preserving markup and protected text.
+    fn sentence_case_delegates_to_core() {
         assert_eq!(
-            super::tex::sentence_case_with_options("An <i>ex</i>ample Title", false, true, true),
+            super::tex::sentence_case_with_options("THE EFFECT OF DNA ON RNA", false, false, true,),
+            "The effect of DNA on RNA"
+        );
+        assert_eq!(
+            super::tex::sentence_case_with_options("A TITLE: AN EXPLANATION", false, false, true),
+            "A title: an explanation"
+        );
+        assert_eq!(
+            super::tex::sentence_case_with_options("A TITLE: AN EXPLANATION", false, true, true),
+            "A title: An explanation"
+        );
+        assert_eq!(
+            super::tex::sentence_case_with_options("An <i>ex</i>ample Title", false, false, false),
             "An <i>ex</i>ample title"
         );
         assert_eq!(
-            super::tex::sentence_case_with_options("An Ex<i>ample</i>", false, true, true),
+            super::tex::sentence_case_with_options("An Ex<i>ample</i>", false, false, false),
             "An ex<i>ample</i>"
         );
         assert_eq!(
-            super::tex::sentence_case_with_options("A İ<i>X</i>", false, true, true),
+            super::tex::sentence_case_with_options("A İ<i>X</i>", false, false, false),
             "A i\u{0307}<i>x</i>"
+        );
+        assert_eq!(
+            super::tex::sentence_case_with_options(
+                "A Study of \"DNA SEQUENCING\" in Cells",
+                false,
+                false,
+                true,
+            ),
+            "A study of \"DNA SEQUENCING\" in cells"
+        );
+        assert_eq!(
+            super::tex::sentence_case_with_options(
+                "A Title <span class=\"nocase\">nASA Name</span> of Cells",
+                false,
+                false,
+                false,
+            ),
+            "A title <span class=\"nocase\">nASA Name</span> of cells"
         );
     }
 

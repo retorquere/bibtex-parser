@@ -1118,6 +1118,7 @@ pub(crate) fn render(source: &str, mode: &str) -> String {
 ///
 /// `AsNeeded` is the default; callers can disable protection or require it for every marked group
 /// without changing the rest of the render pipeline.
+#[cfg(test)]
 pub(crate) fn render_with_case_protection(
     source: &str,
     mode: &str,
@@ -1167,6 +1168,7 @@ pub(crate) fn render_with_case_protection_and_macro_definitions(
 /// * `diagnostics` - Shared state that deduplicates unsupported constructs across fields.
 ///
 /// Rendering starts at field root with the default `as-needed` case-protection mode.
+#[cfg(test)]
 pub(crate) fn render_with_diagnostics(
     source: &str,
     mode: &str,

@@ -1,6 +1,7 @@
 /** @module wasm */
-import init, { initSync, parse as parseWasm, parseAsync as parseAsyncWasm, parseVerbatim as parseVerbatimWasm, parseVerbatimAsync as parseVerbatimAsyncWasm, tokenize as tokenizeWasm, toSentenceCase as toSentenceCaseWasm } from './bibtex_parser.js'
+import init, { initSync, parse as parseWasm, parseAsync as parseAsyncWasm, parseVerbatim as parseVerbatimWasm, parseVerbatimAsync as parseVerbatimAsyncWasm, toSentenceCase as toSentenceCaseWasm } from './bibtex_parser.js'
 import { JabRefMetadata } from './jabref.js'
+import englishDefaults from './english.json' with { type: 'json' }
 
 export { JabRefMetadata }
 export type { Group as JabRefGroup } from './jabref.js'
@@ -81,24 +82,11 @@ export interface Library {
   jabref: JabRefMetadata
 }
 
-/** Options controlling title sentence casing. */
+/** Options used for sentence casing during BibTeX field normalization. */
 export interface SentenceCaseOptions {
   guess?: boolean
   subSentence?: boolean
   preserveQuoted?: boolean
-}
-
-/** A classified text token returned by {@link tokenize}. */
-export interface Token {
-  type: 'word' | 'domain' | 'whitespace' | 'number' | 'email' | 'handle' | 'website' | 'markup' | 'other' | 'punctuation'
-  subtype: '' | 'preposition' | 'acronym' | 'contraction' | 'ordinal' | 'word' | 'end' | 'colon' | 'ellipsis'
-  text: string
-  start: number
-  end: number
-  shape: string
-  sentenceStart: boolean
-  subSentenceStart: boolean
-  hyphenated?: Token[]
 }
 
 /** Options for normalized BibTeX parsing. */
@@ -156,33 +144,7 @@ export interface VerbatimLibrary {
 }
 
 /** Default language identifiers treated as English. */
-export const english = [
-  '',
-  'american',
-  'british',
-  'canadian',
-  'english',
-  'australian',
-  'newzealand',
-  'usenglish',
-  'ukenglish',
-  'en',
-  'eng',
-  'en-au',
-  'en-bz',
-  'en-ca',
-  'en-cb',
-  'en-gb',
-  'en-ie',
-  'en-jm',
-  'en-nz',
-  'en-ph',
-  'en-tt',
-  'en-us',
-  'en-za',
-  'en-zw',
-  'anglais',
-]
+export const english: string[] = englishDefaults
 
 function prepare(input: string, options: Options | ParserOptions = {}): { input: string; options: Record<string, unknown> } {
   const parserOptions: Record<string, unknown> = Object.fromEntries(Object.entries(options).filter(([, value]) => value !== undefined))
@@ -249,11 +211,4 @@ export async function parseAsync(input: string, options: Options = {}): Promise<
 /** Converts a title to sentence case using heuristic token classification. */
 export function toSentenceCase(input: string, options: { preserveQuoted?: boolean; subSentenceCapitalization?: boolean; guess?: boolean } = {}): string {
   return toSentenceCaseWasm(input, options)
-}
-
-/** Splits text into classified tokens with source offsets. */
-export function tokenize(input: string, markup?: RegExp): Token[] {
-  if (!(markup instanceof RegExp)) return tokenizeWasm(input) as Token[]
-  const masked = input.replace(markup, match => '\u2060'.repeat(match.length))
-  return tokenizeWasm(masked) as Token[]
 }

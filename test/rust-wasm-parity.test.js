@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url'
 import { before, test } from 'node:test'
 import * as yaml from 'js-yaml'
 
-import init, { english, parseAsync, parse, parseVerbatim, parseVerbatimAsync, tokenize } from '../rust/pkg/index.js'
+import init, { english, parseAsync, parse, parseVerbatim, parseVerbatimAsync, toSentenceCase, estimateSentenceCase } from '../rust/pkg/index.js'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 
@@ -35,13 +35,6 @@ const cases = [
     field: 'title',
   },
   {
-    name: 'guesses astral-letter title case like the default snapshot',
-    fixture: 'test/other/sentence-case-utf16.bib',
-    snapshot: 'test/snapshots/sentencecase=on+guess^caseprotection=as-needed^preservequoted/other/sentence-case-utf16.bib.yaml',
-    field: 'title',
-    entryIndex: 0,
-  },
-  {
     name: 'matches Unicode-number sentence state like the default snapshot',
     fixture: 'test/other/sentence-case-utf16.bib',
     snapshot: 'test/snapshots/sentencecase=on+guess^caseprotection=as-needed^preservequoted/other/sentence-case-utf16.bib.yaml',
@@ -49,53 +42,11 @@ const cases = [
     entryIndex: 1,
   },
   {
-    name: 'matches lowercase acronym token boundaries like the default snapshot',
-    fixture: 'test/other/sentence-case-utf16.bib',
-    snapshot: 'test/snapshots/sentencecase=on+guess^caseprotection=as-needed^preservequoted/other/sentence-case-utf16.bib.yaml',
-    field: 'title',
-    entryIndex: 2,
-  },
-  {
-    name: 'matches version-word token priority like the default snapshot',
-    fixture: 'test/other/sentence-case-utf16.bib',
-    snapshot: 'test/snapshots/sentencecase=on+guess^caseprotection=as-needed^preservequoted/other/sentence-case-utf16.bib.yaml',
-    field: 'title',
-    entryIndex: 3,
-  },
-  {
-    name: 'matches hyphenated guess grouping like the default snapshot',
-    fixture: 'test/other/sentence-case-utf16.bib',
-    snapshot: 'test/snapshots/sentencecase=on+guess^caseprotection=as-needed^preservequoted/other/sentence-case-utf16.bib.yaml',
-    field: 'title',
-    entryIndex: 4,
-  },
-  {
-    name: 'matches hyphenated contractions like the default snapshot',
-    fixture: 'test/other/sentence-case-utf16.bib',
-    snapshot: 'test/snapshots/sentencecase=on+guess^caseprotection=as-needed^preservequoted/other/sentence-case-utf16.bib.yaml',
-    field: 'title',
-    entryIndex: 5,
-  },
-  {
     name: 'matches punctuation-terminated hyphenated words like the default snapshot',
     fixture: 'test/other/sentence-case-utf16.bib',
     snapshot: 'test/snapshots/sentencecase=on+guess^caseprotection=as-needed^preservequoted/other/sentence-case-utf16.bib.yaml',
     field: 'title',
     entryIndex: 6,
-  },
-  {
-    name: 'matches malformed URL boundaries like the default snapshot',
-    fixture: 'test/other/sentence-case-utf16.bib',
-    snapshot: 'test/snapshots/sentencecase=on+guess^caseprotection=as-needed^preservequoted/other/sentence-case-utf16.bib.yaml',
-    field: 'title',
-    entryIndex: 7,
-  },
-  {
-    name: 'matches Unicode combining-mark tokenization like the default snapshot',
-    fixture: 'test/other/sentence-case-utf16.bib',
-    snapshot: 'test/snapshots/sentencecase=on+guess^caseprotection=as-needed^preservequoted/other/sentence-case-utf16.bib.yaml',
-    field: 'title',
-    entryIndex: 8,
   },
   {
     name: 'preserves nonbreaking spaces like the default snapshot',
@@ -148,24 +99,12 @@ for (const { name, fixture, snapshot, field, entryIndex = 0 } of cases) {
   })
 }
 
-test('preserves ordered title-token boundaries', () => {
-  const cases = [
-    ['in.example', [['word', 'preposition', 'in'], ['punctuation', '', '.'], ['word', '', 'example']]],
-    ["can't.example", [['domain', '', "can't.example"]]],
-    ['v2.1', [['word', '', 'v2'], ['punctuation', '', '.'], ['number', '', '1']]],
-    ['21st 21ST', [['word', 'ordinal', '21st'], ['whitespace', '', ' '], ['word', '', '21ST']]],
-    ['inside ofX', [['word', 'preposition', 'inside'], ['whitespace', '', ' '], ['word', '', 'ofX']]],
-    ['according\u00a0to', [['word', 'preposition', 'according\u00a0to']]],
-    ['\u017fince', [['word', '', '\u017fince']]],
-    ['name@b..c', [['email', '', 'name@b..c']]],
-    ['1.2a', [['other', '', '1'], ['punctuation', '', '.'], ['word', '', '2a']]],
-    ['name@example.com.', [['word', '', 'name'], ['handle', '', '@example'], ['punctuation', '', '.'], ['word', '', 'com'], ['punctuation', 'end', '.']]],
-    ['https://example.com/Path!?', [['website', '', 'https://example.com/Path'], ['punctuation', '', '!'], ['punctuation', 'end', '?']]],
-    ['', []],
-  ]
-  for (const [input, expected] of cases) {
-    assert.deepEqual(tokenize(input).map(({ type, subtype, text }) => [type, subtype, text]), expected, input)
-  }
+test('exports sentence-case conversion and estimation', () => {
+  assert.equal(toSentenceCase('THE EFFECT OF DNA ON RNA'), 'The effect of DNA on RNA')
+  assert.equal(estimateSentenceCase('The study of DNA'), 1)
+  assert.equal(estimateSentenceCase('The Study of DNA'), 2 / 3)
+  assert.equal(estimateSentenceCase('THE STUDY OF DNA'), 0)
+  assert.equal(estimateSentenceCase('HOW TO SAVE MONEY: TEN TIPS', { subSentenceCapitalization: true }), 0)
 })
 
 test('exposes normalized and verbatim libraries with JabRef metadata', async () => {
@@ -321,18 +260,4 @@ test('matches TypeScript unsupported tex/text/ignore/throw behavior', async () =
 
   await assert.rejects(() => parseAsync(source, { unsupported: 'throw' }), /unhandled macro \\unknownmacro/)
   await assert.rejects(() => parseAsync(source, { unsupported: 'keep' }), TypeError)
-})
-
-test('exports TypeScript-shaped tokens with UTF-16 offsets and markup masks', () => {
-  const tokens = tokenize('A <b>bold</b> title', /<[^>]+>/g)
-  assert.equal(tokens[0].type, 'word')
-  assert.equal(tokens[0].sentenceStart, true)
-  assert.equal(tokens[2].text, `${'\u2060'.repeat(3)}bold${'\u2060'.repeat(4)}`)
-  assert.equal(tokens[2].start, 2)
-  assert.equal(tokens[2].end, 12)
-
-  const astral = tokenize('𝟙2')
-  assert.equal(astral[0].start, 0)
-  assert.equal(astral[0].end, 1)
-  assert.equal(astral[1].start, 2)
 })

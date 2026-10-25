@@ -20,6 +20,7 @@ execFileSync('wasm-pack', [
 
 const source = path.join(pkg, 'index.ts')
 copyFileSync(path.join(rust, 'index.ts'), source)
+copyFileSync(path.join(rust, 'english.json'), path.join(pkg, 'english.json'))
 const jabref = path.join(pkg, 'jabref.ts')
 copyFileSync(path.join(rust, '../jabref.ts'), jabref)
 try {
@@ -30,6 +31,7 @@ try {
     'NodeNext',
     '--moduleResolution',
     'NodeNext',
+    '--resolveJsonModule',
     '--declaration',
     '--skipLibCheck',
     '--strictNullChecks',
@@ -53,6 +55,7 @@ manifest.files = [
   'bibtex_parser_bg.wasm.d.ts',
   'index.js',
   'index.d.ts',
+  'english.json',
   'jabref.js',
   'jabref.d.ts',
   'snippets',
