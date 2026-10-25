@@ -1,4 +1,4 @@
-/** @module wasm */
+/** @module @retorquere/bibtex-parser */
 import init, { initSync, parse as parseWasm, parseAsync as parseAsyncWasm, parseVerbatim as parseVerbatimWasm, parseVerbatimAsync as parseVerbatimAsyncWasm, toSentenceCase as toSentenceCaseWasm } from './bibtex_parser.js'
 import { JabRefMetadata } from './jabref.js'
 import englishDefaults from './english.json' with { type: 'json' }

@@ -2,7 +2,7 @@
   "compilerOptions": {
     "paths": {
       "@unified-latex/unified-latex-types": [
-        "./node_modules/@unified-latex/unified-latex-types/index.d.ts"
+        "../node_modules/@unified-latex/unified-latex-types/index.d.ts"
       ]
     },
     "declaration": true,
@@ -23,10 +23,6 @@
     "skipLibCheck": true
   },
   "exclude": [
-    "__tests__",
-    "mini",
-    "build",
-    "rust",
-    "dist"
+    "../dist"
   ]
 }

@@ -22,7 +22,7 @@ const source = path.join(pkg, 'index.ts')
 copyFileSync(path.join(rust, 'index.ts'), source)
 copyFileSync(path.join(rust, 'english.json'), path.join(pkg, 'english.json'))
 const jabref = path.join(pkg, 'jabref.ts')
-copyFileSync(path.join(rust, '../jabref.ts'), jabref)
+copyFileSync(path.join(rust, '../js/jabref.ts'), jabref)
 try {
   execFileSync(path.join(rust, '../node_modules/.bin/tsc'), [
     '--target',

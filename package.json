@@ -3,11 +3,14 @@
   "version": "12.1.13",
   "description": "BibTeX parser",
   "type": "module",
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
-  "types": "./dist/types/index.d.ts",
+  "module": "./dist/wasm/index.js",
+  "types": "./dist/wasm/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/wasm/index.d.ts",
+      "import": "./dist/wasm/index.js"
+    },
+    "./js": {
       "import": {
         "types": "./dist/types/index.d.ts",
         "default": "./dist/esm/index.js"
@@ -17,39 +20,39 @@
         "default": "./dist/cjs/index.js"
       }
     },
-    "./wasm": {
-      "types": "./dist/wasm/index.d.ts",
-      "import": "./dist/wasm/index.js"
-    },
-    "./wasm/bibtex_parser_bg.wasm": "./dist/wasm/bibtex_parser_bg.wasm"
+    "./bibtex_parser_bg.wasm": "./dist/wasm/bibtex_parser_bg.wasm"
   },
   "typings": "./index.d.ts",
   "scripts": {
     "unified": "tsx unified.ts",
-    "lint": "dprint fmt *.ts && dprint check *.ts",
+    "lint": "dprint fmt js/*.ts && dprint check js/*.ts",
     "prestart": "npm run lint",
     "start": "npm run build",
-    "build:esm": "rm -rf dist/esm && esbuild *.ts --outdir=dist/esm --format=esm --sourcemap --target=es2020 --loader:.ts=ts",
-    "build:cjs": "rm -rf dist/cjs && esbuild *.ts --outdir=dist/cjs --format=cjs --sourcemap --target=node16 --loader:.ts=ts",
-    "build:types": "rm -rf dist/esm dist/types && tsc -d -p tsconfig.esm.json",
+    "build:esm": "rm -rf dist/esm && esbuild js/*.ts --outdir=dist/esm --format=esm --sourcemap --target=es2020 --loader:.ts=ts",
+    "build:cjs": "rm -rf dist/cjs && esbuild js/*.ts --outdir=dist/cjs --format=cjs --sourcemap --target=node16 --loader:.ts=ts",
+    "build:types": "rm -rf dist/esm dist/types && tsc -d -p js/tsconfig.esm.json",
     "build:ts": "npm run build:types && npm run build:cjs && npm run build:esm",
     "build:wasm": "node rust/build-wasm.mjs",
     "prebuild": "rm -rf dist && mkdir -p dist/data && cp data/*.json dist/data && ./build/abbr.py && ./build/prepositions.py",
-    "build": "npm run build:ts && npm run build:wasm",
+    "build": "npm run build:wasm",
+    "prebuild:all": "npm run prebuild",
+    "build:all": "npm run build:ts && npm run build:wasm",
     "pretest": "npm start",
-    "test": "node test/run.js",
-    "test:package": "npm run build && node --test test/package.test.js",
+    "test": "npm run test:wasm",
+    "test:wasm": "node --test test/wasm.js test/rust-wasm-parity.test.js",
+    "test:js": "node test/js.js",
+    "pretest:all": "npm run build:all",
+    "test:all": "npm run test:wasm && npm run test:js && node --test test/package.test.js",
     "minitest": "./build/crossref.py && npm run build && node i.js",
     "list": "tar tvf $(npm pack)",
-    "prepublishOnly": "npm start",
+    "prepublishOnly": "npm run build:all && npm run test:all",
     "abbr": "./build/abbr.py",
-    "preversion": "npm run abbr && npm run test",
+    "preversion": "npm run abbr && npm run test:all",
     "postversion": "git push --follow-tags",
     "update-cases": "curl -s https://raw.githubusercontent.com/retorquere/zotero-better-bibtex/master/test/loaded.json | jq -r '.[] | select(test(\"\\\\.bib((la)?tex)?$\"))' | rsync -av --delete -m --files-from=- ../better-bibtex/test/fixtures/ test/better-bibtex/",
-    "predocs": "npm start",
+    "predocs": "npm run build:all",
     "docs": "typedoc --tsconfig tsconfig.typedoc.json",
     "modules": "git submodule update --init --recursive",
-    "wasm:test": "npm run build:wasm && node --test test/wasm.js test/rust-wasm-parity.test.js",
     "ncu": "./build/submodules.py && ./build/crossref.py && ncu -u && npm i && git add package.json package-lock.json && npm audit fix && git commit -m ncu"
   },
   "repository": {

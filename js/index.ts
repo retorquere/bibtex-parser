@@ -1,3 +1,4 @@
+/** @module @retorquere/bibtex-parser/js */
 /* eslint-disable no-underscore-dangle */
 import type { Argument, Environment, Group, Macro, Node, Root, String as StringNode } from '@unified-latex/unified-latex-types'
 import { LatexPegParser } from '@unified-latex/unified-latex-util-pegjs'

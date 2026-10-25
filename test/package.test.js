@@ -4,19 +4,21 @@ import { readFileSync } from 'node:fs'
 import { createRequire } from 'node:module'
 import { test } from 'node:test'
 
-import * as typescript from '@retorquere/bibtex-parser'
-import init, * as wasm from '@retorquere/bibtex-parser/wasm'
+import * as typescript from '@retorquere/bibtex-parser/js'
+import init, * as wasm from '@retorquere/bibtex-parser'
 
 const require = createRequire(import.meta.url)
 const input = '@article{example, title={A title}}'
 
-test('the default entry point remains the TypeScript parser', () => {
+test('the default entry point is the WASM parser and /js is the TypeScript parser', () => {
   assert.equal(typescript.parse(input).entries[0].key, 'example')
   assert.equal(typescript.init, undefined)
+  assert.equal(typeof init, 'function')
+  assert.equal(require('@retorquere/bibtex-parser/js').parse(input).entries[0].key, 'example')
 })
 
-test('the WASM entry point is ESM-only', () => {
-  assert.throws(() => require('@retorquere/bibtex-parser/wasm'), { code: 'ERR_PACKAGE_PATH_NOT_EXPORTED' })
+test('the default entry point is ESM-only', () => {
+  assert.throws(() => require('@retorquere/bibtex-parser'), { code: 'ERR_PACKAGE_PATH_NOT_EXPORTED' })
 })
 
 test('sentence casing ignores markup while retaining whole words', () => {
@@ -28,7 +30,7 @@ test('sentence casing ignores markup while retaining whole words', () => {
 })
 
 test('sentence casing lowercases standalone A but preserves other initials', async () => {
-  await init({ module_or_path: readFileSync(require.resolve('@retorquere/bibtex-parser/wasm/bibtex_parser_bg.wasm')) })
+  await init({ module_or_path: readFileSync(require.resolve('@retorquere/bibtex-parser/bibtex_parser_bg.wasm')) })
   const options = { guess: false, subSentenceCapitalization: false }
   for (const parser of [typescript, wasm]) {
     for (const title of ['Model A B I X', 'MODEL A B I X']) {
@@ -38,14 +40,14 @@ test('sentence casing lowercases standalone A but preserves other initials', asy
 })
 
 test('the WASM entry point loads the exported binary and parses', async () => {
-  await init({ module_or_path: readFileSync(require.resolve('@retorquere/bibtex-parser/wasm/bibtex_parser_bg.wasm')) })
+  await init({ module_or_path: readFileSync(require.resolve('@retorquere/bibtex-parser/bibtex_parser_bg.wasm')) })
   assert.equal(wasm.parse(input).entries[0].key, 'example')
   assert.equal((await wasm.parseAsync(input)).entries[0].key, 'example')
   assert.equal(wasm.parseVerbatim(input).entries[0].key, 'example')
 })
 
 test('JabRef metadata supports identical membership updates in both implementations', async () => {
-  await init({ module_or_path: readFileSync(require.resolve('@retorquere/bibtex-parser/wasm/bibtex_parser_bg.wasm')) })
+  await init({ module_or_path: readFileSync(require.resolve('@retorquere/bibtex-parser/bibtex_parser_bg.wasm')) })
   const source = String.raw`@comment{jabref-meta: grouping:
 0 AllEntriesGroup:;
 1 StaticGroup:Parent\;0\;;
@@ -73,7 +75,7 @@ test('JabRef metadata supports identical membership updates in both implementati
 })
 
 test('JabRef preserves the collections hierarchy from the #901 fixture', async () => {
-  await init({ module_or_path: readFileSync(require.resolve('@retorquere/bibtex-parser/wasm/bibtex_parser_bg.wasm')) })
+  await init({ module_or_path: readFileSync(require.resolve('@retorquere/bibtex-parser/bibtex_parser_bg.wasm')) })
   const source = readFileSync(new URL('./better-bibtex/export/Better BibTeX does not export collections %23901.bibtex', import.meta.url), 'utf8')
   for (const parser of [typescript, wasm]) {
     for (const result of [parser.parse(source), await parser.parseAsync(source)]) {
@@ -104,7 +106,7 @@ test('treats \\undefined as a no-op in the TypeScript parser', () => {
 })
 
 test('richURL emits links or case-protected destinations in both parsers', async () => {
-  await init({ module_or_path: readFileSync(require.resolve('@retorquere/bibtex-parser/wasm/bibtex_parser_bg.wasm')) })
+  await init({ module_or_path: readFileSync(require.resolve('@retorquere/bibtex-parser/bibtex_parser_bg.wasm')) })
   const fixture = readFileSync(new URL('./citation-js/entry value with verbatim-argument commands.bib', import.meta.url), 'utf8')
   const destination = 'http://example.org/{id}'
   const sources = [
@@ -129,7 +131,7 @@ test('richURL emits links or case-protected destinations in both parsers', async
 })
 
 test('\\allcaps protects its contents in both parsers', async () => {
-  await init({ module_or_path: readFileSync(require.resolve('@retorquere/bibtex-parser/wasm/bibtex_parser_bg.wasm')) })
+  await init({ module_or_path: readFileSync(require.resolve('@retorquere/bibtex-parser/bibtex_parser_bg.wasm')) })
   const source = String.raw`@article{example, title={A \allcaps{NASA} title}, note={\allcaps{NASA}}}`
   const options = { caseProtection: 'strict' }
 
@@ -141,7 +143,7 @@ test('\\allcaps protects its contents in both parsers', async () => {
 })
 
 test('renders \\sb and \\sp like text sub/superscripts in both parsers', async () => {
-  await init({ module_or_path: readFileSync(require.resolve('@retorquere/bibtex-parser/wasm/bibtex_parser_bg.wasm')) })
+  await init({ module_or_path: readFileSync(require.resolve('@retorquere/bibtex-parser/bibtex_parser_bg.wasm')) })
   const aliases = [
     ['\\sb{2}', '\\textsubscript{2}'],
     ['\\sb 2', '\\textsubscript 2'],
@@ -162,7 +164,7 @@ test('renders \\sb and \\sp like text sub/superscripts in both parsers', async (
 })
 
 test('renders numeric \\symbol codes in both parsers', async () => {
-  await init({ module_or_path: readFileSync(require.resolve('@retorquere/bibtex-parser/wasm/bibtex_parser_bg.wasm')) })
+  await init({ module_or_path: readFileSync(require.resolve('@retorquere/bibtex-parser/bibtex_parser_bg.wasm')) })
   const source = String.raw`@article{example, title={\symbol{65}\symbol{32}\symbol{126}\symbol{8364}\symbol{128512}}, note={\symbol{128}}}`
   const ts = typescript.parse(source)
   const rust = wasm.parse(source)
@@ -182,7 +184,7 @@ test('renders numeric \\symbol codes in both parsers', async () => {
 })
 
 test('renders the third \\discretionary argument in both parsers', async () => {
-  await init({ module_or_path: readFileSync(require.resolve('@retorquere/bibtex-parser/wasm/bibtex_parser_bg.wasm')) })
+  await init({ module_or_path: readFileSync(require.resolve('@retorquere/bibtex-parser/bibtex_parser_bg.wasm')) })
   const source = String.raw`@article{example, note={A\discretionary{pre}{post}{third}B}}`
 
   for (const parsed of [typescript.parse(source), wasm.parse(source)]) {
@@ -192,7 +194,7 @@ test('renders the third \\discretionary argument in both parsers', async () => {
 })
 
 test('all public parser results retain multiple preambles under the plural name', async () => {
-  await init({ module_or_path: readFileSync(require.resolve('@retorquere/bibtex-parser/wasm/bibtex_parser_bg.wasm')) })
+  await init({ module_or_path: readFileSync(require.resolve('@retorquere/bibtex-parser/bibtex_parser_bg.wasm')) })
   const source = '@preamble{First}\n@preamble{Second}\n@misc{entry,title={Title}}'
   const results = [
     typescript.parse(source),

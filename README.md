@@ -12,10 +12,10 @@ Documentation is available at [https://retorque.re/bibtex-parser/](https://retor
 
 ## Choosing a Parser
 
-The TypeScript implementation remains the default:
+The Rust/WebAssembly implementation is the default export (ESM only, see below). The pure TypeScript implementation, which also supports CommonJS and needs no initialization, is available under `/js`:
 
 ```js
-import { parse } from '@retorquere/bibtex-parser'
+import { parse } from '@retorquere/bibtex-parser/js'
 
 const library = parse('@article{example, title={A title}}')
 ```
@@ -23,19 +23,19 @@ const library = parse('@article{example, title={A title}}')
 For the scanner-level representation, use `parseVerbatim`. Its fields are strings and have not been normalized or interpreted as LaTeX:
 
 ```js
-import { parseVerbatim } from '@retorquere/bibtex-parser'
+import { parseVerbatim } from '@retorquere/bibtex-parser/js'
 
 const library = parseVerbatim('@article{example, title={A title}}')
 ```
 
-The generated API documentation covers the normalized TypeScript API, the root `parseVerbatim` export, and the WASM exports available from `/wasm`.
+The generated API documentation covers the normalized TypeScript API (`/js`), its `parseVerbatim` export, and the WASM exports available from the default entry point.
 
 All parser results expose `preambles: string[]`, retaining multiple `@preamble` directives in source order. The normalized result property was previously named `preamble`; callers should use `preambles` instead.
 
-The WebAssembly implementation is available as an ESM entry point at `/wasm`. Initialize it before calling the parser. In a browser, `init()` loads the binary relative to the module:
+The WebAssembly implementation is the ESM-only default entry point. Initialize it before calling the parser. In a browser, `init()` loads the binary relative to the module:
 
 ```js
-import init, { parse } from '@retorquere/bibtex-parser/wasm'
+import init, { parse } from '@retorquere/bibtex-parser'
 
 await init()
 const library = parse('@article{example, title={A title}}')
@@ -45,9 +45,9 @@ In Node.js, load the exported binary explicitly:
 
 ```js
 import { readFile } from 'node:fs/promises'
-import init, { parse } from '@retorquere/bibtex-parser/wasm'
+import init, { parse } from '@retorquere/bibtex-parser'
 
-const binary = new URL(import.meta.resolve('@retorquere/bibtex-parser/wasm/bibtex_parser_bg.wasm'))
+const binary = new URL(import.meta.resolve('@retorquere/bibtex-parser/bibtex_parser_bg.wasm'))
 await init({ module_or_path: await readFile(binary) })
 const library = parse('@article{example, title={A title}}')
 ```
@@ -56,10 +56,10 @@ Both entry points include TypeScript declarations. Building the package from sou
 
 ### Zotero Plugins
 
-Include the `/wasm` JavaScript entry point in your plugin's build and package the WASM binary as a plugin resource. In the plugin's privileged Zotero context, initialize the parser during startup, before any parsing calls:
+Include the default JavaScript entry point in your plugin's build and package the WASM binary as a plugin resource. In the plugin's privileged Zotero context, initialize the parser during startup, before any parsing calls:
 
 ```js
-import init, { parse } from '@retorquere/bibtex-parser/wasm'
+import init, { parse } from '@retorquere/bibtex-parser'
 
 await init({ module_or_path: 'chrome://zotero-better-bibtex/content/resource/bibtex/bibtex_parser_bg.wasm' })
 

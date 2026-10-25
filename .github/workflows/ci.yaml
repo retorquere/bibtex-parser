@@ -57,7 +57,7 @@ jobs:
     - name: build all parsers
       run: |
         npm install
-        npm run build
+        npm run build:all
 
     - name: upload parser build
       uses: actions/upload-artifact@v7
@@ -95,7 +95,7 @@ jobs:
       run: |
         case "${{ matrix.library }}" in
           typescript)
-            ./test/run.js --sc ${{ matrix.sentencecase }} --cp ${{ matrix.caseprotection }} ${{ matrix.preservequoted }} --big
+            ./test/js.js --sc ${{ matrix.sentencecase }} --cp ${{ matrix.caseprotection }} ${{ matrix.preservequoted }} --big
             ;;
           wasm)
             node test/wasm.js --sc ${{ matrix.sentencecase }} --cp ${{ matrix.caseprotection }} ${{ matrix.preservequoted }} --big
