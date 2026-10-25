@@ -149,6 +149,24 @@ function outputBoundary(position: number, edits: CasingEdit[]): number {
   return position + delta
 }
 
+/** Restore protected source spans over cased text using the token edits' boundary map. */
+function restorePreservedRanges(source: string, cased: string, ranges: [number, number][], edits: CasingEdit[]): string {
+  const merged: [number, number][] = []
+  for (const [start, end] of [...ranges].sort((left, right) => left[0] - right[0] || left[1] - right[1])) {
+    const previous = merged[merged.length - 1]
+    if (previous && start <= previous[1]) previous[1] = Math.max(previous[1], end)
+    else merged.push([start, end])
+  }
+
+  let result = cased
+  for (const [start, end] of merged.reverse()) {
+    const outputStart = outputBoundary(start, edits)
+    const outputEnd = outputBoundary(end, edits)
+    result = result.slice(0, outputStart) + source.slice(start, end) + result.slice(outputEnd)
+  }
+  return result
+}
+
 /** Reinsert tags at mapped output boundaries, retaining source order for tags sharing a boundary. */
 function restoreMarkup(text: string, markup: InlineMarkup[], edits: CasingEdit[]): string {
   const insertions = markup
@@ -219,8 +237,6 @@ export function toSentenceCase(title: string, options: Options = {}): string {
     if (token.type !== 'word' && token.type !== 'domain') return
     const start = token.start
     const end = token.end + 1
-    // A token overlapping a protected or quoted span is restored from the original input verbatim.
-    if (preserved.some(([protectedStart, protectedEnd]) => protectedStart < end && protectedEnd > start)) return
     const replacement = wordSC(token, allCaps, options.subSentenceCapitalization!)
     if (replacement !== token.text) {
       edits.push({ start, end, replacement, boundaries: replacementBoundaries(token.text, replacement) })
@@ -239,5 +255,7 @@ export function toSentenceCase(title: string, options: Options = {}): string {
   }
 
   // Apply casing before reinserting tags so tags never split tokenizer input or casing decisions.
-  return restoreMarkup(applyEdits(view.text, edits), view.markup, edits)
+  const cased = applyEdits(view.text, edits)
+  const restored = restorePreservedRanges(view.text, cased, preserved, edits)
+  return restoreMarkup(restored, view.markup, edits)
 }

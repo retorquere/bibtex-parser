@@ -21,12 +21,41 @@ test('the default entry point is ESM-only', () => {
   assert.throws(() => require('@retorquere/bibtex-parser'), { code: 'ERR_PACKAGE_PATH_NOT_EXPORTED' })
 })
 
+test('TypeScript verbatim selectors accept wildflower glob patterns', () => {
+  const source = String.raw`@misc{x,customa={\textit{one}},customb={\textit{two}},customaa={\textit{three}},x.y={\textit{dot}},xay={\textit{other}},manychars={\textit{many}},xmanychars={\textit{not many}}}`
+  const parsed = typescript.parse(source, { english: [], verbatimFields: ['CUSTOM?', 'x.y', 'many*'] })
+  const fields = parsed.entries[0].fields
+
+  assert.equal(fields.customa, String.raw`\textit{one}`)
+  assert.equal(fields.customb, String.raw`\textit{two}`)
+  assert.equal(fields.customaa, '<i>three</i>')
+  assert.equal(fields['x.y'], String.raw`\textit{dot}`)
+  assert.equal(fields.xay, '<i>other</i>')
+  assert.equal(fields.manychars, String.raw`\textit{many}`)
+  assert.equal(fields.xmanychars, '<i>not many</i>')
+  assert.throws(() => typescript.parse(source, { verbatimFields: [/custom/] }), /verbatimFields entries must be glob strings/)
+})
+
 test('sentence casing ignores markup while retaining whole words', () => {
   const markup = /<\/?[a-z]+>/ig
   const options = { markup, guess: false }
   assert.equal(typescript.toSentenceCase('A <i>A</i> B I', options), 'A <i>a</i> B I')
   assert.equal(typescript.toSentenceCase('An Ex<em>ample</em>', options), 'An ex<em>ample</em>')
   assert.equal(typescript.toSentenceCase('A İ<i>X</i>', options), 'A i\u0307<i>x</i>')
+
+  const protectedOptions = {
+    markup: /<\/?span(?:\s+[^>]*)?>/ig,
+    nocase: /<span class="nocase">.*?<\/span>/g,
+    guess: false,
+  }
+  assert.equal(
+    typescript.toSentenceCase('A Mm<span class="nocase">²</span> Size', protectedOptions),
+    'A mm<span class="nocase">²</span> size',
+  )
+  assert.equal(
+    typescript.toSentenceCase('A MM<span class="nocase">X</span> SIZE', protectedOptions),
+    'A mm<span class="nocase">X</span> size',
+  )
 })
 
 test('sentence casing lowercases standalone A but preserves other initials', async () => {

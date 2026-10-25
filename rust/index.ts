@@ -105,8 +105,8 @@ export interface Options extends ParserOptions {
   richURL?: boolean
   /** Policy for unsupported TeX commands and environments. */
   unsupported?: 'tex' | 'text' | 'ignore' | 'throw'
-  /** Fields parsed as verbatim text rather than TeX. */
-  verbatimFields?: (string | RegExp)[]
+  /** Field-name glob patterns parsed as verbatim text rather than TeX (`*`, `?`, and `\\`). */
+  verbatimFields?: string[]
   /** Fields for which a redundant outer brace pair is removed. */
   removeOuterBraces?: string[]
   /** Override the default parsing mode for individual fields. */
@@ -155,15 +155,6 @@ function prepare(input: string, options: Options | ParserOptions = {}): { input:
 
   if (parserOptions.unsupported !== undefined && !['tex', 'text', 'ignore', 'throw'].includes(parserOptions.unsupported as unknown as string)) {
     throw new TypeError('unsupported must be tex, text, ignore, or throw')
-  }
-
-  if (Array.isArray(parserOptions.verbatimFields)) {
-    parserOptions.verbatimFields = parserOptions.verbatimFields.map((field: string | RegExp) => {
-      if (typeof field === 'string') return field
-      const flags = `${field.multiline ? 'm' : ''}${field.dotAll ? 's' : ''}`
-      const source = flags ? `(?${flags}:${field.source})` : field.source
-      return { source: field.sticky ? `\\A(?:${source})` : source }
-    })
   }
 
   return { input, options: parserOptions }

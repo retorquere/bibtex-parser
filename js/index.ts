@@ -240,10 +240,10 @@ export interface Options {
   unsupported?: 'tex' | 'text' | 'ignore' | 'throw'
 
   /**
-   * Some fields such as `url` are parsed in what is called "verbatim mode" where pretty much everything except braces is treated as regular text, not TeX commands. You can change the default list here if you want,
-   * for example to help parse Mendeley `file` fields, which against spec are not in verbatim mode.
+   * Fields parsed in verbatim mode. Selectors use wildflower globs (`?`, `*`, and `\\`) and match
+   * complete field names.
    */
-  verbatimFields?: (string | RegExp)[]
+  verbatimFields?: string[]
 
   /**
    * In the past many bibtex entries would just always wrap a field in double braces, likely because whomever was writing them couldn't figure out the case meddling rules (and who could
@@ -471,6 +471,7 @@ class BibTeXParser {
   private english!: boolean
   private options!: Options
   private fieldMode!: typeof FieldMode
+  private verbatimFieldPatterns!: RegExp[]
   private newcommands: Record<string, Argument> = {}
   private bib!: Library
   private unhandled: Set<string> = new Set()
@@ -984,13 +985,38 @@ class BibTeXParser {
   }
 
   private mode(field: string): ParseMode {
-    if (this.options.verbatimFields && this.options.verbatimFields.find(name => typeof name === 'string' ? (name === field) : field.match(name))) return 'verbatim'
+    if (this.verbatimFieldPatterns.some(pattern => field.match(pattern))) return 'verbatim'
 
     let mode: ParseMode = 'literal'
     for (const [selected, fields] of Object.entries(this.fieldMode)) {
       if (fields.find(match => typeof match === 'string' ? field === match : field.match(match))) mode = <ParseMode> selected
     }
     return mode
+  }
+
+  private wildcardPattern(pattern: string): RegExp {
+    let source = '^'
+    let escaped = false
+    for (const character of pattern.toLowerCase()) {
+      const literal = character.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+      if (escaped) {
+        source += literal
+        escaped = false
+      }
+      else if (character === '\\') {
+        escaped = true
+      }
+      else if (character === '?') {
+        source += '.'
+      }
+      else if (character === '*') {
+        source += '.*?'
+      }
+      else {
+        source += literal
+      }
+    }
+    return new RegExp(`${source}$`, 'iu')
   }
 
   private restoreMarkup(s: string): string {
@@ -1329,7 +1355,10 @@ class BibTeXParser {
 
     if (this.options.caseProtection === true) this.options.caseProtection = 'as-needed'
 
-    if (this.options.verbatimFields) this.options.verbatimFields = this.options.verbatimFields.map(f => typeof f === 'string' ? f.toLowerCase() : new RegExp(f.source, f.flags + (f.flags.includes('i') ? '' : 'i')))
+    this.verbatimFieldPatterns = (this.options.verbatimFields ?? []).map(pattern => {
+      if (typeof pattern !== 'string') throw new TypeError('verbatimFields entries must be glob strings')
+      return this.wildcardPattern(pattern)
+    })
 
     if (typeof this.options.english === 'boolean') this.options.english = this.options.english ? English : []
     this.options.english = (this.options.english as string[]).map(langid => langid.toLowerCase())

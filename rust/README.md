@@ -33,7 +33,7 @@ The crate also provides WebAssembly bindings. Build those from the repository ro
 
 ## Title tokenizer
 
-Title recognition uses small handwritten prefix recognizers, tried in explicit priority order. Recognizers define token forms, `recognize` controls precedence, and token emission manages sentence state and Unicode scalar offsets. A successful earlier rule wins even when a later rule could consume more text. Shared Unicode predicates keep recognition and casing consistent without duplicate category tables or regex initialization. The separate `regex-lite` dependency remains necessary for configured verbatim-field patterns.
+Title recognition uses small handwritten prefix recognizers, tried in explicit priority order. Recognizers define token forms, `recognize` controls precedence, and token emission manages sentence state and Unicode scalar offsets. A successful earlier rule wins even when a later rule could consume more text. Shared Unicode predicates keep recognition and casing consistent without duplicate category tables or regex initialization. Configured verbatim-field selectors use `wildflower` glob patterns (`*`, `?`, and backslash escapes); built-in field rules are handled with direct string checks.
 
 ### Matching Engine Comparison
 

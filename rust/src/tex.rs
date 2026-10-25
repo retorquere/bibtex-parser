@@ -1549,6 +1549,36 @@ fn output_boundary(position: usize, edits: &[CasingEdit]) -> usize {
     (position as isize + delta) as usize
 }
 
+/// Restore original protected spans over cased text using token-edit boundary maps.
+/// Overlapping ranges are merged, then applied right-to-left so replacements cannot shift later offsets.
+fn restore_preserved_ranges(
+    source: &[char],
+    cased: &str,
+    ranges: &[std::ops::Range<usize>],
+    edits: &[CasingEdit],
+) -> String {
+    let mut sorted = ranges.to_vec();
+    sorted.sort_by_key(|range| (range.start, range.end));
+    let mut merged: Vec<std::ops::Range<usize>> = Vec::new();
+    for range in sorted {
+        if let Some(previous) = merged.last_mut()
+            && range.start <= previous.end
+        {
+            previous.end = previous.end.max(range.end);
+        } else {
+            merged.push(range);
+        }
+    }
+
+    let mut output: Vec<char> = cased.chars().collect();
+    for range in merged.iter().rev() {
+        let start = output_boundary(range.start, edits);
+        let end = output_boundary(range.end, edits);
+        output.splice(start..end, source[range.clone()].iter().copied());
+    }
+    output.into_iter().collect()
+}
+
 /// Reinsert tags after casing, preserving source order when several tags share one visible boundary.
 fn restore_markup(text: &str, markup: &[InlineMarkup], edits: &[CasingEdit]) -> String {
     let characters: Vec<char> = text.chars().collect();
@@ -1651,7 +1681,7 @@ pub(crate) fn sentence_case_with_options(
     let mut index = 0;
     while index < tokens.len() {
         if let Some(end) = hyphenated_end(&tokens, &view.characters, index) {
-            // Use the combined shape, but honor protection separately for each component.
+            // Use the combined shape for casing; protected text is restored after all edits.
             let grouped_shape = tokens[index..=end]
                 .iter()
                 .map(|token| {
@@ -1665,9 +1695,7 @@ pub(crate) fn sentence_case_with_options(
             if !grouped_shape.starts_with('x') {
                 let mut rendered = String::new();
                 for token in &tokens[index..=end] {
-                    if token.kind == SentenceTokenKind::Word
-                        && !is_preserved(token.start, token.end, &preserved)
-                    {
+                    if token.kind == SentenceTokenKind::Word {
                         rendered.push_str(&sentence_word(token, &view.characters, all_caps));
                     } else {
                         rendered.push_str(&token_text(token, &view.characters));
@@ -1694,10 +1722,8 @@ pub(crate) fn sentence_case_with_options(
         }
 
         let token = &tokens[index];
-        // Protected or quoted tokens are copied from source; all others use the normal word rules.
-        if (token.kind == SentenceTokenKind::Word || token.kind == SentenceTokenKind::Domain)
-            && !is_preserved(token.start, token.end, &preserved)
-        {
+        // Case every visible token first; protected source spans are overlaid after all edits.
+        if token.kind == SentenceTokenKind::Word || token.kind == SentenceTokenKind::Domain {
             let rendered = sentence_word(token, &view.characters, all_caps);
             let original = token.text(&view.characters);
             if rendered != original {
@@ -1715,9 +1741,11 @@ pub(crate) fn sentence_case_with_options(
         index += 1;
     }
 
-    // Casing sees no markup; only after edits are complete can tags be restored safely.
+    // Casing ignores protection boundaries; then original protected text is pasted over its output.
     let visible_cased = apply_casing_edits(&view.characters, &edits);
-    restore_markup(&visible_cased, &view.markup, &edits)
+    let visible_restored =
+        restore_preserved_ranges(&view.characters, &visible_cased, &preserved, &edits);
+    restore_markup(&visible_restored, &view.markup, &edits)
 }
 
 /// Apply whole-title casing, then resolve root-group markers against each group's transformed span.
@@ -2025,13 +2053,6 @@ fn visible_case_text(text: &str, omit_nocase: bool) -> String {
         index += 1;
     }
     visible
-}
-
-/// Return whether a token range overlaps any case-preserved quote or nocase range.
-fn is_preserved(start: usize, end: usize, ranges: &[std::ops::Range<usize>]) -> bool {
-    ranges
-        .iter()
-        .any(|range| start < range.end && range.start < end)
 }
 
 /// Find text ranges protected by generated `nocase` spans, including nested span elements.

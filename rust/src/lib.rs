@@ -321,13 +321,7 @@ pub struct CrossRefSource {
 #[serde(untagged)]
 pub enum VerbatimField {
     Name(String),
-    Pattern {
-        #[serde(
-            serialize_with = "serialize_field_pattern",
-            deserialize_with = "deserialize_field_pattern"
-        )]
-        source: regex_lite::Regex,
-    },
+    Pattern { source: String },
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
@@ -337,25 +331,6 @@ pub enum UnsupportedHandler {
     Text,
     Ignore,
     Throw,
-}
-
-/// Serialize a compiled verbatim-field regex as its source pattern, without engine state.
-fn serialize_field_pattern<S: serde::Serializer>(
-    pattern: &regex_lite::Regex,
-    serializer: S,
-) -> Result<S::Ok, S::Error> {
-    serializer.serialize_str(pattern.as_str())
-}
-
-/// Compile a serialized field pattern case-insensitively, reporting invalid syntax through Serde.
-fn deserialize_field_pattern<'de, D: serde::Deserializer<'de>>(
-    deserializer: D,
-) -> Result<regex_lite::Regex, D::Error> {
-    let source = String::deserialize(deserializer)?;
-    regex_lite::RegexBuilder::new(&source)
-        .case_insensitive(true)
-        .build()
-        .map_err(serde::de::Error::custom)
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -370,10 +345,11 @@ pub struct Options {
     pub raw: bool,
     /// Apply inherited cross-reference fields from the target entry to its children.
     pub apply_crossref: bool,
-    /// Case-insensitive exact field names or regex patterns that select verbatim mode.
+    /// Case-insensitive field-name patterns that select verbatim mode.
     ///
     /// Fields such as `url` are normally parsed in verbatim mode, where TeX commands are treated
-    /// as regular text. Regex patterns use search semantics; anchor them for whole-name matching.
+    /// as regular text. Patterns use `*` for any number of characters and `?` for one character;
+    /// each pattern must match the complete field name. A backslash escapes wildcard characters.
     pub verbatim_fields: Vec<VerbatimField>,
     /// Fields whose single outer brace layer should be removed before reparsing.
     ///
@@ -1521,8 +1497,9 @@ fn field_mode(field: &str, options: &Options) -> String {
         .verbatim_fields
         .iter()
         .any(|candidate| match candidate {
-            VerbatimField::Name(name) => name.eq_ignore_ascii_case(field),
-            VerbatimField::Pattern { source } => source.is_match(field),
+            VerbatimField::Name(source) | VerbatimField::Pattern { source } => {
+                wildflower::Pattern::new(source.to_lowercase()).matches(field)
+            }
         })
     {
         return "verbatim".to_string();
@@ -2355,32 +2332,22 @@ mod tests {
     }
 
     #[test]
-    /// Verify case-insensitive verbatim-field regex matching and serialized pattern round trips.
-    fn verbatim_fields_match_regex_patterns() {
+    /// Verify case-insensitive verbatim-field glob matching and literal-name matching.
+    fn verbatim_fields_match_glob_patterns() {
         let options: Options = serde_json::from_value(serde_json::json!({
-            "verbatimFields": ["TITLE", {"source": "^(file.*|custom.)$"}, {"source": "note"}, "x.y", "a[b]"]
+            "verbatimFields": ["TITLE", {"source": "file*"}, {"source": "custom?"}, {"source": "*notes"}, "x.y", "a[b]"]
         }))
         .unwrap();
         for field in [
-            "title", "file", "files", "FILEPATH", "customa", "custom1", "mynotes", "x.y", "a[b]",
+            "title", "file", "files", "filepath", "customa", "custom1", "mynotes", "x.y", "a[b]",
         ] {
             assert_eq!(super::field_mode(field, &options), "verbatim", "{field}");
         }
-        for field in ["subtitle", "profile", "custom", "customaa", "xay", "ab"] {
+        for field in [
+            "subtitle", "profile", "custom", "customaa", "xay", "ab", "^title$",
+        ] {
             assert_ne!(super::field_mode(field, &options), "verbatim", "{field}");
         }
-        assert!(
-            serde_json::from_value::<Options>(serde_json::json!({
-                "verbatimFields": [{"source": "["}]
-            }))
-            .is_err()
-        );
-        assert!(
-            serde_json::from_value::<Options>(serde_json::json!({
-                "verbatimFields": [{"source": "(?=title)"}]
-            }))
-            .is_err()
-        );
     }
 
     #[test]
@@ -3054,6 +3021,29 @@ mod tests {
                 false,
             ),
             "A title <span class=\"nocase\">nASA Name</span> of cells"
+        );
+    }
+
+    #[test]
+    /// Ensures sentence casing changes unprotected text within a token but restores protected text.
+    fn sentence_case_restores_protected_subranges_after_casing() {
+        assert_eq!(
+            super::tex::sentence_case_with_options(
+                "A Mm<case-protection>²</case-protection> Size",
+                false,
+                false,
+                false,
+            ),
+            "A mm<case-protection>²</case-protection> size"
+        );
+        assert_eq!(
+            super::tex::sentence_case_with_options(
+                "A MM<case-protection>X</case-protection> SIZE",
+                false,
+                false,
+                false,
+            ),
+            "A mm<case-protection>X</case-protection> size"
         );
     }
 
