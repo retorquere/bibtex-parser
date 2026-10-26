@@ -1269,7 +1269,7 @@ fn parse_creator(
     input: &str,
     entry_key: &str,
     macro_definitions: &mut HashMap<String, Vec<tex::Node>>,
-    diagnostics: &mut tex::RenderDiagnostics,
+    diagnostics: &mut tex::RenderState,
 ) -> Creator {
     // A fully braced name is an indivisible literal rather than a family/given name pair.
     let unwrapped = remove_outer_braces(input);
@@ -1620,7 +1620,7 @@ fn render_string_value(
     value: &str,
     macro_definitions: &mut HashMap<String, Vec<tex::Node>>,
     options: &Options,
-    diagnostics: &mut tex::RenderDiagnostics,
+    diagnostics: &mut tex::RenderState,
 ) -> String {
     // Render string values as TeX and share macro definitions with later entries; raw mode keeps
     // the parsed source without invoking the renderer.
@@ -1793,7 +1793,7 @@ where
     F: FnMut() -> Fut,
     Fut: std::future::Future<Output = ()>,
 {
-    let mut render_diagnostics = tex::RenderDiagnostics::default();
+    let mut render_diagnostics = tex::RenderState::default();
     render_diagnostics.unsupported = options.unsupported;
     render_diagnostics.plain_urls = !options.rich_url;
     let preambles = verbatim.preambles.clone();
@@ -2822,7 +2822,7 @@ mod tests {
     #[test]
     /// Checks title rendering for `off`, `as-needed`, and `strict` case protection.
     fn tex_visitor_honors_case_protection_modes() {
-        let mut diagnostics = super::tex::RenderDiagnostics::default();
+        let mut diagnostics = super::tex::RenderState::default();
         assert_eq!(
             super::tex::render_with_case_protection(
                 "An {unusual name}",
@@ -3321,7 +3321,7 @@ mod tests {
         ));
 
         let mut macro_definitions = std::collections::HashMap::new();
-        let mut diagnostics = super::tex::RenderDiagnostics::default();
+        let mut diagnostics = super::tex::RenderState::default();
         let narrow_space = super::parse_creator(
             "van\u{2005}Loon, John",
             "",

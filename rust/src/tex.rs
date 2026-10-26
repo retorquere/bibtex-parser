@@ -8,6 +8,7 @@ use crate::tokenizer::{
     sentence_tokens, token_text,
 };
 use std::collections::{HashMap, HashSet};
+use url::Url;
 
 /// Locate the literal contents of `\verb` or `\path` starting at a backslash.
 ///
@@ -661,9 +662,7 @@ impl Parser {
             }
             arguments.push(self.argument(math, environment_end));
         }
-        if matches!(name.as_str(), "url" | "href")
-            && let Some(argument) = arguments.first()
-        {
+        if matches!(name.as_str(), "url" | "href") && let Some(argument) = arguments.first() {
             // Serialize the destination as source text so embedded commands remain literal.
             let nodes = match argument.as_slice() {
                 [Node::Group(children, _)] => children.as_slice(),
@@ -983,10 +982,10 @@ pub(crate) fn print_raw(source: &str) -> String {
 
 /// Collects unsupported TeX constructs while normalized fields are rendered.
 ///
-/// Diagnostics are shared across every field in one library normalization so each unsupported
+/// State is shared across every field in one library normalization so each unsupported
 /// macro or environment is reported only once.
 #[derive(Default)]
-pub(crate) struct RenderDiagnostics {
+pub(crate) struct RenderState {
     /// First error for each unsupported construct, in the order it was encountered.
     pub(crate) errors: Vec<super::ParseError>,
     /// Stable kind/name identifiers used to suppress duplicate macro and environment errors.
@@ -998,7 +997,7 @@ pub(crate) struct RenderDiagnostics {
     pub(crate) plain_urls: bool,
 }
 
-impl RenderDiagnostics {
+impl RenderState {
     /// Choose fallback output independently of diagnostic collection in `report`.
     /// No policy preserves reconstructed source; explicit policies emit a script wrapper,
     /// a bare command name, or nothing. `Throw` uses the same rendering branch as `TeX` here.
@@ -1059,7 +1058,7 @@ impl CaseProtection {
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 struct RenderContext {
-    title_mode: bool,
+    title_case_protection: bool,
     protected_ancestor: bool,
     root_scope: bool,
     case_protection: CaseProtection,
@@ -1068,14 +1067,14 @@ struct RenderContext {
 /// Parse, visit, and trim a TeX fragment using its field rendering mode.
 ///
 /// This test-only convenience function discards unsupported-construct diagnostics; production
-/// normalization calls `render_with_diagnostics` so those errors reach `ParsedLibrary.errors`.
+/// normalization calls `render_with_state` so those errors reach `ParsedLibrary.errors`.
 /// `source` is the raw field value and `mode` is a field mode such as `title` or `richtext`.
 #[cfg(test)]
 pub(crate) fn render(source: &str, mode: &str) -> String {
-    collapse_markup(&render_with_diagnostics(
+    collapse_markup(&render_with_state(
         source,
         mode,
-        &mut RenderDiagnostics::default(),
+        &mut RenderState::default(),
     ))
 }
 
@@ -1087,13 +1086,13 @@ pub(crate) fn render(source: &str, mode: &str) -> String {
 pub(crate) fn render_with_case_protection(
     source: &str,
     mode: &str,
-    diagnostics: &mut RenderDiagnostics,
+    state: &mut RenderState,
     case_protection: CaseProtection,
 ) -> String {
     render_with_case_protection_and_macro_definitions(
         source,
         mode,
-        diagnostics,
+        state,
         case_protection,
         &mut HashMap::new(),
     )
@@ -1106,7 +1105,7 @@ pub(crate) fn render_with_case_protection(
 pub(crate) fn render_with_case_protection_and_macro_definitions(
     source: &str,
     mode: &str,
-    diagnostics: &mut RenderDiagnostics,
+    state: &mut RenderState,
     case_protection: CaseProtection,
     macro_definitions: &mut HashMap<String, Vec<Node>>,
 ) -> String {
@@ -1117,9 +1116,9 @@ pub(crate) fn render_with_case_protection_and_macro_definitions(
         &content,
         mode,
         false,
-        diagnostics,
+        state,
         RenderContext {
-            title_mode: mode == "title",
+            title_case_protection: mode == "title",
             protected_ancestor: false,
             root_scope: true,
             case_protection,
@@ -1132,22 +1131,22 @@ pub(crate) fn render_with_case_protection_and_macro_definitions(
 /// # Arguments
 /// * `source` - Raw TeX source for one field.
 /// * `mode` - Field rendering mode; only `title` enables title root-group protection.
-/// * `diagnostics` - Shared state that deduplicates unsupported constructs across fields.
+/// * `state` - Shared state that deduplicates unsupported constructs across fields.
 ///
 /// Rendering starts at field root with the default `as-needed` case-protection mode.
 #[cfg(test)]
-pub(crate) fn render_with_diagnostics(
+pub(crate) fn render_with_state(
     source: &str,
     mode: &str,
-    diagnostics: &mut RenderDiagnostics,
+    state: &mut RenderState,
 ) -> String {
-    render_with_case_protection(source, mode, diagnostics, CaseProtection::default())
+    render_with_case_protection(source, mode, state, CaseProtection::default())
 }
 
 /// Render a sibling sequence while tracking field mode, local markup, and title context.
 ///
 /// `nodes` is one AST child list; `mode` controls whitespace and rich-text output; `verbatim`
-/// preserves literal text such as URLs. `diagnostics` is shared recursively. `title_mode` enables
+/// preserves literal text such as URLs. `state` is shared recursively. `title_case_protection` enables
 /// case protection, `protected_ancestor` prevents duplicate protection inside a protected region,
 /// and `root_scope` limits root-group handling to the original field or a root environment body.
 ///
@@ -1157,7 +1156,7 @@ fn render_nodes(
     nodes: &[Node],
     mode: &str,
     verbatim: bool,
-    diagnostics: &mut RenderDiagnostics,
+    state: &mut RenderState,
     context: RenderContext,
 ) -> String {
     let mut output = String::new();
@@ -1196,7 +1195,7 @@ fn render_nodes(
 
         // Root braces express author case intent; a leading macro instead denotes formatting.
         // Already-protected ancestors suppress duplicate protection on nested content.
-        let protect_group = context.title_mode
+        let protect_group = context.title_case_protection
             && context.root_scope
             && !context.protected_ancestor
             && matches!(node, Node::Group(children, _) if !children.is_empty() && !matches!(children[0], Node::Macro { .. }));
@@ -1204,9 +1203,9 @@ fn render_nodes(
             node,
             mode,
             verbatim,
-            diagnostics,
+            state,
             RenderContext {
-                title_mode: context.title_mode,
+                title_case_protection: context.title_case_protection,
                 protected_ancestor: context.protected_ancestor || protect_group,
                 root_scope: context.root_scope,
                 case_protection: context.case_protection,
@@ -1218,7 +1217,7 @@ fn render_nodes(
             paragraph_boundary = false;
         }
         let mut rendered = markup.wrap(rendered);
-        if diagnostics.mark_case_groups && protect_group {
+        if state.mark_case_groups && protect_group {
             rendered = format!("<case-protection>{rendered}</case-protection>");
         } else if protect_group
             && context.case_protection.enabled()
@@ -2108,15 +2107,15 @@ fn quoted_ranges(characters: &[char]) -> Vec<std::ops::Range<usize>> {
 /// Render one AST node using its field mode and inherited title-protection context.
 ///
 /// `node` is the syntax-tree item; `mode` selects text, math, or rich-text behavior; `verbatim`
-/// bypasses text ligatures; `diagnostics` receives unsupported constructs. The remaining flags
-/// carry title protection: `title_mode` enables it, `protected_ancestor` suppresses nested spans,
+/// bypasses text ligatures; `state` receives unsupported constructs. The remaining flags
+/// carry title protection: `title_case_protection` enables it, `protected_ancestor` suppresses nested spans,
 /// `root_scope` lets environments expose their contents to the root-group pass, and
 /// `case_protection` selects `as-needed`, `strict`, or `off` behavior for marked groups.
 fn render_node(
     node: &Node,
     mode: &str,
     verbatim: bool,
-    diagnostics: &mut RenderDiagnostics,
+    state: &mut RenderState,
     context: RenderContext,
 ) -> String {
     match node {
@@ -2149,9 +2148,9 @@ fn render_node(
             nodes,
             mode,
             verbatim,
-            diagnostics,
+            state,
             RenderContext {
-                title_mode: context.title_mode,
+                title_case_protection: context.title_case_protection,
                 protected_ancestor: context.protected_ancestor,
                 root_scope: false,
                 case_protection: context.case_protection,
@@ -2161,10 +2160,10 @@ fn render_node(
             nodes,
             mode,
             verbatim,
-            diagnostics,
+            state,
             // Expanded replacement text is nested content, not a source-level root group.
             RenderContext {
-                title_mode: context.title_mode,
+                title_case_protection: context.title_case_protection,
                 protected_ancestor: context.protected_ancestor,
                 root_scope: false,
                 case_protection: context.case_protection,
@@ -2176,9 +2175,9 @@ fn render_node(
                 nodes,
                 "math",
                 false,
-                diagnostics,
+                state,
                 RenderContext {
-                    title_mode: context.title_mode,
+                    title_case_protection: context.title_case_protection,
                     protected_ancestor: context.protected_ancestor,
                     root_scope: false,
                     case_protection: context.case_protection,
@@ -2186,9 +2185,9 @@ fn render_node(
             );
             // The marker pass defers protection choice until sentence casing can compare original
             // and transformed text; ordinary rendering emits no-case markup only when needed.
-            if diagnostics.mark_case_groups && context.title_mode && !context.protected_ancestor {
+            if state.mark_case_groups && context.title_case_protection && !context.protected_ancestor {
                 format!("<case-protection>{rendered}</case-protection>")
-            } else if context.title_mode
+            } else if context.title_case_protection
                 && !context.protected_ancestor
                 && context.case_protection.enabled()
                 && needs_case_protection(&rendered)
@@ -2203,9 +2202,9 @@ fn render_node(
             name,
             content,
             mode,
-            diagnostics,
+            state,
             RenderContext {
-                title_mode: context.title_mode,
+                title_case_protection: context.title_case_protection,
                 protected_ancestor: context.protected_ancestor,
                 root_scope: context.root_scope,
                 case_protection: context.case_protection,
@@ -2214,14 +2213,14 @@ fn render_node(
         Node::Macro {
             name, arguments, ..
         } => {
-            let rendered = render_macro(name, arguments, mode, diagnostics, context);
+            let rendered = render_macro(name, arguments, mode, state, context);
             let combining_macro = unicode_mapping(&format!("\\{name}"))
                 .is_some_and(|mapping| mapping.combining.is_some());
             // Macro parsing consumes arguments before this pass, so inspect retained groups here
             // to preserve title case protection on eligible root arguments. Destinations, spacing,
             // accents, all-caps, and quote macros have separate semantics and must not make their
             // grouped arguments look like author-protected title text.
-            let protect_argument = context.title_mode
+            let protect_argument = context.title_case_protection
                 && context.root_scope
                 && !combining_macro
                 && name != "href"
@@ -2229,10 +2228,9 @@ fn render_node(
                 && !matches!(name.as_str(), "hspace" | "hskip")
                 && !matches!(name.as_str(), "enquote" | "mkbibquote")
                 && arguments.iter().enumerate().any(|(index, argument)| {
-                    !(matches!(name.as_str(), "url" | "href") && index == 0)
-                        && matches!(argument.as_slice(), [Node::Group(children, _)] if !children.is_empty() && !matches!(children[0], Node::Macro { .. }))
+                    !(matches!(name.as_str(), "url" | "href") && index == 0) && matches!(argument.as_slice(), [Node::Group(children, _)] if !children.is_empty() && !matches!(children[0], Node::Macro { .. }))
                 });
-            if diagnostics.mark_case_groups && protect_argument {
+            if state.mark_case_groups && protect_argument {
                 format!("<case-protection>{rendered}</case-protection>")
             } else if protect_argument
                 && context.case_protection.enabled()
@@ -2284,7 +2282,7 @@ fn render_text(text: &str, mode: &str, verbatim: bool) -> String {
 
 /// Render one parsed macro argument, returning empty text when it is absent.
 ///
-/// `arguments` and `index` select the argument; `mode`, `verbatim`, and `diagnostics` are forwarded
+/// `arguments` and `index` select the argument; `mode`, `verbatim`, and `state` are forwarded
 /// to its child renderer. Arguments are not root scope; the owning macro inspects retained groups
 /// when applying title case protection.
 fn render_argument(
@@ -2292,7 +2290,7 @@ fn render_argument(
     index: usize,
     mode: &str,
     verbatim: bool,
-    diagnostics: &mut RenderDiagnostics,
+    state: &mut RenderState,
     case_protection: CaseProtection,
 ) -> String {
     arguments
@@ -2302,9 +2300,9 @@ fn render_argument(
                 argument,
                 mode,
                 verbatim,
-                diagnostics,
+                state,
                 RenderContext {
-                    title_mode: mode == "title",
+                    title_case_protection: mode == "title",
                     protected_ancestor: false,
                     root_scope: false,
                     case_protection,
@@ -2328,31 +2326,43 @@ fn serialize_verbatim_argument(arguments: &[Vec<Node>], index: usize) -> String 
     }
 }
 
+/// Percent-encodes path & query for an URI string
+fn encode_url(url: &str, mode: &str) -> String {
+    if mode == "richtext" {
+      return url.to_string()
+    }
+    // If it's a valid URL, Url::parse encodes it automatically.
+    // If parsing fails (e.g. plain text, invalid format), return the original input.
+    Url::parse(url)
+        .map(|parsed| parsed.into())
+        .unwrap_or_else(|_| url.to_string())
+}
+
 /// Render a macro using structural cases before exact generated Unicode mappings.
 ///
 /// `name` is the TeX command without its escape token, `arguments` are the parser-consumed child
-/// lists, `mode` selects text/math/rich-text semantics, and `diagnostics` collects unsupported
+/// lists, `mode` selects text/math/rich-text semantics, and `state` collects unsupported
 /// commands. Explicit visitor cases handle layout and markup; remaining commands use exact mode
 /// mappings, combining marks, then source-preserving unsupported fallback.
 fn render_macro(
     name: &str,
     arguments: &[Vec<Node>],
     mode: &str,
-    diagnostics: &mut RenderDiagnostics,
+    state: &mut RenderState,
     context: RenderContext,
 ) -> String {
     let case_protection = context.case_protection;
     match name {
         "discretionary" => {
             // Bibliographic text has no line wrapping, so use TeX's unbroken (third) alternative.
-            return render_argument(arguments, 2, mode, false, diagnostics, case_protection);
+            return render_argument(arguments, 2, mode, false, state, case_protection);
         }
         "allcaps" => {
-            let content = render_argument(arguments, 0, mode, false, diagnostics, case_protection);
+            let content = render_argument(arguments, 0, mode, false, state, case_protection);
             // All-caps markup is explicit author intent, so title casing must preserve its contents.
-            return if context.title_mode && diagnostics.mark_case_groups {
+            return if context.title_case_protection && state.mark_case_groups {
                 format!("<case-protection>{content}</case-protection>")
-            } else if context.title_mode && case_protection.enabled() {
+            } else if context.title_case_protection && case_protection.enabled() {
                 format!("<span class=\"nocase\">{content}</span>")
             } else {
                 content
@@ -2363,8 +2373,8 @@ fn render_macro(
         "\\" => return if mode == "richtext" { "<br>" } else { " " }.to_string(),
         "url" => {
             // URL content is rendered verbatim so query strings and tildes are not transformed.
-            let url = serialize_verbatim_argument(arguments, 0);
-            return if diagnostics.plain_urls {
+            let url = encode_url(&serialize_verbatim_argument(arguments, 0), mode);
+            return if state.plain_urls {
                 format!("<span class=\"nocase\">{url}</span>")
             } else {
                 format!("<a href=\"{url}\">{url}</a>")
@@ -2372,8 +2382,8 @@ fn render_macro(
         }
         "href" => {
             // The first href argument is the destination; only the label receives normal rendering.
-            let url = serialize_verbatim_argument(arguments, 0);
-            if diagnostics.plain_urls {
+            let url = encode_url(&serialize_verbatim_argument(arguments, 0), mode);
+            if state.plain_urls {
                 return format!("<span class=\"nocase\">{url}</span>");
             }
             let label = render_argument(
@@ -2381,14 +2391,14 @@ fn render_macro(
                 1,
                 if mode == "title" { "literal" } else { mode },
                 false,
-                diagnostics,
+                state,
                 CaseProtection::Off,
             );
             return format!("<a href=\"{url}\">{label}</a>");
         }
         "textbf" | "mkbibbold" => {
             // Render the argument inside a bold wrapper.
-            let content = render_argument(arguments, 0, mode, false, diagnostics, case_protection);
+            let content = render_argument(arguments, 0, mode, false, state, case_protection);
             return if content.is_empty() {
                 String::new()
             } else {
@@ -2397,7 +2407,7 @@ fn render_macro(
         }
         "textit" | "textsl" | "emph" | "mkbibemph" => {
             // Render the argument inside an emphasis wrapper.
-            let content = render_argument(arguments, 0, mode, false, diagnostics, case_protection);
+            let content = render_argument(arguments, 0, mode, false, state, case_protection);
             return if content.is_empty() {
                 String::new()
             } else {
@@ -2406,7 +2416,7 @@ fn render_macro(
         }
         "textsc" => {
             // Render the argument inside a small-caps wrapper.
-            let content = render_argument(arguments, 0, mode, false, diagnostics, case_protection);
+            let content = render_argument(arguments, 0, mode, false, state, case_protection);
             return if content.is_empty() {
                 String::new()
             } else {
@@ -2415,7 +2425,7 @@ fn render_macro(
         }
         "texttt" => {
             // Render the argument inside a code wrapper.
-            let content = render_argument(arguments, 0, mode, false, diagnostics, case_protection);
+            let content = render_argument(arguments, 0, mode, false, state, case_protection);
             return if content.is_empty() {
                 String::new()
             } else {
@@ -2424,7 +2434,7 @@ fn render_macro(
         }
         "textrm" | "textup" | "mathrm" | "mbox" | "hbox" | "rlap" => {
             // These macros affect TeX layout, not the resulting characters.
-            return render_argument(arguments, 0, mode, false, diagnostics, case_protection);
+            return render_argument(arguments, 0, mode, false, state, case_protection);
         }
         // TeX controls too complex to interpret are intentionally omitted from field text.
         "vphantom" | "noopsort" | "left" | "right" | "ensuremath" | "wd" | "ht" | "raise"
@@ -2450,7 +2460,7 @@ fn render_macro(
         }
         "bar" | "overline" => {
             // Append a combining macron to ASCII letters and digits only.
-            let value = render_argument(arguments, 0, mode, false, diagnostics, case_protection);
+            let value = render_argument(arguments, 0, mode, false, state, case_protection);
             return value
                 .chars()
                 .map(|character| {
@@ -2477,12 +2487,12 @@ fn render_macro(
         "enquote" | "mkbibquote" => {
             // Render quoted content with curly quotation marks.
             let mut content =
-                render_argument(arguments, 0, mode, false, diagnostics, case_protection);
-            let protected_root_argument = context.title_mode
+                render_argument(arguments, 0, mode, false, state, case_protection);
+            let protected_root_argument = context.title_case_protection
                 && context.root_scope
                 && !context.protected_ancestor
                 && matches!(arguments.first().map(Vec::as_slice), Some([Node::Group(children, _)]) if !children.is_empty() && !matches!(children[0], Node::Macro { .. }));
-            if protected_root_argument && diagnostics.mark_case_groups {
+            if protected_root_argument && state.mark_case_groups {
                 content = format!("<case-protection>{content}</case-protection>");
             } else if protected_root_argument
                 && case_protection.enabled()
@@ -2499,7 +2509,7 @@ fn render_macro(
         "section" | "subsection" | "subsubsection" | "subsubsubsection" => {
             // Heading depth is the command name's number of `sub` components.
             let level = name.split("sub").count();
-            let content = render_argument(arguments, 0, mode, false, diagnostics, case_protection);
+            let content = render_argument(arguments, 0, mode, false, state, case_protection);
             return if content.is_empty() {
                 String::new()
             } else {
@@ -2508,7 +2518,7 @@ fn render_macro(
         }
         "chsf" | "bibstring" | "cite" | "textcite" | "citeauthor" => {
             // These commands contribute their argument text without additional markup.
-            return render_argument(arguments, 0, mode, false, diagnostics, case_protection);
+            return render_argument(arguments, 0, mode, false, state, case_protection);
         }
         "LaTeX" => {
             let superscript = script_text("A", "^").unwrap_or_else(|| "<sup>A</sup>".to_string());
@@ -2516,10 +2526,10 @@ fn render_macro(
             return format!("L{superscript}T{subscript}X");
         }
         "sp" | "textsuperscript" => {
-            return render_script_argument(arguments, 0, "^", mode, diagnostics, case_protection);
+            return render_script_argument(arguments, 0, "^", mode, state, case_protection);
         }
         "sb" | "textsubscript" => {
-            return render_script_argument(arguments, 0, "_", mode, diagnostics, case_protection);
+            return render_script_argument(arguments, 0, "_", mode, state, case_protection);
         }
         "math^" | "math_" => {
             let script = if name == "math^" { "^" } else { "_" };
@@ -2528,12 +2538,12 @@ fn render_macro(
                 0,
                 script,
                 mode,
-                diagnostics,
+                state,
                 case_protection,
             );
         }
         "^" | "_" if mode == "math" => {
-            return render_script_argument(arguments, 0, name, mode, diagnostics, case_protection);
+            return render_script_argument(arguments, 0, name, mode, state, case_protection);
         }
         "frac" if mode == "math" => {
             // Prefer an exact fraction mapping; otherwise compose mapped numerator and denominator scripts.
@@ -2544,9 +2554,9 @@ fn render_macro(
                 return text.to_string();
             }
             let numerator =
-                render_argument(arguments, 0, mode, false, diagnostics, case_protection);
+                render_argument(arguments, 0, mode, false, state, case_protection);
             let denominator =
-                render_argument(arguments, 1, mode, false, diagnostics, case_protection);
+                render_argument(arguments, 1, mode, false, state, case_protection);
             return match (script_text(&numerator, "^"), script_text(&denominator, "_")) {
                 (Some(numerator), Some(denominator)) => format!("{numerator}\u{2044}{denominator}"),
                 _ => latex,
@@ -2588,8 +2598,8 @@ fn render_macro(
         }
     }
 
-    diagnostics.report("macro", name, latex.clone());
-    diagnostics.render_unsupported(&command, &latex)
+    state.report("macro", name, latex.clone());
+    state.render_unsupported(&command, &latex)
 }
 
 /// Apply a combining accent when its argument has a supported single-node shape.
@@ -2648,16 +2658,16 @@ fn combining_argument(arguments: &[Vec<Node>], mark: &str, mode: &str) -> Option
 /// Render supported environment nodes or report unsupported ones without visiting their bodies.
 ///
 /// `name` and `content` identify the parsed environment; `mode` controls rich-text wrappers;
-/// `diagnostics` collects unsupported environments. Title flags are forwarded to supported
+/// `state` collects unsupported environments. Title flags are forwarded to supported
 /// descendants. Leading/trailing whitespace, paragraph breaks, and `\\par` are trimmed before
 /// known content is rendered. Unknown environments are reported as one construct and preserved as
-/// TeX, so nested body macros do not create extra diagnostics. At field root, a supported
+/// TeX, so nested body macros do not create extra state. At field root, a supported
 /// environment's body retains root scope for title case protection.
 fn render_environment(
     name: &str,
     content: &[Node],
     mode: &str,
-    diagnostics: &mut RenderDiagnostics,
+    state: &mut RenderState,
     context: RenderContext,
 ) -> String {
     let trims_environment_edge = |node: &Node| match node {
@@ -2681,9 +2691,9 @@ fn render_environment(
                 &content[start..end],
                 mode,
                 false,
-                diagnostics,
+                state,
                 RenderContext {
-                    title_mode: context.title_mode,
+                    title_case_protection: context.title_case_protection,
                     protected_ancestor: context.protected_ancestor,
                     root_scope: context.root_scope,
                     case_protection: context.case_protection,
@@ -2709,8 +2719,8 @@ fn render_environment(
                 "\\begin{{{name}}}{}\\end{{{name}}}",
                 serialize_nodes(&content[start..end])
             );
-            diagnostics.report("environment", name, source.clone());
-            diagnostics.render_unsupported(&source, &source)
+            state.report("environment", name, source.clone());
+            state.render_unsupported(&source, &source)
         }
     }
 }
@@ -2718,17 +2728,17 @@ fn render_environment(
 /// Render a superscript or subscript argument as Unicode when every character has a mapping.
 ///
 /// `arguments` and `index` select the parsed value; `script_macro` is `^` or `_`; `mode` is carried
-/// into child rendering; `diagnostics` collects any unsupported commands inside the argument. If
+/// into child rendering; `state` collects any unsupported commands inside the argument. If
 /// a character has no script mapping, the whole argument falls back to an HTML `sup`/`sub` wrapper.
 fn render_script_argument(
     arguments: &[Vec<Node>],
     index: usize,
     script_macro: &str,
     mode: &str,
-    diagnostics: &mut RenderDiagnostics,
+    state: &mut RenderState,
     case_protection: CaseProtection,
 ) -> String {
-    let value = render_argument(arguments, index, mode, false, diagnostics, case_protection);
+    let value = render_argument(arguments, index, mode, false, state, case_protection);
     if let Some(script) = script_text(&value, script_macro) {
         script
     } else {
