@@ -1278,7 +1278,8 @@ fn parse_creator(
             name: Some(
                 tex::render_with_case_protection_and_macro_definitions(
                     &unwrapped,
-                    "creatorlist",
+                    tex::RenderMode::Text,
+                    false,
                     diagnostics,
                     tex::CaseProtection::Off,
                     macro_definitions,
@@ -1292,7 +1293,8 @@ fn parse_creator(
     let raw_input = input.trim();
     let input = tex::render_with_case_protection_and_macro_definitions(
         raw_input,
-        "creatorlist",
+        tex::RenderMode::Text,
+        false,
         diagnostics,
         tex::CaseProtection::Off,
         macro_definitions,
@@ -1390,7 +1392,8 @@ fn parse_creator(
         .map(|word| {
             tex::render_with_case_protection_and_macro_definitions(
                 word,
-                "creatorlist",
+                tex::RenderMode::Text,
+                false,
                 diagnostics,
                 tex::CaseProtection::Off,
                 macro_definitions,
@@ -1629,7 +1632,8 @@ fn render_string_value(
     }
     tex::render_with_case_protection_and_macro_definitions(
         value,
-        "literal",
+        tex::RenderMode::Text,
+        false,
         diagnostics,
         tex::CaseProtection::default(),
         macro_definitions,
@@ -1803,7 +1807,8 @@ where
         for preamble in &preambles {
             let _ = tex::render_with_case_protection_and_macro_definitions(
                 preamble,
-                "literal",
+                tex::RenderMode::Text,
+                false,
                 &mut render_diagnostics,
                 tex::CaseProtection::Off,
                 &mut macro_definitions,
@@ -1907,7 +1912,8 @@ where
                     .map(|element| {
                         tex::render_with_case_protection_and_macro_definitions(
                             element,
-                            "literal",
+                            tex::RenderMode::Text,
+                            false,
                             &mut render_diagnostics,
                             tex::CaseProtection::Off,
                             &mut macro_definitions,
@@ -1931,7 +1937,8 @@ where
                 render_diagnostics.mark_case_groups = protect_title;
                 value = tex::render_with_case_protection_and_macro_definitions(
                     &value,
-                    &current_mode,
+                    tex::RenderMode::from_field_mode(&current_mode),
+                    current_mode == "title",
                     &mut render_diagnostics,
                     if protect_title {
                         case_protection
