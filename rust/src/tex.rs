@@ -985,7 +985,7 @@ pub(crate) fn print_raw(source: &str) -> String {
 /// The session carries URL and unsupported-command policies, shares macro definitions across
 /// values, and deduplicates diagnostics across fields.
 #[derive(Default)]
-pub(crate) struct RenderSession {
+pub(crate) struct LibraryRenderer {
     /// First error for each unsupported construct, in the order it was encountered.
     pub(crate) errors: Vec<super::ParseError>,
     /// Stable kind/name identifiers used to suppress duplicate macro and environment errors.
@@ -998,7 +998,25 @@ pub(crate) struct RenderSession {
     macro_definitions: HashMap<String, Vec<Node>>,
 }
 
-impl RenderSession {
+impl LibraryRenderer {
+    /// Create a library-scoped renderer with the configured output policies.
+    pub(crate) fn new(unsupported: Option<super::UnsupportedHandler>, plain_urls: bool) -> Self {
+        Self {
+            unsupported,
+            plain_urls,
+            ..Self::default()
+        }
+    }
+
+    /// Parse and render one field while retaining macro definitions and diagnostics for the library.
+    pub(crate) fn render(&mut self, source: &str, context: RenderContext) -> String {
+        let mut parser =
+            Parser::new_with_macro_definitions(source, std::mem::take(&mut self.macro_definitions));
+        let (content, _) = parser.sequence(false, None, None);
+        self.macro_definitions = parser.macro_definitions;
+        self.render_nodes(&content, context)
+    }
+
     /// Choose fallback output independently of diagnostic collection in `report`.
     /// No policy preserves reconstructed source; explicit policies emit a script wrapper,
     /// a bare command name, or nothing. `Throw` uses the same rendering branch as `TeX` here.
@@ -1127,140 +1145,111 @@ impl RenderContext {
 /// `source` is the raw field value and `mode` is a field mode such as `title` or `richtext`.
 #[cfg(test)]
 pub(crate) fn render(source: &str, mode: &str) -> String {
-    collapse_markup(&render_with_session(
-        source,
-        mode,
-        &mut RenderSession::default(),
-    ))
+    let mut renderer = LibraryRenderer::default();
+    collapse_markup(&renderer.render_with_case_protection(source, mode, CaseProtection::default()))
 }
 
-/// Render one field with an explicit case-protection mode.
-///
-/// `AsNeeded` is the default; callers can disable protection or require it for every marked group
-/// without changing the rest of the render pipeline.
-#[cfg(test)]
-pub(crate) fn render_with_case_protection(
-    source: &str,
-    mode: &str,
-    session: &mut RenderSession,
-    case_protection: CaseProtection,
-) -> String {
-    render_with_context(
-        source,
-        RenderContext::field(
-            RenderMode::from_field_mode(mode),
-            mode == "title",
-            case_protection,
-            false,
-        ),
-        session,
-    )
-    .trim()
-    .to_string()
+impl LibraryRenderer {
+    /// Render one field with an explicit case-protection mode.
+    ///
+    /// `AsNeeded` is the default; callers can disable protection or require it for every marked group
+    /// without changing the rest of the render pipeline.
+    #[cfg(test)]
+    pub(crate) fn render_with_case_protection(
+        &mut self,
+        source: &str,
+        mode: &str,
+        case_protection: CaseProtection,
+    ) -> String {
+        self.render(
+            source,
+            RenderContext::field(
+                RenderMode::from_field_mode(mode),
+                mode == "title",
+                case_protection,
+                false,
+            ),
+        )
+        .trim()
+        .to_string()
+    }
 }
 
-/// Parse and render one field using its context and shared library render session.
-/// Macro definitions are temporarily moved into the parser and returned to the session afterward;
-/// output is untrimmed.
-pub(crate) fn render_with_context(
-    source: &str,
-    context: RenderContext,
-    session: &mut RenderSession,
-) -> String {
-    let mut parser =
-        Parser::new_with_macro_definitions(source, std::mem::take(&mut session.macro_definitions));
-    let (content, _) = parser.sequence(false, None, None);
-    session.macro_definitions = parser.macro_definitions;
-    render_nodes(&content, session, context)
-}
-
-/// Render one field using the shared session and default case-protection policy.
-///
-/// # Arguments
-/// * `source` - Raw TeX source for one field.
-/// * `mode` - Field rendering mode; only `title` enables title root-group protection.
-/// * `session` - Shared parse-wide renderer configuration and accumulated diagnostics.
-///
-/// Rendering starts at field root with the default `as-needed` case-protection mode.
-#[cfg(test)]
-pub(crate) fn render_with_session(source: &str, mode: &str, session: &mut RenderSession) -> String {
-    render_with_case_protection(source, mode, session, CaseProtection::default())
-}
-
-/// Render a sibling sequence using inherited context and shared session data.
+/// Render a sibling sequence using inherited context and this library's shared renderer data.
 ///
 /// `nodes` is one AST child list. The context carries rendering and title-protection behavior;
-/// the session accumulates diagnostics and supplies shared policies and macro definitions.
+/// the renderer accumulates diagnostics and supplies shared policies and macro definitions.
 ///
 /// Declaration-style markup persists only across siblings in this sequence. Recursive groups
 /// start with fresh markup state.
-fn render_nodes(nodes: &[Node], session: &mut RenderSession, context: RenderContext) -> String {
-    let mode = context.mode;
-    let mut output = String::new();
-    let mut paragraph_boundary = false;
-    let mut markup = Markup::default();
-    for (index, node) in nodes.iter().enumerate() {
-        // These declaration commands change formatting for later siblings and render no text.
-        if mode != RenderMode::Math
-            && let Node::Macro { name, .. } = node
-            && markup.activate(name)
-        {
-            continue;
-        }
-        let is_parbreak = matches!(node, Node::Parbreak(_))
-            || matches!(node, Node::Macro { name, .. } if name == "par");
-        if mode == RenderMode::RichText {
-            let next_non_layout = nodes[index + 1..]
-                .iter()
-                .find(|next| !matches!(next, Node::Whitespace(_, _) | Node::Comment { .. }));
-            let tie_between_paragraphs = matches!(node, Node::String(text, _) if text == "~" || text == "\u{00a0}")
-                && next_non_layout.is_some_and(|next| {
-                    matches!(next, Node::Parbreak(_))
-                        || matches!(next, Node::Macro { name, .. } if name == "par")
-                });
-            // Collapse repeated paragraph boundaries, their layout whitespace, and ties between them.
-            if is_parbreak && paragraph_boundary {
+impl LibraryRenderer {
+    fn render_nodes(&mut self, nodes: &[Node], context: RenderContext) -> String {
+        let mode = context.mode;
+        let mut output = String::new();
+        let mut paragraph_boundary = false;
+        let mut markup = Markup::default();
+        for (index, node) in nodes.iter().enumerate() {
+            // These declaration commands change formatting for later siblings and render no text.
+            if mode != RenderMode::Math
+                && let Node::Macro { name, .. } = node
+                && markup.activate(name)
+            {
                 continue;
             }
-            if paragraph_boundary && tie_between_paragraphs {
-                continue;
+            let is_parbreak = matches!(node, Node::Parbreak(_))
+                || matches!(node, Node::Macro { name, .. } if name == "par");
+            if mode == RenderMode::RichText {
+                let next_non_layout = nodes[index + 1..]
+                    .iter()
+                    .find(|next| !matches!(next, Node::Whitespace(_, _) | Node::Comment { .. }));
+                let tie_between_paragraphs = matches!(node, Node::String(text, _) if text == "~" || text == "\u{00a0}")
+                    && next_non_layout.is_some_and(|next| {
+                        matches!(next, Node::Parbreak(_))
+                            || matches!(next, Node::Macro { name, .. } if name == "par")
+                    });
+                // Collapse repeated paragraph boundaries, their layout whitespace, and ties between them.
+                if is_parbreak && paragraph_boundary {
+                    continue;
+                }
+                if paragraph_boundary && tie_between_paragraphs {
+                    continue;
+                }
+                if paragraph_boundary && matches!(node, Node::Whitespace(_, _)) {
+                    continue;
+                }
             }
-            if paragraph_boundary && matches!(node, Node::Whitespace(_, _)) {
-                continue;
-            }
-        }
 
-        // Root braces express author case intent; a leading macro instead denotes formatting.
-        // Already-protected ancestors suppress duplicate protection on nested content.
-        let protect_group = context.title_case_protection
-            && context.root_scope
-            && !context.protected_ancestor
-            && matches!(node, Node::Group(children, _) if !children.is_empty() && !matches!(children[0], Node::Macro { .. }));
-        let rendered = render_node(
-            node,
-            session,
-            RenderContext {
-                protected_ancestor: context.protected_ancestor || protect_group,
-                ..context
-            },
-        );
-        if mode == RenderMode::RichText && is_parbreak {
-            paragraph_boundary = true;
-        } else if !matches!(node, Node::Comment { .. }) && !rendered.is_empty() {
-            paragraph_boundary = false;
+            // Root braces express author case intent; a leading macro instead denotes formatting.
+            // Already-protected ancestors suppress duplicate protection on nested content.
+            let protect_group = context.title_case_protection
+                && context.root_scope
+                && !context.protected_ancestor
+                && matches!(node, Node::Group(children, _) if !children.is_empty() && !matches!(children[0], Node::Macro { .. }));
+            let rendered = self.render_node(
+                node,
+                RenderContext {
+                    protected_ancestor: context.protected_ancestor || protect_group,
+                    ..context
+                },
+            );
+            if mode == RenderMode::RichText && is_parbreak {
+                paragraph_boundary = true;
+            } else if !matches!(node, Node::Comment { .. }) && !rendered.is_empty() {
+                paragraph_boundary = false;
+            }
+            let mut rendered = markup.wrap(rendered);
+            if context.mark_case_groups && protect_group {
+                rendered = format!("<case-protection>{rendered}</case-protection>");
+            } else if protect_group
+                && context.case_protection.enabled()
+                && needs_case_protection(&rendered)
+            {
+                rendered = format!("<span class=\"nocase\">{rendered}</span>");
+            }
+            output.push_str(&rendered);
         }
-        let mut rendered = markup.wrap(rendered);
-        if context.mark_case_groups && protect_group {
-            rendered = format!("<case-protection>{rendered}</case-protection>");
-        } else if protect_group
-            && context.case_protection.enabled()
-            && needs_case_protection(&rendered)
-        {
-            rendered = format!("<span class=\"nocase\">{rendered}</span>");
-        }
-        output.push_str(&rendered);
+        output
     }
-    output
 }
 
 /// Merge adjacent equal markup spans separated only by whitespace.
@@ -2141,95 +2130,93 @@ fn quoted_ranges(characters: &[char]) -> Vec<std::ops::Range<usize>> {
 ///
 /// The context controls text/math/rich-text behavior, verbatim conversion, and title protection;
 /// the session receives unsupported-command diagnostics and supplies their fallback policy.
-fn render_node(node: &Node, session: &mut RenderSession, context: RenderContext) -> String {
-    let mode = context.mode;
-    match node {
-        Node::String(text, _) => {
-            // Delegate mode-specific conversion and verbatim/math preservation to `render_text`.
-            render_text(text, mode, context.verbatim)
-        }
-        Node::Whitespace(_text, _) => {
-            // TeX layout spaces are insignificant inside math but become one text space elsewhere.
-            if mode == RenderMode::Math {
-                String::new()
-            } else {
-                " ".to_string()
+impl LibraryRenderer {
+    fn render_node(&mut self, node: &Node, context: RenderContext) -> String {
+        let mode = context.mode;
+        match node {
+            Node::String(text, _) => {
+                // Delegate mode-specific conversion and verbatim/math preservation to `render_text`.
+                render_text(text, mode, context.verbatim)
             }
-        }
-        Node::Parbreak(_) => {
-            // A paragraph boundary is structural HTML only for rich-text fields.
-            if mode == RenderMode::RichText {
-                "<p>".to_string()
-            } else {
-                " ".to_string()
+            Node::Whitespace(_text, _) => {
+                // TeX layout spaces are insignificant inside math but become one text space elsewhere.
+                if mode == RenderMode::Math {
+                    String::new()
+                } else {
+                    " ".to_string()
+                }
             }
-        }
-        // Comments affect TeX source layout but never contribute rendered field text.
-        Node::Comment { .. } => String::new(),
-        // Verbatim contents bypass normal TeX rendering, preserving their literal text unchanged.
-        Node::Verb(contents, _) => contents.clone(),
-        // Group delimiters protect structure but are omitted from rendered field text.
-        Node::Group(nodes, _) => render_nodes(
-            nodes,
-            session,
-            RenderContext {
-                root_scope: false,
-                ..context
-            },
-        ),
-        Node::Expansion(nodes, _) => render_nodes(
-            nodes,
-            session,
-            // Expanded replacement text is nested content, not a source-level root group.
-            RenderContext {
-                root_scope: false,
-                ..context
-            },
-        ),
-        Node::InlineMath(nodes, _) => {
-            // Math children use math mappings; title protection is applied to the rendered result.
-            let rendered = render_nodes(
+            Node::Parbreak(_) => {
+                // A paragraph boundary is structural HTML only for rich-text fields.
+                if mode == RenderMode::RichText {
+                    "<p>".to_string()
+                } else {
+                    " ".to_string()
+                }
+            }
+            // Comments affect TeX source layout but never contribute rendered field text.
+            Node::Comment { .. } => String::new(),
+            // Verbatim contents bypass normal TeX rendering, preserving their literal text unchanged.
+            Node::Verb(contents, _) => contents.clone(),
+            // Group delimiters protect structure but are omitted from rendered field text.
+            Node::Group(nodes, _) => self.render_nodes(
                 nodes,
-                session,
                 RenderContext {
-                    mode: RenderMode::Math,
                     root_scope: false,
-                    verbatim: false,
                     ..context
                 },
-            );
-            // The marker pass defers protection choice until sentence casing can compare original
-            // and transformed text; ordinary rendering emits no-case markup only when needed.
-            if context.mark_case_groups
-                && context.title_case_protection
-                && !context.protected_ancestor
-            {
-                format!("<case-protection>{rendered}</case-protection>")
-            } else if context.title_case_protection
-                && !context.protected_ancestor
-                && context.case_protection.enabled()
-                && needs_case_protection(&rendered)
-            {
-                format!("<span class=\"nocase\">{rendered}</span>")
-            } else {
-                rendered
+            ),
+            Node::Expansion(nodes, _) => self.render_nodes(
+                nodes,
+                // Expanded replacement text is nested content, not a source-level root group.
+                RenderContext {
+                    root_scope: false,
+                    ..context
+                },
+            ),
+            Node::InlineMath(nodes, _) => {
+                // Math children use math mappings; title protection is applied to the rendered result.
+                let rendered = self.render_nodes(
+                    nodes,
+                    RenderContext {
+                        mode: RenderMode::Math,
+                        root_scope: false,
+                        verbatim: false,
+                        ..context
+                    },
+                );
+                // The marker pass defers protection choice until sentence casing can compare original
+                // and transformed text; ordinary rendering emits no-case markup only when needed.
+                if context.mark_case_groups
+                    && context.title_case_protection
+                    && !context.protected_ancestor
+                {
+                    format!("<case-protection>{rendered}</case-protection>")
+                } else if context.title_case_protection
+                    && !context.protected_ancestor
+                    && context.case_protection.enabled()
+                    && needs_case_protection(&rendered)
+                {
+                    format!("<span class=\"nocase\">{rendered}</span>")
+                } else {
+                    rendered
+                }
             }
-        }
-        // Preserve root scope through environments so their body groups can retain title protection.
-        Node::Environment { name, content, .. } => {
-            render_environment(name, content, session, context)
-        }
-        Node::Macro {
-            name, arguments, ..
-        } => {
-            let rendered = render_macro(name, arguments, session, context);
-            let combining_macro = unicode_mapping(&format!("\\{name}"))
-                .is_some_and(|mapping| mapping.combining.is_some());
-            // Macro parsing consumes arguments before this pass, so inspect retained groups here
-            // to preserve title case protection on eligible root arguments. Destinations, spacing,
-            // accents, all-caps, and quote macros have separate semantics and must not make their
-            // grouped arguments look like author-protected title text.
-            let protect_argument = context.title_case_protection
+            // Preserve root scope through environments so their body groups can retain title protection.
+            Node::Environment { name, content, .. } => {
+                self.render_environment(name, content, context)
+            }
+            Node::Macro {
+                name, arguments, ..
+            } => {
+                let rendered = self.render_macro(name, arguments, context);
+                let combining_macro = unicode_mapping(&format!("\\{name}"))
+                    .is_some_and(|mapping| mapping.combining.is_some());
+                // Macro parsing consumes arguments before this pass, so inspect retained groups here
+                // to preserve title case protection on eligible root arguments. Destinations, spacing,
+                // accents, all-caps, and quote macros have separate semantics and must not make their
+                // grouped arguments look like author-protected title text.
+                let protect_argument = context.title_case_protection
                 && context.root_scope
                 && !combining_macro
                 && name != "href"
@@ -2239,15 +2226,16 @@ fn render_node(node: &Node, session: &mut RenderSession, context: RenderContext)
                 && arguments.iter().enumerate().any(|(index, argument)| {
                     !(matches!(name.as_str(), "url" | "href") && index == 0) && matches!(argument.as_slice(), [Node::Group(children, _)] if !children.is_empty() && !matches!(children[0], Node::Macro { .. }))
                 });
-            if context.mark_case_groups && protect_argument {
-                format!("<case-protection>{rendered}</case-protection>")
-            } else if protect_argument
-                && context.case_protection.enabled()
-                && needs_case_protection(&rendered)
-            {
-                format!("<span class=\"nocase\">{rendered}</span>")
-            } else {
-                rendered
+                if context.mark_case_groups && protect_argument {
+                    format!("<case-protection>{rendered}</case-protection>")
+                } else if protect_argument
+                    && context.case_protection.enabled()
+                    && needs_case_protection(&rendered)
+                {
+                    format!("<span class=\"nocase\">{rendered}</span>")
+                } else {
+                    rendered
+                }
             }
         }
     }
@@ -2294,26 +2282,27 @@ fn render_text(text: &str, mode: RenderMode, verbatim: bool) -> String {
 /// `arguments` and `index` select the argument; the session and context are forwarded to its
 /// child renderer. Title-protection policy is inherited, but arguments are not root scope; the
 /// owning macro inspects retained groups when applying root-level protection.
-fn render_argument(
-    arguments: &[Vec<Node>],
-    index: usize,
-    session: &mut RenderSession,
-    context: RenderContext,
-) -> String {
-    arguments
-        .get(index)
-        .map(|argument| {
-            render_nodes(
-                argument,
-                session,
-                RenderContext {
-                    protected_ancestor: false,
-                    root_scope: false,
-                    ..context
-                },
-            )
-        })
-        .unwrap_or_default()
+impl LibraryRenderer {
+    fn render_argument(
+        &mut self,
+        arguments: &[Vec<Node>],
+        index: usize,
+        context: RenderContext,
+    ) -> String {
+        arguments
+            .get(index)
+            .map(|argument| {
+                self.render_nodes(
+                    argument,
+                    RenderContext {
+                        protected_ancestor: false,
+                        root_scope: false,
+                        ..context
+                    },
+                )
+            })
+            .unwrap_or_default()
+    }
 }
 
 /// Reconstruct a URL argument as raw TeX, unwrapping one argument group.
@@ -2348,271 +2337,276 @@ fn encode_url(url: &str, mode: RenderMode) -> String {
 /// lists. The context selects text/math/rich-text behavior, and the session collects unsupported
 /// commands. Explicit visitor cases handle layout and markup; remaining commands use exact mode
 /// mappings, combining marks, then the configured unsupported fallback.
-fn render_macro(
-    name: &str,
-    arguments: &[Vec<Node>],
-    session: &mut RenderSession,
-    context: RenderContext,
-) -> String {
-    let mode = context.mode;
-    let case_protection = context.case_protection;
-    match name {
-        "discretionary" => {
-            // Bibliographic text has no line wrapping, so use TeX's unbroken (third) alternative.
-            return render_argument(arguments, 2, session, context);
-        }
-        "allcaps" => {
-            let content = render_argument(arguments, 0, session, context);
-            // All-caps markup is explicit author intent, so title casing must preserve its contents.
-            return if context.title_case_protection && context.mark_case_groups {
-                format!("<case-protection>{content}</case-protection>")
-            } else if context.title_case_protection && case_protection.enabled() {
-                format!("<span class=\"nocase\">{content}</span>")
-            } else {
-                content
-            };
-        }
-        " " => return " ".to_string(),
-        // Line breaks are HTML breaks in rich text and ordinary spaces in scalar fields.
-        "\\" => {
-            return if mode == RenderMode::RichText {
-                "<br>"
-            } else {
-                " "
+impl LibraryRenderer {
+    fn render_macro(
+        &mut self,
+        name: &str,
+        arguments: &[Vec<Node>],
+        context: RenderContext,
+    ) -> String {
+        let mode = context.mode;
+        let case_protection = context.case_protection;
+        match name {
+            "discretionary" => {
+                // Bibliographic text has no line wrapping, so use TeX's unbroken (third) alternative.
+                return self.render_argument(arguments, 2, context);
             }
-            .to_string();
-        }
-        "url" => {
-            // URL content is rendered verbatim so query strings and tildes are not transformed.
-            let url = encode_url(&serialize_verbatim_argument(arguments, 0), mode);
-            return if session.plain_urls {
-                format!("<span class=\"nocase\">{url}</span>")
-            } else {
-                format!("<a href=\"{url}\">{url}</a>")
-            };
-        }
-        "href" => {
-            // The first href argument is the destination; only the label receives normal rendering.
-            let url = encode_url(&serialize_verbatim_argument(arguments, 0), mode);
-            if session.plain_urls {
-                return format!("<span class=\"nocase\">{url}</span>");
+            "allcaps" => {
+                let content = self.render_argument(arguments, 0, context);
+                // All-caps markup is explicit author intent, so title casing must preserve its contents.
+                return if context.title_case_protection && context.mark_case_groups {
+                    format!("<case-protection>{content}</case-protection>")
+                } else if context.title_case_protection && case_protection.enabled() {
+                    format!("<span class=\"nocase\">{content}</span>")
+                } else {
+                    content
+                };
             }
-            let label_context = RenderContext {
-                title_case_protection: false,
-                protected_ancestor: false,
-                root_scope: false,
-                case_protection: CaseProtection::Off,
-                mark_case_groups: false,
-                verbatim: false,
-                ..context
-            };
-            let label = render_argument(arguments, 1, session, label_context);
-            return format!("<a href=\"{url}\">{label}</a>");
-        }
-        "textbf" | "mkbibbold" => {
-            // Render the argument inside a bold wrapper.
-            let content = render_argument(arguments, 0, session, context);
-            return if content.is_empty() {
-                String::new()
-            } else {
-                format!("<b>{content}</b>")
-            };
-        }
-        "textit" | "textsl" | "emph" | "mkbibemph" => {
-            // Render the argument inside an emphasis wrapper.
-            let content = render_argument(arguments, 0, session, context);
-            return if content.is_empty() {
-                String::new()
-            } else {
-                format!("<i>{content}</i>")
-            };
-        }
-        "textsc" => {
-            // Render the argument inside a small-caps wrapper.
-            let content = render_argument(arguments, 0, session, context);
-            return if content.is_empty() {
-                String::new()
-            } else {
-                format!("<span style=\"font-variant:small-caps;\">{content}</span>")
-            };
-        }
-        "texttt" => {
-            // Render the argument inside a code wrapper.
-            let content = render_argument(arguments, 0, session, context);
-            return if content.is_empty() {
-                String::new()
-            } else {
-                format!("<code>{content}</code>")
-            };
-        }
-        "textrm" | "textup" | "mathrm" | "mbox" | "hbox" | "rlap" => {
-            // These macros affect TeX layout, not the resulting characters.
-            return render_argument(arguments, 0, session, context);
-        }
-        // TeX controls too complex to interpret are intentionally omitted from field text.
-        "vphantom" | "noopsort" | "left" | "right" | "ensuremath" | "wd" | "ht" | "raise"
-        | "accent" | "def" | "hss" | "ifmmode" | "makeatletter" | "makeatother"
-        | "scriptscriptstyle" | "setbox" | "dimen" | "advance" | "relax" | "aftergroup"
-        | "ignorespaces" | "undefined" | "rm" | "if" | "ifx" | "else" => return String::new(),
-        // Small-caps declarations update sibling markup in `render_nodes`; they emit no text.
-        "sc" => return String::new(),
-        "hspace" | "hskip" => {
-            // Empty and zero-valued dimensions add no space; other dimensions add one space.
-            let amount = arguments
-                .first()
-                .map(|argument| serialize_nodes(argument))
-                .unwrap_or_default();
-            let amount = amount.trim_matches(['{', '}']);
-            return if amount.is_empty()
-                || (amount.starts_with('0') && amount[1..].chars().all(char::is_alphabetic))
-            {
-                String::new()
-            } else {
-                " ".to_string()
-            };
-        }
-        "bar" | "overline" => {
-            // Append a combining macron to ASCII letters and digits only.
-            let value = render_argument(arguments, 0, session, context);
-            return value
-                .chars()
-                .map(|character| {
-                    if character.is_ascii_alphanumeric() {
-                        format!("{character}\u{0305}")
-                    } else {
-                        character.to_string()
+            " " => return " ".to_string(),
+            // Line breaks are HTML breaks in rich text and ordinary spaces in scalar fields.
+            "\\" => {
+                return if mode == RenderMode::RichText {
+                    "<br>"
+                } else {
+                    " "
+                }
+                .to_string();
+            }
+            "url" => {
+                // URL content is rendered verbatim so query strings and tildes are not transformed.
+                let url = encode_url(&serialize_verbatim_argument(arguments, 0), mode);
+                return if self.plain_urls {
+                    format!("<span class=\"nocase\">{url}</span>")
+                } else {
+                    format!("<a href=\"{url}\">{url}</a>")
+                };
+            }
+            "href" => {
+                // The first href argument is the destination; only the label receives normal rendering.
+                let url = encode_url(&serialize_verbatim_argument(arguments, 0), mode);
+                if self.plain_urls {
+                    return format!("<span class=\"nocase\">{url}</span>");
+                }
+                let label_context = RenderContext {
+                    title_case_protection: false,
+                    protected_ancestor: false,
+                    root_scope: false,
+                    case_protection: CaseProtection::Off,
+                    mark_case_groups: false,
+                    verbatim: false,
+                    ..context
+                };
+                let label = self.render_argument(arguments, 1, label_context);
+                return format!("<a href=\"{url}\">{label}</a>");
+            }
+            "textbf" | "mkbibbold" => {
+                // Render the argument inside a bold wrapper.
+                let content = self.render_argument(arguments, 0, context);
+                return if content.is_empty() {
+                    String::new()
+                } else {
+                    format!("<b>{content}</b>")
+                };
+            }
+            "textit" | "textsl" | "emph" | "mkbibemph" => {
+                // Render the argument inside an emphasis wrapper.
+                let content = self.render_argument(arguments, 0, context);
+                return if content.is_empty() {
+                    String::new()
+                } else {
+                    format!("<i>{content}</i>")
+                };
+            }
+            "textsc" => {
+                // Render the argument inside a small-caps wrapper.
+                let content = self.render_argument(arguments, 0, context);
+                return if content.is_empty() {
+                    String::new()
+                } else {
+                    format!("<span style=\"font-variant:small-caps;\">{content}</span>")
+                };
+            }
+            "texttt" => {
+                // Render the argument inside a code wrapper.
+                let content = self.render_argument(arguments, 0, context);
+                return if content.is_empty() {
+                    String::new()
+                } else {
+                    format!("<code>{content}</code>")
+                };
+            }
+            "textrm" | "textup" | "mathrm" | "mbox" | "hbox" | "rlap" => {
+                // These macros affect TeX layout, not the resulting characters.
+                return self.render_argument(arguments, 0, context);
+            }
+            // TeX controls too complex to interpret are intentionally omitted from field text.
+            "vphantom" | "noopsort" | "left" | "right" | "ensuremath" | "wd" | "ht" | "raise"
+            | "accent" | "def" | "hss" | "ifmmode" | "makeatletter" | "makeatother"
+            | "scriptscriptstyle" | "setbox" | "dimen" | "advance" | "relax" | "aftergroup"
+            | "ignorespaces" | "undefined" | "rm" | "if" | "ifx" | "else" => return String::new(),
+            // Small-caps declarations update sibling markup in `render_nodes`; they emit no text.
+            "sc" => return String::new(),
+            "hspace" | "hskip" => {
+                // Empty and zero-valued dimensions add no space; other dimensions add one space.
+                let amount = arguments
+                    .first()
+                    .map(|argument| serialize_nodes(argument))
+                    .unwrap_or_default();
+                let amount = amount.trim_matches(['{', '}']);
+                return if amount.is_empty()
+                    || (amount.starts_with('0') && amount[1..].chars().all(char::is_alphabetic))
+                {
+                    String::new()
+                } else {
+                    " ".to_string()
+                };
+            }
+            "bar" | "overline" => {
+                // Append a combining macron to ASCII letters and digits only.
+                let value = self.render_argument(arguments, 0, context);
+                return value
+                    .chars()
+                    .map(|character| {
+                        if character.is_ascii_alphanumeric() {
+                            format!("{character}\u{0305}")
+                        } else {
+                            character.to_string()
+                        }
+                    })
+                    .collect();
+            }
+            "symbol" => {
+                let code = arguments
+                    .first()
+                    .map(|argument| serialize_argument(argument))
+                    .unwrap_or_default();
+                // Invalid integers and non-scalar code points fall through to the unsupported handler.
+                if let Ok(code) = code.trim().parse::<u32>() {
+                    if let Some(character) = char::from_u32(code) {
+                        return character.to_string();
                     }
-                })
-                .collect();
-        }
-        "symbol" => {
-            let code = arguments
-                .first()
-                .map(|argument| serialize_argument(argument))
-                .unwrap_or_default();
-            // Invalid integers and non-scalar code points fall through to the unsupported handler.
-            if let Ok(code) = code.trim().parse::<u32>() {
-                if let Some(character) = char::from_u32(code) {
-                    return character.to_string();
                 }
             }
-        }
-        "enquote" | "mkbibquote" => {
-            // Render quoted content with curly quotation marks.
-            let mut content = render_argument(arguments, 0, session, context);
-            let protected_root_argument = context.title_case_protection
-                && context.root_scope
-                && !context.protected_ancestor
-                && matches!(arguments.first().map(Vec::as_slice), Some([Node::Group(children, _)]) if !children.is_empty() && !matches!(children[0], Node::Macro { .. }));
-            if protected_root_argument && context.mark_case_groups {
-                content = format!("<case-protection>{content}</case-protection>");
-            } else if protected_root_argument
-                && case_protection.enabled()
-                && needs_case_protection(&content)
-            {
-                content = format!("<span class=\"nocase\">{content}</span>");
+            "enquote" | "mkbibquote" => {
+                // Render quoted content with curly quotation marks.
+                let mut content = self.render_argument(arguments, 0, context);
+                let protected_root_argument = context.title_case_protection
+                    && context.root_scope
+                    && !context.protected_ancestor
+                    && matches!(arguments.first().map(Vec::as_slice), Some([Node::Group(children, _)]) if !children.is_empty() && !matches!(children[0], Node::Macro { .. }));
+                if protected_root_argument && context.mark_case_groups {
+                    content = format!("<case-protection>{content}</case-protection>");
+                } else if protected_root_argument
+                    && case_protection.enabled()
+                    && needs_case_protection(&content)
+                {
+                    content = format!("<span class=\"nocase\">{content}</span>");
+                }
+                return if content.is_empty() {
+                    String::new()
+                } else {
+                    format!("“{content}”")
+                };
             }
-            return if content.is_empty() {
-                String::new()
+            "section" | "subsection" | "subsubsection" | "subsubsubsection" => {
+                // Heading depth is the command name's number of `sub` components.
+                let level = name.split("sub").count();
+                let content = self.render_argument(arguments, 0, context);
+                return if content.is_empty() {
+                    String::new()
+                } else {
+                    format!("<h{level}>{content}</h{level}>")
+                };
+            }
+            "chsf" | "bibstring" | "cite" | "textcite" | "citeauthor" => {
+                // These commands contribute their argument text without additional markup.
+                return self.render_argument(arguments, 0, context);
+            }
+            "LaTeX" => {
+                let superscript =
+                    script_text("A", "^").unwrap_or_else(|| "<sup>A</sup>".to_string());
+                let subscript = script_text("E", "_").unwrap_or_else(|| "<sub>E</sub>".to_string());
+                return format!("L{superscript}T{subscript}X");
+            }
+            "sp" | "textsuperscript" => {
+                return self.render_script_argument(arguments, 0, "^", context);
+            }
+            "sb" | "textsubscript" => {
+                return self.render_script_argument(arguments, 0, "_", context);
+            }
+            "math^" | "math_" => {
+                let script = if name == "math^" { "^" } else { "_" };
+                return self.render_script_argument(arguments, 0, script, context);
+            }
+            "^" | "_" if mode == RenderMode::Math => {
+                return self.render_script_argument(arguments, 0, name, context);
+            }
+            "frac" if mode == RenderMode::Math => {
+                // Prefer an exact fraction mapping; otherwise compose mapped numerator and denominator scripts.
+                let latex = serialize_macro(name, arguments);
+                if let Some(mapping) = unicode_mapping(&latex)
+                    && let Some(text) = mapping.math.or(mapping.text)
+                {
+                    return text.to_string();
+                }
+                let numerator = self.render_argument(arguments, 0, context);
+                let denominator = self.render_argument(arguments, 1, context);
+                return match (script_text(&numerator, "^"), script_text(&denominator, "_")) {
+                    (Some(numerator), Some(denominator)) => {
+                        format!("{numerator}\u{2044}{denominator}")
+                    }
+                    _ => latex,
+                };
+            }
+            // Rich text retains paragraph/list structure; scalar fields flatten both markers to spaces.
+            "par" => {
+                return if mode == RenderMode::RichText {
+                    "<p>"
+                } else {
+                    " "
+                }
+                .to_string();
+            }
+            "item" => {
+                return if mode == RenderMode::RichText {
+                    "<li>"
+                } else {
+                    " "
+                }
+                .to_string();
+            }
+            // Preserve a bare script operator when parsing found no argument to render.
+            "_" | "^" if arguments.is_empty() => return name.to_string(),
+            _ => {}
+        }
+
+        // Command-only table entries identify combining accents; composed mappings include arguments.
+        let command = format!("\\{name}");
+        if let Some(mapping) = unicode_mapping(&command)
+            && let Some(mark) = mapping.combining
+        {
+            if let Some(value) = combining_argument(arguments, mark, mode) {
+                return value;
+            }
+        }
+
+        // Exact TeX spellings use the generated Unicode map only after structural visitor cases.
+        let latex = serialize_macro(name, arguments);
+        if let Some(mapping) = unicode_mapping(&latex) {
+            // Use only a mapping defined for the active text or math mode.
+            let mapped_text = if mode == RenderMode::Math {
+                mapping.math
             } else {
-                format!("“{content}”")
+                mapping.text
             };
-        }
-        "section" | "subsection" | "subsubsection" | "subsubsubsection" => {
-            // Heading depth is the command name's number of `sub` components.
-            let level = name.split("sub").count();
-            let content = render_argument(arguments, 0, session, context);
-            return if content.is_empty() {
-                String::new()
-            } else {
-                format!("<h{level}>{content}</h{level}>")
-            };
-        }
-        "chsf" | "bibstring" | "cite" | "textcite" | "citeauthor" => {
-            // These commands contribute their argument text without additional markup.
-            return render_argument(arguments, 0, session, context);
-        }
-        "LaTeX" => {
-            let superscript = script_text("A", "^").unwrap_or_else(|| "<sup>A</sup>".to_string());
-            let subscript = script_text("E", "_").unwrap_or_else(|| "<sub>E</sub>".to_string());
-            return format!("L{superscript}T{subscript}X");
-        }
-        "sp" | "textsuperscript" => {
-            return render_script_argument(arguments, 0, "^", session, context);
-        }
-        "sb" | "textsubscript" => {
-            return render_script_argument(arguments, 0, "_", session, context);
-        }
-        "math^" | "math_" => {
-            let script = if name == "math^" { "^" } else { "_" };
-            return render_script_argument(arguments, 0, script, session, context);
-        }
-        "^" | "_" if mode == RenderMode::Math => {
-            return render_script_argument(arguments, 0, name, session, context);
-        }
-        "frac" if mode == RenderMode::Math => {
-            // Prefer an exact fraction mapping; otherwise compose mapped numerator and denominator scripts.
-            let latex = serialize_macro(name, arguments);
-            if let Some(mapping) = unicode_mapping(&latex)
-                && let Some(text) = mapping.math.or(mapping.text)
-            {
+            if let Some(text) = mapped_text {
                 return text.to_string();
             }
-            let numerator = render_argument(arguments, 0, session, context);
-            let denominator = render_argument(arguments, 1, session, context);
-            return match (script_text(&numerator, "^"), script_text(&denominator, "_")) {
-                (Some(numerator), Some(denominator)) => format!("{numerator}\u{2044}{denominator}"),
-                _ => latex,
-            };
         }
-        // Rich text retains paragraph/list structure; scalar fields flatten both markers to spaces.
-        "par" => {
-            return if mode == RenderMode::RichText {
-                "<p>"
-            } else {
-                " "
-            }
-            .to_string();
-        }
-        "item" => {
-            return if mode == RenderMode::RichText {
-                "<li>"
-            } else {
-                " "
-            }
-            .to_string();
-        }
-        // Preserve a bare script operator when parsing found no argument to render.
-        "_" | "^" if arguments.is_empty() => return name.to_string(),
-        _ => {}
-    }
 
-    // Command-only table entries identify combining accents; composed mappings include arguments.
-    let command = format!("\\{name}");
-    if let Some(mapping) = unicode_mapping(&command)
-        && let Some(mark) = mapping.combining
-    {
-        if let Some(value) = combining_argument(arguments, mark, mode) {
-            return value;
-        }
+        self.report("macro", name, latex.clone());
+        self.render_unsupported(&command, &latex)
     }
-
-    // Exact TeX spellings use the generated Unicode map only after structural visitor cases.
-    let latex = serialize_macro(name, arguments);
-    if let Some(mapping) = unicode_mapping(&latex) {
-        // Use only a mapping defined for the active text or math mode.
-        let mapped_text = if mode == RenderMode::Math {
-            mapping.math
-        } else {
-            mapping.text
-        };
-        if let Some(text) = mapped_text {
-            return text.to_string();
-        }
-    }
-
-    session.report("macro", name, latex.clone());
-    session.render_unsupported(&command, &latex)
 }
 
 /// Apply a combining accent when its argument has a supported single-node shape.
@@ -2676,60 +2670,62 @@ fn combining_argument(arguments: &[Vec<Node>], mark: &str, mode: RenderMode) -> 
 /// known content is rendered. Unknown environments are reported as one construct and preserved as
 /// TeX, so nested body macros do not create extra state. At field root, a supported
 /// environment's body retains root scope for title case protection.
-fn render_environment(
-    name: &str,
-    content: &[Node],
-    session: &mut RenderSession,
-    context: RenderContext,
-) -> String {
-    let mode = context.mode;
-    let trims_environment_edge = |node: &Node| match node {
-        Node::Whitespace(_, _) | Node::Parbreak(_) => true,
-        Node::Macro { name, .. } => name == "par",
-        _ => false,
-    };
-    let mut start = 0;
-    let mut end = content.len();
-    // Discard layout-only nodes at both environment edges.
-    while start < end && trims_environment_edge(&content[start]) {
-        start += 1;
-    }
-    while end > start && trims_environment_edge(&content[end - 1]) {
-        end -= 1;
-    }
-    match name {
-        "quotation" | "itemize" | "em" => {
-            // The `em` environment emphasizes its body in every field mode.
-            let body = render_nodes(
-                &content[start..end],
-                session,
-                RenderContext {
-                    verbatim: false,
-                    ..context
-                },
-            )
-            .trim()
-            .to_string();
-            if mode != RenderMode::RichText {
-                if name == "em" {
-                    return format!("<i>{body}</i>");
-                }
-                return body;
-            }
-            match name {
-                "quotation" => format!("<blockquote>{body}</blockquote>"),
-                "itemize" => format!("<ul>{body}</ul>"),
-                _ => format!("<i>{body}</i>"),
-            }
+impl LibraryRenderer {
+    fn render_environment(
+        &mut self,
+        name: &str,
+        content: &[Node],
+        context: RenderContext,
+    ) -> String {
+        let mode = context.mode;
+        let trims_environment_edge = |node: &Node| match node {
+            Node::Whitespace(_, _) | Node::Parbreak(_) => true,
+            Node::Macro { name, .. } => name == "par",
+            _ => false,
+        };
+        let mut start = 0;
+        let mut end = content.len();
+        // Discard layout-only nodes at both environment edges.
+        while start < end && trims_environment_edge(&content[start]) {
+            start += 1;
         }
-        // Do not recurse into unknown environments: their complete source is one unsupported node.
-        _ => {
-            let source = format!(
-                "\\begin{{{name}}}{}\\end{{{name}}}",
-                serialize_nodes(&content[start..end])
-            );
-            session.report("environment", name, source.clone());
-            session.render_unsupported(&source, &source)
+        while end > start && trims_environment_edge(&content[end - 1]) {
+            end -= 1;
+        }
+        match name {
+            "quotation" | "itemize" | "em" => {
+                // The `em` environment emphasizes its body in every field mode.
+                let body = self
+                    .render_nodes(
+                        &content[start..end],
+                        RenderContext {
+                            verbatim: false,
+                            ..context
+                        },
+                    )
+                    .trim()
+                    .to_string();
+                if mode != RenderMode::RichText {
+                    if name == "em" {
+                        return format!("<i>{body}</i>");
+                    }
+                    return body;
+                }
+                match name {
+                    "quotation" => format!("<blockquote>{body}</blockquote>"),
+                    "itemize" => format!("<ul>{body}</ul>"),
+                    _ => format!("<i>{body}</i>"),
+                }
+            }
+            // Do not recurse into unknown environments: their complete source is one unsupported node.
+            _ => {
+                let source = format!(
+                    "\\begin{{{name}}}{}\\end{{{name}}}",
+                    serialize_nodes(&content[start..end])
+                );
+                self.report("environment", name, source.clone());
+                self.render_unsupported(&source, &source)
+            }
         }
     }
 }
@@ -2739,19 +2735,21 @@ fn render_environment(
 /// `arguments` and `index` select the parsed value; `script_macro` is `^` or `_`; context is
 /// carried into child rendering and the session collects unsupported commands. If a character
 /// has no script mapping, the whole argument falls back to an HTML `sup`/`sub` wrapper.
-fn render_script_argument(
-    arguments: &[Vec<Node>],
-    index: usize,
-    script_macro: &str,
-    session: &mut RenderSession,
-    context: RenderContext,
-) -> String {
-    let value = render_argument(arguments, index, session, context);
-    if let Some(script) = script_text(&value, script_macro) {
-        script
-    } else {
-        let tag = if script_macro == "^" { "sup" } else { "sub" };
-        format!("<{tag}>{value}</{tag}>")
+impl LibraryRenderer {
+    fn render_script_argument(
+        &mut self,
+        arguments: &[Vec<Node>],
+        index: usize,
+        script_macro: &str,
+        context: RenderContext,
+    ) -> String {
+        let value = self.render_argument(arguments, index, context);
+        if let Some(script) = script_text(&value, script_macro) {
+            script
+        } else {
+            let tag = if script_macro == "^" { "sup" } else { "sub" };
+            format!("<{tag}>{value}</{tag}>")
+        }
     }
 }
 
