@@ -2578,10 +2578,6 @@ fn render_macro(
         if let Some(value) = combining_argument(arguments, mark, mode) {
             return value;
         }
-        if mode == "creatorlist" {
-            // Keep an unrenderable accent command visible in names instead of dropping it.
-            return name.to_string();
-        }
     }
 
     // Exact TeX spellings use the generated Unicode map only after structural visitor cases.

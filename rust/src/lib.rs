@@ -3180,6 +3180,15 @@ mod tests {
             FieldValue::Text(note) if note == "before after"
         ));
 
+        let mut creator_accent_state = super::tex::RenderState::default();
+        creator_accent_state.unsupported = Some(crate::UnsupportedHandler::Ignore);
+        assert_eq!(
+            super::tex::render_with_state(r"\'{a b}", "creatorlist", &mut creator_accent_state,),
+            ""
+        );
+        assert_eq!(creator_accent_state.errors.len(), 1);
+        assert_eq!(creator_accent_state.errors[0].input, r"\'{a b}");
+
         let nested_accent = parse(
             r"@book{x,title={\'{\a}}}",
             Options {
