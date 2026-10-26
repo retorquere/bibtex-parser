@@ -2391,7 +2391,6 @@ impl LibraryRenderer {
                     title_case_protection: false,
                     protected_ancestor: false,
                     root_scope: false,
-                    case_protection: CaseProtection::Off,
                     mark_case_groups: false,
                     verbatim: false,
                     ..context
