@@ -1265,24 +1265,21 @@ fn clean_name_part(value: &str) -> String {
 }
 
 /// Parse one creator using the extended-name, comma-separated, or first-last convention.
-fn parse_creator(
-    input: &str,
-    entry_key: &str,
-    macro_definitions: &mut HashMap<String, Vec<tex::Node>>,
-    diagnostics: &mut tex::RenderState,
-) -> Creator {
+fn parse_creator(input: &str, entry_key: &str, session: &mut tex::RenderSession) -> Creator {
     // A fully braced name is an indivisible literal rather than a family/given name pair.
     let unwrapped = remove_outer_braces(input);
     if unwrapped != input {
         return Creator {
             name: Some(
-                tex::render_with_case_protection_and_macro_definitions(
+                tex::render_with_context(
                     &unwrapped,
-                    tex::RenderMode::Text,
-                    false,
-                    diagnostics,
-                    tex::CaseProtection::Off,
-                    macro_definitions,
+                    tex::RenderContext::field(
+                        tex::RenderMode::Text,
+                        false,
+                        tex::CaseProtection::Off,
+                        false,
+                    ),
+                    session,
                 )
                 .trim()
                 .to_string(),
@@ -1291,13 +1288,15 @@ fn parse_creator(
         };
     }
     let raw_input = input.trim();
-    let input = tex::render_with_case_protection_and_macro_definitions(
+    let input = tex::render_with_context(
         raw_input,
-        tex::RenderMode::Text,
-        false,
-        diagnostics,
-        tex::CaseProtection::Off,
-        macro_definitions,
+        tex::RenderContext::field(
+            tex::RenderMode::Text,
+            false,
+            tex::CaseProtection::Off,
+            false,
+        ),
+        session,
     )
     .trim()
     .to_string();
@@ -1346,7 +1345,7 @@ fn parse_creator(
             } else {
                 format!("@{entry_key}: ")
             };
-            diagnostics.errors.push(ParseError {
+            session.errors.push(ParseError {
                 error: format!(
                     "{key_prefix}unexpected {}-part name \"{joined}\", dropping \"{}\"",
                     parts.len(),
@@ -1390,13 +1389,15 @@ fn parse_creator(
     let words: Vec<String> = split_creator_words(raw_input)
         .iter()
         .map(|word| {
-            tex::render_with_case_protection_and_macro_definitions(
+            tex::render_with_context(
                 word,
-                tex::RenderMode::Text,
-                false,
-                diagnostics,
-                tex::CaseProtection::Off,
-                macro_definitions,
+                tex::RenderContext::field(
+                    tex::RenderMode::Text,
+                    false,
+                    tex::CaseProtection::Off,
+                    false,
+                ),
+                session,
             )
             .trim()
             .to_string()
@@ -1619,24 +1620,21 @@ fn remove_outer_braces_fields(options: &Options) -> Vec<String> {
 }
 
 /// Render an `@string` value unless raw mode is active, sharing new macros with subsequent fields.
-fn render_string_value(
-    value: &str,
-    macro_definitions: &mut HashMap<String, Vec<tex::Node>>,
-    options: &Options,
-    diagnostics: &mut tex::RenderState,
-) -> String {
+fn render_string_value(value: &str, options: &Options, session: &mut tex::RenderSession) -> String {
     // Render string values as TeX and share macro definitions with later entries; raw mode keeps
     // the parsed source without invoking the renderer.
     if options.raw {
         return value.to_string();
     }
-    tex::render_with_case_protection_and_macro_definitions(
+    tex::render_with_context(
         value,
-        tex::RenderMode::Text,
-        false,
-        diagnostics,
-        tex::CaseProtection::default(),
-        macro_definitions,
+        tex::RenderContext::field(
+            tex::RenderMode::Text,
+            false,
+            tex::CaseProtection::default(),
+            false,
+        ),
+        session,
     )
 }
 
@@ -1797,32 +1795,28 @@ where
     F: FnMut() -> Fut,
     Fut: std::future::Future<Output = ()>,
 {
-    let mut render_diagnostics = tex::RenderState::default();
-    render_diagnostics.unsupported = options.unsupported;
-    render_diagnostics.plain_urls = !options.rich_url;
+    let mut render_session = tex::RenderSession::default();
+    render_session.unsupported = options.unsupported;
+    render_session.plain_urls = !options.rich_url;
     let preambles = verbatim.preambles.clone();
-    let mut macro_definitions = HashMap::new();
     if !options.raw {
         // Process preambles first so their macro definitions are available to later strings.
         for preamble in &preambles {
-            let _ = tex::render_with_case_protection_and_macro_definitions(
+            let _ = tex::render_with_context(
                 preamble,
-                tex::RenderMode::Text,
-                false,
-                &mut render_diagnostics,
-                tex::CaseProtection::Off,
-                &mut macro_definitions,
+                tex::RenderContext::field(
+                    tex::RenderMode::Text,
+                    false,
+                    tex::CaseProtection::Off,
+                    false,
+                ),
+                &mut render_session,
             );
         }
     }
     let mut strings = verbatim.strings;
     for value in strings.values_mut() {
-        *value = render_string_value(
-            value,
-            &mut macro_definitions,
-            options,
-            &mut render_diagnostics,
-        );
+        *value = render_string_value(value, options, &mut render_session);
     }
     let remove_brace_fields = remove_outer_braces_fields(options);
     let mut entries = Vec::with_capacity(verbatim.entries.len());
@@ -1910,13 +1904,15 @@ where
                 let items = split_creators(&value)
                     .iter()
                     .map(|element| {
-                        tex::render_with_case_protection_and_macro_definitions(
+                        tex::render_with_context(
                             element,
-                            tex::RenderMode::Text,
-                            false,
-                            &mut render_diagnostics,
-                            tex::CaseProtection::Off,
-                            &mut macro_definitions,
+                            tex::RenderContext::field(
+                                tex::RenderMode::Text,
+                                false,
+                                tex::CaseProtection::Off,
+                                false,
+                            ),
+                            &mut render_session,
                         )
                         .trim()
                         .to_string()
@@ -1934,20 +1930,17 @@ where
                 };
                 let protect_title = current_mode == "title" && english;
                 // Pass 0 marks root groups and inline math before the sentence-case pass.
-                render_diagnostics.mark_case_groups = protect_title;
-                value = tex::render_with_case_protection_and_macro_definitions(
-                    &value,
+                let context = tex::RenderContext::field(
                     tex::RenderMode::from_field_mode(&current_mode),
                     current_mode == "title",
-                    &mut render_diagnostics,
                     if protect_title {
                         case_protection
                     } else {
                         tex::CaseProtection::Off
                     },
-                    &mut macro_definitions,
+                    protect_title,
                 );
-                render_diagnostics.mark_case_groups = false;
+                value = tex::render_with_context(&value, context, &mut render_session);
                 if protect_title {
                     // Sentence casing runs after TeX rendering, with original groups restored
                     // according to the configured `as-needed`, `strict`, or `off` mode.
@@ -1964,14 +1957,7 @@ where
                 "creatorlist" => FieldValue::Creators(
                     split_creators(&value)
                         .iter()
-                        .map(|name| {
-                            parse_creator(
-                                name,
-                                &entry.key,
-                                &mut macro_definitions,
-                                &mut render_diagnostics,
-                            )
-                        })
+                        .map(|name| parse_creator(name, &entry.key, &mut render_session))
                         .collect(),
                 ),
                 "literallist" => unreachable!("literal lists are parsed before rendering"),
@@ -2038,7 +2024,7 @@ where
     // Inherited fields are already typed and rendered in their parent's context, not the child's.
     apply_crossref_inheritance(entries.as_mut_slice(), options.apply_crossref);
     let mut errors = verbatim.errors;
-    errors.extend(render_diagnostics.errors);
+    errors.extend(render_session.errors);
     ParsedLibrary {
         entries,
         strings,
@@ -2829,7 +2815,7 @@ mod tests {
     #[test]
     /// Checks title rendering for `off`, `as-needed`, and `strict` case protection.
     fn tex_visitor_honors_case_protection_modes() {
-        let mut diagnostics = super::tex::RenderState::default();
+        let mut diagnostics = super::tex::RenderSession::default();
         assert_eq!(
             super::tex::render_with_case_protection(
                 "An {unusual name}",
@@ -2857,22 +2843,29 @@ mod tests {
             ),
             "An <span class=\"nocase\">unusual name</span>"
         );
-        diagnostics.mark_case_groups = true;
         assert_eq!(
-            super::tex::render_with_case_protection(
+            super::tex::render_with_context(
                 "An $n$",
-                "title",
+                super::tex::RenderContext::field(
+                    super::tex::RenderMode::Text,
+                    true,
+                    super::tex::CaseProtection::Strict,
+                    true,
+                ),
                 &mut diagnostics,
-                super::tex::CaseProtection::Strict,
             ),
             "An <case-protection>n</case-protection>"
         );
         assert_eq!(
-            super::tex::render_with_case_protection(
+            super::tex::render_with_context(
                 "{Astrophysical} {$\\rightarrow$} {Reactions}",
-                "title",
+                super::tex::RenderContext::field(
+                    super::tex::RenderMode::Text,
+                    true,
+                    super::tex::CaseProtection::Strict,
+                    true,
+                ),
                 &mut diagnostics,
-                super::tex::CaseProtection::Strict,
             ),
             "<case-protection>Astrophysical</case-protection> <case-protection>→</case-protection> <case-protection>Reactions</case-protection>"
         );
@@ -2887,11 +2880,15 @@ mod tests {
             "<span class=\"nocase\">Astrophysical</span> <span class=\"nocase\">→</span> <span class=\"nocase\">Reactions</span>"
         );
         assert_eq!(
-            super::tex::render_with_case_protection(
+            super::tex::render_with_context(
                 r"{\mbox{$\mu$}} {J}",
-                "title",
+                super::tex::RenderContext::field(
+                    super::tex::RenderMode::Text,
+                    true,
+                    super::tex::CaseProtection::Strict,
+                    true,
+                ),
                 &mut diagnostics,
-                super::tex::CaseProtection::Strict,
             ),
             "<case-protection>𝜇</case-protection> <case-protection>J</case-protection>"
         );
@@ -2924,7 +2921,6 @@ mod tests {
             ),
             "Generating Bayesian networks"
         );
-        diagnostics.mark_case_groups = false;
         let href = parse(
             r"@article{x,title={\href{https://example.test}{Home}}}",
             Options {
@@ -3187,10 +3183,10 @@ mod tests {
             FieldValue::Text(note) if note == "before after"
         ));
 
-        let mut creator_accent_state = super::tex::RenderState::default();
+        let mut creator_accent_state = super::tex::RenderSession::default();
         creator_accent_state.unsupported = Some(crate::UnsupportedHandler::Ignore);
         assert_eq!(
-            super::tex::render_with_state(r"\'{a b}", "creatorlist", &mut creator_accent_state,),
+            super::tex::render_with_session(r"\'{a b}", "creatorlist", &mut creator_accent_state,),
             ""
         );
         assert_eq!(creator_accent_state.errors.len(), 1);
@@ -3336,14 +3332,8 @@ mod tests {
             Some(FieldValue::Creators(creators)) if creators.len() == 1 && creators[0].last_name.as_deref() == Some("A\u{00a0}and\u{00a0}B")
         ));
 
-        let mut macro_definitions = std::collections::HashMap::new();
-        let mut diagnostics = super::tex::RenderState::default();
-        let narrow_space = super::parse_creator(
-            "van\u{2005}Loon, John",
-            "",
-            &mut macro_definitions,
-            &mut diagnostics,
-        );
+        let mut session = super::tex::RenderSession::default();
+        let narrow_space = super::parse_creator("van\u{2005}Loon, John", "", &mut session);
         assert_eq!(narrow_space.last_name.as_deref(), Some("van\u{2005}Loon"));
         assert_eq!(narrow_space.prefix, None);
     }
