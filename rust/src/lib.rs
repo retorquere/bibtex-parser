@@ -1277,7 +1277,6 @@ fn parse_creator(input: &str, entry_key: &str, renderer: &mut tex::LibraryRender
                         tex::RenderContext::field(
                             tex::RenderMode::Text,
                             false,
-                            tex::CaseProtection::Off,
                             false,
                         ),
                     )
@@ -1294,7 +1293,6 @@ fn parse_creator(input: &str, entry_key: &str, renderer: &mut tex::LibraryRender
             tex::RenderContext::field(
                 tex::RenderMode::Text,
                 false,
-                tex::CaseProtection::Off,
                 false,
             ),
         )
@@ -1395,7 +1393,6 @@ fn parse_creator(input: &str, entry_key: &str, renderer: &mut tex::LibraryRender
                     tex::RenderContext::field(
                         tex::RenderMode::Text,
                         false,
-                        tex::CaseProtection::Off,
                         false,
                     ),
                 )
@@ -1635,7 +1632,6 @@ fn render_string_value(
         tex::RenderContext::field(
             tex::RenderMode::Text,
             false,
-            tex::CaseProtection::default(),
             false,
         ),
     )
@@ -1798,7 +1794,16 @@ where
     F: FnMut() -> Fut,
     Fut: std::future::Future<Output = ()>,
 {
-    let mut renderer = tex::LibraryRenderer::new(options.unsupported, !options.rich_url);
+    let case_protection = match options.case_protection.as_str() {
+        "off" => tex::CaseProtection::Off,
+        "strict" => tex::CaseProtection::Strict,
+        _ => tex::CaseProtection::AsNeeded,
+    };
+    let mut renderer = tex::LibraryRenderer::new(
+        options.unsupported,
+        !options.rich_url,
+        case_protection,
+    );
     let preambles = verbatim.preambles.clone();
     if !options.raw {
         // Process preambles first so their macro definitions are available to later strings.
@@ -1808,7 +1813,6 @@ where
                 tex::RenderContext::field(
                     tex::RenderMode::Text,
                     false,
-                    tex::CaseProtection::Off,
                     false,
                 ),
             );
@@ -1910,7 +1914,6 @@ where
                                 tex::RenderContext::field(
                                     tex::RenderMode::Text,
                                     false,
-                                    tex::CaseProtection::Off,
                                     false,
                                 ),
                             )
@@ -1923,21 +1926,11 @@ where
             }
             if current_mode != "verbatim" && current_mode != "creatorlist" {
                 // Unknown policy strings retain the default as-needed behavior.
-                let case_protection = match options.case_protection.as_str() {
-                    "off" => tex::CaseProtection::Off,
-                    "strict" => tex::CaseProtection::Strict,
-                    _ => tex::CaseProtection::AsNeeded,
-                };
                 let protect_title = current_mode == "title" && english;
                 // Pass 0 marks root groups and inline math before the sentence-case pass.
                 let context = tex::RenderContext::field(
                     tex::RenderMode::from_field_mode(&current_mode),
-                    current_mode == "title",
-                    if protect_title {
-                        case_protection
-                    } else {
-                        tex::CaseProtection::Off
-                    },
+                    protect_title,
                     protect_title,
                 );
                 value = renderer.render(&value, context);
@@ -2840,25 +2833,28 @@ mod tests {
             ),
             "An <span class=\"nocase\">unusual name</span>"
         );
+        let mut strict_renderer = super::tex::LibraryRenderer::new(
+            None,
+            false,
+            super::tex::CaseProtection::Strict,
+        );
         assert_eq!(
-            diagnostics.render(
+            strict_renderer.render(
                 "An $n$",
                 super::tex::RenderContext::field(
                     super::tex::RenderMode::Text,
                     true,
-                    super::tex::CaseProtection::Strict,
                     true,
                 ),
             ),
             "An <case-protection>n</case-protection>"
         );
         assert_eq!(
-            diagnostics.render(
+            strict_renderer.render(
                 "{Astrophysical} {$\\rightarrow$} {Reactions}",
                 super::tex::RenderContext::field(
                     super::tex::RenderMode::Text,
                     true,
-                    super::tex::CaseProtection::Strict,
                     true,
                 ),
             ),
@@ -2875,12 +2871,11 @@ mod tests {
             "<span class=\"nocase\">Astrophysical</span> <span class=\"nocase\">→</span> <span class=\"nocase\">Reactions</span>"
         );
         assert_eq!(
-            diagnostics.render(
+            strict_renderer.render(
                 r"{\mbox{$\mu$}} {J}",
                 super::tex::RenderContext::field(
                     super::tex::RenderMode::Text,
                     true,
-                    super::tex::CaseProtection::Strict,
                     true,
                 ),
             ),
@@ -3184,7 +3179,6 @@ mod tests {
                 super::tex::RenderContext::field(
                     super::tex::RenderMode::Text,
                     false,
-                    super::tex::CaseProtection::Off,
                     false,
                 ),
             ),

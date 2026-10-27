@@ -982,8 +982,9 @@ pub(crate) fn print_raw(source: &str) -> String {
 
 /// Shared renderer configuration and accumulated results for one library normalization.
 ///
-/// The session carries URL and unsupported-command policies, shares macro definitions across
-/// values, and deduplicates diagnostics across fields.
+/// The renderer carries URL and unsupported-command policies, shares macro definitions across
+/// values, deduplicates diagnostics across fields, and applies its configured case policy wherever
+/// the field context enables title protection.
 #[derive(Default)]
 pub(crate) struct LibraryRenderer {
     /// First error for each unsupported construct, in the order it was encountered.
@@ -994,21 +995,28 @@ pub(crate) struct LibraryRenderer {
     pub(crate) unsupported: Option<super::UnsupportedHandler>,
     /// Whether URL commands return case-protected destinations instead of links.
     pub(crate) plain_urls: bool,
+    /// Configured policy for title content; recursive visits never modify it.
+    case_protection: CaseProtection,
     /// Macro definitions shared across preambles, strings, and fields in one library parse.
     macro_definitions: HashMap<String, Vec<Node>>,
 }
 
 impl LibraryRenderer {
-    /// Create a library-scoped renderer with the configured output policies.
-    pub(crate) fn new(unsupported: Option<super::UnsupportedHandler>, plain_urls: bool) -> Self {
+    /// Create a library-scoped renderer with its output and case-protection policies.
+    pub(crate) fn new(
+        unsupported: Option<super::UnsupportedHandler>,
+        plain_urls: bool,
+        case_protection: CaseProtection,
+    ) -> Self {
         Self {
             unsupported,
             plain_urls,
+            case_protection,
             ..Self::default()
         }
     }
 
-    /// Parse and render one field while retaining macro definitions and diagnostics for the library.
+    /// Parse and render one field using the renderer's configured case-protection policy.
     pub(crate) fn render(&mut self, source: &str, context: RenderContext) -> String {
         let mut parser =
             Parser::new_with_macro_definitions(source, std::mem::take(&mut self.macro_definitions));
@@ -1099,12 +1107,10 @@ impl RenderMode {
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 /// Rendering inputs inherited by one field and adjusted for nested nodes.
 pub(crate) struct RenderContext {
-    /// Active text, rich-text, or math behavior.
+    /// text, rich-text, or math behavior.
     mode: RenderMode,
     /// Enables title-specific case protection independently of the render mode.
     title_case_protection: bool,
-    /// Policy used when eligible title content needs case preservation.
-    case_protection: CaseProtection,
     /// Whether eligible title groups should be marked for the later sentence-case pass.
     mark_case_groups: bool,
     /// Prevents nested nodes from receiving duplicate case-protection wrappers.
@@ -1123,13 +1129,11 @@ impl RenderContext {
     pub(crate) fn field(
         mode: RenderMode,
         title_case_protection: bool,
-        case_protection: CaseProtection,
         mark_case_groups: bool,
     ) -> Self {
         Self {
             mode,
             title_case_protection,
-            case_protection,
             mark_case_groups,
             protected_ancestor: false,
             root_scope: true,
@@ -1141,7 +1145,7 @@ impl RenderContext {
 /// Parse, visit, and trim a TeX fragment using its field rendering mode.
 ///
 /// This test-only convenience function discards unsupported-construct diagnostics; production
-/// normalization retains the shared session so errors reach `ParsedLibrary.errors`.
+/// normalization retains the renderer so errors reach `ParsedLibrary.errors`.
 /// `source` is the raw field value and `mode` is a field mode such as `title` or `richtext`.
 #[cfg(test)]
 pub(crate) fn render(source: &str, mode: &str) -> String {
@@ -1161,14 +1165,10 @@ impl LibraryRenderer {
         mode: &str,
         case_protection: CaseProtection,
     ) -> String {
+        self.case_protection = case_protection;
         self.render(
             source,
-            RenderContext::field(
-                RenderMode::from_field_mode(mode),
-                mode == "title",
-                case_protection,
-                false,
-            ),
+            RenderContext::field(RenderMode::from_field_mode(mode), mode == "title", false),
         )
         .trim()
         .to_string()
@@ -1241,7 +1241,7 @@ impl LibraryRenderer {
             if context.mark_case_groups && protect_group {
                 rendered = format!("<case-protection>{rendered}</case-protection>");
             } else if protect_group
-                && context.case_protection.enabled()
+                && self.case_protection.enabled()
                 && needs_case_protection(&rendered)
             {
                 rendered = format!("<span class=\"nocase\">{rendered}</span>");
@@ -2126,10 +2126,10 @@ fn quoted_ranges(characters: &[char]) -> Vec<std::ops::Range<usize>> {
     ranges
 }
 
-/// Render one AST node using its context and shared session.
+/// Render one AST node using its context and library renderer.
 ///
 /// The context controls text/math/rich-text behavior, verbatim conversion, and title protection;
-/// the session receives unsupported-command diagnostics and supplies their fallback policy.
+/// the renderer receives unsupported-command diagnostics and supplies their fallback policy.
 impl LibraryRenderer {
     fn render_node(&mut self, node: &Node, context: RenderContext) -> String {
         let mode = context.mode;
@@ -2194,7 +2194,7 @@ impl LibraryRenderer {
                     format!("<case-protection>{rendered}</case-protection>")
                 } else if context.title_case_protection
                     && !context.protected_ancestor
-                    && context.case_protection.enabled()
+                    && self.case_protection.enabled()
                     && needs_case_protection(&rendered)
                 {
                     format!("<span class=\"nocase\">{rendered}</span>")
@@ -2229,7 +2229,7 @@ impl LibraryRenderer {
                 if context.mark_case_groups && protect_argument {
                     format!("<case-protection>{rendered}</case-protection>")
                 } else if protect_argument
-                    && context.case_protection.enabled()
+                    && self.case_protection.enabled()
                     && needs_case_protection(&rendered)
                 {
                     format!("<span class=\"nocase\">{rendered}</span>")
@@ -2279,7 +2279,7 @@ fn render_text(text: &str, mode: RenderMode, verbatim: bool) -> String {
 
 /// Render one parsed macro argument, returning empty text when it is absent.
 ///
-/// `arguments` and `index` select the argument; the session and context are forwarded to its
+/// `arguments` and `index` select the argument; the renderer and context are forwarded to its
 /// child renderer. Title-protection policy is inherited, but arguments are not root scope; the
 /// owning macro inspects retained groups when applying root-level protection.
 impl LibraryRenderer {
@@ -2334,7 +2334,7 @@ fn encode_url(url: &str, mode: RenderMode) -> String {
 /// Render a macro using structural cases before exact generated Unicode mappings.
 ///
 /// `name` is the TeX command without its escape token; `arguments` are parser-consumed child
-/// lists. The context selects text/math/rich-text behavior, and the session collects unsupported
+/// lists. The context selects text/math/rich-text behavior, and the renderer collects unsupported
 /// commands. Explicit visitor cases handle layout and markup; remaining commands use exact mode
 /// mappings, combining marks, then the configured unsupported fallback.
 impl LibraryRenderer {
@@ -2345,7 +2345,7 @@ impl LibraryRenderer {
         context: RenderContext,
     ) -> String {
         let mode = context.mode;
-        let case_protection = context.case_protection;
+        let case_protection = self.case_protection;
         match name {
             "discretionary" => {
                 // Bibliographic text has no line wrapping, so use TeX's unbroken (third) alternative.
@@ -2496,7 +2496,7 @@ impl LibraryRenderer {
                 if protected_root_argument && context.mark_case_groups {
                     content = format!("<case-protection>{content}</case-protection>");
                 } else if protected_root_argument
-                    && case_protection.enabled()
+                    && self.case_protection.enabled()
                     && needs_case_protection(&content)
                 {
                     content = format!("<span class=\"nocase\">{content}</span>");
@@ -2664,7 +2664,7 @@ fn combining_argument(arguments: &[Vec<Node>], mark: &str, mode: RenderMode) -> 
 /// Render supported environment nodes or report unsupported ones without visiting their bodies.
 ///
 /// `name` and `content` identify the parsed environment; context mode controls rich-text wrappers;
-/// the session collects unsupported environments. Title flags are forwarded to supported
+/// the renderer collects unsupported environments. Title flags are forwarded to supported
 /// descendants. Leading/trailing whitespace, paragraph breaks, and `\\par` are trimmed before
 /// known content is rendered. Unknown environments are reported as one construct and preserved as
 /// TeX, so nested body macros do not create extra state. At field root, a supported
@@ -2732,7 +2732,7 @@ impl LibraryRenderer {
 /// Render a superscript or subscript argument as Unicode when every character has a mapping.
 ///
 /// `arguments` and `index` select the parsed value; `script_macro` is `^` or `_`; context is
-/// carried into child rendering and the session collects unsupported commands. If a character
+/// carried into child rendering and the renderer collects unsupported commands. If a character
 /// has no script mapping, the whole argument falls back to an HTML `sup`/`sub` wrapper.
 impl LibraryRenderer {
     fn render_script_argument(
