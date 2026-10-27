@@ -1,0 +1,19 @@
+comments: []
+entries:
+  - fields:
+      title: >-
+        Normal and <i>italics and <b>bold <i>and italics</i> and bold</b> and
+        normal</i>
+    input: |-
+      @article{test, title =
+            "Normal and \em italics and \begin{bf}bold \em and italics\end{bf} {\bf and bold} and normal"
+          }
+    key: test
+    mode:
+      title: title
+    type: article
+errors: []
+jabref:
+  root: []
+preambles: []
+strings: {}

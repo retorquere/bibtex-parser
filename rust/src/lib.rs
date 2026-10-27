@@ -2696,6 +2696,48 @@ mod tests {
     }
 
     #[test]
+    /// Checks bold declarations and formatting environments apply only within their enclosing scope.
+    fn tex_formatting_environments_scope_declarations() {
+        for mode in ["literal", "richtext", "title"] {
+            assert_eq!(
+                super::tex::render(r"normal \bf bold text", mode),
+                "normal <b>bold text</b>"
+            );
+            assert_eq!(
+                super::tex::render(r"normal {\bf bold text} normal", mode),
+                "normal <b>bold text</b> normal"
+            );
+            for (name, expected) in [
+                ("em", "<i>inside</i>"),
+                ("it", "<i>inside</i>"),
+                ("sl", "<i>inside</i>"),
+                ("bf", "<b>inside</b>"),
+                ("sc", "<span style=\"font-variant:small-caps;\">inside</span>"),
+                ("tt", "<code>inside</code>"),
+            ] {
+                assert_eq!(
+                    super::tex::render(&format!(r"\begin{{{name}}}inside\end{{{name}}} normal"), mode),
+                    format!("{expected} normal"),
+                    "{name} in {mode}"
+                );
+            }
+            assert_eq!(
+                super::tex::render(r"\begin{bf}bold \em and italics\end{bf} normal", mode),
+                "<b>bold <i>and italics</i></b> normal"
+            );
+        }
+        let parsed = parse(
+            r#"@article{test, title = "Normal and \em italics and \begin{bf}bold \em and italics\end{bf} {\bf and bold} and normal"}"#,
+            Options::default(),
+        );
+        assert!(parsed.errors.is_empty(), "{:?}", parsed.errors);
+        assert_eq!(
+            parsed.entries[0].fields["title"],
+            FieldValue::Text("Normal and <i>italics and <b>bold <i>and italics</i> and bold</b> and normal</i>".into())
+        );
+    }
+
+    #[test]
     /// Checks declarations, single-token style arguments, lists, and quotes in their TeX modes.
     fn tex_visitor_renders_declarations_lists_and_quotes() {
         assert_eq!(

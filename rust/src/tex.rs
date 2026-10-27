@@ -2691,9 +2691,20 @@ impl LibraryRenderer {
         while end > start && trims_environment_edge(&content[end - 1]) {
             end -= 1;
         }
+        let mut markup = Markup::default();
         match name {
-            "quotation" | "itemize" | "em" => {
-                // The `em` environment emphasizes its body in every field mode.
+            // Formatting environments share declaration semantics, but end their state at the close.
+            _ if markup.activate(name) => {
+                let body = self.render_nodes(
+                    &content[start..end],
+                    RenderContext {
+                        verbatim: false,
+                        ..context
+                    },
+                );
+                markup.wrap(body.trim().to_string())
+            }
+            "quotation" | "itemize" => {
                 let body = self
                     .render_nodes(
                         &content[start..end],
@@ -2705,15 +2716,13 @@ impl LibraryRenderer {
                     .trim()
                     .to_string();
                 if mode != RenderMode::RichText {
-                    if name == "em" {
-                        return format!("<i>{body}</i>");
-                    }
                     return body;
                 }
                 match name {
                     "quotation" => format!("<blockquote>{body}</blockquote>"),
                     "itemize" => format!("<ul>{body}</ul>"),
-                    _ => format!("<i>{body}</i>"),
+                    // The enclosing arm admits only these two environment names.
+                    _ => unreachable!("expected quotation or itemize environment"),
                 }
             }
             // Do not recurse into unknown environments: their complete source is one unsupported node.
