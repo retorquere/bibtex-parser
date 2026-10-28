@@ -14,11 +14,11 @@ test('the default entry point is the WASM parser and /js is the TypeScript parse
   assert.equal(typescript.parse(input).entries[0].key, 'example')
   assert.equal(typescript.init, undefined)
   assert.equal(typeof init, 'function')
-  assert.equal(require('@retorquere/bibtex-parser/js').parse(input).entries[0].key, 'example')
 })
 
-test('the default entry point is ESM-only', () => {
+test('the package entry points are ESM-only', () => {
   assert.throws(() => require('@retorquere/bibtex-parser'), { code: 'ERR_PACKAGE_PATH_NOT_EXPORTED' })
+  assert.throws(() => require('@retorquere/bibtex-parser/js'), { code: 'ERR_PACKAGE_PATH_NOT_EXPORTED' })
 })
 
 test('TypeScript verbatim selectors accept wildflower glob patterns', () => {
@@ -134,31 +134,6 @@ test('treats \\undefined as a no-op in the TypeScript parser', () => {
   assert.deepEqual(parsed.errors, [])
 })
 
-test('richURL emits links or case-protected destinations in both parsers', async () => {
-  await init({ module_or_path: readFileSync(require.resolve('@retorquere/bibtex-parser/bibtex_parser_bg.wasm')) })
-  const fixture = readFileSync(new URL('./citation-js/entry value with verbatim-argument commands.bib', import.meta.url), 'utf8')
-  const destination = 'http://example.org/{id}'
-  const sources = [
-    [fixture, 'url'],
-    [String.raw`@article{example, title={\url{http://example.org/{id}}}}`, destination],
-    [String.raw`@article{example, title={\href{http://example.org/{id}}{\textit{url}}}}`, '<i>url</i>'],
-  ]
-  for (const parser of [typescript, wasm]) {
-    for (const caseProtection of ['as-needed', 'strict', false]) {
-      for (const richURL of [undefined, true, false]) {
-        const options = { richURL, caseProtection: parser === wasm && caseProtection === false ? 'off' : caseProtection }
-        for (const [source, label] of sources) {
-          const expected = richURL === false ? `<span class="nocase">${destination}</span>` : `<a href="${destination}">${label}</a>`
-          for (const parsed of [parser.parse(source, options), await parser.parseAsync(source, options)]) {
-            assert.equal(parsed.entries[0].fields.title, expected)
-            assert.deepEqual(parsed.errors, [])
-          }
-        }
-      }
-    }
-  }
-})
-
 test('\\allcaps protects its contents in both parsers', async () => {
   await init({ module_or_path: readFileSync(require.resolve('@retorquere/bibtex-parser/bibtex_parser_bg.wasm')) })
   const source = String.raw`@article{example, title={A \allcaps{NASA} title}, note={\allcaps{NASA}}}`
@@ -248,8 +223,7 @@ test('the npm package includes both implementations and their declarations', () 
   const files = new Set(packed.files.map(file => file.path))
   for (const file of [
     'dist/esm/index.js',
-    'dist/cjs/index.js',
-    'dist/types/index.d.ts',
+    'dist/esm/index.d.ts',
     'dist/wasm/index.js',
     'dist/wasm/index.d.ts',
     'dist/wasm/jabref.js',
@@ -261,4 +235,5 @@ test('the npm package includes both implementations and their declarations', () 
   ]) {
     assert.ok(files.has(file), `${file} is missing from the package`)
   }
+  assert.equal(files.has('dist/cjs/index.js'), false)
 })

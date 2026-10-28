@@ -12,7 +12,7 @@ Documentation is available at [https://retorque.re/bibtex-parser/](https://retor
 
 ## Choosing a Parser
 
-The Rust/WebAssembly implementation is the default export (ESM only, see below). The pure TypeScript implementation, which also supports CommonJS and needs no initialization, is available under `/js`:
+The Rust/WebAssembly implementation is the default export (ESM only, see below). The pure TypeScript implementation, which also needs no initialization, is available as an ESM-only `/js` subpath:
 
 ```js
 import { parse } from '@retorquere/bibtex-parser/js'

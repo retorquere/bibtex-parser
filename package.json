@@ -12,12 +12,8 @@
     },
     "./js": {
       "import": {
-        "types": "./dist/types/index.d.ts",
+        "types": "./dist/esm/index.d.ts",
         "default": "./dist/esm/index.js"
-      },
-      "require": {
-        "types": "./dist/types/index.d.ts",
-        "default": "./dist/cjs/index.js"
       }
     },
     "./bibtex_parser_bg.wasm": "./dist/wasm/bibtex_parser_bg.wasm"
@@ -28,10 +24,9 @@
     "lint": "dprint fmt js/*.ts && dprint check js/*.ts",
     "prestart": "npm run lint",
     "start": "npm run build",
-    "build:esm": "rm -rf dist/esm && esbuild js/*.ts --outdir=dist/esm --format=esm --sourcemap --target=es2020 --loader:.ts=ts",
-    "build:cjs": "rm -rf dist/cjs && esbuild js/*.ts --outdir=dist/cjs --format=cjs --sourcemap --target=node16 --loader:.ts=ts",
-    "build:types": "rm -rf dist/esm dist/types && tsc -d -p js/tsconfig.esm.json",
-    "build:ts": "npm run build:types && npm run build:cjs && npm run build:esm",
+    "build:esm": "rm -rf dist/esm dist/types dist/cjs && esbuild js/*.ts --outdir=dist/esm --format=esm --sourcemap --target=es2020 --loader:.ts=ts",
+    "build:types": "tsc --emitDeclarationOnly -d -p js/tsconfig.esm.json",
+    "build:ts": "npm run build:esm && npm run build:types",
     "build:wasm": "node rust/build-wasm.mjs",
     "prebuild": "rm -rf dist && mkdir -p dist/data && cp data/*.json dist/data && ./build/abbr.py && ./build/prepositions.py",
     "build": "npm run build:wasm",
