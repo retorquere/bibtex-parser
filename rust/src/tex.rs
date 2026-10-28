@@ -13,8 +13,18 @@ use url::Url;
 /// Locate the literal contents of `\verb` or `\path` starting at a backslash.
 ///
 /// The character immediately after the name must be non-alphanumeric. It closes its own
-/// literal, except that `\path{...}` closes on `}`. The first closing delimiter wins:
-/// braces do not nest, backslashes do not escape delimiters, and `*` is a delimiter.
+/// literal, except that braces nest in `\path{...}` and a backslash protects the following
+/// character from affecting that nesting. For other delimiters, the first closing delimiter wins;
+/// backslashes do not escape delimiters, and `*` is a delimiter.
+/// The returned character-index range excludes both delimiters; `range.end + 1` is the
+/// first character after the command. Missing delimiters return `None` without consuming input.
+///
+/// Locate the literal contents of `\verb` or `\path` starting at a backslash.
+///
+/// The character immediately after the name must be non-alphanumeric. It closes its own
+/// literal, except that braces nest in `\path{...}` and a backslash protects the following
+/// character from affecting that nesting. For other delimiters, the first closing delimiter wins;
+/// backslashes do not escape delimiters, and `*` is a delimiter.
 /// The returned character-index range excludes both delimiters; `range.end + 1` is the
 /// first character after the command. Missing delimiters return `None` without consuming input.
 ///
@@ -31,16 +41,31 @@ pub(crate) fn verbatim_range(chars: &[char], start: usize) -> Option<std::ops::R
     if delimiter.is_alphanumeric() {
         return None;
     }
-    let closing_delimiter = if path && delimiter == '{' {
-        '}'
-    } else {
-        delimiter
-    };
     let content_start = delimiter_position + 1;
-    let content_end = content_start
-        + chars[content_start..]
-            .iter()
-            .position(|character| *character == closing_delimiter)?;
+    let content_end = if path && delimiter == '{' {
+        let mut depth = 1usize;
+        let mut position = content_start;
+        while let Some(character) = chars.get(position) {
+            match character {
+                '{' => depth += 1,
+                '}' => {
+                    depth -= 1;
+                    if depth == 0 {
+                        break;
+                    }
+                }
+                '\\' => position += 1,
+                _ => {}
+            }
+            position += 1;
+        }
+        (depth == 0).then_some(position)?
+    } else {
+        content_start
+            + chars[content_start..]
+                .iter()
+                .position(|character| *character == delimiter)?
+    };
     Some(content_start..content_end)
 }
 
@@ -153,10 +178,7 @@ impl Parser {
 
     /// Initialize a scalar-indexed parser with reusable macros and UTF-16 source-boundary metadata.
     /// Offsets start at zero; lines and columns start at one, and columns count UTF-16 code units.
-    fn new_with_macro_definitions(
-        source: &str,
-        macro_definitions: HashMap<String, Vec<Node>>,
-    ) -> Self {
+    fn new_with_macro_definitions( source: &str, macro_definitions: HashMap<String, Vec<Node>>) -> Self {
         let chars: Vec<char> = source.chars().collect();
         let mut positions = Vec::with_capacity(chars.len() + 1);
         let (mut offset, mut line, mut column) = (0, 1, 1);
@@ -165,6 +187,7 @@ impl Parser {
             line,
             column,
         });
+        // map position for each character in the source string
         for ch in &chars {
             offset += ch.len_utf16();
             if *ch == '\n' {

@@ -2305,7 +2305,8 @@ mod tests {
             (r#"{\verb%literal $ { %}"#, "literal $ {"),
             (r#"{before\verb||after}"#, "beforeafter"),
             (r#"{\\verb|ordinary|}"#, "<br>verb|ordinary|"),
-            (r#"{before \path{a{b} after}"#, "before a{b after"),
+            (r#"{before \path{a{b} after}}"#, "before a{b} after"),
+            (r#"{\path{a\{b\} c}}"#, r#"a\{b\} c"#),
             (
                 r#"{\path{C:\raw_%$#file} after}"#,
                 r#"C:\raw_%$#file after"#,
