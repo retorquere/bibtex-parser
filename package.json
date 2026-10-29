@@ -35,6 +35,7 @@
     "pretest": "npm start",
     "test": "npm run test:wasm",
     "test:wasm": "node --test test/wasm.js test/rust-wasm-parity.test.js",
+    "pretest:js": "npm run build:ts",
     "test:js": "node test/js.js",
     "pretest:all": "npm run build:all",
     "test:all": "npm run test:wasm && npm run test:js && node --test test/package.test.js",
