@@ -8,6 +8,7 @@ use crate::tokenizer::{
     sentence_tokens, token_text,
 };
 use std::collections::{HashMap, HashSet};
+use std::sync::OnceLock;
 use url::Url;
 
 /// Locate the literal contents of `\verb` or `\path` starting at a backslash.
@@ -159,6 +160,7 @@ struct UnicodeMapping {
 }
 
 include!("unicode_tables.rs");
+static DECODED_UNICODE_MAPPINGS: OnceLock<Vec<UnicodeMapping>> = OnceLock::new();
 
 /// Recursive-descent parser state for one TeX fragment.
 struct Parser {
@@ -2818,12 +2820,115 @@ fn script_text(value: &str, script_macro: &str) -> Option<String> {
         .collect()
 }
 
-/// Binary-search the compile-generated, byte-sorted Unicode mapping table.
+/// Inflate and decode the embedded table once, retaining borrowed strings for the process lifetime.
+fn decode_unicode_mappings() -> Vec<UnicodeMapping> {
+    let bytes = miniz_oxide::inflate::decompress_to_vec(UNICODE_TABLES_COMPRESSED)
+        .expect("generated Unicode table must be a valid raw DEFLATE stream");
+    let source: &'static [u8] = Box::leak(bytes.into_boxed_slice());
+    parse_unicode_mappings(source).expect("generated Unicode table must use the packed format")
+}
+
+/// Decode sorted length-prefixed rows while preserving each nullable text and math field.
+fn parse_unicode_mappings(source: &'static [u8]) -> Result<Vec<UnicodeMapping>, &'static str> {
+    let mut position = 0;
+    let count = read_varint(source, &mut position)?;
+    if count > source.len() / 4 {
+        return Err("Unicode mapping count exceeds the packed data size");
+    }
+
+    let mut mappings = Vec::with_capacity(count);
+    for _ in 0..count {
+        let key = read_field(source, &mut position)?.ok_or("Unicode mapping key is missing")?;
+        let text = read_field(source, &mut position)?;
+        let math = read_field(source, &mut position)?;
+        let combining = read_field(source, &mut position)?;
+        mappings.push(UnicodeMapping {
+            key,
+            text,
+            math,
+            combining,
+        });
+    }
+
+    if position != source.len() {
+        return Err("Unicode mapping data has trailing bytes");
+    }
+    // Binary search requires keys to remain unique and bytewise sorted.
+    if mappings.windows(2).any(|pair| pair[0].key >= pair[1].key) {
+        return Err("Unicode mapping keys are not strictly sorted");
+    }
+    Ok(mappings)
+}
+
+/// Read a nullable UTF-8 field; zero means absent, while one represents an empty string.
+fn read_field(
+    source: &'static [u8],
+    position: &mut usize,
+) -> Result<Option<&'static str>, &'static str> {
+    let encoded_length = read_varint(source, position)?;
+    let Some(length) = encoded_length.checked_sub(1) else {
+        return Ok(None);
+    };
+    let end = position
+        .checked_add(length)
+        .ok_or("Unicode field length overflows the input size")?;
+    let bytes = source
+        .get(*position..end)
+        .ok_or("Unicode field extends past the packed data")?;
+    *position = end;
+    let field = std::str::from_utf8(bytes).map_err(|_| "Unicode field is not valid UTF-8")?;
+    Ok(Some(field))
+}
+
+/// Read one unsigned LEB128 value and reject truncated or overflowing encodings.
+fn read_varint(bytes: &[u8], position: &mut usize) -> Result<usize, &'static str> {
+    let mut value = 0usize;
+    let mut shift = 0u32;
+    loop {
+        let byte = *bytes
+            .get(*position)
+            .ok_or("Unicode table varint is truncated")?;
+        *position += 1;
+        let part = usize::from(byte & 0x7f);
+        if shift >= usize::BITS || part > (usize::MAX >> shift) {
+            return Err("Unicode table varint overflows usize");
+        }
+        value |= part << shift;
+        if byte & 0x80 == 0 {
+            return Ok(value);
+        }
+        shift += 7;
+    }
+}
+
+/// Binary-search the once-decoded, byte-sorted Unicode mapping table.
 fn unicode_mapping(latex: &str) -> Option<&'static UnicodeMapping> {
-    UNICODE_MAPPINGS
+    let mappings = DECODED_UNICODE_MAPPINGS.get_or_init(decode_unicode_mappings);
+    mappings
         .binary_search_by_key(&latex, |mapping| mapping.key)
         .ok()
-        .map(|index| &UNICODE_MAPPINGS[index])
+        .map(|index| &mappings[index])
+}
+
+#[cfg(test)]
+mod unicode_table_tests {
+    use super::parse_unicode_mappings;
+
+    /// Verify that absent, empty, shared, and math-only values survive packed decoding.
+    #[test]
+    fn packed_rows_preserve_nullable_mode_values() {
+        let math_only = parse_unicode_mappings(&[1, 2, b'k', 0, 2, b'm', 0]).unwrap();
+        assert_eq!(math_only[0].text, None);
+        assert_eq!(math_only[0].math, Some("m"));
+
+        let shared = parse_unicode_mappings(&[1, 2, b'k', 2, b'x', 2, b'x', 0]).unwrap();
+        assert_eq!(shared[0].text, Some("x"));
+        assert_eq!(shared[0].math, Some("x"));
+
+        let empty = parse_unicode_mappings(&[1, 2, b'k', 1, 0, 0]).unwrap();
+        assert_eq!(empty[0].text, Some(""));
+        assert_eq!(empty[0].math, None);
+    }
 }
 
 /// Reconstruct a macro and its braced arguments for exact Unicode-table lookup.

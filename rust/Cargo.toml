@@ -18,6 +18,7 @@ crate-type = ["cdylib", "rlib"]
 
 [dependencies]
 futures-util = { version = "0.3", default-features = false, features = ["std"] }
+miniz_oxide = { version = "0.9.1", default-features = false, features = ["with-alloc"] }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 unicode-general-category = "1.1"
