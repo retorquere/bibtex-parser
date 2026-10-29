@@ -1173,14 +1173,17 @@ impl RenderContext {
 #[cfg(test)]
 pub(crate) fn render(source: &str, mode: &str) -> String {
     let mut renderer = LibraryRenderer::default();
-    collapse_markup(&renderer.render_with_case_protection(source, mode, CaseProtection::default()))
+    finalize_markup(
+        &renderer.render_with_case_protection(source, mode, CaseProtection::default()),
+        true,
+    )
 }
 
 impl LibraryRenderer {
-    /// Render one field with an explicit case-protection mode.
+    /// Render one field to internal markup with an explicit case-protection mode.
     ///
     /// `AsNeeded` is the default; callers can disable protection or require it for every marked group
-    /// without changing the rest of the render pipeline.
+    /// without changing the rest of the render pipeline. HTML conversion is deferred to delivery.
     #[cfg(test)]
     pub(crate) fn render_with_case_protection(
         &mut self,
@@ -1267,7 +1270,7 @@ impl LibraryRenderer {
                 && self.case_protection.enabled()
                 && needs_case_protection(&rendered)
             {
-                rendered = format!("<span class=\"nocase\">{rendered}</span>");
+                rendered = format!("<nocase>{rendered}</nocase>");
             }
             output.push_str(&rendered);
         }
@@ -1275,22 +1278,18 @@ impl LibraryRenderer {
     }
 }
 
-/// Merge adjacent equal markup spans separated only by whitespace.
-pub(crate) fn collapse_markup(text: &str) -> String {
-    let output = collapse_markup_spans(text.to_string());
-    collapse_markup_pairs(&output, "<span class=\"nocase\">", "</span>")
-}
-
-/// Merge adjacent identical formatting wrappers until no merge exposes another eligible pair.
+/// Merge adjacent equal formatting and case-protection spans until the result is stable.
 /// Whitespace between equal wrappers is retained inside the merged span.
-fn collapse_markup_spans(mut output: String) -> String {
+pub(crate) fn collapse_markup(text: &str) -> String {
+    let mut output = text.to_string();
     let wrappers = [
         ("<i>", "</i>"),
         ("<b>", "</b>"),
         ("<code>", "</code>"),
-        ("<span style=\"font-variant:small-caps;\">", "</span>"),
+        ("<smallcaps>", "</smallcaps>"),
+        ("<nocase>", "</nocase>"),
     ];
-    // Adjacent siblings receive separate wrappers above; collapse equal neighbors into one span.
+    // Merging protection can expose adjacent formatting, and vice versa, so repeat all wrappers.
     loop {
         let collapsed = wrappers.iter().fold(output.clone(), |text, (open, close)| {
             collapse_markup_pairs(&text, open, close)
@@ -1301,6 +1300,21 @@ fn collapse_markup_spans(mut output: String) -> String {
         output = collapsed;
     }
     output
+}
+
+/// Optionally collapse internal markup, then emit HTML spans at the delivery boundary.
+/// Distinct closing tags must survive normalization so different span kinds cannot merge.
+pub(crate) fn finalize_markup(text: &str, collapse: bool) -> String {
+    let output = if collapse {
+        collapse_markup(text)
+    } else {
+        text.to_string()
+    };
+    output
+        .replace("<nocase>", "<span class=\"nocase\">")
+        .replace("</nocase>", "</span>")
+        .replace("<smallcaps>", "<span style=\"font-variant:small-caps;\">")
+        .replace("</smallcaps>", "</span>")
 }
 
 /// Remove matching close/open tag pairs separated only by whitespace, preserving all other text.
@@ -1388,7 +1402,7 @@ impl Markup {
             text = format!("<b>{text}</b>");
         }
         if self.small_caps {
-            text = format!("<span style=\"font-variant:small-caps;\">{text}</span>");
+            text = format!("<smallcaps>{text}</smallcaps>");
         }
         if self.code {
             text = format!("<code>{text}</code>");
@@ -1798,9 +1812,9 @@ pub(crate) fn sentence_case_title(
                 output.push_str(original);
             } else {
                 // Strict and as-needed preserve this group through later consumer casing.
-                output.push_str("<span class=\"nocase\">");
+                output.push_str("<nocase>");
                 output.push_str(original);
-                output.push_str("</span>");
+                output.push_str("</nocase>");
             }
         } else if case_protection == CaseProtection::AsNeeded {
             // No protection is needed, so retain the source group's spelling.
@@ -2034,14 +2048,17 @@ fn visible_case_text(text: &str, omit_nocase: bool) -> String {
         {
             let end = index + relative_end + 1;
             let tag: String = characters[index..end].iter().collect();
-            if tag.starts_with("<case-protection>") || tag.starts_with("<span class=\"nocase\"") {
+            if tag == "<case-protection>"
+                || tag == "<nocase>"
+                || tag.starts_with("<span class=\"nocase\"")
+            {
                 // Begin hiding a protected range from guess-mode's visible text.
-                preserve_depth = 1;
+                preserve_depth += 1;
             } else if preserve_depth > 0 && tag.starts_with("<span") {
                 // Count nested spans so their closing tags cannot end the outer protected range.
                 preserve_depth += 1;
             } else if preserve_depth > 0
-                && (tag.starts_with("</span") || tag.starts_with("</case-protection>"))
+                && (tag.starts_with("</span") || tag == "</case-protection>" || tag == "</nocase>")
             {
                 preserve_depth -= 1;
                 if preserve_depth == 0 && omit_nocase && omitted_space {
@@ -2065,7 +2082,7 @@ fn visible_case_text(text: &str, omit_nocase: bool) -> String {
     visible
 }
 
-/// Find text ranges protected by generated `nocase` spans, including nested span elements.
+/// Find protected ranges in internal tags or supplied HTML spans, balancing nested protection.
 fn nocase_ranges(characters: &[char]) -> Vec<std::ops::Range<usize>> {
     let mut ranges = Vec::new();
     let (mut index, mut depth, mut start) = (0, 0usize, None);
@@ -2077,18 +2094,20 @@ fn nocase_ranges(characters: &[char]) -> Vec<std::ops::Range<usize>> {
         {
             let end = index + relative_end + 1;
             let tag: String = characters[index..end].iter().collect();
-            if depth == 0
-                && (tag.starts_with("<case-protection>")
-                    || tag.starts_with("<span class=\"nocase\""))
+            if tag == "<case-protection>"
+                || tag == "<nocase>"
+                || tag.starts_with("<span class=\"nocase\"")
             {
-                // Record only the outer protected range; nested spans stay inside it.
-                depth = 1;
-                start = Some(end);
+                // Record only the outer range; nested protection must not end it prematurely.
+                if depth == 0 {
+                    start = Some(end);
+                }
+                depth += 1;
             } else if depth > 0 && tag.starts_with("<span") {
                 // Balance nested markup before accepting a closing tag as the range end.
                 depth += 1;
             } else if depth > 0
-                && (tag.starts_with("</span") || tag.starts_with("</case-protection>"))
+                && (tag.starts_with("</span") || tag == "</case-protection>" || tag == "</nocase>")
             {
                 depth -= 1;
                 if depth == 0
@@ -2220,7 +2239,7 @@ impl LibraryRenderer {
                     && self.case_protection.enabled()
                     && needs_case_protection(&rendered)
                 {
-                    format!("<span class=\"nocase\">{rendered}</span>")
+                    format!("<nocase>{rendered}</nocase>")
                 } else {
                     rendered
                 }
@@ -2255,7 +2274,7 @@ impl LibraryRenderer {
                     && self.case_protection.enabled()
                     && needs_case_protection(&rendered)
                 {
-                    format!("<span class=\"nocase\">{rendered}</span>")
+                    format!("<nocase>{rendered}</nocase>")
                 } else {
                     rendered
                 }
@@ -2380,7 +2399,7 @@ impl LibraryRenderer {
                 return if context.title_case_protection && context.mark_case_groups {
                     format!("<case-protection>{content}</case-protection>")
                 } else if context.title_case_protection && case_protection.enabled() {
-                    format!("<span class=\"nocase\">{content}</span>")
+                    format!("<nocase>{content}</nocase>")
                 } else {
                     content
                 };
@@ -2399,7 +2418,7 @@ impl LibraryRenderer {
                 // URL content is rendered verbatim so query strings and tildes are not transformed.
                 let url = encode_url(&serialize_verbatim_argument(arguments, 0), mode);
                 return if self.plain_urls {
-                    format!("<span class=\"nocase\">{url}</span>")
+                    format!("<nocase>{url}</nocase>")
                 } else {
                     format!("<a href=\"{url}\">{url}</a>")
                 };
@@ -2408,7 +2427,7 @@ impl LibraryRenderer {
                 // The first href argument is the destination; only the label receives normal rendering.
                 let url = encode_url(&serialize_verbatim_argument(arguments, 0), mode);
                 if self.plain_urls {
-                    return format!("<span class=\"nocase\">{url}</span>");
+                    return format!("<nocase>{url}</nocase>");
                 }
                 let label_context = RenderContext {
                     title_case_protection: false,
@@ -2445,7 +2464,7 @@ impl LibraryRenderer {
                 return if content.is_empty() {
                     String::new()
                 } else {
-                    format!("<span style=\"font-variant:small-caps;\">{content}</span>")
+                    format!("<smallcaps>{content}</smallcaps>")
                 };
             }
             "texttt" => {
@@ -2522,7 +2541,7 @@ impl LibraryRenderer {
                     && self.case_protection.enabled()
                     && needs_case_protection(&content)
                 {
-                    content = format!("<span class=\"nocase\">{content}</span>");
+                    content = format!("<nocase>{content}</nocase>");
                 }
                 return if content.is_empty() {
                     String::new()

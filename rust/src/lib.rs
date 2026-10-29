@@ -1974,9 +1974,10 @@ where
             yield_now().await;
         }
     }
-    if options.collapse_markup && !options.raw {
+    // Keep distinct internal wrappers through normalization; only delivered values use HTML spans.
+    if !options.raw {
         for value in strings.values_mut() {
-            *value = tex::collapse_markup(value);
+            *value = tex::finalize_markup(value, options.collapse_markup);
         }
         for entry in &mut entries {
             for (field, value) in &mut entry.fields {
@@ -1987,10 +1988,12 @@ where
                     continue;
                 }
                 match value {
-                    FieldValue::Text(text) => *text = tex::collapse_markup(text),
+                    FieldValue::Text(text) => {
+                        *text = tex::finalize_markup(text, options.collapse_markup)
+                    }
                     FieldValue::List(items) => {
                         for item in items {
-                            *item = tex::collapse_markup(item);
+                            *item = tex::finalize_markup(item, options.collapse_markup);
                         }
                     }
                     FieldValue::Creators(creators) => {
@@ -2006,7 +2009,7 @@ where
                             .into_iter()
                             .flatten()
                             {
-                                *text = tex::collapse_markup(text);
+                                *text = tex::finalize_markup(text, options.collapse_markup);
                             }
                         }
                     }
@@ -2849,6 +2852,70 @@ mod tests {
     }
 
     #[test]
+    /// Merge formatting exposed by case-protection collapse while preserving casing boundaries.
+    fn collapse_markup_revisits_formatting_after_case_protection() {
+        let parsed = parse(
+            r#"@article{test, title = "A \emph{A} \emph{{A}} {\emph{A}} {\emph{{A}}} {{\emph{A}}}"}"#,
+            Options {
+                case_protection: "strict".to_string(),
+                ..Options::default()
+            },
+        );
+        let expected = "A <span class=\"nocase\"><i>A A</i></span> <i>a a</i> <span class=\"nocase\"><i>A</i></span>";
+        assert_eq!(
+            parsed.entries[0].fields["title"],
+            FieldValue::Text(expected.into())
+        );
+        assert_eq!(super::tex::collapse_markup(expected), expected);
+    }
+
+    #[test]
+    /// Keep mixed wrapper boundaries intact and emit HTML even when collapsing is disabled.
+    fn collapse_markup_distinguishes_nocase_and_smallcaps() {
+        let internal = "<nocase><smallcaps>A</smallcaps></nocase> <smallcaps>B</smallcaps> <nocase>C</nocase>";
+        let expected = "<span class=\"nocase\"><span style=\"font-variant:small-caps;\">A</span></span> <span style=\"font-variant:small-caps;\">B</span> <span class=\"nocase\">C</span>";
+        assert_eq!(super::tex::collapse_markup(internal), internal);
+        assert_eq!(super::tex::finalize_markup(internal, true), expected);
+        assert_eq!(super::tex::finalize_markup(internal, false), expected);
+        assert_eq!(
+            super::tex::collapse_markup("<nocase><smallcaps>A</smallcaps></nocase> <nocase><smallcaps>B</smallcaps></nocase>"),
+            "<nocase><smallcaps>A B</smallcaps></nocase>"
+        );
+        assert_eq!(
+            super::tex::sentence_case_with_options(
+                "A <nocase>nASA <smallcaps>NAME</smallcaps> TAIL</nocase> Title",
+                false,
+                false,
+                false,
+            ),
+            "A <nocase>nASA <smallcaps>NAME</smallcaps> TAIL</nocase> title"
+        );
+        assert_eq!(
+            super::tex::sentence_case_with_options(
+                "A <span class=\"nocase\">nASA <span style=\"font-variant:small-caps;\">NAME</span> TAIL</span> Title",
+                false,
+                false,
+                false,
+            ),
+            "A <span class=\"nocase\">nASA <span style=\"font-variant:small-caps;\">NAME</span> TAIL</span> title"
+        );
+        for collapse_markup in [false, true] {
+            let parsed = parse(
+                r"@article{test,title={A {{\textsc{B}}} {\textsc{c}} {D}}}",
+                Options {
+                    case_protection: "strict".to_string(),
+                    collapse_markup,
+                    ..Options::default()
+                },
+            );
+            assert_eq!(
+                parsed.entries[0].fields["title"],
+                FieldValue::Text("A <span class=\"nocase\"><span style=\"font-variant:small-caps;\">B</span></span> <span style=\"font-variant:small-caps;\">c</span> <span class=\"nocase\">D</span>".into())
+            );
+        }
+    }
+
+    #[test]
     /// Checks title rendering for `off`, `as-needed`, and `strict` case protection.
     fn tex_visitor_honors_case_protection_modes() {
         let mut diagnostics = super::tex::LibraryRenderer::default();
@@ -2866,7 +2933,7 @@ mod tests {
                 "title",
                 super::tex::CaseProtection::AsNeeded,
             ),
-            "An <span class=\"nocase\">unusual name</span>"
+            "An <nocase>unusual name</nocase>"
         );
         assert_eq!(
             diagnostics.render_with_case_protection(
@@ -2874,7 +2941,7 @@ mod tests {
                 "title",
                 super::tex::CaseProtection::Strict,
             ),
-            "An <span class=\"nocase\">unusual name</span>"
+            "An <nocase>unusual name</nocase>"
         );
         let mut strict_renderer = super::tex::LibraryRenderer::new(
             None,
@@ -2911,7 +2978,7 @@ mod tests {
                 true,
                 super::tex::CaseProtection::Strict,
             ),
-            "<span class=\"nocase\">Astrophysical</span> <span class=\"nocase\">→</span> <span class=\"nocase\">Reactions</span>"
+            "<nocase>Astrophysical</nocase> <nocase>→</nocase> <nocase>Reactions</nocase>"
         );
         assert_eq!(
             strict_renderer.render(
@@ -2932,7 +2999,7 @@ mod tests {
                 true,
                 super::tex::CaseProtection::Strict,
             ),
-            "<span class=\"nocase\">𝜇</span> <span class=\"nocase\">J</span>"
+            "<nocase>𝜇</nocase> <nocase>J</nocase>"
         );
         assert_eq!(
             diagnostics.render_with_case_protection(
