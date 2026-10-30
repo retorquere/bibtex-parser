@@ -2381,18 +2381,6 @@ fn serialize_verbatim_argument(arguments: &[Vec<Node>], index: usize) -> String 
     }
 }
 
-/// Percent-encodes path & query for an URI string
-fn encode_url(url: &str, mode: RenderMode) -> String {
-    if mode == RenderMode::RichText {
-    return url.to_string();
-    }
-    // If it's a valid URL, Url::parse encodes it automatically.
-    // If parsing fails (e.g. plain text, invalid format), return the original input.
-    Url::parse(url)
-        .map(|parsed| parsed.into())
-        .unwrap_or_else(|_| url.to_string())
-}
-
 /// Render a macro using structural cases before exact generated Unicode mappings.
 ///
 /// `name` is the TeX command without its escape token; `arguments` are parser-consumed child
@@ -2434,30 +2422,17 @@ impl LibraryRenderer {
                 }
                 .to_string();
             }
-            "url" => {
-                // URL content is rendered verbatim so query strings and tildes are not transformed.
-                let url = encode_url(&serialize_verbatim_argument(arguments, 0), mode);
-                return if self.plain_urls {
-                    format!("<nocase>{url}</nocase>")
-                } else {
-                    format!("<a href=\"{url}\">{url}</a>")
-                };
-            }
-            "href" => {
+            "url" | "href" => {
                 // The first href argument is the destination; only the label receives normal rendering.
-                let url = encode_url(&serialize_verbatim_argument(arguments, 0), mode);
+                let url = serialize_verbatim_argument(arguments, 0);
                 if self.plain_urls {
                     return format!("<nocase>{url}</nocase>");
                 }
-                let label_context = RenderContext {
-                    title_case_protection: false,
-                    protected_ancestor: false,
-                    root_scope: false,
-                    mark_case_groups: false,
-                    verbatim: false,
-                    ..context
+                let label = if name == "url" {
+                    url.clone()
+                } else {
+                  serialize_verbatim_argument(arguments, 1)
                 };
-                let label = self.render_argument(arguments, 1, label_context);
                 return format!("<a href=\"{url}\">{label}</a>");
             }
             "textbf" | "mkbibbold" => {

@@ -39,6 +39,7 @@
     "test:js": "node test/js.js",
     "pretest:all": "npm run build:all",
     "test:all": "npm run test:wasm && npm run test:js && node --test test/package.test.js",
+    "test:rust": "cargo test --manifest-path rust/Cargo.toml",
     "minitest": "./build/crossref.py && npm run build && node i.js",
     "list": "tar tvf $(npm pack)",
     "prepublishOnly": "npm run build:all && npm run test:all",
