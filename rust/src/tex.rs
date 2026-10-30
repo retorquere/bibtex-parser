@@ -2430,7 +2430,7 @@ impl LibraryRenderer {
                 let label = if name == "url" {
                     url.clone()
                 } else {
-                  serialize_verbatim_argument(arguments, 1)
+                  self.render_argument(arguments, 1, context)
                 };
                 return format!("<a href=\"{url}\">{label}</a>");
             }

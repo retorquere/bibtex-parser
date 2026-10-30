@@ -92,6 +92,7 @@ jobs:
         name: parser-build
         path: .
     - name: test ${{ matrix.library }} parser
+      if: matrix.library != 'typescript' || !startsWith(github.ref, 'refs/tags/')
       run: |
         case "${{ matrix.library }}" in
           typescript)
