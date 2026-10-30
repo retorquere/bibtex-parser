@@ -1041,6 +1041,7 @@ fn default_english() -> Vec<String> {
 fn default_remove_outer_braces() -> Vec<String> {
     [
         "doi",
+        "keywords",
         "title",
         "subtitle",
         "series",
@@ -1561,7 +1562,7 @@ fn remove_outer_braces(value: &str) -> String {
     }
 }
 
-/// Honor a custom brace-removal list; otherwise derive title/verbatim fields from effective modes.
+/// Honor a custom brace-removal list; otherwise derive title/verbatim fields and keywords.
 /// Explicitly supplying the unchanged default list is indistinguishable from omitting the option.
 fn remove_outer_braces_fields(options: &Options) -> Vec<String> {
     if options.remove_outer_braces != default_remove_outer_braces() {
@@ -1577,6 +1578,7 @@ fn remove_outer_braces_fields(options: &Options) -> Vec<String> {
             .chain(LIST_FIELDS)
             .map(|field| (*field).to_string()),
     );
+            fields.push("keywords".to_string());
     fields.extend(options.field_mode.keys().cloned());
     fields.retain(|field| matches!(field_mode(field, options).as_str(), "title" | "verbatim"));
     fields.sort();
@@ -1852,6 +1854,11 @@ where
                     fields.insert(field, FieldValue::Text(value));
                     continue;
                 }
+                let value = if remove_brace_fields.contains(&field) {
+                    remove_outer_braces(&value)
+                } else {
+                    value
+                };
                 // Braces keep embedded punctuation inside one keyword during list splitting.
                 let parts = split_top_level(&value, ',')
                     .into_iter()
@@ -3648,6 +3655,19 @@ mod tests {
             2
         );
         assert_eq!(parsed.entries[0].mode["keywords"], "verbatimlist");
+
+        let double_braced = parse(
+            "@article{k, keywords={{Thermal comfort; Overheating; Energy policy}}}",
+            Options::default(),
+        );
+        assert_eq!(
+            double_braced.entries[0].fields["keywords"],
+            FieldValue::List(vec![
+                "Thermal comfort".into(),
+                "Overheating".into(),
+                "Energy policy".into(),
+            ])
+        );
 
         let collated = parse(
             "@article{k, keywords={Forskningspolitik, Förenta staterna, Zebra, zebra}}",
