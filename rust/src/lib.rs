@@ -48,9 +48,6 @@ pub struct Library {
     pub errors: Vec<ParseError>,
     /// Values from `@preamble` directives.
     pub preambles: Vec<String>,
-    /// JabRef metadata extracted from `jabref-meta:` comments.
-    #[serde(default)]
-    pub jabref: JabRefMetadata,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Default, Serialize, Deserialize)]
@@ -998,9 +995,6 @@ impl Parser {
                 break;
             }
         }
-        let (comments, jabref) = parse_jabref_metadata(self.library.comments.clone());
-        self.library.comments = comments;
-        self.library.jabref = jabref;
         self.library
     }
 }
@@ -1782,9 +1776,10 @@ pub fn reparse_with_options(verbatim: Library, options: &Options) -> ParsedLibra
     .expect("synchronous reparsing does not suspend")
 }
 
-/// Normalize fields before cross-reference inheritance, then append shared render diagnostics.
-/// Unlike directive scanning, cooperative yields here count completed entries; a single field
-/// is always rendered atomically. Synchronous callers supply an immediately ready yield future.
+/// Extract JabRef metadata and normalize fields before cross-reference inheritance, then append
+/// shared render diagnostics. Unlike directive scanning, cooperative yields here count completed
+/// entries; a single field is always rendered atomically. Synchronous callers supply an
+/// immediately ready yield future.
 async fn reparse_with_yield<F, Fut>(
     verbatim: Library,
     options: &Options,
@@ -1823,6 +1818,7 @@ where
         *value = render_string_value(value, options, &mut renderer);
     }
     let remove_brace_fields = remove_outer_braces_fields(options);
+    let (comments, jabref) = parse_jabref_metadata(verbatim.comments);
     let mut entries = Vec::with_capacity(verbatim.entries.len());
     for (index, entry) in verbatim.entries.into_iter().enumerate() {
         // Prefer a nonempty `langid`, then `hyphenation`; `language` is consulted only when enabled.
@@ -2024,10 +2020,10 @@ where
     ParsedLibrary {
         entries,
         strings,
-        comments: verbatim.comments,
+        comments,
         errors,
         preambles: verbatim.preambles,
-        jabref: verbatim.jabref,
+        jabref,
     }
 }
 
@@ -2200,10 +2196,11 @@ mod tests {
     #[test]
     /// Checks the final library pass merges JabRef metadata and inherited crossref fields.
     fn library_finalization_renders_comments_and_inherits_crossref() {
-        let parsed = parse(
-            "@comment{jabref-meta: groupsversion: 3}\n@book{parent, title={Parent title}, author={Doe, John}}\n@inbook{child, crossref={parent}, chapter={A}}",
-            Options::default(),
-        );
+        let source = "@comment{jabref-meta: groupsversion: 3}\n@book{parent, title={Parent title}, author={Doe, John}}\n@inbook{child, crossref={parent}, chapter={A}}";
+        let raw = parse_verbatim(source, Options::default());
+        assert_eq!(raw.comments, ["jabref-meta: groupsversion: 3"]);
+
+        let parsed = parse(source, Options::default());
         assert_eq!(parsed.jabref.groupsversion, Some(3));
         assert!(
             matches!(parsed.entries[1].fields.get("title"), Some(FieldValue::Text(title)) if title == "Parent title")

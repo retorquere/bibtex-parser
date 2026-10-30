@@ -207,8 +207,6 @@ export interface VerbatimLibrary {
   errors: ParseError[]
   /** Values from `@preamble` directives, in source order. */
   preambles: string[]
-  /** JabRef metadata extracted from the library. */
-  jabref: JabRefMetadata
 }
 
 /** Default language identifiers treated as English. */
@@ -251,13 +249,13 @@ function withJabRef<Parsed extends { jabref: JabRefMetadata }>(result: Parsed): 
  */
 export function parseVerbatim(input: string, options: ParserOptions = {}): VerbatimLibrary {
   const prepared = prepare(input, options)
-  return withJabRef(parseVerbatimWasm(prepared.input, prepared.options) as VerbatimLibrary)
+  return parseVerbatimWasm(prepared.input, prepared.options) as VerbatimLibrary
 }
 
 /** Asynchronous variant of {@link parseVerbatim}; yields while processing large inputs. */
 export async function parseVerbatimAsync(input: string, options: ParserOptions = {}): Promise<VerbatimLibrary> {
   const prepared = prepare(input, options)
-  return withJabRef(await parseVerbatimAsyncWasm(prepared.input, prepared.options) as VerbatimLibrary)
+  return await parseVerbatimAsyncWasm(prepared.input, prepared.options) as VerbatimLibrary
 }
 
 /**

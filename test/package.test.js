@@ -85,7 +85,6 @@ test('JabRef metadata supports identical membership updates in both implementati
 }`
   for (const parser of [typescript, wasm]) {
     const results = [parser.parse(source), await parser.parseAsync(source)]
-    if (parser === wasm) results.push(parser.parseVerbatim(source), await parser.parseVerbatimAsync(source))
     for (const { jabref } of results) {
       assert.ok(jabref instanceof parser.JabRefMetadata)
       assert.equal('groups' in jabref, false)
@@ -99,6 +98,12 @@ test('JabRef metadata supports identical membership updates in both implementati
       const serialized = JSON.parse(JSON.stringify(jabref))
       assert.deepEqual(Object.keys(serialized), ['root'])
       assert.deepEqual(serialized.root, jabref.root)
+    }
+    if (parser === wasm) {
+      for (const raw of [parser.parseVerbatim(source), await parser.parseVerbatimAsync(source)]) {
+        assert.equal('jabref' in raw, false)
+        assert.ok(raw.comments.some(comment => comment.startsWith('jabref-meta: grouping:')))
+      }
     }
   }
 })
