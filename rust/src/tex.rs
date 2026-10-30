@@ -9,7 +9,6 @@ use crate::tokenizer::{
 };
 use std::collections::{HashMap, HashSet};
 use std::sync::OnceLock;
-use url::Url;
 
 /// Locate the literal contents of `\verb` or `\path` starting at a backslash.
 ///
