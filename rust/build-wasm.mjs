@@ -1,5 +1,5 @@
 import { execFileSync } from 'node:child_process'
-import { copyFileSync, cpSync, mkdirSync, readFileSync, unlinkSync, writeFileSync } from 'node:fs'
+import { copyFileSync, cpSync, mkdirSync, readFileSync, rmSync, unlinkSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -17,12 +17,12 @@ execFileSync('wasm-pack', [
   '--out-name',
   'bibtex_parser',
 ], { stdio: 'inherit' })
+rmSync(path.join(pkg, 'jabref.js'), { force: true })
+rmSync(path.join(pkg, 'jabref.d.ts'), { force: true })
 
 const source = path.join(pkg, 'index.ts')
 copyFileSync(path.join(rust, 'index.ts'), source)
 copyFileSync(path.join(rust, 'data/english.json'), path.join(pkg, 'english.json'))
-const jabref = path.join(pkg, 'jabref.ts')
-copyFileSync(path.join(rust, '../js/jabref.ts'), jabref)
 try {
   execFileSync(path.join(rust, '../node_modules/.bin/tsc'), [
     '--target',
@@ -40,7 +40,6 @@ try {
 }
 finally {
   unlinkSync(source)
-  unlinkSync(jabref)
 }
 
 const manifestPath = path.join(pkg, 'package.json')
@@ -56,8 +55,6 @@ manifest.files = [
   'index.js',
   'index.d.ts',
   'english.json',
-  'jabref.js',
-  'jabref.d.ts',
   'snippets',
 ]
 manifest.exports = {
@@ -71,6 +68,8 @@ writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`)
 
 const dist = path.resolve(rust, '../dist/wasm')
 mkdirSync(dist, { recursive: true })
+rmSync(path.join(dist, 'jabref.js'), { force: true })
+rmSync(path.join(dist, 'jabref.d.ts'), { force: true })
 for (const file of manifest.files) {
   cpSync(path.join(pkg, file), path.join(dist, file), { recursive: true })
 }

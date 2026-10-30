@@ -1,10 +1,6 @@
 /** @module @retorquere/bibtex-parser */
 import init, { initSync, parse as parseWasm, parseAsync as parseAsyncWasm, parseVerbatim as parseVerbatimWasm, parseVerbatimAsync as parseVerbatimAsyncWasm, toSentenceCase as toSentenceCaseWasm } from './bibtex_parser.js'
-import { JabRefMetadata } from './jabref.js'
 import englishDefaults from './english.json' with { type: 'json' }
-
-export { JabRefMetadata }
-export type { Group as JabRefGroup } from './jabref.js'
 
 /** Inputs for asynchronous WASM initialization: a URL-like resource to fetch, bytes, or a compiled module. */
 export type { InitInput } from './bibtex_parser.js'
@@ -124,6 +120,21 @@ export interface ParseError {
   input?: string
 }
 
+/** A JabRef group serialized by the Rust parser. */
+export interface JabRefGroup {
+  name: string
+  entries: string[]
+  groups: JabRefGroup[]
+}
+
+/** JabRef metadata serialized by the Rust parser. */
+export interface JabRefMetadata {
+  root: JabRefGroup[]
+  fileDirectory?: string
+  groupsversion?: number
+  databaseType?: string
+}
+
 /** The parsed contents of a BibTeX library. */
 export interface Library {
   /** Diagnostics collected while parsing; recoverable errors do not necessarily prevent entries from being returned. */
@@ -232,11 +243,6 @@ function throwOnUnsupported(result: Library): Library {
   return result
 }
 
-function withJabRef<Parsed extends { jabref: JabRefMetadata }>(result: Parsed): Parsed {
-  result.jabref = new JabRefMetadata(result.jabref)
-  return result
-}
-
 /**
  * Parses BibTeX without converting LaTeX field contents to Unicode or structured creator values.
  * `@string` references are resolved, while each entry's fields remain strings for later processing.
@@ -270,7 +276,7 @@ export async function parseVerbatimAsync(input: string, options: ParserOptions =
  */
 export function parse(input: string, options: Options = {}): Library {
   const prepared = prepare(input, options)
-  const result = withJabRef(parseWasm(prepared.input, prepared.options) as Library)
+  const result = parseWasm(prepared.input, prepared.options) as Library
   if (options.unsupported === 'throw') return throwOnUnsupported(result)
   return result
 }
@@ -278,7 +284,7 @@ export function parse(input: string, options: Options = {}): Library {
 /** Asynchronous variant of {@link parse}; returns the same result shape and yields between batches for large inputs. */
 export async function parseAsync(input: string, options: Options = {}): Promise<Library> {
   const prepared = prepare(input, options)
-  const result = withJabRef(await parseAsyncWasm(prepared.input, prepared.options) as Library)
+  const result = await parseAsyncWasm(prepared.input, prepared.options) as Library
   if (options.unsupported === 'throw') return throwOnUnsupported(result)
   return result
 }
