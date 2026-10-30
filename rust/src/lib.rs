@@ -79,32 +79,6 @@ pub struct JabRefMetadata {
     pub database_type: Option<String>,
 }
 
-impl JabRefMetadata {
-    /// Populates JabRef 3.8+ memberships in `root` by group name; duplicate names select the first node.
-    pub fn add_entry(&mut self, name: &str, key: &str) -> bool {
-        /// Return the first depth-first group with this name, preserving duplicate-name precedence.
-        fn find<'a>(groups: &'a mut [JabRefGroup], name: &str) -> Option<&'a mut JabRefGroup> {
-            for group in groups {
-                if group.name == name {
-                    return Some(group);
-                }
-                if let Some(found) = find(&mut group.groups, name) {
-                    return Some(found);
-                }
-            }
-            None
-        }
-
-        let Some(group) = find(&mut self.root, name) else {
-            return false;
-        };
-        if !group.entries.iter().any(|entry| entry == key) {
-            group.entries.push(key.to_string());
-        }
-        true
-    }
-}
-
 /// Decode JabRef metadata records: backslash quotes the next character, separators split records,
 /// and LF/CRLF line breaks are discarded. Empty records are omitted from the returned list.
 fn decode_jabref(input: &str, separator: char) -> Vec<String> {
@@ -1818,7 +1792,7 @@ where
         *value = render_string_value(value, options, &mut renderer);
     }
     let remove_brace_fields = remove_outer_braces_fields(options);
-    let (comments, jabref) = parse_jabref_metadata(verbatim.comments);
+    let (comments, mut jabref) = parse_jabref_metadata(verbatim.comments);
     let mut entries = Vec::with_capacity(verbatim.entries.len());
     for (index, entry) in verbatim.entries.into_iter().enumerate() {
         // Prefer a nonempty `langid`, then `hyphenation`; `language` is consulted only when enabled.
@@ -1848,16 +1822,53 @@ where
             if value.trim().is_empty() {
                 continue;
             }
+            
+            if (field == "groups") {
+                let groups = split_top_level(&value, ',')
+                    .into_iter()
+                    .flat_map(|group| split_top_level(&group, ';'))
+                    .filter(|group| !group.is_empty());
+
+                fn insert(groups: &mut [JabRefGroup], name: &str) {
+                    for group in groups {
+                        if group.name == name {
+                            group.entries.push(entry.key.clone());
+                        }
+                        insert(&mut group.groups, name);
+                    }
+                }
+                
+                for group in groups {
+                  insert(&mut jabref.root, &group);
+                }
+            }
+            
             // Merge duplicate keyword fields into one vector without sorting or removing repeats.
-            if field == "keywords" || field.starts_with("keywords+duplicate-") {
-                let value = tex::print_raw(&value);
-                keywords.extend(
-                    value
-                        .split([',', ';'])
-                        .map(str::trim)
-                        .filter(|keyword| !keyword.is_empty())
-                        .map(str::to_string),
-                );
+            if field == "keywords" {
+                if options.raw {
+                    let current_mode = field_mode(&field, options);
+                    mode.insert(field.clone(), current_mode);
+                    fields.insert(field, FieldValue::Text(value));
+                    continue;
+                }
+                // Braces keep embedded punctuation inside one keyword during list splitting.
+                let parts = split_top_level(&value, ',')
+                    .into_iter()
+                    .flat_map(|part| split_top_level(&part, ';'))
+                    .filter(|keyword| !keyword.is_empty());
+                keywords.extend(parts.map(|keyword| {
+                    renderer
+                        .render(
+                            &keyword,
+                            tex::RenderContext::field(
+                                tex::RenderMode::Text,
+                                false,
+                                false,
+                            ),
+                        )
+                        .trim()
+                        .to_string()
+                }));
                 continue;
             }
             let current_mode = field_mode(&field, options);
@@ -3646,7 +3657,7 @@ mod tests {
     }
 
     #[test]
-    /// Checks duplicate keyword fields merge without sorting or deduplication.
+    /// Checks keyword merging, top-level splitting, TeX rendering, and raw preservation.
     fn normalizes_duplicate_keyword_fields() {
         let parsed = parse(
             "@article{k, keywords={zeta, alpha}, keywords={beta; zeta}}",
@@ -3677,6 +3688,31 @@ mod tests {
         assert_eq!(
             whitespace.entries[0].fields["keywords"],
             FieldValue::List(vec!["alpha".into(), "beta".into()])
+        );
+
+        let rendered = parse(
+            r"@article{k, keywords={\textbf{alpha,beta}; \emph{gamma}}}",
+            Options::default(),
+        );
+        assert_eq!(
+            rendered.entries[0].fields["keywords"],
+            FieldValue::List(vec!["<b>alpha,beta</b>".into(), "<i>gamma</i>".into()])
+        );
+
+        let raw = parse(
+            r"@article{k, keywords={\textbf{alpha,beta}; gamma}, keywords={delta}}",
+            Options {
+                raw: true,
+                ..Options::default()
+            },
+        );
+        assert_eq!(
+            raw.entries[0].fields["keywords"],
+            FieldValue::Text(r"\textbf{alpha,beta}; gamma".into())
+        );
+        assert_eq!(
+            raw.entries[0].fields["keywords+duplicate-1"],
+            FieldValue::Text("delta".into())
         );
     }
 
