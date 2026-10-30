@@ -353,6 +353,7 @@ impl Parser {
                     self.flush_text(&mut nodes, &mut text, &mut text_start);
                     let start = self.position;
                     match self.parse_macro(math, environment_end) {
+                        Node::Expansion(children, _) if children.is_empty() => {}
                         Node::Macro {
                             name,
                             arguments,
@@ -627,11 +628,13 @@ impl Parser {
         }
     }
 
-    /// Parse a macro name and consume its arguments, handling custom-command definitions separately.
+    /// Parse a macro name and consume its arguments, handling aliases and custom definitions.
     ///
     /// Unlisted custom macros do not consume following groups. Alphabetic zero-argument macros
     /// discard one trailing delimiter whitespace node, while math-mode `_` and `^` take one
-    /// argument. `url` and `href` replace their first parsed argument with its raw printed text.
+    /// argument. `\a` is a `tabbing` command which requires an immediately adjacent accent character; a bare
+    /// `\a` is probably an accidental use of \a outside `tabbing` so we just discard it. `url` and `href` replace
+    /// their first parsed argument with its raw printed text.
     fn parse_macro(&mut self, math: Option<MathDelimiter>, environment_end: Option<&str>) -> Node {
         let macro_start = self.position;
         self.position += 1;
@@ -650,7 +653,17 @@ impl Parser {
         } else {
             self.position += 1;
         }
-        let name: String = self.chars[start..self.position].iter().collect();
+        let mut name: String = self.chars[start..self.position].iter().collect();
+        if name == "a" {
+            // see tabbing explanation above
+            match self.chars.get(self.position).copied() {
+                Some(accent @ ('=' | '\'' | '`')) => {
+                    self.position += 1;
+                    name = accent.to_string();
+                }
+                _ => return Node::Expansion(Vec::new(), self.span(macro_start, self.position)),
+            }
+        }
         let macro_span = self.span(macro_start, self.position);
         // Literal commands bypass arity lookup and recursive argument parsing entirely.
         if matches!(name.as_str(), "verb" | "path") {
@@ -784,7 +797,7 @@ impl Parser {
     ///
     /// Braced arguments remain `Group` nodes so rendering can preserve their structure and use
     /// root groups for title case protection. Malformed groups retain a literal opening brace
-    /// followed by the content parsed so far.
+    /// followed by the content parsed so far; ignored empty macros contribute no argument node.
     fn argument(
         &mut self,
         math: Option<MathDelimiter>,
@@ -806,7 +819,12 @@ impl Parser {
             }
         // An unbraced argument may itself be a macro; otherwise it consumes one character.
         } else if self.chars[self.position] == '\\' {
-            vec![self.parse_macro(math, environment_end)]
+            let node = self.parse_macro(math, environment_end);
+            if matches!(&node, Node::Expansion(children, _) if children.is_empty()) {
+                Vec::new()
+            } else {
+                vec![node]
+            }
         } else {
             let start = self.position;
             let ch = self.chars[self.position];
@@ -2618,8 +2636,8 @@ impl LibraryRenderer {
                 }
                 .to_string();
             }
-            // Preserve a bare script operator when parsing found no argument to render.
-            "_" | "^" if arguments.is_empty() => return name.to_string(),
+            // Preserve bare `_`; a bare `\^` is an empty accent and falls through to its combining mark.
+            "_" if arguments.is_empty() => return name.to_string(),
             _ => {}
         }
 
@@ -2654,9 +2672,9 @@ impl LibraryRenderer {
 
 /// Apply a combining accent when its argument has a supported single-node shape.
 ///
-/// Some legacy input represents the base as an unknown one-letter control word, such as
-/// `\'{\a}`. That letter is treated as plain base text only here, after checking for a Unicode
-/// mapping; unsupported macros elsewhere continue through the normal unsupported handler.
+/// Some legacy input represents the base as an unknown one-letter control word. Its letter is
+/// accepted only here, after checking for a Unicode mapping; unsupported macros elsewhere continue
+/// through the normal unsupported handler.
 fn combining_argument(arguments: &[Vec<Node>], mark: &str, mode: RenderMode) -> Option<String> {
     // Missing or empty arguments produce a spacing accent; ambiguous multi-node arguments are
     // rejected rather than flattened into guessed text.
@@ -2672,9 +2690,15 @@ fn combining_argument(arguments: &[Vec<Node>], mark: &str, mode: RenderMode) -> 
     let node = match &argument[0] {
         Node::Group(children, _) => match children.as_slice() {
             [] => return Some(format!(" {mark}")),
+            [Node::Expansion(children, _)] if children.is_empty() => {
+                return Some(format!(" {mark}"));
+            }
             [node] => node,
             _ => return None,
         },
+        Node::Expansion(children, _) if children.is_empty() => {
+            return Some(format!(" {mark}"));
+        }
         node => node,
     };
     let value = match node {
@@ -2689,8 +2713,7 @@ fn combining_argument(arguments: &[Vec<Node>], mark: &str, mode: RenderMode) -> 
                 } else {
                     mapping.text?.to_string()
                 }
-            // The accent is known, but a legacy one-letter base command such as `\a` is not.
-            // Use its letter only when it has no arguments; do not change general macro fallback.
+            // Legacy one-letter base control words are accepted only in this accent-argument position.
             } else if arguments.is_empty()
                 && name.len() == 1
                 && name.as_bytes()[0].is_ascii_alphabetic()

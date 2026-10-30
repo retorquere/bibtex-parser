@@ -3303,7 +3303,7 @@ mod tests {
         );
         assert!(matches!(
             &nested_accent.entries[0].fields["title"],
-            FieldValue::Text(title) if title == "a\u{0301}"
+            FieldValue::Text(title) if title == "\u{0301}"
         ));
         assert!(nested_accent.errors.is_empty());
 
@@ -3314,11 +3314,11 @@ mod tests {
                 ..Options::default()
             },
         );
-        assert!(matches!(
-            &standalone.entries[0].fields["title"],
-            FieldValue::Text(title) if title == r"\a"
-        ));
-        assert_eq!(standalone.errors[0].error, r"unhandled macro \a");
+        assert_eq!(
+            standalone.entries[0].fields["title"],
+            FieldValue::Text(String::new())
+        );
+        assert!(standalone.errors.is_empty());
     }
 
     #[test]
@@ -3343,6 +3343,31 @@ mod tests {
             scripts.entries[0].fields["abstract"],
             FieldValue::Text("x²ₑ".into())
         );
+    }
+
+    #[test]
+    /// Check direct `\a` accent aliases, ignored non-aliases, and spacing for empty accents.
+    fn legacy_a_accent_aliases_require_direct_adjacency() {
+        for (source, expected) in [
+            (r"\a={a}", "a\u{0304}"),
+            (r"\a'{e}", "e\u{0301}"),
+            (r"\a`{e}", "e\u{0300}"),
+            (r"\'{\a}", "\u{0301}"),
+            (r"\^{}", "\u{0302}"),
+            (r"\^", "\u{0302}"),
+            (r"x\^{}y", "x \u{0302}y"),
+        ] {
+            assert_eq!(super::tex::render(source, "literal"), expected, "{source}");
+        }
+        for (source, expected) in [
+            (r"\a", ""),
+            (r"\a{x}", "x"),
+            (r"\a {x}", "x"),
+            (r"left\a {x}right", "left xright"),
+            (r"\a+", "+"),
+        ] {
+            assert_eq!(super::tex::render(source, "literal"), expected, "{source}");
+        }
     }
 
     #[test]
@@ -3399,7 +3424,7 @@ mod tests {
         assert_eq!(authors[1].last_name.as_deref(), Some("Nonnenmacher"));
         assert_eq!(authors[1].first_name.as_deref(), Some("Stéphane"));
         assert_eq!(authors[2].first_name.as_deref(), Some("Jérôme"));
-        assert_eq!(authors[3].first_name.as_deref(), Some("Jér^me"));
+        assert_eq!(authors[3].first_name.as_deref(), Some("Jér \u{0302}me"));
         assert_eq!(authors[4].last_name.as_deref(), Some("Dı́az"));
 
         let empty_macro_argument = parse(

@@ -281,14 +281,18 @@ for (const [name, parse] of [['parse', parseSync], ['parseAsync', parseAsync]]) 
     assert.equal(result.errors[0].error, String.raw`unhandled macro \unknownmacro`)
   })
 
-  test(`accent handles an unhandled single-letter base locally (${name})`, async () => {
-    const accented = await parse(String.raw`@book{x,title={\'{\a}}}`, { english: [] })
-    assert.equal(accented.entries[0].fields.title, 'a\u0301')
-    assert.deepEqual(accented.errors, [])
-
-    const standalone = await parse(String.raw`@book{x,title={\a}}`, { english: [] })
-    assert.equal(standalone.entries[0].fields.title, String.raw`\a`)
-    assert.equal(standalone.errors[0].error, String.raw`unhandled macro \a`)
+  test(`legacy \\a aliases require direct adjacency (${name})`, async () => {
+    for (const [source, expected] of [
+      [String.raw`@book{x,title={\a={a}}}`, 'a\u0304'],
+      [String.raw`@book{x,title={\a'{e}}}`, 'e\u0301'],
+      [String.raw`@book{x,title={\a` + '`' + String.raw`{e}}}`, 'e\u0300'],
+      [String.raw`@book{x,title={\'{\a}}}`, '\u0301'],
+      [String.raw`@book{x,title={\a}}`, ''],
+    ]) {
+      const result = await parse(source, { english: [] })
+      assert.equal(result.entries[0].fields.title, expected, source)
+      assert.deepEqual(result.errors, [], source)
+    }
   })
 
   for (const input of [source, String.raw`@preamble{\unknownmacro}`, String.raw`@string{unknown = {\unknownmacro}}`]) {
