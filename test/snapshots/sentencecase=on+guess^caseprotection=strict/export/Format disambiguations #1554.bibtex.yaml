@@ -1,7 +1,8 @@
 comments: []
 entries:
   - fields:
-      address: Frankfurt am Main
+      address:
+        - Frankfurt am Main
       author:
         - firstName: Walter
           lastName: Benjamin
@@ -29,7 +30,7 @@ entries:
       }
     key: benjamin.w:1986
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       editor: creatorlist
       number: literal
@@ -39,7 +40,8 @@ entries:
       year: literal
     type: incollection
   - fields:
-      address: Frankfurt am Main
+      address:
+        - Frankfurt am Main
       author:
         - firstName: Walter
           lastName: Benjamin
@@ -67,7 +69,7 @@ entries:
       }
     key: benjamin.w:1986.1
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       editor: creatorlist
       number: literal

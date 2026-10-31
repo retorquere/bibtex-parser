@@ -1,7 +1,8 @@
 comments: []
 entries:
   - fields:
-      address: М.
+      address:
+        - М.
       author:
         - firstName: Л. Д.
           lastName: Ландау
@@ -9,7 +10,8 @@ entries:
           lastName: Лифшиц
       edition: Fifth
       isbn: 5-9221-0122-6
-      language: russian
+      language:
+        - russian
       pagetotal: '259'
       publisher:
         - Физматлит
@@ -33,11 +35,11 @@ entries:
       }
     key: Landafshits.V7
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       edition: literal
       isbn: literal
-      language: literal
+      language: literallist
       pagetotal: literal
       publisher: literallist
       series: title

@@ -51,7 +51,8 @@ entries:
       location:
         - New York
       origdate: '2016'
-      origlanguage: french
+      origlanguage:
+        - french
       origlocation:
         - Paris
       origtitle: Le djihad et la mort le djihad et la mort
@@ -81,7 +82,7 @@ entries:
       author: creatorlist
       location: literallist
       origdate: literal
-      origlanguage: literal
+      origlanguage: literallist
       origlocation: literallist
       origtitle: title
       publisher: literallist
@@ -91,7 +92,8 @@ entries:
       year: literal
     type: book
   - fields:
-      address: US
+      address:
+        - US
       author:
         - firstName: Wes
           lastName: Ball
@@ -107,7 +109,7 @@ entries:
     input: "@movie{Ball.W:2014a,\n\taddress = {US},\n\tauthor = {Ball, Wes},\n\teditor = {Noah Oppenheim and Grant Pierce Myers and T.S. Nowlin},\n\ttitle = {The Maze Runner},\n\tyear = {2014}}"
     key: Ball.W:2014a
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       editor: creatorlist
       title: title

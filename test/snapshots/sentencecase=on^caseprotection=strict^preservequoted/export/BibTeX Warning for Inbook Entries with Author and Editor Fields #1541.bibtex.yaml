@@ -1,7 +1,8 @@
 comments: []
 entries:
   - fields:
-      address: Berlin
+      address:
+        - Berlin
       author:
         - firstName: J. H.
           lastName: Wilkinson
@@ -15,7 +16,8 @@ entries:
       doi: 10.1007/978-3-662-39778-7
       edition: First
       isbn: 978-3-662-39778-7
-      language: en-GB
+      language:
+        - en-GB
       pages: 191–201
       publisher:
         - Springer
@@ -47,7 +49,7 @@ entries:
       }
     key: wilkinson2013
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       collaborator: creatorlist
@@ -55,7 +57,7 @@ entries:
       doi: verbatim
       edition: literal
       isbn: literal
-      language: literal
+      language: literallist
       pages: literal
       publisher: literallist
       series: title

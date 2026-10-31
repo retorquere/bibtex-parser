@@ -185,7 +185,8 @@ entries:
       year: literal
     type: inproceedings
   - fields:
-      address: San Diego, California, USA
+      address:
+        - San Diego, California, USA
       author:
         - firstName: Donn
           lastName: Seeley
@@ -211,7 +212,7 @@ entries:
       }
     key: Seeley1989
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       month: literal
@@ -232,7 +233,8 @@ entries:
         show how it leads to particular analyses of that work, which reveal
         potentials for creating new designs that can make the work (and the
         workers) more effective.
-      address: Austin, TX
+      address:
+        - Austin, TX
       author:
         - firstName: Terry
           lastName: Winograd
@@ -268,7 +270,7 @@ entries:
     key: Winograd1986
     mode:
       abstract: literal
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       doi: verbatim

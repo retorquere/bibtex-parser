@@ -8,7 +8,8 @@ entries:
       doi: 10.1023/A:1005916004600
       issn: 0167-806X, 1573-0859
       journal: Natural Language & Linguistic Theory
-      language: en
+      language:
+        - en
       number: '2'
       pages: 347–385
       title: >-
@@ -35,7 +36,7 @@ entries:
       doi: verbatim
       issn: literal
       journal: literal
-      language: literal
+      language: literallist
       number: literal
       pages: literal
       title: title
@@ -69,7 +70,8 @@ entries:
         - firstName: Hanna
           lastName: Vries
           prefix: de
-      school: Universiteit Utrecht
+      school:
+        - Universiteit Utrecht
       title: >-
         Evaluative <span class="nocase">Degree Modification</span> of <span
         class="nocase">Adjectives</span> and <span class="nocase">Nouns</span>
@@ -88,7 +90,7 @@ entries:
     mode:
       abstract: literal
       author: creatorlist
-      school: literal
+      school: literallist
       title: title
       type: literal
       year: literal
@@ -135,13 +137,15 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Paris
+      address:
+        - Paris
       author:
         - firstName: Danièle
           lastName: Velde
           prefix: van de
       isbn: 978-90-6831-748-0
-      language: French
+      language:
+        - French
       publisher:
         - Peeters
       title: Le spectre nominal. Des noms de matières aux noms d'abstractions
@@ -158,10 +162,10 @@ entries:
       }
     key: vand95
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       isbn: literal
-      language: literal
+      language: literallist
       publisher: literallist
       title: title
       year: literal
@@ -171,7 +175,8 @@ entries:
         - firstName: Kai
           lastName: Fintel
           prefix: von
-      school: University of Massachusetts
+      school:
+        - University of Massachusetts
       title: Restrictions on <span class="nocase">Quantifier Domains</span>
       year: '1994'
     input: |-
@@ -184,7 +189,7 @@ entries:
     key: vonf94
     mode:
       author: creatorlist
-      school: literal
+      school: literallist
       title: title
       year: literal
     type: phdthesis

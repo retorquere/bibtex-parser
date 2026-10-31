@@ -1,7 +1,8 @@
 comments: []
 entries:
   - fields:
-      address: Roma
+      address:
+        - Roma
       annotation: 'OCLC: 1017659336'
       editor:
         - firstName: Anna
@@ -10,7 +11,9 @@ entries:
           lastName: Palombi
         - firstName: Susan
           lastName: Walker
-      language: Italian, English, French and German.
+      language:
+        - Italian, English, French
+        - German.
       publisher:
         - Quasar
       shorttitle: Res bene gestae
@@ -31,10 +34,10 @@ entries:
       }
     key: Leone2007
     mode:
-      address: literal
+      address: literallist
       annotation: richtext
       editor: creatorlist
-      language: literal
+      language: literallist
       publisher: literallist
       shorttitle: title
       title: title

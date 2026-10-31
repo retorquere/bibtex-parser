@@ -1,7 +1,8 @@
 comments: []
 entries:
   - fields:
-      address: Valletta, Malta
+      address:
+        - Valletta, Malta
       author:
         - firstName: Radim
           lastName: Řehůřek
@@ -11,7 +12,8 @@ entries:
         Proceedings of the LREC 2010 Workshop on New Challenges for NLP
         Frameworks
       day: '22'
-      language: English
+      language:
+        - English
       month: '5'
       pages: 45–50
       publisher:
@@ -36,11 +38,11 @@ entries:
       }
     key: rehurek_lrec
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       day: literal
-      language: literal
+      language: literallist
       month: literal
       pages: literal
       publisher: literallist

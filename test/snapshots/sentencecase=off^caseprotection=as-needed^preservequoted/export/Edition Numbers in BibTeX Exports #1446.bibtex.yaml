@@ -1,7 +1,8 @@
 comments: []
 entries:
   - fields:
-      address: Philadelphia, PA
+      address:
+        - Philadelphia, PA
       author:
         - firstName: Richard
           lastName: Barrett
@@ -25,7 +26,8 @@ entries:
           lastName: Vorst
           prefix: van der
       edition: Second
-      language: en-US
+      language:
+        - en-US
       publisher:
         - Society for Industrial and Applied Mathematics
       shorttitle: Templates for the Solution of Linear Systems
@@ -50,10 +52,10 @@ entries:
       }
     key: barrett1994
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       edition: literal
-      language: literal
+      language: literallist
       publisher: literallist
       shorttitle: title
       title: title

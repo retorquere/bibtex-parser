@@ -297,13 +297,6 @@ pub struct CrossRefSource {
     pub field: String,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum VerbatimField {
-    Name(String),
-    Pattern { source: String },
-}
-
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "lowercase")]
 pub enum UnsupportedHandler {
@@ -330,7 +323,7 @@ pub struct Options {
     /// Fields such as `url` are normally parsed in verbatim mode, where TeX commands are treated
     /// as regular text. Patterns use `*` for any number of characters and `?` for one character;
     /// each pattern must match the complete field name. A backslash escapes wildcard characters.
-    pub verbatim_fields: Vec<VerbatimField>,
+    pub verbatim_fields: Vec<String>,
     /// Fields whose single outer brace layer should be removed before reparsing.
     ///
     /// BibTeX data often wraps fields in double braces as a workaround for case handling. Listed
@@ -1067,7 +1060,9 @@ fn default_remove_outer_braces() -> Vec<String> {
 }
 
 const CREATOR_FIELDS: &[&str] = &[
+    "afterword",
     "author",
+    "annotator",
     "bookauthor",
     "collaborator",
     "commentator",
@@ -1076,8 +1071,16 @@ const CREATOR_FIELDS: &[&str] = &[
     "editora",
     "editorb",
     "editors",
+    "foreword",
     "holder",
+    "introduction",
+    "namea",
+    "nameb",
+    "namec",
     "scriptwriter",
+    "shortauthor",
+    "shorteditor",
+    "sortname",
     "translator",
 ];
 
@@ -1100,12 +1103,19 @@ const VERBATIM_FIELDS: &[&str] = &[
 const RICHTEXT_FIELDS: &[&str] = &["annotation", "comment", "annote", "review", "notes", "note"];
 
 const LIST_FIELDS: &[&str] = &[
+    "address",
     "institution",
-    "publisher",
-    "origpublisher",
-    "organization",
+    "labelname",
+    "language",
+    "list?",
     "location",
+    "organization",
     "origlocation",
+    "origpublisher",
+    "origlanguage",
+    "pageref",
+    "publisher",
+    "school",
 ];
 
 /// Split a value only where the separator is outside braces and is not escaped.
@@ -1482,33 +1492,20 @@ fn field_mode(field: &str, options: &Options) -> String {
     if options
         .verbatim_fields
         .iter()
-        .any(|candidate| match candidate {
-            VerbatimField::Name(source) | VerbatimField::Pattern { source } => {
-                wildflower::Pattern::new(source.to_lowercase()).matches(field)
-            }
-        })
+        .any(|pattern| wildflower::Pattern::new(pattern.to_lowercase()).matches(field))
     {
-        return "verbatim".to_string();
+        return "verbatim".to_owned();
     }
 
     let configured = options.field_mode.get(field);
     let has_override = configured.is_some();
     let mut mode = "literal";
     for (candidate, matches_default) in [
-        (
-            "creatorlist",
-            !has_override && CREATOR_FIELDS.contains(&field),
-        ),
-        ("title", !has_override && TITLE_FIELDS.contains(&field)),
-        (
-            "verbatim",
-            !has_override && VERBATIM_FIELDS.contains(&field),
-        ),
-        (
-            "richtext",
-            !has_override && RICHTEXT_FIELDS.contains(&field),
-        ),
-        ("literallist", !has_override && LIST_FIELDS.contains(&field)),
+        ( "creatorlist", !has_override && CREATOR_FIELDS.contains(&field) ),
+        ( "title", !has_override && TITLE_FIELDS.contains(&field) ),
+        ( "verbatim", !has_override && VERBATIM_FIELDS.contains(&field) ),
+        ( "richtext", !has_override && RICHTEXT_FIELDS.contains(&field) ),
+        ( "literallist", !has_override && LIST_FIELDS.iter().any(|pattern| { wildflower::Pattern::new(pattern.to_lowercase()).matches(field) }) ),
     ] {
         if configured.is_some_and(|configured| configured == candidate) || matches_default {
             mode = candidate;
@@ -2334,10 +2331,10 @@ mod tests {
     }
 
     #[test]
-    /// Verify case-insensitive verbatim-field glob matching and literal-name matching.
+    /// Verify case-insensitive verbatim-field glob matching from string patterns.
     fn verbatim_fields_match_glob_patterns() {
         let options: Options = serde_json::from_value(serde_json::json!({
-            "verbatimFields": ["TITLE", {"source": "file*"}, {"source": "custom?"}, {"source": "*notes"}, "x.y", "a[b]"]
+            "verbatimFields": ["TITLE", "file*", "custom?", "*notes", "x.y", "a[b]"]
         }))
         .unwrap();
         for field in [
@@ -3717,11 +3714,12 @@ mod tests {
     fn field_mode_overrides_and_outer_braces_match_reference_behavior() {
         let mut field_mode = std::collections::HashMap::new();
         field_mode.insert("customfield".to_string(), "verbatim".to_string());
+        field_mode.insert("publisher".to_string(), "literal".to_string());
         let mut remove_outer_braces = vec!["doi".to_string()];
         remove_outer_braces.push("customfield".to_string());
 
         let parsed = parse(
-            "@article{k, doi={{10.1234/example}}, customfield={{literal value}}}",
+            "@article{k, doi={{10.1234/example}}, customfield={{literal value}}, publisher={Press}, listx={One and Two}}",
             Options {
                 field_mode,
                 remove_outer_braces,
@@ -3739,6 +3737,12 @@ mod tests {
             parsed.entries[0].fields["customfield"],
             FieldValue::Text("literal value".into())
         );
+        assert_eq!(parsed.entries[0].mode["publisher"], "literal");
+        assert_eq!(
+            parsed.entries[0].fields["publisher"],
+            FieldValue::Text("Press".into())
+        );
+        assert_eq!(parsed.entries[0].mode["listx"], "literallist");
     }
 
     #[test]

@@ -593,7 +593,8 @@ entries:
         - firstName: J.
           lastName: Santiago
           suffix: Sr.
-      sortname: SantiagoJ1
+      sortname:
+        - lastName: SantiagoJ1
     input: |-
       @NAMEONLY{9.44:11a,
         AUTHOR   = {Santiago, Sr., J.},
@@ -602,14 +603,15 @@ entries:
     key: 9.44:11a
     mode:
       author: creatorlist
-      sortname: literal
+      sortname: creatorlist
     type: nameonly
   - fields:
       author:
         - firstName: J.
           lastName: Santiago
           suffix: Jr.
-      sortname: SantiagoJ2
+      sortname:
+        - lastName: SantiagoJ2
     input: |-
       @NAMEONLY{9.44:11b,
         AUTHOR   = {Santiago, Jr., J.},
@@ -618,7 +620,7 @@ entries:
     key: 9.44:11b
     mode:
       author: creatorlist
-      sortname: literal
+      sortname: creatorlist
     type: nameonly
   - fields:
       author:

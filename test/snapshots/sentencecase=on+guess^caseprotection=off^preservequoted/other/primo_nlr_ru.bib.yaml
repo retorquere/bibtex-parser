@@ -10,7 +10,8 @@ entries:
         пишете статьи или просто читаете книги и изучаете интересную информацию,
         - с помощью метода Zettelkasten вы научитесь делать это более
         продуктивно и без лишних усилий
-      address: Москва
+      address:
+        - Москва
       author:
         - firstName: Аренс
           lastName: З
@@ -22,7 +23,8 @@ entries:
         - >-
           Знание – Усвоение – Психологические исследования – Популярные издания
           NLR12::RUNLRAUTH\66645826
-      language: rus
+      language:
+        - rus
       lccn: 978-5-00169-985-9
       publisher:
         - Манн, Иванов и Фербер
@@ -72,12 +74,12 @@ entries:
     key: АренсЗ2022Кдпз
     mode:
       abstract: literal
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       isbn: literal
       keywords: verbatimlist
-      language: literal
+      language: literallist
       lccn: literal
       publisher: literallist
       series: title

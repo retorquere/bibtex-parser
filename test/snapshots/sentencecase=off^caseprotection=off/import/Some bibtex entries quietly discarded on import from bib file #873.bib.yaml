@@ -163,7 +163,8 @@ entries:
       title: title
     type: inproceedings
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: Cordell
           lastName: Green
@@ -174,7 +175,7 @@ entries:
     input: "@BOOK{Green:1979,\n\tAUTHOR = {Cordell Green},\n\tTITLE = {The Application of Theorem Proving to Question\n\t\t Answering},\n\tPUBLISHER = {Garland Publishing Inc.},\n\tYEAR = {1979},\n\tADDRESS = {New York}\n}"
     key: Green:1979
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -198,7 +199,8 @@ entries:
       year: literal
     type: inproceedings
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: David
           lastName: Huffman
@@ -216,7 +218,7 @@ entries:
     input: "@inbook(Huffman:71,\n\tauthor =\t{David Huffman},\n\tbooktitle =\t{Machine Intelligence},\n\tvolume = \t{6},\n\taddress =\t{New York},\n\tyear =\t\t{1971},\n\teditor =\t{B. Meltzer and D. Michie},\n\tpublisher =\t{American Elsevier},\n\ttitle =\t\t{Impossible objects as nonsense sentences}\n)"
     key: Huffman:71
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -226,7 +228,8 @@ entries:
       year: literal
     type: inbook
   - fields:
-      address: Hillsdale, NJ
+      address:
+        - Hillsdale, NJ
       author:
         - firstName: Allan
           lastName: Collins
@@ -252,7 +255,7 @@ entries:
     input: "@book(Collins:80,\n\tauthor =\t{Allan Collins and John S. Brown and Kathy M. Larkin},\n\tbooktitle =\t{Theoretical Issues in Reading Comprehension: \n\t\t\t Perspectives from Cognitive Science, Linguistics, \n\t\t\t Artificial Intelligence and Education},\n\taddress =\t{Hillsdale, NJ},\n\tyear =\t\t{1980},\n\teditor =\t{R.J. Spiro and B.C. Bruce and W.F. Brewer},\n\tpublisher =\t{Lawrence Erlbaum},\n\tpages =\t\t{385--408},\n\ttitle =\t\t{Inference in text understanding}\n)"
     key: Collins:80
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -262,7 +265,8 @@ entries:
       year: literal
     type: book
   - fields:
-      address: Cambridge, Mass.
+      address:
+        - Cambridge, Mass.
       author:
         - firstName: David Allen
           lastName: McAllester
@@ -277,7 +281,7 @@ entries:
     input: "@techreport(McAllester:80,\n\tauthor =\t{David Allen McAllester},\n\taddress =\t{Cambridge, Mass.},\n\tyear =\t\t{1980},\n\tmonth =\t\t{January},\n\tinstitution =\t{Massachusetts Institute of Technology, \n\t\t\t Artificial Intelligence Laboratory},\n\tnumber =\t{AI-TR-550},\n\ttitle =\t\t{The Use of Equality in Deduction\n\t\t\t and Knowledge Representation}\n)"
     key: McAllester:80
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       institution: literallist
       month: literal
@@ -360,7 +364,8 @@ entries:
       year: literal
     type: inproceedings
   - fields:
-      address: ERLBAUM-ADDRESS
+      address:
+        - ERLBAUM-ADDRESS
       author:
         - firstName: Roger C.
           lastName: Schank
@@ -373,7 +378,7 @@ entries:
     input: "@book(Scripts,\n\tauthor =\t{Roger C. Schank and Robert P. Abelson},\n\taddress =\tERLBAUM-ADDRESS,\n\tyear =\t\t{1977},\n\tpublisher =\tERLBAUM,\n\ttitle =\t\t{Scripts, Plans, Goals, and Understanding}\n)"
     key: Scripts
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -451,7 +456,8 @@ entries:
       year: literal
     type: inproceedings
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: Marvin
           lastName: Minsky
@@ -467,7 +473,7 @@ entries:
     input: "@incollection(Minsky:Frames,\n\tauthor =\t{Marvin Minsky},\n\tbooktitle =\t{The Psychology of Computer Vision},\n\taddress =\t{New York},\n\tyear =\t\t{1975},\n\teditor =\t{P.H. Winston},\n\tpublisher =\t{McGraw-Hill},\n\ttitle =\t\t\"A framework for representing knowledge\",\n\tNOTE = {Republished in \\cite{KR}}\n)"
     key: Minsky:Frames
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -495,7 +501,8 @@ entries:
       year: literal
     type: techreport
   - fields:
-      address: Palo Alto, Calif.
+      address:
+        - Palo Alto, Calif.
       author:
         - firstName: David R.
           lastName: Barstow
@@ -508,14 +515,15 @@ entries:
     input: "@techreport(Barstow:77,\n\tauthor =\t{David R. Barstow},\n\taddress =\t{Palo Alto, Calif.},\n\tyear =\t\t{1977},\n\tinstitution =\t{Stanford University Artificial \n\t\t\t Intelligence Laboratory},\n\ttitle =\t\t{Automatic Construction of Algorithms and Data \n\t\t\t Structures Using a Knowledge Base of \n\t\t\t Programming Rules}\n)"
     key: Barstow:77
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       institution: literallist
       title: title
       year: literal
     type: techreport
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: Edward H.
           lastName: Shortliffe
@@ -526,14 +534,15 @@ entries:
     input: "@book(Shortliffe:76,\n\tauthor =\t{Edward H. Shortliffe},\n\taddress =\t{New York},\n\tyear =\t\t{1976},\n\tpublisher =\t{American Elsevier},\n\ttitle =\t\t{Computer-Based Medical Consultations: MYCIN}\n)"
     key: Shortliffe:76
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
       year: literal
     type: book
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: Nils J.
           lastName: Nilsson
@@ -544,14 +553,15 @@ entries:
     input: "@book(Nilsson:71,\n\tauthor =\t{Nils J. Nilsson},\n\taddress =\t{New York},\n\tyear =\t\t{1971},\n\tpublisher =\t{McGraw-Hill},\n\ttitle =\t\t{Problem Solving Methods in Artificial Intelligence}\n)"
     key: Nilsson:71
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
       year: literal
     type: book
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: Yoshiaki
           lastName: Shirai
@@ -566,7 +576,7 @@ entries:
     input: "@inbook(Shirai:75,\n\tauthor =\t{Yoshiaki Shirai},\n\tbooktitle =\t{The Psychology of Computer Vision},\n\taddress =\t{New York},\n\tyear =\t\t{1975},\n\teditor =\t{P.H. Winston},\n\tpublisher =\t{McGraw-Hill},\n\ttitle =\t\t{Analysing intensity arrays using knowledge \n\t\t\t about scenes}\n)"
     key: Shirai:75
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -575,7 +585,8 @@ entries:
       year: literal
     type: inbook
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: Terry
           lastName: Winograd
@@ -586,14 +597,15 @@ entries:
     input: "@book(Winograd:72,\n\tauthor =\t{Terry Winograd},\n\taddress =\t{New York},\n\tyear =\t\t{1972},\n\tpublisher =\t{Academic Press},\n\ttitle =\t\t{Understanding Natural Language}\n)"
     key: Winograd:72
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
       year: literal
     type: book
   - fields:
-      address: Cambridge, Mass.
+      address:
+        - Cambridge, Mass.
       author:
         - firstName: D.A.
           lastName: Moon
@@ -602,7 +614,7 @@ entries:
     input: "@techreport(Moon:74,\n\tauthor =\t{D.A. Moon},\n\taddress =\t{Cambridge, Mass.},\n\tyear =\t\t{1974},\n\ttitle =\t\t{MACLISP Reference Manual}\n)"
     key: Moon:74
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       title: title
       year: literal
@@ -684,7 +696,8 @@ entries:
       year: literal
     type: techreport
   - fields:
-      address: Cambridge, Mass.
+      address:
+        - Cambridge, Mass.
       author:
         - firstName: Scott E.
           lastName: Fahlman
@@ -695,14 +708,15 @@ entries:
     input: "@book(Fahlman:79,\n\tauthor =\t{Scott E. Fahlman},\n\taddress =\t{Cambridge, Mass.},\n\tyear =\t\t{1979},\n\tpublisher =\t{MIT Press},\n\ttitle =\t\t{NETL: A System for Representing and Using \n\t\t\t Real-World Knowledge}\n)"
     key: Fahlman:79
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
       year: literal
     type: book
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: G.
           lastName: Ernst
@@ -715,7 +729,7 @@ entries:
     input: "@book(Ernst:69,\n\tauthor =\t{G. Ernst and Allen Newell},\n\taddress =\t{New York},\n\tyear =\t\t{1969},\n\tpublisher =\t{Academic Press},\n\ttitle =\t\t{GPS: A Case Study in Generality and Problem Solving}\n)"
     key: Ernst:69
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -945,7 +959,8 @@ entries:
       title: title
     type: incollection
   - fields:
-      address: ERLBAUM-ADDRESS
+      address:
+        - ERLBAUM-ADDRESS
       author:
         - firstName: Wendy
           lastName: Lehnert
@@ -956,7 +971,7 @@ entries:
     input: "@book(Lehnert:78,\n\tauthor =\t{Wendy Lehnert},\n\taddress =\tERLBAUM-ADDRESS,\n\tyear =\t\t{1978},\n\tpublisher =\t{Lawrence Erlbaum},\n\ttitle =\t\t{The Process of Question Answering}\n)"
     key: Lehnert:78
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -996,7 +1011,8 @@ entries:
       year: literal
     type: techreport
   - fields:
-      address: London
+      address:
+        - London
       author:
         - firstName: Powell
           lastName: Niland
@@ -1007,7 +1023,7 @@ entries:
     input: "@book(Niland:70,\n\tauthor =\t{Powell Niland},\n\taddress =\t{London},\n\tyear =\t\t{1970},\n\tpublisher =\t{Macmillan Co.},\n\ttitle =\t\t{Production Planning, Scheduling, and \n\t\t\t Inventory Control}\n)"
     key: Niland:70
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -1030,7 +1046,8 @@ entries:
       year: literal
     type: techreport
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: Judith N.
           lastName: Levi
@@ -1041,7 +1058,7 @@ entries:
     input: "@book(Levi:78,\n\tauthor =\t{Judith N. Levi},\n\taddress =\t{New York},\n\tyear =\t\t{1978},\n\tpublisher =\t{Academic Press},\n\ttitle =\t\t{The Syntax and Semantics of Complex Nominals}\n)"
     key: Levi:78
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -1068,7 +1085,8 @@ entries:
       year: literal
     type: book
   - fields:
-      address: Cambridge, Mass.
+      address:
+        - Cambridge, Mass.
       author:
         - firstName: William A.
           lastName: Woods
@@ -1082,14 +1100,15 @@ entries:
     input: "@techreport(Woods:78,\n\tauthor =\t{William A. Woods},\n\taddress =\t{Cambridge, Mass.},\n\tyear =\t\t{January 1978},\n\tinstitution =\t{Bolt Beranek and Newman},\n\ttitle =\t\t{Research in Natural Language Understanding: \n\t\t\t Quarterly Technical Progress Report No. 1,1}\n)"
     key: Woods:78
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       institution: literallist
       title: title
       year: literal
     type: techreport
   - fields:
-      address: Cambridge, Mass.
+      address:
+        - Cambridge, Mass.
       author:
         - firstName: Mitchell P.
           lastName: Marcus
@@ -1100,14 +1119,15 @@ entries:
     input: "@book(Marcus:80,\n\tauthor =\t{Mitchell P. Marcus},\n\taddress =\t{Cambridge, Mass.},\n\tyear =\t\t{1980},\n\tpublisher =\t{MIT Press},\n\ttitle =\t\t{A Theory of Syntactic Recognition \n\t\t\t for Natural Language}\n)"
     key: Marcus:80
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
       year: literal
     type: book
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: Ronald J.
           lastName: Brachman
@@ -1118,7 +1138,7 @@ entries:
     input: "@incollection(Brachman:79,\n\tauthor =\t{Ronald J. Brachman},\n\taddress =\t{New York},\n\tpages =\t\t{3-50},\n\ttitle =\t\t\"On the epistemological status of semantic networks\",\n\tcrossref = \t\"Findler\",\n\tnote =\t\t{Republished in \\cite{KR}}\n)"
     key: Brachman:79
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       crossref: literal
       note: richtext
@@ -1144,7 +1164,8 @@ entries:
       year: literal
     type: techreport
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: Charles J.
           lastName: Fillmore
@@ -1163,7 +1184,7 @@ entries:
     input: "@book(Fillmore:68,\n\tauthor =\t{Charles J. Fillmore},\n\tbooktitle =\t{Universals in Linguistic Theory},\n\taddress =\t{New York},\n\tyear =\t\t{1968},\n\teditor =\t{E. Bach and R.T. Harms},\n\tpublisher =\t{Holt, Rinehart, and Winston},\n\tpages =\t\t{1-88},\n\ttitle =\t\t{The case for case}\n)"
     key: Fillmore:68
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -1173,7 +1194,8 @@ entries:
       year: literal
     type: book
   - fields:
-      address: Cambridge, Mass.
+      address:
+        - Cambridge, Mass.
       author:
         - firstName: Ray
           lastName: Jackendoff
@@ -1184,7 +1206,7 @@ entries:
     input: "@book(Jackendoff:72,\n\tauthor =\t{Ray Jackendoff},\n\taddress =\t{Cambridge, Mass.},\n\tyear =\t\t{1972},\n\tpublisher =\t{MIT Press},\n\ttitle =\t\t{Semantic Interpretation in Generative Grammar}\n)"
     key: Jackendoff:72
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -1260,7 +1282,8 @@ entries:
       title: title
     type: inproceedings
   - fields:
-      address: New York New York
+      address:
+        - New York New York
       author:
         - firstName: Allen
           lastName: Newell
@@ -1279,7 +1302,7 @@ entries:
     input: "@book(Newell:63,\n\tauthor =\t{Allen Newell and Herbert A. Simon},\n\tbooktitle =\t{Computers and Thought},\n\taddress =\t{New York New York},\n\tyear =\t\t{1963},\n\teditor =\t{Edward A. Feigenbaum and Julian Feldman},\n\tpublisher =\t{McGraw-Hill},\n\ttitle =\t\t{GPS, a program that simulates human thought}\n)"
     key: Newell:63
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -1345,7 +1368,8 @@ entries:
       year: literal
     type: book
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: Charles J.
           lastName: Fillmore
@@ -1363,7 +1387,7 @@ entries:
     input: "@book(Fillmore:77,\n\tauthor =\t{Charles J. Fillmore},\n\tbooktitle =\t{Syntax and Semantics 8: Grammatical Relations},\n\taddress =\t{New York},\n\tyear =\t\t{1977},\n\teditor =\t{P. Cole and J.M. Sadock},\n\tpublisher =\t{Academic Press},\n\tpages =\t\t{59-81},\n\ttitle =\t\t{The case for case reopened}\n)"
     key: Fillmore:77
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -1373,7 +1397,8 @@ entries:
       year: literal
     type: book
   - fields:
-      address: San Francisco
+      address:
+        - San Francisco
       author:
         - firstName: Roger C.
           lastName: Schank
@@ -1391,7 +1416,7 @@ entries:
     input: "@inbook(Schank:73,\n\tauthor =\t{Roger C. Schank},\n\tbooktitle =\t{Computer Models of Thought and Language},\n\taddress =\t{San Francisco},\n\tyear =\t\t{1973},\n\teditor =\t{R.C. Schank and K.M. Colby},\n\tpublisher =\t{Freeman},\n\tpages =\t\t{187-248},\n\ttitle =\t\t{Identification of conceptualizations underlying natural language}\n)"
     key: Schank:73
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -1401,7 +1426,8 @@ entries:
       year: literal
     type: inbook
   - fields:
-      address: Englewood Cliffs, NJ
+      address:
+        - Englewood Cliffs, NJ
       author:
         - firstName: M. Morris
           lastName: Mano
@@ -1412,7 +1438,7 @@ entries:
     input: "@book(Mano:76,\n\tauthor =\t{M. Morris Mano},\n\taddress =\t{Englewood Cliffs, NJ},\n\tyear =\t\t{1976},\n\tpublisher =\t{Prentice-Hall, Inc.},\n\ttitle =\t\t{Computer System Architecture}\n)"
     key: Mano:76
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -1460,7 +1486,8 @@ entries:
       year: literal
     type: techreport
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: William A.
           lastName: Woods
@@ -1476,7 +1503,7 @@ entries:
     input: "@book(Woods:72,\n\tauthor =\t{William A. Woods},\n\tbooktitle =\t{Natural Language Processing},\n\taddress =\t{New York},\n\tyear =\t\t{1972},\n\teditor =\t{R. Rustin},\n\tpublisher =\t{Algorithmics Press},\n\tpages =\t\t{113-154},\n\ttitle =\t\t{An experimental parsing system for transition network grammars}\n)"
     key: Woods:72
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -1553,7 +1580,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Cambridge, Mass.
+      address:
+        - Cambridge, Mass.
       author:
         - firstName: Joan
           lastName: Bresnan
@@ -1570,7 +1598,7 @@ entries:
     input: "@book(Bresnan:78,\n\tauthor =\t{Joan Bresnan},\n\tbooktitle =\t{Linguistic Theory and Psychological Reality},\n\taddress =\t{Cambridge, Mass.},\n\tyear =\t\t{1978},\n\teditor =\t{M. Halle, J. Bresnan, and G. Miller},\n\tpublisher =\t{MIT Press},\n\ttitle =\t\t{A realistic transformational grammar}\n)"
     key: Bresnan:78
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -1700,7 +1728,8 @@ entries:
       year: literal
     type: book
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: Christopher K.
           lastName: Riesbeck
@@ -1721,7 +1750,7 @@ entries:
     input: "@book(Riesbeck:78,\n\tauthor =\t{Christopher K. Riesbeck and Roger C. Schank},\n\tbooktitle =\t{Studies in the Perception of Language},\n\taddress =\t{New York},\n\tyear =\t\t{1978},\n\teditor =\t{W.J.M Levelt and G.B. Flores d'Arcais},\n\tinstitution =\t{Wiley},\n\ttitle =\t\t{Comprehension by computer:  Expectation-based analysis of sentences in context}\n)"
     key: Riesbeck:78
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -1749,7 +1778,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: J.D.
           lastName: Bransford
@@ -1766,7 +1796,7 @@ entries:
     input: "@book(Bransford:73,\n\tauthor =\t{J.D. Bransford and M.K. Johnson},\n\tbooktitle =\t{Visual Information Processing},\n\taddress =\t{New York},\n\tyear =\t\t{1973},\n\teditor =\t{W.G. Chase},\n\tpublisher =\t{Academic Press},\n\ttitle =\t\t{Considerations of some problems of comprehension}\n)"
     key: Bransford:73
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -1861,7 +1891,8 @@ entries:
       year: literal
     type: misc
   - fields:
-      address: Palo Alto, Calif.
+      address:
+        - Palo Alto, Calif.
       author:
         - firstName: Nils J.
           lastName: Nilsson
@@ -1872,7 +1903,7 @@ entries:
     input: "@book(Nilsson:80,\n\tauthor =\t{Nils J. Nilsson},\n\taddress =\t{Palo Alto, Calif.},\n\tyear =\t\t{1980},\n\tpublisher =\t{Tioga},\n\ttitle =\t\t{Principles of Artificial Intelligence}\n)"
     key: Nilsson:80
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -1900,7 +1931,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Dordrecht
+      address:
+        - Dordrecht
       author:
         - firstName: David R.
           lastName: Dowty
@@ -1915,7 +1947,7 @@ entries:
     input: "@book(DWP:81,\n\tauthor =\t{David R. Dowty and Robert E. Wall and Stanley Peters},\n\taddress =\t{Dordrecht},\n\tyear =\t\t{1981},\n\tpublisher =\t{Reidel},\n\ttitle =\t\t{Introduction to Montague Semantics}\n)"
     key: DWP:81
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -2040,7 +2072,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: ERLBAUM-ADDRESS
+      address:
+        - ERLBAUM-ADDRESS
       annote: Contains definition of “keyhole” and “intended” plan recognition.
       author:
         - firstName: Philip R.
@@ -2063,7 +2096,7 @@ entries:
     input: "@INCOLLECTION(CohenETAL:81,\n\tAUTHOR = {Philip R. Cohen and C. Raymond Perrault and James F. Allen},\n\tTITLE = \"Beyond Question Answering\",\n\tBOOKTITLE = {Strategies for Natural Language Processing},\n\tPUBLISHER = LEA,\n\tYEAR = {1981},\n\tEDITOR = {Wendy Lehnert and Marty Ringle},\n\tPAGES = {245--274},\n\tADDRESS = ERLBAUM-ADDRESS,\n\tANNOTE = {Contains definition of ``keyhole'' and ``intended''\n\t\t  plan recognition.}\n)"
     key: CohenETAL:81
     mode:
-      address: literal
+      address: literallist
       annote: richtext
       author: creatorlist
       booktitle: title
@@ -2124,7 +2157,8 @@ entries:
       year: literal
     type: book
   - fields:
-      address: Amsterdam
+      address:
+        - Amsterdam
       author:
         - firstName: Chuck
           lastName: Rieger
@@ -2139,7 +2173,7 @@ entries:
     input: "@book(Rieger:75,\n\tauthor =\t{Chuck Rieger},\n\tbooktitle =\t{Conceptual Information Processing},\n\taddress =\t{Amsterdam},\n\tyear =\t\t{1975},\n\teditor =\t{R.C. Schank},\n\tpublisher =\t{North-Holland},\n\ttitle =\t\t{Conceptual memory}\n)"
     key: Rieger:75
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -2360,7 +2394,8 @@ entries:
       year: literal
     type: techreport
   - fields:
-      address: ERLBAUM-ADDRESS
+      address:
+        - ERLBAUM-ADDRESS
       author:
         - firstName: David
           lastName: Swinney
@@ -2379,7 +2414,7 @@ entries:
     input: "@book(Swinney:83,\n\tauthor =\t{David Swinney},\n\tbooktitle =\t{Methods and Tactics in Cognitive Science},\n\taddress =\tERLBAUM-ADDRESS,\n\tyear =\t\t{1983},\n\teditor =\t{W. Kintsch, R.J. Miller, and P. Polson},\n\tpublisher =\t{Lawrence Erlbaum},\n\ttitle =\t\t{Theoretical and methodological issues in cognitive science: A psycholinguistic perspective}\n)"
     key: Swinney:83
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -2420,7 +2455,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Dordrecht
+      address:
+        - Dordrecht
       author:
         - firstName: Richard
           lastName: Montague
@@ -2437,7 +2473,7 @@ entries:
     input: "@incollection(Montague:73,\n\tauthor =\t{Richard Montague},\n\tbooktitle =\t{Approaches to Natural Language},\n\taddress =\t{Dordrecht},\n\tyear =\t\t{1973},\n\teditor =\t{K.J.J. Hintikka, J.M.E. Moravcsik, and P.C. Suppes},\n\tpublisher =\t{Reidel},\n\ttitle =\t\t{The proper treatment of quantification in ordinary English}\n)"
     key: Montague:73
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -2504,7 +2540,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: J.
           lastName: Thorne
@@ -2523,7 +2560,7 @@ entries:
     input: "@book(Thorne:68,\n\tauthor =\t{J. Thorne and P. Bratley and H. Dewar},\n\tbooktitle =\t{Machine Intelligence 3},\n\taddress =\t{New York},\n\tyear =\t\t{1968},\n\teditor =\t{D. Michie},\n\tpublisher =\t{American Elsevier},\n\ttitle =\t\t{The syntactic analysis of English by machine}\n)"
     key: Thorne:68
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -2532,7 +2569,8 @@ entries:
       year: literal
     type: book
   - fields:
-      address: The Hague
+      address:
+        - The Hague
       author:
         - firstName: Noam
           lastName: Chomsky
@@ -2543,14 +2581,15 @@ entries:
     input: "@book(Chomsky:57,\n\tauthor =\t{Noam Chomsky},\n\taddress =\t{The Hague},\n\tyear =\t\t{1957},\n\tpublisher =\t{Mouton},\n\ttitle =\t\t{Syntactic Structures}\n)"
     key: Chomsky:57
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
       year: literal
     type: book
   - fields:
-      address: Cambridge, Mass.
+      address:
+        - Cambridge, Mass.
       author:
         - firstName: Noam
           lastName: Chomsky
@@ -2561,14 +2600,15 @@ entries:
     input: "@book(Chomsky:65,\n\tauthor =\t{Noam Chomsky},\n\taddress =\t{Cambridge, Mass.},\n\tyear =\t\t{1965},\n\tpublisher =\t{MIT Press},\n\ttitle =\t\t{Aspects of the Theory of Syntax}\n)"
     key: Chomsky:65
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
       year: literal
     type: book
   - fields:
-      address: Berkeley
+      address:
+        - Berkeley
       author:
         - firstName: David M.
           lastName: Perlmutter
@@ -2581,14 +2621,15 @@ entries:
     input: "@book(Perlmutter:79,\n\tauthor =\t{David M. Perlmutter and Scott Soames},\n\taddress =\t{Berkeley},\n\tyear =\t\t{1979},\n\tpublisher =\t{University of California Press},\n\ttitle =\t\t{Syntactic Argumentation and the Structure of English}\n)"
     key: Perlmutter:79
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
       year: literal
     type: book
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: Emmon
           lastName: Bach
@@ -2599,14 +2640,15 @@ entries:
     input: "@book(Bach:74,\n\tauthor =\t{Emmon Bach},\n\taddress =\t{New York},\n\tyear =\t\t{1974},\n\tpublisher =\t{Holt, Rinehart & Winston},\n\ttitle =\t\t{Syntactic Theory}\n)"
     key: Bach:74
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
       year: literal
     type: book
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: S.J.
           lastName: Keyser
@@ -2619,7 +2661,7 @@ entries:
     input: "@book(Keyser:76,\n\tauthor =\t{S.J. Keyser and P.M. Postal},\n\taddress =\t{New York},\n\tyear =\t\t{1976},\n\tpublisher =\t{Harper & Row},\n\ttitle =\t\t{Beginning English Grammar}\n)"
     key: Keyser:76
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -2647,7 +2689,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: David
           lastName: Waltz
@@ -2662,7 +2705,7 @@ entries:
     input: "@book(Waltz:75,\n\tauthor =\t{David Waltz},\n\tbooktitle =\t{The Psychology of Computer Vision},\n\taddress =\t{New York},\n\tyear =\t\t{1975},\n\teditor =\t{P.H. Winston},\n\tpublisher =\t{McGraw-Hill},\n\ttitle =\t\t{Understanding line drawings of scenes with shadows}\n)"
     key: Waltz:75
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -2785,7 +2828,8 @@ entries:
       year: literal
     type: misc
   - fields:
-      address: London
+      address:
+        - London
       author:
         - firstName: J.L.
           lastName: Austin
@@ -2796,14 +2840,15 @@ entries:
     input: "@book(Austin,\n\tauthor =\t{J.L. Austin},\n\taddress =\t{London},\n\tyear =\t\t{1962},\n\tpublisher =\t{Oxford University Press},\n\ttitle =\t\t{How to Do Things with Words}\n)"
     key: Austin
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
       year: literal
     type: book
   - fields:
-      address: London
+      address:
+        - London
       author:
         - firstName: John R.
           lastName: Searle
@@ -2814,7 +2859,7 @@ entries:
     input: "@book(Searle:69,\n\tauthor =\t{John R. Searle},\n\taddress =\t{London},\n\tyear =\t\t{1969},\n\tpublisher =\t{Cambridge University Press},\n\ttitle =\t\t{Speech Acts: An Essay in the Philosophy of Language}\n)"
     key: Searle:69
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -2886,7 +2931,8 @@ entries:
       year: literal
     type: incollection
   - fields:
-      address: Boulder, Colorado
+      address:
+        - Boulder, Colorado
       author:
         - firstName: Harry
           lastName: Pople
@@ -2904,7 +2950,7 @@ entries:
     input: "@inbook(Pople:82,\n\tauthor =\t{Harry Pople},\n\tbooktitle =\t{Artificial Intelligence in Medicine},\n\taddress =\t{Boulder, Colorado},\n\tyear =\t\t{1982},\n\teditor =\t{P. Szolovits},\n\tpublisher =\t{Westview Press},\n\tpages =\t\t{119--190},\n\ttitle =\t\t{Heuristic methods for imposing structure on \n\t\t\t ill-structured problems: \n\t\t\t The structuring of medical diagnostics}\n)"
     key: Pople:82
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -2914,7 +2960,8 @@ entries:
       year: literal
     type: inbook
   - fields:
-      address: Cambridge, Mass.
+      address:
+        - Cambridge, Mass.
       author:
         - firstName: M. Ross
           lastName: Quillian
@@ -2926,7 +2973,7 @@ entries:
     input: "@techreport(Quillian:66,\n\tauthor =\t{M. Ross Quillian},\n\taddress =\t{Cambridge, Mass.},\n\tyear =\t\t{1966},\n\tinstitution =\t{Bolt Beranek and Newman},\n\ttitle =\t\t{Semantic Memory}\n)"
     key: Quillian:66
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       institution: literallist
       title: title
@@ -2956,7 +3003,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: Edith A.
           lastName: Moravcsik
@@ -2969,7 +3017,7 @@ entries:
     input: "@book(Moravcsik,\n\tauthor =\t{Edith A. Moravcsik and Jessica A. Wirth},\n\taddress =\t{New York},\n\tyear =\t\t{1980},\n\tpublisher =\t{Academic Press},\n\ttitle =\t\t{Syntax and Semantics 13:  \n\t\t\t Current Approaches to Syntax}\n)"
     key: Moravcsik
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -3121,7 +3169,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: San Francisco
+      address:
+        - San Francisco
       author:
         - firstName: Pamela
           lastName: McCorduck
@@ -3132,7 +3181,7 @@ entries:
     input: "@book(McCorduck:79,\n\tauthor =\t{Pamela McCorduck},\n\taddress =\t{San Francisco},\n\tyear =\t\t{1979},\n\tpublisher =\t{Freeman},\n\ttitle =\t\t{Machines Who Think}\n)"
     key: McCorduck:79
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -3198,7 +3247,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: London
+      address:
+        - London
       author:
         - firstName: Alan
           lastName: Turing
@@ -3214,7 +3264,7 @@ entries:
     input: "@book(Turing:53,\n\tauthor =\t{Alan Turing},\n\tbooktitle =\t{Faster Than Thought},\n\taddress =\t{London},\n\tyear =\t\t{1953},\n\teditor =\t{B.V. Bowden},\n\tpublisher =\t{Pitman},\n\tpages =\t\t{288-295},\n\ttitle =\t\t{Part of Chapter 25}\n)"
     key: Turing:53
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -3243,7 +3293,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Oxford
+      address:
+        - Oxford
       author:
         - firstName: Ludwig
           lastName: Wittgenstein
@@ -3254,14 +3305,15 @@ entries:
     input: "@book(Wittgenstein:PI,\n\tauthor =\t{Ludwig Wittgenstein},\n\taddress =\t{Oxford},\n\tyear =\t\t{1953},\n\tpublisher =\t{Basil Blackwell},\n\ttitle =\t\t{Philosophical Investigations}\n)"
     key: Wittgenstein:PI
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
       year: literal
     type: book
   - fields:
-      address: Chicago
+      address:
+        - Chicago
       author:
         - firstName: Richard
           lastName: Rorty
@@ -3272,14 +3324,15 @@ entries:
     input: "@book(Rorty:67,\n\tauthor =\t{Richard Rorty},\n\taddress =\t{Chicago},\n\tyear =\t\t{1967},\n\tpublisher =\t{University of Chicago Press},\n\ttitle =\t\t{The Linguistic Turn:  Recent Essays in Philosophical Method}\n)"
     key: Rorty:67
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
       year: literal
     type: book
   - fields:
-      address: Cambridge
+      address:
+        - Cambridge
       author:
         - firstName: A.N.
           lastName: Whitehead
@@ -3292,14 +3345,15 @@ entries:
     input: "@book(Whitehead:Principia,\n\tauthor =\t{A.N. Whitehead and B. Russell},\n\taddress =\t{Cambridge},\n\tyear =\t\t{1925},\n\tpublisher =\t{Cambridge University Press},\n\ttitle =\t\t{Principia Mathematica}\n)"
     key: Whitehead:Principia
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
       year: literal
     type: book
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: David J.
           lastName: Slate
@@ -3317,7 +3371,7 @@ entries:
     input: "@book(Slate:77,\n\tauthor =\t{David J. Slate and Lawrence R. Atkin},\n\tbooktitle =\t{Chess Skill in Man and Machine},\n\taddress =\t{New York},\n\tyear =\t\t{1977},\n\teditor =\t{P.W. Frey},\n\tpublisher =\t{Springer-Verlag},\n\tpages =\t\t{82-118},\n\ttitle =\t\t{CHESS 4.5 - the Northwestern University chess program}\n)"
     key: Slate:77
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -3327,7 +3381,8 @@ entries:
       year: literal
     type: book
   - fields:
-      address: ERLBAUM-ADDRESS
+      address:
+        - ERLBAUM-ADDRESS
       author:
         - firstName: John R.
           lastName: Anderson
@@ -3338,7 +3393,7 @@ entries:
     input: "@book(JRAnderson:76,\n\tauthor =\t{John R. Anderson},\n\taddress =\tERLBAUM-ADDRESS,\n\tyear =\t\t{1976},\n\tpublisher =\t{Lawrence Erlbaum},\n\ttitle =\t\t{Language, Memory, and Thought}\n)"
     key: JRAnderson:76
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -3366,7 +3421,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: Joseph E.
           lastName: Emonds
@@ -3379,7 +3435,7 @@ entries:
     input: "@book(Emonds:76,\n\tauthor =\t{Joseph E. Emonds},\n\taddress =\t{New York},\n\tyear =\t\t{1976},\n\tpublisher =\t{Academic Press},\n\ttitle =\t\t{A Transformational Approach to English Syntax: Root, Structure-preserving, and Local Transformations}\n)"
     key: Emonds:76
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -3469,7 +3525,8 @@ entries:
       year: literal
     type: book
   - fields:
-      address: Cambridge, Mass.
+      address:
+        - Cambridge, Mass.
       author:
         - firstName: Robert J.
           lastName: Bobrow
@@ -3481,7 +3538,7 @@ entries:
     input: "@book(RJBobrow:78,\n\tauthor =\t{Robert J. Bobrow},\n\tbooktitle =\t{Bolt Beranek and Newman},\n\taddress =\t{Cambridge, Mass.},\n\tyear =\t\t{1978},\n\tpublisher =\t{Quarterly Progress Report 3878},\n\ttitle =\t\t{The RUS System}\n)"
     key: RJBobrow:78
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       publisher: literallist
@@ -3514,7 +3571,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Cambridge Mass.
+      address:
+        - Cambridge Mass.
       author:
         - firstName: Ronald M.
           lastName: Kaplan
@@ -3530,7 +3588,7 @@ entries:
     input: "@book(Kaplan:82,\n\tauthor =\t{Ronald M. Kaplan and Joan W. Bresnan},\n\tbooktitle =\t{The Mental Representation of Grammatical Relations},\n\taddress =\t{Cambridge Mass.},\n\tyear =\t\t{1982},\n\tpublisher =\t{MIT Press},\n\ttitle =\t\t{Lexical-functional grammar:\ta formal system for grammatical representation}\n)"
     key: Kaplan:82
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       publisher: literallist
@@ -3538,7 +3596,8 @@ entries:
       year: literal
     type: book
   - fields:
-      address: Cambridge, Mass.
+      address:
+        - Cambridge, Mass.
       author:
         - firstName: Ronald J.
           lastName: Brachman
@@ -3550,7 +3609,7 @@ entries:
     input: "@techreport(Brachman:79,\n\tauthor =\t{Ronald J. Brachman},\n\taddress =\t{Cambridge, Mass.},\n\tyear =\t\t{1979},\n\tinstitution =\t{Bolt Beranek and Newman},\n\ttitle =\t\t{An Introduction to KL-ONE}\n)"
     key: Brachman:79
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       institution: literallist
       title: title
@@ -3603,21 +3662,23 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Stanford, CA
+      address:
+        - Stanford, CA
       author:
         - firstName: E.P.D.
           lastName: Pednault
       month: '12'
-      school: Stanford University
+      school:
+        - Stanford University
       title: Toward a Mathematical Theory of Plan Synthesis
       year: '1986'
     input: "@PHDTHESIS(Pednault:86,\n\tAUTHOR = {E.P.D. Pednault},\n\tTITLE = \"Toward a Mathematical Theory of Plan Synthesis\",\n\tSCHOOL = {Stanford University},\n\tYEAR = {1986},\n\tADDRESS = {Stanford, CA},\n\tMONTH = {December}\n)"
     key: Pednault:86
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       month: literal
-      school: literal
+      school: literallist
       title: title
       year: literal
     type: phdthesis
@@ -3786,7 +3847,8 @@ entries:
       year: literal
     type: incollection
   - fields:
-      address: Reading, Mass.
+      address:
+        - Reading, Mass.
       author:
         - firstName: Terry
           lastName: Winograd
@@ -3797,14 +3859,15 @@ entries:
     input: "@book(Winograd:83,\n\tauthor =\t{Terry Winograd},\n\taddress =\t{Reading, Mass.},\n\tyear =\t\t{1983},\n\tpublisher =\t{Addison-Wesley},\n\ttitle =\t\t{Language as a Cognitive Process, Volume I:  Syntax}\n)"
     key: Winograd:83
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
       year: literal
     type: book
   - fields:
-      address: ERLBAUM-ADDRESS
+      address:
+        - ERLBAUM-ADDRESS
       author:
         - firstName: J.
           lastName: Moore
@@ -3818,7 +3881,7 @@ entries:
     input: "@book(JMoore:74,\n\tauthor =\t{J. Moore and A. Newell},\n\tbooktitle =\t{Knowledge and Cognition},\n\taddress =\tERLBAUM-ADDRESS,\n\tyear =\t\t{1974},\n\tpublisher =\t{Lawrence Erlbaum},\n\ttitle =\t\t{How can Merlin understand?}\n)"
     key: JMoore:74
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       publisher: literallist
@@ -3826,7 +3889,8 @@ entries:
       year: literal
     type: book
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: Paul
           lastName: Grice
@@ -3846,7 +3910,7 @@ entries:
     input: "@incollection(Grice,\n\tauthor =\t{Paul Grice},\n\tbooktitle =\t{Speech Acts},\n\tseries = \t{Syntax and Semantics},\n\tnumber = \t{3},\n\taddress =\t{New York},\n\tyear =\t\t{1975},\n\teditor =\t{P. Cole and J. Morgan},\n\tpublisher =\t{Academic Press},\n\tpages =\t\t{41-58},\n\ttitle =\t\t{Logic and conversation}\n)"
     key: Grice
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -3879,7 +3943,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: Barbara J.
           lastName: Grosz
@@ -3895,7 +3960,7 @@ entries:
     input: "@incollection(Grosz:78,\n\tauthor =\t{Barbara J. Grosz},\n\tbooktitle =\t{Understanding Spoken language},\n\taddress =\t{New York},\n\tyear =\t\t{1978},\n\teditor =\t{D. Walker},\n\tpublisher =\t{North-Holland},\n\tpages =\t\t{229-347},\n\ttitle =\t\t{Discourse knowledge}\n)"
     key: Grosz:78
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -4028,7 +4093,8 @@ entries:
       year: literal
     type: techreport
   - fields:
-      address: Reading, Mass.
+      address:
+        - Reading, Mass.
       author:
         - firstName: Robert
           lastName: Sedgewick
@@ -4039,14 +4105,15 @@ entries:
     input: "@book(Algorithms,\n\tauthor =\t{Robert Sedgewick},\n\taddress =\t{Reading, Mass.},\n\tyear =\t\t{1983},\n\tpublisher =\t{Addison-Wesley},\n\ttitle =\t\t{Algorithms}\n)"
     key: Algorithms
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
       year: literal
     type: book
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: Margaret
           lastName: Boden
@@ -4057,14 +4124,15 @@ entries:
     input: "@book(Boden:77,\n\tauthor =\t{Margaret Boden},\n\taddress =\t{New York},\n\tyear =\t\t{1977},\n\tpublisher =\t{Basic Books},\n\ttitle =\t\t{Artificial Intelligence and Natural Man}\n)"
     key: Boden:77
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
       year: literal
     type: book
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: Elaine
           lastName: Rich
@@ -4075,14 +4143,15 @@ entries:
     input: "@book(Rich:83,\n\tauthor =\t{Elaine Rich},\n\taddress =\t{New York},\n\tyear =\t\t{1983},\n\tpublisher =\t{McGraw-Hill},\n\ttitle =\t\t{Artificial Intelligence}\n)"
     key: Rich:83
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
       year: literal
     type: book
   - fields:
-      address: Belmont, Calif.
+      address:
+        - Belmont, Calif.
       author:
         - firstName: Clark
           lastName: Weissman
@@ -4093,14 +4162,15 @@ entries:
     input: "@book(Weissman:67,\n\tauthor =\t{Clark Weissman},\n\taddress =\t{Belmont, Calif.},\n\tyear =\t\t{1967},\n\tpublisher =\t{Dickenson},\n\ttitle =\t\t{LISP 1.5 Primer}\n)"
     key: Weissman:67
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
       year: literal
     type: book
   - fields:
-      address: Englewood Cliffs, NJ
+      address:
+        - Englewood Cliffs, NJ
       author:
         - firstName: Laurent
           lastName: Siklossy
@@ -4111,14 +4181,15 @@ entries:
     input: "@book(Siklossy:76,\n\tauthor =\t{Laurent Siklossy},\n\taddress =\t{Englewood Cliffs, NJ},\n\tyear =\t\t{1976},\n\tpublisher =\t{Prentice-Hall},\n\ttitle =\t\t{Let's Talk LISP}\n)"
     key: Siklossy:76
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
       year: literal
     type: book
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: Stuart
           lastName: Shapiro
@@ -4129,7 +4200,7 @@ entries:
     input: "@book(Shapiro:79,\n\tauthor =\t{Stuart Shapiro},\n\taddress =\t{New York},\n\tyear =\t\t{1979},\n\tpublisher =\t{Van Nostrand},\n\ttitle =\t\t{Techniques of Artificial Intelligence}\n)"
     key: Shapiro:79
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -4155,7 +4226,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Stanford University, Stanford, CA
+      address:
+        - Stanford University, Stanford, CA
       author:
         - firstName: Gerald
           lastName: Gazdar
@@ -4169,7 +4241,7 @@ entries:
     input: "@TECHREPORT{Gazdar:85,\n\tAUTHOR = {Gerald Gazdar},\n\tTITLE = {Finite State Morphology:  \n\t\t A review of {K}oskenniemi (1983)},\n\tINSTITUTION = CSLI,\n\tYEAR = {1985},\n\tNUMBER = {CSLI-85-32},\n\tADDRESS = {Stanford University, Stanford, CA},\n\tMONTH = {September},\n\tNOTE = {Review of {\\em Two-level Morphology}}\n}"
     key: Gazdar:85
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       institution: literallist
       month: literal
@@ -4179,7 +4251,8 @@ entries:
       year: literal
     type: techreport
   - fields:
-      address: Los Altos, Calif.
+      address:
+        - Los Altos, Calif.
       author:
         - firstName: Elaine
           lastName: Rich
@@ -4193,7 +4266,7 @@ entries:
     input: "@inproceedings(Rich:83,\n\tauthor =\t{Elaine Rich},\n\taddress =\t{Los Altos, Calif.},\n\tyear =\t\t{1983},\n\tpublisher =\t{William Kaufmann, Inc.},\n\tbooktitle =\t{Proc. AAAI},\n\tpages =\t\t{348-351},\n\ttitle =\t\t\"Default reasoning as likelihood reasoning\",\n\tvolume =\t{3}\n)"
     key: Rich:83
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       pages: literal
@@ -4271,7 +4344,8 @@ entries:
       year: literal
     type: book
   - fields:
-      address: Princeton, NJ
+      address:
+        - Princeton, NJ
       author:
         - firstName: Patrick
           lastName: Suppes
@@ -4282,14 +4356,15 @@ entries:
     input: "@book(Suppes:57,\n\tauthor =\t{Patrick Suppes},\n\taddress =\t{Princeton, NJ},\n\tyear =\t\t{1957},\n\tpublisher =\t{Van Nostrand},\n\ttitle =\t\t{Introduction to Logic}\n)"
     key: Suppes:57
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
       year: literal
     type: book
   - fields:
-      address: Princeton, NJ
+      address:
+        - Princeton, NJ
       author:
         - firstName: Elliott
           lastName: Mendelson
@@ -4300,7 +4375,7 @@ entries:
     input: "@book(Mendelson:64,\n\tauthor =\t{Elliott Mendelson},\n\taddress =\t{Princeton, NJ},\n\tyear =\t\t{1964},\n\tpublisher =\t{Van Nostrand},\n\ttitle =\t\t{Introduction to Mathematical Logic}\n)"
     key: Mendelson:64
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -4326,7 +4401,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: Alan M.
           lastName: Turing
@@ -4344,7 +4420,7 @@ entries:
     input: "@book(Turing:63,\n\tauthor =\t{Alan M. Turing},\n\tbooktitle =\t{Computers and Thought},\n\taddress =\t{New York},\n\tyear =\t\t{1963},\n\teditor =\t{E. Feigenbaum and J. Feldman},\n\tpublisher =\t{McGraw-Hill},\n\tpages =\t\t{1-35},\n\ttitle =\t\t{Computing machinery and intelligence}\n)"
     key: Turing:63
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -4452,7 +4528,8 @@ entries:
       year: literal
     type: inproceedings
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: Mary
           lastName: Shelley
@@ -4463,14 +4540,15 @@ entries:
     input: "@book(Frankenstein,\n\tauthor =\t{Mary Shelley},\n\taddress =\t{New York},\n\tyear =\t\t{1981},\n\tpublisher =\t{Regents},\n\ttitle =\t\t{Frankenstein}\n)"
     key: Frankenstein
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
       year: literal
     type: book
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: Richard O.
           lastName: Duda
@@ -4492,7 +4570,7 @@ entries:
     input: "@book(Duda:78,\n\tauthor =\t{Richard O. Duda and Peter E. Hart and \n\t\t\t G.L. Sutherland},\n\tbooktitle =\t{Pattern Directed Inference Systems},\n\taddress =\t{New York},\n\tyear =\t\t{1978},\n\teditor =\t{D.A. Waterman and F. Hayes-Roth},\n\tpublisher =\t{Academic Press},\n\tpages =\t\t{203-221},\n\ttitle =\t\t{Semantic network representations in \n\t\t\t rule-based inference systems}\n)"
     key: Duda:78
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -4502,7 +4580,8 @@ entries:
       year: literal
     type: book
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: D.A.
           lastName: Waterman
@@ -4515,14 +4594,15 @@ entries:
     input: "@book{Waterman:78,\n\tauthor =\t{D.A. Waterman and F. Hayes-Roth},\n\taddress =\t{New York},\n\tyear =\t\t{1978},\n\tpublisher =\t{Academic Press},\n\ttitle =\t\t{Pattern Directed Inference Systems}\n}"
     key: Waterman:78
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
       year: literal
     type: book
   - fields:
-      address: Edinburgh
+      address:
+        - Edinburgh
       author:
         - firstName: Richard O.
           lastName: Duda
@@ -4542,7 +4622,7 @@ entries:
     input: "@book(Duda:80,\n\tauthor =\t{Richard O. Duda and John G. Gaschnig and\n\t\t\t  Peter E. Hart},\n\tbooktitle =\t{Expert Systems in the Microelectronic Age},\n\taddress =\t{Edinburgh},\n\tyear =\t\t{1980},\n\teditor =\t{D. Michie},\n\tpublisher =\t{Edinburgh University Press},\n\tpages =\t\t{153-167},\n\ttitle =\t\t{Model design in the Prospector consultant system \n\t\t\t for mineral exploration}\n)"
     key: Duda:80
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -4681,7 +4761,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Cambridge, Mass.
+      address:
+        - Cambridge, Mass.
       author:
         - firstName: Robert C.
           lastName: Berwick
@@ -4691,7 +4772,7 @@ entries:
     input: "@book(Berwick:Computation,\n\tauthor =\t{Robert C. Berwick},\n\taddress =\t{Cambridge, Mass.},\n\tpublisher =\t{MIT Press},\n\ttitle =\t\t{Computation and Language Acquisition}\n)"
     key: Berwick:Computation
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -4714,7 +4795,8 @@ entries:
       year: literal
     type: techreport
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: E.V.
           lastName: Clark
@@ -4727,7 +4809,7 @@ entries:
     input: "@book(Clark:78,\n\tauthor =\t{E.V. Clark and H.H. Clark},\n\taddress =\t{New York},\n\tyear =\t\t{1978},\n\tpublisher =\t{Harcourt Brace Jovanovich},\n\ttitle =\t\t{Psychology and Language}\n)"
     key: Clark:78
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -4750,7 +4832,8 @@ entries:
       year: literal
     type: techreport
   - fields:
-      address: Palo Alto, Calif.
+      address:
+        - Palo Alto, Calif.
       author:
         - firstName: John R.
           lastName: Anderson
@@ -4770,7 +4853,7 @@ entries:
     input: "@incollection(JRAnderson:83,\n\tauthor =\t{John R. Anderson},\n\tbooktitle =\t{Machine Learning: \n\t\t\t An Artificial Intelligence Approach},\n\taddress =\t{Palo Alto, Calif.},\n\tyear =\t\t{1983},\n\teditor =\t{Ryszard Michalski and Jaime G. Carbonell \n\t\t\t and Tom M. Mitchell},\n\tpublisher =\t{Tioga},\n\tpages =\t\t{191--219},\n\ttitle =\t\t{Acquisition of proof skills in geometry}\n)"
     key: JRAnderson:83
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -4780,7 +4863,8 @@ entries:
       year: literal
     type: incollection
   - fields:
-      address: Englewood Cliffs, NJ
+      address:
+        - Englewood Cliffs, NJ
       author:
         - firstName: Dana
           lastName: Ballard
@@ -4793,14 +4877,15 @@ entries:
     input: "@book(Ballard:82,\n\tauthor =\t{Dana Ballard and Christopher Brown},\n\taddress =\t{Englewood Cliffs, NJ},\n\tyear =\t\t{1982},\n\tpublisher =\t{Prentice-Hall},\n\ttitle =\t\t{Computer Vision}\n)"
     key: Ballard:82
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
       year: literal
     type: book
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: H.
           lastName: Barrow
@@ -4819,7 +4904,7 @@ entries:
     input: "@book(Barrow:78,\n\tauthor =\t{H. Barrow and J.M. Tenenbaum},\n\tbooktitle =\t{Computer Vision Systems},\n\taddress =\t{New York},\n\tyear =\t\t{1978},\n\teditor =\t{A. Hanson and E. Riseman},\n\tpublisher =\t{Academic Press},\n\ttitle =\t\t{Recovering intrinsic scene characteristics from images}\n)"
     key: Barrow:78
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -4910,7 +4995,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: ERLBAUM-ADDRESS
+      address:
+        - ERLBAUM-ADDRESS
       author:
         - firstName: Jacob
           lastName: Beck
@@ -4926,7 +5012,7 @@ entries:
     input: "@book(Beck:82,\n\tauthor =\t{Jacob Beck},\n\tbooktitle =\t{Organization and Representation in Perception},\n\taddress =\tERLBAUM-ADDRESS,\n\tyear =\t\t{1982},\n\teditor =\t{Jacob Beck},\n\tpublisher =\t{Lawrence Erlbaum},\n\tpages =\t\t{285-317},\n\ttitle =\t\t{Textural segmentation}\n)"
     key: Beck:82
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -5046,7 +5132,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: R.S.
           lastName: Boyer
@@ -5059,7 +5146,7 @@ entries:
     input: "@book(Boyer:79,\n\tauthor =\t{R.S. Boyer and J S. Moore},\n\taddress =\t{New York},\n\tyear =\t\t{1979},\n\tpublisher =\t{Academic Press},\n\ttitle =\t\t{A Computational Logic}\n)"
     key: Boyer:79
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -5187,7 +5274,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: J.S.
           lastName: Bruner
@@ -5202,14 +5290,15 @@ entries:
     input: "@book(BrunerETAL:1956,\n\tauthor =\t{J.S. Bruner and J.J. Goodnow and G.A. Austin},\n\taddress =\t{New York},\n\tyear =\t\t{1956},\n\tpublisher =\t{Wiley},\n\ttitle =\t\t{A Study of Thinking}\n)"
     key: BrunerETAL:1956
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
       year: literal
     type: book
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: M.
           lastName: Bruynooghe
@@ -5227,7 +5316,7 @@ entries:
     input: "@book(Bruynooghe:1980,\n\tauthor =\t{M. Bruynooghe},\n\tbooktitle =\t{Proceedings of the 5th \n\t\t\t Conference on Automated Deduction},\n\taddress =\t{New York},\n\tyear =\t\t{1980},\n\teditor =\t{W. Bibel and R. Kowalski},\n\tpublisher =\t{Springer-Verlag},\n\tpages =\t\t{293-305},\n\ttitle =\t\t{Analysis of dependencies to improve the behavior of logic programs}\n)"
     key: Bruynooghe:1980
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -5253,7 +5342,8 @@ entries:
       year: literal
     type: book
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: Bruce
           lastName: Buchanan
@@ -5273,7 +5363,7 @@ entries:
     input: "@book(Mitchell:1978,\n\tauthor =\t{Bruce Buchanan and Tom Mitchell},\n\tbooktitle =\t{Pattern-Directed Inference Systems},\n\taddress =\t{New York},\n\tyear =\t\t{1978},\n\teditor =\t{D.A. Waterman and F. Hayes-Roth},\n\tpublisher =\t{Academic Press},\n\tpages =\t\t{297-312},\n\ttitle =\t\t{Model-directed learning of production rules}\n)"
     key: Mitchell:1978
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -5366,7 +5456,8 @@ entries:
       year: literal
     type: inproceedings
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: C.L.
           lastName: Chang
@@ -5379,7 +5470,7 @@ entries:
     input: "@book(ChangLee,\n\tauthor =\t{C.L. Chang and R.C.-T. Lee},\n\taddress =\t{New York},\n\tyear =\t\t{1973},\n\tpublisher =\t{Academic Press},\n\ttitle =\t\t{Symbolic Logic and Mechanical Theorem Proving}\n)"
     key: ChangLee
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -5412,7 +5503,8 @@ entries:
       year: literal
     type: book
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: W.
           lastName: Clocksin
@@ -5425,7 +5517,7 @@ entries:
     input: "@book(Clocksin:81,\n\tauthor =\t{W. Clocksin and C. Mellish},\n\taddress =\t{New York},\n\tyear =\t\t{1981},\n\tpublisher =\t{Springer-Verlag},\n\ttitle =\t\t{Programming in Prolog}\n)"
     key: Clocksin:81
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -5504,7 +5596,8 @@ entries:
       year: literal
     type: inproceedings
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: Randall
           lastName: Davis
@@ -5522,7 +5615,7 @@ entries:
     input: "@book(Davis:1982,\n\tauthor =\t{Randall Davis},\n\tbooktitle =\t{Knowledge-Based Systems in Artificial Intelligence},\n\taddress =\t{New York},\n\tyear =\t\t{1982},\n\teditor =\t{Randall Davis and Douglas B. Lenat},\n\tpublisher =\t{McGraw-Hill},\n\tpages =\t\t{227-490},\n\ttitle =\t\t{Teiresias: Applications of meta-level knowledge}\n)"
     key: Davis:1982
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -5532,7 +5625,8 @@ entries:
       year: literal
     type: book
   - fields:
-      address: Cambridge, Mass.
+      address:
+        - Cambridge, Mass.
       author:
         - firstName: Johan
           lastName: deKleer
@@ -5551,7 +5645,7 @@ entries:
     input: "@incollection(deKleer:1979,\n\tauthor =\t{Johan deKleer},\n\tbooktitle =\t{Artificial Intelligence: An MIT Perspective},\n\taddress =\t{Cambridge, Mass.},\n\tyear =\t\t{1979},\n\teditor =\t{P.H. Winston and R.H. Brown},\n\tpublisher =\t{MIT Press},\n\tpages =\t\t{11-30},\n\ttitle =\t\t\"Qualitative and quantitative reasoning in classical mechanics\",\n\tvolume =\t{1}\n)"
     key: deKleer:1979
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -5600,7 +5694,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: Michael
           lastName: Domjan
@@ -5618,7 +5713,7 @@ entries:
     input: "@book(Domjan:1983,\n\tauthor =\t{Michael Domjan},\n\tbooktitle =\t{Psychology of Learning and Motivation},\n\taddress =\t{New York},\n\tyear =\t\t{1983},\n\teditor =\t{Bower, G.},\n\tpublisher =\t{Academic Press},\n\ttitle =\t\t\"Biological constraints on instrumental and classical conditioning: Implications for general process theory\",\n\tvolume =\t{17}\n)"
     key: Domjan:1983
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -5686,7 +5781,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: Edward A.
           lastName: Feigenbaum
@@ -5703,7 +5799,7 @@ entries:
     input: "@book(Feigenbaum:1963,\n\tauthor =\t{Edward A. Feigenbaum},\n\tbooktitle =\t{Computers and Thought},\n\taddress =\t{New York},\n\tyear =\t\t{1963},\n\teditor =\t{Edward A. Feigenbaum and Julian Feldman},\n\tpublisher =\t{McGraw-Hill},\n\ttitle =\t\t{The simulation of verbal learning behavior}\n)"
     key: Feigenbaum:1963
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -5762,7 +5858,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Edinburgh
+      address:
+        - Edinburgh
       author:
         - firstName: Daniel P.
           lastName: Friedman
@@ -5782,7 +5879,7 @@ entries:
     input: "@book(Wise:1976,\n\tauthor =\t{Daniel P. Friedman and David S. Wise},\n\tbooktitle =\t{Automata, Languages, and Programming},\n\taddress =\t{Edinburgh},\n\tyear =\t\t{1976},\n\teditor =\t{S. Michaelson and R. Milner},\n\tpublisher =\t{Edinburgh University Press},\n\tpages =\t\t{257-284},\n\ttitle =\t\t{CONS should not evaluate its arguments}\n)"
     key: Wise:1976
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -5905,7 +6002,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Boston
+      address:
+        - Boston
       author:
         - firstName: J.J.
           lastName: Gibson
@@ -5916,7 +6014,7 @@ entries:
     input: "@book(Gibson:1950,\n\tauthor =\t{J.J. Gibson},\n\taddress =\t{Boston},\n\tyear =\t\t{1950},\n\tpublisher =\t{Houghton Mifflin},\n\ttitle =\t\t{The Perception of the Visual World}\n)"
     key: Gibson:1950
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -5963,7 +6061,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Englewood Cliffs, NJ
+      address:
+        - Englewood Cliffs, NJ
       author:
         - firstName: Alvin I.
           lastName: Goldman
@@ -5974,7 +6073,7 @@ entries:
     input: "@book(Goldman:1970,\n\tauthor =\t{Alvin I. Goldman},\n\taddress =\t{Englewood Cliffs, NJ},\n\tyear =\t\t{1970},\n\tpublisher =\t{Prentice-Hall},\n\ttitle =\t\t{A Theory of Human Action}\n)"
     key: Goldman:1970
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -6059,7 +6158,8 @@ entries:
       year: literal
     type: techreport
   - fields:
-      address: Edinburgh
+      address:
+        - Edinburgh
       author:
         - firstName: Patrick
           lastName: Hayes
@@ -6074,7 +6174,7 @@ entries:
     input: "@book(Hayes:1980,\n\tauthor =\t{Patrick Hayes},\n\tbooktitle =\t{Expert Systems in the Microelectronic Age},\n\taddress =\t{Edinburgh},\n\tyear =\t\t{1980},\n\teditor =\t{Donald Michie},\n\tpublisher =\t{Edinburgh University Press},\n\ttitle =\t\t{The naive physics manifesto}\n)"
     key: Hayes:1980
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -6193,7 +6293,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Chicago
+      address:
+        - Chicago
       author:
         - firstName: Bela
           lastName: Julesz
@@ -6204,7 +6305,7 @@ entries:
     input: "@book(Julesz:1971,\n\tauthor =\t{Bela Julesz},\n\taddress =\t{Chicago},\n\tyear =\t\t{1971},\n\tpublisher =\t{University of Chicago Press},\n\ttitle =\t\t{Foundations of Cyclopean Perception}\n)"
     key: Julesz:1971
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -6253,7 +6354,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Reading, Mass.
+      address:
+        - Reading, Mass.
       author:
         - firstName: D.E.
           lastName: Knuth
@@ -6264,7 +6366,7 @@ entries:
     input: "@book(Knuth:1973,\n\tauthor =\t{D.E. Knuth},\n\taddress =\t{Reading, Mass.},\n\tyear =\t\t{1973},\n\tpublisher =\t{Addison-Wesley},\n\ttitle =\t\t{Sorting and Searching}\n)"
     key: Knuth:1973
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -6395,7 +6497,8 @@ entries:
       year: literal
     type: inproceedings
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: Kurt
           lastName: Konolige
@@ -6416,7 +6519,7 @@ entries:
     input: "@INCOLLECTION{Konolige:82,\n\tAUTHOR = {Kurt Konolige},\n\tTITLE = {A first-order formalisation of knowledge and action\n\t\t for a multi-agent planning system},\n\tBOOKTITLE = {Machine Intelligence 10},\n\tPUBLISHER = {Halstead},\n\tYEAR = {1982},\n\tEDITOR = {J.E. Hayes and D. Michie},\n\tCHAPTER = {2},\n\tPAGES = {41--72},\n\tADDRESS = {New York}\n}"
     key: Konolige:82
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       chapter: literal
@@ -6534,7 +6637,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Amsterdam
+      address:
+        - Amsterdam
       author:
         - firstName: Robert A.
           lastName: Kowalski
@@ -6545,7 +6649,7 @@ entries:
     input: "@book(Kowalski:79,\n\tauthor =\t{Robert A. Kowalski},\n\taddress =\t{Amsterdam},\n\tyear =\t\t{1979},\n\tpublisher =\t{Elsevier North-Holland},\n\ttitle =\t\t{Logic for Problem Solving}\n)"
     key: Kowalski:79
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -6630,7 +6734,8 @@ entries:
       year: literal
     type: inproceedings
   - fields:
-      address: Chicago
+      address:
+        - Chicago
       author:
         - firstName: George
           lastName: Lakoff
@@ -6643,7 +6748,7 @@ entries:
     input: "@book(Lakoff:80,\n\tauthor =\t{George Lakoff and M. Johnson},\n\taddress =\t{Chicago},\n\tyear =\t\t{1980},\n\tpublisher =\t{University of Chicago Press},\n\ttitle =\t\t{Metaphors We Live By}\n)"
     key: Lakoff:80
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -6669,7 +6774,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Cambridge, Mass.
+      address:
+        - Cambridge, Mass.
       author:
         - firstName: Mark A.
           lastName: Lavin
@@ -6688,7 +6794,7 @@ entries:
     input: "@book(Lavin:1979,\n\tauthor =\t{Mark A. Lavin},\n\tbooktitle =\t{Artificial Intelligence: An MIT Perspective},\n\taddress =\t{Cambridge, Mass.},\n\tyear =\t\t{1979},\n\teditor =\t{P.H. Winston and R.H. Brown},\n\tpublisher =\t{MIT Press},\n\tpages =\t\t{185-208},\n\ttitle =\t\t\"Analysis of scenes from a moving viewpoint\",\n\tvolume =\t{2}\n)"
     key: Lavin:1979
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -6741,7 +6847,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: Douglas B.
           lastName: Lenat
@@ -6759,7 +6866,7 @@ entries:
     input: "@book(Lenat:1982,\n\tauthor =\t{Douglas B. Lenat},\n\tbooktitle =\t{Knowledge-Based Systems in Artificial Intelligence},\n\taddress =\t{New York},\n\tyear =\t\t{1982},\n\teditor =\t{Randall Davis and Douglas B. Lenat},\n\tpublisher =\t{McGraw-Hill},\n\tpages =\t\t{1-225},\n\ttitle =\t\t{AM: Discovery in mathematics as heuristic search}\n)"
     key: Lenat:1982
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -6769,7 +6876,8 @@ entries:
       year: literal
     type: book
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: Randall
           lastName: Davis
@@ -6782,7 +6890,7 @@ entries:
     input: "@book{editors,\n\tauthor =\t{Randall Davis and Douglas B. Lenat},\n\taddress =\t{New York},\n\tyear =\t\t{1982},\n\tpublisher =\t{McGraw-Hill},\n\ttitle =\t\t{Knowledge-Based Systems in Artificial Intelligence}\n}"
     key: editors
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -6852,7 +6960,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Palo Alto, Calif.
+      address:
+        - Palo Alto, Calif.
       author:
         - firstName: Douglas B.
           lastName: Lenat
@@ -6870,7 +6979,7 @@ entries:
     input: "@book(Lenat:1983c,\n\tauthor =\t{Douglas B. Lenat},\n\tbooktitle =\t{Machine Learning: An Artificial Intelligence Approach},\n\taddress =\t{Palo Alto, Calif.},\n\tyear =\t\t{1983},\n\teditor =\t{Ryszard Michalski, Jaime G. Carbonell, and Tom M. Mitchell},\n\tpublisher =\t{Tioga},\n\tpages =\t\t{243-306},\n\ttitle =\t\t{The role of heuristics in learning by discovery: Three case studies}\n)"
     key: Lenat:1983c
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -6926,7 +7035,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Oxford
+      address:
+        - Oxford
       author:
         - firstName: David K.
           lastName: Lewis
@@ -6937,7 +7047,7 @@ entries:
     input: "@book(Lewis:73,\n\tauthor =\t{David K. Lewis},\n\taddress =\t{Oxford},\n\tyear =\t\t{1973},\n\tpublisher =\t{Basil Blackwell},\n\ttitle =\t\t{Counterfactuals}\n)"
     key: Lewis:73
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -7051,7 +7161,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Reading, Mass.
+      address:
+        - Reading, Mass.
       author:
         - firstName: David G.
           lastName: Luenberger
@@ -7062,14 +7173,15 @@ entries:
     input: "@book(Luenberger:1973,\n\tauthor =\t{David G. Luenberger},\n\taddress =\t{Reading, Mass.},\n\tyear =\t\t{1973},\n\tpublisher =\t{Addison-Wesley},\n\ttitle =\t\t{Introduction to Linear and Nonlinear Programming}\n)"
     key: Luenberger:1973
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
       year: literal
     type: book
   - fields:
-      address: San Francisco
+      address:
+        - San Francisco
       author:
         - firstName: David
           lastName: Marr
@@ -7080,7 +7192,7 @@ entries:
     input: "@book(Marr:1982,\n\tauthor =\t{David Marr},\n\taddress =\t{San Francisco},\n\tyear =\t\t{1982},\n\tpublisher =\t{Freeman},\n\ttitle =\t\t{Vision}\n)"
     key: Marr:1982
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -7173,7 +7285,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Teddington, England
+      address:
+        - Teddington, England
       author:
         - firstName: John
           lastName: McCarthy
@@ -7185,7 +7298,7 @@ entries:
     input: "@book(McCarthy:1958,\n\tauthor =\t{John McCarthy},\n\tbooktitle =\t{Proceedings of the Symposium on the Mechanization of Thought Processes},\n\taddress =\t{Teddington, England},\n\tyear =\t\t{1958},\n\tpublisher =\t{National Physical Laboratory},\n\ttitle =\t\t{Programs with common sense}\n)"
     key: McCarthy:1958
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       publisher: literallist
@@ -7231,7 +7344,8 @@ entries:
       year: literal
     type: misc
   - fields:
-      address: Edinburgh
+      address:
+        - Edinburgh
       author:
         - firstName: John
           lastName: McCarthy
@@ -7253,7 +7367,7 @@ entries:
     input: "@incollection{McCarthy:69, \n\tauthor =\t{John McCarthy and Patrick J. Hayes},\n\tbooktitle =\t{Machine Intelligence},\n\tvolume = \t4,\n\taddress =\t{Edinburgh},\n\tyear =\t\t{1969},\n\teditor =\t{B. Meltzer and D. Michie},\n\tpublisher =\t{Edinburgh University Press},\n\ttitle =\t\t{Some philosophical problems \n\t\t\t from the standpoint of artificial intelligence}\n}"
     key: McCarthy:69
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -7316,7 +7430,8 @@ entries:
       year: literal
     type: techreport
   - fields:
-      address: Cambridge, Mass.
+      address:
+        - Cambridge, Mass.
       author:
         - name: MCDERMOTT
       institution:
@@ -7328,7 +7443,7 @@ entries:
     input: "@techreport(McDermott:77,\n\tauthor =\tMCDERMOTT,\n\taddress =\t{Cambridge, Mass.},\n\tyear =\t\t{June 1977},\n\tinstitution =\t{Massachusetts Institute of Technology, \n\t\t\t Artificial Intelligence Laboratory},\n\ttitle =\t\t{Flexibility and Efficiency in a Computer \n\t\t\t Program for Designing Circuits}\n)"
     key: McDermott:77
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       institution: literallist
       title: title
@@ -7459,7 +7574,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Montgomery, Vermont
+      address:
+        - Montgomery, Vermont
       author:
         - name: MCDERMOTT
       booktitle: Mind design
@@ -7474,7 +7590,7 @@ entries:
     input: "@inbook(McDermott:81,\n\tauthor =\tMCDERMOTT,\n\tbooktitle =\t{Mind design},\n\taddress =\t{Montgomery, Vermont},\n\tyear =\t\t{1981},\n\teditor =\t{John Haugeland},\n\tpublisher =\t{Bradford Books},\n\tpages =\t\t{143-160},\n\ttitle =\t\t{Artificial intelligence meets natural stupidity}\n)"
     key: McDermott:81
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -7577,7 +7693,8 @@ entries:
       year: literal
     type: techreport
   - fields:
-      address: Hillsdale, NJ
+      address:
+        - Hillsdale, NJ
       author:
         - name: MCDERMOTT
       booktitle: Formal Theories of the Commonsense World
@@ -7591,7 +7708,7 @@ entries:
     input: "@inbook(McDermott:84a,\n\tauthor =\tMCDERMOTT,\n\tbooktitle =\t{Formal Theories of the Commonsense World},\n\taddress =\t{Hillsdale, NJ},\n\tyear =\t\t{1984},\n\teditor =\t{Hobbs, J.},\n\tpublisher =\t{Ablex},\n\ttitle =\t\t{Reasoning about plans}\n)"
     key: McDermott:84a
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -7717,7 +7834,8 @@ entries:
       title: title
     type: inproceedings
   - fields:
-      address: New Haven, CT
+      address:
+        - New Haven, CT
       author:
         - firstName: Malik
           lastName: Ghallab
@@ -7755,7 +7873,7 @@ entries:
         month =     oct}
     key: McDermott:98:pddl
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       institution: literallist
       month: literal
@@ -7921,19 +8039,21 @@ entries:
       author:
         - firstName: David P.
           lastName: Miller
-      school: Yale University Department of Computer Science
+      school:
+        - Yale University Department of Computer Science
       title: Planning by Search Through Simulations
       year: '1985'
     input: "@PHDTHESIS{Miller:85a,\n\tAUTHOR = {David P. Miller},\n\tTITLE = \"Planning by Search Through Simulations\",\n\tSCHOOL = {Yale University\n\t\t  Department of Computer Science},\n\tYEAR = {1985}\n}"
     key: Miller:85a
     mode:
       author: creatorlist
-      school: literal
+      school: literallist
       title: title
       year: literal
     type: phdthesis
   - fields:
-      address: Cambridge, Mass.
+      address:
+        - Cambridge, Mass.
       author:
         - firstName: Marvin
           lastName: Minsky
@@ -7944,14 +8064,15 @@ entries:
     input: "@book(Minsky:68,\n\tauthor =\t{Marvin Minsky},\n\taddress =\t{Cambridge, Mass.},\n\tyear =\t\t{1968},\n\tpublisher =\t{MIT Press},\n\ttitle =\t\t{Semantic Information Processing}\n)"
     key: Minsky:68
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
       year: literal
     type: book
   - fields:
-      address: Palo Alto, Calif.
+      address:
+        - Palo Alto, Calif.
       author:
         - firstName: Tom M.
           lastName: Mitchell
@@ -7975,7 +8096,7 @@ entries:
     input: "@incollection(Mitchell:83,\n\tauthor =\t{Tom M. Mitchell and Paul E. Utgoff and Ranan Banerji},\n\tbooktitle =\t{Machine Learning: An Artificial Intelligence Approach},\n\taddress =\t{Palo Alto, Calif.},\n\tyear =\t\t{1983},\n\teditor =\t{Ryszard Michalski, Jaime G. Carbonell, and Tom M. Mitchell},\n\tpublisher =\t{Tioga},\n\tpages =\t\t{163-190},\n\ttitle =\t\t{Learning by experimentation: Acquiring and refining problem-solving heuristics}\n)"
     key: Mitchell:83
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -7985,7 +8106,8 @@ entries:
       year: literal
     type: incollection
   - fields:
-      address: New Haven, Conn.
+      address:
+        - New Haven, Conn.
       author:
         - firstName: Richard
           lastName: Montague
@@ -7996,7 +8118,7 @@ entries:
     input: "@book(Montague:1974,\n\tauthor =\t{Richard Montague},\n\taddress =\t{New Haven, Conn.},\n\tyear =\t\t{1974},\n\tpublisher =\t{Yale University Press},\n\ttitle =\t\t{Formal Philosophy}\n)"
     key: Montague:1974
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -8034,7 +8156,8 @@ entries:
       title: title
     type: incollection
   - fields:
-      address: Palo Alto, Calif.
+      address:
+        - Palo Alto, Calif.
       author:
         - firstName: D. Jack
           lastName: Mostow
@@ -8052,7 +8175,7 @@ entries:
     input: "@incollection(Mostow:83,\n\tauthor =\t{D. Jack Mostow},\n\tbooktitle =\t{Machine Learning: An Artificial Intelligence Approach},\n\taddress =\t{Palo Alto, Calif.},\n\tyear =\t\t{1983},\n\teditor =\t{Ryszard Michalski, Jaime G. Carbonell, and Tom M. Mitchell},\n\tpublisher =\t{Tioga},\n\tpages =\t\t{367--403},\n\ttitle =\t\t{Machine transformation of advice into a \n\t\t\t heuristic search procedure}\n)"
     key: Mostow:83
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -8330,7 +8453,8 @@ entries:
       year: literal
     type: techreport
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: William M.
           lastName: Newman
@@ -8343,7 +8467,7 @@ entries:
     input: "@book(Sproull:1979,\n\tauthor =\t{William M. Newman and Robert F. Sproull},\n\taddress =\t{New York},\n\tyear =\t\t{1979},\n\tpublisher =\t{McGraw-Hill},\n\ttitle =\t\t{Principles of Interactive Computer Graphics}\n)"
     key: Sproull:1979
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -8407,7 +8531,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Cambridge, Mass.
+      address:
+        - Cambridge, Mass.
       author:
         - firstName: Richard P.
           lastName: Paul
@@ -8418,7 +8543,7 @@ entries:
     input: "@book(Paul:1981,\n\tauthor =\t{Richard P. Paul},\n\taddress =\t{Cambridge, Mass.},\n\tyear =\t\t{1981},\n\tpublisher =\t{MIT Press},\n\ttitle =\t\t{Robot Manipulators: Mathematics, Programming, and Control}\n)"
     key: Paul:1981
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -8444,7 +8569,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: L.M.
           lastName: Pereira
@@ -8464,7 +8590,7 @@ entries:
     input: "@book(Porto:1980,\n\tauthor =\t{L.M. Pereira and A. Porto},\n\tbooktitle =\t{Proceedings of the 5th Conference on Automated Deduction},\n\taddress =\t{New York},\n\tyear =\t\t{1980},\n\teditor =\t{W. Bibel and R. Kowalski},\n\tpublisher =\t{Springer-Verlag},\n\tpages =\t\t{306-317},\n\ttitle =\t\t{Selective backtracking for logic programs}\n)"
     key: Porto:1980
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -8474,7 +8600,8 @@ entries:
       year: literal
     type: book
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: L.M.
           lastName: Pereira
@@ -8494,7 +8621,7 @@ entries:
     input: "@book(Porto:1980,\n\tauthor =\t{L.M. Pereira and A. Porto},\n\tbooktitle =\t{Logic Programming},\n\taddress =\t{New York},\n\tyear =\t\t{1980},\n\teditor =\t{K.L. Clark and S.-A. Tarnlund},\n\tpublisher =\t{Academic Press},\n\tpages =\t\t{107-114},\n\ttitle =\t\t{Selective backtracking}\n)"
     key: Porto:1980
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -8530,7 +8657,8 @@ entries:
       year: literal
     type: book
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: Ira
           lastName: Pohl
@@ -8547,7 +8675,7 @@ entries:
     input: "@book(Pohl:1971,\n\tauthor =\t{Ira Pohl},\n\tbooktitle =\t{Machine Intelligence 6},\n\taddress =\t{New York},\n\tyear =\t\t{1971},\n\teditor =\t{B. Meltzer and D. Michie},\n\tpublisher =\t{American Elsevier},\n\ttitle =\t\t{Bi-directional search}\n)"
     key: Pohl:1971
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -8556,7 +8684,8 @@ entries:
       year: literal
     type: book
   - fields:
-      address: Palo Alto, Calif.
+      address:
+        - Palo Alto, Calif.
       author:
         - firstName: J. Ross
           lastName: Quinlan
@@ -8576,7 +8705,7 @@ entries:
     input: "@incollection(Quinlan:MLbook,\n\tauthor =\t{J. Ross Quinlan},\n\tbooktitle =\t{Machine Learning: An Artificial Intelligence Approach},\n\taddress =\t{Palo Alto, Calif.},\n\tyear =\t\t{1983},\n\teditor =\t{Ryszard Michalski, Jaime G. Carbonell, and Tom M. Mitchell},\n\tpublisher =\t{Tioga},\n\tpages =\t\t{463--482},\n\ttitle =\t\t{Learning efficient classification procedures and their \n\t\t\t application to chess end games}\n)"
     key: Quinlan:MLbook
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -8797,7 +8926,8 @@ entries:
       year: literal
     type: incollection
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: W.
           lastName: Reitman
@@ -8818,7 +8948,7 @@ entries:
     input: "@book(Wilcox:1978,\n\tauthor =\t{W. Reitman and B. Wilcox},\n\tbooktitle =\t{Pattern-Directed Inference Systems},\n\taddress =\t{New York},\n\tyear =\t\t{1978},\n\teditor =\t{D.A. Waterman and F. Hayes-Roth},\n\tpublisher =\t{Academic Press},\n\ttitle =\t\t{Pattern recognition and pattern-directed inference in a program for playing go}\n)"
     key: Wilcox:1978
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -8827,7 +8957,8 @@ entries:
       year: literal
     type: book
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: Christopher K.
           lastName: Riesbeck
@@ -8845,7 +8976,7 @@ entries:
     input: "@book(Riesbeck:1979,\n\tauthor =\t{Christopher K. Riesbeck},\n\tbooktitle =\t{Associative Networks: Representation and Use of Knowledge by Computer},\n\taddress =\t{New York},\n\tyear =\t\t{1979},\n\teditor =\t{N.V. Findler},\n\tpublisher =\t{Academic Press},\n\tpages =\t\t{409-424},\n\ttitle =\t\t{Representations to aid distributed understanding in a multiprogram system}\n)"
     key: Riesbeck:1979
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -8855,7 +8986,8 @@ entries:
       year: literal
     type: book
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: Nicholas V.
           lastName: Findler
@@ -8866,7 +8998,7 @@ entries:
     input: "@book{Findler:1979,\n\tauthor =\t{Nicholas V. Findler},\n\taddress =\t{New York},\n\tyear =\t\t{1979},\n\tpublisher =\t{Academic Press},\n\ttitle =\t\t{Associative Networks: Representation and Use of Knowledge by Computer}\n}"
     key: Findler:1979
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -9009,7 +9141,8 @@ entries:
       year: literal
     type: inproceedings
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: Earl
           lastName: Sacerdoti
@@ -9020,14 +9153,15 @@ entries:
     input: "@book(Sacerdoti:77,\n\tauthor =\t{Earl Sacerdoti},\n\taddress =\t{New York},\n\tyear =\t\t{1977},\n\tpublisher =\t{American Elsevier},\n\ttitle =\t\t{A Structure for Plans and Behavior}\n)"
     key: Sacerdoti:77
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
       year: literal
     type: book
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: Roger C.
           lastName: Schank
@@ -9045,7 +9179,7 @@ entries:
     input: "@inbook(SchankCarbonell:1979,\n\tauthor =\t{Roger C. Schank and J.G. Carbonell},\n\tbooktitle =\t{Associative Networks: Representation and Use of Knowledge by Computer},\n\taddress =\t{New York},\n\tyear =\t\t{1979},\n\teditor =\t{N.V. Findler},\n\tpublisher =\t{Academic Press},\n\tpages =\t\t{327-362},\n\ttitle =\t\t{Re: The Gettysburg Address: Representing social and political acts}\n)"
     key: SchankCarbonell:1979
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -9088,7 +9222,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: S.C.
           lastName: Shapiro
@@ -9104,7 +9239,7 @@ entries:
     input: "@inbook(Shapiro:1979,\n\tauthor =\t{S.C. Shapiro},\n\tbooktitle =\t{Associative Networks: Representation and Use of Knowledge by Computer},\n\taddress =\t{New York},\n\tyear =\t\t{1979},\n\teditor =\t{N.V. Findler},\n\tpublisher =\t{Academic Press},\n\tpages =\t\t{179-203},\n\ttitle =\t\t{The SNePS semantic network processing system}\n)"
     key: Shapiro:1979
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -9189,7 +9324,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Hillsdale, NJ
+      address:
+        - Hillsdale, NJ
       author:
         - firstName: E.
           lastName: Soloway
@@ -9212,7 +9348,7 @@ entries:
     input: "@book(Soloway:82,\n\tauthor =\t{E. Soloway and K. Ehrlich and J. Bonar and J. \n\t\t\t Greenspan},\n\tbooktitle =\t{Directions in Human-Computer Interactions},\n\taddress =\t{Hillsdale, NJ},\n\tyear =\t\t{1982},\n\teditor =\t{B. Shneiderman and A. Badre},\n\tpublisher =\t{Ablex},\n\ttitle =\t\t{What do novices know about programming?}\n)"
     key: Soloway:82
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -9292,7 +9428,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Cambridge, Mass.
+      address:
+        - Cambridge, Mass.
       author:
         - firstName: Kent
           lastName: Stevens
@@ -9311,7 +9448,7 @@ entries:
     input: "@book(Stevens:1979,\n\tauthor =\t{Kent Stevens},\n\tbooktitle =\t{Artificial Intelligence: An MIT Perspective},\n\taddress =\t{Cambridge, Mass.},\n\tyear =\t\t{1979},\n\teditor =\t{P.H. Winston and R.H. Brown},\n\tpublisher =\t{MIT Press},\n\tpages =\t\t{103-125},\n\ttitle =\t\t\"Representing and analyzing surface orientation\",\n\tvolume =\t{2}\n)"
     key: Stevens:1979
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -9341,7 +9478,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: C.H.
           lastName: Suh
@@ -9354,14 +9492,15 @@ entries:
     input: "@book(Radcliffe:1978,\n\tauthor =\t{C.H. Suh and C.W. Radcliffe},\n\taddress =\t{New York},\n\tyear =\t\t{1978},\n\tpublisher =\t{Wiley},\n\ttitle =\t\t{Kinematics and Mechanisms Design}\n)"
     key: Radcliffe:1978
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
       year: literal
     type: book
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: Gerald J.
           lastName: Sussman
@@ -9372,7 +9511,7 @@ entries:
     input: "@book(Sussman:1975,\n\tauthor =\t{Gerald J. Sussman},\n\taddress =\t{New York},\n\tyear =\t\t{1975},\n\tpublisher =\t{American Elsevier},\n\ttitle =\t\t{A Computer Model of Skill Acquisition}\n)"
     key: Sussman:1975
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -9538,7 +9677,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: Steven
           lastName: Vere
@@ -9556,7 +9696,7 @@ entries:
     input: "@book(Vere:78,\n\tauthor =\t{Steven Vere},\n\tbooktitle =\t{Pattern-Directed Inference Systems},\n\taddress =\t{New York},\n\tyear =\t\t{1978},\n\teditor =\t{D.A. Waterman and F. Hayes-Roth},\n\tpublisher =\t{Academic Press},\n\tpages =\t\t{281-295},\n\ttitle =\t\t{Inductive learning of relational productions}\n)"
     key: Vere:78
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -9593,7 +9733,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: AW-ADDRESS
+      address:
+        - AW-ADDRESS
       author:
         - firstName: Robert
           lastName: Wilensky
@@ -9604,7 +9745,7 @@ entries:
     input: "@book(Wilensky:83,\n\tauthor =\t{Robert Wilensky},\n\taddress =\tAW-ADDRESS,\n\tyear =\t\t{1983},\n\tpublisher =\t{Addison-Wesley},\n\ttitle =\t\t{Planning and Understanding}\n)"
     key: Wilensky:83
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -9725,7 +9866,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: Patrick H.
           lastName: Winston
@@ -9736,14 +9878,15 @@ entries:
     input: "@book{Winston:75,\n\tauthor =\t{Patrick H. Winston},\n\taddress =\t{New York},\n\tyear =\t\t{1975},\n\tpublisher =\t{McGraw-Hill},\n\ttitle =\t\t{The Psychology of Computer Vision}\n}"
     key: Winston:75
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
       year: literal
     type: book
   - fields:
-      address: Cambridge, Mass.
+      address:
+        - Cambridge, Mass.
       author:
         - firstName: Patrick H.
           lastName: Winston
@@ -9756,7 +9899,7 @@ entries:
     input: "@book(Winston:79,\n\tauthor =\t{Patrick H. Winston and Richard H. Brown},\n\taddress =\t{Cambridge, Mass.},\n\tyear =\t\t{1979},\n\tpublisher =\t{MIT Press},\n\ttitle =\t\t{Artificial Intelligence: An MIT Perspective, Vol. 2}\n)"
     key: Winston:79
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -9784,7 +9927,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Reading, Mass.
+      address:
+        - Reading, Mass.
       author:
         - firstName: Patrick
           lastName: Winston
@@ -9797,7 +9941,7 @@ entries:
     input: "@book(Winston:80a,\n\tauthor =\t{Patrick Winston and Berthold Horn},\n\taddress =\t{Reading, Mass.},\n\tyear =\t\t{1980},\n\tpublisher =\t{Addison-Wesley},\n\ttitle =\t\t{LISP}\n)"
     key: Winston:80a
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -9844,7 +9988,8 @@ entries:
       year: literal
     type: inproceedings
   - fields:
-      address: Reading, Mass.
+      address:
+        - Reading, Mass.
       author:
         - firstName: Patrick H.
           lastName: Winston
@@ -9855,7 +10000,7 @@ entries:
     input: "@book(Winston:84,\n\tauthor =\t{Patrick H. Winston},\n\taddress =\t{Reading, Mass.},\n\tyear =\t\t{1984},\n\tpublisher =\t{Addison-Wesley},\n\ttitle =\t\t{Artificial Intelligence {\\rm 2nd ed.}}\n)"
     key: Winston:84
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -9938,7 +10083,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Cambridge
+      address:
+        - Cambridge
       author:
         - firstName: Roger
           lastName: Schank
@@ -9949,7 +10095,7 @@ entries:
     input: "@book(DynamicMemory,\n\tauthor =\t{Roger Schank},\n\taddress =\t{Cambridge},\n\tyear =\t\t{1982},\n\tpublisher =\t{Cambridge University Press},\n\ttitle =\t\t{Dynamic Memory: A Theory of Learning in Computers and People}\n)"
     key: DynamicMemory
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -9979,7 +10125,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Amsterdam
+      address:
+        - Amsterdam
       author:
         - firstName: Roger C.
           lastName: Schank
@@ -9990,14 +10137,15 @@ entries:
     input: "@book(Schank:1975,\n\tauthor =\t{Roger C. Schank},\n\taddress =\t{Amsterdam},\n\tyear =\t\t{1975},\n\tpublisher =\t{North-Holland},\n\ttitle =\t\t{Conceptual Information Processing}\n)"
     key: Schank:1975
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
       year: literal
     type: book
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: William A.
           lastName: Woods
@@ -10014,7 +10162,7 @@ entries:
     input: "@book(Woods:1975,\n\tauthor =\t{William A. Woods},\n\tbooktitle =\t{Representation and Understanding},\n\taddress =\t{New York},\n\tyear =\t\t{1975},\n\teditor =\t{D.G. Bobrow and A. Collins},\n\tpublisher =\t{Academic Press},\n\ttitle =\t\t{What's in a link? Foundations for semantic networks}\n)"
     key: Woods:1975
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -10116,7 +10264,8 @@ entries:
       year: literal
     type: techreport
   - fields:
-      address: Reading, Mass.
+      address:
+        - Reading, Mass.
       author:
         - firstName: Howard
           lastName: Raiffa
@@ -10127,7 +10276,7 @@ entries:
     input: "@book(Raiffa:1968,\n\tauthor =\t{Howard Raiffa},\n\taddress =\t{Reading, Mass.},\n\tyear =\t\t{1968},\n\tpublisher =\t{Addison-Wesley},\n\ttitle =\t\t{Decision Analysis: Introductory Lectures on Choices under Uncertainty}\n)"
     key: Raiffa:1968
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -10155,7 +10304,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: Robert
           lastName: Wilensky
@@ -10166,14 +10316,15 @@ entries:
     input: "@book(Wilensky:84,\n\tauthor =\t{Robert Wilensky},\n\taddress =\t{New York},\n\tyear =\t\t{1984},\n\tpublisher =\t{Norton},\n\ttitle =\t\t{LISPcraft}\n)"
     key: Wilensky:84
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
       year: literal
     type: book
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: Patrick H.
           lastName: Winston
@@ -10188,7 +10339,7 @@ entries:
     input: "@book(Winston:1975,\n\tauthor =\t{Patrick H. Winston},\n\tbooktitle =\t{The Psychology of Computer Vision},\n\taddress =\t{New York},\n\tyear =\t\t{1975},\n\teditor =\t{P.H. Winston},\n\tpublisher =\t{McGraw-Hill},\n\ttitle =\t\t{Learning structural descriptions from examples}\n)"
     key: Winston:1975
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -10275,7 +10426,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Chicago
+      address:
+        - Chicago
       author:
         - firstName: Thomas S.
           lastName: Kuhn
@@ -10286,14 +10438,15 @@ entries:
     input: "@book(Kuhn:1962,\n\tauthor =\t{Thomas S. Kuhn},\n\taddress =\t{Chicago},\n\tyear =\t\t{1962},\n\tpublisher =\t{University of Chicago Press},\n\ttitle =\t\t{The Structure of Scientific Revolutions}\n)"
     key: Kuhn:1962
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
       year: literal
     type: book
   - fields:
-      address: Cambridge
+      address:
+        - Cambridge
       author:
         - firstName: Imre
           lastName: Lakatos
@@ -10311,7 +10464,7 @@ entries:
     input: "@book(Lakatos:1970,\n\tauthor =\t{Imre Lakatos},\n\tbooktitle =\t{Criticism and the Growth of Knowledge},\n\taddress =\t{Cambridge},\n\tyear =\t\t{1970},\n\teditor =\t{I. Lakatos and A. Musgrave},\n\tpublisher =\t{Cambridge University Press},\n\tpages =\t\t{91-196},\n\ttitle =\t\t{Falsification and the methodology of scientific research programmes}\n)"
     key: Lakatos:1970
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -10334,7 +10487,8 @@ entries:
       title: title
     type: inbook
   - fields:
-      address: Hillsdale, NJ
+      address:
+        - Hillsdale, NJ
       author:
         - firstName: James A.
           lastName: Hendler
@@ -10347,14 +10501,15 @@ entries:
     input: "@book(Hendler:1988,\n\tauthor =\t{James A. Hendler},\n\tpublisher =\tLEA,\n\taddress =\t{Hillsdale, NJ},\n\tyear =\t\t{1988},\n\ttitle =\t\t{Integrated Marker-Passing and Problem-Solving:  A Spreading-Activation Approach to Improved Choice in Planning}\n)"
     key: Hendler:1988
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
       year: literal
     type: book
   - fields:
-      address: Urbana Illinois
+      address:
+        - Urbana Illinois
       author:
         - firstName: Timothy W.
           lastName: Finin
@@ -10365,7 +10520,7 @@ entries:
     input: "@techreport(Finin:1980,\n\tauthor =\t{Timothy W. Finin},\n\taddress =\t{Urbana Illinois},\n\tyear =\t\t{1980},\n\tinstitution =\t{Department of Computer Science University of Illinois at},\n\ttitle =\t\t{The Semantic Interpretation of Nominal Compounds}\n)"
     key: Finin:1980
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       institution: literallist
       title: title
@@ -10483,14 +10638,15 @@ entries:
       author:
         - firstName: Peter
           lastName: Norvig
-      school: Computer Science Division (EECS),University of California at Berkeley
+      school:
+        - Computer Science Division (EECS),University of California at Berkeley
       title: Unified Theory of Inference for Text Understanding
       year: '1987'
     input: "@phdthesis{Norvig:thesis,\n\tauthor =\t{Peter Norvig},\n\ttitle =\t\t\"Unified Theory of Inference for Text Understanding\",\n\tschool = \t{Computer Science Division (EECS), %\n\t\t\t\tUniversity of California at Berkeley},\n\tyear\t=\t{1987}}"
     key: Norvig:thesis
     mode:
       author: creatorlist
-      school: literal
+      school: literallist
       title: title
       year: literal
     type: phdthesis
@@ -10712,7 +10868,8 @@ entries:
       title: title
     type: inproceedings
   - fields:
-      address: Rochester, NY
+      address:
+        - Rochester, NY
       author:
         - firstName: Henry
           lastName: Kautz
@@ -10724,7 +10881,7 @@ entries:
     input: "@techreport(Kautz:thesis,\n\tauthor =\t{Henry Kautz},\n\taddress =\t{Rochester, NY},\n\tyear =\t\t{May 1987},\n\tinstitution =\t{Department of Computer Science,\n\t\t\t University of Rochester},\n\ttitle =\t\t\"A Formal Theory of Plan Recognition\",\n\tNUMBER = {TR 215}\n)"
     key: Kautz:thesis
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       institution: literallist
       number: literal
@@ -10749,7 +10906,8 @@ entries:
       title: title
     type: incollection
   - fields:
-      address: Los Altos, CA
+      address:
+        - Los Altos, CA
       author:
         - firstName: Henry A.
           lastName: Kautz
@@ -10771,7 +10929,7 @@ entries:
     input: "@incollection( Kautz91Formal, \n  author =\t{Henry A. Kautz}, \n  title =\t{A {F}ormal Theory of Plan Recognition and \n\t\t its Implementation}, \n  chapter =\t{2},\t\t \n  year =\t1991, \n  booktitle =\t{Reasoning About Plans}, \n  editor =\t{James F. Allen\n\t\tand Henry A. Kautz\n\t\tand Richard N. Pelavin\n\t\tand Josh D. Tenenberg}, \n  publisher =\t{Morgan Kaufmann}, \n  address =\t{Los Altos, CA} \n\t)"
     key: Kautz91Formal
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       chapter: literal
@@ -10970,7 +11128,8 @@ entries:
       year: literal
     type: inproceedings
   - fields:
-      address: SRI-ADDRESS
+      address:
+        - SRI-ADDRESS
       author:
         - firstName: Jerry R.
           lastName: Hobbs
@@ -10989,7 +11148,7 @@ entries:
     input: "@TECHREPORT{Hobbs:IasATR,\n\tAUTHOR = {Jerry R. Hobbs and Mark Stickel and \n\t\t\t Douglas Edwards and Paul Martin},\n\tTITLE = \"Interpretation as Abduction\",\n\tINSTITUTION = {Artificial Intelligence Center, SRI International},\n\tYEAR = {1990},\n\tNUMBER = {499},\n\tADDRESS = SRI-ADDRESS,\n\tMONTH = December\n}"
     key: Hobbs:IasATR
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       institution: literallist
       month: literal
@@ -11025,7 +11184,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: CSLI-ADDRESS
+      address:
+        - CSLI-ADDRESS
       author:
         - firstName: Stuart M.
           lastName: Shieber
@@ -11036,14 +11196,15 @@ entries:
     input: "@book{Shieber:Unification,\n\tauthor = \t{Stuart M. Shieber},\n\ttitle =\t\t{An Introduction to Unification-based Approaches to \n\t\t\t\tGrammar},\n\tyear = \t\t1986,\n\tpublisher =\tCSLI,\n\taddress = CSLI-ADDRESS}"
     key: Shieber:Unification
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
       year: literal
     type: book
   - fields:
-      address: CSLI-ADDRESS
+      address:
+        - CSLI-ADDRESS
       author:
         - firstName: Mark
           lastName: Johnson
@@ -11058,7 +11219,7 @@ entries:
     input: "@TECHREPORT{Johnson:86,\n\tAUTHOR = {Mark Johnson and Ewan Klein},\n\tTITLE = \"Discourse, Anaphora and Parsing\",\n\tINSTITUTION = {CSLI},\n\tYEAR = {1986},\n\tNUMBER = {CSLI-86-63},\n\tADDRESS = CSLI-ADDRESS,\n\tMONTH = October\n}"
     key: Johnson:86
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       institution: literallist
       month: literal
@@ -11067,7 +11228,8 @@ entries:
       year: literal
     type: techreport
   - fields:
-      address: Amsterdam
+      address:
+        - Amsterdam
       author:
         - firstName: Hans
           lastName: Kamp
@@ -11087,7 +11249,7 @@ entries:
     input: "@INCOLLECTION{Kamp:81,\n\tAUTHOR = {Hans Kamp},\n\tTITLE = \"A Theory of Truth and Semantic Representation\",\n\tBOOKTITLE = {Formal Methods in the Study of Language},\n\tPUBLISHER = {Mathematical Centre Tracts},\n\tYEAR = {1981},\n\tEDITOR = {J.A.G. Groenendijk and\n\t\t  T.M.V. Janssen and M.B.J. Stokhof},\n\tPAGES = {277-322},\n\tADDRESS = {Amsterdam}\n}"
     key: Kamp:81
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -11131,7 +11293,8 @@ entries:
       year: literal
     type: techreport
   - fields:
-      address: Berlin
+      address:
+        - Berlin
       author:
         - firstName: Graeme
           lastName: Hirst
@@ -11142,7 +11305,7 @@ entries:
     input: "@book(Hirst:81,\n\tauthor =\t{Graeme Hirst},\n\taddress =\t{Berlin},\n\tyear =\t\t{1981},\n\tpublisher =\t{Springer-Verlag},\n\ttitle =\t\t{Anaphora in Natural Language Understanding: A Survey}\n)"
     key: Hirst:81
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -11201,7 +11364,8 @@ entries:
       year: literal
     type: techreport
   - fields:
-      address: Cambridge, England
+      address:
+        - Cambridge, England
       author:
         - firstName: Graeme
           lastName: Hirst
@@ -11213,7 +11377,7 @@ entries:
     input: "@book(Hirst:87,\n\tauthor =\t{Graeme Hirst},\n\tpublisher =\t{Cambridge University Press},\n\tseries =\t {Studies in Natural Language Processing},\n\tyear =\t\t{1987},\n\taddress =\t{Cambridge, England},\n\ttitle =\t\t{Semantic Interpretation and the Resolution of Ambiguity}\n)"
     key: Hirst:87
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       series: title
@@ -11281,14 +11445,15 @@ entries:
       author:
         - firstName: Venugopala R.
           lastName: Dasigi
-      school: Department of Computer Science, University of Maryland at College Park
+      school:
+        - Department of Computer Science, University of Maryland at College Park
       title: Word Sense Disambiguation in Descriptive text interpretation
       year: '1988'
     input: "@phdthesis{Dasigi:thesis,\n\tauthor =\t{Venugopala R. Dasigi},\n\ttitle =\t\t{Word Sense Disambiguation in Descriptive text \n\t\t\t\tinterpretation},\n\tschool = \t{Department of Computer Science, University of Maryland at College Park},\n\tyear\t=\t{1988}}"
     key: Dasigi:thesis
     mode:
       author: creatorlist
-      school: literal
+      school: literallist
       title: title
       year: literal
     type: phdthesis
@@ -11329,7 +11494,8 @@ entries:
       year: literal
     type: inproceedings
   - fields:
-      address: MITP-ADDRESS
+      address:
+        - MITP-ADDRESS
       author:
         - firstName: Sandra
           lastName: Carberry
@@ -11342,7 +11508,7 @@ entries:
     input: "@INPROCEEDINGS{Carberry:90,\n\tAUTHOR = {Sandra Carberry},\n\tTITLE = \"Incorporating Default Inferences Into Plan Recognition\",\n\tBOOKTITLE = AAAI-90,\n\tYEAR = {1990},\n\tPAGES = {471--478},\n\tPUBLISHER = MITP,\n\tADDRESS = MITP-ADDRESS\n}"
     key: Carberry:90
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       pages: literal
@@ -11351,7 +11517,8 @@ entries:
       year: literal
     type: inproceedings
   - fields:
-      address: MITP-ADDRESS
+      address:
+        - MITP-ADDRESS
       author:
         - firstName: Sandra
           lastName: Carberry
@@ -11363,7 +11530,7 @@ entries:
     input: "@BOOK(Carberry:90b,\n\tAUTHOR = {Sandra Carberry},\n\tTITLE = \"Plan Recognition in Natural Language Dialogue\",\n\tPUBLISHER = MITP,\n\tYEAR = {1990},\n\tSERIES = {ACL-MIT Press Series in Natural Language Processing},\n\tADDRESS = MITP-ADDRESS\n)"
     key: Carberry:90b
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       series: title
@@ -11431,7 +11598,8 @@ entries:
       title: title
     type: unpublished
   - fields:
-      address: Stanford, CA
+      address:
+        - Stanford, CA
       author:
         - firstName: Fernando C.N.
           lastName: Pereira
@@ -11445,7 +11613,7 @@ entries:
     input: "@BOOK{PandS,\n\tAUTHOR = {Fernando C.N. Pereira and\n\t\t  Stuart M. Shieber},\n\tTITLE = \"Prolog and Natural-Language Analysis\",\n\tPUBLISHER = CSLI,\n\tYEAR = {1987},\n\tSERIES = {CSLI Lecture Notes},\n\tADDRESS = {Stanford, CA}\n}"
     key: PandS
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       series: title
@@ -11453,7 +11621,8 @@ entries:
       year: literal
     type: book
   - fields:
-      address: Cambridge
+      address:
+        - Cambridge
       author:
         - firstName: Daniel
           lastName: Vanderveken
@@ -11466,7 +11635,7 @@ entries:
     input: "@BOOK{Vanderveken:90a,\n\tAUTHOR = {Daniel Vanderveken},\n\tTITLE = \"Principles of language use\",\n\tPUBLISHER = {Cambridge University Press},\n\tYEAR = {1990},\n\tVOLUME = {I},\n\tSERIES = {Meaning and Speech Acts},\n\tADDRESS = {Cambridge}\n}"
     key: Vanderveken:90a
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       series: title
@@ -11475,7 +11644,8 @@ entries:
       year: literal
     type: book
   - fields:
-      address: Cambridge
+      address:
+        - Cambridge
       author:
         - firstName: Daniel
           lastName: Vanderveken
@@ -11488,7 +11658,7 @@ entries:
     input: "@BOOK{Vanderveken:90b,\n\tAUTHOR = {Daniel Vanderveken},\n\tTITLE = \"Formal semantics of success and satisfaction\",\n\tPUBLISHER = {Cambridge University Press},\n\tYEAR = {1990},\n\tVOLUME = {II},\n\tSERIES = {Meaning and Speech Acts},\n\tADDRESS = {Cambridge}\n}"
     key: Vanderveken:90b
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       series: title
@@ -11537,7 +11707,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: MIT-ADDRESS
+      address:
+        - MIT-ADDRESS
       author:
         - firstName: Harold
           lastName: Abelson
@@ -11550,7 +11721,7 @@ entries:
     input: "@BOOK{Abelson:85,\n\tAUTHOR = {Harold Abelson and Gerald Jay Sussman},\n\tTITLE = \"Structure and Interpretation of Computer Programs\",\n\tPUBLISHER = MITP,\n\tYEAR = {1985},\n\tADDRESS = MIT-ADDRESS\n}"
     key: Abelson:85
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -11649,7 +11820,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: KAUFMANN-ADDRESS
+      address:
+        - KAUFMANN-ADDRESS
       author:
         - firstName: Peter
           lastName: Norvig
@@ -11662,7 +11834,7 @@ entries:
     input: "@BOOK{Norvig:91,\n\tAUTHOR = {Peter Norvig},\n\tTITLE = {Paradigms of Artificial Intelligence Programming:\n\t\t Case Studies in Common Lisp},\n\tPUBLISHER = KAUFMANN,\n\tYEAR = {1991},\n\tADDRESS = KAUFMANN-ADDRESS\n}"
     key: Norvig:91
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -11986,7 +12158,8 @@ entries:
       year: literal
     type: inproceedings
   - fields:
-      address: KAUFMANN-ADDRESS
+      address:
+        - KAUFMANN-ADDRESS
       author:
         - firstName: Dana H.
           lastName: Ballard
@@ -11999,7 +12172,7 @@ entries:
     input: "@INPROCEEDINGS{Ballard:89,\n\tAUTHOR = {Dana H. Ballard},\n\tTITLE = \"Reference Frames for Animate Vision\",\n\tBOOKTITLE = IJCAI-89,\n\tYEAR = {1989},\n\tPAGES = {1635--1641},\n\tPUBLISHER = KAUFMANN,\n\tADDRESS = KAUFMANN-ADDRESS\n}"
     key: Ballard:89
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       pages: literal
@@ -12025,7 +12198,8 @@ entries:
       title: title
     type: unpublished
   - fields:
-      address: Cambridge, MA
+      address:
+        - Cambridge, MA
       author:
         - firstName: Gary F.
           lastName: Marcus
@@ -12049,7 +12223,7 @@ entries:
     input: "@TECHREPORT{Marcus:90,\n\tAUTHOR = {Gary F. Marcus and Michael Ullman and Steven Pinker\n\t\t  and Michelle Hollander and T. John Rosen and\n\t\t  Fei Xu},\n\tTITLE = \"Overregularization\",\n\tINSTITUTION = {MIT Center for Cognitive Science},\n\tYEAR = {1990},\n\tTYPE = {Occasional Paper},\n\tNUMBER = {41},\n\tADDRESS = {Cambridge, MA},\n\tMONTH = November\n}"
     key: Marcus:90
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       institution: literallist
       month: literal
@@ -12059,7 +12233,8 @@ entries:
       year: literal
     type: techreport
   - fields:
-      address: 545 Technology Square, Cambridge, MA
+      address:
+        - 545 Technology Square, Cambridge, MA
       author:
         - firstName: Tze-Yun
           lastName: Leong
@@ -12074,7 +12249,7 @@ entries:
     input: "@TECHREPORT{Leong:91,\n\tAUTHOR = {Tze-Yun Leong},\n\tTITLE = {Knowledge Representation for Supporting Decision Model\n\t\t Formulation in Medicine},\n\tINSTITUTION = {MIT Laboratory for Computer Science},\n\tYEAR = {1991},\n\tNUMBER = {MIT/LCS/TR--504},\n\tADDRESS = {545 Technology Square, Cambridge, MA},\n\tMONTH = {June}\n}"
     key: Leong:91
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       institution: literallist
       month: literal
@@ -12083,7 +12258,8 @@ entries:
       year: literal
     type: techreport
   - fields:
-      address: Cambridge
+      address:
+        - Cambridge
       author:
         - firstName: Michael E.
           lastName: Bratman
@@ -12101,7 +12277,7 @@ entries:
            )
     key: Bratman:87
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -12150,7 +12326,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Menlo Park, California
+      address:
+        - Menlo Park, California
       author:
         - firstName: James F.
           lastName: Allen
@@ -12161,7 +12338,7 @@ entries:
     input: "@book{Allen:87book,\n\tauthor = \t{James F. Allen},\n\ttitle =\t\t\"Natural Lan\\-guage Un\\-der\\-stand\\-ing\",\n\tyear = \t\t1987,\n\tpublisher =\t{Benjamin  / Cummings Publishing Company},\n\taddress = {Menlo Park, California}}"
     key: Allen:87book
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -12216,7 +12393,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Hillsdale, NJ
+      address:
+        - Hillsdale, NJ
       author:
         - firstName: Bertram C.
           lastName: Bruce
@@ -12238,7 +12416,7 @@ entries:
     input: "@book(Bruce:80,\n\tauthor =\t{Bertram C. Bruce},\n\tbooktitle =\t{Theoretical Issues in Reading Comprehension: \n\t\t\t Perspectives from Cognitive Science, Linguistics, \n\t\t\t Artificial Intelligence and Education},\n\taddress =\t{Hillsdale, NJ},\n\tyear =\t\t{1980},\n\teditor =\t{R.J. Spiro and B.C. Bruce and W.F. Brewer},\n\tpublisher =\t{Lawrence Erlbaum},\n\tpages =\t\t{367--384},\n\ttitle =\t\t{Plans and Social Actions}\n)"
     key: Bruce:80
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -12621,7 +12799,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: KAUFMANN-ADDRESS
+      address:
+        - KAUFMANN-ADDRESS
       author:
         - firstName: Thomas L.
           lastName: Dean
@@ -12634,7 +12813,7 @@ entries:
     input: "@BOOK{Dean:91,\n\tAUTHOR = {Thomas L. Dean and Michael P. Wellman},\n\tTITLE = \"Planning and Control\",\n\tPUBLISHER = KAUFMANN,\n\tYEAR = {1991},\n\tADDRESS = KAUFMANN-ADDRESS\n}"
     key: Dean:91
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -12742,12 +12921,14 @@ entries:
       year: literal
     type: inproceedings
   - fields:
-      address: Providence, RI
+      address:
+        - Providence, RI
       author:
         - firstName: Randall J.
           lastName: Calistri
       month: '5'
-      school: Computer Science Department, Brown University
+      school:
+        - Computer Science Department, Brown University
       title: >-
         Classifying and Detecting Plan-based Misconceptions for Robust Plan
         Recognition
@@ -12755,10 +12936,10 @@ entries:
     input: "@PHDTHESIS{Calistri:90,\n\tAUTHOR = {Randall J. Calistri},\n\tTITLE = {Classifying and Detecting Plan-based Misconceptions\n\t\t for Robust Plan Recognition},\n\tSCHOOL = {Computer Science Department, Brown University},\n\tYEAR = {1990},\n\tADDRESS = {Providence, RI},\n\tMONTH = {May}\n}"
     key: Calistri:90
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       month: literal
-      school: literal
+      school: literallist
       title: title
       year: literal
     type: phdthesis
@@ -12784,7 +12965,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Bloomington, IN
+      address:
+        - Bloomington, IN
       author:
         - firstName: Jonathan W.
           lastName: Mills
@@ -12798,7 +12980,7 @@ entries:
     input: "@TECHREPORT{Mills:92,\n\tAUTHOR = {Jonathan W. Mills},\n\tTITLE = {Stiquito:  A Small, simple, inexpensive hexapod robot;\n\t\t Part 1.  Locomotion and Hard-wired control},\n\tINSTITUTION = {Computer Science Department, Indiana University},\n\tYEAR = {1992},\n\tNUMBER = {363a},\n\tADDRESS = {Bloomington, IN}\n}"
     key: Mills:92
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       institution: literallist
       number: literal
@@ -12989,7 +13171,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Amherst, MA
+      address:
+        - Amherst, MA
       author:
         - firstName: Andrew G.
           lastName: Barto
@@ -13004,7 +13187,7 @@ entries:
     input: "@TECHREPORT{Barto:89,\n\tAUTHOR = {Andrew G. Barto},\n\tTITLE = \"Connectionist Learning for Control: An Overview\",\n\tINSTITUTION = {Department of Computer and Information Science,\n\t\t       University of Massachusetts, Amherst},\n\tYEAR = {1989},\n\tTYPE = {{\\sc COINS} Technical Report},\n\tNUMBER = {89--89},\n\tADDRESS = {Amherst, MA},\n\tMONTH = {September}\n}"
     key: Barto:89
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       institution: literallist
       month: literal
@@ -13272,14 +13455,15 @@ entries:
       author:
         - firstName: Leora
           lastName: Morgenstern
-      school: New York University
+      school:
+        - New York University
       title: Foundations of a Logic of Knowledge, Action, and Communication
       year: '1988'
     input: "@PHDTHESIS{Morgenstern:88,\n\tAUTHOR = {Leora Morgenstern},\n\tTITLE = {Foundations of a Logic of Knowledge, Action,\n\t\t and Communication},\n\tSCHOOL = {New York University},\n\tYEAR = {1988}\n}"
     key: Morgenstern:88
     mode:
       author: creatorlist
-      school: literal
+      school: literallist
       title: title
       year: literal
     type: phdthesis
@@ -13345,7 +13529,8 @@ entries:
       year: literal
     type: techreport
   - fields:
-      address: MITP-ADDRESS
+      address:
+        - MITP-ADDRESS
       author:
         - firstName: Jr.
           lastName: G. Edward Barton
@@ -13360,7 +13545,7 @@ entries:
     input: "@BOOK(Barton:87,\n\tAUTHOR = {G. Edward Barton, Jr. and Robert C. Berwick and\n\t\t  Eric Sven Ristad},\n\tTITLE = \"Computational Complexity and Natural Language\",\n\tPUBLISHER = MITP,\n\tYEAR = {1987},\n\tADDRESS = MITP-ADDRESS\n)"
     key: Barton:87
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -13424,7 +13609,8 @@ entries:
       year: literal
     type: inproceedings
   - fields:
-      address: Seattle, WA
+      address:
+        - Seattle, WA
       author:
         - firstName: Anthony
           lastName: Barrett
@@ -13444,7 +13630,7 @@ entries:
     input: "@TECHREPORT{Barrett:UCPOP,\n\tAUTHOR = {Anthony Barrett and Keith Golden and \n\t\t  Scott Penberthy and Daniel Weld},\n\tTITLE = \"{UCPOP} User's Manual (Version 2.0)\",\n\tINSTITUTION = {Department of Computer Science and Engineering,\n\t\t       University of Washington},\n\tYEAR = {1994},\n\tNUMBER = {93--09--06},\n\tADDRESS = {Seattle, WA},\n\tMONTH = {February}\n}"
     key: Barrett:UCPOP
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       institution: literallist
       month: literal
@@ -13628,7 +13814,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Seattle, WA
+      address:
+        - Seattle, WA
       author:
         - firstName: Peter
           lastName: Haddawy
@@ -13643,7 +13830,7 @@ entries:
     input: "@TECHREPORT(Haddawy:93,\n\tAUTHOR = {Peter Haddawy and Steve Hanks},\n\tTITLE = {Utility Models for Goal-directed\n\t\t Decision-theoretic Planners},\n\tINSTITUTION = UDUB,\n\tYEAR = {1993},\n\tNUMBER = {93-06-04},\n\tADDRESS = {Seattle, WA},\n\tMONTH = {June}\n)"
     key: Haddawy:93
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       institution: literallist
       month: literal
@@ -13750,7 +13937,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Pathumthani, Thailand
+      address:
+        - Pathumthani, Thailand
       author:
         - firstName: Liem
           lastName: Ngo
@@ -13792,7 +13980,7 @@ entries:
        )
     key: Ngo95:Probabilistic
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -13851,7 +14039,8 @@ entries:
       year: literal
     type: inproceedings
   - fields:
-      address: Seattle
+      address:
+        - Seattle
       author:
         - firstName: Peter
           lastName: Haddawy
@@ -13879,7 +14068,7 @@ entries:
        )
     key: Haddawy94:Generating
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       key: literal
@@ -13889,7 +14078,8 @@ entries:
       year: literal
     type: inproceedings
   - fields:
-      address: Seattle, WA
+      address:
+        - Seattle, WA
       author:
         - firstName: Nicholas
           lastName: Kushmerick
@@ -13909,7 +14099,7 @@ entries:
     input: "@TECHREPORT(Kushmerick:93,\n\tAUTHOR = {Nicholas Kushmerick and Steve Hanks\n\t\t  and Daniel Weld},\n\tTITLE = \"An Algorithm for Probabilistic Planning\",\n\tINSTITUTION = UDUB,\n\tYEAR = {1993},\n\tNUMBER = {93-06-03},\n\tADDRESS = {Seattle, WA},\n\tNOTE = {This citation should be replaced with Kushmerick, et. al.,\n\t\t{\\it Artificial Intelligence\\/}, 1995},\t\t  \n\tMONTH = {June}\n)"
     key: Kushmerick:93
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       institution: literallist
       month: literal
@@ -13946,7 +14136,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Seattle, WA
+      address:
+        - Seattle, WA
       author:
         - firstName: Denise
           lastName: Draper
@@ -13965,7 +14156,7 @@ entries:
     input: "@TECHREPORT(Draper:93,\n\tAUTHOR = {Denise Draper and Steve Hanks and Daniel Weld},\n\tTITLE = {Probabilistic Planning with Information Gathering\n\t\t and Contingent Execution},\n\tINSTITUTION = UDUB,\n\tYEAR = {1993},\n\tNUMBER = {93-12-04},\n\tADDRESS = {Seattle, WA},\n\tMONTH = {December}\n)"
     key: Draper:93
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       institution: literallist
       month: literal
@@ -13991,7 +14182,8 @@ entries:
       year: literal
     type: inproceedings
   - fields:
-      address: Houston, TX
+      address:
+        - Houston, TX
       author:
         - firstName: Marcel
           lastName: Schoppers
@@ -14006,7 +14198,7 @@ entries:
     input: "@INPROCEEDINGS{Schoppers:94,\n\tAUTHOR = {Marcel Schoppers},\n\tTITLE = {A Software Architecture for Hard Real-time execution\n\t\t of automatically synthesized plans or control laws},\n\tBOOKTITLE = {Proceedings of the AIAA Conference on Intelligent\n\t\t     Robots in Field, Factory, Service and Space},\n\tYEAR = {1994},\n\tADDRESS = {Houston, TX},\n\tMONTH = mar,\n   \tANNOTE = {}\t\t\n}"
     key: Schoppers:94
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       month: literal
@@ -14014,7 +14206,8 @@ entries:
       year: literal
     type: inproceedings
   - fields:
-      address: New Haven, CT
+      address:
+        - New Haven, CT
       author:
         - firstName: Gregg
           lastName: Collins
@@ -14027,7 +14220,7 @@ entries:
     input: "@TECHREPORT(Col87,\n\tAUTHOR = {Gregg Collins},\n\tTITLE = \"Plan creation: Using strategies as blueprints\",\n\tINSTITUTION = {Department of Computer Science, Yale\n  University},\n\tYEAR = {1987},\n\tTYPE = {{YALEU/CSD/RR}},\n\tNUMBER = {599},\n\tADDRESS = {New Haven, CT}\n)"
     key: Col87
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       institution: literallist
       number: literal
@@ -14210,7 +14403,8 @@ entries:
       title: title
     type: incollection
   - fields:
-      address: Edinburgh, Scotland
+      address:
+        - Edinburgh, Scotland
       author:
         - firstName: Richard
           lastName: Waldinger
@@ -14229,7 +14423,7 @@ entries:
     input: "@incollection(Waldinger:Regression,\n\tAUTHOR = {Richard Waldinger},\n\tTITLE = \"Achieving Several goals Simultaneously\",\n\tBooktitle = {Machine Intelligence},\n\tEDITOR = {E. Elcock and D. Michie},\n\tYEAR = {1977},\n\tPUBLISHER = {Ellis Horwood},\n\tADDRESS = {Edinburgh, Scotland},\n\tVOLUME = {8},\n\tPAGES = {94--136},\n)"
     key: Waldinger:Regression
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -14334,7 +14528,8 @@ entries:
       year: literal
     type: book
   - fields:
-      address: MITP-ADDRESS
+      address:
+        - MITP-ADDRESS
       author:
         - firstName: Matthew T.
           lastName: Mason
@@ -14359,7 +14554,7 @@ entries:
     input: "@INCOLLECTION(Mason:82,\n\tAUTHOR = {Matthew T. Mason},\n\tTITLE = \"Compliant Motion\",\n\tBOOKTITLE = {Robot Motion: Planning and Control},\n\tPUBLISHER = MITP,\n\tYEAR = {1982},\n\tEDITOR = {Michael Brady and John M. Hollerbach and Timothy L.\n\t\t  Johnson and Tomas Lozano-Perez and Matthew T. Mason},\n\tCHAPTER = {5},\n\tPAGES = {305--322},\n\tADDRESS = MITP-ADDRESS\n)"
     key: Mason:82
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       chapter: literal
@@ -14540,7 +14735,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Berkeley, CA
+      address:
+        - Berkeley, CA
       author:
         - firstName: Andreas
           lastName: Stolcke
@@ -14555,7 +14751,7 @@ entries:
     input: "@TECHREPORT(Stolcke:93,\n\tAUTHOR = {Andreas Stolcke},\n\tTITLE = {An Efficient Probabilistic Context-free Parsing\n\t\t Algorithm that Computes Prefix Probabilities},\n\tINSTITUTION = ICSI,\n\tYEAR = {1993},\n\tNUMBER = {TR-93-065},\n\tADDRESS = {Berkeley, CA},\n\tMONTH = {November}\n)"
     key: Stolcke:93
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       institution: literallist
       month: literal
@@ -14637,7 +14833,8 @@ entries:
       title: title
     type: inproceedings
   - fields:
-      address: Philadelphia, PA
+      address:
+        - Philadelphia, PA
       author:
         - firstName: Jeffrey Mark
           lastName: Siskind
@@ -14653,7 +14850,7 @@ entries:
     input: "@TECHREPORT(Siskind:93a,\n\tAUTHOR = {Jeffrey Mark Siskind and David Allen McAllester},\n\tTITLE = {Screamer: A Portable Efficient Implementation of\n\t\t Nondeterministic Common Lisp},\n\tINSTITUTION = {University of Pennsylvania\n\t\t       Institute for Research in Cognitive Science},\n\tYEAR = {1993},\n\tNUMBER = {IRCS--93--03},\n\tADDRESS = {Philadelphia, PA}\n)"
     key: Siskind:93a
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       institution: literallist
       number: literal
@@ -14909,21 +15106,23 @@ entries:
       year: literal
     type: inproceedings
   - fields:
-      address: Edmonton, Alberta
+      address:
+        - Edmonton, Alberta
       author:
         - firstName: Grzegorz
           lastName: Kondrak
       month: Fall
-      school: Department of Computing Science, University of Alberta
+      school:
+        - Department of Computing Science, University of Alberta
       title: A Theoretical Evaluation of Selected Backtracking Algorithms
       year: '1994'
     input: "@MASTERSTHESIS{Kondrak:BacktrackEval,\n\tAUTHOR = {Grzegorz Kondrak},\n\tTITLE = {A Theoretical Evaluation of Selected Backtracking\n\t\t Algorithms},\n\tSCHOOL = {Department of Computing Science,\n\t\t  University of Alberta},\n\tYEAR = {1994},\n\tADDRESS = {Edmonton, Alberta},\n\tMONTH = {Fall}\n}"
     key: Kondrak:BacktrackEval
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       month: literal
-      school: literal
+      school: literallist
       title: title
       year: literal
     type: mastersthesis
@@ -15735,7 +15934,8 @@ entries:
       title: title
     type: inproceedings
   - fields:
-      address: Boston, Massachusetts
+      address:
+        - Boston, Massachusetts
       author:
         - firstName: J. Van
           lastName: Benthem
@@ -15746,7 +15946,7 @@ entries:
     input: "@book(VanBenthemTL,\n\tauthor = {J. Van Benthem},\n\ttitle = \"The Logic of Time\",\n\tpublisher = {Kluwer Academic Publishers},\n\taddress = {Boston, Massachusetts},\n\tyear = 1983\n)"
     key: VanBenthemTL
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
@@ -15772,7 +15972,8 @@ entries:
       year: literal
     type: unpublished
   - fields:
-      address: Montréal
+      address:
+        - Montréal
       annote: >-
         The article provides an outline of the application of Scherl and
         Levesque's work on knowledge-producing actions and Reiter and Lin's work
@@ -15800,7 +16001,7 @@ entries:
     input: "@INPROCEEDINGS{Lesperance:95,\n\tAUTHOR = {Yves Lesp\\'erance and Hector J. Levesque and \n\t\t  Fangzhen Lin and Daniel Marcu and Raymond Reiter and\n\t\t  Richard B. Scherl},\n\tTITLE = \"Foundations of a Logical Approach to Agent Programming\",\n\tBOOKTITLE = {{IJCAI} Workshop on Agent Theories, Archietectures\n\t\t     and Languages},\n\tYEAR = {1995},\n\tADDRESS = {Montr\\'eal},\n\tMONTH = aug,\n\tANNOTE = {The article provides an outline of the application of\n\t\t  Scherl and Levesque's work on knowledge-producing actions \n\t\t  and Reiter and Lin's work on the frame problem, to agent\n\t\t  programming.  The central limitation of the work is that\n\t\t  they have little to say about the generation of new \n\t\t  plans/programs for agent actions --- they center their \n\t\t  discussion around the use of the logic for verification\n\t\t  of agent programs.}\n}"
     key: Lesperance:95
     mode:
-      address: literal
+      address: literallist
       annote: richtext
       author: creatorlist
       booktitle: title
@@ -15871,7 +16072,8 @@ entries:
       title: title
     type: inproceedings
   - fields:
-      address: College Park, MD
+      address:
+        - College Park, MD
       author:
         - firstName: Kutluhan
           lastName: Erol
@@ -15887,7 +16089,7 @@ entries:
     input: "@TECHREPORT{Erol:HTNSemantics,\n\tAUTHOR = {Kutluhan Erol and James Hendler and Dana S. Nau},\n\tTITLE = \"Semantics for Hierarchical Task-Network Planning\",\n\tINSTITUTION = {Computer Science Department, University of Maryland},\n\tYEAR = {1994},\n\tNUMBER = {CS-TR-3239 and UMIACS-TR-94-31},\n\tADDRESS = {College Park, MD}\n}"
     key: Erol:HTNSemantics
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       institution: literallist
       number: literal
@@ -15932,7 +16134,8 @@ entries:
         bibliographical references (leaves 247-256).
       note: Available as UMCP technical report CS-TR-3624
       oai: oai:xtcat.oclc.org:OCLCNo/ocm35003840
-      school: University of Maryland at College Park
+      school:
+        - University of Maryland at College Park
       subject: Planning.; Artificial intelligence.
       title: >-
         Hierarchical task network planning :–formalization, analysis, and
@@ -15948,7 +16151,7 @@ entries:
       description: literal
       note: richtext
       oai: literal
-      school: literal
+      school: literallist
       subject: literal
       title: title
       year: literal
@@ -16437,7 +16640,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: SRI-ADDRESS
+      address:
+        - SRI-ADDRESS
       author:
         - firstName: Michael
           lastName: Georgeff
@@ -16452,7 +16656,7 @@ entries:
     input: "@Techreport(Georgeff:87,\n        AUTHOR = {Michael Georgeff and Amy Lansky},\n        TITLE = \"Procedural Knowledge\",\n\tINSTITUTION = SRI,\n        YEAR = {1987},\n\tADDRESS = SRI-ADDRESS,\t\t\n\tNUMBER = {411},\n        MONTH = jan\n)"
     key: Georgeff:87
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       institution: literallist
       month: literal
@@ -16476,7 +16680,8 @@ entries:
         - firstName: Olivier
           lastName: Despouys
       citeseer-isreferncedby: oai:CiteSeerPSU:80136
-      language: en
+      language:
+        - en
       month: "08\_13"
       oai: oai:CiteSeerPSU:507370
       rights: unrestricted
@@ -16521,7 +16726,7 @@ entries:
       annote: richtext
       author: creatorlist
       citeseer-isreferncedby: literal
-      language: literal
+      language: literallist
       month: literal
       oai: literal
       rights: literal
@@ -16555,7 +16760,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: STANFORD-ADDRESS
+      address:
+        - STANFORD-ADDRESS
       annote: >-
         Discussion of using ontologies to translate between knowledge-based
         systems. Nothing earth-shattering. They have rules for translating
@@ -16573,7 +16779,7 @@ entries:
     input: "@TECHREPORT{Gruber:93,\n\tAUTHOR = {Thomas R. Gruber},\n\tTITLE = \"A Translation Approach to Portable Ontology Specifications\",\n\tINSTITUTION = KSL,\n\tYEAR = {1993},\n\tNUMBER = {KSL 92-71},\n\tADDRESS = STANFORD-ADDRESS,\n\tMONTH = apr,\n\tNOTE = {revised version},\n\tANNOTE = {Discussion of using ontologies to translate \n\t\t  between knowledge-based systems.  Nothing\n\t\t  earth-shattering.  They have rules for translating\n\t\t  between Ontolingua and other KR systems.}\n}"
     key: Gruber:93
     mode:
-      address: literal
+      address: literallist
       annote: richtext
       author: creatorlist
       institution: literallist
@@ -16584,7 +16790,8 @@ entries:
       year: literal
     type: techreport
   - fields:
-      address: STANFORD-ADDRESS
+      address:
+        - STANFORD-ADDRESS
       author:
         - firstName: Thomas R.
           lastName: Gruber
@@ -16600,7 +16807,7 @@ entries:
     input: "@TECHREPORT{Gruber:93b,\n\tAUTHOR = {Thomas R. Gruber},\n\tTITLE = {Toward Principles for the Design of Ontologies \n\t\t Used for Knowledge Sharing},\n\tINSTITUTION = KSL,\n\tYEAR = {1993},\n\tNUMBER = {KSL 93-04},\n\tADDRESS = STANFORD-ADDRESS,\n\tMONTH = aug,\n\tNOTE = {revised version}\n}"
     key: Gruber:93b
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       institution: literallist
       month: literal
@@ -16700,7 +16907,8 @@ entries:
       title: title
     type: inproceedings
   - fields:
-      address: CMU-ADDRESS
+      address:
+        - CMU-ADDRESS
       author:
         - firstName: Eugene
           lastName: Fink
@@ -16715,7 +16923,7 @@ entries:
     input: "@TECHREPORT{Fink:92,\n\tAUTHOR = {Eugene Fink and Manuela Veloso},\n\tTITLE = \"Prodigy Planning Algorithm\",\n\tINSTITUTION = CMUSCS,\n\tYEAR = {1992},\n\tNUMBER = {CMU-CS-94-123},\n\tADDRESS = CMU-ADDRESS,\n\tMONTH = mar\n}"
     key: Fink:92
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       institution: literallist
       month: literal
@@ -16865,7 +17073,8 @@ entries:
       year: literal
     type: inproceedings
   - fields:
-      address: AAAI-PRESS-ADDRESS
+      address:
+        - AAAI-PRESS-ADDRESS
       annote: >-
         Gives a summary of three-layer architectures for mobile robots. Gat's
         division into three layers is based on memory and algorithm run-time in
@@ -16904,7 +17113,7 @@ entries:
     input: "@InCollection{Gat:TLAs,\n  author =\t {Erann Gat},\n  title =\t {On Three-Layer Architectures},\n  booktitle =\t {Artificial Intelligence and Mobile Robots},\n  publisher =\t AAAI-PRESS,\n  year =\t 1998,\n  editor =\t {David Kortenkamp and R. Peter Bonasso and Robin\n                  Murphy},\n  address =\t AAAI-PRESS-ADDRESS,\n  annote =\t {Gives a summary of three-layer architectures for\n                  mobile robots. Gat's division into three layers is\n                  based on memory and algorithm run-time in the three\n                  layers: deliberation layer (top) allows algorithms\n                  with long latencies: several Behavior transitions\n                  can occur before one of these terminates. The middle\n                  layer is the sequencer, whose job it is to select\n                  primitive Behaviors, and supply parameters. The\n                  Sequencer is allowed to use algorithms with\n                  memory. At the bottom level is the Controller, which\n                  contains Behaviors, which should run one iteration\n                  in constant-bounded time and space, ideally being\n                  continuous in the input, and not using memory\n                  (although Gat makes exception for filters). Gat also\n                  argues that behaviors should fail cognizantly. This\n                  is interesting, because not what I would have\n                  expected because I'm either (a) a planning bigot or\n                  (b) realistic about the fact that one typically\n                  doesn't own an entire execution platform, depending\n                  on whether you're being (a) harsh or (b) kind. I\n                  tend to think that you are given the Controller (or\n                  at least a subset thereof), and that cognizant\n                  failure may be more than you can ask. Also the\n                  Sequencer is needed to provide a plan-cognizant\n                  layer above the Controller, which typically doesn't\n                  know anything about the context of its behaviors.}\n}"
     key: Gat:TLAs
     mode:
-      address: literal
+      address: literallist
       annote: richtext
       author: creatorlist
       booktitle: title
@@ -16961,7 +17170,8 @@ entries:
       note: >-
         Available as University of Maryland Computer Science Technical Report
         CS-TR-3157
-      school: University of Michigan, Ann Arbor
+      school:
+        - University of Michigan, Ann Arbor
       title: 'CIRCA: The Cooperative Intelligent Real-Time Control Architecture'
       year: '1993'
     input: "@phdthesis{musliner:93thesis,\n         author = \"David J. Musliner\",\n         title = \"{CIRCA}: The Cooperative Intelligent Real-Time Control Architecture\",\n         school = \"University of Michigan, Ann Arbor\",\n\tnote = \"Available as University of Maryland Computer Science Technical Report CS-TR-3157\",\n         year = \"1993\"\n        }"
@@ -16969,12 +17179,13 @@ entries:
     mode:
       author: creatorlist
       note: richtext
-      school: literal
+      school: literallist
       title: title
       year: literal
     type: phdthesis
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: D.
           lastName: Poole
@@ -16998,7 +17209,7 @@ entries:
       }
     key: PooMacGoe97a
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       serial: literal
@@ -17105,7 +17316,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Freiburg, Germany
+      address:
+        - Freiburg, Germany
       author:
         - firstName: Bernhard
           lastName: Nebel
@@ -17122,7 +17334,7 @@ entries:
     input: "@TECHREPORT{Nebel:97,\n\tAUTHOR = {Bernhard Nebel and Yannis Dimopoulos and\n\t\t  Jana Koehler},\n\tTITLE = {Ignoring Irrelevant Facts and operators in plan\n\t\t generation},\n\tINSTITUTION = {Albert-Ludwigs-Universit\\\"{a}t,\n\t\t       Institut f\\\"{u}r Informatik},\n\tYEAR = {1997},\n\tNUMBER = {89},\n\tADDRESS = {Freiburg, Germany},\n\tMONTH = apr\n}"
     key: Nebel:97
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       institution: literallist
       month: literal
@@ -17598,7 +17810,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Carlton, AUSTRALIA
+      address:
+        - Carlton, AUSTRALIA
       author:
         - firstName: Elizabeth
           lastName: Sonnenberg
@@ -17623,7 +17836,7 @@ entries:
     input: "@TECHREPORT(SonnenbergETAL:93,\n\tAUTHOR = {Elizabeth Sonnenberg and Gil Tidhar and Eric Werner\n\t\t  and David Kinny and Magnus Ljungberg and Anand Rao},\n\tTITLE = \"Planned Team Activity\",\n\tINSTITUTION = AAII,\n\tYEAR = {1993},\n\tTYPE = {Technical Note},\n\tNUMBER = {26},\n\tADDRESS = {Carlton, AUSTRALIA},\n\tMONTH = jun,\n\tNOTE = {Revised version of 1993, original July, 1992}\n)"
     key: SonnenbergETAL:93
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       institution: literallist
       month: literal
@@ -17860,7 +18073,8 @@ entries:
         - firstName: James
           lastName: Soutter
       month: '11'
-      school: Loughborough University
+      school:
+        - Loughborough University
       title: An Integrated Architecture for Operating Procedure Synthesis
       year: '1996'
     input: "@PHDTHESIS{Soutter:96,\n\t    \n\tAUTHOR = {James Soutter},\n\tTITLE = {An Integrated Architecture for Operating Procedure\n\t\t Synthesis},\n\tSCHOOL = {Loughborough University},\n\tYEAR = {1996},\n\tMONTH = nov\n}"
@@ -17868,7 +18082,7 @@ entries:
     mode:
       author: creatorlist
       month: literal
-      school: literal
+      school: literallist
       title: title
       year: literal
     type: phdthesis
@@ -17876,14 +18090,15 @@ entries:
       author:
         - firstName: Lawrence George
           lastName: Shattuck
-      school: Ohio State University
+      school:
+        - Ohio State University
       title: Communication of Intent in Distributed Supervisory Control Systems
       year: '1995'
     input: "@PHDTHESIS{Shattuck:95,\n\t    \n\tAUTHOR = {Lawrence George Shattuck},\n\tTITLE = {Communication of Intent in Distributed Supervisory\n\t\t Control Systems},\n\tSCHOOL = {Ohio State University},\n\tYEAR = {1995}\n}"
     key: Shattuck:95
     mode:
       author: creatorlist
-      school: literal
+      school: literallist
       title: title
       year: literal
     type: phdthesis
@@ -17892,7 +18107,8 @@ entries:
         - firstName: Kathryn E.
           lastName: Sanders
       month: '11'
-      school: Department of Computer Science, Brown University
+      school:
+        - Department of Computer Science, Brown University
       title: 'CHIRON: Planning in an Open-textured Domain'
       year: '1994'
     input: "@PHDTHESIS{Sanders:94,\n\t    \n\tAUTHOR = {Kathryn E. Sanders},\n\tTITLE = \"{CHIRON}: Planning in an Open-textured Domain\",\n\tSCHOOL = {Department of Computer Science,\n\t\t  Brown University},\n\tYEAR = {1994},\n\tMONTH = nov\t\t\n}"
@@ -17900,7 +18116,7 @@ entries:
     mode:
       author: creatorlist
       month: literal
-      school: literal
+      school: literallist
       title: title
       year: literal
     type: phdthesis
@@ -17909,7 +18125,8 @@ entries:
         - firstName: Ashwin
           lastName: Ram
       month: '5'
-      school: Department of Computer Science, Yale University
+      school:
+        - Department of Computer Science, Yale University
       title: >-
         Question-driven Understanding: An integrated theory of story
         understanding, memory and learning
@@ -17919,7 +18136,7 @@ entries:
     mode:
       author: creatorlist
       month: literal
-      school: literal
+      school: literallist
       title: title
       year: literal
     type: phdthesis
@@ -17927,7 +18144,9 @@ entries:
       author:
         - firstName: Philip Stuart
           lastName: Resnick
-      school: Computer and Information Science, Penn University
+      school:
+        - Computer
+        - Information Science, Penn University
       title: >-
         Selection and Information: A Class-based Approach to Lexical
         Relationships
@@ -17936,7 +18155,7 @@ entries:
     key: Resnik:93
     mode:
       author: creatorlist
-      school: literal
+      school: literallist
       title: title
       year: literal
     type: phdthesis
@@ -17945,7 +18164,8 @@ entries:
         - firstName: Hwee Tou
           lastName: Ng
       month: '6'
-      school: Artificial Intelligence Laboratory, University of Texas at Austin
+      school:
+        - Artificial Intelligence Laboratory, University of Texas at Austin
       title: >-
         A General Abductive System with Application to Plan Recognition and
         Diagnosis
@@ -17955,12 +18175,13 @@ entries:
     mode:
       author: creatorlist
       month: literal
-      school: literal
+      school: literallist
       title: title
       year: literal
     type: phdthesis
   - fields:
-      address: Syracuse, NY
+      address:
+        - Syracuse, NY
       author:
         - firstName: William C.
           lastName: Purdy
@@ -17974,7 +18195,7 @@ entries:
     input: "@TECHREPORT{Purdy:90a,\n\t    \n\tAUTHOR = {William C. Purdy},\n\tTITLE = \"Surface Reasoning\",\n\tINSTITUTION = {School of Computer and Information Science,\n\t\t       Syracuse University},\n\tYEAR = {1990},\n\tNUMBER = {SU-CIS-90-15},\n\tADDRESS = {Syracuse, NY},\n\tMONTH = sep\n}"
     key: Purdy:90a
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       institution: literallist
       month: literal
@@ -17983,7 +18204,8 @@ entries:
       year: literal
     type: techreport
   - fields:
-      address: Syracuse, NY
+      address:
+        - Syracuse, NY
       author:
         - firstName: William C.
           lastName: Purdy
@@ -17997,7 +18219,7 @@ entries:
     input: "@TECHREPORT{Purdy:90b,\n\t    \n\tAUTHOR = {William C. Purdy},\n\tTITLE = \"A Logic for Natural Language\",\n\tINSTITUTION = {School of Computer and Information Science,\n\t\t       Syracuse University},\n\tYEAR = {1990},\n\tNUMBER = {SU-CIS-90-02},\n\tADDRESS = {Syracuse, NY},\n\tMONTH = jul\n}"
     key: Purdy:90b
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       institution: literallist
       month: literal
@@ -18006,7 +18228,8 @@ entries:
       year: literal
     type: techreport
   - fields:
-      address: Syracuse, NY
+      address:
+        - Syracuse, NY
       author:
         - firstName: William C.
           lastName: Purdy
@@ -18020,7 +18243,7 @@ entries:
     input: "@TECHREPORT{Purdy:90c,\n\t    \n\tAUTHOR = {William C. Purdy},\n\tTITLE = \"A Lexical Extension of Montague Semantics\",\n\tINSTITUTION = {School of Computer and Information Science,\n\t\t       Syracuse University},\n\tYEAR = {1990},\n\tNUMBER = {SU-CIS-90-07},\n\tADDRESS = {Syracuse, NY},\n\tMONTH = may\n}"
     key: Purdy:90c
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       institution: literallist
       month: literal
@@ -18657,7 +18880,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Beijing
+      address:
+        - Beijing
       author:
         - firstName: M. A.
           lastName: Musen
@@ -18680,7 +18904,7 @@ entries:
     input: "@InProceedings{Protege:2000,\n  author =\t {M. A. Musen and R. W. Fergerson and W. E. Grosso and\n                  N. F. Noy and M. Crubezy and J. H. Gennari},\n  title =\t {Component-Based Support for Building\n                  Knowledge-Acquisition Systems},\n  booktitle =\t {Conference on Intelligent Information Processing\n                  (IIP 2000) of the International Federation for\n                  Information Processing World Computer Congress (WCC\n                  2000)},\n  year =\t 2000,\n  address =\t {Beijing}\n}"
     key: Protege:2000
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       title: title
@@ -18710,7 +18934,8 @@ entries:
       year: literal
     type: inproceedings
   - fields:
-      address: Chicago, IL
+      address:
+        - Chicago, IL
       author:
         - firstName: N. F.
           lastName: Noy
@@ -18728,7 +18953,7 @@ entries:
     input: "@InProceedings{Protege:2000b,\n  author =\t {N. F. Noy and W. Grosso and M. A. Musen},\n  title =\t {Knowledge-Acquisition Interfaces for Domain Experts:\n                  An Empirical Evaluation of {Protege-2000}},\n  booktitle =\t {Twelfth International Conference on Software\n                  Engineering and Knowledge Engineering (SEKE2000)},\n  year =\t 2000,\n  address =\t {Chicago, IL}\n}"
     key: Protege:2000b
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       title: title
@@ -18943,7 +19168,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Cambridge, Massachusetts
+      address:
+        - Cambridge, Massachusetts
       author:
         - firstName: Kenneth D.
           lastName: Forbus
@@ -18963,14 +19189,15 @@ entries:
       }
     key: Forbus+DeKleer:1993
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
       year: literal
     type: book
   - fields:
-      address: Menlo Park, California
+      address:
+        - Menlo Park, California
       author:
         - firstName: M.
           lastName: Williamson
@@ -18991,7 +19218,7 @@ entries:
     input: "@inproceedings{ williamson96unified,\n  author =\t \"M. Williamson and K. Decker and K. Sycara\",\n  title =\t \"Unified Information and Control Flow in Hierarchical\n                  Task Networks\",\n  booktitle =\t \"Theories of Action, Planning, and Robot Control:\n                  Bridging the Gap: Proceedings of the 1996 {AAAI}\n                  Workshop\",\n  publisher =\t \"AAAI Press\",\n  address =\t \"Menlo Park, California\",\n  isbn =\t \"1-57735-021-9\",\n  pages =\t \"142--150\",\n  year =\t \"1996\",\n  url =\n                  \"citeseer.nj.nec.com/article/williamson96unified.html\"\n}"
     key: williamson96unified
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       isbn: literal
@@ -19065,7 +19292,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: College Park, MD
+      address:
+        - College Park, MD
       author:
         - firstName: Dana
           lastName: Nau
@@ -19093,7 +19321,7 @@ entries:
     input: "@TechReport{nau04:applicSHOP2,\n  author =\t {Dana Nau and Tsz-Chiu Au and Okhtay Ilgami and Ugur\n                  Kuter and H\\'{e}ctor {Mu\\~{n}oz-Avila} and J. William\n                  Murdock and Dan Wu and Fusun Yaman},\n  title =\t {Applications of {SHOP} and {SHOP2}},\n  institution =\t {Computer Science Department, University of Maryland},\n  year =\t 2004,\n  number =\t {CS-TR-4604, UMIACS-TR-2004-46},\n  address =\t {College Park, MD},\n  month =\t jun,\n  url =\t         {http://www.cs.umd.edu/~nau/papers/nau04applications.pdf}\n}"
     key: nau04:applicSHOP2
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       institution: literallist
       month: literal
@@ -19510,7 +19738,12 @@ entries:
         http://dblp.uni-trier.de/db/journals/jair/jair26.html#HoffmannETELT06
       journal: JAIR
       pages: 453–541
-      shortauthor: Jörg Hoffmann and Stefan Edelkamp and others
+      shortauthor:
+        - firstName: Jörg
+          lastName: Hoffmann
+        - firstName: Stefan
+          lastName: Edelkamp
+        - lastName: others
       title: >-
         Engineering Benchmarks for Planning: the Domains Used in the
         Deterministic Part of IPC-4
@@ -19541,7 +19774,7 @@ entries:
       bibsource: literal
       journal: literal
       pages: literal
-      shortauthor: literal
+      shortauthor: creatorlist
       title: title
       url: verbatim
       volume: literal
@@ -19605,7 +19838,8 @@ entries:
         Act formalism. The Act-Editor runs on Sun workstations with either
         Allegro Common Lisp 4.2/4.3 with CLIM 2.0/2.1, or Lucid Lisp 4.1 with
         CLIM 1.1., as well as Symbolics Lisp Machines.
-      address: Menlo Park, CA
+      address:
+        - Menlo Park, CA
       author:
         - firstName: Karen L.
           lastName: Myers
@@ -19620,7 +19854,7 @@ entries:
     key: AICPub215:1997
     mode:
       abstract: literal
-      address: literal
+      address: literallist
       author: creatorlist
       month: literal
       organization: literallist
@@ -20079,7 +20313,8 @@ entries:
       title: title
     type: incollection
   - fields:
-      address: Brescia, Italy
+      address:
+        - Brescia, Italy
       author:
         - firstName: A.
           lastName: Gerevini
@@ -20094,7 +20329,7 @@ entries:
     input: "@TechReport{GereviniLong05:PDDL3,\n  author =\t {A. Gerevini and D. Long},\n  title =\t {Plan Constraints and Preferences in {PDDL3}},\n  institution =\t {Dept. of Electronics for Automation, University of\n                  Brescia},\n  year =\t 2005,\n  type =\t {Technical Report},\n  number =\t {RT 2005-08-47},\n  address =\t {Brescia, Italy}\n}"
     key: GereviniLong05:PDDL3
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       institution: literallist
       number: literal
@@ -20156,7 +20391,8 @@ entries:
         - firstName: Alfredo
           lastName: Gabaldon
       bibsource: OAI-PMH server at cs1.ist.psu.edu
-      language: en
+      language:
+        - en
       month: "07\_11"
       note: >-
         Appeared in the working notes of the AIPS workshop on On-Line Planning
@@ -20175,7 +20411,7 @@ entries:
       annote: richtext
       author: creatorlist
       bibsource: literal
-      language: literal
+      language: literallist
       month: literal
       note: richtext
       oai: literal
@@ -20329,7 +20565,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Menlo Park, California
+      address:
+        - Menlo Park, California
       author:
         - firstName: Meghyn
           lastName: Bienvenu
@@ -20354,7 +20591,7 @@ entries:
     input: "@InCollection{bienvenu-etal:2006a,\n  author =\t\"Meghyn Bienvenu and Christian Fritz and Sheila\n\t\t McIlraith\",\n  title =\t\"Planning with Qualitative Temporal Preferences\",\n  booktitle =\t\"{KR}2006\",\n  publisher =\t\"AAAI Press\",\n  year = \t\"2006\",\n  editor =\t\"Patrick Doherty and John Mylopoulos and Christopher A.\n\t\t Welty\",\n  pages =\t\"134--144\",\n  address =\t\"Menlo Park, California\",\n  topic =\t\"planning;preferences;qualitative-utility;temporal-reasoning;\",\n}"
     key: bienvenu-etal:2006a
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -20413,7 +20650,8 @@ entries:
         Vita.; Thesis (Ph. D.)–University of Washington, 1997.; Includes
         bibliographical references (p. [166]-173).
       oai: oai:xtcat.oclc.org:OCLCNo/ocm40149549
-      school: University of Washington
+      school:
+        - University of Washington
       subject: Intelligent agents (Computer software)
       title: Planning and knowledge representation for softbots
       year: '1997'
@@ -20424,7 +20662,7 @@ entries:
       bibsource: literal
       description: literal
       oai: literal
-      school: literal
+      school: literallist
       subject: literal
       title: title
       year: literal
@@ -20616,7 +20854,8 @@ entries:
       year: literal
     type: inproceedings
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: Tom M.
           lastName: Mitchell
@@ -20629,7 +20868,7 @@ entries:
     input: "@book{mitchell97machine,\n\tAddress = {New York},\n\tAuthor = {Tom M. Mitchell},\n\tDate-Added = {2010-06-24 17:45:39 -0400},\n\tDate-Modified = {2010-06-24 17:45:55 -0400},\n\tPublisher = {McGraw-Hill},\n\tTitle = {Machine Learning},\n\tYear = {1997}}"
     key: mitchell97machine
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       date-added: literal
       date-modified: literal
@@ -20694,7 +20933,8 @@ entries:
       year: literal
     type: inproceedings
   - fields:
-      address: San Mateo, CA
+      address:
+        - San Mateo, CA
       author:
         - firstName: David E.
           lastName: Wilkins
@@ -20707,7 +20947,7 @@ entries:
     input: "@book{wilkins88practical,\n\tAddress = {San Mateo, CA},\n\tAuthor = {Wilkins, David E.},\n\tDate-Added = {2010-06-22 21:32:51 -0400},\n\tDate-Modified = {2010-06-22 21:32:51 -0400},\n\tPublisher = {Morgan Kaufmann},\n\tTitle = {Practical Planning: Extending the Classical {AI} Planning Paradigm},\n\tYear = {1988}}"
     key: wilkins88practical
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       date-added: literal
       date-modified: literal
@@ -20737,7 +20977,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Bonn, Germany
+      address:
+        - Bonn, Germany
       author:
         - firstName: D.
           lastName: Choi
@@ -20753,7 +20994,7 @@ entries:
     input: "@inproceedings{Choi2005,\n\tAuthor = {Choi, D. and Langley, P.},\n\tBooktitle = ILP-05,\n\tDate-Added = {2010-06-22 21:28:06 -0400},\n\tDate-Modified = {2010-06-22 21:28:06 -0400},\n\tAddress = {Bonn, Germany},\n\tPublisher = {Springer},\n\tTitle = {Learning teleoreactive logic programs from problem solving},\n\tYear = {2005}}"
     key: Choi2005
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       date-added: literal
@@ -21090,7 +21331,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Hyderabad, India
+      address:
+        - Hyderabad, India
       author:
         - firstName: J.
           lastName: Baier
@@ -21119,7 +21361,7 @@ entries:
       }
     key: bai-bac-mci-ijcai07
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       month: literal
@@ -21159,7 +21401,8 @@ entries:
       year: literal
     type: inproceedings
   - fields:
-      address: Providence, Rhode Island
+      address:
+        - Providence, Rhode Island
       author:
         - firstName: Jorge A.
           lastName: Baier
@@ -21190,7 +21433,7 @@ entries:
       }
     key: bai-fri-mci-icaps07
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       month: literal
@@ -21585,7 +21828,8 @@ entries:
       year: literal
     type: inproceedings
   - fields:
-      address: Menlo Park, Cal.
+      address:
+        - Menlo Park, Cal.
       author:
         - firstName: Karen L.
           lastName: Myers
@@ -21601,7 +21845,7 @@ entries:
     input: "@InProceedings{AAAI/IAAI99*570,\n  author =\t\"Karen L. Myers and Thomas J. Lee\",\n  title =\t\"Generating Qualitatively Different Plans through\n\t\t Metatheoretic Biases\",\n  pages =\t\"570--576\",\n  booktitle =\tAAAI-99,\n  month =\tjul # \" ~18--22\",\n  publisher =\t\"AAAI/MIT Press\",\n  address =\t\"Menlo Park, Cal.\",\n  year = \t\"1999\",\n}"
     key: AAAI/IAAI99*570
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       month: literal
@@ -21820,7 +22064,8 @@ entries:
         - firstName: Nicola
           lastName: Leone
       isbn: 978-3-540-44190-8
-      language: English
+      language:
+        - English
       pages: 545-548
       publisher:
         - Springer Berlin Heidelberg
@@ -21853,7 +22098,7 @@ entries:
       doi: verbatim
       editor: creatorlist
       isbn: literal
-      language: literal
+      language: literallist
       pages: literal
       publisher: literallist
       series: title
@@ -22038,7 +22283,8 @@ entries:
       year: literal
     type: inproceedings
   - fields:
-      address: Boston
+      address:
+        - Boston
       author:
         - firstName: K. J.
           lastName: Hammond
@@ -22058,7 +22304,7 @@ entries:
       }
     key: Hammond:1989
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       series: title
@@ -22128,7 +22374,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Denver
+      address:
+        - Denver
       author:
         - firstName: Robert
           lastName: St-Aubin
@@ -22151,7 +22398,7 @@ entries:
       }
     key: apricodd
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       pages: literal
@@ -22249,7 +22496,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: San Mateo
+      address:
+        - San Mateo
       author:
         - firstName: Philippe
           lastName: Laborie
@@ -22271,7 +22519,7 @@ entries:
     input: "@InProceedings{LaborieGhallab:95,\n  author =\t\"Philippe Laborie and Malik Ghallab\",\n  title =\t\"Planning with Sharable Resource Constraints\",\n  pages =\t\"1643--1651\",\n  ISBN = \t\"1-55860-363-8\",\n  editor =\t\"Chris S. Mellish\",\n  booktitle =\t\"Proceedings of the Fourteenth International Joint\n\t\t Conference on Artificial Intelligence\",\n  month =\taug # \"~20--25\",\n  publisher =\t\"Morgan Kaufmann\",\n  address =\t\"San Mateo\",\n  year = \t\"1995\",\n}"
     key: LaborieGhallab:95
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
@@ -22467,7 +22715,12 @@ entries:
       pages: 38–45
       publisher:
         - ICAPS Foundation
-      shortauthor: Helmert, Malte and Röger, Gabriele and others
+      shortauthor:
+        - firstName: Malte
+          lastName: Helmert
+        - firstName: Gabriele
+          lastName: Röger
+        - lastName: others
       title: Fast downward stone soup
       year: '2011'
     input: |-
@@ -22488,7 +22741,7 @@ entries:
       booktitle: title
       pages: literal
       publisher: literallist
-      shortauthor: literal
+      shortauthor: creatorlist
       title: title
       year: literal
     type: incollection
@@ -22819,7 +23072,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: KAUFMANN-ADDRESS
+      address:
+        - KAUFMANN-ADDRESS
       author:
         - name: GINSBERG
       isbn: 1-55860-221-6
@@ -22840,7 +23094,7 @@ entries:
       }
     key: books/mk/Ginsberg93
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       isbn: literal
       publisher: literallist

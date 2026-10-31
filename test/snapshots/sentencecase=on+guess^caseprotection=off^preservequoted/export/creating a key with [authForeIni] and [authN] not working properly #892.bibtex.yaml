@@ -1,7 +1,8 @@
 comments: []
 entries:
   - fields:
-      address: Berlin [u.~a.]
+      address:
+        - Berlin [u.~a.]
       author:
         - firstName: Florian
           lastName: Modler
@@ -9,7 +10,8 @@ entries:
           lastName: Kreh
       edition: 3. Aufl.
       isbn: 978-3-642-37365-7
-      language: ger
+      language:
+        - ger
       publisher:
         - Springer
       shorttitle: Tutorium
@@ -31,11 +33,11 @@ entries:
       }
     key: FMO14
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       edition: literal
       isbn: literal
-      language: literal
+      language: literallist
       publisher: literallist
       shorttitle: title
       title: title

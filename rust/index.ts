@@ -89,6 +89,12 @@ export type ArrayFields = {
   organization?: string[]
   location?: string[]
   origlocation?: string[]
+  address?: string[]
+  school?: string[]
+  pageref?: string[]
+  lista?: string[]
+  listb?: string[]
+  listc?: string[]
 }
 
 /** The known creator-list and string-list fields in a normalized entry. */

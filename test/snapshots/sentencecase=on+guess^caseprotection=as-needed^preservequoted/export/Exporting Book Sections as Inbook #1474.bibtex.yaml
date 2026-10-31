@@ -1,7 +1,8 @@
 comments: []
 entries:
   - fields:
-      address: Waltham, MA, USA
+      address:
+        - Waltham, MA, USA
       author:
         - firstName: Albert-Jan N.
           lastName: Yzelman
@@ -20,7 +21,8 @@ entries:
       copyright: © 2015 Elsevier Inc.
       doi: 10.1016/B978-0-12-802118-7.00027-3
       isbn: 978-0-12-802118-7
-      language: en-US
+      language:
+        - en-US
       month: '1'
       pages: 457–476
       publisher:
@@ -49,14 +51,14 @@ entries:
       }
     key: yzelman2015
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       collaborator: creatorlist
       copyright: literal
       doi: verbatim
       isbn: literal
-      language: literal
+      language: literallist
       month: literal
       pages: literal
       publisher: literallist

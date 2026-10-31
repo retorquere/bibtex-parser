@@ -30,7 +30,8 @@ entries:
       doi: 10.1177/0956797613493444
       issn: 0956-7976, 1467-9280
       journal: Psychological Science
-      language: en
+      language:
+        - en
       number: '1'
       pages: 47–57
       pmid: '24220626'
@@ -63,7 +64,7 @@ entries:
       doi: verbatim
       issn: literal
       journal: literal
-      language: literal
+      language: literallist
       number: literal
       pages: literal
       pmid: literal
@@ -72,7 +73,8 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Bruxelles
+      address:
+        - Bruxelles
       author:
         - firstName: Samuel
           lastName: Bowles
@@ -88,7 +90,8 @@ entries:
           lastName: Parijs
           prefix: van
       isbn: 2-8041-4660-X 978-2-8041-4660-3
-      language: English
+      language:
+        - English
       publisher:
         - De Boeck
       title: The co-evolution of love and hate
@@ -107,12 +110,12 @@ entries:
       }
     key: bowles_coevolution_2003
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       editor: creatorlist
       isbn: literal
-      language: literal
+      language: literallist
       publisher: literallist
       title: title
       year: literal
@@ -140,7 +143,8 @@ entries:
       doi: 10.1098/rspb.2008.1060
       issn: 0962-8452, 1471-2954
       journal: 'Proceedings of the Royal Society B: Biological Sciences'
-      language: en
+      language:
+        - en
       month: '1'
       number: '1655'
       pages: 355–360
@@ -171,7 +175,7 @@ entries:
       doi: verbatim
       issn: literal
       journal: literal
-      language: literal
+      language: literallist
       month: literal
       number: literal
       pages: literal
@@ -181,11 +185,13 @@ entries:
       year: literal
     type: article
   - fields:
-      address: Boston, MA
+      address:
+        - Boston, MA
       author:
         - firstName: William Graham
           lastName: Sumner
-      language: English
+      language:
+        - English
       publisher:
         - Ginn
       shorttitle: Folkways
@@ -205,9 +211,9 @@ entries:
       }
     key: sumner_folkways_1906
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
-      language: literal
+      language: literallist
       publisher: literallist
       shorttitle: title
       title: title

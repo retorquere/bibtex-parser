@@ -1,7 +1,8 @@
 comments: []
 entries:
   - fields:
-      address: United States of America
+      address:
+        - United States of America
       author:
         - firstName: Xintian
           lastName: Yang
@@ -28,7 +29,8 @@ entries:
         - firstName: Uwe
           lastName: Röhm
       issn: 2150-8097
-      language: en-US
+      language:
+        - en-US
       organization:
         - Google
       pages: 231–242
@@ -62,14 +64,14 @@ entries:
       }
     key: yang2011
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       booktitle: title
       copyright: literal
       doi: verbatim
       editor: creatorlist
       issn: literal
-      language: literal
+      language: literallist
       organization: literallist
       pages: literal
       publisher: literallist

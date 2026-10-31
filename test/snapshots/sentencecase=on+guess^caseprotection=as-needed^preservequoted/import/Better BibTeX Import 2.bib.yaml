@@ -1,7 +1,8 @@
 comments: []
 entries:
   - fields:
-      address: New York
+      address:
+        - New York
       author:
         - firstName: Milton
           lastName: Abramowitz
@@ -25,7 +26,7 @@ entries:
       }
     key: abramowitz+stegun
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       edition: literal
       publisher: literallist

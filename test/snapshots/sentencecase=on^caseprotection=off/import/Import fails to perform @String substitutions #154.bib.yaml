@@ -1,7 +1,8 @@
 comments: []
 entries:
   - fields:
-      address: London, UK
+      address:
+        - London, UK
       author:
         - firstName: R. A.
           lastName: Bert
@@ -17,7 +18,7 @@ entries:
       }
     key: Bert:2001:SQL
     mode:
-      address: literal
+      address: literallist
       author: creatorlist
       publisher: literallist
       title: title
