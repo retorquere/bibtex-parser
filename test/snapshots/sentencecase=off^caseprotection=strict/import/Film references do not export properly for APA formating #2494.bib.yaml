@@ -1,0 +1,136 @@
+comments: []
+entries:
+  - fields:
+      date: '1975'
+      editor:
+        - firstName: Miloš
+          lastName: Forman
+      editortype: director
+      keywords:
+        - Drama
+        - Mentally illQMentally ill
+      publisher:
+        - United Artists
+      title: One Flew over the Cuckoo's Nest
+    input: |-
+      @video{formanOneFlewCuckoo1975,
+        title = {One Flew over the Cuckoo's Nest},
+        editor = {Forman, Miloš},
+        date = {1975},
+        publisher = {{United Artists}},
+        editortype = {director},
+        keywords = {Drama,Mentally ill$$QMentally ill}
+      }
+    key: formanOneFlewCuckoo1975
+    mode:
+      date: literal
+      editor: creatorlist
+      editortype: literal
+      keywords: verbatimlist
+      publisher: literallist
+      title: title
+    type: video
+  - fields:
+      date: '1975'
+      editor:
+        - firstName: Miloš
+          lastName: Forman
+      editortype: director
+      entrysubtype: film
+      keywords:
+        - Drama
+        - Mentally illQMentally ill
+      publisher:
+        - United Artists
+      title: One Flew over the Cuckoo's Nest
+    input: |-
+      @video{formanOneFlewCuckoo1975-film,
+        entrysubtype = {film},
+        title = {One Flew over the Cuckoo's Nest},
+        editor = {Forman, Miloš},
+        date = {1975},
+        publisher = {{United Artists}},
+        editortype = {director},
+        keywords = {Drama,Mentally ill$$QMentally ill}
+      }
+    key: formanOneFlewCuckoo1975-film
+    mode:
+      date: literal
+      editor: creatorlist
+      editortype: literal
+      entrysubtype: literal
+      keywords: verbatimlist
+      publisher: literallist
+      title: title
+    type: video
+  - fields:
+      date: '1975'
+      editor:
+        - firstName: Miloš
+          lastName: Forman
+      editortype: director
+      entrysubtype: tvbroadcast
+      keywords:
+        - Drama
+        - Mentally illQMentally ill
+      publisher:
+        - United Artists
+      title: One Flew over the Cuckoo's Nest
+    input: |-
+      @video{formanOneFlewCuckoo1975-tv,
+        entrysubtype = {tvbroadcast},
+        title = {One Flew over the Cuckoo's Nest},
+        editor = {Forman, Miloš},
+        date = {1975},
+        publisher = {{United Artists}},
+        editortype = {director},
+        keywords = {Drama,Mentally ill$$QMentally ill}
+      }
+    key: formanOneFlewCuckoo1975-tv
+    mode:
+      date: literal
+      editor: creatorlist
+      editortype: literal
+      entrysubtype: literal
+      keywords: verbatimlist
+      publisher: literallist
+      title: title
+    type: video
+  - fields:
+      date: '1975'
+      editor:
+        - firstName: Miloš
+          lastName: Forman
+      editortype: director
+      entrysubtype: tvepisode
+      keywords:
+        - Drama
+        - Mentally illQMentally ill
+      publisher:
+        - United Artists
+      title: One Flew over the Cuckoo's Nest
+    input: |-
+      @video{formanOneFlewCuckoo1975-epi,
+        entrysubtype = {tvepisode},
+        title = {One Flew over the Cuckoo's Nest},
+        editor = {Forman, Miloš},
+        date = {1975},
+        publisher = {{United Artists}},
+        editortype = {director},
+        keywords = {Drama,Mentally ill$$QMentally ill}
+      }
+    key: formanOneFlewCuckoo1975-epi
+    mode:
+      date: literal
+      editor: creatorlist
+      editortype: literal
+      entrysubtype: literal
+      keywords: verbatimlist
+      publisher: literallist
+      title: title
+    type: video
+errors: []
+jabref:
+  root: []
+preambles: []
+strings: {}
