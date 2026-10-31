@@ -2081,6 +2081,14 @@ where
                 }
             }
             if current_mode == "verbatim" {
+                if field == "ids" {
+                    let items = value
+                        .split(',')
+                        .map(|item| item.trim().to_string())
+                        .collect();
+                    fields.insert(field, FieldValue::List(items));
+                    continue;
+                }
                 // Normalize parsed whitespace while preserving TeX commands and literal content.
                 fields.insert(field, FieldValue::Text(tex::print_raw(&value)));
                 continue;
@@ -2540,6 +2548,17 @@ mod tests {
         ] {
             assert_ne!(super::field_mode(field, &options), "verbatim", "{field}");
         }
+    }
+
+    #[test]
+    /// Verifies ids stay verbatim while every comma splits a trimmed list item.
+    fn ids_verbatim_values_split_every_comma() {
+        let parsed = parse("@book{x,ids={ one , {two, inside} }}", Options::default());
+        assert_eq!(parsed.entries[0].mode["ids"], "verbatim");
+        assert_eq!(
+            parsed.entries[0].fields["ids"],
+            FieldValue::List(vec!["one".into(), "{two".into(), "inside}".into()])
+        );
     }
 
     #[test]
