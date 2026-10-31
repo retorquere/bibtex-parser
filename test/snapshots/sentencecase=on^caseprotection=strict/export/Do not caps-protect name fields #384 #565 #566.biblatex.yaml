@@ -5,7 +5,8 @@ entries:
       author:
         - firstName: Tawfiq
           lastName: al- Hakim
-      options: useprefix=true
+      options:
+        useprefix: 'true'
     input: |-
       @book{al-hakim,
         author = {al- Hakim, Tawfiq},
@@ -16,7 +17,7 @@ entries:
     mode:
       annotation: richtext
       author: creatorlist
-      options: literal
+      options: verbatim
     type: book
   - fields:
       annotation: '[Beauvoir][Simone de]'
@@ -40,7 +41,8 @@ entries:
         - firstName: Christianus
           lastName: Eert
           prefix: boven d'
-      options: useprefix=true
+      options:
+        useprefix: 'true'
     input: |-
       @book{bovendeert,
         author = {boven d' Eert, Christianus},
@@ -51,7 +53,7 @@ entries:
     mode:
       annotation: richtext
       author: creatorlist
-      options: literal
+      options: verbatim
     type: book
   - fields:
       annotation: '["da Gama"][Vasco]'
@@ -74,7 +76,8 @@ entries:
       author:
         - firstName: Jean le Rond
           lastName: d’ Alembert
-      options: useprefix=true
+      options:
+        useprefix: 'true'
     input: |-
       @book{dalembert,
         author = {d’ Alembert, Jean le Rond},
@@ -85,7 +88,7 @@ entries:
     mode:
       annotation: richtext
       author: creatorlist
-      options: literal
+      options: verbatim
     type: book
   - fields:
       annotation: '[D’Amato][Alfonse]'
@@ -231,7 +234,8 @@ entries:
         - firstName: Philippe
           lastName: Puy de Clinchamps
           prefix: du
-      options: useprefix=true
+      options:
+        useprefix: 'true'
     input: |-
       @book{dupuydeclinchamps,
         author = {du Puy de Clinchamps, {\relax Ph}ilippe},
@@ -242,7 +246,7 @@ entries:
     mode:
       annotation: richtext
       author: creatorlist
-      options: literal
+      options: verbatim
     type: book
   - fields:
       annotation: '[Este][Beatrice d’]'
@@ -447,7 +451,8 @@ entries:
       author:
         - firstName: Goverdus
           lastName: '''s- Gravesande'
-      options: useprefix=true
+      options:
+        useprefix: 'true'
     input: |-
       @book{s-gravesande,
         author = {'s- Gravesande, Goverdus},
@@ -458,7 +463,7 @@ entries:
     mode:
       annotation: richtext
       author: creatorlist
-      options: literal
+      options: verbatim
     type: book
   - fields:
       annotation: '[Sackville-West][Victoria]'
@@ -575,7 +580,8 @@ entries:
         - firstName: Vincent
           lastName: Gogh
           prefix: van
-      options: useprefix=true
+      options:
+        useprefix: 'true'
     input: |-
       @book{vangogh,
         author = {van Gogh, Vincent},
@@ -586,7 +592,7 @@ entries:
     mode:
       annotation: richtext
       author: creatorlist
-      options: literal
+      options: verbatim
     type: book
   - fields:
       annotation: '["van Gulik"][Robert]'

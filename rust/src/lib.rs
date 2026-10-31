@@ -4,7 +4,7 @@
 //! Synchronous and WASM asynchronous entry points share the same parsing and normalization paths.
 
 use serde::{Deserialize, Serialize};
-use std::collections::HashMap;
+use std::collections::{BTreeMap, HashMap};
 use std::num::NonZeroUsize;
 use std::sync::OnceLock;
 
@@ -287,7 +287,10 @@ fn cross_reference_map() -> &'static CrossReferenceMap {
 fn field_value_is_truthy(value: &FieldValue) -> bool {
     match value {
         FieldValue::Text(value) => !value.is_empty(),
-        FieldValue::Creators(_) | FieldValue::List(_) | FieldValue::Annotations(_) => true,
+        FieldValue::Creators(_)
+        | FieldValue::List(_)
+        | FieldValue::Options(_)
+        | FieldValue::Annotations(_) => true,
     }
 }
 
@@ -492,6 +495,8 @@ pub enum FieldValue {
     Creators(Vec<Creator>),
     /// Elements from literal-list and keyword fields.
     List(Vec<String>),
+    /// Key/value pairs from the verbatim BibLaTeX `options` field.
+    Options(BTreeMap<String, String>),
     /// Structured Biber annotation scopes, such as `field`, `item`, and `part`.
     Annotations(Vec<Annotation>),
 }
@@ -1129,13 +1134,14 @@ const TITLE_FIELDS: &[&str] = &[
 
 // JabRef's `groups` field is nonstandard and must stay literal like the other verbatim fields.
 const VERBATIM_FIELDS: &[&str] = &[
-    "doi", "eprint", "file", "files", "pdf", "groups", "ids", "url", "verba", "verbb", "verbc",
+    "doi", "eprint", "file", "files", "pdf", "groups", "ids", "options", "url", "verba", "verbb", "verbc",
 ];
 
 const RICHTEXT_FIELDS: &[&str] = &["annotation", "comment", "annote", "review", "notes", "note"];
 
 const LIST_FIELDS: &[&str] = &[
     "address",
+    "entryset",
     "institution",
     "labelname",
     "language",
@@ -1147,7 +1153,10 @@ const LIST_FIELDS: &[&str] = &[
     "origlanguage",
     "pageref",
     "publisher",
+    "related",
+    "relatedoptions",
     "school",
+    "xdata",
 ];
 
 /// Split a value only where the separator is outside braces and is not escaped.
@@ -1231,6 +1240,18 @@ fn split_creators(input: &str) -> Vec<String> {
     }
     result.push(chars[start..].iter().collect::<String>().trim().to_string());
     result.into_iter().filter(|name| !name.is_empty()).collect()
+}
+
+/// Splits BibLaTeX comma-separated list fields separately from `and`-separated creator lists.
+fn split_literal_list(field: &str, input: &str) -> Vec<String> {
+    if matches!(field, "entryset" | "related" | "relatedoptions" | "xdata") {
+        split_top_level(input, ',')
+            .into_iter()
+            .filter(|item| !item.is_empty())
+            .collect()
+    } else {
+        split_creators(input)
+    }
 }
 
 /// Split first-last creator names on whitespace outside TeX groups.
@@ -2089,6 +2110,17 @@ where
                     fields.insert(field, FieldValue::List(items));
                     continue;
                 }
+                if field == "options" {
+                    let options = value
+                        .split(',')
+                        .filter_map(|option| option.split_once('='))
+                        .map(|(key, value)| {
+                            (key.trim().to_string(), value.trim().to_string())
+                        })
+                        .collect();
+                    fields.insert(field, FieldValue::Options(options));
+                    continue;
+                }
                 // Normalize parsed whitespace while preserving TeX commands and literal content.
                 fields.insert(field, FieldValue::Text(tex::print_raw(&value)));
                 continue;
@@ -2102,10 +2134,7 @@ where
                         .collect();
                     fields.insert(field, FieldValue::Creators(names));
                 } else if current_mode == "literallist" {
-                    let items: Vec<_> = split_creators(&value)
-                        .iter()
-                        .map(|element| element.to_string())
-                        .collect();
+                    let items = split_literal_list(&field, &value);
                     fields.insert(field, FieldValue::List(items));
                 } else {
                     fields.insert(field, FieldValue::Text(value));
@@ -2115,7 +2144,7 @@ where
             // Literal lists split the AST before stringifying each element, so braced `and`
             // remains content rather than becoming a separator.
             if current_mode == "literallist" {
-                let items = split_creators(&value)
+                let items = split_literal_list(&field, &value)
                     .iter()
                     .map(|element| {
                         renderer
@@ -2206,6 +2235,7 @@ where
                             *item = tex::finalize_markup(item, options.collapse_markup);
                         }
                     }
+                    FieldValue::Options(_) => {}
                     FieldValue::Annotations(value) => {
                         finalize_annotation_value(value, options.collapse_markup);
                     }
@@ -2558,6 +2588,23 @@ mod tests {
         assert_eq!(
             parsed.entries[0].fields["ids"],
             FieldValue::List(vec!["one".into(), "{two".into(), "inside}".into()])
+        );
+    }
+
+    #[test]
+    /// Verifies options remain verbatim while comma-separated key/value pairs become a map.
+    fn options_verbatim_values_parse_as_trimmed_map() {
+        let parsed = parse(
+            "@book{x,options={ foo = bar , url=https://example.test/?a=b }}",
+            Options::default(),
+        );
+        assert_eq!(parsed.entries[0].mode["options"], "verbatim");
+        assert_eq!(
+            parsed.entries[0].fields["options"],
+            FieldValue::Options(std::collections::BTreeMap::from([
+                ("foo".into(), "bar".into()),
+                ("url".into(), "https://example.test/?a=b".into()),
+            ]))
         );
     }
 
@@ -3893,6 +3940,38 @@ mod tests {
         assert_eq!(
             punctuated.entries[0].fields["publisher"],
             FieldValue::List(vec!["Holt, Rinehart,".into(), "Winston".into()])
+        );
+    }
+
+    #[test]
+    /// Parses BibLaTeX comma-separated fields as literal lists, including in raw mode.
+    fn separated_biblatex_fields_split_on_commas() {
+        let source = "@book{x,entryset={A, {B,C}},related={ref1,ref2},relatedoptions={dataonly,skipbib},xdata={parent}}";
+        let parsed = parse(source, Options::default());
+        for field in ["entryset", "related", "relatedoptions", "xdata"] {
+            assert_eq!(parsed.entries[0].mode[field], "literallist");
+        }
+        assert_eq!(
+            parsed.entries[0].fields["entryset"],
+            FieldValue::List(vec!["A".into(), "B,C".into()])
+        );
+        assert_eq!(
+            parsed.entries[0].fields["related"],
+            FieldValue::List(vec!["ref1".into(), "ref2".into()])
+        );
+        assert_eq!(
+            parsed.entries[0].fields["relatedoptions"],
+            FieldValue::List(vec!["dataonly".into(), "skipbib".into()])
+        );
+        assert_eq!(
+            parsed.entries[0].fields["xdata"],
+            FieldValue::List(vec!["parent".into()])
+        );
+
+        let raw = parse(source, Options { raw: true, ..Options::default() });
+        assert_eq!(
+            raw.entries[0].fields["related"],
+            FieldValue::List(vec!["ref1".into(), "ref2".into()])
         );
     }
 

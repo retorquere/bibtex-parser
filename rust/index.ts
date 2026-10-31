@@ -71,7 +71,8 @@ export type Annotation =
   | { scope: 'part'; index: number; name: string; value: AnnotationContent }
 
 /** A normalized field value, including parsed creators and structured Biber annotations. */
-export type FieldValue = string | string[] | Creator[] | Annotation[]
+export type OptionMap = Record<string, string>
+export type FieldValue = string | string[] | Creator[] | Annotation[] | OptionMap
 
 /** Creator-list fields whose values are returned as arrays of {@link Creator} objects. */
 export type CreatorFields = {
@@ -101,15 +102,19 @@ export type ArrayFields = {
   address?: string[]
   school?: string[]
   pageref?: string[]
+  entryset?: string[]
+  related?: string[]
+  relatedoptions?: string[]
+  xdata?: string[]
   lista?: string[]
   listb?: string[]
   listc?: string[]
 }
 
-/** The known creator-list and string-list fields in a normalized entry. */
-export type TypedFields = CreatorFields & ArrayFields
+/** The known structured fields in a normalized entry. */
+export type TypedFields = CreatorFields & ArrayFields & { options?: OptionMap }
 /** Normalized BibTeX fields: known list fields and annotation fields have structured values. */
-export type Fields = TypedFields & Omit<Record<string, string | Annotation[]>, keyof TypedFields>
+export type Fields = TypedFields & Omit<Record<string, string | Annotation[] | OptionMap>, keyof TypedFields>
 
 /** A normalized BibTeX entry returned by the parser. */
 export interface Entry {

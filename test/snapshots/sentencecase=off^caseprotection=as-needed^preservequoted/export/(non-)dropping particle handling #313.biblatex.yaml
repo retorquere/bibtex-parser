@@ -23,7 +23,8 @@ entries:
       author:
         - firstName: François Hédelin
           lastName: abbé d' Aubignac
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: (abbé d' Aubignac) (François Hédelin)
     input: |-
       @article{abbot3,
@@ -34,7 +35,7 @@ entries:
     key: abbot3
     mode:
       author: creatorlist
-      options: literal
+      options: verbatim
       title: title
     type: article
   - fields:
@@ -117,7 +118,8 @@ entries:
           prefix: d'
       keywords:
         - imported
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: Bugreports_ApostropheOnParticle
     input: |-
       @article{bugreports_ApostropheOnParticle,
@@ -130,7 +132,7 @@ entries:
     mode:
       author: creatorlist
       keywords: verbatimlist
-      options: literal
+      options: verbatim
       title: title
     type: article
   - fields:
@@ -237,7 +239,8 @@ entries:
           prefix: von
       keywords:
         - imported
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: Bugreports_parseName
     input: |-
       @article{bugreports_parseName,
@@ -250,7 +253,7 @@ entries:
     mode:
       author: creatorlist
       keywords: verbatimlist
-      options: literal
+      options: verbatim
       title: title
     type: article
   - fields:
@@ -306,7 +309,8 @@ entries:
           prefix: van
       keywords:
         - imported
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: Decorations_AndTermUnaffectedByNameDecorations
     input: |-
       @article{decorations_AndTermUnaffectedByNameDecorations,
@@ -319,7 +323,7 @@ entries:
     mode:
       author: creatorlist
       keywords: verbatimlist
-      options: literal
+      options: verbatim
       title: title
     type: article
   - fields:
@@ -329,7 +333,8 @@ entries:
           prefix: von
       keywords:
         - imported
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: Disambiguate_CitationLabelInData
     input: |-
       @article{disambiguate_CitationLabelInData,
@@ -342,7 +347,7 @@ entries:
     mode:
       author: creatorlist
       keywords: verbatimlist
-      options: literal
+      options: verbatim
       title: title
     type: article
   - fields:
@@ -425,7 +430,8 @@ entries:
       langid: anglais
       location:
         - Londres
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       pagetotal: xviii+214
       publisher:
         - Routledge & Kegan Paul
@@ -453,7 +459,7 @@ entries:
       isbn: literal
       langid: literal
       location: literallist
-      options: literal
+      options: verbatim
       pagetotal: literal
       publisher: literallist
       series: title
@@ -486,7 +492,8 @@ entries:
           prefix: la
       keywords:
         - imported
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: Integration_DuplicateItem
     input: |-
       @article{integration_DuplicateItem,
@@ -499,7 +506,7 @@ entries:
     mode:
       author: creatorlist
       keywords: verbatimlist
-      options: literal
+      options: verbatim
       title: title
     type: article
   - fields:
@@ -539,7 +546,8 @@ entries:
           prefix: de
       keywords:
         - imported
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: Magic_CapitalizeFirstOccurringNameParticle
     input: |-
       @article{magic_CapitalizeFirstOccurringNameParticle,
@@ -552,7 +560,7 @@ entries:
     mode:
       author: creatorlist
       keywords: verbatimlist
-      options: literal
+      options: verbatim
       title: title
     type: article
   - fields:
@@ -562,7 +570,8 @@ entries:
           prefix: von
       keywords:
         - imported
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: Magic_NameParticle
     input: |-
       @article{magic_NameParticle,
@@ -575,7 +584,7 @@ entries:
     mode:
       author: creatorlist
       keywords: verbatimlist
-      options: literal
+      options: verbatim
       title: title
     type: article
   - fields:
@@ -682,7 +691,8 @@ entries:
           prefix: van der
       keywords:
         - imported
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: Name_FormattingOfParticles
     input: |-
       @article{name_FormattingOfParticles,
@@ -695,7 +705,7 @@ entries:
     mode:
       author: creatorlist
       keywords: verbatimlist
-      options: literal
+      options: verbatim
       title: title
     type: article
   - fields:
@@ -704,7 +714,8 @@ entries:
           lastName: al- One
       keywords:
         - imported
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: Name_HyphenatedNonDroppingParticle1
     input: |-
       @article{name_HyphenatedNonDroppingParticle1,
@@ -717,7 +728,7 @@ entries:
     mode:
       author: creatorlist
       keywords: verbatimlist
-      options: literal
+      options: verbatim
       title: title
     type: article
   - fields:
@@ -766,7 +777,8 @@ entries:
           suffix: III
       keywords:
         - imported
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: Name_MixedFormatsInitialSortOrderAllWithDecorationsEtAl
     input: |-
       @article{name_MixedFormatsInitialSortOrderAllWithDecorationsEtAl,
@@ -779,7 +791,7 @@ entries:
     mode:
       author: creatorlist
       keywords: verbatimlist
-      options: literal
+      options: verbatim
       title: title
     type: article
   - fields:
@@ -810,7 +822,8 @@ entries:
           suffix: III
       keywords:
         - imported
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: Name_namepartAffixes
     input: |-
       @article{name_namepartAffixes,
@@ -823,7 +836,7 @@ entries:
     mode:
       author: creatorlist
       keywords: verbatimlist
-      options: literal
+      options: verbatim
       title: title
     type: article
   - fields:
@@ -853,7 +866,8 @@ entries:
           prefix: de la
       keywords:
         - imported
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: Name_ParsedNonDroppingParticleWithAffixes
     input: |-
       @article{name_ParsedNonDroppingParticleWithAffixes,
@@ -866,7 +880,7 @@ entries:
     mode:
       author: creatorlist
       keywords: verbatimlist
-      options: literal
+      options: verbatim
       title: title
     type: article
   - fields:
@@ -877,7 +891,8 @@ entries:
           suffix: abbé d'
       keywords:
         - imported
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: Name_ParsedNonDroppingParticleWithApostrophe
     input: |-
       @article{name_ParsedNonDroppingParticleWithApostrophe,
@@ -890,7 +905,7 @@ entries:
     mode:
       author: creatorlist
       keywords: verbatimlist
-      options: literal
+      options: verbatim
       title: title
     type: article
   - fields:
@@ -903,7 +918,8 @@ entries:
           prefix: van
       keywords:
         - imported
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: Name_ParseNames
     input: |-
       @article{name_ParseNames,
@@ -916,7 +932,7 @@ entries:
     mode:
       author: creatorlist
       keywords: verbatimlist
-      options: literal
+      options: verbatim
       title: title
     type: article
   - fields:
@@ -934,7 +950,8 @@ entries:
           lastName: Van Four
       keywords:
         - imported
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: Name_ParticleCaps1
     input: |-
       @article{name_ParticleCaps1,
@@ -947,7 +964,7 @@ entries:
     mode:
       author: creatorlist
       keywords: verbatimlist
-      options: literal
+      options: verbatim
       title: title
     type: article
   - fields:
@@ -976,7 +993,8 @@ entries:
           prefix: de la
       keywords:
         - imported
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: Name_ParticleFormatting
     input: |-
       @article{name_ParticleFormatting,
@@ -989,7 +1007,7 @@ entries:
     mode:
       author: creatorlist
       keywords: verbatimlist
-      options: literal
+      options: verbatim
       title: title
     type: article
   - fields:
@@ -1061,7 +1079,8 @@ entries:
           prefix: ver
       keywords:
         - imported
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: Name_ParticlesDemoteNonDroppingNever
     input: |-
       @article{name_ParticlesDemoteNonDroppingNever,
@@ -1074,7 +1093,7 @@ entries:
     mode:
       author: creatorlist
       keywords: verbatimlist
-      options: literal
+      options: verbatim
       title: title
     type: article
   - fields:
@@ -1084,7 +1103,8 @@ entries:
           prefix: van
       keywords:
         - imported
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: Name_WesternArticularLowercase
     input: |-
       @article{name_WesternArticularLowercase,
@@ -1097,7 +1117,7 @@ entries:
     mode:
       author: creatorlist
       keywords: verbatimlist
-      options: literal
+      options: verbatim
       title: title
     type: article
   - fields:
@@ -1108,7 +1128,8 @@ entries:
           suffix: III
       keywords:
         - imported
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: Nameorder_Long
     input: |-
       @article{nameorder_Long,
@@ -1121,7 +1142,7 @@ entries:
     mode:
       author: creatorlist
       keywords: verbatimlist
-      options: literal
+      options: verbatim
       title: title
     type: article
   - fields:
@@ -1211,7 +1232,8 @@ entries:
           prefix: in 't
       keywords:
         - imported
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: Sort_LeadingApostropheOnNameParticle
     input: |-
       @article{sort_LeadingApostropheOnNameParticle,
@@ -1224,7 +1246,7 @@ entries:
     mode:
       author: creatorlist
       keywords: verbatimlist
-      options: literal
+      options: verbatim
       title: title
     type: article
   - fields:
@@ -1234,7 +1256,8 @@ entries:
           prefix: di
       keywords:
         - imported
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: Sort_NameParticleInNameSortFalse
     input: |-
       @article{sort_NameParticleInNameSortFalse,
@@ -1247,7 +1270,7 @@ entries:
     mode:
       author: creatorlist
       keywords: verbatimlist
-      options: literal
+      options: verbatim
       title: title
     type: article
   - fields:

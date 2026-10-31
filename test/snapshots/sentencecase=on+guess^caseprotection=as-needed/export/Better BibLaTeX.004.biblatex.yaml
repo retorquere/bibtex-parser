@@ -11,7 +11,8 @@ entries:
       isbn: 0-69-697269-4
       location:
         - Palo Alto
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       publisher:
         - Stanford Press
       title: >-
@@ -35,7 +36,7 @@ entries:
       edition: literal
       isbn: literal
       location: literallist
-      options: literal
+      options: verbatim
       publisher: literallist
       title: title
     type: book
