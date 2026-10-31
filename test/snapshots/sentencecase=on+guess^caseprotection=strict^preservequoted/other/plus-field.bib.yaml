@@ -4,7 +4,10 @@ entries:
       author:
         - firstName: U.
           lastName: Author
-      author+an:username: 1="@ausername"
+      author+an:username:
+        - index: 1
+          scope: item
+          value: '@ausername'
       date: '2014'
     input: |-
       @BOOK{9.8:11,

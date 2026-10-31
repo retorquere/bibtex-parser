@@ -5,6 +5,7 @@
 
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
+use std::num::NonZeroUsize;
 use std::sync::OnceLock;
 
 mod tex;
@@ -286,7 +287,7 @@ fn cross_reference_map() -> &'static CrossReferenceMap {
 fn field_value_is_truthy(value: &FieldValue) -> bool {
     match value {
         FieldValue::Text(value) => !value.is_empty(),
-        FieldValue::Creators(_) | FieldValue::List(_) => true,
+        FieldValue::Creators(_) | FieldValue::List(_) | FieldValue::Annotations(_) => true,
     }
 }
 
@@ -454,6 +455,35 @@ pub struct Creator {
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(untagged)]
+/// A Biber annotation value, quoted as one string or unquoted as a comma-separated list.
+pub enum AnnotationContent {
+    /// One quoted annotation value.
+    Text(String),
+    /// Unquoted annotation values split at commas.
+    List(Vec<String>),
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(tag = "scope", rename_all = "camelCase")]
+/// One Biber annotation clause, with its source scope and one-based selector.
+pub enum Annotation {
+    /// Annotation attached to the whole field.
+    Field { value: AnnotationContent },
+    /// Annotation attached to one list item.
+    Item {
+        index: NonZeroUsize,
+        value: AnnotationContent,
+    },
+    /// Annotation attached to one named part of a list item.
+    Part {
+        index: NonZeroUsize,
+        name: String,
+        value: AnnotationContent,
+    },
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(untagged)]
 /// Typed representation of a parsed field value.
 pub enum FieldValue {
     /// Scalar text, including fields whose TeX markup is not yet rendered.
@@ -462,6 +492,8 @@ pub enum FieldValue {
     Creators(Vec<Creator>),
     /// Elements from literal-list and keyword fields.
     List(Vec<String>),
+    /// Structured Biber annotation scopes, such as `field`, `item`, and `part`.
+    Annotations(Vec<Annotation>),
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
@@ -1528,6 +1560,156 @@ fn field_mode(field: &str, options: &Options) -> String {
     mode.to_string()
 }
 
+/// Extracts the base field and Biber annotation name from a `+an` field name.
+fn annotation_parts(field: &str) -> Option<(String, String)> {
+    if let Some(field) = field.strip_suffix("+an") {
+        return Some((field.to_owned(), "default".to_owned()));
+    }
+    field
+        .split_once("+an:")
+        .map(|(field, name)| (field.to_owned(), name.to_owned()))
+}
+
+/// Parses Biber annotations into ordered, typed clauses with explicit scopes and indexes.
+fn parse_annotation(
+    input: &str,
+    renderer: &mut tex::LibraryRenderer,
+    raw: bool,
+) -> Vec<Annotation> {
+    let mut output = Vec::new();
+    for annotation in split_annotation_items(input) {
+        let Some((key, value)) = annotation.split_once('=') else {
+            continue;
+        };
+        let key = key.trim();
+        let value = value.trim();
+        let parsed = parse_annotation_content(value, renderer, raw);
+
+        if let Some((index, part)) = key.split_once(':')
+            && let Ok(index) = index.parse::<usize>()
+        {
+            if let Some(index) = NonZeroUsize::new(index) {
+                output.push(Annotation::Part {
+                    index,
+                    name: part.to_owned(),
+                    value: parsed,
+                });
+            }
+            continue;
+        }
+        if let Ok(index) = key.parse::<usize>() {
+            if let Some(index) = NonZeroUsize::new(index) {
+                output.push(Annotation::Item {
+                    index,
+                    value: parsed,
+                });
+            }
+        } else {
+            output.push(Annotation::Field { value: parsed });
+        }
+    }
+    output
+}
+
+/// Parses one quoted scalar or unquoted comma-separated annotation value.
+fn parse_annotation_content(
+    value: &str,
+    renderer: &mut tex::LibraryRenderer,
+    raw: bool,
+) -> AnnotationContent {
+    if value.starts_with('"') && value.ends_with('"') && value.len() >= 2 {
+        AnnotationContent::Text(render_annotation_text(
+            &value[1..value.len() - 1],
+            renderer,
+            raw,
+        ))
+    } else {
+        AnnotationContent::List(
+            split_top_level(value, ',')
+                .into_iter()
+                .map(|part| render_annotation_text(&part, renderer, raw))
+                .collect(),
+        )
+    }
+}
+
+/// Splits annotation clauses on semicolons outside quoted and braced values.
+fn split_annotation_items(input: &str) -> Vec<&str> {
+    let mut items = Vec::new();
+    let mut start = 0;
+    let mut depth = 0usize;
+    let mut quoted = false;
+    let mut escaped = false;
+    for (index, character) in input.char_indices() {
+        if escaped {
+            escaped = false;
+            continue;
+        }
+        if character == '\\' {
+            escaped = true;
+            continue;
+        }
+        if character == '"' && depth == 0 {
+            quoted = !quoted;
+        } else if !quoted {
+            match character {
+                '{' => depth += 1,
+                '}' => depth = depth.saturating_sub(1),
+                ';' if depth == 0 => {
+                    items.push(&input[start..index]);
+                    start = index + character.len_utf8();
+                }
+                _ => {}
+            }
+        }
+    }
+    items.push(&input[start..]);
+    items
+}
+
+/// Renders one annotation value while respecting raw parsing mode.
+fn render_annotation_text(
+    value: &str,
+    renderer: &mut tex::LibraryRenderer,
+    raw: bool,
+) -> String {
+    if raw {
+        value.to_owned()
+    } else {
+        renderer
+            .render(
+                value,
+                tex::RenderContext::field(tex::RenderMode::Text, false, false),
+            )
+            .trim()
+            .to_string()
+    }
+}
+
+/// Finalizes rendered text in an ordered sequence of annotation clauses.
+fn finalize_annotation_value(annotations: &mut [Annotation], collapse_markup: bool) {
+    for annotation in annotations {
+        let value = match annotation {
+            Annotation::Field { value }
+            | Annotation::Item { value, .. }
+            | Annotation::Part { value, .. } => value,
+        };
+        finalize_annotation_content(value, collapse_markup);
+    }
+}
+
+/// Finalizes markup in a scalar or list-valued annotation.
+fn finalize_annotation_content(content: &mut AnnotationContent, collapse_markup: bool) {
+    match content {
+        AnnotationContent::Text(text) => *text = tex::finalize_markup(text, collapse_markup),
+        AnnotationContent::List(values) => {
+            for value in values {
+                *value = tex::finalize_markup(value, collapse_markup);
+            }
+        }
+    }
+}
+
 /// Remove a single outer brace layer from fields listed in `removeOuterBraces`.
 ///
 /// The value must consist of one balanced outer group; repeated braces and braces within the value
@@ -1818,6 +2000,14 @@ where
         let mut mode = HashMap::new();
         let mut keywords = Vec::new();
         for (field, value) in entry.fields {
+            if annotation_parts(&field).is_some() {
+                mode.insert(field.clone(), "literal".to_string());
+                fields.insert(
+                    field,
+                    FieldValue::Annotations(parse_annotation(&value, &mut renderer, options.raw)),
+                );
+                continue;
+            }
             if value.trim().is_empty() {
                 continue;
             }
@@ -2007,6 +2197,9 @@ where
                         for item in items {
                             *item = tex::finalize_markup(item, options.collapse_markup);
                         }
+                    }
+                    FieldValue::Annotations(value) => {
+                        finalize_annotation_value(value, options.collapse_markup);
                     }
                     FieldValue::Creators(creators) => {
                         for creator in creators {
@@ -3397,7 +3590,55 @@ mod tests {
         assert_eq!(entry.key, "9.8:11");
         assert_eq!(entry.mode["author"], "creatorlist");
         assert_eq!(entry.mode["author+an:username"], "literal");
+        assert_eq!(
+            entry.fields["author+an:username"],
+            FieldValue::Annotations(vec![super::Annotation::Item {
+                index: std::num::NonZeroUsize::new(1).unwrap(),
+                value: super::AnnotationContent::Text("@ausername".into()),
+            }])
+        );
         assert_eq!(entry.fields["date"], FieldValue::Text("2014".into()));
+    }
+
+    #[test]
+    /// Checks field-, item-, and part-scoped annotations retain typed scopes and one-based indexes.
+    fn parses_all_annotation_scopes() {
+        let mut renderer = super::tex::LibraryRenderer::default();
+        let annotations = super::parse_annotation(
+            "field=whole;1=first;2=second,extra;3:given=Given;3:family=Family;4=last",
+            &mut renderer,
+            true,
+        );
+        assert_eq!(
+            annotations,
+            vec![
+                super::Annotation::Field {
+                    value: super::AnnotationContent::List(vec!["whole".into()]),
+                },
+                super::Annotation::Item {
+                    index: std::num::NonZeroUsize::new(1).unwrap(),
+                    value: super::AnnotationContent::List(vec!["first".into()]),
+                },
+                super::Annotation::Item {
+                    index: std::num::NonZeroUsize::new(2).unwrap(),
+                    value: super::AnnotationContent::List(vec!["second".into(), "extra".into()]),
+                },
+                super::Annotation::Part {
+                    index: std::num::NonZeroUsize::new(3).unwrap(),
+                    name: "given".into(),
+                    value: super::AnnotationContent::List(vec!["Given".into()]),
+                },
+                super::Annotation::Part {
+                    index: std::num::NonZeroUsize::new(3).unwrap(),
+                    name: "family".into(),
+                    value: super::AnnotationContent::List(vec!["Family".into()]),
+                },
+                super::Annotation::Item {
+                    index: std::num::NonZeroUsize::new(4).unwrap(),
+                    value: super::AnnotationContent::List(vec!["last".into()]),
+                },
+            ]
+        );
     }
 
     #[test]

@@ -61,8 +61,17 @@ export interface Creator {
   juniorcomma?: boolean
 }
 
-/** A normalized field value: scalar text, a list of strings, or parsed creator records. */
-export type FieldValue = string | string[] | Creator[]
+/** Value text in a Biber annotation clause. */
+export type AnnotationContent = string | string[]
+
+/** One Biber annotation clause with its explicit scope and one-based selector. */
+export type Annotation =
+  | { scope: 'field'; value: AnnotationContent }
+  | { scope: 'item'; index: number; value: AnnotationContent }
+  | { scope: 'part'; index: number; name: string; value: AnnotationContent }
+
+/** A normalized field value, including parsed creators and structured Biber annotations. */
+export type FieldValue = string | string[] | Creator[] | Annotation[]
 
 /** Creator-list fields whose values are returned as arrays of {@link Creator} objects. */
 export type CreatorFields = {
@@ -99,8 +108,8 @@ export type ArrayFields = {
 
 /** The known creator-list and string-list fields in a normalized entry. */
 export type TypedFields = CreatorFields & ArrayFields
-/** Normalized BibTeX fields: known list fields have structured values; other fields are strings. */
-export type Fields = TypedFields & Omit<Record<string, string>, keyof TypedFields>
+/** Normalized BibTeX fields: known list fields and annotation fields have structured values. */
+export type Fields = TypedFields & Omit<Record<string, string | Annotation[]>, keyof TypedFields>
 
 /** A normalized BibTeX entry returned by the parser. */
 export interface Entry {

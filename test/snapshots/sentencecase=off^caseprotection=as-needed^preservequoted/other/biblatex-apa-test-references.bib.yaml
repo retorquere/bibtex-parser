@@ -223,7 +223,10 @@ entries:
       author:
         - firstName: U.
           lastName: Author
-      author+an:username: 1="@ausername"
+      author+an:username:
+        - index: 1
+          scope: item
+          value: '@ausername'
       date: '2014'
     input: |-
       @BOOK{9.8:11,
@@ -4464,7 +4467,10 @@ entries:
       author:
         - firstName: C. B.
           lastName: Blair
-      author+an:role: 1="Principal Investigator"
+      author+an:role:
+        - index: 1
+          scope: item
+          value: Principal Investigator
       date: 2015/2020
       institution:
         - >-
@@ -5082,7 +5088,11 @@ entries:
       author:
         - firstName: E.
           lastName: Brodsky
-      author+an:role: 1=director
+      author+an:role:
+        - index: 1
+          scope: item
+          value:
+            - director
       date: '2016'
       entrysubtype: film
       title: The Year We Thought About Love
@@ -5213,7 +5223,12 @@ entries:
       author:
         - firstName: M.
           lastName: Schur
-      author+an:role: 1=writer,director
+      author+an:role:
+        - index: 1
+          scope: item
+          value:
+            - writer
+            - director
       date: '2018'
       entrysubtype: tvepisode
       title: Somewhere Else
@@ -5877,7 +5892,11 @@ entries:
       author:
         - firstName: M.
           lastName: Forman
-      author+an:role: 1=director
+      author+an:role:
+        - index: 1
+          scope: item
+          value:
+            - director
       date: '1975'
       entrysubtype: film
       publisher:
@@ -5909,7 +5928,15 @@ entries:
           lastName: Fosha
         - firstName: H.
           lastName: Levenson
-      author+an:role: 1=guestexpert;2=host
+      author+an:role:
+        - index: 1
+          scope: item
+          value:
+            - guestexpert
+        - index: 2
+          scope: item
+          value:
+            - host
       date: '2017'
       entrysubtype: film
       note: educational DVD
@@ -5945,7 +5972,11 @@ entries:
       author:
         - firstName: P.
           lastName: Jackson
-      author+an:role: 1=director
+      author+an:role:
+        - index: 1
+          scope: item
+          value:
+            - director
       date: '2001'
       entrysubtype: film
       note: four-disc special extended ed. on DVD
@@ -5983,7 +6014,11 @@ entries:
       author:
         - firstName: L.
           lastName: Malle
-      author+an:role: 1=director
+      author+an:role:
+        - index: 1
+          scope: item
+          value:
+            - director
       date: '1987'
       entrysubtype: film
       origtitle: Au revoir les enfants
@@ -6039,7 +6074,10 @@ entries:
           lastName: Colesberry
         - firstName: N.
           lastName: Kostroff Noble
-      author+an:role: =execproducers
+      author+an:role:
+        - scope: field
+          value:
+            - execproducers
       date: 2002/2008
       entrysubtype: tvseries
       publisher:
@@ -6072,7 +6110,12 @@ entries:
       author:
         - firstName: K.
           lastName: Barris
-      author+an:role: 1=director,writer
+      author+an:role:
+        - index: 1
+          scope: item
+          value:
+            - director
+            - writer
       date: '2017-01-11'
       entrysubtype: tvepisode
       execproducer: >-
@@ -6120,7 +6163,19 @@ entries:
           lastName: Weinstein
         - firstName: J.
           lastName: Lynch
-      author+an:role: 1=writer;2=writer;3=director
+      author+an:role:
+        - index: 1
+          scope: item
+          value:
+            - writer
+        - index: 2
+          scope: item
+          value:
+            - writer
+        - index: 3
+          scope: item
+          value:
+            - director
       date: '1995-05-21'
       entrysubtype: tvepisode
       execproducer: D. Mirkin and J. L. Brooks and M. Groening and S. Simon
@@ -6288,7 +6343,10 @@ entries:
       author:
         - firstName: M.
           lastName: Fogarty
-      author+an:username: 1="Grammar Girl"
+      author+an:username:
+        - index: 1
+          scope: item
+          value: Grammar Girl
       date: '2016-09-30'
       entrysubtype: video
       publisher:
@@ -6548,7 +6606,11 @@ entries:
       author:
         - firstName: S.
           lastName: Vedantam
-      author+an:role: 1=host
+      author+an:role:
+        - index: 1
+          scope: item
+          value:
+            - host
       date: 2015/
       entrysubtype: podcast
       publisher:
@@ -6583,7 +6645,11 @@ entries:
       author:
         - firstName: I.
           lastName: Glass
-      author+an:role: 1=host
+      author+an:role:
+        - index: 1
+          scope: item
+          value:
+            - host
       date: '2011-08-12'
       entrysubtype: podcastepisode
       maintitle: This American Life
@@ -7031,7 +7097,10 @@ entries:
   - fields:
       author:
         - name: APA Education
-      author+an:username: 1="@APAEducation"
+      author+an:username:
+        - index: 1
+          scope: item
+          value: '@APAEducation'
       date: '2018-06-29'
       entrysubtype: Tweet
       eprint: Twitter
@@ -7070,7 +7139,10 @@ entries:
   - fields:
       author:
         - name: Badlands National Park
-      author+an:username: 1="@BadlandsNPS"
+      author+an:username:
+        - index: 1
+          scope: item
+          value: '@BadlandsNPS'
       date: '2018-02-26'
       entrysubtype: Tweet
       eprint: Twitter
@@ -7108,7 +7180,10 @@ entries:
       author:
         - firstName: B.
           lastName: White
-      author+an:username: 1="@BettyMWhite"
+      author+an:username:
+        - index: 1
+          scope: item
+          value: '@BettyMWhite'
       date: '2018-06-21'
       entrysubtype: Tweet
       eprint: Twitter
@@ -7146,7 +7221,10 @@ entries:
   - fields:
       author:
         - name: APA Style
-      author+an:username: 1="@APA_Style"
+      author+an:username:
+        - index: 1
+          scope: item
+          value: '@APA_Style'
       entrysubtype: Twitter profile
       eprint: Twitter
       title: Tweets
@@ -7318,7 +7396,10 @@ entries:
   - fields:
       author:
         - name: Zeitz MOCAA
-      author+an:username: 1="@zeitzmocaa"
+      author+an:username:
+        - index: 1
+          scope: item
+          value: '@zeitzmocaa'
       date: '2018-11-26'
       entrysubtype: photographs
       eprint: Instagram
@@ -7357,7 +7438,10 @@ entries:
   - fields:
       author:
         - name: The New York Public Library
-      author+an:username: 1="@nypl"
+      author+an:username:
+        - index: 1
+          scope: item
+          value: '@nypl'
       entrysubtype: Highlight
       eprint: Instagram
       title: The Raven
@@ -7392,7 +7476,10 @@ entries:
   - fields:
       author:
         - name: National Aeronautics Space Administration
-      author+an:username: 1="nasa"
+      author+an:username:
+        - index: 1
+          scope: item
+          value: nasa
       date: '2018-09-12'
       entrysubtype: Online forum post
       eprint: Reddit
@@ -7732,9 +7819,25 @@ entries:
     type: jurisdiction
   - fields:
       citation: 563 F.Supp. 332 and aff'd and 727 F.2d 888
-      citation+an:citedate: 1="1981";3="1984"
-      citation+an:citeinfo: 2=appeal
-      citation+an:citeorg: 1="D. Kan.";3="10th Cir."
+      citation+an:citedate:
+        - index: 1
+          scope: item
+          value: '1981'
+        - index: 3
+          scope: item
+          value: '1984'
+      citation+an:citeinfo:
+        - index: 2
+          scope: item
+          value:
+            - appeal
+      citation+an:citeorg:
+        - index: 1
+          scope: item
+          value: D. Kan.
+        - index: 3
+          scope: item
+          value: 10th Cir.
       date: '1984'
       origdate: '1981'
       title: Durflinger v. Artiles
@@ -7786,8 +7889,14 @@ entries:
     type: jurisdiction
   - fields:
       citation: 826 S.W.2d 201
-      citation+an:citedate: 1="1992"
-      citation+an:citeorg: 1="Tex. Ct. App."
+      citation+an:citedate:
+        - index: 1
+          scope: item
+          value: '1992'
+      citation+an:citeorg:
+        - index: 1
+          scope: item
+          value: Tex. Ct. App.
       date: '1992'
       title: Texas v. Morales
       url: https://www.leagle.com/decision/19921027826sw2d20111010
