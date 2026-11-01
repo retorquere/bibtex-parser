@@ -76,7 +76,9 @@ export type FieldValue = string | string[] | Creator[] | Annotation[] | OptionMa
 
 /** Creator-list fields whose values are returned as arrays of {@link Creator} objects. */
 export type CreatorFields = {
+  afterword?: Creator[]
   author?: Creator[]
+  annotator?: Creator[]
   bookauthor?: Creator[]
   collaborator?: Creator[]
   commentator?: Creator[]
@@ -85,36 +87,51 @@ export type CreatorFields = {
   editora?: Creator[]
   editorb?: Creator[]
   editors?: Creator[]
+  foreword?: Creator[]
   holder?: Creator[]
+  introduction?: Creator[]
+  namea?: Creator[]
+  nameb?: Creator[]
+  namec?: Creator[]
   scriptwriter?: Creator[]
+  shortauthor?: Creator[]
+  shorteditor?: Creator[]
+  sortname?: Creator[]
   translator?: Creator[]
 }
 
 /** List-valued fields whose elements remain strings. */
 export type ArrayFields = {
-  keywords?: string[]
-  institution?: string[]
-  publisher?: string[]
-  origpublisher?: string[]
-  organization?: string[]
-  location?: string[]
-  origlocation?: string[]
   address?: string[]
-  school?: string[]
-  pageref?: string[]
   entryset?: string[]
+  institution?: string[]
+  labelname?: string[]
+  language?: string[]
+  location?: string[]
+  organization?: string[]
+  origlocation?: string[]
+  origlanguage?: string[]
+  origpublisher?: string[]
+  pageref?: string[]
+  publisher?: string[]
   related?: string[]
   relatedoptions?: string[]
+  school?: string[]
   xdata?: string[]
+  keywords?: string[]
+  ids?: string[]
   lista?: string[]
   listb?: string[]
   listc?: string[]
 }
 
+/** Biber annotation field names carry structured annotation clauses. */
+export type AnnotationFields = Partial<Record<`${string}+an${string}`, Annotation[]>>
+
 /** The known structured fields in a normalized entry. */
-export type TypedFields = CreatorFields & ArrayFields & { options?: OptionMap }
-/** Normalized BibTeX fields: known list fields and annotation fields have structured values. */
-export type Fields = TypedFields & Omit<Record<string, string | Annotation[] | OptionMap>, keyof TypedFields>
+export type TypedFields = CreatorFields & ArrayFields & AnnotationFields & { options?: OptionMap }
+/** Normalized fields with precise types for field names handled by the default parser modes. */
+export type Fields = TypedFields & Omit<Record<string, FieldValue>, keyof TypedFields>
 
 /** A normalized BibTeX entry returned by the parser. */
 export interface Entry {
