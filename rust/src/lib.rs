@@ -287,10 +287,7 @@ fn cross_reference_map() -> &'static CrossReferenceMap {
 fn field_value_is_truthy(value: &FieldValue) -> bool {
     match value {
         FieldValue::Text(value) => !value.is_empty(),
-        FieldValue::Creators(_)
-        | FieldValue::List(_)
-        | FieldValue::Options(_)
-        | FieldValue::Annotations(_) => true,
+        FieldValue::Creators(_) | FieldValue::List(_) => true,
     }
 }
 
@@ -495,10 +492,6 @@ pub enum FieldValue {
     Creators(Vec<Creator>),
     /// Elements from literal-list and keyword fields.
     List(Vec<String>),
-    /// Key/value pairs from the verbatim BibLaTeX `options` field.
-    Options(BTreeMap<String, String>),
-    /// Structured Biber annotation scopes, such as `field`, `item`, and `part`.
-    Annotations(Vec<Annotation>),
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
@@ -514,6 +507,11 @@ pub struct ParsedEntry {
     pub key: String,
     /// Parsed field values.
     pub fields: HashMap<String, FieldValue>,
+    /// Parsed Biber annotations keyed by their verbatim `+an` field names.
+    pub annotations: HashMap<String, Vec<Annotation>>,
+    /// Parsed key/value pairs from the verbatim BibLaTeX `options` field.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub options: Option<BTreeMap<String, String>>,
     /// Parser mode assigned to each field (for example, `title` or `creatorlist`).
     pub mode: HashMap<String, String>,
     /// Field inherited from a cross-referenced parent entry.
@@ -2018,15 +2016,18 @@ where
             .iter()
             .any(|language| language.to_lowercase() == langid);
         let mut fields = HashMap::new();
+        let mut annotations = HashMap::new();
+        let mut parsed_options = None;
         let mut mode = HashMap::new();
         let mut keywords = Vec::new();
         for (field, value) in entry.fields {
             if annotation_parts(&field).is_some() {
                 mode.insert(field.clone(), "literal".to_string());
-                fields.insert(
-                    field,
-                    FieldValue::Annotations(parse_annotation(&value, &mut renderer, options.raw)),
+                annotations.insert(
+                    field.clone(),
+                    parse_annotation(&value, &mut renderer, options.raw),
                 );
+                fields.insert(field, FieldValue::Text(value));
                 continue;
             }
             if value.trim().is_empty() {
@@ -2087,6 +2088,7 @@ where
                 }));
                 continue;
             }
+            let original_options_value = (field == "options").then(|| value.clone());
             let current_mode = field_mode(&field, options);
             mode.insert(field.clone(), current_mode.clone());
             let mut value = value;
@@ -2118,7 +2120,11 @@ where
                             (key.trim().to_string(), value.trim().to_string())
                         })
                         .collect();
-                    fields.insert(field, FieldValue::Options(options));
+                    fields.insert(
+                        field,
+                        FieldValue::Text(original_options_value.unwrap_or(value)),
+                    );
+                    parsed_options = Some(options);
                     continue;
                 }
                 // Normalize parsed whitespace while preserving TeX commands and literal content.
@@ -2206,6 +2212,8 @@ where
             entry: entry.entry,
             key: entry.key,
             fields,
+            annotations,
+            options: parsed_options,
             mode,
             crossref: HashMap::new(),
         });
@@ -2235,10 +2243,6 @@ where
                             *item = tex::finalize_markup(item, options.collapse_markup);
                         }
                     }
-                    FieldValue::Options(_) => {}
-                    FieldValue::Annotations(value) => {
-                        finalize_annotation_value(value, options.collapse_markup);
-                    }
                     FieldValue::Creators(creators) => {
                         for creator in creators {
                             for text in [
@@ -2257,6 +2261,9 @@ where
                         }
                     }
                 }
+            }
+            for annotations in entry.annotations.values_mut() {
+                finalize_annotation_value(annotations, options.collapse_markup);
             }
         }
     }
@@ -2592,7 +2599,7 @@ mod tests {
     }
 
     #[test]
-    /// Verifies options remain verbatim while comma-separated key/value pairs become a map.
+    /// Verifies options remain a source string while parsed key/value pairs live on the entry.
     fn options_verbatim_values_parse_as_trimmed_map() {
         let parsed = parse(
             "@book{x,options={ foo = bar , url=https://example.test/?a=b }}",
@@ -2601,7 +2608,11 @@ mod tests {
         assert_eq!(parsed.entries[0].mode["options"], "verbatim");
         assert_eq!(
             parsed.entries[0].fields["options"],
-            FieldValue::Options(std::collections::BTreeMap::from([
+            FieldValue::Text(" foo = bar , url=https://example.test/?a=b ".into())
+        );
+        assert_eq!(
+            parsed.entries[0].options,
+            Some(std::collections::BTreeMap::from([
                 ("foo".into(), "bar".into()),
                 ("url".into(), "https://example.test/?a=b".into()),
             ]))
@@ -3649,7 +3660,7 @@ mod tests {
     }
 
     #[test]
-    /// Checks literal field modes and preservation of Better BibTeX annotation fields.
+    /// Checks literal field modes and preserves annotation source text beside parsed clauses.
     fn parses_plus_field_fixture_like_default_case() {
         let parsed = fixture(include_str!("../../test/other/plus-field.bib"));
         let entry = &parsed.entries[0];
@@ -3658,10 +3669,14 @@ mod tests {
         assert_eq!(entry.mode["author+an:username"], "literal");
         assert_eq!(
             entry.fields["author+an:username"],
-            FieldValue::Annotations(vec![super::Annotation::Item {
+            FieldValue::Text("1=\"@ausername\"".into())
+        );
+        assert_eq!(
+            entry.annotations["author+an:username"],
+            vec![super::Annotation::Item {
                 index: std::num::NonZeroUsize::new(1).unwrap(),
                 value: super::AnnotationContent::Text("@ausername".into()),
-            }])
+            }]
         );
         assert_eq!(entry.fields["date"], FieldValue::Text("2014".into()));
     }

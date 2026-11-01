@@ -1,13 +1,15 @@
 comments: []
 entries:
-  - fields:
-      author:
-        - firstName: U.
-          lastName: Author
+  - annotations:
       author+an:username:
         - index: 1
           scope: item
           value: '@ausername'
+    fields:
+      author:
+        - firstName: U.
+          lastName: Author
+      author+an:username: 1="@ausername"
       date: '2014'
     input: |-
       @BOOK{9.8:11,

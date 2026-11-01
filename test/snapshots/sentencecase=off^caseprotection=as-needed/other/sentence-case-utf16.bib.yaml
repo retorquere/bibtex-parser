@@ -1,6 +1,7 @@
 comments: []
 entries:
-  - fields:
+  - annotations: {}
+    fields:
       title: 𐐨 the Method
     input: |-
       @book{astral,
@@ -10,7 +11,8 @@ entries:
     mode:
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       title: Title. ١ Next
     input: |-
       @book{unicode-number,
@@ -20,7 +22,8 @@ entries:
     mode:
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       title: Title. VS. Next
     input: |-
       @book{uppercase-vs,
@@ -30,7 +33,8 @@ entries:
     mode:
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       title: The v2.1 Results
     input: |-
       @book{version-word,
@@ -40,7 +44,8 @@ entries:
     mode:
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       title: The x-ray Results
     input: |-
       @book{hyphen-guess,
@@ -50,7 +55,8 @@ entries:
     mode:
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       title: The can't-Based Results
     input: |-
       @book{hyphen-contraction,
@@ -60,7 +66,8 @@ entries:
     mode:
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       title: 'A-B: Another Title'
     input: |-
       @book{hyphen-punctuation,
@@ -70,7 +77,8 @@ entries:
     mode:
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       title: The https://foo/UPPER Results
     input: |-
       @book{website-boundary,
@@ -80,7 +88,8 @@ entries:
     mode:
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       title: The aְ-Based Results
     input: |-
       @book{unicode-mark,
@@ -90,7 +99,8 @@ entries:
     mode:
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       title: "The a\_ Results"
     input: "@book{nbsp-preservation,\n  title = {The a\_ Results}\n}"
     key: nbsp-preservation

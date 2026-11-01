@@ -1,6 +1,7 @@
 comments: []
 entries:
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Leonardo Hadlich
           lastName: Oliveira
@@ -13,8 +14,7 @@ entries:
       journaltitle: The Journal of Chemical Thermodynamics
       langid: english
       number: '11'
-      options:
-        useprefix: 'true'
+      options: useprefix=true
       pages: 1379–1385
       title: >-
         (Liquid+liquid) equilibrium of {water+phenol+(1-butanol, or 2-butanol,
@@ -53,6 +53,8 @@ entries:
       url: verbatim
       urldate: literal
       volume: literal
+    options:
+      useprefix: 'true'
     type: article
 errors: []
 jabref:

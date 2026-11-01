@@ -70,9 +70,9 @@ export type Annotation =
   | { scope: 'item'; index: number; value: AnnotationContent }
   | { scope: 'part'; index: number; name: string; value: AnnotationContent }
 
-/** A normalized field value, including parsed creators and structured Biber annotations. */
+/** A normalized field value, including parsed creators and lists. */
 export type OptionMap = Record<string, string>
-export type FieldValue = string | string[] | Creator[] | Annotation[] | OptionMap
+export type FieldValue = string | string[] | Creator[]
 
 /** Creator-list fields whose values are returned as arrays of {@link Creator} objects. */
 export type CreatorFields = {
@@ -125,11 +125,8 @@ export type ArrayFields = {
   listc?: string[]
 }
 
-/** Biber annotation field names carry structured annotation clauses. */
-export type AnnotationFields = Partial<Record<`${string}+an${string}`, Annotation[]>>
-
 /** The known structured fields in a normalized entry. */
-export type TypedFields = CreatorFields & ArrayFields & AnnotationFields & { options?: OptionMap }
+export type TypedFields = CreatorFields & ArrayFields
 /** Named structured fields retain their precise types; unlisted default fields are scalar text. */
 export type Fields = TypedFields & Omit<Record<string, string>, keyof TypedFields>
 
@@ -141,6 +138,10 @@ export interface Entry {
   key: string
   /** Parsed field values, with known creator and list fields represented as arrays. */
   fields: Fields
+  /** Parsed Biber annotation clauses keyed by their verbatim `+an` field names. */
+  annotations: Record<string, Annotation[]>
+  /** Parsed key/value pairs from the verbatim BibLaTeX `options` field. */
+  options?: OptionMap
   /** Parsing mode used for each field; see {@link ParseMode}. */
   mode: Record<string, ParseMode>
   /** For fields inherited through `crossref`, records the parent entry key and source field name. */

@@ -1,6 +1,7 @@
 comments: []
 entries:
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Y.A.W.
           lastName: Kort
@@ -14,8 +15,7 @@ entries:
       doi: http://alexandria.tue.nl/campusonly/Metis215145.pdf
       location:
         - Barcelona
-      options:
-        useprefix: 'true'
+      options: useprefix=true
       pages: 195–203
       publisher:
         - Starlab
@@ -48,6 +48,8 @@ entries:
       publisher: literallist
       title: title
       url: verbatim
+    options:
+      useprefix: 'true'
     type: inproceedings
 errors: []
 jabref:

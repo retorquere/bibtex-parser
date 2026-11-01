@@ -1,6 +1,7 @@
 comments: []
 entries:
-  - fields:
+  - annotations: {}
+    fields:
       annotation: '{:X-genre: xxx}'
       author:
         - firstName: Ann
@@ -42,7 +43,8 @@ entries:
       title: title
       type: literal
     type: report
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: John
           lastName: Blair
@@ -87,7 +89,8 @@ entries:
       url: verbatim
       urldate: literal
     type: inreference
-  - fields:
+  - annotations: {}
+    fields:
       date: '2015'
       editor:
         - firstName: John
@@ -118,7 +121,8 @@ entries:
       publisher: literallist
       title: title
     type: movie
-  - fields:
+  - annotations: {}
+    fields:
       annotation: '{:X-genre: xxx}'
       editor:
         - name: Xxx
@@ -132,7 +136,8 @@ entries:
       annotation: richtext
       editor: creatorlist
     type: inreference
-  - fields:
+  - annotations: {}
+    fields:
       booktitle: Friends
       date: '2003'
       editor:
@@ -190,7 +195,8 @@ entries:
       title: title
       volume: literal
     type: video
-  - fields:
+  - annotations: {}
+    fields:
       booktitle: Friends
       date: '1996-09-16'
       editor:
@@ -241,7 +247,8 @@ entries:
       title: title
       volume: literal
     type: video
-  - fields:
+  - annotations: {}
+    fields:
       date: '1964'
       editor:
         - firstName: Stanley

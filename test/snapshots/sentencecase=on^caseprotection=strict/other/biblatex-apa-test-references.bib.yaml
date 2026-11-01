@@ -1,6 +1,7 @@
 comments: []
 entries:
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: A. A.
           lastName: Author
@@ -17,7 +18,8 @@ entries:
       author: creatorlist
       date: literal
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - name: American Psychological Association
         - name: National Institutes of Health
@@ -32,7 +34,8 @@ entries:
       author: creatorlist
       date: literal
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: A. A.
           lastName: Author
@@ -51,7 +54,8 @@ entries:
       author: creatorlist
       date: literal
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - lastName: First
         - lastName: Second
@@ -87,7 +91,8 @@ entries:
       author: creatorlist
       date: literal
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - lastName: First
         - lastName: Second
@@ -126,7 +131,8 @@ entries:
       author: creatorlist
       date: literal
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Ai-Jun
           lastName: Xu
@@ -143,7 +149,8 @@ entries:
       author: creatorlist
       date: literal
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Lee-ann
           lastName: Raboso
@@ -158,7 +165,8 @@ entries:
       author: creatorlist
       date: literal
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: A. A.
           lastName: Author
@@ -176,7 +184,8 @@ entries:
       author: creatorlist
       date: literal
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: K.
           lastName: Meyers
@@ -197,7 +206,8 @@ entries:
       title: title
       with: literal
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - lastName: Plato
       date: '2014'
@@ -219,14 +229,16 @@ entries:
       author: creatorlist
       date: literal
     type: book
-  - fields:
-      author:
-        - firstName: U.
-          lastName: Author
+  - annotations:
       author+an:username:
         - index: 1
           scope: item
           value: '@ausername'
+    fields:
+      author:
+        - firstName: U.
+          lastName: Author
+      author+an:username: 1="@ausername"
       date: '2014'
     input: |-
       @BOOK{9.8:11,
@@ -242,7 +254,8 @@ entries:
       author+an:username: literal
       date: literal
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Arthur
           lastName: Test
@@ -269,7 +282,8 @@ entries:
       title: title
       volume: literal
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Arthur
           lastName: Test
@@ -298,7 +312,8 @@ entries:
       title: title
       volume: literal
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: A. S.
           lastName: Benjamin
@@ -310,7 +325,8 @@ entries:
     mode:
       author: creatorlist
     type: nameonly
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: D.
           lastName: Yaakov
@@ -323,7 +339,8 @@ entries:
     mode:
       author: creatorlist
     type: nameonly
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: N. K.
           lastName: Denzin
@@ -335,7 +352,8 @@ entries:
     mode:
       author: creatorlist
     type: nameonly
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: C.
           lastName: Onís
@@ -348,7 +366,8 @@ entries:
     mode:
       author: creatorlist
     type: nameonly
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: J. T.
           lastName: Devlin
@@ -360,7 +379,8 @@ entries:
     mode:
       author: creatorlist
     type: nameonly
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: John-Bill
           lastName: Girard
@@ -372,7 +392,8 @@ entries:
     mode:
       author: creatorlist
     type: nameonly
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: A. S.
           lastName: Girard-Perregaux
@@ -384,7 +405,8 @@ entries:
     mode:
       author: creatorlist
     type: nameonly
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: T.
           lastName: Ibn Abdulaziz
@@ -396,7 +418,8 @@ entries:
     mode:
       author: creatorlist
     type: nameonly
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: A. K. M.
           lastName: Ibn Nidal
@@ -408,7 +431,8 @@ entries:
     mode:
       author: creatorlist
     type: nameonly
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: M. E.
           lastName: López
@@ -420,7 +444,8 @@ entries:
     mode:
       author: creatorlist
     type: nameonly
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: G.
           lastName: López de Molina
@@ -432,7 +457,8 @@ entries:
     mode:
       author: creatorlist
     type: nameonly
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: T.
           lastName: MacCallum
@@ -445,7 +471,8 @@ entries:
     mode:
       author: creatorlist
     type: nameonly
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: T.
           lastName: MacCallum
@@ -458,7 +485,8 @@ entries:
     mode:
       author: creatorlist
     type: nameonly
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: E.
           lastName: MacNeil
@@ -470,7 +498,8 @@ entries:
     mode:
       author: creatorlist
     type: nameonly
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Z. C. E.
           lastName: McAdoo
@@ -482,7 +511,8 @@ entries:
     mode:
       author: creatorlist
     type: nameonly
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: L. L.
           lastName: M'Carthy
@@ -494,7 +524,8 @@ entries:
     mode:
       author: creatorlist
     type: nameonly
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: S. R.
           lastName: Olson
@@ -506,7 +537,8 @@ entries:
     mode:
       author: creatorlist
     type: nameonly
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: U.
           lastName: O'Neil
@@ -518,7 +550,8 @@ entries:
     mode:
       author: creatorlist
     type: nameonly
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: R.
           lastName: Oppenheimer
@@ -530,7 +563,8 @@ entries:
     mode:
       author: creatorlist
     type: nameonly
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: F.
           lastName: Partridge
@@ -542,7 +576,8 @@ entries:
     mode:
       author: creatorlist
     type: nameonly
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - lastName: Plato
     input: |-
@@ -553,7 +588,8 @@ entries:
     mode:
       author: creatorlist
     type: nameonly
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Q. E
           lastName: San Martin
@@ -565,7 +601,8 @@ entries:
     mode:
       author: creatorlist
     type: nameonly
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: M.
           lastName: Santa Maria
@@ -577,7 +614,8 @@ entries:
     mode:
       author: creatorlist
     type: nameonly
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: F. E.
           lastName: Santayana
@@ -591,7 +629,8 @@ entries:
     mode:
       author: creatorlist
     type: nameonly
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: J.
           lastName: Santiago
@@ -608,7 +647,8 @@ entries:
       author: creatorlist
       sortname: creatorlist
     type: nameonly
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: J.
           lastName: Santiago
@@ -625,7 +665,8 @@ entries:
       author: creatorlist
       sortname: creatorlist
     type: nameonly
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: S. A.
           lastName: Villafuerte
@@ -637,7 +678,8 @@ entries:
     mode:
       author: creatorlist
     type: nameonly
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: J.
           lastName: Villa-Lobos
@@ -651,7 +693,8 @@ entries:
     mode:
       author: creatorlist
     type: nameonly
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: S. N.
           lastName: Patel
@@ -663,7 +706,8 @@ entries:
     mode:
       author: creatorlist
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: S. N.
           lastName: Patel
@@ -678,7 +722,8 @@ entries:
       author: creatorlist
       date: literal
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: S. N.
           lastName: Patel
@@ -693,7 +738,8 @@ entries:
       author: creatorlist
       date: literal
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: S. N.
           lastName: Patel
@@ -708,7 +754,8 @@ entries:
       author: creatorlist
       date: literal
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: S. N.
           lastName: Patel
@@ -723,7 +770,8 @@ entries:
       author: creatorlist
       pubstate: literal
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: T. E.
           lastName: Davidson
@@ -738,7 +786,8 @@ entries:
       author: creatorlist
       date: literal
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: T. E.
           lastName: Davidson
@@ -755,7 +804,8 @@ entries:
       author: creatorlist
       date: literal
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: P. T.
           lastName: Costa
@@ -773,7 +823,8 @@ entries:
       author: creatorlist
       date: literal
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: P. T.
           lastName: Costa
@@ -791,7 +842,8 @@ entries:
       author: creatorlist
       date: literal
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: T. E.
           lastName: Jacobson
@@ -810,7 +862,8 @@ entries:
       author: creatorlist
       date: literal
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: T. E.
           lastName: Jacobson
@@ -827,7 +880,8 @@ entries:
       author: creatorlist
       date: literal
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: S. J.
           lastName: Pfeiffer
@@ -846,7 +900,8 @@ entries:
       author: creatorlist
       date: literal
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: S. J.
           lastName: Pfeiffer
@@ -867,7 +922,8 @@ entries:
       author: creatorlist
       date: literal
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: H.
           lastName: Azikiwe
@@ -884,7 +940,8 @@ entries:
       author: creatorlist
       date: literal
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: H.
           lastName: Azikiwe
@@ -901,7 +958,8 @@ entries:
       author: creatorlist
       date: literal
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: H.
           lastName: Azikiwe
@@ -918,7 +976,8 @@ entries:
       author: creatorlist
       date: literal
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: T. A.
           lastName: Judge
@@ -956,7 +1015,8 @@ entries:
       title: title
       volume: literal
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: T. A.
           lastName: Judge
@@ -997,7 +1057,8 @@ entries:
       title: title
       volume: literal
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: A.
           lastName: Smith
@@ -1015,7 +1076,8 @@ entries:
       date: literal
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: A.
           lastName: Smith
@@ -1033,7 +1095,8 @@ entries:
       date: literal
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: A.
           lastName: Smith
@@ -1051,7 +1114,8 @@ entries:
       date: literal
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: A.
           lastName: Smith
@@ -1071,7 +1135,8 @@ entries:
       date: literal
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: B.
           lastName: Brown
@@ -1083,7 +1148,8 @@ entries:
     mode:
       author: creatorlist
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: B.
           lastName: Brown
@@ -1095,7 +1161,8 @@ entries:
     mode:
       author: creatorlist
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: B.
           lastName: Brown
@@ -1110,7 +1177,8 @@ entries:
       author: creatorlist
       pubstate: literal
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: B.
           lastName: Brown
@@ -1127,7 +1195,8 @@ entries:
       author: creatorlist
       pubstate: literal
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: J. M.
           lastName: Taylor
@@ -1144,7 +1213,8 @@ entries:
       author: creatorlist
       date: literal
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: T.
           lastName: Taylor
@@ -1161,7 +1231,8 @@ entries:
       author: creatorlist
       date: literal
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - lastName: Anonymous
       date: '-3000'
@@ -1178,7 +1249,8 @@ entries:
       date: literal
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       date: '-2000'
       title: The book of eibon
     input: |-
@@ -1191,7 +1263,8 @@ entries:
       date: literal
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: A.
           lastName: Smith
@@ -1212,7 +1285,8 @@ entries:
       sorttitle: literal
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: A.
           lastName: Smith
@@ -1233,7 +1307,8 @@ entries:
       sorttitle: literal
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: J.
           lastName: Jones
@@ -1260,7 +1335,8 @@ entries:
       subtitle: title
       title: title
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: J.
           lastName: Jones
@@ -1290,7 +1366,8 @@ entries:
       subtitle: title
       title: title
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       annotation: >-
         This book chapter provides an overview of the psychosociological concept
         of work-life balance. The authors discuss findings from studies showing
@@ -1360,7 +1437,8 @@ entries:
       subtitle: title
       title: title
     type: incollection
-  - fields:
+  - annotations: {}
+    fields:
       annotation: >-
         9.51:2 conducted an empirical study to examine the multiple paths
         through which work and family variables can affect work outcomes.
@@ -1439,7 +1517,8 @@ entries:
       title: title
       volume: literal
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: L.
           lastName: Angel
@@ -1499,7 +1578,8 @@ entries:
       title: title
       volume: literal
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: J. R.
           lastName: Finley
@@ -1544,7 +1624,8 @@ entries:
       publisher: literallist
       title: title
     type: incollection
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: R.
           lastName: Hanaki
@@ -1606,7 +1687,8 @@ entries:
       title: title
       volume: literal
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: M. B.
           lastName: Hargis
@@ -1647,7 +1729,8 @@ entries:
       title: title
       volume: literal
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: S. M.
           lastName: McCauley
@@ -1690,7 +1773,8 @@ entries:
       url: verbatim
       volume: literal
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: E.
           lastName: Ahmann
@@ -1736,7 +1820,8 @@ entries:
       url: verbatim
       volume: literal
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: M.
           lastName: Anderson
@@ -1766,7 +1851,8 @@ entries:
       title: title
       volume: literal
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: C.
           lastName: Goldman
@@ -1796,7 +1882,8 @@ entries:
       journaltitle: literal
       title: title
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: E.
           lastName: Kalnay
@@ -1884,7 +1971,8 @@ entries:
       title: title
       volume: literal
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: R.
           lastName: De Vries
@@ -1929,7 +2017,8 @@ entries:
       title: title
       volume: literal
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: D.
           lastName: Burin
@@ -1975,7 +2064,8 @@ entries:
       title: title
       volume: literal
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: S. M.
           lastName: Huestegge
@@ -2013,7 +2103,8 @@ entries:
       journaltitle: literal
       title: title
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: T.
           lastName: Pachur
@@ -2041,7 +2132,8 @@ entries:
       subtitle: title
       title: title
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: V.
           lastName: Chaves-Morillo
@@ -2101,7 +2193,8 @@ entries:
       title: title
       volume: literal
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: J.
           lastName: Piaget
@@ -2146,7 +2239,8 @@ entries:
       translator: creatorlist
       volume: literal
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: M. F.
           lastName: Shore
@@ -2191,7 +2285,8 @@ entries:
       title: title
       volume: literal
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       date: '1981'
       doi: 10.1111/j.1939-0025.1981.tb01388.x
       journaltitle: American Journal of Orthopsychiatry
@@ -2226,7 +2321,8 @@ entries:
       title: title
       volume: literal
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       date: '2018'
       editor:
         - firstName: S. O.
@@ -2259,7 +2355,8 @@ entries:
       title: title
       volume: literal
     type: periodical
-  - fields:
+  - annotations: {}
+    fields:
       date: '2018'
       editor:
         - firstName: S. H.
@@ -2295,7 +2392,8 @@ entries:
       title: title
       volume: literal
     type: periodical
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: J.
           lastName: Mehrholz
@@ -2334,7 +2432,8 @@ entries:
       journaltitle: literal
       title: title
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: M. C.
           lastName: Morey
@@ -2365,7 +2464,8 @@ entries:
       url: verbatim
       urldate: literal
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: S.
           lastName: Bergeson
@@ -2401,7 +2501,8 @@ entries:
       title: title
       volume: literal
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: M.
           lastName: Bustillos
@@ -2431,7 +2532,8 @@ entries:
       title: title
       url: verbatim
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: K.
           lastName: Wier
@@ -2466,7 +2568,8 @@ entries:
       title: title
       volume: literal
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: B.
           lastName: Guarino
@@ -2496,7 +2599,8 @@ entries:
       title: title
       url: verbatim
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: A.
           lastName: Hess
@@ -2529,7 +2633,8 @@ entries:
       pages: literal
       title: title
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: M.
           lastName: Klymkowsky
@@ -2586,7 +2691,8 @@ entries:
       title: title
       url: verbatim
     type: misc
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - name: KS in NJ
       date: '2019-01-15'
@@ -2625,7 +2731,8 @@ entries:
       title: title
       url: verbatim
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: A.
           lastName: Author
@@ -2648,7 +2755,8 @@ entries:
       journaltitle: literal
       title: title
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: N. G.
           lastName: Cuellar
@@ -2686,7 +2794,8 @@ entries:
       titleaddon: literal
       volume: literal
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: L. S.
           lastName: Brown
@@ -2716,7 +2825,8 @@ entries:
       publisher: literallist
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: R.
           lastName: Burgess
@@ -2749,7 +2859,8 @@ entries:
       subtitle: title
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: S.
           lastName: Cain
@@ -2783,7 +2894,8 @@ entries:
       title: title
       url: verbatim
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: B.
           lastName: Christian
@@ -2815,7 +2927,8 @@ entries:
       title: title
       url: verbatim
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: D. H.
           lastName: Meadows
@@ -2848,7 +2961,8 @@ entries:
       subtitle: title
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       date: '2017'
       doi: 10.1037/15969-000
       editor:
@@ -2880,7 +2994,8 @@ entries:
       subtitle: title
       title: title
     type: collection
-  - fields:
+  - annotations: {}
+    fields:
       date: '2017'
       editor:
         - firstName: J.
@@ -2908,7 +3023,8 @@ entries:
       subtitle: title
       title: title
     type: collection
-  - fields:
+  - annotations: {}
+    fields:
       date: '2018'
       editor:
         - firstName: K. F.
@@ -2944,7 +3060,8 @@ entries:
       title: title
       url: verbatim
     type: collection
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: N.
           lastName: Amano
@@ -2974,7 +3091,8 @@ entries:
       title: title
       volume: literal
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: J.
           lastName: Piaget
@@ -3003,7 +3121,8 @@ entries:
       publisher: literallist
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: J.
           lastName: Piaget
@@ -3040,7 +3159,8 @@ entries:
       title: title
       translator: creatorlist
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: S.
           lastName: Freud
@@ -3078,7 +3198,8 @@ entries:
       title: title
       translator: creatorlist
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: J. K.
           lastName: Rowling
@@ -3114,7 +3235,8 @@ entries:
       titleaddon: literal
       url: verbatim
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: S. T.
           lastName: Fiske
@@ -3151,7 +3273,8 @@ entries:
       title: title
       volume: literal
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       date: '2018'
       doi: 10.1037/0000059-000
       editor:
@@ -3183,7 +3306,8 @@ entries:
       subtitle: title
       title: title
     type: collection
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: S.
           lastName: Madigan
@@ -3217,7 +3341,8 @@ entries:
       series: title
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - name: American Psychiatric Association
       date: '2013'
@@ -3247,7 +3372,8 @@ entries:
       shorthand: literal
       title: title
     type: manual
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - name: World Health Organization
       date: '2019'
@@ -3281,7 +3407,8 @@ entries:
       title: title
       url: verbatim
     type: manual
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - name: American Psychological Association
       title: <span class="nocase">APA</span> dictionary of psychology
@@ -3301,7 +3428,8 @@ entries:
       url: verbatim
       urldate: literal
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - name: Merriam-Webster
       title: <span class="nocase">Merriam-Webster.com</span> dictionary
@@ -3323,7 +3451,8 @@ entries:
       url: verbatim
       urldate: literal
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       date: '2019'
       edition: Summer 2019 ed.
       editor:
@@ -3354,7 +3483,8 @@ entries:
       title: title
       url: verbatim
     type: reference
-  - fields:
+  - annotations: {}
+    fields:
       date: '1999'
       doi: 10.1037/10319-000
       editor:
@@ -3385,7 +3515,8 @@ entries:
       subtitle: title
       title: title
     type: collection
-  - fields:
+  - annotations: {}
+    fields:
       date: '2017'
       origdate: '1769'
       title: <span class="nocase">King James Bible</span>
@@ -3407,7 +3538,8 @@ entries:
       url: verbatim
       urldescription: literal
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       date: '2004'
       publisher:
         - Oxford University Press
@@ -3429,7 +3561,8 @@ entries:
       title: title
       translator: creatorlist
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       date: '2015'
       edition: '3'
       origdate: '1962'
@@ -3460,7 +3593,8 @@ entries:
       subtitle: title
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       booktitle: Encyclopedia of <span class="nocase">Cleveland</span> history
       date: '2022'
       editor:
@@ -3478,7 +3612,8 @@ entries:
       publisher: literallist
       title: title
     type: inreference
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - lastName: Aristotle
       date: '1994'
@@ -3512,7 +3647,8 @@ entries:
       translator: creatorlist
       url: verbatim
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: W.
           lastName: Shakespeare
@@ -3547,7 +3683,8 @@ entries:
       publisher: literallist
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: K. F.
           lastName: Balsam
@@ -3603,7 +3740,8 @@ entries:
       publisher: literallist
       title: title
     type: incollection
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: R.
           lastName: Weinstock
@@ -3649,7 +3787,8 @@ entries:
       subtitle: title
       title: title
     type: incollection
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: N.
           lastName: Tafoya
@@ -3702,7 +3841,8 @@ entries:
       title: title
       url: verbatim
     type: incollection
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: N.
           lastName: Carcavilla González
@@ -3751,7 +3891,8 @@ entries:
       title: title
       url: verbatim
     type: incollection
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: M.
           lastName: Heidegger
@@ -3800,7 +3941,8 @@ entries:
       title: title
       translator: creatorlist
     type: inbook
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: C.
           lastName: Sacchett
@@ -3851,7 +3993,8 @@ entries:
       subtitle: title
       title: title
     type: incollection
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: C.
           lastName: Sacchett
@@ -3893,7 +4036,8 @@ entries:
       title: title
       volume: literal
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: U.
           lastName: Bronfenbrenner
@@ -3939,7 +4083,8 @@ entries:
       subtitle: title
       title: title
     type: incollection
-  - fields:
+  - annotations: {}
+    fields:
       date: '1973'
       editor:
         - firstName: F.
@@ -3970,7 +4115,8 @@ entries:
       subtitle: title
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: S.
           lastName: Goldin-Meadow
@@ -4017,7 +4163,8 @@ entries:
       publisher: literallist
       title: title
     type: incollection
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: K.
           lastName: Lewin
@@ -4061,7 +4208,8 @@ entries:
       publisher: literallist
       title: title
     type: incollection
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - name: American Psychological Association
       booktitle: <span class="nocase">APA</span> dictionary of psychology
@@ -4084,7 +4232,8 @@ entries:
       url: verbatim
       urldate: literal
     type: inbook
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - name: Merriam-Webster
       booktitle: <span class="nocase">Merriam-Webster.com</span> dictionary
@@ -4109,7 +4258,8 @@ entries:
       url: verbatim
       urldate: literal
     type: inbook
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: G.
           lastName: Graham
@@ -4147,7 +4297,8 @@ entries:
       title: title
       url: verbatim
     type: inreference
-  - fields:
+  - annotations: {}
+    fields:
       booktitle: Wikipedia
       date: '2019-01-13'
       title: List of oldest companies
@@ -4168,7 +4319,8 @@ entries:
       title: title
       url: verbatim
     type: inbook
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - name: Australian Government Productivity Commission
         - name: New Zealand Productivity Commission
@@ -4192,7 +4344,8 @@ entries:
       title: title
       url: verbatim
     type: report
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - name: Canada Council for the Arts
       date: '2013'
@@ -4221,7 +4374,8 @@ entries:
       title: title
       url: verbatim
     type: report
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - name: National Cancer Institute
       date: '2018'
@@ -4252,7 +4406,8 @@ entries:
       type: literal
       url: verbatim
     type: report
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: D.
           lastName: Fried
@@ -4279,7 +4434,8 @@ entries:
       title: title
       url: verbatim
     type: report
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: A.
           lastName: Segaert
@@ -4310,7 +4466,8 @@ entries:
       title: title
       url: verbatim
     type: report
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: D. L.
           lastName: Blackwell
@@ -4350,7 +4507,8 @@ entries:
       title: title
       url: verbatim
     type: report
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - name: British Cardiovascular Society Working Group
       date: '2016'
@@ -4384,7 +4542,8 @@ entries:
       title: title
       url: verbatim
     type: report
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - name: U.S. Securities and Exchange Commission
       date: '2017'
@@ -4409,7 +4568,8 @@ entries:
       title: title
       url: verbatim
     type: report
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - name: American Counseling Association
       date: '2014'
@@ -4429,7 +4589,8 @@ entries:
       title: title
       url: verbatim
     type: report
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - name: American Nurses Association
       date: '2015'
@@ -4449,7 +4610,8 @@ entries:
       title: title
       url: verbatim
     type: report
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - name: American Psychological Association
       date: '2017'
@@ -4487,14 +4649,16 @@ entries:
       title: title
       url: verbatim
     type: report
-  - fields:
-      author:
-        - firstName: C. B.
-          lastName: Blair
+  - annotations:
       author+an:role:
         - index: 1
           scope: item
           value: Principal Investigator
+    fields:
+      author:
+        - firstName: C. B.
+          lastName: Blair
+      author+an:role: 1="Principal Investigator"
       date: 2015/2020
       institution:
         - >-
@@ -4532,7 +4696,8 @@ entries:
       type: literal
       url: verbatim
     type: report
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: J.
           lastName: Lichtenstein
@@ -4568,7 +4733,8 @@ entries:
       type: literal
       url: verbatim
     type: report
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: M.
           lastName: Harwell
@@ -4606,7 +4772,8 @@ entries:
       titleaddon: literal
       url: verbatim
     type: report
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - name: U.S. Food and Drug Administration
       date: '2019-02-14'
@@ -4640,7 +4807,8 @@ entries:
       titleaddon: literal
       url: verbatim
     type: report
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: A.
           lastName: Fistek
@@ -4679,7 +4847,8 @@ entries:
       url: verbatim
       venue: literal
     type: presentation
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: S.
           lastName: Maddox
@@ -4718,7 +4887,8 @@ entries:
       titleaddon: literal
       venue: literal
     type: presentation
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: J.
           lastName: Pearson
@@ -4756,7 +4926,8 @@ entries:
       url: verbatim
       venue: literal
     type: presentation
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: D.
           lastName: De Boer
@@ -4815,7 +4986,8 @@ entries:
       title: title
       venue: literal
     type: presentation
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: A. L.
           lastName: Duckworth
@@ -4865,7 +5037,8 @@ entries:
       title: title
       volume: literal
     type: inproceedings
-  - fields:
+  - annotations: {}
+    fields:
       booktitle: Theory of cryptography
       date: '2016'
       doi: 10.1007/978-3-662-49096-9
@@ -4904,7 +5077,8 @@ entries:
       maintitle: title
       publisher: literallist
     type: proceedings
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Alan-Louis.
           lastName: Bedenel
@@ -4960,7 +5134,8 @@ entries:
       publisher: literallist
       title: title
     type: inproceedings
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: L.
           lastName: Harris
@@ -4990,7 +5165,8 @@ entries:
       title: title
       type: literal
     type: phdthesis
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: M. M.
           lastName: Hollander
@@ -5026,7 +5202,8 @@ entries:
       subtitle: title
       title: title
     type: phdthesis
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: V. H.
           lastName: Hutcheson
@@ -5063,7 +5240,8 @@ entries:
       title: title
       url: verbatim
     type: mastersthesis
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: L. A.
           lastName: Mirabito
@@ -5113,15 +5291,17 @@ entries:
       title: title
       volume: literal
     type: article
-  - fields:
-      author:
-        - firstName: E.
-          lastName: Brodsky
+  - annotations:
       author+an:role:
         - index: 1
           scope: item
           value:
             - director
+    fields:
+      author:
+        - firstName: E.
+          lastName: Brodsky
+      author+an:role: 1=director
       date: '2016'
       entrysubtype: film
       title: The year we thought about love
@@ -5143,7 +5323,8 @@ entries:
       entrysubtype: literal
       title: title
     type: video
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: F.
           lastName: Santos
@@ -5180,7 +5361,8 @@ entries:
       title: title
       url: verbatim
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: M.
           lastName: Yousafzai
@@ -5207,7 +5389,8 @@ entries:
       subtitle: title
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: D.
           lastName: Perkins
@@ -5250,16 +5433,18 @@ entries:
       title: title
       url: verbatim
     type: online
-  - fields:
-      author:
-        - firstName: M.
-          lastName: Schur
+  - annotations:
       author+an:role:
         - index: 1
           scope: item
           value:
             - writer
             - director
+    fields:
+      author:
+        - firstName: M.
+          lastName: Schur
+      author+an:role: 1=writer,director
       date: '2018'
       entrysubtype: tvepisode
       title: Somewhere else
@@ -5285,7 +5470,8 @@ entries:
       entrysubtype: literal
       title: title
     type: video
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: J.
           lastName: Yoo
@@ -5324,7 +5510,8 @@ entries:
       title: title
       venue: literal
     type: unpublished
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: M.
           lastName: O'Shea
@@ -5357,7 +5544,8 @@ entries:
       title: title
       venue: literal
     type: unpublished
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: T.
           lastName: Lippincott
@@ -5392,7 +5580,8 @@ entries:
       title: title
       venue: literal
     type: unpublished
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: C.
           lastName: Leuker
@@ -5425,7 +5614,8 @@ entries:
       subtitle: title
       title: title
     type: online
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: M. A.
           lastName: Stults-Kolehmainen
@@ -5453,7 +5643,8 @@ entries:
       title: title
       url: verbatim
     type: online
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: H-K
           lastName: Ho
@@ -5485,7 +5676,8 @@ entries:
       url: verbatim
       version: literal
     type: online
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: A.
           lastName: D'Souza
@@ -5521,7 +5713,8 @@ entries:
       title: title
       version: literal
     type: dataset
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - name: National Center for Education Statistics
       date: '2016'
@@ -5560,7 +5753,8 @@ entries:
       title: title
       version: literal
     type: dataset
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - name: Pew Research Center
       date: '2018'
@@ -5585,7 +5779,8 @@ entries:
       title: title
       url: verbatim
     type: dataset
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: R. A.
           lastName: Baer
@@ -5612,7 +5807,8 @@ entries:
       institution: literallist
       titleaddon: literal
     type: dataset
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - name: Oregan Youth Authority
       date: '2011'
@@ -5634,7 +5830,8 @@ entries:
       entrysubtype: literal
       title: title
     type: dataset
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: M.
           lastName: Borenstein
@@ -5673,7 +5870,8 @@ entries:
       url: verbatim
       version: literal
     type: software
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - name: SR Research
       date: '2016'
@@ -5696,7 +5894,8 @@ entries:
       title: title
       url: verbatim
     type: hardware
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - name: Tactile Labs
       date: '2015'
@@ -5723,7 +5922,8 @@ entries:
       title: title
       url: verbatim
     type: hardware
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - lastName: Epocrates
       date: '2019'
@@ -5757,7 +5957,8 @@ entries:
       url: verbatim
       version: literal
     type: software
-  - fields:
+  - annotations: {}
+    fields:
       appentry: 'Interaction Check: Aspirin + Sertraline'
       author:
         - lastName: Epocrates
@@ -5792,7 +5993,8 @@ entries:
       url: verbatim
       version: literal
     type: software
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: A.
           lastName: Tellegen
@@ -5825,7 +6027,8 @@ entries:
       subtitle: title
       title: title
     type: manual
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - name: Project Implicit
       title: Gender-<span class="nocase">Science IAT</span>
@@ -5844,7 +6047,8 @@ entries:
       title: title
       url: verbatim
     type: software
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: J.
           lastName: Alonso-Tapia
@@ -5885,7 +6089,8 @@ entries:
       publisher: literallist
       title: title
     type: software
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: D.
           lastName: Cardoza
@@ -5929,15 +6134,17 @@ entries:
       publisher: literallist
       title: title
     type: software
-  - fields:
-      author:
-        - firstName: M.
-          lastName: Forman
+  - annotations:
       author+an:role:
         - index: 1
           scope: item
           value:
             - director
+    fields:
+      author:
+        - firstName: M.
+          lastName: Forman
+      author+an:role: 1=director
       date: '1975'
       entrysubtype: film
       publisher:
@@ -5963,12 +6170,7 @@ entries:
       publisher: literallist
       title: title
     type: video
-  - fields:
-      author:
-        - firstName: D.
-          lastName: Fosha
-        - firstName: H.
-          lastName: Levenson
+  - annotations:
       author+an:role:
         - index: 1
           scope: item
@@ -5978,6 +6180,13 @@ entries:
           scope: item
           value:
             - host
+    fields:
+      author:
+        - firstName: D.
+          lastName: Fosha
+        - firstName: H.
+          lastName: Levenson
+      author+an:role: 1=guestexpert;2=host
       date: '2017'
       entrysubtype: film
       note: educational DVD
@@ -6011,15 +6220,17 @@ entries:
       title: title
       url: verbatim
     type: video
-  - fields:
-      author:
-        - firstName: P.
-          lastName: Jackson
+  - annotations:
       author+an:role:
         - index: 1
           scope: item
           value:
             - director
+    fields:
+      author:
+        - firstName: P.
+          lastName: Jackson
+      author+an:role: 1=director
       date: '2001'
       entrysubtype: film
       note: four-disc special extended ed. on DVD
@@ -6053,15 +6264,17 @@ entries:
       subtitle: title
       title: title
     type: video
-  - fields:
-      author:
-        - firstName: L.
-          lastName: Malle
+  - annotations:
       author+an:role:
         - index: 1
           scope: item
           value:
             - director
+    fields:
+      author:
+        - firstName: L.
+          lastName: Malle
+      author+an:role: 1=director
       date: '1987'
       entrysubtype: film
       origtitle: Au revoir les enfants
@@ -6109,7 +6322,12 @@ entries:
       publisher: literallist
       title: title
     type: video
-  - fields:
+  - annotations:
+      author+an:role:
+        - scope: field
+          value:
+            - execproducers
+    fields:
       author:
         - firstName: D.
           lastName: Simon
@@ -6117,10 +6335,7 @@ entries:
           lastName: Colesberry
         - firstName: N.
           lastName: Kostroff Noble
-      author+an:role:
-        - scope: field
-          value:
-            - execproducers
+      author+an:role: =execproducers
       date: 2002/2008
       entrysubtype: tvseries
       publisher:
@@ -6149,16 +6364,18 @@ entries:
       publisher: literallist
       title: title
     type: video
-  - fields:
-      author:
-        - firstName: K.
-          lastName: Barris
+  - annotations:
       author+an:role:
         - index: 1
           scope: item
           value:
             - director
             - writer
+    fields:
+      author:
+        - firstName: K.
+          lastName: Barris
+      author+an:role: 1=director,writer
       date: '2017-01-11'
       entrysubtype: tvepisode
       execproducer: >-
@@ -6198,14 +6415,7 @@ entries:
       publisher: literallist
       title: title
     type: video
-  - fields:
-      author:
-        - firstName: B.
-          lastName: Oakley
-        - firstName: J.
-          lastName: Weinstein
-        - firstName: J.
-          lastName: Lynch
+  - annotations:
       author+an:role:
         - index: 1
           scope: item
@@ -6219,6 +6429,15 @@ entries:
           scope: item
           value:
             - director
+    fields:
+      author:
+        - firstName: B.
+          lastName: Oakley
+        - firstName: J.
+          lastName: Weinstein
+        - firstName: J.
+          lastName: Lynch
+      author+an:role: 1=writer;2=writer;3=director
       date: '1995-05-21'
       entrysubtype: tvepisode
       execproducer: D. Mirkin and J. L. Brooks and M. Groening and S. Simon
@@ -6253,7 +6472,8 @@ entries:
       publisher: literallist
       title: title
     type: video
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: S.
           lastName: Giertz
@@ -6283,7 +6503,8 @@ entries:
       title: title
       url: verbatim
     type: video
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - lastName: TED
       date: '2012-03-16'
@@ -6317,7 +6538,8 @@ entries:
       title: title
       url: verbatim
     type: video
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: J. F.
           lastName: Goldberg
@@ -6348,7 +6570,8 @@ entries:
       title: title
       url: verbatim
     type: video
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: S.
           lastName: Cutts
@@ -6382,14 +6605,16 @@ entries:
       title: title
       url: verbatim
     type: video
-  - fields:
-      author:
-        - firstName: M.
-          lastName: Fogarty
+  - annotations:
       author+an:username:
         - index: 1
           scope: item
           value: Grammar Girl
+    fields:
+      author:
+        - firstName: M.
+          lastName: Fogarty
+      author+an:username: 1="Grammar Girl"
       date: '2016-09-30'
       entrysubtype: video
       publisher:
@@ -6418,7 +6643,8 @@ entries:
       title: title
       url: verbatim
     type: video
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - name: University of Oxford
       date: '2016-12-06'
@@ -6451,7 +6677,8 @@ entries:
       title: title
       url: verbatim
     type: video
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: J. S.
           lastName: Bach
@@ -6482,7 +6709,8 @@ entries:
       subtitle: title
       title: title
     type: audio
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: D.
           lastName: Bowie
@@ -6512,7 +6740,8 @@ entries:
       publisher: literallist
       title: title
     type: audio
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: L.
           lastName: Beethoven
@@ -6520,8 +6749,7 @@ entries:
       date: '2012'
       entrysubtype: Song recorded by Staatskapelle Dresden
       maintitle: 'Beethoven: <span class="nocase">Complete Symphonies</span>'
-      options:
-        useprefix: 'false'
+      options: useprefix=false
       origdate: '1804'
       publisher:
         - Brilliant Classics
@@ -6549,8 +6777,11 @@ entries:
       origdate: literal
       publisher: literallist
       title: title
+    options:
+      useprefix: 'false'
     type: audio
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - lastName: Beyoncé
       date: '2016'
@@ -6580,7 +6811,8 @@ entries:
       publisher: literallist
       title: title
     type: audio
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - name: Childish Gambino
       date: '2018'
@@ -6607,7 +6839,8 @@ entries:
       publisher: literallist
       title: title
     type: audio
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: K.
           lastName: Lamar
@@ -6646,15 +6879,17 @@ entries:
       publisher: literallist
       title: title
     type: audio
-  - fields:
-      author:
-        - firstName: S.
-          lastName: Vedantam
+  - annotations:
       author+an:role:
         - index: 1
           scope: item
           value:
             - host
+    fields:
+      author:
+        - firstName: S.
+          lastName: Vedantam
+      author+an:role: 1=host
       date: 2015/
       entrysubtype: podcast
       publisher:
@@ -6685,15 +6920,17 @@ entries:
       title: title
       url: verbatim
     type: audio
-  - fields:
-      author:
-        - firstName: I.
-          lastName: Glass
+  - annotations:
       author+an:role:
         - index: 1
           scope: item
           value:
             - host
+    fields:
+      author:
+        - firstName: I.
+          lastName: Glass
+      author+an:role: 1=host
       date: '2011-08-12'
       entrysubtype: podcastepisode
       maintitle: This <span class="nocase">American Life</span>
@@ -6729,7 +6966,8 @@ entries:
       title: title
       url: verbatim
     type: audio
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: S.
           lastName: Beauvoir
@@ -6764,7 +7002,8 @@ entries:
       title: title
       url: verbatim
     type: audio
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: M. L.
           lastName: King
@@ -6796,7 +7035,8 @@ entries:
       title: title
       url: verbatim
     type: audio
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: E.
           lastName: Delacroix
@@ -6823,7 +7063,8 @@ entries:
       location: literallist
       title: title
     type: image
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: G.
           lastName: Wood
@@ -6855,7 +7096,8 @@ entries:
       title: title
       url: verbatim
     type: image
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - lastName: GDJ
       date: '2018'
@@ -6886,7 +7128,8 @@ entries:
       title: title
       url: verbatim
     type: image
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: J.
           lastName: Rossman
@@ -6919,7 +7162,8 @@ entries:
       title: title
       url: verbatim
     type: image
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: D.
           lastName: Cable
@@ -6954,7 +7198,8 @@ entries:
       title: title
       url: verbatim
     type: image
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - lastName: Google
       titleaddon: Google Maps directions for driving from La Paz, Bolivia, to Lima, Peru
@@ -6978,7 +7223,8 @@ entries:
       url: verbatim
       urldate: literal
     type: image
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: S.
           lastName: McCurry
@@ -7006,7 +7252,8 @@ entries:
       title: title
       url: verbatim
     type: image
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Jessica
           lastName: Rinaldi
@@ -7036,7 +7283,8 @@ entries:
       titleaddon: literal
       url: verbatim
     type: image
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: E.
           lastName: Canan
@@ -7071,7 +7319,8 @@ entries:
       titleaddon: literal
       url: verbatim
     type: image
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Brian
           lastName: Housand
@@ -7105,7 +7354,8 @@ entries:
       title: title
       url: verbatim
     type: image
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: R.
           lastName: Mack
@@ -7142,13 +7392,15 @@ entries:
       title: title
       url: verbatim
     type: image
-  - fields:
-      author:
-        - name: APA Education
+  - annotations:
       author+an:username:
         - index: 1
           scope: item
           value: '@APAEducation'
+    fields:
+      author:
+        - name: APA Education
+      author+an:username: 1="@APAEducation"
       date: '2018-06-29'
       entrysubtype: Tweet
       eprint: Twitter
@@ -7184,13 +7436,15 @@ entries:
       titleaddon: literal
       url: verbatim
     type: online
-  - fields:
-      author:
-        - name: Badlands National Park
+  - annotations:
       author+an:username:
         - index: 1
           scope: item
           value: '@BadlandsNPS'
+    fields:
+      author:
+        - name: Badlands National Park
+      author+an:username: 1="@BadlandsNPS"
       date: '2018-02-26'
       entrysubtype: Tweet
       eprint: Twitter
@@ -7225,14 +7479,16 @@ entries:
       title: title
       url: verbatim
     type: online
-  - fields:
-      author:
-        - firstName: B.
-          lastName: White
+  - annotations:
       author+an:username:
         - index: 1
           scope: item
           value: '@BettyMWhite'
+    fields:
+      author:
+        - firstName: B.
+          lastName: White
+      author+an:username: 1="@BettyMWhite"
       date: '2018-06-21'
       entrysubtype: Tweet
       eprint: Twitter
@@ -7267,13 +7523,15 @@ entries:
       titleaddon: literal
       url: verbatim
     type: online
-  - fields:
-      author:
-        - name: APA Style
+  - annotations:
       author+an:username:
         - index: 1
           scope: item
           value: '@APA_Style'
+    fields:
+      author:
+        - name: APA Style
+      author+an:username: 1="@APA\_Style"
       entrysubtype: Twitter profile
       eprint: Twitter
       title: Tweets
@@ -7305,7 +7563,8 @@ entries:
       url: verbatim
       urldate: literal
     type: online
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: N.
           lastName: Gaiman
@@ -7346,7 +7605,8 @@ entries:
       titleaddon: literal
       url: verbatim
     type: online
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - name: National Institute of Mental Health
       date: '2018-11-28'
@@ -7381,7 +7641,8 @@ entries:
       title: title
       url: verbatim
     type: online
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - name: News From Science
       date: '2018-06-26'
@@ -7418,7 +7679,8 @@ entries:
       title: title
       url: verbatim
     type: online
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - name: Smithsonian's National Zoo and Conservation Biology Institute
       entrysubtype: Facebook page
@@ -7448,13 +7710,15 @@ entries:
       url: verbatim
       urldate: literal
     type: online
-  - fields:
-      author:
-        - name: Zeitz MOCAA
+  - annotations:
       author+an:username:
         - index: 1
           scope: item
           value: '@zeitzmocaa'
+    fields:
+      author:
+        - name: Zeitz MOCAA
+      author+an:username: 1="@zeitzmocaa"
       date: '2018-11-26'
       entrysubtype: photographs
       eprint: Instagram
@@ -7491,13 +7755,15 @@ entries:
       title: title
       url: verbatim
     type: online
-  - fields:
-      author:
-        - name: The New York Public Library
+  - annotations:
       author+an:username:
         - index: 1
           scope: item
           value: '@nypl'
+    fields:
+      author:
+        - name: The New York Public Library
+      author+an:username: 1="@nypl"
       entrysubtype: Highlight
       eprint: Instagram
       title: The raven
@@ -7529,13 +7795,15 @@ entries:
       url: verbatim
       urldate: literal
     type: online
-  - fields:
-      author:
-        - name: National Aeronautics Space Administration
+  - annotations:
       author+an:username:
         - index: 1
           scope: item
           value: nasa
+    fields:
+      author:
+        - name: National Aeronautics Space Administration
+      author+an:username: 1="nasa"
       date: '2018-09-12'
       entrysubtype: Online forum post
       eprint: Reddit
@@ -7569,7 +7837,8 @@ entries:
       title: title
       url: verbatim
     type: online
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: N.
           lastName: Avramova
@@ -7595,7 +7864,8 @@ entries:
       title: title
       url: verbatim
     type: online
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: C.
           lastName: Bologna
@@ -7621,7 +7891,8 @@ entries:
       title: title
       url: verbatim
     type: online
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - name: Centers for Disease Control and Prevention
       date: '2018-01-23'
@@ -7641,7 +7912,8 @@ entries:
       title: title
       url: verbatim
     type: online
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - name: World Health Organization
       date: 2018-03
@@ -7663,7 +7935,8 @@ entries:
       title: title
       url: verbatim
     type: online
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: C. M.
           lastName: Martin Lillie
@@ -7692,7 +7965,8 @@ entries:
       title: title
       url: verbatim
     type: online
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: J.
           lastName: Boddy
@@ -7726,7 +8000,8 @@ entries:
       title: title
       url: verbatim
     type: online
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - name: National Nurses United
       title: >-
@@ -7747,7 +8022,8 @@ entries:
       title: title
       url: verbatim
     type: online
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - name: U.S. Census Bureau
       organization:
@@ -7773,7 +8049,8 @@ entries:
       url: verbatim
       urldate: literal
     type: online
-  - fields:
+  - annotations: {}
+    fields:
       citation: 347 U.S. 483
       date: '1954'
       title: Brown v. board of education
@@ -7794,7 +8071,8 @@ entries:
       title: title
       url: verbatim
     type: jurisdiction
-  - fields:
+  - annotations: {}
+    fields:
       citation: 576 U.S. ___
       date: '2015'
       title: Obergefell v. hodges
@@ -7817,7 +8095,8 @@ entries:
       title: title
       url: verbatim
     type: jurisdiction
-  - fields:
+  - annotations: {}
+    fields:
       citation: 951 F.2d 1128
       date: '1991'
       organization:
@@ -7842,7 +8121,8 @@ entries:
       title: title
       url: verbatim
     type: jurisdiction
-  - fields:
+  - annotations: {}
+    fields:
       citation: 133 F.Supp.2d 1034
       date: '2001'
       organization:
@@ -7879,8 +8159,7 @@ entries:
       title: title
       url: verbatim
     type: jurisdiction
-  - fields:
-      citation: 563 F.Supp. 332 and aff'd and 727 F.2d 888
+  - annotations:
       citation+an:citedate:
         - index: 1
           scope: item
@@ -7900,6 +8179,11 @@ entries:
         - index: 3
           scope: item
           value: 10th Cir.
+    fields:
+      citation: 563 F.Supp. 332 and aff'd and 727 F.2d 888
+      citation+an:citedate: 1="1981";3="1984"
+      citation+an:citeinfo: 2=appeal
+      citation+an:citeorg: 1="D. Kan.";3="10th Cir."
       date: '1984'
       origdate: '1981'
       title: Durflinger v. artiles
@@ -7928,7 +8212,8 @@ entries:
       title: title
       url: verbatim
     type: jurisdiction
-  - fields:
+  - annotations: {}
+    fields:
       citation: 17 Cal.3d 425 and 131 Cal. Rptr. 14 and 551 P.2d 334
       date: '1976'
       title: Tarasoff v. regents of the university of california
@@ -7949,8 +8234,7 @@ entries:
       title: title
       url: verbatim
     type: jurisdiction
-  - fields:
-      citation: 826 S.W.2d 201
+  - annotations:
       citation+an:citedate:
         - index: 1
           scope: item
@@ -7959,6 +8243,10 @@ entries:
         - index: 1
           scope: item
           value: Tex. Ct. App.
+    fields:
+      citation: 826 S.W.2d 201
+      citation+an:citedate: 1="1992"
+      citation+an:citeorg: 1="Tex. Ct. App."
       date: '1992'
       title: Texas v. morales
       url: https://www.leagle.com/decision/19921027826sw2d20111010
@@ -7988,7 +8276,8 @@ entries:
       title: title
       url: verbatim
     type: jurisdiction
-  - fields:
+  - annotations: {}
+    fields:
       date: '1990'
       location:
         - 42 U.S.C § 12101 <i>et seq.</i>
@@ -8019,7 +8308,8 @@ entries:
       titleaddon: literal
       url: verbatim
     type: legislation
-  - fields:
+  - annotations: {}
+    fields:
       date: '1964'
       location:
         - Pub. L. No. 88–352, 78 Stat. 241
@@ -8044,7 +8334,8 @@ entries:
       titleaddon: literal
       url: verbatim
     type: legislation
-  - fields:
+  - annotations: {}
+    fields:
       date: '2015'
       location:
         - 20 U.S.C § 6301
@@ -8066,7 +8357,8 @@ entries:
       title: title
       url: verbatim
     type: legislation
-  - fields:
+  - annotations: {}
+    fields:
       date: '2009'
       location:
         - Pub. L. No. 111-2, 123 Stat. 5
@@ -8091,7 +8383,8 @@ entries:
       titleaddon: literal
       url: verbatim
     type: legislation
-  - fields:
+  - annotations: {}
+    fields:
       date: '1972'
       location:
         - 20 U.S.C § 1681 <i>et seq.</i>
@@ -8113,7 +8406,8 @@ entries:
       title: title
       url: verbatim
     type: legislation
-  - fields:
+  - annotations: {}
+    fields:
       date: '2009'
       location:
         - Fla. Stat. § 394
@@ -8138,7 +8432,8 @@ entries:
       title: title
       url: verbatim
     type: legislation
-  - fields:
+  - annotations: {}
+    fields:
       date: '2016'
       location:
         - 114th Cong.
@@ -8172,7 +8467,8 @@ entries:
       title: title
       url: verbatim
     type: legmaterial
-  - fields:
+  - annotations: {}
+    fields:
       date: '2014'
       location:
         - 113th Cong.
@@ -8204,7 +8500,8 @@ entries:
       title: title
       url: verbatim
     type: legmaterial
-  - fields:
+  - annotations: {}
+    fields:
       date: '2013'
       location:
         - H.R 1100, 113th Cong.
@@ -8226,7 +8523,8 @@ entries:
       title: title
       url: verbatim
     type: legislation
-  - fields:
+  - annotations: {}
+    fields:
       date: '2016'
       location:
         - 114th Cong.
@@ -8258,7 +8556,8 @@ entries:
       type: literal
       url: verbatim
     type: legmaterial
-  - fields:
+  - annotations: {}
+    fields:
       date: '2015'
       number: 114-358
       source: houseofrepresentatives
@@ -8282,7 +8581,8 @@ entries:
       type: literal
       url: verbatim
     type: legmaterial
-  - fields:
+  - annotations: {}
+    fields:
       citation: 45 C.F.R. § 46
       date: '2009'
       title: Protection of human subjects
@@ -8304,7 +8604,8 @@ entries:
       title: title
       url: verbatim
     type: legadminmaterial
-  - fields:
+  - annotations: {}
+    fields:
       citation: 81 F.R. 32391
       date: '2016-05-23'
       keywords:
@@ -8339,7 +8640,8 @@ entries:
       title: title
       url: verbatim
     type: legadminmaterial
-  - fields:
+  - annotations: {}
+    fields:
       citation: 3 C.F.R. 294
       date: '2014'
       number: 13,676
@@ -8363,7 +8665,8 @@ entries:
       type: literal
       url: verbatim
     type: legadminmaterial
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: S. C.
           lastName: Hiremath
@@ -8405,7 +8708,8 @@ entries:
       type: literal
       url: verbatim
     type: patent
-  - fields:
+  - annotations: {}
+    fields:
       article: I
       section: '3'
       source: us
@@ -8426,7 +8730,8 @@ entries:
       source: literal
       type: literal
     type: constitution
-  - fields:
+  - annotations: {}
+    fields:
       article: IX
       section: '3'
       source: southcarolina
@@ -8447,7 +8752,8 @@ entries:
       source: literal
       type: literal
     type: constitution
-  - fields:
+  - annotations: {}
+    fields:
       amendment: XIX
       source: us
       type: constitution
@@ -8469,7 +8775,8 @@ entries:
       source: literal
       type: literal
     type: constitution
-  - fields:
+  - annotations: {}
+    fields:
       amendment: XIX
       eventdate: '1933'
       keywords:
@@ -8494,7 +8801,8 @@ entries:
       source: literal
       type: literal
     type: constitution
-  - fields:
+  - annotations: {}
+    fields:
       amendment: I–X
       source: us
       type: constitution
@@ -8513,7 +8821,8 @@ entries:
       source: literal
       type: literal
     type: constitution
-  - fields:
+  - annotations: {}
+    fields:
       article: '1'
       part: '3'
       source: unitednations
@@ -8534,7 +8843,8 @@ entries:
       source: literal
       type: literal
     type: constitution
-  - fields:
+  - annotations: {}
+    fields:
       date: '1989-11-20'
       title: United nations convention on the rights of the child
       url: https://www.ohchr.org/en/professionalinterest/pages/crc.aspx

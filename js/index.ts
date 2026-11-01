@@ -198,7 +198,7 @@ export interface Options {
    * - en-za
    * - en-zw
    *
-  * If you pass an empty array, no sentence casing will be applied (even when there's no language field).
+   * If you pass an empty array, no sentence casing will be applied (even when there's no language field).
    */
   english?: string[]
 

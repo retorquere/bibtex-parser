@@ -1,6 +1,7 @@
 comments: []
 entries:
-  - fields:
+  - annotations: {}
+    fields:
       title: "non-braking space: \_; accented characters: ñ and ñ; tilde in URL: <a href=\"http://example.com/~user\">http://example.com/~user</a>"
     input: |-
       @article{test-ticket1661,
@@ -10,7 +11,8 @@ entries:
     mode:
       title: title
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       title: "non-braking space: \_; accented characters: ñ and ñ; tilde in URL: <a href=\"http://example.com/~user\">Home</a>"
     input: |-
       @article{test-ticket1661a,

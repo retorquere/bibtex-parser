@@ -1,7 +1,8 @@
 comments:
   - '@book{a, title = "foo"}'
 entries:
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - lastName: Author
       journal: a space between this and this
@@ -21,42 +22,48 @@ entries:
       title: title
       year: literal
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       title: ı
     input: '@book{label, title = i }'
     key: label
     mode:
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       title: foo
     input: '@book{a, title = "foo"}'
     key: a
     mode:
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       title: foo
     input: '@BoOk{a, title = "foo"}'
     key: a
     mode:
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       title: foo
     input: '@BOOK{a, title = "foo"}'
     key: a
     mode:
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       title: foo
     input: '@book(a, title = "foo")'
     key: a
     mode:
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       title: foo
     input: |-
       @
@@ -70,105 +77,120 @@ entries:
     mode:
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       title: foo
     input: '@book{a, title = "f" # a:a # b:b}'
     key: a
     mode:
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       a:a: foo
     input: '@book{a, a:a = "foo" }'
     key: a
     mode:
       a:a: literal
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       title: foo
     input: '@book{a1, title = "foo"}'
     key: a1
     mode:
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       title: foo
     input: '@book{b:b, title = "foo"}'
     key: b:b
     mode:
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       title: foo
     input: '@book{"a", title = "foo"}'
     key: '"a"'
     mode:
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       title: foo
     input: '@book{a, title = "foo"}'
     key: a
     mode:
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       title: foo
     input: '@book{a, title = {foo}}'
     key: a
     mode:
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       title: foo
     input: '@book{a, title = foo}'
     key: a
     mode:
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       title: foo
     input: '@book{a, title = foo}'
     key: a
     mode:
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       title: foo
     input: '@book{a, title = foo}'
     key: a
     mode:
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       title: foo
     input: '@book{a, title = foo}'
     key: a
     mode:
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       title: foo
     input: '@book{a, title = foo}'
     key: a
     mode:
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       title: foo
     input: '@book{b, title = FOO}'
     key: b
     mode:
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       title: foo
     input: '@book{a, title = fo # o}'
     key: a
     mode:
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - lastName: Bausch
         - lastName: Lomb
@@ -184,7 +206,8 @@ entries:
       author: creatorlist
       title: title
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Philippe
           initial: Ph
@@ -197,7 +220,8 @@ entries:
     mode:
       author: creatorlist
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       file: files/Zuniga:2016jt/A4FA1025_A4E7{}422A-9368-1E1F1B9B0166.pdf
     input: |-
       @article{test,
@@ -207,7 +231,8 @@ entries:
     mode:
       file: verbatim
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       publisher:
         - Dŏ}ëad Poₑₑₑt Society
     input: |-
@@ -218,7 +243,8 @@ entries:
     mode:
       publisher: literallist
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       title: ½ and ⁿ⁄₂
     input: |-
       @article{test,
@@ -228,7 +254,8 @@ entries:
     mode:
       title: title
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       title: A <i>A A A</i> A <i>A</i>
     input: >-
       @article{test, title = "A {\em A} \begin{em}A\end{em}

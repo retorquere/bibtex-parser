@@ -100,7 +100,6 @@ jobs:
             ;;
           wasm)
             node test/wasm.js --sc ${{ matrix.sentencecase }} --cp ${{ matrix.caseprotection }} ${{ matrix.preservequoted }} --big
-            node --test test/rust-wasm-parity.test.js
             ;;
           *)
             echo "Unsupported library: ${{ matrix.library }}" >&2

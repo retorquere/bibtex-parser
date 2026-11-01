@@ -1,6 +1,7 @@
 comments: []
 entries:
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Michael
           lastName: Hicks
@@ -11,8 +12,7 @@ entries:
       isbn: 0-69-697269-4
       location:
         - Palo Alto
-      options:
-        useprefix: 'true'
+      options: useprefix=true
       publisher:
         - Stanford Press
       title: >-
@@ -40,6 +40,8 @@ entries:
       options: verbatim
       publisher: literallist
       title: title
+    options:
+      useprefix: 'true'
     type: book
 errors: []
 jabref:

@@ -1,6 +1,7 @@
 comments: []
 entries:
-  - fields:
+  - annotations: {}
+    fields:
       annotation: relies on paricleParser fallback detection
       author:
         - firstName: François Hédelin
@@ -19,12 +20,12 @@ entries:
       author: creatorlist
       title: title
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: François Hédelin
           lastName: abbé d' Aubignac
-      options:
-        useprefix: 'true'
+      options: useprefix=true
       title: <span class="nocase">(abbé d' Aubignac) (François Hédelin)</span>
     input: |-
       @article{abbot3,
@@ -37,8 +38,11 @@ entries:
       author: creatorlist
       options: verbatim
       title: title
+    options:
+      useprefix: 'true'
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       date: '2013'
       editor:
         - firstName: Luís
@@ -81,7 +85,8 @@ entries:
       publisher: literallist
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Frank G.
           lastName: Bennett
@@ -116,15 +121,15 @@ entries:
       publisher: literallist
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: John
           lastName: Jones
           prefix: d'
       keywords:
         - imported
-      options:
-        useprefix: 'true'
+      options: useprefix=true
       title: Bugreports_<span class="nocase">ApostropheOnParticle</span>
     input: |-
       @article{bugreports_ApostropheOnParticle,
@@ -139,8 +144,11 @@ entries:
       keywords: verbatimlist
       options: verbatim
       title: title
+    options:
+      useprefix: 'true'
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Doe
           lastName: Co.
@@ -159,7 +167,8 @@ entries:
       keywords: verbatimlist
       title: title
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - name: U.S. Bureau of the Census
       keywords:
@@ -177,7 +186,8 @@ entries:
       keywords: verbatimlist
       title: title
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Bruce
           lastName: D'Arcus
@@ -196,7 +206,8 @@ entries:
       keywords: verbatimlist
       title: title
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: 'N'
           lastName: Family Name
@@ -215,7 +226,8 @@ entries:
       keywords: verbatimlist
       title: title
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Κώστας
           lastName: Καρυωτάκης
@@ -234,7 +246,8 @@ entries:
       keywords: verbatimlist
       title: title
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Eduard
           lastName: Happel
@@ -244,8 +257,7 @@ entries:
           prefix: von
       keywords:
         - imported
-      options:
-        useprefix: 'true'
+      options: useprefix=true
       title: Bugreports_<span class="nocase">parseName</span>
     input: |-
       @article{bugreports_parseName,
@@ -260,8 +272,11 @@ entries:
       keywords: verbatimlist
       options: verbatim
       title: title
+    options:
+      useprefix: 'true'
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: R.
           lastName: Reynoso-Santos
@@ -286,7 +301,8 @@ entries:
       keywords: verbatimlist
       title: title
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - name: Africa News
       keywords:
@@ -304,7 +320,8 @@ entries:
       keywords: verbatimlist
       title: title
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: John
           lastName: Doe
@@ -314,8 +331,7 @@ entries:
           prefix: van
       keywords:
         - imported
-      options:
-        useprefix: 'true'
+      options: useprefix=true
       title: >-
         Decorations_<span
         class="nocase">AndTermUnaffectedByNameDecorations</span>
@@ -332,16 +348,18 @@ entries:
       keywords: verbatimlist
       options: verbatim
       title: title
+    options:
+      useprefix: 'true'
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Doug
           lastName: Dipheria
           prefix: von
       keywords:
         - imported
-      options:
-        useprefix: 'true'
+      options: useprefix=true
       title: Disambiguate_<span class="nocase">CitationLabelInData</span>
     input: |-
       @article{disambiguate_CitationLabelInData,
@@ -356,8 +374,11 @@ entries:
       keywords: verbatimlist
       options: verbatim
       title: title
+    options:
+      useprefix: 'true'
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - name: Caritas Europa
         - name: JRS-Europe
@@ -376,7 +397,8 @@ entries:
       keywords: verbatimlist
       title: title
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Smith
           lastName: Co
@@ -395,7 +417,8 @@ entries:
       keywords: verbatimlist
       title: title
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Frank G.
           lastName: Bennett
@@ -415,7 +438,8 @@ entries:
       keywords: verbatimlist
       title: title
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Alexander
           lastName: Humboldt
@@ -437,8 +461,7 @@ entries:
       langid: anglais
       location:
         - Londres
-      options:
-        useprefix: 'true'
+      options: useprefix=true
       pagetotal: xviii+214
       publisher:
         - Routledge & Kegan Paul
@@ -477,8 +500,11 @@ entries:
       series: title
       shorttitle: title
       title: title
+    options:
+      useprefix: 'true'
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Doe
           lastName: Inc.
@@ -497,15 +523,15 @@ entries:
       keywords: verbatimlist
       title: title
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: S. P
           lastName: Berge
           prefix: la
       keywords:
         - imported
-      options:
-        useprefix: 'true'
+      options: useprefix=true
       title: Integration_<span class="nocase">DuplicateItem</span>
     input: |-
       @article{integration_DuplicateItem,
@@ -520,8 +546,11 @@ entries:
       keywords: verbatimlist
       options: verbatim
       title: title
+    options:
+      useprefix: 'true'
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Martin Luther
           lastName: King
@@ -553,15 +582,15 @@ entries:
       publisher: literallist
       title: title
     type: book
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Samuel
           lastName: Simone
           prefix: de
       keywords:
         - imported
-      options:
-        useprefix: 'true'
+      options: useprefix=true
       title: Magic_<span class="nocase">CapitalizeFirstOccurringNameParticle</span>
     input: |-
       @article{magic_CapitalizeFirstOccurringNameParticle,
@@ -576,16 +605,18 @@ entries:
       keywords: verbatimlist
       options: verbatim
       title: title
+    options:
+      useprefix: 'true'
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: John
           lastName: Doe
           prefix: von
       keywords:
         - imported
-      options:
-        useprefix: 'true'
+      options: useprefix=true
       title: Magic_<span class="nocase">NameParticle</span>
     input: |-
       @article{magic_NameParticle,
@@ -600,8 +631,11 @@ entries:
       keywords: verbatimlist
       options: verbatim
       title: title
+    options:
+      useprefix: 'true'
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - name: Blob
       keywords:
@@ -619,7 +653,8 @@ entries:
       keywords: verbatimlist
       title: title
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: James
           lastName: Doe
@@ -639,7 +674,8 @@ entries:
       keywords: verbatimlist
       title: title
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: James
           lastName: Doe
@@ -659,7 +695,8 @@ entries:
       keywords: verbatimlist
       title: title
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Jeffrey
           lastName: Doe
@@ -679,7 +716,8 @@ entries:
       keywords: verbatimlist
       title: title
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Noakes
           lastName: Inc.
@@ -698,15 +736,15 @@ entries:
       keywords: verbatimlist
       title: title
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Gerard
           lastName: Meer
           prefix: van der
       keywords:
         - imported
-      options:
-        useprefix: 'true'
+      options: useprefix=true
       title: Name_<span class="nocase">FormattingOfParticles</span>
     input: |-
       @article{name_FormattingOfParticles,
@@ -721,15 +759,17 @@ entries:
       keywords: verbatimlist
       options: verbatim
       title: title
+    options:
+      useprefix: 'true'
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Alan
           lastName: al- One
       keywords:
         - imported
-      options:
-        useprefix: 'true'
+      options: useprefix=true
       title: Name_<span class="nocase">HyphenatedNonDroppingParticle1</span>
     input: |-
       @article{name_HyphenatedNonDroppingParticle1,
@@ -744,8 +784,11 @@ entries:
       keywords: verbatimlist
       options: verbatim
       title: title
+    options:
+      useprefix: 'true'
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - name: Multi-National United
       keywords:
@@ -763,7 +806,8 @@ entries:
       keywords: verbatimlist
       title: title
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - name: São Paulo (Estado)
       keywords:
@@ -781,7 +825,8 @@ entries:
       keywords: verbatimlist
       title: title
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Rip
           lastName: Winkle
@@ -791,8 +836,7 @@ entries:
           suffix: III
       keywords:
         - imported
-      options:
-        useprefix: 'true'
+      options: useprefix=true
       title: >-
         Name_<span
         class="nocase">MixedFormatsInitialSortOrderAllWithDecorationsEtAl</span>
@@ -809,8 +853,11 @@ entries:
       keywords: verbatimlist
       options: verbatim
       title: title
+    options:
+      useprefix: 'true'
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - name: Alfred Benzon Foundation
         - name: James Benson Foundation
@@ -830,7 +877,8 @@ entries:
       keywords: verbatimlist
       title: title
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Jean
           lastName: La Fontaine
@@ -838,8 +886,7 @@ entries:
           suffix: III
       keywords:
         - imported
-      options:
-        useprefix: 'true'
+      options: useprefix=true
       title: Name_<span class="nocase">namepartAffixes</span>
     input: |-
       @article{name_namepartAffixes,
@@ -854,8 +901,11 @@ entries:
       keywords: verbatimlist
       options: verbatim
       title: title
+    options:
+      useprefix: 'true'
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Jean
           lastName: La Fontaine
@@ -875,15 +925,15 @@ entries:
       keywords: verbatimlist
       title: title
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Jean
           lastName: Fontaine
           prefix: de la
       keywords:
         - imported
-      options:
-        useprefix: 'true'
+      options: useprefix=true
       title: Name_<span class="nocase">ParsedNonDroppingParticleWithAffixes</span>
     input: |-
       @article{name_ParsedNonDroppingParticleWithAffixes,
@@ -898,8 +948,11 @@ entries:
       keywords: verbatimlist
       options: verbatim
       title: title
+    options:
+      useprefix: 'true'
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: François Hédelin
           lastName: Aubignac
@@ -907,8 +960,7 @@ entries:
           suffix: abbé d'
       keywords:
         - imported
-      options:
-        useprefix: 'true'
+      options: useprefix=true
       title: Name_<span class="nocase">ParsedNonDroppingParticleWithApostrophe</span>
     input: |-
       @article{name_ParsedNonDroppingParticleWithApostrophe,
@@ -923,8 +975,11 @@ entries:
       keywords: verbatimlist
       options: verbatim
       title: title
+    options:
+      useprefix: 'true'
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Eric
           lastName: Vlist
@@ -934,8 +989,7 @@ entries:
           prefix: van
       keywords:
         - imported
-      options:
-        useprefix: 'true'
+      options: useprefix=true
       title: Name_<span class="nocase">ParseNames</span>
     input: |-
       @article{name_ParseNames,
@@ -950,8 +1004,11 @@ entries:
       keywords: verbatimlist
       options: verbatim
       title: title
+    options:
+      useprefix: 'true'
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Onename
           lastName: One
@@ -966,8 +1023,7 @@ entries:
           lastName: Van Four
       keywords:
         - imported
-      options:
-        useprefix: 'true'
+      options: useprefix=true
       title: Name_<span class="nocase">ParticleCaps1</span>
     input: |-
       @article{name_ParticleCaps1,
@@ -982,8 +1038,11 @@ entries:
       keywords: verbatimlist
       options: verbatim
       title: title
+    options:
+      useprefix: 'true'
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Dick
           lastName: Van Dyke
@@ -1002,15 +1061,15 @@ entries:
       keywords: verbatimlist
       title: title
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: John
           lastName: Doe
           prefix: de la
       keywords:
         - imported
-      options:
-        useprefix: 'true'
+      options: useprefix=true
       title: Name_<span class="nocase">ParticleFormatting</span>
     input: |-
       @article{name_ParticleFormatting,
@@ -1025,8 +1084,11 @@ entries:
       keywords: verbatimlist
       options: verbatim
       title: title
+    options:
+      useprefix: 'true'
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Givenname
           lastName: Las Familyname
@@ -1095,8 +1157,7 @@ entries:
           prefix: ver
       keywords:
         - imported
-      options:
-        useprefix: 'true'
+      options: useprefix=true
       title: Name_<span class="nocase">ParticlesDemoteNonDroppingNever</span>
     input: |-
       @article{name_ParticlesDemoteNonDroppingNever,
@@ -1111,16 +1172,18 @@ entries:
       keywords: verbatimlist
       options: verbatim
       title: title
+    options:
+      useprefix: 'true'
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Jacques
           lastName: Doe
           prefix: van
       keywords:
         - imported
-      options:
-        useprefix: 'true'
+      options: useprefix=true
       title: Name_<span class="nocase">WesternArticularLowercase</span>
     input: |-
       @article{name_WesternArticularLowercase,
@@ -1135,8 +1198,11 @@ entries:
       keywords: verbatimlist
       options: verbatim
       title: title
+    options:
+      useprefix: 'true'
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Gérard
           lastName: Martinière
@@ -1144,8 +1210,7 @@ entries:
           suffix: III
       keywords:
         - imported
-      options:
-        useprefix: 'true'
+      options: useprefix=true
       title: Nameorder_<span class="nocase">Long</span>
     input: |-
       @article{nameorder_Long,
@@ -1160,8 +1225,11 @@ entries:
       keywords: verbatimlist
       options: verbatim
       title: title
+    options:
+      useprefix: 'true'
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Al-Khatib
           lastName: Organization
@@ -1180,7 +1248,8 @@ entries:
       keywords: verbatimlist
       title: title
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Alan
           lastName: De Quincey
@@ -1199,7 +1268,8 @@ entries:
       keywords: verbatimlist
       title: title
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Beijing
           lastName: Zoo
@@ -1219,7 +1289,8 @@ entries:
       keywords: verbatimlist
       title: title
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: ANZ
           lastName: Group
@@ -1238,7 +1309,8 @@ entries:
       keywords: verbatimlist
       title: title
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Peter A.C.
           lastName: Horvath
@@ -1248,8 +1320,7 @@ entries:
           prefix: in 't
       keywords:
         - imported
-      options:
-        useprefix: 'true'
+      options: useprefix=true
       title: Sort_<span class="nocase">LeadingApostropheOnNameParticle</span>
     input: |-
       @article{sort_LeadingApostropheOnNameParticle,
@@ -1264,16 +1335,18 @@ entries:
       keywords: verbatimlist
       options: verbatim
       title: title
+    options:
+      useprefix: 'true'
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: John
           lastName: Noakes
           prefix: di
       keywords:
         - imported
-      options:
-        useprefix: 'true'
+      options: useprefix=true
       title: Sort_<span class="nocase">NameParticleInNameSortFalse</span>
     input: |-
       @article{sort_NameParticleInNameSortFalse,
@@ -1288,8 +1361,11 @@ entries:
       keywords: verbatimlist
       options: verbatim
       title: title
+    options:
+      useprefix: 'true'
     type: article
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Jacob
           lastName: '[F]linders'

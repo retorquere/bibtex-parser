@@ -1,6 +1,7 @@
 comments: []
 entries:
-  - fields:
+  - annotations: {}
+    fields:
       author:
         - firstName: Karl
           lastName: Knoblauch
@@ -15,8 +16,7 @@ entries:
       langid: german
       location:
         - '[Marburg]'
-      options:
-        pseudoauthor: 'true'
+      options: pseudoauthor=true
       pagetotal: '72'
       publisher:
         - Krieger
@@ -49,6 +49,8 @@ entries:
       publisher: literallist
       shorttitle: title
       title: title
+    options:
+      pseudoauthor: 'true'
     type: book
 errors: []
 jabref:
