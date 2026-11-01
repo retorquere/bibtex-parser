@@ -179,7 +179,10 @@ impl Parser {
 
     /// Initialize a scalar-indexed parser with reusable macros and UTF-16 source-boundary metadata.
     /// Offsets start at zero; lines and columns start at one, and columns count UTF-16 code units.
-    fn new_with_macro_definitions( source: &str, macro_definitions: HashMap<String, Vec<Node>>) -> Self {
+    fn new_with_macro_definitions(
+        source: &str,
+        macro_definitions: HashMap<String, Vec<Node>>,
+    ) -> Self {
         let chars: Vec<char> = source.chars().collect();
         let mut positions = Vec::with_capacity(chars.len() + 1);
         let (mut offset, mut line, mut column) = (0, 1, 1);
@@ -699,7 +702,9 @@ impl Parser {
             }
             arguments.push(self.argument(math, environment_end));
         }
-        if matches!(name.as_str(), "url" | "href") && let Some(argument) = arguments.first() {
+        if matches!(name.as_str(), "url" | "href")
+            && let Some(argument) = arguments.first()
+        {
             // Serialize the destination as source text so embedded commands remain literal.
             let nodes = match argument.as_slice() {
                 [Node::Group(children, _)] => children.as_slice(),
@@ -2430,7 +2435,7 @@ impl LibraryRenderer {
                 let label = if name == "url" {
                     url.clone()
                 } else {
-                  self.render_argument(arguments, 1, context)
+                    self.render_argument(arguments, 1, context)
                 };
                 return format!("<a href=\"{url}\">{label}</a>");
             }

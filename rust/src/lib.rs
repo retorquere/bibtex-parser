@@ -1132,7 +1132,8 @@ const TITLE_FIELDS: &[&str] = &[
 
 // JabRef's `groups` field is nonstandard and must stay literal like the other verbatim fields.
 const VERBATIM_FIELDS: &[&str] = &[
-    "doi", "eprint", "file", "files", "pdf", "groups", "ids", "options", "url", "verba", "verbb", "verbc",
+    "doi", "eprint", "file", "files", "pdf", "groups", "ids", "options", "url", "verba", "verbb",
+    "verbc",
 ];
 
 const RICHTEXT_FIELDS: &[&str] = &["annotation", "comment", "annote", "review", "notes", "note"];
@@ -1304,11 +1305,7 @@ fn parse_creator(input: &str, entry_key: &str, renderer: &mut tex::LibraryRender
                 renderer
                     .render(
                         &unwrapped,
-                        tex::RenderContext::field(
-                            tex::RenderMode::Text,
-                            false,
-                            false,
-                        ),
+                        tex::RenderContext::field(tex::RenderMode::Text, false, false),
                     )
                     .trim()
                     .to_string(),
@@ -1320,11 +1317,7 @@ fn parse_creator(input: &str, entry_key: &str, renderer: &mut tex::LibraryRender
     let input = renderer
         .render(
             raw_input,
-            tex::RenderContext::field(
-                tex::RenderMode::Text,
-                false,
-                false,
-            ),
+            tex::RenderContext::field(tex::RenderMode::Text, false, false),
         )
         .trim()
         .to_string();
@@ -1420,11 +1413,7 @@ fn parse_creator(input: &str, entry_key: &str, renderer: &mut tex::LibraryRender
             renderer
                 .render(
                     word,
-                    tex::RenderContext::field(
-                        tex::RenderMode::Text,
-                        false,
-                        false,
-                    ),
+                    tex::RenderContext::field(tex::RenderMode::Text, false, false),
                 )
                 .trim()
                 .to_string()
@@ -1552,11 +1541,26 @@ fn field_mode(field: &str, options: &Options) -> String {
     let has_override = configured.is_some();
     let mut mode = "literal";
     for (candidate, matches_default) in [
-        ( "creatorlist", !has_override && CREATOR_FIELDS.contains(&field) ),
-        ( "title", !has_override && TITLE_FIELDS.contains(&field) ),
-        ( "verbatim", !has_override && VERBATIM_FIELDS.contains(&field) ),
-        ( "richtext", !has_override && RICHTEXT_FIELDS.contains(&field) ),
-        ( "literallist", !has_override && LIST_FIELDS.iter().any(|pattern| { wildflower::Pattern::new(pattern.to_lowercase()).matches(field) }) ),
+        (
+            "creatorlist",
+            !has_override && CREATOR_FIELDS.contains(&field),
+        ),
+        ("title", !has_override && TITLE_FIELDS.contains(&field)),
+        (
+            "verbatim",
+            !has_override && VERBATIM_FIELDS.contains(&field),
+        ),
+        (
+            "richtext",
+            !has_override && RICHTEXT_FIELDS.contains(&field),
+        ),
+        (
+            "literallist",
+            !has_override
+                && LIST_FIELDS
+                    .iter()
+                    .any(|pattern| wildflower::Pattern::new(pattern.to_lowercase()).matches(field)),
+        ),
     ] {
         if configured.is_some_and(|configured| configured == candidate) || matches_default {
             mode = candidate;
@@ -1589,20 +1593,15 @@ fn annotation_parts(field: &str) -> Option<(String, String)> {
         .map(|(field, name)| (field.to_owned(), name.to_owned()))
 }
 
-/// Parses Biber annotations into ordered, typed clauses with explicit scopes and indexes.
-fn parse_annotation(
-    input: &str,
-    renderer: &mut tex::LibraryRenderer,
-    raw: bool,
-) -> Vec<Annotation> {
+/// Parses raw Biber annotation key/value clauses with explicit scopes and indexes.
+fn parse_annotation(input: &str) -> Vec<Annotation> {
     let mut output = Vec::new();
-    for annotation in split_annotation_items(input) {
+    for annotation in split_annotation(input, ';') {
         let Some((key, value)) = annotation.split_once('=') else {
             continue;
         };
         let key = key.trim();
-        let value = value.trim();
-        let parsed = parse_annotation_content(value, renderer, raw);
+        let parsed = parse_annotation_content(value);
 
         if let Some((index, part)) = key.split_once(':')
             && let Ok(index) = index.parse::<usize>()
@@ -1630,79 +1629,68 @@ fn parse_annotation(
     output
 }
 
-/// Parses one quoted scalar or unquoted comma-separated annotation value.
-fn parse_annotation_content(
-    value: &str,
-    renderer: &mut tex::LibraryRenderer,
-    raw: bool,
-) -> AnnotationContent {
-    if value.starts_with('"') && value.ends_with('"') && value.len() >= 2 {
-        AnnotationContent::Text(render_annotation_text(
-            &value[1..value.len() - 1],
-            renderer,
-            raw,
-        ))
+/// Parses one quoted scalar or an unquoted comma-separated annotation list.
+fn parse_annotation_content(value: &str) -> AnnotationContent {
+    let values = split_annotation(value, ',');
+    if values.len() == 1 && value.trim().starts_with('"') {
+        AnnotationContent::Text(parse_annotation_literal(values[0]))
     } else {
-        AnnotationContent::List(
-            split_top_level(value, ',')
-                .into_iter()
-                .map(|part| render_annotation_text(&part, renderer, raw))
-                .collect(),
-        )
+        AnnotationContent::List(values.into_iter().map(parse_annotation_literal).collect())
     }
 }
 
-/// Splits annotation clauses on semicolons outside quoted and braced values.
-fn split_annotation_items(input: &str) -> Vec<&str> {
-    let mut items = Vec::new();
+/// Splits clauses or values without treating escaped quotes inside strings as delimiters.
+fn split_annotation(input: &str, separator: char) -> Vec<&str> {
+    let mut parts = Vec::new();
     let mut start = 0;
-    let mut depth = 0usize;
     let mut quoted = false;
     let mut escaped = false;
     for (index, character) in input.char_indices() {
-        if escaped {
+        if quoted && escaped {
             escaped = false;
             continue;
         }
-        if character == '\\' {
+        if quoted && character == '\\' {
             escaped = true;
             continue;
         }
-        if character == '"' && depth == 0 {
+        if character == '"' {
             quoted = !quoted;
-        } else if !quoted {
-            match character {
-                '{' => depth += 1,
-                '}' => depth = depth.saturating_sub(1),
-                ';' if depth == 0 => {
-                    items.push(&input[start..index]);
-                    start = index + character.len_utf8();
-                }
-                _ => {}
-            }
+        } else if character == separator && !quoted {
+            parts.push(&input[start..index]);
+            start = index + character.len_utf8();
         }
     }
-    items.push(&input[start..]);
-    items
+    parts.push(&input[start..]);
+    parts
 }
 
-/// Renders one annotation value while respecting raw parsing mode.
-fn render_annotation_text(
-    value: &str,
-    renderer: &mut tex::LibraryRenderer,
-    raw: bool,
-) -> String {
-    if raw {
-        value.to_owned()
-    } else {
-        renderer
-            .render(
-                value,
-                tex::RenderContext::field(tex::RenderMode::Text, false, false),
-            )
-            .trim()
-            .to_string()
+/// Removes JSON-style quotes and unescapes quotes while preserving other raw backslash sequences.
+fn parse_annotation_literal(value: &str) -> String {
+    let value = value.trim();
+    let Some(contents) = value
+        .strip_prefix('"')
+        .and_then(|value| value.strip_suffix('"'))
+    else {
+        return value.to_owned();
+    };
+    let mut decoded = String::new();
+    let mut characters = contents.chars();
+    while let Some(character) = characters.next() {
+        if character == '\\' {
+            match characters.next() {
+                Some('"') => decoded.push('"'),
+                Some(escaped) => {
+                    decoded.push('\\');
+                    decoded.push(escaped);
+                }
+                None => decoded.push('\\'),
+            }
+        } else {
+            decoded.push(character);
+        }
     }
+    decoded
 }
 
 /// Finalizes rendered text in an ordered sequence of annotation clauses.
@@ -1776,7 +1764,7 @@ fn remove_outer_braces_fields(options: &Options) -> Vec<String> {
             .chain(LIST_FIELDS)
             .map(|field| (*field).to_string()),
     );
-            fields.push("keywords".to_string());
+    fields.push("keywords".to_string());
     fields.extend(options.field_mode.keys().cloned());
     fields.retain(|field| matches!(field_mode(field, options).as_str(), "title" | "verbatim"));
     fields.sort();
@@ -1797,11 +1785,7 @@ fn render_string_value(
     }
     renderer.render(
         value,
-        tex::RenderContext::field(
-            tex::RenderMode::Text,
-            false,
-            false,
-        ),
+        tex::RenderContext::field(tex::RenderMode::Text, false, false),
     )
 }
 
@@ -1968,22 +1952,15 @@ where
         "strict" => tex::CaseProtection::Strict,
         _ => tex::CaseProtection::AsNeeded,
     };
-    let mut renderer = tex::LibraryRenderer::new(
-        options.unsupported,
-        !options.rich_url,
-        case_protection,
-    );
+    let mut renderer =
+        tex::LibraryRenderer::new(options.unsupported, !options.rich_url, case_protection);
     let preambles = verbatim.preambles.clone();
     if !options.raw {
         // Process preambles first so their macro definitions are available to later strings.
         for preamble in &preambles {
             let _ = renderer.render(
                 preamble,
-                tex::RenderContext::field(
-                    tex::RenderMode::Text,
-                    false,
-                    false,
-                ),
+                tex::RenderContext::field(tex::RenderMode::Text, false, false),
             );
         }
     }
@@ -2023,10 +2000,7 @@ where
         for (field, value) in entry.fields {
             if annotation_parts(&field).is_some() {
                 mode.insert(field.clone(), "literal".to_string());
-                annotations.insert(
-                    field.clone(),
-                    parse_annotation(&value, &mut renderer, options.raw),
-                );
+                annotations.insert(field.clone(), parse_annotation(&value));
                 fields.insert(field, FieldValue::Text(value));
                 continue;
             }
@@ -2050,7 +2024,7 @@ where
                 }
 
                 for group in groups {
-                  insert(&mut jabref.root, &group, &entry.key);
+                    insert(&mut jabref.root, &group, &entry.key);
                 }
                 // no continue here, retain groups
             }
@@ -2077,11 +2051,7 @@ where
                     renderer
                         .render(
                             &keyword,
-                            tex::RenderContext::field(
-                                tex::RenderMode::Text,
-                                false,
-                                false,
-                            ),
+                            tex::RenderContext::field(tex::RenderMode::Text, false, false),
                         )
                         .trim()
                         .to_string()
@@ -2116,9 +2086,7 @@ where
                     let options = value
                         .split(',')
                         .filter_map(|option| option.split_once('='))
-                        .map(|(key, value)| {
-                            (key.trim().to_string(), value.trim().to_string())
-                        })
+                        .map(|(key, value)| (key.trim().to_string(), value.trim().to_string()))
                         .collect();
                     fields.insert(
                         field,
@@ -2156,11 +2124,7 @@ where
                         renderer
                             .render(
                                 element,
-                                tex::RenderContext::field(
-                                    tex::RenderMode::Text,
-                                    false,
-                                    false,
-                                ),
+                                tex::RenderContext::field(tex::RenderMode::Text, false, false),
                             )
                             .trim()
                             .to_string()
@@ -2978,11 +2942,17 @@ mod tests {
                 ("it", "<i>inside</i>"),
                 ("sl", "<i>inside</i>"),
                 ("bf", "<b>inside</b>"),
-                ("sc", "<span style=\"font-variant:small-caps;\">inside</span>"),
+                (
+                    "sc",
+                    "<span style=\"font-variant:small-caps;\">inside</span>",
+                ),
                 ("tt", "<code>inside</code>"),
             ] {
                 assert_eq!(
-                    super::tex::render(&format!(r"\begin{{{name}}}inside\end{{{name}}} normal"), mode),
+                    super::tex::render(
+                        &format!(r"\begin{{{name}}}inside\end{{{name}}} normal"),
+                        mode
+                    ),
                     format!("{expected} normal"),
                     "{name} in {mode}"
                 );
@@ -2999,7 +2969,10 @@ mod tests {
         assert!(parsed.errors.is_empty(), "{:?}", parsed.errors);
         assert_eq!(
             parsed.entries[0].fields["title"],
-            FieldValue::Text("Normal and <i>italics and <b>bold <i>and italics</i> and bold</b> and normal</i>".into())
+            FieldValue::Text(
+                "Normal and <i>italics and <b>bold <i>and italics</i> and bold</b> and normal</i>"
+                    .into()
+            )
         );
     }
 
@@ -3134,13 +3107,16 @@ mod tests {
     #[test]
     /// Keep mixed wrapper boundaries intact and emit HTML even when collapsing is disabled.
     fn collapse_markup_distinguishes_nocase_and_smallcaps() {
-        let internal = "<nocase><smallcaps>A</smallcaps></nocase> <smallcaps>B</smallcaps> <nocase>C</nocase>";
+        let internal =
+            "<nocase><smallcaps>A</smallcaps></nocase> <smallcaps>B</smallcaps> <nocase>C</nocase>";
         let expected = "<span class=\"nocase\"><span style=\"font-variant:small-caps;\">A</span></span> <span style=\"font-variant:small-caps;\">B</span> <span class=\"nocase\">C</span>";
         assert_eq!(super::tex::collapse_markup(internal), internal);
         assert_eq!(super::tex::finalize_markup(internal, true), expected);
         assert_eq!(super::tex::finalize_markup(internal, false), expected);
         assert_eq!(
-            super::tex::collapse_markup("<nocase><smallcaps>A</smallcaps></nocase> <nocase><smallcaps>B</smallcaps></nocase>"),
+            super::tex::collapse_markup(
+                "<nocase><smallcaps>A</smallcaps></nocase> <nocase><smallcaps>B</smallcaps></nocase>"
+            ),
             "<nocase><smallcaps>A B</smallcaps></nocase>"
         );
         assert_eq!(
@@ -3205,30 +3181,19 @@ mod tests {
             ),
             "An <nocase>unusual name</nocase>"
         );
-        let mut strict_renderer = super::tex::LibraryRenderer::new(
-            None,
-            false,
-            super::tex::CaseProtection::Strict,
-        );
+        let mut strict_renderer =
+            super::tex::LibraryRenderer::new(None, false, super::tex::CaseProtection::Strict);
         assert_eq!(
             strict_renderer.render(
                 "An $n$",
-                super::tex::RenderContext::field(
-                    super::tex::RenderMode::Text,
-                    true,
-                    true,
-                ),
+                super::tex::RenderContext::field(super::tex::RenderMode::Text, true, true,),
             ),
             "An <case-protection>n</case-protection>"
         );
         assert_eq!(
             strict_renderer.render(
                 "{Astrophysical} {$\\rightarrow$} {Reactions}",
-                super::tex::RenderContext::field(
-                    super::tex::RenderMode::Text,
-                    true,
-                    true,
-                ),
+                super::tex::RenderContext::field(super::tex::RenderMode::Text, true, true,),
             ),
             "<case-protection>Astrophysical</case-protection> <case-protection>→</case-protection> <case-protection>Reactions</case-protection>"
         );
@@ -3245,11 +3210,7 @@ mod tests {
         assert_eq!(
             strict_renderer.render(
                 r"{\mbox{$\mu$}} {J}",
-                super::tex::RenderContext::field(
-                    super::tex::RenderMode::Text,
-                    true,
-                    true,
-                ),
+                super::tex::RenderContext::field(super::tex::RenderMode::Text, true, true,),
             ),
             "<case-protection>𝜇</case-protection> <case-protection>J</case-protection>"
         );
@@ -3456,7 +3417,10 @@ mod tests {
     /// Checks style macros consume one unbraced character, a group, or a nested command.
     fn tex_style_macros_consume_single_unbraced_argument() {
         for (source, expected) in [
-            (r"Stability analysis and \emph optimization", "Stability analysis and <i>o</i>ptimization"),
+            (
+                r"Stability analysis and \emph optimization",
+                "Stability analysis and <i>o</i>ptimization",
+            ),
             (r"\emph{optimization}", "<i>optimization</i>"),
             (r"\emph \textbf{optimization}", "<i><b>optimization</b></i>"),
             (r"\textbf optimization", "<b>o</b>ptimization"),
@@ -3464,12 +3428,25 @@ mod tests {
             (r"\textit optimization", "<i>o</i>ptimization"),
             (r"\textsl optimization", "<i>o</i>ptimization"),
             (r"\mkbibemph optimization", "<i>o</i>ptimization"),
-            (r"\textsc optimization", "<span style=\"font-variant:small-caps;\">o</span>ptimization"),
+            (
+                r"\textsc optimization",
+                "<span style=\"font-variant:small-caps;\">o</span>ptimization",
+            ),
             (r"\texttt optimization", "<code>o</code>ptimization"),
-            ("\\emph \u{1f600}optimization", "<i>\u{1f600}</i>optimization"),
+            (
+                "\\emph \u{1f600}optimization",
+                "<i>\u{1f600}</i>optimization",
+            ),
         ] {
-            let parsed = parse(&format!("@article{{x,note={{{source}}}}}"), Options::default());
-            assert_eq!(parsed.entries[0].fields["note"], FieldValue::Text(expected.into()), "{source}");
+            let parsed = parse(
+                &format!("@article{{x,note={{{source}}}}}"),
+                Options::default(),
+            );
+            assert_eq!(
+                parsed.entries[0].fields["note"],
+                FieldValue::Text(expected.into()),
+                "{source}"
+            );
         }
     }
 
@@ -3544,11 +3521,7 @@ mod tests {
         assert_eq!(
             creator_accent_state.render(
                 r"\'{a b}",
-                super::tex::RenderContext::field(
-                    super::tex::RenderMode::Text,
-                    false,
-                    false,
-                ),
+                super::tex::RenderContext::field(super::tex::RenderMode::Text, false, false,),
             ),
             ""
         );
@@ -3684,11 +3657,8 @@ mod tests {
     #[test]
     /// Checks field-, item-, and part-scoped annotations retain typed scopes and one-based indexes.
     fn parses_all_annotation_scopes() {
-        let mut renderer = super::tex::LibraryRenderer::default();
         let annotations = super::parse_annotation(
             "field=whole;1=first;2=second,extra;3:given=Given;3:family=Family;4=last",
-            &mut renderer,
-            true,
         );
         assert_eq!(
             annotations,
@@ -3719,6 +3689,56 @@ mod tests {
                     value: super::AnnotationContent::List(vec!["last".into()]),
                 },
             ]
+        );
+    }
+
+    #[test]
+    /// Decodes JSON annotation strings before splitting list and clause separators.
+    fn parses_annotation_json_strings_as_literals() {
+        let annotations =
+            super::parse_annotation(r##"field="say, \"hi\"; \\textit";1=bare,"two, values""##);
+        assert_eq!(
+            annotations,
+            vec![
+                super::Annotation::Field {
+                    value: super::AnnotationContent::Text("say, \"hi\"; \\\\textit".into(),),
+                },
+                super::Annotation::Item {
+                    index: std::num::NonZeroUsize::new(1).unwrap(),
+                    value: super::AnnotationContent::List(vec![
+                        "bare".into(),
+                        "two, values".into(),
+                    ]),
+                },
+            ]
+        );
+    }
+
+    #[test]
+    /// Parses the supplied BibLaTeX annotation directly from its raw field text.
+    fn parses_annotation_from_raw_source() {
+        let parsed = super::parse(
+            r#"@ONLINE{10.15:104,
+  ENTRYSUBTYPE       = {Twitter profile},
+  AUTHOR             = {{APA Style}},
+  AUTHOR+an:username = {1="@APA\_Style"},
+  TITLE              = {Tweets},
+  EPRINT             = {Twitter},
+  URL                = {https://twitter.com/APA_Style},
+  URLDATE            = {2019-11-01}
+}"#,
+            super::Options::default(),
+        );
+        assert_eq!(
+            parsed.entries[0].annotations["author+an:username"],
+            vec![super::Annotation::Item {
+                index: std::num::NonZeroUsize::new(1).unwrap(),
+                value: super::AnnotationContent::Text("@APA\\_Style".into()),
+            }]
+        );
+        assert_eq!(
+            parsed.entries[0].fields["author+an:username"],
+            super::FieldValue::Text("1=\"@APA\\_Style\"".into())
         );
     }
 
@@ -3983,7 +4003,13 @@ mod tests {
             FieldValue::List(vec!["parent".into()])
         );
 
-        let raw = parse(source, Options { raw: true, ..Options::default() });
+        let raw = parse(
+            source,
+            Options {
+                raw: true,
+                ..Options::default()
+            },
+        );
         assert_eq!(
             raw.entries[0].fields["related"],
             FieldValue::List(vec!["ref1".into(), "ref2".into()])
