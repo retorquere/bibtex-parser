@@ -193,6 +193,13 @@ test('sentence casing lowercases capitals inside hyphenated words', () => {
   assert.equal(bibtex.toSentenceCase('K-Cap Proceedings', options), 'K-cap proceedings')
 })
 
+test('english language selection uses language identifiers', () => {
+  const source = '@article{x,langid={en},title={A TITLE}}'
+  assert.doesNotThrow(() => bibtex.parse(source, { english: ['en'] }))
+  assert.throws(() => bibtex.parse(source, { english: true }), /english must be an array/)
+  assert.doesNotThrow(() => bibtex.parse(source, { sentenceCase: false }))
+})
+
 for (const [name, parse] of [['parse', bibtex.parse], ['parseAsync', bibtex.parseAsync]]) {
   const source = String.raw`@article{unknown, note = {before \unknownmacro after}}`
 
@@ -269,7 +276,7 @@ for (const bibfile of testcases) {
     `${section}=${basename}`,
     path.resolve(here, 'snapshots', settings, section, basename + '.yaml'),
     {
-      english: config.sentenceCase.startsWith('on'),
+      english: config.sentenceCase.startsWith('on') ? bibtex.English : [],
       languageAsLangid: config.tests.language.includes(basename),
       sentenceCase: {
         preserveQuoted: config.preserveQuoted,

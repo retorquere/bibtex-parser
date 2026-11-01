@@ -198,9 +198,9 @@ export interface Options {
    * - en-za
    * - en-zw
    *
-   * If you pass an empty array, or `false`, no sentence casing will be applied (even when there's no language field).
+  * If you pass an empty array, no sentence casing will be applied (even when there's no language field).
    */
-  english?: string[] | boolean
+  english?: string[]
 
   /**
    * By default, `langid` and `hyphenation` are used to determine whether an entry is English, but some sources (ab)use the `language` field
@@ -1351,7 +1351,7 @@ class BibTeXParser {
     if (options.sentenceCase === false) {
       options = {
         ...options,
-        english: false,
+        english: [],
         sentenceCase: {
           guess: false,
           subSentence: false,
@@ -1378,8 +1378,11 @@ class BibTeXParser {
       return this.wildcardPattern(pattern)
     })
 
-    if (typeof this.options.english === 'boolean') this.options.english = this.options.english ? English : []
-    this.options.english = (this.options.english as string[]).map(langid => langid.toLowerCase())
+    const english = this.options.english ?? English
+    if (!Array.isArray(english) || english.some(langid => typeof langid !== 'string')) {
+      throw new TypeError('english must be an array of language identifiers')
+    }
+    this.options.english = english.map(langid => langid.toLowerCase())
 
     this.fieldMode = Object.entries(FieldMode).reduce((acc: typeof FieldMode, [mode, test]: [string, (RegExp | string)[]]) => {
       const strings = test.filter(fieldname_or_regex => typeof fieldname_or_regex === 'string' && !this.options.fieldMode![fieldname_or_regex])
