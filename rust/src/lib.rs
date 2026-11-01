@@ -1999,7 +1999,7 @@ where
         let mut keywords = Vec::new();
         for (field, value) in entry.fields {
             if annotation_parts(&field).is_some() {
-                mode.insert(field.clone(), "literal".to_string());
+                mode.insert(field.clone(), "verbatim".to_string());
                 annotations.insert(field.clone(), parse_annotation(&value));
                 fields.insert(field, FieldValue::Text(value));
                 continue;
@@ -3633,13 +3633,13 @@ mod tests {
     }
 
     #[test]
-    /// Checks literal field modes and preserves annotation source text beside parsed clauses.
+    /// Checks field modes and preserves raw annotation source beside parsed clauses.
     fn parses_plus_field_fixture_like_default_case() {
         let parsed = fixture(include_str!("../../test/other/plus-field.bib"));
         let entry = &parsed.entries[0];
         assert_eq!(entry.key, "9.8:11");
         assert_eq!(entry.mode["author"], "creatorlist");
-        assert_eq!(entry.mode["author+an:username"], "literal");
+        assert_eq!(entry.mode["author+an:username"], "verbatim");
         assert_eq!(
             entry.fields["author+an:username"],
             FieldValue::Text("1=\"@ausername\"".into())

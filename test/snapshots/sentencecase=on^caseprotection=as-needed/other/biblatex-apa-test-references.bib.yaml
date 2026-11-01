@@ -251,7 +251,7 @@ entries:
     key: 9.8:11
     mode:
       author: creatorlist
-      author+an:username: literal
+      author+an:username: verbatim
       date: literal
     type: book
   - annotations: {}
@@ -4667,7 +4667,7 @@ entries:
     key: 10.4:56
     mode:
       author: creatorlist
-      author+an:role: literal
+      author+an:role: verbatim
       date: literal
       institution: literallist
       number: literal
@@ -5294,7 +5294,7 @@ entries:
     key: 10.7:67r
     mode:
       author: creatorlist
-      author+an:role: literal
+      author+an:role: verbatim
       date: literal
       entrysubtype: literal
       title: title
@@ -5441,7 +5441,7 @@ entries:
     key: 10.7:69r
     mode:
       author: creatorlist
-      author+an:role: literal
+      author+an:role: verbatim
       date: literal
       entrysubtype: literal
       title: title
@@ -6130,7 +6130,7 @@ entries:
     key: 10.12:84a
     mode:
       author: creatorlist
-      author+an:role: literal
+      author+an:role: verbatim
       date: literal
       entrysubtype: literal
       publisher: literallist
@@ -6176,7 +6176,7 @@ entries:
     key: 10.12:84b
     mode:
       author: creatorlist
-      author+an:role: literal
+      author+an:role: verbatim
       date: literal
       entrysubtype: literal
       note: richtext
@@ -6220,7 +6220,7 @@ entries:
     key: 10.12:84c
     mode:
       author: creatorlist
-      author+an:role: literal
+      author+an:role: verbatim
       date: literal
       entrysubtype: literal
       note: richtext
@@ -6279,7 +6279,7 @@ entries:
     key: 10.12:85
     mode:
       author: creatorlist
-      author+an:role: literal
+      author+an:role: verbatim
       date: literal
       entrysubtype: literal
       origtitle: title
@@ -6322,7 +6322,7 @@ entries:
     key: 10.12:86
     mode:
       author: creatorlist
-      author+an:role: literal
+      author+an:role: verbatim
       date: literal
       entrysubtype: literal
       publisher: literallist
@@ -6371,7 +6371,7 @@ entries:
     key: 10.12:87a
     mode:
       author: creatorlist
-      author+an:role: literal
+      author+an:role: verbatim
       date: literal
       entrysubtype: literal
       execproducer: literal
@@ -6428,7 +6428,7 @@ entries:
     key: 10.12:87b
     mode:
       author: creatorlist
-      author+an:role: literal
+      author+an:role: verbatim
       date: literal
       entrysubtype: literal
       execproducer: literal
@@ -6600,7 +6600,7 @@ entries:
     key: 10.12:90b
     mode:
       author: creatorlist
-      author+an:username: literal
+      author+an:username: verbatim
       date: literal
       entrysubtype: literal
       publisher: literallist
@@ -6877,7 +6877,7 @@ entries:
     key: 10.13:93
     mode:
       author: creatorlist
-      author+an:role: literal
+      author+an:role: verbatim
       date: literal
       entrysubtype: literal
       publisher: literallist
@@ -6921,7 +6921,7 @@ entries:
     key: 10.13:94
     mode:
       author: creatorlist
-      author+an:role: literal
+      author+an:role: verbatim
       date: literal
       entrysubtype: literal
       maintitle: title
@@ -7388,7 +7388,7 @@ entries:
     key: 10.15:103a
     mode:
       author: creatorlist
-      author+an:username: literal
+      author+an:username: verbatim
       date: literal
       entrysubtype: literal
       eprint: verbatim
@@ -7431,7 +7431,7 @@ entries:
     key: 10.15:103b
     mode:
       author: creatorlist
-      author+an:username: literal
+      author+an:username: verbatim
       date: literal
       entrysubtype: literal
       eprint: verbatim
@@ -7474,7 +7474,7 @@ entries:
     key: 10.15:103c
     mode:
       author: creatorlist
-      author+an:username: literal
+      author+an:username: verbatim
       date: literal
       entrysubtype: literal
       eprint: verbatim
@@ -7486,7 +7486,7 @@ entries:
       author+an:username:
         - index: 1
           scope: item
-          value: '@APA_Style'
+          value: '@APA\_Style'
     fields:
       author:
         - name: APA Style
@@ -7515,7 +7515,7 @@ entries:
     key: 10.15:104
     mode:
       author: creatorlist
-      author+an:username: literal
+      author+an:username: verbatim
       entrysubtype: literal
       eprint: verbatim
       title: title
@@ -7700,7 +7700,7 @@ entries:
     key: 10.15:107
     mode:
       author: creatorlist
-      author+an:username: literal
+      author+an:username: verbatim
       date: literal
       entrysubtype: literal
       eprint: verbatim
@@ -7740,7 +7740,7 @@ entries:
     key: 10.15:108
     mode:
       author: creatorlist
-      author+an:username: literal
+      author+an:username: verbatim
       entrysubtype: literal
       eprint: verbatim
       title: title
@@ -7780,7 +7780,7 @@ entries:
     key: 10.15:109
     mode:
       author: creatorlist
-      author+an:username: literal
+      author+an:username: verbatim
       date: literal
       entrysubtype: literal
       eprint: verbatim
@@ -8150,9 +8150,9 @@ entries:
     key: 11.4:5
     mode:
       citation: literal
-      citation+an:citedate: literal
-      citation+an:citeinfo: literal
-      citation+an:citeorg: literal
+      citation+an:citedate: verbatim
+      citation+an:citeinfo: verbatim
+      citation+an:citeorg: verbatim
       date: literal
       origdate: literal
       title: title
@@ -8216,8 +8216,8 @@ entries:
     key: 11.4:7
     mode:
       citation: literal
-      citation+an:citedate: literal
-      citation+an:citeorg: literal
+      citation+an:citedate: verbatim
+      citation+an:citeorg: verbatim
       date: literal
       title: title
       url: verbatim
