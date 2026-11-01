@@ -28,7 +28,7 @@
     "build:types": "tsc --emitDeclarationOnly -d -p js/tsconfig.esm.json",
     "build:ts": "npm run build:esm && npm run build:types",
     "build:wasm": "node rust/build-wasm.mjs",
-    "bench:parsers": "npm run build:ts && npm run build:wasm && node test/parser-benchmark.mjs",
+    "bench": "npm run build:ts && npm run build:wasm && node test/parser-benchmark.mjs",
     "prebuild": "rm -rf dist && mkdir -p dist/data && cp data/*.json dist/data && ./build/abbr.py && ./build/prepositions.py",
     "build": "npm run build:wasm",
     "prebuild:all": "npm run prebuild",

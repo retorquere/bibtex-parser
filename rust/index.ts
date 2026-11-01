@@ -130,8 +130,12 @@ export type AnnotationFields = Partial<Record<`${string}+an${string}`, Annotatio
 
 /** The known structured fields in a normalized entry. */
 export type TypedFields = CreatorFields & ArrayFields & AnnotationFields & { options?: OptionMap }
-/** Normalized fields with precise types for field names handled by the default parser modes. */
-export type Fields = TypedFields & Omit<Record<string, FieldValue>, keyof TypedFields>
+/** Normalized fields with precise default-mode properties and typed fallback values for other names. */
+export interface Fields extends CreatorFields, ArrayFields {
+  [field: string]: FieldValue | undefined
+  [field: `${string}+an${string}`]: Annotation[] | undefined
+  options?: OptionMap
+}
 
 /** A normalized BibTeX entry returned by the parser. */
 export interface Entry {
