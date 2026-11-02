@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Roger D.
           lastName: Blandford
@@ -20,11 +19,14 @@ entries:
       }
     key: Blandford2006
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       publisher: literallist
       title: title
     type: book
+    verbatim:
+      author: Blandford, Roger D. and Thorne, Kip S.
+      publisher: '{Caltech}'
 errors: []
 jabref:
   root: []

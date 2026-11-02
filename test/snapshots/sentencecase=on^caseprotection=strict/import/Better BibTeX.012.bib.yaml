@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Niklas
           lastName: Möller
@@ -22,12 +21,15 @@ entries:
       }
     key: moller2012conceptsrisksafety
     mode:
-      author: creatorlist
+      author: namelist
       booktitle: title
       publisher: literallist
       title: title
       year: literal
     type: incollection
+    verbatim:
+      author: M\"{o}ller, Niklas
+      publisher: '{Springer}'
 errors: []
 jabref:
   root: []

@@ -1,13 +1,13 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       url: https://example.com/test{thing}
     input: '@article{test, url = {https://example.com/test{thing}}}'
     key: test
     mode:
       url: verbatim
     type: article
+    verbatim: {}
 errors: []
 jabref:
   root: []

@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: John R.
           lastName: Searle
@@ -31,7 +30,7 @@ entries:
       }
     key: searle_how_1964
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       doi: verbatim
       issn: literal
@@ -42,8 +41,9 @@ entries:
       title: title
       volume: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Searle, John R.
+  - fields:
       author:
         - firstName: Guillaume
           lastName: Tusseau
@@ -71,7 +71,7 @@ entries:
       }
     key: tusseau_critique_2009
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       journaltitle: literal
       langid: literal
@@ -81,6 +81,8 @@ entries:
       shorttitle: title
       title: title
     type: article
+    verbatim:
+      author: Tusseau, Guillaume
 errors: []
 jabref:
   root: []

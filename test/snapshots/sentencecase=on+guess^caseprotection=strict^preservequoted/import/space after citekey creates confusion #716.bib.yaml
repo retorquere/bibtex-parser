@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - lastName: Hoffmann
       title: Phase transitions
@@ -12,11 +11,12 @@ entries:
       }
     key: HoSp-87
     mode:
-      author: creatorlist
+      author: namelist
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Hoffmann
+  - fields:
       editor:
         - lastName: Sprekels
       title: Free boundary problems
@@ -27,9 +27,11 @@ entries:
       }
     key: HoSp-90
     mode:
-      editor: creatorlist
+      editor: namelist
       title: title
     type: book
+    verbatim:
+      editor: Sprekels
 errors: []
 jabref:
   root: []

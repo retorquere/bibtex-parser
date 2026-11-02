@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: R.
           lastName: Held
@@ -35,7 +34,7 @@ entries:
       }
     key: Held_1998
     mode:
-      author: creatorlist
+      author: namelist
       doi: verbatim
       journal: literal
       month: literal
@@ -45,8 +44,11 @@ entries:
       volume: literal
       year: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: >-
+        Held, R. and Crawford, D. E. and Johnston, A. M. and Dabiran, A. M. and
+        Cohen, P. I.
+  - fields:
       author:
         - firstName: Stacia
           lastName: Keller
@@ -94,7 +96,7 @@ entries:
       }
     key: Keller_2014
     mode:
-      author: creatorlist
+      author: namelist
       doi: verbatim
       journal: literal
       month: literal
@@ -104,8 +106,12 @@ entries:
       volume: literal
       year: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: >-
+        Keller, Stacia and Li, Haoran and Laurent, Matthew and Hu, Yanling and
+        Pfaff, Nathan and Lu, Jing and Brown, David F and Fichtenbaum, Nicholas
+        A and Speck, James S and DenBaars, Steven P and Mishra, Umesh K
+  - fields:
       author:
         - firstName: Benjamin
           lastName: Leung
@@ -149,7 +155,7 @@ entries:
       }
     key: Leung_2012
     mode:
-      author: creatorlist
+      author: namelist
       doi: verbatim
       journal: literal
       month: literal
@@ -159,8 +165,12 @@ entries:
       volume: literal
       year: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: >-
+        Leung, Benjamin and Sun, Qian and Yerino, Christopher and Zhang, Yu and
+        Han, Jung and Hyun Kong, Bo and Koun Cho, Hyung and Liao, Kuan-Yung and
+        Li, Yun-Li
+  - fields:
       author:
         - firstName: M.
           lastName: Niehle
@@ -196,7 +206,7 @@ entries:
       }
     key: Niehle_2015
     mode:
-      author: creatorlist
+      author: namelist
       doi: verbatim
       journal: literal
       month: literal
@@ -206,8 +216,11 @@ entries:
       volume: literal
       year: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: >-
+        Niehle, M. and Trampert, A. and Albert, S. and {Bengoechea-Encabo}, A.
+        and Calleja, E.
+  - fields:
       author:
         - firstName: Kanako
           lastName: Shojiki
@@ -247,7 +260,7 @@ entries:
       }
     key: Shojiki_2015
     mode:
-      author: creatorlist
+      author: namelist
       doi: verbatim
       journal: literal
       month: literal
@@ -257,8 +270,11 @@ entries:
       volume: literal
       year: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: >-
+        Shojiki, Kanako and Tanikawa, Tomoyuki and Choi, Jung-Hun and Kuboya,
+        Shigeyuki and Hanada, Takashi and Katayama, Ryuji and Matsuoka, Takashi
+  - fields:
       author:
         - firstName: Jie
           lastName: Song
@@ -294,7 +310,7 @@ entries:
       }
     key: Song_2014
     mode:
-      author: creatorlist
+      author: namelist
       doi: verbatim
       journal: literal
       month: literal
@@ -304,8 +320,11 @@ entries:
       volume: literal
       year: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: >-
+        Song, Jie and Yuan, Ge and Xiong, Kanglin and Leung, Benjamin and Han,
+        Jung
+  - fields:
       author:
         - firstName: Jie
           lastName: Song
@@ -342,7 +361,7 @@ entries:
       }
     key: Song_2015
     mode:
-      author: creatorlist
+      author: namelist
       doi: verbatim
       journal: literal
       month: literal
@@ -352,8 +371,11 @@ entries:
       volume: literal
       year: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: >-
+        Song, Jie and Chang, Shih-Pang and Zhang, Cheng and Hsu, Ta-Cheng and
+        Han, Jung
+  - fields:
       author:
         - firstName: Tosja
           lastName: Zywietz
@@ -383,7 +405,7 @@ entries:
       }
     key: Zywietz_1998
     mode:
-      author: creatorlist
+      author: namelist
       doi: verbatim
       journal: literal
       month: literal
@@ -393,6 +415,8 @@ entries:
       volume: literal
       year: literal
     type: article
+    verbatim:
+      author: Zywietz, Tosja and Neugebauer, J{\"o}rg and Scheffler, Matthias
 errors: []
 jabref:
   root: []

@@ -14,109 +14,102 @@ mod tokenizer;
 #[serde(rename_all = "camelCase")]
 /// One BibTeX entry as read by the verbatim parser.
 pub struct Entry {
-    /// The trimmed source text for this entry.
-    pub input: String,
-    /// The entry type, normalized to lowercase.
-    #[serde(rename = "type")]
-    pub entry: String,
-    /// The citation key, preserved as written.
-    pub key: String,
-    /// Field names are lowercase; duplicate fields use a `+duplicate-N` suffix.
-    pub fields: HashMap<String, String>,
+  /// The trimmed source text for this entry.
+  pub input: String,
+  /// The entry type, normalized to lowercase.
+  #[serde(rename = "type")]
+  pub entry: String,
+  /// The citation key, preserved as written.
+  pub key: String,
+  /// Field names are lowercase; duplicate fields use a `+duplicate-N` suffix.
+  pub fields: HashMap<String, String>,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 /// A recoverable parsing error and the source text associated with it.
 pub struct ParseError {
-    /// Error description, including the source location.
-    pub error: String,
-    /// The malformed entry text, or an empty string for unresolved strings.
-    pub input: String,
+  /// Error description, including the source location.
+  pub error: String,
+  /// The malformed entry text, or an empty string for unresolved strings.
+  pub input: String,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Default, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 /// Results produced by [`parse_verbatim`]. Entries remain in source order.
 pub struct Library {
-    /// Successfully read entries.
-    pub entries: Vec<Entry>,
-    /// Resolved `@string` declarations, with uppercase keys.
-    pub strings: HashMap<String, String>,
-    /// Contents of `@comment` directives.
-    pub comments: Vec<String>,
-    /// Errors encountered while parsing; parsing continues after malformed entries.
-    pub errors: Vec<ParseError>,
-    /// Values from `@preamble` directives.
-    pub preambles: Vec<String>,
+  /// Successfully read entries.
+  pub entries: Vec<Entry>,
+  /// Resolved `@string` declarations, with uppercase keys.
+  pub strings: HashMap<String, String>,
+  /// Contents of `@comment` directives.
+  pub comments: Vec<String>,
+  /// Errors encountered while parsing; parsing continues after malformed entries.
+  pub errors: Vec<ParseError>,
+  /// Values from `@preamble` directives.
+  pub preambles: Vec<String>,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Default, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 /// A JabRef group; nested groups are stored in their parent's `groups` vector.
 pub struct JabRefGroup {
-    /// The group name.
-    pub name: String,
-    /// Citation keys belonging to this group after intersection/union calculations.
-    pub entries: Vec<String>,
-    /// Child groups in the hierarchy.
-    pub groups: Vec<JabRefGroup>,
+  /// The group name.
+  pub name: String,
+  /// Citation keys belonging to this group after intersection/union calculations.
+  pub entries: Vec<String>,
+  /// Child groups in the hierarchy.
+  pub groups: Vec<JabRefGroup>,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Default, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 /// Metadata imported from JabRef's `jabref-meta:` comments.
 pub struct JabRefMetadata {
-    /// Top-level groups; nested groups are available through each group's `groups` field.
-    pub root: Vec<JabRefGroup>,
-    /// Base directory for attachment paths.
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub file_directory: Option<String>,
-    /// JabRef group metadata format version.
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub groupsversion: Option<u32>,
-    /// JabRef database type.
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub database_type: Option<String>,
+  /// Top-level groups; nested groups are available through each group's `groups` field.
+  pub root: Vec<JabRefGroup>,
+  /// Base directory for attachment paths.
+  #[serde(skip_serializing_if = "Option::is_none")]
+  pub file_directory: Option<String>,
+  /// JabRef group metadata format version.
+  #[serde(skip_serializing_if = "Option::is_none")]
+  pub groupsversion: Option<u32>,
+  /// JabRef database type.
+  #[serde(skip_serializing_if = "Option::is_none")]
+  pub database_type: Option<String>,
 }
 
 /// Decode JabRef metadata records: backslash quotes the next character, separators split records,
 /// and LF/CRLF line breaks are discarded. Empty records are omitted from the returned list.
 fn decode_jabref(input: &str, separator: char) -> Vec<String> {
-    let mut records = vec![String::new()];
-    let mut chars = input.chars().peekable();
-    while let Some(ch) = chars.next() {
-        match ch {
-            '\\' => {
-                if let Some(escaped) = chars.next() {
-                    records[0].push(escaped);
-                }
-            }
-            '\r' if chars.peek() == Some(&'\n') => {
-                chars.next();
-            }
-            '\n' => {}
-            ch if ch == separator => records.insert(0, String::new()),
-            ch => records[0].push(ch),
+  let mut records = vec![String::new()];
+  let mut chars = input.chars().peekable();
+  while let Some(ch) = chars.next() {
+    match ch {
+      '\\' => {
+        if let Some(escaped) = chars.next() {
+          records[0].push(escaped);
         }
+      }
+      '\r' if chars.peek() == Some(&'\n') => {
+        chars.next();
+      }
+      '\n' => {}
+      ch if ch == separator => records.insert(0, String::new()),
+      ch => records[0].push(ch),
     }
-    records.reverse();
-    records.retain(|record| !record.is_empty());
-    records
+  }
+  records.reverse();
+  records.retain(|record| !record.is_empty());
+  records
 }
 
 /// Follow child indices from the root; an empty path or any invalid index returns `None`.
-fn jabref_group_at_path_mut<'a>(
-    groups: &'a mut [JabRefGroup],
-    path: &[usize],
-) -> Option<&'a mut JabRefGroup> {
-    let (index, remainder) = path.split_first()?;
-    let group = groups.get_mut(*index)?;
-    if remainder.is_empty() {
-        Some(group)
-    } else {
-        jabref_group_at_path_mut(&mut group.groups, remainder)
-    }
+fn jabref_group_at_path_mut<'a>(groups: &'a mut [JabRefGroup], path: &[usize]) -> Option<&'a mut JabRefGroup> {
+  let (index, remainder) = path.split_first()?;
+  let group = groups.get_mut(*index)?;
+  if remainder.is_empty() { Some(group) } else { jabref_group_at_path_mut(&mut group.groups, remainder) }
 }
 
 /// Import JabRef groups from metadata comments and return unrelated comments unchanged.
@@ -125,141 +118,118 @@ fn jabref_group_at_path_mut<'a>(
 /// unions add parent keys, and query groups are not parsed. A malformed record stops processing
 /// its encoded tree because later hierarchy levels may depend on the missing group path.
 fn parse_jabref_metadata(comments: Vec<String>) -> (Vec<String>, JabRefMetadata) {
-    let mut metadata = JabRefMetadata::default();
-    let mut kept = Vec::new();
-    let mut decoded = HashMap::<String, Vec<String>>::new();
+  let mut metadata = JabRefMetadata::default();
+  let mut kept = Vec::new();
+  let mut decoded = HashMap::<String, Vec<String>>::new();
 
-    for comment in comments {
-        let Some(rest) = comment.strip_prefix("jabref-meta:") else {
-            kept.push(comment);
-            continue;
-        };
-        let rest = rest.trim_start();
-        let Some((kind, payload)) = rest.split_once(':') else {
-            // Preserve malformed metadata verbatim rather than silently dropping the source comment.
-            kept.push(comment);
-            continue;
-        };
-        // Preserve input-order precedence: a later declaration of the same kind replaces the earlier one.
-        decoded.insert(kind.to_string(), decode_jabref(payload, ';'));
-    }
+  for comment in comments {
+    let Some(rest) = comment.strip_prefix("jabref-meta:") else {
+      kept.push(comment);
+      continue;
+    };
+    let rest = rest.trim_start();
+    let Some((kind, payload)) = rest.split_once(':') else {
+      // Preserve malformed metadata verbatim rather than silently dropping the source comment.
+      kept.push(comment);
+      continue;
+    };
+    // Preserve input-order precedence: a later declaration of the same kind replaces the earlier one.
+    decoded.insert(kind.to_string(), decode_jabref(payload, ';'));
+  }
 
-    if let Some(value) = decoded
-        .get("groupsversion")
-        .and_then(|values| values.first())
-    {
-        metadata.groupsversion = value.trim().parse::<u32>().ok();
-    }
-    metadata.file_directory = decoded
-        .get("fileDirectory")
-        .and_then(|values| values.first())
-        .cloned();
-    metadata.database_type = decoded
-        .get("databaseType")
-        .and_then(|values| values.first())
-        .cloned();
+  if let Some(value) = decoded.get("groupsversion").and_then(|values| values.first()) {
+    metadata.groupsversion = value.trim().parse::<u32>().ok();
+  }
+  metadata.file_directory = decoded.get("fileDirectory").and_then(|values| values.first()).cloned();
+  metadata.database_type = decoded.get("databaseType").and_then(|values| values.first()).cloned();
 
-    // Track the latest group path at each depth so subsequent records attach to their immediate parent.
-    let mut levels = Vec::<Vec<usize>>::new();
-    for tree in ["groupstree", "grouping"] {
-        let Some(encoded_groups) = decoded.get(tree) else {
-            continue;
-        };
-        for encoded in encoded_groups {
-            let mut fields = decode_jabref(encoded, ';');
-            let Some(level_type_name) = fields.first().cloned() else {
-                // Tree records are ordered by hierarchy, so later groups may depend on this record.
-                break;
-            };
-            fields.remove(0);
-            let level_and_type = decode_jabref(&level_type_name, ':');
-            let Some(level_type) = level_and_type.first() else {
-                break;
-            };
-            let Some((level, group_type)) = level_type.split_once(' ') else {
-                break;
-            };
-            let Ok(level) = level.parse::<usize>() else {
-                break;
-            };
-            if group_type == "AllEntriesGroup" {
-                // JabRef's synthetic all-entries group is a root marker, not a named child group.
-                continue;
-            }
-            let Some(name) = level_and_type.get(1) else {
-                break;
-            };
-            let intersection = fields
-                .first()
-                .and_then(|field| decode_jabref(field, ';').first().cloned())
-                .unwrap_or_default();
-            if !fields.is_empty() {
-                fields.remove(0);
-            }
-            let mut group = JabRefGroup {
-                name: name.clone(),
-                // The `grouping` records describe hierarchy only; `groupstree` carries memberships.
-                entries: if tree == "grouping" {
-                    Vec::new()
-                } else {
-                    fields
-                        .iter()
-                        .filter_map(|field| decode_jabref(field, ';').first().cloned())
-                        .collect()
-                },
-                groups: Vec::new(),
-            };
+  // Track the latest group path at each depth so subsequent records attach to their immediate parent.
+  let mut levels = Vec::<Vec<usize>>::new();
+  for tree in ["groupstree", "grouping"] {
+    let Some(encoded_groups) = decoded.get(tree) else {
+      continue;
+    };
+    for encoded in encoded_groups {
+      let mut fields = decode_jabref(encoded, ';');
+      let Some(level_type_name) = fields.first().cloned() else {
+        // Tree records are ordered by hierarchy, so later groups may depend on this record.
+        break;
+      };
+      fields.remove(0);
+      let level_and_type = decode_jabref(&level_type_name, ':');
+      let Some(level_type) = level_and_type.first() else {
+        break;
+      };
+      let Some((level, group_type)) = level_type.split_once(' ') else {
+        break;
+      };
+      let Ok(level) = level.parse::<usize>() else {
+        break;
+      };
+      if group_type == "AllEntriesGroup" {
+        // JabRef's synthetic all-entries group is a root marker, not a named child group.
+        continue;
+      }
+      let Some(name) = level_and_type.get(1) else {
+        break;
+      };
+      let intersection = fields.first().and_then(|field| decode_jabref(field, ';').first().cloned()).unwrap_or_default();
+      if !fields.is_empty() {
+        fields.remove(0);
+      }
+      let mut group = JabRefGroup {
+        name: name.clone(),
+        // The `grouping` records describe hierarchy only; `groupstree` carries memberships.
+        entries: if tree == "grouping" { Vec::new() } else { fields.iter().filter_map(|field| decode_jabref(field, ';').first().cloned()).collect() },
+        groups: Vec::new(),
+      };
 
-            // Root groups start new branches; nested groups require the previously recorded parent path.
-            if level == 1 {
-                let root_index = metadata.root.len();
-                metadata.root.push(group);
-                let path = vec![root_index];
-                if levels.len() < level {
-                    levels.push(path);
-                } else {
-                    levels[level - 1] = path;
-                }
-            } else if let Some(parent_path) = levels.get(level - 2).cloned() {
-                let Some(parent) = jabref_group_at_path_mut(&mut metadata.root, &parent_path)
-                else {
-                    // Do not attach an orphan at the wrong level when an earlier path is invalid.
-                    continue;
-                };
-                let parent_entries = parent.entries.clone();
-                // JabRef encodes membership as intersection (1), union (2), or independent (0).
-                // Union appends only missing parent keys so the child's entry order is retained.
-                match intersection.as_str() {
-                    "1" => group.entries.retain(|key| parent_entries.contains(key)),
-                    "2" => {
-                        let inherited: Vec<_> = parent_entries
-                            .into_iter()
-                            .filter(|key| !group.entries.contains(key))
-                            .collect();
-                        group.entries.extend(inherited);
-                    }
-                    _ => {}
-                }
-                let child_index = parent.groups.len();
-                parent.groups.push(group);
-                let mut path = parent_path;
-                path.push(child_index);
-                if levels.len() < level {
-                    levels.push(path);
-                } else {
-                    levels[level - 1] = path;
-                }
-            }
+      // Root groups start new branches; nested groups require the previously recorded parent path.
+      if level == 1 {
+        let root_index = metadata.root.len();
+        metadata.root.push(group);
+        let path = vec![root_index];
+        if levels.len() < level {
+          levels.push(path);
+        } else {
+          levels[level - 1] = path;
         }
+      } else if let Some(parent_path) = levels.get(level - 2).cloned() {
+        let Some(parent) = jabref_group_at_path_mut(&mut metadata.root, &parent_path) else {
+          // Do not attach an orphan at the wrong level when an earlier path is invalid.
+          continue;
+        };
+        let parent_entries = parent.entries.clone();
+        // JabRef encodes membership as intersection (1), union (2), or independent (0).
+        // Union appends only missing parent keys so the child's entry order is retained.
+        match intersection.as_str() {
+          "1" => group.entries.retain(|key| parent_entries.contains(key)),
+          "2" => {
+            let inherited: Vec<_> = parent_entries.into_iter().filter(|key| !group.entries.contains(key)).collect();
+            group.entries.extend(inherited);
+          }
+          _ => {}
+        }
+        let child_index = parent.groups.len();
+        parent.groups.push(group);
+        let mut path = parent_path;
+        path.push(child_index);
+        if levels.len() < level {
+          levels.push(path);
+        } else {
+          levels[level - 1] = path;
+        }
+      }
     }
-    (kept, metadata)
+  }
+  (kept, metadata)
 }
 
 #[derive(Deserialize)]
 struct CrossReferenceData {
-    allowed: HashMap<String, Vec<String>>,
-    #[serde(rename = "noCrossRef")]
-    no_cross_ref: Vec<String>,
+  allowed: HashMap<String, Vec<String>>,
+  #[serde(rename = "noCrossRef")]
+  no_cross_ref: Vec<String>,
 }
 
 type CrossReferenceMap = HashMap<String, HashMap<String, HashMap<String, String>>>;
@@ -269,857 +239,723 @@ static CROSS_REFERENCE_MAP: OnceLock<CrossReferenceMap> = OnceLock::new();
 
 /// Lazily decode embedded allowed-field and exclusion lists shared by all inheritance passes.
 fn cross_reference_data() -> &'static CrossReferenceData {
-    CROSS_REFERENCE_DATA.get_or_init(|| {
-        serde_json::from_str(include_str!("../data/fields.json"))
-            .expect("fields.json is valid cross-reference data")
-    })
+  CROSS_REFERENCE_DATA.get_or_init(|| serde_json::from_str(include_str!("../data/fields.json")).expect("fields.json is valid cross-reference data"))
 }
 
 /// Lazily decode child/parent type mappings and their source-to-destination field remappings.
 fn cross_reference_map() -> &'static CrossReferenceMap {
-    CROSS_REFERENCE_MAP.get_or_init(|| {
-        serde_json::from_str(include_str!("../data/crossref.json"))
-            .expect("crossref.json is valid cross-reference data")
-    })
+  CROSS_REFERENCE_MAP.get_or_init(|| serde_json::from_str(include_str!("../data/crossref.json")).expect("crossref.json is valid cross-reference data"))
 }
 
 /// Match JavaScript truthiness for fields: empty text is false, but even empty lists are true.
-fn field_value_is_truthy(value: &FieldValue) -> bool {
-    match value {
-        FieldValue::Text(value) => !value.is_empty(),
-        FieldValue::Names(_) | FieldValue::List(_) => true,
-    }
+fn crossref_inherit(value: &FieldValue) -> bool {
+  match value {
+    FieldValue::Text(value) => !value.is_empty(),
+    FieldValue::Annotation(_) | FieldValue::Names(_) | FieldValue::List(_) => true,
+    FieldValue::Options(_) => false,
+  }
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CrossRefSource {
-    pub parent: String,
-    pub field: String,
+  pub parent: String,
+  pub field: String,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "lowercase")]
 pub enum UnsupportedHandler {
-    TeX,
-    Text,
-    Ignore,
-    Throw,
+  TeX,
+  Text,
+  Ignore,
+  Throw,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(default, rename_all = "camelCase")]
 /// Configuration for verbatim and full BibTeX parsing.
 pub struct Options {
-    /// Stop after this many entries. `None` and `Some(0)` both mean no limit.
-    pub max_entries: Option<usize>,
-    /// Additional predefined strings, matched without regard to key case.
-    pub strings: HashMap<String, String>,
-    /// Skip TeX-to-Unicode conversion and sentence-casing while still parsing field structure.
-    pub raw: bool,
-    /// Apply inherited cross-reference fields from the target entry to its children.
-    pub apply_crossref: bool,
-    /// Case-insensitive field-name patterns that select verbatim mode.
-    ///
-    /// Fields such as `url` are normally parsed in verbatim mode, where TeX commands are treated
-    /// as regular text. Patterns use `*` for any number of characters and `?` for one character;
-    /// each pattern must match the complete field name. A backslash escapes wildcard characters.
-    pub verbatim_fields: Vec<String>,
-    /// Fields whose single outer brace layer should be removed before reparsing.
-    ///
-    /// BibTeX data often wraps fields in double braces as a workaround for case handling. Listed
-    /// fields have one outer group ignored when the complete field value is exactly one group.
-    pub remove_outer_braces: Vec<String>,
-    /// Explicit mode overrides for specific fields. These precede the default field-mode tables.
-    pub field_mode: HashMap<String, String>,
-    /// Language identifiers whose titles receive sentence casing; an empty list disables it.
-    ///
-    /// Bib(La)TeX treats English entries differently from other languages: English titles are
-    /// conventionally title-cased and braced words carry case protection. This parser converts
-    /// English-like titles to sentence case for consumers such as Zotero. If no language field is
-    /// present, Bib(La)TeX assumes English; include the empty string in custom language lists to
-    /// preserve that default. Sentence casing is heuristic and does not use natural-language
-    /// processing, so results should be reviewed. The WASM adapter exposes the default language
-    /// list as `english`; custom arrays replace it exactly.
-    pub english: Vec<String>,
-    /// Use the `language` field as a fallback when neither `langid` nor `hyphenation` is present.
-    ///
-    /// Some sources use `language` for this purpose despite the usual `langid` and `hyphenation`
-    /// fields; enable this option to include that fallback.
-    pub language_as_langid: bool,
-    /// Controls for guessing and applying sentence case to titles.
-    pub sentence_case: SentenceCaseOptions,
-    /// Title case-protection policy: `off`, `as-needed`, or `strict`.
-    ///
-    /// In `as-needed` mode, mixed-case words inside root groups are inferred to need no-case
-    /// protection. This avoids treating ordinary `\\textit{...}` emphasis as intentional case
-    /// protection when authors may not expect the braces to affect title casing. `strict` preserves
-    /// protection exactly as entered; `off` disables protection.
-    pub case_protection: String,
-    /// Merge adjacent equal markup spans separated only by whitespace (default true).
-    pub collapse_markup: bool,
-    #[serde(rename = "richURL")]
-    pub rich_url: bool,
-    /// Policy for rendering unknown TeX commands and environments.
-    pub unsupported: Option<UnsupportedHandler>,
+  /// Stop after this many entries. `None` and `Some(0)` both mean no limit.
+  pub max_entries: Option<usize>,
+  /// Additional predefined strings, matched without regard to key case.
+  pub strings: HashMap<String, String>,
+  /// Skip TeX-to-Unicode conversion and sentence-casing while still parsing field structure.
+  pub raw: bool,
+  /// Apply inherited cross-reference fields from the target entry to its children.
+  pub apply_crossref: bool,
+  /// Case-insensitive field-name patterns that select verbatim mode.
+  ///
+  /// Fields such as `url` are normally parsed in verbatim mode, where TeX commands are treated
+  /// as regular text. Patterns use `*` for any number of characters and `?` for one character;
+  /// each pattern must match the complete field name. A backslash escapes wildcard characters.
+  pub verbatim_fields: Vec<String>,
+  /// Fields whose single outer brace layer should be removed before reparsing.
+  ///
+  /// BibTeX data often wraps fields in double braces as a workaround for case handling. Listed
+  /// fields have one outer group ignored when the complete field value is exactly one group.
+  pub remove_outer_braces: Vec<String>,
+  /// Explicit mode overrides for specific fields. These precede the default field-mode tables.
+  pub field_mode: HashMap<String, String>,
+  /// Language identifiers whose titles receive sentence casing; an empty list disables it.
+  ///
+  /// Bib(La)TeX treats English entries differently from other languages: English titles are
+  /// conventionally title-cased and braced words carry case protection. This parser converts
+  /// English-like titles to sentence case for consumers such as Zotero. If no language field is
+  /// present, Bib(La)TeX assumes English; include the empty string in custom language lists to
+  /// preserve that default. Sentence casing is heuristic and does not use natural-language
+  /// processing, so results should be reviewed. The WASM adapter exposes the default language
+  /// list as `english`; custom arrays replace it exactly.
+  pub english: Vec<String>,
+  /// Use the `language` field as a fallback when neither `langid` nor `hyphenation` is present.
+  ///
+  /// Some sources use `language` for this purpose despite the usual `langid` and `hyphenation`
+  /// fields; enable this option to include that fallback.
+  pub language_as_langid: bool,
+  /// Controls for guessing and applying sentence case to titles.
+  pub sentence_case: SentenceCaseOptions,
+  /// Title case-protection policy: `off`, `as-needed`, or `strict`.
+  ///
+  /// In `as-needed` mode, mixed-case words inside root groups are inferred to need no-case
+  /// protection. This avoids treating ordinary `\\textit{...}` emphasis as intentional case
+  /// protection when authors may not expect the braces to affect title casing. `strict` preserves
+  /// protection exactly as entered; `off` disables protection.
+  pub case_protection: String,
+  /// Merge adjacent equal markup spans separated only by whitespace (default true).
+  pub collapse_markup: bool,
+  #[serde(rename = "richURL")]
+  pub rich_url: bool,
+  /// Policy for rendering unknown TeX commands and environments.
+  pub unsupported: Option<UnsupportedHandler>,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(default, rename_all = "camelCase")]
 /// Sentence-case controls used while normalizing English title fields.
 pub struct SentenceCaseOptions {
-    /// Skip sentence casing when the parser guesses a title is already sentence-cased.
-    ///
-    /// Some English titles are already sentence-cased or all-uppercase. When this option is on,
-    /// a title with enough sentence-case words that are not prepositions, acronyms, or ordinals is
-    /// returned unchanged.
-    pub guess: bool,
-    /// Preserve capitalization after sentence-like separators such as colons.
-    ///
-    /// For `Structured Interviewing For OCB: Construct Validity, Faking, And The Effects Of
-    /// Question Type`, `true` yields `Structured interviewing for OCB: Construct validity,
-    /// faking, and the effects of question type`; `false` lowercases after the colon as well.
-    pub sub_sentence: bool,
-    /// Retain capitalization inside quoted portions of a title.
-    ///
-    /// When enabled, quoted titles are preserved as entered while other title text is
-    /// sentence-cased.
-    pub preserve_quoted: bool,
+  /// Skip sentence casing when the parser guesses a title is already sentence-cased.
+  ///
+  /// Some English titles are already sentence-cased or all-uppercase. When this option is on,
+  /// a title with enough sentence-case words that are not prepositions, acronyms, or ordinals is
+  /// returned unchanged.
+  pub guess: bool,
+  /// Preserve capitalization after sentence-like separators such as colons.
+  ///
+  /// For `Structured Interviewing For OCB: Construct Validity, Faking, And The Effects Of
+  /// Question Type`, `true` yields `Structured interviewing for OCB: Construct validity,
+  /// faking, and the effects of question type`; `false` lowercases after the colon as well.
+  pub sub_sentence: bool,
+  /// Retain capitalization inside quoted portions of a title.
+  ///
+  /// When enabled, quoted titles are preserved as entered while other title text is
+  /// sentence-cased.
+  pub preserve_quoted: bool,
 }
 
 impl Default for SentenceCaseOptions {
-    /// Enable guessing, colon-start capitalization, and quoted-text preservation by default.
-    fn default() -> Self {
-        Self {
-            guess: true,
-            sub_sentence: true,
-            preserve_quoted: true,
-        }
-    }
+  /// Enable guessing, colon-start capitalization, and quoted-text preservation by default.
+  fn default() -> Self {
+    Self { guess: true, sub_sentence: true, preserve_quoted: true }
+  }
 }
 
 impl Default for Options {
-    /// Configure rendered, unlimited parsing with built-in English, field, and inheritance defaults.
-    fn default() -> Self {
-        Self {
-            max_entries: None,
-            strings: HashMap::new(),
-            raw: false,
-            apply_crossref: true,
-            verbatim_fields: Vec::new(),
-            remove_outer_braces: default_remove_outer_braces(),
-            field_mode: HashMap::new(),
-            english: default_english(),
-            language_as_langid: false,
-            sentence_case: SentenceCaseOptions::default(),
-            case_protection: "as-needed".to_string(),
-            collapse_markup: true,
-            rich_url: true,
-            unsupported: None,
-        }
+  /// Configure rendered, unlimited parsing with built-in English, field, and inheritance defaults.
+  fn default() -> Self {
+    Self {
+      max_entries: None,
+      strings: HashMap::new(),
+      raw: false,
+      apply_crossref: true,
+      verbatim_fields: Vec::new(),
+      remove_outer_braces: default_remove_outer_braces(),
+      field_mode: HashMap::new(),
+      english: default_english(),
+      language_as_langid: false,
+      sentence_case: SentenceCaseOptions::default(),
+      case_protection: "as-needed".to_string(),
+      collapse_markup: true,
+      rich_url: true,
+      unsupported: None,
     }
+  }
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Default, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 /// A name parsed from a name-list field such as `author` or `editor`.
 pub struct Name {
-    /// An unparsed literal name, used when the input wraps a whole name in braces.
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
-    /// Family name.
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub last_name: Option<String>,
-    /// Given name.
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub first_name: Option<String>,
-    /// Family-name prefix, such as `van`.
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub prefix: Option<String>,
-    /// Name suffix, such as `Jr.`.
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub suffix: Option<String>,
-    /// Initials supplied by an extended-name field.
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub initial: Option<String>,
-    /// Extended-name `useprefix` property.
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub useprefix: Option<bool>,
-    /// Extended-name `juniorcomma` property.
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub juniorcomma: Option<bool>,
-    /// Unrecognized extended-name properties, retained as JSON values.
-    #[serde(flatten)]
-    pub extra: HashMap<String, serde_json::Value>,
+  /// An unparsed literal name, used when the input wraps a whole name in braces.
+  #[serde(skip_serializing_if = "Option::is_none")]
+  pub name: Option<String>,
+  /// Family name.
+  #[serde(skip_serializing_if = "Option::is_none")]
+  pub last_name: Option<String>,
+  /// Given name.
+  #[serde(skip_serializing_if = "Option::is_none")]
+  pub first_name: Option<String>,
+  /// Family-name prefix, such as `van`.
+  #[serde(skip_serializing_if = "Option::is_none")]
+  pub prefix: Option<String>,
+  /// Name suffix, such as `Jr.`.
+  #[serde(skip_serializing_if = "Option::is_none")]
+  pub suffix: Option<String>,
+  /// Initials supplied by an extended-name field.
+  #[serde(skip_serializing_if = "Option::is_none")]
+  pub initial: Option<String>,
+  /// Extended-name `useprefix` property.
+  #[serde(skip_serializing_if = "Option::is_none")]
+  pub useprefix: Option<bool>,
+  /// Extended-name `juniorcomma` property.
+  #[serde(skip_serializing_if = "Option::is_none")]
+  pub juniorcomma: Option<bool>,
+  /// Unrecognized extended-name properties, retained as JSON values.
+  #[serde(flatten)]
+  pub extra: HashMap<String, serde_json::Value>,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(untagged)]
 /// A Biber annotation value, quoted as one string or unquoted as a comma-separated list.
 pub enum AnnotationContent {
-    /// One quoted annotation value.
-    Text(String),
-    /// Unquoted annotation values split at commas.
-    List(Vec<String>),
+  /// One quoted annotation value.
+  Text(String),
+  /// Unquoted annotation values split at commas.
+  List(Vec<String>),
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(tag = "scope", rename_all = "camelCase")]
 /// One Biber annotation clause, with its source scope and one-based selector.
 pub enum Annotation {
-    /// Annotation attached to the whole field.
-    Field { value: AnnotationContent },
-    /// Annotation attached to one list item.
-    Item {
-        index: NonZeroUsize,
-        value: AnnotationContent,
-    },
-    /// Annotation attached to one named part of a list item.
-    Part {
-        index: NonZeroUsize,
-        name: String,
-        value: AnnotationContent,
-    },
+  /// Annotation attached to the whole field.
+  Field { value: AnnotationContent },
+  /// Annotation attached to one list item.
+  Item { index: NonZeroUsize, value: AnnotationContent },
+  /// Annotation attached to one named part of a list item.
+  Part { index: NonZeroUsize, name: String, value: AnnotationContent },
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(untagged)]
 /// Typed representation of a parsed field value.
 pub enum FieldValue {
-    /// Scalar text, including fields whose TeX markup is not yet rendered.
-    Text(String),
-    /// Parsed names from name-list fields.
-    Names(Vec<Name>),
-    /// Elements from literal-list and keyword fields.
-    List(Vec<String>),
+  /// Scalar text, including fields whose TeX markup is not yet rendered.
+  Text(String),
+
+  /// Parsed names from name-list fields.
+  Names(Vec<Name>),
+
+  /// Elements from literal-list and keyword fields.
+  List(Vec<String>),
+
+  /// Annotation attached to a field.
+  Annotation(Vec<Annotation>),
+
+  /// Parsed key/value pairs from the verbatim BibLaTeX `options` field.
+  Options(BTreeMap<String, String>),
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 /// An entry after reparsing its fields according to their assigned modes.
 pub struct ParsedEntry {
-    /// Original trimmed entry source.
-    pub input: String,
-    /// Lowercase entry type.
-    #[serde(rename = "type")]
-    pub entry: String,
-    /// Citation key.
-    pub key: String,
-    /// Parsed field values.
-    pub fields: HashMap<String, FieldValue>,
-    /// Parsed Biber annotations keyed by their verbatim `+an` field names.
-    pub annotations: HashMap<String, Vec<Annotation>>,
-    /// Parsed key/value pairs from the verbatim BibLaTeX `options` field.
-    #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub options: Option<BTreeMap<String, String>>,
-    /// Parser mode assigned to each field (for example, `title` or `namelist`).
-    pub mode: HashMap<String, String>,
-    /// Field inherited from a cross-referenced parent entry.
-    #[serde(skip_serializing_if = "HashMap::is_empty")]
-    #[serde(default)]
-    pub crossref: HashMap<String, CrossRefSource>,
+  /// Original trimmed entry source.
+  pub input: String,
+
+  /// Lowercase entry type.
+  #[serde(rename = "type")]
+  pub entry: String,
+
+  /// Citation key.
+  pub key: String,
+
+  /// Parsed field values.
+  pub fields: HashMap<String, FieldValue>,
+
+  /// Verbatim field values of parsed fields (names, annotations and options).
+  pub verbatim: HashMap<String, String>,
+
+  /// Parser mode assigned to each field (for example, `title` or `namelist`).
+  pub mode: HashMap<String, String>,
+
+  /// Field inherited from a cross-referenced parent entry.
+  #[serde(skip_serializing_if = "HashMap::is_empty")]
+  #[serde(default)]
+  pub crossref: HashMap<String, CrossRefSource>,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Default, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 /// Results from [`parse`], including TeX rendering and field interpretation.
 pub struct ParsedLibrary {
-    /// Entries in source order.
-    pub entries: Vec<ParsedEntry>,
-    /// Resolved `@string` declarations.
-    pub strings: HashMap<String, String>,
-    /// Contents of `@comment` directives.
-    pub comments: Vec<String>,
-    /// Recoverable parsing errors.
-    pub errors: Vec<ParseError>,
-    /// Values from `@preamble` directives.
-    pub preambles: Vec<String>,
-    /// JabRef metadata extracted from `jabref-meta:` comments.
-    #[serde(default)]
-    pub jabref: JabRefMetadata,
+  /// Entries in source order.
+  pub entries: Vec<ParsedEntry>,
+  /// Resolved `@string` declarations.
+  pub strings: HashMap<String, String>,
+  /// Contents of `@comment` directives.
+  pub comments: Vec<String>,
+  /// Recoverable parsing errors.
+  pub errors: Vec<ParseError>,
+  /// Values from `@preamble` directives.
+  pub preambles: Vec<String>,
+  /// JabRef metadata extracted from `jabref-meta:` comments.
+  #[serde(default)]
+  pub jabref: JabRefMetadata,
 }
 
 struct Parser {
-    chars: Vec<char>,
-    pos: usize,
-    parsing: String,
-    library: Library,
-    defaults: HashMap<String, String>,
-    max_entries: usize,
+  chars: Vec<char>,
+  pos: usize,
+  parsing: String,
+  library: Library,
+  defaults: HashMap<String, String>,
+  max_entries: usize,
 }
 
 impl Parser {
-    /// Prepare parser state, merging predefined strings into the built-in lookup table.
-    fn new(input: &str, options: Options) -> Self {
-        let Options {
-            max_entries,
-            strings,
-            ..
-        } = options;
-        let mut defaults = default_strings();
-        defaults.extend(
-            strings
-                .into_iter()
-                .map(|(key, value)| (key.to_uppercase(), value)),
-        );
-        Self {
-            chars: input.chars().collect(),
-            pos: 0,
-            parsing: String::new(),
-            library: Library::default(),
-            defaults,
-            max_entries: max_entries.unwrap_or(0),
+  /// Prepare parser state, merging predefined strings into the built-in lookup table.
+  fn new(input: &str, options: Options) -> Self {
+    let Options { max_entries, strings, .. } = options;
+    let mut defaults = default_strings();
+    defaults.extend(strings.into_iter().map(|(key, value)| (key.to_uppercase(), value)));
+    Self {
+      chars: input.chars().collect(),
+      pos: 0,
+      parsing: String::new(),
+      library: Library::default(),
+      defaults,
+      max_entries: max_entries.unwrap_or(0),
+    }
+  }
+
+  /// Copy a character range from the source buffer.
+  fn text(&self, start: usize, end: usize) -> String {
+    self.chars[start..end].iter().collect()
+  }
+
+  /// Return a short source excerpt for parser diagnostics.
+  fn remaining(&self) -> String {
+    self.text(self.pos.min(self.chars.len()), (self.pos + 20).min(self.chars.len()))
+  }
+
+  /// Format the current source position with a 1-based line and UTF-16 column.
+  fn location(&self) -> String {
+    let before = self.text(0, self.pos.min(self.chars.len()));
+    let line = before.chars().filter(|ch| *ch == '\n').count() + 1;
+    let column = before.rsplit('\n').next().unwrap_or_default().encode_utf16().count() + 1;
+    format!("line {line}, column {column}")
+  }
+
+  /// Add source position and directive context to a parser error.
+  fn error(&self, message: impl AsRef<str>) -> String {
+    let mut error = format!("{} at {}", message.as_ref(), self.location());
+    if !self.parsing.is_empty() {
+      // Add directive context only after the directive name has been read.
+      error.push_str(&format!(" in {:?}", self.parsing));
+    }
+    error
+  }
+
+  /// Skip BibTeX whitespace and percent-to-end-of-line comments.
+  fn skip_whitespace(&mut self) {
+    while let Some(ch) = self.chars.get(self.pos).copied() {
+      if matches!(ch, ' ' | '\t' | '\r' | '\n') {
+        self.pos += 1;
+      } else if ch == '%' {
+        // A percent sign starts a comment only while parsing between tokens.
+        while self.pos < self.chars.len() && self.chars[self.pos] != '\n' {
+          self.pos += 1;
         }
+      } else {
+        break;
+      }
     }
+  }
 
-    /// Copy a character range from the source buffer.
-    fn text(&self, start: usize, end: usize) -> String {
-        self.chars[start..end].iter().collect()
+  /// Consume a token after skipping inter-token whitespace.
+  fn consume(&mut self, token: &str) -> bool {
+    self.skip_whitespace();
+    let token: Vec<char> = token.chars().collect();
+    if self.chars.get(self.pos..self.pos + token.len()) == Some(token.as_slice()) {
+      self.pos += token.len();
+      true
+    } else {
+      false
     }
+  }
 
-    /// Return a short source excerpt for parser diagnostics.
-    fn remaining(&self) -> String {
-        self.text(
-            self.pos.min(self.chars.len()),
-            (self.pos + 20).min(self.chars.len()),
-        )
+  /// Consume a required token or return a location-aware mismatch error.
+  fn expect(&mut self, token: &str) -> Result<(), String> {
+    if self.consume(token) { Ok(()) } else { Err(self.error(format!("Token mismatch, expected {token:?}, found {:?}...", self.remaining()))) }
+  }
+
+  /// Check the next token without consuming it; entry parsing uses this for closing guards.
+  fn next_is(&mut self, token: &str) -> bool {
+    self.skip_whitespace();
+    let token: Vec<char> = token.chars().collect();
+    self.chars.get(self.pos..self.pos + token.len()) == Some(token.as_slice())
+  }
+
+  /// Read a BibTeX identifier containing letters, digits, or the permitted syntax characters.
+  fn key(&mut self, allow: &str) -> Result<String, String> {
+    let start = self.pos;
+    loop {
+      let Some(ch) = self.chars.get(self.pos).copied() else {
+        return Err(self.error("Runaway key"));
+      };
+      if ch.is_alphabetic() || ch.is_ascii_digit() || matches!(ch, '+' | '\'' | '&' | ';' | '_' | ':' | '\\' | '.' | '/' | '-') || allow.contains(ch) {
+        self.pos += 1;
+      } else {
+        break;
+      }
     }
+    Ok(self.text(start, self.pos))
+  }
 
-    /// Format the current source position with a 1-based line and UTF-16 column.
-    fn location(&self) -> String {
-        let before = self.text(0, self.pos.min(self.chars.len()));
-        let line = before.chars().filter(|ch| *ch == '\n').count() + 1;
-        let column = before
-            .rsplit('\n')
-            .next()
-            .unwrap_or_default()
-            .encode_utf16()
-            .count()
-            + 1;
-        format!("line {line}, column {column}")
+  /// Read the entry delimiter and return its matching closing character.
+  fn guard(&mut self) -> Result<char, String> {
+    // BibTeX permits either brace or parenthesis entry delimiters.
+    if self.consume("{") {
+      self.skip_whitespace();
+      Ok('}')
+    } else if self.consume("(") {
+      self.skip_whitespace();
+      Ok(')')
+    } else {
+      Err(self.error(format!("Token mismatch, expected '{{' or '(', found {:?}...", self.remaining())))
     }
+  }
 
-    /// Add source position and directive context to a parser error.
-    fn error(&self, message: impl AsRef<str>) -> String {
-        let mut error = format!("{} at {}", message.as_ref(), self.location());
-        if !self.parsing.is_empty() {
-            // Add directive context only after the directive name has been read.
-            error.push_str(&format!(" in {:?}", self.parsing));
+  /// Read a balanced braced value, respecting escaped braces and paired math delimiters.
+  fn braced(&mut self) -> Result<String, String> {
+    self.expect("{")?;
+    let start = self.pos;
+    let mut depth = 0usize;
+    let mut math = false;
+    while self.pos < self.chars.len() {
+      // Literal commands must bypass both brace balancing and math-delimiter tracking.
+      if let Some(range) = tex::verbatim_range(&self.chars, self.pos) {
+        self.pos = range.end + 1;
+        continue;
+      }
+      match self.chars[self.pos] {
+        // Skip the escaped character so it cannot affect brace or math depth.
+        '\\' => self.pos += 1,
+        '{' => depth += 1,
+        '}' if depth == 0 => {
+          let value = self.text(start, self.pos);
+          self.pos += 1;
+          return if math { Err(self.error("Unclosed math section")) } else { Ok(value) };
         }
-        error
+        '}' => depth -= 1,
+        // Track math independently of brace depth; an outer close rejects unmatched dollars.
+        '$' => math = !math,
+        _ => {}
+      }
+      self.pos += 1;
     }
+    Err(self.error(format!("Unterminated brace-value {:?}", self.text(start, (start + 20).min(self.chars.len())))))
+  }
 
-    /// Skip BibTeX whitespace and percent-to-end-of-line comments.
-    fn skip_whitespace(&mut self) {
-        while let Some(ch) = self.chars.get(self.pos).copied() {
-            if matches!(ch, ' ' | '\t' | '\r' | '\n') {
-                self.pos += 1;
-            } else if ch == '%' {
-                // A percent sign starts a comment only while parsing between tokens.
-                while self.pos < self.chars.len() && self.chars[self.pos] != '\n' {
-                    self.pos += 1;
-                }
-            } else {
-                break;
-            }
+  /// Read a quoted value; quotes inside braces do not terminate the value.
+  fn quoted(&mut self) -> Result<String, String> {
+    self.expect("\"")?;
+    let start = self.pos;
+    let mut depth = 0isize;
+    while self.pos < self.chars.len() {
+      // A quote inside a literal command is content, even outside a braced group.
+      if let Some(range) = tex::verbatim_range(&self.chars, self.pos) {
+        self.pos = range.end + 1;
+        continue;
+      }
+      match self.chars[self.pos] {
+        // Escaped quotes and braces are content, not syntax delimiters.
+        '\\' => self.pos += 1,
+        '{' => depth += 1,
+        '}' => depth -= 1,
+        '"' if depth <= 0 => {
+          let value = self.text(start, self.pos);
+          self.pos += 1;
+          return Ok(value);
         }
+        _ => {}
+      }
+      self.pos += 1;
     }
+    Err(self.error(format!("Unterminated quote-value {:?}", self.text(start, (start + 20).min(self.chars.len())))))
+  }
 
-    /// Consume a token after skipping inter-token whitespace.
-    fn consume(&mut self, token: &str) -> bool {
-        self.skip_whitespace();
-        let token: Vec<char> = token.chars().collect();
-        if self.chars.get(self.pos..self.pos + token.len()) == Some(token.as_slice()) {
-            self.pos += token.len();
-            true
+  /// Read a braced, quoted, numeric, or string-referenced value and resolve `#` concatenation.
+  /// Unresolved references retain protected source text and emit one diagnostic per name.
+  fn value(&mut self) -> Result<String, String> {
+    // Braced and quoted values retain their contents; bare integers are literals and other bare
+    // identifiers resolve through the declared or predefined string tables.
+    let mut result = if self.consume("{") {
+      self.pos -= 1;
+      self.braced()?
+    } else if self.consume("\"") {
+      self.pos -= 1;
+      self.quoted()?
+    } else {
+      let bare = self.key("")?;
+      if !bare.is_empty() && bare.chars().all(|ch| ch.is_ascii_digit()) {
+        bare
+      } else {
+        let upper = bare.to_uppercase();
+        // Nonempty user declarations take precedence over built-in abbreviations.
+        if let Some(value) = self.library.strings.get(&upper).filter(|value| !value.is_empty()).or_else(|| self.defaults.get(&upper)).filter(|value| !value.is_empty()) {
+          value.clone()
         } else {
-            false
+          // Preserve unresolved names in braces and record one error per distinct name.
+          let message = format!("unresolved @string reference {bare:?}");
+          if !self.library.errors.iter().any(|error| error.error == message) {
+            self.library.errors.push(ParseError { error: message, input: String::new() });
+          }
+          format!("{{{{{bare}}}}}")
         }
+      }
+    };
+    while self.consume("#") {
+      result.push_str(&self.value()?);
     }
+    Ok(result)
+  }
 
-    /// Consume a required token or return a location-aware mismatch error.
-    fn expect(&mut self, token: &str) -> Result<(), String> {
-        if self.consume(token) {
-            Ok(())
-        } else {
-            Err(self.error(format!(
-                "Token mismatch, expected {token:?}, found {:?}...",
-                self.remaining()
-            )))
-        }
+  /// Parse one key/value pair, storing string declarations separately from entry fields.
+  fn field(&mut self, key: Option<String>) -> Result<(), String> {
+    let key = match key {
+      Some(key) => key,
+      None => self.key("")?,
+    };
+    if key.is_empty() {
+      // A stray comma has no key/value pair and is tolerated for exporter compatibility.
+      return Ok(());
     }
-
-    /// Check the next token without consuming it; entry parsing uses this for closing guards.
-    fn next_is(&mut self, token: &str) -> bool {
-        self.skip_whitespace();
-        let token: Vec<char> = token.chars().collect();
-        self.chars.get(self.pos..self.pos + token.len()) == Some(token.as_slice())
+    if !self.consume("=") {
+      return Err(self.error(format!("{key} = value expected, equals sign missing: {:?}...", self.remaining())));
     }
-
-    /// Read a BibTeX identifier containing letters, digits, or the permitted syntax characters.
-    fn key(&mut self, allow: &str) -> Result<String, String> {
-        let start = self.pos;
-        loop {
-            let Some(ch) = self.chars.get(self.pos).copied() else {
-                return Err(self.error("Runaway key"));
-            };
-            if ch.is_alphabetic()
-                || ch.is_ascii_digit()
-                || matches!(
-                    ch,
-                    '+' | '\'' | '&' | ';' | '_' | ':' | '\\' | '.' | '/' | '-'
-                )
-                || allow.contains(ch)
-            {
-                self.pos += 1;
-            } else {
-                break;
-            }
-        }
-        Ok(self.text(start, self.pos))
+    let value = self.value()?;
+    // @string values extend the lookup table; entry-field values attach to the current record.
+    if self.parsing == "string" {
+      let key = key.to_uppercase();
+      self.library.strings.insert(key, value);
+    } else if let Some(entry) = self.library.entries.last_mut() {
+      // Preserve duplicate fields by appending an incrementing duplicate suffix.
+      let base = key.to_lowercase();
+      let mut name = base.clone();
+      let mut duplicate = 0;
+      while entry.fields.contains_key(&name) {
+        duplicate += 1;
+        name = format!("{base}+duplicate-{duplicate}");
+      }
+      entry.fields.insert(name, value);
     }
+    Ok(())
+  }
 
-    /// Read the entry delimiter and return its matching closing character.
-    fn guard(&mut self) -> Result<char, String> {
-        // BibTeX permits either brace or parenthesis entry delimiters.
-        if self.consume("{") {
-            self.skip_whitespace();
-            Ok('}')
-        } else if self.consume("(") {
-            self.skip_whitespace();
-            Ok(')')
-        } else {
-            Err(self.error(format!(
-                "Token mismatch, expected '{{' or '(', found {:?}...",
-                self.remaining()
-            )))
-        }
+  /// Parse an entry body, including keyless records and trailing commas used by some exporters.
+  fn entry(&mut self, end: char) -> Result<(), String> {
+    if self.next_is(&end.to_string()) {
+      return Ok(());
     }
-
-    /// Read a balanced braced value, respecting escaped braces and paired math delimiters.
-    fn braced(&mut self) -> Result<String, String> {
-        self.expect("{")?;
-        let start = self.pos;
-        let mut depth = 0usize;
-        let mut math = false;
-        while self.pos < self.chars.len() {
-            // Literal commands must bypass both brace balancing and math-delimiter tracking.
-            if let Some(range) = tex::verbatim_range(&self.chars, self.pos) {
-                self.pos = range.end + 1;
-                continue;
-            }
-            match self.chars[self.pos] {
-                // Skip the escaped character so it cannot affect brace or math depth.
-                '\\' => self.pos += 1,
-                '{' => depth += 1,
-                '}' if depth == 0 => {
-                    let value = self.text(start, self.pos);
-                    self.pos += 1;
-                    return if math {
-                        Err(self.error("Unclosed math section"))
-                    } else {
-                        Ok(value)
-                    };
-                }
-                '}' => depth -= 1,
-                // Track math independently of brace depth; an outer close rejects unmatched dollars.
-                '$' => math = !math,
-                _ => {}
-            }
-            self.pos += 1;
-        }
-        Err(self.error(format!(
-            "Unterminated brace-value {:?}",
-            self.text(start, (start + 20).min(self.chars.len()))
-        )))
+    // A leading comma represents a keyless entry; an equals sign instead marks a keyless field.
+    let key = if self.consume(",") { String::new() } else { self.key("[]*\"")? };
+    if self.next_is("=") {
+      self.field(Some(key))?;
+    } else if let Some(entry) = self.library.entries.last_mut() {
+      entry.key = key;
     }
-
-    /// Read a quoted value; quotes inside braces do not terminate the value.
-    fn quoted(&mut self) -> Result<String, String> {
-        self.expect("\"")?;
-        let start = self.pos;
-        let mut depth = 0isize;
-        while self.pos < self.chars.len() {
-            // A quote inside a literal command is content, even outside a braced group.
-            if let Some(range) = tex::verbatim_range(&self.chars, self.pos) {
-                self.pos = range.end + 1;
-                continue;
-            }
-            match self.chars[self.pos] {
-                // Escaped quotes and braces are content, not syntax delimiters.
-                '\\' => self.pos += 1,
-                '{' => depth += 1,
-                '}' => depth -= 1,
-                '"' if depth <= 0 => {
-                    let value = self.text(start, self.pos);
-                    self.pos += 1;
-                    return Ok(value);
-                }
-                _ => {}
-            }
-            self.pos += 1;
-        }
-        Err(self.error(format!(
-            "Unterminated quote-value {:?}",
-            self.text(start, (start + 20).min(self.chars.len()))
-        )))
+    self.consume(",");
+    if self.next_is(&end.to_string()) {
+      return Ok(());
     }
-
-    /// Read a braced, quoted, numeric, or string-referenced value and resolve `#` concatenation.
-    /// Unresolved references retain protected source text and emit one diagnostic per name.
-    fn value(&mut self) -> Result<String, String> {
-        // Braced and quoted values retain their contents; bare integers are literals and other bare
-        // identifiers resolve through the declared or predefined string tables.
-        let mut result = if self.consume("{") {
-            self.pos -= 1;
-            self.braced()?
-        } else if self.consume("\"") {
-            self.pos -= 1;
-            self.quoted()?
-        } else {
-            let bare = self.key("")?;
-            if !bare.is_empty() && bare.chars().all(|ch| ch.is_ascii_digit()) {
-                bare
-            } else {
-                let upper = bare.to_uppercase();
-                // Nonempty user declarations take precedence over built-in abbreviations.
-                if let Some(value) = self
-                    .library
-                    .strings
-                    .get(&upper)
-                    .filter(|value| !value.is_empty())
-                    .or_else(|| self.defaults.get(&upper))
-                    .filter(|value| !value.is_empty())
-                {
-                    value.clone()
-                } else {
-                    // Preserve unresolved names in braces and record one error per distinct name.
-                    let message = format!("unresolved @string reference {bare:?}");
-                    if !self
-                        .library
-                        .errors
-                        .iter()
-                        .any(|error| error.error == message)
-                    {
-                        self.library.errors.push(ParseError {
-                            error: message,
-                            input: String::new(),
-                        });
-                    }
-                    format!("{{{{{bare}}}}}")
-                }
-            }
-        };
-        while self.consume("#") {
-            result.push_str(&self.value()?);
-        }
-        Ok(result)
+    self.field(None)?;
+    // Accept a comma immediately before the closing guard.
+    while self.consume(",") {
+      if self.next_is(&end.to_string()) {
+        return Ok(());
+      }
+      self.field(None)?;
     }
+    Ok(())
+  }
 
-    /// Parse one key/value pair, storing string declarations separately from entry fields.
-    fn field(&mut self, key: Option<String>) -> Result<(), String> {
-        let key = match key {
-            Some(key) => key,
-            None => self.key("")?,
-        };
-        if key.is_empty() {
-            // A stray comma has no key/value pair and is tolerated for exporter compatibility.
-            return Ok(());
-        }
-        if !self.consume("=") {
-            return Err(self.error(format!(
-                "{key} = value expected, equals sign missing: {:?}...",
-                self.remaining()
-            )));
-        }
-        let value = self.value()?;
-        // @string values extend the lookup table; entry-field values attach to the current record.
-        if self.parsing == "string" {
-            let key = key.to_uppercase();
-            self.library.strings.insert(key, value);
-        } else if let Some(entry) = self.library.entries.last_mut() {
-            // Preserve duplicate fields by appending an incrementing duplicate suffix.
-            let base = key.to_lowercase();
-            let mut name = base.clone();
-            let mut duplicate = 0;
-            while entry.fields.contains_key(&name) {
-                duplicate += 1;
-                name = format!("{base}+duplicate-{duplicate}");
-            }
-            entry.fields.insert(name, value);
-        }
-        Ok(())
+  /// Read either a braced comment or the unbraced comment text through end of line.
+  fn comment(&mut self) -> Result<(), String> {
+    while matches!(self.chars.get(self.pos), Some(' ' | '\t')) {
+      self.pos += 1;
     }
+    // Braced comments use balanced values; unbraced comments end at the newline.
+    if self.chars.get(self.pos) == Some(&'{') {
+      let comment = self.braced()?;
+      self.library.comments.push(comment);
+    } else {
+      let start = self.pos;
+      while self.pos < self.chars.len() && self.chars[self.pos] != '\n' {
+        self.pos += 1;
+      }
+      self.library.comments.push(self.text(start, self.pos));
+    }
+    Ok(())
+  }
 
-    /// Parse an entry body, including keyless records and trailing commas used by some exporters.
-    fn entry(&mut self, end: char) -> Result<(), String> {
-        if self.next_is(&end.to_string()) {
-            return Ok(());
+  /// Find and parse the next directive, recovering at the next `@` after malformed input.
+  fn parse_next(&mut self) {
+    self.skip_whitespace();
+    while self.pos < self.chars.len() && self.chars[self.pos] != '@' {
+      if self.chars[self.pos] == '%' {
+        while self.pos < self.chars.len() && self.chars[self.pos] != '\n' {
+          self.pos += 1;
         }
-        // A leading comma represents a keyless entry; an equals sign instead marks a keyless field.
-        let key = if self.consume(",") {
-            String::new()
-        } else {
-            self.key("[]*\"")?
-        };
-        if self.next_is("=") {
-            self.field(Some(key))?;
-        } else if let Some(entry) = self.library.entries.last_mut() {
-            entry.key = key;
-        }
-        self.consume(",");
-        if self.next_is(&end.to_string()) {
-            return Ok(());
-        }
+      } else {
+        self.pos += 1;
+      }
+    }
+    if self.pos == self.chars.len() {
+      // Ignore trailing source text that contains no further directive.
+      return;
+    }
+    let start = self.pos;
+    let result = (|| {
+      self.expect("@")?;
+      self.skip_whitespace();
+      self.parsing = self.key("")?.to_lowercase();
+      // Comments have a different body grammar and do not create an entry record.
+      if self.parsing == "comment" {
+        return self.comment();
+      }
+      // Preambles contain values and do not have an entry key.
+      if self.parsing == "preamble" {
+        let preamble = self.value()?;
+        self.library.preambles.push(preamble);
+        return Ok(());
+      }
+      let end = self.guard()?;
+      if self.parsing == "string" {
         self.field(None)?;
-        // Accept a comma immediately before the closing guard.
-        while self.consume(",") {
-            if self.next_is(&end.to_string()) {
-                return Ok(());
-            }
-            self.field(None)?;
-        }
-        Ok(())
+        return self.expect(&end.to_string());
+      }
+      self.library.entries.push(Entry {
+        input: String::new(),
+        entry: self.parsing.clone(),
+        key: String::new(),
+        fields: HashMap::new(),
+      });
+      self.entry(end)?;
+      self.expect(&end.to_string())?;
+      self.skip_whitespace();
+      let input = self.text(start, self.pos).trim().to_string();
+      if let Some(entry) = self.library.entries.last_mut() {
+        entry.input = input;
+      }
+      Ok(())
+    })();
+    if let Err(error) = result {
+      // Recovery is deliberately lexical, not brace-aware: even an unclosed value must
+      // allow a later directive to be found. Any partially inserted entry is retained.
+      // Resume at the next directive marker so a bad entry does not discard later records.
+      self.pos = start + 1;
+      while self.pos < self.chars.len() && self.chars[self.pos] != '@' {
+        self.pos += 1;
+      }
+      if !self.library.errors.iter().any(|known| known.error == error) {
+        self.library.errors.push(ParseError { error, input: self.text(start, self.pos) });
+      }
     }
+  }
 
-    /// Read either a braced comment or the unbraced comment text through end of line.
-    fn comment(&mut self) -> Result<(), String> {
-        while matches!(self.chars.get(self.pos), Some(' ' | '\t')) {
-            self.pos += 1;
-        }
-        // Braced comments use balanced values; unbraced comments end at the newline.
-        if self.chars.get(self.pos) == Some(&'{') {
-            let comment = self.braced()?;
-            self.library.comments.push(comment);
-        } else {
-            let start = self.pos;
-            while self.pos < self.chars.len() && self.chars[self.pos] != '\n' {
-                self.pos += 1;
-            }
-            self.library.comments.push(self.text(start, self.pos));
-        }
-        Ok(())
-    }
+  /// Parse directives until input ends or the requested entry limit is reached.
+  fn parse(self) -> Library {
+    futures_util::FutureExt::now_or_never(self.parse_with_yield(|| std::future::ready(()))).expect("synchronous parsing does not suspend")
+  }
 
-    /// Find and parse the next directive, recovering at the next `@` after malformed input.
-    fn parse_next(&mut self) {
-        self.skip_whitespace();
-        while self.pos < self.chars.len() && self.chars[self.pos] != '@' {
-            if self.chars[self.pos] == '%' {
-                while self.pos < self.chars.len() && self.chars[self.pos] != '\n' {
-                    self.pos += 1;
-                }
-            } else {
-                self.pos += 1;
-            }
-        }
-        if self.pos == self.chars.len() {
-            // Ignore trailing source text that contains no further directive.
-            return;
-        }
-        let start = self.pos;
-        let result = (|| {
-            self.expect("@")?;
-            self.skip_whitespace();
-            self.parsing = self.key("")?.to_lowercase();
-            // Comments have a different body grammar and do not create an entry record.
-            if self.parsing == "comment" {
-                return self.comment();
-            }
-            // Preambles contain values and do not have an entry key.
-            if self.parsing == "preamble" {
-                let preamble = self.value()?;
-                self.library.preambles.push(preamble);
-                return Ok(());
-            }
-            let end = self.guard()?;
-            if self.parsing == "string" {
-                self.field(None)?;
-                return self.expect(&end.to_string());
-            }
-            self.library.entries.push(Entry {
-                input: String::new(),
-                entry: self.parsing.clone(),
-                key: String::new(),
-                fields: HashMap::new(),
-            });
-            self.entry(end)?;
-            self.expect(&end.to_string())?;
-            self.skip_whitespace();
-            let input = self.text(start, self.pos).trim().to_string();
-            if let Some(entry) = self.library.entries.last_mut() {
-                entry.input = input;
-            }
-            Ok(())
-        })();
-        if let Err(error) = result {
-            // Recovery is deliberately lexical, not brace-aware: even an unclosed value must
-            // allow a later directive to be found. Any partially inserted entry is retained.
-            // Resume at the next directive marker so a bad entry does not discard later records.
-            self.pos = start + 1;
-            while self.pos < self.chars.len() && self.chars[self.pos] != '@' {
-                self.pos += 1;
-            }
-            if !self.library.errors.iter().any(|known| known.error == error) {
-                self.library.errors.push(ParseError {
-                    error,
-                    input: self.text(start, self.pos),
-                });
-            }
-        }
+  /// Share directive parsing between sync and async callers without yielding inside a value.
+  /// The interval counts parse attempts, including comments and failures, rather than entries.
+  async fn parse_with_yield<F, Fut>(mut self, mut yield_now: F) -> Library
+  where
+    F: FnMut() -> Fut,
+    Fut: std::future::Future<Output = ()>,
+  {
+    let mut iterations = 0;
+    while self.pos < self.chars.len() && (self.max_entries == 0 || self.library.entries.len() < self.max_entries) {
+      let previous = self.pos;
+      self.parse_next();
+      iterations += 1;
+      if iterations % 1000 == 0 {
+        yield_now().await;
+      }
+      // Guard against a parser branch that reports success without advancing the cursor.
+      if previous == self.pos {
+        break;
+      }
     }
-
-    /// Parse directives until input ends or the requested entry limit is reached.
-    fn parse(self) -> Library {
-        futures_util::FutureExt::now_or_never(self.parse_with_yield(|| std::future::ready(())))
-            .expect("synchronous parsing does not suspend")
-    }
-
-    /// Share directive parsing between sync and async callers without yielding inside a value.
-    /// The interval counts parse attempts, including comments and failures, rather than entries.
-    async fn parse_with_yield<F, Fut>(mut self, mut yield_now: F) -> Library
-    where
-        F: FnMut() -> Fut,
-        Fut: std::future::Future<Output = ()>,
-    {
-        let mut iterations = 0;
-        while self.pos < self.chars.len()
-            && (self.max_entries == 0 || self.library.entries.len() < self.max_entries)
-        {
-            let previous = self.pos;
-            self.parse_next();
-            iterations += 1;
-            if iterations % 1000 == 0 {
-                yield_now().await;
-            }
-            // Guard against a parser branch that reports success without advancing the cursor.
-            if previous == self.pos {
-                break;
-            }
-        }
-        self.library
-    }
+    self.library
+  }
 }
 
 /// Return BibTeX's built-in month and journal abbreviations.
 fn default_strings() -> HashMap<String, String> {
-    [
-        ("JAN", "01"),
-        ("JANUARY", "01"),
-        ("FEB", "02"),
-        ("FEBRUARY", "02"),
-        ("MAR", "03"),
-        ("MARCH", "03"),
-        ("APR", "04"),
-        ("APRIL", "04"),
-        ("MAY", "05"),
-        ("JUN", "06"),
-        ("JUNE", "06"),
-        ("JUL", "07"),
-        ("JULY", "07"),
-        ("AUG", "08"),
-        ("AUGUST", "08"),
-        ("SEP", "09"),
-        ("SEPTEMBER", "09"),
-        ("OCT", "10"),
-        ("OCTOBER", "10"),
-        ("NOV", "11"),
-        ("NOVEMBER", "11"),
-        ("DEC", "12"),
-        ("DECEMBER", "12"),
-        ("ACMCS", "ACM Computing Surveys"),
-        ("ACTA", "Acta Informatica"),
-        ("CACM", "Communications of the ACM"),
-        ("IBMJRD", "IBM Journal of Research and Development"),
-        ("IBMSJ", "IBM Systems Journal"),
-        ("IEEESE", "IEEE Transactions on Software Engineering"),
-        ("IEEETC", "IEEE Transactions on Computers"),
-        (
-            "IEEETCAD",
-            "IEEE Transactions on Computer-Aided Design of Integrated Circuits",
-        ),
-        ("IPL", "Information Processing Letters"),
-        ("JACM", "Journal of the ACM"),
-        ("JCSS", "Journal of Computer and System Sciences"),
-        ("SCP", "Science of Computer Programming"),
-        ("SICOMP", "SIAM Journal on Computing"),
-        ("TOCS", "ACM Transactions on Computer Systems"),
-        ("TODS", "ACM Transactions on Database Systems"),
-        ("TOG", "ACM Transactions on Graphics"),
-        ("TOMS", "ACM Transactions on Mathematical Software"),
-        ("TOOIS", "ACM Transactions on Office Information Systems"),
-        (
-            "TOPLAS",
-            "ACM Transactions on Programming Languages and Systems",
-        ),
-        ("TCS", "Theoretical Computer Science"),
-    ]
-    .into_iter()
-    .map(|(key, value)| (key.to_string(), value.to_string()))
-    .collect()
+  [
+    ("JAN", "01"),
+    ("JANUARY", "01"),
+    ("FEB", "02"),
+    ("FEBRUARY", "02"),
+    ("MAR", "03"),
+    ("MARCH", "03"),
+    ("APR", "04"),
+    ("APRIL", "04"),
+    ("MAY", "05"),
+    ("JUN", "06"),
+    ("JUNE", "06"),
+    ("JUL", "07"),
+    ("JULY", "07"),
+    ("AUG", "08"),
+    ("AUGUST", "08"),
+    ("SEP", "09"),
+    ("SEPTEMBER", "09"),
+    ("OCT", "10"),
+    ("OCTOBER", "10"),
+    ("NOV", "11"),
+    ("NOVEMBER", "11"),
+    ("DEC", "12"),
+    ("DECEMBER", "12"),
+    ("ACMCS", "ACM Computing Surveys"),
+    ("ACTA", "Acta Informatica"),
+    ("CACM", "Communications of the ACM"),
+    ("IBMJRD", "IBM Journal of Research and Development"),
+    ("IBMSJ", "IBM Systems Journal"),
+    ("IEEESE", "IEEE Transactions on Software Engineering"),
+    ("IEEETC", "IEEE Transactions on Computers"),
+    ("IEEETCAD", "IEEE Transactions on Computer-Aided Design of Integrated Circuits"),
+    ("IPL", "Information Processing Letters"),
+    ("JACM", "Journal of the ACM"),
+    ("JCSS", "Journal of Computer and System Sciences"),
+    ("SCP", "Science of Computer Programming"),
+    ("SICOMP", "SIAM Journal on Computing"),
+    ("TOCS", "ACM Transactions on Computer Systems"),
+    ("TODS", "ACM Transactions on Database Systems"),
+    ("TOG", "ACM Transactions on Graphics"),
+    ("TOMS", "ACM Transactions on Mathematical Software"),
+    ("TOOIS", "ACM Transactions on Office Information Systems"),
+    ("TOPLAS", "ACM Transactions on Programming Languages and Systems"),
+    ("TCS", "Theoretical Computer Science"),
+  ]
+  .into_iter()
+  .map(|(key, value)| (key.to_string(), value.to_string()))
+  .collect()
 }
 
 /// Return the language identifiers treated as English by default.
 fn default_english() -> Vec<String> {
-    serde_json::from_str(include_str!("../data/english.json"))
-        .expect("default English language list must be valid JSON")
+  serde_json::from_str(include_str!("../data/english.json")).expect("default English language list must be valid JSON")
 }
 
 /// Return the fields whose single outer brace group is removed during normalization.
 fn default_remove_outer_braces() -> Vec<String> {
-    [
-        "doi",
-        "keywords",
-        "title",
-        "subtitle",
-        "series",
-        "shorttitle",
-        "booktitle",
-        "origtitle",
-        "maintitle",
-        "eventtitle",
-        "eprint",
-        "file",
-        "files",
-        "pdf",
-        "groups",
-        "ids",
-        "url",
-        "verba",
-        "verbb",
-        "verbc",
-    ]
-    .into_iter()
-    .map(str::to_string)
-    .collect()
-}
-
-const NAME_FIELDS: &[&str] = &[
-    "afterword",
-    "author",
-    "annotator",
-    "bookauthor",
-    "collaborator",
-    "commentator",
-    "director",
-    "editor",
-    "editora",
-    "editorb",
-    "editors",
-    "foreword",
-    "holder",
-    "introduction",
-    "namea",
-    "nameb",
-    "namec",
-    "scriptwriter",
-    "shortauthor",
-    "shorteditor",
-    "sortname",
-    "translator",
-];
-
-const TITLE_FIELDS: &[&str] = &[
+  [
+    "doi",
+    "keywords",
     "title",
     "subtitle",
     "series",
@@ -1128,360 +964,321 @@ const TITLE_FIELDS: &[&str] = &[
     "origtitle",
     "maintitle",
     "eventtitle",
+    "eprint",
+    "file",
+    "files",
+    "pdf",
+    "groups",
+    "ids",
+    "url",
+    "verba",
+    "verbb",
+    "verbc",
+  ]
+  .into_iter()
+  .map(str::to_string)
+  .collect()
+}
+
+const NAME_FIELDS: &[&str] = &[
+  "afterword",
+  "author",
+  "annotator",
+  "bookauthor",
+  "collaborator",
+  "commentator",
+  "director",
+  "editor",
+  "editora",
+  "editorb",
+  "editors",
+  "foreword",
+  "holder",
+  "introduction",
+  "namea",
+  "nameb",
+  "namec",
+  "scriptwriter",
+  "shortauthor",
+  "shorteditor",
+  "sortname",
+  "translator",
 ];
 
+const TITLE_FIELDS: &[&str] = &["title", "subtitle", "series", "shorttitle", "booktitle", "origtitle", "maintitle", "eventtitle"];
+
 // JabRef's `groups` field is nonstandard and must stay verbatim.
-const VERBATIM_FIELDS: &[&str] = &[ "doi", "eprint", "file", "files", "pdf", "groups", "ids", "options", "url", "verba", "verbb", "verbc" ];
+const VERBATIM_FIELDS: &[&str] = &["execute", "doi", "eprint", "file", "files", "pdf", "groups", "ids", "options", "url", "verba", "verbb", "verbc"];
 
 const RICHTEXT_FIELDS: &[&str] = &["annotation", "comment", "annote", "review", "notes", "note"];
 
 const LIST_FIELDS: &[&str] = &[
-    "address",
-    "entryset",
-    "institution",
-    "labelname",
-    "language",
-    "list?",
-    "location",
-    "organization",
-    "origlocation",
-    "origpublisher",
-    "origlanguage",
-    "pageref",
-    "publisher",
-    "related",
-    "relatedoptions",
-    "school",
-    "xdata",
+  "address",
+  "entryset",
+  "institution",
+  "labelname",
+  "language",
+  "list?",
+  "location",
+  "organization",
+  "origlocation",
+  "origpublisher",
+  "origlanguage",
+  "pageref",
+  "publisher",
+  "related",
+  "relatedoptions",
+  "school",
+  "xdata",
 ];
 
 /// Split a value only where the separator is outside braces and is not escaped.
 fn split_top_level(input: &str, separator: char) -> Vec<String> {
-    let mut parts = Vec::new();
-    let mut part = String::new();
-    let mut depth = 0usize;
-    let mut escaped = false;
-    for ch in input.chars() {
-        if escaped {
-            // Escaped separators and braces are literal content.
-            part.push(ch);
-            escaped = false;
-            continue;
-        }
-        match ch {
-            '\\' => escaped = true,
-            '{' => depth += 1,
-            '}' => depth = depth.saturating_sub(1),
-            _ => {}
-        }
-        // Separators split only after the current group has closed.
-        if ch == separator && depth == 0 {
-            parts.push(part.trim().to_string());
-            part.clear();
-        } else {
-            part.push(ch);
-        }
+  let mut parts = Vec::new();
+  let mut part = String::new();
+  let mut depth = 0usize;
+  let mut escaped = false;
+  for ch in input.chars() {
+    if escaped {
+      // Escaped separators and braces are literal content.
+      part.push(ch);
+      escaped = false;
+      continue;
     }
-    parts.push(part.trim().to_string());
-    parts
+    match ch {
+      '\\' => escaped = true,
+      '{' => depth += 1,
+      '}' => depth = depth.saturating_sub(1),
+      _ => {}
+    }
+    // Separators split only after the current group has closed.
+    if ch == separator && depth == 0 {
+      parts.push(part.trim().to_string());
+      part.clear();
+    } else {
+      part.push(ch);
+    }
+  }
+  parts.push(part.trim().to_string());
+  parts
 }
 
 /// Split a name list on top-level, whitespace-delimited `and` tokens.
 fn split_names(input: &str) -> Vec<String> {
-    let chars: Vec<char> = input.chars().collect();
-    let mut result = Vec::new();
-    let mut start = 0;
-    let mut depth = 0usize;
-    let mut escaped = false;
-    let mut index = 0;
-    while index < chars.len() {
-        let ch = chars[index];
-        if escaped {
-            escaped = false;
-            index += 1;
-            continue;
-        }
-        if ch == '\\' {
-            escaped = true;
-        } else if ch == '{' {
-            depth += 1;
-        } else if ch == '}' {
-            depth = depth.saturating_sub(1);
-        } else if depth == 0 && index + 3 <= chars.len() {
-            let token: String = chars[index..index + 3].iter().collect();
-            // Do not split inside a group or on a substring such as `Anderson`.
-            // Require `and` to be a complete token at the current top-level depth.
-            if token.eq_ignore_ascii_case("and")
-                && index > 0
-                && chars[index - 1].is_ascii_whitespace()
-                && index + 3 < chars.len()
-                && chars[index + 3].is_ascii_whitespace()
-            {
-                result.push(
-                    chars[start..index]
-                        .iter()
-                        .collect::<String>()
-                        .trim()
-                        .to_string(),
-                );
-                index += 3;
-                while index < chars.len() && chars[index].is_ascii_whitespace() {
-                    index += 1;
-                }
-                start = index;
-                continue;
-            }
-        }
-        index += 1;
+  let chars: Vec<char> = input.chars().collect();
+  let mut result = Vec::new();
+  let mut start = 0;
+  let mut depth = 0usize;
+  let mut escaped = false;
+  let mut index = 0;
+  while index < chars.len() {
+    let ch = chars[index];
+    if escaped {
+      escaped = false;
+      index += 1;
+      continue;
     }
-    result.push(chars[start..].iter().collect::<String>().trim().to_string());
-    result.into_iter().filter(|name| !name.is_empty()).collect()
+    if ch == '\\' {
+      escaped = true;
+    } else if ch == '{' {
+      depth += 1;
+    } else if ch == '}' {
+      depth = depth.saturating_sub(1);
+    } else if depth == 0 && index + 3 <= chars.len() {
+      let token: String = chars[index..index + 3].iter().collect();
+      // Do not split inside a group or on a substring such as `Anderson`.
+      // Require `and` to be a complete token at the current top-level depth.
+      if token.eq_ignore_ascii_case("and") && index > 0 && chars[index - 1].is_ascii_whitespace() && index + 3 < chars.len() && chars[index + 3].is_ascii_whitespace() {
+        result.push(chars[start..index].iter().collect::<String>().trim().to_string());
+        index += 3;
+        while index < chars.len() && chars[index].is_ascii_whitespace() {
+          index += 1;
+        }
+        start = index;
+        continue;
+      }
+    }
+    index += 1;
+  }
+  result.push(chars[start..].iter().collect::<String>().trim().to_string());
+  result.into_iter().filter(|name| !name.is_empty()).collect()
 }
 
 /// Splits BibLaTeX comma-separated list fields separately from `and`-separated name lists.
 fn split_literal_list(field: &str, input: &str) -> Vec<String> {
-    if matches!(field, "entryset" | "related" | "relatedoptions" | "xdata") {
-        split_top_level(input, ',')
-            .into_iter()
-            .filter(|item| !item.is_empty())
-            .collect()
-    } else {
-        split_names(input)
-    }
+  if matches!(field, "entryset" | "related" | "relatedoptions" | "xdata") {
+    split_top_level(input, ',').into_iter().filter(|item| !item.is_empty()).collect()
+  } else {
+    split_names(input)
+  }
 }
 
 /// Split first-last names on whitespace outside TeX groups.
 fn split_name_words(input: &str) -> Vec<String> {
-    let mut words = Vec::new();
-    let mut word = String::new();
-    let (mut depth, mut escaped) = (0usize, false);
-    for character in input.chars() {
-        if escaped {
-            word.push(character);
-            escaped = false;
-        } else if character == '\\' {
-            word.push(character);
-            escaped = true;
-        } else if character == '{' {
-            depth += 1;
-            word.push(character);
-        } else if character == '}' {
-            depth = depth.saturating_sub(1);
-            word.push(character);
-        } else if character.is_ascii_whitespace() && depth == 0 {
-            if !word.is_empty() {
-                words.push(std::mem::take(&mut word));
-            }
-        } else {
-            word.push(character);
-        }
+  let mut words = Vec::new();
+  let mut word = String::new();
+  let (mut depth, mut escaped) = (0usize, false);
+  for character in input.chars() {
+    if escaped {
+      word.push(character);
+      escaped = false;
+    } else if character == '\\' {
+      word.push(character);
+      escaped = true;
+    } else if character == '{' {
+      depth += 1;
+      word.push(character);
+    } else if character == '}' {
+      depth = depth.saturating_sub(1);
+      word.push(character);
+    } else if character.is_ascii_whitespace() && depth == 0 {
+      if !word.is_empty() {
+        words.push(std::mem::take(&mut word));
+      }
+    } else {
+      word.push(character);
     }
-    if !word.is_empty() {
-        words.push(word);
-    }
-    words
+  }
+  if !word.is_empty() {
+    words.push(word);
+  }
+  words
 }
 
 /// Remove one complete outer name group while leaving partial or nested source intact.
 fn clean_name_part(value: &str) -> String {
-    let value = value.trim();
-    if value.starts_with('{') && value.ends_with('}') && value.len() >= 2 {
-        value[1..value.len() - 1].trim().to_string()
-    } else {
-        value.to_string()
-    }
+  let value = value.trim();
+  if value.starts_with('{') && value.ends_with('}') && value.len() >= 2 { value[1..value.len() - 1].trim().to_string() } else { value.to_string() }
 }
 
 /// Parse one name using the extended-name, comma-separated, or first-last convention.
 fn parse_name(input: &str, entry_key: &str, renderer: &mut tex::LibraryRenderer) -> Name {
-    // A fully braced name is an indivisible literal rather than a family/given name pair.
-    let unwrapped = remove_outer_braces(input);
-    if unwrapped != input {
-        return Name {
-            name: Some(
-                renderer
-                    .render(
-                        &unwrapped,
-                        tex::RenderContext::field(tex::RenderMode::Text, false, false),
-                    )
-                    .trim()
-                    .to_string(),
-            ),
-            ..Name::default()
-        };
-    }
-    let raw_input = input.trim();
-    let input = renderer
-        .render(
-            raw_input,
-            tex::RenderContext::field(tex::RenderMode::Text, false, false),
-        )
-        .trim()
-        .to_string();
-    let mut parts = split_top_level(&input, ',');
-    if parts.len() == 3 && parts[2].is_empty() {
-        // Ignore the trailing empty part before applying BibTeX comma-name rules.
-        parts.pop();
-    }
-    // Treat comma-separated parts as extended properties only when every part has a valid key=value signature.
-    let extended = parts.len() > 1
-        && parts.iter().all(|part| {
-            part.split_once('=')
-                .is_some_and(|(key, _)| is_extended_name_key(key.trim()))
-        });
-    if extended {
-        let mut name = Name::default();
-        for part in parts {
-            let Some((key, value)) = part.split_once('=') else {
-                continue;
-            };
-            let key = key.trim().to_ascii_lowercase();
-            let value = clean_name_part(value);
-            match key.as_str() {
-                "given" if !value.is_empty() => name.first_name = Some(value),
-                "family" if !value.is_empty() => name.last_name = Some(value),
-                "given-i" if !value.is_empty() => name.initial = Some(value),
-                "useprefix" => name.useprefix = Some(value.eq_ignore_ascii_case("true")),
-                "juniorcomma" => name.juniorcomma = Some(value.eq_ignore_ascii_case("true")),
-                // Keep nonempty extension properties instead of discarding unknown keys.
-                _ if !value.is_empty() => {
-                    name.extra.insert(key, serde_json::Value::String(value));
-                }
-                _ => {}
-            }
+  // A fully braced name is an indivisible literal rather than a family/given name pair.
+  let unwrapped = remove_outer_braces(input);
+  if unwrapped != input {
+    return Name {
+      name: Some(renderer.render(&unwrapped, tex::RenderContext::field(tex::RenderMode::Text, false, false)).trim().to_string()),
+      ..Name::default()
+    };
+  }
+  let raw_input = input.trim();
+  let input = renderer.render(raw_input, tex::RenderContext::field(tex::RenderMode::Text, false, false)).trim().to_string();
+  let mut parts = split_top_level(&input, ',');
+  if parts.len() == 3 && parts[2].is_empty() {
+    // Ignore the trailing empty part before applying BibTeX comma-name rules.
+    parts.pop();
+  }
+  // Treat comma-separated parts as extended properties only when every part has a valid key=value signature.
+  let extended = parts.len() > 1 && parts.iter().all(|part| part.split_once('=').is_some_and(|(key, _)| is_extended_name_key(key.trim())));
+  if extended {
+    let mut name = Name::default();
+    for part in parts {
+      let Some((key, value)) = part.split_once('=') else {
+        continue;
+      };
+      let key = key.trim().to_ascii_lowercase();
+      let value = clean_name_part(value);
+      match key.as_str() {
+        "given" if !value.is_empty() => name.first_name = Some(value),
+        "family" if !value.is_empty() => name.last_name = Some(value),
+        "given-i" if !value.is_empty() => name.initial = Some(value),
+        "useprefix" => name.useprefix = Some(value.eq_ignore_ascii_case("true")),
+        "juniorcomma" => name.juniorcomma = Some(value.eq_ignore_ascii_case("true")),
+        // Keep nonempty extension properties instead of discarding unknown keys.
+        _ if !value.is_empty() => {
+          name.extra.insert(key, serde_json::Value::String(value));
         }
-        return name;
+        _ => {}
+      }
     }
+    return name;
+  }
 
-    // BibTeX comma form is `family, suffix, given`; without commas names use first-last rules.
-    // More than three comma parts are diagnosed and discarded, retaining only these first fields.
-    if parts.len() > 1 {
-        if parts.len() > 3 {
-            let joined = parts.join(", ");
-            let key_prefix = if entry_key.is_empty() {
-                String::new()
-            } else {
-                format!("@{entry_key}: ")
-            };
-            renderer.errors.push(ParseError {
-                error: format!(
-                    "{key_prefix}unexpected {}-part name \"{joined}\", dropping \"{}\"",
-                    parts.len(),
-                    parts[3..].join(", ")
-                ),
-                input: joined,
-            });
-        }
-        let (last_name, suffix, first_name) = match parts.as_slice() {
-            [last, first] => (last.as_str(), None, Some(first.as_str())),
-            [last, suffix, first, ..] => {
-                (last.as_str(), Some(suffix.as_str()), Some(first.as_str()))
-            }
-            [last] => (last.as_str(), None, None),
-            [] => ("", None, None),
-        };
-        let last_name = clean_name_part(last_name);
-        let mut name = Name {
-            last_name: (!last_name.is_empty()).then_some(last_name.clone()),
-            first_name: first_name
-                .map(clean_name_part)
-                .filter(|name| !name.is_empty()),
-            suffix: suffix.map(clean_name_part).filter(|name| !name.is_empty()),
-            ..Name::default()
-        };
-        // A lowercase particle sequence in the family slot becomes the prefix; the final token is the surname.
-        if let Some((split, _)) = last_name.char_indices().rev().find(|(index, ch)| {
-            *ch == ' '
-                && *index > 0
-                && *index + ch.len_utf8() < last_name.len()
-                && last_name[..*index]
-                    .chars()
-                    .all(|prefix| prefix.is_ascii_lowercase() || matches!(prefix, '.' | '\'' | ' '))
-        }) {
-            name.prefix = Some(last_name[..split].to_string());
-            name.last_name = Some(last_name[split + 1..].to_string());
-        }
-        return name;
+  // BibTeX comma form is `family, suffix, given`; without commas names use first-last rules.
+  // More than three comma parts are diagnosed and discarded, retaining only these first fields.
+  if parts.len() > 1 {
+    if parts.len() > 3 {
+      let joined = parts.join(", ");
+      let key_prefix = if entry_key.is_empty() { String::new() } else { format!("@{entry_key}: ") };
+      renderer.errors.push(ParseError {
+        error: format!("{key_prefix}unexpected {}-part name \"{joined}\", dropping \"{}\"", parts.len(), parts[3..].join(", ")),
+        input: joined,
+      });
     }
+    let (last_name, suffix, first_name) = match parts.as_slice() {
+      [last, first] => (last.as_str(), None, Some(first.as_str())),
+      [last, suffix, first, ..] => (last.as_str(), Some(suffix.as_str()), Some(first.as_str())),
+      [last] => (last.as_str(), None, None),
+      [] => ("", None, None),
+    };
+    let last_name = clean_name_part(last_name);
+    let mut name = Name {
+      last_name: (!last_name.is_empty()).then_some(last_name.clone()),
+      first_name: first_name.map(clean_name_part).filter(|name| !name.is_empty()),
+      suffix: suffix.map(clean_name_part).filter(|name| !name.is_empty()),
+      ..Name::default()
+    };
+    // A lowercase particle sequence in the family slot becomes the prefix; the final token is the surname.
+    if let Some((split, _)) = last_name
+      .char_indices()
+      .rev()
+      .find(|(index, ch)| *ch == ' ' && *index > 0 && *index + ch.len_utf8() < last_name.len() && last_name[..*index].chars().all(|prefix| prefix.is_ascii_lowercase() || matches!(prefix, '.' | '\'' | ' ')))
+    {
+      name.prefix = Some(last_name[..split].to_string());
+      name.last_name = Some(last_name[split + 1..].to_string());
+    }
+    return name;
+  }
 
-    let words: Vec<String> = split_name_words(raw_input)
-        .iter()
-        .map(|word| {
-            renderer
-                .render(
-                    word,
-                    tex::RenderContext::field(tex::RenderMode::Text, false, false),
-                )
-                .trim()
-                .to_string()
-        })
-        .filter(|word| !word.is_empty())
-        .map(|word| clean_name_part(&word))
-        .collect();
-    if words.len() <= 1 {
-        return Name {
-            last_name: words.first().cloned(),
-            ..Name::default()
-        };
-    }
-    let prefix_index = words.iter().position(|word| {
-        word.chars()
-            .next()
-            .is_some_and(|ch| ch.is_ascii_lowercase())
-    });
-    // Lowercase particles mark the prefix; all-uppercase names use the final token as family name.
-    match prefix_index {
-        None => Name {
-            first_name: Some(words[..words.len() - 1].join(" ")),
-            last_name: words.last().cloned(),
-            ..Name::default()
-        },
-        Some(0) => Name {
-            first_name: Some(words[..words.len() - 1].join(" ")),
-            last_name: words.last().cloned(),
-            ..Name::default()
-        },
-        Some(index) => {
-            let postfix = words
-                .iter()
-                .enumerate()
-                .skip(index + 1)
-                .find(|(_, word)| {
-                    word.chars()
-                        .next()
-                        .is_some_and(|ch| !ch.is_ascii_lowercase())
-                })
-                .map(|(i, _)| i);
-            if let Some(postfix) = postfix {
-                Name {
-                    first_name: Some(words[..index].join(" ")),
-                    prefix: Some(words[index..postfix].join(" ")),
-                    last_name: Some(words[postfix..].join(" ")),
-                    ..Name::default()
-                }
-            } else {
-                Name {
-                    first_name: Some(words[..words.len() - 1].join(" ")),
-                    last_name: words.last().cloned(),
-                    ..Name::default()
-                }
-            }
+  let words: Vec<String> = split_name_words(raw_input)
+    .iter()
+    .map(|word| renderer.render(word, tex::RenderContext::field(tex::RenderMode::Text, false, false)).trim().to_string())
+    .filter(|word| !word.is_empty())
+    .map(|word| clean_name_part(&word))
+    .collect();
+  if words.len() <= 1 {
+    return Name { last_name: words.first().cloned(), ..Name::default() };
+  }
+  let prefix_index = words.iter().position(|word| word.chars().next().is_some_and(|ch| ch.is_ascii_lowercase()));
+  // Lowercase particles mark the prefix; all-uppercase names use the final token as family name.
+  match prefix_index {
+    None => Name {
+      first_name: Some(words[..words.len() - 1].join(" ")),
+      last_name: words.last().cloned(),
+      ..Name::default()
+    },
+    Some(0) => Name {
+      first_name: Some(words[..words.len() - 1].join(" ")),
+      last_name: words.last().cloned(),
+      ..Name::default()
+    },
+    Some(index) => {
+      let postfix = words.iter().enumerate().skip(index + 1).find(|(_, word)| word.chars().next().is_some_and(|ch| !ch.is_ascii_lowercase())).map(|(i, _)| i);
+      if let Some(postfix) = postfix {
+        Name {
+          first_name: Some(words[..index].join(" ")),
+          prefix: Some(words[index..postfix].join(" ")),
+          last_name: Some(words[postfix..].join(" ")),
+          ..Name::default()
         }
+      } else {
+        Name {
+          first_name: Some(words[..words.len() - 1].join(" ")),
+          last_name: words.last().cloned(),
+          ..Name::default()
+        }
+      }
     }
+  }
 }
 
 /// Accept ASCII alphabetic extended-name keys with at most one nonempty hyphenated suffix.
 fn is_extended_name_key(key: &str) -> bool {
-    let is_letters = |segment: &str| {
-        !segment.is_empty()
-            && segment
-                .chars()
-                .all(|character| character.is_ascii_alphabetic())
-    };
-    match key.split_once('-') {
-        Some((prefix, suffix)) => is_letters(prefix) && is_letters(suffix) && !suffix.contains('-'),
-        None => is_letters(key),
-    }
+  let is_letters = |segment: &str| !segment.is_empty() && segment.chars().all(|character| character.is_ascii_alphabetic());
+  match key.split_once('-') {
+    Some((prefix, suffix)) => is_letters(prefix) && is_letters(suffix) && !suffix.contains('-'),
+    None => is_letters(key),
+  }
 }
 
 /// Parse name parts without TeX rendering or outer-brace cleanup.
@@ -1490,33 +1287,29 @@ fn is_extended_name_key(key: &str) -> bool {
 /// `key=value` property. A two-word unseparated form is interpreted as given/family; other forms
 /// remain a single literal name.
 fn parse_raw_name(input: &str) -> Name {
-    let parts = split_top_level(input, ',');
-    let extended = parts.len() > 1
-        && parts.iter().all(|part| {
-            part.split_once('=')
-                .is_some_and(|(key, _)| is_extended_name_key(key.trim()))
-        });
-    if parts.len() == 2 && !extended {
-        return Name {
-            last_name: Some(parts[0].clone()),
-            first_name: Some(parts[1].clone()),
-            ..Name::default()
-        };
-    }
-    if parts.len() == 1 {
-        let words: Vec<_> = input.split_ascii_whitespace().collect();
-        if words.len() == 2 {
-            return Name {
-                last_name: Some(words[1].to_string()),
-                first_name: Some(words[0].to_string()),
-                ..Name::default()
-            };
-        }
-    }
-    Name {
-        name: Some(input.trim().to_string()),
+  let parts = split_top_level(input, ',');
+  let extended = parts.len() > 1 && parts.iter().all(|part| part.split_once('=').is_some_and(|(key, _)| is_extended_name_key(key.trim())));
+  if parts.len() == 2 && !extended {
+    return Name {
+      last_name: Some(parts[0].clone()),
+      first_name: Some(parts[1].clone()),
+      ..Name::default()
+    };
+  }
+  if parts.len() == 1 {
+    let words: Vec<_> = input.split_ascii_whitespace().collect();
+    if words.len() == 2 {
+      return Name {
+        last_name: Some(words[1].to_string()),
+        first_name: Some(words[0].to_string()),
         ..Name::default()
+      };
     }
+  }
+  Name {
+    name: Some(input.trim().to_string()),
+    ..Name::default()
+  }
 }
 
 /// Choose a field parser mode by applying explicit overrides before built-in defaults.
@@ -1526,192 +1319,150 @@ fn parse_raw_name(input: &str) -> Name {
 /// Built-in keyword and numbered export-field patterns still force `verbatim`, overriding
 /// configured modes. Without an override, the last matching default list wins.
 fn field_mode(field: &str, options: &Options) -> String {
-    if options
-        .verbatim_fields
-        .iter()
-        .any(|pattern| wildflower::Pattern::new(pattern.to_lowercase()).matches(field))
-    {
-        return "verbatim".to_owned();
-    }
+  if options.verbatim_fields.iter().any(|pattern| wildflower::Pattern::new(pattern.to_lowercase()).matches(field)) {
+    return "verbatim".to_owned();
+  }
 
-    let configured = options.field_mode.get(field);
-    let has_override = configured.is_some();
-    let mut mode = "literal";
-    for (candidate, matches_default) in [
-        (
-            "namelist",
-            !has_override && NAME_FIELDS.contains(&field),
-        ),
-        ("title", !has_override && TITLE_FIELDS.contains(&field)),
-        (
-            "verbatim",
-            !has_override && VERBATIM_FIELDS.contains(&field),
-        ),
-        (
-            "richtext",
-            !has_override && RICHTEXT_FIELDS.contains(&field),
-        ),
-        (
-            "literallist",
-            !has_override
-                && LIST_FIELDS
-                    .iter()
-                    .any(|pattern| wildflower::Pattern::new(pattern.to_lowercase()).matches(field)),
-        ),
-    ] {
-        if configured.is_some_and(|configured| configured == candidate) || matches_default {
-            mode = candidate;
-        }
-        let matches_verbatim_pattern = (field == "keywords"
-            || field
-                .strip_prefix("keywords+duplicate-")
-                .is_some_and(|suffix| {
-                    !suffix.is_empty() && suffix.chars().all(|ch| ch.is_ascii_digit())
-                }))
-            || ["citeulike-linkout-", "bdsk-url-"].iter().any(|prefix| {
-                field.strip_prefix(prefix).is_some_and(|suffix| {
-                    !suffix.is_empty() && suffix.chars().all(|ch| ch.is_ascii_digit())
-                })
-            });
-        if matches_verbatim_pattern {
-            mode = "verbatim";
-        }
+  let configured = options.field_mode.get(field);
+  let has_override = configured.is_some();
+  let mut mode = "literal";
+  for (candidate, matches_default) in [
+    ("namelist", !has_override && NAME_FIELDS.contains(&field)),
+    ("title", !has_override && TITLE_FIELDS.contains(&field)),
+    ("verbatim", !has_override && VERBATIM_FIELDS.contains(&field)),
+    ("richtext", !has_override && RICHTEXT_FIELDS.contains(&field)),
+    ("literallist", !has_override && LIST_FIELDS.iter().any(|pattern| wildflower::Pattern::new(pattern.to_lowercase()).matches(field))),
+  ] {
+    if configured.is_some_and(|configured| configured == candidate) || matches_default {
+      mode = candidate;
     }
-    mode.to_string()
+    let matches_verbatim_pattern = (field == "keywords" || field.strip_prefix("keywords+duplicate-").is_some_and(|suffix| !suffix.is_empty() && suffix.chars().all(|ch| ch.is_ascii_digit())))
+      || ["citeulike-linkout-", "bdsk-url-"].iter().any(|prefix| field.strip_prefix(prefix).is_some_and(|suffix| !suffix.is_empty() && suffix.chars().all(|ch| ch.is_ascii_digit())));
+    if matches_verbatim_pattern {
+      mode = "verbatim";
+    }
+  }
+  mode.to_string()
 }
 
 /// Extracts the base field and Biber annotation name from a `+an` field name.
 fn annotation_parts(field: &str) -> Option<(String, String)> {
-    if let Some(field) = field.strip_suffix("+an") {
-        return Some((field.to_owned(), "default".to_owned()));
-    }
-    field
-        .split_once("+an:")
-        .map(|(field, name)| (field.to_owned(), name.to_owned()))
+  if let Some(field) = field.strip_suffix("+an") {
+    return Some((field.to_owned(), "default".to_owned()));
+  }
+  field.split_once("+an:").map(|(field, name)| (field.to_owned(), name.to_owned()))
 }
 
 /// Parses raw Biber annotation key/value clauses with explicit scopes and indexes.
 fn parse_annotation(input: &str) -> Vec<Annotation> {
-    let mut output = Vec::new();
-    for annotation in split_annotation(input, ';') {
-        let Some((key, value)) = annotation.split_once('=') else {
-            continue;
-        };
-        let key = key.trim();
-        let parsed = parse_annotation_content(value);
+  let mut output = Vec::new();
+  for annotation in split_annotation(input, ';') {
+    let Some((key, value)) = annotation.split_once('=') else {
+      continue;
+    };
+    let key = key.trim();
+    let parsed = parse_annotation_content(value);
 
-        if let Some((index, part)) = key.split_once(':')
-            && let Ok(index) = index.parse::<usize>()
-        {
-            if let Some(index) = NonZeroUsize::new(index) {
-                output.push(Annotation::Part {
-                    index,
-                    name: part.to_owned(),
-                    value: parsed,
-                });
-            }
-            continue;
-        }
-        if let Ok(index) = key.parse::<usize>() {
-            if let Some(index) = NonZeroUsize::new(index) {
-                output.push(Annotation::Item {
-                    index,
-                    value: parsed,
-                });
-            }
-        } else {
-            output.push(Annotation::Field { value: parsed });
-        }
+    if let Some((index, part)) = key.split_once(':')
+      && let Ok(index) = index.parse::<usize>()
+    {
+      if let Some(index) = NonZeroUsize::new(index) {
+        output.push(Annotation::Part { index, name: part.to_owned(), value: parsed });
+      }
+      continue;
     }
-    output
+    if let Ok(index) = key.parse::<usize>() {
+      if let Some(index) = NonZeroUsize::new(index) {
+        output.push(Annotation::Item { index, value: parsed });
+      }
+    } else {
+      output.push(Annotation::Field { value: parsed });
+    }
+  }
+  output
 }
 
 /// Parses one quoted scalar or an unquoted comma-separated annotation list.
 fn parse_annotation_content(value: &str) -> AnnotationContent {
-    let values = split_annotation(value, ',');
-    if values.len() == 1 && value.trim().starts_with('"') {
-        AnnotationContent::Text(parse_annotation_literal(values[0]))
-    } else {
-        AnnotationContent::List(values.into_iter().map(parse_annotation_literal).collect())
-    }
+  let values = split_annotation(value, ',');
+  if values.len() == 1 && value.trim().starts_with('"') {
+    AnnotationContent::Text(parse_annotation_literal(values[0]))
+  } else {
+    AnnotationContent::List(values.into_iter().map(parse_annotation_literal).collect())
+  }
 }
 
 /// Splits clauses or values without treating escaped quotes inside strings as delimiters.
 fn split_annotation(input: &str, separator: char) -> Vec<&str> {
-    let mut parts = Vec::new();
-    let mut start = 0;
-    let mut quoted = false;
-    let mut escaped = false;
-    for (index, character) in input.char_indices() {
-        if quoted && escaped {
-            escaped = false;
-            continue;
-        }
-        if quoted && character == '\\' {
-            escaped = true;
-            continue;
-        }
-        if character == '"' {
-            quoted = !quoted;
-        } else if character == separator && !quoted {
-            parts.push(&input[start..index]);
-            start = index + character.len_utf8();
-        }
+  let mut parts = Vec::new();
+  let mut start = 0;
+  let mut quoted = false;
+  let mut escaped = false;
+  for (index, character) in input.char_indices() {
+    if quoted && escaped {
+      escaped = false;
+      continue;
     }
-    parts.push(&input[start..]);
-    parts
+    if quoted && character == '\\' {
+      escaped = true;
+      continue;
+    }
+    if character == '"' {
+      quoted = !quoted;
+    } else if character == separator && !quoted {
+      parts.push(&input[start..index]);
+      start = index + character.len_utf8();
+    }
+  }
+  parts.push(&input[start..]);
+  parts
 }
 
 /// Removes JSON-style quotes and unescapes quotes while preserving other raw backslash sequences.
 fn parse_annotation_literal(value: &str) -> String {
-    let value = value.trim();
-    let Some(contents) = value
-        .strip_prefix('"')
-        .and_then(|value| value.strip_suffix('"'))
-    else {
-        return value.to_owned();
-    };
-    let mut decoded = String::new();
-    let mut characters = contents.chars();
-    while let Some(character) = characters.next() {
-        if character == '\\' {
-            match characters.next() {
-                Some('"') => decoded.push('"'),
-                Some(escaped) => {
-                    decoded.push('\\');
-                    decoded.push(escaped);
-                }
-                None => decoded.push('\\'),
-            }
-        } else {
-            decoded.push(character);
+  let value = value.trim();
+  let Some(contents) = value.strip_prefix('"').and_then(|value| value.strip_suffix('"')) else {
+    return value.to_owned();
+  };
+  let mut decoded = String::new();
+  let mut characters = contents.chars();
+  while let Some(character) = characters.next() {
+    if character == '\\' {
+      match characters.next() {
+        Some('"') => decoded.push('"'),
+        Some(escaped) => {
+          decoded.push('\\');
+          decoded.push(escaped);
         }
+        None => decoded.push('\\'),
+      }
+    } else {
+      decoded.push(character);
     }
-    decoded
+  }
+  decoded
 }
 
 /// Finalizes rendered text in an ordered sequence of annotation clauses.
 fn finalize_annotation_value(annotations: &mut [Annotation], collapse_markup: bool) {
-    for annotation in annotations {
-        let value = match annotation {
-            Annotation::Field { value }
-            | Annotation::Item { value, .. }
-            | Annotation::Part { value, .. } => value,
-        };
-        finalize_annotation_content(value, collapse_markup);
-    }
+  for annotation in annotations {
+    let value = match annotation {
+      Annotation::Field { value } | Annotation::Item { value, .. } | Annotation::Part { value, .. } => value,
+    };
+    finalize_annotation_content(value, collapse_markup);
+  }
 }
 
 /// Finalizes markup in a scalar or list-valued annotation.
 fn finalize_annotation_content(content: &mut AnnotationContent, collapse_markup: bool) {
-    match content {
-        AnnotationContent::Text(text) => *text = tex::finalize_markup(text, collapse_markup),
-        AnnotationContent::List(values) => {
-            for value in values {
-                *value = tex::finalize_markup(value, collapse_markup);
-            }
-        }
+  match content {
+    AnnotationContent::Text(text) => *text = tex::finalize_markup(text, collapse_markup),
+    AnnotationContent::List(values) => {
+      for value in values {
+        *value = tex::finalize_markup(value, collapse_markup);
+      }
     }
+  }
 }
 
 /// Remove a single outer brace layer from fields listed in `removeOuterBraces`.
@@ -1719,71 +1470,52 @@ fn finalize_annotation_content(content: &mut AnnotationContent, collapse_markup:
 /// The value must consist of one balanced outer group; repeated braces and braces within the value
 /// remain intact unless they are the direct wrapper around the complete field.
 fn remove_outer_braces(value: &str) -> String {
-    if !value.starts_with('{') || !value.ends_with('}') || value.len() < 2 {
-        return value.to_string();
+  if !value.starts_with('{') || !value.ends_with('}') || value.len() < 2 {
+    return value.to_string();
+  }
+  let inner = &value[1..value.len() - 1];
+  let mut depth = 0usize;
+  let mut escaped = false;
+  for ch in inner.chars() {
+    if escaped {
+      escaped = false;
+      continue;
     }
-    let inner = &value[1..value.len() - 1];
-    let mut depth = 0usize;
-    let mut escaped = false;
-    for ch in inner.chars() {
-        if escaped {
-            escaped = false;
-            continue;
-        }
-        match ch {
-            '\\' => escaped = true,
-            '{' => depth += 1,
-            '}' if depth == 0 => return value.to_string(),
-            '}' => depth -= 1,
-            _ => {}
-        }
+    match ch {
+      '\\' => escaped = true,
+      '{' => depth += 1,
+      '}' if depth == 0 => return value.to_string(),
+      '}' => depth -= 1,
+      _ => {}
     }
-    if depth == 0 {
-        inner.to_string()
-    } else {
-        value.to_string()
-    }
+  }
+  if depth == 0 { inner.to_string() } else { value.to_string() }
 }
 
 /// Honor a custom brace-removal list; otherwise derive title/verbatim fields and keywords.
 /// Explicitly supplying the unchanged default list is indistinguishable from omitting the option.
 fn remove_outer_braces_fields(options: &Options) -> Vec<String> {
-    if options.remove_outer_braces != default_remove_outer_braces() {
-        return options.remove_outer_braces.clone();
-    }
-    let mut fields = vec!["doi".to_string()];
-    fields.extend(
-        NAME_FIELDS
-            .iter()
-            .chain(TITLE_FIELDS)
-            .chain(VERBATIM_FIELDS)
-            .chain(RICHTEXT_FIELDS)
-            .chain(LIST_FIELDS)
-            .map(|field| (*field).to_string()),
-    );
-    fields.push("keywords".to_string());
-    fields.extend(options.field_mode.keys().cloned());
-    fields.retain(|field| matches!(field_mode(field, options).as_str(), "title" | "verbatim"));
-    fields.sort();
-    fields.dedup();
-    fields
+  if options.remove_outer_braces != default_remove_outer_braces() {
+    return options.remove_outer_braces.clone();
+  }
+  let mut fields = vec!["doi".to_string()];
+  fields.extend(NAME_FIELDS.iter().chain(TITLE_FIELDS).chain(VERBATIM_FIELDS).chain(RICHTEXT_FIELDS).chain(LIST_FIELDS).map(|field| (*field).to_string()));
+  fields.push("keywords".to_string());
+  fields.extend(options.field_mode.keys().cloned());
+  fields.retain(|field| matches!(field_mode(field, options).as_str(), "title" | "verbatim"));
+  fields.sort();
+  fields.dedup();
+  fields
 }
 
 /// Render an `@string` value unless raw mode is active, sharing new macros with subsequent fields.
-fn render_string_value(
-    value: &str,
-    options: &Options,
-    renderer: &mut tex::LibraryRenderer,
-) -> String {
-    // Render string values as TeX and share macro definitions with later entries; raw mode keeps
-    // the parsed source without invoking the renderer.
-    if options.raw {
-        return value.to_string();
-    }
-    renderer.render(
-        value,
-        tex::RenderContext::field(tex::RenderMode::Text, false, false),
-    )
+fn render_string_value(value: &str, options: &Options, renderer: &mut tex::LibraryRenderer) -> String {
+  // Render string values as TeX and share macro definitions with later entries; raw mode keeps
+  // the parsed source without invoking the renderer.
+  if options.raw {
+    return value.to_string();
+  }
+  renderer.render(value, tex::RenderContext::field(tex::RenderMode::Text, false, false))
 }
 
 /// Apply type remappings and allowed parent fields through the cross-reference graph.
@@ -1792,132 +1524,93 @@ fn render_string_value(
 /// shared parents are processed once. Type-specific field remappings run before the allowed-field
 /// pass, and `noCrossRef` fields are excluded from ordinary inheritance.
 fn apply_crossref_inheritance(entries: &mut [ParsedEntry], enabled: bool) {
-    if !enabled {
-        return;
-    }
-    let keys: HashMap<String, usize> = entries
-        .iter()
-        .enumerate()
-        .filter_map(|(idx, entry)| {
-            if entry.key.is_empty() {
-                None
-            } else {
-                Some((entry.key.to_uppercase(), idx))
-            }
-        })
-        .collect();
+  if !enabled {
+    return;
+  }
+  let keys: HashMap<String, usize> = entries.iter().enumerate().filter_map(|(idx, entry)| if entry.key.is_empty() { None } else { Some((entry.key.to_uppercase(), idx)) }).collect();
 
-    // Topological ordering: ancestors are unshifted and children appended, so chains inherit
-    // complete ancestor data before descendants are visited.
-    let mut order = Vec::new();
-    for entry in entries.iter() {
-        let Some(parent_key) = entry.fields.get("crossref").and_then(|field| match field {
-            FieldValue::Text(value) => Some(value.to_uppercase()),
-            _ => None,
-        }) else {
-            continue;
-        };
-        if !keys.contains_key(&parent_key) {
-            continue;
-        }
-        let child_key = entry.key.to_uppercase();
-        if !order.contains(&parent_key) {
-            order.insert(0, parent_key);
-        }
-        if !order.contains(&child_key) {
-            order.push(child_key);
-        }
+  // Topological ordering: ancestors are unshifted and children appended, so chains inherit
+  // complete ancestor data before descendants are visited.
+  let mut order = Vec::new();
+  for entry in entries.iter() {
+    let Some(parent_key) = entry.fields.get("crossref").and_then(|field| match field {
+      FieldValue::Text(value) => Some(value.to_uppercase()),
+      _ => None,
+    }) else {
+      continue;
+    };
+    if !keys.contains_key(&parent_key) {
+      continue;
     }
-
-    let allowed = cross_reference_data();
-    let mappings = cross_reference_map();
-    for key in order {
-        let Some(&child_index) = keys.get(&key) else {
-            continue;
-        };
-        let parent_key =
-            entries[child_index]
-                .fields
-                .get("crossref")
-                .and_then(|field| match field {
-                    FieldValue::Text(value) => Some(value.to_uppercase()),
-                    _ => None,
-                });
-        let Some(parent_key) = parent_key else {
-            continue;
-        };
-        let Some(&parent_index) = keys.get(&parent_key) else {
-            continue;
-        };
-        let child_type = entries[child_index].entry.clone();
-        let parent_type = entries[parent_index].entry.clone();
-
-        // Specific child/parent mappings run before wildcard mappings. Inheritance fills only
-        // falsey destinations, so the first meaningful value wins over later defaults.
-        for child_mapping in [mappings.get(&child_type), mappings.get("*")]
-            .into_iter()
-            .flatten()
-        {
-            for field_mapping in [child_mapping.get(&parent_type), child_mapping.get("*")]
-                .into_iter()
-                .flatten()
-            {
-                for (child_field, parent_field) in field_mapping {
-                    inherit_crossref_field(
-                        entries,
-                        child_index,
-                        parent_index,
-                        child_field,
-                        parent_field,
-                    );
-                }
-            }
-            for field in allowed.allowed.get(&child_type).into_iter().flatten() {
-                // Exclusions apply to ordinary same-name inheritance, not explicit remappings above.
-                if allowed.no_cross_ref.contains(field) {
-                    continue;
-                }
-                inherit_crossref_field(entries, child_index, parent_index, field, field);
-            }
-        }
+    let child_key = entry.key.to_uppercase();
+    if !order.contains(&parent_key) {
+      order.insert(0, parent_key);
     }
+    if !order.contains(&child_key) {
+      order.push(child_key);
+    }
+  }
+
+  let allowed = cross_reference_data();
+  let mappings = cross_reference_map();
+  for key in order {
+    let Some(&child_index) = keys.get(&key) else {
+      continue;
+    };
+    let parent_key = entries[child_index].fields.get("crossref").and_then(|field| match field {
+      FieldValue::Text(value) => Some(value.to_uppercase()),
+      _ => None,
+    });
+    let Some(parent_key) = parent_key else {
+      continue;
+    };
+    let Some(&parent_index) = keys.get(&parent_key) else {
+      continue;
+    };
+    let child_type = entries[child_index].entry.clone();
+    let parent_type = entries[parent_index].entry.clone();
+
+    // Specific child/parent mappings run before wildcard mappings. Inheritance fills only
+    // falsey destinations, so the first meaningful value wins over later defaults.
+    for child_mapping in [mappings.get(&child_type), mappings.get("*")].into_iter().flatten() {
+      for field_mapping in [child_mapping.get(&parent_type), child_mapping.get("*")].into_iter().flatten() {
+        for (child_field, parent_field) in field_mapping {
+          inherit_crossref_field(entries, child_index, parent_index, child_field, parent_field);
+        }
+      }
+      for field in allowed.allowed.get(&child_type).into_iter().flatten() {
+        // Exclusions apply to ordinary same-name inheritance, not explicit remappings above.
+        if allowed.no_cross_ref.contains(field) {
+          continue;
+        }
+        inherit_crossref_field(entries, child_index, parent_index, field, field);
+      }
+    }
+  }
 }
 
 /// Fill a missing or falsey child field from a truthy parent value and record its provenance.
 /// Existing meaningful child values, including empty list objects, must never be overwritten.
-fn inherit_crossref_field(
-    entries: &mut [ParsedEntry],
-    child_index: usize,
-    parent_index: usize,
-    child_field: &str,
-    parent_field: &str,
-) {
-    let Some(parent_value) = entries[parent_index].fields.get(parent_field).cloned() else {
-        return;
-    };
-    if !field_value_is_truthy(&parent_value)
-        || entries[child_index]
-            .fields
-            .get(child_field)
-            .is_some_and(field_value_is_truthy)
-    {
-        return;
-    }
-    entries[child_index]
-        .fields
-        .insert(child_field.to_string(), parent_value);
-    entries[child_index].crossref.insert(
-        child_field.to_string(),
-        CrossRefSource {
-            parent: entries[parent_index].key.clone(),
-            field: parent_field.to_string(),
-        },
-    );
+fn inherit_crossref_field(entries: &mut [ParsedEntry], child_index: usize, parent_index: usize, child_field: &str, parent_field: &str) {
+  let Some(parent_value) = entries[parent_index].fields.get(parent_field).cloned() else {
+    return;
+  };
+  if !crossref_inherit(&parent_value) || entries[child_index].fields.get(child_field).is_some_and(crossref_inherit) {
+    return;
+  }
+  entries[child_index].fields.insert(child_field.to_string(), parent_value);
+  entries[child_index].crossref.insert(
+    child_field.to_string(),
+    CrossRefSource {
+      parent: entries[parent_index].key.clone(),
+      field: parent_field.to_string(),
+    },
+  );
 }
 
 /// Convert verbatim entries to typed field values and assign each field's parsing mode.
 pub fn reparse(verbatim: Library) -> ParsedLibrary {
-    reparse_with_options(verbatim, &Options::default())
+  reparse_with_options(verbatim, &Options::default())
 }
 
 /// Reparse with field-mode overrides and brace removal applied before values become typed data.
@@ -1925,1797 +1618,1180 @@ pub fn reparse(verbatim: Library) -> ParsedLibrary {
 /// Errors from raw parsing remain in source order; diagnostics for unsupported TeX constructs are
 /// appended during rendering.
 pub fn reparse_with_options(verbatim: Library, options: &Options) -> ParsedLibrary {
-    futures_util::FutureExt::now_or_never(reparse_with_yield(verbatim, options, || {
-        std::future::ready(())
-    }))
-    .expect("synchronous reparsing does not suspend")
+  futures_util::FutureExt::now_or_never(reparse_with_yield(verbatim, options, || std::future::ready(()))).expect("synchronous reparsing does not suspend")
 }
 
 /// Extract JabRef metadata and normalize fields before cross-reference inheritance, then append
 /// shared render diagnostics. Unlike directive scanning, cooperative yields here count completed
 /// entries; a single field is always rendered atomically. Synchronous callers supply an
 /// immediately ready yield future.
-async fn reparse_with_yield<F, Fut>(
-    verbatim: Library,
-    options: &Options,
-    mut yield_now: F,
-) -> ParsedLibrary
+async fn reparse_with_yield<F, Fut>(verbatim: Library, options: &Options, mut yield_now: F) -> ParsedLibrary
 where
-    F: FnMut() -> Fut,
-    Fut: std::future::Future<Output = ()>,
+  F: FnMut() -> Fut,
+  Fut: std::future::Future<Output = ()>,
 {
-    let case_protection = match options.case_protection.as_str() {
-        "off" => tex::CaseProtection::Off,
-        "strict" => tex::CaseProtection::Strict,
-        _ => tex::CaseProtection::AsNeeded,
-    };
-    let mut renderer =
-        tex::LibraryRenderer::new(options.unsupported, !options.rich_url, case_protection);
-    let preambles = verbatim.preambles.clone();
-    if !options.raw {
-        // Process preambles first so their macro definitions are available to later strings.
-        for preamble in &preambles {
-            let _ = renderer.render(
-                preamble,
-                tex::RenderContext::field(tex::RenderMode::Text, false, false),
-            );
-        }
+  let case_protection = match options.case_protection.as_str() {
+    "off" => tex::CaseProtection::Off,
+    "strict" => tex::CaseProtection::Strict,
+    _ => tex::CaseProtection::AsNeeded,
+  };
+  let mut renderer = tex::LibraryRenderer::new(options.unsupported, !options.rich_url, case_protection);
+  let preambles = verbatim.preambles.clone();
+  if !options.raw {
+    // Process preambles first so their macro definitions are available to later strings.
+    for preamble in &preambles {
+      let _ = renderer.render(preamble, tex::RenderContext::field(tex::RenderMode::Text, false, false));
     }
-    let mut strings = verbatim.strings;
+  }
+  let mut strings = verbatim.strings;
+  for value in strings.values_mut() {
+    *value = render_string_value(value, options, &mut renderer);
+  }
+  let remove_brace_fields = remove_outer_braces_fields(options);
+  let (comments, mut jabref) = parse_jabref_metadata(verbatim.comments);
+  let mut entries = Vec::with_capacity(verbatim.entries.len());
+  for (index, entry) in verbatim.entries.into_iter().enumerate() {
+    // Prefer a nonempty `langid`, then `hyphenation`; `language` is consulted only when enabled.
+    let mut langid = entry.fields.get("langid").filter(|value| !value.is_empty()).or_else(|| entry.fields.get("hyphenation")).map(|value| value.to_lowercase()).unwrap_or_default();
+    if langid.is_empty() && options.language_as_langid {
+      langid = entry.fields.get("language").map(|value| value.to_lowercase()).unwrap_or_default();
+    }
+    // Language selection gates title casing only; every language still receives TeX rendering.
+    let english = options.english.iter().any(|language| language.to_lowercase() == langid);
+    let mut fields = HashMap::new();
+    let mut verbatim = HashMap::new();
+    let mut mode = HashMap::new();
+    let mut keywords = Vec::new();
+    for (field, value) in entry.fields {
+      if annotation_parts(&field).is_some() {
+        mode.insert(field.clone(), "annotations".to_string());
+        fields.insert(field.clone(), FieldValue::Annotation(parse_annotation(&value)));
+        verbatim.insert(field, value);
+        continue;
+      }
+      if value.trim().is_empty() {
+        continue;
+      }
+
+      if field == "groups" {
+        let groups = split_top_level(&value, ',').into_iter().flat_map(|group| split_top_level(&group, ';')).filter(|group| !group.is_empty());
+
+        fn insert(groups: &mut [JabRefGroup], name: &str, key: &str) {
+          for group in groups {
+            if group.name == name {
+              group.entries.push(key.to_string());
+            }
+            insert(&mut group.groups, name, key);
+          }
+        }
+
+        for group in groups {
+          insert(&mut jabref.root, &group, &entry.key);
+        }
+        // no continue here, retain groups
+      }
+
+      // Merge duplicate keyword fields into one vector without sorting or removing repeats.
+      if field == "keywords" || field.starts_with("keywords+duplicate-") {
+        if options.raw {
+          let current_mode = field_mode(&field, options);
+          mode.insert(field.clone(), current_mode);
+          fields.insert(field, FieldValue::Text(value));
+          continue;
+        }
+        let value = if remove_brace_fields.contains(&field) { remove_outer_braces(&value) } else { value };
+        // Braces keep embedded punctuation inside one keyword during list splitting.
+        let parts = split_top_level(&value, ',').into_iter().flat_map(|part| split_top_level(&part, ';')).filter(|keyword| !keyword.is_empty());
+        keywords.extend(parts.map(|keyword| renderer.render(&keyword, tex::RenderContext::field(tex::RenderMode::Text, false, false)).trim().to_string()));
+        continue;
+      }
+
+      if field == "options" {
+        // Save it before outer braces are removed
+        verbatim.insert(field.clone(), value.clone());
+      }
+      let current_mode = field_mode(&field, options);
+      mode.insert(field.clone(), current_mode.clone());
+      let mut value = value;
+      // `removeOuterBraces` removes one root Group only when it is the entire field value.
+      if remove_brace_fields.contains(&field) {
+        value = remove_outer_braces(&value);
+      }
+      if !options.raw && matches!(field.as_str(), "year" | "month") {
+        if let Some(integer) = parse_integer_string(&value) {
+          value = integer;
+        } else if field == "month" {
+          value = normalize_month(&value);
+        }
+      }
+      if current_mode == "verbatim" {
+        if field == "ids" {
+          let items = value.split(',').map(|item| item.trim().to_string()).collect();
+          fields.insert(field, FieldValue::List(items));
+          continue;
+        }
+        if field == "options" {
+          let options = value.split(',').filter_map(|option| option.split_once('=')).map(|(key, value)| (key.trim().to_string(), value.trim().to_string())).collect();
+          mode.insert(field.clone(), "options".to_string());
+          fields.insert(field, FieldValue::Options(options));
+          continue;
+        }
+        // Normalize parsed whitespace while preserving TeX commands and literal content.
+        fields.insert(field, FieldValue::Text(tex::print_raw(&value)));
+        continue;
+      }
+      if options.raw {
+        // Raw mode still parses typed names/lists, but otherwise returns printed TeX.
+        if current_mode == "namelist" {
+          let names: Vec<_> = split_names(&value).iter().map(|name| parse_raw_name(name)).collect();
+          verbatim.insert(field.clone(), value);
+          fields.insert(field, FieldValue::Names(names));
+        } else if current_mode == "literallist" {
+          let items = split_literal_list(&field, &value);
+          verbatim.insert(field.clone(), value);
+          fields.insert(field, FieldValue::List(items));
+        } else {
+          fields.insert(field, FieldValue::Text(value));
+        }
+        continue;
+      }
+      // Literal lists split the AST before stringifying each element, so braced `and`
+      // remains content rather than becoming a separator.
+      if current_mode == "literallist" {
+        let items = split_literal_list(&field, &value).iter().map(|element| renderer.render(element, tex::RenderContext::field(tex::RenderMode::Text, false, false)).trim().to_string()).collect();
+        verbatim.insert(field.clone(), value);
+        fields.insert(field, FieldValue::List(items));
+        continue;
+      }
+      if current_mode != "verbatim" && current_mode != "namelist" {
+        // Unknown policy strings retain the default as-needed behavior.
+        let protect_title = current_mode == "title" && english;
+        // Pass 0 marks root groups and inline math before the sentence-case pass.
+        let context = tex::RenderContext::field(tex::RenderMode::from_field_mode(&current_mode), protect_title, protect_title);
+        value = renderer.render(&value, context);
+        if protect_title {
+          // Sentence casing runs after TeX rendering, with original groups restored
+          // according to the configured `as-needed`, `strict`, or `off` mode.
+          value = tex::sentence_case_title(&value, options.sentence_case.guess, options.sentence_case.sub_sentence, options.sentence_case.preserve_quoted, case_protection);
+        }
+      }
+      let parsed = match current_mode.as_str() {
+        "namelist" => FieldValue::Names(split_names(&value).iter().map(|name| parse_name(name, &entry.key, &mut renderer)).collect()),
+
+        "literallist" => unreachable!("literal lists are parsed before rendering"),
+
+        _ => FieldValue::Text(value.trim().to_string()),
+      };
+      if current_mode == "namelist" {
+        verbatim.insert(field.clone(), value);
+      }
+      fields.insert(field, parsed);
+    }
+
+    if !keywords.is_empty() {
+      mode.insert("keywords".to_string(), "verbatimlist".to_string());
+      fields.insert("keywords".to_string(), FieldValue::List(keywords));
+    }
+
+    entries.push(ParsedEntry {
+      input: entry.input,
+      entry: entry.entry,
+      key: entry.key,
+      fields,
+      verbatim,
+      mode,
+      crossref: HashMap::new(),
+    });
+    if (index + 1) % 1000 == 0 {
+      yield_now().await;
+    }
+  }
+  // Keep distinct internal wrappers through normalization; only delivered values use HTML spans.
+  if !options.raw {
     for value in strings.values_mut() {
-        *value = render_string_value(value, options, &mut renderer);
+      *value = tex::finalize_markup(value, options.collapse_markup);
     }
-    let remove_brace_fields = remove_outer_braces_fields(options);
-    let (comments, mut jabref) = parse_jabref_metadata(verbatim.comments);
-    let mut entries = Vec::with_capacity(verbatim.entries.len());
-    for (index, entry) in verbatim.entries.into_iter().enumerate() {
-        // Prefer a nonempty `langid`, then `hyphenation`; `language` is consulted only when enabled.
-        let mut langid = entry
-            .fields
-            .get("langid")
-            .filter(|value| !value.is_empty())
-            .or_else(|| entry.fields.get("hyphenation"))
-            .map(|value| value.to_lowercase())
-            .unwrap_or_default();
-        if langid.is_empty() && options.language_as_langid {
-            langid = entry
-                .fields
-                .get("language")
-                .map(|value| value.to_lowercase())
-                .unwrap_or_default();
+    for entry in &mut entries {
+      for (field, value) in &mut entry.fields {
+        if matches!(entry.mode.get(field).map(String::as_str), Some("verbatim" | "verbatimlist")) {
+          continue;
         }
-        // Language selection gates title casing only; every language still receives TeX rendering.
-        let english = options
-            .english
-            .iter()
-            .any(|language| language.to_lowercase() == langid);
-        let mut fields = HashMap::new();
-        let mut annotations = HashMap::new();
-        let mut parsed_options = None;
-        let mut mode = HashMap::new();
-        let mut keywords = Vec::new();
-        for (field, value) in entry.fields {
-            if annotation_parts(&field).is_some() {
-                mode.insert(field.clone(), "verbatim".to_string());
-                annotations.insert(field.clone(), parse_annotation(&value));
-                fields.insert(field, FieldValue::Text(value));
-                continue;
-            }
-            if value.trim().is_empty() {
-                continue;
-            }
+        match value {
+          FieldValue::Options(_) => {}
 
-            if field == "groups" {
-                let groups = split_top_level(&value, ',')
-                    .into_iter()
-                    .flat_map(|group| split_top_level(&group, ';'))
-                    .filter(|group| !group.is_empty());
+          FieldValue::Annotation(annotations) => {
+            finalize_annotation_value(annotations, options.collapse_markup);
+          }
 
-                fn insert(groups: &mut [JabRefGroup], name: &str, key: &str) {
-                    for group in groups {
-                        if group.name == name {
-                            group.entries.push(key.to_string());
-                        }
-                        insert(&mut group.groups, name, key);
-                    }
-                }
+          FieldValue::Text(text) => *text = tex::finalize_markup(text, options.collapse_markup),
 
-                for group in groups {
-                    insert(&mut jabref.root, &group, &entry.key);
-                }
-                // no continue here, retain groups
+          FieldValue::List(items) => {
+            for item in items {
+              *item = tex::finalize_markup(item, options.collapse_markup);
             }
+          }
 
-            // Merge duplicate keyword fields into one vector without sorting or removing repeats.
-            if field == "keywords" || field.starts_with("keywords+duplicate-") {
-                if options.raw {
-                    let current_mode = field_mode(&field, options);
-                    mode.insert(field.clone(), current_mode);
-                    fields.insert(field, FieldValue::Text(value));
-                    continue;
-                }
-                let value = if remove_brace_fields.contains(&field) {
-                    remove_outer_braces(&value)
-                } else {
-                    value
-                };
-                // Braces keep embedded punctuation inside one keyword during list splitting.
-                let parts = split_top_level(&value, ',')
-                    .into_iter()
-                    .flat_map(|part| split_top_level(&part, ';'))
-                    .filter(|keyword| !keyword.is_empty());
-                keywords.extend(parts.map(|keyword| {
-                    renderer
-                        .render(
-                            &keyword,
-                            tex::RenderContext::field(tex::RenderMode::Text, false, false),
-                        )
-                        .trim()
-                        .to_string()
-                }));
-                continue;
+          FieldValue::Names(names) => {
+            for name in names {
+              for text in [&mut name.name, &mut name.last_name, &mut name.first_name, &mut name.prefix, &mut name.suffix, &mut name.initial].into_iter().flatten() {
+                *text = tex::finalize_markup(text, options.collapse_markup);
+              }
             }
-            let original_options_value = (field == "options").then(|| value.clone());
-            let current_mode = field_mode(&field, options);
-            mode.insert(field.clone(), current_mode.clone());
-            let mut value = value;
-            // `removeOuterBraces` removes one root Group only when it is the entire field value.
-            if remove_brace_fields.contains(&field) {
-                value = remove_outer_braces(&value);
-            }
-            if !options.raw && matches!(field.as_str(), "year" | "month") {
-                if let Some(integer) = parse_integer_string(&value) {
-                    value = integer;
-                } else if field == "month" {
-                    value = normalize_month(&value);
-                }
-            }
-            if current_mode == "verbatim" {
-                if field == "ids" {
-                    let items = value
-                        .split(',')
-                        .map(|item| item.trim().to_string())
-                        .collect();
-                    fields.insert(field, FieldValue::List(items));
-                    continue;
-                }
-                if field == "options" {
-                    let options = value
-                        .split(',')
-                        .filter_map(|option| option.split_once('='))
-                        .map(|(key, value)| (key.trim().to_string(), value.trim().to_string()))
-                        .collect();
-                    fields.insert(
-                        field,
-                        FieldValue::Text(original_options_value.unwrap_or(value)),
-                    );
-                    parsed_options = Some(options);
-                    continue;
-                }
-                // Normalize parsed whitespace while preserving TeX commands and literal content.
-                fields.insert(field, FieldValue::Text(tex::print_raw(&value)));
-                continue;
-            }
-            if options.raw {
-                // Raw mode still parses typed names/lists, but otherwise returns printed TeX.
-                if current_mode == "namelist" {
-                    let names: Vec<_> = split_names(&value)
-                        .iter()
-                        .map(|name| parse_raw_name(name))
-                        .collect();
-                    fields.insert(field, FieldValue::Names(names));
-                } else if current_mode == "literallist" {
-                    let items = split_literal_list(&field, &value);
-                    fields.insert(field, FieldValue::List(items));
-                } else {
-                    fields.insert(field, FieldValue::Text(value));
-                }
-                continue;
-            }
-            // Literal lists split the AST before stringifying each element, so braced `and`
-            // remains content rather than becoming a separator.
-            if current_mode == "literallist" {
-                let items = split_literal_list(&field, &value)
-                    .iter()
-                    .map(|element| {
-                        renderer
-                            .render(
-                                element,
-                                tex::RenderContext::field(tex::RenderMode::Text, false, false),
-                            )
-                            .trim()
-                            .to_string()
-                    })
-                    .collect();
-                fields.insert(field, FieldValue::List(items));
-                continue;
-            }
-            if current_mode != "verbatim" && current_mode != "namelist" {
-                // Unknown policy strings retain the default as-needed behavior.
-                let protect_title = current_mode == "title" && english;
-                // Pass 0 marks root groups and inline math before the sentence-case pass.
-                let context = tex::RenderContext::field(
-                    tex::RenderMode::from_field_mode(&current_mode),
-                    protect_title,
-                    protect_title,
-                );
-                value = renderer.render(&value, context);
-                if protect_title {
-                    // Sentence casing runs after TeX rendering, with original groups restored
-                    // according to the configured `as-needed`, `strict`, or `off` mode.
-                    value = tex::sentence_case_title(
-                        &value,
-                        options.sentence_case.guess,
-                        options.sentence_case.sub_sentence,
-                        options.sentence_case.preserve_quoted,
-                        case_protection,
-                    );
-                }
-            }
-            let parsed = match current_mode.as_str() {
-                "namelist" => FieldValue::Names(
-                    split_names(&value)
-                        .iter()
-                        .map(|name| parse_name(name, &entry.key, &mut renderer))
-                        .collect(),
-                ),
-                "literallist" => unreachable!("literal lists are parsed before rendering"),
-                _ => FieldValue::Text(value.trim().to_string()),
-            };
-            fields.insert(field, parsed);
+          }
         }
-        if !keywords.is_empty() {
-            mode.insert("keywords".to_string(), "verbatimlist".to_string());
-            fields.insert("keywords".to_string(), FieldValue::List(keywords));
-        }
-        entries.push(ParsedEntry {
-            input: entry.input,
-            entry: entry.entry,
-            key: entry.key,
-            fields,
-            annotations,
-            options: parsed_options,
-            mode,
-            crossref: HashMap::new(),
-        });
-        if (index + 1) % 1000 == 0 {
-            yield_now().await;
-        }
+      }
     }
-    // Keep distinct internal wrappers through normalization; only delivered values use HTML spans.
-    if !options.raw {
-        for value in strings.values_mut() {
-            *value = tex::finalize_markup(value, options.collapse_markup);
-        }
-        for entry in &mut entries {
-            for (field, value) in &mut entry.fields {
-                if matches!(
-                    entry.mode.get(field).map(String::as_str),
-                    Some("verbatim" | "verbatimlist")
-                ) {
-                    continue;
-                }
-                match value {
-                    FieldValue::Text(text) => {
-                        *text = tex::finalize_markup(text, options.collapse_markup)
-                    }
-                    FieldValue::List(items) => {
-                        for item in items {
-                            *item = tex::finalize_markup(item, options.collapse_markup);
-                        }
-                    }
-                    FieldValue::Names(names) => {
-                        for name in names {
-                            for text in [
-                                &mut name.name,
-                                &mut name.last_name,
-                                &mut name.first_name,
-                                &mut name.prefix,
-                                &mut name.suffix,
-                                &mut name.initial,
-                            ]
-                            .into_iter()
-                            .flatten()
-                            {
-                                *text = tex::finalize_markup(text, options.collapse_markup);
-                            }
-                        }
-                    }
-                }
-            }
-            for annotations in entry.annotations.values_mut() {
-                finalize_annotation_value(annotations, options.collapse_markup);
-            }
-        }
-    }
-    // Inherited fields are already typed and rendered in their parent's context, not the child's.
-    apply_crossref_inheritance(entries.as_mut_slice(), options.apply_crossref);
-    let mut errors = verbatim.errors;
-    errors.extend(renderer.errors);
-    ParsedLibrary {
-        entries,
-        strings,
-        comments,
-        errors,
-        preambles: verbatim.preambles,
-        jabref,
-    }
+  }
+  // Inherited fields are already typed and rendered in their parent's context, not the child's.
+  apply_crossref_inheritance(entries.as_mut_slice(), options.apply_crossref);
+  let mut errors = verbatim.errors;
+  errors.extend(renderer.errors);
+  ParsedLibrary {
+    entries,
+    strings,
+    comments,
+    errors,
+    preambles: verbatim.preambles,
+    jabref,
+  }
 }
 
 /// Normalize a trimmed, optionally negative ASCII integer without a fixed-width numeric conversion.
 /// Invalid syntax returns `None`; leading zeroes and negative zero collapse to canonical text.
 fn parse_integer_string(value: &str) -> Option<String> {
-    let value = value.trim();
-    let (negative, digits) = value
-        .strip_prefix('-')
-        .map_or((false, value), |digits| (true, digits));
-    if digits.is_empty() || !digits.chars().all(|character| character.is_ascii_digit()) {
-        return None;
-    }
-    let digits = digits.trim_start_matches('0');
-    if digits.is_empty() {
-        Some("0".to_string())
-    } else if negative {
-        Some(format!("-{digits}"))
-    } else {
-        Some(digits.to_string())
-    }
+  let value = value.trim();
+  let (negative, digits) = value.strip_prefix('-').map_or((false, value), |digits| (true, digits));
+  if digits.is_empty() || !digits.chars().all(|character| character.is_ascii_digit()) {
+    return None;
+  }
+  let digits = digits.trim_start_matches('0');
+  if digits.is_empty() {
+    Some("0".to_string())
+  } else if negative {
+    Some(format!("-{digits}"))
+  } else {
+    Some(digits.to_string())
+  }
 }
 
 /// Convert English month names to unpadded numbers; otherwise return the trimmed input unchanged.
 fn normalize_month(value: &str) -> String {
-    let value = value.trim();
-    let month = match value.to_ascii_lowercase().as_str() {
-        "jan" | "january" => "1",
-        "feb" | "february" => "2",
-        "mar" | "march" => "3",
-        "apr" | "april" => "4",
-        "may" => "5",
-        "jun" | "june" => "6",
-        "jul" | "july" => "7",
-        "aug" | "august" => "8",
-        "sep" | "september" => "9",
-        "oct" | "october" => "10",
-        "nov" | "november" => "11",
-        "dec" | "december" => "12",
-        _ => return value.to_string(),
-    };
-    month.to_string()
+  let value = value.trim();
+  let month = match value.to_ascii_lowercase().as_str() {
+    "jan" | "january" => "1",
+    "feb" | "february" => "2",
+    "mar" | "march" => "3",
+    "apr" | "april" => "4",
+    "may" => "5",
+    "jun" | "june" => "6",
+    "jul" | "july" => "7",
+    "aug" | "august" => "8",
+    "sep" | "september" => "9",
+    "oct" | "october" => "10",
+    "nov" | "november" => "11",
+    "dec" | "december" => "12",
+    _ => return value.to_string(),
+  };
+  month.to_string()
 }
 
 /// Parse BibTeX syntax without interpreting LaTeX or field values.
 pub fn parse_verbatim(input: &str, options: Options) -> Library {
-    Parser::new(input, options).parse()
+  Parser::new(input, options).parse()
 }
 
 /// Parse BibTeX and reparse its fields into typed values, rendering LaTeX content.
 pub fn parse(input: &str, options: Options) -> ParsedLibrary {
-    reparse_with_options(parse_verbatim(input, options.clone()), &options)
+  reparse_with_options(parse_verbatim(input, options.clone()), &options)
 }
 
 #[cfg(target_arch = "wasm32")]
 mod wasm_bindings {
-    use serde::Serialize;
-    use std::collections::HashMap;
-    use wasm_bindgen::prelude::*;
+  use serde::Serialize;
+  use std::collections::HashMap;
+  use wasm_bindgen::prelude::*;
 
-    use super::{Options, Parser, parse, parse_verbatim, reparse_with_yield};
+  use super::{Options, Parser, parse, parse_verbatim, reparse_with_yield};
 
-    /// Install the browser-console panic hook once when the WASM module is initialized.
-    #[wasm_bindgen(start)]
-    pub fn start() {
-        console_error_panic_hook::set_once();
-    }
+  /// Install the browser-console panic hook once when the WASM module is initialized.
+  #[wasm_bindgen(start)]
+  pub fn start() {
+    console_error_panic_hook::set_once();
+  }
 
-    #[wasm_bindgen(
-        inline_js = "export function playnice() { return new Promise(resolve => setTimeout(resolve, 0)); }"
-    )]
-    extern "C" {
-        /// Yield to the JavaScript event loop via a timer so cooperative parsing does not starve UI work.
-        async fn playnice();
-    }
+  #[wasm_bindgen(inline_js = "export function playnice() { return new Promise(resolve => setTimeout(resolve, 0)); }")]
+  extern "C" {
+    /// Yield to the JavaScript event loop via a timer so cooperative parsing does not starve UI work.
+    async fn playnice();
+  }
 
-    /// Decode optional JavaScript options, defaulting omitted/null options and surfacing type errors.
-    fn decode_options(options: Option<JsValue>) -> Result<Options, JsValue> {
-        options
-            .map(|value| {
-                serde_wasm_bindgen::from_value(value)
-                    .map_err(|error| JsValue::from_str(&error.to_string()))
-            })
-            .transpose()
-            .map(Option::unwrap_or_default)
-    }
+  /// Decode optional JavaScript options, defaulting omitted/null options and surfacing type errors.
+  fn decode_options(options: Option<JsValue>) -> Result<Options, JsValue> {
+    options.map(|value| serde_wasm_bindgen::from_value(value).map_err(|error| JsValue::from_str(&error.to_string()))).transpose().map(Option::unwrap_or_default)
+  }
 
-    /// Serialize Rust maps as plain JavaScript objects rather than key/value pair arrays.
-    fn encode_result<T: Serialize>(value: &T) -> Result<JsValue, JsValue> {
-        value
-            .serialize(&serde_wasm_bindgen::Serializer::new().serialize_maps_as_objects(true))
-            .map_err(|error| JsValue::from_str(&error.to_string()))
-    }
+  /// Serialize Rust maps as plain JavaScript objects rather than key/value pair arrays.
+  fn encode_result<T: Serialize>(value: &T) -> Result<JsValue, JsValue> {
+    value.serialize(&serde_wasm_bindgen::Serializer::new().serialize_maps_as_objects(true)).map_err(|error| JsValue::from_str(&error.to_string()))
+  }
 
-    /// Parse a BibTeX string and return the verbatim result as a JavaScript object.
-    #[wasm_bindgen(js_name = parseVerbatim)]
-    pub fn parse_verbatim_js(input: &str, options: Option<JsValue>) -> Result<JsValue, JsValue> {
-        let options = decode_options(options)?;
-        encode_result(&parse_verbatim(input, options))
-    }
+  /// Parse a BibTeX string and return the verbatim result as a JavaScript object.
+  #[wasm_bindgen(js_name = parseVerbatim)]
+  pub fn parse_verbatim_js(input: &str, options: Option<JsValue>) -> Result<JsValue, JsValue> {
+    let options = decode_options(options)?;
+    encode_result(&parse_verbatim(input, options))
+  }
 
-    /// Parse a BibTeX string and return the initial typed result as a JavaScript object.
-    #[wasm_bindgen(js_name = parse)]
-    pub fn parse_js(input: &str, options: Option<JsValue>) -> Result<JsValue, JsValue> {
-        let options = decode_options(options)?;
-        encode_result(&parse(input, options))
-    }
+  /// Parse a BibTeX string and return the initial typed result as a JavaScript object.
+  #[wasm_bindgen(js_name = parse)]
+  pub fn parse_js(input: &str, options: Option<JsValue>) -> Result<JsValue, JsValue> {
+    let options = decode_options(options)?;
+    encode_result(&parse(input, options))
+  }
 
-    /// Parse raw BibTeX cooperatively, yielding between directive batches and returning a JS object.
-    #[wasm_bindgen(js_name = parseVerbatimAsync)]
-    pub async fn parse_verbatim_async_js(
-        input: String,
-        options: Option<JsValue>,
-    ) -> Result<JsValue, JsValue> {
-        let options = decode_options(options)?;
-        let library = Parser::new(&input, options)
-            .parse_with_yield(playnice)
-            .await;
-        encode_result(&library)
-    }
+  /// Parse raw BibTeX cooperatively, yielding between directive batches and returning a JS object.
+  #[wasm_bindgen(js_name = parseVerbatimAsync)]
+  pub async fn parse_verbatim_async_js(input: String, options: Option<JsValue>) -> Result<JsValue, JsValue> {
+    let options = decode_options(options)?;
+    let library = Parser::new(&input, options).parse_with_yield(playnice).await;
+    encode_result(&library)
+  }
 
-    /// Parse and render BibTeX cooperatively, yielding between directive and entry batches.
-    #[wasm_bindgen(js_name = parseAsync)]
-    pub async fn parse_async_js(
-        input: String,
-        options: Option<JsValue>,
-    ) -> Result<JsValue, JsValue> {
-        let options = decode_options(options)?;
-        let verbatim = Parser::new(&input, options.clone())
-            .parse_with_yield(playnice)
-            .await;
-        let library = reparse_with_yield(verbatim, &options, playnice).await;
-        encode_result(&library)
-    }
+  /// Parse and render BibTeX cooperatively, yielding between directive and entry batches.
+  #[wasm_bindgen(js_name = parseAsync)]
+  pub async fn parse_async_js(input: String, options: Option<JsValue>) -> Result<JsValue, JsValue> {
+    let options = decode_options(options)?;
+    let verbatim = Parser::new(&input, options.clone()).parse_with_yield(playnice).await;
+    let library = reparse_with_yield(verbatim, &options, playnice).await;
+    encode_result(&library)
+  }
 
-    /// Apply sentence casing using optional `guess`, `subSentenceCapitalization`, and `preserveQuoted` flags.
-    #[wasm_bindgen(js_name = toSentenceCase)]
-    pub fn to_sentence_case_js(input: &str, options: Option<JsValue>) -> Result<String, JsValue> {
-        let options = options
-            .map(|value| {
-                serde_wasm_bindgen::from_value::<HashMap<String, bool>>(value)
-                    .map_err(|error| JsValue::from_str(&error.to_string()))
-            })
-            .transpose()?
-            .unwrap_or_default();
-        Ok(super::tex::sentence_case_with_options(
-            input,
-            options.get("guess").copied().unwrap_or(false),
-            options
-                .get("subSentenceCapitalization")
-                .copied()
-                .unwrap_or(true),
-            options.get("preserveQuoted").copied().unwrap_or(true),
-        ))
-    }
+  /// Apply sentence casing using optional `guess`, `subSentenceCapitalization`, and `preserveQuoted` flags.
+  #[wasm_bindgen(js_name = toSentenceCase)]
+  pub fn to_sentence_case_js(input: &str, options: Option<JsValue>) -> Result<String, JsValue> {
+    let options = options.map(|value| serde_wasm_bindgen::from_value::<HashMap<String, bool>>(value).map_err(|error| JsValue::from_str(&error.to_string()))).transpose()?.unwrap_or_default();
+    Ok(super::tex::sentence_case_with_options(
+      input,
+      options.get("guess").copied().unwrap_or(false),
+      options.get("subSentenceCapitalization").copied().unwrap_or(true),
+      options.get("preserveQuoted").copied().unwrap_or(true),
+    ))
+  }
 }
 
 // --- Tests ---
 #[cfg(test)]
 mod tests {
-    use super::{FieldValue, Options, ParsedLibrary, parse, parse_verbatim, reparse_with_options};
+  use super::{FieldValue, Options, ParsedLibrary, parse, parse_verbatim, reparse_with_options};
 
-    /// Parse a fixture with default options and fail immediately on recoverable parse errors.
-    fn fixture(source: &str) -> ParsedLibrary {
-        let parsed = parse(source, Options::default());
-        assert!(parsed.errors.is_empty(), "{:?}", parsed.errors.first());
-        parsed
+  /// Parse a fixture with default options and fail immediately on recoverable parse errors.
+  fn fixture(source: &str) -> ParsedLibrary {
+    let parsed = parse(source, Options::default());
+    assert!(parsed.errors.is_empty(), "{:?}", parsed.errors.first());
+    parsed
+  }
+
+  #[test]
+  /// Checks the final library pass merges JabRef metadata and inherited crossref fields.
+  fn library_finalization_renders_comments_and_inherits_crossref() {
+    let source = "@comment{jabref-meta: groupsversion: 3}\n@book{parent, title={Parent title}, author={Doe, John}}\n@inbook{child, crossref={parent}, chapter={A}}";
+    let raw = parse_verbatim(source, Options::default());
+    assert_eq!(raw.comments, ["jabref-meta: groupsversion: 3"]);
+
+    let parsed = parse(source, Options::default());
+    assert_eq!(parsed.jabref.groupsversion, Some(3));
+    assert!(matches!(parsed.entries[1].fields.get("title"), Some(FieldValue::Text(title)) if title == "Parent title"));
+    assert!(matches!(parsed.entries[1].fields.get("author"), Some(FieldValue::Names(names)) if names.iter().any(|name| name.last_name.as_deref() == Some("Doe") && name.first_name.as_deref() == Some("John"))));
+    assert_eq!(parsed.entries[1].crossref.get("title").unwrap().field, "title");
+    assert!(parsed.comments.is_empty());
+  }
+
+  #[test]
+  /// Verify type remappings, allowed fields, and child-value precedence during inheritance.
+  fn crossref_uses_type_mappings_and_allowed_fields() {
+    let parsed = parse("@periodical{p,title={Transactions}}\n@article{a,crossref={p}}", Options::default());
+    assert_eq!(parsed.entries[1].fields.get("journaltitle"), Some(&FieldValue::Text("Transactions".into())));
+    assert_eq!(parsed.entries[1].crossref.get("journaltitle"), Some(&super::CrossRefSource { parent: "p".into(), field: "title".into() }));
+  }
+
+  #[test]
+  /// Verify nested JabRef memberships and the handling of metadata versus ordinary comments.
+  fn parses_jabref_group_tree_hierarchy() {
+    let parsed = parse(include_str!("../../test/better-bibtex/import/Jabref groups import does not work #717.3.8.bib"), Options::default());
+    assert_eq!(parsed.jabref.database_type.as_deref(), Some("bibtex"));
+    assert_eq!(parsed.jabref.root.len(), 1, "{:?}", parsed.jabref);
+    assert_eq!(parsed.jabref.root[0].groups.len(), 2, "{:?}", parsed.jabref);
+    assert_eq!(parsed.jabref.root[0].name, "my-main-group-3");
+    assert_eq!(parsed.jabref.root[0].groups[0].name, "my-subgroup-3");
+    assert_eq!(parsed.jabref.root[0].groups[0].groups[0].name, "sub-sub-group-3");
+  }
+
+  #[test]
+  /// Checks nested values, string expansion, and duplicate-field suffixing.
+  fn parses_nested_values_and_duplicate_fields() {
+    let result = parse_verbatim("@string{venue={Journal}} @article{key,title={A {nested} title},journal=venue # { ! },note={one},note={two}}", Options::default());
+    assert!(result.errors.is_empty(), "{:?}", result.errors);
+    let fields = &result.entries[0].fields;
+    assert_eq!(fields["title"], "A {nested} title");
+    assert_eq!(fields["journal"], "Journal ! ");
+    assert_eq!(fields["note+duplicate-1"], "two");
+  }
+
+  #[test]
+  /// Keep literal command delimiters and contents from affecting surrounding field parsing.
+  fn verbatim_commands_preserve_literal_field_contents() {
+    for (value, expected) in [
+      (r#"{before \verb|} $ % \textbf{raw| after}"#, r#"before } $ % \textbf{raw after"#),
+      (r#""before \verb!{ " raw! after""#, "before { \" raw after"),
+      (r#"{\verb{unbalanced } braces{}"#, "unbalanced } braces"),
+      (r#"{\verb}unbalanced { braces}}"#, "unbalanced { braces"),
+      (r#"{\verb*literal } {*}"#, "literal } {"),
+      (r#"{\verb%literal $ { %}"#, "literal $ {"),
+      (r#"{before\verb||after}"#, "beforeafter"),
+      (r#"{\\verb|ordinary|}"#, "<br>verb|ordinary|"),
+      (r#"{before \path{a{b} after}}"#, "before a{b} after"),
+      (r#"{\path{a\{b\} c}}"#, r#"a\{b\} c"#),
+      (r#"{\path{C:\raw_%$#file} after}"#, r#"C:\raw_%$#file after"#),
+      (r#"{before \path|} $ % \textbf{raw| after}"#, r#"before } $ % \textbf{raw after"#),
+      (r#""before \path!{ " raw! after""#, "before { \" raw after"),
+      (r#"{\path}unbalanced { braces}}"#, "unbalanced { braces"),
+      (r#"{before\path{}after}"#, "beforeafter"),
+    ] {
+      let source = format!("@misc{{entry,note={value},year={{2026}}}}");
+      let raw = parse_verbatim(&source, Options::default());
+      assert!(raw.errors.is_empty(), "{value}: {:?}", raw.errors);
+      assert_eq!(raw.entries[0].fields["note"], &value[1..value.len() - 1]);
+      let parsed = fixture(&source);
+      assert_eq!(parsed.entries[0].fields["note"], FieldValue::Text(expected.into()));
+      assert_eq!(parsed.entries[0].fields["year"], FieldValue::Text("2026".into()));
     }
+  }
 
-    #[test]
-    /// Checks the final library pass merges JabRef metadata and inherited crossref fields.
-    fn library_finalization_renders_comments_and_inherits_crossref() {
-        let source = "@comment{jabref-meta: groupsversion: 3}\n@book{parent, title={Parent title}, author={Doe, John}}\n@inbook{child, crossref={parent}, chapter={A}}";
-        let raw = parse_verbatim(source, Options::default());
-        assert_eq!(raw.comments, ["jabref-meta: groupsversion: 3"]);
-
-        let parsed = parse(source, Options::default());
-        assert_eq!(parsed.jabref.groupsversion, Some(3));
-        assert!(
-            matches!(parsed.entries[1].fields.get("title"), Some(FieldValue::Text(title)) if title == "Parent title")
-        );
-        assert!(
-            matches!(parsed.entries[1].fields.get("author"), Some(FieldValue::Names(names)) if names.iter().any(|name| name.last_name.as_deref() == Some("Doe") && name.first_name.as_deref() == Some("John")))
-        );
-        assert_eq!(
-            parsed.entries[1].crossref.get("title").unwrap().field,
-            "title"
-        );
-        assert!(parsed.comments.is_empty());
+  #[test]
+  /// Verify case-insensitive verbatim-field glob matching from string patterns.
+  fn verbatim_fields_match_glob_patterns() {
+    let options: Options = serde_json::from_value(serde_json::json!({
+        "verbatimFields": ["TITLE", "file*", "custom?", "*notes", "x.y", "a[b]"]
+    }))
+    .unwrap();
+    for field in ["title", "file", "files", "filepath", "customa", "custom1", "mynotes", "x.y", "a[b]"] {
+      assert_eq!(super::field_mode(field, &options), "verbatim", "{field}");
     }
-
-    #[test]
-    /// Verify type remappings, allowed fields, and child-value precedence during inheritance.
-    fn crossref_uses_type_mappings_and_allowed_fields() {
-        let parsed = parse(
-            "@periodical{p,title={Transactions}}\n@article{a,crossref={p}}",
-            Options::default(),
-        );
-        assert_eq!(
-            parsed.entries[1].fields.get("journaltitle"),
-            Some(&FieldValue::Text("Transactions".into()))
-        );
-        assert_eq!(
-            parsed.entries[1].crossref.get("journaltitle"),
-            Some(&super::CrossRefSource {
-                parent: "p".into(),
-                field: "title".into(),
-            })
-        );
+    for field in ["subtitle", "profile", "custom", "customaa", "xay", "ab", "^title$"] {
+      assert_ne!(super::field_mode(field, &options), "verbatim", "{field}");
     }
+  }
 
-    #[test]
-    /// Verify nested JabRef memberships and the handling of metadata versus ordinary comments.
-    fn parses_jabref_group_tree_hierarchy() {
-        let parsed = parse(
-            include_str!(
-                "../../test/better-bibtex/import/Jabref groups import does not work #717.3.8.bib"
-            ),
-            Options::default(),
-        );
-        assert_eq!(parsed.jabref.database_type.as_deref(), Some("bibtex"));
-        assert_eq!(parsed.jabref.root.len(), 1, "{:?}", parsed.jabref);
-        assert_eq!(parsed.jabref.root[0].groups.len(), 2, "{:?}", parsed.jabref);
-        assert_eq!(parsed.jabref.root[0].name, "my-main-group-3");
-        assert_eq!(parsed.jabref.root[0].groups[0].name, "my-subgroup-3");
-        assert_eq!(
-            parsed.jabref.root[0].groups[0].groups[0].name,
-            "sub-sub-group-3"
-        );
-    }
+  #[test]
+  /// Verifies ids stay verbatim while every comma splits a trimmed list item.
+  fn ids_verbatim_values_split_every_comma() {
+    let parsed = parse("@book{x,ids={ one , {two, inside} }}", Options::default());
+    assert_eq!(parsed.entries[0].mode["ids"], "verbatim");
+    assert_eq!(parsed.entries[0].fields["ids"], FieldValue::List(vec!["one".into(), "{two".into(), "inside}".into()]));
+  }
 
-    #[test]
-    /// Checks nested values, string expansion, and duplicate-field suffixing.
-    fn parses_nested_values_and_duplicate_fields() {
-        let result = parse_verbatim(
-            "@string{venue={Journal}} @article{key,title={A {nested} title},journal=venue # { ! },note={one},note={two}}",
-            Options::default(),
-        );
-        assert!(result.errors.is_empty(), "{:?}", result.errors);
-        let fields = &result.entries[0].fields;
-        assert_eq!(fields["title"], "A {nested} title");
-        assert_eq!(fields["journal"], "Journal ! ");
-        assert_eq!(fields["note+duplicate-1"], "two");
-    }
+  #[test]
+  /// Verifies options retain their source text and expose parsed key/value pairs as a typed field.
+  fn options_verbatim_values_parse_as_trimmed_map() {
+    let parsed = parse("@book{x,options={ foo = bar , url=https://example.test/?a=b }}", Options::default());
+    assert_eq!(parsed.entries[0].mode["options"], "verbatim");
+    assert_eq!(parsed.entries[0].fields["options"], FieldValue::Options(std::collections::BTreeMap::from([("foo".into(), "bar".into()), ("url".into(), "https://example.test/?a=b".into()),])));
+    assert_eq!(parsed.entries[0].verbatim["options"], " foo = bar , url=https://example.test/?a=b ");
+  }
 
-    #[test]
-    /// Keep literal command delimiters and contents from affecting surrounding field parsing.
-    fn verbatim_commands_preserve_literal_field_contents() {
-        for (value, expected) in [
-            (
-                r#"{before \verb|} $ % \textbf{raw| after}"#,
-                r#"before } $ % \textbf{raw after"#,
-            ),
-            (r#""before \verb!{ " raw! after""#, "before { \" raw after"),
-            (r#"{\verb{unbalanced } braces{}"#, "unbalanced } braces"),
-            (r#"{\verb}unbalanced { braces}}"#, "unbalanced { braces"),
-            (r#"{\verb*literal } {*}"#, "literal } {"),
-            (r#"{\verb%literal $ { %}"#, "literal $ {"),
-            (r#"{before\verb||after}"#, "beforeafter"),
-            (r#"{\\verb|ordinary|}"#, "<br>verb|ordinary|"),
-            (r#"{before \path{a{b} after}}"#, "before a{b} after"),
-            (r#"{\path{a\{b\} c}}"#, r#"a\{b\} c"#),
-            (
-                r#"{\path{C:\raw_%$#file} after}"#,
-                r#"C:\raw_%$#file after"#,
-            ),
-            (
-                r#"{before \path|} $ % \textbf{raw| after}"#,
-                r#"before } $ % \textbf{raw after"#,
-            ),
-            (r#""before \path!{ " raw! after""#, "before { \" raw after"),
-            (r#"{\path}unbalanced { braces}}"#, "unbalanced { braces"),
-            (r#"{before\path{}after}"#, "beforeafter"),
-        ] {
-            let source = format!("@misc{{entry,note={value},year={{2026}}}}");
-            let raw = parse_verbatim(&source, Options::default());
-            assert!(raw.errors.is_empty(), "{value}: {:?}", raw.errors);
-            assert_eq!(raw.entries[0].fields["note"], &value[1..value.len() - 1]);
-            let parsed = fixture(&source);
-            assert_eq!(
-                parsed.entries[0].fields["note"],
-                FieldValue::Text(expected.into())
-            );
-            assert_eq!(
-                parsed.entries[0].fields["year"],
-                FieldValue::Text("2026".into())
-            );
-        }
-    }
+  #[test]
+  /// Verify raw-print whitespace normalization without interpreting verbatim field commands.
+  fn verbatim_fields_normalize_printed_whitespace() {
+    let parsed = parse("@book{x,url={https://example.org/a   b/\\~wilkins},doi={first\n    second}}", Options::default());
+    assert_eq!(parsed.entries[0].fields["url"], FieldValue::Text("https://example.org/a b/\\~wilkins".into()));
+    assert_eq!(parsed.entries[0].fields["doi"], FieldValue::Text("first second".into()));
+  }
 
-    #[test]
-    /// Verify case-insensitive verbatim-field glob matching from string patterns.
-    fn verbatim_fields_match_glob_patterns() {
-        let options: Options = serde_json::from_value(serde_json::json!({
-            "verbatimFields": ["TITLE", "file*", "custom?", "*notes", "x.y", "a[b]"]
-        }))
-        .unwrap();
-        for field in [
-            "title", "file", "files", "filepath", "customa", "custom1", "mynotes", "x.y", "a[b]",
-        ] {
-            assert_eq!(super::field_mode(field, &options), "verbatim", "{field}");
-        }
-        for field in [
-            "subtitle", "profile", "custom", "customaa", "xay", "ab", "^title$",
-        ] {
-            assert_ne!(super::field_mode(field, &options), "verbatim", "{field}");
-        }
-    }
+  #[test]
+  /// Confirms a TeX macro and both braced arguments remain distinct AST nodes.
+  fn tex_parser_preserves_macro_nodes_and_arguments() {
+    let source = r"\href{https://example.org}{label}";
+    let ast = super::tex::parse(source);
+    let Some(super::tex::Node::Macro { name, arguments, span }) = ast.content.first() else {
+      panic!("expected a TeX macro node");
+    };
+    assert_eq!(name, "href");
+    assert_eq!(span.start.offset, 0);
+    assert_eq!(span.end.offset, 5);
+    assert_eq!(ast.span.end.offset, source.encode_utf16().count());
+    assert_eq!(arguments.len(), 2);
+    assert_eq!(
+      arguments[0],
+      [super::tex::Node::String(
+        "https://example.org".into(),
+        super::tex::SourceSpan {
+          start: super::tex::SourcePosition { offset: 6, line: 1, column: 7 },
+          end: super::tex::SourcePosition { offset: 25, line: 1, column: 26 },
+        },
+      )]
+    );
+    assert!(matches!(
+        arguments[0].as_slice(),
+        [super::tex::Node::String(text, _)] if text == "https://example.org"
+    ));
+    assert!(matches!(
+        arguments[1].as_slice(),
+        [super::tex::Node::Group(children, _)] if matches!(children.as_slice(), [super::tex::Node::String(text, _)] if text == "label")
+    ));
+  }
 
-    #[test]
-    /// Verifies ids stay verbatim while every comma splits a trimmed list item.
-    fn ids_verbatim_values_split_every_comma() {
-        let parsed = parse("@book{x,ids={ one , {two, inside} }}", Options::default());
-        assert_eq!(parsed.entries[0].mode["ids"], "verbatim");
-        assert_eq!(
-            parsed.entries[0].fields["ids"],
-            FieldValue::List(vec!["one".into(), "{two".into(), "inside}".into()])
-        );
-    }
+  #[test]
+  /// Checks whitespace, paragraph breaks, and comments remain as distinct AST nodes.
+  fn tex_parser_preserves_whitespace_parbreaks_and_comments() {
+    let nodes = super::tex::parse("alpha  \n\n% comment\n beta gamma");
+    assert!(nodes.content.iter().any(|node| matches!(node, super::tex::Node::Whitespace(_, _))));
+    assert!(nodes.content.iter().any(|node| matches!(node, super::tex::Node::Parbreak(_))));
+    assert!(nodes.content.iter().any(|node| matches!(node, super::tex::Node::Comment { .. })));
+    assert_eq!(super::tex::render("alpha  \n\n% comment\n beta gamma", "title"), "alpha beta gamma");
+    assert_eq!(super::tex::render(r"foo\ bar", "title"), "foo bar");
+    assert_eq!(super::tex::render("A.  \n   B", "literal"), "A. B");
+    let nbsp = super::tex::parse("a\u{00a0}b");
+    assert!(matches!(
+        nbsp.content.as_slice(),
+        [super::tex::Node::String(text, _)] if text == "a\u{00a0}b"
+    ));
+    assert_eq!(super::tex::render("00\u{2009}text", "literal"), "00\u{2009}text");
+    assert_eq!(super::tex::render("aa\u{2005}bb", "literal"), "aa\u{2005}bb");
+  }
 
-    #[test]
-    /// Verifies options remain a source string while parsed key/value pairs live on the entry.
-    fn options_verbatim_values_parse_as_trimmed_map() {
-        let parsed = parse(
-            "@book{x,options={ foo = bar , url=https://example.test/?a=b }}",
-            Options::default(),
-        );
-        assert_eq!(parsed.entries[0].mode["options"], "verbatim");
-        assert_eq!(
-            parsed.entries[0].fields["options"],
-            FieldValue::Text(" foo = bar , url=https://example.test/?a=b ".into())
-        );
-        assert_eq!(
-            parsed.entries[0].options,
-            Some(std::collections::BTreeMap::from([
-                ("foo".into(), "bar".into()),
-                ("url".into(), "https://example.test/?a=b".into()),
-            ]))
-        );
-    }
+  #[test]
+  /// Checks UTF-16 spans, malformed-group recovery, and comment-boundary metadata.
+  fn tex_parser_matches_source_span_and_recovery_contract() {
+    let malformed = super::tex::parse("a {b");
+    assert_eq!(malformed.span.start.offset, 0);
+    assert_eq!(malformed.span.end.offset, 4);
+    assert!(matches!(
+        malformed.content.as_slice(),
+        [
+            super::tex::Node::String(text, super::tex::SourceSpan { start: super::tex::SourcePosition { offset: 0, .. }, end: super::tex::SourcePosition { offset: 1, .. } }),
+            super::tex::Node::Whitespace(text_space, _),
+            super::tex::Node::String(open, super::tex::SourceSpan { start: super::tex::SourcePosition { offset: 2, .. }, end: super::tex::SourcePosition { offset: 3, .. } }),
+            super::tex::Node::String(tail, super::tex::SourceSpan { start: super::tex::SourcePosition { offset: 3, .. }, end: super::tex::SourcePosition { offset: 4, .. } }),
+        ] if text == "a" && text_space == " " && open == "{" && tail == "b"
+    ));
 
-    #[test]
-    /// Verify raw-print whitespace normalization without interpreting verbatim field commands.
-    fn verbatim_fields_normalize_printed_whitespace() {
-        let parsed = parse(
-            "@book{x,url={https://example.org/a   b/\\~wilkins},doi={first\n    second}}",
-            Options::default(),
-        );
-        assert_eq!(
-            parsed.entries[0].fields["url"],
-            FieldValue::Text("https://example.org/a b/\\~wilkins".into())
-        );
-        assert_eq!(
-            parsed.entries[0].fields["doi"],
-            FieldValue::Text("first second".into())
-        );
-    }
+    let unicode = super::tex::parse("😀x");
+    assert!(matches!(
+        unicode.content.as_slice(),
+        [super::tex::Node::String(text, span)]
+            if text == "😀x"
+                && span.start.offset == 0
+                && span.end.offset == 3
+                && span.end.column == 4
+    ));
 
-    #[test]
-    /// Confirms a TeX macro and both braced arguments remain distinct AST nodes.
-    fn tex_parser_preserves_macro_nodes_and_arguments() {
-        let source = r"\href{https://example.org}{label}";
-        let ast = super::tex::parse(source);
-        let Some(super::tex::Node::Macro {
-            name,
-            arguments,
+    let comment = super::tex::parse("a % c\nb");
+    assert!(matches!(
+        &comment.content[1],
+        super::tex::Node::Comment {
+            content,
             span,
-        }) = ast.content.first()
-        else {
-            panic!("expected a TeX macro node");
-        };
-        assert_eq!(name, "href");
-        assert_eq!(span.start.offset, 0);
-        assert_eq!(span.end.offset, 5);
-        assert_eq!(ast.span.end.offset, source.encode_utf16().count());
-        assert_eq!(arguments.len(), 2);
-        assert_eq!(
-            arguments[0],
-            [super::tex::Node::String(
-                "https://example.org".into(),
-                super::tex::SourceSpan {
-                    start: super::tex::SourcePosition {
-                        offset: 6,
-                        line: 1,
-                        column: 7
-                    },
-                    end: super::tex::SourcePosition {
-                        offset: 25,
-                        line: 1,
-                        column: 26
-                    },
-                },
-            )]
-        );
-        assert!(matches!(
-            arguments[0].as_slice(),
-            [super::tex::Node::String(text, _)] if text == "https://example.org"
-        ));
-        assert!(matches!(
-            arguments[1].as_slice(),
-            [super::tex::Node::Group(children, _)] if matches!(children.as_slice(), [super::tex::Node::String(text, _)] if text == "label")
-        ));
-    }
+            sameline: true,
+            leading_whitespace: true,
+            suffix_parbreak: false,
+        } if content == " c" && span.start.offset == 1 && span.end.offset == 6
+    ));
 
-    #[test]
-    /// Checks whitespace, paragraph breaks, and comments remain as distinct AST nodes.
-    fn tex_parser_preserves_whitespace_parbreaks_and_comments() {
-        let nodes = super::tex::parse("alpha  \n\n% comment\n beta gamma");
-        assert!(
-            nodes
-                .content
-                .iter()
-                .any(|node| matches!(node, super::tex::Node::Whitespace(_, _)))
-        );
-        assert!(
-            nodes
-                .content
-                .iter()
-                .any(|node| matches!(node, super::tex::Node::Parbreak(_)))
-        );
-        assert!(
-            nodes
-                .content
-                .iter()
-                .any(|node| matches!(node, super::tex::Node::Comment { .. }))
-        );
-        assert_eq!(
-            super::tex::render("alpha  \n\n% comment\n beta gamma", "title"),
-            "alpha beta gamma"
-        );
-        assert_eq!(super::tex::render(r"foo\ bar", "title"), "foo bar");
-        assert_eq!(super::tex::render("A.  \n   B", "literal"), "A. B");
-        let nbsp = super::tex::parse("a\u{00a0}b");
-        assert!(matches!(
-            nbsp.content.as_slice(),
-            [super::tex::Node::String(text, _)] if text == "a\u{00a0}b"
-        ));
-        assert_eq!(
-            super::tex::render("00\u{2009}text", "literal"),
-            "00\u{2009}text"
-        );
-        assert_eq!(
-            super::tex::render("aa\u{2005}bb", "literal"),
-            "aa\u{2005}bb"
-        );
-    }
+    let comment_parbreak = super::tex::parse("a% c\n\nb");
+    assert!(
+      matches!(
+      comment_parbreak.content.as_slice(),
+      [
+          super::tex::Node::String(_, _),
+          super::tex::Node::Comment {
+              content,
+              suffix_parbreak: true,
+              span,
+              ..
+          },
+          super::tex::Node::Parbreak(parbreak_span),
+          super::tex::Node::String(_, _),
+      ] if content == " c"
+          && span.start.offset == 1
+          && span.end.offset == 4
+          && parbreak_span.start.offset == 4
+          && parbreak_span.end.offset == 6
+      ),
+      "{:#?}",
+      comment_parbreak.content
+    );
 
-    #[test]
-    /// Checks UTF-16 spans, malformed-group recovery, and comment-boundary metadata.
-    fn tex_parser_matches_source_span_and_recovery_contract() {
-        let malformed = super::tex::parse("a {b");
-        assert_eq!(malformed.span.start.offset, 0);
-        assert_eq!(malformed.span.end.offset, 4);
-        assert!(matches!(
-            malformed.content.as_slice(),
-            [
-                super::tex::Node::String(text, super::tex::SourceSpan { start: super::tex::SourcePosition { offset: 0, .. }, end: super::tex::SourcePosition { offset: 1, .. } }),
-                super::tex::Node::Whitespace(text_space, _),
-                super::tex::Node::String(open, super::tex::SourceSpan { start: super::tex::SourcePosition { offset: 2, .. }, end: super::tex::SourcePosition { offset: 3, .. } }),
-                super::tex::Node::String(tail, super::tex::SourceSpan { start: super::tex::SourcePosition { offset: 3, .. }, end: super::tex::SourcePosition { offset: 4, .. } }),
-            ] if text == "a" && text_space == " " && open == "{" && tail == "b"
-        ));
+    let comment_after_linebreak = super::tex::parse("a\n% c\nb");
+    assert!(matches!(
+        &comment_after_linebreak.content[1],
+        super::tex::Node::Comment {
+            content,
+            span,
+            sameline: false,
+            leading_whitespace: false,
+            ..
+        } if content == " c" && span.start.offset == 1 && span.end.offset == 6
+    ));
 
-        let unicode = super::tex::parse("😀x");
-        assert!(matches!(
-            unicode.content.as_slice(),
-            [super::tex::Node::String(text, span)]
-                if text == "😀x"
-                    && span.start.offset == 0
-                    && span.end.offset == 3
-                    && span.end.column == 4
-        ));
+    let indented_comment = super::tex::parse("a% c\n b");
+    assert!(matches!(
+        indented_comment.content.as_slice(),
+        [
+            super::tex::Node::String(_, _),
+            super::tex::Node::Comment { span, .. },
+            super::tex::Node::String(b, _),
+        ] if span.start.offset == 1 && span.end.offset == 6 && b == "b"
+    ));
+  }
 
-        let comment = super::tex::parse("a % c\nb");
-        assert!(matches!(
-            &comment.content[1],
-            super::tex::Node::Comment {
-                content,
-                span,
-                sameline: true,
-                leading_whitespace: true,
-                suffix_parbreak: false,
-            } if content == " c" && span.start.offset == 1 && span.end.offset == 6
-        ));
+  #[test]
+  /// Checks matched nested environments and unmatched begin/end commands remain structurally distinct.
+  fn tex_parser_matches_environment_recovery_contract() {
+    let nested = super::tex::parse(r"\begin{a}x\begin{b}y\end{b}z\end{a}");
+    assert!(matches!(
+        nested.content.as_slice(),
+        [super::tex::Node::Environment { name, content, span }]
+            if name == "a"
+                && span.start.offset == 0
+                && span.end.offset == 35
+                && matches!(content.as_slice(), [
+                    super::tex::Node::String(x, _),
+                    super::tex::Node::Environment { name: inner, .. },
+                    super::tex::Node::String(z, _),
+                ] if x == "x" && inner == "b" && z == "z")
+    ));
 
-        let comment_parbreak = super::tex::parse("a% c\n\nb");
-        assert!(
-            matches!(
-            comment_parbreak.content.as_slice(),
-            [
-                super::tex::Node::String(_, _),
-                super::tex::Node::Comment {
-                    content,
-                    suffix_parbreak: true,
-                    span,
-                    ..
-                },
-                super::tex::Node::Parbreak(parbreak_span),
-                super::tex::Node::String(_, _),
-            ] if content == " c"
-                && span.start.offset == 1
-                && span.end.offset == 4
-                && parbreak_span.start.offset == 4
-                && parbreak_span.end.offset == 6
-            ),
-            "{:#?}",
-            comment_parbreak.content
-        );
+    let unmatched = super::tex::parse(r"\begin{a}x\end{b}tail");
+    assert!(matches!(
+        unmatched.content.as_slice(),
+        [
+            super::tex::Node::Macro { name: begin, span, .. },
+            super::tex::Node::String(x, _),
+            super::tex::Node::Macro { name: end, .. },
+            super::tex::Node::String(tail, _),
+        ] if begin == "begin" && span.end.offset == 6 && x == "x" && end == "end" && tail == "tail"
+    ));
 
-        let comment_after_linebreak = super::tex::parse("a\n% c\nb");
-        assert!(matches!(
-            &comment_after_linebreak.content[1],
-            super::tex::Node::Comment {
-                content,
-                span,
-                sameline: false,
-                leading_whitespace: false,
-                ..
-            } if content == " c" && span.start.offset == 1 && span.end.offset == 6
-        ));
+    let inner_unmatched = super::tex::parse(r"\begin{a}x\begin{b}y\end{a}");
+    assert!(matches!(
+        inner_unmatched.content.as_slice(),
+        [super::tex::Node::Environment { name, content, span }]
+            if name == "a"
+                && span.end.offset == 27
+                && matches!(content.as_slice(), [
+                    super::tex::Node::String(x, _),
+                    super::tex::Node::Macro { name: begin, .. },
+                    super::tex::Node::String(y, _),
+                ] if x == "x" && begin == "begin" && y == "y")
+    ));
+  }
 
-        let indented_comment = super::tex::parse("a% c\n b");
-        assert!(matches!(
-            indented_comment.content.as_slice(),
-            [
-                super::tex::Node::String(_, _),
-                super::tex::Node::Comment { span, .. },
-                super::tex::Node::String(b, _),
-            ] if span.start.offset == 1 && span.end.offset == 6 && b == "b"
-        ));
-    }
+  #[test]
+  /// Checks alternate math delimiters create math nodes and `verb` preserves its literal body.
+  fn tex_parser_handles_alternate_math_and_verb_syntax() {
+    let inline = super::tex::parse(r"\(\frac n 2\)");
+    let display = super::tex::parse(r"\[\frac n 2\]");
+    assert_eq!(inline, display);
+    assert_eq!(super::tex::render(r"\(\frac n 2\)", "title"), "ⁿ⁄₂");
+    assert_eq!(super::tex::render(r"\[\frac n 2\]", "title"), "ⁿ⁄₂");
+    assert_eq!(super::tex::render(r"\verb+http://example/~user+", "literal"), "http://example/~user");
+  }
 
-    #[test]
-    /// Checks matched nested environments and unmatched begin/end commands remain structurally distinct.
-    fn tex_parser_matches_environment_recovery_contract() {
-        let nested = super::tex::parse(r"\begin{a}x\begin{b}y\end{b}z\end{a}");
-        assert!(matches!(
-            nested.content.as_slice(),
-            [super::tex::Node::Environment { name, content, span }]
-                if name == "a"
-                    && span.start.offset == 0
-                    && span.end.offset == 35
-                    && matches!(content.as_slice(), [
-                        super::tex::Node::String(x, _),
-                        super::tex::Node::Environment { name: inner, .. },
-                        super::tex::Node::String(z, _),
-                    ] if x == "x" && inner == "b" && z == "z")
-        ));
+  #[test]
+  /// Checks custom macro bodies expand and nested ifdefined blocks are skipped.
+  fn tex_parser_expands_macros_and_skips_conditionals() {
+    assert_eq!(super::tex::render(r"\newcommand{\hello}{Hello} \newcommand{\greeting}{\hello{} world} \greeting", "title"), "Hello world");
 
-        let unmatched = super::tex::parse(r"\begin{a}x\end{b}tail");
-        assert!(matches!(
-            unmatched.content.as_slice(),
-            [
-                super::tex::Node::Macro { name: begin, span, .. },
-                super::tex::Node::String(x, _),
-                super::tex::Node::Macro { name: end, .. },
-                super::tex::Node::String(tail, _),
-            ] if begin == "begin" && span.end.offset == 6 && x == "x" && end == "end" && tail == "tail"
-        ));
+    let conditional = super::tex::render(r"before \ifdefined\first hidden \ifdefined\second nested\fi fallback\else other\fi after", "title");
+    assert!(conditional.contains("before"));
+    assert!(conditional.contains("after"));
+    assert!(!conditional.contains("hidden"));
+    assert!(!conditional.contains("nested"));
+    assert!(!conditional.contains("fallback"));
+    assert!(!conditional.contains("other"));
+  }
 
-        let inner_unmatched = super::tex::parse(r"\begin{a}x\begin{b}y\end{a}");
-        assert!(matches!(
-            inner_unmatched.content.as_slice(),
-            [super::tex::Node::Environment { name, content, span }]
-                if name == "a"
-                    && span.end.offset == 27
-                    && matches!(content.as_slice(), [
-                        super::tex::Node::String(x, _),
-                        super::tex::Node::Macro { name: begin, .. },
-                        super::tex::Node::String(y, _),
-                    ] if x == "x" && begin == "begin" && y == "y")
-        ));
-    }
+  #[test]
+  /// Checks that custom-command arity and default parameters do not enter replacement text.
+  fn tex_parser_matches_parameterized_custom_command_behavior() {
+    assert_eq!(super::tex::render(r"\newcommand{\hello}[1]{Hello #1} \hello{world}", "literal"), "Hello #1world");
+    assert_eq!(super::tex::render(r"\newcommand{\greet}[2][Hi]{#1 #2} \greet[Howdy]{friend}", "literal"), "#1 #2[Howdy]friend");
+  }
 
-    #[test]
-    /// Checks alternate math delimiters create math nodes and `verb` preserves its literal body.
-    fn tex_parser_handles_alternate_math_and_verb_syntax() {
-        let inline = super::tex::parse(r"\(\frac n 2\)");
-        let display = super::tex::parse(r"\[\frac n 2\]");
-        assert_eq!(inline, display);
-        assert_eq!(super::tex::render(r"\(\frac n 2\)", "title"), "ⁿ⁄₂");
-        assert_eq!(super::tex::render(r"\[\frac n 2\]", "title"), "ⁿ⁄₂");
-        assert_eq!(
-            super::tex::render(r"\verb+http://example/~user+", "literal"),
-            "http://example/~user"
-        );
-    }
-
-    #[test]
-    /// Checks custom macro bodies expand and nested ifdefined blocks are skipped.
-    fn tex_parser_expands_macros_and_skips_conditionals() {
-        assert_eq!(
-            super::tex::render(
-                r"\newcommand{\hello}{Hello} \newcommand{\greeting}{\hello{} world} \greeting",
-                "title"
-            ),
-            "Hello world"
-        );
-
-        let conditional = super::tex::render(
-            r"before \ifdefined\first hidden \ifdefined\second nested\fi fallback\else other\fi after",
-            "title",
-        );
-        assert!(conditional.contains("before"));
-        assert!(conditional.contains("after"));
-        assert!(!conditional.contains("hidden"));
-        assert!(!conditional.contains("nested"));
-        assert!(!conditional.contains("fallback"));
-        assert!(!conditional.contains("other"));
-    }
-
-    #[test]
-    /// Checks that custom-command arity and default parameters do not enter replacement text.
-    fn tex_parser_matches_parameterized_custom_command_behavior() {
-        assert_eq!(
-            super::tex::render(r"\newcommand{\hello}[1]{Hello #1} \hello{world}", "literal"),
-            "Hello #1world"
-        );
-        assert_eq!(
-            super::tex::render(
-                r"\newcommand{\greet}[2][Hi]{#1 #2} \greet[Howdy]{friend}",
-                "literal"
-            ),
-            "#1 #2[Howdy]friend"
-        );
-    }
-
-    #[test]
-    /// Verify preamble definitions remain available while rendering subsequent entry fields.
-    fn preamble_newcommands_expand_in_entry_fields() {
-        assert_eq!(
-            super::tex::render(
-                r"\newcommand{\mnras}{Monthly Notices of the Royal Astronomical Society} {\mnras}",
-                "title"
-            ),
-            "<span class=\"nocase\">Monthly Notices of the Royal Astronomical Society</span>"
-        );
-        let library = parse_verbatim(
-            r"@preamble{\newcommand{\mnras}{Monthly Notices of the Royal Astronomical Society}}
+  #[test]
+  /// Verify preamble definitions remain available while rendering subsequent entry fields.
+  fn preamble_newcommands_expand_in_entry_fields() {
+    assert_eq!(
+      super::tex::render(r"\newcommand{\mnras}{Monthly Notices of the Royal Astronomical Society} {\mnras}", "title"),
+      "<span class=\"nocase\">Monthly Notices of the Royal Astronomical Society</span>"
+    );
+    let library = parse_verbatim(
+      r"@preamble{\newcommand{\mnras}{Monthly Notices of the Royal Astronomical Society}}
 @ARTICLE{test,
   journal = {\mnras},
   title = {Example}
 }",
-            Options::default(),
-        );
-        let parsed = reparse_with_options(library, &Options::default());
-        let journal = parsed.entries[0]
-            .fields
-            .get("journal")
-            .and_then(|value| match value {
-                FieldValue::Text(value) => Some(value.as_str()),
-                _ => None,
-            })
-            .unwrap();
-        assert_eq!(journal, "Monthly Notices of the Royal Astronomical Society");
+      Options::default(),
+    );
+    let parsed = reparse_with_options(library, &Options::default());
+    let journal = parsed.entries[0]
+      .fields
+      .get("journal")
+      .and_then(|value| match value {
+        FieldValue::Text(value) => Some(value.as_str()),
+        _ => None,
+      })
+      .unwrap();
+    assert_eq!(journal, "Monthly Notices of the Royal Astronomical Society");
 
-        let from_string = parse(
-            r"@string{define={\newcommand{\x}{Expanded}}}
+    let from_string = parse(
+      r"@string{define={\newcommand{\x}{Expanded}}}
 @book{x,title={\x}}",
-            Options::default(),
-        );
-        assert_eq!(
-            from_string.entries[0].fields.get("title"),
-            Some(&FieldValue::Text("Expanded".into()))
-        );
+      Options::default(),
+    );
+    assert_eq!(from_string.entries[0].fields.get("title"), Some(&FieldValue::Text("Expanded".into())));
+  }
+
+  #[test]
+  /// Checks nested environments become nested AST nodes before rich-text rendering.
+  fn tex_parser_nests_environment_nodes() {
+    assert_eq!(super::tex::render(r"\begin{em}inside\end{em}", "literal"), "<i>inside</i>");
+    assert_eq!(super::tex::render(r"\begin{quotation}start \begin{em}inside\end{em} end\end{quotation}", "richtext"), "<blockquote>start <i>inside</i> end</blockquote>");
+  }
+
+  #[test]
+  /// Checks bold declarations and formatting environments apply only within their enclosing scope.
+  fn tex_formatting_environments_scope_declarations() {
+    for mode in ["literal", "richtext", "title"] {
+      assert_eq!(super::tex::render(r"normal \bf bold text", mode), "normal <b>bold text</b>");
+      assert_eq!(super::tex::render(r"normal {\bf bold text} normal", mode), "normal <b>bold text</b> normal");
+      for (name, expected) in [
+        ("em", "<i>inside</i>"),
+        ("it", "<i>inside</i>"),
+        ("sl", "<i>inside</i>"),
+        ("bf", "<b>inside</b>"),
+        ("sc", "<span style=\"font-variant:small-caps;\">inside</span>"),
+        ("tt", "<code>inside</code>"),
+      ] {
+        assert_eq!(super::tex::render(&format!(r"\begin{{{name}}}inside\end{{{name}}} normal"), mode), format!("{expected} normal"), "{name} in {mode}");
+      }
+      assert_eq!(super::tex::render(r"\begin{bf}bold \em and italics\end{bf} normal", mode), "<b>bold <i>and italics</i></b> normal");
     }
+    let parsed = parse(r#"@article{test, title = "Normal and \em italics and \begin{bf}bold \em and italics\end{bf} {\bf and bold} and normal"}"#, Options::default());
+    assert!(parsed.errors.is_empty(), "{:?}", parsed.errors);
+    assert_eq!(parsed.entries[0].fields["title"], FieldValue::Text("Normal and <i>italics and <b>bold <i>and italics</i> and bold</b> and normal</i>".into()));
+  }
 
-    #[test]
-    /// Checks nested environments become nested AST nodes before rich-text rendering.
-    fn tex_parser_nests_environment_nodes() {
-        assert_eq!(
-            super::tex::render(r"\begin{em}inside\end{em}", "literal"),
-            "<i>inside</i>"
-        );
-        assert_eq!(
-            super::tex::render(
-                r"\begin{quotation}start \begin{em}inside\end{em} end\end{quotation}",
-                "richtext"
-            ),
-            "<blockquote>start <i>inside</i> end</blockquote>"
-        );
+  #[test]
+  /// Checks declarations, single-token style arguments, lists, and quotes in their TeX modes.
+  fn tex_visitor_renders_declarations_lists_and_quotes() {
+    assert_eq!(super::tex::render(r"\bf bold \em italic", "literal"), "<b>bold <i>italic</i></b>");
+    assert_eq!(super::tex::render(r"\begin{itemize}\item First\item Second\end{itemize}", "richtext"), "<ul><li>First<li>Second</ul>");
+    assert_eq!(super::tex::render(r"\enquote{quoted}", "literal"), "“quoted”");
+    assert_eq!(super::tex::render(r"\textbf abc", "literal"), "<b>a</b>bc");
+    assert_eq!(super::tex::render(r"\LaTeX", "literal"), "LᴬT<sub>E</sub>X");
+    assert_eq!(super::tex::render(r"a\par~\par b", "richtext"), "a<p>b");
+    assert_eq!(super::tex::render("a\r\nb", "richtext"), "a<p>b");
+    assert_eq!(super::tex::render(r"\url{http://example.org/\textbf{MiX}}", "literal"), r#"<a href="http://example.org/\textbf{MiX}">http://example.org/\textbf{MiX}</a>"#);
+    assert_eq!(super::tex::render(r"dash -- em --- quotes ``quoted''", "literal"), "dash – em — quotes “quoted”");
+    assert_eq!(super::tex::render(r"\mathrm{Roman}\rlap{over}\textsl{italic}\bar{abc}", "literal"), "Romanover<i>italic</i>a\u{0305}b\u{0305}c\u{0305}");
+    assert_eq!(super::tex::render(r"a\hspace{1em}b\hspace{0pt}c", "literal"), "a bc");
+    assert_eq!(super::tex::render(r"foo\undefined bar", "literal"), "foobar");
+    assert_eq!(super::tex::render("An {unusual name}", "title"), "An <span class=\"nocase\">unusual name</span>");
+    assert_eq!(super::tex::render("An $n$", "title"), "An <span class=\"nocase\">n</span>");
+  }
+
+  #[test]
+  /// Verify adjacent markup collapse is enabled by default and can be explicitly disabled.
+  fn collapse_markup_option_defaults_on_and_can_be_disabled() {
+    let source = r"@book{x,title={\textit{one} \textit{two}}}";
+    let field_mode = std::collections::HashMap::from([("title".to_string(), "literal".to_string())]);
+    let collapsed = parse(source, Options { field_mode: field_mode.clone(), ..Options::default() });
+    assert_eq!(collapsed.entries[0].fields["title"], FieldValue::Text("<i>one two</i>".into()));
+
+    let separate = parse(
+      source,
+      Options {
+        field_mode,
+        collapse_markup: false,
+        ..Options::default()
+      },
+    );
+    assert_eq!(separate.entries[0].fields["title"], FieldValue::Text("<i>one</i> <i>two</i>".into()));
+
+    let cased = parse(r"@book{x,title={\textit{The} \textit{Title}}}", Options { collapse_markup: false, ..Options::default() });
+    assert_eq!(cased.entries[0].fields["title"], FieldValue::Text("<i>The</i> <i>Title</i>".into()));
+
+    let marked = "<case-protection><i>The</i></case-protection> <case-protection><i>Title</i></case-protection>";
+    let restored = super::tex::sentence_case_title(marked, false, true, true, super::tex::CaseProtection::Off);
+    assert_eq!(restored, "<i>The</i> <i>Title</i>");
+    assert_eq!(super::tex::collapse_markup(&restored), "<i>The Title</i>");
+  }
+
+  #[test]
+  /// Merge formatting exposed by case-protection collapse while preserving casing boundaries.
+  fn collapse_markup_revisits_formatting_after_case_protection() {
+    let parsed = parse(
+      r#"@article{test, title = "A \emph{A} \emph{{A}} {\emph{A}} {\emph{{A}}} {{\emph{A}}}"}"#,
+      Options {
+        case_protection: "strict".to_string(),
+        ..Options::default()
+      },
+    );
+    let expected = "A <span class=\"nocase\"><i>A A</i></span> <i>a a</i> <span class=\"nocase\"><i>A</i></span>";
+    assert_eq!(parsed.entries[0].fields["title"], FieldValue::Text(expected.into()));
+    assert_eq!(super::tex::collapse_markup(expected), expected);
+  }
+
+  #[test]
+  /// Keep mixed wrapper boundaries intact and emit HTML even when collapsing is disabled.
+  fn collapse_markup_distinguishes_nocase_and_smallcaps() {
+    let internal = "<nocase><smallcaps>A</smallcaps></nocase> <smallcaps>B</smallcaps> <nocase>C</nocase>";
+    let expected = "<span class=\"nocase\"><span style=\"font-variant:small-caps;\">A</span></span> <span style=\"font-variant:small-caps;\">B</span> <span class=\"nocase\">C</span>";
+    assert_eq!(super::tex::collapse_markup(internal), internal);
+    assert_eq!(super::tex::finalize_markup(internal, true), expected);
+    assert_eq!(super::tex::finalize_markup(internal, false), expected);
+    assert_eq!(super::tex::collapse_markup("<nocase><smallcaps>A</smallcaps></nocase> <nocase><smallcaps>B</smallcaps></nocase>"), "<nocase><smallcaps>A B</smallcaps></nocase>");
+    assert_eq!(
+      super::tex::sentence_case_with_options("A <nocase>nASA <smallcaps>NAME</smallcaps> TAIL</nocase> Title", false, false, false,),
+      "A <nocase>nASA <smallcaps>NAME</smallcaps> TAIL</nocase> title"
+    );
+    assert_eq!(
+      super::tex::sentence_case_with_options("A <span class=\"nocase\">nASA <span style=\"font-variant:small-caps;\">NAME</span> TAIL</span> Title", false, false, false,),
+      "A <span class=\"nocase\">nASA <span style=\"font-variant:small-caps;\">NAME</span> TAIL</span> title"
+    );
+    for collapse_markup in [false, true] {
+      let parsed = parse(
+        r"@article{test,title={A {{\textsc{B}}} {\textsc{c}} {D}}}",
+        Options {
+          case_protection: "strict".to_string(),
+          collapse_markup,
+          ..Options::default()
+        },
+      );
+      assert_eq!(
+        parsed.entries[0].fields["title"],
+        FieldValue::Text("A <span class=\"nocase\"><span style=\"font-variant:small-caps;\">B</span></span> <span style=\"font-variant:small-caps;\">c</span> <span class=\"nocase\">D</span>".into())
+      );
     }
+  }
 
-    #[test]
-    /// Checks bold declarations and formatting environments apply only within their enclosing scope.
-    fn tex_formatting_environments_scope_declarations() {
-        for mode in ["literal", "richtext", "title"] {
-            assert_eq!(
-                super::tex::render(r"normal \bf bold text", mode),
-                "normal <b>bold text</b>"
-            );
-            assert_eq!(
-                super::tex::render(r"normal {\bf bold text} normal", mode),
-                "normal <b>bold text</b> normal"
-            );
-            for (name, expected) in [
-                ("em", "<i>inside</i>"),
-                ("it", "<i>inside</i>"),
-                ("sl", "<i>inside</i>"),
-                ("bf", "<b>inside</b>"),
-                (
-                    "sc",
-                    "<span style=\"font-variant:small-caps;\">inside</span>",
-                ),
-                ("tt", "<code>inside</code>"),
-            ] {
-                assert_eq!(
-                    super::tex::render(
-                        &format!(r"\begin{{{name}}}inside\end{{{name}}} normal"),
-                        mode
-                    ),
-                    format!("{expected} normal"),
-                    "{name} in {mode}"
-                );
-            }
-            assert_eq!(
-                super::tex::render(r"\begin{bf}bold \em and italics\end{bf} normal", mode),
-                "<b>bold <i>and italics</i></b> normal"
-            );
-        }
-        let parsed = parse(
-            r#"@article{test, title = "Normal and \em italics and \begin{bf}bold \em and italics\end{bf} {\bf and bold} and normal"}"#,
-            Options::default(),
-        );
-        assert!(parsed.errors.is_empty(), "{:?}", parsed.errors);
-        assert_eq!(
-            parsed.entries[0].fields["title"],
-            FieldValue::Text(
-                "Normal and <i>italics and <b>bold <i>and italics</i> and bold</b> and normal</i>"
-                    .into()
-            )
-        );
+  #[test]
+  /// Checks title rendering for `off`, `as-needed`, and `strict` case protection.
+  fn tex_visitor_honors_case_protection_modes() {
+    let mut diagnostics = super::tex::LibraryRenderer::default();
+    assert_eq!(diagnostics.render_with_case_protection("An {unusual name}", "title", super::tex::CaseProtection::Off,), "An unusual name");
+    assert_eq!(diagnostics.render_with_case_protection("An {unusual name}", "title", super::tex::CaseProtection::AsNeeded,), "An <nocase>unusual name</nocase>");
+    assert_eq!(diagnostics.render_with_case_protection("An {unusual name}", "title", super::tex::CaseProtection::Strict,), "An <nocase>unusual name</nocase>");
+    let mut strict_renderer = super::tex::LibraryRenderer::new(None, false, super::tex::CaseProtection::Strict);
+    assert_eq!(strict_renderer.render("An $n$", super::tex::RenderContext::field(super::tex::RenderMode::Text, true, true,),), "An <case-protection>n</case-protection>");
+    assert_eq!(
+      strict_renderer.render("{Astrophysical} {$\\rightarrow$} {Reactions}", super::tex::RenderContext::field(super::tex::RenderMode::Text, true, true,),),
+      "<case-protection>Astrophysical</case-protection> <case-protection>→</case-protection> <case-protection>Reactions</case-protection>"
+    );
+    assert_eq!(
+      super::tex::sentence_case_title(
+        "<case-protection>Astrophysical</case-protection> <case-protection>→</case-protection> <case-protection>Reactions</case-protection>",
+        false,
+        true,
+        true,
+        super::tex::CaseProtection::Strict,
+      ),
+      "<nocase>Astrophysical</nocase> <nocase>→</nocase> <nocase>Reactions</nocase>"
+    );
+    assert_eq!(
+      strict_renderer.render(r"{\mbox{$\mu$}} {J}", super::tex::RenderContext::field(super::tex::RenderMode::Text, true, true,),),
+      "<case-protection>𝜇</case-protection> <case-protection>J</case-protection>"
+    );
+    assert_eq!(
+      super::tex::sentence_case_title("<case-protection>𝜇</case-protection> <case-protection>J</case-protection>", false, true, true, super::tex::CaseProtection::Strict,),
+      "<nocase>𝜇</nocase> <nocase>J</nocase>"
+    );
+    assert_eq!(diagnostics.render_with_case_protection(r"A\hspace{1em}B", "title", super::tex::CaseProtection::Strict,), "A B");
+    assert_eq!(
+      super::tex::sentence_case_title("<case-protection>Generating Bayesian</case-protection> networks", false, true, true, super::tex::CaseProtection::Off,),
+      "Generating Bayesian networks"
+    );
+    let href = parse(
+      r"@article{x,title={\href{https://example.test}{Home}}}",
+      Options {
+        case_protection: "strict".to_string(),
+        ..Options::default()
+      },
+    );
+    assert_eq!(href.entries[0].fields["title"], FieldValue::Text("<a href=\"https://example.test\">Home</a>".to_string()));
+    for (title, expected) in [
+      (r"Stability {Analysis} and {\emph{Optimization}}", "Stability Analysis and <i>optimization</i>"),
+      ("{NASA} and {the} study", "NASA and <span class=\"nocase\">the</span> study"),
+      ("{van der Waals} interactions", "<span class=\"nocase\">van der Waals</span> interactions"),
+      ("{TitleCase} {alllower}", "TitleCase <span class=\"nocase\">alllower</span>"),
+    ] {
+      let parsed = parse(&format!("@book{{case,title={{{title}}}}}"), Options::default());
+      assert_eq!(parsed.entries[0].fields["title"], FieldValue::Text(expected.into()));
     }
+    let markup_title = parse(r"@article{x,title={A {\em A} \begin{em}A\end{em} \begin{em}{A}\end{em} {A \em A}}}", Options::default());
+    assert_eq!(markup_title.entries[0].fields["title"], FieldValue::Text("A <i>a a A</i> A <i>A</i>".into()));
+    let quoted = parse(r"@article{x,langid={en},title={Blah and \enquote{enquote}.}}", Options::default());
+    assert_eq!(quoted.entries[0].fields["title"], FieldValue::Text("Blah and “<span class=\"nocase\">enquote</span>”.".into()));
+    let options = Options { english: vec!["en".into()], ..Options::default() };
+    let grouped_markup = parse(r"@book{x,langid={en},title={Reading {{HLA Hart}}'s: {{{\emph{The Concept}}}}{\emph{ of }}{{{\emph{Law}}}}}}", options);
+    assert_eq!(grouped_markup.entries[0].fields["title"], FieldValue::Text("Reading HLA Hart's: <i>The Concept of Law</i>".into()));
+    let hyphenated = parse("@book{x,title={Symphony {No.}~3 in {E-flat} major}}", Options::default());
+    assert_eq!(hyphenated.entries[0].fields["title"], FieldValue::Text("Symphony No.\u{00a0}3 in E-flat major".into()));
+  }
 
-    #[test]
-    /// Checks declarations, single-token style arguments, lists, and quotes in their TeX modes.
-    fn tex_visitor_renders_declarations_lists_and_quotes() {
-        assert_eq!(
-            super::tex::render(r"\bf bold \em italic", "literal"),
-            "<b>bold <i>italic</i></b>"
-        );
-        assert_eq!(
-            super::tex::render(
-                r"\begin{itemize}\item First\item Second\end{itemize}",
-                "richtext"
-            ),
-            "<ul><li>First<li>Second</ul>"
-        );
-        assert_eq!(
-            super::tex::render(r"\enquote{quoted}", "literal"),
-            "“quoted”"
-        );
-        assert_eq!(super::tex::render(r"\textbf abc", "literal"), "<b>a</b>bc");
-        assert_eq!(super::tex::render(r"\LaTeX", "literal"), "LᴬT<sub>E</sub>X");
-        assert_eq!(super::tex::render(r"a\par~\par b", "richtext"), "a<p>b");
-        assert_eq!(super::tex::render("a\r\nb", "richtext"), "a<p>b");
-        assert_eq!(
-            super::tex::render(r"\url{http://example.org/\textbf{MiX}}", "literal"),
-            r#"<a href="http://example.org/\textbf{MiX}">http://example.org/\textbf{MiX}</a>"#
-        );
-        assert_eq!(
-            super::tex::render(r"dash -- em --- quotes ``quoted''", "literal"),
-            "dash – em — quotes “quoted”"
-        );
-        assert_eq!(
-            super::tex::render(
-                r"\mathrm{Roman}\rlap{over}\textsl{italic}\bar{abc}",
-                "literal"
-            ),
-            "Romanover<i>italic</i>a\u{0305}b\u{0305}c\u{0305}"
-        );
-        assert_eq!(
-            super::tex::render(r"a\hspace{1em}b\hspace{0pt}c", "literal"),
-            "a bc"
-        );
-        assert_eq!(
-            super::tex::render(r"foo\undefined bar", "literal"),
-            "foobar"
-        );
-        assert_eq!(
-            super::tex::render("An {unusual name}", "title"),
-            "An <span class=\"nocase\">unusual name</span>"
-        );
-        assert_eq!(
-            super::tex::render("An $n$", "title"),
-            "An <span class=\"nocase\">n</span>"
-        );
+  #[test]
+  /// Ensures compound initials lowercase while standalone and sentence-initial capitals remain.
+  fn sentence_case_lowercases_capitals_inside_hyphenated_words() {
+    assert_eq!(super::tex::sentence_case_with_options("A K-Cap'01", false, false, true), "A k-cap'01");
+    assert_eq!(super::tex::sentence_case_with_options("A K Barker", false, false, true), "A K barker");
+    assert_eq!(super::tex::sentence_case_with_options("K-Cap Proceedings", false, false, true), "K-cap proceedings");
+  }
+
+  #[test]
+  /// Checks sentence-case delegation while preserving markup and protected text.
+  fn sentence_case_delegates_to_core() {
+    assert_eq!(super::tex::sentence_case_with_options("A TITLE: AN EXPLANATION", false, false, true), "A title: an explanation");
+    assert_eq!(super::tex::sentence_case_with_options("A TITLE: AN EXPLANATION", false, true, true), "A title: An explanation");
+    assert_eq!(super::tex::sentence_case_with_options("An <i>ex</i>ample Title", false, false, false), "An <i>ex</i>ample title");
+    assert_eq!(super::tex::sentence_case_with_options("An Ex<i>ample</i>", false, false, false), "An ex<i>ample</i>");
+    assert_eq!(super::tex::sentence_case_with_options("A İ<i>X</i>", false, false, false), "A i\u{0307}<i>x</i>");
+    assert_eq!(super::tex::sentence_case_with_options("A Study of \"DNA SEQUENCING\" in Cells", false, false, true,), "A study of \"DNA SEQUENCING\" in cells");
+    assert_eq!(super::tex::sentence_case_with_options("A Title <span class=\"nocase\">nASA Name</span> of Cells", false, false, false,), "A title <span class=\"nocase\">nASA Name</span> of cells");
+  }
+
+  #[test]
+  /// Ensures sentence casing changes unprotected text within a token but restores protected text.
+  fn sentence_case_restores_protected_subranges_after_casing() {
+    assert_eq!(super::tex::sentence_case_with_options("A Mm<case-protection>²</case-protection> Size", false, false, false,), "A mm<case-protection>²</case-protection> size");
+    assert_eq!(super::tex::sentence_case_with_options("A MM<case-protection>X</case-protection> SIZE", false, false, false,), "A mm<case-protection>X</case-protection> size");
+  }
+
+  #[test]
+  /// Checks text ligature conversion for the shared bibliography fixture.
+  fn parses_text_ligature_fixture_like_default_case() {
+    let parsed = fixture(include_str!("../../test/better-bibtex/export/Better BibLaTeX.001.biblatex"));
+    assert_eq!(parsed.entries[0].fields["pages"], FieldValue::Text("493–518".into()));
+  }
+
+  #[test]
+  /// Checks style macros consume one unbraced character, a group, or a nested command.
+  fn tex_style_macros_consume_single_unbraced_argument() {
+    for (source, expected) in [
+      (r"Stability analysis and \emph optimization", "Stability analysis and <i>o</i>ptimization"),
+      (r"\emph{optimization}", "<i>optimization</i>"),
+      (r"\emph \textbf{optimization}", "<i><b>optimization</b></i>"),
+      (r"\textbf optimization", "<b>o</b>ptimization"),
+      (r"\mkbibbold optimization", "<b>o</b>ptimization"),
+      (r"\textit optimization", "<i>o</i>ptimization"),
+      (r"\textsl optimization", "<i>o</i>ptimization"),
+      (r"\mkbibemph optimization", "<i>o</i>ptimization"),
+      (r"\textsc optimization", "<span style=\"font-variant:small-caps;\">o</span>ptimization"),
+      (r"\texttt optimization", "<code>o</code>ptimization"),
+      ("\\emph \u{1f600}optimization", "<i>\u{1f600}</i>optimization"),
+    ] {
+      let parsed = parse(&format!("@article{{x,note={{{source}}}}}"), Options::default());
+      assert_eq!(parsed.entries[0].fields["note"], FieldValue::Text(expected.into()), "{source}");
     }
+  }
 
-    #[test]
-    /// Verify adjacent markup collapse is enabled by default and can be explicitly disabled.
-    fn collapse_markup_option_defaults_on_and_can_be_disabled() {
-        let source = r"@book{x,title={\textit{one} \textit{two}}}";
-        let field_mode =
-            std::collections::HashMap::from([("title".to_string(), "literal".to_string())]);
-        let collapsed = parse(
-            source,
-            Options {
-                field_mode: field_mode.clone(),
-                ..Options::default()
-            },
-        );
-        assert_eq!(
-            collapsed.entries[0].fields["title"],
-            FieldValue::Text("<i>one two</i>".into())
-        );
+  #[test]
+  /// Checks rendered output for common text markup macros.
+  fn parses_text_markup_fixture_like_default_case() {
+    let parsed = fixture(include_str!("../../test/better-bibtex/export/Better BibLaTeX.007.biblatex"));
+    let FieldValue::Text(title) = &parsed.entries[0].fields["title"] else {
+      panic!("title should be scalar text");
+    };
+    assert_eq!(
+      title,
+      "Test of markupconversion: Italics, bold, superscript, subscript, and small caps: Mitochondrial DNA₂ sequences suggest unexpected phylogenetic position of Corso-Sardinian grass snakes (<i>Natrix cetti</i>) and <b>do not</b> support their <span style=\"font-variant:small-caps;\">species status</span>, with notes on phylogeography and subspecies delineation of grass snakes."
+    );
+  }
 
-        let separate = parse(
-            source,
-            Options {
-                field_mode,
-                collapse_markup: false,
-                ..Options::default()
-            },
-        );
-        assert_eq!(
-            separate.entries[0].fields["title"],
-            FieldValue::Text("<i>one</i> <i>two</i>".into())
-        );
+  #[test]
+  /// Checks rich-text list and paragraph rendering against an existing fixture snapshot.
+  fn parses_richtext_itemize_fixture_like_default_case() {
+    let parsed = fixture(include_str!("../../test/better-bibtex/export/Unicode ø in author name is exported with trailing space which does not work in bibtex #1538.bibtex"));
+    let FieldValue::Text(note) = &parsed.entries[0].fields["note"] else {
+      panic!("note should be scalar text");
+    };
+    assert!(note.contains("<ul><li>Clean experiment"));
+    assert!(note.contains("<p><li>The amount of work"));
+  }
 
-        let cased = parse(
-            r"@book{x,title={\textit{The} \textit{Title}}}",
-            Options {
-                collapse_markup: false,
-                ..Options::default()
-            },
-        );
-        assert_eq!(
-            cased.entries[0].fields["title"],
-            FieldValue::Text("<i>The</i> <i>Title</i>".into())
-        );
+  #[test]
+  /// Checks unknown macros and environments are retained and reported once by kind.
+  fn tex_visitor_reports_unsupported_constructs() {
+    let parsed = parse(r"@article{k,title={\unknown one \unknown two},note={\begin{custom}\inside body\end{custom}}}", Options::default());
+    assert_eq!(parsed.errors.len(), 2);
+    assert!(parsed.errors.iter().any(|error| { error.error == "unhandled macro \\unknown" && error.input == r"\unknown" }));
+    assert!(
+      parsed
+        .errors
+        .iter()
+        .any(|error| { error.error.starts_with("unhandled environment custom (\\begin{custom}") && error.input.starts_with(r"\begin{custom}") && error.input.ends_with(r"\end{custom}") })
+    );
+    assert!(parsed.errors.iter().all(|error| !error.error.contains("macro \\inside")));
 
-        let marked = "<case-protection><i>The</i></case-protection> <case-protection><i>Title</i></case-protection>";
-        let restored = super::tex::sentence_case_title(
-            marked,
-            false,
-            true,
-            true,
-            super::tex::CaseProtection::Off,
-        );
-        assert_eq!(restored, "<i>The</i> <i>Title</i>");
-        assert_eq!(super::tex::collapse_markup(&restored), "<i>The Title</i>");
+    let ignored = parse(
+      r"@article{k,note={before \unknown after}}",
+      Options {
+        unsupported: Some(crate::UnsupportedHandler::Ignore),
+        ..Options::default()
+      },
+    );
+    assert_eq!(ignored.errors.len(), 1);
+    assert!(matches!(
+        &ignored.entries[0].fields["note"],
+        FieldValue::Text(note) if note == "before after"
+    ));
+
+    let mut name_accent_state = super::tex::LibraryRenderer::default();
+    name_accent_state.unsupported = Some(crate::UnsupportedHandler::Ignore);
+    assert_eq!(name_accent_state.render(r"\'{a b}", super::tex::RenderContext::field(super::tex::RenderMode::Text, false, false,),), "");
+    assert_eq!(name_accent_state.errors.len(), 1);
+    assert_eq!(name_accent_state.errors[0].input, r"\'{a b}");
+
+    let nested_accent = parse(r"@book{x,title={\'{\a}}}", Options { english: Vec::new(), ..Options::default() });
+    assert!(matches!(
+        &nested_accent.entries[0].fields["title"],
+        FieldValue::Text(title) if title == "\u{0301}"
+    ));
+    assert!(nested_accent.errors.is_empty());
+
+    let standalone = parse(r"@book{x,title={\a}}", Options { english: Vec::new(), ..Options::default() });
+    assert_eq!(standalone.entries[0].fields["title"], FieldValue::Text(String::new()));
+    assert!(standalone.errors.is_empty());
+  }
+
+  #[test]
+  /// Checks unbraced fraction arguments and script fallback in an existing math-title fixture.
+  fn parses_fraction_macros_in_math_mode_from_existing_fixture() {
+    let parsed = fixture(include_str!("../../test/better-bibtex/export/Math parts in title #113.biblatex"));
+    assert!(matches!(
+        &parsed.entries[0].fields["title"],
+        FieldValue::Text(title) if title.contains("ⁿ⁄₂") && !title.contains("\\frac")
+    ));
+
+    let unbraced = parse(r"@article{u,title={ $\frac n 2$ }}", Options::default());
+    let braced = parse(r"@article{b,title={ $\frac{n}{2}$ }}", Options::default());
+    let unbraced_title = &unbraced.entries[0].fields["title"];
+    let braced_title = &braced.entries[0].fields["title"];
+    assert_eq!(unbraced_title, braced_title);
+    assert_eq!(unbraced_title, &FieldValue::Text("ⁿ⁄₂".into()));
+    let scripts = parse("@book{x,abstract={$x^2_{e}$}}", Options::default());
+    assert_eq!(scripts.entries[0].fields["abstract"], FieldValue::Text("x²ₑ".into()));
+  }
+
+  #[test]
+  /// Check direct `\a` accent aliases, ignored non-aliases, and spacing for empty accents.
+  fn legacy_a_accent_aliases_require_direct_adjacency() {
+    for (source, expected) in [(r"\a={a}", "a\u{0304}"), (r"\a'{e}", "e\u{0301}"), (r"\a`{e}", "e\u{0300}"), (r"\'{\a}", "\u{0301}"), (r"\^{}", "\u{0302}"), (r"\^", "\u{0302}"), (r"x\^{}y", "x \u{0302}y")] {
+      assert_eq!(super::tex::render(source, "literal"), expected, "{source}");
     }
-
-    #[test]
-    /// Merge formatting exposed by case-protection collapse while preserving casing boundaries.
-    fn collapse_markup_revisits_formatting_after_case_protection() {
-        let parsed = parse(
-            r#"@article{test, title = "A \emph{A} \emph{{A}} {\emph{A}} {\emph{{A}}} {{\emph{A}}}"}"#,
-            Options {
-                case_protection: "strict".to_string(),
-                ..Options::default()
-            },
-        );
-        let expected = "A <span class=\"nocase\"><i>A A</i></span> <i>a a</i> <span class=\"nocase\"><i>A</i></span>";
-        assert_eq!(
-            parsed.entries[0].fields["title"],
-            FieldValue::Text(expected.into())
-        );
-        assert_eq!(super::tex::collapse_markup(expected), expected);
+    for (source, expected) in [(r"\a", ""), (r"\a{x}", "x"), (r"\a {x}", "x"), (r"left\a {x}right", "left xright"), (r"\a+", "+")] {
+      assert_eq!(super::tex::render(source, "literal"), expected, "{source}");
     }
+  }
 
-    #[test]
-    /// Keep mixed wrapper boundaries intact and emit HTML even when collapsing is disabled.
-    fn collapse_markup_distinguishes_nocase_and_smallcaps() {
-        let internal =
-            "<nocase><smallcaps>A</smallcaps></nocase> <smallcaps>B</smallcaps> <nocase>C</nocase>";
-        let expected = "<span class=\"nocase\"><span style=\"font-variant:small-caps;\">A</span></span> <span style=\"font-variant:small-caps;\">B</span> <span class=\"nocase\">C</span>";
-        assert_eq!(super::tex::collapse_markup(internal), internal);
-        assert_eq!(super::tex::finalize_markup(internal, true), expected);
-        assert_eq!(super::tex::finalize_markup(internal, false), expected);
-        assert_eq!(
-            super::tex::collapse_markup(
-                "<nocase><smallcaps>A</smallcaps></nocase> <nocase><smallcaps>B</smallcaps></nocase>"
-            ),
-            "<nocase><smallcaps>A B</smallcaps></nocase>"
-        );
-        assert_eq!(
-            super::tex::sentence_case_with_options(
-                "A <nocase>nASA <smallcaps>NAME</smallcaps> TAIL</nocase> Title",
-                false,
-                false,
-                false,
-            ),
-            "A <nocase>nASA <smallcaps>NAME</smallcaps> TAIL</nocase> title"
-        );
-        assert_eq!(
-            super::tex::sentence_case_with_options(
-                "A <span class=\"nocase\">nASA <span style=\"font-variant:small-caps;\">NAME</span> TAIL</span> Title",
-                false,
-                false,
-                false,
-            ),
-            "A <span class=\"nocase\">nASA <span style=\"font-variant:small-caps;\">NAME</span> TAIL</span> title"
-        );
-        for collapse_markup in [false, true] {
-            let parsed = parse(
-                r"@article{test,title={A {{\textsc{B}}} {\textsc{c}} {D}}}",
-                Options {
-                    case_protection: "strict".to_string(),
-                    collapse_markup,
-                    ..Options::default()
-                },
-            );
-            assert_eq!(
-                parsed.entries[0].fields["title"],
-                FieldValue::Text("A <span class=\"nocase\"><span style=\"font-variant:small-caps;\">B</span></span> <span style=\"font-variant:small-caps;\">c</span> <span class=\"nocase\">D</span>".into())
-            );
-        }
-    }
+  #[test]
+  /// Verifies callers can use the raw parser without reparsing its fields.
+  fn verbatim_parser_is_callable_without_reparsing() {
+    let source = include_str!("../../test/better-bibtex/import/Better BibTeX.014.bib");
+    let raw = super::parse_verbatim(source, Options::default());
+    assert_eq!(raw.entries[0].fields["title"], r"\textbackslash\textbackslash\{\}: \\{}");
+    let parsed = parse(source, Options::default());
+    assert!(matches!(&parsed.entries[0].fields["title"], super::FieldValue::Text(_)));
+  }
 
-    #[test]
-    /// Checks title rendering for `off`, `as-needed`, and `strict` case protection.
-    fn tex_visitor_honors_case_protection_modes() {
-        let mut diagnostics = super::tex::LibraryRenderer::default();
-        assert_eq!(
-            diagnostics.render_with_case_protection(
-                "An {unusual name}",
-                "title",
-                super::tex::CaseProtection::Off,
-            ),
-            "An unusual name"
-        );
-        assert_eq!(
-            diagnostics.render_with_case_protection(
-                "An {unusual name}",
-                "title",
-                super::tex::CaseProtection::AsNeeded,
-            ),
-            "An <nocase>unusual name</nocase>"
-        );
-        assert_eq!(
-            diagnostics.render_with_case_protection(
-                "An {unusual name}",
-                "title",
-                super::tex::CaseProtection::Strict,
-            ),
-            "An <nocase>unusual name</nocase>"
-        );
-        let mut strict_renderer =
-            super::tex::LibraryRenderer::new(None, false, super::tex::CaseProtection::Strict);
-        assert_eq!(
-            strict_renderer.render(
-                "An $n$",
-                super::tex::RenderContext::field(super::tex::RenderMode::Text, true, true,),
-            ),
-            "An <case-protection>n</case-protection>"
-        );
-        assert_eq!(
-            strict_renderer.render(
-                "{Astrophysical} {$\\rightarrow$} {Reactions}",
-                super::tex::RenderContext::field(super::tex::RenderMode::Text, true, true,),
-            ),
-            "<case-protection>Astrophysical</case-protection> <case-protection>→</case-protection> <case-protection>Reactions</case-protection>"
-        );
-        assert_eq!(
-            super::tex::sentence_case_title(
-                "<case-protection>Astrophysical</case-protection> <case-protection>→</case-protection> <case-protection>Reactions</case-protection>",
-                false,
-                true,
-                true,
-                super::tex::CaseProtection::Strict,
-            ),
-            "<nocase>Astrophysical</nocase> <nocase>→</nocase> <nocase>Reactions</nocase>"
-        );
-        assert_eq!(
-            strict_renderer.render(
-                r"{\mbox{$\mu$}} {J}",
-                super::tex::RenderContext::field(super::tex::RenderMode::Text, true, true,),
-            ),
-            "<case-protection>𝜇</case-protection> <case-protection>J</case-protection>"
-        );
-        assert_eq!(
-            super::tex::sentence_case_title(
-                "<case-protection>𝜇</case-protection> <case-protection>J</case-protection>",
-                false,
-                true,
-                true,
-                super::tex::CaseProtection::Strict,
-            ),
-            "<nocase>𝜇</nocase> <nocase>J</nocase>"
-        );
-        assert_eq!(
-            diagnostics.render_with_case_protection(
-                r"A\hspace{1em}B",
-                "title",
-                super::tex::CaseProtection::Strict,
-            ),
-            "A B"
-        );
-        assert_eq!(
-            super::tex::sentence_case_title(
-                "<case-protection>Generating Bayesian</case-protection> networks",
-                false,
-                true,
-                true,
-                super::tex::CaseProtection::Off,
-            ),
-            "Generating Bayesian networks"
-        );
-        let href = parse(
-            r"@article{x,title={\href{https://example.test}{Home}}}",
-            Options {
-                case_protection: "strict".to_string(),
-                ..Options::default()
-            },
-        );
-        assert_eq!(
-            href.entries[0].fields["title"],
-            FieldValue::Text("<a href=\"https://example.test\">Home</a>".to_string())
-        );
-        for (title, expected) in [
-            (
-                r"Stability {Analysis} and {\emph{Optimization}}",
-                "Stability Analysis and <i>optimization</i>",
-            ),
-            (
-                "{NASA} and {the} study",
-                "NASA and <span class=\"nocase\">the</span> study",
-            ),
-            (
-                "{van der Waals} interactions",
-                "<span class=\"nocase\">van der Waals</span> interactions",
-            ),
-            (
-                "{TitleCase} {alllower}",
-                "TitleCase <span class=\"nocase\">alllower</span>",
-            ),
-        ] {
-            let parsed = parse(
-                &format!("@book{{case,title={{{title}}}}}"),
-                Options::default(),
-            );
-            assert_eq!(
-                parsed.entries[0].fields["title"],
-                FieldValue::Text(expected.into())
-            );
-        }
-        let markup_title = parse(
-            r"@article{x,title={A {\em A} \begin{em}A\end{em} \begin{em}{A}\end{em} {A \em A}}}",
-            Options::default(),
-        );
-        assert_eq!(
-            markup_title.entries[0].fields["title"],
-            FieldValue::Text("A <i>a a A</i> A <i>A</i>".into())
-        );
-        let quoted = parse(
-            r"@article{x,langid={en},title={Blah and \enquote{enquote}.}}",
-            Options::default(),
-        );
-        assert_eq!(
-            quoted.entries[0].fields["title"],
-            FieldValue::Text("Blah and “<span class=\"nocase\">enquote</span>”.".into())
-        );
-        let options = Options {
-            english: vec!["en".into()],
-            ..Options::default()
-        };
-        let grouped_markup = parse(
-            r"@book{x,langid={en},title={Reading {{HLA Hart}}'s: {{{\emph{The Concept}}}}{\emph{ of }}{{{\emph{Law}}}}}}",
-            options,
-        );
-        assert_eq!(
-            grouped_markup.entries[0].fields["title"],
-            FieldValue::Text("Reading HLA Hart's: <i>The Concept of Law</i>".into())
-        );
-        let hyphenated = parse(
-            "@book{x,title={Symphony {No.}~3 in {E-flat} major}}",
-            Options::default(),
-        );
-        assert_eq!(
-            hyphenated.entries[0].fields["title"],
-            FieldValue::Text("Symphony No.\u{00a0}3 in E-flat major".into())
-        );
-    }
+  #[test]
+  /// Matches the existing default snapshot for text macros and escaped braces.
+  fn parses_bibtex_escape_fixture_like_default_case() {
+    let parsed = fixture(include_str!("../../test/better-bibtex/import/Better BibTeX.014.bib"));
+    let entry = &parsed.entries[0];
+    assert_eq!(entry.key, "BibTeXEscapeTest1");
+    assert_eq!(entry.mode["title"], "title");
+    assert_eq!(entry.fields["title"], FieldValue::Text(r"\\{}:".into()));
+  }
 
-    #[test]
-    /// Ensures compound initials lowercase while standalone and sentence-initial capitals remain.
-    fn sentence_case_lowercases_capitals_inside_hyphenated_words() {
-        assert_eq!(
-            super::tex::sentence_case_with_options("A K-Cap'01", false, false, true),
-            "A k-cap'01"
-        );
-        assert_eq!(
-            super::tex::sentence_case_with_options("A K Barker", false, false, true),
-            "A K barker"
-        );
-        assert_eq!(
-            super::tex::sentence_case_with_options("K-Cap Proceedings", false, false, true),
-            "K-cap proceedings"
-        );
-    }
+  #[test]
+  /// Checks field modes and preserves raw annotation source beside typed clauses.
+  fn parses_plus_field_fixture_like_default_case() {
+    let parsed = fixture(include_str!("../../test/other/plus-field.bib"));
+    let entry = &parsed.entries[0];
+    assert_eq!(entry.key, "9.8:11");
+    assert_eq!(entry.mode["author"], "namelist");
+    assert_eq!(entry.mode["author+an:username"], "annotations");
+    assert_eq!(
+      entry.fields["author+an:username"],
+      FieldValue::Annotation(vec![super::Annotation::Item {
+        index: std::num::NonZeroUsize::new(1).unwrap(),
+        value: super::AnnotationContent::Text("@ausername".into()),
+      }])
+    );
+    assert_eq!(entry.verbatim["author+an:username"], "1=\"@ausername\"");
+    assert_eq!(entry.fields["date"], FieldValue::Text("2014".into()));
+  }
 
-    #[test]
-    /// Checks sentence-case delegation while preserving markup and protected text.
-    fn sentence_case_delegates_to_core() {
-        assert_eq!(
-            super::tex::sentence_case_with_options("A TITLE: AN EXPLANATION", false, false, true),
-            "A title: an explanation"
-        );
-        assert_eq!(
-            super::tex::sentence_case_with_options("A TITLE: AN EXPLANATION", false, true, true),
-            "A title: An explanation"
-        );
-        assert_eq!(
-            super::tex::sentence_case_with_options("An <i>ex</i>ample Title", false, false, false),
-            "An <i>ex</i>ample title"
-        );
-        assert_eq!(
-            super::tex::sentence_case_with_options("An Ex<i>ample</i>", false, false, false),
-            "An ex<i>ample</i>"
-        );
-        assert_eq!(
-            super::tex::sentence_case_with_options("A İ<i>X</i>", false, false, false),
-            "A i\u{0307}<i>x</i>"
-        );
-        assert_eq!(
-            super::tex::sentence_case_with_options(
-                "A Study of \"DNA SEQUENCING\" in Cells",
-                false,
-                false,
-                true,
-            ),
-            "A study of \"DNA SEQUENCING\" in cells"
-        );
-        assert_eq!(
-            super::tex::sentence_case_with_options(
-                "A Title <span class=\"nocase\">nASA Name</span> of Cells",
-                false,
-                false,
-                false,
-            ),
-            "A title <span class=\"nocase\">nASA Name</span> of cells"
-        );
-    }
+  #[test]
+  /// Checks field-, item-, and part-scoped annotations retain typed scopes and one-based indexes.
+  fn parses_all_annotation_scopes() {
+    let annotations = super::parse_annotation("field=whole;1=first;2=second,extra;3:given=Given;3:family=Family;4=last");
+    assert_eq!(
+      annotations,
+      vec![
+        super::Annotation::Field {
+          value: super::AnnotationContent::List(vec!["whole".into()]),
+        },
+        super::Annotation::Item {
+          index: std::num::NonZeroUsize::new(1).unwrap(),
+          value: super::AnnotationContent::List(vec!["first".into()]),
+        },
+        super::Annotation::Item {
+          index: std::num::NonZeroUsize::new(2).unwrap(),
+          value: super::AnnotationContent::List(vec!["second".into(), "extra".into()]),
+        },
+        super::Annotation::Part {
+          index: std::num::NonZeroUsize::new(3).unwrap(),
+          name: "given".into(),
+          value: super::AnnotationContent::List(vec!["Given".into()]),
+        },
+        super::Annotation::Part {
+          index: std::num::NonZeroUsize::new(3).unwrap(),
+          name: "family".into(),
+          value: super::AnnotationContent::List(vec!["Family".into()]),
+        },
+        super::Annotation::Item {
+          index: std::num::NonZeroUsize::new(4).unwrap(),
+          value: super::AnnotationContent::List(vec!["last".into()]),
+        },
+      ]
+    );
+  }
 
-    #[test]
-    /// Ensures sentence casing changes unprotected text within a token but restores protected text.
-    fn sentence_case_restores_protected_subranges_after_casing() {
-        assert_eq!(
-            super::tex::sentence_case_with_options(
-                "A Mm<case-protection>²</case-protection> Size",
-                false,
-                false,
-                false,
-            ),
-            "A mm<case-protection>²</case-protection> size"
-        );
-        assert_eq!(
-            super::tex::sentence_case_with_options(
-                "A MM<case-protection>X</case-protection> SIZE",
-                false,
-                false,
-                false,
-            ),
-            "A mm<case-protection>X</case-protection> size"
-        );
-    }
+  #[test]
+  /// Decodes JSON annotation strings before splitting list and clause separators.
+  fn parses_annotation_json_strings_as_literals() {
+    let annotations = super::parse_annotation(r##"field="say, \"hi\"; \\textit";1=bare,"two, values""##);
+    assert_eq!(
+      annotations,
+      vec![
+        super::Annotation::Field {
+          value: super::AnnotationContent::Text("say, \"hi\"; \\\\textit".into(),),
+        },
+        super::Annotation::Item {
+          index: std::num::NonZeroUsize::new(1).unwrap(),
+          value: super::AnnotationContent::List(vec!["bare".into(), "two, values".into(),]),
+        },
+      ]
+    );
+  }
 
-    #[test]
-    /// Checks text ligature conversion for the shared bibliography fixture.
-    fn parses_text_ligature_fixture_like_default_case() {
-        let parsed = fixture(include_str!(
-            "../../test/better-bibtex/export/Better BibLaTeX.001.biblatex"
-        ));
-        assert_eq!(
-            parsed.entries[0].fields["pages"],
-            FieldValue::Text("493–518".into())
-        );
-    }
-
-    #[test]
-    /// Checks style macros consume one unbraced character, a group, or a nested command.
-    fn tex_style_macros_consume_single_unbraced_argument() {
-        for (source, expected) in [
-            (
-                r"Stability analysis and \emph optimization",
-                "Stability analysis and <i>o</i>ptimization",
-            ),
-            (r"\emph{optimization}", "<i>optimization</i>"),
-            (r"\emph \textbf{optimization}", "<i><b>optimization</b></i>"),
-            (r"\textbf optimization", "<b>o</b>ptimization"),
-            (r"\mkbibbold optimization", "<b>o</b>ptimization"),
-            (r"\textit optimization", "<i>o</i>ptimization"),
-            (r"\textsl optimization", "<i>o</i>ptimization"),
-            (r"\mkbibemph optimization", "<i>o</i>ptimization"),
-            (
-                r"\textsc optimization",
-                "<span style=\"font-variant:small-caps;\">o</span>ptimization",
-            ),
-            (r"\texttt optimization", "<code>o</code>ptimization"),
-            (
-                "\\emph \u{1f600}optimization",
-                "<i>\u{1f600}</i>optimization",
-            ),
-        ] {
-            let parsed = parse(
-                &format!("@article{{x,note={{{source}}}}}"),
-                Options::default(),
-            );
-            assert_eq!(
-                parsed.entries[0].fields["note"],
-                FieldValue::Text(expected.into()),
-                "{source}"
-            );
-        }
-    }
-
-    #[test]
-    /// Checks rendered output for common text markup macros.
-    fn parses_text_markup_fixture_like_default_case() {
-        let parsed = fixture(include_str!(
-            "../../test/better-bibtex/export/Better BibLaTeX.007.biblatex"
-        ));
-        let FieldValue::Text(title) = &parsed.entries[0].fields["title"] else {
-            panic!("title should be scalar text");
-        };
-        assert_eq!(
-            title,
-            "Test of markupconversion: Italics, bold, superscript, subscript, and small caps: Mitochondrial DNA₂ sequences suggest unexpected phylogenetic position of Corso-Sardinian grass snakes (<i>Natrix cetti</i>) and <b>do not</b> support their <span style=\"font-variant:small-caps;\">species status</span>, with notes on phylogeography and subspecies delineation of grass snakes."
-        );
-    }
-
-    #[test]
-    /// Checks rich-text list and paragraph rendering against an existing fixture snapshot.
-    fn parses_richtext_itemize_fixture_like_default_case() {
-        let parsed = fixture(include_str!(
-            "../../test/better-bibtex/export/Unicode ø in author name is exported with trailing space which does not work in bibtex #1538.bibtex"
-        ));
-        let FieldValue::Text(note) = &parsed.entries[0].fields["note"] else {
-            panic!("note should be scalar text");
-        };
-        assert!(note.contains("<ul><li>Clean experiment"));
-        assert!(note.contains("<p><li>The amount of work"));
-    }
-
-    #[test]
-    /// Checks unknown macros and environments are retained and reported once by kind.
-    fn tex_visitor_reports_unsupported_constructs() {
-        let parsed = parse(
-            r"@article{k,title={\unknown one \unknown two},note={\begin{custom}\inside body\end{custom}}}",
-            Options::default(),
-        );
-        assert_eq!(parsed.errors.len(), 2);
-        assert!(parsed.errors.iter().any(|error| {
-            error.error == "unhandled macro \\unknown" && error.input == r"\unknown"
-        }));
-        assert!(parsed.errors.iter().any(|error| {
-            error
-                .error
-                .starts_with("unhandled environment custom (\\begin{custom}")
-                && error.input.starts_with(r"\begin{custom}")
-                && error.input.ends_with(r"\end{custom}")
-        }));
-        assert!(
-            parsed
-                .errors
-                .iter()
-                .all(|error| !error.error.contains("macro \\inside"))
-        );
-
-        let ignored = parse(
-            r"@article{k,note={before \unknown after}}",
-            Options {
-                unsupported: Some(crate::UnsupportedHandler::Ignore),
-                ..Options::default()
-            },
-        );
-        assert_eq!(ignored.errors.len(), 1);
-        assert!(matches!(
-            &ignored.entries[0].fields["note"],
-            FieldValue::Text(note) if note == "before after"
-        ));
-
-        let mut name_accent_state = super::tex::LibraryRenderer::default();
-        name_accent_state.unsupported = Some(crate::UnsupportedHandler::Ignore);
-        assert_eq!(
-            name_accent_state.render(
-                r"\'{a b}",
-                super::tex::RenderContext::field(super::tex::RenderMode::Text, false, false,),
-            ),
-            ""
-        );
-        assert_eq!(name_accent_state.errors.len(), 1);
-        assert_eq!(name_accent_state.errors[0].input, r"\'{a b}");
-
-        let nested_accent = parse(
-            r"@book{x,title={\'{\a}}}",
-            Options {
-                english: Vec::new(),
-                ..Options::default()
-            },
-        );
-        assert!(matches!(
-            &nested_accent.entries[0].fields["title"],
-            FieldValue::Text(title) if title == "\u{0301}"
-        ));
-        assert!(nested_accent.errors.is_empty());
-
-        let standalone = parse(
-            r"@book{x,title={\a}}",
-            Options {
-                english: Vec::new(),
-                ..Options::default()
-            },
-        );
-        assert_eq!(
-            standalone.entries[0].fields["title"],
-            FieldValue::Text(String::new())
-        );
-        assert!(standalone.errors.is_empty());
-    }
-
-    #[test]
-    /// Checks unbraced fraction arguments and script fallback in an existing math-title fixture.
-    fn parses_fraction_macros_in_math_mode_from_existing_fixture() {
-        let parsed = fixture(include_str!(
-            "../../test/better-bibtex/export/Math parts in title #113.biblatex"
-        ));
-        assert!(matches!(
-            &parsed.entries[0].fields["title"],
-            FieldValue::Text(title) if title.contains("ⁿ⁄₂") && !title.contains("\\frac")
-        ));
-
-        let unbraced = parse(r"@article{u,title={ $\frac n 2$ }}", Options::default());
-        let braced = parse(r"@article{b,title={ $\frac{n}{2}$ }}", Options::default());
-        let unbraced_title = &unbraced.entries[0].fields["title"];
-        let braced_title = &braced.entries[0].fields["title"];
-        assert_eq!(unbraced_title, braced_title);
-        assert_eq!(unbraced_title, &FieldValue::Text("ⁿ⁄₂".into()));
-        let scripts = parse("@book{x,abstract={$x^2_{e}$}}", Options::default());
-        assert_eq!(
-            scripts.entries[0].fields["abstract"],
-            FieldValue::Text("x²ₑ".into())
-        );
-    }
-
-    #[test]
-    /// Check direct `\a` accent aliases, ignored non-aliases, and spacing for empty accents.
-    fn legacy_a_accent_aliases_require_direct_adjacency() {
-        for (source, expected) in [
-            (r"\a={a}", "a\u{0304}"),
-            (r"\a'{e}", "e\u{0301}"),
-            (r"\a`{e}", "e\u{0300}"),
-            (r"\'{\a}", "\u{0301}"),
-            (r"\^{}", "\u{0302}"),
-            (r"\^", "\u{0302}"),
-            (r"x\^{}y", "x \u{0302}y"),
-        ] {
-            assert_eq!(super::tex::render(source, "literal"), expected, "{source}");
-        }
-        for (source, expected) in [
-            (r"\a", ""),
-            (r"\a{x}", "x"),
-            (r"\a {x}", "x"),
-            (r"left\a {x}right", "left xright"),
-            (r"\a+", "+"),
-        ] {
-            assert_eq!(super::tex::render(source, "literal"), expected, "{source}");
-        }
-    }
-
-    #[test]
-    /// Verifies callers can use the raw parser without reparsing its fields.
-    fn verbatim_parser_is_callable_without_reparsing() {
-        let source = include_str!("../../test/better-bibtex/import/Better BibTeX.014.bib");
-        let raw = super::parse_verbatim(source, Options::default());
-        assert_eq!(
-            raw.entries[0].fields["title"],
-            r"\textbackslash\textbackslash\{\}: \\{}"
-        );
-        let parsed = parse(source, Options::default());
-        assert!(matches!(
-            &parsed.entries[0].fields["title"],
-            super::FieldValue::Text(_)
-        ));
-    }
-
-    #[test]
-    /// Matches the existing default snapshot for text macros and escaped braces.
-    fn parses_bibtex_escape_fixture_like_default_case() {
-        let parsed = fixture(include_str!(
-            "../../test/better-bibtex/import/Better BibTeX.014.bib"
-        ));
-        let entry = &parsed.entries[0];
-        assert_eq!(entry.key, "BibTeXEscapeTest1");
-        assert_eq!(entry.mode["title"], "title");
-        assert_eq!(entry.fields["title"], FieldValue::Text(r"\\{}:".into()));
-    }
-
-    #[test]
-    /// Checks field modes and preserves raw annotation source beside parsed clauses.
-    fn parses_plus_field_fixture_like_default_case() {
-        let parsed = fixture(include_str!("../../test/other/plus-field.bib"));
-        let entry = &parsed.entries[0];
-        assert_eq!(entry.key, "9.8:11");
-        assert_eq!(entry.mode["author"], "namelist");
-        assert_eq!(entry.mode["author+an:username"], "verbatim");
-        assert_eq!(
-            entry.fields["author+an:username"],
-            FieldValue::Text("1=\"@ausername\"".into())
-        );
-        assert_eq!(
-            entry.annotations["author+an:username"],
-            vec![super::Annotation::Item {
-                index: std::num::NonZeroUsize::new(1).unwrap(),
-                value: super::AnnotationContent::Text("@ausername".into()),
-            }]
-        );
-        assert_eq!(entry.fields["date"], FieldValue::Text("2014".into()));
-    }
-
-    #[test]
-    /// Checks field-, item-, and part-scoped annotations retain typed scopes and one-based indexes.
-    fn parses_all_annotation_scopes() {
-        let annotations = super::parse_annotation(
-            "field=whole;1=first;2=second,extra;3:given=Given;3:family=Family;4=last",
-        );
-        assert_eq!(
-            annotations,
-            vec![
-                super::Annotation::Field {
-                    value: super::AnnotationContent::List(vec!["whole".into()]),
-                },
-                super::Annotation::Item {
-                    index: std::num::NonZeroUsize::new(1).unwrap(),
-                    value: super::AnnotationContent::List(vec!["first".into()]),
-                },
-                super::Annotation::Item {
-                    index: std::num::NonZeroUsize::new(2).unwrap(),
-                    value: super::AnnotationContent::List(vec!["second".into(), "extra".into()]),
-                },
-                super::Annotation::Part {
-                    index: std::num::NonZeroUsize::new(3).unwrap(),
-                    name: "given".into(),
-                    value: super::AnnotationContent::List(vec!["Given".into()]),
-                },
-                super::Annotation::Part {
-                    index: std::num::NonZeroUsize::new(3).unwrap(),
-                    name: "family".into(),
-                    value: super::AnnotationContent::List(vec!["Family".into()]),
-                },
-                super::Annotation::Item {
-                    index: std::num::NonZeroUsize::new(4).unwrap(),
-                    value: super::AnnotationContent::List(vec!["last".into()]),
-                },
-            ]
-        );
-    }
-
-    #[test]
-    /// Decodes JSON annotation strings before splitting list and clause separators.
-    fn parses_annotation_json_strings_as_literals() {
-        let annotations =
-            super::parse_annotation(r##"field="say, \"hi\"; \\textit";1=bare,"two, values""##);
-        assert_eq!(
-            annotations,
-            vec![
-                super::Annotation::Field {
-                    value: super::AnnotationContent::Text("say, \"hi\"; \\\\textit".into(),),
-                },
-                super::Annotation::Item {
-                    index: std::num::NonZeroUsize::new(1).unwrap(),
-                    value: super::AnnotationContent::List(vec![
-                        "bare".into(),
-                        "two, values".into(),
-                    ]),
-                },
-            ]
-        );
-    }
-
-    #[test]
-    /// Parses the supplied BibLaTeX annotation directly from its raw field text.
-    fn parses_annotation_from_raw_source() {
-        let parsed = super::parse(
-            r#"@ONLINE{10.15:104,
+  #[test]
+  /// Parses the supplied BibLaTeX annotation directly from its raw field text.
+  fn parses_annotation_from_raw_source() {
+    let parsed = super::parse(
+      r#"@ONLINE{10.15:104,
   ENTRYSUBTYPE       = {Twitter profile},
   AUTHOR             = {{APA Style}},
   AUTHOR+an:username = {1="@APA\_Style"},
@@ -3724,434 +2800,310 @@ mod tests {
   URL                = {https://twitter.com/APA_Style},
   URLDATE            = {2019-11-01}
 }"#,
-            super::Options::default(),
-        );
-        assert_eq!(
-            parsed.entries[0].annotations["author+an:username"],
-            vec![super::Annotation::Item {
-                index: std::num::NonZeroUsize::new(1).unwrap(),
-                value: super::AnnotationContent::Text("@APA\\_Style".into()),
-            }]
-        );
-        assert_eq!(
-            parsed.entries[0].fields["author+an:username"],
-            super::FieldValue::Text("1=\"@APA\\_Style\"".into())
-        );
-    }
+      super::Options::default(),
+    );
+    assert_eq!(
+      parsed.entries[0].fields["author+an:username"],
+      super::FieldValue::Annotation(vec![super::Annotation::Item {
+        index: std::num::NonZeroUsize::new(1).unwrap(),
+        value: super::AnnotationContent::Text("@APA\\_Style".into()),
+      }])
+    );
+    assert_eq!(parsed.entries[0].verbatim["author+an:username"], "1=\"@APA\\_Style\"");
+  }
 
-    #[test]
-    /// Exercise TeX rendering and literal-name handling in parsed name components.
-    fn name_names_render_tex_sequences() {
-        let parsed = parse(
-            "@article{foo, author={H\\\"{a}gg, Nils and Nonnenmacher, St{\\'e}phane and Lecomte, J\\'{e}r\\^{o}me and Nested, J\\'{e}r\\^{\\a}me and D\\'{\\i}az, Carlos}}",
-            Options::default(),
-        );
-        let authors = match &parsed.entries[0].fields["author"] {
-            FieldValue::Names(authors) => authors,
-            other => panic!("expected names, got {other:?}"),
-        };
-        assert_eq!(authors[0].last_name.as_deref(), Some("Hägg"));
-        assert_eq!(authors[1].last_name.as_deref(), Some("Nonnenmacher"));
-        assert_eq!(authors[1].first_name.as_deref(), Some("Stéphane"));
-        assert_eq!(authors[2].first_name.as_deref(), Some("Jérôme"));
-        assert_eq!(authors[3].first_name.as_deref(), Some("Jér \u{0302}me"));
-        assert_eq!(authors[4].last_name.as_deref(), Some("Dı́az"));
+  #[test]
+  /// Exercise TeX rendering and literal-name handling in parsed name components.
+  fn name_names_render_tex_sequences() {
+    let parsed = parse("@article{foo, author={H\\\"{a}gg, Nils and Nonnenmacher, St{\\'e}phane and Lecomte, J\\'{e}r\\^{o}me and Nested, J\\'{e}r\\^{\\a}me and D\\'{\\i}az, Carlos}}", Options::default());
+    let authors = match &parsed.entries[0].fields["author"] {
+      FieldValue::Names(authors) => authors,
+      other => panic!("expected names, got {other:?}"),
+    };
+    assert_eq!(authors[0].last_name.as_deref(), Some("Hägg"));
+    assert_eq!(authors[1].last_name.as_deref(), Some("Nonnenmacher"));
+    assert_eq!(authors[1].first_name.as_deref(), Some("Stéphane"));
+    assert_eq!(authors[2].first_name.as_deref(), Some("Jérôme"));
+    assert_eq!(authors[3].first_name.as_deref(), Some("Jér \u{0302}me"));
+    assert_eq!(authors[4].last_name.as_deref(), Some("Dı́az"));
 
-        let empty_macro_argument = parse(
-            r"@book{x,author={de'{\mbox} Medici, Lorenzo}}",
-            Options::default(),
-        );
-        let FieldValue::Names(names) = &empty_macro_argument.entries[0].fields["author"]
-        else {
-            panic!("expected names");
-        };
-        assert_eq!(names[0].prefix.as_deref(), Some("de'"));
-        assert_eq!(names[0].last_name.as_deref(), Some("Medici"));
+    let empty_macro_argument = parse(r"@book{x,author={de'{\mbox} Medici, Lorenzo}}", Options::default());
+    let FieldValue::Names(names) = &empty_macro_argument.entries[0].fields["author"] else {
+      panic!("expected names");
+    };
+    assert_eq!(names[0].prefix.as_deref(), Some("de'"));
+    assert_eq!(names[0].last_name.as_deref(), Some("Medici"));
 
-        let grouped_family = parse(
-            r"@book{x,author={Giuseppe {De Giacomo} and Riccardo {De Masellis}}}",
-            Options::default(),
-        );
-        let FieldValue::Names(names) = &grouped_family.entries[0].fields["author"] else {
-            panic!("expected names");
-        };
-        assert_eq!(names[0].first_name.as_deref(), Some("Giuseppe"));
-        assert_eq!(names[0].last_name.as_deref(), Some("De Giacomo"));
-        assert_eq!(names[1].first_name.as_deref(), Some("Riccardo"));
-        assert_eq!(names[1].last_name.as_deref(), Some("De Masellis"));
+    let grouped_family = parse(r"@book{x,author={Giuseppe {De Giacomo} and Riccardo {De Masellis}}}", Options::default());
+    let FieldValue::Names(names) = &grouped_family.entries[0].fields["author"] else {
+      panic!("expected names");
+    };
+    assert_eq!(names[0].first_name.as_deref(), Some("Giuseppe"));
+    assert_eq!(names[0].last_name.as_deref(), Some("De Giacomo"));
+    assert_eq!(names[1].first_name.as_deref(), Some("Riccardo"));
+    assert_eq!(names[1].last_name.as_deref(), Some("De Masellis"));
 
-        let nbsp_separator = parse(
-            "@book{x,author={A\u{00a0}and\u{00a0}B}}",
-            Options::default(),
-        );
-        assert!(matches!(
-            nbsp_separator.entries[0].fields.get("author"),
-            Some(FieldValue::Names(names)) if names.len() == 1 && names[0].last_name.as_deref() == Some("A\u{00a0}and\u{00a0}B")
-        ));
+    let nbsp_separator = parse("@book{x,author={A\u{00a0}and\u{00a0}B}}", Options::default());
+    assert!(matches!(
+        nbsp_separator.entries[0].fields.get("author"),
+        Some(FieldValue::Names(names)) if names.len() == 1 && names[0].last_name.as_deref() == Some("A\u{00a0}and\u{00a0}B")
+    ));
 
-        let mut session = super::tex::LibraryRenderer::default();
-        let narrow_space = super::parse_name("van\u{2005}Loon, John", "", &mut session);
-        assert_eq!(narrow_space.last_name.as_deref(), Some("van\u{2005}Loon"));
-        assert_eq!(narrow_space.prefix, None);
-    }
+    let mut session = super::tex::LibraryRenderer::default();
+    let narrow_space = super::parse_name("van\u{2005}Loon, John", "", &mut session);
+    assert_eq!(narrow_space.last_name.as_deref(), Some("van\u{2005}Loon"));
+    assert_eq!(narrow_space.prefix, None);
+  }
 
-    #[test]
-    /// Verify multiline string declarations use the same layout normalization as rendered fields.
-    fn string_values_collapse_multiline_whitespace() {
-        let parsed = parse(
-            "@STRING{PHILTR-B = \"Philosophical Transactions of the Royal Society of London.\n                      Series B.  Biological Sciences\"}\n@STRING{BOUNDARY = {  alpha\n  beta  }}",
-            Options::default(),
-        );
-        assert_eq!(
-            parsed.strings.get("PHILTR-B"),
-            Some(&"Philosophical Transactions of the Royal Society of London. Series B. Biological Sciences".to_string())
-        );
-        assert_eq!(
-            parsed.strings.get("BOUNDARY").map(String::as_str),
-            Some(" alpha beta ")
-        );
-    }
+  #[test]
+  /// Verify multiline string declarations use the same layout normalization as rendered fields.
+  fn string_values_collapse_multiline_whitespace() {
+    let parsed = parse(
+      "@STRING{PHILTR-B = \"Philosophical Transactions of the Royal Society of London.\n                      Series B.  Biological Sciences\"}\n@STRING{BOUNDARY = {  alpha\n  beta  }}",
+      Options::default(),
+    );
+    assert_eq!(parsed.strings.get("PHILTR-B"), Some(&"Philosophical Transactions of the Royal Society of London. Series B. Biological Sciences".to_string()));
+    assert_eq!(parsed.strings.get("BOUNDARY").map(String::as_str), Some(" alpha beta "));
+  }
 
-    #[test]
-    /// Checks conversion of Better BibTeX's extended name-property syntax.
-    fn parses_extended_name_fixture_like_default_case() {
-        let parsed = fixture(include_str!("../../test/other/stray-marker.bib"));
-        let super::FieldValue::Names(author) = &parsed.entries[0].fields["author"] else {
-            panic!("author should be parsed as a name list");
-        };
-        assert_eq!(author.len(), 1);
-        assert_eq!(author[0].first_name.as_deref(), Some("Philippe"));
-        assert_eq!(author[0].last_name.as_deref(), Some("Duchamp"));
-        assert_eq!(author[0].initial.as_deref(), Some("Ph"));
-        assert_eq!(parsed.entries[0].mode["author"], "namelist");
+  #[test]
+  /// Checks conversion of Better BibTeX's extended name-property syntax.
+  fn parses_extended_name_fixture_like_default_case() {
+    let parsed = fixture(include_str!("../../test/other/stray-marker.bib"));
+    let super::FieldValue::Names(author) = &parsed.entries[0].fields["author"] else {
+      panic!("author should be parsed as a name list");
+    };
+    assert_eq!(author.len(), 1);
+    assert_eq!(author[0].first_name.as_deref(), Some("Philippe"));
+    assert_eq!(author[0].last_name.as_deref(), Some("Duchamp"));
+    assert_eq!(author[0].initial.as_deref(), Some("Ph"));
+    assert_eq!(parsed.entries[0].mode["author"], "namelist");
 
-        let ordinary = parse("@book{x,author={A=B, John}}", Options::default());
-        assert!(matches!(
-            ordinary.entries[0].fields.get("author"),
-            Some(FieldValue::Names(names)) if names[0].last_name.as_deref() == Some("A=B") && names[0].first_name.as_deref() == Some("John")
-        ));
+    let ordinary = parse("@book{x,author={A=B, John}}", Options::default());
+    assert!(matches!(
+        ordinary.entries[0].fields.get("author"),
+        Some(FieldValue::Names(names)) if names[0].last_name.as_deref() == Some("A=B") && names[0].first_name.as_deref() == Some("John")
+    ));
 
-        let custom = parse("@book{x,author={foo=bar, given=Jane}}", Options::default());
-        assert!(matches!(
-            custom.entries[0].fields.get("author"),
-            Some(FieldValue::Names(names)) if names[0].extra.get("foo") == Some(&serde_json::Value::String("bar".into()))
-        ));
-    }
+    let custom = parse("@book{x,author={foo=bar, given=Jane}}", Options::default());
+    assert!(matches!(
+        custom.entries[0].fields.get("author"),
+        Some(FieldValue::Names(names)) if names[0].extra.get("foo") == Some(&serde_json::Value::String("bar".into()))
+    ));
+  }
 
-    #[test]
-    /// Checks both existing URL and href title cases are assigned title mode.
-    fn parses_two_latex_tilde_entries_like_default_case() {
-        let parsed = fixture(include_str!(
-            "../../test/better-bibtex/import/Better BibTeX.006.bib"
-        ));
-        assert_eq!(parsed.entries.len(), 2);
-        assert_eq!(parsed.entries[0].key, "test-ticket1661");
-        assert_eq!(parsed.entries[1].key, "test-ticket1661a");
-        assert_eq!(parsed.entries[0].mode["title"], "title");
-        assert_eq!(parsed.entries[1].mode["title"], "title");
-    }
+  #[test]
+  /// Checks both existing URL and href title cases are assigned title mode.
+  fn parses_two_latex_tilde_entries_like_default_case() {
+    let parsed = fixture(include_str!("../../test/better-bibtex/import/Better BibTeX.006.bib"));
+    assert_eq!(parsed.entries.len(), 2);
+    assert_eq!(parsed.entries[0].key, "test-ticket1661");
+    assert_eq!(parsed.entries[1].key, "test-ticket1661a");
+    assert_eq!(parsed.entries[0].mode["title"], "title");
+    assert_eq!(parsed.entries[1].mode["title"], "title");
+  }
 
-    #[test]
-    /// Checks quotation rendering for the shared rich-text fixture.
-    fn parses_richtext_quotation_fixture_like_default_case() {
-        let parsed = fixture(include_str!("../../test/other/quotation-18.bib"));
-        let entry = &parsed.entries[0];
-        assert_eq!(entry.key, "demonstration");
-        assert_eq!(entry.mode["note"], "richtext");
-        let expected_environment = "<blockquote>sdadsafsf</blockquote>";
-        let expected_note = "<blockquote>sdadsafsf</blockquote><p>PRIME und SAT sind exponenziall ybd gelten in der Praxis als nicht lo\u{308}sbar. (<a href=\"zotero://open-pdf/library/items/VAB33DNE?page=30\">note on p.30</a>) <p>";
-        assert!(expected_note.starts_with(expected_environment));
-        assert_eq!(entry.fields["note"], FieldValue::Text(expected_note.into()));
-    }
+  #[test]
+  /// Checks quotation rendering for the shared rich-text fixture.
+  fn parses_richtext_quotation_fixture_like_default_case() {
+    let parsed = fixture(include_str!("../../test/other/quotation-18.bib"));
+    let entry = &parsed.entries[0];
+    assert_eq!(entry.key, "demonstration");
+    assert_eq!(entry.mode["note"], "richtext");
+    let expected_environment = "<blockquote>sdadsafsf</blockquote>";
+    let expected_note = "<blockquote>sdadsafsf</blockquote><p>PRIME und SAT sind exponenziall ybd gelten in der Praxis als nicht lo\u{308}sbar. (<a href=\"zotero://open-pdf/library/items/VAB33DNE?page=30\">note on p.30</a>) <p>";
+    assert!(expected_note.starts_with(expected_environment));
+    assert_eq!(entry.fields["note"], FieldValue::Text(expected_note.into()));
+  }
 
-    #[test]
-    /// Checks name, literal-list, and verbatim modes in a BibLaTeX entry.
-    fn parses_verbatim_string_fixture_like_default_case() {
-        let parsed = fixture(include_str!("../../test/other/verbatim-string.bib"));
-        let entry = &parsed.entries[0];
-        assert_eq!(entry.entry, "inbook");
-        assert_eq!(entry.key, "Laskar2013");
-        assert_eq!(entry.mode["doi"], "verbatim");
-        assert_eq!(entry.mode["url"], "verbatim");
-        assert_eq!(entry.mode["publisher"], "literallist");
-        assert_eq!(entry.mode["editor"], "namelist");
-    }
+  #[test]
+  /// Checks name, literal-list, and verbatim modes in a BibLaTeX entry.
+  fn parses_verbatim_string_fixture_like_default_case() {
+    let parsed = fixture(include_str!("../../test/other/verbatim-string.bib"));
+    let entry = &parsed.entries[0];
+    assert_eq!(entry.entry, "inbook");
+    assert_eq!(entry.key, "Laskar2013");
+    assert_eq!(entry.mode["doi"], "verbatim");
+    assert_eq!(entry.mode["url"], "verbatim");
+    assert_eq!(entry.mode["publisher"], "literallist");
+    assert_eq!(entry.mode["editor"], "namelist");
+  }
 
-    #[test]
-    /// Checks all declarations in the shared strings fixture are retained.
-    fn parses_builtin_string_table_fixture_like_default_case() {
-        let parsed = fixture(include_str!("../../test/other/strings.bib"));
-        assert!(parsed.entries.is_empty());
-        assert_eq!(parsed.strings.len(), 336);
-        assert_eq!(parsed.strings["A&A"], "Astronomy and Astrophysics");
-    }
+  #[test]
+  /// Checks all declarations in the shared strings fixture are retained.
+  fn parses_builtin_string_table_fixture_like_default_case() {
+    let parsed = fixture(include_str!("../../test/other/strings.bib"));
+    assert!(parsed.entries.is_empty());
+    assert_eq!(parsed.strings.len(), 336);
+    assert_eq!(parsed.strings["A&A"], "Astronomy and Astrophysics");
+  }
 
-    #[test]
-    /// Checks Unicode quote and dash rendering in the default fixture output.
-    fn parses_unicode_abstract_fixture_like_default_case() {
-        let parsed = fixture(include_str!("../../test/other/textquotedblleft_13.bib"));
-        let entry = &parsed.entries[0];
-        assert_eq!(entry.key, "Stahl2015");
-        assert_eq!(entry.mode["title"], "title");
-        assert_eq!(entry.mode["abstract"], "literal");
-        let FieldValue::Names(authors) = &entry.fields["author"] else {
-            panic!("author should be parsed as a name list");
-        };
-        assert_eq!(authors.len(), 2);
-        assert_eq!(authors[0].last_name.as_deref(), Some("Stahl"));
-        assert_eq!(
+  #[test]
+  /// Checks Unicode quote and dash rendering in the default fixture output.
+  fn parses_unicode_abstract_fixture_like_default_case() {
+    let parsed = fixture(include_str!("../../test/other/textquotedblleft_13.bib"));
+    let entry = &parsed.entries[0];
+    assert_eq!(entry.key, "Stahl2015");
+    assert_eq!(entry.mode["title"], "title");
+    assert_eq!(entry.mode["abstract"], "literal");
+    let FieldValue::Names(authors) = &entry.fields["author"] else {
+      panic!("author should be parsed as a name list");
+    };
+    assert_eq!(authors.len(), 2);
+    assert_eq!(authors[0].last_name.as_deref(), Some("Stahl"));
+    assert_eq!(
             entry.fields["abstract"],
             FieldValue::Text(
                 "Infants use \u{201c}unexpectedness\u{201d} as a \"cue\" for learning. Stahl and Feigenson studied how babies reacted when objects behaved in surprising ways (see the Perspective by Schulz). Babies who saw apparently solid and weighty objects moving through a wall or past the edge of a table without falling looked intently at them. When given the opportunity to explore these peculiar objects, they did so by banging them on the floor\u{2014}as if to test their solidity\u{2014}or dropping them\u{2014}as if to test their weightiness.".into()
             )
         );
+  }
+
+  #[test]
+  /// Checks name splitting, literal month normalization, and title mode on a real fixture.
+  fn parses_multi_author_month_fixture_like_default_case() {
+    let parsed = fixture(include_str!("../../test/other/mid-word-capital.bib"));
+    let entry = &parsed.entries[0];
+    let FieldValue::Names(authors) = &entry.fields["author"] else {
+      panic!("author should be parsed as a name list");
+    };
+    assert_eq!(authors.len(), 9);
+    assert_eq!(authors[0].first_name.as_deref(), Some("Benjamin"));
+    assert_eq!(authors[0].last_name.as_deref(), Some("Leung"));
+    assert_eq!(authors[5].first_name.as_deref(), Some("Bo"));
+    assert_eq!(authors[5].last_name.as_deref(), Some("Hyun Kong"));
+    assert_eq!(entry.fields["month"], FieldValue::Text("2".into()));
+    assert_eq!(entry.mode["title"], "title");
+
+    let editor = parse("@book{x,editor={Ryszard Michalski, Jaime G. Carbonell, and Tom M. Mitchell}}", Options::default());
+    let FieldValue::Names(editors) = &editor.entries[0].fields["editor"] else {
+      panic!("editor should be a name list");
+    };
+    assert_eq!(editors[0].last_name.as_deref(), Some("Ryszard Michalski"));
+    assert_eq!(editors[0].first_name.as_deref(), Some("Jaime G. Carbonell"));
+  }
+
+  #[test]
+  /// Checks recovery from an empty field and normalization of a double-braced institution.
+  fn parses_double_comma_fixture_like_default_case() {
+    let parsed = fixture(include_str!("../../test/better-bibtex/import/double-comma.bib"));
+    let entry = &parsed.entries[0];
+    assert_eq!(entry.entry, "techreport");
+    assert_eq!(entry.key, "TBD");
+    assert_eq!(entry.fields["institution"], FieldValue::List(vec!["Research Institute X".into()]));
+    assert_eq!(entry.mode["url"], "verbatim");
+    assert_eq!(entry.fields["accessed"], FieldValue::Text("2023-01-13".into()));
+  }
+
+  #[test]
+  /// Split literal lists at unprotected `and` separators while preserving braced phrases.
+  fn literal_list_split_respects_braced_and() {
+    let parsed = parse("@book{x,publisher={{Henry Holt and Co.}}}", Options::default());
+    assert_eq!(parsed.entries[0].fields["publisher"], FieldValue::List(vec!["Henry Holt and Co.".into()]));
+    let punctuated = parse("@book{x,publisher={Holt, Rinehart, and Winston}}", Options::default());
+    assert_eq!(punctuated.entries[0].fields["publisher"], FieldValue::List(vec!["Holt, Rinehart,".into(), "Winston".into()]));
+  }
+
+  #[test]
+  /// Parses BibLaTeX comma-separated fields as literal lists, including in raw mode.
+  fn separated_biblatex_fields_split_on_commas() {
+    let source = "@book{x,entryset={A, {B,C}},related={ref1,ref2},relatedoptions={dataonly,skipbib},xdata={parent}}";
+    let parsed = parse(source, Options::default());
+    for field in ["entryset", "related", "relatedoptions", "xdata"] {
+      assert_eq!(parsed.entries[0].mode[field], "literallist");
     }
+    assert_eq!(parsed.entries[0].fields["entryset"], FieldValue::List(vec!["A".into(), "B,C".into()]));
+    assert_eq!(parsed.entries[0].fields["related"], FieldValue::List(vec!["ref1".into(), "ref2".into()]));
+    assert_eq!(parsed.entries[0].fields["relatedoptions"], FieldValue::List(vec!["dataonly".into(), "skipbib".into()]));
+    assert_eq!(parsed.entries[0].fields["xdata"], FieldValue::List(vec!["parent".into()]));
 
-    #[test]
-    /// Checks name splitting, literal month normalization, and title mode on a real fixture.
-    fn parses_multi_author_month_fixture_like_default_case() {
-        let parsed = fixture(include_str!("../../test/other/mid-word-capital.bib"));
-        let entry = &parsed.entries[0];
-        let FieldValue::Names(authors) = &entry.fields["author"] else {
-            panic!("author should be parsed as a name list");
-        };
-        assert_eq!(authors.len(), 9);
-        assert_eq!(authors[0].first_name.as_deref(), Some("Benjamin"));
-        assert_eq!(authors[0].last_name.as_deref(), Some("Leung"));
-        assert_eq!(authors[5].first_name.as_deref(), Some("Bo"));
-        assert_eq!(authors[5].last_name.as_deref(), Some("Hyun Kong"));
-        assert_eq!(entry.fields["month"], FieldValue::Text("2".into()));
-        assert_eq!(entry.mode["title"], "title");
+    let raw = parse(source, Options { raw: true, ..Options::default() });
+    assert_eq!(raw.entries[0].fields["related"], FieldValue::List(vec!["ref1".into(), "ref2".into()]));
+  }
 
-        let editor = parse(
-            "@book{x,editor={Ryszard Michalski, Jaime G. Carbonell, and Tom M. Mitchell}}",
-            Options::default(),
-        );
-        let FieldValue::NameNames(editors) = &editor.entries[0].fields["editor"] else {
-            panic!("editor should be a name list");
-        };
-        assert_eq!(editors[0].last_name.as_deref(), Some("Ryszard Michalski"));
-        assert_eq!(editors[0].first_name.as_deref(), Some("Jaime G. Carbonell"));
-    }
+  #[test]
+  /// Checks keyword merging, top-level splitting, TeX rendering, and raw preservation.
+  fn normalizes_duplicate_keyword_fields() {
+    let parsed = parse("@article{k, keywords={zeta, alpha}, keywords={beta; zeta}}", Options::default());
+    let FieldValue::List(keywords) = parsed.entries[0].fields["keywords"].clone() else {
+      panic!("keywords should be a list");
+    };
+    assert_eq!(keywords.len(), 4);
+    assert_eq!(keywords.iter().filter(|keyword| *keyword == "zeta").count(), 2);
+    assert_eq!(parsed.entries[0].mode["keywords"], "verbatimlist");
 
-    #[test]
-    /// Checks recovery from an empty field and normalization of a double-braced institution.
-    fn parses_double_comma_fixture_like_default_case() {
-        let parsed = fixture(include_str!(
-            "../../test/better-bibtex/import/double-comma.bib"
-        ));
-        let entry = &parsed.entries[0];
-        assert_eq!(entry.entry, "techreport");
-        assert_eq!(entry.key, "TBD");
-        assert_eq!(
-            entry.fields["institution"],
-            FieldValue::List(vec!["Research Institute X".into()])
-        );
-        assert_eq!(entry.mode["url"], "verbatim");
-        assert_eq!(
-            entry.fields["accessed"],
-            FieldValue::Text("2023-01-13".into())
-        );
-    }
+    let double_braced = parse("@article{k, keywords={{Thermal comfort; Overheating; Energy policy}}}", Options::default());
+    assert_eq!(double_braced.entries[0].fields["keywords"], FieldValue::List(vec!["Thermal comfort".into(), "Overheating".into(), "Energy policy".into(),]));
 
-    #[test]
-    /// Split literal lists at unprotected `and` separators while preserving braced phrases.
-    fn literal_list_split_respects_braced_and() {
-        let parsed = parse(
-            "@book{x,publisher={{Henry Holt and Co.}}}",
-            Options::default(),
-        );
-        assert_eq!(
-            parsed.entries[0].fields["publisher"],
-            FieldValue::List(vec!["Henry Holt and Co.".into()])
-        );
-        let punctuated = parse(
-            "@book{x,publisher={Holt, Rinehart, and Winston}}",
-            Options::default(),
-        );
-        assert_eq!(
-            punctuated.entries[0].fields["publisher"],
-            FieldValue::List(vec!["Holt, Rinehart,".into(), "Winston".into()])
-        );
-    }
+    let collated = parse("@article{k, keywords={Forskningspolitik, Förenta staterna, Zebra, zebra}}", Options::default());
+    let FieldValue::List(keywords) = collated.entries[0].fields["keywords"].clone() else {
+      panic!("keywords should be a list");
+    };
+    assert_eq!(keywords.len(), 4);
+    assert!(keywords.contains(&"Forskningspolitik".to_string()));
+    assert!(keywords.contains(&"Förenta staterna".to_string()));
 
-    #[test]
-    /// Parses BibLaTeX comma-separated fields as literal lists, including in raw mode.
-    fn separated_biblatex_fields_split_on_commas() {
-        let source = "@book{x,entryset={A, {B,C}},related={ref1,ref2},relatedoptions={dataonly,skipbib},xdata={parent}}";
-        let parsed = parse(source, Options::default());
-        for field in ["entryset", "related", "relatedoptions", "xdata"] {
-            assert_eq!(parsed.entries[0].mode[field], "literallist");
-        }
-        assert_eq!(
-            parsed.entries[0].fields["entryset"],
-            FieldValue::List(vec!["A".into(), "B,C".into()])
-        );
-        assert_eq!(
-            parsed.entries[0].fields["related"],
-            FieldValue::List(vec!["ref1".into(), "ref2".into()])
-        );
-        assert_eq!(
-            parsed.entries[0].fields["relatedoptions"],
-            FieldValue::List(vec!["dataonly".into(), "skipbib".into()])
-        );
-        assert_eq!(
-            parsed.entries[0].fields["xdata"],
-            FieldValue::List(vec!["parent".into()])
-        );
+    let whitespace = fixture("@article{k, keywords={alpha,\n   beta}}");
+    assert_eq!(whitespace.entries[0].fields["keywords"], FieldValue::List(vec!["alpha".into(), "beta".into()]));
 
-        let raw = parse(
-            source,
-            Options {
-                raw: true,
-                ..Options::default()
-            },
-        );
-        assert_eq!(
-            raw.entries[0].fields["related"],
-            FieldValue::List(vec!["ref1".into(), "ref2".into()])
-        );
-    }
+    let rendered = parse(r"@article{k, keywords={\textbf{alpha,beta}; \emph{gamma}}}", Options::default());
+    assert_eq!(rendered.entries[0].fields["keywords"], FieldValue::List(vec!["<b>alpha,beta</b>".into(), "<i>gamma</i>".into()]));
 
-    #[test]
-    /// Checks keyword merging, top-level splitting, TeX rendering, and raw preservation.
-    fn normalizes_duplicate_keyword_fields() {
-        let parsed = parse(
-            "@article{k, keywords={zeta, alpha}, keywords={beta; zeta}}",
-            Options::default(),
-        );
-        let FieldValue::List(keywords) = parsed.entries[0].fields["keywords"].clone() else {
-            panic!("keywords should be a list");
-        };
-        assert_eq!(keywords.len(), 4);
-        assert_eq!(
-            keywords.iter().filter(|keyword| *keyword == "zeta").count(),
-            2
-        );
-        assert_eq!(parsed.entries[0].mode["keywords"], "verbatimlist");
+    let raw = parse(r"@article{k, keywords={\textbf{alpha,beta}; gamma}, keywords={delta}}", Options { raw: true, ..Options::default() });
+    assert_eq!(raw.entries[0].fields["keywords"], FieldValue::Text(r"\textbf{alpha,beta}; gamma".into()));
+    assert_eq!(raw.entries[0].fields["keywords+duplicate-1"], FieldValue::Text("delta".into()));
+  }
 
-        let double_braced = parse(
-            "@article{k, keywords={{Thermal comfort; Overheating; Energy policy}}}",
-            Options::default(),
-        );
-        assert_eq!(
-            double_braced.entries[0].fields["keywords"],
-            FieldValue::List(vec![
-                "Thermal comfort".into(),
-                "Overheating".into(),
-                "Energy policy".into(),
-            ])
-        );
+  #[test]
+  /// Checks user field-mode overrides and single outer-brace stripping.
+  fn field_mode_overrides_and_outer_braces_match_reference_behavior() {
+    let mut field_mode = std::collections::HashMap::new();
+    field_mode.insert("customfield".to_string(), "verbatim".to_string());
+    field_mode.insert("publisher".to_string(), "literal".to_string());
+    let mut remove_outer_braces = vec!["doi".to_string()];
+    remove_outer_braces.push("customfield".to_string());
 
-        let collated = parse(
-            "@article{k, keywords={Forskningspolitik, Förenta staterna, Zebra, zebra}}",
-            Options::default(),
-        );
-        let FieldValue::List(keywords) = collated.entries[0].fields["keywords"].clone() else {
-            panic!("keywords should be a list");
-        };
-        assert_eq!(keywords.len(), 4);
-        assert!(keywords.contains(&"Forskningspolitik".to_string()));
-        assert!(keywords.contains(&"Förenta staterna".to_string()));
+    let parsed = parse("@article{k, doi={{10.1234/example}}, customfield={{literal value}}, publisher={Press}, listx={One and Two}}", Options { field_mode, remove_outer_braces, ..Options::default() });
 
-        let whitespace = fixture("@article{k, keywords={alpha,\n   beta}}");
-        assert_eq!(
-            whitespace.entries[0].fields["keywords"],
-            FieldValue::List(vec!["alpha".into(), "beta".into()])
-        );
+    assert_eq!(parsed.entries[0].mode["doi"], "verbatim");
+    assert_eq!(parsed.entries[0].fields["doi"], FieldValue::Text("10.1234/example".into()));
+    assert_eq!(parsed.entries[0].mode["customfield"], "verbatim");
+    assert_eq!(parsed.entries[0].fields["customfield"], FieldValue::Text("literal value".into()));
+    assert_eq!(parsed.entries[0].mode["publisher"], "literal");
+    assert_eq!(parsed.entries[0].fields["publisher"], FieldValue::Text("Press".into()));
+    assert_eq!(parsed.entries[0].mode["listx"], "literallist");
+  }
 
-        let rendered = parse(
-            r"@article{k, keywords={\textbf{alpha,beta}; \emph{gamma}}}",
-            Options::default(),
-        );
-        assert_eq!(
-            rendered.entries[0].fields["keywords"],
-            FieldValue::List(vec!["<b>alpha,beta</b>".into(), "<i>gamma</i>".into()])
-        );
+  #[test]
+  /// Checks map/source string preloads and the maximum-entry stop condition.
+  fn supports_preloaded_strings_and_max_entry_limit() {
+    let options = Options {
+      max_entries: Some(1),
+      strings: [("custom".to_string(), "From options".to_string())].into(),
+      raw: false,
+      apply_crossref: true,
+      verbatim_fields: vec![],
+      remove_outer_braces: vec![],
+      field_mode: std::collections::HashMap::new(),
+      ..Options::default()
+    };
+    let parsed = parse_verbatim("@article{one, journal=custom}\n@article{two}", options);
+    assert_eq!(parsed.entries.len(), 1);
+    assert_eq!(parsed.entries[0].fields["journal"], "From options");
+  }
 
-        let raw = parse(
-            r"@article{k, keywords={\textbf{alpha,beta}; gamma}, keywords={delta}}",
-            Options {
-                raw: true,
-                ..Options::default()
-            },
-        );
-        assert_eq!(
-            raw.entries[0].fields["keywords"],
-            FieldValue::Text(r"\textbf{alpha,beta}; gamma".into())
-        );
-        assert_eq!(
-            raw.entries[0].fields["keywords+duplicate-1"],
-            FieldValue::Text("delta".into())
-        );
-    }
-
-    #[test]
-    /// Checks user field-mode overrides and single outer-brace stripping.
-    fn field_mode_overrides_and_outer_braces_match_reference_behavior() {
-        let mut field_mode = std::collections::HashMap::new();
-        field_mode.insert("customfield".to_string(), "verbatim".to_string());
-        field_mode.insert("publisher".to_string(), "literal".to_string());
-        let mut remove_outer_braces = vec!["doi".to_string()];
-        remove_outer_braces.push("customfield".to_string());
-
-        let parsed = parse(
-            "@article{k, doi={{10.1234/example}}, customfield={{literal value}}, publisher={Press}, listx={One and Two}}",
-            Options {
-                field_mode,
-                remove_outer_braces,
-                ..Options::default()
-            },
-        );
-
-        assert_eq!(parsed.entries[0].mode["doi"], "verbatim");
-        assert_eq!(
-            parsed.entries[0].fields["doi"],
-            FieldValue::Text("10.1234/example".into())
-        );
-        assert_eq!(parsed.entries[0].mode["customfield"], "verbatim");
-        assert_eq!(
-            parsed.entries[0].fields["customfield"],
-            FieldValue::Text("literal value".into())
-        );
-        assert_eq!(parsed.entries[0].mode["publisher"], "literal");
-        assert_eq!(
-            parsed.entries[0].fields["publisher"],
-            FieldValue::Text("Press".into())
-        );
-        assert_eq!(parsed.entries[0].mode["listx"], "literallist");
-    }
-
-    #[test]
-    /// Checks map/source string preloads and the maximum-entry stop condition.
-    fn supports_preloaded_strings_and_max_entry_limit() {
-        let options = Options {
-            max_entries: Some(1),
-            strings: [("custom".to_string(), "From options".to_string())].into(),
-            raw: false,
-            apply_crossref: true,
-            verbatim_fields: vec![],
-            remove_outer_braces: vec![],
-            field_mode: std::collections::HashMap::new(),
-            ..Options::default()
-        };
-        let parsed = parse_verbatim("@article{one, journal=custom}\n@article{two}", options);
-        assert_eq!(parsed.entries.len(), 1);
-        assert_eq!(parsed.entries[0].fields["journal"], "From options");
-    }
-
-    #[test]
-    /// Checks comment forms, concatenated preambles, and recovery at the next directive.
-    fn parses_comments_preambles_and_recovers_from_bad_entries() {
-        let parsed = super::parse_verbatim(
-            "% ignored @article{not-an-entry}\n@comment{block {comment}}\n@comment line comment\n@preamble{\"prefix\" # {suffix}}\n@article{bad, title={unclosed\n@book{good, title={ok}}",
-            Options::default(),
-        );
-        assert_eq!(parsed.comments, ["block {comment}", "line comment"]);
-        assert_eq!(parsed.preambles, ["\"prefix\" # {suffix}"]);
-        assert_eq!(parsed.errors.len(), 1);
-        assert_eq!(parsed.entries.len(), 2);
-        assert_eq!(parsed.entries[1].key, "good");
-        assert_eq!(parsed.entries[1].fields["title"], "ok");
-    }
+  #[test]
+  /// Checks comment forms, concatenated preambles, and recovery at the next directive.
+  fn parses_comments_preambles_and_recovers_from_bad_entries() {
+    let parsed = super::parse_verbatim(
+      "% ignored @article{not-an-entry}\n@comment{block {comment}}\n@comment line comment\n@preamble{\"prefix\" # {suffix}}\n@article{bad, title={unclosed\n@book{good, title={ok}}",
+      Options::default(),
+    );
+    assert_eq!(parsed.comments, ["block {comment}", "line comment"]);
+    assert_eq!(parsed.preambles, ["\"prefix\" # {suffix}"]);
+    assert_eq!(parsed.errors.len(), 1);
+    assert_eq!(parsed.entries.len(), 2);
+    assert_eq!(parsed.entries[1].key, "good");
+    assert_eq!(parsed.entries[1].fields["title"], "ok");
+  }
 }

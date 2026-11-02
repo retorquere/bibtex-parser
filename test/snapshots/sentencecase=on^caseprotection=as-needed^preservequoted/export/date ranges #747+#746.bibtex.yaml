@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Nancy K
           lastName: Adams
@@ -44,7 +43,7 @@ entries:
       }
     key: Adams2015
     mode:
-      author: creatorlist
+      author: namelist
       file: verbatim
       journal: literal
       keywords: verbatimlist
@@ -54,8 +53,11 @@ entries:
       volume: literal
       year: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: >-
+        Adams, Nancy K and DeSilva, Shanaka L and Self, Steven and Salas, Guido
+        and Schubring, Steven and Permenter, Jason L and Arbesman, Kendra
+  - fields:
       author:
         - firstName: Nancy K
           lastName: Adams
@@ -98,7 +100,7 @@ entries:
       }
     key: Adams2017
     mode:
-      author: creatorlist
+      author: namelist
       file: verbatim
       journal: literal
       keywords: verbatimlist
@@ -108,8 +110,11 @@ entries:
       volume: literal
       year: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: >-
+        Adams, Nancy K and DeSilva, Shanaka L and Self, Steven and Salas, Guido
+        and Schubring, Steven and Permenter, Jason L and Arbesman, Kendra
+  - fields:
       abstract: >-
         Virtually all ITS applications rely on accurate traffic data.
         Identification of faulty detectors is thus vital for their reliability
@@ -171,7 +176,7 @@ entries:
     key: P.Widhalm2011
     mode:
       abstract: literal
-      author: creatorlist
+      author: namelist
       booktitle: title
       doi: verbatim
       keywords: verbatimlist
@@ -180,8 +185,9 @@ entries:
       title: title
       year: literal
     type: inproceedings
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{P. Widhalm} and {H. Koller} and {W. Ponweiser}'
+  - fields:
       address:
         - San Diego, California, USA
       author:
@@ -208,7 +214,7 @@ entries:
     key: Seeley1989
     mode:
       address: literallist
-      author: creatorlist
+      author: namelist
       booktitle: title
       month: literal
       pages: literal
@@ -216,8 +222,11 @@ entries:
       title: title
       year: literal
     type: inproceedings
-  - annotations: {}
-    fields:
+    verbatim:
+      address: '{San Diego, California, USA}'
+      author: Seeley, Donn
+      publisher: '{USENIX}'
+  - fields:
       abstract: >-
         In designing computer-based systems, we work within a perspective that
         shapes the design questions that will be asked and the kinds of
@@ -265,7 +274,7 @@ entries:
     mode:
       abstract: literal
       address: literallist
-      author: creatorlist
+      author: namelist
       booktitle: title
       doi: verbatim
       month: literal
@@ -275,6 +284,10 @@ entries:
       title: title
       year: literal
     type: inproceedings
+    verbatim:
+      address: '{Austin, TX}'
+      author: Winograd, Terry
+      publisher: '{ACM}'
 errors: []
 jabref:
   root: []

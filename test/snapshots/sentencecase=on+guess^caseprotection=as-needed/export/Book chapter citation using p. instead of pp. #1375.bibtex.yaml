@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Karl Erik
           lastName: Rosengren
@@ -40,15 +39,19 @@ entries:
       }
     key: rosengren_uses_1974
     mode:
-      author: creatorlist
+      author: namelist
       booktitle: title
-      editor: creatorlist
+      editor: namelist
       note: richtext
       pages: literal
       publisher: literallist
       title: title
       year: literal
     type: incollection
+    verbatim:
+      author: Rosengren, Karl Erik
+      editor: Blumler, Jay G. and Katz, Elihu
+      publisher: '{SAGE Publications}'
 errors: []
 jabref:
   root: []

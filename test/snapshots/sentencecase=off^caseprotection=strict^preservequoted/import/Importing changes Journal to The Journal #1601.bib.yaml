@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: First Name
           lastName: Family Name
@@ -23,7 +22,7 @@ entries:
       }
     key: id1
     mode:
-      author: creatorlist
+      author: namelist
       journal: literal
       number: literal
       pages: literal
@@ -31,6 +30,8 @@ entries:
       volume: literal
       year: literal
     type: article
+    verbatim:
+      author: Family Name, First Name
 errors: []
 jabref:
   root: []

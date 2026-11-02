@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Leonardo Hadlich
           lastName: Oliveira
@@ -17,7 +16,8 @@ entries:
       journaltitle: The Journal of Chemical Thermodynamics
       langid: english
       number: '11'
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       pages: 1379–1385
       title: >-
         (<span class="nocase">Liquid</span>+liquid) equilibrium of
@@ -44,7 +44,7 @@ entries:
       }
     key: deOliveira2010
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       doi: verbatim
       file: verbatim
@@ -52,15 +52,16 @@ entries:
       journaltitle: literal
       langid: literal
       number: literal
-      options: verbatim
+      options: options
       pages: literal
       title: title
       url: verbatim
       urldate: literal
       volume: literal
-    options:
-      useprefix: 'true'
     type: article
+    verbatim:
+      author: de Oliveira, Leonardo Hadlich and Aznar, Martín
+      options: useprefix=true
 errors: []
 jabref:
   root: []

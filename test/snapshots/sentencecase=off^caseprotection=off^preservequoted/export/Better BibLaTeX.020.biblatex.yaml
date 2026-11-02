@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Georges
           lastName: Canguilhem
@@ -38,8 +37,8 @@ entries:
       }
     key: Canguilhem1994
     mode:
-      author: creatorlist
-      bookauthor: creatorlist
+      author: namelist
+      bookauthor: namelist
       booktitle: title
       date: literal
       isbn: literal
@@ -50,6 +49,11 @@ entries:
       publisher: literallist
       title: title
     type: inbook
+    verbatim:
+      author: Canguilhem, Georges
+      bookauthor: Cavaillès, Jean
+      location: '{Paris}'
+      publisher: '{Hermann}'
 errors: []
 jabref:
   root: []

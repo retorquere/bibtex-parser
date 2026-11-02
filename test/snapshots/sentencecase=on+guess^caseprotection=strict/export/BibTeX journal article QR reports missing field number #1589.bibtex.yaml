@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       address:
         - Roma
       annotation: 'OCLC: 1017659336'
@@ -37,15 +36,19 @@ entries:
     mode:
       address: literallist
       annotation: richtext
-      editor: creatorlist
+      editor: namelist
       language: literallist
       publisher: literallist
       shorttitle: title
       title: title
       year: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      address: '{Roma}'
+      editor: Leone, Anna and Palombi, Domenico and Walker, Susan
+      language: Italian, English, French and German.
+      publisher: '{Quasar}'
+  - fields:
       abstract: >-
         Recent research carried out during organisation of the Cori Museum
         (Latina) has resulted in a significant revision and substantial updating
@@ -91,7 +94,7 @@ entries:
     key: Palombi2003
     mode:
       abstract: literal
-      author: creatorlist
+      author: namelist
       issn: literal
       journal: literal
       keywords: verbatimlist
@@ -101,6 +104,8 @@ entries:
       volume: literal
       year: literal
     type: article
+    verbatim:
+      author: Palombi, Domenico
 errors: []
 jabref:
   root: []

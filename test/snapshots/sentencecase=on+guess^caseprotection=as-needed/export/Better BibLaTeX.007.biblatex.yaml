@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: U.
           lastName: Fritz
@@ -37,7 +36,7 @@ entries:
       }
     key: Frit2
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       doi: verbatim
       journaltitle: literal
@@ -47,6 +46,8 @@ entries:
       title: title
       volume: literal
     type: article
+    verbatim:
+      author: Fritz, U. and Corti, C. and Päckert, M.
 errors: []
 jabref:
   root: []

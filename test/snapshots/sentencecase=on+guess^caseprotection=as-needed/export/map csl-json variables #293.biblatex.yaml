@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       abstract: >-
         Préface de Ph. Raynaud. Trad. de : "Vom Wesen und Wert der Demokratie" -
         Tübingen : J.C.B. Mohr, 1929. Fac-sim. de la 2e éd., Paris : Sirey :
@@ -51,7 +50,7 @@ entries:
     key: kelsen_democratie_2004
     mode:
       abstract: literal
-      author: creatorlist
+      author: namelist
       date: literal
       edition: literal
       isbn: literal
@@ -65,10 +64,16 @@ entries:
       publisher: literallist
       series: title
       title: title
-      translator: creatorlist
+      translator: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Kelsen, Hans
+      location: '{Paris}'
+      origlocation: '{Tübingen}'
+      origpublisher: '{J.C.B. Mohr}'
+      publisher: '{Dalloz}'
+      translator: Eisenmann, Charles
+  - fields:
       author:
         - firstName: Bruno
           lastName: Latour
@@ -102,7 +107,7 @@ entries:
       }
     key: latour_ny_2008
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       langid: literal
       location: literallist
@@ -114,6 +119,12 @@ entries:
       shorttitle: title
       title: title
     type: book
+    verbatim:
+      author: Latour, Bruno
+      location: '{København}'
+      origlocation: '{origlocation}'
+      origpublisher: '{origpublisher}'
+      publisher: '{Akademisk Forlag}'
 errors: []
 jabref:
   root: []

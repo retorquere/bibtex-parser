@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Richard
           lastName: Zach
@@ -21,7 +20,7 @@ entries:
     input: "@Article{Zach2004a,\n  author =\t {Richard Zach},\n  title =\t {Decidability of Quantified Propositional\n                  Intuitionistic Logic and S4 on Trees of Height and\n                  Arity $\\le\\omega$},\n  journal =\t {Journal of Philosophical Logic},\n  year =\t 2004,\n  volume =\t 33,\n  pages =\t {155--164},\n  doi =\t\t {10.1023/B:LOGI.0000021744.10237.d0},\n  scholar =\t {15184825758825835157,15198214561219081821},\n  eprinttype = {philpapers}, eprint =\t {ZACDOQ},\n  keywords =\t {article}\n}"
     key: Zach2004a
     mode:
-      author: creatorlist
+      author: namelist
       doi: verbatim
       eprint: verbatim
       eprinttype: literal
@@ -33,6 +32,8 @@ entries:
       volume: literal
       year: literal
     type: article
+    verbatim:
+      author: Richard Zach
 errors: []
 jabref:
   root: []

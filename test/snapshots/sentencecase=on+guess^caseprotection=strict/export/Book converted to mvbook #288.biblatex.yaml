@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Jacqueline
           lastName: Russ
@@ -35,7 +34,7 @@ entries:
       }
     key: russ_savoir_1990
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       isbn: literal
       langid: literal
@@ -48,6 +47,10 @@ entries:
       title: title
       volumes: literal
     type: mvbook
+    verbatim:
+      author: Russ, Jacqueline
+      location: '{Paris}'
+      publisher: '{Hatier}'
 errors: []
 jabref:
   root: []

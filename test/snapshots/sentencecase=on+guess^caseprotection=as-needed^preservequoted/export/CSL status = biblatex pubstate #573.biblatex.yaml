@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: John
           lastName: Doe
@@ -15,10 +14,12 @@ entries:
       }
     key: doe_title_nodate
     mode:
-      author: creatorlist
+      author: namelist
       pubstate: literal
       title: title
     type: book
+    verbatim:
+      author: Doe, John
 errors: []
 jabref:
   root: []

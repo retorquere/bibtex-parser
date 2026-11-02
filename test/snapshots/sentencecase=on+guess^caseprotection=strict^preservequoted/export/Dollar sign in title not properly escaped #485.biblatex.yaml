@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Bernie
           lastName: Sanders
@@ -23,12 +22,14 @@ entries:
       }
     key: sanders_largest_2016
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       title: title
       titleaddon: literal
       url: verbatim
     type: article
+    verbatim:
+      author: Sanders, Bernie
 errors: []
 jabref:
   root: []

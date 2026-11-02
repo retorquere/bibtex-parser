@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Michael
           lastName: Hicks
@@ -12,7 +11,8 @@ entries:
       isbn: 0-69-697269-4
       location:
         - Palo Alto
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       publisher:
         - Stanford Press
       title: >-
@@ -32,17 +32,20 @@ entries:
       }
     key: hicks2001
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       edition: literal
       isbn: literal
       location: literallist
-      options: verbatim
+      options: options
       publisher: literallist
       title: title
-    options:
-      useprefix: 'true'
     type: book
+    verbatim:
+      author: von Hicks, III, Michael
+      location: '{Palo Alto}'
+      options: useprefix=true
+      publisher: '{Stanford Press}'
 errors: []
 jabref:
   root: []

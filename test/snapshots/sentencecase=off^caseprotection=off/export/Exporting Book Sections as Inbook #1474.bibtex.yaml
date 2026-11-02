@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       address:
         - Waltham, MA, USA
       author:
@@ -53,9 +52,9 @@ entries:
     key: yzelman2015
     mode:
       address: literallist
-      author: creatorlist
+      author: namelist
       booktitle: title
-      collaborator: creatorlist
+      collaborator: namelist
       copyright: literal
       doi: verbatim
       isbn: literal
@@ -68,6 +67,12 @@ entries:
       url: verbatim
       year: literal
     type: inbook
+    verbatim:
+      address: '{Waltham, MA, USA}'
+      author: Yzelman, Albert-Jan N. and Roose, Dirk and Meerbergen, Karl
+      collaborator: Reinders, James and Jeffers, Jim
+      language: en-US
+      publisher: '{Morgan Kaufmann}'
 errors: []
 jabref:
   root: []

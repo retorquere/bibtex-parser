@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       address:
         - Valletta, Malta
       author:
@@ -40,7 +39,7 @@ entries:
     key: rehurek_lrec
     mode:
       address: literallist
-      author: creatorlist
+      author: namelist
       booktitle: title
       day: literal
       language: literallist
@@ -51,6 +50,11 @@ entries:
       url: verbatim
       year: literal
     type: inproceedings
+    verbatim:
+      address: Valletta, Malta
+      author: Radim {\v R}eh{\r u}{\v r}ek and Petr Sojka
+      language: English
+      publisher: ELRA
 errors: []
 jabref:
   root: []

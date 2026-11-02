@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Nancy K
           lastName: Adams
@@ -31,7 +30,7 @@ entries:
     input: "@article{Adams2001,\n  author = {Adams, Nancy K and DeSilva, Shanaka L and Self, Steven and Salas, Guido and Schubring, Steven and Permenter, Jason L and Arbesman, Kendra},\n  title = {{The physical volcanology of the 1600 eruption of Huaynaputina, southern\r Peru}},\n  journal = {Bulletin of Volcanology},\n  year = {2001},\n  volume = {62},\n  pages = {493--518},\n  keywords = {Vulcanian eruptions,breadcrust,plinian}\n}"
     key: Adams2001
     mode:
-      author: creatorlist
+      author: namelist
       journal: literal
       keywords: verbatimlist
       pages: literal
@@ -39,8 +38,11 @@ entries:
       volume: literal
       year: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: >-
+        Adams, Nancy K and DeSilva, Shanaka L and Self, Steven and Salas, Guido
+        and Schubring, Steven and Permenter, Jason L and Arbesman, Kendra
+  - fields:
       author:
         - firstName: Peter
           lastName: Rechenberg
@@ -67,7 +69,7 @@ entries:
       }
     key: Rechenberg2006a
     mode:
-      author: creatorlist
+      author: namelist
       edition: literal
       isbn: literal
       pagetotal: literal
@@ -77,6 +79,9 @@ entries:
       title: title
       year: literal
     type: book
+    verbatim:
+      author: Peter Rechenberg
+      publisher: Hanser Fachbuchverlag
 errors: []
 jabref:
   root: []

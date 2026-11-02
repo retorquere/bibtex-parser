@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       address:
         - М.
       author:
@@ -37,7 +36,7 @@ entries:
     key: Landafshits.V7
     mode:
       address: literallist
-      author: creatorlist
+      author: namelist
       edition: literal
       isbn: literal
       language: literallist
@@ -48,6 +47,11 @@ entries:
       volume: literal
       year: literal
     type: book
+    verbatim:
+      address: '{М.}'
+      author: Ландау, Л. Д. and Лифшиц, Е. М.
+      language: russian
+      publisher: '{Физматлит}'
 errors: []
 jabref:
   root: []

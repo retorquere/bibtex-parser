@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       note: In Yamaha tuner IC101 en IC102
       title: NEC µPC577H Tri State Hex Buffers
     input: |-
@@ -14,8 +13,8 @@ entries:
       note: richtext
       title: title
     type: misc
-  - annotations: {}
-    fields:
+    verbatim: {}
+  - fields:
       abstract: >-
         This is an example The first mu should be a greek mu which will turn out
         italic, the second is a textmu which schould look the same as the
@@ -43,13 +42,15 @@ entries:
     key: Author_ADtesttitlewithlowercasegreeklettermPC4570whichisnotthesameas1uF_2025
     mode:
       abstract: literal
-      author: creatorlist
+      author: namelist
       booktitle: title
       date: literal
       langid: literal
       pages: literal
       title: title
     type: inproceedings
+    verbatim:
+      author: Author, P. A.
 errors: []
 jabref:
   root: []

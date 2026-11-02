@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Joe
           lastName: Torre
@@ -24,12 +23,15 @@ entries:
       }
     key: Torre2008
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       note: richtext
       publisher: literallist
       title: title
     type: misc
+    verbatim:
+      author: Torre, Joe and Verducci, Tom
+      publisher: '{Doubleday}'
 errors: []
 jabref:
   root: []

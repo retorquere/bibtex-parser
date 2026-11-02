@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       annotation: relies on paricleParser fallback detection
       author:
         - firstName: François Hédelin
@@ -17,15 +16,17 @@ entries:
     key: abbot1
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Aubignac, abbé d', François Hédelin
+  - fields:
       author:
         - firstName: François Hédelin
           lastName: abbé d' Aubignac
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: (abbé d' Aubignac) (François Hédelin)
     input: |-
       @article{abbot3,
@@ -35,14 +36,14 @@ entries:
       }
     key: abbot3
     mode:
-      author: creatorlist
-      options: verbatim
+      author: namelist
+      options: options
       title: title
-    options:
-      useprefix: 'true'
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: abbé d' Aubignac, François Hédelin
+      options: useprefix=true
+  - fields:
       date: '2013'
       editor:
         - firstName: Luís
@@ -74,7 +75,7 @@ entries:
     key: almeida_reading_2013
     mode:
       date: literal
-      editor: creatorlist
+      editor: namelist
       isbn: literal
       langid: literal
       location: literallist
@@ -82,8 +83,11 @@ entries:
       publisher: literallist
       title: title
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      editor: d' Almeida, Luís and Edwards, James and Dolcetti, Andrea
+      location: '{Oxford}'
+      publisher: '{Hart Publishing}'
+  - fields:
       author:
         - firstName: Frank G.
           lastName: Bennett
@@ -108,7 +112,7 @@ entries:
       }
     key: bennett_citations_2013
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       isbn: literal
       location: literallist
@@ -116,15 +120,19 @@ entries:
       publisher: literallist
       title: title
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Bennett, Jr., Frank G.
+      location: '{Lexington Kentucky}'
+      publisher: '{CreateSpace Independent Publishing Platform}'
+  - fields:
       author:
         - firstName: John
           lastName: Jones
           prefix: d'
       keywords:
         - imported
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: Bugreports_ApostropheOnParticle
     input: |-
       @article{bugreports_ApostropheOnParticle,
@@ -135,15 +143,15 @@ entries:
       }
     key: bugreports_ApostropheOnParticle
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
-      options: verbatim
+      options: options
       title: title
-    options:
-      useprefix: 'true'
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: d' Jones, John
+      options: useprefix=true
+  - fields:
       author:
         - firstName: Doe
           lastName: Co.
@@ -158,12 +166,13 @@ entries:
       }
     key: bugreports_AsmJournals
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Doe Co.
+  - fields:
       author:
         - name: U.S. Bureau of the Census
       keywords:
@@ -177,12 +186,13 @@ entries:
       }
     key: bugreports_DemoPageFullCiteCruftOnSubsequent
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{U.S. Bureau of the Census}'
+  - fields:
       author:
         - firstName: Bruce
           lastName: D'Arcus
@@ -197,12 +207,13 @@ entries:
       }
     key: bugreports_DuplicateSpaces
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: D'Arcus, Bruce
+  - fields:
       author:
         - firstName: 'N'
           lastName: Family Name
@@ -217,12 +228,13 @@ entries:
       }
     key: bugreports_DuplicateSpaces3
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Family Name, N
+  - fields:
       author:
         - firstName: Κώστας
           lastName: Καρυωτάκης
@@ -237,12 +249,13 @@ entries:
       }
     key: bugreports_GreekStyleProblems
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Καρυωτάκης, Κώστας
+  - fields:
       author:
         - firstName: Eduard
           lastName: Happel
@@ -252,7 +265,8 @@ entries:
           prefix: von
       keywords:
         - imported
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: Bugreports_parseName
     input: |-
       @article{bugreports_parseName,
@@ -263,15 +277,15 @@ entries:
       }
     key: bugreports_parseName
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
-      options: verbatim
+      options: options
       title: title
-    options:
-      useprefix: 'true'
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: van Happel, Eduard and von Hoppel, Gustav
+      options: useprefix=true
+  - fields:
       author:
         - firstName: R.
           lastName: Reynoso-Santos
@@ -292,12 +306,15 @@ entries:
       }
     key: bugreports_ProcessorHang1
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: >-
+        Reynoso-Santos, R. and Soto-Pinto, L. and Tejeda-Cruz, C. and
+        Williams-Linera, G.
+  - fields:
       author:
         - name: Africa News
       keywords:
@@ -311,12 +328,13 @@ entries:
       }
     key: bugreports_YearSuffixInHarvard1
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{Africa News}'
+  - fields:
       author:
         - firstName: John
           lastName: Doe
@@ -326,7 +344,8 @@ entries:
           prefix: van
       keywords:
         - imported
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: Decorations_AndTermUnaffectedByNameDecorations
     input: |-
       @article{decorations_AndTermUnaffectedByNameDecorations,
@@ -337,22 +356,23 @@ entries:
       }
     key: decorations_AndTermUnaffectedByNameDecorations
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
-      options: verbatim
+      options: options
       title: title
-    options:
-      useprefix: 'true'
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Doe, III, John and van Roe, Jane
+      options: useprefix=true
+  - fields:
       author:
         - firstName: Doug
           lastName: Dipheria
           prefix: von
       keywords:
         - imported
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: Disambiguate_CitationLabelInData
     input: |-
       @article{disambiguate_CitationLabelInData,
@@ -363,15 +383,15 @@ entries:
       }
     key: disambiguate_CitationLabelInData
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
-      options: verbatim
+      options: options
       title: title
-    options:
-      useprefix: 'true'
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: von Dipheria, Doug
+      options: useprefix=true
+  - fields:
       author:
         - name: Caritas Europa
         - name: JRS-Europe
@@ -386,12 +406,13 @@ entries:
       }
     key: disambiguate_FailWithYearSuffix
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{Caritas Europa} and {JRS-Europe}'
+  - fields:
       author:
         - firstName: Smith
           lastName: Co
@@ -406,12 +427,13 @@ entries:
       }
     key: disambiguate_YearCollapseWithInstitution
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Smith Co
+  - fields:
       author:
         - firstName: Frank G.
           lastName: Bennett
@@ -427,12 +449,13 @@ entries:
       }
     key: display_SecondFieldAlignMigratePunctuation
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Bennett, Jr., Frank G.
+  - fields:
       author:
         - firstName: Alexander
           lastName: Humboldt
@@ -454,7 +477,8 @@ entries:
       langid: anglais
       location:
         - Londres
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       pagetotal: xviii+214
       publisher:
         - Routledge & Kegan Paul
@@ -477,22 +501,27 @@ entries:
       }
     key: fixedkey
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       isbn: literal
       langid: literal
       location: literallist
-      options: verbatim
+      options: options
       pagetotal: literal
       publisher: literallist
       series: title
       shorttitle: title
       title: title
-    options:
-      useprefix: 'true'
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: >-
+        von Humboldt, Alexander and Gooding, Jr., Cuba and de La Fontaine, Jean
+        and von Wright, Georg Henrik Auto and {von Wright}, Georg Henrik
+        Explicit
+      location: '{Londres}'
+      options: useprefix=true
+      publisher: '{Routledge \& Kegan Paul}'
+  - fields:
       author:
         - firstName: Doe
           lastName: Inc.
@@ -507,19 +536,21 @@ entries:
       }
     key: group_ComplexNesting
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Doe Inc.
+  - fields:
       author:
         - firstName: S. P
           lastName: Berge
           prefix: la
       keywords:
         - imported
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: Integration_DuplicateItem
     input: |-
       @article{integration_DuplicateItem,
@@ -530,15 +561,15 @@ entries:
       }
     key: integration_DuplicateItem
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
-      options: verbatim
+      options: options
       title: title
-    options:
-      useprefix: 'true'
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: la Berge, S. P
+      options: useprefix=true
+  - fields:
       author:
         - firstName: Martin Luther
           lastName: King
@@ -561,22 +592,26 @@ entries:
       }
     key: king_have_1968
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       location: literallist
       pagetotal: literal
       publisher: literallist
       title: title
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: King, Jr., Martin Luther
+      location: '{New York}'
+      publisher: '{Grosset \& Dunlap}'
+  - fields:
       author:
         - firstName: Samuel
           lastName: Simone
           prefix: de
       keywords:
         - imported
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: Magic_CapitalizeFirstOccurringNameParticle
     input: |-
       @article{magic_CapitalizeFirstOccurringNameParticle,
@@ -587,22 +622,23 @@ entries:
       }
     key: magic_CapitalizeFirstOccurringNameParticle
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
-      options: verbatim
+      options: options
       title: title
-    options:
-      useprefix: 'true'
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: de Simone, Samuel
+      options: useprefix=true
+  - fields:
       author:
         - firstName: John
           lastName: Doe
           prefix: von
       keywords:
         - imported
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: Magic_NameParticle
     input: |-
       @article{magic_NameParticle,
@@ -613,15 +649,15 @@ entries:
       }
     key: magic_NameParticle
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
-      options: verbatim
+      options: options
       title: title
-    options:
-      useprefix: 'true'
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: von Doe, John
+      options: useprefix=true
+  - fields:
       author:
         - name: Blob
       keywords:
@@ -635,12 +671,13 @@ entries:
       }
     key: magic_SuppressDuplicateVariableRendering
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{Blob}'
+  - fields:
       author:
         - firstName: James
           lastName: Doe
@@ -656,12 +693,13 @@ entries:
       }
     key: name_ArticularNameAsSortOrder
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Doe, III, James
+  - fields:
       author:
         - firstName: James
           lastName: Doe
@@ -677,12 +715,13 @@ entries:
       }
     key: name_ArticularShortFormCommaSuffix
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Doe, Jr, James
+  - fields:
       author:
         - firstName: Jeffrey
           lastName: Doe
@@ -698,12 +737,13 @@ entries:
       }
     key: name_ArticularWithComma
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Doe, Jr., Jeffrey
+  - fields:
       author:
         - firstName: Noakes
           lastName: Inc.
@@ -718,19 +758,21 @@ entries:
       }
     key: name_Delimiter
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Noakes Inc.
+  - fields:
       author:
         - firstName: Gerard
           lastName: Meer
           prefix: van der
       keywords:
         - imported
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: Name_FormattingOfParticles
     input: |-
       @article{name_FormattingOfParticles,
@@ -741,21 +783,22 @@ entries:
       }
     key: name_FormattingOfParticles
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
-      options: verbatim
+      options: options
       title: title
-    options:
-      useprefix: 'true'
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: van der Meer, Gerard
+      options: useprefix=true
+  - fields:
       author:
         - firstName: Alan
           lastName: al- One
       keywords:
         - imported
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: Name_HyphenatedNonDroppingParticle1
     input: |-
       @article{name_HyphenatedNonDroppingParticle1,
@@ -766,15 +809,15 @@ entries:
       }
     key: name_HyphenatedNonDroppingParticle1
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
-      options: verbatim
+      options: options
       title: title
-    options:
-      useprefix: 'true'
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: al- One, Alan
+      options: useprefix=true
+  - fields:
       author:
         - name: Multi-National United
       keywords:
@@ -788,12 +831,13 @@ entries:
       }
     key: name_Institution
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{Multi-National United}'
+  - fields:
       author:
         - name: São Paulo (Estado)
       keywords:
@@ -807,12 +851,13 @@ entries:
       }
     key: name_InstitutionDecoration
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{São Paulo (Estado)}'
+  - fields:
       author:
         - firstName: Rip
           lastName: Winkle
@@ -822,7 +867,8 @@ entries:
           suffix: III
       keywords:
         - imported
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: Name_MixedFormatsInitialSortOrderAllWithDecorationsEtAl
     input: |-
       @article{name_MixedFormatsInitialSortOrderAllWithDecorationsEtAl,
@@ -833,15 +879,15 @@ entries:
       }
     key: name_MixedFormatsInitialSortOrderAllWithDecorationsEtAl
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
-      options: verbatim
+      options: options
       title: title
-    options:
-      useprefix: 'true'
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: van Winkle, Rip and Thucydides, III, Carl
+      options: useprefix=true
+  - fields:
       author:
         - name: Alfred Benzon Foundation
         - name: James Benson Foundation
@@ -857,12 +903,15 @@ entries:
       }
     key: name_MultipleLiteral
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: >-
+        {Alfred Benzon Foundation} and {James Benson Foundation} and {John Candy
+        Foundation}
+  - fields:
       author:
         - firstName: Jean
           lastName: La Fontaine
@@ -870,7 +919,8 @@ entries:
           suffix: III
       keywords:
         - imported
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: Name_namepartAffixes
     input: |-
       @article{name_namepartAffixes,
@@ -881,15 +931,15 @@ entries:
       }
     key: name_namepartAffixes
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
-      options: verbatim
+      options: options
       title: title
-    options:
-      useprefix: 'true'
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: de La Fontaine, III, Jean
+      options: useprefix=true
+  - fields:
       author:
         - firstName: Jean
           lastName: La Fontaine
@@ -905,19 +955,21 @@ entries:
       }
     key: name_ParsedDroppingParticleWithAffixes
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: de La Fontaine, Jean
+  - fields:
       author:
         - firstName: Jean
           lastName: Fontaine
           prefix: de la
       keywords:
         - imported
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: Name_ParsedNonDroppingParticleWithAffixes
     input: |-
       @article{name_ParsedNonDroppingParticleWithAffixes,
@@ -928,15 +980,15 @@ entries:
       }
     key: name_ParsedNonDroppingParticleWithAffixes
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
-      options: verbatim
+      options: options
       title: title
-    options:
-      useprefix: 'true'
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: de la Fontaine, Jean
+      options: useprefix=true
+  - fields:
       author:
         - firstName: François Hédelin
           lastName: Aubignac
@@ -944,7 +996,8 @@ entries:
           suffix: abbé d'
       keywords:
         - imported
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: Name_ParsedNonDroppingParticleWithApostrophe
     input: |-
       @article{name_ParsedNonDroppingParticleWithApostrophe,
@@ -955,15 +1008,15 @@ entries:
       }
     key: name_ParsedNonDroppingParticleWithApostrophe
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
-      options: verbatim
+      options: options
       title: title
-    options:
-      useprefix: 'true'
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: d' Aubignac, abbé d', François Hédelin
+      options: useprefix=true
+  - fields:
       author:
         - firstName: Eric
           lastName: Vlist
@@ -973,7 +1026,8 @@ entries:
           prefix: van
       keywords:
         - imported
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: Name_ParseNames
     input: |-
       @article{name_ParseNames,
@@ -984,15 +1038,15 @@ entries:
       }
     key: name_ParseNames
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
-      options: verbatim
+      options: options
       title: title
-    options:
-      useprefix: 'true'
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: van der Vlist, Eric and van Gogh, Vincent
+      options: useprefix=true
+  - fields:
       author:
         - firstName: Onename
           lastName: One
@@ -1007,7 +1061,8 @@ entries:
           lastName: Van Four
       keywords:
         - imported
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: Name_ParticleCaps1
     input: |-
       @article{name_ParticleCaps1,
@@ -1018,15 +1073,17 @@ entries:
       }
     key: name_ParticleCaps1
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
-      options: verbatim
+      options: options
       title: title
-    options:
-      useprefix: 'true'
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: >-
+        van One, Onename and van Two, Twoname and van Three, Threename and Van
+        Four, Fourname
+      options: useprefix=true
+  - fields:
       author:
         - firstName: Dick
           lastName: Van Dyke
@@ -1041,19 +1098,21 @@ entries:
       }
     key: name_ParticleCaps3
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{Van Dyke}, Dick'
+  - fields:
       author:
         - firstName: John
           lastName: Doe
           prefix: de la
       keywords:
         - imported
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: Name_ParticleFormatting
     input: |-
       @article{name_ParticleFormatting,
@@ -1064,15 +1123,15 @@ entries:
       }
     key: name_ParticleFormatting
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
-      options: verbatim
+      options: options
       title: title
-    options:
-      useprefix: 'true'
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: de la Doe, John
+      options: useprefix=true
+  - fields:
       author:
         - firstName: Givenname
           lastName: Las Familyname
@@ -1141,7 +1200,8 @@ entries:
           prefix: ver
       keywords:
         - imported
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: Name_ParticlesDemoteNonDroppingNever
     input: |-
       @article{name_ParticlesDemoteNonDroppingNever,
@@ -1152,22 +1212,35 @@ entries:
       }
     key: name_ParticlesDemoteNonDroppingNever
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
-      options: verbatim
+      options: options
       title: title
-    options:
-      useprefix: 'true'
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: >-
+        de Las Familyname, Givenname and del Familyname, Givenname and Di
+        Familyname, Givenname and Da Familyname, Givenname and Do Familyname,
+        Givenname and Des Familyname, Givenname and Lou Familyname, Givenname
+        and Pietro Familyname, Givenname and de Familyname, Givenname and de La
+        Familyname, Givenname and Le Familyname, Givenname and La Familyname,
+        Givenname and L'Familyname, Givenname and Saint Familyname, Givenname
+        and Sainte Familyname, Givenname and St. Familyname, Givenname and Ste.
+        Familyname, Givenname and van Familyname, Givenname and van de
+        Familyname, Givenname and van der Familyname, Givenname and van den
+        Familyname, Givenname and vander Familyname, Givenname and v.d.
+        Familyname, Givenname and vd Familyname, Givenname and van het
+        Familyname, Givenname and ver Familyname, Givenname
+      options: useprefix=true
+  - fields:
       author:
         - firstName: Jacques
           lastName: Doe
           prefix: van
       keywords:
         - imported
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: Name_WesternArticularLowercase
     input: |-
       @article{name_WesternArticularLowercase,
@@ -1178,15 +1251,15 @@ entries:
       }
     key: name_WesternArticularLowercase
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
-      options: verbatim
+      options: options
       title: title
-    options:
-      useprefix: 'true'
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: van Doe, Jacques
+      options: useprefix=true
+  - fields:
       author:
         - firstName: Gérard
           lastName: Martinière
@@ -1194,7 +1267,8 @@ entries:
           suffix: III
       keywords:
         - imported
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: Nameorder_Long
     input: |-
       @article{nameorder_Long,
@@ -1205,15 +1279,15 @@ entries:
       }
     key: nameorder_Long
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
-      options: verbatim
+      options: options
       title: title
-    options:
-      useprefix: 'true'
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: de la Martinière, III, Gérard
+      options: useprefix=true
+  - fields:
       author:
         - firstName: Al-Khatib
           lastName: Organization
@@ -1228,12 +1302,13 @@ entries:
       }
     key: position_IbidWithSuffix
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Al-Khatib Organization
+  - fields:
       author:
         - firstName: Alan
           lastName: De Quincey
@@ -1248,12 +1323,13 @@ entries:
       }
     key: sort_ChangeInNameSort
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{De Quincey}, Alan'
+  - fields:
       author:
         - firstName: Beijing
           lastName: Zoo
@@ -1269,12 +1345,13 @@ entries:
       }
     key: sort_ChicagoYearSuffix1
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Beijing Zoo and {Beijing Zoo}
+  - fields:
       author:
         - firstName: ANZ
           lastName: Group
@@ -1289,12 +1366,13 @@ entries:
       }
     key: sort_FamilyOnly
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: ANZ Group
+  - fields:
       author:
         - firstName: Peter A.C.
           lastName: Horvath
@@ -1304,7 +1382,8 @@ entries:
           prefix: in 't
       keywords:
         - imported
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: Sort_LeadingApostropheOnNameParticle
     input: |-
       @article{sort_LeadingApostropheOnNameParticle,
@@ -1315,22 +1394,23 @@ entries:
       }
     key: sort_LeadingApostropheOnNameParticle
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
-      options: verbatim
+      options: options
       title: title
-    options:
-      useprefix: 'true'
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '''t Horvath, Peter A.C. and in ''t Horvath, Peter A.D.'
+      options: useprefix=true
+  - fields:
       author:
         - firstName: John
           lastName: Noakes
           prefix: di
       keywords:
         - imported
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       title: Sort_NameParticleInNameSortFalse
     input: |-
       @article{sort_NameParticleInNameSortFalse,
@@ -1341,15 +1421,15 @@ entries:
       }
     key: sort_NameParticleInNameSortFalse
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
-      options: verbatim
+      options: options
       title: title
-    options:
-      useprefix: 'true'
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: di Noakes, John
+      options: useprefix=true
+  - fields:
       author:
         - firstName: Jacob
           lastName: '[F]linders'
@@ -1364,10 +1444,12 @@ entries:
       }
     key: sort_NameVariable
     mode:
-      author: creatorlist
+      author: namelist
       keywords: verbatimlist
       title: title
     type: article
+    verbatim:
+      author: '[F]linders, Jacob'
 errors: []
 jabref:
   root: []

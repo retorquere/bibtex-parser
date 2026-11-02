@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Jane
           lastName: Doe
@@ -23,12 +22,14 @@ entries:
       % Missing required field 'booktitle'
     key: Doe2020
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       title: title
       weirdfield: literal
       wonderfield: literal
     type: inproceedings
+    verbatim:
+      author: Doe, Jane
 errors: []
 jabref:
   root: []

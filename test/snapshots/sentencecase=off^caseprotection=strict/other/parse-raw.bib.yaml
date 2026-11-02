@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Frank
           lastName: Mittelbach
@@ -43,7 +42,7 @@ entries:
       }
     key: MittelbachLaTeXCompanion2006
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       edition: literal
       isbn: literal
@@ -52,8 +51,15 @@ entries:
       pagetotal: literal
       publisher: literallist
       title: title
-      translator: creatorlist
+      translator: namelist
     type: book
+    verbatim:
+      author: Mittelbach, Frank and Goossens, Michel
+      location: '{Paris}'
+      publisher: '{Pearson Education France}'
+      translator: >-
+        Andr\'e, Jacques and Bellet, Benoît and Charpentier, Jean-Côme and
+        Hufflen, Jean-Michel and Soulet, Yves
 errors: []
 jabref:
   root: []

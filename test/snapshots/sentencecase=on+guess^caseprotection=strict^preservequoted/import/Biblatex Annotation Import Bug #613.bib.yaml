@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       annotation: a "monumental" work on the mosaics of San Marco
       author:
         - firstName: Otto
@@ -24,12 +23,16 @@ entries:
     key: Demus1984
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
       date: literal
       location: literallist
       publisher: literallist
       title: title
     type: book
+    verbatim:
+      author: Demus, Otto
+      location: Chicago
+      publisher: University of Chicago Press
 errors: []
 jabref:
   root: []

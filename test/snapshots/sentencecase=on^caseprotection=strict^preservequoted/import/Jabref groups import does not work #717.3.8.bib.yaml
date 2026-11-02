@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: John
           lastName: Doe
@@ -21,15 +20,16 @@ entries:
       }
     key: Doe-2017
     mode:
-      author: creatorlist
+      author: namelist
       groups: verbatim
       owner: literal
       timestamp: literal
       title: title
       year: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: John Doe
+  - fields:
       author:
         - firstName: I.
           lastName: Other
@@ -47,14 +47,15 @@ entries:
       }
     key: Other-
     mode:
-      author: creatorlist
+      author: namelist
       groups: verbatim
       owner: literal
       timestamp: literal
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: I. Other
+  - fields:
       author:
         - firstName: I
           lastName: Unkonw
@@ -72,14 +73,15 @@ entries:
       }
     key: Unkonw-
     mode:
-      author: creatorlist
+      author: namelist
       groups: verbatim
       owner: literal
       timestamp: literal
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: I Unkonw
+  - fields:
       author:
         - firstName: I
           lastName: Unkonw
@@ -97,12 +99,14 @@ entries:
       }
     key: Unkonw
     mode:
-      author: creatorlist
+      author: namelist
       groups: verbatim
       owner: literal
       timestamp: literal
       title: title
     type: article
+    verbatim:
+      author: I Unkonw
 errors: []
 jabref:
   databaseType: bibtex

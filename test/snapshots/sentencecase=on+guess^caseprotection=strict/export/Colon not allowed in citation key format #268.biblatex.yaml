@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       abstract: >-
         This history of the books of Reading Abbey covers the period from the
         abbey's foundation to its dissolution, and also charts the dispersal of
@@ -55,7 +54,7 @@ entries:
     key: coates:1999english
     mode:
       abstract: literal
-      author: creatorlist
+      author: namelist
       date: literal
       isbn: literal
       keywords: verbatimlist
@@ -67,6 +66,10 @@ entries:
       shorttitle: title
       title: title
     type: book
+    verbatim:
+      author: Coates, Alan
+      location: '{Oxford}'
+      publisher: '{Clarendon Press}'
 errors: []
 jabref:
   root: []

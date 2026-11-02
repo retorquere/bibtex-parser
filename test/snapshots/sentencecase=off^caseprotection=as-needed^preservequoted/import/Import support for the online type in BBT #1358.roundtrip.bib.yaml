@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - name: Intel
       date: '2019'
@@ -16,11 +15,13 @@ entries:
       }
     key: WEB:intel-ark-atom
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       title: title
       url: verbatim
     type: online
+    verbatim:
+      author: '{Intel}'
 errors: []
 jabref:
   root: []

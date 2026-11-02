@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - name: Plato
       booktitle: Clitophon, Republic, Timaeus, Critias
@@ -36,10 +35,10 @@ entries:
       }
     key: Plato1901
     mode:
-      author: creatorlist
+      author: namelist
       booktitle: title
       date: literal
-      editor: creatorlist
+      editor: namelist
       langid: literal
       location: literallist
       maintitle: title
@@ -49,8 +48,12 @@ entries:
       title: title
       volume: literal
     type: incollection
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{Plato}'
+      editor: Burnet, John
+      location: '{Oxford}'
+      publisher: '{Clarendon Press}'
+  - fields:
       author:
         - name: Plato
       date: '1902'
@@ -81,9 +84,9 @@ entries:
       }
     key: Plato1902
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
-      editor: creatorlist
+      editor: namelist
       langid: literal
       location: literallist
       maintitle: title
@@ -92,6 +95,11 @@ entries:
       title: title
       volume: literal
     type: book
+    verbatim:
+      author: '{Plato}'
+      editor: Burnet, John
+      location: '{Oxford}'
+      publisher: '{Clarendon Press}'
 errors: []
 jabref:
   root: []

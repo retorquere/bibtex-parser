@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       abstract: >-
         Bioconductor is a widely used open source and open development software
         project for the analysis and comprehension of data arising from
@@ -81,8 +80,8 @@ entries:
       abstract: literal
       date: literal
       doi: verbatim
-      editor: creatorlist
-      editorb: creatorlist
+      editor: namelist
+      editorb: namelist
       editorbtype: literal
       isbn: literal
       keywords: verbatimlist
@@ -91,6 +90,13 @@ entries:
       series: title
       title: title
     type: book
+    verbatim:
+      editor: >-
+        Gentleman, Robert and Carey, Vincent J. and Huber, Wolfgang and
+        Irizarry, Rafael A. and Dudoit, Sandrine
+      editorb: Wong, Wing and Gail, M. and Krickeberg, K. and Tsiatis, A. and Samet, J.
+      location: '{New York, NY}'
+      publisher: '{Springer New York}'
 errors: []
 jabref:
   root: []

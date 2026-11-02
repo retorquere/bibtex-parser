@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Franck
           lastName: Cappello
@@ -42,7 +41,7 @@ entries:
       }
     key: CapEA11
     mode:
-      author: creatorlist
+      author: namelist
       booktitle: title
       date: literal
       doi: verbatim
@@ -54,8 +53,12 @@ entries:
       url: verbatim
       urldate: literal
     type: inproceedings
-  - annotations: {}
-    fields:
+    verbatim:
+      author: >-
+        Cappello, Franck and Jacquelin, Mathias and Marchal, Loris and Robert,
+        Yves and Snir, Marc
+      publisher: '{IEEE}'
+  - fields:
       abstract: >-
         We study the energy used by a production-level regional climate and
         weather simulation code on a distributed memory system with hybrid
@@ -126,7 +129,7 @@ entries:
     key: CumEA14
     mode:
       abstract: literal
-      author: creatorlist
+      author: namelist
       booktitle: title
       date: literal
       doi: verbatim
@@ -141,8 +144,13 @@ entries:
       url: verbatim
       urldate: literal
     type: inproceedings
-  - annotations: {}
-    fields:
+    verbatim:
+      author: >-
+        Cumming, Ben and Fourestey, Gilles and Fuhrer, Oliver and Gysi, Tobias
+        and Fatica, Massimiliano and Schulthess, Thomas C.
+      location: '{Piscataway, NJ, USA}'
+      publisher: '{IEEE Press}'
+  - fields:
       author:
         - firstName: Karl E.
           lastName: Taylor
@@ -183,7 +191,7 @@ entries:
       }
     key: TayEA11
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       doi: verbatim
       issn: literal
@@ -196,6 +204,8 @@ entries:
       urldate: literal
       volume: literal
     type: article
+    verbatim:
+      author: Taylor, Karl E. and Stouffer, Ronald J. and Meehl, Gerald A.
 errors: []
 jabref:
   root: []

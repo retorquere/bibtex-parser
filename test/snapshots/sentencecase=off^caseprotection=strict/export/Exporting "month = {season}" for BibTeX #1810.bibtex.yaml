@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Leanne
           lastName: Hinton
@@ -33,8 +32,8 @@ entries:
       }
     key: hinton88rht
     mode:
-      author: creatorlist
-      collaborator: creatorlist
+      author: namelist
+      collaborator: namelist
       doi: verbatim
       issn: literal
       journal: literal
@@ -45,6 +44,9 @@ entries:
       volume: literal
       year: literal
     type: article
+    verbatim:
+      author: Hinton, Leanne
+      collaborator: Malotki, Ekkehart
 errors: []
 jabref:
   root: []

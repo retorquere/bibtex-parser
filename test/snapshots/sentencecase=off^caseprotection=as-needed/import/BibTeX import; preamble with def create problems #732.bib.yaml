@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Jan
           lastName: Franců
@@ -11,9 +10,11 @@ entries:
     input: "@incollection {MR1870153,\n\t       AUTHOR = {Franc{\\ocirc{u}}, Jan and Krej{\\v{c}}{\\'{\\i}}, Pavel},\n\t            TITLE = {Homogenization of scalar wave equation with hysteresis\n\t\t\t              operator},\n       }"
     key: MR1870153
     mode:
-      author: creatorlist
+      author: namelist
       title: title
     type: incollection
+    verbatim:
+      author: Franc{\ocirc{u}}, Jan and Krej{\v{c}}{\'{\i}}, Pavel
 errors: []
 jabref:
   root: []

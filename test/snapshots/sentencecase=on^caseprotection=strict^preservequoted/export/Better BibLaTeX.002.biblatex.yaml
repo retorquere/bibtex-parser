@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Milton
           lastName: Abramowitz
@@ -27,15 +26,18 @@ entries:
       }
     key: Abramowitz1964
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       edition: literal
       location: literallist
       publisher: literallist
       title: title
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Abramowitz, Milton and Stegun, Irene A.
+      location: '{New York}'
+      publisher: '{Dover}'
+  - fields:
       author:
         - firstName: Joe
           lastName: Torre
@@ -56,12 +58,15 @@ entries:
       }
     key: Torre2008
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       isbn: literal
       publisher: literallist
       title: title
     type: book
+    verbatim:
+      author: Torre, Joe and Verducci, Tom
+      publisher: '{Doubleday}'
 errors: []
 jabref:
   root: []

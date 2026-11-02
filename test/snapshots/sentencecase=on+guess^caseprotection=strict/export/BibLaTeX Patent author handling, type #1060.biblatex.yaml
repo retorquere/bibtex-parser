@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Some
           lastName: Inventor
@@ -37,10 +36,10 @@ entries:
       }
     key: inventorCombinatorialProblemStabilityIssueDate
     mode:
-      author: creatorlist
-      editora: creatorlist
+      author: namelist
+      editora: namelist
       editoratype: literal
-      holder: creatorlist
+      holder: namelist
       location: literallist
       number: literal
       pages: literal
@@ -48,8 +47,12 @@ entries:
       type: literal
       year: literal
     type: patent
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Inventor, Some
+      editora: Attorney/Agent, Some and Contributer, Some
+      holder: '{Assignee}'
+      location: '{Country}'
+  - fields:
       abstract: >-
         Die Erfindung betrifft eine elektrische Einrichtung mit einem Generator
         12, insbesondere für die Verwendung in dem Bordnetz 13 eines
@@ -111,15 +114,24 @@ entries:
     key: laufenbergElektrischeEinrichtungUnd2005
     mode:
       abstract: literal
-      author: creatorlist
+      author: namelist
       date: literal
-      holder: creatorlist
+      holder: namelist
       number: literal
       title: title
       type: literal
       url: verbatim
       urldate: literal
     type: patent
+    verbatim:
+      author: >-
+        Laufenberg, Xaver and Eynius, Dominique and Suelzle, Helmut and Usbeck,
+        Stephan and Spaeth, Matthias and Neuser-Hoffmann, Miriam and Myrzik,
+        Christian and Schmid, Manfred and Nietfeld, Franz and Thiel, Alexander
+        and Braun, Harald and Ebner, Norbert
+      holder: >-
+        {DaimlerChrysler AG (Stuttgart, 70567, DE) Bayerische Motoren Werke AG
+        (München, 80809, DE) Robert Bosch GmbH (Stuttgart, 70469, DE)}
 errors: []
 jabref:
   root: []

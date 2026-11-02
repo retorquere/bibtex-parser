@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       abstract: >-
         The epitopes present on beta-(1–>4)-galactosyltransferase-1 (beta
         4Gal-T1) have been explored using a panel of monoclonal antibodies
@@ -74,7 +73,7 @@ entries:
     key: keusch_antibody_1998
     mode:
       abstract: literal
-      author: creatorlist
+      author: namelist
       date: literal
       eprint: verbatim
       eprinttype: literal
@@ -88,8 +87,11 @@ entries:
       title: title
       volume: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: >-
+        Keusch, J. and Panayotou, G. and Malissard, M. and Berger, E. G. and
+        Appert, H. E. and Lydyard, P. M. and Delves, P. J.
+  - fields:
       abstract: >-
         Pleckstrin homology (PH) domains may act as membrane localization
         modules through specific interactions with phosphoinositide
@@ -197,7 +199,7 @@ entries:
     key: salim_distinct_1996
     mode:
       abstract: literal
-      author: creatorlist
+      author: namelist
       date: literal
       eprint: verbatim
       eprinttype: literal
@@ -212,6 +214,11 @@ entries:
       title: title
       volume: literal
     type: article
+    verbatim:
+      author: >-
+        Salim, K. and Bottomley, M. J. and Querfurth, E. and Zvelebil, M. J. and
+        Gout, I. and Scaife, R. and Margolis, R. L. and Gigg, R. and Smith, C.
+        I. and Driscoll, P. C. and Waterfield, M. D. and Panayotou, G.
 errors: []
 jabref:
   root: []

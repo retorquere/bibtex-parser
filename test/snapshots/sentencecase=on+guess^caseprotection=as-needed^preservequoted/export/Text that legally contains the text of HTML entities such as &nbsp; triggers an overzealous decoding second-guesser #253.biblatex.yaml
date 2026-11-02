@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       abstract: >-
         In 2011 the international development community committed to make
         development co-operation more effective to deliver better results for
@@ -60,7 +59,7 @@ entries:
     mode:
       abstract: literal
       annotation: richtext
-      author: creatorlist
+      author: namelist
       date: literal
       isbn: literal
       keywords: verbatimlist
@@ -71,6 +70,10 @@ entries:
       url: verbatim
       urldate: literal
     type: book
+    verbatim:
+      author: '{OECD} and {UNDP}'
+      location: '{Paris}'
+      publisher: '{Organisation for Economic Co-operation and Development}'
 errors: []
 jabref:
   root: []

@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       address:
         - Würzburg
       author:
@@ -27,15 +26,19 @@ entries:
     key: schiffer2005a
     mode:
       address: literallist
-      author: creatorlist
+      author: namelist
       booktitle: title
       date: literal
       language: literallist
       publisher: literallist
       title: title
     type: incollection
-  - annotations: {}
-    fields:
+    verbatim:
+      address: Würzburg
+      author: Schiffer, S.
+      language: german
+      publisher: Ergon
+  - fields:
       address:
         - Münster
       author:
@@ -66,16 +69,20 @@ entries:
     key: albrecht2007a
     mode:
       address: literallist
-      author: creatorlist
+      author: namelist
       booktitle: title
       date: literal
-      editor: creatorlist
+      editor: namelist
       pages: literal
       publisher: literallist
       title: title
     type: incollection
-  - annotations: {}
-    fields:
+    verbatim:
+      address: Münster
+      author: Albrecht, C.
+      editor: Malik, J./Rüpke and J./Wobbe, T.
+      publisher: Aschendorff
+  - fields:
       address:
         - Paderborn
       author:
@@ -109,16 +116,20 @@ entries:
     key: gaertner2008a
     mode:
       address: literallist
-      author: creatorlist
+      author: namelist
       booktitle: title
       date: literal
-      editor: creatorlist
+      editor: namelist
       pages: literal
       publisher: literallist
       title: title
     type: incollection
-  - annotations: {}
-    fields:
+    verbatim:
+      address: Paderborn
+      author: Gärtner, C.
+      editor: Gabriel, K./Höhn and H.-J.
+      publisher: Schöningh
+  - fields:
       address:
         - Würzburg
       author:
@@ -144,13 +155,18 @@ entries:
     key: schiffer2005a
     mode:
       address: literallist
-      author: creatorlist
+      author: namelist
       booktitle: title
       date: literal
       language: literallist
       publisher: literallist
       title: title
     type: incollection
+    verbatim:
+      address: Würzburg
+      author: Schiffer, S.
+      language: german
+      publisher: Ergon
 errors: []
 jabref:
   root: []

@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Philippe
           initial: Ph
@@ -12,8 +11,10 @@ entries:
       }
     key: test
     mode:
-      author: creatorlist
+      author: namelist
     type: article
+    verbatim:
+      author: family=Duchamp, given=Philippe, given-i={Ph}
 errors: []
 jabref:
   root: []

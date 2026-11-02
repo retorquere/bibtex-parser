@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       address:
         - Berlin
       author:
@@ -51,9 +50,9 @@ entries:
     key: wilkinson2013
     mode:
       address: literallist
-      author: creatorlist
+      author: namelist
       booktitle: title
-      collaborator: creatorlist
+      collaborator: namelist
       copyright: literal
       doi: verbatim
       edition: literal
@@ -68,6 +67,12 @@ entries:
       volume: literal
       year: literal
     type: inbook
+    verbatim:
+      address: '{Berlin}'
+      author: Wilkinson, J. H.
+      collaborator: Wilkinson, J. H. and Reinsch, C.
+      language: en-GB
+      publisher: '{Springer}'
 errors: []
 jabref:
   root: []

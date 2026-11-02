@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       abstract: >-
         In suggesting that new nations often coalesce in the decades following
         war, historians have posed an important psychological question: Does the
@@ -59,7 +58,7 @@ entries:
     key: bauer_war_2014
     mode:
       abstract: literal
-      author: creatorlist
+      author: namelist
       doi: verbatim
       issn: literal
       journal: literal
@@ -71,8 +70,12 @@ entries:
       volume: literal
       year: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: >-
+        Bauer, Michal and Cassar, Alessandra and Chytilov{\'a}, Julie and
+        Henrich, Joseph
+      language: en
+  - fields:
       address:
         - Bruxelles
       author:
@@ -109,17 +112,22 @@ entries:
     key: bowles_coevolution_2003
     mode:
       address: literallist
-      author: creatorlist
+      author: namelist
       booktitle: title
-      editor: creatorlist
+      editor: namelist
       isbn: literal
       language: literallist
       publisher: literallist
       title: title
       year: literal
     type: incollection
-  - annotations: {}
-    fields:
+    verbatim:
+      address: '{Bruxelles}'
+      author: Bowles, Samuel and Choi, Jung-Kyoo
+      editor: van Parijs, Philippe
+      language: English
+      publisher: '{De Boeck}'
+  - fields:
       abstract: >-
         A distinctive feature of human behaviour is the widespread occurrence of
         cooperation among unrelated individuals. Explaining the maintenance of
@@ -170,7 +178,7 @@ entries:
     key: puurtinen_betweengroup_2009
     mode:
       abstract: literal
-      author: creatorlist
+      author: namelist
       doi: verbatim
       issn: literal
       journal: literal
@@ -183,8 +191,10 @@ entries:
       volume: literal
       year: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Puurtinen, Mikael and Mappes, Tapio
+      language: en
+  - fields:
       address:
         - Boston, MA
       author:
@@ -212,13 +222,18 @@ entries:
     key: sumner_folkways_1906
     mode:
       address: literallist
-      author: creatorlist
+      author: namelist
       language: literallist
       publisher: literallist
       shorttitle: title
       title: title
       year: literal
     type: book
+    verbatim:
+      address: '{Boston, MA}'
+      author: Sumner, William Graham
+      language: English
+      publisher: '{Ginn}'
 errors: []
 jabref:
   root: []

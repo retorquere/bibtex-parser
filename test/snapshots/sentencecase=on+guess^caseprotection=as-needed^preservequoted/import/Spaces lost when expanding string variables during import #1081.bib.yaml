@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - lastName: Author
       journal: a space between this and this
@@ -16,11 +15,13 @@ entries:
       }
     key: key
     mode:
-      author: creatorlist
+      author: namelist
       journal: literal
       title: title
       year: literal
     type: article
+    verbatim:
+      author: Author
 errors: []
 jabref:
   root: []

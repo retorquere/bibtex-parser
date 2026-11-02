@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       address:
         - Basel
       author:
@@ -42,10 +41,10 @@ entries:
     key: Laskar2013
     mode:
       address: literallist
-      author: creatorlist
+      author: namelist
       booktitle: title
       doi: verbatim
-      editor: creatorlist
+      editor: namelist
       isbn: literal
       pages: literal
       publisher: literallist
@@ -53,6 +52,14 @@ entries:
       url: verbatim
       year: literal
     type: inbook
+    verbatim:
+      address: Basel
+      author: Laskar, Jacques
+      editor: |-
+        Duplantier, Bertrand
+        and Nonnenmacher, St{\'e}phane
+        and Rivasseau, Vincent
+      publisher: Springer Basel
 errors: []
 jabref:
   root: []

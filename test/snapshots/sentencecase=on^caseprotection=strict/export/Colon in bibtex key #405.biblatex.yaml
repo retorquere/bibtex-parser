@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Y.A.W.
           lastName: Kort
@@ -17,7 +16,8 @@ entries:
       doi: http://alexandria.tue.nl/campusonly/Metis215145.pdf
       location:
         - Barcelona
-      options: useprefix=true
+      options:
+        useprefix: 'true'
       pages: 195–203
       publisher:
         - Starlab
@@ -40,19 +40,22 @@ entries:
       }
     key: deKort:2007:DigitalGamesSocial
     mode:
-      author: creatorlist
+      author: namelist
       booktitle: title
       date: literal
       doi: verbatim
       location: literallist
-      options: verbatim
+      options: options
       pages: literal
       publisher: literallist
       title: title
       url: verbatim
-    options:
-      useprefix: 'true'
     type: inproceedings
+    verbatim:
+      author: de Kort, Y.A.W. and IJsselsteijn, W.A. and Poels, K.
+      location: '{Barcelona}'
+      options: useprefix=true
+      publisher: '{Starlab}'
 errors: []
 jabref:
   root: []

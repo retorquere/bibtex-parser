@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Robert M.
           lastName: Corless
@@ -37,7 +36,7 @@ entries:
       }
     key: CorlessJeffreyKnuth1997Proc1997IntSympSymbAlgebrComput
     mode:
-      author: creatorlist
+      author: namelist
       booktitle: title
       date: literal
       doi: verbatim
@@ -47,6 +46,9 @@ entries:
       publisher: literallist
       title: title
     type: inproceedings
+    verbatim:
+      author: Corless, Robert M. and Jeffrey, David J. and Knuth, Donald E.
+      publisher: '{ACM Press}'
 errors: []
 jabref:
   root: []

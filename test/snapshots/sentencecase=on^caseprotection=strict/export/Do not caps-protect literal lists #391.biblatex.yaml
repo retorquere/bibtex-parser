@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       institution:
         - Office of Information Management and Communications
       title: Institution
@@ -15,8 +14,9 @@ entries:
       institution: literallist
       title: title
     type: report
-  - annotations: {}
-    fields:
+    verbatim:
+      institution: '{Office of Information Management and Communications}'
+  - fields:
       location:
         - Trinidad and Tobago
       origlocation:
@@ -42,8 +42,12 @@ entries:
       publisher: literallist
       title: title
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      location: '{Trinidad and Tobago}'
+      origlocation: '{Saint Kitts and Nevis}'
+      origpublisher: '{Doe and Company}'
+      publisher: '{Miller, Smith and Jones}'
+  - fields:
       institution:
         - University of Saint Kitts and Nevis
       title: University
@@ -57,6 +61,8 @@ entries:
       institution: literallist
       title: title
     type: thesis
+    verbatim:
+      institution: '{University of Saint Kitts and Nevis}'
 errors: []
 jabref:
   root: []

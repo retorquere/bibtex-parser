@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Leo
           lastName: Spitzer
@@ -29,7 +28,7 @@ entries:
       }
     key: Spitzer1941
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       doi: verbatim
       issn: literal
@@ -40,6 +39,8 @@ entries:
       title: title
       volume: literal
     type: article
+    verbatim:
+      author: Spitzer, Leo
 errors: []
 jabref:
   root: []

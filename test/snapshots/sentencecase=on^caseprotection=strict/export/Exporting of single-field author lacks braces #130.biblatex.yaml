@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Adam
           lastName: Kolawa
@@ -42,7 +41,7 @@ entries:
       }
     key: Kolawa2007
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       isbn: literal
       keywords: verbatimlist
@@ -53,6 +52,12 @@ entries:
       url: verbatim
       urldate: literal
     type: book
+    verbatim:
+      author: >-
+        Kolawa, Adam and Huizinga, Dorota and {Wiley InterScience (Online
+        service)}
+      location: '{Hoboken, NJ, USA}'
+      publisher: '{IEEE Computer Society Press}'
 errors: []
 jabref:
   root: []

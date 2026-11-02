@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - name: Geophysics Study Committee
         - name: Geophysics Research Board
@@ -27,13 +26,19 @@ entries:
       }
     key: geophysicsstudycommittee_continental_1980
     mode:
-      author: creatorlist
+      author: namelist
       isbn: literal
       note: richtext
       publisher: literallist
       title: title
       year: literal
     type: book
+    verbatim:
+      author: >-
+        {Geophysics Study Committee} and {Geophysics Research Board} and
+        {Assembly of Mathematical and Physical Sciences, National Research
+        Council}
+      publisher: '{The National Academies Press}'
 errors: []
 jabref:
   root: []

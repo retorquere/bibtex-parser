@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       acmid: '1596682'
       address:
         - New York, NY, USA
@@ -51,7 +50,7 @@ entries:
     mode:
       acmid: literal
       address: literallist
-      author: creatorlist
+      author: namelist
       booktitle: title
       doi: verbatim
       isbn: literal
@@ -65,6 +64,11 @@ entries:
       url: verbatim
       year: literal
     type: inproceedings
+    verbatim:
+      address: New York, NY, USA
+      author: Mostafa, Nagy and Krintz, Chandra
+      location: Calgary, Alberta, Canada
+      publisher: ACM
 errors: []
 jabref:
   root: []

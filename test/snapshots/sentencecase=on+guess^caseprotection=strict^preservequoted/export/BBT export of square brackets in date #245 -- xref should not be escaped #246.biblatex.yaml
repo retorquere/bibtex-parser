@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       abstract: >-
         State planning has been a defining means for modern subjects to regulate
         the passage of time. In practice, it is the focus of multiple conflicts
@@ -60,7 +59,7 @@ entries:
     key: bentley_academic_2011
     mode:
       abstract: literal
-      author: creatorlist
+      author: namelist
       doi: verbatim
       issn: literal
       journaltitle: literal
@@ -77,8 +76,9 @@ entries:
       volume: literal
       xref: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Abram, Simone
+  - fields:
       author:
         - firstName: Kaetinyeri
           lastName: Commonwealth
@@ -110,7 +110,7 @@ entries:
       }
     key: kartinyeri
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       institution: literallist
       journaltitle: literal
@@ -118,11 +118,14 @@ entries:
       pages: literal
       shorttitle: title
       title: title
-      translator: creatorlist
+      translator: namelist
       volume: literal
     type: jurisdiction
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Kaetinyeri v Commonwealth
+      institution: '{HCA}'
+      translator: Kartinyeri
+  - fields:
       author:
         - firstName: A. Mark
           lastName: Pollard
@@ -148,7 +151,7 @@ entries:
       }
     key: pollard_bicycle_2007
     mode:
-      author: creatorlist
+      author: namelist
       journaltitle: literal
       origdate: literal
       pages: literal
@@ -156,6 +159,8 @@ entries:
       url: verbatim
       volume: literal
     type: article
+    verbatim:
+      author: Pollard, A. Mark and Bray, Peter
 errors: []
 jabref:
   root: []

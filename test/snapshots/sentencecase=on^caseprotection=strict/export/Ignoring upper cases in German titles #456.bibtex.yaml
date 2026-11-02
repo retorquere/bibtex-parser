@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Franz-Xaver
           lastName: Kaufmann
@@ -28,17 +27,20 @@ entries:
       }
     key: Kaufmann1990
     mode:
-      author: creatorlist
+      author: namelist
       booktitle: title
       doi: verbatim
-      editor: creatorlist
+      editor: namelist
       pages: literal
       publisher: literallist
       title: title
       year: literal
     type: incollection
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Kaufmann, Franz-Xaver
+      editor: Kauffmann, Franz-Xaver
+      publisher: '{VS Verlag f\"ur Sozialwissenschaften}'
+  - fields:
       author:
         - firstName: Franz-Xaver
           lastName: Kaufmann
@@ -65,15 +67,19 @@ entries:
       }
     key: Kaufmann1997
     mode:
-      author: creatorlist
+      author: namelist
       booktitle: title
       doi: verbatim
-      editor: creatorlist
+      editor: namelist
       pages: literal
       publisher: literallist
       title: title
       year: literal
     type: incollection
+    verbatim:
+      author: Kaufmann, Franz-Xaver
+      editor: Kauffmann, Franz-Xaver
+      publisher: '{VS Verlag f\"ur Sozialwissenschaften}'
 errors: []
 jabref:
   root: []

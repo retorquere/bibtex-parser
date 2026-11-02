@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       abstract: zotero-better-bibtex - Make Zotero effective for us LaTeX holdouts
       author:
         - name: Firstname Retorquere
@@ -26,14 +25,15 @@ entries:
     key: firstname_retorquere_replicate_2015
     mode:
       abstract: literal
-      author: creatorlist
+      author: namelist
       howpublished: literal
       journal: literal
       title: title
       year: literal
     type: misc
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{Firstname Retorquere}'
+  - fields:
       abstract: zotero-better-bibtex - Make Zotero effective for us LaTeX holdouts
       author:
         - firstName: Firstname
@@ -61,14 +61,15 @@ entries:
     key: retorquere_replicate_2016
     mode:
       abstract: literal
-      author: creatorlist
+      author: namelist
       howpublished: literal
       journal: literal
       title: title
       year: literal
     type: misc
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Retorquere, Firstname and Retorquere2, Firstname2
+  - fields:
       abstract: zotero-better-bibtex - Make Zotero effective for us LaTeX holdouts
       author:
         - firstName: First-Double
@@ -92,11 +93,13 @@ entries:
     key: retorquere-double_replicate_nodate
     mode:
       abstract: literal
-      author: creatorlist
+      author: namelist
       howpublished: literal
       journal: literal
       title: title
     type: misc
+    verbatim:
+      author: '{Retorquere-Double}, First-Double'
 errors:
   - error: unresolved @string reference "GitHub"
     input: ''

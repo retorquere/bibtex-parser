@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Drew V.
           lastName: McDermott
@@ -17,12 +16,15 @@ entries:
     input: "@techreport(McDermott:72,\nauthor =\tMCDERMOTT # { and Gerald J. Sussman},\nyear =\t{1972},\nmonth = May,\ninstitution =\t{MIT Artificial Intelligence\tLaboratory},\ntitle =\t{The {\\sc CONNIVER} Reference Manual}\n)"
     key: McDermott:72
     mode:
-      author: creatorlist
+      author: namelist
       institution: literallist
       month: literal
       title: title
       year: literal
     type: techreport
+    verbatim:
+      author: McDermott, Drew V. and Gerald J. Sussman
+      institution: "MIT Artificial Intelligence\tLaboratory"
 errors: []
 jabref:
   root: []

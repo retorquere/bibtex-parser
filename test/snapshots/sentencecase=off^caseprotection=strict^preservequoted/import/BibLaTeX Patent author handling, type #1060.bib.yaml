@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Xaver
           lastName: Laufenberg
@@ -53,16 +52,25 @@ entries:
       }
     key: laufenberg
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
-      holder: creatorlist
+      holder: namelist
       number: literal
       title: title
       type: literal
       url: verbatim
     type: patent
-  - annotations: {}
-    fields:
+    verbatim:
+      author: |-
+        Laufenberg, Xaver and Eynius, Dominique and Suelzle, Helmut
+                          and Usbeck, Stephan and Spaeth, Matthias and Neuser-Hoffmann,
+                          Miriam and Myrzik, Christian and Schmid, Manfred and Nietfeld,
+                          Franz and Thiel, Alexander and Braun, Harald and Ebner,
+                          Norbert
+      holder: |-
+        {Robert Bosch GmbH} and {Daimler Chrysler AG} and {Bayerische
+                          Motoren Werke AG}
+  - fields:
       author:
         - firstName: Ronald E.
           lastName: Sorace
@@ -88,13 +96,18 @@ entries:
       }
     key: sorace
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
-      holder: creatorlist
+      holder: namelist
       number: literal
       title: title
       type: literal
     type: patent
+    verbatim:
+      author: |-
+        Sorace, Ronald E. and Reinhardt, Victor S. and Vaughn, Steven
+                          A.
+      holder: '{Hughes Aircraft Company}'
 errors: []
 jabref:
   root: []

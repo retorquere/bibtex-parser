@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Agostinho José da Costa de
           lastName: Macedo
@@ -34,7 +33,7 @@ entries:
       }
     key: macedo_catalogo_1799
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       keywords: verbatimlist
       langid: literal
@@ -44,8 +43,11 @@ entries:
       shorttitle: title
       title: title
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Macedo, Agostinho José da Costa de
+      location: '{Lisboa}'
+      publisher: '{Na Typographia da Mesma Academia}'
+  - fields:
       author:
         - firstName: Maria Manuel Lobo Pinto de
           lastName: Oliveira
@@ -71,7 +73,7 @@ entries:
       }
     key: oliveira_memoriam_2007
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       institution: literallist
       location: literallist
@@ -80,6 +82,10 @@ entries:
       url: verbatim
       urldate: literal
     type: thesis
+    verbatim:
+      author: Oliveira, Maria Manuel Lobo Pinto de
+      institution: '{Universidade do Minho}'
+      location: '{Guimarães, Portugal}'
 errors: []
 jabref:
   root: []

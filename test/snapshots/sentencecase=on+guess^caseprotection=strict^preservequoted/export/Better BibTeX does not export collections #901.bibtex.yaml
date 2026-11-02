@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       groups: 0027_Theorie-de-la-verite
       language:
         - Anglais
@@ -29,8 +28,9 @@ entries:
       url: verbatim
       urldate: literal
     type: misc
-  - annotations: {}
-    fields:
+    verbatim:
+      language: Anglais
+  - fields:
       address:
         - 'Dordrecht, Holland ; Boston : Hingham, MA'
       editor:
@@ -76,7 +76,7 @@ entries:
     key: Agassi-1982-Scientificphilosophytoday
     mode:
       address: literallist
-      editor: creatorlist
+      editor: namelist
       groups: verbatim
       isbn: literal
       keywords: verbatimlist
@@ -89,8 +89,12 @@ entries:
       title: title
       year: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      address: '{Dordrecht, Holland ; Boston : Hingham, MA}'
+      editor: Agassi, Joseph and Cohen, R. S.
+      language: Anglais
+      publisher: '{D. Reidel - Kluwer}'
+  - fields:
       abstract: >-
         Probability has become one of the most characteristic con cepts of
         modern culture, and a 'probabilistic way of thinking' may be said to
@@ -155,7 +159,7 @@ entries:
       abstract: literal
       address: literallist
       annotation: richtext
-      editor: creatorlist
+      editor: namelist
       groups: verbatim
       isbn: literal
       language: literallist
@@ -166,8 +170,12 @@ entries:
       urldate: literal
       year: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      address: '{Dordrecht}'
+      editor: Agazzi, Evandro
+      language: Anglais
+      publisher: '{Springer Netherlands}'
+  - fields:
       author:
         - firstName: Pavel
           lastName: Apostol
@@ -207,7 +215,7 @@ entries:
       % ? Unused libraryCatalog: JSTOR
     key: Apostol-1985-MarioBungeCritical
     mode:
-      author: creatorlist
+      author: namelist
       groups: verbatim
       issn: literal
       journal: literal
@@ -221,8 +229,10 @@ entries:
       volume: literal
       year: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Apostol, Pavel
+      language: Anglais
+  - fields:
       abstract: >-
         During centuries physicists were supposed to be studying the physical
         world. Since the turn of the century this assumption has often been
@@ -280,7 +290,7 @@ entries:
     key: Bunge-1967-TurnTide
     mode:
       abstract: literal
-      author: creatorlist
+      author: namelist
       booktitle: title
       doi: verbatim
       groups: verbatim
@@ -295,8 +305,11 @@ entries:
       urldate: literal
       year: literal
     type: incollection
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Bunge, Mario
+      language: Anglais
+      publisher: '{Springer, Berlin, Heidelberg}'
+  - fields:
       address:
         - Dordrecht
       editor:
@@ -326,7 +339,7 @@ entries:
     key: Bunge-1973-ExactPhilosophy
     mode:
       address: literallist
-      editor: creatorlist
+      editor: namelist
       groups: verbatim
       language: literallist
       publisher: literallist
@@ -334,8 +347,12 @@ entries:
       title: title
       year: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      address: '{Dordrecht}'
+      editor: Bunge, Mario
+      language: Anglais
+      publisher: '{Reidel}'
+  - fields:
       author:
         - firstName: Mario
           lastName: Bunge
@@ -375,7 +392,7 @@ entries:
       % ? Unused libraryCatalog: JSTOR
     key: Bunge-1976-PhilosophicalRichnessTechnology
     mode:
-      author: creatorlist
+      author: namelist
       groups: verbatim
       issn: literal
       journal: literal
@@ -388,8 +405,10 @@ entries:
       volume: literal
       year: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Bunge, Mario
+      language: Anglais
+  - fields:
       author:
         - firstName: MA
           lastName: Bunge
@@ -421,7 +440,7 @@ entries:
       % ? Unused libraryCatalog: CiteULike
     key: Bunge-1977-GeneralSystemsHolism
     mode:
-      author: creatorlist
+      author: namelist
       groups: verbatim
       journal: literal
       language: literallist
@@ -431,8 +450,10 @@ entries:
       volume: literal
       year: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Bunge, MA
+      language: Anglais
+  - fields:
       abstract: >-
         The theory of evolution is too general to be able to make predictions.
         However, like every other hypergeneral scientific theory, it can be
@@ -486,7 +507,7 @@ entries:
     key: Bunge-1978-modelevolution
     mode:
       abstract: literal
-      author: creatorlist
+      author: namelist
       doi: verbatim
       groups: verbatim
       issn: literal
@@ -502,8 +523,10 @@ entries:
       volume: literal
       year: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Bunge, Mario
+      language: Anglais
+  - fields:
       address:
         - Boulder, Colo
       booktitle: Ethics in an age of pervasive technology
@@ -545,7 +568,7 @@ entries:
     mode:
       address: literallist
       booktitle: title
-      editor: creatorlist
+      editor: namelist
       groups: verbatim
       isbn: literal
       keywords: verbatimlist
@@ -556,8 +579,12 @@ entries:
       title: title
       year: literal
     type: incollection
-  - annotations: {}
-    fields:
+    verbatim:
+      address: '{Boulder, Colo}'
+      editor: Bunge, Mario
+      language: Anglais
+      publisher: '{Westview Press}'
+  - fields:
       address:
         - Dordrecht
       author:
@@ -592,7 +619,7 @@ entries:
     key: Bunge-1983-TreatiseBasicPhilosophy
     mode:
       address: literallist
-      author: creatorlist
+      author: namelist
       groups: verbatim
       language: literallist
       lccn: literal
@@ -601,8 +628,12 @@ entries:
       title: title
       year: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      address: '{Dordrecht}'
+      author: Bunge, Mario
+      language: Anglais
+      publisher: '{Reidel}'
+  - fields:
       abstract: >-
         The concept of probability has fascinated and puzzled numerous
         philosophers since its inception three and a half centuries ago.
@@ -661,10 +692,10 @@ entries:
     key: Bunge-1988-TwoFacesThree
     mode:
       abstract: literal
-      author: creatorlist
+      author: namelist
       booktitle: title
       doi: verbatim
-      editor: creatorlist
+      editor: namelist
       groups: verbatim
       isbn: literal
       language: literallist
@@ -677,8 +708,12 @@ entries:
       urldate: literal
       year: literal
     type: incollection
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Bunge, Mario
+      editor: Agazzi
+      language: Anglais
+      publisher: '{Springer, Dordrecht}'
+  - fields:
       author:
         - firstName: M.
           lastName: Bunge
@@ -710,7 +745,7 @@ entries:
       % ? Unused libraryCatalog: Google Scholar
     key: Bunge-1999-RiotRevolutionNational
     mode:
-      author: creatorlist
+      author: namelist
       groups: verbatim
       journal: literal
       language: literallist
@@ -720,8 +755,10 @@ entries:
       volume: literal
       year: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Bunge, M.
+      language: Anglais
+  - fields:
       author:
         - firstName: M.
           lastName: Bunge
@@ -776,7 +813,7 @@ entries:
       }
     key: Bunge-2001-SystemsEmergenceRationality
     mode:
-      author: creatorlist
+      author: namelist
       doi: verbatim
       groups: verbatim
       issn: literal
@@ -793,8 +830,10 @@ entries:
       volume: literal
       year: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Bunge, M.
+      language: Anglais
+  - fields:
       author:
         - firstName: Mario
           lastName: Bunge
@@ -882,20 +921,23 @@ entries:
       % ? Unused libraryCatalog: CrossRef
     key: Bunge-2003-Considerationsphilosopheeconomique
     mode:
-      author: creatorlist
+      author: namelist
       groups: verbatim
       language: literallist
       note: richtext
       series: title
       timestamp: literal
       title: title
-      translator: creatorlist
+      translator: namelist
       url: verbatim
       urldate: literal
       year: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Bunge, Mario
+      language: Fran\c{c}ais
+      translator: '{Services de traduction de l''Universit\''e McGil}'
+  - fields:
       address:
         - Toronto ; Buffalo
       author:
@@ -933,7 +975,7 @@ entries:
     key: Bunge-2006-Chasingrealitystrife
     mode:
       address: literallist
-      author: creatorlist
+      author: namelist
       groups: verbatim
       isbn: literal
       keywords: verbatimlist
@@ -945,8 +987,12 @@ entries:
       title: title
       year: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      address: '{Toronto ; Buffalo}'
+      author: Bunge, Mario
+      language: Anglais
+      publisher: '{University of Toronto Press}'
+  - fields:
       abstract: >-
         Debates about scientific realism are centrally connected to
         almosteverything else in the philosophy of science, for they concern the
@@ -1016,9 +1062,9 @@ entries:
     key: Chakravartty-2011-ScientificRealism
     mode:
       abstract: literal
-      author: creatorlist
+      author: namelist
       edition: literal
-      editor: creatorlist
+      editor: namelist
       groups: verbatim
       journal: literal
       keywords: verbatimlist
@@ -1029,8 +1075,11 @@ entries:
       urldate: literal
       year: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Chakravartty, Anjan
+      editor: Zalta, Edward N.
+      language: Anglais
+  - fields:
       address:
         - Cambridge, England ; New York
       annotation: 'OCLC: ocn870412305'
@@ -1079,7 +1128,7 @@ entries:
     mode:
       address: literallist
       annotation: richtext
-      author: creatorlist
+      author: namelist
       groups: verbatim
       isbn: literal
       keywords: verbatimlist
@@ -1093,8 +1142,12 @@ entries:
       title: title
       year: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      address: '{Cambridge, England ; New York}'
+      author: Chang, Hasok
+      language: Anglais
+      publisher: '{Springer}'
+  - fields:
       address:
         - Vancouver
       author:
@@ -1147,9 +1200,9 @@ entries:
     key: Collier-1990-IntrinsicInformation
     mode:
       address: literallist
-      author: creatorlist
+      author: namelist
       booktitle: title
-      editor: creatorlist
+      editor: namelist
       groups: verbatim
       isbn: literal
       keywords: verbatimlist
@@ -1161,8 +1214,12 @@ entries:
       volume: literal
       year: literal
     type: incollection
-  - annotations: {}
-    fields:
+    verbatim:
+      address: '{Vancouver}'
+      author: Collier, John
+      editor: Hanson, Philip P.
+      publisher: '{University of British Columbia Press}'
+  - fields:
       abstract: >-
         Abduction or, as it is also often called, Inference to the Best
         Explanation is a type of inference that assigns special status to
@@ -1221,9 +1278,9 @@ entries:
     key: Douven-2011-Abduction
     mode:
       abstract: literal
-      author: creatorlist
+      author: namelist
       edition: literal
-      editor: creatorlist
+      editor: namelist
       groups: verbatim
       journal: literal
       keywords: verbatimlist
@@ -1234,8 +1291,11 @@ entries:
       urldate: literal
       year: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Douven, Igor
+      editor: Zalta, Edward N.
+      language: Anglais
+  - fields:
       author:
         - firstName: Fred
           lastName: Dretske
@@ -1267,7 +1327,7 @@ entries:
       % ? Title looks like it was stored in title-case in Zotero
     key: Dretske-1993-ExplainingBehavior
     mode:
-      author: creatorlist
+      author: namelist
       groups: verbatim
       issn: literal
       journal: literal
@@ -1278,8 +1338,9 @@ entries:
       volume: literal
       year: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Dretske, Fred
+  - fields:
       abstract: >-
         Daniel Dennett's book, Darwin's Dangerous Idea, offers a naturalistic
         teleology and a theory of the intentionality of the mental. Both are
@@ -1335,7 +1396,7 @@ entries:
     key: Fodor-1996-DeconstructingDennettDarwin
     mode:
       abstract: literal
-      author: creatorlist
+      author: namelist
       groups: verbatim
       issn: literal
       journal: literal
@@ -1349,8 +1410,10 @@ entries:
       volume: literal
       year: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Fodor, Jerry
+      language: English
+  - fields:
       abstract: >-
         Unless propositional content can be shown to supervene on internal
         physical states of agents, the semantics (e.g., I want sorbet and I
@@ -1407,7 +1470,7 @@ entries:
     key: Hassrick-1995-FredDretskeExplanatory
     mode:
       abstract: literal
-      author: creatorlist
+      author: namelist
       groups: verbatim
       issn: literal
       journal: literal
@@ -1420,8 +1483,10 @@ entries:
       volume: literal
       year: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Hassrick, Beth
+      language: English
+  - fields:
       address:
         - Amsterdam
       editor:
@@ -1459,7 +1524,7 @@ entries:
     key: Hooker-2011-Philosophycomplexsystems
     mode:
       address: literallist
-      editor: creatorlist
+      editor: namelist
       groups: verbatim
       isbn: literal
       keywords: verbatimlist
@@ -1471,8 +1536,12 @@ entries:
       volume: literal
       year: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      address: '{Amsterdam}'
+      editor: Hooker, Cliff
+      language: Anglais
+      publisher: '{Elsevier}'
+  - fields:
       address:
         - Berkeley, Calif.
       annotation: 'OCLC: 832736842'
@@ -1511,7 +1580,7 @@ entries:
     mode:
       address: literallist
       annotation: richtext
-      author: creatorlist
+      author: namelist
       edition: literal
       groups: verbatim
       isbn: literal
@@ -1522,8 +1591,12 @@ entries:
       title: title
       year: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      address: '{Berkeley, Calif.}'
+      author: Hunter, Geoffrey
+      language: Anglais
+      publisher: '{Univ. of California Press}'
+  - fields:
       abstract: >-
         This article reviews the transition between post-Fregean
         anti-naturalistic epistemology and contemporary naturalistic
@@ -1564,7 +1637,7 @@ entries:
     key: Kitcher-1992-NaturalistsReturn
     mode:
       abstract: literal
-      author: creatorlist
+      author: namelist
       groups: verbatim
       issn: literal
       journal: literal
@@ -1575,8 +1648,9 @@ entries:
       volume: literal
       year: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Kitcher, Philip
+  - fields:
       address:
         - Cambridge, UK ; Malden, MA
       author:
@@ -1612,7 +1686,7 @@ entries:
     key: Miller-2013-Contemporarymetaethicsintroduction
     mode:
       address: literallist
-      author: creatorlist
+      author: namelist
       edition: literal
       groups: verbatim
       isbn: literal
@@ -1624,8 +1698,11 @@ entries:
       title: title
       year: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      address: '{Cambridge, UK ; Malden, MA}'
+      author: Miller, Alexander
+      publisher: '{Polity Press}'
+  - fields:
       author:
         - firstName: Meinrad
           lastName: Perrez
@@ -1666,7 +1743,7 @@ entries:
       }
     key: Perrez-1991-differenceeverydayknowledge
     mode:
-      author: creatorlist
+      author: namelist
       doi: verbatim
       groups: verbatim
       issn: literal
@@ -1682,8 +1759,10 @@ entries:
       volume: literal
       year: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Perrez, Meinrad
+      language: Anglais
+  - fields:
       author:
         - firstName: Elizabeth W.
           lastName: Prior
@@ -1724,7 +1803,7 @@ entries:
       }
     key: Prior-1985-WhatWrongEtiological
     mode:
-      author: creatorlist
+      author: namelist
       groups: verbatim
       issn: literal
       journal: literal
@@ -1737,8 +1816,10 @@ entries:
       volume: literal
       year: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Prior, Elizabeth W.
+      language: English
+  - fields:
       author:
         - firstName: Bertrand
           lastName: Russell
@@ -1775,7 +1856,7 @@ entries:
       % ? Unused libraryCatalog: Wikisource
     key: Russell-1905-Denoting
     mode:
-      author: creatorlist
+      author: namelist
       copyright: literal
       groups: verbatim
       keywords: verbatimlist
@@ -1784,8 +1865,10 @@ entries:
       title: title
       year: literal
     type: unpublished
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Russell, Bertrand
+      language: Anglais
+  - fields:
       address:
         - New York
       annotation: 'OCLC: 159650978'
@@ -1818,7 +1901,7 @@ entries:
     mode:
       address: literallist
       annotation: richtext
-      author: creatorlist
+      author: namelist
       groups: verbatim
       isbn: literal
       language: literallist
@@ -1827,8 +1910,12 @@ entries:
       title: title
       year: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      address: '{New York}'
+      author: Russell, Bertrand
+      language: Anglais
+      publisher: '{Simon and Schuster}'
+  - fields:
       address:
         - London ; New York
       author:
@@ -1871,7 +1958,7 @@ entries:
     key: Rutherford-2002-Routledgedictionaryeconomics
     mode:
       address: literallist
-      author: creatorlist
+      author: namelist
       edition: literal
       groups: verbatim
       isbn: literal
@@ -1886,8 +1973,12 @@ entries:
       urldate: literal
       year: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      address: '{London ; New York}'
+      author: Rutherford, Donald
+      language: Anglais
+      publisher: '{Routledge}'
+  - fields:
       author:
         - firstName: Geoffrey
           lastName: Sayre-McCord
@@ -1925,9 +2016,9 @@ entries:
       % ? Unused libraryCatalog: PhilPapers
     key: Sayre-McCord-1988-MoralTheoryExplanatory
     mode:
-      author: creatorlist
+      author: namelist
       booktitle: title
-      editor: creatorlist
+      editor: namelist
       groups: verbatim
       pages: literal
       publisher: literallist
@@ -1936,8 +2027,11 @@ entries:
       title: title
       year: literal
     type: incollection
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{Sayre-McCord}, Geoffrey'
+      editor: '{Sayre-McCord}, Geoffrey'
+      publisher: '{Cornell University Press}'
+  - fields:
       address:
         - London ; New York
       author:
@@ -1974,7 +2068,7 @@ entries:
     key: Udehn-2001-Methodologicalindividualismbackground
     mode:
       address: literallist
-      author: creatorlist
+      author: namelist
       groups: verbatim
       isbn: literal
       keywords: verbatimlist
@@ -1986,8 +2080,12 @@ entries:
       title: title
       year: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      address: '{London ; New York}'
+      author: Udehn, Lars
+      language: Anglais
+      publisher: '{Routledge}'
+  - fields:
       address:
         - Atascadero, Calif.
       author:
@@ -2025,7 +2123,7 @@ entries:
     key: Villanueva-1991-Consciousness
     mode:
       address: literallist
-      author: creatorlist
+      author: namelist
       groups: verbatim
       isbn: literal
       keywords: verbatimlist
@@ -2037,8 +2135,11 @@ entries:
       volume: literal
       year: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      address: '{Atascadero, Calif.}'
+      author: Villanueva, Enrique
+      publisher: '{Ridgeview Publ. Co.}'
+  - fields:
       address:
         - Dordrecht
       author:
@@ -2079,7 +2180,7 @@ entries:
     key: Weingartner-2000-BasicQuestionsTruth
     mode:
       address: literallist
-      author: creatorlist
+      author: namelist
       doi: verbatim
       groups: verbatim
       isbn: literal
@@ -2091,6 +2192,11 @@ entries:
       urldate: literal
       year: literal
     type: book
+    verbatim:
+      address: '{Dordrecht}'
+      author: Weingartner, Paul
+      language: Anglais
+      publisher: '{Springer Netherlands}'
 errors: []
 jabref:
   databaseType: bibtex

@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Charles
           lastName: Eisenmann
@@ -35,7 +34,7 @@ entries:
       }
     key: eisenmann_actes_1983
     mode:
-      author: creatorlist
+      author: namelist
       booktitle: title
       crossref: literal
       date: literal
@@ -48,6 +47,10 @@ entries:
       volume: literal
       volumes: literal
     type: incollection
+    verbatim:
+      author: Eisenmann, Charles
+      location: '{Paris}'
+      publisher: '{LGDJ}'
 errors: []
 jabref:
   root: []

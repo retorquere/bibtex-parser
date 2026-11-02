@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       abstract: Abstract here
       author:
         - firstName: J.
@@ -36,7 +35,7 @@ entries:
     key: test_citation1
     mode:
       abstract: literal
-      author: creatorlist
+      author: namelist
       booktitle: title
       doi: verbatim
       issn: literal
@@ -46,8 +45,9 @@ entries:
       title: title
       year: literal
     type: inproceedings
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Doe, J. and Smith, R.
+  - fields:
       abstract: Abstract here
       author:
         - firstName: J.
@@ -82,7 +82,7 @@ entries:
     key: test_citation2
     mode:
       abstract: literal
-      author: creatorlist
+      author: namelist
       booktitle: title
       doi: verbatim
       issn: literal
@@ -92,6 +92,8 @@ entries:
       title: title
       year: literal
     type: inproceedings
+    verbatim:
+      author: Doe, J. and Smith, R.
 errors:
   - error: unresolved @string reference "IEEE_J_PROC"
     input: ''

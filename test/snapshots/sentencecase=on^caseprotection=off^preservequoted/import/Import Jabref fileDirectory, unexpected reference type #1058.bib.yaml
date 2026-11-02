@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       affiliation: >-
         University of Cordoba Department of Zoology Campus de Rabanales Ed.
         Darwin 14071 CÃ³rdoba Spain
@@ -33,7 +32,7 @@ entries:
     key: springerlink:10.1007/s10344-009-0327-7
     mode:
       affiliation: literal
-      author: creatorlist
+      author: namelist
       issn: literal
       issue: literal
       journal: literal
@@ -49,8 +48,10 @@ entries:
       volume: literal
       year: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Barrio, Isabel and Acevedo, Pelayo and Tortosa, Francisco
+      publisher: Springer Berlin / Heidelberg
+  - fields:
       author:
         - firstName: Anabela
           lastName: Afonso
@@ -77,7 +78,7 @@ entries:
       }
     key: Afonso2011
     mode:
-      author: creatorlist
+      author: namelist
       file: verbatim
       location: literallist
       owner: literal
@@ -85,6 +86,9 @@ entries:
       title: title
       year: literal
     type: talk
+    verbatim:
+      author: Anabela Afonso and Russell Alpizar-Jara
+      location: Poster apresentado no Congresso da SPE
 errors: []
 jabref:
   databaseType: bibtex

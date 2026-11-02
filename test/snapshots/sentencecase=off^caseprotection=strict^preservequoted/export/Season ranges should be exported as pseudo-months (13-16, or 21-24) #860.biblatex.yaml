@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       date: 0000-21/0000-24
       title: 0000-21/0000-24
     input: |-
@@ -14,8 +13,8 @@ entries:
       date: literal
       title: title
     type: online
-  - annotations: {}
-    fields:
+    verbatim: {}
+  - fields:
       date: -0011-21/-0012-22
       title: -0011-21/-0012-22
     input: |-
@@ -28,8 +27,8 @@ entries:
       date: literal
       title: title
     type: online
-  - annotations: {}
-    fields:
+    verbatim: {}
+  - fields:
       date: 0011-21/0012-22
       title: 0011-21/0012-22
     input: |-
@@ -42,8 +41,8 @@ entries:
       date: literal
       title: title
     type: online
-  - annotations: {}
-    fields:
+    verbatim: {}
+  - fields:
       date: -2011-21/-2012-22
       title: -2011-21/-2012-22
     input: |-
@@ -56,8 +55,8 @@ entries:
       date: literal
       title: title
     type: online
-  - annotations: {}
-    fields:
+    verbatim: {}
+  - fields:
       origdate: 2017-14/2017-99
       title: Months out of Range
       year: 2017-14/2017-15
@@ -73,8 +72,8 @@ entries:
       title: title
       year: literal
     type: online
-  - annotations: {}
-    fields:
+    verbatim: {}
+  - fields:
       date: 2017-23/2017-24
       origdate: 2015-21/2016-22
       title: 'Season Ranges: EDTF and Literal'
@@ -90,6 +89,7 @@ entries:
       origdate: literal
       title: title
     type: online
+    verbatim: {}
 errors: []
 jabref:
   root: []

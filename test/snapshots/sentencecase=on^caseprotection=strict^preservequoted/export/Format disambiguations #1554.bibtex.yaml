@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       address:
         - Frankfurt am Main
       author:
@@ -32,16 +31,19 @@ entries:
     key: benjamin.w:1986
     mode:
       address: literallist
-      author: creatorlist
-      editor: creatorlist
+      author: namelist
+      editor: namelist
       number: literal
       pages: literal
       series: title
       title: title
       year: literal
     type: incollection
-  - annotations: {}
-    fields:
+    verbatim:
+      address: '{Frankfurt am Main}'
+      author: Benjamin, Walter
+      editor: Tiedemann, Rolf
+  - fields:
       address:
         - Frankfurt am Main
       author:
@@ -72,14 +74,18 @@ entries:
     key: benjamin.w:1986.1
     mode:
       address: literallist
-      author: creatorlist
-      editor: creatorlist
+      author: namelist
+      editor: namelist
       number: literal
       pages: literal
       series: title
       title: title
       year: literal
     type: incollection
+    verbatim:
+      address: '{Frankfurt am Main}'
+      author: Benjamin, Walter
+      editor: Tiedemann, Rolf
 errors: []
 jabref:
   root: []

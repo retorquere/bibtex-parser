@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    crossref:
+  - crossref:
       date:
         field: date
         parent: conference:06
@@ -32,13 +31,14 @@ entries:
       }
     key: author:06
     mode:
-      author: creatorlist
+      author: namelist
       crossref: literal
       pages: literal
       title: title
     type: inproceedings
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Author, First and Author, Second
+  - fields:
       date: 2006-10
       editor:
         - firstName: First
@@ -57,9 +57,11 @@ entries:
     key: conference:06
     mode:
       date: literal
-      editor: creatorlist
+      editor: namelist
       title: title
     type: book
+    verbatim:
+      editor: Editor, First and Editor, Second
 errors: []
 jabref:
   root: []

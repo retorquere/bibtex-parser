@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: John
           lastName: MacFarlane
@@ -19,11 +18,13 @@ entries:
       }
     key: MacFarlaneJohna
     mode:
-      author: creatorlist
+      author: namelist
       title: title
       url: verbatim
       urldate: literal
     type: archived
+    verbatim:
+      author: MacFarlane, John
 errors: []
 jabref:
   root: []

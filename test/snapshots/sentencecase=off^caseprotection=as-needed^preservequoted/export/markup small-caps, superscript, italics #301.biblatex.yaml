@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Laurence
           lastName: Burgorgue-Larsen
@@ -33,7 +32,7 @@ entries:
       }
     key: burgorgue-larsen_interventions_2011
     mode:
-      author: creatorlist
+      author: namelist
       booktitle: title
       date: literal
       isbn: literal
@@ -44,8 +43,11 @@ entries:
       title: title
       volumes: literal
     type: incollection
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Burgorgue-Larsen, Laurence
+      location: '{Paris}'
+      publisher: '{Dalloz}'
+  - fields:
       author:
         - firstName: Corinne
           lastName: Leveleux-Teixeira
@@ -90,10 +92,10 @@ entries:
       }
     key: leveleux-teixeira_opinion_2010
     mode:
-      author: creatorlist
+      author: namelist
       booktitle: title
       date: literal
-      editor: creatorlist
+      editor: namelist
       isbn: literal
       langid: literal
       location: literallist
@@ -103,6 +105,11 @@ entries:
       title: title
       volumes: literal
     type: incollection
+    verbatim:
+      author: Leveleux-Teixeira, Corinne
+      editor: Charageat, Martine and Leveleux-Teixeira, Corinne
+      location: '{Toulouse}'
+      publisher: '{CNRS et Université de Toulouse-Le Mirail [Framespa]}'
 errors: []
 jabref:
   root: []

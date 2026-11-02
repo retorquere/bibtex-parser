@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Henriëtte
           lastName: Swart
@@ -33,7 +32,7 @@ entries:
       }
     key: desw98
     mode:
-      author: creatorlist
+      author: namelist
       doi: verbatim
       issn: literal
       journal: literal
@@ -44,8 +43,10 @@ entries:
       volume: literal
       year: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{de Swart}, Henri{\"e}tte'
+      language: en
+  - fields:
       abstract: >-
         It is a well-known but little-studied fact that evaluativeadverbs -
         adverbs indicating the attitude of the speaker towards theinformation
@@ -91,14 +92,16 @@ entries:
     key: devr10
     mode:
       abstract: literal
-      author: creatorlist
+      author: namelist
       school: literallist
       title: title
       type: literal
       year: literal
     type: phdthesis
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{de Vries}, Hanna'
+      school: Universiteit Utrecht
+  - fields:
       author:
         - firstName: Christopher
           lastName: Kennedy
@@ -128,7 +131,7 @@ entries:
       }
     key: kenne07
     mode:
-      author: creatorlist
+      author: namelist
       doi: verbatim
       issn: literal
       journal: literal
@@ -139,8 +142,9 @@ entries:
       volume: literal
       year: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Kennedy, Christopher
+  - fields:
       address:
         - Paris
       author:
@@ -167,15 +171,19 @@ entries:
     key: vand95
     mode:
       address: literallist
-      author: creatorlist
+      author: namelist
       isbn: literal
       language: literallist
       publisher: literallist
       title: title
       year: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      address: '{Paris}'
+      author: '{van de Velde}, Dani{\`e}le'
+      language: French
+      publisher: '{Peeters}'
+  - fields:
       author:
         - firstName: Kai
           lastName: Fintel
@@ -193,11 +201,14 @@ entries:
       }
     key: vonf94
     mode:
-      author: creatorlist
+      author: namelist
       school: literallist
       title: title
       year: literal
     type: phdthesis
+    verbatim:
+      author: '{von Fintel}, Kai'
+      school: University of Massachusetts
 errors: []
 jabref:
   root: []

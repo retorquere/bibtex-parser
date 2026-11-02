@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       archiveprefix: arXiv
       author:
         - firstName: Emil
@@ -36,7 +35,7 @@ entries:
     key: bjornsonScalable2020
     mode:
       archiveprefix: literal
-      author: creatorlist
+      author: namelist
       doi: verbatim
       eprint: verbatim
       eprinttype: literal
@@ -47,6 +46,8 @@ entries:
       title: title
       year: literal
     type: article
+    verbatim:
+      author: Bj{\"o}rnson, Emil and Sanguinetti, Luca
 errors:
   - error: unresolved @string reference "IEEE_J_WC"
     input: ''

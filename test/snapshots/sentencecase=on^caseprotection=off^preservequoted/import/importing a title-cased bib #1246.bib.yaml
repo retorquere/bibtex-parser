@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: U.
           lastName: Fritz
@@ -35,7 +34,7 @@ entries:
       }
     key: Frit2
     mode:
-      author: creatorlist
+      author: namelist
       doi: verbatim
       journal: literal
       pages: literal
@@ -44,8 +43,9 @@ entries:
       volume: literal
       year: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Fritz, U. and Corti, C. and P\"{a}ckert, M.
+  - fields:
       author:
         - firstName: Alistair
           lastName: Adcroft
@@ -63,13 +63,15 @@ entries:
     input: "@article{AdcroftETAL:1997,\n      author\t= \"Adcroft, Alistair  and  Chris Hill\n    \t\t   and  John Marshall\",\n      year\t\t= \"1997\",\n      title\t\t= \"Representation of Topography by Shaved Cells in a\n    \t\t   Height Coordinate Ocean Model\",\n      journal\t= \"Monthly Weather Review\",\n      volume\t= \"125\",\n      pages\t\t= \"2293-2315\"}"
     key: AdcroftETAL:1997
     mode:
-      author: creatorlist
+      author: namelist
       journal: literal
       pages: literal
       title: title
       volume: literal
       year: literal
     type: article
+    verbatim:
+      author: "Adcroft, Alistair  and  Chris Hill\n    \t\t   and  John Marshall"
 errors: []
 jabref:
   root: []

@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: John
           lastName: Doe
@@ -15,10 +14,12 @@ entries:
       }
     key: Doe2021
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       title: title
     type: dataset
+    verbatim:
+      author: Doe, John
 errors: []
 jabref:
   root: []

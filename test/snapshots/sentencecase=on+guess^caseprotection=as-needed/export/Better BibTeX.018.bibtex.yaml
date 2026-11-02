@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Klaus
           lastName: Däßler
@@ -28,7 +27,7 @@ entries:
       }
     key: Dassler2001
     mode:
-      author: creatorlist
+      author: namelist
       doi: verbatim
       journal: literal
       keywords: verbatimlist
@@ -36,6 +35,8 @@ entries:
       volume: literal
       year: literal
     type: article
+    verbatim:
+      author: D{\"a}{\ss}ler, Klaus
 errors: []
 jabref:
   root: []

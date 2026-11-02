@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: E.
           lastName: Blanton
@@ -41,7 +40,7 @@ entries:
       }
     key: blantonConservativeLossRecovery2012
     mode:
-      author: creatorlist
+      author: namelist
       institution: literallist
       month: literal
       note: richtext
@@ -50,8 +49,12 @@ entries:
       type: literal
       year: literal
     type: techreport
-  - annotations: {}
-    fields:
+    verbatim:
+      author: >-
+        Blanton, E. and Allman, M. and Wang, L. and Jarvinen, I. and Kojo, M.
+        and Nishida, Y.
+      institution: '{RFC Editor}'
+  - fields:
       howpublished: sctplab
       month: '11'
       note: >-
@@ -78,6 +81,7 @@ entries:
       title: title
       year: literal
     type: misc
+    verbatim: {}
 errors: []
 jabref:
   root: []

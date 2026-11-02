@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - name: Lichess Team
       date: '2019-12-31'
@@ -31,7 +30,7 @@ entries:
       }
     key: LichessTeamLichessEndYear
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       langid: literal
       note: richtext
@@ -41,6 +40,9 @@ entries:
       url: verbatim
       urldate: literal
     type: online
+    verbatim:
+      author: '{Lichess Team}'
+      organization: '{lichess.org}'
 errors: []
 jabref:
   root: []

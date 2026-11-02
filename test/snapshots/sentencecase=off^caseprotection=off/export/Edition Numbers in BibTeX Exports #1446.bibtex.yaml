@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       address:
         - Philadelphia, PA
       author:
@@ -54,7 +53,7 @@ entries:
     key: barrett1994
     mode:
       address: literallist
-      author: creatorlist
+      author: namelist
       edition: literal
       language: literallist
       publisher: literallist
@@ -64,6 +63,14 @@ entries:
       urldate: literal
       year: literal
     type: book
+    verbatim:
+      address: '{Philadelphia, PA}'
+      author: >-
+        Barrett, Richard and Berry, Michael and Chan, Tony F. and Demmel, James
+        and Donato, June M. and Dongarra, Jack and Eijkhout, Victor and Pozo,
+        Roldan and Romine, Charles and {van der Vorst}, Henk
+      language: en-US
+      publisher: '{Society for Industrial and Applied Mathematics}'
 errors: []
 jabref:
   root: []

@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - name: NTP.org
       howpublished: >-
@@ -20,14 +19,15 @@ entries:
       }
     key: ntp.org_clock_2015
     mode:
-      author: creatorlist
+      author: namelist
       howpublished: literal
       note: richtext
       title: title
       year: literal
     type: misc
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{NTP.org}'
+  - fields:
       author:
         - name: NTP.org
       howpublished: >-
@@ -44,13 +44,14 @@ entries:
       }
     key: ntp.org_clock_2015-1
     mode:
-      author: creatorlist
+      author: namelist
       howpublished: literal
       title: title
       year: literal
     type: misc
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{NTP.org}'
+  - fields:
       author:
         - name: NTP.org
       howpublished: >-
@@ -67,11 +68,13 @@ entries:
       }
     key: ntp.org_clock_2015-2
     mode:
-      author: creatorlist
+      author: namelist
       howpublished: literal
       title: title
       year: literal
     type: misc
+    verbatim:
+      author: '{NTP.org}'
 errors: []
 jabref:
   root: []

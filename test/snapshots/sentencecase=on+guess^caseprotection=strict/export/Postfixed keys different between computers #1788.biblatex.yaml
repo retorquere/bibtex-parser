@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       abstract: >-
         Make Zotero effective for us LaTeX holdouts. Contribute to
         retorquere/zotero-better-bibtex development by creating an account on
@@ -35,7 +34,7 @@ entries:
     key: heyns2021
     mode:
       abstract: literal
-      author: creatorlist
+      author: namelist
       date: literal
       keywords: verbatimlist
       origdate: literal
@@ -43,8 +42,9 @@ entries:
       url: verbatim
       urldate: literal
     type: software
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Wittgenstein, Ludwig
+  - fields:
       abstract: >-
         Make Zotero effective for us LaTeX holdouts. Contribute to
         retorquere/zotero-better-bibtex development by creating an account on
@@ -78,7 +78,7 @@ entries:
     key: heyns2021a
     mode:
       abstract: literal
-      author: creatorlist
+      author: namelist
       date: literal
       keywords: verbatimlist
       origdate: literal
@@ -86,6 +86,8 @@ entries:
       url: verbatim
       urldate: literal
     type: software
+    verbatim:
+      author: Heyns, Emiliano
 errors: []
 jabref:
   root: []

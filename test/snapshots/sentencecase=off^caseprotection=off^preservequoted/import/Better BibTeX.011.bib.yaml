@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Myungsook
           lastName: Klassen
@@ -24,7 +23,7 @@ entries:
     input: "@inproceedings{Klassen2010,\n  author = {Klassen, Myungsook and Kim, Nyunsu and Liu, Wei Ming},\n  title = {Empirical Study of Support Vector Machine Kernels with Applications\r to Microarray Data},\n  booktitle = {CATA},\n  year = {2010},\n  pages = {25-30},\n  note = {svm liniowe najlepsze},\n  bibsource = {DBLP, http://dblp.uni-trier.de},\n  crossref = {DBLP:conf/cata/2010},\n  groups = {klasyfikacja},\n  owner = {sstudent},\n  timestamp = {2011.03.22}\n}"
     key: Klassen2010
     mode:
-      author: creatorlist
+      author: namelist
       bibsource: literal
       booktitle: title
       crossref: literal
@@ -36,6 +35,8 @@ entries:
       title: title
       year: literal
     type: inproceedings
+    verbatim:
+      author: Klassen, Myungsook and Kim, Nyunsu and Liu, Wei Ming
 errors: []
 jabref:
   root: []

@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Emmanuel
           lastName: Kant
@@ -56,13 +55,17 @@ entries:
       % Exactly one of 'date' / 'year' must be present
     key: Kant-Book
     mode:
-      author: creatorlist
+      author: namelist
       location: literallist
       note: richtext
       publisher: literallist
       timestamp: literal
       title: title
     type: book
+    verbatim:
+      author: Kant, Emmanuel
+      location: '{Here}'
+      publisher: '{Him}'
 errors: []
 jabref:
   root: []

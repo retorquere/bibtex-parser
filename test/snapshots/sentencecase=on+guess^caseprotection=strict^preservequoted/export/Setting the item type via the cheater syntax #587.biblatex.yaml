@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       abstract: Example from CMoS, 16e, 14.249
       author:
         - firstName: Hazel V.
@@ -24,14 +23,17 @@ entries:
     key: clark_mesopotamia_1957
     mode:
       abstract: literal
-      author: creatorlist
+      author: namelist
       date: literal
       location: literallist
       publisher: literallist
       title: title
     type: booklet
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Clark, Hazel V.
+      location: '{Mesopotamia, OH}'
+      publisher: '{Trumbull County Historical Society}'
+  - fields:
       abstract: Example from CMoS, 16e, 14.125
       author:
         - firstName: David
@@ -58,16 +60,18 @@ entries:
     key: kamp_deconstructing_2006
     mode:
       abstract: literal
-      author: creatorlist
+      author: namelist
       date: literal
-      editora: creatorlist
+      editora: namelist
       editoratype: literal
       langid: literal
       title: title
       url: verbatim
     type: review
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Kamp, David
+      editora: Pollan, Michael
+  - fields:
       abstract: >-
         Example from CMoS, 16e, 14.269 “Prepared from the autographs and
         earliest printed sources by Nathan Broder”
@@ -98,16 +102,20 @@ entries:
     key: mozart_sonatas_1960
     mode:
       abstract: literal
-      author: creatorlist
+      author: namelist
       date: literal
       edition: literal
-      editor: creatorlist
+      editor: namelist
       location: literallist
       publisher: literallist
       title: title
     type: audio
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Mozart, Wolfgang Amadeus
+      editor: Broder, Nathan
+      location: '{Bryn Mawr, PA}'
+      publisher: '{Theodore Presser}'
+  - fields:
       abstract: Example from CMoS, 16e, 14.272
       journaltitle: NASA/IPAC Extragalactic Database
       title: Object name <span class="nocase">IRAS F00400</span>+4059
@@ -129,8 +137,8 @@ entries:
       url: verbatim
       urldate: literal
     type: dataset
-  - annotations: {}
-    fields:
+    verbatim: {}
+  - fields:
       abstract: Example from CMoS, 16e, 14.215 “ed. and trans. John Charles Chasteen”
       author:
         - firstName: Ben
@@ -186,9 +194,9 @@ entries:
     key: ratliff_mystery_1999
     mode:
       abstract: literal
-      author: creatorlist
+      author: namelist
       date: literal
-      editora: creatorlist
+      editora: namelist
       editoratype: literal
       journaltitle: literal
       langid: literal
@@ -197,6 +205,9 @@ entries:
       title: title
       volume: literal
     type: review
+    verbatim:
+      author: Ratliff, Ben
+      editora: '{Hermano Vianna}'
 errors: []
 jabref:
   root: []

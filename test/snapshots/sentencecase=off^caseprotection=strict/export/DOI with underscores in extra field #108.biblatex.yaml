@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Pieter
           lastName: Koopman
@@ -26,7 +25,7 @@ entries:
       }
     key: koopman_efficient_99
     mode:
-      author: creatorlist
+      author: namelist
       booktitle: title
       date: literal
       doi: verbatim
@@ -34,6 +33,9 @@ entries:
       publisher: literallist
       title: title
     type: incollection
+    verbatim:
+      author: Koopman, Pieter and Plasmeijer, Rinus
+      publisher: '{Springer}'
 errors: []
 jabref:
   root: []

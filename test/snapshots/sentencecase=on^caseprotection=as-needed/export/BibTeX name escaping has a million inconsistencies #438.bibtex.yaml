@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Name
           lastName: Nöme
@@ -15,12 +14,13 @@ entries:
       }
     key: Nome2014
     mode:
-      author: creatorlist
+      author: namelist
       title: title
       year: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: N{\"o}me, Name
+  - fields:
       author:
         - firstName: Vincent
           lastName: Gögh
@@ -35,10 +35,12 @@ entries:
       }
     key: van_Gogh2014
     mode:
-      author: creatorlist
+      author: namelist
       title: title
       year: literal
     type: article
+    verbatim:
+      author: '{van G{\"o}gh}, Vincent'
 errors: []
 jabref:
   root: []

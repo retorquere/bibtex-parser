@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    crossref:
+  - crossref:
       booktitle:
         field: title
         parent: conference:06
@@ -40,13 +39,14 @@ entries:
       }
     key: author:06
     mode:
-      author: creatorlist
+      author: namelist
       crossref: literal
       pages: literal
       title: title
     type: inproceedings
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Author, First and Author, Second
+  - fields:
       booktitle: Proceedings of the Xth Conference on XYZ (Book)
       editor:
         - firstName: First
@@ -67,11 +67,13 @@ entries:
     key: conference:06
     mode:
       booktitle: title
-      editor: creatorlist
+      editor: namelist
       month: literal
       title: title
       year: literal
     type: proceedings
+    verbatim:
+      editor: Editor, First and Editor, Second
 errors: []
 jabref:
   root: []

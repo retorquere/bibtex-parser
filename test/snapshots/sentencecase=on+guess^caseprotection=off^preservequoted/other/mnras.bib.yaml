@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       adsnote: Provided by the SAO/NASA Astrophysics Data System
       adsurl: https://ui.adsabs.harvard.edu/abs/2019MNRAS.489..962H
       archiveprefix: arXiv
@@ -79,7 +78,7 @@ entries:
       adsnote: literal
       adsurl: literal
       archiveprefix: literal
-      author: creatorlist
+      author: namelist
       doi: verbatim
       eprint: verbatim
       journal: literal
@@ -92,6 +91,11 @@ entries:
       volume: literal
       year: literal
     type: article
+    verbatim:
+      author: >-
+        {Howard}, A.~D.~P. and {Whitworth}, A.~P. and {Marsh}, K.~A. and
+        {Clarke}, S.~D. and {Griffin}, M.~J. and {Smith}, M.~W.~L. and {Lomax},
+        O.~D.
 errors: []
 jabref:
   root: []

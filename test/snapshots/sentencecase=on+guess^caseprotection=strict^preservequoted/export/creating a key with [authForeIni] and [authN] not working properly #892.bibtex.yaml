@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       address:
         - Berlin [u.~a.]
       author:
@@ -35,7 +34,7 @@ entries:
     key: FMO14
     mode:
       address: literallist
-      author: creatorlist
+      author: namelist
       edition: literal
       isbn: literal
       language: literallist
@@ -44,8 +43,12 @@ entries:
       title: title
       year: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      address: '{Berlin [u.\textasciitilde a.]}'
+      author: Modler, Florian and Kreh, Martin
+      language: ger
+      publisher: '{Springer}'
+  - fields:
       author:
         - firstName: Otto
           lastName: Forster
@@ -64,12 +67,15 @@ entries:
       }
     key: OFO13
     mode:
-      author: creatorlist
+      author: namelist
       publisher: literallist
       title: title
       volume: literal
       year: literal
     type: book
+    verbatim:
+      author: Forster, Otto
+      publisher: '{Springer}'
 errors: []
 jabref:
   root: []

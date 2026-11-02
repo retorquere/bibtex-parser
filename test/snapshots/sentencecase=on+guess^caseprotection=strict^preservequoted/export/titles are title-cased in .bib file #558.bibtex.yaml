@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       abstract: >-
         Introduction Emergency department (ED) visits increase during the
         influenza seasons. It is essential to identify statistically significant
@@ -81,7 +80,7 @@ entries:
     key: araz_using_2014
     mode:
       abstract: literal
-      author: creatorlist
+      author: namelist
       doi: verbatim
       issn: literal
       journal: literal
@@ -94,8 +93,10 @@ entries:
       volume: literal
       year: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Araz, Ozgur M. and Bentley, Dan and Muelleman, Robert L.
+      language: English
+  - fields:
       author:
         - firstName: Michael W.
           lastName: Davidson
@@ -127,7 +128,7 @@ entries:
       }
     key: davidson_using_2015
     mode:
-      author: creatorlist
+      author: namelist
       doi: verbatim
       issn: literal
       journal: literal
@@ -137,6 +138,8 @@ entries:
       volume: literal
       year: literal
     type: article
+    verbatim:
+      author: Davidson, Michael W. and Haim, Dotan A. and Radin, Jennifer M.
 errors: []
 jabref:
   root: []

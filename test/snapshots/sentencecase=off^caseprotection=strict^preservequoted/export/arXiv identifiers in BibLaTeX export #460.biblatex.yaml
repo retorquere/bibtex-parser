@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       abstract: >-
         The development of small-scale digital and analog quantum devices raises
         the question of how to fairly assess and compare the computational power
@@ -77,7 +76,7 @@ entries:
     mode:
       abstract: literal
       archiveprefix: literal
-      author: creatorlist
+      author: namelist
       date: literal
       doi: verbatim
       eprint: verbatim
@@ -93,8 +92,12 @@ entries:
       urldate: literal
       volume: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: >-
+        Rønnow, Troels F. and Wang, Zhihui and Job, Joshua and Boixo, Sergio and
+        Isakov, Sergei V. and Wecker, David and Martinis, John M. and Lidar,
+        Daniel A. and Troyer, Matthias
+  - fields:
       abstract: >-
         We construct the quantum BV master action for heterotic and type II
         string field theories.
@@ -157,7 +160,7 @@ entries:
     mode:
       abstract: literal
       archiveprefix: literal
-      author: creatorlist
+      author: namelist
       date: literal
       doi: verbatim
       eprint: verbatim
@@ -172,8 +175,9 @@ entries:
       urldate: literal
       volume: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Sen, Ashoke
+  - fields:
       abstract: >-
         A pair of recent articles concluded that the D-Wave One machine actually
         operates in the quantum regime, rather than performing some classical
@@ -215,7 +219,7 @@ entries:
     mode:
       abstract: literal
       archiveprefix: literal
-      author: creatorlist
+      author: namelist
       date: literal
       eprint: verbatim
       eprinttype: literal
@@ -226,6 +230,8 @@ entries:
       url: verbatim
       urldate: literal
     type: online
+    verbatim:
+      author: Smolin, John A. and Smith, Graeme
 errors: []
 jabref:
   root: []

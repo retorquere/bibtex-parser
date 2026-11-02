@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       date-added: 2021-09-16 13:56:16 +0200
       date-modified: 2021-09-16 13:56:52 +0200
       director:
@@ -17,14 +16,16 @@ entries:
     mode:
       date-added: literal
       date-modified: literal
-      director: creatorlist
+      director: namelist
       location: literallist
       read: literal
       title: title
       year: literal
     type: movie
-  - annotations: {}
-    fields:
+    verbatim:
+      director: Sebastiaan Marka
+      location: DE
+  - fields:
       date-added: 2020-09-16 13:56:16 +0200
       date-modified: 2020-09-16 13:56:52 +0200
       director:
@@ -40,14 +41,16 @@ entries:
     mode:
       date-added: literal
       date-modified: literal
-      director: creatorlist
+      director: namelist
       location: literallist
       read: literal
       title: title
       year: literal
     type: video
-  - annotations: {}
-    fields:
+    verbatim:
+      director: Sebastian Marka
+      location: DE
+  - fields:
       author:
         - firstName: Olivier
           lastName: Roy
@@ -82,7 +85,7 @@ entries:
         year = {2017}}
     key: Roy.O:2017a
     mode:
-      author: creatorlist
+      author: namelist
       location: literallist
       origdate: literal
       origlanguage: literallist
@@ -91,11 +94,17 @@ entries:
       publisher: literallist
       subtitle: title
       title: title
-      translator: creatorlist
+      translator: namelist
       year: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Roy, Olivier
+      location: New York
+      origlanguage: french
+      origlocation: Paris
+      publisher: Oxford University Press
+      translator: Schoch, Cynthia
+  - fields:
       address:
         - US
       author:
@@ -114,11 +123,15 @@ entries:
     key: Ball.W:2014a
     mode:
       address: literallist
-      author: creatorlist
-      editor: creatorlist
+      author: namelist
+      editor: namelist
       title: title
       year: literal
     type: movie
+    verbatim:
+      address: US
+      author: Ball, Wes
+      editor: Noah Oppenheim and Grant Pierce Myers and T.S. Nowlin
 errors: []
 jabref:
   root: []

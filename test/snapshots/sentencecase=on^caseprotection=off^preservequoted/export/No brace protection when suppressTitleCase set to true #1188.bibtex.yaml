@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       annotation: '00000'
       author:
         - firstName: Jane
@@ -26,7 +25,7 @@ entries:
     key: Doe2018
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
       journal: literal
       number: literal
       pages: literal
@@ -34,8 +33,9 @@ entries:
       volume: literal
       year: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Doe, Jane
+  - fields:
       annotation: '00000'
       author:
         - firstName: Jill
@@ -60,7 +60,7 @@ entries:
     key: Jackson2019
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
       journal: literal
       number: literal
       pages: literal
@@ -68,8 +68,9 @@ entries:
       volume: literal
       year: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Jackson, Jill
+  - fields:
       annotation: '00000'
       author:
         - firstName: John
@@ -94,7 +95,7 @@ entries:
     key: Smith2019
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
       journal: literal
       number: literal
       pages: literal
@@ -102,6 +103,8 @@ entries:
       volume: literal
       year: literal
     type: article
+    verbatim:
+      author: Smith, John
 errors: []
 jabref:
   root: []

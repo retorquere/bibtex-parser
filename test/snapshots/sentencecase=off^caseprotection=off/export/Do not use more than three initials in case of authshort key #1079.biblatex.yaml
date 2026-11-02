@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Ion
           lastName: Iancu
@@ -31,7 +30,7 @@ entries:
       }
     key: IAB+12
     mode:
-      author: creatorlist
+      author: namelist
       booktitle: title
       date: literal
       doi: verbatim
@@ -41,6 +40,8 @@ entries:
       url: verbatim
       urldate: literal
     type: incollection
+    verbatim:
+      author: Iancu, Ion and Alpha and Beta and Gamma and Delta
 errors: []
 jabref:
   root: []

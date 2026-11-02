@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Thibaut
           lastName: Lust
@@ -49,10 +48,10 @@ entries:
       }
     key: lt2010
     mode:
-      author: creatorlist
+      author: namelist
       booktitle: title
       doi: verbatim
-      editor: creatorlist
+      editor: namelist
       isbn: literal
       note: richtext
       number: literal
@@ -62,6 +61,10 @@ entries:
       title: title
       year: literal
     type: incollection
+    verbatim:
+      author: Lust, Thibaut and Teghem, Jacques
+      editor: Coello, Carlos A. Coello and Dhaenens, Clarisse and Jourdan, Laetitia
+      publisher: '{Springer Berlin Heidelberg}'
 errors: []
 jabref:
   root: []

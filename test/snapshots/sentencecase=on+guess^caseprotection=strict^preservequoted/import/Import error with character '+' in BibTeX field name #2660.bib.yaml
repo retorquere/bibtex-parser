@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: A. A.
           lastName: Author
@@ -15,11 +14,12 @@ entries:
       }
     key: 9.8:1
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: A. A. Author and B. B. Author
+  - fields:
       author:
         - name: American Psychological Association
         - name: National Institutes of Health
@@ -31,11 +31,12 @@ entries:
       }
     key: 9.8:2
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{American Psychological Association} and {National Institutes of Health}'
+  - fields:
       author:
         - firstName: A. A.
           lastName: Author
@@ -51,11 +52,12 @@ entries:
       }
     key: 9.8:3
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: A. A. Author and B. B. Author and C. C. Author
+  - fields:
       author:
         - lastName: First
         - lastName: Second
@@ -88,11 +90,16 @@ entries:
       }
     key: 9.8:4
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: |-
+        First and Second and Third and Fourth and Fifth and Sixth and
+                    Seventh and Eighth and Ninth and Tenth and Eleventh and Twelfth and
+                    Thirteenth and Fourteenth and Fifteenth and Sixteenth and
+                    Seventeenth and Eighteenth and Nineteenth and Twentieth
+  - fields:
       author:
         - lastName: First
         - lastName: Second
@@ -128,11 +135,17 @@ entries:
       }
     key: 9.8:5
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: |-
+        First and Second and Third and Fourth and Fifth and Sixth and
+                    Seventh and Eighth and Ninth and Tenth and Eleventh and Twelfth and
+                    Thirteenth and Fourteenth and Fifteenth and Sixteenth and
+                    Seventeenth and Eighteenth and Nineteenth and Twentieth and
+                    Twentyfirst and Twentysecond
+  - fields:
       author:
         - firstName: Ai-Jun
           lastName: Xu
@@ -146,11 +159,12 @@ entries:
       % protect the hyphenated lower-case initial from being detected
     key: 9.8:6
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Xu, Ai-Jun
+  - fields:
       author:
         - firstName: Lee-ann
           lastName: Raboso
@@ -162,11 +176,12 @@ entries:
       }
     key: 9.8:7
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Raboso, {Lee-ann}
+  - fields:
       author:
         - firstName: A. A.
           lastName: Author
@@ -181,11 +196,12 @@ entries:
       }
     key: 9.8:8
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Author, Jr., A. A. and B. B. Author
+  - fields:
       author:
         - firstName: K.
           lastName: Meyers
@@ -201,13 +217,14 @@ entries:
       }
     key: 9.8:9
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       title: title
       with: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: K. Meyers
+  - fields:
       author:
         - lastName: Plato
       date: '2014'
@@ -226,19 +243,19 @@ entries:
       % annotation "username"
     key: 9.8:10
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
     type: book
-  - annotations:
+    verbatim:
+      author: Plato
+  - fields:
+      author:
+        - firstName: U.
+          lastName: Author
       author+an:username:
         - index: 1
           scope: item
           value: '@ausername'
-    fields:
-      author:
-        - firstName: U.
-          lastName: Author
-      author+an:username: 1="@ausername"
       date: '2014'
     input: |-
       @BOOK{9.8:11,
@@ -250,12 +267,14 @@ entries:
       % Testing seasons
     key: 9.8:11
     mode:
-      author: creatorlist
-      author+an:username: verbatim
+      author: namelist
+      author+an:username: annotations
       date: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: U. Author
+      author+an:username: 1="@ausername"
+  - fields:
       author:
         - firstName: Arthur
           lastName: Test
@@ -275,15 +294,16 @@ entries:
       }
     key: 9.14:1
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       journaltitle: literal
       number: literal
       title: title
       volume: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Arthur Test
+  - fields:
       author:
         - firstName: Arthur
           lastName: Test
@@ -305,15 +325,16 @@ entries:
       % (APA 9.44)
     key: 9.14:2
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       journaltitle: literal
       number: literal
       title: title
       volume: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Arthur Test
+  - fields:
       author:
         - firstName: A. S.
           lastName: Benjamin
@@ -323,10 +344,11 @@ entries:
       }
     key: 9.44:1a
     mode:
-      author: creatorlist
+      author: namelist
     type: nameonly
-  - annotations: {}
-    fields:
+    verbatim:
+      author: A. S. Benjamin
+  - fields:
       author:
         - firstName: D.
           lastName: Yaakov
@@ -337,10 +359,11 @@ entries:
       }
     key: 9.44:1b
     mode:
-      author: creatorlist
+      author: namelist
     type: nameonly
-  - annotations: {}
-    fields:
+    verbatim:
+      author: ben Yaakov, D.
+  - fields:
       author:
         - firstName: N. K.
           lastName: Denzin
@@ -350,10 +373,11 @@ entries:
       }
     key: 9.44:2a
     mode:
-      author: creatorlist
+      author: namelist
     type: nameonly
-  - annotations: {}
-    fields:
+    verbatim:
+      author: N. K. Denzin
+  - fields:
       author:
         - firstName: C.
           lastName: Onís
@@ -364,10 +388,11 @@ entries:
       }
     key: 9.44:2b
     mode:
-      author: creatorlist
+      author: namelist
     type: nameonly
-  - annotations: {}
-    fields:
+    verbatim:
+      author: de Onís, C.
+  - fields:
       author:
         - firstName: J. T.
           lastName: Devlin
@@ -377,10 +402,11 @@ entries:
       }
     key: 9.44:2c
     mode:
-      author: creatorlist
+      author: namelist
     type: nameonly
-  - annotations: {}
-    fields:
+    verbatim:
+      author: J. T. Devlin
+  - fields:
       author:
         - firstName: John-Bill
           lastName: Girard
@@ -390,10 +416,11 @@ entries:
       }
     key: 9.44:3a
     mode:
-      author: creatorlist
+      author: namelist
     type: nameonly
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Girard, John-Bill
+  - fields:
       author:
         - firstName: A. S.
           lastName: Girard-Perregaux
@@ -403,10 +430,11 @@ entries:
       }
     key: 9.44:3b
     mode:
-      author: creatorlist
+      author: namelist
     type: nameonly
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Girard-Perregaux, A. S.
+  - fields:
       author:
         - firstName: T.
           lastName: Ibn Abdulaziz
@@ -416,10 +444,11 @@ entries:
       }
     key: 9.44:4a
     mode:
-      author: creatorlist
+      author: namelist
     type: nameonly
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Ibn Abdulaziz, T.
+  - fields:
       author:
         - firstName: A. K. M.
           lastName: Ibn Nidal
@@ -429,10 +458,11 @@ entries:
       }
     key: 9.44:4b
     mode:
-      author: creatorlist
+      author: namelist
     type: nameonly
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Ibn Nidal, A. K. M.
+  - fields:
       author:
         - firstName: M. E.
           lastName: López
@@ -442,10 +472,11 @@ entries:
       }
     key: 9.44:5a
     mode:
-      author: creatorlist
+      author: namelist
     type: nameonly
-  - annotations: {}
-    fields:
+    verbatim:
+      author: M. E. López
+  - fields:
       author:
         - firstName: G.
           lastName: López de Molina
@@ -455,10 +486,11 @@ entries:
       }
     key: 9.44:5b
     mode:
-      author: creatorlist
+      author: namelist
     type: nameonly
-  - annotations: {}
-    fields:
+    verbatim:
+      author: López de Molina, G.
+  - fields:
       author:
         - firstName: T.
           lastName: MacCallum
@@ -469,10 +501,11 @@ entries:
       }
     key: 9.44:6a
     mode:
-      author: creatorlist
+      author: namelist
     type: nameonly
-  - annotations: {}
-    fields:
+    verbatim:
+      author: MacCallum, II, T.
+  - fields:
       author:
         - firstName: T.
           lastName: MacCallum
@@ -483,10 +516,11 @@ entries:
       }
     key: 9.44:6b
     mode:
-      author: creatorlist
+      author: namelist
     type: nameonly
-  - annotations: {}
-    fields:
+    verbatim:
+      author: MacCallum, III, T.
+  - fields:
       author:
         - firstName: E.
           lastName: MacNeil
@@ -496,10 +530,11 @@ entries:
       }
     key: 9.44:7a
     mode:
-      author: creatorlist
+      author: namelist
     type: nameonly
-  - annotations: {}
-    fields:
+    verbatim:
+      author: E. MacNeil
+  - fields:
       author:
         - firstName: Z. C. E.
           lastName: McAdoo
@@ -509,10 +544,11 @@ entries:
       }
     key: 9.44:7b
     mode:
-      author: creatorlist
+      author: namelist
     type: nameonly
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Z. C. E. McAdoo
+  - fields:
       author:
         - firstName: L. L.
           lastName: M'Carthy
@@ -522,10 +558,11 @@ entries:
       }
     key: 9.44:7c
     mode:
-      author: creatorlist
+      author: namelist
     type: nameonly
-  - annotations: {}
-    fields:
+    verbatim:
+      author: L. L. M'Carthy
+  - fields:
       author:
         - firstName: S. R.
           lastName: Olson
@@ -535,10 +572,11 @@ entries:
       }
     key: 9.44:8a
     mode:
-      author: creatorlist
+      author: namelist
     type: nameonly
-  - annotations: {}
-    fields:
+    verbatim:
+      author: S. R. Olson
+  - fields:
       author:
         - firstName: U.
           lastName: O'Neil
@@ -548,10 +586,11 @@ entries:
       }
     key: 9.44:8b
     mode:
-      author: creatorlist
+      author: namelist
     type: nameonly
-  - annotations: {}
-    fields:
+    verbatim:
+      author: U. O'Neil
+  - fields:
       author:
         - firstName: R.
           lastName: Oppenheimer
@@ -561,10 +600,11 @@ entries:
       }
     key: 9.44:8c
     mode:
-      author: creatorlist
+      author: namelist
     type: nameonly
-  - annotations: {}
-    fields:
+    verbatim:
+      author: R. Oppenheimer
+  - fields:
       author:
         - firstName: F.
           lastName: Partridge
@@ -574,10 +614,11 @@ entries:
       }
     key: 9.44:9a
     mode:
-      author: creatorlist
+      author: namelist
     type: nameonly
-  - annotations: {}
-    fields:
+    verbatim:
+      author: F. Partridge
+  - fields:
       author:
         - lastName: Plato
     input: |-
@@ -586,10 +627,11 @@ entries:
       }
     key: 9.44:9b
     mode:
-      author: creatorlist
+      author: namelist
     type: nameonly
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Plato
+  - fields:
       author:
         - firstName: Q. E
           lastName: San Martin
@@ -599,10 +641,11 @@ entries:
       }
     key: 9.44:10a
     mode:
-      author: creatorlist
+      author: namelist
     type: nameonly
-  - annotations: {}
-    fields:
+    verbatim:
+      author: San Martin, Q. E
+  - fields:
       author:
         - firstName: M.
           lastName: Santa Maria
@@ -612,10 +655,11 @@ entries:
       }
     key: 9.44:10b
     mode:
-      author: creatorlist
+      author: namelist
     type: nameonly
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Santa Maria, M.
+  - fields:
       author:
         - firstName: F. E.
           lastName: Santayana
@@ -627,10 +671,11 @@ entries:
       % Silly requirement to list "Sr" before "Jr" because it's "older"
     key: 9.44:10c
     mode:
-      author: creatorlist
+      author: namelist
     type: nameonly
-  - annotations: {}
-    fields:
+    verbatim:
+      author: F. E. Santayana
+  - fields:
       author:
         - firstName: J.
           lastName: Santiago
@@ -644,11 +689,13 @@ entries:
       }
     key: 9.44:11a
     mode:
-      author: creatorlist
-      sortname: creatorlist
+      author: namelist
+      sortname: namelist
     type: nameonly
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Santiago, Sr., J.
+      sortname: SantiagoJ1
+  - fields:
       author:
         - firstName: J.
           lastName: Santiago
@@ -662,11 +709,13 @@ entries:
       }
     key: 9.44:11b
     mode:
-      author: creatorlist
-      sortname: creatorlist
+      author: namelist
+      sortname: namelist
     type: nameonly
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Santiago, Jr., J.
+      sortname: SantiagoJ2
+  - fields:
       author:
         - firstName: S. A.
           lastName: Villafuerte
@@ -676,10 +725,11 @@ entries:
       }
     key: 9.44:12a
     mode:
-      author: creatorlist
+      author: namelist
     type: nameonly
-  - annotations: {}
-    fields:
+    verbatim:
+      author: S. A. Villafuerte
+  - fields:
       author:
         - firstName: J.
           lastName: Villa-Lobos
@@ -691,10 +741,11 @@ entries:
       % (APA 9.46)
     key: 9.44:12b
     mode:
-      author: creatorlist
+      author: namelist
     type: nameonly
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Villa-Lobos, J.
+  - fields:
       author:
         - firstName: S. N.
           lastName: Patel
@@ -704,10 +755,11 @@ entries:
       }
     key: 9.46:1
     mode:
-      author: creatorlist
+      author: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: S. N. Patel
+  - fields:
       author:
         - firstName: S. N.
           lastName: Patel
@@ -719,11 +771,12 @@ entries:
       }
     key: 9.46:2
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: S. N. Patel
+  - fields:
       author:
         - firstName: S. N.
           lastName: Patel
@@ -735,11 +788,12 @@ entries:
       }
     key: 9.46:3
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: S. N. Patel
+  - fields:
       author:
         - firstName: S. N.
           lastName: Patel
@@ -751,11 +805,12 @@ entries:
       }
     key: 9.46:4
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: S. N. Patel
+  - fields:
       author:
         - firstName: S. N.
           lastName: Patel
@@ -767,11 +822,12 @@ entries:
       }
     key: 9.46:5
     mode:
-      author: creatorlist
+      author: namelist
       pubstate: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: S. N. Patel
+  - fields:
       author:
         - firstName: T. E.
           lastName: Davidson
@@ -783,11 +839,12 @@ entries:
       }
     key: 9.46:6
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: T. E. Davidson
+  - fields:
       author:
         - firstName: T. E.
           lastName: Davidson
@@ -801,11 +858,12 @@ entries:
       }
     key: 9.46:7
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: T. E. Davidson and McCabe, M. P.
+  - fields:
       author:
         - firstName: P. T.
           lastName: Costa
@@ -820,11 +878,12 @@ entries:
       }
     key: 9.46:8
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Costa, Jr., P. T. and McCrae, R. R.
+  - fields:
       author:
         - firstName: P. T.
           lastName: Costa
@@ -839,11 +898,12 @@ entries:
       }
     key: 9.46:9
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Costa, Jr., P. T. and McCrae, R. R.
+  - fields:
       author:
         - firstName: T. E.
           lastName: Jacobson
@@ -859,11 +919,12 @@ entries:
       }
     key: 9.46:10
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: T. E. Jacobson and B. Duncan and S. E. Young
+  - fields:
       author:
         - firstName: T. E.
           lastName: Jacobson
@@ -877,11 +938,12 @@ entries:
       }
     key: 9.46:11
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: T. E. Jacobson and K. M. Raymond
+  - fields:
       author:
         - firstName: S. J.
           lastName: Pfeiffer
@@ -897,11 +959,12 @@ entries:
       }
     key: 9.46:12
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: S. J. Pfeiffer and Wan-Wan Chu and S. H. Park
+  - fields:
       author:
         - firstName: S. J.
           lastName: Pfeiffer
@@ -919,11 +982,12 @@ entries:
       % (APA 9.47)
     key: 9.46:13
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: S. J. Pfeiffer and Wan-Wan Chu and T. L. Wall
+  - fields:
       author:
         - firstName: H.
           lastName: Azikiwe
@@ -937,11 +1001,12 @@ entries:
       }
     key: 9.47:1
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: H. Azikiwe and A. Bello
+  - fields:
       author:
         - firstName: H.
           lastName: Azikiwe
@@ -955,11 +1020,12 @@ entries:
       }
     key: 9.47:2
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: H. Azikiwe and A. Bello
+  - fields:
       author:
         - firstName: H.
           lastName: Azikiwe
@@ -973,11 +1039,12 @@ entries:
       }
     key: 9.47:3
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: H. Azikiwe and A. Bello
+  - fields:
       author:
         - firstName: T. A.
           lastName: Judge
@@ -1005,7 +1072,7 @@ entries:
       }
     key: 9.47:4
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       doi: verbatim
       journaltitle: literal
@@ -1015,8 +1082,9 @@ entries:
       title: title
       volume: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: T. A. Judge and Kammeyer-Mueller, J. D
+  - fields:
       author:
         - firstName: T. A.
           lastName: Judge
@@ -1047,7 +1115,7 @@ entries:
       % at the beginning
     key: 9.47:5
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       doi: verbatim
       journaltitle: literal
@@ -1057,8 +1125,9 @@ entries:
       title: title
       volume: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: T. A. Judge and Kammeyer-Mueller, J. D
+  - fields:
       author:
         - firstName: A.
           lastName: Smith
@@ -1072,12 +1141,13 @@ entries:
       }
     key: 9.47:6
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       title: title
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: A. Smith
+  - fields:
       author:
         - firstName: A.
           lastName: Smith
@@ -1091,12 +1161,13 @@ entries:
       }
     key: 9.47:7
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       title: title
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: A. Smith
+  - fields:
       author:
         - firstName: A.
           lastName: Smith
@@ -1110,12 +1181,13 @@ entries:
       }
     key: 9.47:8
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       title: title
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: A. Smith
+  - fields:
       author:
         - firstName: A.
           lastName: Smith
@@ -1131,12 +1203,13 @@ entries:
       % Testing no date and in press extradate
     key: 9.47:9
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       title: title
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: A. Smith
+  - fields:
       author:
         - firstName: B.
           lastName: Brown
@@ -1146,10 +1219,11 @@ entries:
       }
     key: 9.47:10
     mode:
-      author: creatorlist
+      author: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: B. Brown
+  - fields:
       author:
         - firstName: B.
           lastName: Brown
@@ -1159,10 +1233,11 @@ entries:
       }
     key: 9.47:11
     mode:
-      author: creatorlist
+      author: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: B. Brown
+  - fields:
       author:
         - firstName: B.
           lastName: Brown
@@ -1174,11 +1249,12 @@ entries:
       }
     key: 9.47:12
     mode:
-      author: creatorlist
+      author: namelist
       pubstate: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: B. Brown
+  - fields:
       author:
         - firstName: B.
           lastName: Brown
@@ -1192,11 +1268,12 @@ entries:
       % (APA 9.48)
     key: 9.47:13
     mode:
-      author: creatorlist
+      author: namelist
       pubstate: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: B. Brown
+  - fields:
       author:
         - firstName: J. M.
           lastName: Taylor
@@ -1210,11 +1287,12 @@ entries:
       }
     key: 9.48:1
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: J. M. Taylor and G. J. Neimeyer
+  - fields:
       author:
         - firstName: T.
           lastName: Taylor
@@ -1228,11 +1306,12 @@ entries:
       % (APA 9.49)
     key: 9.48:2
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: T. Taylor
+  - fields:
       author:
         - lastName: Anonymous
       date: '-3000'
@@ -1245,12 +1324,13 @@ entries:
       }
     key: 9.49:1
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       title: title
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Anonymous
+  - fields:
       date: '-2000'
       title: The book of eibon
     input: |-
@@ -1263,8 +1343,8 @@ entries:
       date: literal
       title: title
     type: book
-  - annotations: {}
-    fields:
+    verbatim: {}
+  - fields:
       author:
         - firstName: A.
           lastName: Smith
@@ -1280,13 +1360,14 @@ entries:
       }
     key: 9.49:3
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       sorttitle: literal
       title: title
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: A. Smith
+  - fields:
       author:
         - firstName: A.
           lastName: Smith
@@ -1302,13 +1383,14 @@ entries:
       }
     key: 9.49:4
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       sorttitle: literal
       title: title
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: A. Smith
+  - fields:
       author:
         - firstName: J.
           lastName: Jones
@@ -1328,15 +1410,16 @@ entries:
       }
     key: 9.49:5
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       journaltitle: literal
       sorttitle: literal
       subtitle: title
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: J. Jones
+  - fields:
       author:
         - firstName: J.
           lastName: Jones
@@ -1359,15 +1442,16 @@ entries:
       % Mapped to INBOOK by style sourcemap
     key: 9.49:6
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       journaltitle: literal
       sorttitle: literal
       subtitle: title
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: J. Jones
+  - fields:
       annotation: >-
         This book chapter provides an overview of the psychosociological concept
         of work-life balance. The authors discuss findings from studies showing
@@ -1426,19 +1510,22 @@ entries:
     key: 9.51:1
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
       booksubtitle: literal
       booktitle: title
       date: literal
       doi: verbatim
-      editor: creatorlist
+      editor: namelist
       pages: literal
       publisher: literallist
       subtitle: title
       title: title
     type: incollection
-  - annotations: {}
-    fields:
+    verbatim:
+      author: L. K. Barber and M. J. Grawitch and P. W. Maloney
+      editor: M. J. Grawitch and D. W. Ballard
+      publisher: American Psychological Association
+  - fields:
       annotation: >-
         9.51:2 conducted an empirical study to examine the multiple paths
         through which work and family variables can affect work outcomes.
@@ -1507,7 +1594,7 @@ entries:
     key: 9.51:2
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
       date: literal
       doi: verbatim
       journaltitle: literal
@@ -1517,8 +1604,9 @@ entries:
       title: title
       volume: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: D. S. Carlson and M. J. Thompson and K. M. Kacmar
+  - fields:
       author:
         - firstName: L.
           lastName: Angel
@@ -1568,7 +1656,7 @@ entries:
       % Mapped to INBOOK by style sourcemap
     key: 9.52:1
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       doi: verbatim
       journaltitle: literal
@@ -1578,8 +1666,12 @@ entries:
       title: title
       volume: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: |-
+        L. Angel and C. Bastin and S. Genon and E. Balteau and
+                            C. Phillips and A. Luxen and P. Maquet and E. Salmon
+                            and F. Collette
+  - fields:
       author:
         - firstName: J. R.
           lastName: Finley
@@ -1614,18 +1706,21 @@ entries:
       }
     key: 9.52:2
     mode:
-      author: creatorlist
+      author: namelist
       booksubtitle: literal
       booktitle: title
       date: literal
       doi: verbatim
-      editor: creatorlist
+      editor: namelist
       pages: literal
       publisher: literallist
       title: title
     type: incollection
-  - annotations: {}
-    fields:
+    verbatim:
+      author: J. R. Finley and J. G. Tullis and A. S. Benjamin
+      editor: M. S. Khine and I. M. Saleh
+      publisher: Springer
+  - fields:
       author:
         - firstName: R.
           lastName: Hanaki
@@ -1677,7 +1772,7 @@ entries:
       }
     key: 9.52:3
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       doi: verbatim
       journaltitle: literal
@@ -1687,8 +1782,12 @@ entries:
       title: title
       volume: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: |-
+        R. Hanaki and N. Abe and T. Fujii and A. Ueno and Y.
+                            Nishio and K. Hiraoka and T. Shimomura and O. Iizuka
+                            and M. Shinohara and K. Hirayama and E. Mori
+  - fields:
       author:
         - firstName: M. B.
           lastName: Hargis
@@ -1720,7 +1819,7 @@ entries:
       % Note that the URL is suppressed if there is a DOI
     key: 9.52:4
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       doi: verbatim
       journaltitle: literal
@@ -1729,8 +1828,9 @@ entries:
       title: title
       volume: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: M. B. Hargis and A. D. Castel
+  - fields:
       author:
         - firstName: S. M.
           lastName: McCauley
@@ -1762,7 +1862,7 @@ entries:
       % (APA 10.1 Example 2)
     key: 10.1:1
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       doi: verbatim
       journaltitle: literal
@@ -1773,8 +1873,9 @@ entries:
       url: verbatim
       volume: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: S. M. McCauley and M. H. Christiansen
+  - fields:
       author:
         - firstName: E.
           lastName: Ahmann
@@ -1810,7 +1911,7 @@ entries:
       % (APA 10.1 Example 3)
     key: 10.1:2
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       journaltitle: literal
       number: literal
@@ -1820,8 +1921,9 @@ entries:
       url: verbatim
       volume: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: E. Ahmann and L. J. Tuttle and M. Saviet and S. D. Wright
+  - fields:
       author:
         - firstName: M.
           lastName: Anderson
@@ -1843,7 +1945,7 @@ entries:
       }
     key: 10.1:3a
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       journaltitle: literal
       number: literal
@@ -1851,8 +1953,9 @@ entries:
       title: title
       volume: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: M. Anderson
+  - fields:
       author:
         - firstName: C.
           lastName: Goldman
@@ -1876,14 +1979,15 @@ entries:
       https
     key: 10.1:3b
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       entrysubtype: literal
       journaltitle: literal
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: C. Goldman
+  - fields:
       author:
         - firstName: E.
           lastName: Kalnay
@@ -1962,7 +2066,7 @@ entries:
       % specified for group author lists (APA 9.8)
     key: 10.1:4
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       doi: verbatim
       journaltitle: literal
@@ -1971,8 +2075,15 @@ entries:
       title: title
       volume: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: |-
+        E. Kalnay and M. Kanamitsu and R. Kistler and W.
+                            Collins and D. Deaven and L. Gandin and M. Iredell and S.
+                            Saha and G. White and J. Wollen and Y. Zhu and M.
+                            Chelliah and W. Ebisuzaki and W. Higgins and J. Janowiak
+                            and K. C. Mo and C. Ropelewski and J. Wang and A. Leetma
+                            and A. Aaron and B. Baron C. Court and D. Joseph
+  - fields:
       author:
         - firstName: R.
           lastName: De Vries
@@ -2008,7 +2119,7 @@ entries:
       % (APA 10.1 Example 6)
     key: 10.1:5
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       doi: verbatim
       journaltitle: literal
@@ -2017,8 +2128,11 @@ entries:
       title: title
       volume: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: |-
+        De Vries, R. and M. Nieuwenhuijze and S. E. Buitendijk
+                            and {the members of Midwifery Science Work Group}
+  - fields:
       author:
         - firstName: D.
           lastName: Burin
@@ -2055,7 +2169,7 @@ entries:
       % (APA 10.1 Example 7)
     key: 10.1:6
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       doi: verbatim
       eid: literal
@@ -2064,8 +2178,9 @@ entries:
       title: title
       volume: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: D. Burin and K. Kilteni and M. Rabuffetti and M. Slater and L. Pia
+  - fields:
       author:
         - firstName: S. M.
           lastName: Huestegge
@@ -2096,15 +2211,16 @@ entries:
       % (APA 10.1 Example 8)
     key: 10.1:7
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       doi: verbatim
       howpublished: literal
       journaltitle: literal
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: S. M. Huestegge and T. Raettig and L. Huestegge
+  - fields:
       author:
         - firstName: T.
           lastName: Pachur
@@ -2126,14 +2242,15 @@ entries:
       % (APA 10.1 Example 9)
     key: 10.1:8
     mode:
-      author: creatorlist
+      author: namelist
       journaltitle: literal
       pubstate: literal
       subtitle: title
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: T. Pachur and B. Scheibehenne
+  - fields:
       author:
         - firstName: V.
           lastName: Chaves-Morillo
@@ -2182,7 +2299,7 @@ entries:
       % (APA 10.1 Example 10)
     key: 10.1:9
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       doi: verbatim
       journaltitle: literal
@@ -2193,8 +2310,13 @@ entries:
       title: title
       volume: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: |-
+        V. Chaves-Morillo and Gómez Calero, C. and J. J.
+                            Fernández-Muñoz and A. Toledano-Muñoz and J.
+                            Fernández-Heute and N. Martinez-Monge and D.
+                            Palacios-Ceña and C. Peñacoba-Puente
+  - fields:
       author:
         - firstName: J.
           lastName: Piaget
@@ -2228,7 +2350,7 @@ entries:
       % (APA 10.1 Example 11)
     key: 10.1:10
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       doi: verbatim
       journaltitle: literal
@@ -2236,11 +2358,13 @@ entries:
       origdate: literal
       pages: literal
       title: title
-      translator: creatorlist
+      translator: namelist
       volume: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: J. Piaget
+      translator: J. Bliss and H. Furth
+  - fields:
       author:
         - firstName: M. F.
           lastName: Shore
@@ -2273,7 +2397,7 @@ entries:
       }
     key: 10.1:11
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       doi: verbatim
       journaltitle: literal
@@ -2285,8 +2409,10 @@ entries:
       title: title
       volume: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: M. F. Shore
+      related: 10.1:11r
+  - fields:
       date: '1981'
       doi: 10.1111/j.1939-0025.1981.tb01388.x
       journaltitle: American Journal of Orthopsychiatry
@@ -2321,8 +2447,8 @@ entries:
       title: title
       volume: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim: {}
+  - fields:
       date: '2018'
       editor:
         - firstName: S. O.
@@ -2347,7 +2473,7 @@ entries:
     key: 10.1:12a
     mode:
       date: literal
-      editor: creatorlist
+      editor: namelist
       issuetitle: literal
       journaltitle: literal
       number: literal
@@ -2355,8 +2481,9 @@ entries:
       title: title
       volume: literal
     type: periodical
-  - annotations: {}
-    fields:
+    verbatim:
+      editor: S. O. Lilienfeld
+  - fields:
       date: '2018'
       editor:
         - firstName: S. H.
@@ -2385,15 +2512,16 @@ entries:
     key: 10.1:12b
     mode:
       date: literal
-      editor: creatorlist
+      editor: namelist
       issuetitle: literal
       journaltitle: literal
       number: literal
       title: title
       volume: literal
     type: periodical
-  - annotations: {}
-    fields:
+    verbatim:
+      editor: S. H. McDaniel and E. Salas and A. E. Kazak
+  - fields:
       author:
         - firstName: J.
           lastName: Mehrholz
@@ -2426,14 +2554,15 @@ entries:
       % (APA 10.1 Example 14)
     key: 10.1:13
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       doi: verbatim
       journaltitle: literal
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: J. Mehrholz and M. Pohl and T. Platz and J. Kugler and B. Elsner
+  - fields:
       author:
         - firstName: M. C.
           lastName: Morey
@@ -2457,15 +2586,16 @@ entries:
       % are formatted correctly
     key: 10.1:14
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       journaltitle: literal
       title: title
       url: verbatim
       urldate: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: M. C. Morey
+  - fields:
       author:
         - firstName: S.
           lastName: Bergeson
@@ -2491,7 +2621,7 @@ entries:
       }
     key: 10.1:15a
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       doi: verbatim
       entrysubtype: literal
@@ -2501,8 +2631,9 @@ entries:
       title: title
       volume: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: S. Bergeson
+  - fields:
       author:
         - firstName: M.
           lastName: Bustillos
@@ -2524,7 +2655,7 @@ entries:
       }
     key: 10.1:15b
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       entrysubtype: literal
       journaltitle: literal
@@ -2532,8 +2663,9 @@ entries:
       title: title
       url: verbatim
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: M. Bustillos
+  - fields:
       author:
         - firstName: K.
           lastName: Wier
@@ -2559,7 +2691,7 @@ entries:
       % (APA 10.1 Example 16)
     key: 10.1:15c
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       entrysubtype: literal
       journaltitle: literal
@@ -2568,8 +2700,9 @@ entries:
       title: title
       volume: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: K. Wier
+  - fields:
       author:
         - firstName: B.
           lastName: Guarino
@@ -2592,15 +2725,16 @@ entries:
       }
     key: 10.1:16a
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       entrysubtype: literal
       journaltitle: literal
       title: title
       url: verbatim
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: B. Guarino
+  - fields:
       author:
         - firstName: A.
           lastName: Hess
@@ -2626,15 +2760,16 @@ entries:
       examples
     key: 10.1:16b
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       entrysubtype: literal
       journaltitle: literal
       pages: literal
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: A. Hess
+  - fields:
       author:
         - firstName: M.
           lastName: Klymkowsky
@@ -2685,14 +2820,16 @@ entries:
       %}
     key: 10.1:17
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       organization: literallist
       title: title
       url: verbatim
     type: misc
-  - annotations: {}
-    fields:
+    verbatim:
+      author: M. Klymkowsky
+      organization: Sci-Ed
+  - fields:
       author:
         - name: KS in NJ
       date: '2019-01-15'
@@ -2721,7 +2858,7 @@ entries:
       }
     key: 10.1:18
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       entrysubtype: literal
       journaltitle: literal
@@ -2731,8 +2868,10 @@ entries:
       title: title
       url: verbatim
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{KS in NJ}'
+      related: 10.1:18r
+  - fields:
       author:
         - firstName: A.
           lastName: Author
@@ -2750,13 +2889,14 @@ entries:
       % (APA 10.1 Example 19)
     key: 10.1:18r
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       journaltitle: literal
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: A. Author
+  - fields:
       author:
         - firstName: N. G.
           lastName: Cuellar
@@ -2784,7 +2924,7 @@ entries:
       % (APA 10.2 Example 20)
     key: 10.1:19
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       doi: verbatim
       journaltitle: literal
@@ -2794,8 +2934,9 @@ entries:
       titleaddon: literal
       volume: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: N. G. Cuellar
+  - fields:
       author:
         - firstName: L. S.
           lastName: Brown
@@ -2818,15 +2959,17 @@ entries:
       % (APA 10.2 Example 21)
     key: 10.2:20
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       doi: verbatim
       edition: literal
       publisher: literallist
       title: title
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: L. S. Brown
+      publisher: American Psychological Association
+  - fields:
       author:
         - firstName: R.
           lastName: Burgess
@@ -2853,14 +2996,16 @@ entries:
       % localisation string - this is automatically detected.
     key: 10.2:21
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       publisher: literallist
       subtitle: title
       title: title
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: R. Burgess
+      publisher: Routledge
+  - fields:
       author:
         - firstName: S.
           lastName: Cain
@@ -2885,7 +3030,7 @@ entries:
       }
     key: 10.2:22a
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       entrysubtype: literal
       narrator: literal
@@ -2894,8 +3039,10 @@ entries:
       title: title
       url: verbatim
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: S. Cain
+      publisher: Random House Audio
+  - fields:
       author:
         - firstName: B.
           lastName: Christian
@@ -2920,15 +3067,17 @@ entries:
       % (APA 10.2 Example 23)
     key: 10.2:22b
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       publisher: literallist
       subtitle: title
       title: title
       url: verbatim
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: B. Christian and T. Griffiths
+      publisher: '{Henry Holt and Co.}'
+  - fields:
       author:
         - firstName: D. H.
           lastName: Meadows
@@ -2954,15 +3103,18 @@ entries:
       % Mapped to BOOK by style sourcemap
     key: 10.2:23
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
-      editor: creatorlist
+      editor: namelist
       publisher: literallist
       subtitle: title
       title: title
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: D. H. Meadows
+      editor: D. Wright
+      publisher: Chelsea Green Publishing
+  - fields:
       date: '2017'
       doi: 10.1037/15969-000
       editor:
@@ -2989,13 +3141,15 @@ entries:
     mode:
       date: literal
       doi: verbatim
-      editor: creatorlist
+      editor: namelist
       publisher: literallist
       subtitle: title
       title: title
     type: collection
-  - annotations: {}
-    fields:
+    verbatim:
+      editor: Schmid, Henry-James
+      publisher: American Psychological Association and De Gruyter Mouton
+  - fields:
       date: '2017'
       editor:
         - firstName: J.
@@ -3018,13 +3172,15 @@ entries:
     key: 10.2:25
     mode:
       date: literal
-      editor: creatorlist
+      editor: namelist
       publisher: literallist
       subtitle: title
       title: title
     type: collection
-  - annotations: {}
-    fields:
+    verbatim:
+      editor: Hacker Hughes, J.
+      publisher: Routledge
+  - fields:
       date: '2018'
       editor:
         - firstName: K. F.
@@ -3054,14 +3210,16 @@ entries:
     key: 10.2:26
     mode:
       date: literal
-      editor: creatorlist
+      editor: namelist
       publisher: literallist
       subtitle: title
       title: title
       url: verbatim
     type: collection
-  - annotations: {}
-    fields:
+    verbatim:
+      editor: K. F. Pridham and R. Limbo and M. Schroeder
+      publisher: Springer Publishing Company
+  - fields:
       author:
         - firstName: N.
           lastName: Amano
@@ -3084,15 +3242,17 @@ entries:
       }
     key: 10.2:27a
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       origtitle: title
       publisher: literallist
       title: title
       volume: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: N. Amano and H. Kondo
+      publisher: Sansei-do
+  - fields:
       author:
         - firstName: J.
           lastName: Piaget
@@ -3115,14 +3275,16 @@ entries:
       % (APA 10.2 Example 28)
     key: 10.2:27b
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       origtitle: title
       publisher: literallist
       title: title
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: J. Piaget and B. Inhelder
+      publisher: Quadrige
+  - fields:
       author:
         - firstName: J.
           lastName: Piaget
@@ -3151,16 +3313,19 @@ entries:
       % (APA 10.2 Example 29)
     key: 10.2:28
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       edition: literal
       origdate: literal
       publisher: literallist
       title: title
-      translator: creatorlist
+      translator: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: J. Piaget and B. Inhelder
+      publisher: Basic Books
+      translator: H. Weaver
+  - fields:
       author:
         - firstName: S.
           lastName: Freud
@@ -3189,17 +3354,21 @@ entries:
       }
     key: 10.2:29a
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
-      editor: creatorlist
+      editor: namelist
       origdate: literal
       publisher: literallist
       subtitle: title
       title: title
-      translator: creatorlist
+      translator: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: S. Freud
+      editor: J. Strachey
+      publisher: Basic Books
+      translator: J. Strachey
+  - fields:
       author:
         - firstName: J. K.
           lastName: Rowling
@@ -3226,7 +3395,7 @@ entries:
       % (APA 10.2 Example 30)
     key: 10.2:29b
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       narrator: literal
       origdate: literal
@@ -3235,8 +3404,10 @@ entries:
       titleaddon: literal
       url: verbatim
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: J. K. Rowling
+      publisher: Pottermore Publishing
+  - fields:
       author:
         - firstName: S. T.
           lastName: Fiske
@@ -3265,7 +3436,7 @@ entries:
       % Mapped to BOOK by style sourcemap
     key: 10.2:30a
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       doi: verbatim
       edition: literal
@@ -3273,8 +3444,10 @@ entries:
       title: title
       volume: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: S. T. Fiske and D. T. Gilbert and G. Lindzey
+      publisher: John Wiley \& Sons
+  - fields:
       date: '2018'
       doi: 10.1037/0000059-000
       editor:
@@ -3301,13 +3474,15 @@ entries:
     mode:
       date: literal
       doi: verbatim
-      editor: creatorlist
+      editor: namelist
       publisher: literallist
       subtitle: title
       title: title
     type: collection
-  - annotations: {}
-    fields:
+    verbatim:
+      editor: C. B. Travis and J. W. White
+      publisher: American Psychological Association
+  - fields:
       author:
         - firstName: S.
           lastName: Madigan
@@ -3333,7 +3508,7 @@ entries:
       % Note the use of AUTHOR instead of AUTHOR here
     key: 10.2:31
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       doi: verbatim
       edition: literal
@@ -3341,8 +3516,10 @@ entries:
       series: title
       title: title
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: S. Madigan
+      publisher: American Psychological Association
+  - fields:
       author:
         - name: American Psychiatric Association
       date: '2013'
@@ -3364,7 +3541,7 @@ entries:
       }
     key: 10.2:32a
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       doi: verbatim
       edition: literal
@@ -3372,8 +3549,10 @@ entries:
       shorthand: literal
       title: title
     type: manual
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{American Psychiatric Association}'
+      publisher: American Psychiatric Association
+  - fields:
       author:
         - name: World Health Organization
       date: '2019'
@@ -3399,7 +3578,7 @@ entries:
       % (APA 10.2 Example 33)
     key: 10.2:32b
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       edition: literal
       publisher: literallist
@@ -3407,8 +3586,10 @@ entries:
       title: title
       url: verbatim
     type: manual
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{World Health Organization}'
+      publisher: '{World Health Organization}'
+  - fields:
       author:
         - name: American Psychological Association
       title: <span class="nocase">APA</span> dictionary of psychology
@@ -3423,13 +3604,14 @@ entries:
       }
     key: 10.2:33a
     mode:
-      author: creatorlist
+      author: namelist
       title: title
       url: verbatim
       urldate: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{American Psychological Association}'
+  - fields:
       author:
         - name: Merriam-Webster
       title: <span class="nocase">Merriam-Webster.com</span> dictionary
@@ -3446,13 +3628,14 @@ entries:
       % Mapped to BOOK by style sourcemap
     key: 10.2:33b
     mode:
-      author: creatorlist
+      author: namelist
       title: title
       url: verbatim
       urldate: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{Merriam-Webster}'
+  - fields:
       date: '2019'
       edition: Summer 2019 ed.
       editor:
@@ -3478,13 +3661,15 @@ entries:
     mode:
       date: literal
       edition: literal
-      editor: creatorlist
+      editor: namelist
       publisher: literallist
       title: title
       url: verbatim
     type: reference
-  - annotations: {}
-    fields:
+    verbatim:
+      editor: E. N. Zalta
+      publisher: Stanford University
+  - fields:
       date: '1999'
       doi: 10.1037/10319-000
       editor:
@@ -3510,13 +3695,15 @@ entries:
     mode:
       date: literal
       doi: verbatim
-      editor: creatorlist
+      editor: namelist
       publisher: literallist
       subtitle: title
       title: title
     type: collection
-  - annotations: {}
-    fields:
+    verbatim:
+      editor: M. Gold
+      publisher: American Psychological Association
+  - fields:
       date: '2017'
       origdate: '1769'
       title: <span class="nocase">King James Bible</span>
@@ -3538,8 +3725,8 @@ entries:
       url: verbatim
       urldescription: literal
     type: book
-  - annotations: {}
-    fields:
+    verbatim: {}
+  - fields:
       date: '2004'
       publisher:
         - Oxford University Press
@@ -3559,10 +3746,12 @@ entries:
       date: literal
       publisher: literallist
       title: title
-      translator: creatorlist
+      translator: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      publisher: Oxford University Press
+      translator: Abdel Haleem, M. A. S.
+  - fields:
       date: '2015'
       edition: '3'
       origdate: '1962'
@@ -3593,8 +3782,9 @@ entries:
       subtitle: title
       title: title
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      publisher: The Jewish Publication Society
+  - fields:
       booktitle: Encyclopedia of <span class="nocase">Cleveland</span> history
       date: '2022'
       editor:
@@ -3608,12 +3798,14 @@ entries:
     mode:
       booktitle: title
       date: literal
-      editor: creatorlist
+      editor: namelist
       publisher: literallist
       title: title
     type: inreference
-  - annotations: {}
-    fields:
+    verbatim:
+      editor: John J. Grabowski
+      publisher: Case Western Reserve University
+  - fields:
       author:
         - lastName: Aristotle
       date: '1994'
@@ -3639,16 +3831,19 @@ entries:
       % (APA 10.2 Example 37)
     key: 10.2:36
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       origdate: literal
       publisher: literallist
       title: title
-      translator: creatorlist
+      translator: namelist
       url: verbatim
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Aristotle
+      publisher: The Internet Classics Archive
+      translator: S. H. Butcher
+  - fields:
       author:
         - firstName: W.
           lastName: Shakespeare
@@ -3676,15 +3871,18 @@ entries:
       % Mapped to INBOOK by style sourcemap
     key: 10.2:37
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
-      editor: creatorlist
+      editor: namelist
       origdate: literal
       publisher: literallist
       title: title
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: W. Shakespeare
+      editor: B. A. Mowat and P. Werstine
+      publisher: Washington Square Press
+  - fields:
       author:
         - firstName: K. F.
           lastName: Balsam
@@ -3729,19 +3927,22 @@ entries:
       % Mapped to INBOOK by style sourcemap
     key: 10.3:38
     mode:
-      author: creatorlist
+      author: namelist
       booksubtitle: literal
       booktitle: title
       date: literal
       doi: verbatim
       edition: literal
-      editor: creatorlist
+      editor: namelist
       pages: literal
       publisher: literallist
       title: title
     type: incollection
-  - annotations: {}
-    fields:
+    verbatim:
+      author: K. F. Balsam and C. R. Martell and K. P. Jones and S. A. Safren
+      editor: G. Y. Iwamasa and P. A. Hays
+      publisher: American Psychological Association
+  - fields:
       author:
         - firstName: R.
           lastName: Weinstock
@@ -3777,18 +3978,21 @@ entries:
       % Mapped to INBOOK by style sourcemap
     key: 10.3:39
     mode:
-      author: creatorlist
+      author: namelist
       booktitle: title
       date: literal
       edition: literal
-      editor: creatorlist
+      editor: namelist
       pages: literal
       publisher: literallist
       subtitle: title
       title: title
     type: incollection
-  - annotations: {}
-    fields:
+    verbatim:
+      author: R. Weinstock and G. B. Leong and J. A. Silva
+      editor: R. Rosner
+      publisher: CRC Press
+  - fields:
       author:
         - firstName: N.
           lastName: Tafoya
@@ -3830,19 +4034,22 @@ entries:
       % Mapped to INBOOK by style sourcemap
     key: 10.3:40
     mode:
-      author: creatorlist
+      author: namelist
       booktitle: title
       date: literal
       edition: literal
-      editor: creatorlist
+      editor: namelist
       pages: literal
       publisher: literallist
       subtitle: title
       title: title
       url: verbatim
     type: incollection
-  - annotations: {}
-    fields:
+    verbatim:
+      author: N. Tafoya and Del Vecchio, A.
+      editor: M. McGoldrick and J. Giordano and N. Garcia-Preto
+      publisher: Guilford Press
+  - fields:
       author:
         - firstName: N.
           lastName: Carcavilla González
@@ -3880,10 +4087,10 @@ entries:
       % (APA 10.3 Example 42)
     key: 10.3:41
     mode:
-      author: creatorlist
+      author: namelist
       booktitle: title
       date: literal
-      editor: creatorlist
+      editor: namelist
       origtitle: title
       pages: literal
       publisher: literallist
@@ -3891,8 +4098,11 @@ entries:
       title: title
       url: verbatim
     type: incollection
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Carcavilla González, N.
+      editor: Garcia Meilán, J. J.
+      publisher: Editorial Síntesis
+  - fields:
       author:
         - firstName: M.
           lastName: Heidegger
@@ -3931,18 +4141,22 @@ entries:
       % Mapped to INBOOK by style sourcemap
     key: 10.3:42
     mode:
-      author: creatorlist
+      author: namelist
       booktitle: title
       date: literal
-      editor: creatorlist
+      editor: namelist
       origdate: literal
       pages: literal
       publisher: literallist
       title: title
-      translator: creatorlist
+      translator: namelist
     type: inbook
-  - annotations: {}
-    fields:
+    verbatim:
+      author: M. Heidegger
+      editor: D. F. Krell
+      publisher: Harper Perennial Modern Thought
+      translator: J. Sallis
+  - fields:
       author:
         - firstName: C.
           lastName: Sacchett
@@ -3981,11 +4195,11 @@ entries:
       }
     key: 10.3:43
     mode:
-      author: creatorlist
+      author: namelist
       booksubtitle: literal
       booktitle: title
       date: literal
-      editor: creatorlist
+      editor: namelist
       pages: literal
       publisher: literallist
       related: literallist
@@ -3993,8 +4207,12 @@ entries:
       subtitle: title
       title: title
     type: incollection
-  - annotations: {}
-    fields:
+    verbatim:
+      author: C. Sacchett and G. W. Humphreys
+      editor: D. A. Balota and E. J. Marsh
+      publisher: Psychology Press
+      related: 10.3:43r
+  - fields:
       author:
         - firstName: C.
           lastName: Sacchett
@@ -4026,7 +4244,7 @@ entries:
       % Mapped to INBOOK by style sourcemap
     key: 10.3:43r
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       doi: verbatim
       journaltitle: literal
@@ -4036,8 +4254,9 @@ entries:
       title: title
       volume: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: C. Sacchett and G. W. Humphreys
+  - fields:
       author:
         - firstName: U.
           lastName: Bronfenbrenner
@@ -4071,11 +4290,11 @@ entries:
       }
     key: 10.3:44
     mode:
-      author: creatorlist
+      author: namelist
       booksubtitle: literal
       booktitle: title
       date: literal
-      editor: creatorlist
+      editor: namelist
       pages: literal
       publisher: literallist
       related: literallist
@@ -4083,8 +4302,12 @@ entries:
       subtitle: title
       title: title
     type: incollection
-  - annotations: {}
-    fields:
+    verbatim:
+      author: U. Bronfenbrenner
+      editor: U. Bronfenbrenner
+      publisher: SAGE Publications
+      related: 10.3:44r
+  - fields:
       date: '1973'
       editor:
         - firstName: F.
@@ -4109,14 +4332,16 @@ entries:
     key: 10.3:44r
     mode:
       date: literal
-      editor: creatorlist
+      editor: namelist
       pages: literal
       publisher: literallist
       subtitle: title
       title: title
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      editor: F. Richardson
+      publisher: National Education Press
+  - fields:
       author:
         - firstName: S.
           lastName: Goldin-Meadow
@@ -4152,19 +4377,22 @@ entries:
       % Mapped to INBOOK by style sourcemap
     key: 10.3:45
     mode:
-      author: creatorlist
+      author: namelist
       booksubtitle: literal
       booktitle: title
       date: literal
       doi: verbatim
       edition: literal
-      editor: creatorlist
+      editor: namelist
       pages: literal
       publisher: literallist
       title: title
     type: incollection
-  - annotations: {}
-    fields:
+    verbatim:
+      author: S. Goldin-Meadow
+      editor: L. S. Lisben and U. Mueller
+      publisher: John Wiley \& Sons
+  - fields:
       author:
         - firstName: K.
           lastName: Lewin
@@ -4197,19 +4425,22 @@ entries:
       % (APA 10.3 Example 47)
     key: 10.3:46
     mode:
-      author: creatorlist
+      author: namelist
       booksubtitle: literal
       booktitle: title
       date: literal
       doi: verbatim
-      editor: creatorlist
+      editor: namelist
       origdate: literal
       pages: literal
       publisher: literallist
       title: title
     type: incollection
-  - annotations: {}
-    fields:
+    verbatim:
+      author: K. Lewin
+      editor: M. Gold
+      publisher: American Psychological Association
+  - fields:
       author:
         - name: American Psychological Association
       booktitle: <span class="nocase">APA</span> dictionary of psychology
@@ -4226,14 +4457,15 @@ entries:
       }
     key: 10.3:47a
     mode:
-      author: creatorlist
+      author: namelist
       booktitle: title
       title: title
       url: verbatim
       urldate: literal
     type: inbook
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{American Psychological Association}'
+  - fields:
       author:
         - name: Merriam-Webster
       booktitle: <span class="nocase">Merriam-Webster.com</span> dictionary
@@ -4252,14 +4484,15 @@ entries:
       % (APA 10.3 Example 48)
     key: 10.3:47b
     mode:
-      author: creatorlist
+      author: namelist
       booktitle: title
       title: title
       url: verbatim
       urldate: literal
     type: inbook
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{Merriam-Webster}'
+  - fields:
       author:
         - firstName: G.
           lastName: Graham
@@ -4288,17 +4521,20 @@ entries:
       % (APA 10.3 Example 49)
     key: 10.3:48
     mode:
-      author: creatorlist
+      author: namelist
       booktitle: title
       date: literal
       edition: literal
-      editor: creatorlist
+      editor: namelist
       publisher: literallist
       title: title
       url: verbatim
     type: inreference
-  - annotations: {}
-    fields:
+    verbatim:
+      author: G. Graham
+      editor: E. N. Zalta
+      publisher: Stanford University
+  - fields:
       booktitle: Wikipedia
       date: '2019-01-13'
       title: List of oldest companies
@@ -4319,8 +4555,8 @@ entries:
       title: title
       url: verbatim
     type: inbook
-  - annotations: {}
-    fields:
+    verbatim: {}
+  - fields:
       author:
         - name: Australian Government Productivity Commission
         - name: New Zealand Productivity Commission
@@ -4339,13 +4575,16 @@ entries:
       }
     key: 10.4:50a
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       title: title
       url: verbatim
     type: report
-  - annotations: {}
-    fields:
+    verbatim:
+      author: |-
+        {Australian Government Productivity Commission} and
+                            {New Zealand Productivity Commission}
+  - fields:
       author:
         - name: Canada Council for the Arts
       date: '2013'
@@ -4368,14 +4607,15 @@ entries:
       % numerical. This detection is automatic.
     key: 10.4:50b
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       subtitle: title
       title: title
       url: verbatim
     type: report
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{Canada Council for the Arts}'
+  - fields:
       author:
         - name: National Cancer Institute
       date: '2018'
@@ -4398,7 +4638,7 @@ entries:
       % (APA 10.4 Example 51)
     key: 10.4:50c
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       number: literal
       subtitle: title
@@ -4406,8 +4646,9 @@ entries:
       type: literal
       url: verbatim
     type: report
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{National Cancer Institute}'
+  - fields:
       author:
         - firstName: D.
           lastName: Fried
@@ -4428,14 +4669,16 @@ entries:
       }
     key: 10.4:51a
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       publisher: literallist
       title: title
       url: verbatim
     type: report
-  - annotations: {}
-    fields:
+    verbatim:
+      author: D. Fried and A. Polyakova
+      publisher: Atlantic Council
+  - fields:
       author:
         - firstName: A.
           lastName: Segaert
@@ -4460,14 +4703,16 @@ entries:
       % (APA 10.4 Example 52)
     key: 10.4:51b
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       publisher: literallist
       title: title
       url: verbatim
     type: report
-  - annotations: {}
-    fields:
+    verbatim:
+      author: A. Segaert and A. Bauer
+      publisher: '{Employment and Social Development Canada}'
+  - fields:
       author:
         - firstName: D. L.
           lastName: Blackwell
@@ -4498,7 +4743,7 @@ entries:
       % (APA 10.4 Example 53)
     key: 10.4:52
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       issue: literal
       number: literal
@@ -4507,8 +4752,10 @@ entries:
       title: title
       url: verbatim
     type: report
-  - annotations: {}
-    fields:
+    verbatim:
+      author: D. L. Blackwell and J. W. Lucas and T. C. Clarke
+      publisher: '{Centers for Disease Control and Prevention}'
+  - fields:
       author:
         - name: British Cardiovascular Society Working Group
       date: '2016'
@@ -4535,15 +4782,17 @@ entries:
       % (APA 10.4 Example 54)
     key: 10.4:53
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       publisher: literallist
       subtitle: title
       title: title
       url: verbatim
     type: report
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{British Cardiovascular Society Working Group}'
+      publisher: British Cardiovascular Society
+  - fields:
       author:
         - name: U.S. Securities and Exchange Commission
       date: '2017'
@@ -4562,14 +4811,15 @@ entries:
       % (APA 10.4 Example 55)
     key: 10.4:54
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       subtitle: title
       title: title
       url: verbatim
     type: report
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{U.S. Securities and Exchange Commission}'
+  - fields:
       author:
         - name: American Counseling Association
       date: '2014'
@@ -4584,13 +4834,14 @@ entries:
       }
     key: 10.4:55a
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       title: title
       url: verbatim
     type: report
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{American Counseling Association}'
+  - fields:
       author:
         - name: American Nurses Association
       date: '2015'
@@ -4605,13 +4856,14 @@ entries:
       }
     key: 10.4:55b
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       title: title
       url: verbatim
     type: report
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{American Nurses Association}'
+  - fields:
       author:
         - name: American Psychological Association
       date: '2017'
@@ -4643,22 +4895,22 @@ entries:
       % quotes. See the Data Annotation documentation in the biblatex manual
     key: 10.4:55c
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       note: richtext
       title: title
       url: verbatim
     type: report
-  - annotations:
+    verbatim:
+      author: '{American Psychological Association}'
+  - fields:
+      author:
+        - firstName: C. B.
+          lastName: Blair
       author+an:role:
         - index: 1
           scope: item
           value: Principal Investigator
-    fields:
-      author:
-        - firstName: C. B.
-          lastName: Blair
-      author+an:role: 1="Principal Investigator"
       date: 2015/2020
       institution:
         - >-
@@ -4686,8 +4938,8 @@ entries:
       % (APA 10.4 Example 57)
     key: 10.4:56
     mode:
-      author: creatorlist
-      author+an:role: verbatim
+      author: namelist
+      author+an:role: annotations
       date: literal
       institution: literallist
       number: literal
@@ -4696,8 +4948,13 @@ entries:
       type: literal
       url: verbatim
     type: report
-  - annotations: {}
-    fields:
+    verbatim:
+      author: C. B. Blair
+      author+an:role: 1="Principal Investigator"
+      institution: |-
+        Eunice Kennedy Shriver National Institute of Child
+                            Health \& Human Development
+  - fields:
       author:
         - firstName: J.
           lastName: Lichtenstein
@@ -4724,7 +4981,7 @@ entries:
       % (APA 10.4 Example 58)
     key: 10.4:57
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       number: literal
       publisher: literallist
@@ -4733,8 +4990,10 @@ entries:
       type: literal
       url: verbatim
     type: report
-  - annotations: {}
-    fields:
+    verbatim:
+      author: J. Lichtenstein
+      publisher: U.S. Small Business Administration, Office of Advocacy
+  - fields:
       author:
         - firstName: M.
           lastName: Harwell
@@ -4764,7 +5023,7 @@ entries:
       % This is enforced by a Biber style source map
     key: 10.4:58
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       publisher: literallist
       subtitle: title
@@ -4772,8 +5031,10 @@ entries:
       titleaddon: literal
       url: verbatim
     type: report
-  - annotations: {}
-    fields:
+    verbatim:
+      author: M. Harwell
+      publisher: National Education Policy Center
+  - fields:
       author:
         - name: U.S. Food and Drug Administration
       date: '2019-02-14'
@@ -4800,15 +5061,17 @@ entries:
       % (APA 10.5 Example 60)
     key: 10.4:59
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       publisher: literallist
       title: title
       titleaddon: literal
       url: verbatim
     type: report
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{U.S. Food and Drug Administration}'
+      publisher: '{U.S. Food and Drug Administration}'
+  - fields:
       author:
         - firstName: A.
           lastName: Fistek
@@ -4838,7 +5101,7 @@ entries:
       % (APA 10.5 Example 61)
     key: 10.5:60
     mode:
-      author: creatorlist
+      author: namelist
       eventdate: literal
       eventtitle: title
       subtitle: title
@@ -4847,8 +5110,9 @@ entries:
       url: verbatim
       venue: literal
     type: presentation
-  - annotations: {}
-    fields:
+    verbatim:
+      author: A. Fistek and E. Jester and K. Sonnenberg
+  - fields:
       author:
         - firstName: S.
           lastName: Maddox
@@ -4879,7 +5143,7 @@ entries:
       % (APA 10.5 Example 62)
     key: 10.5:61
     mode:
-      author: creatorlist
+      author: namelist
       eventdate: literal
       eventtitle: title
       subtitle: title
@@ -4887,8 +5151,9 @@ entries:
       titleaddon: literal
       venue: literal
     type: presentation
-  - annotations: {}
-    fields:
+    verbatim:
+      author: S. Maddox and J. Hurling and E. Stewart and A. Edwards
+  - fields:
       author:
         - firstName: J.
           lastName: Pearson
@@ -4918,7 +5183,7 @@ entries:
       string
     key: 10.5:62
     mode:
-      author: creatorlist
+      author: namelist
       eventdate: literal
       eventtitle: title
       title: title
@@ -4926,8 +5191,9 @@ entries:
       url: verbatim
       venue: literal
     type: presentation
-  - annotations: {}
-    fields:
+    verbatim:
+      author: J. Pearson
+  - fields:
       author:
         - firstName: D.
           lastName: De Boer
@@ -4975,8 +5241,8 @@ entries:
       % BOOKTITLE mapped to JOURNALTITLE
     key: 10.5:63
     mode:
-      author: creatorlist
-      editora: creatorlist
+      author: namelist
+      editora: namelist
       editoratype: literal
       eventdate: literal
       eventtitle: title
@@ -4986,8 +5252,10 @@ entries:
       title: title
       venue: literal
     type: presentation
-  - annotations: {}
-    fields:
+    verbatim:
+      author: De Boer, D. and LaFavour, T.
+      editora: A. M. Schmidt and A. Kryvanos
+  - fields:
       author:
         - firstName: A. L.
           lastName: Duckworth
@@ -5028,7 +5296,7 @@ entries:
       https://apastyle.apa.org/style-grammar-guidelines/references/examples/conference-proceeding-references
     key: 10.5:A1
     mode:
-      author: creatorlist
+      author: namelist
       booktitle: title
       date: literal
       doi: verbatim
@@ -5037,8 +5305,11 @@ entries:
       title: title
       volume: literal
     type: inproceedings
-  - annotations: {}
-    fields:
+    verbatim:
+      author: |-
+        Duckworth, A. L. and  Quirk, A. and Gallop, R. and Hoyle, R. H. and
+                       Kelly, D. R. and Matthews, M. D.
+  - fields:
       booktitle: Theory of cryptography
       date: '2016'
       doi: 10.1007/978-3-662-49096-9
@@ -5072,13 +5343,15 @@ entries:
       booktitle: title
       date: literal
       doi: verbatim
-      editor: creatorlist
+      editor: namelist
       mainsubtitle: literal
       maintitle: title
       publisher: literallist
     type: proceedings
-  - annotations: {}
-    fields:
+    verbatim:
+      editor: Kushilevitz, E. and Malkin, T.
+      publisher: Springer
+  - fields:
       author:
         - firstName: Alan-Louis.
           lastName: Bedenel
@@ -5123,19 +5396,22 @@ entries:
       % non-standard, non-localised string type
     key: 10.5:A3
     mode:
-      author: creatorlist
+      author: namelist
       booktitle: title
       date: literal
       doi: verbatim
-      editor: creatorlist
+      editor: namelist
       mainsubtitle: literal
       maintitle: title
       pages: literal
       publisher: literallist
       title: title
     type: inproceedings
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Bedenel, Alan-Louis. and Jourdan, L. and Biernacki, C.
+      editor: R. Battiti and M. Brunato and I. Kotsireas and P. Pardalos
+      publisher: Springer
+  - fields:
       author:
         - firstName: L.
           lastName: Harris
@@ -5159,14 +5435,16 @@ entries:
       % (APA 10.6 Example 65)
     key: 10.6:64
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       institution: literallist
       title: title
       type: literal
     type: phdthesis
-  - annotations: {}
-    fields:
+    verbatim:
+      author: L. Harris
+      institution: University of Virginia
+  - fields:
       author:
         - firstName: M. M.
           lastName: Hollander
@@ -5194,7 +5472,7 @@ entries:
       % (APA 10.6 Example 66)
     key: 10.6:65
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       institution: literallist
       number: literal
@@ -5202,8 +5480,11 @@ entries:
       subtitle: title
       title: title
     type: phdthesis
-  - annotations: {}
-    fields:
+    verbatim:
+      author: M. M. Hollander
+      institution: University of Wisconsin--Madison
+      publisher: ProQuest Dissertations {and} Theses Global
+  - fields:
       author:
         - firstName: V. H.
           lastName: Hutcheson
@@ -5232,7 +5513,7 @@ entries:
       % (APA 10.7 Example 67)
     key: 10.6:66
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       institution: literallist
       publisher: literallist
@@ -5240,8 +5521,11 @@ entries:
       title: title
       url: verbatim
     type: mastersthesis
-  - annotations: {}
-    fields:
+    verbatim:
+      author: V. H. Hutcheson
+      institution: The College of William \& Mary
+      publisher: William \& Mary Digital Archive
+  - fields:
       author:
         - firstName: L. A.
           lastName: Mirabito
@@ -5279,7 +5563,7 @@ entries:
       % localisation string
     key: 10.7:67
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       doi: verbatim
       journaltitle: literal
@@ -5291,17 +5575,18 @@ entries:
       title: title
       volume: literal
     type: article
-  - annotations:
+    verbatim:
+      author: L. A. Mirabito and N. C. Heck
+      related: 10.7:67r
+  - fields:
+      author:
+        - firstName: E.
+          lastName: Brodsky
       author+an:role:
         - index: 1
           scope: item
           value:
             - director
-    fields:
-      author:
-        - firstName: E.
-          lastName: Brodsky
-      author+an:role: 1=director
       date: '2016'
       entrysubtype: film
       title: The year we thought about love
@@ -5317,14 +5602,16 @@ entries:
       % (APA 10.7 Example 68)
     key: 10.7:67r
     mode:
-      author: creatorlist
-      author+an:role: verbatim
+      author: namelist
+      author+an:role: annotations
       date: literal
       entrysubtype: literal
       title: title
     type: video
-  - annotations: {}
-    fields:
+    verbatim:
+      author: E. Brodsky
+      author+an:role: 1=director
+  - fields:
       author:
         - firstName: F.
           lastName: Santos
@@ -5351,7 +5638,7 @@ entries:
       }
     key: 10.7:68
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       entrysubtype: literal
       journaltitle: literal
@@ -5361,8 +5648,10 @@ entries:
       title: title
       url: verbatim
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: F. Santos
+      related: 10.7:68r
+  - fields:
       author:
         - firstName: M.
           lastName: Yousafzai
@@ -5384,13 +5673,14 @@ entries:
       % emphasise" part of the title
     key: 10.7:68r
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       subtitle: title
       title: title
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: M. Yousafzai
+  - fields:
       author:
         - firstName: D.
           lastName: Perkins
@@ -5424,7 +5714,7 @@ entries:
       % combined
     key: 10.7:69
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       eprint: verbatim
       related: literallist
@@ -5433,18 +5723,19 @@ entries:
       title: title
       url: verbatim
     type: online
-  - annotations:
+    verbatim:
+      author: D. Perkins
+      related: 10.7:69r
+  - fields:
+      author:
+        - firstName: M.
+          lastName: Schur
       author+an:role:
         - index: 1
           scope: item
           value:
             - writer
             - director
-    fields:
-      author:
-        - firstName: M.
-          lastName: Schur
-      author+an:role: 1=writer,director
       date: '2018'
       entrysubtype: tvepisode
       title: Somewhere else
@@ -5464,14 +5755,16 @@ entries:
       %   mansub    - Manuscript submitted for publication
     key: 10.7:69r
     mode:
-      author: creatorlist
-      author+an:role: verbatim
+      author: namelist
+      author+an:role: annotations
       date: literal
       entrysubtype: literal
       title: title
     type: video
-  - annotations: {}
-    fields:
+    verbatim:
+      author: M. Schur
+      author+an:role: 1=writer,director
+  - fields:
       author:
         - firstName: J.
           lastName: Yoo
@@ -5502,7 +5795,7 @@ entries:
       % (APA 10.8 Example 71)
     key: 10.8:70
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       howpublished: literal
       institution: literallist
@@ -5510,8 +5803,10 @@ entries:
       title: title
       venue: literal
     type: unpublished
-  - annotations: {}
-    fields:
+    verbatim:
+      author: J. Yoo and Y. Miyamoto and A. Rigotti and C. Ryff
+      institution: University of Wisconsin-Madison
+  - fields:
       author:
         - firstName: M.
           lastName: O'Shea
@@ -5537,15 +5832,17 @@ entries:
       % (APA 10.8 Example 72)
     key: 10.8:71
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       howpublished: literal
       institution: literallist
       title: title
       venue: literal
     type: unpublished
-  - annotations: {}
-    fields:
+    verbatim:
+      author: M. O'Shea
+      institution: University of Kansas
+  - fields:
       author:
         - firstName: T.
           lastName: Lippincott
@@ -5572,7 +5869,7 @@ entries:
       % (APA 10.8 Example 73)
     key: 10.8:72
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       howpublished: literal
       institution: literallist
@@ -5580,8 +5877,10 @@ entries:
       title: title
       venue: literal
     type: unpublished
-  - annotations: {}
-    fields:
+    verbatim:
+      author: T. Lippincott and E. K. Poindexter
+      institution: University of Washington
+  - fields:
       author:
         - firstName: C.
           lastName: Leuker
@@ -5607,15 +5906,16 @@ entries:
       }
     key: 10.8:73a
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       doi: verbatim
       eprint: verbatim
       subtitle: title
       title: title
     type: online
-  - annotations: {}
-    fields:
+    verbatim:
+      author: C. Leuker and L. Samartzidis and R. Hertwig and T. J. Pleskac
+  - fields:
       author:
         - firstName: M. A.
           lastName: Stults-Kolehmainen
@@ -5637,14 +5937,15 @@ entries:
       % (APA 10.8 Example 74)
     key: 10.8:73b
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       eprint: verbatim
       title: title
       url: verbatim
     type: online
-  - annotations: {}
-    fields:
+    verbatim:
+      author: M. A. Stults-Kolehmainen and R. Sinha
+  - fields:
       author:
         - firstName: H-K
           lastName: Ho
@@ -5669,15 +5970,16 @@ entries:
       % (APA 10.9 Example 75)
     key: 10.8:74
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       eprint: verbatim
       title: title
       url: verbatim
       version: literal
     type: online
-  - annotations: {}
-    fields:
+    verbatim:
+      author: H-K Ho
+  - fields:
       author:
         - firstName: A.
           lastName: D'Souza
@@ -5704,7 +6006,7 @@ entries:
       }
     key: 10.9:75a
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       doi: verbatim
       entrysubtype: literal
@@ -5713,8 +6015,10 @@ entries:
       title: title
       version: literal
     type: dataset
-  - annotations: {}
-    fields:
+    verbatim:
+      author: A. D'Souza and M. Wiseheart
+      publisher: ICPSR
+  - fields:
       author:
         - name: National Center for Education Statistics
       date: '2016'
@@ -5743,7 +6047,7 @@ entries:
       }
     key: 10.9:75b
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       doi: verbatim
       entrysubtype: literal
@@ -5753,8 +6057,10 @@ entries:
       title: title
       version: literal
     type: dataset
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{National Center for Education Statistics}'
+      publisher: '{National Archive of Data on Arts and Culture}'
+  - fields:
       author:
         - name: Pew Research Center
       date: '2018'
@@ -5773,14 +6079,15 @@ entries:
       % (APA 10.9 Example 76)
     key: 10.9:75c
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       entrysubtype: literal
       title: title
       url: verbatim
     type: dataset
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{Pew Research Center}'
+  - fields:
       author:
         - firstName: R. A.
           lastName: Baer
@@ -5802,13 +6109,15 @@ entries:
       }
     key: 10.9:76a
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       institution: literallist
       titleaddon: literal
     type: dataset
-  - annotations: {}
-    fields:
+    verbatim:
+      author: R. A. Baer
+      institution: University of Kentucky
+  - fields:
       author:
         - name: Oregan Youth Authority
       date: '2011'
@@ -5825,13 +6134,14 @@ entries:
       % (APA 10.10 Example 77)
     key: 10.9:76b
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       entrysubtype: literal
       title: title
     type: dataset
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{Oregan Youth Authority}'
+  - fields:
       author:
         - firstName: M.
           lastName: Borenstein
@@ -5862,7 +6172,7 @@ entries:
       % (APA 10.10 Example 78)
     key: 10.10:77
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       entrysubtype: literal
       publisher: literallist
@@ -5870,8 +6180,10 @@ entries:
       url: verbatim
       version: literal
     type: software
-  - annotations: {}
-    fields:
+    verbatim:
+      author: M. Borenstein and L. Hedges and J. Higgins and H. Rothstein
+      publisher: Biostat
+  - fields:
       author:
         - name: SR Research
       date: '2016'
@@ -5888,14 +6200,15 @@ entries:
       }
     key: 10.10:78a
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       entrysubtype: literal
       title: title
       url: verbatim
     type: hardware
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{SR Research}'
+  - fields:
       author:
         - name: Tactile Labs
       date: '2015'
@@ -5916,14 +6229,15 @@ entries:
       % don't need them usually - it's just inserted as it is
     key: 10.10:78b
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       entrysubtype: literal
       title: title
       url: verbatim
     type: hardware
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{Tactile Labs}'
+  - fields:
       author:
         - lastName: Epocrates
       date: '2019'
@@ -5949,7 +6263,7 @@ entries:
       % to suppress extrayear for the purposes of matching the APA guide exactly
     key: 10.10:79
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       entrysubtype: literal
       publisher: literallist
@@ -5957,8 +6271,10 @@ entries:
       url: verbatim
       version: literal
     type: software
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Epocrates
+      publisher: App Store
+  - fields:
       appentry: 'Interaction Check: Aspirin + Sertraline'
       author:
         - lastName: Epocrates
@@ -5985,7 +6301,7 @@ entries:
     key: 10.10:80
     mode:
       appentry: literal
-      author: creatorlist
+      author: namelist
       date: literal
       entrysubtype: literal
       publisher: literallist
@@ -5993,8 +6309,10 @@ entries:
       url: verbatim
       version: literal
     type: software
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Epocrates\relax
+      publisher: Google Play Store
+  - fields:
       author:
         - firstName: A.
           lastName: Tellegen
@@ -6021,14 +6339,16 @@ entries:
       % (APA 10.11 Example 82)
     key: 10.11:81
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       publisher: literallist
       subtitle: title
       title: title
     type: manual
-  - annotations: {}
-    fields:
+    verbatim:
+      author: A. Tellegen and Y. S. Ben-Porath
+      publisher: Pearson
+  - fields:
       author:
         - name: Project Implicit
       title: Gender-<span class="nocase">Science IAT</span>
@@ -6043,12 +6363,13 @@ entries:
       % (APA 10.11 Example 83)
     key: 10.11:82
     mode:
-      author: creatorlist
+      author: namelist
       title: title
       url: verbatim
     type: software
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{Project Implicit}'
+  - fields:
       author:
         - firstName: J.
           lastName: Alonso-Tapia
@@ -6082,15 +6403,19 @@ entries:
       }
     key: 10.11:83a
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       doi: verbatim
       entrysubtype: literal
       publisher: literallist
       title: title
     type: software
-  - annotations: {}
-    fields:
+    verbatim:
+      author: |-
+        J. Alonso-Tapia and C. Nieto and E. Merino-Tejedor and
+                            J. A. Huertas and M. Ruiz
+      publisher: PsycTESTS
+  - fields:
       author:
         - firstName: D.
           lastName: Cardoza
@@ -6127,24 +6452,25 @@ entries:
       % an annotation which is a localisation string
     key: 10.11:83b
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       entrysubtype: literal
       number: literal
       publisher: literallist
       title: title
     type: software
-  - annotations:
+    verbatim:
+      author: D. Cardoza and J. K. Morris and H. F. Myers and N. Rodriguez
+      publisher: ETS TestLink
+  - fields:
+      author:
+        - firstName: M.
+          lastName: Forman
       author+an:role:
         - index: 1
           scope: item
           value:
             - director
-    fields:
-      author:
-        - firstName: M.
-          lastName: Forman
-      author+an:role: 1=director
       date: '1975'
       entrysubtype: film
       publisher:
@@ -6163,14 +6489,23 @@ entries:
       % ENTRYSUBTYPE is a localisation string
     key: 10.12:84a
     mode:
-      author: creatorlist
-      author+an:role: verbatim
+      author: namelist
+      author+an:role: annotations
       date: literal
       entrysubtype: literal
       publisher: literallist
       title: title
     type: video
-  - annotations:
+    verbatim:
+      author: M. Forman
+      author+an:role: 1=director
+      publisher: United Artists
+  - fields:
+      author:
+        - firstName: D.
+          lastName: Fosha
+        - firstName: H.
+          lastName: Levenson
       author+an:role:
         - index: 1
           scope: item
@@ -6180,13 +6515,6 @@ entries:
           scope: item
           value:
             - host
-    fields:
-      author:
-        - firstName: D.
-          lastName: Fosha
-        - firstName: H.
-          lastName: Levenson
-      author+an:role: 1=guestexpert;2=host
       date: '2017'
       entrysubtype: film
       note: educational DVD
@@ -6211,8 +6539,8 @@ entries:
       % ENTRYSUBTYPE is a localisation string
     key: 10.12:84b
     mode:
-      author: creatorlist
-      author+an:role: verbatim
+      author: namelist
+      author+an:role: annotations
       date: literal
       entrysubtype: literal
       note: richtext
@@ -6220,17 +6548,19 @@ entries:
       title: title
       url: verbatim
     type: video
-  - annotations:
+    verbatim:
+      author: D. Fosha and H. Levenson
+      author+an:role: 1=guestexpert;2=host
+      publisher: American Pychological Association
+  - fields:
+      author:
+        - firstName: P.
+          lastName: Jackson
       author+an:role:
         - index: 1
           scope: item
           value:
             - director
-    fields:
-      author:
-        - firstName: P.
-          lastName: Jackson
-      author+an:role: 1=director
       date: '2001'
       entrysubtype: film
       note: four-disc special extended ed. on DVD
@@ -6255,8 +6585,8 @@ entries:
       % ENTRYSUBTYPE is a localisation string
     key: 10.12:84c
     mode:
-      author: creatorlist
-      author+an:role: verbatim
+      author: namelist
+      author+an:role: annotations
       date: literal
       entrysubtype: literal
       note: richtext
@@ -6264,17 +6594,19 @@ entries:
       subtitle: title
       title: title
     type: video
-  - annotations:
+    verbatim:
+      author: P. Jackson
+      author+an:role: 1=director
+      publisher: WingNut Films and The Saul Zaentz Company
+  - fields:
+      author:
+        - firstName: L.
+          lastName: Malle
       author+an:role:
         - index: 1
           scope: item
           value:
             - director
-    fields:
-      author:
-        - firstName: L.
-          lastName: Malle
-      author+an:role: 1=director
       date: '1987'
       entrysubtype: film
       origtitle: Au revoir les enfants
@@ -6314,20 +6646,19 @@ entries:
       % is mandatory.
     key: 10.12:85
     mode:
-      author: creatorlist
-      author+an:role: verbatim
+      author: namelist
+      author+an:role: annotations
       date: literal
       entrysubtype: literal
       origtitle: title
       publisher: literallist
       title: title
     type: video
-  - annotations:
-      author+an:role:
-        - scope: field
-          value:
-            - execproducers
-    fields:
+    verbatim:
+      author: L. Malle
+      author+an:role: 1=director
+      publisher: Nouvelles Éditions de Films
+  - fields:
       author:
         - firstName: D.
           lastName: Simon
@@ -6335,7 +6666,10 @@ entries:
           lastName: Colesberry
         - firstName: N.
           lastName: Kostroff Noble
-      author+an:role: =execproducers
+      author+an:role:
+        - scope: field
+          value:
+            - execproducers
       date: 2002/2008
       entrysubtype: tvseries
       publisher:
@@ -6357,25 +6691,27 @@ entries:
       % Dual localisation string data annotation for the first AUTHOR
     key: 10.12:86
     mode:
-      author: creatorlist
-      author+an:role: verbatim
+      author: namelist
+      author+an:role: annotations
       date: literal
       entrysubtype: literal
       publisher: literallist
       title: title
     type: video
-  - annotations:
+    verbatim:
+      author: D. Simon and R. F. Colesberry and Kostroff Noble, N.
+      author+an:role: =execproducers
+      publisher: Blown Deadline Productions and HBO
+  - fields:
+      author:
+        - firstName: K.
+          lastName: Barris
       author+an:role:
         - index: 1
           scope: item
           value:
             - director
             - writer
-    fields:
-      author:
-        - firstName: K.
-          lastName: Barris
-      author+an:role: 1=director,writer
       date: '2017-01-11'
       entrysubtype: tvepisode
       execproducer: >-
@@ -6406,8 +6742,8 @@ entries:
       % Three data annotations, one for each name in the AUTHOR list
     key: 10.12:87a
     mode:
-      author: creatorlist
-      author+an:role: verbatim
+      author: namelist
+      author+an:role: annotations
       date: literal
       entrysubtype: literal
       execproducer: literal
@@ -6415,7 +6751,20 @@ entries:
       publisher: literallist
       title: title
     type: video
-  - annotations:
+    verbatim:
+      author: K. Barris
+      author+an:role: 1=director,writer
+      publisher: |-
+        Wilmore Films and Artists First and Cinema Gypsy
+                             Productions and ABC Studios
+  - fields:
+      author:
+        - firstName: B.
+          lastName: Oakley
+        - firstName: J.
+          lastName: Weinstein
+        - firstName: J.
+          lastName: Lynch
       author+an:role:
         - index: 1
           scope: item
@@ -6429,15 +6778,6 @@ entries:
           scope: item
           value:
             - director
-    fields:
-      author:
-        - firstName: B.
-          lastName: Oakley
-        - firstName: J.
-          lastName: Weinstein
-        - firstName: J.
-          lastName: Lynch
-      author+an:role: 1=writer;2=writer;3=director
       date: '1995-05-21'
       entrysubtype: tvepisode
       execproducer: D. Mirkin and J. L. Brooks and M. Groening and S. Simon
@@ -6463,8 +6803,8 @@ entries:
       % ENTRYSUBTYPE is a localisation string
     key: 10.12:87b
     mode:
-      author: creatorlist
-      author+an:role: verbatim
+      author: namelist
+      author+an:role: annotations
       date: literal
       entrysubtype: literal
       execproducer: literal
@@ -6472,8 +6812,11 @@ entries:
       publisher: literallist
       title: title
     type: video
-  - annotations: {}
-    fields:
+    verbatim:
+      author: B. Oakley and J. Weinstein and J. Lynch
+      author+an:role: 1=writer;2=writer;3=director
+      publisher: Gracie Films and Twentieth Century Fox Film Corporation
+  - fields:
       author:
         - firstName: S.
           lastName: Giertz
@@ -6496,15 +6839,17 @@ entries:
       % ENTRYSUBTYPE is a localisation string
     key: 10.12:88a
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       entrysubtype: literal
       publisher: literallist
       title: title
       url: verbatim
     type: video
-  - annotations: {}
-    fields:
+    verbatim:
+      author: S. Giertz
+      publisher: TED Conferences
+  - fields:
       author:
         - lastName: TED
       date: '2012-03-16'
@@ -6530,7 +6875,7 @@ entries:
       % localisation necessary for such ugly neologisms
     key: 10.12:88b
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       entrysubtype: literal
       publisher: literallist
@@ -6538,8 +6883,10 @@ entries:
       title: title
       url: verbatim
     type: video
-  - annotations: {}
-    fields:
+    verbatim:
+      author: TED
+      publisher: YouTube
+  - fields:
       author:
         - firstName: J. F.
           lastName: Goldberg
@@ -6563,15 +6910,17 @@ entries:
       % ENTRYSUBTYPE is a localisation string
     key: 10.12:89
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       entrysubtype: literal
       publisher: literallist
       title: title
       url: verbatim
     type: video
-  - annotations: {}
-    fields:
+    verbatim:
+      author: J. F. Goldberg
+      publisher: American Psychiatric Association
+  - fields:
       author:
         - firstName: S.
           lastName: Cutts
@@ -6598,23 +6947,24 @@ entries:
       username
     key: 10.12:90a
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       entrysubtype: literal
       publisher: literallist
       title: title
       url: verbatim
     type: video
-  - annotations:
+    verbatim:
+      author: S. Cutts
+      publisher: Vimeo
+  - fields:
+      author:
+        - firstName: M.
+          lastName: Fogarty
       author+an:username:
         - index: 1
           scope: item
           value: Grammar Girl
-    fields:
-      author:
-        - firstName: M.
-          lastName: Fogarty
-      author+an:username: 1="Grammar Girl"
       date: '2016-09-30'
       entrysubtype: video
       publisher:
@@ -6635,16 +6985,19 @@ entries:
       % ENTRYSUBTYPE is a localisation string
     key: 10.12:90b
     mode:
-      author: creatorlist
-      author+an:username: verbatim
+      author: namelist
+      author+an:username: annotations
       date: literal
       entrysubtype: literal
       publisher: literallist
       title: title
       url: verbatim
     type: video
-  - annotations: {}
-    fields:
+    verbatim:
+      author: M. Fogarty
+      author+an:username: 1="Grammar Girl"
+      publisher: YouTube
+  - fields:
       author:
         - name: University of Oxford
       date: '2016-12-06'
@@ -6670,15 +7023,17 @@ entries:
       literally
     key: 10.12:90c
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       entrysubtype: literal
       publisher: literallist
       title: title
       url: verbatim
     type: video
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{University of Oxford}'
+      publisher: YouTube
+  - fields:
       author:
         - firstName: J. S.
           lastName: Bach
@@ -6701,7 +7056,7 @@ entries:
       }
     key: 10.13:91a
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       entrysubtype: literal
       origdate: literal
@@ -6709,8 +7064,10 @@ entries:
       subtitle: title
       title: title
     type: audio
-  - annotations: {}
-    fields:
+    verbatim:
+      author: J. S. Bach
+      publisher: Decca
+  - fields:
       author:
         - firstName: D.
           lastName: Bowie
@@ -6734,14 +7091,16 @@ entries:
       % ENTRYSUBTYPE is not a localisation string
     key: 10.13:91b
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       entrysubtype: literal
       publisher: literallist
       title: title
     type: audio
-  - annotations: {}
-    fields:
+    verbatim:
+      author: D. Bowie
+      publisher: Columbia
+  - fields:
       author:
         - firstName: L.
           lastName: Beethoven
@@ -6749,7 +7108,8 @@ entries:
       date: '2012'
       entrysubtype: Song recorded by Staatskapelle Dresden
       maintitle: 'Beethoven: <span class="nocase">Complete Symphonies</span>'
-      options: useprefix=false
+      options:
+        useprefix: 'false'
       origdate: '1804'
       publisher:
         - Brilliant Classics
@@ -6769,19 +7129,20 @@ entries:
       % ENTRYSUBTYPE is a localisation string
     key: 10.13:92a
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       entrysubtype: literal
       maintitle: title
-      options: verbatim
+      options: options
       origdate: literal
       publisher: literallist
       title: title
-    options:
-      useprefix: 'false'
     type: audio
-  - annotations: {}
-    fields:
+    verbatim:
+      author: van Beethoven, L.
+      options: useprefix=false
+      publisher: Brilliant Classics
+  - fields:
       author:
         - lastName: Beyoncé
       date: '2016'
@@ -6804,15 +7165,17 @@ entries:
       % ENTRYSUBTYPE is a localisation string
     key: 10.13:92b
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       entrysubtype: literal
       maintitle: title
       publisher: literallist
       title: title
     type: audio
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Beyoncé
+      publisher: Parkwood and Columbia
+  - fields:
       author:
         - name: Childish Gambino
       date: '2018'
@@ -6833,14 +7196,16 @@ entries:
       % ENTRYSUBTYPE is a localisation string
     key: 10.13:92c
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       entrysubtype: literal
       publisher: literallist
       title: title
     type: audio
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{Childish Gambino}'
+      publisher: mcDJ and RCA
+  - fields:
       author:
         - firstName: K.
           lastName: Lamar
@@ -6872,24 +7237,27 @@ entries:
       % for some reason best known to the APA
     key: 10.13:92d
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       entrysubtype: literal
       maintitle: title
       publisher: literallist
       title: title
     type: audio
-  - annotations:
+    verbatim:
+      author: K. Lamar
+      publisher: |-
+        Aftermath Entertainment and Interscope Records and Top
+                            Dawg Entertainment
+  - fields:
+      author:
+        - firstName: S.
+          lastName: Vedantam
       author+an:role:
         - index: 1
           scope: item
           value:
             - host
-    fields:
-      author:
-        - firstName: S.
-          lastName: Vedantam
-      author+an:role: 1=host
       date: 2015/
       entrysubtype: podcast
       publisher:
@@ -6912,25 +7280,27 @@ entries:
       % "Audio podcast episode" for some reason best known to the APA
     key: 10.13:93
     mode:
-      author: creatorlist
-      author+an:role: verbatim
+      author: namelist
+      author+an:role: annotations
       date: literal
       entrysubtype: literal
       publisher: literallist
       title: title
       url: verbatim
     type: audio
-  - annotations:
+    verbatim:
+      author: S. Vedantam
+      author+an:role: 1=host
+      publisher: NPR
+  - fields:
+      author:
+        - firstName: I.
+          lastName: Glass
       author+an:role:
         - index: 1
           scope: item
           value:
             - host
-    fields:
-      author:
-        - firstName: I.
-          lastName: Glass
-      author+an:role: 1=host
       date: '2011-08-12'
       entrysubtype: podcastepisode
       maintitle: This <span class="nocase">American Life</span>
@@ -6956,8 +7326,8 @@ entries:
       % ENTRYSUBTYPE is a localisation string
     key: 10.13:94
     mode:
-      author: creatorlist
-      author+an:role: verbatim
+      author: namelist
+      author+an:role: annotations
       date: literal
       entrysubtype: literal
       maintitle: title
@@ -6966,8 +7336,11 @@ entries:
       title: title
       url: verbatim
     type: audio
-  - annotations: {}
-    fields:
+    verbatim:
+      author: I. Glass
+      author+an:role: 1=host
+      publisher: WBEZ Chicago
+  - fields:
       author:
         - firstName: S.
           lastName: Beauvoir
@@ -6995,15 +7368,17 @@ entries:
       % ENTRYSUBTYPE is a localisation string
     key: 10.13:95
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       entrysubtype: literal
       publisher: literallist
       title: title
       url: verbatim
     type: audio
-  - annotations: {}
-    fields:
+    verbatim:
+      author: de Beauvoir, S.
+      publisher: Studs Terkel Radio Archive and The Chicago History Museum
+  - fields:
       author:
         - firstName: M. L.
           lastName: King
@@ -7028,15 +7403,17 @@ entries:
       % ENTRYSUBTYPE is a localisation string
     key: 10.13:96
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       entrysubtype: literal
       publisher: literallist
       title: title
       url: verbatim
     type: audio
-  - annotations: {}
-    fields:
+    verbatim:
+      author: King, Jr., M. L.
+      publisher: American Rhetoric
+  - fields:
       author:
         - firstName: E.
           lastName: Delacroix
@@ -7057,14 +7434,16 @@ entries:
       % ENTRYSUBTYPE is a localisation string
     key: 10.14:97a
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       entrysubtype: literal
       location: literallist
       title: title
     type: image
-  - annotations: {}
-    fields:
+    verbatim:
+      author: E. Delacroix
+      location: The Louvre, Paris, France
+  - fields:
       author:
         - firstName: G.
           lastName: Wood
@@ -7089,15 +7468,17 @@ entries:
       % in all languages
     key: 10.14:97b
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       entrysubtype: literal
       location: literallist
       title: title
       url: verbatim
     type: image
-  - annotations: {}
-    fields:
+    verbatim:
+      author: G. Wood
+      location: Art Institute of Chicago, Chicago, IL, United States
+  - fields:
       author:
         - lastName: GDJ
       date: '2018'
@@ -7121,15 +7502,17 @@ entries:
       % in all languages
     key: 10.14:98
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       entrysubtype: literal
       publisher: literallist
       title: title
       url: verbatim
     type: image
-  - annotations: {}
-    fields:
+    verbatim:
+      author: GDJ
+      publisher: Openclipart
+  - fields:
       author:
         - firstName: J.
           lastName: Rossman
@@ -7155,15 +7538,17 @@ entries:
       % ENTRYSUBTYPE is a localisation string
     key: 10.14:99
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       entrysubtype: literal
       publisher: literallist
       title: title
       url: verbatim
     type: image
-  - annotations: {}
-    fields:
+    verbatim:
+      author: J. Rossman and R. Palmer
+      publisher: World Science Festival
+  - fields:
       author:
         - firstName: D.
           lastName: Cable
@@ -7190,7 +7575,7 @@ entries:
       % information in brackets when there is no title
     key: 10.14:100a
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       entrysubtype: literal
       location: literallist
@@ -7198,8 +7583,11 @@ entries:
       title: title
       url: verbatim
     type: image
-  - annotations: {}
-    fields:
+    verbatim:
+      author: D. Cable
+      location: University of Virginia
+      publisher: Weldon Cooper Center for Public Service
+  - fields:
       author:
         - lastName: Google
       titleaddon: Google Maps directions for driving from La Paz, Bolivia, to Lima, Peru
@@ -7218,13 +7606,14 @@ entries:
       % ENTRYSUBTYPE is a localisation string
     key: 10.14:100b
     mode:
-      author: creatorlist
+      author: namelist
       titleaddon: literal
       url: verbatim
       urldate: literal
     type: image
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Google
+  - fields:
       author:
         - firstName: S.
           lastName: McCurry
@@ -7245,15 +7634,17 @@ entries:
       }
     key: 10.14:101a
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       entrysubtype: literal
       publisher: literallist
       title: title
       url: verbatim
     type: image
-  - annotations: {}
-    fields:
+    verbatim:
+      author: S. McCurry
+      publisher: National Geographic
+  - fields:
       author:
         - firstName: Jessica
           lastName: Rinaldi
@@ -7277,14 +7668,16 @@ entries:
       % (APA 10.14 Example 102)
     key: 10.14:101b
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       publisher: literallist
       titleaddon: literal
       url: verbatim
     type: image
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Jessica Rinaldi
+      publisher: The Pulitzer Prizes
+  - fields:
       author:
         - firstName: E.
           lastName: Canan
@@ -7312,15 +7705,18 @@ entries:
       Slides"
     key: 10.14:102a
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       location: literallist
       publisher: literallist
       titleaddon: literal
       url: verbatim
     type: image
-  - annotations: {}
-    fields:
+    verbatim:
+      author: E. Canan and J. Vasilev
+      location: '{Department of Management Control and Information Systems}'
+      publisher: University of Chile
+  - fields:
       author:
         - firstName: Brian
           lastName: Housand
@@ -7347,15 +7743,17 @@ entries:
       Slides"
     key: 10.14:102b
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       entrysubtype: literal
       publisher: literallist
       title: title
       url: verbatim
     type: image
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Brian Housand
+      publisher: SlideShare
+  - fields:
       author:
         - firstName: R.
           lastName: Mack
@@ -7385,22 +7783,23 @@ entries:
       universal neologisms
     key: 10.14:102c
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       entrysubtype: literal
       publisher: literallist
       title: title
       url: verbatim
     type: image
-  - annotations:
+    verbatim:
+      author: R. Mack and G. Spake
+      publisher: Canvas@FNU
+  - fields:
+      author:
+        - name: APA Education
       author+an:username:
         - index: 1
           scope: item
           value: '@APAEducation'
-    fields:
-      author:
-        - name: APA Education
-      author+an:username: 1="@APAEducation"
       date: '2018-06-29'
       entrysubtype: Tweet
       eprint: Twitter
@@ -7427,8 +7826,8 @@ entries:
       universal neologisms
     key: 10.15:103a
     mode:
-      author: creatorlist
-      author+an:username: verbatim
+      author: namelist
+      author+an:username: annotations
       date: literal
       entrysubtype: literal
       eprint: verbatim
@@ -7436,15 +7835,16 @@ entries:
       titleaddon: literal
       url: verbatim
     type: online
-  - annotations:
+    verbatim:
+      author: '{APA Education}'
+      author+an:username: 1="@APAEducation"
+  - fields:
+      author:
+        - name: Badlands National Park
       author+an:username:
         - index: 1
           scope: item
           value: '@BadlandsNPS'
-    fields:
-      author:
-        - name: Badlands National Park
-      author+an:username: 1="@BadlandsNPS"
       date: '2018-02-26'
       entrysubtype: Tweet
       eprint: Twitter
@@ -7471,24 +7871,25 @@ entries:
       universal neologisms
     key: 10.15:103b
     mode:
-      author: creatorlist
-      author+an:username: verbatim
+      author: namelist
+      author+an:username: annotations
       date: literal
       entrysubtype: literal
       eprint: verbatim
       title: title
       url: verbatim
     type: online
-  - annotations:
+    verbatim:
+      author: '{Badlands National Park}'
+      author+an:username: 1="@BadlandsNPS"
+  - fields:
+      author:
+        - firstName: B.
+          lastName: White
       author+an:username:
         - index: 1
           scope: item
           value: '@BettyMWhite'
-    fields:
-      author:
-        - firstName: B.
-          lastName: White
-      author+an:username: 1="@BettyMWhite"
       date: '2018-06-21'
       entrysubtype: Tweet
       eprint: Twitter
@@ -7514,8 +7915,8 @@ entries:
       universal neologisms
     key: 10.15:103c
     mode:
-      author: creatorlist
-      author+an:username: verbatim
+      author: namelist
+      author+an:username: annotations
       date: literal
       entrysubtype: literal
       eprint: verbatim
@@ -7523,15 +7924,16 @@ entries:
       titleaddon: literal
       url: verbatim
     type: online
-  - annotations:
+    verbatim:
+      author: B. White
+      author+an:username: 1="@BettyMWhite"
+  - fields:
+      author:
+        - name: APA Style
       author+an:username:
         - index: 1
           scope: item
           value: '@APA\_Style'
-    fields:
-      author:
-        - name: APA Style
-      author+an:username: 1="@APA\_Style"
       entrysubtype: Twitter profile
       eprint: Twitter
       title: Tweets
@@ -7555,16 +7957,18 @@ entries:
       universal neologisms
     key: 10.15:104
     mode:
-      author: creatorlist
-      author+an:username: verbatim
+      author: namelist
+      author+an:username: annotations
       entrysubtype: literal
       eprint: verbatim
       title: title
       url: verbatim
       urldate: literal
     type: online
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{APA Style}'
+      author+an:username: 1="@APA\_Style"
+  - fields:
       author:
         - firstName: N.
           lastName: Gaiman
@@ -7597,7 +8001,7 @@ entries:
       universal neologisms
     key: 10.15:105a
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       entrysubtype: literal
       eprint: verbatim
@@ -7605,8 +8009,9 @@ entries:
       titleaddon: literal
       url: verbatim
     type: online
-  - annotations: {}
-    fields:
+    verbatim:
+      author: N. Gaiman
+  - fields:
       author:
         - name: National Institute of Mental Health
       date: '2018-11-28'
@@ -7634,15 +8039,16 @@ entries:
       % Note protecting of automatic sentence-casing in SUBTITLE for url
     key: 10.15:105b
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       entrysubtype: literal
       eprint: verbatim
       title: title
       url: verbatim
     type: online
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{National Institute of Mental Health}'
+  - fields:
       author:
         - name: News From Science
       date: '2018-06-26'
@@ -7671,7 +8077,7 @@ entries:
       universal neologisms
     key: 10.15:105c
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       entrysubtype: literal
       eprint: verbatim
@@ -7679,8 +8085,9 @@ entries:
       title: title
       url: verbatim
     type: online
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{News From Science}'
+  - fields:
       author:
         - name: Smithsonian's National Zoo and Conservation Biology Institute
       entrysubtype: Facebook page
@@ -7703,22 +8110,24 @@ entries:
       % ENTRYSUBTYPE is a localisation string
     key: 10.15:106
     mode:
-      author: creatorlist
+      author: namelist
       entrysubtype: literal
       eprint: verbatim
       title: title
       url: verbatim
       urldate: literal
     type: online
-  - annotations:
+    verbatim:
+      author: |-
+        {Smithsonian's National Zoo and Conservation
+                                     Biology Institute}
+  - fields:
+      author:
+        - name: Zeitz MOCAA
       author+an:username:
         - index: 1
           scope: item
           value: '@zeitzmocaa'
-    fields:
-      author:
-        - name: Zeitz MOCAA
-      author+an:username: 1="@zeitzmocaa"
       date: '2018-11-26'
       entrysubtype: photographs
       eprint: Instagram
@@ -7747,23 +8156,24 @@ entries:
       universal neologisms
     key: 10.15:107
     mode:
-      author: creatorlist
-      author+an:username: verbatim
+      author: namelist
+      author+an:username: annotations
       date: literal
       entrysubtype: literal
       eprint: verbatim
       title: title
       url: verbatim
     type: online
-  - annotations:
+    verbatim:
+      author: '{Zeitz MOCAA}'
+      author+an:username: 1="@zeitzmocaa"
+  - fields:
+      author:
+        - name: The New York Public Library
       author+an:username:
         - index: 1
           scope: item
           value: '@nypl'
-    fields:
-      author:
-        - name: The New York Public Library
-      author+an:username: 1="@nypl"
       entrysubtype: Highlight
       eprint: Instagram
       title: The raven
@@ -7787,23 +8197,24 @@ entries:
       universal neologisms
     key: 10.15:108
     mode:
-      author: creatorlist
-      author+an:username: verbatim
+      author: namelist
+      author+an:username: annotations
       entrysubtype: literal
       eprint: verbatim
       title: title
       url: verbatim
       urldate: literal
     type: online
-  - annotations:
+    verbatim:
+      author: '{The New York Public Library}'
+      author+an:username: 1="@nypl"
+  - fields:
+      author:
+        - name: National Aeronautics Space Administration
       author+an:username:
         - index: 1
           scope: item
           value: nasa
-    fields:
-      author:
-        - name: National Aeronautics Space Administration
-      author+an:username: 1="nasa"
       date: '2018-09-12'
       entrysubtype: Online forum post
       eprint: Reddit
@@ -7829,16 +8240,18 @@ entries:
       % (APA 10.16 Example 110)
     key: 10.15:109
     mode:
-      author: creatorlist
-      author+an:username: verbatim
+      author: namelist
+      author+an:username: annotations
       date: literal
       entrysubtype: literal
       eprint: verbatim
       title: title
       url: verbatim
     type: online
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{National Aeronautics Space Administration}'
+      author+an:username: 1="nasa"
+  - fields:
       author:
         - firstName: N.
           lastName: Avramova
@@ -7858,14 +8271,15 @@ entries:
       }
     key: 10.16:110a
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       eprint: verbatim
       title: title
       url: verbatim
     type: online
-  - annotations: {}
-    fields:
+    verbatim:
+      author: N. Avramova
+  - fields:
       author:
         - firstName: C.
           lastName: Bologna
@@ -7885,14 +8299,15 @@ entries:
       % (APA 10.16 Example 111)
     key: 10.16:110b
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       eprint: verbatim
       title: title
       url: verbatim
     type: online
-  - annotations: {}
-    fields:
+    verbatim:
+      author: C. Bologna
+  - fields:
       author:
         - name: Centers for Disease Control and Prevention
       date: '2018-01-23'
@@ -7907,13 +8322,14 @@ entries:
       }
     key: 10.16:111a
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       title: title
       url: verbatim
     type: online
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{Centers for Disease Control and Prevention}'
+  - fields:
       author:
         - name: World Health Organization
       date: 2018-03
@@ -7930,13 +8346,14 @@ entries:
       % (APA 10.16 Example 112)
     key: 10.16:111b
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       title: title
       url: verbatim
     type: online
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{World Health Organization}'
+  - fields:
       author:
         - firstName: C. M.
           lastName: Martin Lillie
@@ -7958,15 +8375,16 @@ entries:
       % (APA 10.16 Example 113)
     key: 10.16:112
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       eprint: verbatim
       subtitle: title
       title: title
       url: verbatim
     type: online
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Martin Lillie, C. M.
+  - fields:
       author:
         - firstName: J.
           lastName: Boddy
@@ -7995,13 +8413,16 @@ entries:
       }
     key: 10.16:113a
     mode:
-      author: creatorlist
+      author: namelist
       eprint: verbatim
       title: title
       url: verbatim
     type: online
-  - annotations: {}
-    fields:
+    verbatim:
+      author: |-
+        J. Boddy and T. Neumann and S. Jennings and V. Morrow
+                           and P. Alderson and R. Rees and W. Gibson
+  - fields:
       author:
         - name: National Nurses United
       title: >-
@@ -8018,12 +8439,13 @@ entries:
       % (APA 10.16 Example 114)
     key: 10.16:113b
     mode:
-      author: creatorlist
+      author: namelist
       title: title
       url: verbatim
     type: online
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{National Nurses United}'
+  - fields:
       author:
         - name: U.S. Census Bureau
       organization:
@@ -8043,14 +8465,16 @@ entries:
       % (APA 11.4 Example 1)
     key: 10.16:114
     mode:
-      author: creatorlist
+      author: namelist
       organization: literallist
       title: title
       url: verbatim
       urldate: literal
     type: online
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{U.S. Census Bureau}'
+      organization: U.S. Department of Commerce
+  - fields:
       citation: 347 U.S. 483
       date: '1954'
       title: Brown v. board of education
@@ -8071,8 +8495,8 @@ entries:
       title: title
       url: verbatim
     type: jurisdiction
-  - annotations: {}
-    fields:
+    verbatim: {}
+  - fields:
       citation: 576 U.S. ___
       date: '2015'
       title: Obergefell v. hodges
@@ -8095,8 +8519,8 @@ entries:
       title: title
       url: verbatim
     type: jurisdiction
-  - annotations: {}
-    fields:
+    verbatim: {}
+  - fields:
       citation: 951 F.2d 1128
       date: '1991'
       organization:
@@ -8121,8 +8545,9 @@ entries:
       title: title
       url: verbatim
     type: jurisdiction
-  - annotations: {}
-    fields:
+    verbatim:
+      organization: 9th Cir.
+  - fields:
       citation: 133 F.Supp.2d 1034
       date: '2001'
       organization:
@@ -8159,7 +8584,10 @@ entries:
       title: title
       url: verbatim
     type: jurisdiction
-  - annotations:
+    verbatim:
+      organization: N.D. Ohio
+  - fields:
+      citation: 563 F.Supp. 332 and aff'd and 727 F.2d 888
       citation+an:citedate:
         - index: 1
           scope: item
@@ -8179,11 +8607,6 @@ entries:
         - index: 3
           scope: item
           value: 10th Cir.
-    fields:
-      citation: 563 F.Supp. 332 and aff'd and 727 F.2d 888
-      citation+an:citedate: 1="1981";3="1984"
-      citation+an:citeinfo: 2=appeal
-      citation+an:citeorg: 1="D. Kan.";3="10th Cir."
       date: '1984'
       origdate: '1981'
       title: Durflinger v. artiles
@@ -8204,16 +8627,19 @@ entries:
     key: 11.4:5
     mode:
       citation: literal
-      citation+an:citedate: verbatim
-      citation+an:citeinfo: verbatim
-      citation+an:citeorg: verbatim
+      citation+an:citedate: annotations
+      citation+an:citeinfo: annotations
+      citation+an:citeorg: annotations
       date: literal
       origdate: literal
       title: title
       url: verbatim
     type: jurisdiction
-  - annotations: {}
-    fields:
+    verbatim:
+      citation+an:citedate: 1="1981";3="1984"
+      citation+an:citeinfo: 2=appeal
+      citation+an:citeorg: 1="D. Kan.";3="10th Cir."
+  - fields:
       citation: 17 Cal.3d 425 and 131 Cal. Rptr. 14 and 551 P.2d 334
       date: '1976'
       title: Tarasoff v. regents of the university of california
@@ -8234,7 +8660,9 @@ entries:
       title: title
       url: verbatim
     type: jurisdiction
-  - annotations:
+    verbatim: {}
+  - fields:
+      citation: 826 S.W.2d 201
       citation+an:citedate:
         - index: 1
           scope: item
@@ -8243,10 +8671,6 @@ entries:
         - index: 1
           scope: item
           value: Tex. Ct. App.
-    fields:
-      citation: 826 S.W.2d 201
-      citation+an:citedate: 1="1992"
-      citation+an:citeorg: 1="Tex. Ct. App."
       date: '1992'
       title: Texas v. morales
       url: https://www.leagle.com/decision/19921027826sw2d20111010
@@ -8270,14 +8694,16 @@ entries:
     key: 11.4:7
     mode:
       citation: literal
-      citation+an:citedate: verbatim
-      citation+an:citeorg: verbatim
+      citation+an:citedate: annotations
+      citation+an:citeorg: annotations
       date: literal
       title: title
       url: verbatim
     type: jurisdiction
-  - annotations: {}
-    fields:
+    verbatim:
+      citation+an:citedate: 1="1992"
+      citation+an:citeorg: 1="Tex. Ct. App."
+  - fields:
       date: '1990'
       location:
         - 42 U.S.C § 12101 <i>et seq.</i>
@@ -8308,8 +8734,9 @@ entries:
       titleaddon: literal
       url: verbatim
     type: legislation
-  - annotations: {}
-    fields:
+    verbatim:
+      location: 42 U.S.C § 12101 \emph{et seq.}
+  - fields:
       date: '1964'
       location:
         - Pub. L. No. 88–352, 78 Stat. 241
@@ -8334,8 +8761,9 @@ entries:
       titleaddon: literal
       url: verbatim
     type: legislation
-  - annotations: {}
-    fields:
+    verbatim:
+      location: Pub. L. No. 88--352, 78 Stat. 241
+  - fields:
       date: '2015'
       location:
         - 20 U.S.C § 6301
@@ -8357,8 +8785,9 @@ entries:
       title: title
       url: verbatim
     type: legislation
-  - annotations: {}
-    fields:
+    verbatim:
+      location: 20 U.S.C § 6301
+  - fields:
       date: '2009'
       location:
         - Pub. L. No. 111-2, 123 Stat. 5
@@ -8383,8 +8812,9 @@ entries:
       titleaddon: literal
       url: verbatim
     type: legislation
-  - annotations: {}
-    fields:
+    verbatim:
+      location: Pub. L. No. 111-2, 123 Stat. 5
+  - fields:
       date: '1972'
       location:
         - 20 U.S.C § 1681 <i>et seq.</i>
@@ -8406,8 +8836,9 @@ entries:
       title: title
       url: verbatim
     type: legislation
-  - annotations: {}
-    fields:
+    verbatim:
+      location: 20 U.S.C § 1681 \emph{et seq.}
+  - fields:
       date: '2009'
       location:
         - Fla. Stat. § 394
@@ -8432,8 +8863,9 @@ entries:
       title: title
       url: verbatim
     type: legislation
-  - annotations: {}
-    fields:
+    verbatim:
+      location: Fla. Stat. § 394
+  - fields:
       date: '2016'
       location:
         - 114th Cong.
@@ -8467,8 +8899,9 @@ entries:
       title: title
       url: verbatim
     type: legmaterial
-  - annotations: {}
-    fields:
+    verbatim:
+      location: 114th Cong.
+  - fields:
       date: '2014'
       location:
         - 113th Cong.
@@ -8500,8 +8933,9 @@ entries:
       title: title
       url: verbatim
     type: legmaterial
-  - annotations: {}
-    fields:
+    verbatim:
+      location: 113th Cong.
+  - fields:
       date: '2013'
       location:
         - H.R 1100, 113th Cong.
@@ -8523,8 +8957,9 @@ entries:
       title: title
       url: verbatim
     type: legislation
-  - annotations: {}
-    fields:
+    verbatim:
+      location: H.R 1100, 113th Cong.
+  - fields:
       date: '2016'
       location:
         - 114th Cong.
@@ -8556,8 +8991,9 @@ entries:
       type: literal
       url: verbatim
     type: legmaterial
-  - annotations: {}
-    fields:
+    verbatim:
+      location: 114th Cong. and 162 Cong. Rec. 2394
+  - fields:
       date: '2015'
       number: 114-358
       source: houseofrepresentatives
@@ -8581,8 +9017,8 @@ entries:
       type: literal
       url: verbatim
     type: legmaterial
-  - annotations: {}
-    fields:
+    verbatim: {}
+  - fields:
       citation: 45 C.F.R. § 46
       date: '2009'
       title: Protection of human subjects
@@ -8604,8 +9040,8 @@ entries:
       title: title
       url: verbatim
     type: legadminmaterial
-  - annotations: {}
-    fields:
+    verbatim: {}
+  - fields:
       citation: 81 F.R. 32391
       date: '2016-05-23'
       keywords:
@@ -8640,8 +9076,8 @@ entries:
       title: title
       url: verbatim
     type: legadminmaterial
-  - annotations: {}
-    fields:
+    verbatim: {}
+  - fields:
       citation: 3 C.F.R. 294
       date: '2014'
       number: 13,676
@@ -8665,8 +9101,8 @@ entries:
       type: literal
       url: verbatim
     type: legadminmaterial
-  - annotations: {}
-    fields:
+    verbatim: {}
+  - fields:
       author:
         - firstName: S. C.
           lastName: Hiremath
@@ -8700,7 +9136,7 @@ entries:
       % (APA 11.9 Example 23)
     key: 11.8:22
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       number: literal
       publisher: literallist
@@ -8708,8 +9144,10 @@ entries:
       type: literal
       url: verbatim
     type: patent
-  - annotations: {}
-    fields:
+    verbatim:
+      author: S. C. Hiremath and S. Kumar and F. Lu and A Salehi
+      publisher: '{U.S. Patent and Trademark Office}'
+  - fields:
       article: I
       section: '3'
       source: us
@@ -8730,8 +9168,8 @@ entries:
       source: literal
       type: literal
     type: constitution
-  - annotations: {}
-    fields:
+    verbatim: {}
+  - fields:
       article: IX
       section: '3'
       source: southcarolina
@@ -8752,8 +9190,8 @@ entries:
       source: literal
       type: literal
     type: constitution
-  - annotations: {}
-    fields:
+    verbatim: {}
+  - fields:
       amendment: XIX
       source: us
       type: constitution
@@ -8775,8 +9213,8 @@ entries:
       source: literal
       type: literal
     type: constitution
-  - annotations: {}
-    fields:
+    verbatim: {}
+  - fields:
       amendment: XIX
       eventdate: '1933'
       keywords:
@@ -8801,8 +9239,8 @@ entries:
       source: literal
       type: literal
     type: constitution
-  - annotations: {}
-    fields:
+    verbatim: {}
+  - fields:
       amendment: I–X
       source: us
       type: constitution
@@ -8821,8 +9259,8 @@ entries:
       source: literal
       type: literal
     type: constitution
-  - annotations: {}
-    fields:
+    verbatim: {}
+  - fields:
       article: '1'
       part: '3'
       source: unitednations
@@ -8843,8 +9281,8 @@ entries:
       source: literal
       type: literal
     type: constitution
-  - annotations: {}
-    fields:
+    verbatim: {}
+  - fields:
       date: '1989-11-20'
       title: United nations convention on the rights of the child
       url: https://www.ohchr.org/en/professionalinterest/pages/crc.aspx
@@ -8860,6 +9298,7 @@ entries:
       title: title
       url: verbatim
     type: legal
+    verbatim: {}
 errors: []
 jabref:
   root: []

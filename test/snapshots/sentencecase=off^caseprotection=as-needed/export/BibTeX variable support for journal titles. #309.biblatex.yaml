@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Richard E
           lastName: Blahut
@@ -23,7 +22,7 @@ entries:
       }
     key: blahut_capacity
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       journaltitle: literal
       number: literal
@@ -31,6 +30,8 @@ entries:
       title: title
       volume: literal
     type: article
+    verbatim:
+      author: Blahut, Richard E
 errors:
   - error: unresolved @string reference "IEEE_J_IT"
     input: ''

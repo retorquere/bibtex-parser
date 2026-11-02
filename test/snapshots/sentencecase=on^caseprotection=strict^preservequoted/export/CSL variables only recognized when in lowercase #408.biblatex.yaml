@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       abstract: >-
         A counting Bloom filter (CBF) generalizes a Bloom filter data structure
         so as to allow membership queries on a set that can be changing
@@ -74,11 +73,11 @@ entries:
     key: bonomi_improved_2006
     mode:
       abstract: literal
-      author: creatorlist
+      author: namelist
       booktitle: title
       date: literal
       doi: verbatim
-      editor: creatorlist
+      editor: namelist
       isbn: literal
       keywords: verbatimlist
       langid: literal
@@ -90,6 +89,12 @@ entries:
       url: verbatim
       urldate: literal
     type: incollection
+    verbatim:
+      author: >-
+        Bonomi, Flavio and Mitzenmacher, Michael and Panigrahy, Rina and Singh,
+        Sushil and Varghese, George
+      editor: Azar, Yossi and Erlebach, Thomas
+      publisher: '{Springer Berlin Heidelberg}'
 errors: []
 jabref:
   root: []

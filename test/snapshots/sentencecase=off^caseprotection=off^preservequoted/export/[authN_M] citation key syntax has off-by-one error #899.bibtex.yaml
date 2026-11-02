@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - name: One, Author
         - name: Two, Author
@@ -25,7 +24,7 @@ entries:
       }
     key: OnTwTh2018
     mode:
-      author: creatorlist
+      author: namelist
       journal: literal
       number: literal
       pages: literal
@@ -33,6 +32,8 @@ entries:
       volume: literal
       year: literal
     type: article
+    verbatim:
+      author: '{One, Author} and {Two, Author} and {Three, Author} and {Four, Author}'
 errors: []
 jabref:
   root: []

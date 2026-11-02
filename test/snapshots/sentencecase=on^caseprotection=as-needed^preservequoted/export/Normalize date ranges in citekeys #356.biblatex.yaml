@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: René
           lastName: Descartes
@@ -31,17 +30,21 @@ entries:
       }
     key: descartes_oeuvres_1897
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
-      editor: creatorlist
+      editor: namelist
       langid: literal
       location: literallist
       publisher: literallist
       title: title
       volumes: literal
     type: mvbook
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Descartes, René
+      editor: Adam, Charles and Tannery, Paul
+      location: '{Paris}'
+      publisher: '{Cerf}'
+  - fields:
       author:
         - firstName: René
           lastName: Descartes
@@ -71,17 +74,21 @@ entries:
       }
     key: descartes_oeuvres_1897-1
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
-      editor: creatorlist
+      editor: namelist
       langid: literal
       location: literallist
       publisher: literallist
       title: title
       volumes: literal
     type: mvbook
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Descartes, René
+      editor: Adam, Charles and Tannery, Paul
+      location: '{Paris}'
+      publisher: '{Cerf}'
+  - fields:
       author:
         - firstName: René
           lastName: Descartes
@@ -111,15 +118,20 @@ entries:
       }
     key: descartes_oeuvres_1897-2
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
-      editor: creatorlist
+      editor: namelist
       langid: literal
       location: literallist
       publisher: literallist
       title: title
       volumes: literal
     type: mvbook
+    verbatim:
+      author: Descartes, René
+      editor: Adam, Charles and Tannery, Paul
+      location: '{Paris}'
+      publisher: '{Cerf}'
 errors: []
 jabref:
   root: []

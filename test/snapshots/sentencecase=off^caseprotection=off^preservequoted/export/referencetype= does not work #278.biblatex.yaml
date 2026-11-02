@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       date: '2009'
       editor:
         - firstName: Kees
@@ -28,7 +27,7 @@ entries:
     key: ea
     mode:
       date: literal
-      editor: creatorlist
+      editor: namelist
       location: literallist
       note: richtext
       publisher: literallist
@@ -36,6 +35,10 @@ entries:
       url: verbatim
       volume: literal
     type: mvreference
+    verbatim:
+      editor: Versteegh, Kees
+      location: Leiden
+      publisher: Brill
 errors: []
 jabref:
   root: []

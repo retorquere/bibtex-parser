@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Stefano
           lastName: Bartolini
@@ -34,7 +33,7 @@ entries:
       }
     key: BartoliniForthcoming
     mode:
-      author: creatorlist
+      author: namelist
       booktitle: title
       location: literallist
       publisher: literallist
@@ -43,6 +42,10 @@ entries:
       urldate: literal
       year: literal
     type: incollection
+    verbatim:
+      author: Bartolini, Stefano and Bilancini, Ennio and Sarracino, Francesco
+      location: '{Oxford}'
+      publisher: '{Oxford University Press}'
 errors: []
 jabref:
   root: []

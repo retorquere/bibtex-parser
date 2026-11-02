@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Don P.
           lastName: Mitchell
@@ -35,9 +34,9 @@ entries:
       }
     key: Mitchell96
     mode:
-      author: creatorlist
+      author: namelist
       booktitle: title
-      editor: creatorlist
+      editor: namelist
       month: literal
       organization: literallist
       pages: literal
@@ -46,6 +45,11 @@ entries:
       title: title
       year: literal
     type: inproceedings
+    verbatim:
+      author: Mitchell, Don P.
+      editor: Rushmeier, Holly
+      organization: '{{ACM_SIGGRAPH}}'
+      publisher: '{{AW}}'
 errors:
   - error: unresolved @string reference "PROC_SIGGRAPH93_01"
     input: ''

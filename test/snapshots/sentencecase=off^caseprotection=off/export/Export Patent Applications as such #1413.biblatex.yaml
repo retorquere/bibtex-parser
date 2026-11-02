@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Nils
           lastName: Werner
@@ -20,14 +19,16 @@ entries:
       }
     key: wernerThisPatentApplication
     mode:
-      author: creatorlist
-      holder: creatorlist
+      author: namelist
+      holder: namelist
       number: literal
       title: title
       type: literal
     type: patent
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Werner, Nils
+      holder: '{My Employer}'
+  - fields:
       author:
         - firstName: Nils
           lastName: Werner
@@ -48,12 +49,15 @@ entries:
       }
     key: wernerThisPatentIt
     mode:
-      author: creatorlist
-      holder: creatorlist
+      author: namelist
+      holder: namelist
       number: literal
       title: title
       type: literal
     type: patent
+    verbatim:
+      author: Werner, Nils
+      holder: '{My Employer}'
 errors: []
 jabref:
   root: []

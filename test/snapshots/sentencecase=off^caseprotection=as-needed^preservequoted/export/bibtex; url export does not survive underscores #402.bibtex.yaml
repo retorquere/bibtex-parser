@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       address:
         - Krakow
       author:
@@ -38,7 +37,7 @@ entries:
     key: EmmerJaens14a
     mode:
       address: literallist
-      author: creatorlist
+      author: namelist
       booktitle: title
       keywords: verbatimlist
       month: literal
@@ -46,6 +45,11 @@ entries:
       title: title
       year: literal
     type: inproceedings
+    verbatim:
+      address: '{Krakow}'
+      author: >-
+        Emmert, Thomas and Jaensch, Stefan and Sovardi, Carlo and Polifke,
+        Wolfgang
 errors: []
 jabref:
   root: []

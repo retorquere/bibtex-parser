@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       address:
         - New York, NY, USA
       author:
@@ -43,7 +42,7 @@ entries:
     key: Heck_IWPSE_2013
     mode:
       address: literallist
-      author: creatorlist
+      author: namelist
       booktitle: title
       doi: verbatim
       isbn: literal
@@ -55,6 +54,10 @@ entries:
       title: title
       year: literal
     type: inproceedings
+    verbatim:
+      address: '{New York, NY, USA}'
+      author: Heck, Petra and Zaidman, Andy
+      publisher: '{Association for Computing Machinery}'
 errors: []
 jabref:
   root: []

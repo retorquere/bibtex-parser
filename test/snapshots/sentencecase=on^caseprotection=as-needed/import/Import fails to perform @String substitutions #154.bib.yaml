@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       address:
         - London, UK
       author:
@@ -20,10 +19,14 @@ entries:
     key: Bert:2001:SQL
     mode:
       address: literallist
-      author: creatorlist
+      author: namelist
       publisher: literallist
       title: title
     type: book
+    verbatim:
+      address: London, UK
+      author: R. A. Bert
+      publisher: Freds Publishing
 errors: []
 jabref:
   root: []

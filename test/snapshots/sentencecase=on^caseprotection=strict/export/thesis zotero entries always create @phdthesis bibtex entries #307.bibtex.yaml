@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Sune Brøndum
           lastName: Wøller
@@ -20,13 +19,15 @@ entries:
       }
     key: Woller2011CTRDet
     mode:
-      author: creatorlist
+      author: namelist
       language: literallist
       title: title
       year: literal
     type: phdthesis
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Wøller, Sune Brøndum
+      language: norsk
+  - fields:
       author:
         - firstName: Sune Brøndum
           lastName: Wøller
@@ -45,11 +46,14 @@ entries:
       }
     key: Woller2011DetMultiple
     mode:
-      author: creatorlist
+      author: namelist
       language: literallist
       title: title
       year: literal
     type: mastersthesis
+    verbatim:
+      author: Wøller, Sune Brøndum
+      language: norsk
 errors: []
 jabref:
   root: []

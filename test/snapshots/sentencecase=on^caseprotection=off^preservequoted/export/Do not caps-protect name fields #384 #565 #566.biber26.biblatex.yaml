@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       annotation: '[al-Hakim][Tawfiq]'
       author:
         - firstName: Tawfiq
@@ -16,10 +15,11 @@ entries:
     key: al-hakim
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: family=Hakim, given=Tawfiq, prefix=al-, useprefix=true
+  - fields:
       annotation: '[Beauvoir][Simone de]'
       author:
         - firstName: Simone
@@ -34,10 +34,11 @@ entries:
     key: beauvoir
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: family=Beauvoir, given=Simone, prefix=de, useprefix=false
+  - fields:
       annotation: '[boven d''Eert][Christianus]'
       author:
         - firstName: Christianus
@@ -52,10 +53,11 @@ entries:
     key: bovendeert
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: family=Eert, given=Christianus, prefix=boven d', useprefix=true
+  - fields:
       annotation: '["da Gama"][Vasco]'
       author:
         - firstName: Vasco
@@ -69,10 +71,11 @@ entries:
     key: dagama
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{da Gama}, Vasco'
+  - fields:
       annotation: '[d’Alembert][Jean le Rond]'
       author:
         - firstName: Jean le Rond
@@ -87,10 +90,11 @@ entries:
     key: dalembert
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: family=Alembert, given=Jean le Rond, prefix=d’, useprefix=true
+  - fields:
       annotation: '[D’Amato][Alfonse]'
       author:
         - firstName: Alfonse
@@ -103,10 +107,11 @@ entries:
     key: damato
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: D’Amato, Alfonse
+  - fields:
       annotation: '[D’Annunzio][Gabriele]'
       author:
         - firstName: Gabriele
@@ -119,10 +124,11 @@ entries:
     key: dannunzio
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: D’Annunzio, Gabriele
+  - fields:
       annotation: '[Da Ponte][Lorenzo]'
       author:
         - firstName: Lorenzo
@@ -135,10 +141,11 @@ entries:
     key: daponte
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Da Ponte, Lorenzo
+  - fields:
       annotation: '["de Gaulle"][Charles]'
       author:
         - firstName: Charles
@@ -152,10 +159,11 @@ entries:
     key: degaulle
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{de Gaulle}, Charles'
+  - fields:
       annotation: '[DeGette][Diana]'
       author:
         - firstName: Diana
@@ -168,10 +176,11 @@ entries:
     key: degette
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: DeGette, Diana
+  - fields:
       annotation: '["de la Mare"][Walter]'
       author:
         - firstName: Walter
@@ -185,10 +194,11 @@ entries:
     key: delamare
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{de la Mare}, Walter'
+  - fields:
       annotation: '[Della Robbia][Luca]'
       author:
         - firstName: Luca
@@ -201,10 +211,11 @@ entries:
     key: dellarobbia
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Della Robbia, Luca
+  - fields:
       annotation: '[De Quincey][Thomas]'
       author:
         - firstName: Thomas
@@ -217,10 +228,11 @@ entries:
     key: dequincey
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: De Quincey, Thomas
+  - fields:
       annotation: '[Dumas][Alexandre, père]'
       author:
         - firstName: Alexandre
@@ -234,10 +246,11 @@ entries:
     key: dumas
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Dumas, père, Alexandre
+  - fields:
       annotation: '[du Puy de Clinchamps][PhU+0097ilippe]'
       author:
         - firstName: Philippe
@@ -253,10 +266,13 @@ entries:
     key: dupuydeclinchamps
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: >-
+        family=Puy de Clinchamps, given=Philippe, given-i={Ph}, prefix=du,
+        useprefix=true
+  - fields:
       annotation: '[Este][Beatrice d’]'
       author:
         - firstName: Beatrice
@@ -271,10 +287,11 @@ entries:
     key: este
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: family=Este, given=Beatrice, prefix=d’, useprefix=false
+  - fields:
       annotation: '[Humboldt][Alexander von]'
       author:
         - firstName: Alexander
@@ -289,10 +306,11 @@ entries:
     key: humboldt
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: family=Humboldt, given=Alexander, prefix=von, useprefix=false
+  - fields:
       annotation: '[King][Martin Luther, Jr.]'
       author:
         - firstName: Martin Luther
@@ -306,10 +324,11 @@ entries:
     key: king
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: King, Jr., Martin Luther
+  - fields:
       annotation: '[La Follette][Robert M., Sr.]'
       author:
         - firstName: Robert M.
@@ -323,10 +342,11 @@ entries:
     key: lafollette
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: La Follette, Sr., Robert M.
+  - fields:
       annotation: '[La Fontaine][Jean de]'
       author:
         - firstName: Jean
@@ -341,10 +361,11 @@ entries:
     key: lafontaine
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: family=La Fontaine, given=Jean, prefix=de, useprefix=false
+  - fields:
       annotation: '[La Salle][René-Robert Cavelier de]'
       author:
         - firstName: René-Robert Cavelier
@@ -359,10 +380,11 @@ entries:
     key: lasalle
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: family=La Salle, given=René-Robert Cavelier, prefix=de, useprefix=false
+  - fields:
       annotation: '[L’Enfant][Pierre-Charles]'
       author:
         - firstName: Pierre-Charles
@@ -375,10 +397,11 @@ entries:
     key: lenfant
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: L’Enfant, Pierre-Charles
+  - fields:
       annotation: '[Le Vayer][François de La Mothe]'
       author:
         - firstName: François de La Mothe
@@ -391,10 +414,11 @@ entries:
     key: levayer
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Le Vayer, François de La Mothe
+  - fields:
       annotation: '[[Marcus Aurelius]]'
       author:
         - name: Marcus Aurelius
@@ -406,10 +430,11 @@ entries:
     key: marcusaurelius
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{Marcus Aurelius}'
+  - fields:
       annotation: '[Medici][Lorenzo de’U+200B]'
       author:
         - firstName: Lorenzo
@@ -424,10 +449,11 @@ entries:
     key: medici
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: family=Medici, given=Lorenzo, prefix=de’\mbox{}, useprefix=false
+  - fields:
       annotation: '[Mies van der Rohe][Ludwig]'
       author:
         - firstName: Ludwig
@@ -440,10 +466,11 @@ entries:
     key: miesvanderrohe
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Mies van der Rohe, Ludwig
+  - fields:
       annotation: '[[National Aeronautics and Space Administration]]'
       author:
         - name: National Aeronautics and Space Administration
@@ -455,10 +482,11 @@ entries:
     key: nationalaeronauticsandspaceadministration
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{National Aeronautics and Space Administration}'
+  - fields:
       annotation: '[Ortega y Gasset][José]'
       author:
         - firstName: José
@@ -471,10 +499,11 @@ entries:
     key: ortegaygasset
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Ortega y Gasset, José
+  - fields:
       annotation: '[''s-Gravesande][Goverdus]'
       author:
         - firstName: Goverdus
@@ -489,10 +518,11 @@ entries:
     key: s-gravesande
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: family=Gravesande, given=Goverdus, prefix='s-, useprefix=true
+  - fields:
       annotation: '[Sackville-West][Victoria]'
       author:
         - firstName: Victoria
@@ -505,10 +535,11 @@ entries:
     key: sackville-west
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Sackville-West, Victoria
+  - fields:
       annotation: '[Sadat][Anwar el-]'
       author:
         - firstName: Anwar
@@ -523,10 +554,11 @@ entries:
     key: sadat
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: family=Sadat, given=Anwar, prefix=el-, useprefix=false
+  - fields:
       annotation: '[Saunders][John Bertrand de Cusance Morant]'
       author:
         - firstName: John Bertrand de Cusance Morant
@@ -539,10 +571,11 @@ entries:
     key: saunders
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Saunders, John Bertrand de Cusance Morant
+  - fields:
       annotation: '[Silva][Agostinho da]'
       author:
         - firstName: Agostinho
@@ -557,10 +590,11 @@ entries:
     key: silva
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: family=Silva, given=Agostinho, prefix=da, useprefix=false
+  - fields:
       annotation: '[Stein][Heinrich Friedrich Karl vom und zum]'
       author:
         - firstName: Heinrich Friedrich Karl
@@ -575,10 +609,13 @@ entries:
     key: stein
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: >-
+        family=Stein, given=Heinrich Friedrich Karl, prefix=vom und zum,
+        useprefix=false
+  - fields:
       annotation: '[Stevenson][Adlai E.,! III]'
       author:
         - firstName: Adlai E.
@@ -593,10 +630,11 @@ entries:
     key: stevenson
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: family=Stevenson, given=Adlai E., suffix=III, juniorcomma=true
+  - fields:
       annotation: '[Tocqueville][Alexis de]'
       author:
         - firstName: Alexis
@@ -611,10 +649,11 @@ entries:
     key: tocqueville
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: family=Tocqueville, given=Alexis, prefix=de, useprefix=false
+  - fields:
       annotation: '[van Gogh][Vincent]'
       author:
         - firstName: Vincent
@@ -629,10 +668,11 @@ entries:
     key: vangogh
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: family=Gogh, given=Vincent, prefix=van, useprefix=true
+  - fields:
       annotation: '["van Gulik"][Robert]'
       author:
         - firstName: Robert
@@ -646,10 +686,11 @@ entries:
     key: vangulik
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{van Gulik}, Robert'
+  - fields:
       annotation: '[Van Rensselaer][Stephen]'
       author:
         - firstName: Stephen
@@ -662,10 +703,11 @@ entries:
     key: vanrensselaer
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Van Rensselaer, Stephen
+  - fields:
       annotation: '[Vaughan Williams][Ralph]'
       author:
         - firstName: Ralph
@@ -678,8 +720,10 @@ entries:
     key: vaughanwilliams
     mode:
       annotation: richtext
-      author: creatorlist
+      author: namelist
     type: book
+    verbatim:
+      author: Vaughan Williams, Ralph
 errors: []
 jabref:
   root: []

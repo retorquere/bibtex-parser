@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       abstract: >-
         Since it appeared in 1971, John Rawls's "A Theory of Justice" has become
         a classic. The author has now revised the original edition to clear up a
@@ -47,7 +46,7 @@ entries:
     key: Rawls2009
     mode:
       abstract: literal
-      author: creatorlist
+      author: namelist
       date: literal
       isbn: literal
       keywords: verbatimlist
@@ -57,8 +56,10 @@ entries:
       title: title
       url: verbatim
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Rawls, John
+      publisher: '{Harvard University Press}'
+  - fields:
       abstract: >-
         With its gripping plot and pungent dialogue, Uncle Tom's Cabin offers
         readers today a passionate portrait of a nation on the verge of disunion
@@ -100,7 +101,7 @@ entries:
     key: Stowe2009
     mode:
       abstract: literal
-      author: creatorlist
+      author: namelist
       date: literal
       isbn: literal
       keywords: verbatimlist
@@ -109,6 +110,9 @@ entries:
       publisher: literallist
       title: title
     type: book
+    verbatim:
+      author: Stowe, Harriet Beecher
+      publisher: '{Broadview Press}'
 errors: []
 jabref:
   root: []

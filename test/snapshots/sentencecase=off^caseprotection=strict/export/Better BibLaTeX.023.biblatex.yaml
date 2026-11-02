@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Christopher D.
           lastName: Manning
@@ -29,7 +28,7 @@ entries:
       }
     key: Manning2008
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       isbn: literal
       location: literallist
@@ -37,6 +36,10 @@ entries:
       publisher: literallist
       title: title
     type: book
+    verbatim:
+      author: Manning, Christopher D. and Raghavan, Prabhakar and Schütze, Hinrich
+      location: '{New York}'
+      publisher: '{Cambridge University Press}'
 errors: []
 jabref:
   root: []

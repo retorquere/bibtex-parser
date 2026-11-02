@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       abstract: >-
         Метод Zettelkasten - это эффективная система организации полезной
         информации, идей для работы и учебы, развития мышления, придуманная
@@ -76,7 +75,7 @@ entries:
     mode:
       abstract: literal
       address: literallist
-      author: creatorlist
+      author: namelist
       booktitle: title
       isbn: literal
       keywords: verbatimlist
@@ -87,6 +86,11 @@ entries:
       title: title
       year: literal
     type: book
+    verbatim:
+      address: Москва
+      author: Аренс З
+      language: rus
+      publisher: Манн, Иванов и Фербер
 errors:
   - error: unhandled macro \6
     input: \6

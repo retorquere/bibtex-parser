@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Sebastian
           lastName: Brato
@@ -38,7 +37,7 @@ entries:
       }
     key: brato_stability_2014
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       institution: literallist
       location: literallist
@@ -46,8 +45,13 @@ entries:
       title: title
       url: verbatim
     type: report
-  - annotations: {}
-    fields:
+    verbatim:
+      author: >-
+        Brato, Sebastian and Surmann, Dirk and Krey, Sebastian and Götze, Jürgen
+        and Ligges, Uwe and Weihs, Claus
+      institution: '{Technische Universität Dortmund}'
+      location: '{Eldorado}'
+  - fields:
       author:
         - firstName: Tsutomu
           lastName: Michigami
@@ -74,7 +78,7 @@ entries:
       }
     key: michigami_development_1995
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       doi: verbatim
       journaltitle: literal
@@ -83,8 +87,9 @@ entries:
       title: title
       volume: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Michigami, Tsutomu
+  - fields:
       author:
         - firstName: Adam
           lastName: Skubala
@@ -106,14 +111,17 @@ entries:
       }
     key: skubala_modellierung_2012
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       location: literallist
       publisher: literallist
       title: title
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Skubala, Adam
+      location: '{Masterthesis, Fakultät Statistik}'
+      publisher: '{TU Dortmund}'
+  - fields:
       author:
         - firstName: Douglas Brent
           lastName: West
@@ -136,7 +144,7 @@ entries:
       }
     key: west_introduction_2000
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       edition: literal
       isbn: literal
@@ -144,6 +152,9 @@ entries:
       publisher: literallist
       title: title
     type: book
+    verbatim:
+      author: West, Douglas Brent
+      publisher: '{Prentice Hall}'
 errors: []
 jabref:
   root: []

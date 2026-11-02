@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: John
           lastName: Doe10
@@ -17,12 +16,13 @@ entries:
       }
     key: doe10_edtf_2011
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       title: title
     type: online
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Doe10, John
+  - fields:
       author:
         - firstName: John
           lastName: Doe11
@@ -38,12 +38,13 @@ entries:
       }
     key: doe11_edtf_2011
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       title: title
     type: online
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Doe11, John
+  - fields:
       author:
         - firstName: John
           lastName: Doe12
@@ -60,12 +61,13 @@ entries:
       }
     key: doe12_edtf_2011
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       title: title
     type: online
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Doe12, John
+  - fields:
       author:
         - firstName: John
           lastName: Doe13
@@ -79,12 +81,13 @@ entries:
       }
     key: doe13_season_2017
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       title: title
     type: online
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Doe13, John
+  - fields:
       author:
         - name: Doe14
       date: '2011'
@@ -97,12 +100,13 @@ entries:
       }
     key: doe14_date2010_2010
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       title: title
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{Doe14}'
+  - fields:
       author:
         - name: Doe15
       date: '2017'
@@ -117,13 +121,14 @@ entries:
       }
     key: doe15_multiple_2017
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       isbn: literal
       title: title
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{Doe15}'
+  - fields:
       author:
         - firstName: John
           lastName: Doe7
@@ -151,7 +156,7 @@ entries:
       }
     key: doe7_politics_1985
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       eprint: verbatim
       eprinttype: literal
@@ -161,8 +166,9 @@ entries:
       title: title
       volume: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Doe7, John
+  - fields:
       author:
         - firstName: John
           lastName: Doe8
@@ -176,12 +182,13 @@ entries:
       }
     key: doe8_title_2017
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       title: title
     type: online
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Doe8, John
+  - fields:
       author:
         - firstName: John
           lastName: Doe9
@@ -197,12 +204,13 @@ entries:
       }
     key: doe9_edtf_2011
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       title: title
     type: online
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Doe9, John
+  - fields:
       author:
         - firstName: John
           lastName: Doe1
@@ -220,14 +228,15 @@ entries:
       }
     key: t1
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       eventdate: literal
       origdate: literal
       title: title
     type: unpublished
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Doe1, John
+  - fields:
       author:
         - firstName: John
           lastName: Doe2
@@ -241,12 +250,13 @@ entries:
       }
     key: t2
     mode:
-      author: creatorlist
+      author: namelist
       eventdate: literal
       title: title
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Doe2, John
+  - fields:
       author:
         - firstName: John
           lastName: Doe3
@@ -260,12 +270,13 @@ entries:
       }
     key: t3
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       title: title
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Doe3, John
+  - fields:
       author:
         - firstName: John
           lastName: Doe4
@@ -279,12 +290,13 @@ entries:
       }
     key: t4
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       title: title
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Doe4, John
+  - fields:
       author:
         - firstName: John
           lastName: Doe5
@@ -302,14 +314,15 @@ entries:
       }
     key: t5
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       eventdate: literal
       origdate: literal
       title: title
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Doe5, John
+  - fields:
       author:
         - firstName: John
           lastName: Doe6
@@ -323,10 +336,12 @@ entries:
       }
     key: t6
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       title: title
     type: book
+    verbatim:
+      author: Doe6, John
 errors: []
 jabref:
   root: []

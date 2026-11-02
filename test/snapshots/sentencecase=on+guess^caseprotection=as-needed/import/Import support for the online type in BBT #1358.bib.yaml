@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - name: Intel
       title: Intel atom E3826 specifications
@@ -15,11 +14,13 @@ entries:
               Year = {2019}}
     key: WEB:intel-ark-atom
     mode:
-      author: creatorlist
+      author: namelist
       title: title
       url: verbatim
       year: literal
     type: online
+    verbatim:
+      author: '{Intel}'
 errors: []
 jabref:
   root: []

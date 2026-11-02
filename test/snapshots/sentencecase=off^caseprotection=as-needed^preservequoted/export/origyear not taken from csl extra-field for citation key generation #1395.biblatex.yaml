@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: J. H
           lastName: Brennan
@@ -27,7 +26,7 @@ entries:
       }
     key: Brennan.1976.MagiaExperimental.
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       isbn: literal
       langid: literal
@@ -36,8 +35,11 @@ entries:
       publisher: literallist
       title: title
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Brennan, J. H
+      location: '{Madrid}'
+      publisher: '{Edaf}'
+  - fields:
       author:
         - firstName: Waldo
           lastName: Vieira
@@ -76,7 +78,7 @@ entries:
       % ? Title looks like it was stored in title-case in Zotero
     key: Vieira.1994.700ExperimentosdaConscienciologia.Capitulo.p.22
     mode:
-      author: creatorlist
+      author: namelist
       booktitle: title
       date: literal
       edition: literal
@@ -88,6 +90,10 @@ entries:
       publisher: literallist
       title: title
     type: incollection
+    verbatim:
+      author: Vieira, Waldo
+      location: '{Rio de Janeiro}'
+      publisher: '{Instituto Internacional de Projeciologia}'
 errors: []
 jabref:
   root: []

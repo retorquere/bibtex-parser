@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: O.
           lastName: Madelung
@@ -39,10 +38,10 @@ entries:
       }
     key: Madelung_1998_LB_10681727_56
     mode:
-      author: creatorlist
+      author: namelist
       booktitle: title
       doi: verbatim
-      editor: creatorlist
+      editor: namelist
       owner: literal
       publisher: literallist
       series: title
@@ -51,6 +50,10 @@ entries:
       volume: literal
       year: literal
     type: incollection
+    verbatim:
+      author: Madelung, O. and others
+      editor: Madelung, O. and R\"ossler, U. and Schulz, M.
+      publisher: Springer-Verlag
 errors: []
 jabref:
   root: []

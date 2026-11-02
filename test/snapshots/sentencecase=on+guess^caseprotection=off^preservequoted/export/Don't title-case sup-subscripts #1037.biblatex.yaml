@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Name
           lastName: Name
@@ -15,12 +14,13 @@ entries:
       }
     key: ref1
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Name, Name
+  - fields:
       author:
         - firstName: Name
           lastName: Name
@@ -34,12 +34,13 @@ entries:
       }
     key: ref2
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Name, Name
+  - fields:
       author:
         - firstName: Name
           lastName: Name
@@ -53,12 +54,13 @@ entries:
       }
     key: ref3
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Name, Name
+  - fields:
       author:
         - firstName: Name
           lastName: Name
@@ -72,12 +74,13 @@ entries:
       }
     key: ref4
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Name, Name
+  - fields:
       author:
         - firstName: Name
           lastName: Name
@@ -91,12 +94,13 @@ entries:
       }
     key: ref5
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Name, Name
+  - fields:
       author:
         - firstName: Name
           lastName: Name
@@ -110,12 +114,13 @@ entries:
       }
     key: ref6
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Name, Name
+  - fields:
       author:
         - firstName: Name
           lastName: Name
@@ -129,12 +134,13 @@ entries:
       }
     key: ref7
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Name, Name
+  - fields:
       author:
         - firstName: Name
           lastName: Name
@@ -148,10 +154,12 @@ entries:
       }
     key: ref8
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       title: title
     type: article
+    verbatim:
+      author: Name, Name
 errors: []
 jabref:
   root: []

@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Eric M.
           lastName: Orlin
@@ -48,10 +47,10 @@ entries:
       }
     key: Orlin1979SiLlaRh
     mode:
-      author: creatorlist
+      author: namelist
       booktitle: title
       date: literal
-      editor: creatorlist
+      editor: namelist
       isbn: literal
       keywords: verbatimlist
       langid: literal
@@ -62,6 +61,11 @@ entries:
       series: title
       title: title
     type: incollection
+    verbatim:
+      author: Orlin, Eric M.
+      editor: Deroux, Carl
+      location: '{Bruxelles}'
+      publisher: '{Latomus}'
 errors: []
 jabref:
   root: []

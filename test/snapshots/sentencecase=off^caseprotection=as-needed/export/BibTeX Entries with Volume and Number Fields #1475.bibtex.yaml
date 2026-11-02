@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       address:
         - United States of America
       author:
@@ -66,11 +65,11 @@ entries:
     key: yang2011
     mode:
       address: literallist
-      author: creatorlist
+      author: namelist
       booktitle: title
       copyright: literal
       doi: verbatim
-      editor: creatorlist
+      editor: namelist
       issn: literal
       language: literallist
       organization: literallist
@@ -82,6 +81,15 @@ entries:
       volume: literal
       year: literal
     type: inproceedings
+    verbatim:
+      address: '{United States of America}'
+      author: Yang, Xintian and Parthasarathy, Srinivasan and Sadayappan, P.
+      editor: >-
+        Jagadish, H. V. and Blakeley, José and Hellerstein, Joseph M. and
+        Koudas, Nick and Lehner, Wolfgang and Sarawagi, Sunita and Röhm, Uwe
+      language: en-US
+      organization: '{Google}'
+      publisher: '{VLDB Endowment}'
 errors: []
 jabref:
   root: []

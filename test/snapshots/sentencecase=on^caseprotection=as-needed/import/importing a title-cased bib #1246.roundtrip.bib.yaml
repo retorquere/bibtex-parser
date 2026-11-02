@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Alistair
           lastName: Adcroft
@@ -27,15 +26,16 @@ entries:
       }
     key: AdcroftETAL:1997
     mode:
-      author: creatorlist
+      author: namelist
       journal: literal
       pages: literal
       title: title
       volume: literal
       year: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Adcroft, Alistair and Hill, Chris and Marshall, John
+  - fields:
       author:
         - firstName: U.
           lastName: Fritz
@@ -70,7 +70,7 @@ entries:
       }
     key: Frit2
     mode:
-      author: creatorlist
+      author: namelist
       doi: verbatim
       journal: literal
       pages: literal
@@ -79,6 +79,8 @@ entries:
       volume: literal
       year: literal
     type: article
+    verbatim:
+      author: Fritz, U. and Corti, C. and P{\"a}ckert, M.
 errors: []
 jabref:
   root: []

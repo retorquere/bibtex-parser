@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Jane
           lastName: Doe
@@ -19,12 +18,14 @@ entries:
       }
     key: Doe2020
     mode:
-      author: creatorlist
+      author: namelist
       title: title
       weirdfield: literal
       wonderfield: literal
       year: literal
     type: misc
+    verbatim:
+      author: Doe, Jane
 errors: []
 jabref:
   root: []

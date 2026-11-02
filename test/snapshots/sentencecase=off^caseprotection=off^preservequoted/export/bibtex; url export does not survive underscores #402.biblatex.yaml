@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Thomas
           lastName: Emmert
@@ -33,7 +32,7 @@ entries:
       }
     key: EmmerJaens14a
     mode:
-      author: creatorlist
+      author: namelist
       booktitle: title
       date: literal
       keywords: verbatimlist
@@ -41,6 +40,11 @@ entries:
       title: title
       url: verbatim
     type: inproceedings
+    verbatim:
+      author: >-
+        Emmert, Thomas and Jaensch, Stefan and Sovardi, Carlo and Polifke,
+        Wolfgang
+      location: '{Krakow}'
 errors: []
 jabref:
   root: []

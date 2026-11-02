@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Григорий
           lastName: Медведев
@@ -31,7 +30,7 @@ entries:
       }
     key: Medvedev2002
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       keywords: verbatimlist
       langid: literal
@@ -39,6 +38,9 @@ entries:
       publisher: literallist
       title: title
     type: book
+    verbatim:
+      author: Медведев, Григорий
+      publisher: '{МК-Периодика}'
 errors: []
 jabref:
   root: []

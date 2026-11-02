@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: U.
           lastName: Fritz
@@ -29,7 +28,7 @@ entries:
       }
     key: Fritz2012
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       doi: verbatim
       journaltitle: literal
@@ -38,8 +37,9 @@ entries:
       title: title
       volume: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Fritz, U. and Corti, C. and Päckert, M.
+  - fields:
       author:
         - firstName: U.
           lastName: Fritz
@@ -67,7 +67,7 @@ entries:
       }
     key: Fritz2012a
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       doi: verbatim
       journaltitle: literal
@@ -76,8 +76,9 @@ entries:
       title: title
       volume: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Fritz, U. and Corti, C. and Päckert, M.
+  - fields:
       author:
         - firstName: U.
           lastName: Fritz
@@ -105,7 +106,7 @@ entries:
       }
     key: Fritz2012b
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       doi: verbatim
       journaltitle: literal
@@ -114,8 +115,9 @@ entries:
       title: title
       volume: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Fritz, U. and Corti, C. and Päckert, M.
+  - fields:
       author:
         - firstName: U.
           lastName: Fritz
@@ -143,7 +145,7 @@ entries:
       }
     key: Fritz2012c
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       doi: verbatim
       journaltitle: literal
@@ -152,8 +154,9 @@ entries:
       title: title
       volume: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Fritz, U. and Corti, C. and Päckert, M.
+  - fields:
       author:
         - firstName: U.
           lastName: Fritz
@@ -181,7 +184,7 @@ entries:
       }
     key: Fritz2012d
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       doi: verbatim
       journaltitle: literal
@@ -190,8 +193,9 @@ entries:
       title: title
       volume: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Fritz, U. and Corti, C. and Päckert, M.
+  - fields:
       author:
         - firstName: U.
           lastName: Fritz
@@ -219,7 +223,7 @@ entries:
       }
     key: Fritz2012e
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       doi: verbatim
       journaltitle: literal
@@ -228,6 +232,8 @@ entries:
       title: title
       volume: literal
     type: article
+    verbatim:
+      author: Fritz, U. and Corti, C. and Päckert, M.
 errors: []
 jabref:
   root: []

@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Charles
           lastName: Eisenmann
@@ -33,7 +32,7 @@ entries:
       }
     key: eisenmann_problemes_1982
     mode:
-      author: creatorlist
+      author: namelist
       booktitle: title
       date: literal
       isbn: literal
@@ -45,6 +44,10 @@ entries:
       volume: literal
       volumes: literal
     type: incollection
+    verbatim:
+      author: Eisenmann, Charles
+      location: '{Paris}'
+      publisher: '{LGDJ}'
 errors: []
 jabref:
   root: []

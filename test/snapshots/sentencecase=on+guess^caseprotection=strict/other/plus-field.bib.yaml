@@ -1,15 +1,13 @@
 comments: []
 entries:
-  - annotations:
+  - fields:
+      author:
+        - firstName: U.
+          lastName: Author
       author+an:username:
         - index: 1
           scope: item
           value: '@ausername'
-    fields:
-      author:
-        - firstName: U.
-          lastName: Author
-      author+an:username: 1="@ausername"
       date: '2014'
     input: |-
       @BOOK{9.8:11,
@@ -19,10 +17,13 @@ entries:
       }
     key: 9.8:11
     mode:
-      author: creatorlist
-      author+an:username: verbatim
+      author: namelist
+      author+an:username: annotations
       date: literal
     type: book
+    verbatim:
+      author: U. Author
+      author+an:username: 1="@ausername"
 errors: []
 jabref:
   root: []

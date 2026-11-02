@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Piroska
           lastName: Nagy
@@ -37,9 +36,9 @@ entries:
       % ? Title looks like it was stored in title-case in Zotero
     key: NagyHistorians2008
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
-      editora: creatorlist
+      editora: namelist
       editoratype: literal
       organization: literallist
       shorttitle: title
@@ -48,8 +47,11 @@ entries:
       url: verbatim
       urldate: literal
     type: online
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Nagy, Piroska
+      editora: Boquet, Damien
+      organization: '{Les émotions au Moyen Âge, carnet d''EMMA}'
+  - fields:
       author:
         - name: 胡適
       booktitle: 胡適文集
@@ -84,10 +86,10 @@ entries:
       }
     key: 胡適哲學史1917
     mode:
-      author: creatorlist
+      author: namelist
       booktitle: title
       date: literal
-      editor: creatorlist
+      editor: namelist
       location: literallist
       origdate: literal
       origpublisher: literallist
@@ -97,6 +99,12 @@ entries:
       title: title
       volume: literal
     type: incollection
+    verbatim:
+      author: '{胡適}'
+      editor: '{歐陽哲生}'
+      location: '{北京}'
+      origpublisher: '{萬有文庫}'
+      publisher: '{北京大學}'
 errors: []
 jabref:
   root: []

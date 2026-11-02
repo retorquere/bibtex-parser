@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - lastName: 01e
       title: >-
@@ -12,11 +11,12 @@ entries:
       \enquote{enquote}.},}
     key: 1e
     mode:
-      author: creatorlist
+      author: namelist
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: 01e
+  - fields:
       author:
         - lastName: 01b
       title: >-
@@ -27,11 +27,12 @@ entries:
       \mkbibquote{mkbibquote}.},}
     key: 1b
     mode:
-      author: creatorlist
+      author: namelist
       title: title
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: 01b
+  - fields:
       author:
         - lastName: 02e
       title: >-
@@ -42,11 +43,12 @@ entries:
       \enquote{enquote}.},}
     key: 2e
     mode:
-      author: creatorlist
+      author: namelist
       title: title
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: 02e
+  - fields:
       author:
         - lastName: 02b
       title: >-
@@ -57,11 +59,12 @@ entries:
       \mkbibquote{mkbibquote}.},}
     key: 2b
     mode:
-      author: creatorlist
+      author: namelist
       title: title
     type: book
-  - annotations: {}
-    fields:
+    verbatim:
+      author: 02b
+  - fields:
       author:
         - firstName: David Christopher
           lastName: Bennett
@@ -82,14 +85,16 @@ entries:
       }
     key: Bennett2003
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       institution: literallist
       title: title
       type: literal
     type: thesis
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Bennett, David Christopher
+      institution: University of London
+  - fields:
       author:
         - firstName: Glen
           lastName: Cooper
@@ -116,14 +121,15 @@ entries:
       }
     key: Cooper2013
     mode:
-      author: creatorlist
+      author: namelist
       crossref: literal
       date: literal
       pages: literal
       title: title
     type: incollection
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Glen Cooper
+  - fields:
       date: '1891'
       editor:
         - firstName: Paul
@@ -154,14 +160,15 @@ entries:
     key: Correns1891
     mode:
       date: literal
-      editor: creatorlist
+      editor: namelist
       journaltitle: literal
       pages: literal
       title: title
       volume: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      editor: Correns, Paul
+  - fields:
       author:
         - firstName: Hamid
           lastName: Algar
@@ -183,15 +190,17 @@ entries:
       }
     key: Algar1985
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       lista: literallist
       pages: literal
       title: title
       volume: literal
     type: inreference
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Algar, Hamid
+      lista: 'Besmallah: in exegesis, jurisprudence, and cultural life'
+  - fields:
       date: '2012'
       editor:
         - firstName: Anne
@@ -224,11 +233,15 @@ entries:
     key: Arsdall2012
     mode:
       date: literal
-      editor: creatorlist
+      editor: namelist
       location: literallist
       publisher: literallist
       title: title
     type: collection
+    verbatim:
+      editor: Anne van Arsdall and Timothy Graham
+      location: Burlington, VT
+      publisher: Ashgate
 errors: []
 jabref:
   root: []

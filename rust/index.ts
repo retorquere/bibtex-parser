@@ -39,7 +39,7 @@ export { initSync }
 export default init
 
 /** Describes how a BibTeX field is interpreted. */
-export type ParseMode = 'namelist' | 'title' | 'verbatim' | 'richtext' | 'literallist' | 'literal' | 'verbatimlist'
+export type ParseMode = 'namelist' | 'title' | 'verbatim' | 'richtext' | 'literallist' | 'literal' | 'verbatimlist' | 'annotations' | 'options'
 
 /** A parsed personal or organizational name. */
 export interface Name {
@@ -70,9 +70,10 @@ export type Annotation =
   | { scope: 'item'; index: number; value: AnnotationContent }
   | { scope: 'part'; index: number; name: string; value: AnnotationContent }
 
-/** A normalized field value, including parsed names and lists. */
+/** Parsed key/value pairs from a BibLaTeX options field. */
 export type OptionMap = Record<string, string>
-export type FieldValue = string | string[] | Name[]
+/** A normalized field value, including parsed names, lists, annotations and options. */
+export type FieldValue = string | string[] | Name[] | Annotation[] | OptionMap
 
 /** Name-list fields whose values are returned as arrays of {@link Name} objects. */
 export type NameFields = {
@@ -125,8 +126,18 @@ export type ArrayFields = {
   listc?: string[]
 }
 
+/** Biber annotation fields keyed by their annotated field name and annotation name. */
+export type AnnotationFields = {
+  [field in `${string}+an:${string}`]?: Annotation[]
+}
+
+/** Fields whose values are parsed key/value maps. */
+export type OptionFields = {
+  options?: OptionMap
+}
+
 /** The known structured fields in a normalized entry. */
-export type TypedFields = NameFields & ArrayFields
+export type TypedFields = NameFields & ArrayFields & AnnotationFields & OptionFields
 /** Named structured fields retain their precise types; unlisted default fields are scalar text. */
 export type Fields = TypedFields & Omit<Record<string, string>, keyof TypedFields>
 
@@ -136,16 +147,20 @@ export interface Entry {
   type: string
   /** Citation key identifying this entry. */
   key: string
-  /** Parsed field values, with known name and list fields represented as arrays. */
+  /** Parsed field values; each value is one of the Rust parser's serialized field variants. */
+
+  /** Parsed field values, with known name, options and list fields represented as arrays. */
   fields: Fields
-  /** Parsed Biber annotation clauses keyed by their verbatim `+an` field names. */
-  annotations: Record<string, Annotation[]>
-  /** Parsed key/value pairs from the verbatim BibLaTeX `options` field. */
-  options?: OptionMap
+
+  /** Original text for fields whose parsed representation is structured. */
+  verbatim: Record<string, string>
+
   /** Parsing mode used for each field; see {@link ParseMode}. */
   mode: Record<string, ParseMode>
+
   /** For fields inherited through `crossref`, records the parent entry key and source field name. */
   crossref?: Record<string, { parent: string; field: string }>
+
   /** Source text for this entry. */
   input: string
 }

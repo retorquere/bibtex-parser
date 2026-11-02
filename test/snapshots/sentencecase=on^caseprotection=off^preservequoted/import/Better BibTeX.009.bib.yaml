@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Nancy K
           lastName: Adams
@@ -40,7 +39,7 @@ entries:
       }
     key: Adams2001
     mode:
-      author: creatorlist
+      author: namelist
       journal: literal
       keywords: verbatimlist
       pages: literal
@@ -48,8 +47,11 @@ entries:
       volume: literal
       year: literal
     type: article
-  - annotations: {}
-    fields: {}
+    verbatim:
+      author: >-
+        Adams, Nancy K and DeSilva, Shanaka L and Self, Steven and Salas, Guido
+        and Schubring, Steven and Permenter, Jason L and Arbesman, Kendra
+  - fields: {}
     input: |-
       @misc{emptyreference,
         
@@ -57,8 +59,8 @@ entries:
     key: emptyreference
     mode: {}
     type: misc
-  - annotations: {}
-    fields:
+    verbatim: {}
+  - fields:
       author:
         - firstName: Nancy K
           lastName: Adams
@@ -97,7 +99,7 @@ entries:
       }
     key: Adams2002
     mode:
-      author: creatorlist
+      author: namelist
       journal: literal
       keywords: verbatimlist
       pages: literal
@@ -105,6 +107,10 @@ entries:
       volume: literal
       year: literal
     type: article
+    verbatim:
+      author: >-
+        Adams, Nancy K and DeSilva, Shanaka L and Self, Steven and Salas, Guido
+        and Schubring, Steven and Permenter, Jason L and Arbesman, Kendra
 errors: []
 jabref:
   root: []

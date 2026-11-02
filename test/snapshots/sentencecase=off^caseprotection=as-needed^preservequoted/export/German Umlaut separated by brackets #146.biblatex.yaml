@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Wolfgang
           lastName: Kaufmann
@@ -43,7 +42,7 @@ entries:
       }
     key: Kaufmann1995
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       isbn: literal
       langid: literal
@@ -52,6 +51,10 @@ entries:
       publisher: literallist
       title: title
     type: book
+    verbatim:
+      author: Kaufmann, Wolfgang
+      location: '{Berlin; Frankfurt am Main}'
+      publisher: '{VDE-Verl. ; Verl.- und Wirtschaftsges. der Elektrizitätswerke}'
 errors: []
 jabref:
   root: []

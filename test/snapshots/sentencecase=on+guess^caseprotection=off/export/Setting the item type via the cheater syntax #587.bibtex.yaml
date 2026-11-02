@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       abstract: Example from CMoS, 16e, 14.249
       address:
         - Mesopotamia, OH
@@ -25,13 +24,16 @@ entries:
     mode:
       abstract: literal
       address: literallist
-      author: creatorlist
+      author: namelist
       publisher: literallist
       title: title
       year: literal
     type: booklet
-  - annotations: {}
-    fields:
+    verbatim:
+      address: '{Mesopotamia, OH}'
+      author: Clark, Hazel V.
+      publisher: '{Trumbull County Historical Society}'
+  - fields:
       abstract: Example from CMoS, 16e, 14.125
       author:
         - firstName: David
@@ -59,16 +61,19 @@ entries:
     key: kamp_deconstructing_2006
     mode:
       abstract: literal
-      author: creatorlist
+      author: namelist
       chapter: literal
-      collaborator: creatorlist
+      collaborator: namelist
       language: literallist
       month: literal
       title: title
       year: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Kamp, David
+      collaborator: Pollan, Michael
+      language: en-US
+  - fields:
       abstract: >-
         Example from CMoS, 16e, 14.269 “Prepared from the autographs and
         earliest printed sources by Nathan Broder”
@@ -100,15 +105,19 @@ entries:
     mode:
       abstract: literal
       address: literallist
-      author: creatorlist
+      author: namelist
       edition: literal
-      editor: creatorlist
+      editor: namelist
       publisher: literallist
       title: title
       year: literal
     type: misc
-  - annotations: {}
-    fields:
+    verbatim:
+      address: '{Bryn Mawr, PA}'
+      author: Mozart, Wolfgang Amadeus
+      editor: Broder, Nathan
+      publisher: '{Theodore Presser}'
+  - fields:
       abstract: Example from CMoS, 16e, 14.272
       journal: NASA/IPAC Extragalactic Database
       title: Object name IRAS F00400+4059
@@ -124,8 +133,8 @@ entries:
       journal: literal
       title: title
     type: misc
-  - annotations: {}
-    fields:
+    verbatim: {}
+  - fields:
       abstract: Example from CMoS, 16e, 14.215 “ed. and trans. John Charles Chasteen”
       author:
         - firstName: Ben
@@ -180,8 +189,8 @@ entries:
     key: ratliff_mystery_1999
     mode:
       abstract: literal
-      author: creatorlist
-      collaborator: creatorlist
+      author: namelist
+      collaborator: namelist
       journal: literal
       language: literallist
       month: literal
@@ -191,6 +200,10 @@ entries:
       volume: literal
       year: literal
     type: article
+    verbatim:
+      author: Ratliff, Ben
+      collaborator: '{Hermano Vianna}'
+      language: en-US
 errors: []
 jabref:
   root: []

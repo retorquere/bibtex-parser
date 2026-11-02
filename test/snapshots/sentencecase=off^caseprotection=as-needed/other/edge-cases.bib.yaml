@@ -1,19 +1,19 @@
 comments: []
 entries:
-  - annotations: {}
-    fields: {}
+  - fields: {}
     input: '@foo{}'
     key: ''
     mode: {}
     type: foo
-  - annotations: {}
-    fields:
+    verbatim: {}
+  - fields:
       foo: bar
     input: '@article(foo=bar)'
     key: ''
     mode:
       foo: literal
     type: article
+    verbatim: {}
 errors:
   - error: unresolved @string reference "bar"
     input: ''

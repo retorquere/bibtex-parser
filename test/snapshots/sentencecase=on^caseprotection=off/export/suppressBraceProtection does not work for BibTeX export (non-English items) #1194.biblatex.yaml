@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Л. Д.
           lastName: Ландау
@@ -37,7 +36,7 @@ entries:
       }
     key: Landafshits.V7
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       edition: literal
       isbn: literal
@@ -50,6 +49,10 @@ entries:
       volume: literal
       volumes: literal
     type: mvbook
+    verbatim:
+      author: Ландау, Л. Д. and Лифшиц, Е. М.
+      location: '{М.}'
+      publisher: '{Физматлит}'
 errors: []
 jabref:
   root: []

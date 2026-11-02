@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Neil
           lastName: Beckford
@@ -24,7 +23,7 @@ entries:
       }
     key: Beckford2019
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       langid: literal
       organization: literallist
@@ -32,6 +31,9 @@ entries:
       url: verbatim
       urldate: literal
     type: online
+    verbatim:
+      author: Beckford, Neil
+      organization: Cryptoline news
 errors: []
 jabref:
   root: []

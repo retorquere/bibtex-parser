@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: James
           lastName: Ferguson
@@ -33,7 +32,7 @@ entries:
       }
     key: Ferguson1985
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       doi: verbatim
       journaltitle: literal
@@ -45,8 +44,9 @@ entries:
       urldate: literal
       volume: literal
     type: article
-  - annotations: {}
-    fields:
+    verbatim:
+      author: Ferguson, James
+  - fields:
       author:
         - firstName: Perry
           lastName: Mehrling
@@ -68,7 +68,7 @@ entries:
       }
     key: Mehrling2000
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       journaltitle: literal
       pages: literal
@@ -76,6 +76,8 @@ entries:
       url: verbatim
       volume: literal
     type: article
+    verbatim:
+      author: Mehrling, Perry
 errors: []
 jabref:
   root: []

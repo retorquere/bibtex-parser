@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       date: '1975'
       editor:
         - firstName: Miloš
@@ -25,14 +24,16 @@ entries:
     key: formanOneFlewCuckoo1975
     mode:
       date: literal
-      editor: creatorlist
+      editor: namelist
       editortype: literal
       keywords: verbatimlist
       publisher: literallist
       title: title
     type: video
-  - annotations: {}
-    fields:
+    verbatim:
+      editor: Forman, Miloš
+      publisher: '{United Artists}'
+  - fields:
       date: '1975'
       editor:
         - firstName: Miloš
@@ -58,15 +59,17 @@ entries:
     key: formanOneFlewCuckoo1975-film
     mode:
       date: literal
-      editor: creatorlist
+      editor: namelist
       editortype: literal
       entrysubtype: literal
       keywords: verbatimlist
       publisher: literallist
       title: title
     type: video
-  - annotations: {}
-    fields:
+    verbatim:
+      editor: Forman, Miloš
+      publisher: '{United Artists}'
+  - fields:
       date: '1975'
       editor:
         - firstName: Miloš
@@ -92,15 +95,17 @@ entries:
     key: formanOneFlewCuckoo1975-tv
     mode:
       date: literal
-      editor: creatorlist
+      editor: namelist
       editortype: literal
       entrysubtype: literal
       keywords: verbatimlist
       publisher: literallist
       title: title
     type: video
-  - annotations: {}
-    fields:
+    verbatim:
+      editor: Forman, Miloš
+      publisher: '{United Artists}'
+  - fields:
       date: '1975'
       editor:
         - firstName: Miloš
@@ -126,13 +131,16 @@ entries:
     key: formanOneFlewCuckoo1975-epi
     mode:
       date: literal
-      editor: creatorlist
+      editor: namelist
       editortype: literal
       entrysubtype: literal
       keywords: verbatimlist
       publisher: literallist
       title: title
     type: video
+    verbatim:
+      editor: Forman, Miloš
+      publisher: '{United Artists}'
 errors: []
 jabref:
   root: []

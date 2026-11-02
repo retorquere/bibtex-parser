@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - name: TheAuthor
       title: <span class="nocase">TheTitle</span>
@@ -14,12 +13,13 @@ entries:
       }
     key: theauthorTheTitle2023
     mode:
-      author: creatorlist
+      author: namelist
       title: title
       year: literal
     type: misc
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{TheAuthor}'
+  - fields:
       author:
         - name: TheAuthor
       howpublished: <a href="https://www.example.com/#foo">https://www.example.com/#foo</a>
@@ -34,13 +34,14 @@ entries:
       }
     key: TheKey
     mode:
-      author: creatorlist
+      author: namelist
       howpublished: literal
       title: title
       year: literal
     type: misc
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{TheAuthor}'
+  - fields:
       author:
         - name: TheAuthor
       note: <a href="https://www.example.com/#foo">https://www.example.com/#foo</a>
@@ -55,13 +56,14 @@ entries:
       }
     key: theauthorTheTitle2023
     mode:
-      author: creatorlist
+      author: namelist
       note: richtext
       title: title
       year: literal
     type: misc
-  - annotations: {}
-    fields:
+    verbatim:
+      author: '{TheAuthor}'
+  - fields:
       author:
         - name: TheAuthor
       title: <span class="nocase">TheTitle</span>
@@ -74,10 +76,12 @@ entries:
       }
     key: TheKey
     mode:
-      author: creatorlist
+      author: namelist
       title: title
       year: literal
     type: misc
+    verbatim:
+      author: '{TheAuthor}'
 errors: []
 jabref:
   root: []

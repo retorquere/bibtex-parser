@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Stacy
           lastName: D’Erasmo
@@ -21,15 +20,16 @@ entries:
       }
     key: derasmo2000
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       langid: literal
       title: title
       type: literal
       venue: literal
     type: unpublished
-  - annotations: {}
-    fields:
+    verbatim:
+      author: D’Erasmo, Stacy
+  - fields:
       abstract: >-
         We introduce Adam, an algorithm for first-order gradient-based
         optimization of stochastic objective functions, based on adaptive
@@ -80,7 +80,7 @@ entries:
     key: kingma2015
     mode:
       abstract: literal
-      author: creatorlist
+      author: namelist
       booktitle: title
       date: literal
       eventdate: literal
@@ -89,6 +89,8 @@ entries:
       title: title
       venue: literal
     type: inproceedings
+    verbatim:
+      author: Kingma, Diederik P. and Ba, Jimmy
 errors: []
 jabref:
   root: []

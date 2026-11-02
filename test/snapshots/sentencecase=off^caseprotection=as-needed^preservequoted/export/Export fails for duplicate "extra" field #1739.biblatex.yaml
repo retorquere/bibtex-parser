@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       abstract: >-
         Before architectural conservation takes place, a survey is conducted to
         assess the condition of the building and estimate the cost of the work.
@@ -77,10 +76,10 @@ entries:
     key: gonzalezmanich2016
     mode:
       abstract: literal
-      author: creatorlist
+      author: namelist
       booktitle: title
       date: literal
-      editor: creatorlist
+      editor: namelist
       eventtitle: title
       isbn: literal
       langid: literal
@@ -91,6 +90,13 @@ entries:
       url: verbatim
       urldate: literal
     type: incollection
+    verbatim:
+      author: >-
+        Gonzalez Manich, C. and Kelman, T. and Coutts, F. and Qiu, B. and
+        Murray, P. and Gonzalez-Longo, C. and Marshall, S.
+      editor: Van Balen, Koen and Verstrynge, Els
+      location: '{BEL}'
+      publisher: '{CRC Press}'
 errors: []
 jabref:
   root: []

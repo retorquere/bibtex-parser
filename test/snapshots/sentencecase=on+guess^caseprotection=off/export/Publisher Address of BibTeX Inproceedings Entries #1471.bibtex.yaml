@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Weifeng
           lastName: Liu
@@ -48,7 +47,7 @@ entries:
       }
     key: liu2015
     mode:
-      author: creatorlist
+      author: namelist
       booktitle: title
       copyright: literal
       doi: verbatim
@@ -64,6 +63,11 @@ entries:
       url: verbatim
       year: literal
     type: inproceedings
+    verbatim:
+      author: Liu, Weifeng and Vinter, Brian
+      language: en-US
+      organization: '{ACM SIGARCH}'
+      publisher: '{Association for Computing Machinery}'
 errors: []
 jabref:
   root: []

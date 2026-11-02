@@ -1,7 +1,6 @@
 comments: []
 entries:
-  - annotations: {}
-    fields:
+  - fields:
       author:
         - firstName: Kaetinyeri
           lastName: Commonwealth
@@ -33,7 +32,7 @@ entries:
       }
     key: kartinyeri
     mode:
-      author: creatorlist
+      author: namelist
       date: literal
       institution: literallist
       journaltitle: literal
@@ -41,9 +40,13 @@ entries:
       pages: literal
       shorttitle: title
       title: title
-      translator: creatorlist
+      translator: namelist
       volume: literal
     type: jurisdiction
+    verbatim:
+      author: Kaetinyeri v Commonwealth
+      institution: '{HCA}'
+      translator: Kartinyeri
 errors: []
 jabref:
   root: []
