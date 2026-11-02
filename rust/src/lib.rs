@@ -287,7 +287,7 @@ fn cross_reference_map() -> &'static CrossReferenceMap {
 fn field_value_is_truthy(value: &FieldValue) -> bool {
     match value {
         FieldValue::Text(value) => !value.is_empty(),
-        FieldValue::Creators(_) | FieldValue::List(_) => true,
+        FieldValue::Names(_) | FieldValue::List(_) => true,
     }
 }
 
@@ -422,8 +422,8 @@ impl Default for Options {
 
 #[derive(Debug, Clone, PartialEq, Eq, Default, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
-/// A creator parsed from a creator-list field such as `author` or `editor`.
-pub struct Creator {
+/// A name parsed from a name-list field such as `author` or `editor`.
+pub struct Name {
     /// An unparsed literal name, used when the input wraps a whole name in braces.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
@@ -488,8 +488,8 @@ pub enum Annotation {
 pub enum FieldValue {
     /// Scalar text, including fields whose TeX markup is not yet rendered.
     Text(String),
-    /// Parsed names from creator-list fields.
-    Creators(Vec<Creator>),
+    /// Parsed names from name-list fields.
+    Names(Vec<Name>),
     /// Elements from literal-list and keyword fields.
     List(Vec<String>),
 }
@@ -512,7 +512,7 @@ pub struct ParsedEntry {
     /// Parsed key/value pairs from the verbatim BibLaTeX `options` field.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub options: Option<BTreeMap<String, String>>,
-    /// Parser mode assigned to each field (for example, `title` or `creatorlist`).
+    /// Parser mode assigned to each field (for example, `title` or `namelist`).
     pub mode: HashMap<String, String>,
     /// Field inherited from a cross-referenced parent entry.
     #[serde(skip_serializing_if = "HashMap::is_empty")]
@@ -1094,7 +1094,7 @@ fn default_remove_outer_braces() -> Vec<String> {
     .collect()
 }
 
-const CREATOR_FIELDS: &[&str] = &[
+const NAME_FIELDS: &[&str] = &[
     "afterword",
     "author",
     "annotator",
@@ -1130,11 +1130,8 @@ const TITLE_FIELDS: &[&str] = &[
     "eventtitle",
 ];
 
-// JabRef's `groups` field is nonstandard and must stay literal like the other verbatim fields.
-const VERBATIM_FIELDS: &[&str] = &[
-    "doi", "eprint", "file", "files", "pdf", "groups", "ids", "options", "url", "verba", "verbb",
-    "verbc",
-];
+// JabRef's `groups` field is nonstandard and must stay verbatim.
+const VERBATIM_FIELDS: &[&str] = &[ "doi", "eprint", "file", "files", "pdf", "groups", "ids", "options", "url", "verba", "verbb", "verbc" ];
 
 const RICHTEXT_FIELDS: &[&str] = &["annotation", "comment", "annote", "review", "notes", "note"];
 
@@ -1189,8 +1186,8 @@ fn split_top_level(input: &str, separator: char) -> Vec<String> {
     parts
 }
 
-/// Split a creator list on top-level, whitespace-delimited `and` tokens.
-fn split_creators(input: &str) -> Vec<String> {
+/// Split a name list on top-level, whitespace-delimited `and` tokens.
+fn split_names(input: &str) -> Vec<String> {
     let chars: Vec<char> = input.chars().collect();
     let mut result = Vec::new();
     let mut start = 0;
@@ -1241,7 +1238,7 @@ fn split_creators(input: &str) -> Vec<String> {
     result.into_iter().filter(|name| !name.is_empty()).collect()
 }
 
-/// Splits BibLaTeX comma-separated list fields separately from `and`-separated creator lists.
+/// Splits BibLaTeX comma-separated list fields separately from `and`-separated name lists.
 fn split_literal_list(field: &str, input: &str) -> Vec<String> {
     if matches!(field, "entryset" | "related" | "relatedoptions" | "xdata") {
         split_top_level(input, ',')
@@ -1249,12 +1246,12 @@ fn split_literal_list(field: &str, input: &str) -> Vec<String> {
             .filter(|item| !item.is_empty())
             .collect()
     } else {
-        split_creators(input)
+        split_names(input)
     }
 }
 
-/// Split first-last creator names on whitespace outside TeX groups.
-fn split_creator_words(input: &str) -> Vec<String> {
+/// Split first-last names on whitespace outside TeX groups.
+fn split_name_words(input: &str) -> Vec<String> {
     let mut words = Vec::new();
     let mut word = String::new();
     let (mut depth, mut escaped) = (0usize, false);
@@ -1295,12 +1292,12 @@ fn clean_name_part(value: &str) -> String {
     }
 }
 
-/// Parse one creator using the extended-name, comma-separated, or first-last convention.
-fn parse_creator(input: &str, entry_key: &str, renderer: &mut tex::LibraryRenderer) -> Creator {
+/// Parse one name using the extended-name, comma-separated, or first-last convention.
+fn parse_name(input: &str, entry_key: &str, renderer: &mut tex::LibraryRenderer) -> Name {
     // A fully braced name is an indivisible literal rather than a family/given name pair.
     let unwrapped = remove_outer_braces(input);
     if unwrapped != input {
-        return Creator {
+        return Name {
             name: Some(
                 renderer
                     .render(
@@ -1310,7 +1307,7 @@ fn parse_creator(input: &str, entry_key: &str, renderer: &mut tex::LibraryRender
                     .trim()
                     .to_string(),
             ),
-            ..Creator::default()
+            ..Name::default()
         };
     }
     let raw_input = input.trim();
@@ -1330,10 +1327,10 @@ fn parse_creator(input: &str, entry_key: &str, renderer: &mut tex::LibraryRender
     let extended = parts.len() > 1
         && parts.iter().all(|part| {
             part.split_once('=')
-                .is_some_and(|(key, _)| is_extended_creator_key(key.trim()))
+                .is_some_and(|(key, _)| is_extended_name_key(key.trim()))
         });
     if extended {
-        let mut creator = Creator::default();
+        let mut name = Name::default();
         for part in parts {
             let Some((key, value)) = part.split_once('=') else {
                 continue;
@@ -1341,19 +1338,19 @@ fn parse_creator(input: &str, entry_key: &str, renderer: &mut tex::LibraryRender
             let key = key.trim().to_ascii_lowercase();
             let value = clean_name_part(value);
             match key.as_str() {
-                "given" if !value.is_empty() => creator.first_name = Some(value),
-                "family" if !value.is_empty() => creator.last_name = Some(value),
-                "given-i" if !value.is_empty() => creator.initial = Some(value),
-                "useprefix" => creator.useprefix = Some(value.eq_ignore_ascii_case("true")),
-                "juniorcomma" => creator.juniorcomma = Some(value.eq_ignore_ascii_case("true")),
+                "given" if !value.is_empty() => name.first_name = Some(value),
+                "family" if !value.is_empty() => name.last_name = Some(value),
+                "given-i" if !value.is_empty() => name.initial = Some(value),
+                "useprefix" => name.useprefix = Some(value.eq_ignore_ascii_case("true")),
+                "juniorcomma" => name.juniorcomma = Some(value.eq_ignore_ascii_case("true")),
                 // Keep nonempty extension properties instead of discarding unknown keys.
                 _ if !value.is_empty() => {
-                    creator.extra.insert(key, serde_json::Value::String(value));
+                    name.extra.insert(key, serde_json::Value::String(value));
                 }
                 _ => {}
             }
         }
-        return creator;
+        return name;
     }
 
     // BibTeX comma form is `family, suffix, given`; without commas names use first-last rules.
@@ -1384,13 +1381,13 @@ fn parse_creator(input: &str, entry_key: &str, renderer: &mut tex::LibraryRender
             [] => ("", None, None),
         };
         let last_name = clean_name_part(last_name);
-        let mut creator = Creator {
+        let mut name = Name {
             last_name: (!last_name.is_empty()).then_some(last_name.clone()),
             first_name: first_name
                 .map(clean_name_part)
                 .filter(|name| !name.is_empty()),
             suffix: suffix.map(clean_name_part).filter(|name| !name.is_empty()),
-            ..Creator::default()
+            ..Name::default()
         };
         // A lowercase particle sequence in the family slot becomes the prefix; the final token is the surname.
         if let Some((split, _)) = last_name.char_indices().rev().find(|(index, ch)| {
@@ -1401,13 +1398,13 @@ fn parse_creator(input: &str, entry_key: &str, renderer: &mut tex::LibraryRender
                     .chars()
                     .all(|prefix| prefix.is_ascii_lowercase() || matches!(prefix, '.' | '\'' | ' '))
         }) {
-            creator.prefix = Some(last_name[..split].to_string());
-            creator.last_name = Some(last_name[split + 1..].to_string());
+            name.prefix = Some(last_name[..split].to_string());
+            name.last_name = Some(last_name[split + 1..].to_string());
         }
-        return creator;
+        return name;
     }
 
-    let words: Vec<String> = split_creator_words(raw_input)
+    let words: Vec<String> = split_name_words(raw_input)
         .iter()
         .map(|word| {
             renderer
@@ -1422,9 +1419,9 @@ fn parse_creator(input: &str, entry_key: &str, renderer: &mut tex::LibraryRender
         .map(|word| clean_name_part(&word))
         .collect();
     if words.len() <= 1 {
-        return Creator {
+        return Name {
             last_name: words.first().cloned(),
-            ..Creator::default()
+            ..Name::default()
         };
     }
     let prefix_index = words.iter().position(|word| {
@@ -1434,15 +1431,15 @@ fn parse_creator(input: &str, entry_key: &str, renderer: &mut tex::LibraryRender
     });
     // Lowercase particles mark the prefix; all-uppercase names use the final token as family name.
     match prefix_index {
-        None => Creator {
+        None => Name {
             first_name: Some(words[..words.len() - 1].join(" ")),
             last_name: words.last().cloned(),
-            ..Creator::default()
+            ..Name::default()
         },
-        Some(0) => Creator {
+        Some(0) => Name {
             first_name: Some(words[..words.len() - 1].join(" ")),
             last_name: words.last().cloned(),
-            ..Creator::default()
+            ..Name::default()
         },
         Some(index) => {
             let postfix = words
@@ -1456,17 +1453,17 @@ fn parse_creator(input: &str, entry_key: &str, renderer: &mut tex::LibraryRender
                 })
                 .map(|(i, _)| i);
             if let Some(postfix) = postfix {
-                Creator {
+                Name {
                     first_name: Some(words[..index].join(" ")),
                     prefix: Some(words[index..postfix].join(" ")),
                     last_name: Some(words[postfix..].join(" ")),
-                    ..Creator::default()
+                    ..Name::default()
                 }
             } else {
-                Creator {
+                Name {
                     first_name: Some(words[..words.len() - 1].join(" ")),
                     last_name: words.last().cloned(),
-                    ..Creator::default()
+                    ..Name::default()
                 }
             }
         }
@@ -1474,7 +1471,7 @@ fn parse_creator(input: &str, entry_key: &str, renderer: &mut tex::LibraryRender
 }
 
 /// Accept ASCII alphabetic extended-name keys with at most one nonempty hyphenated suffix.
-fn is_extended_creator_key(key: &str) -> bool {
+fn is_extended_name_key(key: &str) -> bool {
     let is_letters = |segment: &str| {
         !segment.is_empty()
             && segment
@@ -1487,38 +1484,38 @@ fn is_extended_creator_key(key: &str) -> bool {
     }
 }
 
-/// Parse creator parts without TeX rendering or outer-brace cleanup.
+/// Parse name parts without TeX rendering or outer-brace cleanup.
 ///
 /// A two-part comma form is interpreted as family/given name unless every part is an extended
 /// `key=value` property. A two-word unseparated form is interpreted as given/family; other forms
 /// remain a single literal name.
-fn parse_raw_creator(input: &str) -> Creator {
+fn parse_raw_name(input: &str) -> Name {
     let parts = split_top_level(input, ',');
     let extended = parts.len() > 1
         && parts.iter().all(|part| {
             part.split_once('=')
-                .is_some_and(|(key, _)| is_extended_creator_key(key.trim()))
+                .is_some_and(|(key, _)| is_extended_name_key(key.trim()))
         });
     if parts.len() == 2 && !extended {
-        return Creator {
+        return Name {
             last_name: Some(parts[0].clone()),
             first_name: Some(parts[1].clone()),
-            ..Creator::default()
+            ..Name::default()
         };
     }
     if parts.len() == 1 {
         let words: Vec<_> = input.split_ascii_whitespace().collect();
         if words.len() == 2 {
-            return Creator {
+            return Name {
                 last_name: Some(words[1].to_string()),
                 first_name: Some(words[0].to_string()),
-                ..Creator::default()
+                ..Name::default()
             };
         }
     }
-    Creator {
+    Name {
         name: Some(input.trim().to_string()),
-        ..Creator::default()
+        ..Name::default()
     }
 }
 
@@ -1542,8 +1539,8 @@ fn field_mode(field: &str, options: &Options) -> String {
     let mut mode = "literal";
     for (candidate, matches_default) in [
         (
-            "creatorlist",
-            !has_override && CREATOR_FIELDS.contains(&field),
+            "namelist",
+            !has_override && NAME_FIELDS.contains(&field),
         ),
         ("title", !has_override && TITLE_FIELDS.contains(&field)),
         (
@@ -1756,7 +1753,7 @@ fn remove_outer_braces_fields(options: &Options) -> Vec<String> {
     }
     let mut fields = vec!["doi".to_string()];
     fields.extend(
-        CREATOR_FIELDS
+        NAME_FIELDS
             .iter()
             .chain(TITLE_FIELDS)
             .chain(VERBATIM_FIELDS)
@@ -2100,13 +2097,13 @@ where
                 continue;
             }
             if options.raw {
-                // Raw mode still parses typed creators/lists, but otherwise returns printed TeX.
-                if current_mode == "creatorlist" {
-                    let names: Vec<_> = split_creators(&value)
+                // Raw mode still parses typed names/lists, but otherwise returns printed TeX.
+                if current_mode == "namelist" {
+                    let names: Vec<_> = split_names(&value)
                         .iter()
-                        .map(|name| parse_raw_creator(name))
+                        .map(|name| parse_raw_name(name))
                         .collect();
-                    fields.insert(field, FieldValue::Creators(names));
+                    fields.insert(field, FieldValue::Names(names));
                 } else if current_mode == "literallist" {
                     let items = split_literal_list(&field, &value);
                     fields.insert(field, FieldValue::List(items));
@@ -2133,7 +2130,7 @@ where
                 fields.insert(field, FieldValue::List(items));
                 continue;
             }
-            if current_mode != "verbatim" && current_mode != "creatorlist" {
+            if current_mode != "verbatim" && current_mode != "namelist" {
                 // Unknown policy strings retain the default as-needed behavior.
                 let protect_title = current_mode == "title" && english;
                 // Pass 0 marks root groups and inline math before the sentence-case pass.
@@ -2156,10 +2153,10 @@ where
                 }
             }
             let parsed = match current_mode.as_str() {
-                "creatorlist" => FieldValue::Creators(
-                    split_creators(&value)
+                "namelist" => FieldValue::Names(
+                    split_names(&value)
                         .iter()
-                        .map(|name| parse_creator(name, &entry.key, &mut renderer))
+                        .map(|name| parse_name(name, &entry.key, &mut renderer))
                         .collect(),
                 ),
                 "literallist" => unreachable!("literal lists are parsed before rendering"),
@@ -2207,15 +2204,15 @@ where
                             *item = tex::finalize_markup(item, options.collapse_markup);
                         }
                     }
-                    FieldValue::Creators(creators) => {
-                        for creator in creators {
+                    FieldValue::Names(names) => {
+                        for name in names {
                             for text in [
-                                &mut creator.name,
-                                &mut creator.last_name,
-                                &mut creator.first_name,
-                                &mut creator.prefix,
-                                &mut creator.suffix,
-                                &mut creator.initial,
+                                &mut name.name,
+                                &mut name.last_name,
+                                &mut name.first_name,
+                                &mut name.prefix,
+                                &mut name.suffix,
+                                &mut name.initial,
                             ]
                             .into_iter()
                             .flatten()
@@ -2424,7 +2421,7 @@ mod tests {
             matches!(parsed.entries[1].fields.get("title"), Some(FieldValue::Text(title)) if title == "Parent title")
         );
         assert!(
-            matches!(parsed.entries[1].fields.get("author"), Some(FieldValue::Creators(creators)) if creators.iter().any(|creator| creator.last_name.as_deref() == Some("Doe") && creator.first_name.as_deref() == Some("John")))
+            matches!(parsed.entries[1].fields.get("author"), Some(FieldValue::Names(names)) if names.iter().any(|name| name.last_name.as_deref() == Some("Doe") && name.first_name.as_deref() == Some("John")))
         );
         assert_eq!(
             parsed.entries[1].crossref.get("title").unwrap().field,
@@ -3516,17 +3513,17 @@ mod tests {
             FieldValue::Text(note) if note == "before after"
         ));
 
-        let mut creator_accent_state = super::tex::LibraryRenderer::default();
-        creator_accent_state.unsupported = Some(crate::UnsupportedHandler::Ignore);
+        let mut name_accent_state = super::tex::LibraryRenderer::default();
+        name_accent_state.unsupported = Some(crate::UnsupportedHandler::Ignore);
         assert_eq!(
-            creator_accent_state.render(
+            name_accent_state.render(
                 r"\'{a b}",
                 super::tex::RenderContext::field(super::tex::RenderMode::Text, false, false,),
             ),
             ""
         );
-        assert_eq!(creator_accent_state.errors.len(), 1);
-        assert_eq!(creator_accent_state.errors[0].input, r"\'{a b}");
+        assert_eq!(name_accent_state.errors.len(), 1);
+        assert_eq!(name_accent_state.errors[0].input, r"\'{a b}");
 
         let nested_accent = parse(
             r"@book{x,title={\'{\a}}}",
@@ -3638,7 +3635,7 @@ mod tests {
         let parsed = fixture(include_str!("../../test/other/plus-field.bib"));
         let entry = &parsed.entries[0];
         assert_eq!(entry.key, "9.8:11");
-        assert_eq!(entry.mode["author"], "creatorlist");
+        assert_eq!(entry.mode["author"], "namelist");
         assert_eq!(entry.mode["author+an:username"], "verbatim");
         assert_eq!(
             entry.fields["author+an:username"],
@@ -3743,15 +3740,15 @@ mod tests {
     }
 
     #[test]
-    /// Exercise TeX rendering and literal-name handling in parsed creator components.
-    fn creator_names_render_tex_sequences() {
+    /// Exercise TeX rendering and literal-name handling in parsed name components.
+    fn name_names_render_tex_sequences() {
         let parsed = parse(
             "@article{foo, author={H\\\"{a}gg, Nils and Nonnenmacher, St{\\'e}phane and Lecomte, J\\'{e}r\\^{o}me and Nested, J\\'{e}r\\^{\\a}me and D\\'{\\i}az, Carlos}}",
             Options::default(),
         );
         let authors = match &parsed.entries[0].fields["author"] {
-            FieldValue::Creators(authors) => authors,
-            other => panic!("expected creators, got {other:?}"),
+            FieldValue::Names(authors) => authors,
+            other => panic!("expected names, got {other:?}"),
         };
         assert_eq!(authors[0].last_name.as_deref(), Some("Hägg"));
         assert_eq!(authors[1].last_name.as_deref(), Some("Nonnenmacher"));
@@ -3764,24 +3761,24 @@ mod tests {
             r"@book{x,author={de'{\mbox} Medici, Lorenzo}}",
             Options::default(),
         );
-        let FieldValue::Creators(creators) = &empty_macro_argument.entries[0].fields["author"]
+        let FieldValue::Names(names) = &empty_macro_argument.entries[0].fields["author"]
         else {
-            panic!("expected creators");
+            panic!("expected names");
         };
-        assert_eq!(creators[0].prefix.as_deref(), Some("de'"));
-        assert_eq!(creators[0].last_name.as_deref(), Some("Medici"));
+        assert_eq!(names[0].prefix.as_deref(), Some("de'"));
+        assert_eq!(names[0].last_name.as_deref(), Some("Medici"));
 
         let grouped_family = parse(
             r"@book{x,author={Giuseppe {De Giacomo} and Riccardo {De Masellis}}}",
             Options::default(),
         );
-        let FieldValue::Creators(creators) = &grouped_family.entries[0].fields["author"] else {
-            panic!("expected creators");
+        let FieldValue::Names(names) = &grouped_family.entries[0].fields["author"] else {
+            panic!("expected names");
         };
-        assert_eq!(creators[0].first_name.as_deref(), Some("Giuseppe"));
-        assert_eq!(creators[0].last_name.as_deref(), Some("De Giacomo"));
-        assert_eq!(creators[1].first_name.as_deref(), Some("Riccardo"));
-        assert_eq!(creators[1].last_name.as_deref(), Some("De Masellis"));
+        assert_eq!(names[0].first_name.as_deref(), Some("Giuseppe"));
+        assert_eq!(names[0].last_name.as_deref(), Some("De Giacomo"));
+        assert_eq!(names[1].first_name.as_deref(), Some("Riccardo"));
+        assert_eq!(names[1].last_name.as_deref(), Some("De Masellis"));
 
         let nbsp_separator = parse(
             "@book{x,author={A\u{00a0}and\u{00a0}B}}",
@@ -3789,11 +3786,11 @@ mod tests {
         );
         assert!(matches!(
             nbsp_separator.entries[0].fields.get("author"),
-            Some(FieldValue::Creators(creators)) if creators.len() == 1 && creators[0].last_name.as_deref() == Some("A\u{00a0}and\u{00a0}B")
+            Some(FieldValue::Names(names)) if names.len() == 1 && names[0].last_name.as_deref() == Some("A\u{00a0}and\u{00a0}B")
         ));
 
         let mut session = super::tex::LibraryRenderer::default();
-        let narrow_space = super::parse_creator("van\u{2005}Loon, John", "", &mut session);
+        let narrow_space = super::parse_name("van\u{2005}Loon, John", "", &mut session);
         assert_eq!(narrow_space.last_name.as_deref(), Some("van\u{2005}Loon"));
         assert_eq!(narrow_space.prefix, None);
     }
@@ -3816,28 +3813,28 @@ mod tests {
     }
 
     #[test]
-    /// Checks conversion of Better BibTeX's extended creator-property syntax.
-    fn parses_extended_creator_fixture_like_default_case() {
+    /// Checks conversion of Better BibTeX's extended name-property syntax.
+    fn parses_extended_name_fixture_like_default_case() {
         let parsed = fixture(include_str!("../../test/other/stray-marker.bib"));
-        let super::FieldValue::Creators(author) = &parsed.entries[0].fields["author"] else {
-            panic!("author should be parsed as a creator list");
+        let super::FieldValue::Names(author) = &parsed.entries[0].fields["author"] else {
+            panic!("author should be parsed as a name list");
         };
         assert_eq!(author.len(), 1);
         assert_eq!(author[0].first_name.as_deref(), Some("Philippe"));
         assert_eq!(author[0].last_name.as_deref(), Some("Duchamp"));
         assert_eq!(author[0].initial.as_deref(), Some("Ph"));
-        assert_eq!(parsed.entries[0].mode["author"], "creatorlist");
+        assert_eq!(parsed.entries[0].mode["author"], "namelist");
 
         let ordinary = parse("@book{x,author={A=B, John}}", Options::default());
         assert!(matches!(
             ordinary.entries[0].fields.get("author"),
-            Some(FieldValue::Creators(creators)) if creators[0].last_name.as_deref() == Some("A=B") && creators[0].first_name.as_deref() == Some("John")
+            Some(FieldValue::Names(names)) if names[0].last_name.as_deref() == Some("A=B") && names[0].first_name.as_deref() == Some("John")
         ));
 
         let custom = parse("@book{x,author={foo=bar, given=Jane}}", Options::default());
         assert!(matches!(
             custom.entries[0].fields.get("author"),
-            Some(FieldValue::Creators(creators)) if creators[0].extra.get("foo") == Some(&serde_json::Value::String("bar".into()))
+            Some(FieldValue::Names(names)) if names[0].extra.get("foo") == Some(&serde_json::Value::String("bar".into()))
         ));
     }
 
@@ -3868,7 +3865,7 @@ mod tests {
     }
 
     #[test]
-    /// Checks creator, literal-list, and verbatim modes in a BibLaTeX entry.
+    /// Checks name, literal-list, and verbatim modes in a BibLaTeX entry.
     fn parses_verbatim_string_fixture_like_default_case() {
         let parsed = fixture(include_str!("../../test/other/verbatim-string.bib"));
         let entry = &parsed.entries[0];
@@ -3877,7 +3874,7 @@ mod tests {
         assert_eq!(entry.mode["doi"], "verbatim");
         assert_eq!(entry.mode["url"], "verbatim");
         assert_eq!(entry.mode["publisher"], "literallist");
-        assert_eq!(entry.mode["editor"], "creatorlist");
+        assert_eq!(entry.mode["editor"], "namelist");
     }
 
     #[test]
@@ -3897,8 +3894,8 @@ mod tests {
         assert_eq!(entry.key, "Stahl2015");
         assert_eq!(entry.mode["title"], "title");
         assert_eq!(entry.mode["abstract"], "literal");
-        let FieldValue::Creators(authors) = &entry.fields["author"] else {
-            panic!("author should be parsed as a creator list");
+        let FieldValue::Names(authors) = &entry.fields["author"] else {
+            panic!("author should be parsed as a name list");
         };
         assert_eq!(authors.len(), 2);
         assert_eq!(authors[0].last_name.as_deref(), Some("Stahl"));
@@ -3911,12 +3908,12 @@ mod tests {
     }
 
     #[test]
-    /// Checks creator splitting, literal month normalization, and title mode on a real fixture.
+    /// Checks name splitting, literal month normalization, and title mode on a real fixture.
     fn parses_multi_author_month_fixture_like_default_case() {
         let parsed = fixture(include_str!("../../test/other/mid-word-capital.bib"));
         let entry = &parsed.entries[0];
-        let FieldValue::Creators(authors) = &entry.fields["author"] else {
-            panic!("author should be parsed as a creator list");
+        let FieldValue::Names(authors) = &entry.fields["author"] else {
+            panic!("author should be parsed as a name list");
         };
         assert_eq!(authors.len(), 9);
         assert_eq!(authors[0].first_name.as_deref(), Some("Benjamin"));
@@ -3930,8 +3927,8 @@ mod tests {
             "@book{x,editor={Ryszard Michalski, Jaime G. Carbonell, and Tom M. Mitchell}}",
             Options::default(),
         );
-        let FieldValue::Creators(editors) = &editor.entries[0].fields["editor"] else {
-            panic!("editor should be a creator list");
+        let FieldValue::NameNames(editors) = &editor.entries[0].fields["editor"] else {
+            panic!("editor should be a name list");
         };
         assert_eq!(editors[0].last_name.as_deref(), Some("Ryszard Michalski"));
         assert_eq!(editors[0].first_name.as_deref(), Some("Jaime G. Carbonell"));

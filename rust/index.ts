@@ -39,10 +39,10 @@ export { initSync }
 export default init
 
 /** Describes how a BibTeX field is interpreted. */
-export type ParseMode = 'creatorlist' | 'title' | 'verbatim' | 'richtext' | 'literallist' | 'literal' | 'verbatimlist'
+export type ParseMode = 'namelist' | 'title' | 'verbatim' | 'richtext' | 'literallist' | 'literal' | 'verbatimlist'
 
 /** A parsed personal or organizational name. */
-export interface Creator {
+export interface Name {
   /** Complete name when the parser cannot safely separate the name into components. */
   name?: string
   /** Family name, including any parsed name prefix. */
@@ -70,34 +70,34 @@ export type Annotation =
   | { scope: 'item'; index: number; value: AnnotationContent }
   | { scope: 'part'; index: number; name: string; value: AnnotationContent }
 
-/** A normalized field value, including parsed creators and lists. */
+/** A normalized field value, including parsed names and lists. */
 export type OptionMap = Record<string, string>
-export type FieldValue = string | string[] | Creator[]
+export type FieldValue = string | string[] | Name[]
 
-/** Creator-list fields whose values are returned as arrays of {@link Creator} objects. */
-export type CreatorFields = {
-  afterword?: Creator[]
-  author?: Creator[]
-  annotator?: Creator[]
-  bookauthor?: Creator[]
-  collaborator?: Creator[]
-  commentator?: Creator[]
-  director?: Creator[]
-  editor?: Creator[]
-  editora?: Creator[]
-  editorb?: Creator[]
-  editors?: Creator[]
-  foreword?: Creator[]
-  holder?: Creator[]
-  introduction?: Creator[]
-  namea?: Creator[]
-  nameb?: Creator[]
-  namec?: Creator[]
-  scriptwriter?: Creator[]
-  shortauthor?: Creator[]
-  shorteditor?: Creator[]
-  sortname?: Creator[]
-  translator?: Creator[]
+/** Name-list fields whose values are returned as arrays of {@link Name} objects. */
+export type NameFields = {
+  afterword?: Name[]
+  author?: Name[]
+  annotator?: Name[]
+  bookauthor?: Name[]
+  collaborator?: Name[]
+  commentator?: Name[]
+  director?: Name[]
+  editor?: Name[]
+  editora?: Name[]
+  editorb?: Name[]
+  editors?: Name[]
+  foreword?: Name[]
+  holder?: Name[]
+  introduction?: Name[]
+  namea?: Name[]
+  nameb?: Name[]
+  namec?: Name[]
+  scriptwriter?: Name[]
+  shortauthor?: Name[]
+  shorteditor?: Name[]
+  sortname?: Name[]
+  translator?: Name[]
 }
 
 /** List-valued fields whose elements remain strings. */
@@ -126,7 +126,7 @@ export type ArrayFields = {
 }
 
 /** The known structured fields in a normalized entry. */
-export type TypedFields = CreatorFields & ArrayFields
+export type TypedFields = NameFields & ArrayFields
 /** Named structured fields retain their precise types; unlisted default fields are scalar text. */
 export type Fields = TypedFields & Omit<Record<string, string>, keyof TypedFields>
 
@@ -136,7 +136,7 @@ export interface Entry {
   type: string
   /** Citation key identifying this entry. */
   key: string
-  /** Parsed field values, with known creator and list fields represented as arrays. */
+  /** Parsed field values, with known name and list fields represented as arrays. */
   fields: Fields
   /** Parsed Biber annotation clauses keyed by their verbatim `+an` field names. */
   annotations: Record<string, Annotation[]>
@@ -240,7 +240,7 @@ export interface VerbatimEntry {
   type: string
   /** Citation key identifying this entry. */
   key: string
-  /** Field names mapped to their text values; creator names and LaTeX are not normalized. */
+  /** Field names mapped to their text values; name names and LaTeX are not normalized. */
   fields: Record<string, string>
 }
 
@@ -282,7 +282,7 @@ function throwOnUnsupported(result: Library): Library {
 }
 
 /**
- * Parses BibTeX without converting LaTeX field contents to Unicode or structured creator values.
+ * Parses BibTeX without converting LaTeX field contents to Unicode or structured name values.
  * `@string` references are resolved, while each entry's fields remain strings for later processing.
  *
  * @example
