@@ -6,6 +6,7 @@
 
 use std::sync::OnceLock;
 
+use serde::Serialize;
 use unicode_general_category::{GeneralCategory, get_general_category};
 
 /// Return the nonempty prefix satisfying a scalar predicate, stopping only at UTF-8 boundaries.
@@ -76,7 +77,8 @@ fn bounded<'source>(source: &'source str, text: Option<&'source str>) -> Option<
 /// English prepositions shared with the TypeScript tokenizer, decoded once from embedded JSON.
 static PREPOSITIONS: OnceLock<Vec<&'static str>> = OnceLock::new();
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize)]
+#[serde(rename_all = "lowercase")]
 pub(crate) enum SentenceTokenKind {
   Word,
   Domain,
@@ -89,7 +91,8 @@ pub(crate) enum SentenceTokenKind {
   Other,
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize)]
+#[serde(rename_all = "lowercase")]
 pub(crate) enum SentenceTokenSubtype {
   Word,
   Preposition,

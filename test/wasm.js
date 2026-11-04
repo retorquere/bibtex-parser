@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url'
 import { before, test } from 'node:test'
 import * as yaml from 'js-yaml'
 
-import init, { english, parse as parseSync, parseAsync, toSentenceCase } from '../rust/pkg/index.js'
+import init, { english, parse as parseSync, parseAsync, tokenize, toSentenceCase } from '../rust/pkg/index.js'
 
 const here = path.dirname(fileURLToPath(import.meta.url))
 const root = path.resolve(here, '..')
@@ -252,6 +252,18 @@ function sentenceCase(input, name, snapshot) {
 before(async () => {
   const wasm = fs.readFileSync(path.resolve(root, 'rust/pkg/bibtex_parser_bg.wasm'))
   await init({ module_or_path: wasm })
+})
+
+test('Rust tokenizer exports the requested token fields', () => {
+  const tokens = tokenize('é cat.')
+  assert.deepEqual(tokens[0], {
+    type: 'word',
+    text: 'é',
+    shape: 'x',
+    sentenceStart: true,
+    subSentenceStart: false,
+  })
+  assert.deepEqual(Object.keys(tokens[0]).sort(), ['sentenceStart', 'shape', 'subSentenceStart', 'text', 'type'])
 })
 
 for (const [name, parse] of [['parse', parseSync], ['parseAsync', parseAsync]]) {

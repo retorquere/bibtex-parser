@@ -1911,7 +1911,19 @@ mod wasm_bindings {
   use std::collections::HashMap;
   use wasm_bindgen::prelude::*;
 
+  use super::tokenizer::{SentenceTokenKind, sentence_tokens};
   use super::{Options, Parser, parse, parse_verbatim, reparse_with_yield};
+
+  #[derive(Serialize)]
+  #[serde(rename_all = "camelCase")]
+  struct Token {
+    #[serde(rename = "type")]
+    kind: SentenceTokenKind,
+    text: String,
+    shape: String,
+    sentence_start: bool,
+    sub_sentence_start: bool,
+  }
 
   /// Install the browser-console panic hook once when the WASM module is initialized.
   #[wasm_bindgen(start)]
@@ -1933,6 +1945,23 @@ mod wasm_bindings {
   /// Serialize Rust maps as plain JavaScript objects rather than key/value pair arrays.
   fn encode_result<T: Serialize>(value: &T) -> Result<JsValue, JsValue> {
     value.serialize(&serde_wasm_bindgen::Serializer::new().serialize_maps_as_objects(true)).map_err(|error| JsValue::from_str(&error.to_string()))
+  }
+
+  /// Tokenize input text and return its recognized tokens.
+  #[wasm_bindgen(js_name = tokenize)]
+  pub fn tokenize_js(input: &str) -> Result<JsValue, JsValue> {
+    let characters: Vec<_> = input.chars().collect();
+    let tokens: Vec<_> = sentence_tokens(&characters, true, false)
+      .into_iter()
+      .map(|token| Token {
+        kind: token.kind,
+        text: token.text(&characters),
+        shape: token.shape,
+        sentence_start: token.sentence_start,
+        sub_sentence_start: token.sub_sentence_start,
+      })
+      .collect();
+    encode_result(&tokens)
   }
 
   /// Parse a BibTeX string and return the verbatim result as a JavaScript object.

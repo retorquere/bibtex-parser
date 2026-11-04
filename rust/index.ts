@@ -1,5 +1,5 @@
 /** @module @retorquere/bibtex-parser */
-import init, { initSync, parse as parseWasm, parseAsync as parseAsyncWasm, parseVerbatim as parseVerbatimWasm, parseVerbatimAsync as parseVerbatimAsyncWasm, toSentenceCase as toSentenceCaseWasm } from './bibtex_parser.js'
+import init, { initSync, parse as parseWasm, parseAsync as parseAsyncWasm, parseVerbatim as parseVerbatimWasm, parseVerbatimAsync as parseVerbatimAsyncWasm, tokenize as tokenizeWasm, toSentenceCase as toSentenceCaseWasm } from './bibtex_parser.js'
 import englishDefaults from './english.json' with { type: 'json' }
 
 /** Inputs for asynchronous WASM initialization: a URL-like resource to fetch, bytes, or a compiled module. */
@@ -211,6 +211,15 @@ export interface SentenceCaseOptions {
   preserveQuoted?: boolean
 }
 
+/** A token recognized in the input text. */
+export interface Token {
+  type: 'word' | 'domain' | 'whitespace' | 'number' | 'email' | 'handle' | 'website' | 'markup' | 'other'
+  text: string
+  shape: string
+  sentenceStart: boolean
+  subSentenceStart: boolean
+}
+
 /** Options for normalized BibTeX parsing. */
 export interface Options extends ParserOptions {
   /** Language identifiers treated as English for title casing. */
@@ -345,4 +354,9 @@ export async function parseAsync(input: string, options: Options = {}): Promise<
 /** Converts a title to sentence case using heuristic token classification. */
 export function toSentenceCase(input: string, options: { preserveQuoted?: boolean; subSentenceCapitalization?: boolean; guess?: boolean } = {}): string {
   return toSentenceCaseWasm(input, options)
+}
+
+/** Splits text into recognized tokens. */
+export function tokenize(input: string): Token[] {
+  return tokenizeWasm(input) as Token[]
 }
