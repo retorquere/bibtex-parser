@@ -1,0 +1,25 @@
+[package]
+name = "rq-bibtex-tokenizer"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.99"
+description = "Tokenizer-only WebAssembly build for the BibTeX parser"
+repository = "https://github.com/retorquere/bibtex-parser.git"
+license = "MIT"
+build = "../build.rs"
+
+[features]
+[lib]
+name = "bibtex_tokenizer"
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+unicode-general-category = "1.1"
+
+[build-dependencies]
+serde_json = "1"
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+serde-wasm-bindgen = "0.6"
+wasm-bindgen = "0.2"
