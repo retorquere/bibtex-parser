@@ -4,9 +4,6 @@
 //! Unicode scans reuse the existing category predicates instead of generating duplicate tables.
 //! Recognition uses UTF-8 slices; token emission converts lengths to half-open Unicode scalar ranges.
 
-use std::sync::OnceLock;
-
-use serde::Serialize;
 use unicode_general_category::{GeneralCategory, get_general_category};
 
 /// Return the nonempty prefix satisfying a scalar predicate, stopping only at UTF-8 boundaries.
@@ -74,10 +71,10 @@ fn bounded<'source>(source: &'source str, text: Option<&'source str>) -> Option<
   (!source[text.len()..].chars().next().is_some_and(is_word_character)).then_some(text)
 }
 
-/// English prepositions shared with the TypeScript tokenizer, decoded once from embedded JSON.
-static PREPOSITIONS: OnceLock<Vec<&'static str>> = OnceLock::new();
+/// English prepositions shared with the TypeScript tokenizer, generated from JSON at build time.
+static PREPOSITIONS: &[&str] = include!(concat!(env!("OUT_DIR"), "/prepositions.rs"));
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, serde::Serialize)]
 #[serde(rename_all = "lowercase")]
 pub(crate) enum SentenceTokenKind {
   Word,
@@ -91,7 +88,7 @@ pub(crate) enum SentenceTokenKind {
   Other,
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, serde::Serialize)]
 #[serde(rename_all = "lowercase")]
 pub(crate) enum SentenceTokenSubtype {
   Word,
@@ -289,14 +286,14 @@ pub(crate) fn hyphenated_end(tokens: &[SentenceToken], characters: &[char], star
 fn token_shape(characters: &[char]) -> String {
   let mut shape = String::new();
   for character in characters {
-    let category = get_general_category(*character);
+    let category = category_flags(*character);
     shape.push(if is_unicode_number(*character) {
       'd'
     } else if character.to_lowercase().eq(character.to_uppercase()) {
       *character
-    } else if matches!(category, GeneralCategory::UppercaseLetter | GeneralCategory::TitlecaseLetter) {
+    } else if category & CATEGORY_UPPER_OR_TITLE != 0 {
       'X'
-    } else if matches!(category, GeneralCategory::LowercaseLetter | GeneralCategory::ModifierLetter | GeneralCategory::OtherLetter) {
+    } else if category & CATEGORY_LOWER_MODIFIER_OR_OTHER != 0 {
       'x'
     } else {
       *character
@@ -312,16 +309,12 @@ pub(crate) fn token_text(token: &SentenceToken, characters: &[char]) -> String {
 
 /// Consume an English preposition or multiword preposition at the current word boundary.
 /// Compare all boundary-valid phrases so a rejected longer phrase can fall back to a shorter one.
-/// The embedded list is decoded on first use; invalid bundled JSON is a build-data error and panics.
+/// The embedded list is generated at build time; invalid bundled JSON fails the build.
 fn preposition(source: &str) -> Option<&str> {
   if !source.chars().next()?.is_alphabetic() {
     return None;
   }
-  PREPOSITIONS
-    .get_or_init(|| serde_json::from_str(include_str!("../data/prepositions.json")).expect("prepositions.json is a valid preposition list"))
-    .iter()
-    .filter_map(|preposition| match_preposition(source, preposition))
-    .max_by_key(|text| text.len())
+  PREPOSITIONS.iter().filter_map(|preposition| match_preposition(source, preposition)).max_by_key(|text| text.len())
 }
 
 /// Match one preposition case-insensitively, allowing TypeScript whitespace between its words.
@@ -402,25 +395,43 @@ fn is_word_character(character: char) -> bool {
   is_unicode_letter(character) || is_unicode_number(character) || is_unicode_mark(character) || matches!(character, '\u{00ad}' | '\u{2060}')
 }
 
+const CATEGORY_LETTER: u8 = 1;
+const CATEGORY_NUMBER: u8 = 2;
+const CATEGORY_MARK: u8 = 4;
+const CATEGORY_UPPER_OR_TITLE: u8 = 8;
+const CATEGORY_LOWER_MODIFIER_OR_OTHER: u8 = 16;
+
+/// Return the Unicode category flags used by tokenization and case-shape generation.
+///
+/// Standalone wasm delegates property lookup to JavaScript so it does not embed a second Unicode
+/// category database; native tests and the full parser use the Rust category table.
+fn category_flags(character: char) -> u8 {
+  let category = get_general_category(character);
+  u8::from(matches!(
+    category,
+    GeneralCategory::UppercaseLetter | GeneralCategory::LowercaseLetter | GeneralCategory::TitlecaseLetter | GeneralCategory::ModifierLetter | GeneralCategory::OtherLetter
+  )) | (u8::from(matches!(category, GeneralCategory::DecimalNumber | GeneralCategory::LetterNumber | GeneralCategory::OtherNumber)) << 1)
+    | (u8::from(matches!(category, GeneralCategory::NonspacingMark | GeneralCategory::SpacingMark | GeneralCategory::EnclosingMark)) << 2)
+    | (u8::from(matches!(category, GeneralCategory::UppercaseLetter | GeneralCategory::TitlecaseLetter)) << 3)
+    | (u8::from(matches!(category, GeneralCategory::LowercaseLetter | GeneralCategory::ModifierLetter | GeneralCategory::OtherLetter)) << 4)
+}
+
 /// Identify Unicode letter categories used by the TypeScript `\p{L}` class.
 /// The direct sentence-case test and combining-mark fixture entry exercise non-ASCII letter runs.
 fn is_unicode_letter(character: char) -> bool {
-  matches!(
-    get_general_category(character),
-    GeneralCategory::UppercaseLetter | GeneralCategory::LowercaseLetter | GeneralCategory::TitlecaseLetter | GeneralCategory::ModifierLetter | GeneralCategory::OtherLetter
-  )
+  category_flags(character) & CATEGORY_LETTER != 0
 }
 
 /// Identify Unicode number categories used by the TypeScript `\p{N}` class.
 /// The direct sentence-case test and Unicode-number fixture entry exercise this predicate.
 fn is_unicode_number(character: char) -> bool {
-  matches!(get_general_category(character), GeneralCategory::DecimalNumber | GeneralCategory::LetterNumber | GeneralCategory::OtherNumber)
+  category_flags(character) & CATEGORY_NUMBER != 0
 }
 
 /// Identify all Unicode mark categories used by the TypeScript `\p{M}` class.
 /// The direct sentence-case test and combining-mark fixture entry exercise this predicate.
 fn is_unicode_mark(character: char) -> bool {
-  matches!(get_general_category(character), GeneralCategory::NonspacingMark | GeneralCategory::SpacingMark | GeneralCategory::EnclosingMark)
+  category_flags(character) & CATEGORY_MARK != 0
 }
 
 /// Recognize the exact whitespace characters accepted by the TypeScript sentence tokenizer.

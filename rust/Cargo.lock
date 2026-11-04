@@ -279,6 +279,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "rq-bibtex-tokenizer"
+version = "0.1.0"
+dependencies = [
+ "serde",
+ "serde-wasm-bindgen",
+ "serde_json",
+ "unicode-general-category",
+ "wasm-bindgen",
+]
+
+[[package]]
 name = "rustversion"
 version = "1.0.23"
 source = "registry+https://github.com/rust-lang/crates.io-index"

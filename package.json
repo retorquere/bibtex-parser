@@ -16,7 +16,13 @@
         "default": "./dist/esm/index.js"
       }
     },
-    "./bibtex_parser_bg.wasm": "./dist/wasm/bibtex_parser_bg.wasm"
+    "./bibtex_parser_bg.wasm": "./dist/wasm/bibtex_parser_bg.wasm",
+    "./bibtex_tokenizer_bg.wasm": "./dist/tokenizer/bibtex_tokenizer_bg.wasm",
+    "./tokenizer": {
+      "types": "./dist/tokenizer/bibtex_tokenizer.d.ts",
+      "import": "./dist/tokenizer/bibtex_tokenizer.js",
+      "default": "./dist/tokenizer/bibtex_tokenizer.js"
+    }
   },
   "typings": "./index.d.ts",
   "scripts": {

@@ -10,6 +10,7 @@ import { before, test } from 'node:test'
 import * as yaml from 'js-yaml'
 
 import init, { english, parse as parseSync, parseAsync, tokenize, toSentenceCase } from '../rust/pkg/index.js'
+import initTokenizer, { tokenize as tokenizeOnly } from '@retorquere/bibtex-parser/tokenizer'
 
 const here = path.dirname(fileURLToPath(import.meta.url))
 const root = path.resolve(here, '..')
@@ -252,6 +253,8 @@ function sentenceCase(input, name, snapshot) {
 before(async () => {
   const wasm = fs.readFileSync(path.resolve(root, 'rust/pkg/bibtex_parser_bg.wasm'))
   await init({ module_or_path: wasm })
+  const tokenizerWasm = fs.readFileSync(path.resolve(root, 'dist/tokenizer/bibtex_tokenizer_bg.wasm'))
+  await initTokenizer({ module_or_path: tokenizerWasm })
 })
 
 test('Rust tokenizer exports the requested token fields', () => {
@@ -264,6 +267,16 @@ test('Rust tokenizer exports the requested token fields', () => {
     subSentenceStart: false,
   })
   assert.deepEqual(Object.keys(tokens[0]).sort(), ['sentenceStart', 'shape', 'subSentenceStart', 'text', 'type'])
+})
+
+test('tokenizer-only package export matches the full wasm tokenizer', () => {
+  for (const input of [
+    'NASA’s 21st study: a title at example.org',
+    'é 𐐀 ǅ e\u0301 Ⅳ 𝟜',
+    'العربية हिन्दी 字 한글',
+  ]) {
+    assert.deepEqual(tokenizeOnly(input), tokenize(input), input)
+  }
 })
 
 for (const [name, parse] of [['parse', parseSync], ['parseAsync', parseAsync]]) {
