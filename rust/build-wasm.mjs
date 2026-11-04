@@ -9,6 +9,14 @@ const pkg = path.join(rust, 'pkg')
 execFileSync('node', [path.join(rust, 'unicode-tables.mjs')], { stdio: 'inherit' })
 execFileSync('wasm-pack', [ 'build', rust, '--target', 'web', '--out-dir', 'pkg', '--out-name', 'bibtex_parser' ], { stdio: 'inherit' })
 execFileSync('wasm-pack', [ 'build', '.', '--target', 'web', '--out-dir', path.join(rust, 'pkg/tokenizer'), '--out-name', 'bibtex_tokenizer' ], { cwd: path.join(rust, 'tokenizer-only'), stdio: 'inherit' })
+const tokenizerSource = path.join(pkg, 'tokenizer/index.ts')
+copyFileSync(path.join(rust, 'tokenizer-only/index.ts'), tokenizerSource)
+try {
+  execFileSync(path.join(rust, '../node_modules/.bin/tsc'), [ '--target', 'ES2022', '--module', 'NodeNext', '--moduleResolution', 'NodeNext', '--declaration', '--skipLibCheck', '--strictNullChecks', tokenizerSource ], { stdio: 'inherit' })
+}
+finally {
+  unlinkSync(tokenizerSource)
+}
 rmSync(path.join(pkg, 'jabref.js'), { force: true })
 rmSync(path.join(pkg, 'jabref.d.ts'), { force: true })
 
@@ -57,6 +65,6 @@ for (const file of manifest.files) {
 const tokenizerDist = path.resolve(rust, '../dist/tokenizer')
 rmSync(tokenizerDist, { recursive: true, force: true })
 mkdirSync(tokenizerDist, { recursive: true })
-for (const file of ['bibtex_tokenizer.js', 'bibtex_tokenizer.d.ts', 'bibtex_tokenizer_bg.wasm', 'bibtex_tokenizer_bg.wasm.d.ts']) {
+for (const file of ['index.js', 'index.d.ts', 'bibtex_tokenizer.js', 'bibtex_tokenizer.d.ts', 'bibtex_tokenizer_bg.wasm', 'bibtex_tokenizer_bg.wasm.d.ts']) {
   copyFileSync(path.join(pkg, 'tokenizer', file), path.join(tokenizerDist, file))
 }

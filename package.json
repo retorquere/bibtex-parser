@@ -19,9 +19,9 @@
     "./bibtex_parser_bg.wasm": "./dist/wasm/bibtex_parser_bg.wasm",
     "./bibtex_tokenizer_bg.wasm": "./dist/tokenizer/bibtex_tokenizer_bg.wasm",
     "./tokenizer": {
-      "types": "./dist/tokenizer/bibtex_tokenizer.d.ts",
-      "import": "./dist/tokenizer/bibtex_tokenizer.js",
-      "default": "./dist/tokenizer/bibtex_tokenizer.js"
+      "types": "./dist/tokenizer/index.d.ts",
+      "import": "./dist/tokenizer/index.js",
+      "default": "./dist/tokenizer/index.js"
     }
   },
   "typings": "./index.d.ts",
