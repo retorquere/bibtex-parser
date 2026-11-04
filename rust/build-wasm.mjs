@@ -7,16 +7,7 @@ const rust = path.dirname(fileURLToPath(import.meta.url))
 const pkg = path.join(rust, 'pkg')
 
 execFileSync('node', [path.join(rust, 'unicode-tables.mjs')], { stdio: 'inherit' })
-execFileSync('wasm-pack', [
-  'build',
-  rust,
-  '--target',
-  'web',
-  '--out-dir',
-  'pkg',
-  '--out-name',
-  'bibtex_parser',
-], { stdio: 'inherit' })
+execFileSync('wasm-pack', [ 'build', rust, '--target', 'web', '--out-dir', 'pkg', '--out-name', 'bibtex_parser' ], { stdio: 'inherit' })
 rmSync(path.join(pkg, 'jabref.js'), { force: true })
 rmSync(path.join(pkg, 'jabref.d.ts'), { force: true })
 
@@ -24,19 +15,7 @@ const source = path.join(pkg, 'index.ts')
 copyFileSync(path.join(rust, 'index.ts'), source)
 copyFileSync(path.join(rust, 'data/english.json'), path.join(pkg, 'english.json'))
 try {
-  execFileSync(path.join(rust, '../node_modules/.bin/tsc'), [
-    '--target',
-    'ES2022',
-    '--module',
-    'NodeNext',
-    '--moduleResolution',
-    'NodeNext',
-    '--resolveJsonModule',
-    '--declaration',
-    '--skipLibCheck',
-    '--strictNullChecks',
-    source,
-  ], { stdio: 'inherit' })
+  execFileSync(path.join(rust, '../node_modules/.bin/tsc'), [ '--target', 'ES2022', '--module', 'NodeNext', '--moduleResolution', 'NodeNext', '--resolveJsonModule', '--declaration', '--skipLibCheck', '--strictNullChecks', source ], { stdio: 'inherit' })
 }
 finally {
   unlinkSync(source)
