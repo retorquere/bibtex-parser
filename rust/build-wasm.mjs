@@ -6,7 +6,6 @@ import { fileURLToPath } from 'node:url'
 const rust = path.dirname(fileURLToPath(import.meta.url))
 const pkg = path.join(rust, 'pkg')
 
-execFileSync('node', [path.join(rust, 'unicode-tables.mjs')], { stdio: 'inherit' })
 execFileSync('wasm-pack', [ 'build', rust, '--target', 'web', '--out-dir', 'pkg', '--out-name', 'bibtex_parser' ], { stdio: 'inherit' })
 execFileSync('wasm-pack', [ 'build', '.', '--target', 'web', '--out-dir', path.join(rust, 'pkg/tokenizer'), '--out-name', 'bibtex_tokenizer' ], { cwd: path.join(rust, 'tokenizer-only'), stdio: 'inherit' })
 const tokenizerSource = path.join(pkg, 'tokenizer/index.ts')

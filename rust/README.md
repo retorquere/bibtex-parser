@@ -2,7 +2,28 @@
 
 Rust library for parsing BibTeX entries, resolving strings and cross-references, interpreting common field types, and rendering TeX values as Unicode. The crate has no runtime Node.js or JavaScript dependency.
 
-The Unicode conversion table is checked in for standalone Cargo builds. `npm run build:wasm` regenerates it from the pinned `unicode2latex` dependency before compiling; rerun that build when updating the dependency.
+The Unicode conversion sources are `data/unicode2latex/latex2unicode.json` and `data/unicode2latex/combining.json`, copied from the pinned `unicode2latex` dependency. Refresh both files when updating that dependency. Standalone Cargo builds need no Node.js or npm installation.
+
+### Unicode Table Format
+
+`build.rs` normalizes shared text/math mappings and merges combining accents, then uses `postcard::to_allocvec` and `miniz_oxide::deflate::compress_to_vec` (level 9) to write `OUT_DIR/unicode_tables.deflate`. Cargo rebuilds it when either source JSON file changes; no generated binary is checked in.
+
+The payload is a raw DEFLATE stream (no zlib or gzip wrapper) containing a Postcard-encoded `Vec<UnicodeMapping>`. Both build and runtime compile the same schema from `src/unicode_tables.rs`. Postcard encodes struct fields in declaration order (`key`, `text`, `math`, `combining`), without field names. Its [wire format](https://postcard.jamesmunns.com/wire-format.html) is documented and stable since Postcard 1.0; there is no handwritten byte codec.
+
+```rust
+// Build time: serialize the shared schema, then compress.
+let encoded = postcard::to_allocvec(&rows)?;
+let compressed = miniz_oxide::deflate::compress_to_vec(&encoded, 9);
+
+// Runtime: decompress, then deserialize the same schema.
+let encoded = miniz_oxide::inflate::decompress_to_vec(&compressed)?;
+let (rows, remaining): (Vec<UnicodeMapping>, _) = postcard::take_from_bytes(&encoded)?;
+assert!(remaining.is_empty());
+```
+
+Mode and combining fields are `Option<String>`; `None` means unavailable, while `Some("")` is a valid replacement. Scalar source mappings apply to both text and math. Combining accents supplement rather than overwrite those mode values. Keys are unique and sorted by UTF-8 bytes for binary search.
+
+The decoder rejects trailing bytes and invalid key order; a `OnceLock` caches the owned strings for subsequent lookups. JSON is only the human-readable source format, not the embedded representation. Changing the shared schema requires regenerating the table, which Cargo handles automatically.
 
 ```toml
 [dependencies]

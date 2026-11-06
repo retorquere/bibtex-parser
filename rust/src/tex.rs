@@ -135,16 +135,8 @@ enum MathDelimiter {
   Bracket,
 }
 
-#[derive(Debug, Clone, Copy)]
-/// One entry in the `unicode2latex` conversion table.
-struct UnicodeMapping {
-  key: &'static str,
-  text: Option<&'static str>,
-  math: Option<&'static str>,
-  combining: Option<&'static str>,
-}
-
 include!("unicode_tables.rs");
+const UNICODE_TABLES_COMPRESSED: &[u8] = include_bytes!(concat!(env!("OUT_DIR"), "/unicode_tables.deflate"));
 static DECODED_UNICODE_MAPPINGS: OnceLock<Vec<UnicodeMapping>> = OnceLock::new();
 
 /// Recursive-descent parser state for one TeX fragment.
@@ -1891,7 +1883,7 @@ fn render_text(text: &str, mode: RenderMode, verbatim: bool) -> String {
       let end = (position + width).min(characters.len());
       let key: String = characters[position..end].iter().collect();
       if let Some(mapping) = unicode_mapping(&key)
-        && let Some(mapped) = mapping.text
+        && let Some(mapped) = mapping.text.as_deref()
       {
         replacement = Some((end, mapped));
         break;
@@ -2073,7 +2065,7 @@ impl LibraryRenderer {
         // Prefer an exact fraction mapping; otherwise compose mapped numerator and denominator scripts.
         let latex = serialize_macro(name, arguments);
         if let Some(mapping) = unicode_mapping(&latex)
-          && let Some(text) = mapping.math.or(mapping.text)
+          && let Some(text) = mapping.math.as_deref().or(mapping.text.as_deref())
         {
           return text.to_string();
         }
@@ -2101,7 +2093,7 @@ impl LibraryRenderer {
     // Command-only table entries identify combining accents; composed mappings include arguments.
     let command = format!("\\{name}");
     if let Some(mapping) = unicode_mapping(&command)
-      && let Some(mark) = mapping.combining
+      && let Some(mark) = mapping.combining.as_deref()
     {
       if let Some(value) = combining_argument(arguments, mark, mode) {
         return value;
@@ -2112,7 +2104,7 @@ impl LibraryRenderer {
     let latex = serialize_macro(name, arguments);
     if let Some(mapping) = unicode_mapping(&latex) {
       // Use only a mapping defined for the active text or math mode.
-      let mapped_text = if mode == RenderMode::Math { mapping.math } else { mapping.text };
+      let mapped_text = if mode == RenderMode::Math { mapping.math.as_deref() } else { mapping.text.as_deref() };
       if let Some(text) = mapped_text {
         return text.to_string();
       }
@@ -2159,7 +2151,7 @@ fn combining_argument(arguments: &[Vec<Node>], mark: &str, mode: RenderMode) -> 
     Node::Macro { name, arguments, .. } => {
       let latex = serialize_macro(name, arguments);
       if let Some(mapping) = unicode_mapping(&latex) {
-        if mode == RenderMode::Math { mapping.math.or(mapping.text)?.to_string() } else { mapping.text?.to_string() }
+        if mode == RenderMode::Math { mapping.math.as_deref().or(mapping.text.as_deref())?.to_string() } else { mapping.text.clone()? }
       // Legacy one-letter base control words are accepted only in this accent-argument position.
       } else if arguments.is_empty() && name.len() == 1 && name.as_bytes()[0].is_ascii_alphabetic() {
         name.clone()
@@ -2251,36 +2243,22 @@ fn script_text(value: &str, script_macro: &str) -> Option<String> {
     .chars()
     .map(|character| {
       let key = format!("{script_macro}{{{character}}}");
-      unicode_mapping(&key).and_then(|mapping| mapping.math.or(mapping.text)).map(str::to_owned)
+      unicode_mapping(&key).and_then(|mapping| mapping.math.as_deref().or(mapping.text.as_deref())).map(str::to_owned)
     })
     .collect()
 }
 
-/// Inflate and decode the embedded table once, retaining borrowed strings for the process lifetime.
+/// Inflate and deserialize build-generated Postcard once; the OnceLock owns all decoded strings.
 fn decode_unicode_mappings() -> Vec<UnicodeMapping> {
   let bytes = miniz_oxide::inflate::decompress_to_vec(UNICODE_TABLES_COMPRESSED).expect("generated Unicode table must be a valid raw DEFLATE stream");
-  let source: &'static [u8] = Box::leak(bytes.into_boxed_slice());
-  parse_unicode_mappings(source).expect("generated Unicode table must use the packed format")
+  parse_unicode_mappings(&bytes).expect("generated Unicode table must contain sorted Postcard mappings")
 }
 
-/// Decode sorted length-prefixed rows while preserving each nullable text and math field.
-fn parse_unicode_mappings(source: &'static [u8]) -> Result<Vec<UnicodeMapping>, &'static str> {
-  let mut position = 0;
-  let count = read_varint(source, &mut position)?;
-  if count > source.len() / 4 {
-    return Err("Unicode mapping count exceeds the packed data size");
-  }
-
-  let mut mappings = Vec::with_capacity(count);
-  for _ in 0..count {
-    let key = read_field(source, &mut position)?.ok_or("Unicode mapping key is missing")?;
-    let text = read_field(source, &mut position)?;
-    let math = read_field(source, &mut position)?;
-    let combining = read_field(source, &mut position)?;
-    mappings.push(UnicodeMapping { key, text, math, combining });
-  }
-
-  if position != source.len() {
+/// Deserialize the shared Postcard schema, validating complete consumption and key order.
+fn parse_unicode_mappings(source: &[u8]) -> Result<Vec<UnicodeMapping>, &'static str> {
+  let (mappings, remaining): (Vec<UnicodeMapping>, _) = postcard::take_from_bytes(source).map_err(|_| "Unicode mapping Postcard data is invalid")?;
+  // An embedded table is exactly one message, not a prefix of a concatenated stream.
+  if !remaining.is_empty() {
     return Err("Unicode mapping data has trailing bytes");
   }
   // Binary search requires keys to remain unique and bytewise sorted.
@@ -2290,62 +2268,82 @@ fn parse_unicode_mappings(source: &'static [u8]) -> Result<Vec<UnicodeMapping>, 
   Ok(mappings)
 }
 
-/// Read a nullable UTF-8 field; zero means absent, while one represents an empty string.
-fn read_field(source: &'static [u8], position: &mut usize) -> Result<Option<&'static str>, &'static str> {
-  let encoded_length = read_varint(source, position)?;
-  let Some(length) = encoded_length.checked_sub(1) else {
-    return Ok(None);
-  };
-  let end = position.checked_add(length).ok_or("Unicode field length overflows the input size")?;
-  let bytes = source.get(*position..end).ok_or("Unicode field extends past the packed data")?;
-  *position = end;
-  let field = std::str::from_utf8(bytes).map_err(|_| "Unicode field is not valid UTF-8")?;
-  Ok(Some(field))
-}
-
-/// Read one unsigned LEB128 value and reject truncated or overflowing encodings.
-fn read_varint(bytes: &[u8], position: &mut usize) -> Result<usize, &'static str> {
-  let mut value = 0usize;
-  let mut shift = 0u32;
-  loop {
-    let byte = *bytes.get(*position).ok_or("Unicode table varint is truncated")?;
-    *position += 1;
-    let part = usize::from(byte & 0x7f);
-    if shift >= usize::BITS || part > (usize::MAX >> shift) {
-      return Err("Unicode table varint overflows usize");
-    }
-    value |= part << shift;
-    if byte & 0x80 == 0 {
-      return Ok(value);
-    }
-    shift += 7;
-  }
-}
-
 /// Binary-search the once-decoded, byte-sorted Unicode mapping table.
 fn unicode_mapping(latex: &str) -> Option<&'static UnicodeMapping> {
   let mappings = DECODED_UNICODE_MAPPINGS.get_or_init(decode_unicode_mappings);
-  mappings.binary_search_by_key(&latex, |mapping| mapping.key).ok().map(|index| &mappings[index])
+  mappings.binary_search_by_key(&latex, |mapping| mapping.key.as_str()).ok().map(|index| &mappings[index])
 }
 
 #[cfg(test)]
 mod unicode_table_tests {
-  use super::parse_unicode_mappings;
+  use super::{UnicodeMapping, decode_unicode_mappings, parse_unicode_mappings};
 
-  /// Verify that absent, empty, shared, and math-only values survive packed decoding.
+  /// Encode readable JSON test fixtures through the same shared schema as the build-time packer.
+  fn pack_rows(json: &[u8]) -> Vec<u8> {
+    postcard::to_allocvec(&serde_json::from_slice::<Vec<UnicodeMapping>>(json).unwrap()).unwrap()
+  }
+
+  /// Verify that absent, empty, shared, and math-only values survive Postcard decoding.
   #[test]
-  fn packed_rows_preserve_nullable_mode_values() {
-    let math_only = parse_unicode_mappings(&[1, 2, b'k', 0, 2, b'm', 0]).unwrap();
+  fn postcard_rows_preserve_nullable_mode_values() {
+    let math_only = parse_unicode_mappings(&pack_rows(br#"[{"key":"k","text":null,"math":"m","combining":null}]"#)).unwrap();
     assert_eq!(math_only[0].text, None);
-    assert_eq!(math_only[0].math, Some("m"));
+    assert_eq!(math_only[0].math.as_deref(), Some("m"));
 
-    let shared = parse_unicode_mappings(&[1, 2, b'k', 2, b'x', 2, b'x', 0]).unwrap();
-    assert_eq!(shared[0].text, Some("x"));
-    assert_eq!(shared[0].math, Some("x"));
+    let shared = parse_unicode_mappings(&pack_rows(br#"[{"key":"k","text":"x","math":"x","combining":null}]"#)).unwrap();
+    assert_eq!(shared[0].text.as_deref(), Some("x"));
+    assert_eq!(shared[0].math.as_deref(), Some("x"));
 
-    let empty = parse_unicode_mappings(&[1, 2, b'k', 1, 0, 0]).unwrap();
-    assert_eq!(empty[0].text, Some(""));
+    let empty = parse_unicode_mappings(&pack_rows(br#"[{"key":"k","text":"","math":null,"combining":null}]"#)).unwrap();
+    assert_eq!(empty[0].text.as_deref(), Some(""));
     assert_eq!(empty[0].math, None);
+  }
+
+  /// Exercise build-time packing and runtime unpacking, including escaped TeX keys and accents.
+  #[test]
+  fn embedded_rows_decode_escaped_keys_and_combining_marks() {
+    let mappings = decode_unicode_mappings();
+    assert!(!mappings.is_empty());
+    let alpha = mappings.iter().find(|mapping| mapping.key == "\\alpha").unwrap();
+    assert_eq!(alpha.math.as_deref(), Some("\u{03b1}"));
+    let acute = mappings.iter().find(|mapping| mapping.key == "\\acute").unwrap();
+    assert_eq!(acute.combining.as_deref(), Some("\u{0301}"));
+    let escaped = parse_unicode_mappings(&pack_rows(br#"[{"key":"\\","text":"\"\n","math":null,"combining":null}]"#)).unwrap();
+    assert_eq!(escaped[0].key, "\\");
+    assert_eq!(escaped[0].text.as_deref(), Some("\"\n"));
+  }
+
+  /// Compare every unpacked key and optional field against the independent upstream JSON sources.
+  #[test]
+  fn embedded_rows_match_all_source_mappings() {
+    let latex: serde_json::Value = serde_json::from_str(include_str!("../data/unicode2latex/latex2unicode.json")).unwrap();
+    let combining: serde_json::Value = serde_json::from_str(include_str!("../data/unicode2latex/combining.json")).unwrap();
+    let mut keys: std::collections::BTreeSet<String> = latex.as_object().unwrap().keys().cloned().collect();
+    keys.extend(combining["tounicode"].as_object().unwrap().keys().map(|name| format!("\\{name}")));
+    let mappings = decode_unicode_mappings();
+    assert_eq!(mappings.len(), keys.len());
+    for mapping in mappings {
+      assert!(keys.remove(&mapping.key));
+      for (mode, actual) in [("text", mapping.text.as_deref()), ("math", mapping.math.as_deref())] {
+        // A scalar supplies both modes; objects may deliberately omit either mode.
+        let expected = latex.get(&mapping.key).and_then(|value| value.as_str().or_else(|| value.get(mode).and_then(serde_json::Value::as_str)));
+        assert_eq!(actual, expected, "{}: {mode}", mapping.key);
+      }
+      let mark = mapping.key.strip_prefix('\\').and_then(|name| combining["tounicode"].get(name)).and_then(serde_json::Value::as_str);
+      assert_eq!(mapping.combining.as_deref(), mark, "{}: combining", mapping.key);
+    }
+    assert!(keys.is_empty());
+  }
+
+  /// Reject duplicate or unsorted keys, truncated messages, and trailing data.
+  #[test]
+  fn postcard_rows_reject_invalid_tables() {
+    assert!(parse_unicode_mappings(&pack_rows(br#"[{"key":"b"},{"key":"a"}]"#)).is_err());
+    assert!(parse_unicode_mappings(&pack_rows(br#"[{"key":"a"},{"key":"a"}]"#)).is_err());
+    let mut packed = pack_rows(br#"[{"key":"a"}]"#);
+    assert!(parse_unicode_mappings(&packed[..packed.len() - 1]).is_err());
+    packed.push(0);
+    assert!(parse_unicode_mappings(&packed).is_err());
   }
 }
 

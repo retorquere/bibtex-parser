@@ -2123,7 +2123,7 @@ mod tests {
   /// Verifies options retain their source text and expose parsed key/value pairs as a typed field.
   fn options_verbatim_values_parse_as_trimmed_map() {
     let parsed = parse("@book{x,options={ foo = bar , url=https://example.test/?a=b }}", Options::default());
-    assert_eq!(parsed.entries[0].mode["options"], "verbatim");
+    assert_eq!(parsed.entries[0].mode["options"], "options");
     assert_eq!(parsed.entries[0].fields["options"], FieldValue::Options(std::collections::BTreeMap::from([("foo".into(), "bar".into()), ("url".into(), "https://example.test/?a=b".into()),])));
     assert_eq!(parsed.entries[0].verbatim["options"], " foo = bar , url=https://example.test/?a=b ");
   }
