@@ -4,9 +4,11 @@
 //! Synchronous and WASM asynchronous entry points share the same parsing and normalization paths.
 
 use serde::{Deserialize, Serialize};
-use std::collections::{BTreeMap, HashMap};
-use std::num::NonZeroUsize;
-use std::sync::OnceLock;
+use std::{
+  collections::{BTreeMap, HashMap},
+  num::NonZeroUsize,
+  sync::LazyLock,
+};
 
 mod tex;
 mod tokenizer;
@@ -228,24 +230,25 @@ fn parse_jabref_metadata(comments: Vec<String>) -> (Vec<String>, JabRefMetadata)
 #[derive(Deserialize)]
 struct CrossReferenceData {
   allowed: HashMap<String, Vec<String>>,
-  #[serde(rename = "noCrossRef")]
   no_cross_ref: Vec<String>,
 }
 
 type CrossReferenceMap = HashMap<String, HashMap<String, HashMap<String, String>>>;
 
-static CROSS_REFERENCE_DATA: OnceLock<CrossReferenceData> = OnceLock::new();
-static CROSS_REFERENCE_MAP: OnceLock<CrossReferenceMap> = OnceLock::new();
-
-/// Lazily decode embedded allowed-field and exclusion lists shared by all inheritance passes.
-fn cross_reference_data() -> &'static CrossReferenceData {
-  CROSS_REFERENCE_DATA.get_or_init(|| serde_json::from_str(include_str!("../data/fields.json")).expect("fields.json is valid cross-reference data"))
+#[derive(Deserialize)]
+struct ParserData {
+  cross_reference_data: CrossReferenceData,
+  cross_reference_map: CrossReferenceMap,
+  default_english: Vec<String>,
 }
 
-/// Lazily decode child/parent type mappings and their source-to-destination field remappings.
-fn cross_reference_map() -> &'static CrossReferenceMap {
-  CROSS_REFERENCE_MAP.get_or_init(|| serde_json::from_str(include_str!("../data/crossref.json")).expect("crossref.json is valid cross-reference data"))
-}
+const PARSER_DATA_COMPRESSED: &[u8] = include_bytes!(concat!(env!("OUT_DIR"), "/parser_data.deflate"));
+static PARSER_DATA: LazyLock<ParserData> = LazyLock::new(|| {
+  let bytes = miniz_oxide::inflate::decompress_to_vec(PARSER_DATA_COMPRESSED).expect("generated parser data must be a valid raw DEFLATE stream");
+  let (data, remaining): (ParserData, _) = postcard::take_from_bytes(&bytes).expect("generated parser data must be valid Postcard");
+  assert!(remaining.is_empty(), "generated parser data must not have trailing bytes");
+  data
+});
 
 /// Match JavaScript truthiness for fields: empty text is false, but even empty lists are true.
 fn crossref_inherit(value: &FieldValue) -> bool {
@@ -409,9 +412,9 @@ pub struct Name {
   /// Extended-name `juniorcomma` property.
   #[serde(skip_serializing_if = "Option::is_none")]
   pub juniorcomma: Option<bool>,
-  /// Unrecognized extended-name properties, retained as JSON values.
+  /// Unrecognized extended-name properties, retained as strings.
   #[serde(flatten)]
-  pub extra: HashMap<String, serde_json::Value>,
+  pub extra: HashMap<String, String>,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
@@ -948,7 +951,7 @@ fn default_strings() -> HashMap<String, String> {
 
 /// Return the language identifiers treated as English by default.
 fn default_english() -> Vec<String> {
-  serde_json::from_str(include_str!("../data/english.json")).expect("default English language list must be valid JSON")
+  PARSER_DATA.default_english.clone()
 }
 
 /// Return the fields whose single outer brace group is removed during normalization.
@@ -1186,7 +1189,7 @@ fn parse_name(input: &str, entry_key: &str, renderer: &mut tex::LibraryRenderer)
         "juniorcomma" => name.juniorcomma = Some(value.eq_ignore_ascii_case("true")),
         // Keep nonempty extension properties instead of discarding unknown keys.
         _ if !value.is_empty() => {
-          name.extra.insert(key, serde_json::Value::String(value));
+          name.extra.insert(key, value);
         }
         _ => {}
       }
@@ -1551,8 +1554,8 @@ fn apply_crossref_inheritance(entries: &mut [ParsedEntry], enabled: bool) {
     }
   }
 
-  let allowed = cross_reference_data();
-  let mappings = cross_reference_map();
+  let allowed = &PARSER_DATA.cross_reference_data;
+  let mappings = &PARSER_DATA.cross_reference_map;
   for key in order {
     let Some(&child_index) = keys.get(&key) else {
       continue;
@@ -1911,8 +1914,10 @@ mod wasm_bindings {
   use std::collections::HashMap;
   use wasm_bindgen::prelude::*;
 
-  use super::tokenizer::{SentenceTokenKind, sentence_tokens};
-  use super::{Options, Parser, parse, parse_verbatim, reparse_with_yield};
+  use super::{
+    Options, Parser, parse, parse_verbatim, reparse_with_yield,
+    tokenizer::{SentenceTokenKind, sentence_tokens},
+  };
 
   #[derive(Serialize)]
   #[serde(rename_all = "camelCase")]
@@ -2917,7 +2922,7 @@ mod tests {
     let custom = parse("@book{x,author={foo=bar, given=Jane}}", Options::default());
     assert!(matches!(
         custom.entries[0].fields.get("author"),
-        Some(FieldValue::Names(names)) if names[0].extra.get("foo") == Some(&serde_json::Value::String("bar".into()))
+        Some(FieldValue::Names(names)) if names[0].extra.get("foo").map(String::as_str) == Some("bar")
     ));
   }
 

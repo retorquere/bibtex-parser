@@ -53,7 +53,7 @@ manifest.exports = {
 }
 writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`)
 
-const dist = path.resolve(rust, 'dist/wasm')
+const dist = path.resolve(rust, 'dist')
 mkdirSync(dist, { recursive: true })
 rmSync(path.join(dist, 'jabref.js'), { force: true })
 rmSync(path.join(dist, 'jabref.d.ts'), { force: true })

@@ -62,7 +62,7 @@ These fixtures are not needed to build or use the standalone library.
 
 ## Unicode Table Format
 
-The parser's TeX-to-Unicode sources are `data/unicode2latex/latex2unicode.json` and `data/unicode2latex/combining.json`, vendored from `unicode2latex` version 7.0.38. The Unicode-to-LaTeX converter reads its source mapping from `data/unicode2latex/config.ssv`; its typed generated maps are shared at `tables/unicode2latex/`.
+The parser's TeX-to-Unicode sources are `data/unicode2latex/latex2unicode.json` and `data/unicode2latex/combining.json`, vendored from `unicode2latex` version 7.0.38. The Unicode-to-LaTeX converter reads its source mapping from `data/unicode2latex/config.ssv`; its generated JSON tables are shared at `tables/unicode2latex/`.
 
 `build.rs` normalizes shared text/math mappings and merges combining accents, then uses `postcard::to_allocvec` and `miniz_oxide::deflate::compress_to_vec` (level 9) to write `OUT_DIR/unicode_tables.deflate`. Cargo rebuilds it when either source JSON file changes; no generated binary is checked in.
 

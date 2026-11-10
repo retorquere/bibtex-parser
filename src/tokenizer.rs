@@ -467,8 +467,7 @@ mod tests {
   #[test]
   #[ignore = "manual tokenizer benchmark; use --release --ignored --nocapture"]
   fn benchmark_tokenization() {
-    use std::hint::black_box;
-    use std::time::Instant;
+    use std::{hint::black_box, time::Instant};
 
     let inputs: Vec<Vec<char>> = include_str!("../test/other/sentence-case-utf16.bib")
       .lines()

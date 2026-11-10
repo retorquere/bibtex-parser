@@ -4,8 +4,10 @@
 //! afterward, using temporary root-group markers to restore author-supplied case protection.
 
 use crate::tokenizer::{SentenceToken, SentenceTokenKind, SentenceTokenSubtype, hyphenated_end, is_case_whitespace, sentence_tokens, token_text};
-use std::collections::{HashMap, HashSet};
-use std::sync::OnceLock;
+use std::{
+  collections::{HashMap, HashSet},
+  sync::LazyLock,
+};
 
 /// Locate the literal contents of `\verb` or `\path` starting at a backslash.
 ///
@@ -137,7 +139,7 @@ enum MathDelimiter {
 
 include!("unicode_tables.rs");
 const UNICODE_TABLES_COMPRESSED: &[u8] = include_bytes!(concat!(env!("OUT_DIR"), "/unicode_tables.deflate"));
-static DECODED_UNICODE_MAPPINGS: OnceLock<Vec<UnicodeMapping>> = OnceLock::new();
+static DECODED_UNICODE_MAPPINGS: LazyLock<Vec<UnicodeMapping>> = LazyLock::new(decode_unicode_mappings);
 
 /// Recursive-descent parser state for one TeX fragment.
 struct Parser {
@@ -2248,7 +2250,7 @@ fn script_text(value: &str, script_macro: &str) -> Option<String> {
     .collect()
 }
 
-/// Inflate and deserialize build-generated Postcard once; the OnceLock owns all decoded strings.
+/// Inflate and deserialize build-generated Postcard once for the shared LazyLock.
 fn decode_unicode_mappings() -> Vec<UnicodeMapping> {
   let bytes = miniz_oxide::inflate::decompress_to_vec(UNICODE_TABLES_COMPRESSED).expect("generated Unicode table must be a valid raw DEFLATE stream");
   parse_unicode_mappings(&bytes).expect("generated Unicode table must contain sorted Postcard mappings")
@@ -2270,8 +2272,7 @@ fn parse_unicode_mappings(source: &[u8]) -> Result<Vec<UnicodeMapping>, &'static
 
 /// Binary-search the once-decoded, byte-sorted Unicode mapping table.
 fn unicode_mapping(latex: &str) -> Option<&'static UnicodeMapping> {
-  let mappings = DECODED_UNICODE_MAPPINGS.get_or_init(decode_unicode_mappings);
-  mappings.binary_search_by_key(&latex, |mapping| mapping.key.as_str()).ok().map(|index| &mappings[index])
+  DECODED_UNICODE_MAPPINGS.binary_search_by_key(&latex, |mapping| mapping.key.as_str()).ok().map(|index| &DECODED_UNICODE_MAPPINGS[index])
 }
 
 #[cfg(test)]

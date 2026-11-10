@@ -1,4 +1,4 @@
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 use std::{
   collections::BTreeMap,
   env, fs,
@@ -9,7 +9,7 @@ use std::{
 mod unicode_tables;
 use unicode_tables::UnicodeMapping;
 
-/// Generate prepositions for both crates and the Unicode table for the full parser only.
+/// Generate shared parser data, prepositions, and Unicode tables from their JSON sources.
 fn main() {
   let manifest = PathBuf::from(env::var_os("CARGO_MANIFEST_DIR").expect("Cargo provides CARGO_MANIFEST_DIR"));
   let local_data = manifest.join("data/prepositions.json");
@@ -25,8 +25,45 @@ fn main() {
 
   // The tokenizer shares this build script but does not render TeX or embed Unicode mappings.
   if env::var("CARGO_PKG_NAME").as_deref() == Ok("rq-bibtex-parser") {
+    generate_parser_data(&manifest);
     pack_unicode_mappings(&manifest);
   }
+}
+
+#[derive(Deserialize, Serialize)]
+struct CrossReferenceDataSource {
+  allowed: BTreeMap<String, Vec<String>>,
+  #[serde(rename = "noCrossRef")]
+  no_cross_ref: Vec<String>,
+}
+
+type CrossReferenceMapSource = BTreeMap<String, BTreeMap<String, BTreeMap<String, String>>>;
+
+#[derive(Serialize)]
+struct ParserDataSource {
+  cross_reference_data: CrossReferenceDataSource,
+  cross_reference_map: CrossReferenceMapSource,
+  default_english: Vec<String>,
+}
+
+/// Serialize validated parser data into a compact build artifact for one-time runtime decoding.
+fn generate_parser_data(manifest: &Path) {
+  let data = manifest.join("data");
+  let fields_path = data.join("fields.json");
+  let crossref_path = data.join("crossref.json");
+  let english_path = data.join("english.json");
+  for path in [&fields_path, &crossref_path, &english_path] {
+    println!("cargo:rerun-if-changed={}", path.display());
+  }
+  let parser_data = ParserDataSource {
+    cross_reference_data: serde_json::from_slice(&fs::read(fields_path).expect("fields.json is readable")).expect("fields.json has valid cross-reference data"),
+    cross_reference_map: serde_json::from_slice(&fs::read(crossref_path).expect("crossref.json is readable")).expect("crossref.json has valid type mappings"),
+    default_english: serde_json::from_slice(&fs::read(english_path).expect("english.json is readable")).expect("english.json is a string array"),
+  };
+  let encoded = postcard::to_allocvec(&parser_data).expect("parser data serializes as Postcard");
+  let compressed = miniz_oxide::deflate::compress_to_vec(&encoded, 9);
+  let output = PathBuf::from(env::var_os("OUT_DIR").expect("Cargo provides OUT_DIR")).join("parser_data.deflate");
+  fs::write(output, compressed).expect("generated parser data is writable");
 }
 
 /// Upstream values are either shared between modes or explicitly mode-specific.
