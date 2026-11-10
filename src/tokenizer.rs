@@ -470,7 +470,7 @@ mod tests {
     use std::hint::black_box;
     use std::time::Instant;
 
-    let inputs: Vec<Vec<char>> = include_str!("../../test/other/sentence-case-utf16.bib")
+    let inputs: Vec<Vec<char>> = include_str!("../test/other/sentence-case-utf16.bib")
       .lines()
       .chain([
         "A TITLE: AN EXPLANATION",

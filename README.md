@@ -1,96 +1,75 @@
-# bibtex-parser
+# rq-bibtex-parser
 
-A node/npm package for parsing bibtex (.bib) files. This is the parser that drives [Better BibTeX for Zotero](https://retorque.re/zotero-better-bibtex/) bib(la)tex imports.
+Rust library for parsing BibTeX entries, resolving strings and cross-references, interpreting common field types, and rendering TeX values as Unicode. The crate has no runtime Node.js or JavaScript dependency.
 
-While parsing, the parser will apply markup for commands such as `\textbf`, `\textsc`, etc, and braces wich protect text against case-changes. Commands will be replaced with their unicode text equivalents where possible.
+## Installation
 
-## What is BibTeX?
+Requires Rust 1.99 or newer. Standalone Cargo builds need no Node.js or npm installation.
 
-BibTeX is a reference management program that makes it easy for users of TeX and LaTeX to generate bibliographies for books and journal articles. When possible, it is usually stylized in the TeX font the way TeX and LaTeX are. LaTeX was first created in 1985 by Leslie Lamport and Oren Patashnik.
-
-Documentation is available at [https://retorque.re/bibtex-parser/](https://retorque.re/bibtex-parser/).
-
-## Choosing a Parser
-
-The Rust/WebAssembly implementation is the default export (ESM only, see below). The pure TypeScript implementation, which also needs no initialization, is available as an ESM-only `/js` subpath:
-
-```js
-import { parse } from '@retorquere/bibtex-parser/js'
-
-const library = parse('@article{example, title={A title}}')
+```toml
+[dependencies]
+rq-bibtex-parser = "0.1"
 ```
 
-For the scanner-level representation, use `parseVerbatim`. Its fields are strings and have not been normalized or interpreted as LaTeX:
+## Usage
 
-```js
-import { parseVerbatim } from '@retorquere/bibtex-parser/js'
+```rust
+use bibtex_parser::{parse, Options};
 
-const library = parseVerbatim('@article{example, title={A title}}')
+fn main() {
+	let source = "@article{example, title={A Long Title}, year={2024}}";
+	let library = parse(source, Options::default());
+
+	for entry in library.entries {
+		println!("{} ({})", entry.key, entry.entry);
+		println!("{:#?}", entry.fields);
+	}
+
+	for error in library.errors {
+		eprintln!("{}", error.error);
+	}
+}
 ```
 
-The generated API documentation covers the normalized TypeScript API (`/js`), its `parseVerbatim` export, and the WASM exports available from the default entry point.
+`parse` returns typed field values in a `ParsedLibrary`. Use `parse_verbatim` when scanner-level field text is needed without TeX rendering or field interpretation. Both functions accept `Options`; its default applies cross-references, parses standard field types, and sentence-cases English titles. Set `Options.raw` to skip TeX conversion and sentence casing.
 
-All parser results expose `preambles: string[]`, retaining multiple `@preamble` directives in source order. The normalized result property was previously named `preamble`; callers should use `preambles` instead.
+## WebAssembly
 
-The WebAssembly implementation is the ESM-only default entry point. Initialize it before calling the parser. In a browser, `init()` loads the binary relative to the module:
+The crate also provides WebAssembly bindings. Build those from the repository root with `npm run build`; this optional workflow requires Node.js, the repository's npm dependencies, the `wasm32-unknown-unknown` Rust target, and `wasm-pack`.
 
-```js
-import init, { parse } from '@retorquere/bibtex-parser'
+## Testing
 
-await init()
-const library = parse('@article{example, title={A title}}')
+Native tests use fixtures in the repository checkout. Run them from the repository root:
+
+```sh
+cargo test
 ```
 
-In Node.js, load the exported binary explicitly:
+These fixtures are not needed to build or use the standalone library.
 
-```js
-import { readFile } from 'node:fs/promises'
-import init, { parse } from '@retorquere/bibtex-parser'
+## Unicode Table Format
 
-const binary = new URL(import.meta.resolve('@retorquere/bibtex-parser/bibtex_parser_bg.wasm'))
-await init({ module_or_path: await readFile(binary) })
-const library = parse('@article{example, title={A title}}')
+The Unicode conversion sources are `data/unicode2latex/latex2unicode.json` and `data/unicode2latex/combining.json`, copied from `unicode2latex` version 7.0.38. When updating the bundled data, refresh both files and record the source version here; updating the npm dependency alone does not refresh them.
+
+`build.rs` normalizes shared text/math mappings and merges combining accents, then uses `postcard::to_allocvec` and `miniz_oxide::deflate::compress_to_vec` (level 9) to write `OUT_DIR/unicode_tables.deflate`. Cargo rebuilds it when either source JSON file changes; no generated binary is checked in.
+
+The payload is a raw DEFLATE stream (no zlib or gzip wrapper) containing a Postcard-encoded `Vec<UnicodeMapping>`. Both build and runtime compile the same schema from `src/unicode_tables.rs`. Postcard encodes struct fields in declaration order (`key`, `text`, `math`, `combining`), without field names. Its [wire format](https://postcard.jamesmunns.com/wire-format.html) is documented and stable since Postcard 1.0; there is no handwritten byte codec.
+
+```rust
+// Build time: serialize the shared schema, then compress.
+let encoded = postcard::to_allocvec(&rows)?;
+let compressed = miniz_oxide::deflate::compress_to_vec(&encoded, 9);
+
+// Runtime: decompress, then deserialize the same schema.
+let encoded = miniz_oxide::inflate::decompress_to_vec(&compressed)?;
+let (rows, remaining): (Vec<UnicodeMapping>, _) = postcard::take_from_bytes(&encoded)?;
+assert!(remaining.is_empty());
 ```
 
-Both entry points include TypeScript declarations. Building the package from source also builds WebAssembly and requires Rust with the `wasm32-unknown-unknown` target and `wasm-pack`; consumers do not need these tools.
+Mode and combining fields are `Option<String>`; `None` means unavailable, while `Some("")` is a valid replacement. Scalar source mappings apply to both text and math. Combining accents supplement rather than overwrite those mode values. Keys are unique and sorted by UTF-8 bytes for binary search.
 
-### Zotero Plugins
+The decoder rejects trailing bytes and invalid key order; a `OnceLock` caches the owned strings for subsequent lookups. JSON is only the human-readable source format, not the embedded representation. Changing the shared schema requires regenerating the table, which Cargo handles automatically.
 
-Include the default JavaScript entry point in your plugin's build and package the WASM binary as a plugin resource. In the plugin's privileged Zotero context, initialize the parser during startup, before any parsing calls:
+## Title tokenizer
 
-```js
-import init, { parse } from '@retorquere/bibtex-parser'
-
-await init({ module_or_path: 'chrome://zotero-better-bibtex/content/resource/bibtex/bibtex_parser_bg.wasm' })
-
-const library = parse('@article{example, title={A title}}')
-```
-
-Await initialization once during startup; subsequent `parse` or `parseAsync` calls reuse the initialized module.
-
-## URL Commands
-
-Both parsers accept `richURL`, a boolean that defaults to `true`. With `richURL: true`, `\href{http://example.org/{id}}{url}` renders as `<a href="http://example.org/{id}">url</a>` without case-protection spans. With `richURL: false`, it renders as `<span class="nocase">http://example.org/{id}</span>`, discarding the label and preserving the destination's casing regardless of the `caseProtection` setting. The option also applies to `\url`.
-
-## Unknown TeX Commands
-
-Both `parse` and `parseAsync` accept an `unsupported` option:
-
-* `ignore`: replace unknown commands with nothing.
-* `keep` (default): preserve literal TeX, including the backslash, and record a diagnostic in `errors`.
-* `throw`: throw an error identifying the unsupported TeX command (`parse` throws and `parseAsync` rejects). This bypasses the normal `errors` collection.
-
-These policies also apply to unsupported environments. Custom handler functions are no longer supported.
-
-## TypeScript Breaking Changes Since `v11`
-
-* `Options.unsupported` no longer accepts a callback `(node, tex, entry) => string` for custom replacement text. Use `ignore`, `keep`, or `throw`. The default remains `keep`, matching `master`; passing any other value now throws a `TypeError` during parser setup.
-* The new `unsupported: 'throw'` mode propagates unsupported-command/environment errors out of `parse` (or rejects `parseAsync`) instead of adding them to the entry's `errors` and continuing.
-* Merged `keywords` now retain encounter order and exact duplicate strings. Previously, exact duplicates were removed and the remaining values were sorted case-insensitively. Case variants were not deduplicated before either.
-
-# Migrating from 8.x to 9.0
-
-* Move `sentenceCase.langids` to the top-level `english` option. It still accepts a language array or a boolean; include `''` in a custom array to match entries with no `langid`.
-* Move `sentenceCase.language` to the top-level `languageAsLangid` option. It still controls whether the `language` field is used as a fallback when `langid` and `hyphenation` are absent.
-
-The `Entry` and `ParseError` shapes, including the verbatim parser's entry shape, did not change between 8.0.23 and 9.0.0. Bundled unabbreviations also remain enabled by default.
+Title recognition uses small handwritten prefix recognizers, tried in explicit priority order. Recognizers define token forms, `recognize` controls precedence, and token emission manages sentence state and Unicode scalar offsets. A successful earlier rule wins even when a later rule could consume more text. Shared Unicode predicates keep recognition and casing consistent without duplicate category tables or regex initialization. Configured verbatim-field selectors use `wildflower` glob patterns (`*`, `?`, and backslash escapes); built-in field rules are handled with direct string checks.

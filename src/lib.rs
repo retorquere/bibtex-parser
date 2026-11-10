@@ -2046,7 +2046,7 @@ mod tests {
   #[test]
   /// Verify nested JabRef memberships and the handling of metadata versus ordinary comments.
   fn parses_jabref_group_tree_hierarchy() {
-    let parsed = parse(include_str!("../../test/better-bibtex/import/Jabref groups import does not work #717.3.8.bib"), Options::default());
+    let parsed = parse(include_str!("../test/better-bibtex/import/Jabref groups import does not work #717.3.8.bib"), Options::default());
     assert_eq!(parsed.jabref.database_type.as_deref(), Some("bibtex"));
     assert_eq!(parsed.jabref.root.len(), 1, "{:?}", parsed.jabref);
     assert_eq!(parsed.jabref.root[0].groups.len(), 2, "{:?}", parsed.jabref);
@@ -2599,7 +2599,7 @@ mod tests {
   #[test]
   /// Checks text ligature conversion for the shared bibliography fixture.
   fn parses_text_ligature_fixture_like_default_case() {
-    let parsed = fixture(include_str!("../../test/better-bibtex/export/Better BibLaTeX.001.biblatex"));
+    let parsed = fixture(include_str!("../test/better-bibtex/export/Better BibLaTeX.001.biblatex"));
     assert_eq!(parsed.entries[0].fields["pages"], FieldValue::Text("493–518".into()));
   }
 
@@ -2627,7 +2627,7 @@ mod tests {
   #[test]
   /// Checks rendered output for common text markup macros.
   fn parses_text_markup_fixture_like_default_case() {
-    let parsed = fixture(include_str!("../../test/better-bibtex/export/Better BibLaTeX.007.biblatex"));
+    let parsed = fixture(include_str!("../test/better-bibtex/export/Better BibLaTeX.007.biblatex"));
     let FieldValue::Text(title) = &parsed.entries[0].fields["title"] else {
       panic!("title should be scalar text");
     };
@@ -2640,7 +2640,7 @@ mod tests {
   #[test]
   /// Checks rich-text list and paragraph rendering against an existing fixture snapshot.
   fn parses_richtext_itemize_fixture_like_default_case() {
-    let parsed = fixture(include_str!("../../test/better-bibtex/export/Unicode ø in author name is exported with trailing space which does not work in bibtex #1538.bibtex"));
+    let parsed = fixture(include_str!("../test/better-bibtex/export/Unicode ø in author name is exported with trailing space which does not work in bibtex #1538.bibtex"));
     let FieldValue::Text(note) = &parsed.entries[0].fields["note"] else {
       panic!("note should be scalar text");
     };
@@ -2696,7 +2696,7 @@ mod tests {
   #[test]
   /// Checks unbraced fraction arguments and script fallback in an existing math-title fixture.
   fn parses_fraction_macros_in_math_mode_from_existing_fixture() {
-    let parsed = fixture(include_str!("../../test/better-bibtex/export/Math parts in title #113.biblatex"));
+    let parsed = fixture(include_str!("../test/better-bibtex/export/Math parts in title #113.biblatex"));
     assert!(matches!(
         &parsed.entries[0].fields["title"],
         FieldValue::Text(title) if title.contains("ⁿ⁄₂") && !title.contains("\\frac")
@@ -2726,7 +2726,7 @@ mod tests {
   #[test]
   /// Verifies callers can use the raw parser without reparsing its fields.
   fn verbatim_parser_is_callable_without_reparsing() {
-    let source = include_str!("../../test/better-bibtex/import/Better BibTeX.014.bib");
+    let source = include_str!("../test/better-bibtex/import/Better BibTeX.014.bib");
     let raw = super::parse_verbatim(source, Options::default());
     assert_eq!(raw.entries[0].fields["title"], r"\textbackslash\textbackslash\{\}: \\{}");
     let parsed = parse(source, Options::default());
@@ -2736,7 +2736,7 @@ mod tests {
   #[test]
   /// Matches the existing default snapshot for text macros and escaped braces.
   fn parses_bibtex_escape_fixture_like_default_case() {
-    let parsed = fixture(include_str!("../../test/better-bibtex/import/Better BibTeX.014.bib"));
+    let parsed = fixture(include_str!("../test/better-bibtex/import/Better BibTeX.014.bib"));
     let entry = &parsed.entries[0];
     assert_eq!(entry.key, "BibTeXEscapeTest1");
     assert_eq!(entry.mode["title"], "title");
@@ -2746,7 +2746,7 @@ mod tests {
   #[test]
   /// Checks field modes and preserves raw annotation source beside typed clauses.
   fn parses_plus_field_fixture_like_default_case() {
-    let parsed = fixture(include_str!("../../test/other/plus-field.bib"));
+    let parsed = fixture(include_str!("../test/other/plus-field.bib"));
     let entry = &parsed.entries[0];
     assert_eq!(entry.key, "9.8:11");
     assert_eq!(entry.mode["author"], "namelist");
@@ -2898,7 +2898,7 @@ mod tests {
   #[test]
   /// Checks conversion of Better BibTeX's extended name-property syntax.
   fn parses_extended_name_fixture_like_default_case() {
-    let parsed = fixture(include_str!("../../test/other/stray-marker.bib"));
+    let parsed = fixture(include_str!("../test/other/stray-marker.bib"));
     let super::FieldValue::Names(author) = &parsed.entries[0].fields["author"] else {
       panic!("author should be parsed as a name list");
     };
@@ -2924,7 +2924,7 @@ mod tests {
   #[test]
   /// Checks both existing URL and href title cases are assigned title mode.
   fn parses_two_latex_tilde_entries_like_default_case() {
-    let parsed = fixture(include_str!("../../test/better-bibtex/import/Better BibTeX.006.bib"));
+    let parsed = fixture(include_str!("../test/better-bibtex/import/Better BibTeX.006.bib"));
     assert_eq!(parsed.entries.len(), 2);
     assert_eq!(parsed.entries[0].key, "test-ticket1661");
     assert_eq!(parsed.entries[1].key, "test-ticket1661a");
@@ -2935,7 +2935,7 @@ mod tests {
   #[test]
   /// Checks quotation rendering for the shared rich-text fixture.
   fn parses_richtext_quotation_fixture_like_default_case() {
-    let parsed = fixture(include_str!("../../test/other/quotation-18.bib"));
+    let parsed = fixture(include_str!("../test/other/quotation-18.bib"));
     let entry = &parsed.entries[0];
     assert_eq!(entry.key, "demonstration");
     assert_eq!(entry.mode["note"], "richtext");
@@ -2948,7 +2948,7 @@ mod tests {
   #[test]
   /// Checks name, literal-list, and verbatim modes in a BibLaTeX entry.
   fn parses_verbatim_string_fixture_like_default_case() {
-    let parsed = fixture(include_str!("../../test/other/verbatim-string.bib"));
+    let parsed = fixture(include_str!("../test/other/verbatim-string.bib"));
     let entry = &parsed.entries[0];
     assert_eq!(entry.entry, "inbook");
     assert_eq!(entry.key, "Laskar2013");
@@ -2961,7 +2961,7 @@ mod tests {
   #[test]
   /// Checks all declarations in the shared strings fixture are retained.
   fn parses_builtin_string_table_fixture_like_default_case() {
-    let parsed = fixture(include_str!("../../test/other/strings.bib"));
+    let parsed = fixture(include_str!("../test/other/strings.bib"));
     assert!(parsed.entries.is_empty());
     assert_eq!(parsed.strings.len(), 336);
     assert_eq!(parsed.strings["A&A"], "Astronomy and Astrophysics");
@@ -2970,7 +2970,7 @@ mod tests {
   #[test]
   /// Checks Unicode quote and dash rendering in the default fixture output.
   fn parses_unicode_abstract_fixture_like_default_case() {
-    let parsed = fixture(include_str!("../../test/other/textquotedblleft_13.bib"));
+    let parsed = fixture(include_str!("../test/other/textquotedblleft_13.bib"));
     let entry = &parsed.entries[0];
     assert_eq!(entry.key, "Stahl2015");
     assert_eq!(entry.mode["title"], "title");
@@ -2991,7 +2991,7 @@ mod tests {
   #[test]
   /// Checks name splitting, literal month normalization, and title mode on a real fixture.
   fn parses_multi_author_month_fixture_like_default_case() {
-    let parsed = fixture(include_str!("../../test/other/mid-word-capital.bib"));
+    let parsed = fixture(include_str!("../test/other/mid-word-capital.bib"));
     let entry = &parsed.entries[0];
     let FieldValue::Names(authors) = &entry.fields["author"] else {
       panic!("author should be parsed as a name list");
@@ -3015,7 +3015,7 @@ mod tests {
   #[test]
   /// Checks recovery from an empty field and normalization of a double-braced institution.
   fn parses_double_comma_fixture_like_default_case() {
-    let parsed = fixture(include_str!("../../test/better-bibtex/import/double-comma.bib"));
+    let parsed = fixture(include_str!("../test/better-bibtex/import/double-comma.bib"));
     let entry = &parsed.entries[0];
     assert_eq!(entry.entry, "techreport");
     assert_eq!(entry.key, "TBD");

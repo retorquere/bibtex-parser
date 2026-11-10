@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url'
 import { before, test } from 'node:test'
 import * as yaml from 'js-yaml'
 
-import init, { english, parse as parseSync, parseAsync, tokenize, toSentenceCase } from '../rust/pkg/index.js'
+import init, { english, parse as parseSync, parseAsync, tokenize, toSentenceCase } from '../pkg/index.js'
 import initTokenizer, { tokenize as tokenizeOnly } from '@retorquere/bibtex-parser/tokenizer'
 
 const here = path.dirname(fileURLToPath(import.meta.url))
@@ -251,7 +251,7 @@ function sentenceCase(input, name, snapshot) {
 }
 
 before(async () => {
-  const wasm = fs.readFileSync(path.resolve(root, 'rust/pkg/bibtex_parser_bg.wasm'))
+  const wasm = fs.readFileSync(path.resolve(root, 'pkg/bibtex_parser_bg.wasm'))
   await init({ module_or_path: wasm })
   const tokenizerWasm = fs.readFileSync(path.resolve(root, 'dist/tokenizer/bibtex_tokenizer_bg.wasm'))
   await initTokenizer({ module_or_path: tokenizerWasm })

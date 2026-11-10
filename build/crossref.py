@@ -52,16 +52,10 @@ for bcf in glob.glob('submodules/biber/t/tdata/*.bcf'):
         if fsrc and ftgt and fsrc != ftgt and ftgt not in crossref[tgt][src]:
           crossref[tgt][src][ftgt] = fsrc
 
-# Sentinel: ensures the same-name inheritance loop in index.ts fires for every
-# crossref pair, even when no explicit type-specific mapping exists.
+# Sentinel: preserve an empty default mapping for untyped cross-reference pairs.
 crossref['*']['*']  # touch to create the empty dict via defaultdict
 
-with open('js/crossref.ts', 'w') as f:
-  print(f'export const crossref: Record<string, Record<string, Record<string, string>>> = {json.dumps(crossref, indent="  ", sort_keys=True)} as const\n', file=f)
 with open('data/crossref.json', 'w') as f:
-  print(json.dumps(crossref, indent='  ', sort_keys=True), file=f)
-Path('rust/data').mkdir(parents=True, exist_ok=True)
-with open('rust/data/crossref.json', 'w') as f:
   print(json.dumps(crossref, indent='  ', sort_keys=True), file=f)
 
 # ── 2. Allowed fields per entry type ──────────────────────────────────────────
@@ -124,10 +118,5 @@ no_crossref.add('xdata')
 no_crossref.add('file')  # per-entry local path; never meaningful to inherit
 no_crossref = sorted(no_crossref)
 
-with open('js/fields.ts', 'w') as f:
-  print(f'export const allowed: Record<string, string[]> = {json.dumps(allowed, indent="  ", sort_keys=True)} as const\n', file=f)
-  print(f'export const noCrossRef: string[] = {json.dumps(no_crossref, indent="  ", sort_keys=True)} as const\n', file=f)
 with open('data/fields.json', 'w') as f:
-  print(json.dumps({'allowed': allowed, 'noCrossRef': no_crossref}, indent='  ', sort_keys=True), file=f)
-with open('rust/data/fields.json', 'w') as f:
   print(json.dumps({'allowed': allowed, 'noCrossRef': no_crossref}, indent='  ', sort_keys=True), file=f)

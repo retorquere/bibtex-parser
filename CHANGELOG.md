@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Removed the pure TypeScript parser and its `/js` package entry point. The Rust crate now uses the repository root Cargo layout.
+
 ## Since v10.0.2
 
 - The package's default entry point now uses the Rust/WebAssembly parser. A native Rust crate is also available, and the TypeScript implementation remains available from `@retorquere/bibtex-parser/js`.

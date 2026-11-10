@@ -13,7 +13,7 @@ use unicode_tables::UnicodeMapping;
 fn main() {
   let manifest = PathBuf::from(env::var_os("CARGO_MANIFEST_DIR").expect("Cargo provides CARGO_MANIFEST_DIR"));
   let local_data = manifest.join("data/prepositions.json");
-  // The standalone crate is nested one level below the shared data directory.
+  // The tokenizer subcrate is nested one level below the shared data directory.
   let source = if local_data.is_file() { local_data } else { manifest.join("../data/prepositions.json") };
   println!("cargo:rerun-if-changed={}", source.display());
 

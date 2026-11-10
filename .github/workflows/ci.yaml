@@ -54,10 +54,13 @@ jobs:
       with:
         tool: wasm-pack
 
-    - name: build all parsers
+    - name: test native Rust workspace
+      run: cargo test --workspace
+
+    - name: build Rust parsers
       run: |
         npm install
-        npm run build:all
+        npm run build
 
     - name: upload parser build
       uses: actions/upload-artifact@v7
@@ -65,7 +68,7 @@ jobs:
         name: parser-build
         path: |
           dist/
-          rust/pkg/
+          pkg/
         if-no-files-found: error
 
   test:
@@ -73,7 +76,6 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        library: ['typescript', 'wasm']
         sentencecase: ['on+guess', 'on', 'off']
         caseprotection: [ 'as-needed', 'strict', 'off' ]
         preservequoted: [ '-p', '-P' ]
@@ -91,21 +93,8 @@ jobs:
       with:
         name: parser-build
         path: .
-    - name: test ${{ matrix.library }} parser
-      if: matrix.library != 'typescript' || !startsWith(github.ref, 'refs/tags/')
-      run: |
-        case "${{ matrix.library }}" in
-          typescript)
-            ./test/js.js --sc ${{ matrix.sentencecase }} --cp ${{ matrix.caseprotection }} ${{ matrix.preservequoted }} --big
-            ;;
-          wasm)
-            node test/wasm.js --sc ${{ matrix.sentencecase }} --cp ${{ matrix.caseprotection }} ${{ matrix.preservequoted }} --big
-            ;;
-          *)
-            echo "Unsupported library: ${{ matrix.library }}" >&2
-            exit 1
-            ;;
-        esac
+    - name: test WASM parser
+      run: node test/run.js --sc ${{ matrix.sentencecase }} --cp ${{ matrix.caseprotection }} ${{ matrix.preservequoted }} --big
 
   pages:
     needs: [cancel_master, test]

@@ -10,12 +10,6 @@
       "types": "./dist/wasm/index.d.ts",
       "import": "./dist/wasm/index.js"
     },
-    "./js": {
-      "import": {
-        "types": "./dist/esm/index.d.ts",
-        "default": "./dist/esm/index.js"
-      }
-    },
     "./bibtex_parser_bg.wasm": "./dist/wasm/bibtex_parser_bg.wasm",
     "./bibtex_tokenizer_bg.wasm": "./dist/tokenizer/bibtex_tokenizer_bg.wasm",
     "./tokenizer": {
@@ -24,38 +18,26 @@
       "default": "./dist/tokenizer/index.js"
     }
   },
-  "typings": "./index.d.ts",
   "scripts": {
-    "unified": "tsx unified.ts",
-    "lint": "dprint fmt js/*.ts && dprint check js/*.ts",
+    "lint": "cargo fmt --all -- --check",
     "prestart": "npm run lint",
     "start": "npm run build",
-    "build:esm": "rm -rf dist/esm dist/types dist/cjs && esbuild js/*.ts --outdir=dist/esm --format=esm --sourcemap --target=es2020 --loader:.ts=ts",
-    "build:types": "tsc --emitDeclarationOnly -d -p js/tsconfig.esm.json",
-    "build:ts": "npm run build:esm && npm run build:types",
-    "build:wasm": "node rust/build-wasm.mjs",
-    "bench": "npm run build:ts && npm run build:wasm && node test/parser-benchmark.mjs",
-    "prebuild": "rm -rf dist && mkdir -p dist/data && cp data/*.json dist/data && ./build/abbr.py && ./build/prepositions.py",
-    "build": "npm run build:wasm",
-    "prebuild:all": "npm run prebuild",
-    "build:all": "npm run build:ts && npm run build:wasm",
+    "bench": "npm run build && node test/tokenizer-benchmark.mjs",
+    "prebuild": "rm -rf dist && mkdir -p dist/data && cp data/*.json dist/data && ./build/abbr.py",
+    "build": "node build-wasm.mjs",
     "pretest": "npm start",
-    "test": "npm run test:wasm",
-    "test:wasm": "node --test test/wasm.js",
-    "pretest:js": "npm run build:ts",
-    "test:js": "node test/js.js",
-    "pretest:all": "npm run build:all",
-    "test:all": "npm run test:wasm && npm run test:js",
-    "test:release": "npm run test:wasm",
-    "test:rust": "cargo test --manifest-path rust/Cargo.toml",
+    "test": "npm run test:rust && npm run test:wasm",
+    "test:wasm": "node --test test/run.js",
+    "test:release": "npm run test:rust && npm run test:wasm",
+    "test:rust": "cargo test --workspace",
     "minitest": "./build/crossref.py && npm run build && node i.js",
     "list": "tar tvf $(npm pack)",
-    "prepublishOnly": "npm run build:all && npm run test:release",
+    "prepublishOnly": "npm run build && npm run test:release",
     "abbr": "./build/abbr.py",
     "preversion": "npm run abbr && npm run test:release",
     "postversion": "git push --follow-tags",
     "update-cases": "curl -s https://raw.githubusercontent.com/retorquere/zotero-better-bibtex/master/test/loaded.json | jq -r '.[] | select(test(\"\\\\.bib((la)?tex)?$\"))' | rsync -av --delete -m --files-from=- ../better-bibtex/test/fixtures/ test/better-bibtex/",
-    "predocs": "npm run build:all",
+    "predocs": "npm run build",
     "docs": "typedoc --tsconfig tsconfig.typedoc.json",
     "modules": "git submodule update --init --recursive",
     "ncu": "./build/submodules.py && ./build/crossref.py && ncu -u && npm i && git add package.json package-lock.json && npm audit fix && git commit -m ncu"
