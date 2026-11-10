@@ -33,6 +33,19 @@ fn main() {
 
 `parse` returns typed field values in a `ParsedLibrary`. Use `parse_verbatim` when scanner-level field text is needed without TeX rendering or field interpretation. Both functions accept `Options`; its default applies cross-references, parses standard field types, and sentence-cases English titles. Set `Options.raw` to skip TeX conversion and sentence casing.
 
+## JavaScript Unicode-to-LaTeX
+
+The package also exposes the Rust Unicode-to-LaTeX converter at `/unicode2latex`. It keeps the `unicode2latex` `Transform` and mapping-table API while running conversion in a small standalone WebAssembly module:
+
+```js
+import { Transform } from '@retorquere/bibtex-parser/unicode2latex'
+
+const transform = new Transform('biblatex')
+const latex = transform.tolatex('Overall Normalization of the Astrophysical → Reactions')
+```
+
+Build the package with `npm run build` to generate its tables and WebAssembly module.
+
 ## WebAssembly
 
 The crate also provides WebAssembly bindings. Build those from the repository root with `npm run build`; this optional workflow requires Node.js, the repository's npm dependencies, the `wasm32-unknown-unknown` Rust target, and `wasm-pack`.
@@ -49,7 +62,7 @@ These fixtures are not needed to build or use the standalone library.
 
 ## Unicode Table Format
 
-The Unicode conversion sources are `data/unicode2latex/latex2unicode.json` and `data/unicode2latex/combining.json`, copied from `unicode2latex` version 7.0.38. When updating the bundled data, refresh both files and record the source version here; updating the npm dependency alone does not refresh them.
+The parser's TeX-to-Unicode sources are `data/unicode2latex/latex2unicode.json` and `data/unicode2latex/combining.json`, vendored from `unicode2latex` version 7.0.38. The Unicode-to-LaTeX converter reads its source mapping from `data/unicode2latex/config.ssv`; its typed generated maps are shared at `tables/unicode2latex/`.
 
 `build.rs` normalizes shared text/math mappings and merges combining accents, then uses `postcard::to_allocvec` and `miniz_oxide::deflate::compress_to_vec` (level 9) to write `OUT_DIR/unicode_tables.deflate`. Cargo rebuilds it when either source JSON file changes; no generated binary is checked in.
 

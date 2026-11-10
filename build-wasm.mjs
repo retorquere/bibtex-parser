@@ -67,3 +67,5 @@ mkdirSync(tokenizerDist, { recursive: true })
 for (const file of ['index.js', 'index.d.ts', 'bibtex_tokenizer.js', 'bibtex_tokenizer.d.ts', 'bibtex_tokenizer_bg.wasm', 'bibtex_tokenizer_bg.wasm.d.ts']) {
   copyFileSync(path.join(pkg, 'tokenizer', file), path.join(tokenizerDist, file))
 }
+
+execFileSync(process.execPath, [path.join(rust, 'unicode2latex/wasm/build.mjs')], { stdio: 'inherit' })

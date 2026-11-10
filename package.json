@@ -16,6 +16,11 @@
       "types": "./dist/tokenizer/index.d.ts",
       "import": "./dist/tokenizer/index.js",
       "default": "./dist/tokenizer/index.js"
+    },
+    "./unicode2latex": {
+      "types": "./dist/unicode2latex/wasm/index.d.ts",
+      "import": "./dist/unicode2latex/wasm/index.js",
+      "default": "./dist/unicode2latex/wasm/index.js"
     }
   },
   "scripts": {
@@ -23,12 +28,13 @@
     "prestart": "npm run lint",
     "start": "npm run build",
     "bench": "npm run build && node test/tokenizer-benchmark.mjs",
-    "prebuild": "rm -rf dist && mkdir -p dist/data && cp data/*.json dist/data && ./build/abbr.py",
+    "prebuild": "rm -rf dist && mkdir -p dist/data && cp data/*.json dist/data && ./build/abbr.py && node unicode2latex/build.mjs",
     "build": "node build-wasm.mjs",
     "pretest": "npm start",
-    "test": "npm run test:rust && npm run test:wasm",
-    "test:wasm": "node --test test/run.js",
-    "test:release": "npm run test:rust && npm run test:wasm",
+    "test": "npm run test:rust && npm run test:bibtex-parser && npm run test:unicode2latex",
+    "test:bibtex-parser": "node --test test/run.js",
+    "test:unicode2latex": "node --test test/unicode2latex.js test/unicode2latex-wasm.js",
+    "test:release": "npm run test:rust && npm run test:bibtex-parser && npm run test:unicode2latex",
     "test:rust": "cargo test --workspace",
     "minitest": "./build/crossref.py && npm run build && node i.js",
     "list": "tar tvf $(npm pack)",
@@ -53,6 +59,7 @@
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^26.6.6",
+    "just-permutations": "^2.2.1",
     "@unified-latex/unified-latex-types": "^1.8.4",
     "benchmark": "^2.1.4",
     "command-line-args": "^6.0.2",
@@ -75,6 +82,7 @@
     "typescript": "npm:@typescript/typescript6@^6.0.2"
   },
   "dependencies": {
+    "@pomgui/deep": "^3.0.4",
     "@unified-latex/unified-latex-util-pegjs": "^1.8.4",
     "@unified-latex/unified-latex-util-print-raw": "^1.8.4",
     "@unified-latex/unified-latex-util-replace": "^1.8.4",
@@ -83,7 +91,7 @@
     "lodash.merge": "^4.6.2",
     "moo": "^0.5.3",
     "nearley": "^2.20.1",
-    "unicode2latex": "^7.0.38",
+    "tiny-merge-patch": "^1.0.0",
     "wink-eng-lite-web-model": "^1.8.1",
     "wink-nlp": "^2.4.0"
   },

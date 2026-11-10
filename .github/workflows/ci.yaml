@@ -61,6 +61,7 @@ jobs:
       run: |
         npm install
         npm run build
+        npm run test:unicode2latex
 
     - name: upload parser build
       uses: actions/upload-artifact@v7
@@ -93,7 +94,7 @@ jobs:
       with:
         name: parser-build
         path: .
-    - name: test WASM parser
+    - name: test BibTeX parser
       run: node test/run.js --sc ${{ matrix.sentencecase }} --cp ${{ matrix.caseprotection }} ${{ matrix.preservequoted }} --big
 
   pages:
