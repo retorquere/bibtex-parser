@@ -11,6 +11,9 @@ keywords = ["bibtex", "parser", "bibliography", "latex"]
 categories = ["parser-implementations", "text-processing"]
 include = ["/Cargo.toml", "/README.md", "/LICENSE", "/build.rs", "/data/**", "/src/**"]
 
+[profile.release]
+lto = true
+
 [features]
 [workspace]
 members = ["tokenizer-only"]
