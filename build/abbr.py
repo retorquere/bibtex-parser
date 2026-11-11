@@ -58,14 +58,14 @@ with open('build/unabbrev-base.json') as f:
     abbr = clean(abbr, full)
     unabbr[abbr] = full
 
-for abbrevs in glob.glob('abbrv.jabref.org/journals/journal_abbreviations_*.csv'):
+for abbrevs in glob.glob('submodules/abbrv.jabref.org/journals/journal_abbreviations_*.csv'):
   with open(abbrevs) as f:
     for full, abbr in [row[:2] for row in csv.reader(f, delimiter=';') if len(row) >= 2]:
       abbr = clean(abbr, full)
       if not accept(abbr, full): continue
       unabbr[abbr] = full
 
-for path in Path('abbreviations').rglob('*.json'):
+for path in Path('submodules/abbreviations').rglob('*.json'):
   if path.name in ['header.json', 'footer.json']: continue
   with open(str(path)) as f:
     for full, abbr in json.load(f)['default']['container-title'].items():
