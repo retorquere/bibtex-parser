@@ -1,0 +1,28 @@
+[package]
+name = "unicode2latex"
+version = "0.1.0"
+edition = "2024"
+description = "Unicode-to-LaTeX conversion for Rust and WebAssembly"
+repository = "https://github.com/retorquere/bibtex-parser.git"
+license = "MIT"
+default-run = "rebuild"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+indexmap = { version = "2", features = ["serde"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1.0.154"
+unicode-normalization = "0.1"
+wasm-bindgen = "0.2"
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+csv = "1.4.0"
+rusqlite = { version = "0.41.1", features = ["bundled"] }
+
+[build-dependencies]
+csv = "1.4.0"
+rusqlite = { version = "0.41.1", features = ["bundled"] }
+serde_json = "1.0.154"
+
