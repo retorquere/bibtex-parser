@@ -86,7 +86,7 @@ jobs:
       uses: actions/download-artifact@v8
       with:
         name: parser-build
-        path: .
+        path: dist/
     - name: test Unicode-to-LaTeX
       run: npm run test:unicode2latex
 
@@ -111,7 +111,7 @@ jobs:
       uses: actions/download-artifact@v8
       with:
         name: parser-build
-        path: .
+        path: dist/
     - name: test BibTeX parser
       run: node test/run.js --sc ${{ matrix.sentencecase }} --cp ${{ matrix.caseprotection }} ${{ matrix.preservequoted }} --big
 
@@ -142,7 +142,7 @@ jobs:
       uses: actions/download-artifact@v8
       with:
         name: parser-build
-        path: .
+        path: dist/
     - name: generate documentation
       run: npm run docs --ignore-scripts -- --treatWarningsAsErrors
     - name: configure Pages
@@ -168,7 +168,7 @@ jobs:
       uses: actions/download-artifact@v8
       with:
         name: parser-build
-        path: .
+        path: dist/
     - name: install node
       uses: actions/setup-node@v7
       with:
