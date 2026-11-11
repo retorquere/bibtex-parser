@@ -3,7 +3,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 
-const { Transform } = await import('../dist/unicode2latex/index.js')
+import { Transform } from '@retorquere/bibtex-parser/unicode2latex'
 
 test('macro spacer', () => {
   const tx = new Transform('biblatex')

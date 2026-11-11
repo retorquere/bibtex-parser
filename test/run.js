@@ -9,12 +9,11 @@ import { fileURLToPath } from 'node:url'
 import { before, test } from 'node:test'
 import * as yaml from 'js-yaml'
 
-import init, { english, parse as parseSync, parseAsync, tokenize, toSentenceCase } from '../pkg/index.js'
-import initTokenizer, { tokenize as tokenizeOnly } from '@retorquere/bibtex-parser/tokenizer'
-
 const here = path.dirname(fileURLToPath(import.meta.url))
 const root = path.resolve(here, '..')
 const saved = path.resolve(here, 'run.yaml')
+import init, { english, parse as parseSync, parseAsync, tokenize, toSentenceCase } from '@retorquere/bibtex-parser'
+import initTokenizer, { tokenize as tokenizeOnly } from '@retorquere/bibtex-parser/tokenizer'
 
 function load(filename) {
   const data = fs.readFileSync(filename, 'utf-8')
@@ -251,9 +250,9 @@ function sentenceCase(input, name, snapshot) {
 }
 
 before(async () => {
-  const wasm = fs.readFileSync(path.resolve(root, 'pkg/bibtex_parser_bg.wasm'))
+  const wasm = fs.readFileSync(path.join(root, 'dist/bibtex_parser_bg.wasm'))
   await init({ module_or_path: wasm })
-  const tokenizerWasm = fs.readFileSync(path.resolve(root, 'dist/tokenizer/bibtex_tokenizer_bg.wasm'))
+  const tokenizerWasm = fs.readFileSync(path.join(root, 'dist/tokenizer/bibtex_tokenizer_bg.wasm'))
   await initTokenizer({ module_or_path: tokenizerWasm })
 })
 
