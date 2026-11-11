@@ -38,8 +38,9 @@ fn main() {
 The package also exposes the Rust Unicode-to-LaTeX converter at `/unicode2latex`. It keeps the `unicode2latex` `Transform` and mapping-table API while running conversion in a small standalone WebAssembly module:
 
 ```js
-import { Transform } from '@retorquere/bibtex-parser/unicode2latex'
+import init, { Transform } from '@retorquere/bibtex-parser/unicode2latex'
 
+await init()
 const transform = new Transform('biblatex')
 const latex = transform.tolatex('Overall Normalization of the Astrophysical → Reactions')
 ```

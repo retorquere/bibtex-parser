@@ -2,6 +2,8 @@
 
 use indexmap::{IndexMap, IndexSet};
 use serde::Deserialize;
+#[cfg(target_arch = "wasm32")]
+use serde::Serialize;
 use unicode_normalization::{UnicodeNormalization, char::is_combining_mark};
 use wasm_bindgen::prelude::*;
 
@@ -557,27 +559,41 @@ impl Transform {
   }
 }
 
-/// Thin WASM boundary; the Node adapter preserves the public JavaScript API.
+/// Thin WASM boundary for direct JavaScript calls and the convenience adapter.
+#[cfg(target_arch = "wasm32")]
 #[wasm_bindgen]
 pub struct RawTransform(Transform);
 
+#[cfg(target_arch = "wasm32")]
+#[derive(Serialize)]
+struct TranslationResult {
+  latex: String,
+  packages: Vec<String>,
+}
+
+#[cfg(target_arch = "wasm32")]
 #[wasm_bindgen]
 impl RawTransform {
-  /// Decode mapping options once, then retain the Rust transformer in WASM.
+  /// Deserialize mapping options once, then retain the Rust transformer in WASM.
   #[wasm_bindgen(constructor)]
-  pub fn new(mode: &str, options: &str) -> Result<RawTransform, JsError> {
-    Ok(Self(Transform::new(mode, serde_json::from_str(options)?).map_err(|error| JsError::new(&error))?))
+  pub fn new(mode: &str, options: JsValue) -> Result<RawTransform, JsError> {
+    let options = serde_wasm_bindgen::from_value(options).map_err(|error| JsError::new(&error.to_string()))?;
+    Ok(Self(Transform::new(mode, options).map_err(|error| JsError::new(&error))?))
   }
 
-  /// Return translated text and hints without routing conversion through JavaScript.
-  pub fn translate(&self, text: &str, bracemath: bool, preservemacrospacers: bool) -> String {
+  /// Return translated text and package hints as a JavaScript object.
+  pub fn translate(&self, text: &str, bracemath: bool, preservemacrospacers: bool) -> Result<JsValue, JsValue> {
     let mut options = TranslateOptions {
       bracemath,
       preservemacrospacers,
       ..TranslateOptions::default()
     };
     let latex = self.0.tolatex(text, &mut options);
-    serde_json::json!({ "latex": latex, "packages": options.packages }).to_string()
+    serde_wasm_bindgen::to_value(&TranslationResult {
+      latex,
+      packages: options.packages.into_iter().collect(),
+    })
+    .map_err(|error| JsValue::from_str(&error.to_string()))
   }
 }
 

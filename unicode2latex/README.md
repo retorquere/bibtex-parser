@@ -9,15 +9,18 @@ const packages = new Set
 console.log(tx.tolatex('your text', { packages }))
 ```
 
-## Rust/WASM for Node.js
+## Rust/WASM JavaScript API
 
 The ESM-only `@retorquere/bibtex-parser/unicode2latex` entry point exposes the
-JavaScript API through a small synchronous WASM adapter. Translation runs in
-Rust; no initialization call or Rust toolchain is needed by consumers.
+JavaScript API through a small WASM adapter. Translation runs in Rust. Call
+`init()` before constructing a transformer; without arguments it loads the WASM
+binary next to the module. Pass a URL or bytes when the host controls resource
+loading, as in an extension plugin.
 
 ```js
-import { Transform, replace_macro_spacers } from '@retorquere/bibtex-parser/unicode2latex'
+import init, { Transform, replace_macro_spacers } from '@retorquere/bibtex-parser/unicode2latex'
 
+await init()
 const tx = new Transform('biblatex', { packages: ['textcomp'] })
 const packages = new Set()
 console.log(tx.tolatex('Michał → Nguyễn', { bracemath: true, packages }))
@@ -25,8 +28,9 @@ console.log([...packages])
 ```
 
 All four modes (`minimal`, `biblatex`, `bibtex`, and `bibtex-creator`), mapping and
-translation options, and table exports are available. The WASM entry point is for
-Node.js, not browsers.
+translation options, and table exports are available. `init` accepts the same
+URL, bytes, or compiled module inputs supported by wasm-bindgen; `initSync` is
+also exported for hosts that require synchronous setup.
 
 ### Building and Testing
 

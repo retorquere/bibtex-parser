@@ -1,7 +1,13 @@
 import assert from 'node:assert/strict'
-import test from 'node:test'
+import { readFileSync } from 'node:fs'
+import { before, test } from 'node:test'
 
-import { Transform, biblatex, bibtex, combining, latex2unicode, minimal, replace_macro_spacers } from '@retorquere/bibtex-parser/unicode2latex'
+import init, { Transform, biblatex, bibtex, combining, latex2unicode, minimal, replace_macro_spacers } from '@retorquere/bibtex-parser/unicode2latex'
+
+before(async () => {
+  const wasm = readFileSync(new URL(import.meta.resolve('@retorquere/bibtex-parser/unicode2latex_bg.wasm')))
+  await init({ module_or_path: wasm })
+})
 
 test('exported mapping tables are available', () => {
   for (const table of [biblatex, bibtex, minimal, combining, latex2unicode]) {

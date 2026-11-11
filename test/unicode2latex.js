@@ -1,9 +1,15 @@
 #!/usr/bin/env node
 
 import assert from 'node:assert/strict'
-import test from 'node:test'
+import { readFileSync } from 'node:fs'
+import { before, test } from 'node:test'
 
-import { Transform } from '@retorquere/bibtex-parser/unicode2latex'
+import init, { Transform } from '@retorquere/bibtex-parser/unicode2latex'
+
+before(async () => {
+  const wasm = readFileSync(new URL(import.meta.resolve('@retorquere/bibtex-parser/unicode2latex_bg.wasm')))
+  await init({ module_or_path: wasm })
+})
 
 test('macro spacer', () => {
   const tx = new Transform('biblatex')
