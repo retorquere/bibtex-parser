@@ -1,4 +1,4 @@
-# rq-bibtex-parser
+# bbt-bibtex-parser
 
 Rust library for parsing BibTeX entries, resolving strings and cross-references, interpreting common field types, and rendering TeX values as Unicode. The crate has no runtime Node.js or JavaScript dependency.
 
@@ -8,7 +8,7 @@ Requires Rust 1.99 or newer. Standalone Cargo builds need no Node.js or npm inst
 
 ```toml
 [dependencies]
-rq-bibtex-parser = "0.1"
+bbt-bibtex-parser = "0.1"
 ```
 
 ## Usage
@@ -49,7 +49,7 @@ Build the package with `npm run build` to generate its tables and WebAssembly mo
 
 ## WebAssembly
 
-The crate also provides WebAssembly bindings. Build those from the repository root with `npm run build`; this optional workflow requires Node.js, the repository's npm dependencies, the `wasm32-unknown-unknown` Rust target, and `wasm-pack`.
+The crate also provides WebAssembly bindings. Build those from the repository root with `cargo xtask build` or `npm run build`; this optional workflow requires Node.js, the repository's npm dependencies, the `wasm32-unknown-unknown` Rust target, and `wasm-pack`. The private `xtask` owns the build pipeline and is not published with the parser.
 
 ## Testing
 
@@ -61,13 +61,15 @@ cargo test
 
 These fixtures are not needed to build or use the standalone library.
 
+Run `cargo xtask test-rust` for workspace tests with one shared table-generation step. The npm build and test commands use the same Rust task runner.
+
 ## Unicode Table Format
 
-The parser's TeX-to-Unicode sources are `data/unicode2latex/latex2unicode.json` and `data/unicode2latex/combining.json`, vendored from `unicode2latex` version 7.0.38. The Unicode-to-LaTeX converter reads its source mapping from `data/unicode2latex/config.ssv`; its generated JSON tables are shared at `tables/unicode2latex/`.
+The parser and Unicode-to-LaTeX converter use `data/unicode2latex/config.ssv` as their shared source. The build-time generator in `build/unicode_generator.rs` produces the mapping tables for both. The JavaScript build generates them once in `tables/unicode2latex/`, then shares those outputs with the Rust builds.
 
-`build.rs` normalizes shared text/math mappings and merges combining accents, then uses `postcard::to_allocvec` and `miniz_oxide::deflate::compress_to_vec` (level 9) to write `OUT_DIR/unicode_tables.deflate`. Cargo rebuilds it when either source JSON file changes; no generated binary is checked in.
+The parser's `build.rs` normalizes shared text/math mappings and merges combining accents, then uses `postcard::to_allocvec` and `miniz_oxide::deflate::compress_to_vec` (level 9) to write `OUT_DIR/unicode_tables.deflate`. Standalone Cargo builds generate their own tables, and Cargo rebuilds them when the configuration or generator changes. The npm build and Rust test scripts share a generated set and reject it if its inputs have changed. No generated tables are checked in. Building the parser also requires a C compiler for the bundled SQLite used by the generator.
 
-The payload is a raw DEFLATE stream (no zlib or gzip wrapper) containing a Postcard-encoded `Vec<UnicodeMapping>`. Both build and runtime compile the same schema from `src/unicode_tables.rs`. Postcard encodes struct fields in declaration order (`key`, `text`, `math`, `combining`), without field names. Its [wire format](https://postcard.jamesmunns.com/wire-format.html) is documented and stable since Postcard 1.0; there is no handwritten byte codec.
+The payload is a raw DEFLATE stream (no zlib or gzip wrapper) containing a Postcard-encoded `Vec<UnicodeMapping>`. Both build and runtime compile the same schema from `shared/unicode_mapping.rs`. Postcard encodes struct fields in declaration order (`key`, `text`, `math`, `combining`), without field names. Its [wire format](https://postcard.jamesmunns.com/wire-format.html) is documented and stable since Postcard 1.0; there is no handwritten byte codec.
 
 ```rust
 // Build time: serialize the shared schema, then compress.

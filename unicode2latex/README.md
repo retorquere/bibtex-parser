@@ -43,14 +43,16 @@ npm run build
 npm test
 ```
 
-`npm run build` generates the shared JSON tables and builds the parser, tokenizer,
-and Unicode-to-LaTeX WASM modules under `dist`. `npm test` runs native Rust tests,
+`npm run build` delegates to `cargo xtask build`, which generates the shared JSON
+tables and builds the parser, tokenizer, and Unicode-to-LaTeX WASM modules under
+`dist`. `npm test` runs native Rust tests,
 BibTeX parser tests, and converter expected-output/API tests covering mapping modes,
 package overrides, custom maps, combining marks, spacing, and package-reporting
 order.
 
-Cargo's build script validates `../data/unicode2latex/config.ssv` using the shared
-table generator and emits sorted static Rust tables into `OUT_DIR/tables.rs`. Rust
+The shared build-time generator validates `../data/unicode2latex/config.ssv` and
+generates the tables used by both the parser and converter. The converter's
+build script emits sorted static Rust tables into `OUT_DIR/tables.rs`. Rust
 conversion uses these tables directly, without parsing table JSON at runtime. CSV
 and SQLite remain host-side generation dependencies and are not linked into WASM.
 The Rust library also supports native use through `Transform`, `MapOptions`, and
@@ -58,8 +60,8 @@ The Rust library also supports native use through `Transform`, `MapOptions`, and
 
 ## Rebuilding Tables
 
-Run `cargo run -p unicode2latex --bin rebuild` from the repository root to convert
-`data/unicode2latex/config.ssv` into JSON tables in the shared
-`tables/unicode2latex` directory. The `rebuild` executable reads the configuration
-at runtime and validates it before replacing generated tables. The root package
-build copies those tables to `dist` and runs this generator automatically.
+Run `cargo run --release -p unicode2latex --bin rebuild` from the repository root to export
+the Cargo-generated JSON tables to `tables/unicode2latex`. The JavaScript build
+exports them once and shares them with the parser and converter builds before
+compiling the adapter and building abbreviation data. Cargo regenerates the tables
+when the configuration changes.

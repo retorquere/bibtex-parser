@@ -1,5 +1,5 @@
 [package]
-name = "rq-bibtex-parser"
+name = "bbt-bibtex-parser"
 version = "0.1.0"
 edition = "2024"
 rust-version = "1.99"
@@ -9,14 +9,14 @@ readme = "README.md"
 license = "MIT"
 keywords = ["bibtex", "parser", "bibliography", "latex"]
 categories = ["parser-implementations", "text-processing"]
-include = ["/Cargo.toml", "/README.md", "/LICENSE", "/build.rs", "/data/**", "/src/**"]
+include = ["/Cargo.toml", "/README.md", "/LICENSE", "/build.rs", "/build/*.rs", "/data/**", "/shared/**", "/src/**"]
 
 [profile.release]
 lto = true
 
 [features]
 [workspace]
-members = ["tokenizer-only", "unicode2latex"]
+members = ["tokenizer", "unicode2latex", "xtask"]
 resolver = "3"
 
 [lib]
@@ -34,8 +34,10 @@ url = "2.5.8"
 wildflower = "0.3"
 
 [build-dependencies]
+csv = "1.4.0"
 miniz_oxide = { version = "0.9.1", default-features = false, features = ["with-alloc"] }
 postcard = { version = "1.1", default-features = false, features = ["alloc"] }
+rusqlite = { version = "0.41.1", features = ["bundled"] }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 

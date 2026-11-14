@@ -5,29 +5,23 @@ use std::{
   path::{Path, PathBuf},
 };
 
-#[path = "src/unicode_tables.rs"]
+#[path = "build/prepositions.rs"]
+mod prepositions_build;
+#[path = "build/unicode_generator.rs"]
+mod unicode_generator;
+#[path = "shared/unicode_mapping.rs"]
 mod unicode_tables;
 use unicode_tables::UnicodeMapping;
 
-/// Generate shared parser data, prepositions, and Unicode tables from their JSON sources.
+/// Generate parser data, prepositions, and Unicode tables.
 fn main() {
   let manifest = PathBuf::from(env::var_os("CARGO_MANIFEST_DIR").expect("Cargo provides CARGO_MANIFEST_DIR"));
-  let local_data = manifest.join("data/prepositions.json");
-  // The tokenizer subcrate is nested one level below the shared data directory.
-  let source = if local_data.is_file() { local_data } else { manifest.join("../data/prepositions.json") };
-  println!("cargo:rerun-if-changed={}", source.display());
+  prepositions_build::generate(&manifest.join("data/prepositions.json"));
 
-  let json = fs::read_to_string(source).expect("prepositions.json is readable");
-  let prepositions: Vec<String> = serde_json::from_str(&json).expect("prepositions.json is a string array");
-  let generated = format!("&{prepositions:?}");
-  let output = PathBuf::from(env::var_os("OUT_DIR").expect("Cargo provides OUT_DIR")).join("prepositions.rs");
-  fs::write(output, generated).expect("generated prepositions.rs is writable");
-
-  // The tokenizer shares this build script but does not render TeX or embed Unicode mappings.
-  if env::var("CARGO_PKG_NAME").as_deref() == Ok("rq-bibtex-parser") {
-    generate_parser_data(&manifest);
-    pack_unicode_mappings(&manifest);
-  }
+  generate_parser_data(&manifest);
+  let output = PathBuf::from(env::var_os("OUT_DIR").expect("Cargo provides OUT_DIR"));
+  let tables = unicode_generator::load(&manifest, &output).expect("Unicode tables generate from the shared configuration");
+  pack_unicode_mappings(&tables);
 }
 
 #[derive(Deserialize, Serialize)]
@@ -80,19 +74,15 @@ struct Combining {
   tounicode: BTreeMap<String, String>,
 }
 
-/// Normalize upstream JSON and write a raw DEFLATE stream containing Postcard rows.
+/// Normalize generated tables and write a raw DEFLATE stream containing Postcard rows.
 ///
 /// BTreeMap provides unique UTF-8-byte-sorted keys for runtime binary search. None fields
 /// represent unavailable modes; empty strings remain valid mappings. Build failures identify
 /// invalid source data rather than producing a partially usable runtime table.
-fn pack_unicode_mappings(manifest: &Path) {
-  let source = manifest.join("data/unicode2latex");
-  let latex = source.join("latex2unicode.json");
-  let combining = source.join("combining.json");
-  println!("cargo:rerun-if-changed={}", latex.display());
-  println!("cargo:rerun-if-changed={}", combining.display());
-  let latex: BTreeMap<String, SourceMapping> = serde_json::from_slice(&fs::read(latex).expect("latex2unicode.json is readable")).expect("latex2unicode.json contains shared or mode-specific mappings");
-  let combining: Combining = serde_json::from_slice(&fs::read(combining).expect("combining.json is readable")).expect("combining.json contains a tounicode string map");
+fn pack_unicode_mappings(tables: &[(&str, serde_json::Value)]) {
+  let table = |name| tables.iter().find(|(key, _)| *key == name).expect("required Unicode table is generated").1.clone();
+  let latex: BTreeMap<String, SourceMapping> = serde_json::from_value(table("latex2unicode")).expect("latex2unicode contains shared or mode-specific mappings");
+  let combining: Combining = serde_json::from_value(table("combining")).expect("combining contains a tounicode string map");
   let mut mappings = BTreeMap::new();
   for (key, value) in latex {
     let (text, math) = match value {

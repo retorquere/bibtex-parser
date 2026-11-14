@@ -57,7 +57,7 @@ jobs:
         tool: wasm-pack
 
     - name: test native Rust workspace
-      run: cargo test --workspace
+      run: npm run test:rust
 
     - name: build Rust parsers
       run: |

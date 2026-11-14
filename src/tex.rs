@@ -137,7 +137,7 @@ enum MathDelimiter {
   Bracket,
 }
 
-include!("unicode_tables.rs");
+include!("../shared/unicode_mapping.rs");
 const UNICODE_TABLES_COMPRESSED: &[u8] = include_bytes!(concat!(env!("OUT_DIR"), "/unicode_tables.deflate"));
 static DECODED_UNICODE_MAPPINGS: LazyLock<Vec<UnicodeMapping>> = LazyLock::new(decode_unicode_mappings);
 
@@ -2314,11 +2314,11 @@ mod unicode_table_tests {
     assert_eq!(escaped[0].text.as_deref(), Some("\"\n"));
   }
 
-  /// Compare every unpacked key and optional field against the independent upstream JSON sources.
+  /// Compare every unpacked key and optional field against the shared generated tables.
   #[test]
   fn embedded_rows_match_all_source_mappings() {
-    let latex: serde_json::Value = serde_json::from_str(include_str!("../data/unicode2latex/latex2unicode.json")).unwrap();
-    let combining: serde_json::Value = serde_json::from_str(include_str!("../data/unicode2latex/combining.json")).unwrap();
+    let latex: serde_json::Value = serde_json::from_str(include_str!(concat!(env!("OUT_DIR"), "/latex2unicode.json"))).unwrap();
+    let combining: serde_json::Value = serde_json::from_str(include_str!(concat!(env!("OUT_DIR"), "/combining.json"))).unwrap();
     let mut keys: std::collections::BTreeSet<String> = latex.as_object().unwrap().keys().cloned().collect();
     keys.extend(combining["tounicode"].as_object().unwrap().keys().map(|name| format!("\\{name}")));
     let mappings = decode_unicode_mappings();

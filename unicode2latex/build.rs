@@ -1,9 +1,8 @@
-#[allow(dead_code)]
-#[path = "src/bin/rebuild.rs"]
-mod generator;
-
 use serde_json::Value;
 use std::fmt::Write as _;
+
+#[path = "../build/unicode_generator.rs"]
+mod unicode_generator;
 
 /// Emit a Rust string literal, retaining absence rather than inventing empty values.
 fn optional(value: &Value) -> String {
@@ -30,14 +29,13 @@ fn character_map(map: &Value) -> String {
   source
 }
 
-/// Compile validated source mappings into static Rust tables.
+/// Compile the shared generated mappings into static Rust tables.
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-  let config = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../data/unicode2latex/config.ssv");
-  println!("cargo:rerun-if-changed={}", config.display());
-  println!("cargo:rerun-if-changed=src/bin/rebuild.rs");
   let output = std::path::PathBuf::from(std::env::var("OUT_DIR")?);
+  let manifest = std::path::Path::new(env!("CARGO_MANIFEST_DIR"));
+  let repository = manifest.parent().ok_or("unicode2latex crate has no repository parent")?;
   let mut source = String::new();
-  for (name, table) in generator::generate()? {
+  for (name, table) in unicode_generator::load(repository, &output)? {
     if matches!(name, "minimal" | "biblatex" | "bibtex") {
       write!(source, "static {}: StaticMap = StaticMap {{ base: {}, packages: &[", name.to_uppercase(), character_map(&table["base"]))?;
       for (package, map) in table["package"].as_object().unwrap() {

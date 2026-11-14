@@ -9,6 +9,26 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "320119579fcad9c21884f5c4861d16174d0e06250625266f50fe6898340abefa"
 
 [[package]]
+name = "bbt-bibtex-parser"
+version = "0.1.0"
+dependencies = [
+ "console_error_panic_hook",
+ "csv",
+ "futures-util",
+ "miniz_oxide",
+ "postcard",
+ "rusqlite",
+ "serde",
+ "serde-wasm-bindgen",
+ "serde_json",
+ "unicode-general-category",
+ "url",
+ "wasm-bindgen",
+ "wasm-bindgen-futures",
+ "wildflower",
+]
+
+[[package]]
 name = "bitflags"
 version = "2.13.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -409,29 +429,9 @@ dependencies = [
 ]
 
 [[package]]
-name = "rq-bibtex-parser"
-version = "0.1.0"
-dependencies = [
- "console_error_panic_hook",
- "futures-util",
- "miniz_oxide",
- "postcard",
- "serde",
- "serde-wasm-bindgen",
- "serde_json",
- "unicode-general-category",
- "url",
- "wasm-bindgen",
- "wasm-bindgen-futures",
- "wildflower",
-]
-
-[[package]]
 name = "rq-bibtex-tokenizer"
 version = "0.1.0"
 dependencies = [
- "miniz_oxide",
- "postcard",
  "serde",
  "serde-wasm-bindgen",
  "serde_json",
@@ -782,6 +782,13 @@ name = "writeable"
 version = "0.6.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3ad82d2a33cdc9674dc7465672f271e096168fcdbe0f799d9e6db8c5892679dc"
+
+[[package]]
+name = "xtask"
+version = "0.1.0"
+dependencies = [
+ "serde_json",
+]
 
 [[package]]
 name = "yoke"

@@ -615,6 +615,15 @@ mod tests {
     }
   }
 
+  /// Ensure the converter and exported JSON agree on a real configured mapping.
+  #[test]
+  fn generated_json_matches_converter() {
+    let table: serde_json::Value = serde_json::from_str(include_str!(concat!(env!("OUT_DIR"), "/biblatex.json"))).unwrap();
+    let expected = table["base"]["£"]["text"].as_str().unwrap();
+    let actual = Transform::new("biblatex", MapOptions::default()).unwrap().tolatex("£", &mut TranslateOptions::default());
+    assert_eq!(actual, expected);
+  }
+
   /// Match JS whitespace and ordered replacement behavior for adjacent markers.
   #[test]
   fn macro_spacers() {
