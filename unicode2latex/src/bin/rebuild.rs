@@ -44,8 +44,8 @@ pub fn generate() -> Result<Vec<(&'static str, Value)>> {
       errors.push(format!("record {line}: expected Unicode, direction, and TeX"));
       continue;
     }
-    // This decodes JSON escapes; it does not perform Unicode normalization.
-    let unicode: String = serde_json::from_str(&format!("\"{}\"", &record[0]))?; // equivalent to String.from_json + unicode_normalize
+    // Decode JSON escapes in the Unicode field.
+    let unicode: String = serde_json::from_str(&format!("\"{}\"", &record[0]))?;
     let conversion = match &record[1] {
       "<" => "t2u",
       ">" => "u2t",

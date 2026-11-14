@@ -82,7 +82,7 @@ for path in Path('submodules/abbreviations').rglob('*.json'):
         elif full.lower().startswith(existing.lower()):
           full = existing
         else:
-          print((abbr, existing, full))
+          # print((abbr, existing, full))
           if len(existing) > len(full): full = existing
 
       unabbr[abbr] = full

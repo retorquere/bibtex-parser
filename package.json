@@ -45,8 +45,8 @@
     "update-cases": "curl -s https://raw.githubusercontent.com/retorquere/zotero-better-bibtex/master/test/loaded.json | jq -r '.[] | select(test(\"\\\\.bib((la)?tex)?$\"))' | rsync -av --delete -m --files-from=- ../better-bibtex/test/fixtures/ test/better-bibtex/",
     "predocs": "npm run build",
     "docs": "typedoc --tsconfig tsconfig.typedoc.json",
-    "modules": "git submodule update --init --recursive",
-    "ncu": "./build/submodules.py && ./build/crossref.py && ncu -u && npm i && git add package.json package-lock.json && npm audit fix && git commit -m ncu"
+    "modules": "(git submodule update --init --recursive || true) && (git add submodules/ || true)",
+    "ncu": "npm run modules && ./build/crossref.py && ncu -u && npm i && git add package.json package-lock.json && npm audit fix && git commit -m ncu"
   },
   "repository": {
     "type": "git",
@@ -60,7 +60,7 @@
   "devDependencies": {
     "@types/node": "^26.6.6",
     "benchmark": "^2.1.4",
-    "glob": "^14.0.3",
+    "glob": "^14.0.4",
     "js-yaml": "^5.5.0",
     "minimist": "^1.2.8",
     "ts-node": "^10.9.2",
