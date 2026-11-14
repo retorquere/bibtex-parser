@@ -12,6 +12,7 @@ use std::{
 
 mod tex;
 mod tokenizer;
+
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 /// One BibTeX entry as read by the verbatim parser.
@@ -1906,6 +1907,33 @@ pub fn parse_verbatim(input: &str, options: Options) -> Library {
 /// Parse BibTeX and reparse its fields into typed values, rendering LaTeX content.
 pub fn parse(input: &str, options: Options) -> ParsedLibrary {
   reparse_with_options(parse_verbatim(input, options.clone()), &options)
+}
+
+/// Parse and render LaTeX text as if it were a literal field value, converting TeX to Unicode.
+///
+/// This function processes a string containing LaTeX markup (such as `{\\'e}`, `\textsuperscript{th}`,
+/// or `{\\"a}`) and returns the rendered result with LaTeX converted to Unicode characters and
+/// markup converted to HTML tags. This is equivalent to rendering the text as a literal field in a
+/// BibTeX entry.
+///
+/// # Arguments
+///
+/// * `input` - LaTeX text to parse and render
+///
+/// # Returns
+///
+/// The rendered text with LaTeX converted to Unicode, HTML markup, and special TeX constructs
+/// processed. For example, `{\\'e}` becomes `é`.
+///
+/// # Example
+///
+/// ```ignore
+/// assert_eq!(latex2unicode("{\\\\'e}"), "é");
+/// assert_eq!(latex2unicode("\\textbf{bold}"), "<b>bold</b>");
+/// ```
+pub fn latex2unicode(input: &str) -> String {
+  let mut renderer = tex::LibraryRenderer::new(None, false, tex::CaseProtection::default());
+  tex::finalize_markup(renderer.render(input, tex::RenderContext::field(tex::RenderMode::Text, false, false)).trim(), true)
 }
 
 #[cfg(target_arch = "wasm32")]

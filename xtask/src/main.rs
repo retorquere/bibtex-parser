@@ -122,10 +122,8 @@ impl Tasks {
         .current_dir(directory)
         .arg("build")
         .arg(input)
-        .args(["--target", "web", "--out-dir"])
-        .arg(output)
-        .arg("--out-name")
-        .arg(name)
+        .args(["--target", "web", "--out-dir"]).arg(output)
+        .arg("--out-name").arg(name)
         .env("BBT_UNICODE_TABLES", &self.tables),
     )
   }
