@@ -3,7 +3,7 @@ use std::{error::Error, fs, path::Path};
 /// Export the cached, Cargo-generated JSON tables for JavaScript consumers.
 fn main() -> Result<(), Box<dyn Error>> {
   let repository = Path::new(env!("CARGO_MANIFEST_DIR")).parent().ok_or("unicode2latex crate has no repository parent")?;
-  let root = repository.join("tables/unicode2latex");
+  let root = repository.join("data/unicode2latex");
   fs::create_dir_all(&root)?;
   for (name, table) in [
     ("combining", include_str!(concat!(env!("OUT_DIR"), "/combining.json"))),

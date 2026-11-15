@@ -6,4 +6,10 @@ rust-version = "1.99"
 publish = false
 
 [dependencies]
+bibtex_parser = { package = "bbt-bibtex-parser", path = ".." }
+csv = "1.4.0"
+glob = "0.3.4"
+regex = "1"
+reqwest = { version = "0.13.5", features = ["blocking"] }
 serde_json = "1"
+unicode2latex = { path = "../unicode2latex" }

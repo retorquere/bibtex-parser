@@ -1,9 +1,9 @@
 import init, { initSync, RawTransform, replace_macro_spacers } from './unicode2latex.js'
-import biblatexTable from '../tables/unicode2latex/biblatex.json' with { type: 'json' }
-import bibtexTable from '../tables/unicode2latex/bibtex.json' with { type: 'json' }
-import combiningTable from '../tables/unicode2latex/combining.json' with { type: 'json' }
-import latex2unicodeTable from '../tables/unicode2latex/latex2unicode.json' with { type: 'json' }
-import minimalTable from '../tables/unicode2latex/minimal.json' with { type: 'json' }
+import biblatexTable from '../data/unicode2latex/biblatex.json' with { type: 'json' }
+import bibtexTable from '../data/unicode2latex/bibtex.json' with { type: 'json' }
+import combiningTable from '../data/unicode2latex/combining.json' with { type: 'json' }
+import latex2unicodeTable from '../data/unicode2latex/latex2unicode.json' with { type: 'json' }
+import minimalTable from '../data/unicode2latex/minimal.json' with { type: 'json' }
 
 export { init, initSync, replace_macro_spacers }
 export default init

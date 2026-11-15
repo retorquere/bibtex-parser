@@ -61,7 +61,7 @@ The Rust library also supports native use through `Transform`, `MapOptions`, and
 ## Rebuilding Tables
 
 Run `cargo run --release -p unicode2latex --bin rebuild` from the repository root to export
-the Cargo-generated JSON tables to `tables/unicode2latex`. The JavaScript build
+the Cargo-generated JSON tables to `data/unicode2latex`. The JavaScript build
 exports them once and shares them with the parser and converter builds before
 compiling the adapter and building abbreviation data. Cargo regenerates the tables
 when the configuration changes.

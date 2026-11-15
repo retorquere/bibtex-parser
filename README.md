@@ -65,7 +65,7 @@ Run `cargo xtask test-rust` for workspace tests with one shared table-generation
 
 ## Unicode Table Format
 
-The parser and Unicode-to-LaTeX converter use `data/unicode2latex/config.ssv` as their shared source. The build-time generator in `build/unicode_generator.rs` produces the mapping tables for both. The JavaScript build generates them once in `tables/unicode2latex/`, then shares those outputs with the Rust builds.
+The parser and Unicode-to-LaTeX converter use `data/unicode2latex/config.ssv` as their shared source. The build-time generator in `build/unicode_generator.rs` produces the mapping tables for both. The JavaScript build generates them once in `data/unicode2latex/`, then shares those outputs with the Rust builds.
 
 The parser's `build.rs` normalizes shared text/math mappings and merges combining accents, then uses `postcard::to_allocvec` and `miniz_oxide::deflate::compress_to_vec` (level 9) to write `OUT_DIR/unicode_tables.deflate`. Standalone Cargo builds generate their own tables, and Cargo rebuilds them when the configuration or generator changes. The npm build and Rust test scripts share a generated set and reject it if its inputs have changed. No generated tables are checked in. Building the parser also requires a C compiler for the bundled SQLite used by the generator.
 
