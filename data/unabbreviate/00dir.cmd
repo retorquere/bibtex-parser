@@ -1,0 +1,16 @@
+get 00dir.cmd
+get 00dir.html
+get 00dir.lst
+get 00tdir.cmd
+get 00tdir.html
+get 00tdir.lst
+get index
+get index.html
+get institut.bib
+get institut.sok
+get journal.bib
+get journal.sok
+get mrabbrev.bib
+get mrabbrev.sok
+get publish.bib
+get publish.sok

@@ -71,8 +71,7 @@ fn bounded<'source>(source: &'source str, text: Option<&'source str>) -> Option<
   (!source[text.len()..].chars().next().is_some_and(is_word_character)).then_some(text)
 }
 
-/// English prepositions shared with the TypeScript tokenizer, generated from JSON at build time.
-static PREPOSITIONS: &[&str] = include!(concat!(env!("OUT_DIR"), "/prepositions.rs"));
+include!("../shared/prepositions.rs");
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, serde::Serialize)]
 #[serde(rename_all = "lowercase")]

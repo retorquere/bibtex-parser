@@ -1,4 +1,5 @@
-[
+/// English prepositions used by the parser and tokenizer-only WASM crate.
+const PREPOSITIONS: &[&str] = &[
   "a",
   "about",
   "above",
@@ -84,5 +85,5 @@
   "with",
   "within",
   "without",
-  "yet"
-]
+  "yet",
+];

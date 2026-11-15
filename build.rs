@@ -5,18 +5,15 @@ use std::{
   path::{Path, PathBuf},
 };
 
-#[path = "build/prepositions.rs"]
-mod prepositions_build;
 #[path = "build/unicode_generator.rs"]
 mod unicode_generator;
 #[path = "shared/unicode_mapping.rs"]
 mod unicode_tables;
 use unicode_tables::UnicodeMapping;
 
-/// Generate parser data, prepositions, and Unicode tables.
+/// Generate parser data and Unicode tables.
 fn main() {
   let manifest = PathBuf::from(env::var_os("CARGO_MANIFEST_DIR").expect("Cargo provides CARGO_MANIFEST_DIR"));
-  prepositions_build::generate(&manifest.join("data/prepositions.json"));
 
   generate_parser_data(&manifest);
   let output = PathBuf::from(env::var_os("OUT_DIR").expect("Cargo provides OUT_DIR"));
