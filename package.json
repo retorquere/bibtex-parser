@@ -43,7 +43,8 @@
     "predocs": "cargo xtask build",
     "docs": "typedoc --tsconfig tsconfig.typedoc.json",
     "modules": "(git submodule update --init --recursive || true) && (git add submodules/ || true)",
-    "ncu": "npm run modules && ./build/crossref.py && ncu -u && npm i && git add package.json package-lock.json && npm audit fix && git commit -m ncu"
+    "update-crossref": "git submodule update --init -- submodules/biber && cargo check -p bbt-bibtex-parser",
+    "ncu": "npm run modules && npm run update-crossref && ncu -u && npm i && git add package.json package-lock.json && npm audit fix && git commit -m ncu"
   },
   "repository": {
     "type": "git",

@@ -5,16 +5,19 @@ use std::{
   path::{Path, PathBuf},
 };
 
+#[path = "build/crossref.rs"]
+mod crossref_generator;
 #[path = "build/unicode_generator.rs"]
 mod unicode_generator;
 #[path = "shared/unicode_mapping.rs"]
 mod unicode_tables;
 use unicode_tables::UnicodeMapping;
 
-/// Generate parser data and Unicode tables.
+/// Regenerate parser data before embedding it alongside the Unicode tables.
 fn main() {
   let manifest = PathBuf::from(env::var_os("CARGO_MANIFEST_DIR").expect("Cargo provides CARGO_MANIFEST_DIR"));
 
+  crossref_generator::generate(&manifest).expect("cross-reference data generation succeeds");
   generate_parser_data(&manifest);
   let output = PathBuf::from(env::var_os("OUT_DIR").expect("Cargo provides OUT_DIR"));
   let tables = unicode_generator::load(&manifest, &output).expect("Unicode tables generate from the shared configuration");
