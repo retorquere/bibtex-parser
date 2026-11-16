@@ -1,4 +1,4 @@
-use std::{collections::BTreeSet, error::Error, fmt::Write as _, fs, path::Path};
+use std::{collections::BTreeSet, error::Error, fs, path::Path};
 
 use rusqlite::{Connection, params};
 use serde_json::{Map, Value, json};
@@ -290,22 +290,7 @@ fn generate(config: &str) -> Result<Vec<(&'static str, Value)>> {
 pub fn write_tables(root: &Path, tables: &[(&str, Value)]) -> Result<()> {
   fs::create_dir_all(&root)?;
   for (name, table) in tables {
-    fs::write(root.join(format!("{name}.json")), ascii_json(table)?)?;
+    fs::write(root.join(format!("{name}.json")), serde_json::to_string(table)?)?;
   }
   Ok(())
-}
-
-/// Escape non-ASCII characters so generated JSON remains portable text.
-fn ascii_json(value: &Value) -> Result<String> {
-  let serialized = serde_json::to_string_pretty(value)?;
-  let mut ascii = String::with_capacity(serialized.len());
-  for unit in serialized.encode_utf16() {
-    if (0x20..=0x7e).contains(&unit) || matches!(unit, 0x0a | 0x0d) {
-      ascii.push(char::from_u32(u32::from(unit)).unwrap());
-    } else {
-      // Escaping UTF-16 units represents supplementary characters as surrogate pairs.
-      write!(ascii, "\\u{unit:04x}")?;
-    }
-  }
-  Ok(ascii)
 }

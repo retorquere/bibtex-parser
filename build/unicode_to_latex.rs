@@ -28,6 +28,7 @@ pub struct UnicodeTables {
 }
 
 /// Serialize Unicode-to-LaTeX mappings into compressed binary format.
+/// Uses Postcard for compact binary serialization, compressed with DEFLATE.
 pub fn generate(tables: &[(&str, Value)], output: &Path) -> Result<()> {
   let mut unicode_tables = UnicodeTables {
     minimal: Default::default(),
@@ -60,7 +61,7 @@ pub fn generate(tables: &[(&str, Value)], output: &Path) -> Result<()> {
     }
   }
 
-  // Serialize to Postcard binary and compress with DEFLATE.
+  // Serialize to Postcard binary and compress with DEFLATE for best balance.
   let encoded = postcard::to_allocvec(&unicode_tables)?;
   let compressed = miniz_oxide::deflate::compress_to_vec(&encoded, 9);
   let output_path = output.join("unicode_to_latex_tables.deflate");
@@ -79,10 +80,7 @@ fn extract_character_map(map: &Value) -> Result<CharacterMap> {
       macrospacer: entry["macrospacer"].as_bool().unwrap_or(false),
       stopgap: entry["stopgap"].as_bool().unwrap_or(false),
       combining: entry["combining"].as_bool().unwrap_or(false),
-      alt: entry["alt"]
-        .as_array()
-        .map(|arr| arr.iter().filter_map(|v| v.as_str().map(String::from)).collect())
-        .unwrap_or_default(),
+      alt: entry["alt"].as_array().map(|arr| arr.iter().filter_map(|v| v.as_str().map(String::from)).collect()).unwrap_or_default(),
     };
     entries.push((unicode.clone(), char_entry));
   }

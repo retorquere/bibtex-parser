@@ -4,9 +4,9 @@ use indexmap::{IndexMap, IndexSet};
 use serde::Deserialize;
 #[cfg(target_arch = "wasm32")]
 use serde::Serialize;
+use std::sync::OnceLock;
 use unicode_normalization::{UnicodeNormalization, char::is_combining_mark};
 use wasm_bindgen::prelude::*;
-use std::sync::OnceLock;
 
 /// The two TeX output modes; conversion starts in text mode.
 #[derive(Clone, Copy, PartialEq)]
@@ -51,26 +51,24 @@ static UNICODE_TABLES: OnceLock<(LoadedMap, LoadedMap, LoadedMap, Vec<(String, S
 fn load_unicode_tables() -> &'static (LoadedMap, LoadedMap, LoadedMap, Vec<(String, String, String)>) {
   UNICODE_TABLES.get_or_init(|| {
     const COMPRESSED_TABLES: &[u8] = include_bytes!(concat!(env!("OUT_DIR"), "/unicode_to_latex_tables.deflate"));
-    let decompressed = miniz_oxide::inflate::decompress_to_vec(COMPRESSED_TABLES)
-      .expect("Unicode table decompression succeeds");
-    let tables: UnicodeTables = postcard::from_bytes(&decompressed)
-      .expect("Unicode table deserialization succeeds");
-    
+    let decompressed = miniz_oxide::inflate::decompress_to_vec(COMPRESSED_TABLES).expect("Unicode table decompression succeeds");
+    let tables: UnicodeTables = postcard::from_bytes(&decompressed).expect("Unicode table deserialization succeeds");
+
     let minimal = LoadedMap {
       base: tables.minimal.0,
       packages: tables.minimal.1.into_iter().map(|(name, entries)| (name, entries)).collect(),
     };
-    
+
     let bibtex = LoadedMap {
       base: tables.bibtex.0,
       packages: tables.bibtex.1.into_iter().map(|(name, entries)| (name, entries)).collect(),
     };
-    
+
     let biblatex = LoadedMap {
       base: tables.biblatex.0,
       packages: tables.biblatex.1.into_iter().map(|(name, entries)| (name, entries)).collect(),
     };
-    
+
     (minimal, bibtex, biblatex, tables.combining)
   })
 }
