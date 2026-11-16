@@ -97,7 +97,7 @@ pub fn generate(manifest: &Path) -> Result<()> {
   }
   // Keep the empty default mapping so runtime inheritance handles every untyped pair.
   crossref.entry("*".to_owned()).or_default().entry("*".to_owned()).or_default();
-  let mut json = serde_json::to_string_pretty(&crossref)?;
+  let mut json = serde_json::to_string(&crossref)?;
   json.push('\n');
   write_if_changed(&manifest.join("data/crossref.json"), &json).context("writing data/crossref.json")?;
 
@@ -158,7 +158,7 @@ pub fn generate(manifest: &Path) -> Result<()> {
     allowed,
     no_cross_ref: no_crossref.into_iter().collect(),
   };
-  let mut json = serde_json::to_string_pretty(&fields)?;
+  let mut json = serde_json::to_string(&fields)?;
   json.push('\n');
   write_if_changed(&manifest.join("data/fields.json"), &json).context("writing data/fields.json")?;
   Ok(())

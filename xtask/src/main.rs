@@ -161,7 +161,7 @@ impl Tasks {
     let manifest_path = pkg.join("package.json");
     let mut manifest: Value = serde_json::from_slice(&fs::read(&manifest_path)?)?;
     configure_manifest(&mut manifest)?;
-    fs::write(manifest_path, format!("{}\n", serde_json::to_string_pretty(&manifest)?))?;
+    fs::write(manifest_path, format!("{}\n", serde_json::to_string(&manifest)?))?;
     for file in PARSER_FILES {
       copy(&pkg.join(file), &dist.join(file))?;
     }

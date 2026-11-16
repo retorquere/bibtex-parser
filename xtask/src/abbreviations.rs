@@ -159,7 +159,7 @@ impl Abbreviations {
 
     // Parse the combined BibTeX source to resolve and serialize its string definitions.
     let parsed = parse_bibtex(&self.strings, BibTeXOptions::default());
-    fs::write(dist.join("strings.json"), serde_json::to_string_pretty(&parsed.strings)?)?;
+    fs::write(dist.join("strings.json"), serde_json::to_string(&parsed.strings)?)?;
 
     // save unabbreviate mapping
     fs::write(dist.join("unabbreviate.json"), serde_json::to_string(&self.unabbr)?)?;
