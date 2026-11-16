@@ -24,6 +24,8 @@
     "test:rust": "cargo xtask test-rust",
     "list": "tar tvf $(npm pack)",
     "prepublishOnly": "cargo xtask publish-check",
+    "prepack": "cp README.md README.md.bak && cp JavaScript.md README.md",
+    "postpack": "mv README.md.bak README.md",
     "abbr": "cargo xtask abbr",
     "preversion": "cargo xtask preversion",
     "version": "cargo set-version $npm_package_version && git add Cargo.toml Cargo.lock xtask/Cargo.toml",
