@@ -6,7 +6,7 @@ use std::{
 };
 mod abbreviations;
 
-const PARSER_FILES: &[&str] = &["bibtex_parser_bg.wasm", "bibtex_parser.js", "bibtex_parser.d.ts", "bibtex_parser_bg.wasm.d.ts", "index.js", "index.d.ts", "english.json", "snippets"];
+const PARSER_FILES: &[&str] = &["bibtex_parser_bg.wasm", "bibtex_parser.js", "bibtex_parser.d.ts", "bibtex_parser_bg.wasm.d.ts", "index.js", "index.d.ts", "snippets"];
 
 /// Run a command with inherited output and report both launch and exit failures.
 fn run(command: &mut Command) -> io::Result<()> {
@@ -147,7 +147,7 @@ impl Tasks {
     remove_file(&pkg.join("jabref.js"))?;
     remove_file(&pkg.join("jabref.d.ts"))?;
 
-    fs::copy(self.root.join("data/english.json"), pkg.join("english.json"))?;
+    fs::copy(self.root.join("data/english.json"), pkg.join("data/english.json"))?;
     let source = pkg.join("index.ts");
     remove_file(&source)?;
     with_temporary_copy(&self.root.join("index.ts"), &source, || self.typescript(&source, None, true))?;
@@ -158,6 +158,18 @@ impl Tasks {
     fs::write(manifest_path, format!("{}\n", serde_json::to_string(&manifest)?))?;
     for file in PARSER_FILES {
       copy(&pkg.join(file), &dist.join(file))?;
+    }
+
+    // Copy data files from pkg/data to dist/data
+    fs::create_dir_all(dist.join("data"))?;
+    if pkg.join("data").is_dir() {
+      for entry in fs::read_dir(pkg.join("data"))? {
+        let entry = entry?;
+        let path = entry.path();
+        if path.is_file() {
+          fs::copy(&path, dist.join("data").join(entry.file_name()))?;
+        }
+      }
     }
 
     // Generate abbreviation data and copy from gen/ to dist/data/

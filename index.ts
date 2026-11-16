@@ -1,6 +1,6 @@
 /** @module @retorquere/bibtex-parser */
 import init, { initSync, parse as parseWasm, parseAsync as parseAsyncWasm, parseVerbatim as parseVerbatimWasm, parseVerbatimAsync as parseVerbatimAsyncWasm, RawTransform, replace_macro_spacers, tokenize as tokenizeWasm, toSentenceCase as toSentenceCaseWasm } from './bibtex_parser.js'
-import englishDefaults from './english.json' with { type: 'json' }
+import englishDefaults from './data/english.json' with { type: 'json' }
 import biblatexTable from './data/unicode2latex/biblatex.json' with { type: 'json' }
 import bibtexTable from './data/unicode2latex/bibtex.json' with { type: 'json' }
 import combiningTable from './data/unicode2latex/combining.json' with { type: 'json' }
