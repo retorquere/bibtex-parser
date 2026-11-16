@@ -1,6 +1,9 @@
+[workspace.package]
+version = "13.0.15"
+
 [package]
 name = "bbt-bibtex-parser"
-version = "0.1.0"
+version.workspace = true
 edition = "2024"
 rust-version = "1.99"
 description = "BibTeX parser for Better BibTeX 4 zotero"
