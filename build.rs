@@ -33,8 +33,12 @@ fn main() {
   let gen_dir = manifest.join("gen/unicode2latex");
   let tables = unicode_mapping_generator::load(&manifest, &output).expect("Unicode mappings generate from the shared configuration");
 
-  // Write Unicode mappings to gen/ for distribution with npm package
-  unicode_mapping_generator::write_tables(&gen_dir, &tables).expect("Unicode mappings write to gen/");
+  // Write Unicode mappings to gen/ for xtask/npm (only in git repos, not during cargo publish)
+  if manifest.join(".git").exists() {
+    unicode_mapping_generator::write_tables(&gen_dir, &tables).expect("Unicode mappings write to gen/");
+  }
+  // Always write to OUT_DIR for Rust build
+  unicode_mapping_generator::write_tables(&output, &tables).expect("Unicode mappings write to OUT_DIR");
 
   unicode_to_latex_generator::generate(&tables, &output).expect("Unicode-to-LaTeX tables generate from the shared mappings");
   pack_unicode_mappings(&tables);
