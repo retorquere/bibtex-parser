@@ -22,7 +22,7 @@ struct CrossReferenceData {
 /// Generate the cross-reference JSON snapshots from the Biber submodule.
 ///
 /// The Biber submodule must be initialized with: `git submodule update --init -- submodules/biber`
-/// without it, the build fails because the cross-reference data is required for the parser.
+/// The cross-reference data is required for the parser.
 pub fn generate(manifest: &Path) -> Result<()> {
   let config_path = manifest.join("submodules/biber/data/biber-tool.conf");
   let bcf_directory = manifest.join("submodules/biber/t/tdata");
@@ -99,7 +99,9 @@ pub fn generate(manifest: &Path) -> Result<()> {
   crossref.entry("*".to_owned()).or_default().entry("*".to_owned()).or_default();
   let mut json = serde_json::to_string(&crossref)?;
   json.push('\n');
-  write_if_changed(&manifest.join("data/crossref.json"), &json).context("writing data/crossref.json")?;
+  let gen_dir = manifest.join("gen/crossref");
+  fs::create_dir_all(&gen_dir)?;
+  write_if_changed(&gen_dir.join("crossref.json"), &json).context("writing gen/crossref/crossref.json")?;
 
   // 2. Allowed fields per entry type. The global entryfields block omits date fields.
   let mut allowed = BTreeMap::new();
@@ -160,7 +162,7 @@ pub fn generate(manifest: &Path) -> Result<()> {
   };
   let mut json = serde_json::to_string(&fields)?;
   json.push('\n');
-  write_if_changed(&manifest.join("data/fields.json"), &json).context("writing data/fields.json")?;
+  write_if_changed(&gen_dir.join("fields.json"), &json).context("writing gen/crossref/fields.json")?;
   Ok(())
 }
 

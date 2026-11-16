@@ -58,16 +58,15 @@ struct ParserDataSource {
 
 /// Serialize validated parser data into a compact build artifact for one-time runtime decoding.
 fn generate_parser_data(manifest: &Path) {
-  let data = manifest.join("data");
-  let fields_path = data.join("fields.json");
-  let crossref_path = data.join("crossref.json");
-  let english_path = data.join("english.json");
-  for path in [&fields_path, &crossref_path, &english_path] {
-    println!("cargo:rerun-if-changed={}", path.display());
-  }
+  let gen_dir = manifest.join("gen/crossref");
+  let fields_path = gen_dir.join("fields.json");
+  let crossref_path = gen_dir.join("crossref.json");
+  let english_path = manifest.join("data/english.json");
+  // Only watch the true source file; build/crossref.rs watches Biber inputs
+  println!("cargo:rerun-if-changed={}", english_path.display());
   let parser_data = ParserDataSource {
-    cross_reference_data: serde_json::from_slice(&fs::read(&fields_path).unwrap_or_else(|e| panic!("fields.json is required but missing or unreadable ({}). Ensure submodules/biber is initialized with: git submodule update --init -- submodules/biber", e))).expect("fields.json has valid cross-reference data"),
-    cross_reference_map: serde_json::from_slice(&fs::read(&crossref_path).unwrap_or_else(|e| panic!("crossref.json is required but missing or unreadable ({}). Ensure submodules/biber is initialized with: git submodule update --init -- submodules/biber", e))).expect("crossref.json has valid type mappings"),
+    cross_reference_data: serde_json::from_slice(&fs::read(&fields_path).unwrap_or_else(|e| panic!("fields.json is required but missing or unreadable ({}). Run: cargo xtask build", e))).expect("fields.json has valid cross-reference data"),
+    cross_reference_map: serde_json::from_slice(&fs::read(&crossref_path).unwrap_or_else(|e| panic!("crossref.json is required but missing or unreadable ({}). Run: cargo xtask build", e))).expect("crossref.json has valid type mappings"),
     default_english: serde_json::from_slice(&fs::read(english_path).expect("english.json is readable")).expect("english.json is a string array"),
   };
   let encoded = postcard::to_allocvec(&parser_data).expect("parser data serializes as Postcard");

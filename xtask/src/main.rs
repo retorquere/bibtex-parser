@@ -125,12 +125,6 @@ impl Tasks {
     let pkg = self.root.join("pkg");
     remove_directory(&dist)?;
     fs::create_dir_all(dist.join("data"))?;
-    for entry in fs::read_dir(self.root.join("data"))? {
-      let entry = entry?;
-      if entry.path().extension().is_some_and(|extension| extension == "json") {
-        fs::copy(entry.path(), dist.join("data").join(entry.file_name()))?;
-      }
-    }
 
     self.ensure_unicode_mappings()?;
     let gen_mappings = self.root.join("gen/unicode2latex");
@@ -166,10 +160,10 @@ impl Tasks {
       copy(&pkg.join(file), &dist.join(file))?;
     }
 
-    // Generate abbreviation data and copy from gen/ to dist/
+    // Generate abbreviation data and copy from gen/ to dist/data/
     self.abbreviation_data()?;
     let gen_abbr = self.root.join("gen/unabbreviate");
-    let dist_abbr = dist.join("unabbreviate");
+    let dist_abbr = dist.join("data/unabbreviate");
     remove_directory(&dist_abbr)?;
     fs::create_dir_all(&dist_abbr)?;
     if gen_abbr.exists() {
