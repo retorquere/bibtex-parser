@@ -9,7 +9,7 @@ type Result<T> = std::result::Result<T, Box<dyn Error>>;
 ///
 /// Cargo reruns the build script when either the configuration or generator changes.
 pub fn load(repository: &Path, output: &Path) -> Result<Vec<(&'static str, Value)>> {
-  let config_path = repository.join("data/unicode2latex/config.ssv");
+  let config_path = repository.join("data/unicode2latex.ssv");
   let generator_path = repository.join("build/unicode_mapping_generator.rs");
   println!("cargo:rerun-if-changed={}", config_path.display());
   println!("cargo:rerun-if-changed={}", generator_path.display());
@@ -18,7 +18,7 @@ pub fn load(repository: &Path, output: &Path) -> Result<Vec<(&'static str, Value
 
 /// Generate Unicode mappings into the requested directory without Cargo build-script directives.
 pub fn generate_to(repository: &Path, output: &Path) -> Result<Vec<(&'static str, Value)>> {
-  let config_path = repository.join("data/unicode2latex/config.ssv");
+  let config_path = repository.join("data/unicode2latex.ssv");
   let config = fs::read(&config_path)?;
   let tables = generate(std::str::from_utf8(&config)?)?;
   write_tables(output, &tables)?;
@@ -290,7 +290,15 @@ fn generate(config: &str) -> Result<Vec<(&'static str, Value)>> {
 pub fn write_tables(root: &Path, tables: &[(&str, Value)]) -> Result<()> {
   fs::create_dir_all(&root)?;
   for (name, table) in tables {
-    fs::write(root.join(format!("{name}.json")), serde_json::to_string(table)?)?;
+    let path = root.join(format!("{name}.json"));
+    let new_content = serde_json::to_string(table)?;
+    // Only write if content changed to avoid unnecessary rebuilds from Cargo watching
+    if let Ok(existing) = fs::read_to_string(&path) {
+      if existing == new_content {
+        continue;
+      }
+    }
+    fs::write(path, new_content)?;
   }
   Ok(())
 }

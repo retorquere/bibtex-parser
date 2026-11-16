@@ -75,7 +75,7 @@ Run `cargo xtask test-rust` for Rust tests. Run `npm run test:unicode-mappings` 
 
 ## Unicode Mapping Data
 
-The parser and its Unicode-to-LaTeX module use `data/unicode2latex/config.ssv` as their shared source. The build-time generator in `build/unicode_mapping_generator.rs` produces the mappings. The JavaScript build exports JSON mappings to `data/unicode2latex/`; Cargo compiles the parser's Unicode-to-LaTeX data into the parser crate.
+The parser and its Unicode-to-LaTeX module use `data/unicode2latex.ssv` as their shared source. The build-time generator in `build/unicode_mapping_generator.rs` produces the mappings. The JavaScript build exports JSON mappings to `data/unicode2latex/`; Cargo compiles the parser's Unicode-to-LaTeX data into the parser crate.
 
 The parser's `build.rs` normalizes shared text/math mappings and merges combining accents, then uses `postcard::to_allocvec` and `miniz_oxide::deflate::compress_to_vec` (level 9) to write `OUT_DIR/unicode_tables.deflate`. It also compiles the converter's static mappings into the same crate. Cargo reruns the build script when the configuration or generator changes. The npm build generates workspace JSON mappings with `cargo xtask unicode-mappings` before compiling the WASM module. No generated mapping data is checked in. Building the parser also requires a C compiler for the bundled SQLite used by the generator.
 

@@ -30,11 +30,11 @@ fn main() {
   crossref_generator::generate(&manifest).expect("cross-reference data generation succeeds");
   generate_parser_data(&manifest);
   let output = PathBuf::from(env::var_os("OUT_DIR").expect("Cargo provides OUT_DIR"));
+  let gen_dir = manifest.join("gen/unicode2latex");
   let tables = unicode_mapping_generator::load(&manifest, &output).expect("Unicode mappings generate from the shared configuration");
 
-  // Also write Unicode mappings to source tree for distribution with npm package
-  let dist_mappings = manifest.join("data/unicode2latex");
-  unicode_mapping_generator::write_tables(&dist_mappings, &tables).expect("Unicode mappings write to source tree");
+  // Write Unicode mappings to gen/ for distribution with npm package
+  unicode_mapping_generator::write_tables(&gen_dir, &tables).expect("Unicode mappings write to gen/");
 
   unicode_to_latex_generator::generate(&tables, &output).expect("Unicode-to-LaTeX tables generate from the shared mappings");
   pack_unicode_mappings(&tables);

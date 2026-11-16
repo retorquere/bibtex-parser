@@ -133,13 +133,13 @@ impl Tasks {
     }
 
     self.ensure_unicode_mappings()?;
-    let mappings = self.root.join("data/unicode2latex");
+    let gen_mappings = self.root.join("gen/unicode2latex");
     let package_mappings = pkg.join("data/unicode2latex");
     let distribution_mappings = dist.join("data/unicode2latex");
     remove_directory(&package_mappings)?;
     fs::create_dir_all(&package_mappings)?;
     fs::create_dir_all(&distribution_mappings)?;
-    for entry in fs::read_dir(&mappings)? {
+    for entry in fs::read_dir(&gen_mappings)? {
       let entry = entry?;
       if entry.path().extension().is_some_and(|extension| extension == "json") {
         fs::copy(entry.path(), package_mappings.join(entry.file_name()))?;
