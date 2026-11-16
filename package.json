@@ -26,7 +26,7 @@
     "prepublishOnly": "cargo xtask publish-check",
     "abbr": "cargo xtask abbr",
     "preversion": "cargo xtask preversion",
-    "postversion": "cargo set-version $npm_package_version && git add Cargo.toml Cargo.lock && git commit --amend --no-edit && git push --follow-tags",
+    "postversion": "cargo set-version $npm_package_version && git add Cargo.toml && git commit --amend --no-edit && git push --follow-tags",
     "update-cases": "curl -s https://raw.githubusercontent.com/retorquere/zotero-better-bibtex/master/test/loaded.json | jq -r '.[] | select(test(\"\\\\.bib((la)?tex)?$\"))' | rsync -av --delete -m --files-from=- ../better-bibtex/test/fixtures/ test/better-bibtex/",
     "predocs": "cargo xtask build",
     "docs": "typedoc --tsconfig tsconfig.typedoc.json",
