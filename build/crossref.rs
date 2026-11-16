@@ -26,11 +26,20 @@ struct CrossReferenceData {
 pub fn generate(manifest: &Path) -> Result<()> {
   let config_path = manifest.join("submodules/biber/data/biber-tool.conf");
   let bcf_directory = manifest.join("submodules/biber/t/tdata");
+  let git_dir = manifest.join(".git");
+
   println!("cargo:rerun-if-changed={}", config_path.display());
   println!("cargo:rerun-if-changed={}", bcf_directory.display());
 
-  if !config_path.is_file() && !bcf_directory.is_dir() {
-    bail!("Biber submodule is required for building. Run: git submodule update --init -- submodules/biber");
+  let is_git_repo = git_dir.exists();
+  let has_submodule = config_path.is_file() && bcf_directory.is_dir();
+
+  if !has_submodule {
+    if is_git_repo {
+      bail!("Biber submodule is required for building in a git repository. Run: git submodule update --init -- submodules/biber");
+    }
+    // Building from crates.io tarball without submodules - use pre-generated files
+    return Ok(());
   }
   ensure!(config_path.is_file() && bcf_directory.is_dir(), "Biber cross-reference inputs are incomplete");
 

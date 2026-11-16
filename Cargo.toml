@@ -12,7 +12,7 @@ readme = "README.md"
 license = "MIT"
 keywords = ["bibtex", "parser", "bibliography", "latex"]
 categories = ["parser-implementations", "text-processing"]
-include = ["/Cargo.toml", "/README.md", "/LICENSE", "/build.rs", "/build/*.rs", "/data/**", "/shared/**", "/src/**"]
+include = ["/Cargo.toml", "/README.md", "/LICENSE", "/build.rs", "/build/*.rs", "/data/**", "/shared/**", "/src/**", "/gen/**"]
 
 [profile.release]
 lto = true
