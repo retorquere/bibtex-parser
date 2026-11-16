@@ -166,7 +166,22 @@ impl Tasks {
       copy(&pkg.join(file), &dist.join(file))?;
     }
 
-    self.abbreviation_data()
+    // Generate abbreviation data and copy from gen/ to dist/
+    self.abbreviation_data()?;
+    let gen_abbr = self.root.join("gen/unabbreviate");
+    let dist_abbr = dist.join("unabbreviate");
+    remove_directory(&dist_abbr)?;
+    fs::create_dir_all(&dist_abbr)?;
+    if gen_abbr.exists() {
+      for entry in fs::read_dir(&gen_abbr)? {
+        let entry = entry?;
+        let path = entry.path();
+        if path.is_file() {
+          fs::copy(&path, dist_abbr.join(entry.file_name()))?;
+        }
+      }
+    }
+    Ok(())
   }
 
   /// Generate abbreviation data from the shared Unicode mappings.

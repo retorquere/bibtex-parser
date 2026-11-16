@@ -15,7 +15,7 @@ impl Abbreviations {
   fn new() -> Self {
     Self {
       unabbr: std::collections::HashMap::new(),
-      strings: include_str!("../../data/unabbreviate/strings.bib").to_string(),
+      strings: String::new(),
       // The BibLaTeX mode matches the mappings previously used to build string definitions.
       translator: Transform::new("biblatex", MapOptions::default()).expect("biblatex is a built-in translation mode"),
     }
@@ -30,8 +30,8 @@ impl Abbreviations {
     let root = Path::new(env!("CARGO_MANIFEST_DIR")).parent().ok_or_else(|| io::Error::other("xtask manifest has no workspace parent"))?;
     let src = root.join("data").join("unabbreviate");
     fs::create_dir_all(&src)?;
-    let dist = root.join("dist").join("data").join("unabbreviate");
-    fs::create_dir_all(&dist)?;
+    let gen_dir = root.join("gen").join("unabbreviate");
+    fs::create_dir_all(&gen_dir)?;
 
     let listing = fetch("00dir.cmd").unwrap_or_else(|err| panic!("failed to fetch BibTeX strings index: {err}"));
     for bib in listing.lines() {
@@ -43,7 +43,44 @@ impl Abbreviations {
       }
     }
 
-    let base: Value = serde_json::from_str(include_str!("../../data/unabbreviate/base.json"))?;
+    // Collect base data sources
+    let base_json = root.join("data/unabbreviate/base.json");
+    let strings_bib = root.join("data/unabbreviate/strings.bib");
+    let abbreviations_rs = root.join("xtask/src/abbreviations.rs");
+    let fixups_json = root.join("data/unabbreviate/fixups.json");
+
+    let base_sources: Vec<&Path> = vec![base_json.as_path(), strings_bib.as_path(), abbreviations_rs.as_path()];
+
+    // Collect submodule CSV sources
+    let mut csv_files = Vec::new();
+    for entry in glob(root.join("submodules/abbrv.jabref.org/journals/journal_abbreviations_*.csv").to_string_lossy().as_ref())? {
+      csv_files.push(entry?);
+    }
+    let csv_sources: Vec<&Path> = csv_files.iter().map(|p| p.as_path()).collect();
+
+    // Collect submodule JSON sources
+    let mut json_files = Vec::new();
+    for entry in glob(root.join("submodules/abbreviations/**/*.json").to_string_lossy().as_ref())? {
+      let path = entry?;
+      if let Some(filename) = path.file_name().and_then(|n| n.to_str()) {
+        if filename != "header.json" && filename != "footer.json" {
+          json_files.push(path);
+        }
+      }
+    }
+    let json_sources: Vec<&Path> = json_files.iter().map(|p| p.as_path()).collect();
+
+    // Fixups "sources"
+    let fixup_sources: Vec<&Path> = vec![fixups_json.as_path()];
+
+    // Check if all source groups are up to date
+    if [&base_sources, &csv_sources, &json_sources, &fixup_sources].iter().all(|sources| is_up_to_date(&gen_dir, sources).unwrap_or(false)) {
+      return Ok(());
+    }
+
+    // Load base data and strings
+    self.strings = fs::read_to_string(&strings_bib)?;
+    let base: Value = serde_json::from_str(&fs::read_to_string(&base_json)?)?;
     if let Some(map) = base.as_object() {
       for (abbr, full) in map {
         let abbr = self.clean(abbr, full.as_str().unwrap_or(""));
@@ -54,8 +91,8 @@ impl Abbreviations {
       }
     }
 
-    for entry in glob(root.join("submodules/abbrv.jabref.org/journals/journal_abbreviations_*.csv").to_string_lossy().as_ref())? {
-      let mut reader = csv::ReaderBuilder::new().delimiter(b';').from_path(entry?)?;
+    for entry in &csv_files {
+      let mut reader = csv::ReaderBuilder::new().delimiter(b';').from_path(entry)?;
       for row in reader.records() {
         let row = row?;
         if row.len() < 2 {
@@ -70,47 +107,40 @@ impl Abbreviations {
       }
     }
 
-    for entry in glob(root.join("submodules/abbreviations/**/*.json").to_string_lossy().as_ref())? {
-      let path = entry?;
-      if let Some(filename) = path.file_name().and_then(|n| n.to_str()) {
-        if filename == "header.json" || filename == "footer.json" {
-          continue;
-        }
+    for path in &json_files {
+      let data = fs::read_to_string(path)?;
+      let base: Value = serde_json::from_str(&data)?;
+      if let Some(map) = base.get("default").and_then(|v| v.get("container-title")).and_then(|v| v.as_object()) {
+        for (abbr, full) in map {
+          let abbr = self.clean(abbr, full.as_str().unwrap_or(""));
+          let full = full.as_str().unwrap_or("");
 
-        let data = fs::read_to_string(path)?;
-        let base: Value = serde_json::from_str(&data)?;
-        if let Some(map) = base.get("default").and_then(|v| v.get("container-title")).and_then(|v| v.as_object()) {
-          for (abbr, full) in map {
-            let abbr = self.clean(abbr, full.as_str().unwrap_or(""));
-            let full = full.as_str().unwrap_or("");
+          if !accept(&abbr, full) {
+            continue;
+          }
 
-            if !accept(&abbr, full) {
-              continue;
-            }
-
-            // The first source to provide a mapping establishes its initial value.
-            if !self.unabbr.contains_key(&abbr) {
-              self.unabbr.insert(abbr, full.to_string());
-            }
-            // An exact duplicate needs no conflict resolution or redundant write.
-            else if self.unabbr[&abbr] == full {
-              continue;
-            }
-            // A shared-prefix difference can be an optional subtitle or qualifier. Keep
-            // the first-seen spelling rather than letting source order replace it.
-            else if unarticle(&self.unabbr[&abbr]).to_lowercase() == unarticle(full).to_lowercase() {
-              self.unabbr.insert(abbr, unarticle(full));
-            }
-            // The base/JabRef data is loaded before these feeds. Preserve that established
-            // spelling when a later source only adds or removes a trailing title extension.
-            else if self.unabbr[&abbr].to_lowercase().starts_with(&full.to_lowercase()) || full.to_lowercase().starts_with(&self.unabbr[&abbr].to_lowercase()) {
-              continue;
-            }
-            // With no prefix relationship, neither title is clearly just an extension
-            // of the other; prefer the longer candidate to avoid discarding title detail.
-            else if self.unabbr[&abbr].len() <= full.len() {
-              self.unabbr.insert(abbr, full.to_string());
-            }
+          // The first source to provide a mapping establishes its initial value.
+          if !self.unabbr.contains_key(&abbr) {
+            self.unabbr.insert(abbr, full.to_string());
+          }
+          // An exact duplicate needs no conflict resolution or redundant write.
+          else if self.unabbr[&abbr] == full {
+            continue;
+          }
+          // A shared-prefix difference can be an optional subtitle or qualifier. Keep
+          // the first-seen spelling rather than letting source order replace it.
+          else if unarticle(&self.unabbr[&abbr]).to_lowercase() == unarticle(full).to_lowercase() {
+            self.unabbr.insert(abbr, unarticle(full));
+          }
+          // The base/JabRef data is loaded before these feeds. Preserve that established
+          // spelling when a later source only adds or removes a trailing title extension.
+          else if self.unabbr[&abbr].to_lowercase().starts_with(&full.to_lowercase()) || full.to_lowercase().starts_with(&self.unabbr[&abbr].to_lowercase()) {
+            continue;
+          }
+          // With no prefix relationship, neither title is clearly just an extension
+          // of the other; prefer the longer candidate to avoid discarding title detail.
+          else if self.unabbr[&abbr].len() <= full.len() {
+            self.unabbr.insert(abbr, full.to_string());
           }
         }
       }
@@ -155,14 +185,14 @@ impl Abbreviations {
     }
 
     // Save strings.bib amended with JabRef string definitions to strings.bib
-    fs::write(dist.join("strings.bib"), &self.strings)?;
+    write_if_changed(gen_dir.join("strings.bib"), &self.strings)?;
 
     // Parse the combined BibTeX source to resolve and serialize its string definitions.
     let parsed = parse_bibtex(&self.strings, BibTeXOptions::default());
-    fs::write(dist.join("strings.json"), serde_json::to_string(&parsed.strings)?)?;
+    write_if_changed(gen_dir.join("strings.json"), serde_json::to_string(&parsed.strings)?)?;
 
     // save unabbreviate mapping
-    fs::write(dist.join("unabbreviate.json"), serde_json::to_string(&self.unabbr)?)?;
+    write_if_changed(gen_dir.join("unabbreviate.json"), serde_json::to_string(&self.unabbr)?)?;
     Ok(())
   }
 
@@ -247,6 +277,54 @@ fn fix(journal: &str) -> String {
     journal = re.replace_all(&journal, |caps: &regex::Captures| caps[0].to_uppercase()).to_string();
   }
   journal
+}
+
+/// Check if all target files are newer than all source files.
+/// Returns true if targets are up to date, false if regeneration is needed.
+fn is_up_to_date(target_dir: &Path, sources: &[&Path]) -> io::Result<bool> {
+  // Get the oldest target file's modification time
+  let mut oldest_target: Option<std::time::SystemTime> = None;
+  if let Ok(entries) = fs::read_dir(target_dir) {
+    for entry in entries {
+      let entry = entry?;
+      if entry.path().is_file() {
+        let mtime = entry.metadata()?.modified()?;
+        oldest_target = Some(match oldest_target {
+          None => mtime,
+          Some(prev) => prev.min(mtime),
+        });
+      }
+    }
+  }
+
+  let oldest_target = match oldest_target {
+    Some(t) => t,
+    None => return Ok(false), // Targets don't exist, need to regenerate
+  };
+
+  // Check if any source is newer than the oldest target
+  for source in sources {
+    if source.is_file() {
+      let mtime = fs::metadata(source)?.modified()?;
+      if mtime > oldest_target {
+        return Ok(false); // Source is newer, need to regenerate
+      }
+    }
+  }
+
+  Ok(true) // All targets are up to date
+}
+
+/// Write a file only if its content has changed, avoiding unnecessary filesystem writes.
+fn write_if_changed(path: impl AsRef<Path>, content: impl AsRef<[u8]>) -> io::Result<()> {
+  let path = path.as_ref();
+  let new_content = content.as_ref();
+  if let Ok(existing) = fs::read(path) {
+    if existing == new_content {
+      return Ok(());
+    }
+  }
+  fs::write(path, new_content)
 }
 
 /// Fetch a Netlib string file, reusing cached contents while its ETag is unchanged.
