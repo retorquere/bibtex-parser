@@ -40,7 +40,7 @@ wildflower = "0.3"
 
 [build-dependencies]
 anyhow = "1.0.104"
-cargo-edit = "0.13.14"
+cargo-edit = { version = "0.13.14", optional = true }
 csv = "1.4.0"
 miniz_oxide = { version = "0.9.1", default-features = false, features = ["with-alloc"] }
 postcard = { version = "1.1", default-features = false, features = ["alloc"] }
