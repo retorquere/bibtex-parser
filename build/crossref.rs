@@ -19,9 +19,10 @@ struct CrossReferenceData {
   no_cross_ref: Vec<String>,
 }
 
-/// Regenerate the cross-reference JSON snapshots when the Biber submodule is available.
+/// Generate the cross-reference JSON snapshots from the Biber submodule.
 ///
-/// Crate packages omit that submodule and therefore continue using the checked-in snapshots.
+/// The Biber submodule must be initialized with: `git submodule update --init -- submodules/biber`
+/// without it, the build fails because the cross-reference data is required for the parser.
 pub fn generate(manifest: &Path) -> Result<()> {
   let config_path = manifest.join("submodules/biber/data/biber-tool.conf");
   let bcf_directory = manifest.join("submodules/biber/t/tdata");
@@ -29,8 +30,7 @@ pub fn generate(manifest: &Path) -> Result<()> {
   println!("cargo:rerun-if-changed={}", bcf_directory.display());
 
   if !config_path.is_file() && !bcf_directory.is_dir() {
-    println!("cargo:warning=Biber sources are unavailable; using the checked-in cross-reference JSON snapshots");
-    return Ok(());
+    bail!("Biber submodule is required for building. Run: git submodule update --init -- submodules/biber");
   }
   ensure!(config_path.is_file() && bcf_directory.is_dir(), "Biber cross-reference inputs are incomplete");
 
