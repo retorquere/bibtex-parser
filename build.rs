@@ -62,8 +62,8 @@ fn generate_parser_data(manifest: &Path) {
   let fields_path = gen_dir.join("fields.json");
   let crossref_path = gen_dir.join("crossref.json");
   let english_path = manifest.join("data/english.json");
-  // Only watch the true source file; build/crossref.rs watches Biber inputs
-  println!("cargo:rerun-if-changed={}", english_path.display());
+  // Watch the entire data folder for any source file changes
+  println!("cargo:rerun-if-changed={}/data", manifest.display());
   let parser_data = ParserDataSource {
     cross_reference_data: serde_json::from_slice(&fs::read(&fields_path).unwrap_or_else(|e| panic!("fields.json is required but missing or unreadable ({}). Run: cargo xtask build", e))).expect("fields.json has valid cross-reference data"),
     cross_reference_map: serde_json::from_slice(&fs::read(&crossref_path).unwrap_or_else(|e| panic!("crossref.json is required but missing or unreadable ({}). Run: cargo xtask build", e))).expect("crossref.json has valid type mappings"),
