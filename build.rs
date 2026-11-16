@@ -7,20 +7,36 @@ use std::{
 
 #[path = "build/crossref.rs"]
 mod crossref_generator;
-#[path = "build/unicode_generator.rs"]
-mod unicode_generator;
+#[path = "build/unicode_mapping_generator.rs"]
+mod unicode_mapping_generator;
 #[path = "shared/unicode_mapping.rs"]
 mod unicode_tables;
+#[path = "build/unicode_to_latex.rs"]
+mod unicode_to_latex_generator;
 use unicode_tables::UnicodeMapping;
 
 /// Regenerate parser data before embedding it alongside the Unicode tables.
 fn main() {
   let manifest = PathBuf::from(env::var_os("CARGO_MANIFEST_DIR").expect("Cargo provides CARGO_MANIFEST_DIR"));
 
+  // Track build script modules to ensure rebuild when they change
+  println!("cargo:rerun-if-changed={}/build/crossref.rs", manifest.display());
+  println!("cargo:rerun-if-changed={}/build/unicode_mapping_generator.rs", manifest.display());
+  println!("cargo:rerun-if-changed={}/build/unicode_to_latex.rs", manifest.display());
+
+  // Track shared schema to ensure rebuild when the serialization format changes
+  println!("cargo:rerun-if-changed={}/shared/unicode_mapping.rs", manifest.display());
+
   crossref_generator::generate(&manifest).expect("cross-reference data generation succeeds");
   generate_parser_data(&manifest);
   let output = PathBuf::from(env::var_os("OUT_DIR").expect("Cargo provides OUT_DIR"));
-  let tables = unicode_generator::load(&manifest, &output).expect("Unicode tables generate from the shared configuration");
+  let tables = unicode_mapping_generator::load(&manifest, &output).expect("Unicode mappings generate from the shared configuration");
+
+  // Also write Unicode mappings to source tree for distribution with npm package
+  let dist_mappings = manifest.join("data/unicode2latex");
+  unicode_mapping_generator::write_tables(&dist_mappings, &tables).expect("Unicode mappings write to source tree");
+
+  unicode_to_latex_generator::generate(&tables, &output).expect("Unicode-to-LaTeX tables generate from the shared mappings");
   pack_unicode_mappings(&tables);
 }
 

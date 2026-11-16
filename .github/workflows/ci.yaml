@@ -63,6 +63,8 @@ jobs:
       run: |
         npm install
         npm run build
+    - name: test Unicode-to-LaTeX API
+      run: npm run test:unicode-mappings
 
     - name: upload parser build
       uses: actions/upload-artifact@v7
@@ -71,26 +73,6 @@ jobs:
         path: |
           dist/
         if-no-files-found: error
-
-  unicode2latex:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v7
-    - name: install node
-      uses: actions/setup-node@v7
-      with:
-        node-version: 24.x
-        cache: 'npm'
-    - name: install node dependencies
-      run: npm ci
-    - name: download parser build
-      uses: actions/download-artifact@v8
-      with:
-        name: parser-build
-        path: dist/
-    - name: test Unicode-to-LaTeX
-      run: npm run test:unicode2latex
 
   parser:
     needs: build
@@ -118,7 +100,7 @@ jobs:
       run: node test/run.js --sc ${{ matrix.sentencecase }} --cp ${{ matrix.caseprotection }} ${{ matrix.preservequoted }} --big
 
   pages:
-    needs: [cancel_master, parser, unicode2latex]
+    needs: [cancel_master, parser]
     if: (github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/tags/')) && needs.parser.result == 'success'
     environment:
       name: github-pages
@@ -162,7 +144,7 @@ jobs:
     permissions:
       contents: read
       id-token: write
-    needs: [parser, unicode2latex]
+    needs: [parser]
     if: startsWith(github.ref, 'refs/tags/')
     steps:
     - uses: actions/checkout@v7

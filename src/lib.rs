@@ -12,6 +12,10 @@ use std::{
 
 mod tex;
 mod tokenizer;
+/// Unicode-to-LaTeX conversion and mapping configuration.
+pub mod unicode_to_latex;
+
+pub use unicode_to_latex::{CharMap, MapOptions, TeXChar, Transform, TranslateOptions, replace_macro_spacers};
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]

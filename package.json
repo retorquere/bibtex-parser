@@ -10,19 +10,7 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
-    "./bibtex_parser_bg.wasm": "./dist/bibtex_parser_bg.wasm",
-    "./bibtex_tokenizer_bg.wasm": "./dist/tokenizer/bibtex_tokenizer_bg.wasm",
-    "./unicode2latex_bg.wasm": "./dist/unicode2latex/unicode2latex_bg.wasm",
-    "./tokenizer": {
-      "types": "./dist/tokenizer/index.d.ts",
-      "import": "./dist/tokenizer/index.js",
-      "default": "./dist/tokenizer/index.js"
-    },
-    "./unicode2latex": {
-      "types": "./dist/unicode2latex/index.d.ts",
-      "import": "./dist/unicode2latex/index.js",
-      "default": "./dist/unicode2latex/index.js"
-    }
+    "./bibtex_parser_bg.wasm": "./dist/bibtex_parser_bg.wasm"
   },
   "scripts": {
     "lint": "cargo +nightly fmt --all -- --check",
@@ -31,7 +19,7 @@
     "build": "cargo xtask build",
     "test": "cargo xtask test",
     "test:bibtex-parser": "node --test test/run.js",
-    "test:unicode2latex": "node --test test/unicode2latex.js test/unicode2latex-api.js",
+    "test:unicode-mappings": "node --test test/unicode2latex.js test/unicode2latex-api.js",
     "test:release": "cargo xtask test-release",
     "test:rust": "cargo xtask test-rust",
     "list": "tar tvf $(npm pack)",

@@ -35,21 +35,31 @@ fn main() {
 
 ## JavaScript Unicode-to-LaTeX
 
-The package also exposes the Rust Unicode-to-LaTeX converter at `/unicode2latex`. It keeps the `unicode2latex` `Transform` and mapping-table API while running conversion in a small standalone WebAssembly module:
+The parser package also exposes Unicode-to-LaTeX conversion from its main entry point. The converter shares the parser's WebAssembly module and exports its mapping data:
 
 ```js
-import init, { Transform } from '@retorquere/bibtex-parser/unicode2latex'
+import init, { Transform, biblatex } from '@retorquere/bibtex-parser'
 
 await init()
 const transform = new Transform('biblatex')
 const latex = transform.tolatex('Overall Normalization of the Astrophysical → Reactions')
+console.log(biblatex.base['→'])
 ```
 
-Build the package with `npm run build` to generate its tables and WebAssembly module.
+The same package entry point also exports `tokenize`, `replace_macro_spacers`, and the converter's mapping types and tables.
+
+The parser crate exposes the same converter from its root:
+
+```rust
+use bibtex_parser::{MapOptions, Transform, TranslateOptions};
+
+let transform = Transform::new("biblatex", MapOptions::default())?;
+let latex = transform.tolatex("Overall Normalization → Reactions", &mut TranslateOptions::default());
+```
 
 ## WebAssembly
 
-The crate also provides WebAssembly bindings. Build those from the repository root with `cargo xtask build` or `npm run build`; this optional workflow requires Node.js, the repository's npm dependencies, the `wasm32-unknown-unknown` Rust target, and `wasm-pack`. The private `xtask` owns the build pipeline and is not published with the parser.
+The crate provides WebAssembly bindings for parsing, tokenization, and Unicode-to-LaTeX conversion. Build them from the repository root with `cargo xtask build` or `npm run build`; this optional workflow requires Node.js, the repository's npm dependencies, the `wasm32-unknown-unknown` Rust target, and `wasm-pack`. The private `xtask` owns the build pipeline and is not published with the parser.
 
 ## Testing
 
@@ -61,13 +71,13 @@ cargo test
 
 These fixtures are not needed to build or use the standalone library.
 
-Run `cargo xtask test-rust` for workspace tests with one shared table-generation step. The npm build and test commands use the same Rust task runner.
+Run `cargo xtask test-rust` for Rust tests. Run `npm run test:unicode-mappings` to test Unicode-to-LaTeX behavior through the parser package entry point.
 
-## Unicode Table Format
+## Unicode Mapping Data
 
-The parser and Unicode-to-LaTeX converter use `data/unicode2latex/config.ssv` as their shared source. The build-time generator in `build/unicode_generator.rs` produces the mapping tables for both. The JavaScript build generates them once in `data/unicode2latex/`, then shares those outputs with the Rust builds.
+The parser and its Unicode-to-LaTeX module use `data/unicode2latex/config.ssv` as their shared source. The build-time generator in `build/unicode_mapping_generator.rs` produces the mappings. The JavaScript build exports JSON mappings to `data/unicode2latex/`; Cargo compiles the parser's Unicode-to-LaTeX data into the parser crate.
 
-The parser's `build.rs` normalizes shared text/math mappings and merges combining accents, then uses `postcard::to_allocvec` and `miniz_oxide::deflate::compress_to_vec` (level 9) to write `OUT_DIR/unicode_tables.deflate`. Standalone Cargo builds generate their own tables, and Cargo rebuilds them when the configuration or generator changes. The npm build and Rust test scripts share a generated set and reject it if its inputs have changed. No generated tables are checked in. Building the parser also requires a C compiler for the bundled SQLite used by the generator.
+The parser's `build.rs` normalizes shared text/math mappings and merges combining accents, then uses `postcard::to_allocvec` and `miniz_oxide::deflate::compress_to_vec` (level 9) to write `OUT_DIR/unicode_tables.deflate`. It also compiles the converter's static mappings into the same crate. Cargo reruns the build script when the configuration or generator changes. The npm build generates workspace JSON mappings with `cargo xtask unicode-mappings` before compiling the WASM module. No generated mapping data is checked in. Building the parser also requires a C compiler for the bundled SQLite used by the generator.
 
 The payload is a raw DEFLATE stream (no zlib or gzip wrapper) containing a Postcard-encoded `Vec<UnicodeMapping>`. Both build and runtime compile the same schema from `shared/unicode_mapping.rs`. Postcard encodes struct fields in declaration order (`key`, `text`, `math`, `combining`), without field names. Its [wire format](https://postcard.jamesmunns.com/wire-format.html) is documented and stable since Postcard 1.0; there is no handwritten byte codec.
 
@@ -84,7 +94,7 @@ assert!(remaining.is_empty());
 
 Mode and combining fields are `Option<String>`; `None` means unavailable, while `Some("")` is a valid replacement. Scalar source mappings apply to both text and math. Combining accents supplement rather than overwrite those mode values. Keys are unique and sorted by UTF-8 bytes for binary search.
 
-The decoder rejects trailing bytes and invalid key order; a `OnceLock` caches the owned strings for subsequent lookups. JSON is only the human-readable source format, not the embedded representation. Changing the shared schema requires regenerating the table, which Cargo handles automatically.
+The decoder rejects trailing bytes and invalid key order; a `OnceLock` caches the owned strings for subsequent lookups. JSON is only the human-readable source format, not the embedded representation. Changing the shared schema requires regenerating the mapping data, which Cargo handles automatically.
 
 ## Title tokenizer
 

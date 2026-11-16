@@ -1866,7 +1866,7 @@ impl LibraryRenderer {
   }
 }
 
-/// Convert plain-text ligatures with the generated `unicode2latex` text map.
+/// Convert plain-text ligatures with the generated Unicode-to-LaTeX text map.
 ///
 /// `text` is one parsed string node. `Math` mode and `verbatim == true` preserve its bytes;
 /// otherwise the longest matching mapping of up to three Unicode characters is emitted first.

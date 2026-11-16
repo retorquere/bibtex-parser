@@ -1,4 +1,4 @@
-use bibtex_parser::{Options as BibTeXOptions, parse as parse_bibtex};
+use bibtex_parser::{MapOptions, Options as BibTeXOptions, Transform, TranslateOptions, parse as parse_bibtex};
 use glob::glob;
 use reqwest::header::{ETAG, IF_NONE_MATCH};
 use serde_json::Value;
@@ -7,7 +7,7 @@ use std::{fs, io, path::Path};
 struct Abbreviations {
   unabbr: std::collections::HashMap<String, String>,
   strings: String,
-  translator: unicode2latex::Transform,
+  translator: Transform,
 }
 
 impl Abbreviations {
@@ -16,8 +16,8 @@ impl Abbreviations {
     Self {
       unabbr: std::collections::HashMap::new(),
       strings: include_str!("../../data/unabbreviate/strings.bib").to_string(),
-      // The BibLaTeX mode matches the table previously used to build string definitions.
-      translator: unicode2latex::Transform::new("biblatex", unicode2latex::MapOptions::default()).expect("biblatex is a built-in translation mode"),
+      // The BibLaTeX mode matches the mappings previously used to build string definitions.
+      translator: Transform::new("biblatex", MapOptions::default()).expect("biblatex is a built-in translation mode"),
     }
   }
 
@@ -177,7 +177,7 @@ impl Abbreviations {
     if abbr.starts_with('#') && abbr.ends_with('#') {
       abbr = abbr[1..abbr.len() - 2].to_string();
       if !full.contains('"') && accept(&abbr, full) {
-        let latex = self.translator.tolatex(full, &mut unicode2latex::TranslateOptions::default());
+        let latex = self.translator.tolatex(full, &mut TranslateOptions::default());
         self.strings += &format!("@string{{{} = \"{}\"}}\n", abbr, latex);
       }
     }

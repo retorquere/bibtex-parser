@@ -1,4 +1,4 @@
-/// Build/runtime schema for one entry in the `unicode2latex` conversion table.
+/// Build/runtime schema for one shared Unicode mapping entry.
 ///
 /// The payload is a Postcard-encoded `Vec<UnicodeMapping>` wrapped in raw DEFLATE.
 /// Postcard encodes struct fields in declaration order, without their names; both sides

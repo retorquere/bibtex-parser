@@ -16,7 +16,7 @@ lto = true
 
 [features]
 [workspace]
-members = ["tokenizer", "unicode2latex", "xtask"]
+members = ["xtask"]
 resolver = "3"
 
 [lib]
@@ -26,11 +26,14 @@ crate-type = ["cdylib", "rlib"]
 
 [dependencies]
 futures-util = { version = "0.3", default-features = false, features = ["std"] }
+indexmap = { version = "2", features = ["serde"] }
 miniz_oxide = { version = "0.9.1", default-features = false, features = ["with-alloc"] }
 postcard = { version = "1.1", default-features = false, features = ["alloc"] }
 serde = { version = "1", features = ["derive"] }
 unicode-general-category = "1.1"
+unicode-normalization = "0.1"
 url = "2.5.8"
+wasm-bindgen = "0.2"
 wildflower = "0.3"
 
 [build-dependencies]
@@ -50,5 +53,4 @@ serde_json = "1"
 [target.'cfg(target_arch = "wasm32")'.dependencies]
 console_error_panic_hook = "0.1"
 serde-wasm-bindgen = "0.6"
-wasm-bindgen = "0.2"
 wasm-bindgen-futures = "0.4"

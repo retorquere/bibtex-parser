@@ -1,4 +1,4 @@
-//! Unicode-to-LaTeX conversion using tables compiled from config.ssv.
+//! Unicode-to-LaTeX conversion using mappings compiled from the shared configuration.
 
 use indexmap::{IndexMap, IndexSet};
 use serde::Deserialize;
@@ -34,7 +34,7 @@ struct StaticMap {
   packages: &'static [(&'static str, StaticCharMap)],
 }
 
-include!(concat!(env!("OUT_DIR"), "/tables.rs"));
+include!(concat!(env!("OUT_DIR"), "/unicode_to_latex_tables.rs"));
 
 /// A character's text/math representations and conversion metadata.
 #[derive(Clone, Debug, Default, Deserialize)]

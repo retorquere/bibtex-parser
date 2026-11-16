@@ -5,65 +5,24 @@ use serde_json::{Map, Value, json};
 
 type Result<T> = std::result::Result<T, Box<dyn Error>>;
 
-/// The JSON tables produced from the Unicode configuration.
-pub const TABLE_NAMES: [&str; 5] = ["combining", "minimal", "biblatex", "bibtex", "latex2unicode"];
-
-/// Load the fixed shared table cache when current, otherwise generate from project configuration.
+/// Generate Unicode mappings in a crate's output directory, tracking their build inputs.
 ///
-/// Every source and cached file is tracked by Cargo so changes rerun the build script.
+/// Cargo reruns the build script when either the configuration or generator changes.
 pub fn load(repository: &Path, output: &Path) -> Result<Vec<(&'static str, Value)>> {
   let config_path = repository.join("data/unicode2latex/config.ssv");
-  let generator_path = repository.join("build/unicode_generator.rs");
+  let generator_path = repository.join("build/unicode_mapping_generator.rs");
   println!("cargo:rerun-if-changed={}", config_path.display());
   println!("cargo:rerun-if-changed={}", generator_path.display());
-  let config = fs::read(&config_path)?;
-  let source = fs::read(&generator_path)?;
-
-  let shared = repository.join("data/unicode2latex");
-  for name in ["_config.ssv", "_generator.rs"] {
-    println!("cargo:rerun-if-changed={}", shared.join(name).display());
-  }
-  for name in TABLE_NAMES {
-    println!("cargo:rerun-if-changed={}", shared.join(format!("{name}.json")).display());
-  }
-  let tables = match load_cached(&shared, &config, &source)? {
-    Some(tables) => tables,
-    None => generate(std::str::from_utf8(&config)?)?,
-  };
-
-  write_tables(output, &tables)?;
-  fs::write(output.join("_config.ssv"), config)?;
-  fs::write(output.join("_generator.rs"), source)?;
-  Ok(tables)
+  generate_to(repository, output)
 }
 
-/// Load shared tables only when their saved inputs match the current sources.
-///
-/// # Errors
-/// Returns an error if a cache file cannot be read or a table is not valid JSON.
-fn load_cached(directory: &Path, config: &[u8], source: &[u8]) -> Result<Option<Vec<(&'static str, Value)>>> {
-  for (name, expected) in [("_config.ssv", config), ("_generator.rs", source)] {
-    let data = match fs::read(directory.join(name)) {
-      Ok(data) => data,
-      Err(error) if error.kind() == std::io::ErrorKind::NotFound => return Ok(None),
-      Err(error) => return Err(error.into()),
-    };
-    // A stale cache must be regenerated from current inputs rather than mixed into this build.
-    if data.as_slice() != expected {
-      return Ok(None);
-    }
-  }
-
-  let mut tables = Vec::new();
-  for name in TABLE_NAMES {
-    let data = match fs::read(directory.join(format!("{name}.json"))) {
-      Ok(data) => data,
-      Err(error) if error.kind() == std::io::ErrorKind::NotFound => return Ok(None),
-      Err(error) => return Err(error.into()),
-    };
-    tables.push((name, serde_json::from_slice(&data)?));
-  }
-  Ok(Some(tables))
+/// Generate Unicode mappings into the requested directory without Cargo build-script directives.
+pub fn generate_to(repository: &Path, output: &Path) -> Result<Vec<(&'static str, Value)>> {
+  let config_path = repository.join("data/unicode2latex/config.ssv");
+  let config = fs::read(&config_path)?;
+  let tables = generate(std::str::from_utf8(&config)?)?;
+  write_tables(output, &tables)?;
+  Ok(tables)
 }
 
 /// Build all mappings from a UTF-8 configuration without writing files.
@@ -163,7 +122,7 @@ fn generate(config: &str) -> Result<Vec<(&'static str, Value)>> {
     // Stop before writing tables when any input or sanity check failed.
     return Err(errors.join("\n").into());
   }
-  println!("building tables");
+  println!("generating Unicode mappings");
   // Build every table before clearing output, so generation errors preserve existing files.
   let mut tables = Vec::new();
   // ---------------- Combining ----------------

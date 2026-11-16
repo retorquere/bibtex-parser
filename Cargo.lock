@@ -66,6 +66,7 @@ dependencies = [
  "console_error_panic_hook",
  "csv",
  "futures-util",
+ "indexmap",
  "miniz_oxide",
  "postcard",
  "rusqlite",
@@ -75,6 +76,7 @@ dependencies = [
  "sxd-document",
  "sxd-xpath",
  "unicode-general-category",
+ "unicode-normalization",
  "url",
  "wasm-bindgen",
  "wasm-bindgen-futures",
@@ -1073,16 +1075,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "rq-bibtex-tokenizer"
-version = "0.1.0"
-dependencies = [
- "serde",
- "serde-wasm-bindgen",
- "unicode-general-category",
- "wasm-bindgen",
-]
-
-[[package]]
 name = "rsqlite-vfs"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1648,20 +1640,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "unicode2latex"
-version = "0.1.0"
-dependencies = [
- "csv",
- "indexmap",
- "rusqlite",
- "serde",
- "serde-wasm-bindgen",
- "serde_json",
- "unicode-normalization",
- "wasm-bindgen",
-]
-
-[[package]]
 name = "untrusted"
 version = "0.9.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1953,7 +1931,6 @@ dependencies = [
  "regex",
  "reqwest",
  "serde_json",
- "unicode2latex",
 ]
 
 [[package]]
