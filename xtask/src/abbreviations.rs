@@ -111,9 +111,9 @@ impl Abbreviations {
       let data = fs::read_to_string(path)?;
       let base: Value = serde_json::from_str(&data)?;
       if let Some(map) = base.get("default").and_then(|v| v.get("container-title")).and_then(|v| v.as_object()) {
-        for (abbr, full) in map {
-          let abbr = self.clean(abbr, full.as_str().unwrap_or(""));
-          let full = full.as_str().unwrap_or("");
+        for (full, abbr) in map {
+          let abbr = self.clean(abbr.as_str().unwrap_or(""), full);
+          let full = full.as_str();
 
           if !accept(&abbr, full) {
             continue;
