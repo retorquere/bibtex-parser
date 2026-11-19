@@ -35,6 +35,14 @@ struct LoadedMap {
   packages: Vec<(String, LoadedCharMap)>,
 }
 
+/// Loaded Unicode maps, named by translation mode, with shared combining-mark data.
+struct LoadedUnicodeTables {
+  minimal: LoadedMap,
+  bibtex: LoadedMap,
+  biblatex: LoadedMap,
+  combining: Vec<(String, String, String)>,
+}
+
 /// Serializable format for all Unicode tables.
 #[derive(Deserialize)]
 struct UnicodeTables {
@@ -45,10 +53,10 @@ struct UnicodeTables {
 }
 
 /// Lazy-loaded compressed Unicode tables.
-static UNICODE_TABLES: OnceLock<(LoadedMap, LoadedMap, LoadedMap, Vec<(String, String, String)>)> = OnceLock::new();
+static UNICODE_TABLES: OnceLock<LoadedUnicodeTables> = OnceLock::new();
 
 /// Decompress and deserialize the Unicode tables from the binary blob.
-fn load_unicode_tables() -> &'static (LoadedMap, LoadedMap, LoadedMap, Vec<(String, String, String)>) {
+fn load_unicode_tables() -> &'static LoadedUnicodeTables {
   UNICODE_TABLES.get_or_init(|| {
     const COMPRESSED_TABLES: &[u8] = include_bytes!(concat!(env!("OUT_DIR"), "/unicode_to_latex_tables.deflate"));
     let decompressed = miniz_oxide::inflate::decompress_to_vec(COMPRESSED_TABLES).expect("Unicode table decompression succeeds");
@@ -69,7 +77,7 @@ fn load_unicode_tables() -> &'static (LoadedMap, LoadedMap, LoadedMap, Vec<(Stri
       packages: tables.biblatex.1.into_iter().map(|(name, entries)| (name, entries)).collect(),
     };
 
-    (minimal, bibtex, biblatex, tables.combining)
+    LoadedUnicodeTables { minimal, bibtex, biblatex, combining: tables.combining }
   })
 }
 
@@ -394,9 +402,9 @@ impl Transform {
     let minimal = mode == "minimal";
     // Creator mode uses the bibtex table, then applies creator-specific grouping below.
     let base = match mode {
-      "bibtex" | "bibtex-creator" => &tables.1,
-      "biblatex" => &tables.2,
-      "minimal" => &tables.0,
+      "bibtex" | "bibtex-creator" => &tables.bibtex,
+      "biblatex" => &tables.biblatex,
+      "minimal" => &tables.minimal,
       _ => return Err(format!("unknown translation mode: {mode}")),
     };
     // Work on a deep copy so per-instance adjustments do not mutate shared table data.
@@ -423,8 +431,8 @@ impl Transform {
     // ASCII overrides restore bibtex mappings even when another map was selected.
     for character in options.ascii.unwrap_or_default().chars() {
       let key = character.to_string();
-      if let Ok(index) = tables.1.base.binary_search_by_key(&key.as_str(), |(key, _)| key.as_str()) {
-        map.insert(key, tables.1.base[index].1.clone().into());
+      if let Ok(index) = tables.bibtex.base.binary_search_by_key(&key.as_str(), |(key, _)| key.as_str()) {
+        map.insert(key, tables.bibtex.base[index].1.clone().into());
       }
     }
     if let Some(custom) = options.charmap {
@@ -494,7 +502,7 @@ impl Transform {
       }
     }
     // Otherwise use the combining-mark entry, which specifies its TeX macro and output mode.
-    let combining = &load_unicode_tables().3;
+    let combining = &load_unicode_tables().combining;
     let (_, mode_str, command) = combining.get(combining.binary_search_by_key(&marks, |(key, _, _)| key.as_str()).ok()?)?;
     let mode = if mode_str == "Text" { Mode::Text } else { Mode::Math };
     // Apply the entry only if the base mapping supports its output mode.

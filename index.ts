@@ -399,6 +399,7 @@ export interface TranslateOptions {
   bracemath?: boolean
   preservemacrospacers?: boolean
   packages?: Set<string>
+  html?: boolean
 }
 
 export const biblatex = biblatexTable as TeXMap
