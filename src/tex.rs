@@ -806,9 +806,22 @@ fn narguments(name: &str, in_math: bool) -> usize {
   match name {
     "frac" | "href" => 2,
     "discretionary" => 3,
-    "advance" | "ElsevierGlyph" | "bar" | "begin" | "end" | "bibcyr" | "bibstring" | "chsf" | "allcaps" | "cite" | "citeauthor" | "cyrchar" | "ding" | "emph" | "enquote" | "hbox" | "hskip" | "hspace" | "ht" | "mathrm" | "mbox" | "mkbibbold" | "mkbibemph" | "mkbibitalic" | "mkbibquote"
-    | "noopsort" | "ocirc" | "overline" | "rlap" | "sb" | "section" | "sp" | "subsection" | "subsubsection" | "subsubsubsection" | "symbol" | "t" | "textbf" | "textcite" | "textit" | "textrm" | "textsc" | "textsl" | "textsubscript" | "textsuperscript" | "texttt" | "textup" | "url" | "vphantom"
-    | "vspace" | "wd" => 1,
+    "advance" | "allcaps" | "bar" | "begin" | "bibcyr" | "bibstring" | "chsf" | "cite" | "citeauthor" | "cyrchar" | "ding"
+      | "ElsevierGlyph" | "emph" | "end" | "enquote" | "hbox" | "hskip" | "hspace" | "ht" | "mbox"
+      | "mkbibbold" | "mkbibemph" | "mkbibitalic" | "mkbibquote" | "noopsort" | "ocirc" | "overline" | "rlap" | "sb" | "section" | "sp"
+      | "subsection" | "subsubsection" | "subsubsubsection"
+      | "symbol" | "t"
+      | "textbf" | "mathbf"
+      | "textcite"
+      | "textit" | "mathit"
+      | "textrm" | "mathrm"
+      | "textsc" | "mathsc"
+      | "textsf" | "mathsf"
+      | "textsl" | "mathsl"
+      | "texttt" | "mathtt"
+      | "textup"
+      | "url" | "vphantom" | "vspace" | "wd" | "textsubscript" | "textsuperscript"
+    => 1,
     "_" | "^" if in_math => 1,
     // Unlisted macros stay intact and do not consume following groups as arguments.
     _ => 0,
@@ -1975,27 +1988,31 @@ impl LibraryRenderer {
         let label = if name == "url" { url.clone() } else { self.render_argument(arguments, 1, context) };
         return format!("<a href=\"{url}\">{label}</a>");
       }
-      "textbf" | "mkbibbold" => {
+      "textbf" | "mathbf" | "mkbibbold"
+        => {
         // Render the argument inside a bold wrapper.
         let content = self.render_argument(arguments, 0, context);
         return if content.is_empty() { String::new() } else { format!("<b>{content}</b>") };
       }
-      "textit" | "textsl" | "emph" | "mkbibemph" => {
+      "textsf" | "mathsf" => {
+        return self.render_argument(arguments, 0, context);
+      }
+      "textit" | "mathit" | "textsl" | "mathsl" | "emph" | "mkbibemph" => {
         // Render the argument inside an emphasis wrapper.
         let content = self.render_argument(arguments, 0, context);
         return if content.is_empty() { String::new() } else { format!("<i>{content}</i>") };
       }
-      "textsc" => {
+      "textsc" | "mathsc" => {
         // Render the argument inside a small-caps wrapper.
         let content = self.render_argument(arguments, 0, context);
         return if content.is_empty() { String::new() } else { format!("<smallcaps>{content}</smallcaps>") };
       }
-      "texttt" => {
+      "texttt" | "mathtt" => {
         // Render the argument inside a code wrapper.
         let content = self.render_argument(arguments, 0, context);
         return if content.is_empty() { String::new() } else { format!("<code>{content}</code>") };
       }
-      "textrm" | "textup" | "mathrm" | "mbox" | "hbox" | "rlap" => {
+      "textrm" | "mathrm" | "textup" | "mbox" | "hbox" | "rlap" => {
         // These macros affect TeX layout, not the resulting characters.
         return self.render_argument(arguments, 0, context);
       }
