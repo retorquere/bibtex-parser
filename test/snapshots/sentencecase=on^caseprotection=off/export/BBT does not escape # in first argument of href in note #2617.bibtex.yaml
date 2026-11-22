@@ -19,6 +19,8 @@ entries:
     type: misc
     verbatim:
       author: '{TheAuthor}'
+      title: '{{TheTitle}}'
+      year: '2023'
   - fields:
       author:
         - name: TheAuthor
@@ -41,6 +43,9 @@ entries:
     type: misc
     verbatim:
       author: '{TheAuthor}'
+      howpublished: \url{https://www.example.com/#foo}
+      title: '{{TheTitle}}'
+      year: '2023'
   - fields:
       author:
         - name: TheAuthor
@@ -63,6 +68,9 @@ entries:
     type: misc
     verbatim:
       author: '{TheAuthor}'
+      note: \href{https://www.example.com/#foo}{https://www.example.com/\#foo}
+      title: '{{TheTitle}}'
+      year: '2023'
   - fields:
       author:
         - name: TheAuthor
@@ -82,6 +90,8 @@ entries:
     type: misc
     verbatim:
       author: '{TheAuthor}'
+      title: '{{TheTitle}}'
+      year: '2023'
 errors: []
 jabref:
   root: []

@@ -46,6 +46,9 @@ entries:
     type: inproceedings
     verbatim:
       author: Author, First and Author, Second
+      crossref: conference:06
+      pages: 330—331
+      title: Some publication title
   - fields:
       booktitle: Proceedings of the xth conference on XYZ (book)
       editor:
@@ -73,7 +76,11 @@ entries:
       year: literal
     type: proceedings
     verbatim:
+      booktitle: Proceedings of the Xth Conference on XYZ (Book)
       editor: Editor, First and Editor, Second
+      month: oct
+      title: Proceedings of the Xth Conference on XYZ
+      year: '2006'
 errors: []
 jabref:
   root: []

@@ -20,7 +20,9 @@ entries:
       title: title
     type: article
     verbatim:
+      annotation: relies on paricleParser fallback detection
       author: Aubignac, abbé d', François Hédelin
+      title: '{{(Aubignac) (François Hédelin, abbé d'')}}'
   - fields:
       author:
         - firstName: François Hédelin
@@ -43,6 +45,7 @@ entries:
     verbatim:
       author: abbé d' Aubignac, François Hédelin
       options: useprefix=true
+      title: '{{(abbé d'' Aubignac) (François Hédelin)}}'
   - fields:
       date: '2013'
       editor:
@@ -87,9 +90,16 @@ entries:
       title: title
     type: book
     verbatim:
+      date: '2013'
       editor: d' Almeida, Luís and Edwards, James and Dolcetti, Andrea
+      isbn: 978-1-84946-324-9
+      langid: english
       location: '{Oxford}'
+      pagetotal: vi+309
       publisher: '{Hart Publishing}'
+      title: >-
+        Reading {{HLA Hart}}'s: {{{\emph{The Concept}}}}{\emph{ of
+        }}{{{\emph{Law}}}}
   - fields:
       author:
         - firstName: Frank G.
@@ -127,8 +137,12 @@ entries:
     type: book
     verbatim:
       author: Bennett, Jr., Frank G.
+      date: '2013'
+      isbn: 978-1-4793-4771-1
       location: '{Lexington Kentucky}'
+      pagetotal: '137'
       publisher: '{CreateSpace Independent Publishing Platform}'
+      title: Citations, {{Out}} of the {{Box}}
   - fields:
       author:
         - firstName: John
@@ -155,7 +169,9 @@ entries:
     type: article
     verbatim:
       author: d' Jones, John
+      keywords: imported
       options: useprefix=true
+      title: Bugreports\_{{ApostropheOnParticle}}
   - fields:
       author:
         - firstName: Doe
@@ -177,6 +193,8 @@ entries:
     type: article
     verbatim:
       author: Doe Co.
+      keywords: imported
+      title: Bugreports\_{{AsmJournals}}
   - fields:
       author:
         - name: U.S. Bureau of the Census
@@ -197,6 +215,8 @@ entries:
     type: article
     verbatim:
       author: '{U.S. Bureau of the Census}'
+      keywords: imported
+      title: Bugreports\_{{DemoPageFullCiteCruftOnSubsequent}}
   - fields:
       author:
         - firstName: Bruce
@@ -218,6 +238,8 @@ entries:
     type: article
     verbatim:
       author: D'Arcus, Bruce
+      keywords: imported
+      title: Bugreports\_{{DuplicateSpaces}}
   - fields:
       author:
         - firstName: 'N'
@@ -239,6 +261,8 @@ entries:
     type: article
     verbatim:
       author: Family Name, N
+      keywords: imported
+      title: Bugreports\_{{DuplicateSpaces3}}
   - fields:
       author:
         - firstName: Κώστας
@@ -260,6 +284,8 @@ entries:
     type: article
     verbatim:
       author: Καρυωτάκης, Κώστας
+      keywords: imported
+      title: Bugreports\_{{GreekStyleProblems}}
   - fields:
       author:
         - firstName: Eduard
@@ -289,7 +315,9 @@ entries:
     type: article
     verbatim:
       author: van Happel, Eduard and von Hoppel, Gustav
+      keywords: imported
       options: useprefix=true
+      title: Bugreports\_{{parseName}}
   - fields:
       author:
         - firstName: R.
@@ -319,6 +347,8 @@ entries:
       author: >-
         Reynoso-Santos, R. and Soto-Pinto, L. and Tejeda-Cruz, C. and
         Williams-Linera, G.
+      keywords: imported
+      title: Bugreports\_{{ProcessorHang1}}
   - fields:
       author:
         - name: Africa News
@@ -339,6 +369,8 @@ entries:
     type: article
     verbatim:
       author: '{Africa News}'
+      keywords: imported
+      title: Bugreports\_{{YearSuffixInHarvard1}}
   - fields:
       author:
         - firstName: John
@@ -370,7 +402,9 @@ entries:
     type: article
     verbatim:
       author: Doe, III, John and van Roe, Jane
+      keywords: imported
       options: useprefix=true
+      title: Decorations\_{{AndTermUnaffectedByNameDecorations}}
   - fields:
       author:
         - firstName: Doug
@@ -397,7 +431,9 @@ entries:
     type: article
     verbatim:
       author: von Dipheria, Doug
+      keywords: imported
       options: useprefix=true
+      title: Disambiguate\_{{CitationLabelInData}}
   - fields:
       author:
         - name: Caritas Europa
@@ -419,6 +455,8 @@ entries:
     type: article
     verbatim:
       author: '{Caritas Europa} and {JRS-Europe}'
+      keywords: imported
+      title: Disambiguate\_{{FailWithYearSuffix}}
   - fields:
       author:
         - firstName: Smith
@@ -440,6 +478,8 @@ entries:
     type: article
     verbatim:
       author: Smith Co
+      keywords: imported
+      title: Disambiguate\_{{YearCollapseWithInstitution}}
   - fields:
       author:
         - firstName: Frank G.
@@ -462,6 +502,8 @@ entries:
     type: article
     verbatim:
       author: Bennett, Jr., Frank G.
+      keywords: imported
+      title: Display\_{{SecondFieldAlignMigratePunctuation}}
   - fields:
       author:
         - firstName: Alexander
@@ -530,9 +572,16 @@ entries:
         von Humboldt, Alexander and Gooding, Jr., Cuba and de La Fontaine, Jean
         and von Wright, Georg Henrik Auto and {von Wright}, Georg Henrik
         Explicit
+      date: '1963'
+      isbn: 0-7100-3616-7
+      langid: anglais
       location: '{Londres}'
       options: useprefix=true
+      pagetotal: xviii+214
       publisher: '{Routledge \& Kegan Paul}'
+      series: International {{Library}} of {{Philosophy}} and {{Scientific Method}}
+      shorttitle: Norm and {{Action}}
+      title: Norm and {{Action}}. {{A Logical Enquiry}}
   - fields:
       author:
         - firstName: Doe
@@ -554,6 +603,8 @@ entries:
     type: article
     verbatim:
       author: Doe Inc.
+      keywords: imported
+      title: Group\_{{ComplexNesting}}
   - fields:
       author:
         - firstName: S. P
@@ -580,7 +631,9 @@ entries:
     type: article
     verbatim:
       author: la Berge, S. P
+      keywords: imported
       options: useprefix=true
+      title: Integration\_{{DuplicateItem}}
   - fields:
       author:
         - firstName: Martin Luther
@@ -615,8 +668,11 @@ entries:
     type: book
     verbatim:
       author: King, Jr., Martin Luther
+      date: '1968'
       location: '{New York}'
+      pagetotal: '154'
       publisher: '{Grosset \& Dunlap}'
+      title: '"{{I}} Have a Dream" : The Quotations of {{Martin Luther King JR}}'
   - fields:
       author:
         - firstName: Samuel
@@ -643,7 +699,9 @@ entries:
     type: article
     verbatim:
       author: de Simone, Samuel
+      keywords: imported
       options: useprefix=true
+      title: Magic\_{{CapitalizeFirstOccurringNameParticle}}
   - fields:
       author:
         - firstName: John
@@ -670,7 +728,9 @@ entries:
     type: article
     verbatim:
       author: von Doe, John
+      keywords: imported
       options: useprefix=true
+      title: Magic\_{{NameParticle}}
   - fields:
       author:
         - name: Blob
@@ -691,6 +751,8 @@ entries:
     type: article
     verbatim:
       author: '{Blob}'
+      keywords: imported
+      title: Magic\_{{SuppressDuplicateVariableRendering}}
   - fields:
       author:
         - firstName: James
@@ -713,6 +775,8 @@ entries:
     type: article
     verbatim:
       author: Doe, III, James
+      keywords: imported
+      title: Name\_{{ArticularNameAsSortOrder}}
   - fields:
       author:
         - firstName: James
@@ -735,6 +799,8 @@ entries:
     type: article
     verbatim:
       author: Doe, Jr, James
+      keywords: imported
+      title: Name\_{{ArticularShortFormCommaSuffix}}
   - fields:
       author:
         - firstName: Jeffrey
@@ -757,6 +823,8 @@ entries:
     type: article
     verbatim:
       author: Doe, Jr., Jeffrey
+      keywords: imported
+      title: Name\_{{ArticularWithComma}}
   - fields:
       author:
         - firstName: Noakes
@@ -778,6 +846,8 @@ entries:
     type: article
     verbatim:
       author: Noakes Inc.
+      keywords: imported
+      title: Name\_{{Delimiter}}
   - fields:
       author:
         - firstName: Gerard
@@ -804,7 +874,9 @@ entries:
     type: article
     verbatim:
       author: van der Meer, Gerard
+      keywords: imported
       options: useprefix=true
+      title: Name\_{{FormattingOfParticles}}
   - fields:
       author:
         - firstName: Alan
@@ -830,7 +902,9 @@ entries:
     type: article
     verbatim:
       author: al- One, Alan
+      keywords: imported
       options: useprefix=true
+      title: Name\_{{HyphenatedNonDroppingParticle1}}
   - fields:
       author:
         - name: Multi-National United
@@ -851,6 +925,8 @@ entries:
     type: article
     verbatim:
       author: '{Multi-National United}'
+      keywords: imported
+      title: Name\_{{Institution}}
   - fields:
       author:
         - name: São Paulo (Estado)
@@ -871,6 +947,8 @@ entries:
     type: article
     verbatim:
       author: '{São Paulo (Estado)}'
+      keywords: imported
+      title: Name\_{{InstitutionDecoration}}
   - fields:
       author:
         - firstName: Rip
@@ -902,7 +980,9 @@ entries:
     type: article
     verbatim:
       author: van Winkle, Rip and Thucydides, III, Carl
+      keywords: imported
       options: useprefix=true
+      title: Name\_{{MixedFormatsInitialSortOrderAllWithDecorationsEtAl}}
   - fields:
       author:
         - name: Alfred Benzon Foundation
@@ -927,6 +1007,8 @@ entries:
       author: >-
         {Alfred Benzon Foundation} and {James Benson Foundation} and {John Candy
         Foundation}
+      keywords: imported
+      title: Name\_{{MultipleLiteral}}
   - fields:
       author:
         - firstName: Jean
@@ -954,7 +1036,9 @@ entries:
     type: article
     verbatim:
       author: de La Fontaine, III, Jean
+      keywords: imported
       options: useprefix=true
+      title: Name\_{{namepartAffixes}}
   - fields:
       author:
         - firstName: Jean
@@ -977,6 +1061,8 @@ entries:
     type: article
     verbatim:
       author: de La Fontaine, Jean
+      keywords: imported
+      title: Name\_{{ParsedDroppingParticleWithAffixes}}
   - fields:
       author:
         - firstName: Jean
@@ -1003,7 +1089,9 @@ entries:
     type: article
     verbatim:
       author: de la Fontaine, Jean
+      keywords: imported
       options: useprefix=true
+      title: Name\_{{ParsedNonDroppingParticleWithAffixes}}
   - fields:
       author:
         - firstName: François Hédelin
@@ -1031,7 +1119,9 @@ entries:
     type: article
     verbatim:
       author: d' Aubignac, abbé d', François Hédelin
+      keywords: imported
       options: useprefix=true
+      title: Name\_{{ParsedNonDroppingParticleWithApostrophe}}
   - fields:
       author:
         - firstName: Eric
@@ -1061,7 +1151,9 @@ entries:
     type: article
     verbatim:
       author: van der Vlist, Eric and van Gogh, Vincent
+      keywords: imported
       options: useprefix=true
+      title: Name\_{{ParseNames}}
   - fields:
       author:
         - firstName: Onename
@@ -1098,7 +1190,9 @@ entries:
       author: >-
         van One, Onename and van Two, Twoname and van Three, Threename and Van
         Four, Fourname
+      keywords: imported
       options: useprefix=true
+      title: Name\_{{ParticleCaps1}}
   - fields:
       author:
         - firstName: Dick
@@ -1120,6 +1214,8 @@ entries:
     type: article
     verbatim:
       author: '{Van Dyke}, Dick'
+      keywords: imported
+      title: Name\_{{ParticleCaps3}}
   - fields:
       author:
         - firstName: John
@@ -1146,7 +1242,9 @@ entries:
     type: article
     verbatim:
       author: de la Doe, John
+      keywords: imported
       options: useprefix=true
+      title: Name\_{{ParticleFormatting}}
   - fields:
       author:
         - firstName: Givenname
@@ -1247,7 +1345,9 @@ entries:
         Familyname, Givenname and vander Familyname, Givenname and v.d.
         Familyname, Givenname and vd Familyname, Givenname and van het
         Familyname, Givenname and ver Familyname, Givenname
+      keywords: imported
       options: useprefix=true
+      title: Name\_{{ParticlesDemoteNonDroppingNever}}
   - fields:
       author:
         - firstName: Jacques
@@ -1274,7 +1374,9 @@ entries:
     type: article
     verbatim:
       author: van Doe, Jacques
+      keywords: imported
       options: useprefix=true
+      title: Name\_{{WesternArticularLowercase}}
   - fields:
       author:
         - firstName: Gérard
@@ -1302,7 +1404,9 @@ entries:
     type: article
     verbatim:
       author: de la Martinière, III, Gérard
+      keywords: imported
       options: useprefix=true
+      title: Nameorder\_{{Long}}
   - fields:
       author:
         - firstName: Al-Khatib
@@ -1324,6 +1428,8 @@ entries:
     type: article
     verbatim:
       author: Al-Khatib Organization
+      keywords: imported
+      title: Position\_{{IbidWithSuffix}}
   - fields:
       author:
         - firstName: Alan
@@ -1345,6 +1451,8 @@ entries:
     type: article
     verbatim:
       author: '{De Quincey}, Alan'
+      keywords: imported
+      title: Sort\_{{ChangeInNameSort}}
   - fields:
       author:
         - firstName: Beijing
@@ -1367,6 +1475,8 @@ entries:
     type: article
     verbatim:
       author: Beijing Zoo and {Beijing Zoo}
+      keywords: imported
+      title: Sort\_{{ChicagoYearSuffix1}}
   - fields:
       author:
         - firstName: ANZ
@@ -1388,6 +1498,8 @@ entries:
     type: article
     verbatim:
       author: ANZ Group
+      keywords: imported
+      title: Sort\_{{FamilyOnly}}
   - fields:
       author:
         - firstName: Peter A.C.
@@ -1417,7 +1529,9 @@ entries:
     type: article
     verbatim:
       author: '''t Horvath, Peter A.C. and in ''t Horvath, Peter A.D.'
+      keywords: imported
       options: useprefix=true
+      title: Sort\_{{LeadingApostropheOnNameParticle}}
   - fields:
       author:
         - firstName: John
@@ -1444,7 +1558,9 @@ entries:
     type: article
     verbatim:
       author: di Noakes, John
+      keywords: imported
       options: useprefix=true
+      title: Sort\_{{NameParticleInNameSortFalse}}
   - fields:
       author:
         - firstName: Jacob
@@ -1466,6 +1582,8 @@ entries:
     type: article
     verbatim:
       author: '[F]linders, Jacob'
+      keywords: imported
+      title: Sort\_{{NameVariable}}
 errors: []
 jabref:
   root: []

@@ -10,7 +10,10 @@ entries:
     mode:
       title: title
     type: article
-    verbatim: {}
+    verbatim:
+      title: >-
+        non-braking space: ~; accented characters: {\~n} and \~{n}; tilde in
+        URL: \url{http://example.com/~user}
   - fields:
       title: "non-braking space: \_; accented characters: ñ and ñ; tilde in URL: <a href=\"http://example.com/~user\">Home</a>"
     input: |-
@@ -21,7 +24,10 @@ entries:
     mode:
       title: title
     type: article
-    verbatim: {}
+    verbatim:
+      title: >-
+        non-braking space: ~; accented characters: {\~n} and \~{n}; tilde in
+        URL: \href{http://example.com/~user}{Home}
 errors: []
 jabref:
   root: []

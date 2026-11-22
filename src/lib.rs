@@ -1671,13 +1671,14 @@ where
     let mut mode = HashMap::new();
     let mut keywords = Vec::new();
     for (field, value) in entry.fields {
+      if value.trim().is_empty() {
+        continue;
+      }
+      verbatim.insert(field.clone(), value.clone());
+
       if annotation_parts(&field).is_some() {
         mode.insert(field.clone(), "annotations".to_string());
         fields.insert(field.clone(), FieldValue::Annotation(parse_annotation(&value)));
-        verbatim.insert(field, value);
-        continue;
-      }
-      if value.trim().is_empty() {
         continue;
       }
 
@@ -1714,10 +1715,6 @@ where
         continue;
       }
 
-      if field == "options" {
-        // Save it before outer braces are removed
-        verbatim.insert(field.clone(), value.clone());
-      }
       let current_mode = field_mode(&field, options);
       mode.insert(field.clone(), current_mode.clone());
       let mut value = value;
@@ -1752,11 +1749,9 @@ where
         // Raw mode still parses typed names/lists, but otherwise returns printed TeX.
         if current_mode == "namelist" {
           let names: Vec<_> = split_names(&value).iter().map(|name| parse_raw_name(name)).collect();
-          verbatim.insert(field.clone(), value);
           fields.insert(field, FieldValue::Names(names));
         } else if current_mode == "literallist" {
           let items = split_literal_list(&field, &value);
-          verbatim.insert(field.clone(), value);
           fields.insert(field, FieldValue::List(items));
         } else {
           fields.insert(field, FieldValue::Text(value));
@@ -1767,7 +1762,6 @@ where
       // remains content rather than becoming a separator.
       if current_mode == "literallist" {
         let items = split_literal_list(&field, &value).iter().map(|element| renderer.render(element, tex::RenderContext::field(tex::RenderMode::Text, false, false)).trim().to_string()).collect();
-        verbatim.insert(field.clone(), value);
         fields.insert(field, FieldValue::List(items));
         continue;
       }
@@ -1790,9 +1784,6 @@ where
 
         _ => FieldValue::Text(value.trim().to_string()),
       };
-      if current_mode == "namelist" {
-        verbatim.insert(field.clone(), value);
-      }
       fields.insert(field, parsed);
     }
 

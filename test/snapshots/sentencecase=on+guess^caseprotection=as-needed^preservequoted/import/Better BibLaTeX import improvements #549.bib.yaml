@@ -16,6 +16,7 @@ entries:
     type: article
     verbatim:
       author: 01e
+      title: Blah  \emph{emph} and \enquote{enquote}.
   - fields:
       author:
         - lastName: 01b
@@ -32,6 +33,7 @@ entries:
     type: article
     verbatim:
       author: 01b
+      title: Blah  \mkbibemph{mkbibemph} and \mkbibquote{mkbibquote}.
   - fields:
       author:
         - lastName: 02e
@@ -48,6 +50,7 @@ entries:
     type: book
     verbatim:
       author: 02e
+      title: Blah  \emph{emph} and \enquote{enquote}.
   - fields:
       author:
         - lastName: 02b
@@ -64,6 +67,7 @@ entries:
     type: book
     verbatim:
       author: 02b
+      title: Blah  \mkbibemph{mkbibemph} and \mkbibquote{mkbibquote}.
   - fields:
       author:
         - firstName: David Christopher
@@ -93,7 +97,12 @@ entries:
     type: thesis
     verbatim:
       author: Bennett, David Christopher
+      date: '2003'
       institution: University of London
+      title: >-
+        Xenonika: medical texts associated with xenones in the late Byzantine
+        period
+      type: Ph.D.
   - fields:
       author:
         - firstName: Glen
@@ -129,6 +138,12 @@ entries:
     type: incollection
     verbatim:
       author: Glen Cooper
+      crossref: Classen2013
+      date: '2013'
+      pages: 263-87
+      title: >-
+        Byzantium between East and West: Competing Hellenisms in the
+        \mkbibemph{Alexiad} of Anna Komnene and her Contemporaries
   - fields:
       date: '1891'
       editor:
@@ -167,7 +182,14 @@ entries:
       volume: literal
     type: article
     verbatim:
+      date: '1891'
       editor: Correns, Paul
+      journaltitle: Beiträge zur Geschichte der Philosophie des Mittelalters
+      pages: 1-11
+      title: >-
+        Die dem Boethius fälschlich zugeschriebene Abhandlung des Dominicus
+        Gundisalvi {'De} unitate'
+      volume: '1'
   - fields:
       author:
         - firstName: Hamid
@@ -199,7 +221,11 @@ entries:
     type: inreference
     verbatim:
       author: Algar, Hamid
+      date: '1985'
       lista: 'Besmallah: in exegesis, jurisprudence, and cultural life'
+      pages: 172-4
+      title: Encyclopedia Iranica
+      volume: '4'
   - fields:
       date: '2012'
       editor:
@@ -239,9 +265,13 @@ entries:
       title: title
     type: collection
     verbatim:
+      date: '2012'
       editor: Anne van Arsdall and Timothy Graham
       location: Burlington, VT
       publisher: Ashgate
+      title: >-
+        Herbs and Healers from the Ancient Mediterranean through the Medieval
+        West: Essays in Honor of John M. Riddle
 errors: []
 jabref:
   root: []

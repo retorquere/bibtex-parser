@@ -29,6 +29,11 @@ entries:
     type: article
     verbatim:
       author: John Doe
+      groups: my-subgroup-3
+      owner: klein
+      timestamp: 2017.09.11
+      title: The paper in my-subgroup-3
+      year: '2017'
   - fields:
       author:
         - firstName: I.
@@ -55,6 +60,10 @@ entries:
     type: article
     verbatim:
       author: I. Other
+      groups: my-other-subgroup-3
+      owner: klein
+      timestamp: 2017.09.11
+      title: The article in my-other-subgroup-3
   - fields:
       author:
         - firstName: I
@@ -81,6 +90,10 @@ entries:
     type: article
     verbatim:
       author: I Unkonw
+      groups: my-subgroup-3, my-other-subgroup-3
+      owner: klein
+      timestamp: 2017.09.11
+      title: the paper in my-subgroup-3 and my-other-subgroup-3
   - fields:
       author:
         - firstName: I
@@ -107,6 +120,10 @@ entries:
     type: article
     verbatim:
       author: I Unkonw
+      groups: my-main-group-3
+      owner: klein
+      timestamp: 2017.09.11
+      title: 'JR3: paper not in a group'
 errors: []
 jabref:
   databaseType: bibtex

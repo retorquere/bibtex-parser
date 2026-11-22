@@ -13,7 +13,8 @@ entries:
     mode:
       foo: literal
     type: article
-    verbatim: {}
+    verbatim:
+      foo: '{{bar}}'
 errors:
   - error: unresolved @string reference "bar"
     input: ''

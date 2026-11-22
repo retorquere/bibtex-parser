@@ -27,6 +27,10 @@ entries:
     type: article
     verbatim:
       author: John Doe
+      owner: klein
+      timestamp: 2017.09.11
+      title: The paper in my-subgroup-2
+      year: '2017'
   - fields:
       author:
         - firstName: I.
@@ -51,6 +55,9 @@ entries:
     type: article
     verbatim:
       author: I. Other
+      owner: klein
+      timestamp: 2017.09.11
+      title: The article in my-other-subgroup-2
   - fields:
       author:
         - firstName: I
@@ -75,6 +82,9 @@ entries:
     type: article
     verbatim:
       author: I Unkonw
+      owner: klein
+      timestamp: 2017.09.11
+      title: 'JR2: paper not in a group'
 errors: []
 jabref:
   groupsversion: 3

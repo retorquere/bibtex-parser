@@ -43,10 +43,15 @@ entries:
       type: literal
     type: report
     verbatim:
+      annotation: '\{:X-genre: xxx\}'
       author: Author, Ann
+      date: '2015'
       editor: Editrix, Emma and Editor, Ed
       institution: '{Institution}'
       location: '{Place}'
+      number: '77'
+      title: A Report
+      type: working paper
   - fields:
       author:
         - firstName: John
@@ -94,9 +99,15 @@ entries:
     type: inreference
     verbatim:
       author: Blair, John
+      booktitle: Oxford Dictionary of National Biography
+      date: '2004'
+      doi: 10.1093/ref:odnb/10183
       editor: Matthew, H.C.G. and Harrison, Brian Howard
       location: '{Oxford}'
       publisher: '{Oxford University Press}'
+      title: Frithuswith ({\emph{d.}} 727)
+      url: http://www.oxforddnb.com/view/article/10183
+      urldate: '2014-06-13'
   - fields:
       date: '2015'
       editor:
@@ -129,9 +140,12 @@ entries:
       title: title
     type: movie
     verbatim:
+      date: '2015'
       editor: Doe, John and Roe, Rob
+      editortype: director
       location: '{US/GB}'
       publisher: '{The Distributor}'
+      title: A Film
   - fields:
       annotation: '{:X-genre: xxx}'
       editor:
@@ -147,6 +161,7 @@ entries:
       editor: namelist
     type: inreference
     verbatim:
+      annotation: '\{:X-genre: xxx\}'
       editor: '{Xxx}'
   - fields:
       booktitle: Friends
@@ -207,11 +222,20 @@ entries:
       volume: literal
     type: video
     verbatim:
+      booktitle: Friends
+      date: '2003'
       editor: Mancuso, Gail
       editora: Curtis, Michael and Malins, Gregory S.
+      editoratype: scriptwriter
+      editortype: director
+      langid: american
       location: '{US}'
+      number: '1'
+      origdate: '1996-09-16'
       origpublisher: '{NBC}'
       publisher: '{Warner Home Video}'
+      title: The One with the {{Princess Leia}} Fantasy
+      volume: '3'
   - fields:
       booktitle: Friends
       date: '1996-09-16'
@@ -264,10 +288,18 @@ entries:
       volume: literal
     type: video
     verbatim:
+      booktitle: Friends
+      date: '1996-09-16'
       editor: Mancuso, Gail
       editora: Curtis, Michael and Malins, Gregory S.
+      editoratype: scriptwriter
+      editortype: director
+      langid: american
       location: '{US}'
+      number: '1'
       publisher: '{NBC}'
+      title: The One with the {{Princess Leia}} Fantasy
+      volume: '3'
   - fields:
       date: '1964'
       editor:
@@ -295,7 +327,13 @@ entries:
       title: title
     type: video
     verbatim:
+      date: '1964'
       editor: Kubrick, Stanley
+      editortype: director
+      shorttitle: Dr. {{Strangelove}}
+      title: >-
+        Dr. {{Strangelove}} or: How {{I}} Learned to Stop Worrying and Love the
+        Bomb
 errors: []
 jabref:
   root: []
